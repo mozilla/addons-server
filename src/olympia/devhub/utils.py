@@ -218,27 +218,11 @@ class Validator(object):
 
             assert not file_.validation
 
-            tasks_in_parallel = [tasks.forward_linter_results.s(file_.pk)]
-
-            if waffle.switch_is_active('enable-yara'):
-                tasks_in_parallel.append(run_yara.s(file_.pk))
-
-            if waffle.switch_is_active('enable-customs'):
-                tasks_in_parallel.append(run_customs.s(file_.pk))
-
-            if waffle.switch_is_active('enable-wat'):
-                tasks_in_parallel.append(run_wat.s(file_.pk))
-
-            validation_tasks = [
-                tasks.create_initial_validation_results.si(),
-                repack_fileupload.s(file_.pk),
-                tasks.validate_upload.s(file_.pk, channel),
-                tasks.check_for_api_keys_in_file.s(file_.pk),
-                chord(tasks_in_parallel, call_ml_api.s(file_.pk)),
-                tasks.handle_upload_validation_result.s(file_.pk,
-                                                        channel,
-                                                        is_mozilla_signed)
-            ]
+            validation_tasks = self.create_file_upload_tasks(
+                upload_pk=file_.pk,
+                channel=channel,
+                is_mozilla_signed=is_mozilla_signed
+            )
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
             # the status of its owner Addon. If the caller tries to override
@@ -275,6 +259,34 @@ class Validator(object):
     def get_task(self):
         """Return task chain to execute to trigger validation."""
         return self.task
+
+    def create_file_upload_tasks(self, upload_pk, channel, is_mozilla_signed):
+        """
+        This method creates the validation chain used during the submission
+        process, combining tasks in parallel (chord) with tasks chained
+        together (where the output is used as input of the next task).
+        """
+        tasks_in_parallel = [tasks.forward_linter_results.s(upload_pk)]
+
+        if waffle.switch_is_active('enable-yara'):
+            tasks_in_parallel.append(run_yara.s(upload_pk))
+
+        if waffle.switch_is_active('enable-customs'):
+            tasks_in_parallel.append(run_customs.s(upload_pk))
+
+        if waffle.switch_is_active('enable-wat'):
+            tasks_in_parallel.append(run_wat.s(upload_pk))
+
+        return [
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(upload_pk),
+            tasks.validate_upload.s(upload_pk, channel),
+            tasks.check_for_api_keys_in_file.s(upload_pk),
+            chord(tasks_in_parallel, call_ml_api.s(upload_pk)),
+            tasks.handle_upload_validation_result.s(upload_pk,
+                                                    channel,
+                                                    is_mozilla_signed)
+        ]
 
 
 def add_dynamic_theme_tag(version):

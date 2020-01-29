@@ -694,3 +694,44 @@ class TestValidator(UploadTest, TestCase):
                                                     channel,
                                                     False)
         )
+
+    def test_create_file_upload_tasks(self):
+        self.create_switch('enable-customs', active=True)
+        self.create_switch('enable-wat', active=True)
+        self.create_switch('enable-yara', active=True)
+        file_upload = self.get_upload(
+            'webextension.xpi', with_validation=False
+        )
+        channel = amo.RELEASE_CHANNEL_LISTED
+        validator = utils.Validator(file_upload, listed=True)
+
+        tasks = validator.create_file_upload_tasks(
+            upload_pk=file_upload.pk, channel=channel, is_mozilla_signed=False
+        )
+
+        assert isinstance(tasks, list)
+
+        expected_tasks = [
+            'olympia.devhub.tasks.create_initial_validation_results',
+            'olympia.files.tasks.repack_fileupload',
+            'olympia.devhub.tasks.validate_upload',
+            'olympia.devhub.tasks.check_for_api_keys_in_file',
+            'celery.chord',
+            'olympia.devhub.tasks.handle_upload_validation_result',
+        ]
+        assert len(tasks) == len(expected_tasks)
+        assert expected_tasks == [task.name for task in tasks]
+
+        scanners_chord = tasks[4]
+
+        expected_parallel_tasks = [
+            'olympia.devhub.tasks.forward_linter_results',
+            'olympia.scanners.tasks.run_yara',
+            'olympia.scanners.tasks.run_customs',
+            'olympia.scanners.tasks.run_wat',
+        ]
+        assert len(scanners_chord.tasks) == len(expected_parallel_tasks)
+        assert (expected_parallel_tasks == [task.name for task in
+                                            scanners_chord.tasks])
+        # Callback
+        assert scanners_chord.body.name == 'olympia.scanners.tasks.call_ml_api'
