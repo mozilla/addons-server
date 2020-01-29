@@ -78,6 +78,16 @@ class TestScannerResultViewSet(TestCase):
             ),
             version=good_version_2,
         )
+        # Simulate a reviewer who has confirmed auto-approval a second time. We
+        # should not return duplicate results.
+        VersionLog.objects.create(
+            activity_log=ActivityLog.create(
+                action=amo.LOG.CONFIRM_AUTO_APPROVED,
+                version=good_version_2,
+                user=self.user,
+            ),
+            version=good_version_2,
+        )
         # result NOT labelled as "good" because action is not correct.
         version_3 = version_factory(addon=addon_factory())
         ScannerResult.objects.create(scanner=YARA, version=version_3)
