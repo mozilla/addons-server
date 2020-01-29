@@ -25,11 +25,13 @@ ACTIONS = {
 UNKNOWN = None
 TRUE_POSITIVE = 1
 FALSE_POSITIVE = 2
+INCONCLUSIVE = 3
 
 RESULT_STATES = {
     UNKNOWN: _('Unknown'),
     TRUE_POSITIVE: _('True positive'),
     FALSE_POSITIVE: _('False positive'),
+    INCONCLUSIVE: _('Inconclusive'),
 }
 
 NEW = 1
