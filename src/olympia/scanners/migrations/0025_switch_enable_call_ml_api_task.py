@@ -15,7 +15,7 @@ def create_waffle_switch(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('scanners', '0023_auto_20200122_1649'),
+        ('scanners', '0024_auto_20200128_1343'),
     ]
 
     operations = [migrations.RunPython(create_waffle_switch)]
