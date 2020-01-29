@@ -9,7 +9,7 @@ from django.utils.html import format_html
 from django.utils.http import urlencode
 
 from pyquery import PyQuery as pq
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -42,6 +42,7 @@ from olympia.scanners.admin import (
     ScannerRuleAdmin,
     StateFilter,
     WithVersionFilter,
+    _is_safe_url,
 )
 from olympia.scanners.models import (
     ScannerQueryResult, ScannerQueryRule, ScannerResult, ScannerRule
@@ -433,6 +434,27 @@ class TestScannerResultAdmin(TestCase):
         last_url, status_code = response.redirect_chain[-1]
         assert last_url == referer
 
+    def test_handle_true_positive_with_invalid_referer(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        assert result.state == UNKNOWN
+
+        referer = '{}/en-US/firefox/previous/page'.format('http://example.org')
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handletruepositive',
+                args=[result.pk],
+            ),
+            follow=True,
+            HTTP_REFERER=referer
+        )
+
+        last_url, status_code = response.redirect_chain[-1]
+        assert last_url == reverse('admin:scanners_scannerresult_changelist')
+
     @override_settings(YARA_GIT_REPOSITORY='git/repo')
     def test_handle_yara_false_positive(self):
         # Create one entry with matches
@@ -552,6 +574,30 @@ class TestScannerResultAdmin(TestCase):
         last_url, status_code = response.redirect_chain[-1]
         assert last_url == referer
 
+    def test_handle_revert_with_invalid_referer(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(
+            scanner=YARA,
+            version=version_factory(addon=addon_factory())
+        )
+        result.add_yara_result(rule=rule.name)
+        result.state = TRUE_POSITIVE
+        result.save()
+        assert result.state == TRUE_POSITIVE
+
+        referer = '{}/en-US/firefox/previous/page'.format('http://example.org')
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handlerevert', args=[result.pk]
+            ),
+            follow=True,
+            HTTP_REFERER=referer
+        )
+
+        last_url, status_code = response.redirect_chain[-1]
+        assert last_url == reverse('admin:scanners_scannerresult_changelist')
+
     def test_handle_true_positive_and_non_admin_user(self):
         result = ScannerResult(scanner=CUSTOMS)
         user = user_factory()
@@ -642,6 +688,26 @@ class TestScannerResultAdmin(TestCase):
 
         last_url, status_code = response.redirect_chain[-1]
         assert last_url == referer
+
+    def test_handle_inconclusive_with_invalid_referer(self):
+        # Create one entry with matches
+        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
+        result = ScannerResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+
+        referer = '{}/en-US/firefox/previous/page'.format('http://example.org')
+        response = self.client.post(
+            reverse(
+                'admin:scanners_scannerresult_handleinconclusive',
+                args=[result.pk],
+            ),
+            follow=True,
+            HTTP_REFERER=referer,
+        )
+
+        last_url, status_code = response.redirect_chain[-1]
+        assert last_url == reverse('admin:scanners_scannerresult_changelist')
 
 
 class TestScannerRuleAdmin(TestCase):
@@ -999,3 +1065,25 @@ class TestScannerQueryResultAdmin(TestCase):
             'admin:scanners_scannerqueryresult_change', args=(result.pk,))
         response = self.client.get(url)
         assert response.status_code == 200
+
+
+class TestIsSafeUrl(TestCase):
+    def test_enforces_https_when_request_is_secure(self):
+        request = RequestFactory().get('/', secure=True)
+        assert _is_safe_url('https://{}'.format(settings.DOMAIN), request)
+        assert not _is_safe_url('http://{}'.format(settings.DOMAIN), request)
+
+    def test_does_not_require_https_when_request_is_not_secure(self):
+        request = RequestFactory().get('/', secure=False)
+        assert _is_safe_url('https://{}'.format(settings.DOMAIN), request)
+        assert _is_safe_url('http://{}'.format(settings.DOMAIN), request)
+
+    def test_allows_domain(self):
+        request = RequestFactory().get('/', secure=True)
+        assert _is_safe_url('https://{}/foo'.format(settings.DOMAIN), request)
+        assert not _is_safe_url('https://not-olympia.dev', request)
+
+    def test_allows_external_site_url(self):
+        request = RequestFactory().get('/', secure=True)
+        external_domain = urlparse(settings.EXTERNAL_SITE_URL).netloc
+        assert _is_safe_url('https://{}/foo'.format(external_domain), request)
