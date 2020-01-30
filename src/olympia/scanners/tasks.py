@@ -243,7 +243,7 @@ def mark_yara_query_rule_as_completed_or_aborted(query_rule_pk):
     except ImproperScannerQueryRuleStateError:
         log.error('Not marking rule as completed or aborted for rule %s in '
                   'mark_yara_query_rule_as_completed_or_aborted, its state is '
-                  '%s' % (rule.pk, rule.get_state_display()))
+                  '%s', rule.pk, rule.get_state_display())
 
 
 @task
@@ -261,7 +261,7 @@ def run_yara_query_rule(query_rule_pk):
         rule.change_state_to(RUNNING)
     except ImproperScannerQueryRuleStateError:
         log.error('Not proceeding with run_yara_query_rule on rule %s because '
-                  'its state is %s' % (rule.pk, rule.get_state_display()))
+                  'its state is %s', rule.pk, rule.get_state_display())
         return
     log.info('Fetching versions for run_yara_query_rule on rule %s', rule.pk)
     # Build a huge list of all pks we're going to run the tasks on.
@@ -286,7 +286,7 @@ def run_yara_query_rule(query_rule_pk):
         mark_yara_query_rule_as_completed_or_aborted.si(query_rule_pk)
     )
     log.info('Running workflow of %s tasks for run_yara_query_rule on rule %s',
-             (len(chunked_tasks), rule.pk))
+             len(chunked_tasks), rule.pk)
     # Fire it up.
     workflow.apply_async()
 

@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-26 16:15+0000\n"
+"PO-Revision-Date: 2020-01-29 04:50+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -674,7 +674,7 @@ msgid "User {user} edited, reason: {1}"
 msgstr "تعدّل المستخدم {user}، السبب: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "جُرّد {user} من الهوية."
 
 msgid "User {user} restricted."
 msgstr ""
@@ -686,7 +686,7 @@ msgid "{rating} for {addon} updated."
 msgstr ""
 
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "جرت مراجعة {addon}."
 
 msgid "User {user} banned."
 msgstr ""
@@ -754,13 +754,13 @@ msgid "{addon} {version} content approved."
 msgstr ""
 
 msgid "Content approved"
-msgstr ""
+msgstr "جرت الموافقة على المحتوى"
 
 msgid "{addon} {version} content rejected."
-msgstr ""
+msgstr "رُفض محتوى الإصدارة {version} من {addon}."
 
 msgid "Content rejected"
-msgstr ""
+msgstr "رُفض المحتوى"
 
 #, fuzzy
 msgid "{addon} information request altered or removed by admin."
@@ -1512,7 +1512,7 @@ msgstr "لا يمكنك مزج فئة ”متنوّع“ مع فئات أخرى 
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
+msgstr "على نطاق URL أن يكون واحدًا من [%s] أو أن يكون نطاقًا فرعيًا."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -1912,7 +1912,7 @@ msgid "Validation Results"
 msgstr ""
 
 msgid "Validated at:"
-msgstr ""
+msgstr "تاريخ التأكيد:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr ""
@@ -1952,7 +1952,7 @@ msgid "View and update application compatibility ranges"
 msgstr ""
 
 msgid "Compatibility"
-msgstr ""
+msgstr "التوافقية"
 
 msgid "Update Compatibility"
 msgstr ""
@@ -1961,7 +1961,7 @@ msgid "Adjusting application information here will allow users to install your a
 msgstr ""
 
 msgid "Application"
-msgstr ""
+msgstr "التطبيق"
 
 msgid "Supported Versions"
 msgstr ""
@@ -1984,7 +1984,7 @@ msgid "Cancel"
 msgstr "ألغِ"
 
 msgid "Close"
-msgstr ""
+msgstr "أغلِق"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
@@ -2020,10 +2020,10 @@ msgid "Edit Product Page"
 msgstr ""
 
 msgid "None"
-msgstr ""
+msgstr "بلا"
 
 msgid "Preview"
-msgstr ""
+msgstr "عايِن"
 
 #, fuzzy
 msgid "Preview of listed version"
@@ -2141,7 +2141,7 @@ msgid ""
 msgstr ""
 
 msgid "Summary"
-msgstr ""
+msgstr "الملخص"
 
 msgid "Add-on URL"
 msgstr "رابط الإضافة"
@@ -2701,7 +2701,7 @@ msgid "Where to Host Version"
 msgstr "الإصدارة الهدف"
 
 msgid "Change"
-msgstr ""
+msgstr "غيّر"
 
 #, fuzzy
 msgid "Upload Version"
@@ -3077,7 +3077,7 @@ msgid "Add-on Developer Hub"
 msgstr "مطور إضافات"
 
 msgid "Docs"
-msgstr ""
+msgstr "المستندات"
 
 msgid "Support"
 msgstr "الدعم"
@@ -3225,7 +3225,7 @@ msgid "Listed versions"
 msgstr "عرض الإصدارات الأخرى"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "حاليًا في AMO"
 
 # Header for a column in a table
 #, fuzzy
@@ -5225,10 +5225,10 @@ msgid "Deleted reviews"
 msgstr "التعليقات المحذوفة"
 
 msgid "View entries between"
-msgstr ""
+msgstr "اعرض المُدخلات بين"
 
 msgid "and"
-msgstr ""
+msgstr "و"
 
 msgid "Filter by type/action"
 msgstr "تصفية حسب النوع/الإجراء"
@@ -5237,10 +5237,10 @@ msgid "containing"
 msgstr "تحتوي"
 
 msgid "start"
-msgstr ""
+msgstr "البدء"
 
 msgid "end"
-msgstr ""
+msgstr "الانتهاء"
 
 #. L10n: Description of what can be searched for
 #, fuzzy
@@ -5347,7 +5347,7 @@ msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
 msgid "Type"
-msgstr ""
+msgstr "النوع"
 
 msgid "Waiting Time"
 msgstr "وقت الانتظار"
@@ -5399,7 +5399,7 @@ msgid "No Reviews"
 msgstr "لا مراجعات"
 
 msgid "Weight"
-msgstr ""
+msgstr "الوزن"
 
 msgid "Information Request Deadline"
 msgstr ""

@@ -4,10 +4,5 @@
 {% block admin_change_form_document_ready %}
   {{ block.super }}
 
-  <script
-    id="scannerresult_actions"
-    data-refresh-url="{% url 'admin:scanners_scannerresult_changelist' %}"
-    type="text/javascript" src="{% static 'js/scanners/scannerresult_actions.js' %}"
-  >
-  </script>
+  <script type="text/javascript" src="{% static 'js/scanners/scannerresult_actions.js' %}"></script>
 {% endblock %}

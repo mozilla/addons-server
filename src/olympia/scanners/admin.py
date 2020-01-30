@@ -2,15 +2,15 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
-from django.db.models import Prefetch
+from django.db.models import FieldDoesNotExist, Prefetch
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils.html import format_html
-from django.utils.http import urlencode
+from django.utils.http import urlencode, is_safe_url
 from django.utils.translation import ugettext
 
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 from olympia import amo
 from olympia.access import acl
@@ -19,6 +19,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
     ABORTING,
     FALSE_POSITIVE,
+    INCONCLUSIVE,
     NEW,
     RESULT_STATES,
     RUNNING,
@@ -33,6 +34,18 @@ from .models import (
     ScannerResult, ScannerRule
 )
 from .tasks import run_yara_query_rule
+
+
+def _is_safe_url(url, request):
+    """Override the Django `is_safe_url()` to pass a configured list of allowed
+    hosts and enforce HTTPS."""
+    allowed_hosts = (
+        settings.DOMAIN,
+        urlparse(settings.EXTERNAL_SITE_URL).netloc,
+    )
+    require_https = request.is_secure() if request else False
+    return is_safe_url(url, allowed_hosts=allowed_hosts,
+                       require_https=require_https)
 
 
 class PresenceFilter(SimpleListFilter):
@@ -115,8 +128,7 @@ class WithVersionFilter(PresenceFilter):
         return queryset.exclude(version=None)
 
 
-@admin.register(ScannerResult)
-class ScannerResultAdmin(admin.ModelAdmin):
+class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     actions = None
     view_on_site = False
 
@@ -139,6 +151,7 @@ class ScannerResultAdmin(admin.ModelAdmin):
         WithVersionFilter,
     )
     list_select_related = ('version',)
+    raw_id_fields = ('version', 'upload')
 
     fields = (
         'id',
@@ -187,19 +200,28 @@ class ScannerResultAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
+    # Custom actions
+    def has_actions_permission(self, request):
+        return acl.action_allowed(
+            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
+
     def get_list_display(self, request):
         fields = super().get_list_display(request)
-        return self._excludes_admin_fields(request=request, fields=fields)
+        return self._excludes_fields(request=request, fields=fields)
 
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)
-        return self._excludes_admin_fields(request=request, fields=fields)
+        return self._excludes_fields(request=request, fields=fields)
 
-    def _excludes_admin_fields(self, request, fields):
-        is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
-        if not is_admin:
-            return list(filter(lambda x: x != 'result_actions', fields))
+    def _excludes_fields(self, request, fields):
+        to_exclude = []
+        if not self.has_actions_permission(request):
+            to_exclude = ['result_actions']
+        try:
+            self.model._meta.get_field('upload')
+        except FieldDoesNotExist:
+            to_exclude.append('upload')
+        fields = list(filter(lambda x: x not in to_exclude, fields))
         return fields
 
     def formatted_addon(self, obj):
@@ -265,7 +287,8 @@ class ScannerResultAdmin(admin.ModelAdmin):
     def formatted_matched_rules_with_files(self, obj):
         files_by_matched_rules = obj.get_files_by_matched_rules()
         return render_to_string(
-            'admin/scanners/scannerresult/formatted_matched_rules_with_files.html',  # noqa
+            'admin/scanners/scannerresult/'
+            'formatted_matched_rules_with_files.html',
             {
                 'external_site_url': settings.EXTERNAL_SITE_URL,
                 'file_id': (obj.version.all_files[0].id if obj.version else
@@ -283,10 +306,15 @@ class ScannerResultAdmin(admin.ModelAdmin):
 
     formatted_matched_rules_with_files.short_description = 'Matched rules'
 
+    def safe_referer_redirect(self, request, default_url):
+        referer = request.META.get('HTTP_REFERER')
+        if referer and _is_safe_url(referer, request):
+            return redirect(referer)
+        return redirect(default_url)
+
     def handle_true_positive(self, request, pk, *args, **kwargs):
-        is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
-        if not is_admin or request.method != "POST":
+        can_use_actions = self.has_actions_permission(request)
+        if not can_use_actions or request.method != "POST":
             raise Http404
 
         result = self.get_object(request, pk)
@@ -298,15 +326,31 @@ class ScannerResultAdmin(admin.ModelAdmin):
             'Scanner result {} has been marked as true positive.'.format(pk),
         )
 
-        return redirect(request.META.get(
-            'HTTP_REFERER',
-            'admin:scanners_scannerresult_changelist'
-        ))
+        return self.safe_referer_redirect(
+            request, default_url='admin:scanners_scannerresult_changelist'
+        )
+
+    def handle_inconclusive(self, request, pk, *args, **kwargs):
+        can_use_actions = self.has_actions_permission(request)
+        if not can_use_actions or request.method != "POST":
+            raise Http404
+
+        result = self.get_object(request, pk)
+        result.update(state=INCONCLUSIVE)
+
+        messages.add_message(
+            request,
+            messages.INFO,
+            'Scanner result {} has been marked as inconclusive.'.format(pk),
+        )
+
+        return self.safe_referer_redirect(
+            request, default_url='admin:scanners_scannerresult_changelist'
+        )
 
     def handle_false_positive(self, request, pk, *args, **kwargs):
-        is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
-        if not is_admin or request.method != "POST":
+        can_use_actions = self.has_actions_permission(request)
+        if not can_use_actions or request.method != "POST":
             raise Http404
 
         result = self.get_object(request, pk)
@@ -354,28 +398,33 @@ class ScannerResultAdmin(admin.ModelAdmin):
             'Scanner result {} report has been reverted.'.format(pk),
         )
 
-        return redirect(request.META.get(
-            'HTTP_REFERER',
-            'admin:scanners_scannerresult_changelist'
-        ))
+        return self.safe_referer_redirect(
+            request, default_url='admin:scanners_scannerresult_changelist'
+        )
 
     def get_urls(self):
         urls = super().get_urls()
+        info = self.model._meta.app_label, self.model._meta.model_name
         custom_urls = [
             url(
                 r'^(?P<pk>.+)/report-false-positive/$',
                 self.admin_site.admin_view(self.handle_false_positive),
-                name='scanners_scannerresult_handlefalsepositive',
+                name='%s_%s_handlefalsepositive' % info,
             ),
             url(
                 r'^(?P<pk>.+)/report-true-positive/$',
                 self.admin_site.admin_view(self.handle_true_positive),
-                name='scanners_scannerresult_handletruepositive',
+                name='%s_%s_handletruepositive' % info,
+            ),
+            url(
+                r'^(?P<pk>.+)/report-inconclusive/$',
+                self.admin_site.admin_view(self.handle_inconclusive),
+                name='%s_%s_handleinconclusive' % info,
             ),
             url(
                 r'^(?P<pk>.+)/revert-report/$',
                 self.admin_site.admin_view(self.handle_revert),
-                name='scanners_scannerresult_handlerevert',
+                name='%s_%s_handlerevert' % info,
             ),
         ]
         return custom_urls + urls
@@ -440,9 +489,15 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     formatted_definition.short_description = 'Definition'
 
 
-@admin.register(ScannerQueryResult)
-class ScannerQueryResultAdmin(admin.ModelAdmin):
+@admin.register(ScannerResult)
+class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
     pass
+
+
+@admin.register(ScannerQueryResult)
+class ScannerQueryResultAdmin(
+        AbstractScannerResultAdminMixin, admin.ModelAdmin):
+    raw_id_fields = ('version',)
 
 
 @admin.register(ScannerRule)
@@ -530,16 +585,17 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 
     def get_urls(self):
         urls = super().get_urls()
+        info = self.model._meta.app_label, self.model._meta.model_name
         custom_urls = [
             url(
                 r'^(?P<pk>.+)/abort/$',
                 self.admin_site.admin_view(self.handle_abort),
-                name='scanners_scannerqueryrule_handle_abort',
+                name='%s_%s_handle_abort' % info,
             ),
             url(
                 r'^(?P<pk>.+)/run/$',
                 self.admin_site.admin_view(self.handle_run),
-                name='scanners_scannerqueryrule_handle_run',
+                name='%s_%s_handle_run' % info,
             ),
         ]
         return custom_urls + urls
