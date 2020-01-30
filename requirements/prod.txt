@@ -5,9 +5,9 @@ Babel==2.8.0 \
     --hash=sha256:1aac2ae2d0d8ea368fa90906567f5c08463d98ade155c0c4bfedd6a0f7160e38 \
     --hash=sha256:d670ea0b10f8b723672d3a6abeb87b565b244da220d76b4dba1b66269ec152d4
 # Jinja2 is required by Sphinx
-Jinja2==2.10.3 \
-    --hash=sha256:74320bb91f31270f9551d46522e33af46a80c3d619f4a4bf42b3164d30b5911f \
-    --hash=sha256:9fe95f19286cfefaa917656583d020be14e7859c6b0252588391e47db34527de
+Jinja2==2.11.0 \
+    --hash=sha256:6e7a3c2934694d59ad334c93dd1b6c96699cf24c53fdb8ec848ac6b23e685734 \
+    --hash=sha256:d6609ae5ec3d56212ca7d802eda654eaf2310000816ce815361041465b108be4
 # MarkupSafe is required by Jinja2
 MarkupSafe==1.1.1 \
     --hash=sha256:00bc623926325b26bb9605ae9eae8a215691f33cae5df11ca5424f06f2d1f473 \
