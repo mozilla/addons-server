@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-28 22:52+0000\n"
+"PO-Revision-Date: 2020-01-30 22:43+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2763,7 +2763,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Por favor, clique no botão de confirmação abaixo para gerar as credenciais de API para o utilizador <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Será enviada uma ligação de confirmação para o seu endereço de e-mail. Após a confirmação, poderá encontrar nesta página as suas chaves da API."
 
 msgid "You don't have any API credentials."
 msgstr "Não possui quaisquer credenciais da API."
@@ -3310,7 +3310,7 @@ msgstr "Atualizações meteorológicas instantâneas {start_sub_heading}com {add
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Atualizações meteorológicas instantâneas de todo o mundo."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3923,7 +3923,7 @@ msgstr "Transfira imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Transfira as imagens que encontra na Internet."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4112,7 +4112,7 @@ msgstr "Deslocamento como nos dispositivos móveis {start_sub_heading}com {addon
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Navegue no seu computador de um modo semelhante ao telemóvel. Disponibiliza um movimento do rato do tipo \"agarrar e arrastar\"."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4128,7 +4128,7 @@ msgstr "Destaque texto {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Marque texto em páginas da Internet para guardar e aceder mais tarde."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
