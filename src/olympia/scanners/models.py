@@ -107,7 +107,7 @@ class AbstractScannerResult(ModelBase):
         res = defaultdict(list)
         if self.scanner is YARA:
             for item in self.results:
-                res[item['rule']].append(item['meta']['filename'])
+                res[item['rule']].append(item['meta'].get('filename', '???'))
         elif self.scanner is CUSTOMS:
             scanMap = self.results.get('scanMap', {})
             for filename, rules in scanMap.items():

@@ -268,12 +268,15 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     formatted_results.short_description = 'Results'
 
     def formatted_matched_rules(self, obj):
+        rule_model = self.model.matched_rules.rel.model
+        info = rule_model._meta.app_label, rule_model._meta.model_name
+
         return format_html(
             ', '.join(
                 [
                     '<a href="{}">{}</a>'.format(
                         reverse(
-                            'admin:scanners_scannerrule_change', args=[rule.pk]
+                            'admin:%s_%s_change' % info, args=[rule.pk]
                         ),
                         rule.name,
                     )
@@ -286,10 +289,13 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     def formatted_matched_rules_with_files(self, obj):
         files_by_matched_rules = obj.get_files_by_matched_rules()
+        rule_model = self.model.matched_rules.rel.model
+        info = rule_model._meta.app_label, rule_model._meta.model_name
         return render_to_string(
             'admin/scanners/scannerresult/'
             'formatted_matched_rules_with_files.html',
             {
+                'rule_change_urlname': 'admin:%s_%s_change' % info,
                 'external_site_url': settings.EXTERNAL_SITE_URL,
                 'file_id': (obj.version.all_files[0].id if obj.version else
                             None),
@@ -430,8 +436,21 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         return custom_urls + urls
 
     def result_actions(self, obj):
+        info = self.model._meta.app_label, self.model._meta.model_name
         return render_to_string(
-            'admin/scannerresult_actions.html', {'obj': obj}
+            'admin/scannerresult_actions.html', {
+                'handlefalsepositive_urlname': (
+                    'admin:%s_%s_handlefalsepositive' % info
+                ),
+                'handletruepositive_urlname': (
+                    'admin:%s_%s_handletruepositive' % info
+                ),
+                'handleinconclusive_urlname': (
+                    'admin:%s_%s_handleinconclusive' % info
+                ),
+                'handlerevert_urlname': 'admin:%s_%s_handlerevert' % info,
+                'obj': obj,
+            }
         )
 
     result_actions.short_description = 'Actions'
