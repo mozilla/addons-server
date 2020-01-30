@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-30 22:43+0000\n"
+"PO-Revision-Date: 2020-01-30 22:47+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4204,7 +4204,7 @@ msgstr "Navegue de modo privado {start_sub_heading}com {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Pesquise em privado com apenas um clique."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4354,7 +4354,7 @@ msgstr "Acompanhe o histórico de preços da Amazon {start_sub_heading}com {addo
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Acompanhe o histórico de preços da Amazon. Tome decisões de compra informadas."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4426,7 +4426,7 @@ msgstr "Feche sobreposições irritantes {start_sub_heading}com {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Feche pop-ups irritantes com um simples clique."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4480,7 +4480,7 @@ msgstr "Acompanhe o histórico de preços da Amazon {start_sub_heading}com {addo
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Acompanhe o histórico de preços da Amazon. Faça decisões de compras inteligentes, recebendo alertas sobre as alterações de preços nos produtos da Amazon que sejam do seu interesse."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4570,7 +4570,7 @@ msgstr "Melhore a sua experiência de leitura {start_sub_heading}com {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Leia com mais clareza e facilidade. Remova a confusão à volta do texto nas páginas de Internet."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4623,7 +4623,7 @@ msgstr "Aumente imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Personalize os tons claro e escuro para tornar as páginas da Internet ​​visualmente mais agradáveis."
 
 #. editorial content for the discovery pane.
 #, fuzzy
