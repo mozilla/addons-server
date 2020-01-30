@@ -266,9 +266,9 @@ lxml==4.4.2 \
 # m2secret is required by django-aesfield
 m2secret-py3==1.3 \
     --hash=sha256:94dfae937e8a61bf48812fab6a0b8de300781c4e1dbee0cee3aa57cb01915864
-more-itertools==8.1.0 \
-    --hash=sha256:1a2a32c72400d365000412fe08eb4a24ebee89997c18d3d147544f70f5403b39 \
-    --hash=sha256:c468adec578380b6281a114cb8a5db34eb1116277da92d7c46f904f0b52d3288
+more-itertools==8.2.0 \
+    --hash=sha256:5dd8bcf33e5f9513ffa06d5ad33d78f31e1931ac9a18f33d37e77a180d393a7c \
+    --hash=sha256:b1ddb932186d8a6ac451e1d95844b382f55e12686d51ca0c68b6f61f2ab7a507
 python-memcached==1.59 \
     --hash=sha256:4dac64916871bd3550263323fc2ce18e1e439080a2d5670c594cf3118d99b594 \
     --hash=sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f
