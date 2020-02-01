@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-01 00:37+0000\n"
+"PO-Revision-Date: 2020-02-01 16:04+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3742,9 +3742,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Adicione imagens aos resultados das pesquisas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Desfrute de miniaturas ao lado dos seus resultados de pesquisas."
+msgstr "Disponha de imagens de pré-visualização de sites junto aos seus resultados das pesquisas."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3767,18 +3766,16 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Personalize os seus sites favoritos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Altere a aparência de qualquer site! Altere cores, fundos de página, entre outros."
+msgstr "Personalize a aparência de qualquer site! Altere cores, fundos de página, entre outros."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Personalize o seu novo separador {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Editar o separador de nova página para apresentar o seu número perfeito de mosaicos, imagem de fundo, entre outros."
+msgstr "Personalize o separador de nova página para apresentar o seu número perfeito de mosaicos, imagem de fundo, entre outros."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3793,27 +3790,24 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Saiba onde vai na web {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Obtenha a localização do país para os sites que visita. Seja um viajante da Internet informado."
+msgstr "Saiba até onde vai na Internet. Obtenha a localização do país para os sites que visita. Seja um viajante da Internet informado."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melhore a sua experiência de leitura {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Torne o texto que está a ler mais apelativo removendo as distrações à volta do mesmo."
+msgstr "Melhore a sua experiência de leitura. Torne o texto que está a ler mais apelativo removendo as distrações à volta do mesmo."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Abra múltiplas ligações {start_sub_heading}com {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
-msgstr "Clique com o lado direito e arraste para cima ligações que pretende abrir em novos separadores."
+msgstr "Clique com o lado direito e arraste as ligações que pretende abrir em novos separadores."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3828,9 +3822,8 @@ msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Inspire produtividade {start_sub_heading}com {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Modifique a sua página de novo separador para mostrar um fundo bonito, definir o seu foco diário, entre outros."
+msgstr "Inspire a produtividade. Modifique a sua página de novo separador para mostrar um fundo bonito, definir o seu foco diário, entre outros."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3877,9 +3870,8 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Torne o YouTube seu {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Reproduza vídeos numa janela destacada, e apenas veja anúncios dentro dos canais subscritos, tire capturas de ecrã aos vídeos e muito mais."
+msgstr "Torne o YouTube seu. Reproduza vídeos numa janela destacada, apenas veja anúncios dentro dos canais subscritos, tire capturas de ecrã aos vídeos e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3894,7 +3886,6 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dê estilo à Wikipedia {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "Aplica uma aparência moderna e refrescante à Wikipedia."
 
