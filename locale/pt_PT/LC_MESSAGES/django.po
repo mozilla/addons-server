@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-01 17:10+0000\n"
+"PO-Revision-Date: 2020-02-01 17:20+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4340,23 +4340,20 @@ msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Acompanhe a produtividade {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Meça o montante de tempo que gasta no computador, em aplicações de trabalho específicas como Trello, JIRA, Basecamp, GitHub, e muitas mais."
+msgstr "Controle a produtividade. Meça a quantidade de tempo que gasta no computador ou em aplicações de trabalho específicas como o Trello, JIRA, Basecamp, GitHub e muitas outras."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Clipe conteúdo web como artigos, vídeo, imagens, e mais para guardar e utilizar para projetos individuais ou colaboração em equipa em tempo real."
+msgstr "Guarde as suas coisas favoritas da Internet. Registe conteúdos como artigos, vídeos, imagens, etc., para guardar e utilizar para projetos individuais ou colaboração em equipa em tempo real."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navegue com segurança {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Apenas permita conteúdo web de executar de sites que confia."
+msgstr "Permitir apenas a execução de conteúdo Web de sites em que confia. Navegue em segurança."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4431,18 +4428,16 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Corrija áudio irritante {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "O volume de um website está demasiado baixo? Demasiado alto? O SoundFixer pode ajudar."
+msgstr "Corrija áudio irritante. O volume de um site está demasiado baixo? Demasiado alto? O SoundFixer pode ajudar."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Edite antes de imprimir {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Faça alterações visuais extraordinárias—remova anúncios ou conteúdo desagradável—a qualquer página web que pretende imprimir."
+msgstr "Edite uma página web antes de a imprimir. Faça alterações visuais significativas - remova anúncios ou conteúdo desagradável - em qualquer página web que pretenda imprimir."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
