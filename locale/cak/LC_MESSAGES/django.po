@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-02 22:03+0000\n"
+"PO-Revision-Date: 2020-02-02 22:22+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1018,12 +1018,13 @@ msgstr "Soltojtob'enel"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox ri jutaqil yek'extäj chuqa' e ütz chik richin yetojtob'ëx. Ri taq ana'oj xke'apon pa kiq'a' ri b'anonela' richin xketikïr xkekijäl ri taq ruwäch ri chwa'q kab'ij."
 
 msgid "Performance"
 msgstr "Rub'eyal nisamaj"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Ke'aqasaj taq k'amal ri nikijotob'a' rub'eyal nisamäj ri Firefox. Wawe' xke'awïl taq k'amal, ri yatkito' richin nab'än k'ïy chuqa' ütz samaj, akuchi' niq'at eltzijoj chuqa' ch'aqa' chik."
 
 msgid "Photos & Media"
 msgstr "Taq Wachib'äl & K'oxom"
