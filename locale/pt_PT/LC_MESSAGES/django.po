@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-03 22:11+0000\n"
+"PO-Revision-Date: 2020-02-03 22:21+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4624,45 +4624,40 @@ msgid "Track products and get notified when prices drop on items you're interest
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Capture a web {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Ative o modo noturno na web {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Parar ferramentas de monitorização de pesquisa {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Melhore a pesquisa do Android {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Encontre vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Ajuda em vídeo do Android {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "As extensões de legado já não são suportadas no Firefox."
+msgstr "As extensões são como aplicações para o Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
-msgstr "Navegar em todas as extensões"
+msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
@@ -4682,9 +4677,8 @@ msgstr "Saber mais"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Extensões"
+msgstr "Explorar extensões"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4787,9 +4781,8 @@ msgstr "Não pode submeter um extra com um guid que acabe em %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Não pode submeter uma extensão assinada pela Mozilla"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Não pode submeter uma extensão assinada pela Mozilla"
+msgstr "Você não pode enviar um pacote de idiomas"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tipo de ficheiro não suportado, por favor carregue um ficheiro suportado {extensions}."
@@ -5265,13 +5258,11 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr "Análise do risco não disponível."
 
-#, fuzzy
 msgid "Is locked by a reviewer"
-msgstr "Está bloqueado por um revisor."
+msgstr "Está bloqueado por um revisor"
 
-#, fuzzy
 msgid "Has auto-approval disabled flag set"
-msgstr "Tem a etiqueta de auto-aprovação desativada definida."
+msgstr "Tem definida a etiqueta de auto-aprovação desativada"
 
 msgid "Is recommendable"
 msgstr ""
@@ -5327,9 +5318,8 @@ msgstr "Peso"
 msgid "Information Request Deadline"
 msgstr "Prazo de solicitação de informação"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Última atualização:"
+msgstr "Última atualização"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Isto vai aprovar, assinar, e publicar esta versão. Os comentários serão enviados para o programador."
@@ -5373,16 +5363,14 @@ msgstr "Comentário"
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Faça um comentário a esta versão. O programador não poderá ver isto."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Rever extras"
+msgstr "Pré-rever extras"
 
 msgid "Recommended ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Revisão de avaliação ({0})"
+msgstr "Outra revisão pendente ({0})"
 
 msgid "Review Log"
 msgstr "Registo de revisão"
@@ -5685,9 +5673,8 @@ msgstr "Histórico de alterações do utilizador para o extra"
 msgid "Add-on History"
 msgstr "Histórico do extra"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Nota anterior"
+msgstr "Entradas excluídas anteriormente"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
