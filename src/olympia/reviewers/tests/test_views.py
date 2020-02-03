@@ -6872,6 +6872,9 @@ class TestReviewAddonVersionCompareViewSet(
 
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
+
+        # A reviewer needs the `Addons:ViewDeleted` permission to view and
+        # compare deleted versions
         self.grant_permission(user, 'Addons:ViewDeleted')
 
         self.client.login_api(user)
