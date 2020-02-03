@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-03 22:21+0000\n"
+"PO-Revision-Date: 2020-02-03 22:31+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4581,7 +4581,7 @@ msgstr "Bloquear sites que distraem {start_sub_heading}com {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Bloquear os sites que distraem. Basta indicar os sites que deseja que a extensão bloqueie. Disciplina instantânea!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4589,7 +4589,7 @@ msgstr "Reanime páginas mortas {start_sub_heading}com {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Encontre páginas de Internet arquivadas, inativas ou de outra forma desaparecidas."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4597,7 +4597,7 @@ msgstr "Altere a aparência do Firefox {start_sub_heading}com {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Altere a aparência do seu navegador. Crie com facilidade os seus próprios temas visuais para que o Firefox tenha a aparência que desejar."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4605,7 +4605,7 @@ msgstr "Tire notas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Mantenha notas pessoais em qualquer lugar da Internet. Basta utilizar uma barra lateral para anexar notas em páginas específicas da Internet."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4613,7 +4613,7 @@ msgstr "Pesquisa ativada por voz {start_sub_heading}com {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Utilize o reconhecimento de voz para ativar a pesquisa por voz no Google, Yahoo e DuckDuckGo."
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4621,7 +4621,7 @@ msgstr "Acompanhe o preço de produtos {start_sub_heading}com {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Acompanhe produtos e seja notificado quando os preços descerem nos itens que lhe interessam na Amazon, Best Buy, eBay, Home Depot e Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5797,9 +5797,8 @@ msgstr "Nenhuma revisão encontrada para este período."
 msgid "Method:"
 msgstr ""
 
-#, fuzzy
 msgid "Source:"
-msgstr "por fonte"
+msgstr "Fonte:"
 
 msgid "Dismiss this announcement"
 msgstr "Dispensar este anúncio"
@@ -6268,9 +6267,8 @@ msgstr "Tem a certeza que deseja remover todas as <b>{0}</b> traduções? Isto n
 msgid "Delete Locale"
 msgstr "Eliminar idioma"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Fechar histórico de revisões"
+msgstr "Histórico de restrições do utilizador"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -6287,13 +6285,12 @@ msgstr "Os utilizadores \"%(users)s\" foram banidos."
 msgid "Ban selected users"
 msgstr "Banir utilizadores selecionados"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Os utilizadores \"%(users)s\" foram banidos."
+msgstr "Os utilizadores \"%(users)s\" tiveram a respetiva chave da API redefinida."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Gerir chaves da API"
+msgstr "Redefinir chave da API"
 
 msgid "Profile Photo"
 msgstr "Fotografia do perfil"
