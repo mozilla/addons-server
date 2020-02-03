@@ -24,16 +24,22 @@ from .utils import (
 GUID_FULL_LOAD_LIMIT = 100
 
 
-def _get_version_choices(obj, field):
-    default = obj._meta.get_field(field).default
+def _get_version_choices(block, field_name):
+    # field_name will be `min_version` or `max_version`
+    default = block._meta.get_field(field_name).default
     choices = [
         (version, version) for version in (
-            [default] + list(obj.addon_versions.keys())
+            [default] + list(block.addon_versions.keys())
         )
     ]
-    value = getattr(obj, field)
-    if value and (value, value) not in choices:
-        choices = [(getattr(obj, field), '(invalid)')] + choices
+    block_version = getattr(block, field_name)
+    if block_version and (block_version, block_version) not in choices:
+        # if the current version isn't in choices it's not a valid version of
+        # the addon.  This is either because:
+        # - the Block was created as a multiple submission so was a free input
+        # - it's a new Block and the min|max_version was passed as a GET param
+        # - the version was hard-deleted from the addon afterwards (unlikely)
+        choices = [(block_version, '(invalid)')] + choices
     return choices
 
 
