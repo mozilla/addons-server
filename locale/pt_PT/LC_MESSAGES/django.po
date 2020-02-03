@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-03 00:11+0000\n"
+"PO-Revision-Date: 2020-02-03 22:03+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4516,52 +4516,44 @@ msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Corte o absurdo {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Uma extensão inteligente que lhe ajuda a entender rapidamente com o que está a concordar."
+msgstr "Evite a confusão dos termos dos acordos típicos de licenciamento. Uma extensão inteligente que o ajuda a perceber rapidamente o que lhe estão a pedir para concordar."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Preencha formulários automaticamente {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Verifique automaticamente a ortografia e a gramática {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Melhore a sua experiência de leitura {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Uma melhor experiência de leitura {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Leia com mais clareza e facilidade. Remova a confusão à volta do texto nas páginas de Internet."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Bloqueie anúncios e muito mais {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "Não bloqueie apenas anúncios irritantes, mas proteja-se contra software malicioso e monitorização por ferramentas de publicidade."
+msgstr "Bloqueie anúncios e obtenha uma proteção melhorada contra software malicioso e publicidade de monitorização."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Transfira vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Transfira vídeos facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Aproveite o suporte para transferências multi-threading. Deteção automática dos tipos de media disponíveis transferência."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pesquise imagens {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Guarde imagens facilmente {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Obtenha apenas imagens do seu separador atual."
+msgstr "Guarde imagens com facilidade — basta capturá-las do seu separador atual."
 
 #. editorial content for the discovery pane.
 #, fuzzy
