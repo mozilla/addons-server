@@ -683,6 +683,14 @@ class BLOCKLIST_BLOCK_DELETED(_LOG):
     short = _('Block deleted')
 
 
+class BLOCKLIST_SIGNOFF(_LOG):
+    id = 159
+    keep = True
+    hide_developer = True
+    format = _('Block {1} action for {0} signed off.')
+    short = _('Block action signoff')
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
