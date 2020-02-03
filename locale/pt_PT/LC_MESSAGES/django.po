@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-03 22:31+0000\n"
+"PO-Revision-Date: 2020-02-03 22:41+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4629,7 +4629,7 @@ msgstr "Ative o modo noturno na web {start_sub_heading}com {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Deixe a Internet escura ou selecione um esquema de cores personalizado para adaptar visualmente a Internet ao seu gosto."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4637,7 +4637,7 @@ msgstr "Melhore a pesquisa do Android {start_sub_heading}com {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Obtenha uma página de pesquisa mais avançada no Firefox para Android."
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4645,7 +4645,7 @@ msgstr "Ajuda em vídeo do Android {start_sub_heading}com {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Alguns sites têm dificuldade em reproduzir vídeos no Firefox para Android. Esta extensão fornece uma correção."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4653,7 +4653,7 @@ msgstr "As extensões são como aplicações para o Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Estes adicionam funcionalidades ao Firefox para tornar a navegação mais rápida, segura ou simplesmente divertida."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -4661,15 +4661,15 @@ msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr ""
+msgstr "Sincronizar as extensões entre os dispositivos"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Privacidade além das extensões de navegador"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Otimizadores de media para o Firefox"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
@@ -4747,7 +4747,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Ficheiro que excede o limite de tamanho no arquivo: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "O tamanho não comprimido é muito grande"
 
 msgid "Invalid archive."
 msgstr "Arquivo inválido."
@@ -5128,7 +5128,7 @@ msgstr "Não pode deixar mais do que uma análise para a mesma versão de um ext
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Etiqueta [%s] inválida - deve ser um de [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Esta avaliação não pode ser marcada porque não possui texto de análise."
@@ -5265,13 +5265,13 @@ msgid "Has auto-approval disabled flag set"
 msgstr "Tem definida a etiqueta de auto-aprovação desativada"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "É recomendável"
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "Atrasado porque é a primeira versão listada"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Não pode submeter um comentário se `canned_response` estiver definida."
 
 msgid "Type"
 msgstr "Tipo"
@@ -5367,7 +5367,7 @@ msgid "Pre-Review Add-ons"
 msgstr "Pré-rever extras"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Recomendado ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "Outra revisão pendente ({0})"
@@ -5795,7 +5795,7 @@ msgid "No reviews found for this period."
 msgstr "Nenhuma revisão encontrada para este período."
 
 msgid "Method:"
-msgstr ""
+msgstr "Método:"
 
 msgid "Source:"
 msgstr "Fonte:"
@@ -6302,10 +6302,10 @@ msgid "Activity Logs"
 msgstr "Registos de atividade"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Insira um endereço IPv4 ou IPv6 válido, por exemplo, 127.0.0.1. Será convertido para uma rede /32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Apenas pode introduzir um endereço de IP ou de rede."
 
 msgid "No user with that email."
 msgstr "Nenhum utilizador com esse email."
@@ -6320,21 +6320,23 @@ msgid "My Favorite Add-ons"
 msgstr "Os meus extras favoritos"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Introduza um intervalo de rede IPV6 ou IPv6 CIDR válido, por exemplo, 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Foram submetidos a partir da sua localização vários extras que violam as nossas políticas. O endereço de IP foi bloqueado."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Padrão de E-mail"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Insira o domínio completo ou o e-mail que deverá ser bloqueado ou utilize  carateres de substituição no estilo glob para corresponder outros padrões. Por exemplo, \"@*.mail.com\"\n"
+" Note que nós não incluímos ''@\" na correspondência, pelo que deverá fazer isso no padrão."
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr ""
+msgstr "O endereço de e-mail utilizado para a sua conta não é permitido para a submissão de extras."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
