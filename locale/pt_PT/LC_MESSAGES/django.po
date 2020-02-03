@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-03 22:41+0000\n"
+"PO-Revision-Date: 2020-02-03 22:52+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2692,7 +2692,7 @@ msgid "Theme generator"
 msgstr "Gerador de temas"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr "Aviso: as seguintes propriedades de manifesto que a sua versão mais recente carregada utilizou no seu manifesto não são suportadas neste assistente e serão ignoradas:"
+msgstr "Aviso: as propriedades de manifesto seguintes que a versão mais recente enviada utilizou no respetivo manifesto não são suportadas neste assistente e serão ignoradas:"
 
 msgid "Theme name"
 msgstr "Nome do tema"
@@ -2962,7 +2962,7 @@ msgid "Review Add-ons"
 msgstr "Rever extras"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Os revisores voluntários ajudam a manter os extras seguros e confiáveis para utilização. Eles também aproveitam ótimas vantagens!"
+msgstr "Os revisores voluntários ajudam a garantir que os extras são seguros e confiáveis para serem utilizados. Eles também têm excelentes benefícios!"
 
 msgid "Join us!"
 msgstr "Juntar-se a nós!"
@@ -3019,7 +3019,7 @@ msgid "Docs"
 msgstr "Documentação"
 
 msgid "Support"
-msgstr "Suporte"
+msgstr "Apoio"
 
 # Link text to the AMO blog.
 msgid "Blog"
@@ -3178,7 +3178,7 @@ msgid "All versions"
 msgstr "Todas as versões"
 
 msgid "Upload a New Version"
-msgstr "Carregar uma nova versão"
+msgstr "Enviar uma nova versão"
 
 msgid "Version"
 msgstr "Versão"
@@ -3707,7 +3707,7 @@ msgstr "Converta todos os seus separadores abertos numa lista para que os possa 
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gestão segura de transferências {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Gestão de transferências robusta {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
@@ -4123,7 +4123,7 @@ msgstr "Ouça vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr "Guarde largura de banda ao apenas transmitir o áudio de clipes do YouTube."
+msgstr "Poupe largura de banda transmitindo apenas o áudio dos clipes de vídeo do YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4973,7 +4973,7 @@ msgid "Over the years, many people have contributed to this website, including b
 msgstr "Ao longo dos anos, muitas pessoas contribuíram para este website, incluindo voluntários da comunidade e uma equipa dedicada do AMO."
 
 msgid "Review Guidelines"
-msgstr "Diretrizes de análises"
+msgstr "Diretrizes de revisão"
 
 # 75%
 msgid "Sections"
@@ -5020,7 +5020,7 @@ msgid "Will you continue to use this add-on?"
 msgstr "Vai continuar a utilizar este extra?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Leia novamente a sua análise antes de a enviar para minimizar erros ortográficos."
+msgstr "Leia o seu comentário antes de o enviar para minimizar erros ortográficos."
 
 msgid "Don’t:"
 msgstr "Não fazer:"
@@ -5142,7 +5142,7 @@ msgstr[0] "{num} revisão"
 msgstr[1] "{num} revisões"
 
 msgid "Not yet rated"
-msgstr "Ainda sem avaliação"
+msgstr "Ainda sem classificação"
 
 # 87%
 msgid "Rated {0} out of 5 stars"
@@ -5244,7 +5244,7 @@ msgid "Requires Restart"
 msgstr "Reinício necessário"
 
 msgid "More Information Requested"
-msgstr "Pedida mais informação"
+msgstr "Solicitada mais informação"
 
 msgid "Expired Information Request"
 msgstr "Solicitação de informação expirada"
@@ -6342,6 +6342,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Digite um domínio de e-mail completamente descartável que deva ser bloqueado. Os caracteres de substituição não são suportados: se necessitar dos mesmos, ou se precisar de corresponder um e-mail "
+"completo e não apenas a parte do domínio, utilize \"Restrições no e-mail do utilizador\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
