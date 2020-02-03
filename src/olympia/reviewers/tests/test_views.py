@@ -6800,7 +6800,7 @@ class TestReviewAddonVersionCompareViewSet(
             }
         ]
 
-    def test_get_deleted_file(self):
+    def test_compare_with_deleted_file(self):
         new_version = version_factory(
             addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
 
@@ -6856,6 +6856,32 @@ class TestReviewAddonVersionCompareViewSet(
             'pk': next_version.pk})
 
         response = self.client.get(self.url + '?file=foo.png')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['file']['download_url']
+
+    def test_compare_with_deleted_version(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        # We need to run extraction first and delete afterwards, otherwise
+        # we'll end up with errors because files don't exist anymore.
+        AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        new_version.delete()
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, 'Addons:ViewDeleted')
+
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(self.url)
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['file']['download_url']
