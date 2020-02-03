@@ -232,7 +232,7 @@
         </li>
         {% if not addon.block %}
         <li>
-          <a href="{{ url('admin:blocklist_block_add_single') }}?guid={{ addon.guid }}" class="button"
+          <a href="{{ url('admin:blocklist_blocksubmission_add') }}?guids={{ addon.guid }}" class="button"
                   id="block_addon" type="button">{{ _('Block add-on') }}</a>
         </li>
         {% else %}
