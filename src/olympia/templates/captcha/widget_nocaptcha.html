@@ -1,10 +1,10 @@
-<script src='https://www.google.com/recaptcha/api.js{% if lang %}?hl={{ lang }}{% endif %}' async defer></script>
+<script src='https://www.recaptcha.net/recaptcha/api.js{% if lang %}?hl={{ lang }}{% endif %}' async defer></script>
 <div class="g-recaptcha" data-sitekey="{{ public_key }}"></div>
 <noscript>
   <div style="width: 302px; height: 484px;">
     <div style="width: 302px; height: 424px; position: relative;">
       <div style="width: 302px; height: 424px; position: absolute;">
-        <iframe src="https://www.google.com/recaptcha/api/fallback?k={{ public_key }}{% if lang %}&amp;hl={{ lang }}{% endif %}"
+        <iframe src="https://www.recaptcha.net/recaptcha/api/fallback?k={{ public_key }}{% if lang %}&amp;hl={{ lang }}{% endif %}"
                 frameborder="0" scrolling="no"
                 style="width: 302px; height:424px; border-style: none;">
         </iframe>
