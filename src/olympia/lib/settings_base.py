@@ -1281,6 +1281,12 @@ LOGGING = {
             'level': logging.DEBUG,
             'propagate': False,
         },
+        'filtercascade': {
+            'handlers': ['mozlog'],
+            # Ignore INFO or DEBUG from filtercascade, it logs too much.
+            'level': logging.WARNING,
+            'propagate': False,
+        },
         'mohawk.util': {
             'handlers': ['mozlog'],
             # Ignore INFO or DEBUG from mohawk.util, it logs too much.
