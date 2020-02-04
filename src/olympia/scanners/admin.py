@@ -543,6 +543,11 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         'created', 'modified', 'matched_results_link', 'state_with_actions',
     )
 
+    def has_change_permission(self, request, obj=None):
+        if obj and obj.state != NEW:
+            return False
+        return super().has_change_permission(request, obj=obj)
+
     def handle_run(self, request, pk, *args, **kwargs):
         is_admin = acl.action_allowed(
             request, amo.permissions.ADMIN_SCANNERS_QUERY)
