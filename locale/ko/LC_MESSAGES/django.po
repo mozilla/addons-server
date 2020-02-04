@@ -2790,7 +2790,7 @@ msgstr "부가 기능이 갤러리에 노출되고 있고 사용자들은 자동
 
 #, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "부가 기능이 사이트 관리자에의해 비활성화되어 갤러리에 더이상 노출되지 않습니다. 문의 사항이 있으시면, amo-admins@mozilla.org 로 이메일을 부탁드립니다."
+msgstr "부가 기능이 사이트 관리자에의해 비활성화되어 갤러리에 더이상 노출되지 않습니다. 문의 사항이 있으시면, amo-admins@mozilla.com 로 이메일을 부탁드립니다."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""

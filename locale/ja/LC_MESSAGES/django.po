@@ -2766,7 +2766,7 @@ msgstr "このアドオンは当サイトのギャラリーに表示されてお
 
 #, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "このアドオンはサイト管理者によって無効化されており、当サイトのギャラリーには表示されません。質問がある場合は amo-admins@mozilla.org までメールを送ってください。"
+msgstr "このアドオンはサイト管理者によって無効化されており、当サイトのギャラリーには表示されません。質問がある場合は amo-admins@mozilla.com までメールを送ってください。"
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "あなたのアドオンは検索結果に含まれず、詳細ページにはあなたがそれを無効化していることが記載されます。この状態では、新バージョンの登録は受け付けられません。"

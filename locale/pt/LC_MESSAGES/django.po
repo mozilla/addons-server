@@ -2943,7 +2943,7 @@ msgstr "O seu extra está a ser apresentado na nossa galeria e os utilizadores e
 
 #, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "O seu extra foi desativado por um administrador do sítio e já não é apresentado na nossa galeria. Se tiver quaisquer questões, por favor envie um email para amo-admins@mozilla.org."
+msgstr "O seu extra foi desativado por um administrador do sítio e já não é apresentado na nossa galeria. Se tiver quaisquer questões, por favor envie um email para amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
