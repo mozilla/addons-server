@@ -2832,7 +2832,7 @@ msgstr "Το πρόσθετο σας εμφανίζεται κανονικά σ�
 
 #, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Το πρόσθετό σας απενεργοποιήθηκε από ένα διαχειριστή ιστοσελίδας και δεν εμφανίζεται πλέον στη συλλογή μας. Αν έχετε απορίες, παρακαλούμε επικοινωνήστε μαζί στο amo-admins@mozilla.org."
+msgstr "Το πρόσθετό σας απενεργοποιήθηκε από ένα διαχειριστή ιστοσελίδας και δεν εμφανίζεται πλέον στη συλλογή μας. Αν έχετε απορίες, παρακαλούμε επικοινωνήστε μαζί στο amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""

@@ -2797,7 +2797,7 @@ msgstr "Azegrir inek yettwasken di tmidelt-nneɣ udiɣ iseqdacen ad d-remsen ile
 
 #, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "azegrir-ik yessens-it unedba n usmel, ur yezgi yettban-d deg timidelt-nneɣ. Ma ɣur-k isteqsiyen, azen-d imayl ar amo-admins@mozilla.org."
+msgstr "azegrir-ik yessens-it unedba n usmel, ur yezgi yettban-d deg timidelt-nneɣ. Ma ɣur-k isteqsiyen, azen-d imayl ar amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Azegrir-ik ur yerni ara ar igmaḍ n unadi daɣen asebter n unadi n telqayt yemmal-d d akken tsenseḍ-t. Tuzniwin n ileqman imaynuten ur tezzin ad ttwaqeblen deg addad-agi."
