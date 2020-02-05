@@ -1,0 +1,16 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+
+{% block submit_buttons_bottom %}
+  {# This is so we can submit directly to the blocksubmission add view - it expect an input_guids field #}
+  <input type="hidden" name="input_guids" value="{{ original.guid }}">
+  <div class="submit-row">
+    {% if has_delete_permission and change and show_delete %}
+        {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+        <p class="deletelink-box"><a href="{% add_preserved_filters delete_url %}" class="deletelink">{% trans "Delete" %}</a></p>
+    {% endif %}
+    {% if change %}
+        <input type="submit" value="{% trans 'Save' %}" class="default" name="_save">
+    {% endif %}
+  </div>
+{% endblock %}

@@ -290,10 +290,18 @@ class BlockSubmission(ModelBase):
             for block in existing_blocks:
                 block.addon = addon_guid_dict[block.guid]
 
-        # identify the blocks that need updating -i.e. not v_min - vmax already
-        blocks_to_update_dict = {
-            block.guid: block for block in existing_blocks
-            if not (block.min_version == v_min and block.max_version == v_max)}
+        if len(all_guids) == 1:
+            # We special case a single guid to always update it.
+            blocks_to_update_dict = (
+                {existing_blocks[0].guid: existing_blocks[0]}
+                if existing_blocks else {})
+        else:
+            # identify the blocks that need updating -
+            # i.e. not v_min - vmax already
+            blocks_to_update_dict = {
+                block.guid: block for block in existing_blocks
+                if not (
+                    block.min_version == v_min and block.max_version == v_max)}
         existing_guids = [
             block.guid for block in existing_blocks
             if block.guid not in blocks_to_update_dict]
