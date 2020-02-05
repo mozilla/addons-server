@@ -1379,6 +1379,7 @@ CSP_FONT_SRC = (
 CSP_CHILD_SRC = (
     "'self'",
     'https://www.google.com/recaptcha/',
+    'https://www.recaptcha.net/recaptcha/',
 )
 CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
@@ -1398,7 +1399,9 @@ CSP_OBJECT_SRC = ("'none'",)
 CSP_SCRIPT_SRC = (
     'https://ssl.google-analytics.com/ga.js',
     'https://www.google.com/recaptcha/',
+    'https://www.recaptcha.net/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
+    'https://www.gstatic.cn/recaptcha/',
     PROD_CDN_HOST,
 )
 CSP_STYLE_SRC = (
