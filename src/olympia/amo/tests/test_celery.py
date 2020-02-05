@@ -11,7 +11,6 @@ from django.test.testcases import TransactionTestCase
 
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 
-from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.amo.celery import app, task
 from olympia.amo.utils import utc_millesecs_from_epoch

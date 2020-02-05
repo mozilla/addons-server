@@ -1080,7 +1080,6 @@ CELERY_IMPORTS = (
 CELERY_TASK_QUEUES = (
     Queue('addons', routing_key='addons'),
     Queue('amo', routing_key='amo'),
-    Queue('api', routing_key='api'),
     Queue('bandwagon', routing_key='bandwagon'),
     Queue('cron', routing_key='cron'),
     Queue('crypto', routing_key='crypto'),
