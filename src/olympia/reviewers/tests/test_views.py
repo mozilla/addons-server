@@ -33,7 +33,8 @@ from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser, ReusedGUID)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser, DeniedGuid,
+    ReusedGUID)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, format_date, format_datetime)
@@ -5560,6 +5561,10 @@ class TestAddonReviewerViewSet(TestCase):
             'reviewers-addon-disable', kwargs={'pk': self.addon.pk})
         self.flags_url = reverse_ns(
             'reviewers-addon-flags', kwargs={'pk': self.addon.pk})
+        self.deny_resubmission_url = reverse_ns(
+            'reviewers-addon-deny-resubmission', kwargs={'pk': self.addon.pk})
+        self.allow_resubmission_url = reverse_ns(
+            'reviewers-addon-allow-resubmission', kwargs={'pk': self.addon.pk})
 
     def test_subscribe_not_logged_in(self):
         response = self.client.post(self.subscribe_url)
@@ -5822,6 +5827,39 @@ class TestAddonReviewerViewSet(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.ADMIN_ALTER_INFO_REQUEST.id
         assert activity_log.arguments[0] == self.addon
+
+    def test_deny_resubmission(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        assert DeniedGuid.objects.count() == 0
+        response = self.client.post(self.deny_resubmission_url)
+        assert response.status_code == 202
+        assert DeniedGuid.objects.count() == 1
+
+    def test_deny_resubmission_with_denied_guid(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.addon.deny_resubmission()
+        assert DeniedGuid.objects.count() == 1
+        response = self.client.post(self.deny_resubmission_url)
+        assert response.status_code == 409
+        assert DeniedGuid.objects.count() == 1
+
+    def test_allow_resubmission(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.addon.deny_resubmission()
+        assert DeniedGuid.objects.count() == 1
+        response = self.client.post(self.allow_resubmission_url)
+        assert response.status_code == 202
+        assert DeniedGuid.objects.count() == 0
+
+    def test_allow_resubmission_with_non_denied_guid(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(self.allow_resubmission_url)
+        assert response.status_code == 409
+        assert DeniedGuid.objects.count() == 0
 
 
 class AddonReviewerViewSetPermissionMixin(object):

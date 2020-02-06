@@ -39,7 +39,7 @@ from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, CommentLog, DraftComment
 from olympia.addons.decorators import addon_view, owner_or_unlisted_reviewer
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, ReusedGUID)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, DeniedGuid, ReusedGUID)
 from olympia.amo.decorators import (
     json_view, login_required, permission_required, post_required)
 from olympia.amo.urlresolvers import reverse
@@ -937,7 +937,9 @@ def review(request, addon, channel=None):
         user_changes_log=user_changes_log, user_ratings=user_ratings,
         versions_flagged_by_scanners=versions_flagged_by_scanners,
         version=version, whiteboard_form=whiteboard_form,
-        whiteboard_url=whiteboard_url)
+        whiteboard_url=whiteboard_url,
+        is_denied_guid=addon.is_guid_denied()
+    )
     return render(request, 'reviewers/review.html', ctx)
 
 
@@ -1278,6 +1280,32 @@ class AddonReviewerViewSet(GenericViewSet):
             ActivityLog.create(amo.LOG.ADMIN_ALTER_INFO_REQUEST, addon)
         serializer.save()
         return Response(serializer.data)
+
+    @action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
+    def deny_resubmission(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        status_code = status.HTTP_202_ACCEPTED
+        try:
+            addon.deny_resubmission()
+        except RuntimeError:
+            status_code = status.HTTP_409_CONFLICT
+        return Response(status=status_code)
+
+    @action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
+    def allow_resubmission(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        status_code = status.HTTP_202_ACCEPTED
+        try:
+            addon.allow_resubmission()
+        except RuntimeError:
+            status_code = status.HTTP_409_CONFLICT
+        return Response(status=status_code)
 
 
 class ReviewAddonVersionMixin(object):
