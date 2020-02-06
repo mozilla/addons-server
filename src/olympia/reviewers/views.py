@@ -1463,7 +1463,10 @@ class ReviewAddonVersionDraftCommentViewSet(
 
     def filter_queryset(self, qset):
         qset = super().filter_queryset(qset)
-        return qset.filter(**self.get_extra_comment_data())
+        # Filter to only show your comments. We're already filtering on version
+        # in get_queryset() as starting from the related manager allows us to
+        # only load the version once.
+        return qset.filter(user=self.request.user)
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
