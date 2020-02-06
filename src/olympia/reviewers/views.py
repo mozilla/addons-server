@@ -938,7 +938,6 @@ def review(request, addon, channel=None):
         versions_flagged_by_scanners=versions_flagged_by_scanners,
         version=version, whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url,
-        is_denied_guid=addon.is_guid_denied()
     )
     return render(request, 'reviewers/review.html', ctx)
 

@@ -2661,9 +2661,9 @@ class TestAddonAndDeniedGuid(TestCase):
 
     def test_is_guid_denied(self):
         addon = addon_factory()
-        assert not addon.is_guid_denied()
+        assert not addon.is_guid_denied
         DeniedGuid.objects.create(guid=addon.guid)
-        assert addon.is_guid_denied()
+        assert addon.is_guid_denied
 
     def test_deny_resubmission(self):
         addon = addon_factory()

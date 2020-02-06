@@ -517,7 +517,7 @@ class Addon(OnChangeMixin, ModelBase):
         self.update_status()
 
     def deny_resubmission(self):
-        if self.is_guid_denied():
+        if self.is_guid_denied:
             raise RuntimeError("GUID already denied")
 
         activity.log_create(amo.LOG.DENIED_GUID_ADDED, self)
@@ -525,13 +525,14 @@ class Addon(OnChangeMixin, ModelBase):
         DeniedGuid.objects.create(guid=self.guid)
 
     def allow_resubmission(self):
-        if not self.is_guid_denied():
-            raise RuntimeError("GUID not denied")
+        if not self.is_guid_denied:
+            raise RuntimeError("GUID already denied")
 
         activity.log_create(amo.LOG.DENIED_GUID_DELETED, self)
         log.info('Allow resubmission for addon "%s"', self.slug)
         DeniedGuid.objects.filter(guid=self.guid).delete()
 
+    @property
     def is_guid_denied(self):
         return DeniedGuid.objects.filter(guid=self.guid).exists()
 

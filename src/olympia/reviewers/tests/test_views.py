@@ -3501,6 +3501,8 @@ class TestReview(ReviewBase):
         assert not doc('#enable_auto_approval')
         assert not doc('#clear_auto_approval_delayed_until')
         assert not doc('#clear_pending_info_request')
+        assert not doc('#deny_resubmission')
+        assert not doc('#allow_resubmission')
 
     def test_extra_actions_admin_disable_enable(self):
         self.login_as_admin()
@@ -3533,6 +3535,52 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#clear_auto_approval_delayed_until')
+
+    def test_no_resubmission_buttons_when_addon_is_not_deleted(self):
+        self.login_as_admin()
+
+        response = self.client.get(self.url)
+
+        doc = pq(response.content)
+        assert not doc('#deny_resubmission')
+        assert not doc('#allow_resubmission')
+
+    def test_resubmission_buttons_are_displayed_for_deleted_addons(self):
+        self.login_as_admin()
+        self.addon.update(status=amo.STATUS_DELETED)
+        assert not self.addon.is_guid_denied
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # The "deny" button is visible when the GUID is not denied.
+        assert doc('#deny_resubmission')
+        elem = doc('#deny_resubmission')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+        # The "allow" button is hidden when the GUID is not denied.
+        assert doc('#allow_resubmission')
+        elem = doc('#allow_resubmission')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
+    def test_resubmission_buttons_are_displayed_for_deleted_addons_and_denied_guid(self):
+        self.login_as_admin()
+        self.addon.update(status=amo.STATUS_DELETED)
+        self.addon.deny_resubmission()
+        assert self.addon.is_guid_denied
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # The "deny" button is hidden when the GUID is denied.
+        assert doc('#deny_resubmission')
+        elem = doc('#deny_resubmission')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+        # The "allow" button is visible when the GUID is denied.
+        assert doc('#allow_resubmission')
+        elem = doc('#allow_resubmission')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
 
     def test_admin_block_actions(self):
         self.login_as_admin()

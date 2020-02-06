@@ -205,10 +205,25 @@
 </form>
 {% endif %}
 
-{% if not addon.is_deleted %}
 <form class="more-actions" id="extra-review-actions" data-api-token="{{ api_token }}">
   <p><strong>{{ _('More Actions') }}</strong></p>
   <div class="more-actions-inner">
+  {% if addon.is_deleted %}
+    {% if is_admin %}
+    <ul class="admin_only">
+      <li {% if not addon.is_guid_denied %}class="hidden"{% endif %}>
+        <button data-api-url="{{ drf_url('reviewers-addon-allow-resubmission', addon.pk) }}"
+                data-toggle-button-selector="#deny_resubmission"
+                id="allow_resubmission" type="button">{{ _('Allow resubmission') }}</button>
+      </li>
+      <li {% if addon.is_guid_denied %}class="hidden"{% endif %}>
+        <button data-api-url="{{ drf_url('reviewers-addon-deny-resubmission', addon.pk) }}"
+                data-toggle-button-selector="#allow_resubmission"
+                id="deny_resubmission" type="button">{{ _('Deny resubmission') }}</button>
+      </li>
+    </ul>
+    {% endif %}
+  {% else %}
     <ul>
       <li>
         <input type="checkbox" id="notify_new_listed_versions"
@@ -301,9 +316,9 @@
         {% endif %}
     </ul>
     {% endif %}
+  {% endif %}
   </div>
 </form>
-{% endif %}
 
 </div> {# /#primary #}
 
