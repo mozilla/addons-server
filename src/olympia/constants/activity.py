@@ -682,6 +682,20 @@ class BLOCKLIST_BLOCK_DELETED(_LOG):
     format = _('Block for {0} deleted from Blocklist.')
     short = _('Block deleted')
 
+class DENIED_GUID_ADDED(_LOG):
+    id = 159
+    keep = True
+    action_class = 'add'
+    hide_developer = True
+    format = _('GUID for {addon} added to DeniedGuid.')
+
+class DENIED_GUID_DELETED(_LOG):
+    id = 160
+    keep = True
+    action_class = 'delete'
+    hide_developer = True
+    format = _('GUID for {addon} removed from DeniedGuid.')
+
 
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
