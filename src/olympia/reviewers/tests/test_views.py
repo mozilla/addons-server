@@ -6243,6 +6243,37 @@ class TestDraftCommentViewSet(TestCase):
                 cls=amo.utils.AMOJSONEncoder))
         }
 
+    def test_list_queries(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        DraftComment.objects.create(
+            version=self.version, comment='test1', user=user,
+            lineno=0, filename='manifest.json')
+        DraftComment.objects.create(
+            version=self.version, comment='test2', user=user,
+            lineno=1, filename='manifest.json')
+        DraftComment.objects.create(
+            version=self.version, comment='test3', user=user,
+            lineno=2, filename='manifest.json')
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk
+        })
+        with self.assertNumQueries(15):
+            # - 2 savepoints because of tests
+            # - 2 user and groups
+            # - 2 addon and translations
+            # - 2 version and translations
+            # - 1 applications versions
+            # - 2 licenses and translations
+            # - 1 files
+            # - 1 file validation
+            # - 1 count
+            # - 1 drafts
+            response = self.client.get(url, {'lang': 'en-US'})
+        assert response.json()['count'] == 3
+
     def test_create_retrieve_and_update(self):
         user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
