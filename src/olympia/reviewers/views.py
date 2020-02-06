@@ -39,7 +39,7 @@ from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, CommentLog, DraftComment
 from olympia.addons.decorators import addon_view, owner_or_unlisted_reviewer
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, DeniedGuid, ReusedGUID)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, ReusedGUID)
 from olympia.amo.decorators import (
     json_view, login_required, permission_required, post_required)
 from olympia.amo.urlresolvers import reverse
@@ -937,8 +937,7 @@ def review(request, addon, channel=None):
         user_changes_log=user_changes_log, user_ratings=user_ratings,
         versions_flagged_by_scanners=versions_flagged_by_scanners,
         version=version, whiteboard_form=whiteboard_form,
-        whiteboard_url=whiteboard_url,
-    )
+        whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)
 
 

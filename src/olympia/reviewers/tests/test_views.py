@@ -3563,7 +3563,7 @@ class TestReview(ReviewBase):
         elem = doc('#allow_resubmission')[0]
         assert 'hidden' in elem.getparent().attrib.get('class', '')
 
-    def test_resubmission_buttons_are_displayed_for_deleted_addons_and_denied_guid(self):
+    def test_resubmission_buttons_are_displayed_for_deleted_addons_and_denied_guid(self):  # noqa
         self.login_as_admin()
         self.addon.update(status=amo.STATUS_DELETED)
         self.addon.deny_resubmission()
