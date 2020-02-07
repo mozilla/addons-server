@@ -39,6 +39,7 @@ from olympia.scanners.tasks import (
     run_yara_query_rule,
     run_yara_query_rule_on_versions_chunk,
 )
+from olympia.versions.models import Version
 
 
 class TestRunScanner(UploadTest, TestCase):
@@ -477,15 +478,13 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
                 channel=amo.RELEASE_CHANNEL_UNLISTED,
                 file_kw={'is_webextension': True},
             ),
-            # Listed webextension version of an add-on that has multiple
+            # Listed webextension versions of an add-on that has multiple
             # versions.
+            other_addon_previous_current_version,
             version_factory(
                 addon=other_addon, file_kw={'is_webextension': True}
             ),
         ]
-        for version in included_versions:
-            self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
-
         # Ignored versions:
         # Listed Webextension version belonging to mozilla disabled add-on.
         addon_factory(
@@ -494,8 +493,8 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # Non-Webextension
         addon_factory(file_kw={'is_webextension': False}).current_version
 
-        # Listed webextension but not the latest one.
-        other_addon_previous_current_version
+        for version in Version.objects.all():
+            self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
 
         # Run the task.
         run_yara_query_rule.delay(self.rule.pk)
