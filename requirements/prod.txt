@@ -314,9 +314,9 @@ redis==3.4.1 \
 requests==2.22.0 \
     --hash=sha256:11e007a8a2aa0323f5a921e9e6a2d7e4e67d9877e85773fba9ba6419025cbeb4 \
     --hash=sha256:9cf5292fcd0f598c671cfc1e0d7d1a7f13bb8085e9a590f48c010551dc6c4b31
-s3transfer==0.3.2 \
-    --hash=sha256:2525bae2a530195576da53671bae8ca8c55ee8e33bc2225a65e804476611ea5a \
-    --hash=sha256:4924e10451cc37901945806423d16c2c2040a6530645a614ed87e995ccec764c
+s3transfer==0.3.3 \
+    --hash=sha256:2482b4259524933a022d59da830f51bd746db62f047d6eb213f2f8855dcb8a13 \
+    --hash=sha256:921a37e2aefc64145e7b73d50c71bb4f26f46e4c9f414dc648c6245ff92cf7db
 # statsd is required by django-statsd-mozilla
 statsd==3.3.0 \
     --hash=sha256:c610fb80347fca0ef62666d241bce64184bd7cc1efe582f9690e045c25535eaa \
