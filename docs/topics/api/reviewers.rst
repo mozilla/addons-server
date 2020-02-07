@@ -84,6 +84,37 @@ add-on.
     :>json boolean needs_admin_code_review: Boolean indicating whether the add-on needs its code to be reviewed by an admin or not.
     :>json boolean needs_admin_content_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not.
 
+------------------
+Allow resubmission
+------------------
+
+This endpoint allows you to allow resubmission of an add-on that was previously
+denied.
+
+    .. note::
+        Requires authentication and the current user to have ``Reviews:Admin``
+        permission.
+
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/allow_resubmission/
+
+    :statuscode 202: Success.
+    :statuscode 409: The add-on GUID was not previously denied.
+
+-----------------
+Deny resubmission
+-----------------
+
+This endpoint allows you to deny resubmission of an add-on that was not already
+denied.
+
+    .. note::
+        Requires authentication and the current user to have ``Reviews:Admin``
+        permission.
+
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/deny_resubmission/
+
+    :statuscode 202: Success.
+    :statuscode 409: The add-on GUID was already denied.
 
 -------------
 List Versions

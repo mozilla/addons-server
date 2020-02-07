@@ -233,7 +233,14 @@ function initExtraReviewActions() {
     }));
 
     // Toggle-style buttons.
-    $('#force_disable_addon, #force_enable_addon, #disable_auto_approval, #enable_auto_approval').click(_pd(function() {
+    $([
+        '#force_disable_addon',
+        '#force_enable_addon',
+        '#disable_auto_approval',
+        '#enable_auto_approval',
+        '#allow_resubmission',
+        '#deny_resubmission'
+    ].join(',')).click(_pd(function() {
         var $button = $(this).prop('disabled', true);  // Prevent double-send.
         var $other_button = $($button.data('toggle-button-selector'));
         var apiUrl = $button.data('api-url');
