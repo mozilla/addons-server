@@ -1,7 +1,6 @@
 import os
 
 from django.conf import settings
-from django.db.models import F, Q
 
 import requests
 import waffle
