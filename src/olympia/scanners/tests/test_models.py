@@ -13,6 +13,7 @@ from olympia.constants.scanners import (
     FALSE_POSITIVE,
     NEW,
     RUNNING,
+    SCANNERS,
     SCHEDULED,
     UNKNOWN,
     WAT,
@@ -417,10 +418,20 @@ class TestScannerRule(TestScannerRuleMixin, TestCase):
     __test__ = True
     model = ScannerRule
 
+    def test_scanner_choices(self):
+        field = self.model._meta.get_field('scanner')
+        assert field.choices == SCANNERS.items()
+
 
 class TestScannerQueryRule(TestScannerRuleMixin, TestCase):
     __test__ = True
     model = ScannerQueryRule
+
+    def test_scanner_choices(self):
+        # Code search only supports yara for now.
+        field = self.model._meta.get_field('scanner')
+        assert field.choices == ((YARA, 'yara'),)
+        assert field.default == YARA
 
 
 @pytest.mark.django_db
