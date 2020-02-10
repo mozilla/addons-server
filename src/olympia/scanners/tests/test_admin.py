@@ -1032,6 +1032,24 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         )
         assert response.status_code == 404
 
+    def test_cannot_change_non_new_query_rule(self):
+        rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        url = reverse(
+            'admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        # NEW query rule, it can be modified.
+        assert not doc('.field-formatted_definition .readonly')
+
+        # RUNNING query rule, it can not be modified
+        rule.update(state=RUNNING)
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.field-formatted_definition .readonly')
+
 
 class TestScannerQueryResultAdmin(TestCase):
     def setUp(self):

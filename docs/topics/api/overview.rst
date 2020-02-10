@@ -367,6 +367,7 @@ v4 API changelog
 * 2019-11-14: removed ``is_source_public`` property from addons API https://github.com/mozilla/addons-server/issues/12514
 * 2019-12-05: removed /addons/featured endpoint from v4+ and featured support from other addon api endpoints.  https://github.com/mozilla/addons-server/issues/12937
 * 2020-01-23: added /scanner/results (internal API endpoint).
+* 2020-02-06: added /reviewers/addon/(int:addon_id)/allow_resubmission/ and /reviewers/addon/(int:addon_id)/deny_resubmission/. https://github.com/mozilla/addons-server/issues/13409
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

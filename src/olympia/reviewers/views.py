@@ -1279,6 +1279,32 @@ class AddonReviewerViewSet(GenericViewSet):
         serializer.save()
         return Response(serializer.data)
 
+    @action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
+    def deny_resubmission(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        status_code = status.HTTP_202_ACCEPTED
+        try:
+            addon.deny_resubmission()
+        except RuntimeError:
+            status_code = status.HTTP_409_CONFLICT
+        return Response(status=status_code)
+
+    @action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
+    def allow_resubmission(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        status_code = status.HTTP_202_ACCEPTED
+        try:
+            addon.allow_resubmission()
+        except RuntimeError:
+            status_code = status.HTTP_409_CONFLICT
+        return Response(status=status_code)
+
 
 class ReviewAddonVersionMixin(object):
     permission_classes = [AnyOf(

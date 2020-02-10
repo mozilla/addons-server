@@ -10,7 +10,7 @@ from urllib.parse import urlsplit
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.db import IntegrityError, models, transaction
+from django.db import models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils import translation
@@ -516,6 +516,26 @@ class Addon(OnChangeMixin, ModelBase):
         # in a state that allows it to be public.
         self.update_status()
 
+    def deny_resubmission(self):
+        if self.is_guid_denied:
+            raise RuntimeError("GUID already denied")
+
+        activity.log_create(amo.LOG.DENIED_GUID_ADDED, self)
+        log.info('Deny resubmission for addon "%s"', self.slug)
+        DeniedGuid.objects.create(guid=self.guid)
+
+    def allow_resubmission(self):
+        if not self.is_guid_denied:
+            raise RuntimeError("GUID already denied")
+
+        activity.log_create(amo.LOG.DENIED_GUID_DELETED, self)
+        log.info('Allow resubmission for addon "%s"', self.slug)
+        DeniedGuid.objects.filter(guid=self.guid).delete()
+
+    @property
+    def is_guid_denied(self):
+        return DeniedGuid.objects.filter(guid=self.guid).exists()
+
     def is_soft_deleteable(self):
         return self.status or Version.unfiltered.filter(addon=self).exists()
 
@@ -597,8 +617,8 @@ class Addon(OnChangeMixin, ModelBase):
             if self.status == amo.STATUS_DISABLED:
                 try:
                     with transaction.atomic():
-                        DeniedGuid.objects.create(guid=self.guid)
-                except IntegrityError:
+                        self.deny_resubmission()
+                except RuntimeError:
                     # If the guid is already in DeniedGuids, we are good.
                     pass
 

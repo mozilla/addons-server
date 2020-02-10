@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2018-12-19 17:03+0000\n"
+"PO-Revision-Date: 2020-02-07 14:50+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -1030,7 +1030,7 @@ msgstr "Siguri & Privatësi"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"Shkarkoni zgjerime Firefox-i për të shfletuar pa rrezik dhe privatisht. Zbuloni zgjerime që mund të ndalin gjurmues të bezdisur reklamash, të pastrojnë lehtësisht historikun e shfletimit, etj."
+"Shkarkoni zgjerime Firefox-i për të shfletuar pa rrezik dhe privatisht. Zbuloni zgjerime që mund të ndalin gjurmues të bezdisur reklamash, të spastrojnë lehtësisht historikun e shfletimit, etj."
 
 msgid "Social Networking"
 msgstr "Rrjetëzim Shoqëror"
@@ -4092,7 +4092,7 @@ msgstr "Fshini të dhëna {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr "Pastroni fshehtinën e shfletuesit tuaj me një klikim apo kombinim tastesh."
+msgstr "Spastroni fshehtinën e shfletuesit tuaj me një klikim apo kombinim tastesh."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5620,7 +5620,7 @@ msgid "Advanced Search"
 msgstr "Kërkim i Mëtejshëm"
 
 msgid "clear search"
-msgstr "pastro kërkimin"
+msgstr "spastro kërkimin"
 
 msgid "Process Reviews"
 msgstr "Përpunoni Shqyrtime"
@@ -5745,7 +5745,7 @@ msgid "Enable Auto-Approval"
 msgstr "Aktivizo Vetëmiratimin"
 
 msgid "Clear information request"
-msgstr "Pastro kërkesë të dhënash"
+msgstr "Spastro kërkesë të dhënash"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Hiqi Shenjën Për Shqyrtim Kodi Nga Një Përgjegjës"

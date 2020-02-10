@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-09 05:53+0000\n"
+"PO-Revision-Date: 2020-02-09 05:13+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3572,7 +3572,7 @@ msgstr "看看是谁在网上追踪你 {start_sub_heading}就用 {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr "找出谁在跟踪您以及他们可能向谁何处披露您的信息。"
+msgstr "找出谁在跟踪您，以及它们可能向谁、向何处披露您的信息。"
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
