@@ -113,7 +113,7 @@ class TestBlockAdmin(TestCase):
 
 class TestBlockSubmissionAdmin(TestCase):
     def setUp(self):
-        self.multi_url = reverse('admin:blocklist_blocksubmission_add')
+        self.submission_url = reverse('admin:blocklist_blocksubmission_add')
         self.multi_list_url = reverse(
             'admin:blocklist_blocksubmission_changelist')
 
@@ -131,7 +131,7 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon, version='5.999',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         response = self.client.get(
-            self.multi_url + '?guids=guid@', follow=True)
+            self.submission_url + '?guids=guid@', follow=True)
         content = response.content.decode('utf-8')
         assert 'Add-on GUIDs (one per line)' not in content
         assert 'guid@' in content
@@ -143,7 +143,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         # Create the block
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': 'guid@',
                 'min_version': '0',
                 'max_version': addon.current_version.version,
@@ -210,7 +210,7 @@ class TestBlockSubmissionAdmin(TestCase):
             include_in_legacy=True,
             updated_by=user_factory())
         response = self.client.post(
-            self.multi_url,
+            self.submission_url,
             {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@'},
             follow=True)
         content = response.content.decode('utf-8')
@@ -236,7 +236,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         # Create the block submission
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': (
                     'any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'min_version': '0',
@@ -386,7 +386,7 @@ class TestBlockSubmissionAdmin(TestCase):
             include_in_legacy=True,
             updated_by=user_factory())
         response = self.client.post(
-            self.multi_url,
+            self.submission_url,
             {'guids': 'any@new\npartial@existing\nfull@existing'},
             follow=True)
 
@@ -402,7 +402,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         # Change the min/max versions
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': (
                     'any@new\npartial@existing\nfull@existing'),
                 'min_version': '1',  # this is the field we can change
@@ -427,7 +427,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         # We're submitting again, but now existing_min|max_version is the same
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': (
                     'any@new\npartial@existing\nfull@existing'),
                 'min_version': '1',  # this is the field we can change
@@ -534,7 +534,7 @@ class TestBlockSubmissionAdmin(TestCase):
             include_in_legacy=True,
             updated_by=user_factory())
         response = self.client.post(
-            self.multi_url,
+            self.submission_url,
             {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@'},
             follow=True)
         content = response.content.decode('utf-8')
@@ -559,7 +559,7 @@ class TestBlockSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         post_kwargs = {
-            'path': self.multi_url,
+            'path': self.submission_url,
             'data': {'guids': 'guid@\nfoo@baa\ninvalid@'},
             'follow': True}
 
@@ -630,7 +630,7 @@ class TestBlockSubmissionAdmin(TestCase):
             include_in_legacy=True,
             updated_by=user_factory())
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': 'any@new\npartial@existing\ninvalid@',
                 'min_version': '5',
                 'max_version': '3',
@@ -660,7 +660,7 @@ class TestBlockSubmissionAdmin(TestCase):
             include_in_legacy=True,
             updated_by=user_factory())
         response = self.client.post(
-            self.multi_url,
+            self.submission_url,
             {'guids': 'guid@\nfoo@baa\ninvalid@'},
             follow=True)
         assert response.status_code == 403
@@ -668,7 +668,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         # Try to create the block anyway
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': 'guid@\nfoo@baa\ninvalid@',
                 'min_version': '0',
                 'max_version': '*',
@@ -1060,8 +1060,6 @@ class TestBlockAdminEdit(TestCase):
             guid=self.addon.guid, updated_by=user_factory())
         self.change_url = reverse(
             'admin:blocklist_block_change', args=(self.block.pk,))
-        self.delete_url = reverse(
-            'admin:blocklist_block_delete', args=(self.block.pk,))
         self.submission_url = reverse('admin:blocklist_blocksubmission_add')
 
     def test_edit(self):
@@ -1082,6 +1080,7 @@ class TestBlockAdminEdit(TestCase):
         response = self.client.post(
             self.change_url, {
                 'addon_id': addon_factory().id,  # new addon should be ignored
+                'input_guids': self.block.guid,
                 'min_version': '0',
                 'max_version': self.addon.current_version.version,
                 'url': 'https://foo.baa',
@@ -1110,6 +1109,7 @@ class TestBlockAdminEdit(TestCase):
         assert vlog == log
 
         # Check the block history contains the edit just made.
+        response = self.client.get(self.change_url, follow=True)
         content = response.content.decode('utf-8')
         todaysdate = datetime.datetime.now().date()
         assert f'<a href="https://foo.baa">{todaysdate}</a>' in content
@@ -1145,10 +1145,11 @@ class TestBlockAdminEdit(TestCase):
         assert ver_list.eq(2).attr['value'] == '678'
 
         data = {
+            'input_guids': self.block.guid,
             'url': 'https://foo.baa',
             'reason': 'some other reason',
             'include_in_legacy': True,
-            '_continue': 'Save and continue editing',
+            '_save': 'Update',
         }
         # Try saving the form with the same min_version
         response = self.client.post(
@@ -1203,6 +1204,16 @@ class TestBlockAdminEdit(TestCase):
             follow=True)
         assert response.status_code == 403
         assert Block.objects.count() == 1
+
+
+class TestBlockAdminDelete(TestCase):
+    def setUp(self):
+        self.addon = addon_factory(guid='guid@', name='Danger Danger')
+        self.block = Block.objects.create(
+            guid=self.addon.guid, updated_by=user_factory())
+        self.delete_url = reverse(
+            'admin:blocklist_block_delete', args=(self.block.pk,))
+        self.submission_url = reverse('admin:blocklist_blocksubmission_add')
 
     def test_can_delete(self):
         user = user_factory()

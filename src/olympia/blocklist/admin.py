@@ -15,9 +15,7 @@ from olympia.amo.utils import HttpResponseTemporaryRedirect
 from .forms import MultiAddForm, MultiDeleteForm
 from .models import Block, BlockSubmission
 from .tasks import create_blocks_from_multi_block
-from .utils import (
-    block_activity_log_delete, block_activity_log_save, format_block_history,
-    splitlines)
+from .utils import block_activity_log_delete, format_block_history, splitlines
 
 
 # The limit for how many GUIDs should be fully loaded with all metadata
@@ -233,8 +231,10 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
     def form(self):
         super_form = super().form
         model_form_fields = {
-            'existing_min_version': CharField(widget=HiddenInput),
-            'existing_max_version': CharField(widget=HiddenInput)}
+            'existing_min_version': CharField(
+                widget=HiddenInput, required=False),
+            'existing_max_version': CharField(
+                widget=HiddenInput, required=False)}
         return type(super_form.__name__, (super_form,), model_form_fields)
 
     def is_single_guid(self, request):
@@ -273,9 +273,9 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         is_single_guid = self.is_single_guid(request)
 
         guids_data = request.POST.get('guids', request.GET.get('guids'))
-        if guids_data:
+        if guids_data and 'input_guids' not in request.POST:
             # If we get a guids param it's a redirect from input_guids_view.
-            initial = dict(request.GET)
+            initial = {key: values for key, values in request.GET.items()}
             initial.update(**{
                 'input_guids': guids_data,
                 'existing_min_version': Block.MIN,
@@ -287,8 +287,8 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             frm_data = form.data
             # Check if the versions specified were the ones we calculated which
             # Blocks would be updated or skipped on.
-            # Ignore for a single version because we only use it for new Blocks
-            # where the versions changing can't affect anything
+            # Ignore for a single guid because we always update it irrespective
+            # of whether it needs to be updated.
             # TODO: make this more intelligent and don't force a refresh when
             # we have multiple new Blocks (but no existing blocks to update)
             versions_unchanged = is_single_guid or (
@@ -300,7 +300,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                 obj.updated_by = request.user
                 self.save_model(request, obj, form, change=False)
                 self.log_addition(request, obj, [{'added': {}}])
-                if request.POST.get('_addanother'):
+                if '_addanother'in request.POST:
                     return redirect('admin:blocklist_block_add')
                 else:
                     return redirect('admin:blocklist_block_changelist')
@@ -478,6 +478,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     list_select_related = ('updated_by',)
     actions = ['delete_selected']
     change_list_template = 'blocklist/block_change_list.html'
+    change_form_template = 'blocklist/block_change_form.html'
 
     class Media:
         css = {
@@ -534,9 +535,9 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return (details, history, edit)
 
     def save_model(self, request, obj, form, change):
-        obj.updated_by = request.user
-        super().save_model(request, obj, form, change)
-        block_activity_log_save(obj, change)
+        # We don't actually save via this Admin so if we get here something has
+        # gone wrong.
+        raise PermissionDenied
 
     def delete_model(self, request, obj):
         block_activity_log_delete(obj, request.user)
@@ -559,3 +560,19 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         if db_field.name in ('min_version', 'max_version'):
             return ChoiceField(**kwargs)
         return super().formfield_for_dbfield(db_field, request, **kwargs)
+
+    def changeform_view(self, request, obj_id=None, form_url='',
+                        extra_context=None):
+        if obj_id and request.method == 'POST':
+            obj = self.get_object(request, obj_id)
+            if not self.has_change_permission(request, obj):
+                raise PermissionDenied
+            ModelForm = self.get_form(request, obj, change=bool(obj_id))
+            form = ModelForm(request.POST, request.FILES, instance=obj)
+            if form.is_valid():
+                return HttpResponseTemporaryRedirect(
+                    reverse('admin:blocklist_blocksubmission_add'))
+
+        return super().changeform_view(
+            request, object_id=obj_id, form_url=form_url,
+            extra_context=extra_context)
