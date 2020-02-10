@@ -253,25 +253,33 @@ class TestBlockSubmissionAdmin(TestCase):
             new_addon, existing_and_full, partial_addon, existing_and_partial)
 
     def _test_add_multiple_verify_blocks(self, new_addon, existing_and_full,
-                                         partial_addon, existing_and_partial):
+                                         partial_addon, existing_and_partial,
+                                         has_signoff=True):
         assert Block.objects.count() == 3
         assert BlockSubmission.objects.count() == 1
+        submission = BlockSubmission.objects.get()
         all_blocks = Block.objects.all()
 
         new_block = all_blocks[2]
         assert new_block.addon == new_addon
-        log = ActivityLog.objects.for_addons(new_addon).get()
-        assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
-        assert log.arguments == [new_addon, new_addon.guid, new_block]
-        assert log.details['min_version'] == '0'
-        assert log.details['max_version'] == '*'
-        assert log.details['reason'] == 'some reason'
+        add_log = ActivityLog.objects.for_addons(new_addon).last()
+        assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
+        assert add_log.arguments == [new_addon, new_addon.guid, new_block]
+        assert add_log.details['min_version'] == '0'
+        assert add_log.details['max_version'] == '*'
+        assert add_log.details['reason'] == 'some reason'
+        if has_signoff:
+            assert add_log.details['signoff_state'] == 'Approved'
+            assert add_log.details['signoff_by'] == submission.signoff_by.id
+        else:
+            assert add_log.details['signoff_state'] == 'No Sign-off'
+            assert 'signoff_by' not in add_log.details
         block_log = ActivityLog.objects.for_block(new_block).filter(
-            action=log.action).last()
-        assert block_log == log
+            action=add_log.action).last()
+        assert block_log == add_log
         vlog = ActivityLog.objects.for_version(
             new_addon.current_version).last()
-        assert vlog == log
+        assert vlog == add_log
 
         existing_and_partial = existing_and_partial.reload()
         assert all_blocks[1] == existing_and_partial
@@ -281,19 +289,25 @@ class TestBlockSubmissionAdmin(TestCase):
         assert existing_and_partial.reason == 'some reason'
         assert existing_and_partial.url == 'dfd'
         assert existing_and_partial.include_in_legacy is False
-        log = ActivityLog.objects.for_addons(partial_addon).get()
-        assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
-        assert log.arguments == [
+        edit_log = ActivityLog.objects.for_addons(partial_addon).last()
+        assert edit_log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
+        assert edit_log.arguments == [
             partial_addon, partial_addon.guid, existing_and_partial]
-        assert log.details['min_version'] == '0'
-        assert log.details['max_version'] == '*'
-        assert log.details['reason'] == 'some reason'
+        assert edit_log.details['min_version'] == '0'
+        assert edit_log.details['max_version'] == '*'
+        assert edit_log.details['reason'] == 'some reason'
+        if has_signoff:
+            assert edit_log.details['signoff_state'] == 'Approved'
+            assert edit_log.details['signoff_by'] == submission.signoff_by.id
+        else:
+            assert edit_log.details['signoff_state'] == 'No Sign-off'
+            assert 'signoff_by' not in edit_log.details
         block_log = ActivityLog.objects.for_block(existing_and_partial).filter(
-            action=log.action).last()
-        assert block_log == log
+            action=edit_log.action).last()
+        assert block_log == edit_log
         vlog = ActivityLog.objects.for_version(
             partial_addon.current_version).last()
-        assert vlog == log
+        assert vlog == edit_log
 
         existing_and_full = existing_and_full.reload()
         assert all_blocks[0] == existing_and_full
@@ -306,28 +320,29 @@ class TestBlockSubmissionAdmin(TestCase):
         assert not ActivityLog.objects.for_version(
             existing_and_full.addon.current_version).exists()
 
-        multi = BlockSubmission.objects.get()
-        assert multi.input_guids == (
+        assert submission.input_guids == (
             'any@new\npartial@existing\nfull@existing\ninvalid@')
-        assert multi.min_version == new_block.min_version
-        assert multi.max_version == new_block.max_version
-        assert multi.url == new_block.url
-        assert multi.reason == new_block.reason
+        assert submission.min_version == new_block.min_version
+        assert submission.max_version == new_block.max_version
+        assert submission.url == new_block.url
+        assert submission.reason == new_block.reason
 
-        assert multi.to_block == [
+        assert submission.to_block == [
             {'guid': 'any@new', 'id': 0,
              'average_daily_users': new_addon.average_daily_users},
             {'guid': 'partial@existing', 'id': existing_and_partial.id,
              'average_daily_users': partial_addon.average_daily_users}
         ]
-        assert set(multi.block_set.all()) == {new_block, existing_and_partial}
+        assert set(submission.block_set.all()) == {
+            new_block, existing_and_partial}
 
     def test_submit_no_dual_signoff(self):
         addon_adu = DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         new_addon, existing_and_full, partial_addon, existing_and_partial = (
             self._test_add_multiple_submit(addon_adu=addon_adu))
         self._test_add_multiple_verify_blocks(
-            new_addon, existing_and_full, partial_addon, existing_and_partial)
+            new_addon, existing_and_full, partial_addon, existing_and_partial,
+            has_signoff=False)
 
     def test_submit_dual_signoff(self):
         addon_adu = DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1
@@ -869,17 +884,25 @@ class TestBlockSubmissionAdmin(TestCase):
         new_block = Block.objects.get()
 
         assert new_block.addon == addon
-        log = ActivityLog.objects.for_addons(addon).get()
-        assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
-        assert log.arguments == [addon, addon.guid, new_block]
-        assert log.details['min_version'] == '0'
-        assert log.details['max_version'] == '*'
-        assert log.details['reason'] == ''
+        logs = ActivityLog.objects.for_addons(addon)
+        add_log = logs[1]
+        signoff_log = logs[0]
+        assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
+        assert add_log.arguments == [addon, addon.guid, new_block]
+        assert add_log.details['min_version'] == '0'
+        assert add_log.details['max_version'] == '*'
+        assert add_log.details['reason'] == ''
+        assert add_log.details['signoff_state'] == 'Approved'
+        assert add_log.details['signoff_by'] == user.id
         block_log = ActivityLog.objects.for_block(new_block).filter(
-            action=log.action).last()
-        assert block_log == log
+            action=add_log.action).last()
+        assert block_log == add_log
         vlog = ActivityLog.objects.for_version(addon.current_version).last()
-        assert vlog == log
+        assert vlog == add_log
+
+        assert signoff_log.action == amo.LOG.BLOCKLIST_SIGNOFF.id
+        assert signoff_log.arguments == [addon, addon.guid, 'add', new_block]
+        assert signoff_log.user == user
 
         assert mbs.to_block == [
             {'guid': 'guid@',

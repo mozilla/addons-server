@@ -699,6 +699,14 @@ class DENIED_GUID_DELETED(_LOG):
     format = _('GUID for {addon} removed from DeniedGuid.')
 
 
+class BLOCKLIST_SIGNOFF(_LOG):
+    id = 161
+    keep = True
+    hide_developer = True
+    format = _('Block {1} action for {0} signed off.')
+    short = _('Block action signoff')
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.

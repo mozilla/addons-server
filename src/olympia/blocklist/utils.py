@@ -15,7 +15,7 @@ def add_version_log_for_blocked_versions(obj, al):
     ])
 
 
-def block_activity_log_save(obj, change):
+def block_activity_log_save(obj, change, submission_obj=None):
     action = (
         amo.LOG.BLOCKLIST_BLOCK_EDITED if change else
         amo.LOG.BLOCKLIST_BLOCK_ADDED)
@@ -28,8 +28,21 @@ def block_activity_log_save(obj, change):
         'include_in_legacy': obj.include_in_legacy,
         'comments': f'Versions {obj.min_version} - {obj.max_version} blocked.',
     }
+    if submission_obj:
+        details['signoff_state'] = submission_obj.SIGNOFF_STATES.get(
+            submission_obj.signoff_state)
+        if submission_obj.signoff_by:
+            details['signoff_by'] = submission_obj.signoff_by.id
     al = log_create(
         action, obj.addon, obj.guid, obj, details=details, user=obj.updated_by)
+    if submission_obj and submission_obj.signoff_by:
+        log_create(
+            amo.LOG.BLOCKLIST_SIGNOFF,
+            obj.addon,
+            obj.guid,
+            action.action_class,
+            obj,
+            user=submission_obj.signoff_by)
 
     add_version_log_for_blocked_versions(obj, al)
 

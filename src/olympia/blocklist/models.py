@@ -46,7 +46,8 @@ class Block(ModelBase):
     ACTIVITY_IDS = (
         amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
         amo.LOG.BLOCKLIST_BLOCK_EDITED.id,
-        amo.LOG.BLOCKLIST_BLOCK_DELETED.id)
+        amo.LOG.BLOCKLIST_BLOCK_DELETED.id,
+        amo.LOG.BLOCKLIST_SIGNOFF.id)
 
     def __str__(self):
         return f'Block: {self.guid}'
@@ -371,7 +372,8 @@ class BlockSubmission(ModelBase):
                     setattr(block, 'modified', modified_datetime)
                 block.save()
                 block.submission.add(self)
-                block_activity_log_save(block, change=change)
+                block_activity_log_save(
+                    block, change=change, submission_obj=self)
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
