@@ -1443,6 +1443,12 @@ class ReviewAddonVersionDraftCommentViewSet(
         # Now we can checking permissions
         super().check_object_permissions(self.request, version.addon)
 
+    def get_queryset(self):
+        # Preload version once for all drafts returned, and join with user and
+        # canned response to avoid extra queries for those.
+        return self.get_version_object().draftcomment_set.all().select_related(
+            'user', 'canned_response')
+
     def get_object(self, **kwargs):
         qset = self.filter_queryset(self.get_queryset())
 
@@ -1454,12 +1460,26 @@ class ReviewAddonVersionDraftCommentViewSet(
         self._verify_object_permissions(obj, obj.version)
         return obj
 
+    def get_addon_object(self):
+        if not hasattr(self, 'addon_object'):
+            self.addon_object = get_object_or_404(
+                # The serializer will not need to return much info about the
+                # addon, so we can use just the translations transformer and
+                # avoid the rest.
+                Addon.objects.get_queryset().only_translations(),
+                pk=self.kwargs['addon_pk'])
+        return self.addon_object
+
     def get_version_object(self):
-        version = get_object_or_404(
-            Version.objects.get_queryset().only_translations(),
-            pk=self.kwargs['version_pk'])
-        self._verify_object_permissions(version, version)
-        return version
+        if not hasattr(self, 'version_object'):
+            self.version_object = get_object_or_404(
+                # The serializer will need to return a bunch of info about the
+                # version, so keep the default transformer.
+                self.get_addon_object().versions.all(),
+                pk=self.kwargs['version_pk'])
+            self._verify_object_permissions(
+                self.version_object, self.version_object)
+        return self.version_object
 
     def get_extra_comment_data(self):
         return {
@@ -1469,7 +1489,10 @@ class ReviewAddonVersionDraftCommentViewSet(
 
     def filter_queryset(self, qset):
         qset = super().filter_queryset(qset)
-        return qset.filter(**self.get_extra_comment_data())
+        # Filter to only show your comments. We're already filtering on version
+        # in get_queryset() as starting from the related manager allows us to
+        # only load the version once.
+        return qset.filter(user=self.request.user)
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
