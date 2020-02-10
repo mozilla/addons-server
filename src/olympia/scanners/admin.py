@@ -518,6 +518,10 @@ class ScannerQueryResultAdmin(
         AbstractScannerResultAdminMixin, admin.ModelAdmin):
     raw_id_fields = ('version',)
 
+    def has_actions_permission(self, request):
+        return acl.action_allowed(
+            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+
 
 @admin.register(ScannerRule)
 class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
@@ -550,7 +554,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 
     def handle_run(self, request, pk, *args, **kwargs):
         is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_QUERY)
+            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
         if not is_admin or request.method != 'POST':
             raise Http404
 
@@ -581,7 +585,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 
     def handle_abort(self, request, pk, *args, **kwargs):
         is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_QUERY)
+            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
         if not is_admin or request.method != 'POST':
             raise Http404
 
