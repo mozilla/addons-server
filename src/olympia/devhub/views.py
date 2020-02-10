@@ -673,7 +673,10 @@ def file_validation(request, addon_id, addon, file_id):
 @dev_required(allow_reviewers=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, version__addon=addon, id=file_id)
-    result = file.validation
+    try:
+        result = file.validation
+    except File.validation.RelatedObjectDoesNotExist:
+        raise http.Http404
     response = JsonResponse({
         'validation': result.processed_validation,
         'error': None,
