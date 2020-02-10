@@ -287,7 +287,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             frm_data = form.data
             # Check if the versions specified were the ones we calculated which
             # Blocks would be updated or skipped on.
-            # Ignore for a single guid because we always update it irrespetive
+            # Ignore for a single guid because we always update it irrespective
             # of whether it needs to be updated.
             # TODO: make this more intelligent and don't force a refresh when
             # we have multiple new Blocks (but no existing blocks to update)
