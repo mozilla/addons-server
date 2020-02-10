@@ -1,15 +1,16 @@
 import bsdiff4
 import json
 import os
+import random
 
 from django.core.management.base import BaseCommand
 
 import olympia.core.logger
 
+from olympia.addons.models import Addon
 from olympia.blocklist.models import Block
 from olympia.blocklist.utils import generateMLBF
-from olympia.addons.models import Addon
-from olympia.versions.models import Version
+from olympia.files.models import File
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -49,50 +50,65 @@ class Command(BaseCommand):
             default=None)
 
     def get_blocked_guids(self):
-        out = []
         blocks = Block.objects.all()
         blocks_guids = [block.guid for block in blocks]
         addons_dict = Addon.unfiltered.in_bulk(blocks_guids, field_name='guid')
         for block in blocks:
             block.addon = addons_dict.get(block.guid)
         Block.preload_addon_versions(blocks)
+        all_versions = {}
+        # First collect all the blocked versions
         for block in blocks:
             is_all_versions = (
                 block.min_version == Block.MIN and
                 block.max_version == Block.MAX)
-            versions = [
-                (block.guid, version)
-                for version in block.addon_versions.keys()
-                if is_all_versions or block.is_version_blocked(version)]
-            out.extend(versions)
-        return out
+            versions = {
+                version_id: (block.guid, version)
+                for version, (version_id, _) in block.addon_versions.items()
+                if is_all_versions or block.is_version_blocked(version)}
+            all_versions.update(versions)
+        # Now we need the cert_ids
+        cert_nums = File.objects.filter(
+            version_id__in=all_versions.keys()).values_list(
+                'version_id', 'cert_serial_num')
+        return [
+            (all_versions[version_id][0], all_versions[version_id][1], cert_nm)
+            for version_id, cert_nm in cert_nums]
 
     def get_all_guids(self):
-        return Version.unfiltered.values_list('addon__guid', 'version')
+        return File.objects.values_list(
+            'version__addon__guid', 'version__version', 'cert_serial_num')
 
     def load_json(self, json_path):
+        def tuplify(record):
+            return tuple(
+                record if len(record) == 3 else
+                record + [str(random.randint(100000, 999999))])
+
         with open(json_path) as json_file:
             data = json.load(json_file)
-        return [tuple(record) for record in data]
+        return [tuplify(record) for record in data]
 
     def save_blocklist(self, stats, mlbf, id_, previous_id=None):
-        out_file = os.path.join('mlbf', id_, 'filter')
-        meta_file = os.path.join('mlbf', id_, 'filter.meta')
+        out_file = os.path.join(settings.TMP_PATH, 'mlbf', id_, 'filter')
+        meta_file = os.path.join(settings.TMP_PATH, 'mlbf', id_, 'filter.meta')
 
         os.makedirs(os.path.dirname(out_file), exist_ok=True)
-        with open(out_file, 'wb') as mlbf_file:
+        with default_storage.open(out_file, 'wb') as mlbf_file:
             log.info("Writing to file {}".format(out_file))
             mlbf.tofile(mlbf_file)
         stats['mlbf_filesize'] = os.stat(out_file).st_size
 
-        with open(meta_file, 'wb') as mlbf_meta_file:
+        with default_storage.open(meta_file, 'wb') as mlbf_meta_file:
             log.info("Writing to meta file {}".format(meta_file))
             mlbf.saveDiffMeta(mlbf_meta_file)
         stats['mlbf_metafilesize'] = os.stat(meta_file).st_size
 
         if previous_id:
-            diff_base_file = os.path.join('mlbf', previous_id, 'filter')
-            patch_file = os.path.join('mlbf', id_, 'filter.patch')
+            diff_base_file = os.path.join(
+                settings.TMP_PATH, 'mlbf', str(previous_id), 'filter')
+            patch_file = os.path.join(
+                settings.TMP_PATH, 'mlbf', id_, 'filter.patch')
             log.info(
                 "Generating patch file {patch} from {base} to {out}".format(
                     patch=patch_file, base=diff_base_file,
@@ -113,11 +129,13 @@ class Command(BaseCommand):
             if options.get('addon_guids_input') else
             self.get_all_guids())
         not_blocked_guids = list(set(all_guids) - set(blocked_guids))
+        stats['mlbf_blocked_count'] = len(blocked_guids)
+        stats['mlbf_unblocked_count'] = len(not_blocked_guids)
 
         mlbf = generateMLBF(
             stats,
-            blocked_guids=blocked_guids,
-            not_blocked_guids=not_blocked_guids,
+            blocked=blocked_guids,
+            not_blocked=not_blocked_guids,
             capacity=options.get('capacity'),
             diffMetaFile=None)
         mlbf.check(entries=blocked_guids, exclusions=not_blocked_guids)

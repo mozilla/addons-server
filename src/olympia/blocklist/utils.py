@@ -98,12 +98,11 @@ def splitlines(text):
     return [line.strip() for line in str(text or '').splitlines()]
 
 
-def generateMLBF(stats, *, blocked_guids, not_blocked_guids, capacity,
-                 diffMetaFile=None):
+def generateMLBF(stats, *, blocked, not_blocked, capacity, diffMetaFile=None):
     """Based on:
     https://github.com/mozilla/crlite/blob/master/create_filter_cascade/certs_to_crlite.py
     """
-    fprs = [len(blocked_guids) / (math.sqrt(2) * len(not_blocked_guids)), 0.5]
+    fprs = [len(blocked) / (math.sqrt(2) * len(not_blocked)), 0.5]
 
     if diffMetaFile is not None:
         log.info(
@@ -115,10 +114,10 @@ def generateMLBF(stats, *, blocked_guids, not_blocked_guids, capacity,
     else:
         log.info("Generating filter")
         cascade = FilterCascade.cascade_with_characteristics(
-            int(len(blocked_guids) * capacity), fprs)
+            int(len(blocked) * capacity), fprs)
 
     cascade.version = 1
-    cascade.initialize(include=blocked_guids, exclude=not_blocked_guids)
+    cascade.initialize(include=blocked, exclude=not_blocked)
 
     stats['mlbf_fprs'] = fprs
     stats['mlbf_version'] = cascade.version
