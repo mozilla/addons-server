@@ -430,9 +430,8 @@ msgstr "Bạn phải cung cấp một đối tượng của {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Thông tin thêm về tài khoản nhà phát triển"
+msgstr ""
 
 msgid "Application Versions"
 msgstr "Phiên bản Ứng dụng"
@@ -794,9 +793,8 @@ msgstr "Yêu cầu đánh giá chủ đề của quản trị viên"
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} đã được di chuyển từ một chủ đề nhẹ."
 
-#, fuzzy
 msgid "User {user} api key reset."
-msgstr "Đã xóa hình ảnh người dùng {user}."
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
