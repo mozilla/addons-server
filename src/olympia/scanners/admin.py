@@ -109,7 +109,7 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
     def field_choices(self, field, request, model_admin):
         return [
             (rule.pk, f'{rule.name} ({rule.get_scanner_display()})')
-            for rule in ScannerRule.objects.only(
+            for rule in field.related_model.objects.only(
                 'pk', 'scanner', 'name'
             ).order_by('scanner', 'name')
         ]
