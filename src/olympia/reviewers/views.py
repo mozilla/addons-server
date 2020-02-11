@@ -989,13 +989,14 @@ def review_viewing(request):
 @json_view
 @any_reviewer_required
 def queue_viewing(request):
-    if 'addon_ids' not in request.POST:
+    addon_ids = request.GET.get('addon_ids')
+    if not addon_ids:
         return {}
 
     viewing = {}
     user_id = request.user.id
 
-    for addon_id in request.POST['addon_ids'].split(','):
+    for addon_id in addon_ids.split(','):
         addon_id = addon_id.strip()
         key = get_reviewing_cache_key(addon_id)
         currently_viewing = cache.get(key)

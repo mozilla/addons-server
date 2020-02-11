@@ -356,7 +356,7 @@ function initQueue() {
         });
     if(!(('localStorage' in window) && window.localStorage.dont_poll)) {
         (function checkCurrentlyViewing() {
-            $.post(url, {'addon_ids': addon_ids.join(',')}, function(data) {
+            $.get(url, {'addon_ids': addon_ids.join(',')}, function(data) {
                 $('#addon-queue .locked').removeClass('locked')
                                          .prop('title', '');
                 $.each(data, function(k, v) {

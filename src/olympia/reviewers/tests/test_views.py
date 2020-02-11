@@ -4049,9 +4049,11 @@ class TestReview(ReviewBase):
 
         # Now, login as someone else and test.
         self.login_as_admin()
-        r = self.client.post(reverse('reviewers.queue_viewing'),
-                             {'addon_ids': self.addon.id})
-        data = json.loads(r.content)
+        response = self.client.get(reverse(
+            'reviewers.queue_viewing'),
+            {'addon_ids': '%s,4242' % self.addon.id})
+        assert response.status_code == 200
+        data = json.loads(response.content)
         assert data[str(self.addon.id)] == self.reviewer.name
 
     def test_display_same_files_only_once(self):
