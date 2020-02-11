@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-10-23 18:50+0000\n"
+"PO-Revision-Date: 2020-02-11 16:59+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -79,7 +79,7 @@ msgid "This reviewer name cannot be used."
 msgstr "Este nome de avaliador não pode ser usado."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr "O campo de página inicial só pode ser usado para link para sites externos."
+msgstr "O campo de página inicial só pode ser usado para sites externos."
 
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem ser PNG ou JPG."
@@ -274,7 +274,7 @@ msgid "Browse all themes"
 msgstr "Navegar em todos os temas"
 
 msgid "Add-ons Home Page"
-msgstr "Página inicial das extensões"
+msgstr "Página inicial de extensões"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
