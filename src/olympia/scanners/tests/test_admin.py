@@ -1136,13 +1136,12 @@ class TestScannerQueryResultAdmin(TestCase):
     def test_list_filter_matched_rules(self):
         rule_foo = ScannerQueryRule.objects.create(name='foo', scanner=YARA)
         rule_bar = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
-        with_bar_matches = ScannerQueryResult(scanner=YARA)
-        with_bar_matches.add_yara_result(rule=rule_bar.name)
-        with_bar_matches.add_yara_result(rule=rule_foo.name)
-        with_bar_matches.save()
         with_foo_match = ScannerQueryResult(scanner=YARA)
         with_foo_match.add_yara_result(rule=rule_foo.name)
         with_foo_match.save()
+        with_bar_matches = ScannerQueryResult(scanner=YARA)
+        with_bar_matches.add_yara_result(rule=rule_bar.name)
+        with_bar_matches.save()
 
         response = self.client.get(self.list_url, {
             'matched_rules__id__exact': rule_bar.pk,
@@ -1151,7 +1150,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
-        assert doc('.field-formatted_matched_rules').text() == 'foo, bar'
+        assert doc('.field-formatted_matched_rules').text() == 'bar'
 
     def test_change_page(self):
         rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)
