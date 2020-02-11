@@ -1,6 +1,6 @@
 from django.test.utils import override_settings
 
-from olympia.amo.tests import TestCase, user_factory
+from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.versions.compare import MAX_VERSION_PART
 
 from ..models import Block, BlockSubmission
@@ -64,3 +64,25 @@ class TestMultiBlockSubmission(TestCase):
         # Except when that's not enforced locally
         with override_settings(DEBUG=True):
             assert block.is_save_to_blocks_permitted
+
+    def test_get_submission_from_guid(self):
+        addon = addon_factory(guid='guid@')
+        block_subm = BlockSubmission.objects.create(
+            input_guids='guid@\n{sdsd-dssd}')
+        assert block_subm.to_block == [{
+            'id': 0,
+            'guid': 'guid@',
+            'average_daily_users': addon.average_daily_users}]
+
+        # The guid is in a BlockSubmission
+        assert list(BlockSubmission.get_submission_from_guid('guid@')) == [
+            block_subm]
+
+        # But by default we ignored "finished" BlockSubmissions
+        block_subm.update(signoff_state=BlockSubmission.SIGNOFF_PUBLISHED)
+        assert list(BlockSubmission.get_submission_from_guid('guid@')) == []
+
+        # Except when we override the states to exclude
+        assert list(
+            BlockSubmission.get_submission_from_guid('guid@', states=())) == [
+                block_subm]

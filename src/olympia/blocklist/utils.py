@@ -58,7 +58,7 @@ def block_activity_log_delete(obj, user):
         add_version_log_for_blocked_versions(obj, al)
 
 
-def format_block_history(logs):
+def format_block_history(logs, additional_logs=''):
     def format_html_join_kw(sep, format_string, kwargs_generator):
         return mark_safe(conditional_escape(sep).join(
             format_html(format_string, **kwargs)
@@ -95,8 +95,9 @@ def format_block_history(logs):
          'reason': log.details.get('reason') or ''}
         for log in logs)
     return format_html(
-        '<ul>\n{}\n</ul>',
-        format_html_join_kw('\n', history_format_string, log_entries_gen))
+        '<ul>\n{}\n{}</ul>',
+        format_html_join_kw('\n', history_format_string, log_entries_gen),
+        additional_logs)
 
 
 def splitlines(text):

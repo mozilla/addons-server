@@ -502,9 +502,19 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return format_html('<a href="{}">{}</a>', obj.url, obj.url)
 
     def block_history(self, obj):
+        submission = BlockSubmission.get_submission_from_guid(obj.guid).first()
+        submission_log = (
+            format_html(
+                '<li>{date}. <a href="{url}">Changes pending</a></li>',
+                date=submission.modified.date(),
+                url=reverse(
+                    'admin:blocklist_blocksubmission_change',
+                    args=(submission.id,)))
+            if submission else '')
         return format_block_history(
             ActivityLog.objects.for_guidblock(obj.guid).filter(
-                action__in=Block.ACTIVITY_IDS).order_by('created'))
+                action__in=Block.ACTIVITY_IDS).order_by('created'),
+            additional_logs=submission_log)
 
     def get_fieldsets(self, request, obj):
         details = (
@@ -534,6 +544,12 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
 
         return (details, history, edit)
 
+    def has_change_permission(self, request, obj=None):
+        if obj and BlockSubmission.get_submission_from_guid(obj.guid):
+            return False
+        else:
+            return super().has_change_permission(request, obj=obj)
+
     def save_model(self, request, obj, form, change):
         # We don't actually save via this Admin so if we get here something has
         # gone wrong.
@@ -550,10 +566,11 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
 
     def get_form(self, request, obj=None, change=False, **kwargs):
         form = super().get_form(request, obj=obj, change=change, **kwargs)
-        form.base_fields['min_version'].choices = _get_version_choices(
-            obj, 'min_version')
-        form.base_fields['max_version'].choices = _get_version_choices(
-            obj, 'max_version')
+        if 'min_version' in form.base_fields:
+            form.base_fields['min_version'].choices = _get_version_choices(
+                obj, 'min_version')
+            form.base_fields['max_version'].choices = _get_version_choices(
+                obj, 'max_version')
         return form
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
@@ -573,6 +590,8 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                 return HttpResponseTemporaryRedirect(
                     reverse('admin:blocklist_blocksubmission_add'))
 
+        extra_context = extra_context or {}
+        extra_context['show_save_and_continue'] = False
         return super().changeform_view(
             request, object_id=obj_id, form_url=form_url,
             extra_context=extra_context)

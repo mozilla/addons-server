@@ -152,6 +152,10 @@ class BlockSubmission(ModelBase):
         SIGNOFF_NOTNEEDED: 'No Sign-off',
         SIGNOFF_PUBLISHED: 'Published to Blocks',
     }
+    SIGNOFF_STATES_FINISHED = (
+        SIGNOFF_REJECTED,
+        SIGNOFF_PUBLISHED,
+    )
     FakeBlock = namedtuple(
         'FakeBlock', ('id', 'guid', 'addon', 'min_version', 'max_version'))
     FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
@@ -382,6 +386,12 @@ class BlockSubmission(ModelBase):
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
+
+    @classmethod
+    def get_submission_from_guid(cls, guid, states=SIGNOFF_STATES_FINISHED):
+        return (
+            cls.objects.exclude(signoff_state__in=states)
+                       .filter(to_block__contains=f'"{guid}"'))
 
 
 class KintoImport(ModelBase):
