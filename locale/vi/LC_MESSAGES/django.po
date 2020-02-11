@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-01 04:10+0000\n"
+"PO-Revision-Date: 2020-02-11 13:14+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -431,7 +431,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "Xác nhận cho các khóa API của nhà phát triển"
 
 msgid "Application Versions"
 msgstr "Phiên bản Ứng dụng"
@@ -4573,18 +4573,16 @@ msgid "Some sites have difficulty playing videos on Firefox for Android. This ex
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "Các tiện ích mở rộng cũ không còn được hỗ trợ trong Firefox."
+msgstr "Các tiện ích mở rộng giống như các ứng dụng dành cho Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
-msgstr "Khám phá tất cả tiện ích"
+msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
@@ -4604,9 +4602,8 @@ msgstr "Tìm hiểu Thêm"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Tiện ích mở rộng"
+msgstr "Khám phá tiện ích mở rộng"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
