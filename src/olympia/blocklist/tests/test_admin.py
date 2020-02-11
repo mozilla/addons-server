@@ -3,6 +3,7 @@ import json
 
 from unittest import mock
 
+from django.conf import settings
 from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.contenttypes.models import ContentType
 
@@ -16,8 +17,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 
-from ..models import (
-    Block, BlockSubmission, DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD)
+from ..models import Block, BlockSubmission
 
 
 class TestBlockAdmin(TestCase):
@@ -337,7 +337,7 @@ class TestBlockSubmissionAdmin(TestCase):
             new_block, existing_and_partial}
 
     def test_submit_no_dual_signoff(self):
-        addon_adu = DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+        addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         new_addon, existing_and_full, partial_addon, existing_and_partial = (
             self._test_add_multiple_submit(addon_adu=addon_adu))
         self._test_add_multiple_verify_blocks(
@@ -345,7 +345,7 @@ class TestBlockSubmissionAdmin(TestCase):
             has_signoff=False)
 
     def test_submit_dual_signoff(self):
-        addon_adu = DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1
+        addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1
         new_addon, existing_and_full, partial_addon, existing_and_partial = (
             self._test_add_multiple_submit(addon_adu=addon_adu))
         # no new Block objects yet
@@ -726,9 +726,10 @@ class TestBlockSubmissionAdmin(TestCase):
         assert 'Bób' not in response.content.decode('utf-8')
 
     def test_signoff_page(self):
+        threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         addon = addon_factory(
             guid='guid@', name='Danger Danger',
-            average_daily_users=DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1)
+            average_daily_users=threshold + 1)
         mbs = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory())
