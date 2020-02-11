@@ -1098,6 +1098,60 @@ class TestScannerQueryResultAdmin(TestCase):
         self.client.login(email=self.user.email)
         self.test_list_view()
 
+    def test_list_filters(self):
+        rule_foo = ScannerQueryRule.objects.create(name='foo', scanner=YARA)
+        rule_bar = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        expected = [
+            ('All', '?'),
+            ('customs', '?scanner__exact=1'),
+            ('wat', '?scanner__exact=2'),
+            ('yara', '?scanner__exact=3'),
+            ('ml_api', '?scanner__exact=4'),
+
+            ('All', '?has_matched_rules=all'),
+            (' With matched rules only', '?'),
+
+            ('All', '?state=all'),
+            ('Unknown', '?'),
+            ('True positive', '?state=1'),
+            ('False positive', '?state=2'),
+            ('Inconclusive', '?state=3'),
+
+            ('All', '?'),
+            ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
+            ('foo (yara)', f'?matched_rules__id__exact={rule_foo.pk}'),
+
+            ('All', '?has_version=all'),
+            (' With version only', '?'),
+        ]
+        filters = [
+            (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
+        ]
+        assert filters == expected
+
+    def test_list_filter_matched_rules(self):
+        rule_foo = ScannerQueryRule.objects.create(name='foo', scanner=YARA)
+        rule_bar = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        with_foo_match = ScannerQueryResult(scanner=YARA)
+        with_foo_match.add_yara_result(rule=rule_foo.name)
+        with_foo_match.save()
+        with_bar_matches = ScannerQueryResult(scanner=YARA)
+        with_bar_matches.add_yara_result(rule=rule_bar.name)
+        with_bar_matches.save()
+
+        response = self.client.get(self.list_url, {
+            'matched_rules__id__exact': rule_bar.pk,
+            WithVersionFilter.parameter_name: 'all',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-formatted_matched_rules').text() == 'bar'
+
     def test_change_page(self):
         rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)
         result = ScannerQueryResult.objects.create(
