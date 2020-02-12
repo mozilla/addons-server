@@ -1,8 +1,16 @@
+import math
+
 from django.utils.html import format_html, conditional_escape
 from django.utils.safestring import mark_safe
 
+from filtercascade import FilterCascade
+
+import olympia.core.logger
 from olympia import amo
 from olympia.activity import log_create
+
+
+log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 
 def add_version_log_for_blocked_versions(obj, al):
@@ -101,3 +109,34 @@ def format_block_history(logs):
 
 def splitlines(text):
     return [line.strip() for line in str(text or '').splitlines()]
+
+
+def generateMLBF(stats, *, blocked, not_blocked, capacity, diffMetaFile=None):
+    """Based on:
+    https://github.com/mozilla/crlite/blob/master/create_filter_cascade/certs_to_crlite.py
+    """
+    fprs = [len(blocked) / (math.sqrt(2) * len(not_blocked)), 0.5]
+
+    if diffMetaFile is not None:
+        log.info(
+            "Generating filter with characteristics from mlbf base file {}".
+            format(diffMetaFile))
+        mlbf_meta_file = open(diffMetaFile, 'rb')
+        cascade = FilterCascade.loadDiffMeta(mlbf_meta_file)
+        cascade.error_rates = fprs
+    else:
+        log.info("Generating filter")
+        cascade = FilterCascade.cascade_with_characteristics(
+            int(len(blocked) * capacity), fprs)
+
+    cascade.version = 1
+    cascade.initialize(include=blocked, exclude=not_blocked)
+
+    stats['mlbf_fprs'] = fprs
+    stats['mlbf_version'] = cascade.version
+    stats['mlbf_layers'] = cascade.layerCount()
+    stats['mlbf_bits'] = cascade.bitCount()
+
+    log.debug("Filter cascade layers: {layers}, bit: {bits}".format(
+        layers=cascade.layerCount(), bits=cascade.bitCount()))
+    return cascade

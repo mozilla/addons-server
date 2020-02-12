@@ -75,7 +75,7 @@ class Block(ModelBase):
     def preload_addon_versions(cls, blocks):
         """Preload block.addon_versions into a list of blocks.
         If you're calling this on a list of blocks it's expected that you've
-        # set cached_property self.addon in a db efficient way beforehand.
+        set cached_property self.addon in a db efficient way beforehand.
         """
         addon_ids = [block.addon.id for block in blocks]
         qs = Version.unfiltered.filter(addon_id__in=addon_ids).order_by(

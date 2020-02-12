@@ -102,6 +102,9 @@ argparse==1.4.0 \
 # supports it.
 billiard==3.6.0.0 \
     --hash=sha256:756bf323f250db8bf88462cd042c992ba60d8f5e07fc5636c24ba7d6f4261d84 # pyup: <3.6
+# bitarray is required by filtercascade
+bitarray == 1.2.1 \
+    --hash=sha256:2ed675f460bb0d3d66fd8042a6f1f0d36cf213e52e72a745283ddb245da7b9cf
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
@@ -114,6 +117,8 @@ celery==4.4.0 \
 botocore==1.14.13 \
     --hash=sha256:6478d9207db6dbcb5106fd4db2cdd5194d0b2dc0b73776019d56877ab802fe87 \
     --hash=sha256:6ffb78b331b0954cfe5c51958cb51522ab0e2999442422949b080a3e1bc76ee1
+bsdiff4==1.1.9 \
+    --hash=sha256:a7c48ec58dc1c4a2b9fb5da05637524d5dbb1643a3df7cdc6ed105636909ff79
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -208,6 +213,9 @@ feedparser==5.2.1 \
     --hash=sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02 \
     --hash=sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9 \
     --hash=sha256:cd2485472e41471632ed3029d44033ee420ad0b57111db95c240c9160a85831c
+filtercascade==0.2.0 \
+    --hash=sha256:f81715ba219ec5f385779d9bfaed5fefa44648ed8b04c1722223662400165a01 \
+    --hash=sha256:b89a9a77f558becddbe3a9ac39c50a1d409b9a51a1e941d1da8562d6a3dd4ad2
 # funcsigs is required by mock
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
@@ -270,6 +278,9 @@ m2secret-py3==1.3 \
 more-itertools==8.2.0 \
     --hash=sha256:5dd8bcf33e5f9513ffa06d5ad33d78f31e1931ac9a18f33d37e77a180d393a7c \
     --hash=sha256:b1ddb932186d8a6ac451e1d95844b382f55e12686d51ca0c68b6f61f2ab7a507
+# mmh3 is required by filtercascade
+mmh3==2.5.1 \
+    --hash=sha256:185209a217c52afe43e079e5b232d0ef0f3a262601eaaf4371326ab6dcbec508
 python-memcached==1.59 \
     --hash=sha256:4dac64916871bd3550263323fc2ce18e1e439080a2d5670c594cf3118d99b594 \
     --hash=sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f
