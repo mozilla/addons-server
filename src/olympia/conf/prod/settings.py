@@ -108,3 +108,6 @@ FXA_SQS_AWS_QUEUE_URL = (
 
 EXTENSION_WORKSHOP_URL = env(
     'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.com')
+
+KINTO_API_URL = 'http://settings-writer.prod.mozaws.net/v1/'
+KINTO_API_IS_TEST_SERVER = False
