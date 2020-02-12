@@ -243,6 +243,7 @@ class AddonAbuseViewSetTestBase(object):
         assert report.addon_install_method == (
             AbuseReport.ADDON_INSTALL_METHODS.URL)
         assert report.addon_install_source is None
+        assert report.addon_install_source_url is None
         assert report.report_entry_point is None
 
     def test_optional_fields_errors(self):
@@ -263,6 +264,7 @@ class AddonAbuseViewSetTestBase(object):
             'addon_install_origin': 'u' * 256,
             'addon_install_method': 'Something not in install method choices',
             'addon_install_source': 'Something not in install source choices',
+            'addon_install_source_url': 'http://%s' % 'a' * 249,
             'report_entry_point': 'Something not in entrypoint choices',
         }
         response = self.client.post(
@@ -289,6 +291,7 @@ class AddonAbuseViewSetTestBase(object):
                 'instead: YYYY-MM-DDThh:mm[:ss[.uuuuuu]][+HH:MM|-HH:MM|Z].'],
             'reason': [expected_choices_message % data['reason']],
             'addon_install_origin': [expected_max_length_message % 255],
+            'addon_install_source_url': [expected_max_length_message % 255],
             'report_entry_point': [
                 expected_choices_message % data['report_entry_point']],
         }
