@@ -1,9 +1,10 @@
 import bsdiff4
 import json
 import os
-import random
 
+from django.conf import settings
 from django.core.management.base import BaseCommand
+from django.core.files.storage import default_storage
 
 import olympia.core.logger
 
@@ -80,14 +81,9 @@ class Command(BaseCommand):
             'version__addon__guid', 'version__version', 'cert_serial_num')
 
     def load_json(self, json_path):
-        def tuplify(record):
-            return tuple(
-                record if len(record) == 3 else
-                record + [str(random.randint(100000, 999999))])
-
         with open(json_path) as json_file:
             data = json.load(json_file)
-        return [tuplify(record) for record in data]
+        return [tuple(record) for record in data]
 
     def save_blocklist(self, stats, mlbf, id_, previous_id=None):
         out_file = os.path.join(settings.TMP_PATH, 'mlbf', id_, 'filter')
