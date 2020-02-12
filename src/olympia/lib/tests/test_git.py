@@ -1191,9 +1191,6 @@ def test_get_mime_type_for_blob(
     assert category == expected_category
 
 
-
-
-
 @pytest.mark.parametrize(
     'entry, filename, expected_mimetype, simplified_detection',
     [
