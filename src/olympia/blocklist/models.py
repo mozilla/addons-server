@@ -23,10 +23,6 @@ from olympia.versions.models import Version
 from .utils import block_activity_log_save, splitlines
 
 
-# The Addon.average_daily_user count that forces dual sign-off for the Blocks
-DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
-
-
 class Block(ModelBase):
     MIN = '0'
     MAX = '*'
@@ -214,9 +210,10 @@ class BlockSubmission(ModelBase):
         return not require_different_users or different_users
 
     def needs_signoff(self):
+        threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+
         def unsafe(daily_users):
-            return (daily_users > DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD or
-                    daily_users == 0)
+            return daily_users > threshold or daily_users == 0
 
         return any(
             unsafe(block['average_daily_users']) for block in self.to_block)
