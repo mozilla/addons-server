@@ -33,7 +33,8 @@ from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser, ReusedGUID)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser, DeniedGuid,
+    ReusedGUID)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, format_date, format_datetime)
@@ -3500,6 +3501,8 @@ class TestReview(ReviewBase):
         assert not doc('#enable_auto_approval')
         assert not doc('#clear_auto_approval_delayed_until')
         assert not doc('#clear_pending_info_request')
+        assert not doc('#deny_resubmission')
+        assert not doc('#allow_resubmission')
 
     def test_extra_actions_admin_disable_enable(self):
         self.login_as_admin()
@@ -3532,6 +3535,52 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#clear_auto_approval_delayed_until')
+
+    def test_no_resubmission_buttons_when_addon_is_not_deleted(self):
+        self.login_as_admin()
+
+        response = self.client.get(self.url)
+
+        doc = pq(response.content)
+        assert not doc('#deny_resubmission')
+        assert not doc('#allow_resubmission')
+
+    def test_resubmission_buttons_are_displayed_for_deleted_addons(self):
+        self.login_as_admin()
+        self.addon.update(status=amo.STATUS_DELETED)
+        assert not self.addon.is_guid_denied
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # The "deny" button is visible when the GUID is not denied.
+        assert doc('#deny_resubmission')
+        elem = doc('#deny_resubmission')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+        # The "allow" button is hidden when the GUID is not denied.
+        assert doc('#allow_resubmission')
+        elem = doc('#allow_resubmission')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+
+    def test_resubmission_buttons_are_displayed_for_deleted_addons_and_denied_guid(self):  # noqa
+        self.login_as_admin()
+        self.addon.update(status=amo.STATUS_DELETED)
+        self.addon.deny_resubmission()
+        assert self.addon.is_guid_denied
+
+        response = self.client.get(self.url)
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # The "deny" button is hidden when the GUID is denied.
+        assert doc('#deny_resubmission')
+        elem = doc('#deny_resubmission')[0]
+        assert 'hidden' in elem.getparent().attrib.get('class', '')
+        # The "allow" button is visible when the GUID is denied.
+        assert doc('#allow_resubmission')
+        elem = doc('#allow_resubmission')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
 
     def test_admin_block_actions(self):
         self.login_as_admin()
@@ -4000,9 +4049,11 @@ class TestReview(ReviewBase):
 
         # Now, login as someone else and test.
         self.login_as_admin()
-        r = self.client.post(reverse('reviewers.queue_viewing'),
-                             {'addon_ids': self.addon.id})
-        data = json.loads(r.content)
+        response = self.client.get(reverse(
+            'reviewers.queue_viewing'),
+            {'addon_ids': '%s,4242' % self.addon.id})
+        assert response.status_code == 200
+        data = json.loads(response.content)
         assert data[str(self.addon.id)] == self.reviewer.name
 
     def test_display_same_files_only_once(self):
@@ -5560,6 +5611,10 @@ class TestAddonReviewerViewSet(TestCase):
             'reviewers-addon-disable', kwargs={'pk': self.addon.pk})
         self.flags_url = reverse_ns(
             'reviewers-addon-flags', kwargs={'pk': self.addon.pk})
+        self.deny_resubmission_url = reverse_ns(
+            'reviewers-addon-deny-resubmission', kwargs={'pk': self.addon.pk})
+        self.allow_resubmission_url = reverse_ns(
+            'reviewers-addon-allow-resubmission', kwargs={'pk': self.addon.pk})
 
     def test_subscribe_not_logged_in(self):
         response = self.client.post(self.subscribe_url)
@@ -5822,6 +5877,39 @@ class TestAddonReviewerViewSet(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.ADMIN_ALTER_INFO_REQUEST.id
         assert activity_log.arguments[0] == self.addon
+
+    def test_deny_resubmission(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        assert DeniedGuid.objects.count() == 0
+        response = self.client.post(self.deny_resubmission_url)
+        assert response.status_code == 202
+        assert DeniedGuid.objects.count() == 1
+
+    def test_deny_resubmission_with_denied_guid(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.addon.deny_resubmission()
+        assert DeniedGuid.objects.count() == 1
+        response = self.client.post(self.deny_resubmission_url)
+        assert response.status_code == 409
+        assert DeniedGuid.objects.count() == 1
+
+    def test_allow_resubmission(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        self.addon.deny_resubmission()
+        assert DeniedGuid.objects.count() == 1
+        response = self.client.post(self.allow_resubmission_url)
+        assert response.status_code == 202
+        assert DeniedGuid.objects.count() == 0
+
+    def test_allow_resubmission_with_non_denied_guid(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        response = self.client.post(self.allow_resubmission_url)
+        assert response.status_code == 409
+        assert DeniedGuid.objects.count() == 0
 
 
 class AddonReviewerViewSetPermissionMixin(object):
@@ -6242,6 +6330,37 @@ class TestDraftCommentViewSet(TestCase):
                     user, context={'request': request}).data,
                 cls=amo.utils.AMOJSONEncoder))
         }
+
+    def test_list_queries(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        DraftComment.objects.create(
+            version=self.version, comment='test1', user=user,
+            lineno=0, filename='manifest.json')
+        DraftComment.objects.create(
+            version=self.version, comment='test2', user=user,
+            lineno=1, filename='manifest.json')
+        DraftComment.objects.create(
+            version=self.version, comment='test3', user=user,
+            lineno=2, filename='manifest.json')
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk
+        })
+        with self.assertNumQueries(15):
+            # - 2 savepoints because of tests
+            # - 2 user and groups
+            # - 2 addon and translations
+            # - 2 version and translations
+            # - 1 applications versions
+            # - 2 licenses and translations
+            # - 1 files
+            # - 1 file validation
+            # - 1 count
+            # - 1 drafts
+            response = self.client.get(url, {'lang': 'en-US'})
+        assert response.json()['count'] == 3
 
     def test_create_retrieve_and_update(self):
         user = user_factory(username='reviewer')
@@ -6802,7 +6921,7 @@ class TestReviewAddonVersionCompareViewSet(
             }
         ]
 
-    def test_get_deleted_file(self):
+    def test_compare_with_deleted_file(self):
         new_version = version_factory(
             addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
 
@@ -6858,6 +6977,35 @@ class TestReviewAddonVersionCompareViewSet(
             'pk': next_version.pk})
 
         response = self.client.get(self.url + '?file=foo.png')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['file']['download_url']
+
+    def test_compare_with_deleted_version(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        # We need to run extraction first and delete afterwards, otherwise
+        # we'll end up with errors because files don't exist anymore.
+        AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        new_version.delete()
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+
+        # A reviewer needs the `Addons:ViewDeleted` permission to view and
+        # compare deleted versions
+        self.grant_permission(user, 'Addons:ViewDeleted')
+
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(self.url)
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['file']['download_url']

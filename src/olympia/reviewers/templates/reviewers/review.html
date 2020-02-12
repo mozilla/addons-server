@@ -205,11 +205,12 @@
 </form>
 {% endif %}
 
-{% if not addon.is_deleted %}
+{% if not addon.is_deleted or is_admin %}
 <form class="more-actions" id="extra-review-actions" data-api-token="{{ api_token }}">
   <p><strong>{{ _('More Actions') }}</strong></p>
   <div class="more-actions-inner">
     <ul>
+      {% if not addon.is_deleted %}
       <li>
         <input type="checkbox" id="notify_new_listed_versions"
                data-api-url-subscribe="{{ drf_url('reviewers-addon-subscribe', addon.pk) }}"
@@ -217,9 +218,23 @@
                {% if subscribed %}checked="checked"{% endif %} autocomplete="off" />
           <label for="notify_new_listed_versions">{{ _('Notify me about new listed versions') }}</label>
       </li>
+      {% endif %}
     </ul>
+
     {% if is_admin %}
     <ul class="admin_only">
+      {% if addon.is_deleted %}
+        <li {% if not addon.is_guid_denied %}class="hidden"{% endif %}>
+          <button data-api-url="{{ drf_url('reviewers-addon-allow-resubmission', addon.pk) }}"
+                  data-toggle-button-selector="#deny_resubmission"
+                  id="allow_resubmission" type="button">{{ _('Allow resubmission') }}</button>
+        </li>
+        <li {% if addon.is_guid_denied %}class="hidden"{% endif %}>
+          <button data-api-url="{{ drf_url('reviewers-addon-deny-resubmission', addon.pk) }}"
+                  data-toggle-button-selector="#allow_resubmission"
+                  id="deny_resubmission" type="button">{{ _('Deny resubmission') }}</button>
+        </li>
+      {% else %}
         <li {% if addon.status == amo.STATUS_DISABLED %}class="hidden"{% endif %}>
           <button data-api-url="{{ drf_url('reviewers-addon-disable', addon.pk) }}"
                   data-toggle-button-selector="#force_enable_addon"
@@ -230,6 +245,7 @@
                   data-toggle-button-selector="#force_disable_addon"
                   id="force_enable_addon" type="button">{{ _('Force-enable add-on') }}</button>
         </li>
+
         {% if not addon.block %}
         <li>
           <a href="{{ url('admin:blocklist_blocksubmission_add') }}?guids={{ addon.guid }}" class="button"
@@ -241,6 +257,7 @@
                   id="edit_addon_block" type="button">{{ _('Update add-on block') }}</a>
         </li>
         {% endif %}
+
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT, amo.ADDON_SEARCH) %}
           <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
@@ -267,6 +284,7 @@
             </li>
           {% endif %}
         {% endif %}
+
         {% if addon.pending_info_request %}
           <li>
               <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
@@ -275,6 +293,7 @@
                       id="clear_pending_info_request" type="button">{{ _('Clear information request') }}</button>
           </li>
         {% endif %}
+
         {% if addon.needs_admin_code_review %}
           <li>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
@@ -283,6 +302,7 @@
                     id="clear_admin_code_review"  type="button">{{ _('Clear Admin Code Review Flag') }}</button>
           </li>
         {% endif %}
+
         {% if addon.needs_admin_content_review %}
           <li>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
@@ -291,6 +311,7 @@
                     id="clear_admin_content_review" type="button">{{ _('Clear Admin Content Review Flag') }}</button>
           </li>
         {% endif %}
+
         {% if addon.needs_admin_theme_review %}
           <li>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
@@ -299,8 +320,9 @@
                     id="clear_admin_theme_review" type="button">{{ _('Clear Admin Static Theme Review Flag') }}</button>
           </li>
         {% endif %}
+      {% endif %}
     </ul>
-    {% endif %}
+    {% endif %} {# /is-admin #}
   </div>
 </form>
 {% endif %}

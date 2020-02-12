@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-03 22:53+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2020-02-07 16:55+0000\n"
+"Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -3967,7 +3967,7 @@ msgstr "WhatsApp na web {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "O WhatsApp na Internet. Aceda ao WhatsApp a partir do painel de barra de ferramentas do Firefox para obter um emblema de notificação de conversas não lidas."
+msgstr "WhatsApp na Internet. Aceda ao WhatsApp a partir do painel da barra de ferramentas do Firefox para obter um emblema de notificação dos tópicos não lidos."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"

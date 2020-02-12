@@ -14,7 +14,7 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
-from olympia.files.models import FileUpload, FileValidation
+from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.files.utils import check_xpi_info, parse_addon
 from olympia.users.models import UserProfile
@@ -167,6 +167,14 @@ class TestFileValidation(TestCase):
         self.client.logout()
         assert self.client.login(email='reviewer@mozilla.com')
         assert self.client.head(self.json_url, follow=True).status_code == 200
+
+    def test_reviewer_cannot_see_files_not_validated(self):
+        file_not_validated = File.objects.get(pk=100400)
+        json_url = reverse('devhub.json_file_validation',
+                           args=[self.addon.slug, file_not_validated.id])
+        self.client.logout()
+        assert self.client.login(email='reviewer@mozilla.com')
+        assert self.client.head(json_url, follow=True).status_code == 404
 
     def test_developer_cant_see_results_from_other_addon(self):
         other_addon = addon_factory(users=[self.user])

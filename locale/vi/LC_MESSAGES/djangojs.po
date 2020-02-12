@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2015-08-22 04:03+0000\n"
+"PO-Revision-Date: 2020-02-11 13:12+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
@@ -25,9 +25,8 @@ msgstr "Kết nối tới máy chủ có vấn đề."
 msgid "Select a file..."
 msgstr "Chọn tập tin…"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Tiện ích của bạn phải có đuôi là .zip, .xpi, .crx, .jar or .xml"
+msgstr "Tiện ích của bạn phải có đuôi là .zip, .xpi, .crx hoặc .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format

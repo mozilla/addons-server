@@ -2820,7 +2820,7 @@ msgstr "Eklentiniz galerimizde gösteriliyor ve kullanıcılar otomatik güncell
 
 #, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Eklentiniz bir site yöneticisi tarafından devre dışı bırakıldı ve artık galerimizde gösterilmiyor. Herhangi bir sorunuz varsa lütfen amo-admins@mozilla.org adresine e-posta gönderin."
+msgstr "Eklentiniz bir site yöneticisi tarafından devre dışı bırakıldı ve artık galerimizde gösterilmiyor. Herhangi bir sorunuz varsa lütfen amo-admins@mozilla.com adresine e-posta gönderin."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""

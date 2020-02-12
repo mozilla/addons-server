@@ -2781,7 +2781,7 @@ msgstr "Add-on anda ada dipamerkan dalam galeri kami dan pengguna menerima kemas
 
 #, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Add-on anda diyahdayakan oleh pentadbir laman dan tidak lagi dipamerkan dalam galeri kami. Jika anda ada soalan, sila e-mel amo-admins@mozilla.org."
+msgstr "Add-on anda diyahdayakan oleh pentadbir laman dan tidak lagi dipamerkan dalam galeri kami. Jika anda ada soalan, sila e-mel amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""

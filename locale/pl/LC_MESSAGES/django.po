@@ -2841,7 +2841,7 @@ msgstr "Dodatek jest wyświetlany w naszej galerii i użytkownicy otrzymują jeg
 
 #, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Dodatek został wyłączony przez administratora witryny i nie jest już wyświetlany w naszej galerii. Jeśli masz jakieś pytania, wyślij wiadomość e-mail na adres amo-admins@mozilla.org."
+msgstr "Dodatek został wyłączony przez administratora witryny i nie jest już wyświetlany w naszej galerii. Jeśli masz jakieś pytania, wyślij wiadomość e-mail na adres amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Dodatek nie będzie uwzględniany w wynikach wyszukiwania, a strona dodatku będzie informować o jego wyłączeniu. Zgłoszenia nowych wersji do spisu nie będą akceptowane w tym stanie."

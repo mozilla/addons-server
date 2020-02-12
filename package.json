@@ -17,10 +17,10 @@
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
     "jszip": "3.2.2",
-    "less": "3.10.3",
+    "less": "3.11.1",
     "source-map": "0.7.3",
     "timeago": "1.6.7",
-    "uglify-js": "3.7.6",
+    "uglify-js": "3.7.7",
     "underscore": "1.9.2"
   },
   "devDependencies": {}

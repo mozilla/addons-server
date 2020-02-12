@@ -2649,3 +2649,46 @@ class TestMigratedLWTModel(TestCase):
     def test_getpersonas_id_lookup(self):
         match = MigratedLWT.objects.get(getpersonas_id=999)
         assert match.static_theme == self.static_theme
+
+
+class TestAddonAndDeniedGuid(TestCase):
+    def setUp(self):
+        # This is needed for the `ActivityLog`.
+        core.set_user(UserProfile.objects.create(pk=999))
+
+    def get_last_activity_log(self):
+        return ActivityLog.objects.order_by('id').last()
+
+    def test_is_guid_denied(self):
+        addon = addon_factory()
+        assert not addon.is_guid_denied
+        DeniedGuid.objects.create(guid=addon.guid)
+        assert addon.is_guid_denied
+
+    def test_deny_resubmission(self):
+        addon = addon_factory()
+        assert not DeniedGuid.objects.filter(guid=addon.guid).exists()
+        addon.deny_resubmission()
+        assert DeniedGuid.objects.filter(guid=addon.guid).exists()
+        last_activity = self.get_last_activity_log()
+        assert last_activity.action == amo.LOG.DENIED_GUID_ADDED.id
+
+    def test_deny_already_denied_guid(self):
+        addon = addon_factory()
+        addon.deny_resubmission()
+        with pytest.raises(RuntimeError):
+            addon.deny_resubmission()
+
+    def test_allow_resubmission(self):
+        addon = addon_factory()
+        addon.deny_resubmission()
+        assert DeniedGuid.objects.filter(guid=addon.guid).exists()
+        addon.allow_resubmission()
+        assert not DeniedGuid.objects.filter(guid=addon.guid).exists()
+        last_activity = self.get_last_activity_log()
+        assert last_activity.action == amo.LOG.DENIED_GUID_DELETED.id
+
+    def test_allow_resubmission_with_non_denied_guid(self):
+        addon = addon_factory()
+        with pytest.raises(RuntimeError):
+            addon.allow_resubmission()

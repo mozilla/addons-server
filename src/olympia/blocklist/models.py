@@ -23,10 +23,6 @@ from olympia.versions.models import Version
 from .utils import block_activity_log_save, splitlines
 
 
-# The Addon.average_daily_user count that forces dual sign-off for the Blocks
-DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
-
-
 class Block(ModelBase):
     MIN = '0'
     MAX = '*'
@@ -46,7 +42,8 @@ class Block(ModelBase):
     ACTIVITY_IDS = (
         amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
         amo.LOG.BLOCKLIST_BLOCK_EDITED.id,
-        amo.LOG.BLOCKLIST_BLOCK_DELETED.id)
+        amo.LOG.BLOCKLIST_BLOCK_DELETED.id,
+        amo.LOG.BLOCKLIST_SIGNOFF.id)
 
     def __str__(self):
         return f'Block: {self.guid}'
@@ -213,9 +210,10 @@ class BlockSubmission(ModelBase):
         return not require_different_users or different_users
 
     def needs_signoff(self):
+        threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+
         def unsafe(daily_users):
-            return (daily_users > DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD or
-                    daily_users == 0)
+            return daily_users > threshold or daily_users == 0
 
         return any(
             unsafe(block['average_daily_users']) for block in self.to_block)
@@ -289,10 +287,18 @@ class BlockSubmission(ModelBase):
             for block in existing_blocks:
                 block.addon = addon_guid_dict[block.guid]
 
-        # identify the blocks that need updating -i.e. not v_min - vmax already
-        blocks_to_update_dict = {
-            block.guid: block for block in existing_blocks
-            if not (block.min_version == v_min and block.max_version == v_max)}
+        if len(all_guids) == 1:
+            # We special case a single guid to always update it.
+            blocks_to_update_dict = (
+                {existing_blocks[0].guid: existing_blocks[0]}
+                if existing_blocks else {})
+        else:
+            # identify the blocks that need updating -
+            # i.e. not v_min - vmax already
+            blocks_to_update_dict = {
+                block.guid: block for block in existing_blocks
+                if not (
+                    block.min_version == v_min and block.max_version == v_max)}
         existing_guids = [
             block.guid for block in existing_blocks
             if block.guid not in blocks_to_update_dict]
@@ -371,7 +377,8 @@ class BlockSubmission(ModelBase):
                     setattr(block, 'modified', modified_datetime)
                 block.save()
                 block.submission.add(self)
-                block_activity_log_save(block, change=change)
+                block_activity_log_save(
+                    block, change=change, submission_obj=self)
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
