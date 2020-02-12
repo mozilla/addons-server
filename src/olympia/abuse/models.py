@@ -178,6 +178,10 @@ class AbuseReport(ModelBase):
     reason = models.PositiveSmallIntegerField(
         default=None, choices=REASONS.choices, blank=True, null=True)
     addon_install_origin = models.CharField(
+        # Supposed to be an URL, but the scheme could be moz-foo: or something
+        # like that, and it's potentially truncated, so use a CharField and not
+        # a URLField. We also don't want to automatically turn this into a
+        # clickable link in the admin in case it's dangerous.
         default=None, max_length=255, blank=True, null=True)
     addon_install_method = models.PositiveSmallIntegerField(
         default=None, choices=ADDON_INSTALL_METHODS.choices, blank=True,
@@ -185,6 +189,9 @@ class AbuseReport(ModelBase):
     addon_install_source = models.PositiveSmallIntegerField(
         default=None, choices=ADDON_INSTALL_SOURCES.choices, blank=True,
         null=True)
+    addon_install_source_url = models.CharField(
+        # See addon_install_origin above as for why it's not an URLField.
+        default=None, max_length=255, blank=True, null=True)
     report_entry_point = models.PositiveSmallIntegerField(
         default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True,
         null=True)
@@ -214,6 +221,7 @@ class AbuseReport(ModelBase):
             'application_locale', 'operating_system',
             'operating_system_version', 'install_date', 'reason',
             'addon_install_origin', 'addon_install_method',
+            'addon_install_source', 'addon_install_source_url',
             'report_entry_point'
         )
         for field_name in field_names:

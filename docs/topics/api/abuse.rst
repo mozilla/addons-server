@@ -38,8 +38,9 @@ to if necessary.
     :<json string message: The body/content of the abuse report (required).
     :<json string|null report_entry_point: The report entry point. The accepted values are documented in the :ref:`table below <abuse-report_entry_point-parameter>`.
     :<json string|null addon_install_method: The add-on install method. The accepted values are documented in the :ref:`table below <abuse-addon_install_method-parameter>`.
-    :<json string|null addon_install_source: The add-on install source. The accepted values are documented in the :ref:`table below <abuse-addon_install_source-parameter>`.
     :<json string|null addon_install_origin: The add-on install origin.
+    :<json string|null addon_install_source: The add-on install source. The accepted values are documented in the :ref:`table below <abuse-addon_install_source-parameter>`.
+    :<json string|null addon_install_source_url: The add-on install source URL.
     :<json string|null addon_name: The add-on name in the locale used by the client.
     :<json string|null addon_signature: The add-on signature state. The accepted values are documented in the :ref:`table below <abuse-addon_signature-parameter>`.
     :<json string|null addon_summary: The add-on summary in the locale used by the client.
@@ -64,8 +65,9 @@ to if necessary.
     :>json string message: The body/content of the abuse report.
     :>json string|null report_entry_point: The report entry point.
     :>json string|null addon_install_method: The add-on install method.
-    :>json string|null addon_install_source: The add-on install source.
     :>json string|null addon_install_origin: The add-on install origin.
+    :>json string|null addon_install_source: The add-on install source.
+    :>json string|null addon_install_source_url: The add-on install source URL.
     :>json string|null addon_name: The add-on name in the locale used by the client.
     :>json string|null addon_signature: The add-on signature state.
     :>json string|null addon_summary: The add-on summary in the locale used by the client.

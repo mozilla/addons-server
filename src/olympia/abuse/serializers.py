@@ -82,6 +82,7 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
             'addon_install_method',
             'addon_install_origin',
             'addon_install_source',
+            'addon_install_source_url',
             'addon_name',
             'addon_signature',
             'addon_summary',
