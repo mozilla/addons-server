@@ -1191,6 +1191,41 @@ def test_get_mime_type_for_blob(
     assert category == expected_category
 
 
+
+
+
+@pytest.mark.parametrize(
+    'entry, filename, expected_mimetype, simplified_detection',
+    [
+        (MagicMock(type=_blob_type), 'foo.css', 'text/css', True),
+        (MagicMock(type=_blob_type), 'foo.html', 'text/html', True),
+        (MagicMock(type=_blob_type), 'foo.js', 'text/javascript', True),
+        (MagicMock(type=_blob_type), 'foo.json', 'application/json', True),
+        (MagicMock(type=_blob_type), 'blank.pdf', 'application/pdf', False),
+        (MagicMock(type=_blob_type), 'blank.txt', 'text/plain', False),
+        (MagicMock(type=_blob_type), 'fff.gif', 'image/gif', False),
+        (MagicMock(type=_blob_type), 'image.jpg', 'image/jpeg', False),
+        (MagicMock(type=_blob_type), 'image.png', 'image/png', False),
+        (MagicMock(type=_blob_type), 'search.xml', 'text/xml', False),
+    ]
+)
+def test_get_mime_type_for_blob_simplified_detection(
+        entry, filename, expected_mimetype, simplified_detection):
+    root = os.path.join(
+        settings.ROOT,
+        'src/olympia/files/fixtures/files/file_viewer_filetypes/')
+
+    with mock.patch('olympia.lib.git.magic.from_buffer') as mocked_from_buffer:
+        with open(os.path.join(root, filename), 'rb') as fobj:
+            mime, category = get_mime_type_for_blob(
+                entry.type, filename, force_bytes(fobj.read()))
+
+        if simplified_detection:
+            mocked_from_buffer.assert_not_called()
+        else:
+            mocked_from_buffer.assert_called_once()
+
+
 @pytest.mark.django_db
 def test_get_deltas_add_new_file():
     addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
