@@ -8,7 +8,8 @@ from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.utils.html import format_html
 from django.utils.http import urlencode, is_safe_url
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext, gettext_lazy as _
+
 
 from urllib.parse import urljoin, urlparse
 
@@ -74,7 +75,7 @@ class MatchesFilter(PresenceFilter):
 
 
 class StateFilter(SimpleListFilter):
-    title = ugettext('state')
+    title = ugettext('result state')
     parameter_name = 'state'
 
     def lookups(self, request, model_admin):
@@ -126,6 +127,50 @@ class WithVersionFilter(PresenceFilter):
         if self.value() == 'all':
             return queryset
         return queryset.exclude(version=None)
+
+
+class VersionChannelFilter(admin.ChoicesFieldListFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = ugettext('version channel')
+
+
+class AddonStatusFilter(admin.ChoicesFieldListFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = ugettext('add-on status')
+
+
+class AddonVisibilityFilter(admin.BooleanFieldListFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = ugettext('add-on listing visibility')
+
+    def choices(self, changelist):
+        # We're doing a lookup on disabled_by_user: if it's True then the
+        # add-on listing is "invisible", and False it's "visible".
+        for lookup, title in (
+                (None, _('All')),
+                ('1', _('Invisible')),
+                ('0', _('Visible'))):
+            yield {
+                'selected': self.lookup_val == lookup and not self.lookup_val2,
+                'query_string': changelist.get_query_string(
+                    {self.lookup_kwarg: lookup}, [self.lookup_kwarg2]),
+                'display': title,
+            }
+
+
+class FileStatusFiler(admin.ChoicesFieldListFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = ugettext('file status')
+
+
+class FileIsSigned(admin.BooleanFieldListFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = ugettext('file signature')
 
 
 class AbstractScannerResultAdminMixin(admin.ModelAdmin):
@@ -517,6 +562,14 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
 class ScannerQueryResultAdmin(
         AbstractScannerResultAdminMixin, admin.ModelAdmin):
     raw_id_fields = ('version',)
+    list_filter = (
+        ('matched_rules', ScannerRuleListFilter),
+        ('version__channel', VersionChannelFilter),
+        ('version__addon__status', AddonStatusFilter),
+        ('version__addon__disabled_by_user', AddonVisibilityFilter),
+        ('version__files__status', FileStatusFiler),
+        ('version__files__is_signed', FileIsSigned),
+    )
 
     def has_actions_permission(self, request):
         return acl.action_allowed(
