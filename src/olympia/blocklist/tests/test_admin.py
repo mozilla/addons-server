@@ -89,8 +89,20 @@ class TestBlockAdmin(TestCase):
         assert b'Add-on GUIDs (one per line)' in response.content
         assert b'Addon with GUID guid@ does not exist' in response.content
 
-        # But should continue to the django admin add page if it exists
+        # If the guid already exists in a pending BlockSubmission the guid is
+        # invalid also
         addon = addon_factory(guid='guid@')
+        submission = BlockSubmission.objects.create(input_guids='guid@')
+        response = self.client.post(
+            self.add_url, {'guids': 'guid@'}, follow=False)
+        assert b'Add-on GUIDs (one per line)' in response.content
+        assert b'GUID guid@ is already in pending BlockSubmission' in (
+            response.content)
+
+        # It's okay if the submission isn't pending (rejected, etc) though.
+        submission.update(signoff_state=BlockSubmission.SIGNOFF_REJECTED)
+
+        # But should continue to the django admin add page if it exists
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=True)
         self.assertRedirects(response, self.submission_url, status_code=307)
