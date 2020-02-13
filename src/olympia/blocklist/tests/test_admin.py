@@ -96,7 +96,7 @@ class TestBlockAdmin(TestCase):
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=False)
         assert b'Add-on GUIDs (one per line)' in response.content
-        assert b'GUID guid@ is already in pending BlockSubmission' in (
+        assert b'GUID guid@ is already in a pending BlockSubmission' in (
             response.content)
 
         # It's okay if the submission isn't pending (rejected, etc) though.
