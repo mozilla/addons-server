@@ -1060,16 +1060,26 @@ CELERY_TASK_EAGER_PROPAGATES = True
 # a separate, shorter timeout for validation tasks.
 CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
+# List of modules that contain tasks and that wouldn't necessarily be imported
+# automatically when celery starts.
 CELERY_IMPORTS = (
+    'olympia.activity.tasks',
+    'olympia.bandwagon.tasks',
+    'olympia.files.tasks',
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
+    'olympia.ratings.tasks',
+    'olympia.reviewers.tasks',
+    'olympia.versions.tasks',
     'olympia.stats.management.commands.index_stats',
+    'olympia.tags.tasks',
+    'olympia.users.tasks',
+    'olympia.zadmin.tasks',
 )
 
 CELERY_TASK_QUEUES = (
     Queue('addons', routing_key='addons'),
     Queue('amo', routing_key='amo'),
-    Queue('api', routing_key='api'),
     Queue('bandwagon', routing_key='bandwagon'),
     Queue('cron', routing_key='cron'),
     Queue('crypto', routing_key='crypto'),
@@ -1110,7 +1120,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
         'queue': 'devhub'},
-    'olympia.devhub.tasks.revoke_and_regenerate_api_key': {'queue': 'devhub'},
+    'olympia.devhub.tasks.revoke_api_key': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
@@ -1119,9 +1129,6 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
-    'olympia.scanners.mark_yara_query_rule_as_completed_or_aborted': {
-        'queue': 'devhub'
-    },
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1133,7 +1140,6 @@ CELERY_TASK_ROUTES = {
     'celery.chord_unlock': {'queue': 'devhub'},
 
     # Images.
-    'olympia.bandwagon.tasks.resize_icon': {'queue': 'images'},
     'olympia.users.tasks.resize_photo': {'queue': 'images'},
     'olympia.devhub.tasks.resize_icon': {'queue': 'images'},
     'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
@@ -1149,10 +1155,6 @@ CELERY_TASK_ROUTES = {
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
 
-    # API
-    'olympia.api.tasks.process_results': {'queue': 'api'},
-    'olympia.api.tasks.process_webhook': {'queue': 'api'},
-
     # Crons
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_download_totals': {'queue': 'cron'},
@@ -1160,12 +1162,11 @@ CELERY_TASK_ROUTES = {
 
     # Bandwagon
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
 
     # Reviewers
-    'olympia.reviewers.tasks.approve_rereview': {'queue': 'reviewers'},
-    'olympia.reviewers.tasks.reject_rereview': {'queue': 'reviewers'},
-    'olympia.reviewers.tasks.send_mail': {'queue': 'reviewers'},
+    'olympia.reviewers.tasks.recalculate_post_review_weight': {
+        'queue': 'reviewers'
+    },
 
     # Crypto
     'olympia.lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
@@ -1176,8 +1177,6 @@ CELERY_TASK_ROUTES = {
     'olympia.lib.es.management.commands.reindex.delete_indexes': {
         'queue': 'search'},
     'olympia.lib.es.management.commands.reindex.flag_database': {
-        'queue': 'search'},
-    'olympia.lib.es.management.commands.reindex.index_data': {
         'queue': 'search'},
     'olympia.lib.es.management.commands.reindex.unflag_database': {
         'queue': 'search'},
@@ -1190,7 +1189,6 @@ CELERY_TASK_ROUTES = {
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
 
     # Stats
-    'olympia.stats.tasks.index_collection_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
 
@@ -1201,20 +1199,20 @@ CELERY_TASK_ROUTES = {
     # Users
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
-    'olympia.users.tasks.generate_secret_for_users': {'queue': 'users'},
 
     # Zadmin
-    'olympia.scanners.run_yara_query_rule': {'queue': 'zadmin'},
-    'olympia.scanners.run_yara_query_rule_on_versions_chunk': {
+    'olympia.scanners.tasks.run_yara_query_rule': {'queue': 'zadmin'},
+    'olympia.scanners.tasks.run_yara_query_rule_on_versions_chunk': {
         'queue': 'zadmin'
     },
-    'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
+    'olympia.scanners.tasks.mark_yara_query_rule_as_completed_or_aborted': {
+        'queue': 'zadmin'
+    },
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
 
     # Temporary tasks to crush existing images.
     # Go in the addons queue to leave the 'devhub' queue free to process
     # validations etc.
-    'olympia.devhub.tasks.pngcrush_existing_theme': {'queue': 'addons'},
     'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'addons'},
     'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
 }
@@ -1279,6 +1277,12 @@ LOGGING = {
         'elasticsearch': {
             'handlers': ['null'],
             'level': logging.DEBUG,
+            'propagate': False,
+        },
+        'filtercascade': {
+            'handlers': ['mozlog'],
+            # Ignore INFO or DEBUG from filtercascade, it logs too much.
+            'level': logging.WARNING,
             'propagate': False,
         },
         'mohawk.util': {
@@ -1381,6 +1385,7 @@ CSP_FONT_SRC = (
 CSP_CHILD_SRC = (
     "'self'",
     'https://www.google.com/recaptcha/',
+    'https://www.recaptcha.net/recaptcha/',
 )
 CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
@@ -1400,7 +1405,9 @@ CSP_OBJECT_SRC = ("'none'",)
 CSP_SCRIPT_SRC = (
     'https://ssl.google-analytics.com/ga.js',
     'https://www.google.com/recaptcha/',
+    'https://www.recaptcha.net/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
+    'https://www.gstatic.cn/recaptcha/',
     PROD_CDN_HOST,
 )
 CSP_STYLE_SRC = (
@@ -1878,3 +1885,6 @@ ML_API_TIMEOUT = 10  # seconds
 # Git(Hub) repository names, e.g., `owner/repo-name`
 CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
 YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)
+
+# Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
+DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000

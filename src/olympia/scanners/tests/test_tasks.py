@@ -1,3 +1,5 @@
+import os
+import shutil
 from unittest import mock
 
 from django.conf import settings
@@ -22,6 +24,7 @@ from olympia.constants.scanners import (
     WAT,
     YARA,
 )
+from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.scanners.models import (
     ScannerQueryResult,
@@ -39,6 +42,7 @@ from olympia.scanners.tasks import (
     run_yara_query_rule,
     run_yara_query_rule_on_versions_chunk,
 )
+from olympia.versions.models import Version
 
 
 class TestRunScanner(UploadTest, TestCase):
@@ -477,15 +481,13 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
                 channel=amo.RELEASE_CHANNEL_UNLISTED,
                 file_kw={'is_webextension': True},
             ),
-            # Listed webextension version of an add-on that has multiple
+            # Listed webextension versions of an add-on that has multiple
             # versions.
+            other_addon_previous_current_version,
             version_factory(
                 addon=other_addon, file_kw={'is_webextension': True}
             ),
         ]
-        for version in included_versions:
-            self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
-
         # Ignored versions:
         # Listed Webextension version belonging to mozilla disabled add-on.
         addon_factory(
@@ -494,8 +496,8 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # Non-Webextension
         addon_factory(file_kw={'is_webextension': False}).current_version
 
-        # Listed webextension but not the latest one.
-        other_addon_previous_current_version
+        for version in Version.objects.all():
+            self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
 
         # Run the task.
         run_yara_query_rule.delay(self.rule.pk)
@@ -568,6 +570,27 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         }
         self.rule.reload()
         assert self.rule.state == RUNNING  # Not touched by this task.
+
+    def test_run_on_chunk_fallback_path(self):
+        # Make sure it still works when a file has been disabled but the path
+        # has not been moved to the guarded location yet (we fall back to the
+        # other path).
+        # We avoid triggering the on_change callback that would move the file
+        # when the status is updated by doing an update() on the queryset.
+        File.objects.filter(pk=self.version.all_files[0].pk).update(
+            status=amo.STATUS_DISABLED)
+        self.test_run_on_chunk()
+
+    def test_run_on_chunk_fallback_path_guarded(self):
+        # Like test_run_on_chunk_fallback_path() but starting with a public
+        # File instance that somehow still has its file in the guarded path
+        # (Would happen if the whole add-on was disabled then re-enabled and
+        # the files haven't been moved back to the public location yet).
+        file_ = self.version.all_files[0]
+        if not os.path.exists(os.path.dirname(file_.guarded_file_path)):
+            os.makedirs(os.path.dirname(file_.guarded_file_path))
+        shutil.move(file_.file_path, file_.guarded_file_path)
+        self.test_run_on_chunk()
 
     def test_dont_generate_results_if_not_matching_rule(self):
         # Unlike "regular" ScannerRule/ScannerResult, for query stuff we don't

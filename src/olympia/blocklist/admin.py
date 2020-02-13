@@ -1,6 +1,5 @@
 from django.contrib import admin, auth, contenttypes
 from django.core.exceptions import PermissionDenied
-from django.forms import modelform_factory
 from django.forms.fields import CharField, ChoiceField
 from django.forms.widgets import HiddenInput
 from django.shortcuts import redirect
@@ -16,55 +15,55 @@ from olympia.amo.utils import HttpResponseTemporaryRedirect
 from .forms import MultiAddForm, MultiDeleteForm
 from .models import Block, BlockSubmission
 from .tasks import create_blocks_from_multi_block
-from .utils import (
-    block_activity_log_delete, block_activity_log_save, format_block_history,
-    splitlines)
+from .utils import block_activity_log_delete, format_block_history, splitlines
 
 
 # The limit for how many GUIDs should be fully loaded with all metadata
 GUID_FULL_LOAD_LIMIT = 100
 
 
+def _get_version_choices(block, field_name):
+    # field_name will be `min_version` or `max_version`
+    default = block._meta.get_field(field_name).default
+    choices = [
+        (version, version) for version in (
+            [default] + list(block.addon_versions.keys())
+        )
+    ]
+    block_version = getattr(block, field_name)
+    if block_version and (block_version, block_version) not in choices:
+        # if the current version isn't in choices it's not a valid version of
+        # the addon.  This is either because:
+        # - the Block was created as a multiple submission so was a free input
+        # - it's a new Block and the min|max_version was passed as a GET param
+        # - the version was hard-deleted from the addon afterwards (unlikely)
+        choices = [(block_version, '(invalid)')] + choices
+    return choices
+
+
 class BlockAdminAddMixin():
 
     def get_urls(self):
-        # Drop the existing add_view path so we can use our own
-        urls = [url for url in super().get_urls()
-                if url.name != 'blocklist_block_add']
         my_urls = [
-            path(
-                'add/',
-                self.admin_site.admin_view(self.input_guids_view),
-                name='blocklist_block_add'),
-            path(
-                'add_single/',
-                self.admin_site.admin_view(self.add_single_view),
-                name='blocklist_block_add_single'),
             path(
                 'delete_multiple/',
                 self.admin_site.admin_view(self.delete_multiple_view),
                 name='blocklist_block_delete_multiple'),
         ]
-        return my_urls + urls
+        return my_urls + super().get_urls()
 
-    def input_guids_view(self, request, form_url='', extra_context=None):
+    def add_view(self, request, form_url='', extra_context=None):
         if request.method == 'POST':
             form = MultiAddForm(request.POST)
             if form.is_valid():
                 guids = splitlines(form.data.get('guids'))
-                if len(guids) == 1:
+                if len(guids) == 1 and form.existing_block:
                     # If the guid already has a Block go to the change view
-                    if form.existing_block:
-                        return redirect(
-                            'admin:blocklist_block_change',
-                            form.existing_block.id)
-                    else:
-                        # Otherwise proceed to the single guid add view
-                        return redirect(
-                            reverse('admin:blocklist_block_add_single') +
-                            f'?guid={guids[0]}')
-                elif len(guids) > 1:
-                    # If there's > 1 guid go to multi view.
+                    return redirect(
+                        'admin:blocklist_block_change',
+                        form.existing_block.id)
+                elif len(guids) > 0:
+                    # Otherwise go to multi view.
                     return HttpResponseTemporaryRedirect(
                         reverse('admin:blocklist_blocksubmission_add'))
         else:
@@ -103,11 +102,6 @@ class BlockAdminAddMixin():
         return TemplateResponse(
             request, 'blocklist/multi_guid_input.html', context)
 
-    def add_single_view(self, request, form_url='', extra_context=None):
-        """This is just the default django add view."""
-        return self.add_view(
-            request, form_url=form_url, extra_context=extra_context)
-
 
 @admin.register(BlockSubmission)
 class BlockSubmissionAdmin(admin.ModelAdmin):
@@ -116,15 +110,6 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         'signoff_state',
         'updated_by',
         'modified',
-    )
-    # only used by add view currently - see get_fieldsets() for change view
-    fields = (
-        'input_guids',
-        'min_version',
-        'max_version',
-        'url',
-        'reason',
-        'include_in_legacy',
     )
     ordering = ['-created']
     view_on_site = False
@@ -180,15 +165,21 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                 ),
                 'classes': ('collapse',)
             })
+        block_history = (
+            'Block History', {
+                'fields': (
+                    'block_history',
+                )
+            }
+        )
         if not obj:
-            title = 'Add New Blocks'
+            edit_title = 'Add New Blocks'
         elif obj.signoff_state == BlockSubmission.SIGNOFF_PUBLISHED:
-            title = 'Blocks Published'
+            edit_title = 'Blocks Published'
         else:
-            title = 'Proposed New Blocks'
-
+            edit_title = 'Proposed New Blocks'
         edit = (
-            title, {
+            edit_title, {
                 'fields': (
                     'blocks',
                     'min_version',
@@ -202,7 +193,8 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                 ),
             })
 
-        return (input_guids, edit)
+        return (
+            (input_guids, edit) if obj else (input_guids, block_history, edit))
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
@@ -210,7 +202,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                 ro_fields = admin.utils.flatten_fieldsets(
                     self.get_fieldsets(request, obj))
             else:
-                ro_fields = (
+                ro_fields = [
                     'blocks',
                     'updated_by',
                     'signoff_by',
@@ -218,38 +210,88 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                     'input_guids',
                     'min_version',
                     'max_version',
-                )
+                    'existing_min_version',
+                    'existing_max_version',
+                ]
+            ro_fields += [
+                'existing_min_version',
+                'existing_max_version',
+            ]
         else:
-            ro_fields = ()
+            ro_fields = (
+                'blocks',
+                'block_history',
+                'updated_by',
+                'signoff_by',
+                'submission_logs',
+            )
         return ro_fields
+
+    @property
+    def form(self):
+        super_form = super().form
+        model_form_fields = {
+            'existing_min_version': CharField(
+                widget=HiddenInput, required=False),
+            'existing_max_version': CharField(
+                widget=HiddenInput, required=False)}
+        return type(super_form.__name__, (super_form,), model_form_fields)
+
+    def is_single_guid(self, request):
+        """We special case a single guid in a few places."""
+        return len(self._get_input_guids(request)) == 1
+
+    def _get_input_guids(self, request):
+        return splitlines(
+            request.POST.get('guids', request.GET.get(
+                'guids', request.POST.get('input_guids', ''))))
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        single_guid = self.is_single_guid(request)
+        if single_guid and db_field.name in ('min_version', 'max_version'):
+            return ChoiceField(**kwargs)
+        return super().formfield_for_dbfield(db_field, request, **kwargs)
+
+    def get_form(self, request, obj=None, change=False, **kwargs):
+        form = super().get_form(request, obj, change, **kwargs)
+        if not change:
+            guids = self._get_input_guids(request)
+            if len(guids) == 1:
+                block_obj = Block(guid=guids[0])
+                form.base_fields['min_version'].choices = _get_version_choices(
+                    block_obj, 'min_version')
+                form.base_fields['max_version'].choices = _get_version_choices(
+                    block_obj, 'max_version')
+            form.base_fields['input_guids'].widget = HiddenInput()
+        return form
 
     def add_view(self, request, **kwargs):
         if not self.has_add_permission(request):
             raise PermissionDenied
 
-        ModelForm = type(
-            self.form.__name__, (self.form,), {
-                'existing_min_version': CharField(widget=HiddenInput),
-                'existing_max_version': CharField(widget=HiddenInput)})
-        fields = self.fields
-        MultiBlockForm = modelform_factory(
-            self.model, fields=fields, form=ModelForm,
-            widgets={'input_guids': HiddenInput()})
+        MultiBlockForm = self.get_form(request, change=False, **kwargs)
+        is_single_guid = self.is_single_guid(request)
 
         guids_data = request.POST.get('guids', request.GET.get('guids'))
-        if guids_data:
+        if guids_data and 'input_guids' not in request.POST:
             # If we get a guids param it's a redirect from input_guids_view.
-            form = MultiBlockForm(initial={
+            initial = {key: values for key, values in request.GET.items()}
+            initial.update(**{
                 'input_guids': guids_data,
                 'existing_min_version': Block.MIN,
                 'existing_max_version': Block.MAX})
+            form = MultiBlockForm(initial=initial)
         elif request.method == 'POST':
             # Otherwise, if its a POST try to process the form.
             form = MultiBlockForm(request.POST)
             frm_data = form.data
             # Check if the versions specified were the ones we calculated which
             # Blocks would be updated or skipped on.
-            versions_unchanged = (
+            # Ignore for a single guid because we always update it irrespective
+            # of whether it needs to be updated.
+            # TODO: make this more intelligent and don't force a refresh when
+            # we have multiple new Blocks (but no existing blocks to update)
+            versions_unchanged = is_single_guid or (
                 frm_data['min_version'] == frm_data['existing_min_version'] and
                 frm_data['max_version'] == frm_data['existing_max_version'])
             if form.is_valid() and versions_unchanged:
@@ -258,7 +300,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                 obj.updated_by = request.user
                 self.save_model(request, obj, form, change=False)
                 self.log_addition(request, obj, [{'added': {}}])
-                if request.POST.get('_addanother'):
+                if '_addanother'in request.POST:
                     return redirect('admin:blocklist_block_add')
                 else:
                     return redirect('admin:blocklist_block_changelist')
@@ -282,13 +324,16 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             'opts': self.model._meta,
             'title': 'Block Add-ons',
             'save_as': False,
+            'block_history': self.block_history(
+                self.model(input_guids=guids_data)),
+            'is_single_guid': is_single_guid,
         }
         context.update(**self._get_enhanced_guid_context(request, guids_data))
         return TemplateResponse(
             request, 'blocklist/block_submission_add_form.html', context)
 
     def _get_enhanced_guid_context(self, request, guids_data):
-        load_full_objects = guids_data.count('\n') < GUID_FULL_LOAD_LIMIT
+        load_full_objects = len(splitlines(guids_data)) <= GUID_FULL_LOAD_LIMIT
         objects = self.model.process_input_guids(
             guids_data,
             v_min=request.POST.get('min_version', Block.MIN),
@@ -401,6 +446,14 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
     def blocks_count(self, obj):
         return f"{len(obj.to_block)} add-ons"
 
+    def block_history(self, obj):
+        guids = splitlines(obj.input_guids)
+        if len(guids) != 1:
+            return ''
+        return format_block_history(
+            ActivityLog.objects.for_guidblock(guids[0]).filter(
+                action__in=Block.ACTIVITY_IDS).order_by('created'))
+
 
 @admin.register(Block)
 class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
@@ -425,6 +478,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     list_select_related = ('updated_by',)
     actions = ['delete_selected']
     change_list_template = 'blocklist/block_change_list.html'
+    change_form_template = 'blocklist/block_change_form.html'
 
     class Media:
         css = {
@@ -469,32 +523,21 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                 )
             })
         edit = (
-            'Add New Block' if not obj else 'Edit Block', {
+            'Edit Block', {
                 'fields': (
                     'min_version',
                     'max_version',
-                    'url' if not obj else ('url', 'url_link'),
+                    ('url', 'url_link'),
                     'reason',
                     'include_in_legacy'),
             })
 
         return (details, history, edit)
 
-    def render_change_form(self, request, context, add=False, change=False,
-                           form_url='', obj=None):
-        if add:
-            context['adminform'].form.instance.guid = self.get_request_guid(
-                request)
-        return super().render_change_form(
-            request, context, add=add, change=change, form_url=form_url,
-            obj=obj)
-
     def save_model(self, request, obj, form, change):
-        obj.updated_by = request.user
-        if not change:
-            obj.guid = self.get_request_guid(request)
-        super().save_model(request, obj, form, change)
-        block_activity_log_save(obj, change)
+        # We don't actually save via this Admin so if we get here something has
+        # gone wrong.
+        raise PermissionDenied
 
     def delete_model(self, request, obj):
         block_activity_log_delete(obj, request.user)
@@ -505,27 +548,11 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
             block_activity_log_delete(obj, request.user)
         super().delete_queryset(request, queryset)
 
-    def _get_version_choices(self, obj, field):
-        default = obj._meta.get_field(field).default
-        choices = [
-            (version, version) for version in (
-                [default] + list(obj.addon_versions.keys())
-            )
-        ]
-        value = getattr(obj, field)
-        if value and (value, value) not in choices:
-            choices = [(getattr(obj, field), '(invalid)')] + choices
-        return choices
-
-    def get_request_guid(self, request):
-        return request.GET.get('guid')
-
     def get_form(self, request, obj=None, change=False, **kwargs):
         form = super().get_form(request, obj=obj, change=change, **kwargs)
-        obj = Block(guid=self.get_request_guid(request)) if not obj else obj
-        form.base_fields['min_version'].choices = self._get_version_choices(
+        form.base_fields['min_version'].choices = _get_version_choices(
             obj, 'min_version')
-        form.base_fields['max_version'].choices = self._get_version_choices(
+        form.base_fields['max_version'].choices = _get_version_choices(
             obj, 'max_version')
         return form
 
@@ -533,3 +560,19 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         if db_field.name in ('min_version', 'max_version'):
             return ChoiceField(**kwargs)
         return super().formfield_for_dbfield(db_field, request, **kwargs)
+
+    def changeform_view(self, request, obj_id=None, form_url='',
+                        extra_context=None):
+        if obj_id and request.method == 'POST':
+            obj = self.get_object(request, obj_id)
+            if not self.has_change_permission(request, obj):
+                raise PermissionDenied
+            ModelForm = self.get_form(request, obj, change=bool(obj_id))
+            form = ModelForm(request.POST, request.FILES, instance=obj)
+            if form.is_valid():
+                return HttpResponseTemporaryRedirect(
+                    reverse('admin:blocklist_blocksubmission_add'))
+
+        return super().changeform_view(
+            request, object_id=obj_id, form_url=form_url,
+            extra_context=extra_context)

@@ -1,3 +1,4 @@
+import importlib
 import time
 import datetime
 
@@ -11,7 +12,7 @@ from django.test.testcases import TransactionTestCase
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 
 from olympia.amo.tests import TestCase
-from olympia.amo.celery import task
+from olympia.amo.celery import app, task
 from olympia.amo.utils import utc_millesecs_from_epoch
 
 
@@ -30,6 +31,17 @@ def test_celery_routes_in_queues():
     queues_in_routes = set(
         [c['queue'] for c in settings.CELERY_TASK_ROUTES.values()])
     assert queues_in_queues == queues_in_routes
+
+
+def test_celery_routes_only_contain_valid_tasks():
+    # Import CELERY_IMPORTS like celery would to find additional tasks that
+    # are not automatically imported at startup otherwise.
+    for module_name in settings.CELERY_IMPORTS:
+        importlib.import_module(module_name)
+
+    known_tasks = app.tasks.keys()
+    for task_name in settings.CELERY_TASK_ROUTES.keys():
+        assert task_name in known_tasks
 
 
 @task(ignore_result=False)

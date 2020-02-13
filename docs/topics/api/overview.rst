@@ -346,6 +346,7 @@ v4 API changelog
 * 2019-02-21: added new /api/v4/reviewers/addon/(addon_id)/versions/ endpoint. https://github.com/mozilla/addons-server/issues/10432
 * 2019-03-14: added new /reviewers/compare/ endpoint. https://github.com/mozilla/addons-server/issues/10323
 * 2019-04-11: removed ``id``, ``username`` and ``url`` from the ``user`` object in the activity review notes APIs. https://github.com/mozilla/addons-server/issues/11002
+* 2019-04-18: added new optional parameters to abuse report endpoint
 * 2019-05-09: added ``is_recommended`` to addons API. https://github.com/mozilla/addons-server/issues/11278
 * 2019-05-16: added /reviewers/canned-responses/ endpoint. https://github.com/mozilla/addons-server/issues/11276
 * 2019-05-23: added ``is_recommended`` to addons autocomplete API also. https://github.com/mozilla/addons-server/issues/11439
@@ -367,6 +368,8 @@ v4 API changelog
 * 2019-11-14: removed ``is_source_public`` property from addons API https://github.com/mozilla/addons-server/issues/12514
 * 2019-12-05: removed /addons/featured endpoint from v4+ and featured support from other addon api endpoints.  https://github.com/mozilla/addons-server/issues/12937
 * 2020-01-23: added /scanner/results (internal API endpoint).
+* 2020-02-06: added /reviewers/addon/(int:addon_id)/allow_resubmission/ and /reviewers/addon/(int:addon_id)/deny_resubmission/. https://github.com/mozilla/addons-server/issues/13409
+* 2020-02-20: added ``addon_install_source_url`` to abuse report endpoint
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

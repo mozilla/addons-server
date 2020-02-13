@@ -3,6 +3,7 @@ import json
 
 from unittest import mock
 
+from django.conf import settings
 from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.contenttypes.models import ContentType
 
@@ -16,14 +17,15 @@ from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 
-from ..models import (
-    Block, BlockSubmission, DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD)
+from ..models import Block, BlockSubmission
 
 
-class TestBlockAdminList(TestCase):
+class TestBlockAdmin(TestCase):
     def setUp(self):
         self.admin_home_url = reverse('admin:index')
         self.list_url = reverse('admin:blocklist_block_changelist')
+        self.add_url = reverse('admin:blocklist_block_add')
+        self.submission_url = reverse('admin:blocklist_blocksubmission_add')
 
     def test_can_see_addon_module_in_admin_with_review_admin(self):
         user = user_factory()
@@ -48,7 +50,7 @@ class TestBlockAdminList(TestCase):
 
     def test_can_list(self):
         addon = addon_factory()
-        Block.objects.create(guid=addon.guid)
+        Block.objects.create(guid=addon.guid, updated_by=user_factory())
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
@@ -59,20 +61,13 @@ class TestBlockAdminList(TestCase):
 
     def test_can_not_list_without_permission(self):
         addon = addon_factory()
-        Block.objects.create(guid=addon.guid)
+        Block.objects.create(guid=addon.guid, updated_by=user_factory())
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
         assert addon.guid not in response.content.decode('utf-8')
-
-
-class TestBlockAdminAdd(TestCase):
-    def setUp(self):
-        self.add_url = reverse('admin:blocklist_block_add')
-        self.single_url = reverse('admin:blocklist_block_add_single')
-        self.multi_url = reverse('admin:blocklist_blocksubmission_add')
 
     def test_add(self):
         user = user_factory()
@@ -98,21 +93,29 @@ class TestBlockAdminAdd(TestCase):
         addon = addon_factory(guid='guid@')
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=True)
-        self.assertRedirects(response, self.single_url + '?guid=guid@')
+        self.assertRedirects(response, self.submission_url, status_code=307)
 
         # Multiple guids are redirected to the multiple guid view
         response = self.client.post(
             self.add_url, {'guids': 'guid@\nfoo@baa'}, follow=True)
-        self.assertRedirects(response, self.multi_url, status_code=307)
+        self.assertRedirects(response, self.submission_url, status_code=307)
 
         # An existing block will redirect to change view instead
-        block = Block.objects.create(guid=addon.guid)
+        block = Block.objects.create(
+            guid=addon.guid, updated_by=user_factory())
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=True)
         self.assertRedirects(
             response,
             reverse('admin:blocklist_block_change', args=(block.pk,))
         )
+
+
+class TestBlockSubmissionAdmin(TestCase):
+    def setUp(self):
+        self.submission_url = reverse('admin:blocklist_blocksubmission_add')
+        self.multi_list_url = reverse(
+            'admin:blocklist_blocksubmission_changelist')
 
     def test_add_single(self):
         user = user_factory()
@@ -128,7 +131,7 @@ class TestBlockAdminAdd(TestCase):
             addon=addon, version='5.999',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
+            self.submission_url + '?guids=guid@', follow=True)
         content = response.content.decode('utf-8')
         assert 'Add-on GUIDs (one per line)' not in content
         assert 'guid@' in content
@@ -136,15 +139,19 @@ class TestBlockAdminAdd(TestCase):
         assert str(addon.average_daily_users) in content
         assert Block.objects.count() == 0  # Check we didn't create it already
         assert 'Block History' in content
+        assert 'changing this will force' not in content
 
         # Create the block
         response = self.client.post(
-            self.single_url + '?guid=guid@', {
+            self.submission_url, {
+                'input_guids': 'guid@',
                 'min_version': '0',
                 'max_version': addon.current_version.version,
+                'existing_min_version': '0',
+                'existing_max_version': addon.current_version.version,
                 'url': 'dfd',
                 'reason': 'some reason',
-                '_continue': 'Save',
+                '_save': 'Save',
             },
             follow=True)
         assert response.status_code == 200
@@ -168,113 +175,14 @@ class TestBlockAdminAdd(TestCase):
         assert log == ActivityLog.objects.for_version(second_version).last()
         assert not ActivityLog.objects.for_version(pending_version).exists()
 
+        response = self.client.get(
+            reverse('admin:blocklist_block_change', args=(block.pk,)))
         content = response.content.decode('utf-8')
         todaysdate = datetime.datetime.now().date()
         assert f'<a href="dfd">{todaysdate}</a>' in content
         assert f'Block added by {user.name}: guid@' in content
         assert f'versions 0 - {addon.current_version.version}' in content
         assert f'Included in legacy blocklist' not in content
-
-    def test_review_links(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
-        self.grant_permission(user, 'Blocklist:Create')
-        self.client.login(email=user.email)
-
-        addon = addon_factory(
-            guid='guid@', name='Danger Danger', version_kw={'version': '0.1'})
-        response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
-        content = response.content.decode('utf-8')
-        assert 'Review Listed' in content
-        assert 'Review Unlisted' not in content  # Theres only a listed version
-
-        version_factory(
-            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='0.2')
-        response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
-        content = response.content.decode('utf-8')
-        assert 'Review Listed' in content
-        listed_review_url = absolutify(reverse(
-            'reviewers.review', kwargs={'addon_id': addon.pk}))
-        assert listed_review_url in content
-        assert 'Review Unlisted' in content, content
-        unlisted_review_url = absolutify(reverse(
-            'reviewers.review', args=('unlisted', addon.pk)))
-        assert unlisted_review_url in content
-
-        addon.current_version.delete(hard=True)
-        response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
-        content = response.content.decode('utf-8')
-        assert 'Review Listed' not in content
-        assert 'Review Unlisted' in content
-
-    def test_can_not_set_min_version_above_max_version(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
-        self.grant_permission(user, 'Blocklist:Create')
-        self.client.login(email=user.email)
-
-        addon = addon_factory(
-            guid='guid@', name='Danger Danger', version_kw={'version': '3'})
-        version_factory(addon=addon, version='5')
-
-        response = self.client.post(
-            self.single_url + '?guid=guid@', {
-                'min_version': '5',
-                'max_version': '3',
-                'url': 'dfd',
-                'reason': 'some reason',
-                '_save': 'Save',
-            },
-            follow=True)
-        assert response.status_code == 200
-        assert b'Min version can not be greater than Max' in response.content
-        assert Block.objects.count() == 0
-
-        response = self.client.post(
-            self.single_url + '?guid=guid@', {
-                'min_version': '3',
-                'max_version': '5',
-                'url': 'dfd',
-                'reason': 'some reason',
-                '_save': 'Save',
-            },
-            follow=True)
-        assert response.status_code == 200
-        assert Block.objects.count() == 1
-
-    def test_can_not_add_without_permission(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
-        self.client.login(email=user.email)
-
-        addon = addon_factory(guid='guid@', name='Danger Danger')
-        response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
-        assert response.status_code == 403
-        assert b'Danger Danger' not in response.content
-
-        # Try to create the block anyway
-        response = self.client.post(
-            self.single_url + '?guid=guid@', {
-                'min_version': '0',
-                'max_version': addon.current_version.version,
-                'url': 'dfd',
-                'reason': 'some reason',
-                '_save': 'Save',
-            },
-            follow=True)
-        assert response.status_code == 403
-        assert Block.objects.count() == 0
-
-
-class TestBlockSubmissionAdmin(TestCase):
-    def setUp(self):
-        self.multi_url = reverse('admin:blocklist_blocksubmission_add')
-        self.multi_list_url = reverse(
-            'admin:blocklist_blocksubmission_changelist')
 
     def _test_add_multiple_submit(self, addon_adu):
         """addon_adu is important because whether dual signoff is needed is
@@ -290,7 +198,8 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             min_version='0',
             max_version='*',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger',
             average_daily_users=(addon_adu - 1))
@@ -298,9 +207,10 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(
-            self.multi_url,
+            self.submission_url,
             {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@'},
             follow=True)
         content = response.content.decode('utf-8')
@@ -318,13 +228,15 @@ class TestBlockSubmissionAdmin(TestCase):
         assert str(existing_and_full.addon.average_daily_users) not in content
         # no metadata for an invalid guid but it should be shown
         assert 'invalid@' in content
+        # we show the warning when the versions can affect existing blocks
+        assert 'changing this will force' in content
         # Check we didn't create the block already
         assert Block.objects.count() == 2
         assert BlockSubmission.objects.count() == 0
 
         # Create the block submission
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': (
                     'any@new\npartial@existing\nfull@existing\ninvalid@'),
                 'min_version': '0',
@@ -341,25 +253,33 @@ class TestBlockSubmissionAdmin(TestCase):
             new_addon, existing_and_full, partial_addon, existing_and_partial)
 
     def _test_add_multiple_verify_blocks(self, new_addon, existing_and_full,
-                                         partial_addon, existing_and_partial):
+                                         partial_addon, existing_and_partial,
+                                         has_signoff=True):
         assert Block.objects.count() == 3
         assert BlockSubmission.objects.count() == 1
+        submission = BlockSubmission.objects.get()
         all_blocks = Block.objects.all()
 
         new_block = all_blocks[2]
         assert new_block.addon == new_addon
-        log = ActivityLog.objects.for_addons(new_addon).get()
-        assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
-        assert log.arguments == [new_addon, new_addon.guid, new_block]
-        assert log.details['min_version'] == '0'
-        assert log.details['max_version'] == '*'
-        assert log.details['reason'] == 'some reason'
+        add_log = ActivityLog.objects.for_addons(new_addon).last()
+        assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
+        assert add_log.arguments == [new_addon, new_addon.guid, new_block]
+        assert add_log.details['min_version'] == '0'
+        assert add_log.details['max_version'] == '*'
+        assert add_log.details['reason'] == 'some reason'
+        if has_signoff:
+            assert add_log.details['signoff_state'] == 'Approved'
+            assert add_log.details['signoff_by'] == submission.signoff_by.id
+        else:
+            assert add_log.details['signoff_state'] == 'No Sign-off'
+            assert 'signoff_by' not in add_log.details
         block_log = ActivityLog.objects.for_block(new_block).filter(
-            action=log.action).last()
-        assert block_log == log
+            action=add_log.action).last()
+        assert block_log == add_log
         vlog = ActivityLog.objects.for_version(
             new_addon.current_version).last()
-        assert vlog == log
+        assert vlog == add_log
 
         existing_and_partial = existing_and_partial.reload()
         assert all_blocks[1] == existing_and_partial
@@ -369,19 +289,25 @@ class TestBlockSubmissionAdmin(TestCase):
         assert existing_and_partial.reason == 'some reason'
         assert existing_and_partial.url == 'dfd'
         assert existing_and_partial.include_in_legacy is False
-        log = ActivityLog.objects.for_addons(partial_addon).get()
-        assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
-        assert log.arguments == [
+        edit_log = ActivityLog.objects.for_addons(partial_addon).last()
+        assert edit_log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
+        assert edit_log.arguments == [
             partial_addon, partial_addon.guid, existing_and_partial]
-        assert log.details['min_version'] == '0'
-        assert log.details['max_version'] == '*'
-        assert log.details['reason'] == 'some reason'
+        assert edit_log.details['min_version'] == '0'
+        assert edit_log.details['max_version'] == '*'
+        assert edit_log.details['reason'] == 'some reason'
+        if has_signoff:
+            assert edit_log.details['signoff_state'] == 'Approved'
+            assert edit_log.details['signoff_by'] == submission.signoff_by.id
+        else:
+            assert edit_log.details['signoff_state'] == 'No Sign-off'
+            assert 'signoff_by' not in edit_log.details
         block_log = ActivityLog.objects.for_block(existing_and_partial).filter(
-            action=log.action).last()
-        assert block_log == log
+            action=edit_log.action).last()
+        assert block_log == edit_log
         vlog = ActivityLog.objects.for_version(
             partial_addon.current_version).last()
-        assert vlog == log
+        assert vlog == edit_log
 
         existing_and_full = existing_and_full.reload()
         assert all_blocks[0] == existing_and_full
@@ -394,31 +320,32 @@ class TestBlockSubmissionAdmin(TestCase):
         assert not ActivityLog.objects.for_version(
             existing_and_full.addon.current_version).exists()
 
-        multi = BlockSubmission.objects.get()
-        assert multi.input_guids == (
+        assert submission.input_guids == (
             'any@new\npartial@existing\nfull@existing\ninvalid@')
-        assert multi.min_version == new_block.min_version
-        assert multi.max_version == new_block.max_version
-        assert multi.url == new_block.url
-        assert multi.reason == new_block.reason
+        assert submission.min_version == new_block.min_version
+        assert submission.max_version == new_block.max_version
+        assert submission.url == new_block.url
+        assert submission.reason == new_block.reason
 
-        assert multi.to_block == [
+        assert submission.to_block == [
             {'guid': 'any@new', 'id': 0,
              'average_daily_users': new_addon.average_daily_users},
             {'guid': 'partial@existing', 'id': existing_and_partial.id,
              'average_daily_users': partial_addon.average_daily_users}
         ]
-        assert set(multi.block_set.all()) == {new_block, existing_and_partial}
+        assert set(submission.block_set.all()) == {
+            new_block, existing_and_partial}
 
     def test_submit_no_dual_signoff(self):
-        addon_adu = DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+        addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         new_addon, existing_and_full, partial_addon, existing_and_partial = (
             self._test_add_multiple_submit(addon_adu=addon_adu))
         self._test_add_multiple_verify_blocks(
-            new_addon, existing_and_full, partial_addon, existing_and_partial)
+            new_addon, existing_and_full, partial_addon, existing_and_partial,
+            has_signoff=False)
 
     def test_submit_dual_signoff(self):
-        addon_adu = DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1
+        addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1
         new_addon, existing_and_full, partial_addon, existing_and_partial = (
             self._test_add_multiple_submit(addon_adu=addon_adu))
         # no new Block objects yet
@@ -448,16 +375,18 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon_factory(guid='partial@existing'),
             min_version='1',
             max_version='10',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         existing_zero_to_max = Block.objects.create(
             addon=addon_factory(
                 guid='full@existing', average_daily_users=99,
                 version_kw={'version': '10'}),
             min_version='0',
             max_version='*',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(
-            self.multi_url,
+            self.submission_url,
             {'guids': 'any@new\npartial@existing\nfull@existing'},
             follow=True)
 
@@ -473,7 +402,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         # Change the min/max versions
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': (
                     'any@new\npartial@existing\nfull@existing'),
                 'min_version': '1',  # this is the field we can change
@@ -498,7 +427,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         # We're submitting again, but now existing_min|max_version is the same
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': (
                     'any@new\npartial@existing\nfull@existing'),
                 'min_version': '1',  # this is the field we can change
@@ -594,16 +523,18 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             min_version='0',
             max_version='*',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger')
         Block.objects.create(
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(
-            self.multi_url,
+            self.submission_url,
             {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@'},
             follow=True)
         content = response.content.decode('utf-8')
@@ -628,7 +559,7 @@ class TestBlockSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         post_kwargs = {
-            'path': self.multi_url,
+            'path': self.submission_url,
             'data': {'guids': 'guid@\nfoo@baa\ninvalid@'},
             'follow': True}
 
@@ -640,7 +571,8 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon_factory(guid='foo@baa'),
             min_version="0",
             max_version="*",
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
@@ -648,7 +580,8 @@ class TestBlockSubmissionAdmin(TestCase):
         assert not pq(response.content)('.existing_block')
 
         # Should work the same if partial block (exists but needs updating)
-        existing_block = Block.objects.create(guid=addon.guid, min_version='8')
+        existing_block = Block.objects.create(
+            guid=addon.guid, min_version='8', updated_by=user_factory())
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
@@ -694,9 +627,10 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': 'any@new\npartial@existing\ninvalid@',
                 'min_version': '5',
                 'max_version': '3',
@@ -723,9 +657,10 @@ class TestBlockSubmissionAdmin(TestCase):
             addon=addon_factory(guid='foo@baa'),
             min_version="1",
             max_version="99",
-            include_in_legacy=True)
+            include_in_legacy=True,
+            updated_by=user_factory())
         response = self.client.post(
-            self.multi_url,
+            self.submission_url,
             {'guids': 'guid@\nfoo@baa\ninvalid@'},
             follow=True)
         assert response.status_code == 403
@@ -733,7 +668,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         # Try to create the block anyway
         response = self.client.post(
-            self.multi_url, {
+            self.submission_url, {
                 'input_guids': 'guid@\nfoo@baa\ninvalid@',
                 'min_version': '0',
                 'max_version': '*',
@@ -791,9 +726,10 @@ class TestBlockSubmissionAdmin(TestCase):
         assert 'Bób' not in response.content.decode('utf-8')
 
     def test_signoff_page(self):
+        threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         addon = addon_factory(
             guid='guid@', name='Danger Danger',
-            average_daily_users=DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1)
+            average_daily_users=threshold + 1)
         mbs = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory())
@@ -949,17 +885,25 @@ class TestBlockSubmissionAdmin(TestCase):
         new_block = Block.objects.get()
 
         assert new_block.addon == addon
-        log = ActivityLog.objects.for_addons(addon).get()
-        assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
-        assert log.arguments == [addon, addon.guid, new_block]
-        assert log.details['min_version'] == '0'
-        assert log.details['max_version'] == '*'
-        assert log.details['reason'] == ''
+        logs = ActivityLog.objects.for_addons(addon)
+        add_log = logs[1]
+        signoff_log = logs[0]
+        assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
+        assert add_log.arguments == [addon, addon.guid, new_block]
+        assert add_log.details['min_version'] == '0'
+        assert add_log.details['max_version'] == '*'
+        assert add_log.details['reason'] == ''
+        assert add_log.details['signoff_state'] == 'Approved'
+        assert add_log.details['signoff_by'] == user.id
         block_log = ActivityLog.objects.for_block(new_block).filter(
-            action=log.action).last()
-        assert block_log == log
+            action=add_log.action).last()
+        assert block_log == add_log
         vlog = ActivityLog.objects.for_version(addon.current_version).last()
-        assert vlog == log
+        assert vlog == add_log
+
+        assert signoff_log.action == amo.LOG.BLOCKLIST_SIGNOFF.id
+        assert signoff_log.arguments == [addon, addon.guid, 'add', new_block]
+        assert signoff_log.user == user
 
         assert mbs.to_block == [
             {'guid': 'guid@',
@@ -1113,12 +1057,11 @@ class TestBlockSubmissionAdmin(TestCase):
 class TestBlockAdminEdit(TestCase):
     def setUp(self):
         self.addon = addon_factory(guid='guid@', name='Danger Danger')
-        self.block = Block.objects.create(guid=self.addon.guid)
+        self.block = Block.objects.create(
+            guid=self.addon.guid, updated_by=user_factory())
         self.change_url = reverse(
             'admin:blocklist_block_change', args=(self.block.pk,))
-        self.delete_url = reverse(
-            'admin:blocklist_block_delete', args=(self.block.pk,))
-        self.single_url = reverse('admin:blocklist_block_add_single')
+        self.submission_url = reverse('admin:blocklist_blocksubmission_add')
 
     def test_edit(self):
         user = user_factory()
@@ -1138,6 +1081,7 @@ class TestBlockAdminEdit(TestCase):
         response = self.client.post(
             self.change_url, {
                 'addon_id': addon_factory().id,  # new addon should be ignored
+                'input_guids': self.block.guid,
                 'min_version': '0',
                 'max_version': self.addon.current_version.version,
                 'url': 'https://foo.baa',
@@ -1166,6 +1110,7 @@ class TestBlockAdminEdit(TestCase):
         assert vlog == log
 
         # Check the block history contains the edit just made.
+        response = self.client.get(self.change_url, follow=True)
         content = response.content.decode('utf-8')
         todaysdate = datetime.datetime.now().date()
         assert f'<a href="https://foo.baa">{todaysdate}</a>' in content
@@ -1201,10 +1146,11 @@ class TestBlockAdminEdit(TestCase):
         assert ver_list.eq(2).attr['value'] == '678'
 
         data = {
+            'input_guids': self.block.guid,
             'url': 'https://foo.baa',
             'reason': 'some other reason',
             'include_in_legacy': True,
-            '_continue': 'Save and continue editing',
+            '_save': 'Update',
         }
         # Try saving the form with the same min_version
         response = self.client.post(
@@ -1260,6 +1206,16 @@ class TestBlockAdminEdit(TestCase):
         assert response.status_code == 403
         assert Block.objects.count() == 1
 
+
+class TestBlockAdminDelete(TestCase):
+    def setUp(self):
+        self.addon = addon_factory(guid='guid@', name='Danger Danger')
+        self.block = Block.objects.create(
+            guid=self.addon.guid, updated_by=user_factory())
+        self.delete_url = reverse(
+            'admin:blocklist_block_delete', args=(self.block.pk,))
+        self.submission_url = reverse('admin:blocklist_blocksubmission_add')
+
     def test_can_delete(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -1294,7 +1250,7 @@ class TestBlockAdminEdit(TestCase):
 
         # And if we try to add the guid again the old history is there
         response = self.client.get(
-            self.single_url + '?guid=guid@', follow=True)
+            self.submission_url, {'guids': 'guid@'}, follow=True)
         content = response.content.decode('utf-8')
         assert f'Block deleted by {user.name}: guid@.' in content
 
@@ -1343,7 +1299,7 @@ class TestBlockAdminBulkDelete(TestCase):
 
         # Any invalid guids should redirect back to the page too, with an error
         block_with_addon = Block.objects.create(
-            addon=addon_factory(guid='guid@'))
+            addon=addon_factory(guid='guid@'), updated_by=user_factory())
         response = self.client.post(
             self.delete_url, {'guids': 'guid@\n{12345-6789}'}, follow=False)
         assert b'Add-on GUIDs (one per line)' in response.content
@@ -1351,7 +1307,8 @@ class TestBlockAdminBulkDelete(TestCase):
 
         # We're purposely not creating the add-on here to test the edge-case
         # where the addon has been hard-deleted or otherwise doesn't exist.
-        block_no_addon = Block.objects.create(guid='{12345-6789}')
+        block_no_addon = Block.objects.create(
+            guid='{12345-6789}', updated_by=user_factory())
         assert Block.objects.count() == 2
         # But should continue to django's deleted_selected if they all exist
         response = self.client.post(

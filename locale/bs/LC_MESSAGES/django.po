@@ -2793,7 +2793,7 @@ msgstr "Vaš dodatak je prikazan u našoj galeriji i korisnici dobijaju automats
 
 #, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Vaš dodatak je onemogućen od strane administratora stranice i više nije prikazan u našoj galeriji. Ako imate bilo kakvo pitanje, molimo pošaljite email na amo-admins@mozilla.org."
+msgstr "Vaš dodatak je onemogućen od strane administratora stranice i više nije prikazan u našoj galeriji. Ako imate bilo kakvo pitanje, molimo pošaljite email na amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Vaš dodatak neće biti uključen u rezultate pretrage, a njegova oglasna stranica će pokazati da ste ga onemogućili. Nove verzije za oglas neće biti prihvaćene u ovoj državi."

@@ -989,13 +989,14 @@ def review_viewing(request):
 @json_view
 @any_reviewer_required
 def queue_viewing(request):
-    if 'addon_ids' not in request.POST:
+    addon_ids = request.GET.get('addon_ids')
+    if not addon_ids:
         return {}
 
     viewing = {}
     user_id = request.user.id
 
-    for addon_id in request.POST['addon_ids'].split(','):
+    for addon_id in addon_ids.split(','):
         addon_id = addon_id.strip()
         key = get_reviewing_cache_key(addon_id)
         currently_viewing = cache.get(key)
@@ -1279,6 +1280,32 @@ class AddonReviewerViewSet(GenericViewSet):
         serializer.save()
         return Response(serializer.data)
 
+    @action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
+    def deny_resubmission(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        status_code = status.HTTP_202_ACCEPTED
+        try:
+            addon.deny_resubmission()
+        except RuntimeError:
+            status_code = status.HTTP_409_CONFLICT
+        return Response(status=status_code)
+
+    @action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
+    def allow_resubmission(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        status_code = status.HTTP_202_ACCEPTED
+        try:
+            addon.allow_resubmission()
+        except RuntimeError:
+            status_code = status.HTTP_409_CONFLICT
+        return Response(status=status_code)
+
 
 class ReviewAddonVersionMixin(object):
     permission_classes = [AnyOf(
@@ -1417,6 +1444,12 @@ class ReviewAddonVersionDraftCommentViewSet(
         # Now we can checking permissions
         super().check_object_permissions(self.request, version.addon)
 
+    def get_queryset(self):
+        # Preload version once for all drafts returned, and join with user and
+        # canned response to avoid extra queries for those.
+        return self.get_version_object().draftcomment_set.all().select_related(
+            'user', 'canned_response')
+
     def get_object(self, **kwargs):
         qset = self.filter_queryset(self.get_queryset())
 
@@ -1428,12 +1461,26 @@ class ReviewAddonVersionDraftCommentViewSet(
         self._verify_object_permissions(obj, obj.version)
         return obj
 
+    def get_addon_object(self):
+        if not hasattr(self, 'addon_object'):
+            self.addon_object = get_object_or_404(
+                # The serializer will not need to return much info about the
+                # addon, so we can use just the translations transformer and
+                # avoid the rest.
+                Addon.objects.get_queryset().only_translations(),
+                pk=self.kwargs['addon_pk'])
+        return self.addon_object
+
     def get_version_object(self):
-        version = get_object_or_404(
-            Version.objects.get_queryset().only_translations(),
-            pk=self.kwargs['version_pk'])
-        self._verify_object_permissions(version, version)
-        return version
+        if not hasattr(self, 'version_object'):
+            self.version_object = get_object_or_404(
+                # The serializer will need to return a bunch of info about the
+                # version, so keep the default transformer.
+                self.get_addon_object().versions.all(),
+                pk=self.kwargs['version_pk'])
+            self._verify_object_permissions(
+                self.version_object, self.version_object)
+        return self.version_object
 
     def get_extra_comment_data(self):
         return {
@@ -1443,7 +1490,10 @@ class ReviewAddonVersionDraftCommentViewSet(
 
     def filter_queryset(self, qset):
         qset = super().filter_queryset(qset)
-        return qset.filter(**self.get_extra_comment_data())
+        # Filter to only show your comments. We're already filtering on version
+        # in get_queryset() as starting from the related manager allows us to
+        # only load the version once.
+        return qset.filter(user=self.request.user)
 
     def get_serializer_context(self):
         context = super().get_serializer_context()

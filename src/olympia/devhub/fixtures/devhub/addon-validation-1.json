@@ -159,6 +159,22 @@
         }
     },
     {
+        "pk": 100400,
+        "model": "files.file",
+        "fields": {
+            "status": 1,
+            "is_restart_required": true,
+            "hash": "sha256:a300e3943309aee1e1ee47f569f9be36276791b3e66596be4c9cc4ee238b01b6",
+            "created": "2010-12-17 13:04:57",
+            "modified": "2010-12-17 13:04:57",
+            "filename": "testaddon-20101217.xpi",
+            "platform": 1,
+            "version": 118898,
+            "datestatuschanged": "2010-12-17 13:04:57",
+            "size": 782336
+        }
+    },
+    {
         "pk": 1,
         "model": "files.filevalidation",
         "fields": {

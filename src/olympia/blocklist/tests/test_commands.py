@@ -1,6 +1,7 @@
 import os
 import json
 from datetime import datetime
+from random import randint
 from unittest import mock
 
 from django.core.management import call_command
@@ -9,10 +10,13 @@ from django.conf import settings
 import responses
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import (
+    addon_factory, TestCase, user_factory, version_factory)
 from olympia.blocklist.management.commands import import_blocklist
+from olympia.files.models import File
 
 from ..models import Block, KintoImport
+from ..management.commands import export_blocklist
 
 
 # This is a fragment of the actual json blocklist file
@@ -188,3 +192,83 @@ class TestImportBlocklist(TestCase):
             blocklist_json['data'][4],)
         assert import_task_mock.call_args_list[4][0] == (
             blocklist_json['data'][5],)
+
+
+class TestExportBlocklist(TestCase):
+
+    def test_db_queries(self):
+        for idx in range(0, 10):
+            addon_factory(
+                file_kw={'cert_serial_num': str(randint(10000, 99999))})
+        # one version, 0 - *
+        Block.objects.create(
+            addon=addon_factory(
+                file_kw={'cert_serial_num': str(randint(10000, 99999))}),
+            updated_by=user_factory())
+        # one version, 0 - 9999
+        Block.objects.create(
+            addon=addon_factory(
+                file_kw={'cert_serial_num': str(randint(10000, 99999))}),
+            updated_by=user_factory(),
+            max_version='9999')
+        # one version, 0 - *, unlisted
+        Block.objects.create(
+            addon=addon_factory(
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                file_kw={'cert_serial_num': str(randint(10000, 99999))}),
+            updated_by=user_factory())
+        # three versions, but only two within block (123.40, 123.5)
+        three_ver = Block.objects.create(
+            addon=addon_factory(
+                version_kw={'version': '123.40'},
+                file_kw={'cert_serial_num': 'qwerty1'}),
+            updated_by=user_factory(), max_version='123.45')
+        version_factory(
+            addon=three_ver.addon, version='123.5',
+            file_kw={'cert_serial_num': 'qwerty2'})
+        version_factory(
+            addon=three_ver.addon, version='123.45.1',
+            file_kw={'cert_serial_num': 'qwerty3'})
+        # no matching versions (edge cases)
+        over = Block.objects.create(
+            addon=addon_factory(file_kw={'cert_serial_num': 'over'}),
+            updated_by=user_factory(),
+            max_version='0')
+        under = Block.objects.create(
+            addon=addon_factory(file_kw={'cert_serial_num': 'under'}),
+            updated_by=user_factory(),
+            min_version='9999')
+
+        all_guids = export_blocklist.Command().get_all_guids()
+        assert len(all_guids) == File.objects.count() == 10 + 8
+        assert (three_ver.guid, '123.40', 'qwerty1') in all_guids
+        assert (three_ver.guid, '123.5', 'qwerty2') in all_guids
+        assert (three_ver.guid, '123.45.1', 'qwerty3') in all_guids
+        over_tuple = (over.guid, over.addon.current_version.version, 'over')
+        under_tuple = (
+            under.guid, under.addon.current_version.version, 'under')
+        assert over_tuple in all_guids
+        assert under_tuple in all_guids
+
+        blocked_guids = export_blocklist.Command().get_blocked_guids()
+        assert len(blocked_guids) == 5
+        assert (three_ver.guid, '123.40', 'qwerty1') in blocked_guids
+        assert (three_ver.guid, '123.5', 'qwerty2') in blocked_guids
+        assert (three_ver.guid, '123.45.1', 'qwerty3') not in blocked_guids
+        assert over_tuple not in blocked_guids
+        assert under_tuple not in blocked_guids
+        call_command('export_blocklist', '1')
+        out_path = os.path.join(settings.TMP_PATH, 'mlbf', '1')
+        assert os.path.exists(os.path.join(out_path, 'filter'))
+        assert os.path.exists(os.path.join(out_path, 'filter.meta'))
+
+        # Add a new Block and repeat, to get a diff
+        Block.objects.create(
+            addon=addon_factory(
+                file_kw={'cert_serial_num': str(randint(10000, 99999))}),
+            updated_by=user_factory())
+        call_command('export_blocklist', '2', previous_id='1')
+        out_path = os.path.join(settings.TMP_PATH, 'mlbf', '2')
+        assert os.path.exists(os.path.join(out_path, 'filter'))
+        assert os.path.exists(os.path.join(out_path, 'filter.meta'))
+        assert os.path.exists(os.path.join(out_path, 'filter.patch'))

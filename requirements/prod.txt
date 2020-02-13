@@ -1,6 +1,6 @@
-Django==2.2.9 \
-    --hash=sha256:662a1ff78792e3fd77f16f71b1f31149489434de4b62a74895bd5d6534e635a5 \
-    --hash=sha256:687c37153486cf26c3fdcbdd177ef16de38dc3463f094b5f9c9955d91f277b14 # pyup: <3.0
+Django==2.2.10 \
+    --hash=sha256:1226168be1b1c7efd0e66ee79b0e0b58b2caa7ed87717909cd8a57bb13a7079a \
+    --hash=sha256:9a4635813e2d498a3c01b10c701fe4a515d76dd290aaa792ccb65ca4ccb6b038 # pyup: <3.0
 Babel==2.8.0 \
     --hash=sha256:1aac2ae2d0d8ea368fa90906567f5c08463d98ade155c0c4bfedd6a0f7160e38 \
     --hash=sha256:d670ea0b10f8b723672d3a6abeb87b565b244da220d76b4dba1b66269ec152d4
@@ -102,18 +102,23 @@ argparse==1.4.0 \
 # supports it.
 billiard==3.6.0.0 \
     --hash=sha256:756bf323f250db8bf88462cd042c992ba60d8f5e07fc5636c24ba7d6f4261d84 # pyup: <3.6
+# bitarray is required by filtercascade
+bitarray == 1.2.1 \
+    --hash=sha256:2ed675f460bb0d3d66fd8042a6f1f0d36cf213e52e72a745283ddb245da7b9cf
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
-boto3==1.11.9 \
-    --hash=sha256:05f7ae180813fbf11cb7397b43b6bd29463abdc246bee58127836f1a8f6a9a2f \
-    --hash=sha256:3480c87b530e7f41d9264a6725dda68208de2697822cf02cd3a541b001872410
+boto3==1.11.16 \
+    --hash=sha256:2cb3063d347c0d06f96dcd10d69247d3e3d12eda4b1ed9fdec62ac25c7fee8b6 \
+    --hash=sha256:5bffdfc7d3465f053db38a64821fbeb1f8044ffafb71c90587f1c293d334305f
 celery==4.4.0 \
     --hash=sha256:7c544f37a84a5eadc44cab1aa8c9580dff94636bb81978cdf9bf8012d9ea7d8f \
     --hash=sha256:d3363bb5df72d74420986a435449f3c3979285941dff57d5d97ecba352a0e3e2
-botocore==1.14.9 \
-    --hash=sha256:1909424c9544f92142c8e551888731e32a99f9c99cfe8d21fea3ec0c32981dae \
-    --hash=sha256:e3e3c0f59dc30c86dd2116aece3bd554f8476446cf1c5770bbf5111993d676c8
+botocore==1.14.16 \
+    --hash=sha256:63dc203046e47573add16c348f00a8e2fe3bb4975323458787e7b2bebeec5923 \
+    --hash=sha256:d31d7e0e12fb64d6bd331c6b853750c71423d560cee01a989f607dd45407ef65
+bsdiff4==1.1.9 \
+    --hash=sha256:a7c48ec58dc1c4a2b9fb5da05637524d5dbb1643a3df7cdc6ed105636909ff79
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -148,9 +153,9 @@ dennis==0.9 \
 django-aesfield==2.2 \
     --hash=sha256:3b5f8816ed2e57f233bbcc10ea6f815aa5c07eeadfc7a27895729a3c99792d7a \
     --hash=sha256:b3b09351df1bc272506e47a37889dbfe539d7075ba27470379a4964a1a8325f2
-django-admin-rangefilter==0.5.3 \
-    --hash=sha256:5ca64adebc29c4756a796101114e39242d82ac95df6c4796cf9332adf2cefb2f \
-    --hash=sha256:9f90d1e1de0481e9bf853c71753430e25c583cb96b9f8398a99be6c4de834647
+django-admin-rangefilter==0.5.4 \
+    --hash=sha256:088cde1ec1d81ab6053b939d7ef5cb4a3991f295b558422e763d4760b96b21e3 \
+    --hash=sha256:f2b77568b57e65c14d76aa3fae7e5d0a9caa93335e116c3377d9c1f43d233dbb
 django-cors-headers==3.2.1 \
     --hash=sha256:a5960addecc04527ab26617e51b8ed42f0adab4594b24bb0f3c33e2bd3857c3f \
     --hash=sha256:a785b5f446f6635810776d9f5f5d23e6a2a2f728ea982648370afaf0dfdf2627
@@ -163,9 +168,9 @@ django-environ==0.4.5 \
 django-extended-choices==1.3.3 \
     --hash=sha256:13c1edfb5fe8da112720f1b006866aa7142e0f62a828728e5afa638da5980387 \
     --hash=sha256:609cafc2feaf352cb92b3978a6e71fcb267dd2d3281ffa964d736b9bf71ec34b
-django-extensions==2.2.6 \
-    --hash=sha256:4524eca892d23fa6e93b0620901983b287ff5dc806f1b978d6a98541f06b9471 \
-    --hash=sha256:936e8e3962024d3c75ea54f4e0248002404ca7ca7fb698430e60b06b5555b4e7
+django-extensions==2.2.8 \
+    --hash=sha256:1a03c4e8bade575f8c2be6c76456f8a2be3f9b02ab9f47d3535afa9562dc0493 \
+    --hash=sha256:2699cc1d6fb4bd393c0b5832fea4bc685f2ace5800b3c9ff222b2080f161ac04
 django-multidb-router==0.9 \
     --hash=sha256:38a006455fa1141a332029791863461c0b1f287b8c479b411b4d9f728e86e97a \
     --hash=sha256:d8096eff3a42743a795bb943260758d169bc78de61e12eeb0893d6dbfbae72d0
@@ -208,6 +213,9 @@ feedparser==5.2.1 \
     --hash=sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02 \
     --hash=sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9 \
     --hash=sha256:cd2485472e41471632ed3029d44033ee420ad0b57111db95c240c9160a85831c
+filtercascade==0.2.0 \
+    --hash=sha256:f81715ba219ec5f385779d9bfaed5fefa44648ed8b04c1722223662400165a01 \
+    --hash=sha256:b89a9a77f558becddbe3a9ac39c50a1d409b9a51a1e941d1da8562d6a3dd4ad2
 # funcsigs is required by mock
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
@@ -270,11 +278,14 @@ m2secret-py3==1.3 \
 more-itertools==8.2.0 \
     --hash=sha256:5dd8bcf33e5f9513ffa06d5ad33d78f31e1931ac9a18f33d37e77a180d393a7c \
     --hash=sha256:b1ddb932186d8a6ac451e1d95844b382f55e12686d51ca0c68b6f61f2ab7a507
+# mmh3 is required by filtercascade
+mmh3==2.5.1 \
+    --hash=sha256:185209a217c52afe43e079e5b232d0ef0f3a262601eaaf4371326ab6dcbec508
 python-memcached==1.59 \
     --hash=sha256:4dac64916871bd3550263323fc2ce18e1e439080a2d5670c594cf3118d99b594 \
     --hash=sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f
-newrelic==5.4.1.134 \
-    --hash=sha256:0e651f2ff48dd1fc538fc1297892cf726d1ad4fc0b2578aae6a47f10f16afb2c
+newrelic==5.6.0.135 \
+    --hash=sha256:8283dd54299b3fd2818a262f38f9193a2ee52b2a02fecca1a1d04764be533c92
 nobot==0.5 \
     --hash=sha256:fa0582d81f562cd5b61e241005feb3f51548fe3fc165aed292952ff78676e28a \
     --hash=sha256:0a1c43a74f1c55f06cf2eb98cb472762dbdd7df5eb693d438c9fb42cfcfe79e5
@@ -307,16 +318,16 @@ raven==6.10.0 \
 rdflib==4.2.2 \
     --hash=sha256:58d5994610105a457cff7fdfe3d683d87786c5028a45ae032982498a7e913d6f \
     --hash=sha256:da1df14552555c5c7715d8ce71c08f404c988c58a1ecd38552d0da4fc261280d
-redis==3.4.0 \
-    --hash=sha256:7595976eb0b4e1fc3ad5478f1fd44215a814ee184a7820de92726f559bdff9cd \
-    --hash=sha256:e933bdb504c69cbd5bdf4e2bb819a99644a36731cef4c59aa637cebfd5ddd4f9
+redis==3.4.1 \
+    --hash=sha256:0dcfb335921b88a850d461dc255ff4708294943322bd55de6cfd68972490ca1f \
+    --hash=sha256:b205cffd05ebfd0a468db74f0eedbff8df1a7bfc47521516ade4692991bb0833
 # requests is required by PyBrowserID, amo-validator, django-mozilla-product-details, docker-compose, docker-py, nobot, pytest-base-url, pyupio, safety
 requests==2.22.0 \
     --hash=sha256:11e007a8a2aa0323f5a921e9e6a2d7e4e67d9877e85773fba9ba6419025cbeb4 \
     --hash=sha256:9cf5292fcd0f598c671cfc1e0d7d1a7f13bb8085e9a590f48c010551dc6c4b31
-s3transfer==0.3.2 \
-    --hash=sha256:2525bae2a530195576da53671bae8ca8c55ee8e33bc2225a65e804476611ea5a \
-    --hash=sha256:4924e10451cc37901945806423d16c2c2040a6530645a614ed87e995ccec764c
+s3transfer==0.3.3 \
+    --hash=sha256:2482b4259524933a022d59da830f51bd746db62f047d6eb213f2f8855dcb8a13 \
+    --hash=sha256:921a37e2aefc64145e7b73d50c71bb4f26f46e4c9f414dc648c6245ff92cf7db
 # statsd is required by django-statsd-mozilla
 statsd==3.3.0 \
     --hash=sha256:c610fb80347fca0ef62666d241bce64184bd7cc1efe582f9690e045c25535eaa \
@@ -324,9 +335,9 @@ statsd==3.3.0 \
 vine==1.3.0 \
     --hash=sha256:133ee6d7a9016f177ddeaf191c1f58421a1dcc6ee9a42c58b34bed40e1d2cd87 \
     --hash=sha256:ea4947cc56d1fd6f2095c8d543ee25dad966f78692528e68b4fada11ba3f98af
-django-jinja==2.5.0 \
-    --hash=sha256:41323a14d8390efaebb1272ef6bc1406ee604c890de981a58e5cb4fdf257f045 \
-    --hash=sha256:741250fecf57fd67187edc290c4aa9cf16ad2ca7ca4b78ac2d6be6a473802186
+django-jinja==2.6.0 \
+    --hash=sha256:4e3e97d7b40669926a9517eb4522cd98dce2e32dcba908aad156810b74744148 \
+    --hash=sha256:7459985c25ddb6584c6bab345761c8c5557713448e6fbb322af1b6dd7f5512bd
 requests-hawk==1.0.0 \
     --hash=sha256:aef0dff8053dcae2057774516386bed0a3bc03fabea9e18f3aa98f02672ea5d0 \
     --hash=sha256:c2626ab31ebef0c81b97781c44c2275bfcc6d8e8520fc4ced495f0f386f8fe26
@@ -373,6 +384,6 @@ yara-python==3.11.0 \
     --hash=sha256:e4124414d3cff9a10669569a89f585f81c8114b283ab48b2e756e0347a89de0a \
     --hash=sha256:f104f0bb21a0867f22e750bb4e05de629ec9f37facc84daf963385a86371b0d9
 # zipp is required by importlib-metadata
-zipp==2.1.0 \
-    --hash=sha256:ccc94ed0909b58ffe34430ea5451f07bc0c76467d7081619a454bf5c98b89e28 \
-    --hash=sha256:feae2f18633c32fc71f2de629bfb3bd3c9325cd4419642b1f1da42ee488d9b98
+zipp==2.2.0 \
+    --hash=sha256:5c56e330306215cd3553342cfafc73dda2c60792384117893f3a83f8a1209f50 \
+    --hash=sha256:d65287feb793213ffe11c0f31b81602be31448f38aeb8ffc2eb286c4f6f6657e

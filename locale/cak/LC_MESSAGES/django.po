@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-28 23:45+0000\n"
+"PO-Revision-Date: 2020-02-02 22:56+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -972,73 +972,79 @@ msgstr ""
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox richin yakanon chuqa' yak'ulb'en. Re ruwäch re' eruk'wan taq k'amal, ri nuya' ketal chuqa' yerukanoj taq tzij, yekik'ulb'ej taq ajk'amal chuqa' IP taq ochochib'äl "
+"chuqa' ch'aqa' chik. "
 
 msgid "Shopping"
 msgstr "Loq'oj"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Ke'aqasaj taq ruk'amal Firefox ri nikiya' ruchuq'a' aloq'oj pa k'amab'ey, achi'el kanonela' taq kupon chuqa' kajnäq taq kajil, ch'ob'onela' taq tzij chuqa' ch'aqa' chik."
 
 msgid "Social & Communication"
 msgstr "Winaqilal & Tzijob'äl"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox ri yekutzilaj ri aninäq chuqa' winaqil taq tzijob'alil. Re ruwäch re' ruk'wan utzilan taq rutzijol ruwi', kinuk'samajel taq kiqasanik silowäch chuqa' ch'aqa' chik."
 
 msgid "Tabs"
 msgstr "Taq ruwi'"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq ruk'amal Firefox richin ye'ichinäx taq ruwi' chuqa' ri ruxaq K'ak'a' ruwi'. Ke'awila' taq k'amal yekichajij taq ruwi', nujäl ri rub'anikil ye'asamajij chuqa' ch'aqa' chik."
 
 msgid "Web Development"
 msgstr "Ajk'amaya'l Nuk'unem"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq ruk'amal Firefox ri nikiya' kitzijol kisamajib'al kib'anik taq ajk'amaya'l. Re ruwäch re' eruk'wan taq kik'amal GitHub, kinuk'samajel taq kuki chuqa' ch'aqa' chik."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Juley chik"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr " Ke'aqasaj taq ruk'amal Firefox ri yalan e k'atzinel chuqa' ena'owinäq, po yalan e k'atzinel chi ke ri man e relik ta taq samaj."
 
 msgid "Device Features & Location"
 msgstr "Kisamaj Okisaxel & K'ojlem"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq k'amal richin niya' ruchuqa' ri Firefox richin Android. Anin kakanon, ke'ajama' kitob'al taq q'inoj, ke'atz'ib'aj taq na'oj chuqa' ch'aqa' chik."
 
 msgid "Experimental"
 msgstr "Soltojtob'enel"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox ri jutaqil yek'extäj chuqa' e ütz chik richin yetojtob'ëx. Ri taq ana'oj xke'apon pa kiq'a' ri b'anonela' richin xketikïr xkekijäl ri taq ruwäch ri chwa'q kab'ij."
 
 msgid "Performance"
 msgstr "Rub'eyal nisamaj"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Ke'aqasaj taq k'amal ri nikijotob'a' rub'eyal nisamäj ri Firefox. Wawe' xke'awïl taq k'amal, ri yatkito' richin nab'än k'ïy chuqa' ütz samaj, akuchi' niq'at eltzijoj chuqa' ch'aqa' chik."
 
 msgid "Photos & Media"
 msgstr "Taq Wachib'äl & K'oxom"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
+"Ke'aqasaj taq ruk'amal Firefox richin nib'an kik'ojlem taq wachib'äl chuqa' k'ïy taq q'ojom. Re ruwäch re' eruk'wan taq k'amal richin nijal kikanoxik taq wachib'äl, rub'anik chapoj tz'aqät taq ruwa "
+"chuqa' ch'aqa' chik."
 
 msgid "Security & Privacy"
 msgstr "Jikomal & Ichinanem"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq ruk'amal Firefox richin jikïl chuqa' ichinan yatok pa k'amaya'l. Ke'awila' taq k'amal ri yekiq'ät ewanel taq ojqanela', yekijosq'ij runatab'al taq kanoxïk chuqa' ch'aqa' chik."
 
 msgid "Social Networking"
 msgstr "K'amawinaqil"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Ke'aqasaj taq ruk'amal Firefox ri nikiya' ruchuq'a' awetamab'al chi kij winaqil taq ajk'amaya'l ruxaq, achi'el YouTube, GitHub, Reddit, chuqa' ch'aqa' chik."
 
 msgid "Sports & Games"
 msgstr "Taq Etz'asilonem & Taq Etz'anem"

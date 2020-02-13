@@ -1,7 +1,6 @@
 import os
 
 from django.conf import settings
-from django.db.models import F, Q
 
 import requests
 import waffle
@@ -238,8 +237,10 @@ def mark_yara_query_rule_as_completed_or_aborted(query_rule_pk):
     rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
     try:
         if rule.state == RUNNING:
+            log.info('Marking Yara Query Rule %s as completed', rule.pk)
             rule.change_state_to(COMPLETED)
         elif rule.state == ABORTING:
+            log.info('Marking Yara Query Rule %s as aborted', rule.pk)
             rule.change_state_to(ABORTED)
     except ImproperScannerQueryRuleStateError:
         log.error('Not marking rule as completed or aborted for rule %s in '
@@ -272,9 +273,6 @@ def run_yara_query_rule(query_rule_pk):
         files__is_webextension=True,
     ).exclude(
         addon__status=amo.STATUS_DISABLED,
-    ).filter(
-        Q(channel=amo.RELEASE_CHANNEL_UNLISTED) |
-        Q(channel=amo.RELEASE_CHANNEL_LISTED, pk=F('addon___current_version'))
     ).values_list('id', flat=True).order_by('pk')
     # Build the workflow using a group of tasks dealing with 250 files at a
     # time, chained to a task that marks the query as completed.
@@ -327,9 +325,20 @@ def _run_yara_query_rule_on_version(version, rule):
     """
     file_ = version.all_files[0]
     scanner_result = ScannerQueryResult(version=version, scanner=YARA)
-    _run_yara_for_path(
-        scanner_result, file_.current_file_path,
-        definition=rule.definition)
+    try:
+        _run_yara_for_path(
+            scanner_result, file_.current_file_path,
+            definition=rule.definition)
+    except FileNotFoundError:
+        # Fallback in case the file was disabled/re-enabled and not yet moved,
+        # we try the other possible path. This shouldn't happen too often.
+        tried_path = file_.current_file_path
+        fallback_path = (
+            file_.file_path if tried_path == file_.guarded_file_path
+            else file_.guarded_file_path
+        )
+        _run_yara_for_path(
+            scanner_result, fallback_path, definition=rule.definition)
     # Unlike ScannerResult, we only want to save ScannerQueryResult if there is
     # a match, there would be too many things to save otherwise and we don't
     # really care about non-matches.

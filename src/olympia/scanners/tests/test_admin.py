@@ -788,7 +788,7 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         super().setUp()
 
         self.user = user_factory()
-        self.grant_permission(self.user, 'Admin:ScannersQuery')
+        self.grant_permission(self.user, 'Admin:ScannersQueryEdit')
         self.client.login(email=self.user.email)
         self.list_url = reverse('admin:scanners_scannerqueryrule_changelist')
 
@@ -1032,13 +1032,31 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         )
         assert response.status_code == 404
 
+    def test_cannot_change_non_new_query_rule(self):
+        rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        url = reverse(
+            'admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        # NEW query rule, it can be modified.
+        assert not doc('.field-formatted_definition .readonly')
+
+        # RUNNING query rule, it can not be modified
+        rule.update(state=RUNNING)
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.field-formatted_definition .readonly')
+
 
 class TestScannerQueryResultAdmin(TestCase):
     def setUp(self):
         super().setUp()
 
         self.user = user_factory()
-        self.grant_permission(self.user, 'Admin:ScannersQuery')
+        self.grant_permission(self.user, 'Admin:ScannersQueryEdit')
         self.client.login(email=self.user.email)
         self.list_url = reverse('admin:scanners_scannerqueryresult_changelist')
 
@@ -1058,6 +1076,82 @@ class TestScannerQueryResultAdmin(TestCase):
         html = pq(response.content)
         assert html('.field-formatted_addon').length == 1
 
+    def test_list_view_no_query_permissions(self):
+        rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)
+        result = ScannerQueryResult.objects.create(
+            scanner=YARA, version=addon_factory().current_version
+        )
+        result.add_yara_result(rule=rule.name)
+        result.save()
+
+        self.user = user_factory()
+        # Give the user permission to edit ScannersResults, but not
+        # ScannerQueryResults.
+        self.grant_permission(self.user, 'Admin:ScannersResultsEdit')
+        self.client.login(email=self.user.email)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 403
+
+    def test_list_view_query_view_permission(self):
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Admin:ScannersQueryView')
+        self.client.login(email=self.user.email)
+        self.test_list_view()
+
+    def test_list_filters(self):
+        rule_foo = ScannerQueryRule.objects.create(name='foo', scanner=YARA)
+        rule_bar = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        expected = [
+            ('All', '?'),
+            ('customs', '?scanner__exact=1'),
+            ('wat', '?scanner__exact=2'),
+            ('yara', '?scanner__exact=3'),
+            ('ml_api', '?scanner__exact=4'),
+
+            ('All', '?has_matched_rules=all'),
+            (' With matched rules only', '?'),
+
+            ('All', '?state=all'),
+            ('Unknown', '?'),
+            ('True positive', '?state=1'),
+            ('False positive', '?state=2'),
+            ('Inconclusive', '?state=3'),
+
+            ('All', '?'),
+            ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
+            ('foo (yara)', f'?matched_rules__id__exact={rule_foo.pk}'),
+
+            ('All', '?has_version=all'),
+            (' With version only', '?'),
+        ]
+        filters = [
+            (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
+        ]
+        assert filters == expected
+
+    def test_list_filter_matched_rules(self):
+        rule_foo = ScannerQueryRule.objects.create(name='foo', scanner=YARA)
+        rule_bar = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        with_foo_match = ScannerQueryResult(scanner=YARA)
+        with_foo_match.add_yara_result(rule=rule_foo.name)
+        with_foo_match.save()
+        with_bar_matches = ScannerQueryResult(scanner=YARA)
+        with_bar_matches.add_yara_result(rule=rule_bar.name)
+        with_bar_matches.save()
+
+        response = self.client.get(self.list_url, {
+            'matched_rules__id__exact': rule_bar.pk,
+            WithVersionFilter.parameter_name: 'all',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-formatted_matched_rules').text() == 'bar'
+
     def test_change_page(self):
         rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)
         result = ScannerQueryResult.objects.create(
@@ -1075,6 +1169,28 @@ class TestScannerQueryResultAdmin(TestCase):
         link = doc('.field-formatted_matched_rules_with_files td a')
         assert link.text() == 'darule ???'
         assert link.attr('href') == rule_url
+
+    def test_change_view_no_query_permissions(self):
+        self.user = user_factory()
+        # Give the user permission to edit ScannersResults, but not
+        # ScannerQueryResults.
+        self.grant_permission(self.user, 'Admin:ScannersResultsEdit')
+        self.client.login(email=self.user.email)
+        rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)
+        result = ScannerQueryResult.objects.create(
+            scanner=YARA, version=addon_factory().current_version)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+        url = reverse(
+            'admin:scanners_scannerqueryresult_change', args=(result.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 403
+
+    def test_change_view_query_view_permission(self):
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Admin:ScannersQueryView')
+        self.client.login(email=self.user.email)
+        self.test_change_page()
 
     def test_formatted_matched_rules_with_files(self):
         version = addon_factory().current_version

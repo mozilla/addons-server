@@ -8,7 +8,8 @@ from ..models import Block, BlockSubmission
 
 class TestBlock(TestCase):
     def test_is_version_blocked(self):
-        block = Block.objects.create(guid='anyguid@')
+        block = Block.objects.create(
+            guid='anyguid@', updated_by=user_factory())
         # default is 0 to *
         assert block.is_version_blocked('0')
         assert block.is_version_blocked(str(MAX_VERSION_PART + 1))

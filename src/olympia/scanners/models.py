@@ -297,6 +297,9 @@ class ImproperScannerQueryRuleStateError(ValueError):
 
 
 class ScannerQueryRule(AbstractScannerRule):
+    scanner = models.PositiveSmallIntegerField(choices=(
+        (YARA, 'yara'),  # For now code search only allows yara.
+    ), default=YARA)
     state = models.PositiveSmallIntegerField(
         choices=QUERY_RULE_STATES.items(), default=NEW
     )
