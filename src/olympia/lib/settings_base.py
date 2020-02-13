@@ -1129,6 +1129,7 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
+    'olympia.scanners.tasks.call_ml_api': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
