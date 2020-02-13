@@ -502,7 +502,8 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return format_html('<a href="{}">{}</a>', obj.url, obj.url)
 
     def block_history(self, obj):
-        submission = BlockSubmission.get_submission_from_guid(obj.guid).first()
+        submission = BlockSubmission.get_submissions_from_guid(
+            obj.guid).first()
         submission_log = (
             format_html(
                 '<li>{date}. <a href="{url}">Changes pending</a></li>',
@@ -545,7 +546,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return (details, history, edit)
 
     def has_change_permission(self, request, obj=None):
-        if obj and BlockSubmission.get_submission_from_guid(obj.guid):
+        if obj and BlockSubmission.get_submissions_from_guid(obj.guid):
             return False
         else:
             return super().has_change_permission(request, obj=obj)

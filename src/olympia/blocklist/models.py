@@ -388,7 +388,7 @@ class BlockSubmission(ModelBase):
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
 
     @classmethod
-    def get_submission_from_guid(cls, guid, states=SIGNOFF_STATES_FINISHED):
+    def get_submissions_from_guid(cls, guid, states=SIGNOFF_STATES_FINISHED):
         return (
             cls.objects.exclude(signoff_state__in=states)
                        .filter(to_block__contains=f'"{guid}"'))

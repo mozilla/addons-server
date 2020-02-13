@@ -48,9 +48,9 @@ class MultiAddForm(MultiGUIDInputForm):
                     _('Addon with GUID %(guid)s does not exist'),
                     params={'guid': guid}))
         for guid in guids:
-            if BlockSubmission.get_submission_from_guid(guid):
+            if BlockSubmission.get_submissions_from_guid(guid):
                 errors.append(ValidationError(
-                    _('GUID %(guid)s is already in pending BlockSubmission'),
+                    _('GUID %(guid)s is already in a pending BlockSubmission'),
                     params={'guid': guid}))
         if errors:
             raise ValidationError(errors)

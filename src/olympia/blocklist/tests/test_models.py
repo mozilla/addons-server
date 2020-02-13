@@ -65,24 +65,29 @@ class TestMultiBlockSubmission(TestCase):
         with override_settings(DEBUG=True):
             assert block.is_save_to_blocks_permitted
 
-    def test_get_submission_from_guid(self):
+    def test_get_submissions_from_guid(self):
         addon = addon_factory(guid='guid@')
         block_subm = BlockSubmission.objects.create(
             input_guids='guid@\n{sdsd-dssd}')
+        # add another one which shouldn't match
+        BlockSubmission.objects.create(input_guids='gguid@\n{4545-986}')
         assert block_subm.to_block == [{
             'id': 0,
             'guid': 'guid@',
             'average_daily_users': addon.average_daily_users}]
 
         # The guid is in a BlockSubmission
-        assert list(BlockSubmission.get_submission_from_guid('guid@')) == [
+        assert list(BlockSubmission.get_submissions_from_guid('guid@')) == [
             block_subm]
 
         # But by default we ignored "finished" BlockSubmissions
         block_subm.update(signoff_state=BlockSubmission.SIGNOFF_PUBLISHED)
-        assert list(BlockSubmission.get_submission_from_guid('guid@')) == []
+        assert list(BlockSubmission.get_submissions_from_guid('guid@')) == []
 
         # Except when we override the states to exclude
         assert list(
-            BlockSubmission.get_submission_from_guid('guid@', states=())) == [
+            BlockSubmission.get_submissions_from_guid('guid@', states=())) == [
                 block_subm]
+
+        # And check that a guid that doesn't exist in any submissions is empty
+        assert list(BlockSubmission.get_submissions_from_guid('ggguid@')) == []
