@@ -20,7 +20,8 @@ x-env-mapping: &env
 services:
   worker: &worker
     <<: *env
-    image: addons/addons-server:latest
+    # image: addons/addons-server:latest
+    build: .
     command: supervisord -n -c /code/docker/supervisor-celery.conf
     user: olympia
     volumes:
