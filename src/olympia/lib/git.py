@@ -6,6 +6,7 @@ import shutil
 import tempfile
 import sys
 import mimetypes
+import posixpath
 
 from collections import namedtuple
 
@@ -91,6 +92,13 @@ MIMETYPE_CATEGORY_MAPPING = {
     'application/xml': 'text',
 }
 
+SIMPLIFIED_MIMETYPE_DETECTION = {
+    '.js': 'text/javascript',
+    '.css': 'text/css',
+    '.html': 'text/html',
+    '.json': 'application/json'
+}
+
 
 def get_mime_type_for_blob(tree_or_blob, name, blob):
     """Returns the mimetype and type category for a git blob.
@@ -101,32 +109,38 @@ def get_mime_type_for_blob(tree_or_blob, name, blob):
     if tree_or_blob == pygit2.GIT_OBJ_TREE:
         return 'application/octet-stream', 'directory'
 
-    # Hardcoding the maximum amount of bytes to read here
-    # until https://github.com/ahupp/python-magic/commit/50e8c856
-    # lands in a release and we can read that value from libmagic
-    # We're only reading the needed amount of content from the file to
-    # not exhaust/read the whole blob into memory again.
-    bytes_ = io.BytesIO(memoryview(blob)).read(1048576)
-    mimetype = magic.from_buffer(bytes_, mime=True)
+    # If a file is in our list to allow a simplified detection
+    # we'll skip reading from the blob.
+    base, ext = posixpath.splitext(name)
+    if ext in SIMPLIFIED_MIMETYPE_DETECTION:
+        mimetype = SIMPLIFIED_MIMETYPE_DETECTION[ext]
+    else:
+        # Hardcoding the maximum amount of bytes to read here
+        # until https://github.com/ahupp/python-magic/commit/50e8c856
+        # lands in a release and we can read that value from libmagic
+        # We're only reading the needed amount of content from the file to
+        # not exhaust/read the whole blob into memory again.
+        bytes_ = io.BytesIO(memoryview(blob)).read(1048576)
+        mimetype = magic.from_buffer(bytes_, mime=True)
 
-    # Apply compatibility mappings
-    mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
+        # Apply compatibility mappings
+        mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
 
-    # Try to find a more accurate "textual" mimetype.
-    if mimetype == 'text/plain':
-        # Allow text mimetypes to be more specific for readable files.
-        # `python-magic`/`libmagic` usually just returns plain/text but we
-        # should use actual types like text/css or text/javascript.
-        guessed_mimetype, _ = mimetypes.guess_type(name)
+        # Try to find a more accurate "textual" mimetype.
+        if mimetype == 'text/plain':
+            # Allow text mimetypes to be more specific for readable files.
+            # `python-magic`/`libmagic` usually just returns plain/text but we
+            # should use actual types like text/css or text/javascript.
+            guessed_mimetype, _ = mimetypes.guess_type(name)
 
-        # If the file for some reason doesn't have a known file extension
-        # (could happen for text files like `README`, `LICENSE` etc)
-        # don't null the originally detected mimetype
-        if guessed_mimetype is not None:
-            # Re-apply compatibility mappings since `guess_type()` might return
-            # a completely different mimetype.
-            mimetype = MIMETYPE_COMPAT_MAPPING.get(
-                guessed_mimetype, guessed_mimetype)
+            # If the file for some reason doesn't have a known file extension
+            # (could happen for text files like `README`, `LICENSE` etc)
+            # don't null the originally detected mimetype
+            if guessed_mimetype is not None:
+                # Re-apply compatibility mappings since `guess_type()` might
+                # return a completely different mimetype.
+                mimetype = MIMETYPE_COMPAT_MAPPING.get(
+                    guessed_mimetype, guessed_mimetype)
 
     known_type_cagegories = ('image', 'text')
     default_type_category = 'binary'
