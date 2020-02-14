@@ -694,7 +694,7 @@ class ReviewerScore(ModelBase):
 
         reviewers = (UserProfile.objects
                                 .filter(groups__name__startswith='Reviewers: ')
-                                .exclude(groups__name__in=('Staff', 'Admins',
+                                .exclude(groups__name__in=('Admins',
                                          'No Reviewer Incentives'))
                                 .distinct())
         qs = (cls.objects

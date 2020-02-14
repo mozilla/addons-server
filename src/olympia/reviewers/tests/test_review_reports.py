@@ -48,7 +48,7 @@ class TestReviewReports(object):
             self.reviewer3 = user_factory(display_name=None)
             self.reviewer4 = user_factory(display_name='Staff Content D')
             self.reviewer5 = user_factory(display_name='Deleted')
-            grant_permission(self.reviewer2, '', name='Staff')
+            grant_permission(self.reviewer2, '', name='No Reviewer Incentives')
             grant_permission(self.reviewer4, '', name='No Reviewer Incentives')
 
             data = [

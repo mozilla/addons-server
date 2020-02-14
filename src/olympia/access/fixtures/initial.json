@@ -10,16 +10,6 @@
     }
   },
   {
-    "pk": 2,
-    "model": "access.group",
-    "fields": {
-        "name": "Staff",
-        "rules": "Addons:Configure,Addons:ContentReview,Addons:Edit,Addons:PostReview,Addons:Review,Addons:ReviewUnlisted,Addons:ViewDeleted,Admin:Tools,Collections:Edit,Reviews:Edit,Stats:View,Users:Edit",
-        "created": "2010-09-08 07:06:05",
-        "modified": "2010-09-08 07:06:05"
-    }
-  },
-  {
     "pk": 3,
     "model": "access.group",
     "fields": {
