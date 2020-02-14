@@ -89,8 +89,20 @@ class TestBlockAdmin(TestCase):
         assert b'Add-on GUIDs (one per line)' in response.content
         assert b'Addon with GUID guid@ does not exist' in response.content
 
-        # But should continue to the django admin add page if it exists
+        # If the guid already exists in a pending BlockSubmission the guid is
+        # invalid also
         addon = addon_factory(guid='guid@')
+        submission = BlockSubmission.objects.create(input_guids='guid@')
+        response = self.client.post(
+            self.add_url, {'guids': 'guid@'}, follow=False)
+        assert b'Add-on GUIDs (one per line)' in response.content
+        assert b'GUID guid@ is already in a pending BlockSubmission' in (
+            response.content)
+
+        # It's okay if the submission isn't pending (rejected, etc) though.
+        submission.update(signoff_state=BlockSubmission.SIGNOFF_REJECTED)
+
+        # But should continue to the django admin add page if it exists
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=True)
         self.assertRedirects(response, self.submission_url, status_code=307)
@@ -1196,6 +1208,7 @@ class TestBlockAdminEdit(TestCase):
         # Try to edit the block anyway
         response = self.client.post(
             self.change_url, {
+                'input_guids': self.block.guid,
                 'min_version': '0',
                 'max_version': self.addon.current_version.version,
                 'url': 'dfd',
@@ -1205,6 +1218,43 @@ class TestBlockAdminEdit(TestCase):
             follow=True)
         assert response.status_code == 403
         assert Block.objects.count() == 1
+
+    def test_cannot_edit_when_guid_in_blocksubmission(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+        blocksubm = BlockSubmission.objects.create(input_guids=self.block.guid)
+        assert blocksubm.to_block == [{
+            'id': self.block.id,
+            'guid': self.block.guid,
+            'average_daily_users': self.block.addon.average_daily_users}]
+
+        response = self.client.get(self.change_url, follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Add-on GUIDs (one per line)' not in content
+        assert 'guid@' in content
+        assert 'Danger Danger' in content
+        assert 'Changes pending' in content
+        submission_url = reverse(
+            'admin:blocklist_blocksubmission_change', args=(blocksubm.id,))
+        assert submission_url in content
+        assert 'Close' in content
+        assert '_save' not in content
+
+        # Try to edit the block anyway
+        response = self.client.post(
+            self.change_url, {
+                'input_guids': self.block.guid,
+                'min_version': '0',
+                'max_version': self.addon.current_version.version,
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 403
+        assert self.block.max_version == '*'  # not changed
 
 
 class TestBlockAdminDelete(TestCase):
