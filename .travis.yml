@@ -92,9 +92,8 @@ after_script:
   - docker stop autograph
 
 notifications:
-  irc:
-    channels:
-      - "irc.mozilla.org#amo-bots"
+  slack:
+    secure: dxBgnk1N6Tj4I0zJzZ1qmbJKelXz2oMi6onYHldpuGPh+tDBfoU6IHA6mqUrrP0CXX2RPWh0G0W3w8jVDw4CInp0VpNW64P2JBvl7JqVxUYFZPBO2MSjLai02+x+YyDFuN4OxPnuuRtcapq74Jl9kzQ0KEflZ3B2wptUvkE2+rk=
     on_success: change
     on_failure: always
 
