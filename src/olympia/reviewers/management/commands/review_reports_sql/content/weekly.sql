@@ -5,7 +5,7 @@ SELECT IFNULL(u.display_name, CONCAT('Firefox user ', u.id)) AS `Name`,
              WHERE group_id IN
                  (SELECT id
                   FROM groups
-                  WHERE name IN ('Staff', 'No Reviewer Incentives'))
+                  WHERE name = 'No Reviewer Incentives')
                AND user_id = rs.user_id), '*', '') AS `Staff`,
        IFNULL(IF(
                    (SELECT DISTINCT(user_id)
@@ -13,7 +13,7 @@ SELECT IFNULL(u.display_name, CONCAT('Firefox user ', u.id)) AS `Name`,
                     WHERE group_id IN
                         (SELECT id
                          FROM groups
-                         WHERE name IN ('Staff', 'No Reviewer Incentives'))
+                         WHERE name = 'No Reviewer Incentives')
                       AND user_id = rs.user_id), '-', SUM(rs.score)), 0) AS `Points`,
        FORMAT(COUNT(*), 0) AS `Add-ons Reviewed`
 FROM reviewer_scores rs 

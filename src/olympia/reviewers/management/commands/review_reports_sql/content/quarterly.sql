@@ -15,6 +15,6 @@ WHERE DATE(rs.created) BETWEEN @QUARTER_BEGIN AND @WEEK_END
      WHERE group_id IN
          (SELECT id
           FROM groups
-          WHERE name IN ('Staff', 'No Reviewer Incentives')))
+          WHERE name = 'No Reviewer Incentives'))
 GROUP BY rs.user_id
 ORDER BY SUM(rs.score) DESC;
