@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-03 12:28+0000\n"
+"PO-Revision-Date: 2020-02-16 05:31+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1502,10 +1502,10 @@ msgid "License text is required when choosing Other."
 msgstr "จำเป็นต้องระบุข้อความใบอนุญาตเมื่อเลือก อื่น ๆ"
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "ส่วนเสริมนี้มีข้อตกลงสัญญาอนุญาตผู้ใช้ปลายทาง"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "โปรดระบุข้อตกลงสัญญาอนุญาตผู้ใช้ปลายทางของส่วนเสริมของคุณ:"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "ส่วนเสริมนี้มีนโยบายความเป็นส่วนตัว"
@@ -1514,7 +1514,7 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "กรุณาระบุนโยบายความเป็นส่วนตัวของส่วนเสริมของคุณ"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "ไม่รองรับไฟล์ชนิดนี้ โปรดอัปโหลดไฟล์เก็บถาวร {extensions}"
 
 #, fuzzy
 msgid "Invalid or broken archive."
@@ -1533,7 +1533,7 @@ msgid "There was an error with your upload. Please try again."
 msgstr "มีข้อผิดพลาดกับการอัปโหลดของคุณ โปรดลองอีกครั้ง"
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "เขียนทับการตรวจสอบความถูกต้องที่ล้มเหลว"
 
 msgid "Need to select at least one application."
 msgstr "ต้องเลือกอย่างน้อยหนึ่งแอปพลิเคชัน"
