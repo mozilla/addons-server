@@ -86,3 +86,10 @@ def repack_fileupload(results, upload_pk):
     else:
         log.info('Not repackaging upload %s, it is not a xpi file.', upload_pk)
     return results
+
+
+@task
+@use_primary_db
+def hide_disabled_files(**kw):
+    for file_ in File.objects.filter(**kw):
+        file_.hide_disabled_file()

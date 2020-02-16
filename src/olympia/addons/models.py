@@ -584,6 +584,7 @@ class Addon(OnChangeMixin, ModelBase):
         # To avoid a circular import
         from . import tasks
         from olympia.versions import tasks as version_tasks
+        from olympia.files import tasks as file_tasks
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE) with no versions.
         soft_deletion = self.is_soft_deleteable()
@@ -630,6 +631,8 @@ class Addon(OnChangeMixin, ModelBase):
             # location with hide_disabled_files cron later.
             File.objects.filter(version__addon=self).update(
                 status=amo.STATUS_DISABLED)
+            file_tasks.hide_disabled_files.delay(version__addon=self.id)
+
             self.versions.all().update(deleted=True)
             # The last parameter is needed to automagically create an AddonLog.
             activity.log_create(amo.LOG.DELETE_ADDON, self.pk,
