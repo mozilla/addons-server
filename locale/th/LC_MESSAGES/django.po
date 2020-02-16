@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-16 05:52+0000\n"
+"PO-Revision-Date: 2020-02-16 05:58+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -3083,10 +3083,10 @@ msgid "Listed versions"
 msgstr "ดูรุ่นอื่น"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "อยู่บน AMO ในขณะนี้"
 
 msgid "Validation"
-msgstr ""
+msgstr "การตรวจสอบ"
 
 msgid "Delete/Disable"
 msgstr "ลบ/ปิดใช้งาน"
@@ -5305,9 +5305,8 @@ msgstr "ยังไม่ถูกตรวจสอบ"
 msgid "Review Log"
 msgstr "รายการบันทึกการตรวจสอบ"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "บทวิจารณ์ส่วนเสริม"
+msgstr "คำแนะนำในการตรวจสอบส่วนเสริม"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5323,9 +5322,8 @@ msgstr ""
 msgid "Review Guide"
 msgstr "คู่มือบทวิจารณ์"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "การตรวจสอบเนื้อหา"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
@@ -5337,9 +5335,8 @@ msgstr "ใหม่ ({0})"
 msgid "Updates ({0})"
 msgstr "การอัปเดต ({0})"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "บทวิจารณ์ชุดตกแต่ง"
+msgstr "คำแนะนำในการตรวจสอบชุดตกแต่ง"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -5414,9 +5411,8 @@ msgstr "ทำงานกับ"
 msgid "Visibility"
 msgstr "การมองเห็น"
 
-#, fuzzy
 msgid "Visible"
-msgstr "การมองเห็น"
+msgstr "มองเห็นได้"
 
 msgid "View Statistics"
 msgstr "ดูสถิติ"
@@ -5499,9 +5495,8 @@ msgstr ""
 msgid "Log details"
 msgstr ""
 
-#, fuzzy
 msgid "Review Author"
-msgstr "วิจารณ์ส่วนเสริมนี้"
+msgstr "ผู้เขียนบทวิจารณ์"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -5803,9 +5798,9 @@ msgstr ""
 msgid "Rejected or Unreviewed"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "สถานะ:"
+msgstr "[สถานะ:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
