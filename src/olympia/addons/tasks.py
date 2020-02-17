@@ -1,9 +1,5 @@
 import hashlib
 
-from json import JSONDecodeError
-
-from django.conf import settings
-from django.core.exceptions import ValidationError
 from django.db import transaction
 
 import waffle
@@ -17,19 +13,14 @@ from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AppSupport, MigratedLWT, Preview,
     attach_tags, attach_translations)
-from olympia.amo.celery import pause_all_tasks, resume_all_tasks, task
+from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import (
-    LocalFileStorage, StopWatch, extract_colors_from_image)
+from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
 from olympia.files.utils import get_filepath, parse_addon
-from olympia.lib.crypto.signing import SigningError
 from olympia.lib.es.utils import index_objects
 from olympia.tags.models import Tag
-from olympia.users.models import UserProfile
 from olympia.versions.models import (
     generate_static_theme_preview, VersionPreview)
-from olympia.versions.utils import (
-    new_69_theme_properties_from_old, new_theme_version_with_69_properties)
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -353,42 +344,6 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
     else:
         for addon in addons:
             addon.delete(send_delete_email=False)
-
-
-@task
-@use_primary_db
-def repack_themes_for_69(addon_ids, **kw):
-    log.info(
-        '[%s@%s] Repacking themes to use 69+ properties starting at id: %s...'
-        % (len(addon_ids), recreate_theme_previews.rate_limit, addon_ids[0]))
-    addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
-
-    olympia.core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
-    for addon in addons:
-        version = addon.current_version
-        log.info('[CHECK] theme [%r] for deprecated properties' % addon)
-        if not version:
-            log.info('[INVALID] theme [%r] has no current_version' % addon)
-            continue
-        pause_all_tasks()
-        try:
-            timer = StopWatch('addons.tasks.repack_themes_for_69')
-            timer.start()
-            old_xpi = get_filepath(version.all_files[0])
-            old_data = parse_addon(old_xpi, minimal=True)
-            new_data = new_69_theme_properties_from_old(old_data)
-            if new_data != old_data:
-                # if the manifest isn't the same let's repack
-                new_version = new_theme_version_with_69_properties(version)
-                log.info('[SUCCESS] Theme [%r], version [%r] updated to [%r]' %
-                         (addon, version, new_version))
-            else:
-                log.info('[SKIP] No need for theme repack [%s]' % addon.id)
-            timer.log_interval('')
-        except (IOError, ValidationError, JSONDecodeError, SigningError) as ex:
-            log.debug('[FAIL] Theme repack for [%r]:', addon, exc_info=ex)
-        finally:
-            resume_all_tasks()
 
 
 @task

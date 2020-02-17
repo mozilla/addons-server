@@ -17,8 +17,7 @@ from olympia import amo, core
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.files.tests.test_utils import AppVersionsMixin
 from olympia.versions.utils import (
-    AdditionalBackground, new_69_theme_properties_from_old,
-    new_theme_version_with_69_properties, process_color_value, write_svg_to_png
+    AdditionalBackground, process_color_value, write_svg_to_png
 )
 
 
@@ -151,96 +150,3 @@ def test_process_color_value(manifest_property, manifest_color, firefox_prop,
                              css_color):
     assert (firefox_prop, css_color) == (
         process_color_value(manifest_property, manifest_color))
-
-
-class TestNew69ThemeProperties(AppVersionsMixin, TestCase):
-    file_obj_dep = os.path.join(
-        settings.ROOT,
-        'src/olympia/devhub/tests/addons/static_theme_deprecated.zip')
-
-    def setUp(self):
-        self.call_signing_mock = self.patch(
-            'olympia.lib.crypto.signing.call_signing')
-        self.call_signing_mock.return_value = 'abcdefg1234'
-
-    def test_new_69_theme_properties_from_old(self):
-        old = {
-            'theme': {
-                'colors': {
-                    'accentcolor': '#dfa672',
-                    'textcolor': '#fff',
-                    'toolbar_text': 'rgb(0,12,34)',
-                },
-                'images': {
-                    'headerURL': 'path/to/image'
-                }
-            }
-        }
-        new_ = new_69_theme_properties_from_old(old)
-        assert new_ == {
-            'theme': {
-                'colors': {
-                    'frame': '#dfa672',
-                    'tab_background_text': '#fff',
-                    'bookmark_text': 'rgb(0,12,34)',
-                },
-                'images': {
-                    'theme_frame': 'path/to/image'
-                }
-            }
-        }
-
-    def test_new_69_theme_properties_from_old_no_overwrite(self):
-        old = {
-            'theme': {
-                'colors': {
-                    'accentcolor': '#dfa672',
-                    'textcolor': '#fff',
-                    'toolbar_text': 'rgb(0,12,34)',
-                    'frame': '#672',
-                    'tab_background_text': '#eee',
-                    'bookmark_text': 'rgb()',
-                },
-                'images': {
-                    'headerURL': 'path/to/image',
-                    'theme_frame': 'path/to/otherimage',
-                }
-            }
-        }
-        new_ = new_69_theme_properties_from_old(old)
-        assert new_ == old
-
-    @override_settings(ENABLE_ADDON_SIGNING=True)
-    def test_new_theme_version_with_69_properties(self):
-        core.set_user(user_factory())
-
-        addon = addon_factory(
-            type=amo.ADDON_STATICTHEME, version_kw={'version': '1.0'})
-        old_version = addon.current_version
-        old_file_path = old_version.all_files[0].current_file_path
-        amo.storage_utils.copy_stored_file(self.file_obj_dep, old_file_path)
-        assert os.path.isfile(old_file_path)
-
-        new_version = new_theme_version_with_69_properties(old_version)
-        assert addon.versions.all().count() == 2
-        assert addon.current_version == new_version
-
-        new_file_path = new_version.all_files[0].current_file_path
-        with zipfile.ZipFile(self.file_obj_dep, 'r') as old_xpi:
-            with zipfile.ZipFile(new_file_path, 'r') as new_xpi:
-                assert len(old_xpi.infolist()) == len(new_xpi.infolist())
-                for entry in old_xpi.infolist():
-                    file_ = entry.filename
-                    if file_ == 'manifest.json':
-                        old_manifest = json.loads(old_xpi.read(file_))
-                        new_manifest = json.loads(new_xpi.read(file_))
-                        assert old_manifest != new_manifest
-                        # need to pop the version as it's been bumped
-                        old_ver_num = old_manifest.pop('version')
-                        new_ver_num = new_manifest.pop('version')
-                        assert old_ver_num != new_ver_num
-                        assert new_manifest == (
-                            new_69_theme_properties_from_old(old_manifest))
-
-                    else:
-                        assert old_xpi.read(file_) == new_xpi.read(file_)

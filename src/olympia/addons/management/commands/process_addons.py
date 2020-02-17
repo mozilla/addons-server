@@ -15,7 +15,6 @@ from olympia.addons.tasks import (
     find_inconsistencies_between_es_and_db,
     migrate_webextensions_to_git_storage,
     recreate_theme_previews,
-    repack_themes_for_69,
 )
 from olympia.abuse.models import AbuseReport
 from olympia.constants.base import _ADDON_PERSONA, _ADDON_THEME, _ADDON_WEBAPP
@@ -107,13 +106,6 @@ tasks = {
                 amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW])
         ],
         'kwargs': {'only_missing': True},
-    },
-    'repack_themes_for_69': {
-        'method': repack_themes_for_69,
-        'qs': [
-            Q(type=amo.ADDON_STATICTHEME, status__in=[
-                amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW])
-        ],
     },
     'add_dynamic_theme_tag_for_theme_api': {
         'method': add_dynamic_theme_tag,
