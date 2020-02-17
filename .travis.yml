@@ -93,7 +93,7 @@ after_script:
 
 notifications:
   slack:
-    secure: O9e8knG8wMahFKew1MiOLo5QNisDrGQLzt4DjeRH121c/I0pnyfibRdA8PfqU9Ujon54+G8cXXXAzMkl1jWCRO7mzdckGffxPLLBkRlRLlBHhjlyoooEIK7O0l5kNRnnaaqhHZSCh3yr9zQQFwARbVxQKMUG5RVP7fd+HmUS/Lc=
+    secure: bJlYPVlywFAcUpdctfuFBjwbU5gANen18prb69Qs4WtNBGjxaIKlZ6jnhdh+1/8Q2hWX3YkzvaEd7dGKhn8k0ehUUzlpd+wrOBpxHq6Poz49cgev4sb64RmmIXYj7EeloWFQfXaV7v3hDDbQzr8K3gcmEWKD3nub2AQPXrRNPuw=
     on_success: change
     on_failure: always
 
