@@ -1067,6 +1067,7 @@ CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
     'olympia.stats.management.commands.index_stats',
+    'olympia.lib.es.tests.test_commands',
 )
 
 CELERY_TASK_QUEUES = (
@@ -1168,6 +1169,7 @@ CELERY_TASK_ROUTES = {
     'olympia.amo.tests.test_celery.fake_task': {'queue': 'amo'},
     'olympia.amo.tests.test_celery.fake_task_with_result': {'queue': 'amo'},
     'olympia.amo.tests.test_celery.sleeping_task': {'queue': 'amo'},
+    'olympia.lib.es.tests.test_commands.dummy_task': {'queue': 'amo'},
 
     # Addons
     'olympia.addons.tasks.add_dynamic_theme_tag': {'queue': 'addons'},
