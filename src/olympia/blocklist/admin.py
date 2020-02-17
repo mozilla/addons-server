@@ -304,7 +304,6 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             'save_as': False,
             'block_history': self.block_history(
                 self.model(input_guids=guids_data)),
-            'is_single_guid': len(splitlines(guids_data)) == 1,
         }
         context.update(**self._get_enhanced_guid_context(request, guids_data))
         return TemplateResponse(

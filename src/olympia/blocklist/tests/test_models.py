@@ -72,7 +72,7 @@ class TestMultiBlockSubmission(TestCase):
         # add another one which shouldn't match
         BlockSubmission.objects.create(input_guids='gguid@\n{4545-986}')
         assert block_subm.to_block == [{
-            'id': 0,
+            'id': None,
             'guid': 'guid@',
             'average_daily_users': addon.average_daily_users}]
 
