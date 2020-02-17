@@ -1,21 +1,16 @@
-import json
 import math
 import os
 import shutil
 import tempfile
-import zipfile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.test.utils import override_settings
 
 from unittest import mock
 import pytest
 from PIL import Image, ImageChops
 
-from olympia import amo, core
-from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.files.tests.test_utils import AppVersionsMixin
+from olympia import amo
 from olympia.versions.utils import (
     AdditionalBackground, process_color_value, write_svg_to_png
 )

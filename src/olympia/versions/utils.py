@@ -4,26 +4,16 @@ import os
 import io
 import subprocess
 import tempfile
-import uuid
 import zipfile
 
 from base64 import b64encode
-from datetime import datetime
 
 from django.conf import settings
-from django.db import transaction
 from django.utils.encoding import force_text
 
-from django_statsd.clients import statsd
 from PIL import Image
 
-from olympia import amo
-from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.utils import StopWatch
-from olympia.core import get_user, logger
-from olympia.files.models import FileUpload
-from olympia.files.utils import get_filepath, parse_addon
-from olympia.lib.crypto.signing import sign_file
+from olympia.core import logger
 from olympia.lib.safe_xml import lxml
 
 from . import compare
