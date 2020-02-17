@@ -267,18 +267,19 @@ def run_yara_query_rule(query_rule_pk):
         return
     log.info('Fetching versions for run_yara_query_rule on rule %s', rule.pk)
     # Build a huge list of all pks we're going to run the tasks on.
-    pks = Version.unfiltered.all(
+    qs = Version.unfiltered.all(
     ).filter(
         addon__type=amo.ADDON_EXTENSION,
         files__is_webextension=True,
-    ).exclude(
-        addon__status=amo.STATUS_DISABLED,
-    ).values_list('id', flat=True).order_by('pk')
+    )
+    if not rule.run_on_disabled_addons:
+        qs = qs.exclude(addon__status=amo.STATUS_DISABLED)
+    qs = qs.values_list('id', flat=True).order_by('pk')
     # Build the workflow using a group of tasks dealing with 250 files at a
     # time, chained to a task that marks the query as completed.
     chunk_size = 250
     chunked_tasks = create_chunked_tasks_signatures(
-        run_yara_query_rule_on_versions_chunk, list(pks), chunk_size,
+        run_yara_query_rule_on_versions_chunk, list(qs), chunk_size,
         task_args=(query_rule_pk,))
     workflow = (
         chunked_tasks |

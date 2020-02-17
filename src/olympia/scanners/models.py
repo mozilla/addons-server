@@ -303,6 +303,9 @@ class ScannerQueryRule(AbstractScannerRule):
     state = models.PositiveSmallIntegerField(
         choices=QUERY_RULE_STATES.items(), default=NEW
     )
+    run_on_disabled_addons = models.BooleanField(
+        default=False, help_text=_('Run this rule on add-ons that have been '
+                                   'force-disabled as well.'))
 
     class Meta(AbstractScannerRule.Meta):
         db_table = 'scanners_query_rules'

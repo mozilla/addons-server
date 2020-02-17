@@ -496,7 +496,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # Non-Webextension
         addon_factory(file_kw={'is_webextension': False}).current_version
 
-        for version in Version.objects.all():
+        for version in Version.unfiltered.all():
             self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
 
         # Run the task.
@@ -506,6 +506,16 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert sorted(
             ScannerQueryResult.objects.values_list('version_id', flat=True)
         ) == sorted(v.pk for v in included_versions)
+        self.rule.reload()
+        assert self.rule.state == COMPLETED
+
+    def test_run_on_disabled_addons(self):
+        self.version.addon.update(status=amo.STATUS_DISABLED)
+        self.rule.update(run_on_disabled_addons=True, state=SCHEDULED)
+        run_yara_query_rule.delay(self.rule.pk)
+
+        assert ScannerQueryResult.objects.count() == 1
+        assert ScannerQueryResult.objects.get().version == self.version
         self.rule.reload()
         assert self.rule.state == COMPLETED
 
