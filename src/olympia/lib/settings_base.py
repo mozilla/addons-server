@@ -1067,7 +1067,6 @@ CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
     'olympia.stats.management.commands.index_stats',
-    'olympia.lib.es.tests.test_commands',
 )
 
 CELERY_TASK_QUEUES = (
@@ -1164,12 +1163,6 @@ CELERY_TASK_ROUTES = {
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
     'olympia.amo.tasks.sync_object_to_basket': {'queue': 'amo'},
-
-    # Test tasks that will never really be triggered in prod.
-    'olympia.amo.tests.test_celery.fake_task': {'queue': 'amo'},
-    'olympia.amo.tests.test_celery.fake_task_with_result': {'queue': 'amo'},
-    'olympia.amo.tests.test_celery.sleeping_task': {'queue': 'amo'},
-    'olympia.lib.es.tests.test_commands.dummy_task': {'queue': 'amo'},
 
     # Addons
     'olympia.addons.tasks.add_dynamic_theme_tag': {'queue': 'addons'},
