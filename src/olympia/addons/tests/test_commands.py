@@ -1,18 +1,15 @@
 import random
 from contextlib import contextmanager
-from datetime import datetime, timedelta
+from datetime import timedelta
 
-from django.core import mail
 from django.core.management import call_command
 from django.core.management.base import CommandError
-from django.test.utils import override_settings
 
 from freezegun import freeze_time
 from unittest import mock
 import pytest
 
 from olympia import amo
-from olympia.activity.models import ActivityLog
 from olympia.addons.management.commands import process_addons
 from olympia.addons.models import Addon, ReusedGUID, GUID_REUSE_FORMAT
 from olympia.abuse.models import AbuseReport
@@ -496,82 +493,6 @@ class TestExtractColorsFromStaticThemes(TestCase):
         assert preview.colors == [
             {'h': 4, 's': 8, 'l': 15, 'ratio': .16}
         ]
-
-
-class TestDeleteArmagaddonRatings(TestCase):
-    @mock.patch('olympia.ratings.tasks.index_addons')
-    def test_basic(self, index_addons_mock):
-        self.addon1 = addon_factory()
-        self.addon2 = addon_factory()
-        self.addon3 = addon_factory()
-
-        # Ratings made during Armagadd-on.
-        delete_me = [
-            Rating.objects.create(
-                created=datetime(2019, 5, 6, 7, 42), addon=self.addon1,
-                rating=1, body='Apocalypse', user=user_factory()),
-            Rating.objects.create(
-                created=datetime(2019, 5, 3, 22, 14), addon=self.addon1,
-                rating=2, body='ἀποκάλυψις', user=user_factory()),
-            Rating.objects.create(
-                created=datetime(2019, 5, 4, 0, 0), addon=self.addon2,
-                rating=3, user=user_factory()),
-        ]
-
-        # Ratings made during, but that should be kept because of their score,
-        # or made before and after.
-        keep_me = [
-            Rating.objects.create(
-                created=datetime(2019, 5, 5, 0, 0), addon=self.addon1,
-                rating=4, body='High Score!', user=user_factory()),
-            Rating.objects.create(
-                created=datetime(2019, 4, 1, 0, 0), addon=self.addon2,
-                rating=1, body='Before', user=user_factory()),
-            Rating.objects.create(
-                created=datetime(2019, 6, 1, 0, 0), addon=self.addon3,
-                rating=2, body='After', user=user_factory()),
-        ]
-
-        self.addon1.reload()
-        assert self.addon1.average_rating == 2.3333
-        self.addon2.reload()
-        assert self.addon2.average_rating == 2.0
-
-        # Create a dummy task user and launch the command.
-        fake_task_user = user_factory()
-        with override_settings(TASK_USER_ID=fake_task_user.pk):
-            call_command(
-                'process_addons', task='delete_armagaddon_ratings_for_addons')
-
-        # We should have soft-deleted 3 ratings, leaving 3 untouched.
-        assert Rating.unfiltered.count() == 6
-        assert Rating.objects.count() == 3
-
-        for rating in keep_me:
-            rating.reload()
-            assert not rating.deleted
-
-        for rating in delete_me:
-            rating.reload()
-            assert rating.deleted
-
-        # We should have added activity logs for the deletion.
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.DELETE_RATING.id, user=fake_task_user).count() == 3
-
-        # We shouldn't have sent any mails about it.
-        assert len(mail.outbox) == 0
-
-        # We should have fixed the average ratings for affected add-ons.
-        self.addon1.reload()
-        assert self.addon1.average_rating == 4.0
-        self.addon2.reload()
-        assert self.addon2.average_rating == 1.0
-
-        # We should have reindexed only the 2 add-ons that had ratings we
-        # deleted.
-        assert index_addons_mock.delay.call_count == 1
-        index_addons_mock.delay.call_args == [self.addon1.pk, self.addon2.pk]
 
 
 class TestResignAddonsForCose(TestCase):
