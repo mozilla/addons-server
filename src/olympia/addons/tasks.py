@@ -11,8 +11,7 @@ import olympia.core
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AppSupport, MigratedLWT, Preview,
-    attach_tags, attach_translations)
+    Addon, AppSupport, Preview, attach_tags, attach_translations)
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
@@ -344,18 +343,3 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
     else:
         for addon in addons:
             addon.delete(send_delete_email=False)
-
-
-@task
-@use_primary_db
-def content_approve_migrated_themes(ids, **kw):
-    log.info('[%s@None] Marking migrated static themes as content-reviewed %s.'
-             % (len(ids), ids))
-    addons = Addon.objects.filter(pk__in=ids)
-    for addon in addons:
-        try:
-            migrated_date = MigratedLWT.objects.get(static_theme=addon).created
-        except MigratedLWT.DoesNotExist:
-            continue
-        AddonApprovalsCounter.approve_content_for_addon(
-            addon=addon, now=migrated_date)

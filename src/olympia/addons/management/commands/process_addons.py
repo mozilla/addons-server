@@ -9,7 +9,6 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag,
-    content_approve_migrated_themes,
     delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
@@ -133,12 +132,6 @@ tasks = {
         'method': delete_armagaddon_ratings_for_addons,
         'qs': [Q(**get_armagaddon_ratings_filters(prefix='_ratings__'))],
         'distinct': True,
-    },
-    'content_approve_migrated_themes': {
-        'method': content_approve_migrated_themes,
-        'qs': [Q(migrated_from_lwt__isnull=False,
-                 type=amo.ADDON_STATICTHEME, status=amo.STATUS_APPROVED,
-                 addonapprovalscounter__last_content_review__isnull=True)]
     },
     'delete_obsolete_addons': {
         'method': delete_addons,
