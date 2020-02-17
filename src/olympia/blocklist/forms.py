@@ -54,3 +54,29 @@ class MultiAddForm(MultiGUIDInputForm):
                     params={'guid': guid}))
         if errors:
             raise ValidationError(errors)
+
+
+class BlockSubmissionForm(forms.ModelForm):
+    existing_min_version = forms.fields.CharField(
+        widget=forms.widgets.HiddenInput, required=False)
+    existing_max_version = forms.fields.CharField(
+        widget=forms.widgets.HiddenInput, required=False)
+
+    def clean(self):
+        super().clean()
+        guids = splitlines(self.cleaned_data.get('input_guids'))
+        # Ignore for a single guid because we always update it irrespective
+        # of whether it needs to be updated.
+        if len(guids) > 1:
+            frm_data = self.data
+            # Check if the versions specified were the ones we calculated which
+            # Blocks would be updated or skipped on.
+            # TODO: make this more intelligent and don't force a refresh when
+            # we have multiple new Blocks (but no existing blocks to update)
+            versions_changed = (
+                frm_data['min_version'] != frm_data['existing_min_version'] or
+                frm_data['max_version'] != frm_data['existing_max_version'])
+            if versions_changed:
+                raise ValidationError(
+                    _('Blocks to be updated may be different because Min or '
+                      'Max version has changed.'))

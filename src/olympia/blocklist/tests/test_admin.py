@@ -427,6 +427,7 @@ class TestBlockSubmissionAdmin(TestCase):
             },
             follow=True)
         assert response.status_code == 200
+        assert b'Blocks to be updated may be different' in response.content
         # No Block should have been changed or added
         assert Block.objects.count() == 2
         assert BlockSubmission.objects.count() == 0
