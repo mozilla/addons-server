@@ -93,8 +93,8 @@ after_script:
 
 notifications:
   slack:
-    rooms:
-      - secure: VuUiui/fUMV6cXrYpTXrzLnYurcsJQOeczWA2rvsq8fCFjSe4MXMgv/kF/2b7F7O8mmEgQAUGozJAaChmYCiwDFOtki7bUBGl6yOm5OWW1ZnkTxObXB7pKG/aFT0VoF4EKIRp46M4tT8yqZ0m+CXP8/rITE0aLJoz/xmGzOaCc8=
+    room:
+      secure: "VuUiui/fUMV6cXrYpTXrzLnYurcsJQOeczWA2rvsq8fCFjSe4MXMgv/kF/2b7F7O8mmEgQAUGozJAaChmYCiwDFOtki7bUBGl6yOm5OWW1ZnkTxObXB7pKG/aFT0VoF4EKIRp46M4tT8yqZ0m+CXP8/rITE0aLJoz/xmGzOaCc8="
     on_success: change
     on_failure: always
 
