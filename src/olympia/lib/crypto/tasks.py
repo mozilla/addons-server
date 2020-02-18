@@ -39,7 +39,7 @@ Regards,
 The Add-ons Team
 
 ---
-[1] https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Distribution
+[1] https://extensionworkshop.com/documentation/publish/signing-and-distribution-overview/  # noqa
 [2] https://wiki.mozilla.org/Release_Management/Calendar
 [3] https://www.mozilla.org/firefox/enterprise/
 --
