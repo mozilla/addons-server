@@ -515,7 +515,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return format_block_history(
             ActivityLog.objects.for_guidblock(obj.guid).filter(
                 action__in=Block.ACTIVITY_IDS).order_by('created'),
-            additional_logs=submission_log)
+            additional_content=submission_log)
 
     def get_fieldsets(self, request, obj):
         details = (

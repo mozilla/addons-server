@@ -192,7 +192,7 @@ class TestBlockSubmissionAdmin(TestCase):
         content = response.content.decode('utf-8')
         todaysdate = datetime.datetime.now().date()
         assert f'<a href="dfd">{todaysdate}</a>' in content
-        assert f'Block added by {user.name}: guid@' in content
+        assert f'Block added by {user.name}:\n        guid@' in content
         assert f'versions 0 - {addon.current_version.version}' in content
         assert f'Included in legacy blocklist' not in content
 
@@ -1126,7 +1126,8 @@ class TestBlockAdminEdit(TestCase):
         content = response.content.decode('utf-8')
         todaysdate = datetime.datetime.now().date()
         assert f'<a href="https://foo.baa">{todaysdate}</a>' in content
-        assert f'Block edited by {user.name}: {self.block.guid}' in content
+        assert f'Block edited by {user.name}:\n        {self.block.guid}' in (
+            content)
         assert f'versions 0 - {self.addon.current_version.version}' in content
         assert f'Included in legacy blocklist' in content
 
@@ -1302,7 +1303,7 @@ class TestBlockAdminDelete(TestCase):
         response = self.client.get(
             self.submission_url, {'guids': 'guid@'}, follow=True)
         content = response.content.decode('utf-8')
-        assert f'Block deleted by {user.name}: guid@.' in content
+        assert f'Block deleted by {user.name}:\n        guid@.' in content
 
     def test_can_not_delete_without_permission(self):
         user = user_factory()

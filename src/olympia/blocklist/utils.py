@@ -1,7 +1,6 @@
 import math
 
-from django.utils.html import format_html, conditional_escape
-from django.utils.safestring import mark_safe
+from django.template.loader import render_to_string
 
 from filtercascade import FilterCascade
 
@@ -66,46 +65,10 @@ def block_activity_log_delete(obj, user):
         add_version_log_for_blocked_versions(obj, al)
 
 
-def format_block_history(logs, additional_logs=''):
-    def format_html_join_kw(sep, format_string, kwargs_generator):
-        return mark_safe(conditional_escape(sep).join(
-            format_html(format_string, **kwargs)
-            for kwargs in kwargs_generator
-        ))
-
-    history_format_string = (
-        '<li>'
-        '{date}. {action} by {name}: {guid}{versions}. {legacy}'
-        '<ul><li>{reason}</li></ul>'
-        '</li>')
-    guid_url_format_string = '<a href="{url}">{text}</a>'
-    versions_format_string = ', versions {min} - {max}'
-
-    log_entries_gen = (
-        {'date': (
-            format_html(
-                guid_url_format_string,
-                url=log.details.get('url'),
-                text=log.created.date())
-            if log.details.get('url') else log.created.date()),
-         'action': amo.LOG_BY_ID[log.action].short,
-         'name': log.author_name,
-         'guid': log.details.get('guid'),
-         'versions': (
-            format_html(
-                versions_format_string, **{
-                    'min': log.details.get('min_version'),
-                    'max': log.details.get('max_version')})
-            if 'min_version' in log.details else ''),
-         'legacy': (
-            'Included in legacy blocklist.'
-            if log.details.get('include_in_legacy') else ''),
-         'reason': log.details.get('reason') or ''}
-        for log in logs)
-    return format_html(
-        '<ul>\n{}\n{}</ul>',
-        format_html_join_kw('\n', history_format_string, log_entries_gen),
-        additional_logs)
+def format_block_history(logs, additional_content=''):
+    return render_to_string(
+        'blocklist/includes/logs.html',
+        {'logs': logs, 'addtional_content': additional_content})
 
 
 def splitlines(text):
