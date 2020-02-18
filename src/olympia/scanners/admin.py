@@ -584,11 +584,13 @@ class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 @admin.register(ScannerQueryRule)
 class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
     list_display = (
-        'name', 'scanner', 'state_with_actions', 'matched_results_link',
+        'name', 'scanner', 'run_on_disabled_addons', 'state_with_actions',
+        'matched_results_link',
     )
     list_filter = ('state',)
     fields = (
         'scanner',
+        'run_on_disabled_addons',
         'state_with_actions',
         'name',
         'created',
