@@ -197,6 +197,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         'addon_install_origin',
         'addon_install_method',
         'addon_install_source',
+        'addon_install_source_url',
         'report_entry_point',
         'addon_card',
     )
@@ -219,6 +220,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             'addon_install_origin',
             'addon_install_method',
             'addon_install_source',
+            'addon_install_source_url',
             'report_entry_point'
         )})
     )
