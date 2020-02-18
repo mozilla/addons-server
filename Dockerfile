@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
-ADD docker/debian-testing-repo /etc/apt/sources.list.d/testing.list
+ADD docker/debian-buster-testing-repo /etc/apt/sources.list.d/testing.list
 
 RUN apt-get update && apt-get -t stretch install -y \
         # General (dev-) dependencies
@@ -56,12 +56,11 @@ RUN apt-get update && apt-get -t stretch install -y \
         libmaxminddb-dev                 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install `file` and `libmagic` from the `testing` repositories for an up-to-date
+# Install `file` and `libmagic` from the `buster` repositories for an up-to-date
 # file-detection.
-RUN apt-get update && apt-get -t testing install -y \
+RUN apt-get update && apt-get -t buster install -y \
        file \
        libmagic-dev \
-       libgit2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Compile required locale
