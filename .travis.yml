@@ -53,9 +53,11 @@ before_install:
   - export PATH=$HOME/usr/local/go/bin:$GOPATH/bin:$PATH
   # Unfortunately we require the most recent libmagic-dev version to make use of more recent
   # JSON detection features which we require for the code-manager related APIs
-  - echo "deb http://archive.ubuntu.com/ubuntu disco main" | sudo tee -a /etc/apt/sources.list
+  # Temporarily adding libgit2-dev because upstream wheels don't seem to include the
+  # correct version.
+  - echo "deb http://archive.ubuntu.com/ubuntu focal main" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update -qq
-  - sudo apt-get install -t disco libmagic-dev libmagic1 libmagic-mgc
+  - sudo apt-get install -t focal libmagic-dev libmagic1 libmagic-mgc libgit2-dev
 
 install:
   - nvm current
