@@ -209,32 +209,6 @@ class AbuseReport(ModelBase):
             models.Index(fields=('created',), name='created_idx'),
         ]
 
-    @property
-    def metadata(self):
-        """
-        Dict of metadata about this report. Only includes non-null values.
-        """
-        data = {}
-        field_names = (
-            'client_id', 'addon_name', 'addon_summary', 'addon_version',
-            'addon_signature', 'application', 'application_version',
-            'application_locale', 'operating_system',
-            'operating_system_version', 'install_date', 'reason',
-            'addon_install_origin', 'addon_install_method',
-            'addon_install_source', 'addon_install_source_url',
-            'report_entry_point'
-        )
-        for field_name in field_names:
-            value = self.__dict__[field_name]
-            # Only include values that matter.
-            if value is not None:
-                field = self._meta.get_field(field_name)
-                # If it's a choice field, display the "pretty" version.
-                if field.choices:
-                    value = getattr(self, 'get_%s_display' % field_name)()
-                data[field_name] = value
-        return data
-
     def delete(self, *args, **kwargs):
         # AbuseReports are soft-deleted. Note that we keep relations, because
         # the only possible relations are to users and add-ons, which are also

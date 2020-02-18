@@ -4,7 +4,7 @@
       <th> Developer/Addon </th>
       <th> Application </th>
       <th> Install date </th>
-      <th> Install origin </th>
+      <th> Install origin / source </th>
       <th> Category </th>
       <th> Date </th>
       <th> Reporter </th>
@@ -39,12 +39,17 @@
           {% endif %}
         </td>
         <td>
-          {{ report.addon_install_origin }}
+          {% if report.addon_install_origin %}
+            <em>{{ _('Origin:') }}</em> {{ report.addon_install_origin }}<br>
+          {% endif %}
           {% if report.addon_install_method %}
-            <br><em>{{ _('Method:') }}</em> {{ report.get_addon_install_method_display() }}
+            <em>{{ _('Method:') }}</em> {{ report.get_addon_install_method_display() }}<br>
           {% endif %}
           {% if report.addon_install_source %}
-            <br><em>{{ _('Source:') }}</em> {{ report.get_addon_install_source_display() }}
+            <em>{{ _('Source:') }}</em> {{ report.get_addon_install_source_display() }}<br>
+          {% endif %}
+          {% if report.addon_install_source_url %}
+            <em>{{ _('Source URL:') }}</em> {{ report.addon_install_source_url }}<br>
           {% endif %}
         </td>
         <td>{{ report.get_reason_display() }}</td>
