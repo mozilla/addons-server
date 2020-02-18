@@ -1107,26 +1107,32 @@ class TestScannerQueryResultAdmin(TestCase):
         doc = pq(response.content)
         expected = [
             ('All', '?'),
-            ('customs', '?scanner__exact=1'),
-            ('wat', '?scanner__exact=2'),
-            ('yara', '?scanner__exact=3'),
-            ('ml_api', '?scanner__exact=4'),
-
-            ('All', '?has_matched_rules=all'),
-            (' With matched rules only', '?'),
-
-            ('All', '?state=all'),
-            ('Unknown', '?'),
-            ('True positive', '?state=1'),
-            ('False positive', '?state=2'),
-            ('Inconclusive', '?state=3'),
-
-            ('All', '?'),
             ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
             ('foo (yara)', f'?matched_rules__id__exact={rule_foo.pk}'),
 
-            ('All', '?has_version=all'),
-            (' With version only', '?'),
+            ('All', '?'),
+            ('Unlisted', '?version__channel__exact=1'),
+            ('Listed', '?version__channel__exact=2'),
+
+            ('All', '?'),
+            ('Incomplete', '?version__addon__status__exact=0'),
+            ('Awaiting Review', '?version__addon__status__exact=3'),
+            ('Approved', '?version__addon__status__exact=4'),
+            ('Disabled by Mozilla', '?version__addon__status__exact=5'),
+            ('Deleted', '?version__addon__status__exact=11'),
+
+            ('All', '?'),
+            ('Invisible', '?version__addon__disabled_by_user__exact=1'),
+            ('Visible', '?version__addon__disabled_by_user__exact=0'),
+
+            ('All', '?'),
+            ('Awaiting Review', '?version__files__status__exact=1'),
+            ('Approved', '?version__files__status__exact=4'),
+            ('Disabled by Mozilla', '?version__files__status__exact=5'),
+
+            ('All', '?'),
+            ('Yes', '?version__files__is_signed__exact=1'),
+            ('No', '?version__files__is_signed__exact=0'),
         ]
         filters = [
             (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
@@ -1145,12 +1151,135 @@ class TestScannerQueryResultAdmin(TestCase):
 
         response = self.client.get(self.list_url, {
             'matched_rules__id__exact': rule_bar.pk,
-            WithVersionFilter.parameter_name: 'all',
         })
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
         assert doc('.field-formatted_matched_rules').text() == 'bar'
+
+    def test_list_filter_channel(self):
+        addon = addon_factory()
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=addon.versions.all()[0])
+        unlisted_addon = addon_factory(
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            status=amo.STATUS_NULL)
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=unlisted_addon.versions.all()[0])
+
+        response = self.client.get(self.list_url, {
+            'version__channel__exact': amo.RELEASE_CHANNEL_UNLISTED,
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-guid').text() == unlisted_addon.guid
+
+        response = self.client.get(self.list_url, {
+            'version__channel__exact': amo.RELEASE_CHANNEL_LISTED,
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-guid').text() == addon.guid
+
+    def test_list_filter_addon_status(self):
+        incomplete_addon = addon_factory(status=amo.STATUS_NULL)
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=incomplete_addon.versions.all()[0])
+        deleted_addon = addon_factory(status=amo.STATUS_DELETED)
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=deleted_addon.versions.all()[0])
+
+        response = self.client.get(self.list_url, {
+            'version__addon__status__exact': amo.STATUS_NULL,
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-guid').text() == incomplete_addon.guid
+
+        response = self.client.get(self.list_url, {
+            'version__addon__status__exact': amo.STATUS_DELETED,
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-guid').text() == deleted_addon.guid
+
+    def test_list_filter_addon_visibility(self):
+        visible_addon = addon_factory()
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=visible_addon.versions.all()[0])
+        invisible_addon = addon_factory(disabled_by_user=True)
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=invisible_addon.versions.all()[0])
+
+        response = self.client.get(self.list_url, {
+            'version__addon__disabled_by_user__exact': '1',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-guid').text() == invisible_addon.guid
+
+        response = self.client.get(self.list_url, {
+            'version__addon__disabled_by_user__exact': '0',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-guid').text() == visible_addon.guid
+
+    def test_list_filter_file_status(self):
+        addon_disabled_file = addon_factory()
+        disabled_file_version = version_factory(
+            addon=addon_disabled_file, file_kw={'status': amo.STATUS_DISABLED})
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=disabled_file_version)
+        addon_approved_file = addon_factory()
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=addon_approved_file.versions.all()[0])
+
+        response = self.client.get(self.list_url, {
+            'version__files__status': '5',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-guid').text() == addon_disabled_file.guid
+
+        response = self.client.get(self.list_url, {
+            'version__files__status': '4',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-guid').text() == addon_approved_file.guid
+
+    def test_list_filter_file_is_signed(self):
+        signed_addon = addon_factory(file_kw={'is_signed': True})
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=signed_addon.versions.all()[0])
+        unsigned_addon = addon_factory(file_kw={'is_signed': False})
+        ScannerQueryResult.objects.create(
+            scanner=YARA, version=unsigned_addon.versions.all()[0])
+
+        response = self.client.get(self.list_url, {
+            'version__files__is_signed': '1',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-guid').text() == signed_addon.guid
+
+        response = self.client.get(self.list_url, {
+            'version__files__is_signed': '0',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-guid').text() == unsigned_addon.guid
 
     def test_change_page(self):
         rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)

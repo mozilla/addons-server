@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from olympia.addons.models import Addon
 
-from .models import Block
+from .models import Block, BlockSubmission
 from .utils import splitlines
 
 
@@ -39,10 +39,18 @@ class MultiAddForm(MultiGUIDInputForm):
 
     def clean(self):
         guids = splitlines(self.cleaned_data.get('guids'))
+        errors = []
         if len(guids) == 1:
             guid = guids[0]
             blk = self.existing_block = Block.objects.filter(guid=guid).first()
             if not blk and not Addon.unfiltered.filter(guid=guid).exists():
-                raise ValidationError(
+                errors.append(ValidationError(
                     _('Addon with GUID %(guid)s does not exist'),
-                    params={'guid': guid})
+                    params={'guid': guid}))
+        for guid in guids:
+            if BlockSubmission.get_submissions_from_guid(guid):
+                errors.append(ValidationError(
+                    _('GUID %(guid)s is already in a pending BlockSubmission'),
+                    params={'guid': guid}))
+        if errors:
+            raise ValidationError(errors)

@@ -25,9 +25,6 @@ def test_celery_routes_in_queues():
     # check the default queue is defined in CELERY_QUEUES
     assert settings.CELERY_TASK_DEFAULT_QUEUE in queues_in_queues
 
-    # then remove it as it won't be in CELERY_ROUTES
-    queues_in_queues.remove(settings.CELERY_TASK_DEFAULT_QUEUE)
-
     queues_in_routes = set(
         [c['queue'] for c in settings.CELERY_TASK_ROUTES.values()])
     assert queues_in_queues == queues_in_routes
@@ -39,9 +36,18 @@ def test_celery_routes_only_contain_valid_tasks():
     for module_name in settings.CELERY_IMPORTS:
         importlib.import_module(module_name)
 
+    # Force a re-discovery of the tasks - when running the tests the
+    # autodiscovery might happen too soon.
+    app.autodiscover_tasks(force=True)
+
+    # Make sure all tasks in CELERY_TASK_ROUTES are known.
     known_tasks = app.tasks.keys()
     for task_name in settings.CELERY_TASK_ROUTES.keys():
         assert task_name in known_tasks
+
+    # Make sure all known tasks have an explicit route set.
+    for task_name in known_tasks:
+        assert task_name in settings.CELERY_TASK_ROUTES.keys()
 
 
 @task(ignore_result=False)

@@ -113,7 +113,7 @@ class FileInline(admin.TabularInline):
 class AddonAdmin(admin.ModelAdmin):
     class Media:
         css = {
-            'all': ('css/admin/l10n.css',)
+            'all': ('css/admin/l10n.css', 'css/admin/pagination.css')
         }
         js = ('js/admin/l10n.js', 'js/admin/recalc_hash.js')
 

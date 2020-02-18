@@ -9,22 +9,17 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag,
-    content_approve_migrated_themes,
     delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
     migrate_webextensions_to_git_storage,
     recreate_theme_previews,
-    repack_themes_for_69,
 )
 from olympia.abuse.models import AbuseReport
 from olympia.constants.base import _ADDON_PERSONA, _ADDON_THEME, _ADDON_WEBAPP
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
-from olympia.ratings.tasks import (
-    delete_armagaddon_ratings_for_addons, get_armagaddon_ratings_filters
-)
 from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.compare import version_int
 
@@ -108,13 +103,6 @@ tasks = {
         ],
         'kwargs': {'only_missing': True},
     },
-    'repack_themes_for_69': {
-        'method': repack_themes_for_69,
-        'qs': [
-            Q(type=amo.ADDON_STATICTHEME, status__in=[
-                amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW])
-        ],
-    },
     'add_dynamic_theme_tag_for_theme_api': {
         'method': add_dynamic_theme_tag,
         'qs': [
@@ -136,17 +124,6 @@ tasks = {
     'extract_colors_from_static_themes': {
         'method': extract_colors_from_static_themes,
         'qs': [Q(type=amo.ADDON_STATICTHEME)]
-    },
-    'delete_armagaddon_ratings_for_addons': {
-        'method': delete_armagaddon_ratings_for_addons,
-        'qs': [Q(**get_armagaddon_ratings_filters(prefix='_ratings__'))],
-        'distinct': True,
-    },
-    'content_approve_migrated_themes': {
-        'method': content_approve_migrated_themes,
-        'qs': [Q(migrated_from_lwt__isnull=False,
-                 type=amo.ADDON_STATICTHEME, status=amo.STATUS_APPROVED,
-                 addonapprovalscounter__last_content_review__isnull=True)]
     },
     'delete_obsolete_addons': {
         'method': delete_addons,

@@ -6,11 +6,10 @@ from django.conf import settings
 
 from olympia import amo
 from olympia.addons.tasks import (
-    migrate_webextensions_to_git_storage, recreate_theme_previews,
-    repack_themes_for_69)
+    migrate_webextensions_to_git_storage, recreate_theme_previews)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
-    addon_factory, TestCase, user_factory, version_factory)
+    addon_factory, TestCase, version_factory)
 from olympia.files.utils import id_to_path
 from olympia.versions.models import VersionPreview, source_upload_path
 from olympia.lib.git import AddonGitRepository
@@ -159,31 +158,3 @@ def test_create_missing_theme_previews(parse_addon_mock):
     with mock.patch('olympia.addons.tasks.generate_static_theme_preview') as p:
         recreate_theme_previews([theme.id], only_missing=True)
         assert p.call_count == 1
-
-
-@pytest.mark.django_db
-def test_repack_themes_for_69():
-    user_factory(id=settings.TASK_USER_ID)
-    broken_theme = addon_factory(name='broken')
-    already_theme = addon_factory(name='already')
-    deprecated_theme = addon_factory(
-        name='deprecated', version_kw={'version': '1.0'})
-
-    to_mock = 'olympia.addons.tasks.new_theme_version_with_69_properties'
-    with mock.patch(to_mock) as new_theme_version_with_69_properties_mock:
-        with mock.patch('olympia.addons.tasks.parse_addon') as parse_mock:
-            parse_mock.configure_mock(side_effect=[
-                IOError(),
-                {'theme': {'colors': {'frame': '#baa'}}},
-                {'theme': {'colors': {'accentcolor': '#f00'}}},
-            ])
-            # call the task, as the command would:
-            repack_themes_for_69([
-                broken_theme.id,
-                already_theme.id,
-                deprecated_theme.id,
-            ])
-
-        new_theme_version_with_69_properties_mock.assert_called_once()
-        new_theme_version_with_69_properties_mock.assert_called_with(
-            deprecated_theme.current_version)

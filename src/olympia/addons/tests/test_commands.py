@@ -1,21 +1,17 @@
 import random
 from contextlib import contextmanager
-from datetime import datetime, timedelta
+from datetime import timedelta
 
-from django.core import mail
 from django.core.management import call_command
 from django.core.management.base import CommandError
-from django.test.utils import override_settings
 
 from freezegun import freeze_time
 from unittest import mock
 import pytest
 
 from olympia import amo
-from olympia.activity.models import ActivityLog
 from olympia.addons.management.commands import process_addons
-from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, MigratedLWT, ReusedGUID, GUID_REUSE_FORMAT)
+from olympia.addons.models import Addon, ReusedGUID, GUID_REUSE_FORMAT
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
@@ -499,82 +495,6 @@ class TestExtractColorsFromStaticThemes(TestCase):
         ]
 
 
-class TestDeleteArmagaddonRatings(TestCase):
-    @mock.patch('olympia.ratings.tasks.index_addons')
-    def test_basic(self, index_addons_mock):
-        self.addon1 = addon_factory()
-        self.addon2 = addon_factory()
-        self.addon3 = addon_factory()
-
-        # Ratings made during Armagadd-on.
-        delete_me = [
-            Rating.objects.create(
-                created=datetime(2019, 5, 6, 7, 42), addon=self.addon1,
-                rating=1, body='Apocalypse', user=user_factory()),
-            Rating.objects.create(
-                created=datetime(2019, 5, 3, 22, 14), addon=self.addon1,
-                rating=2, body='ἀποκάλυψις', user=user_factory()),
-            Rating.objects.create(
-                created=datetime(2019, 5, 4, 0, 0), addon=self.addon2,
-                rating=3, user=user_factory()),
-        ]
-
-        # Ratings made during, but that should be kept because of their score,
-        # or made before and after.
-        keep_me = [
-            Rating.objects.create(
-                created=datetime(2019, 5, 5, 0, 0), addon=self.addon1,
-                rating=4, body='High Score!', user=user_factory()),
-            Rating.objects.create(
-                created=datetime(2019, 4, 1, 0, 0), addon=self.addon2,
-                rating=1, body='Before', user=user_factory()),
-            Rating.objects.create(
-                created=datetime(2019, 6, 1, 0, 0), addon=self.addon3,
-                rating=2, body='After', user=user_factory()),
-        ]
-
-        self.addon1.reload()
-        assert self.addon1.average_rating == 2.3333
-        self.addon2.reload()
-        assert self.addon2.average_rating == 2.0
-
-        # Create a dummy task user and launch the command.
-        fake_task_user = user_factory()
-        with override_settings(TASK_USER_ID=fake_task_user.pk):
-            call_command(
-                'process_addons', task='delete_armagaddon_ratings_for_addons')
-
-        # We should have soft-deleted 3 ratings, leaving 3 untouched.
-        assert Rating.unfiltered.count() == 6
-        assert Rating.objects.count() == 3
-
-        for rating in keep_me:
-            rating.reload()
-            assert not rating.deleted
-
-        for rating in delete_me:
-            rating.reload()
-            assert rating.deleted
-
-        # We should have added activity logs for the deletion.
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.DELETE_RATING.id, user=fake_task_user).count() == 3
-
-        # We shouldn't have sent any mails about it.
-        assert len(mail.outbox) == 0
-
-        # We should have fixed the average ratings for affected add-ons.
-        self.addon1.reload()
-        assert self.addon1.average_rating == 4.0
-        self.addon2.reload()
-        assert self.addon2.average_rating == 1.0
-
-        # We should have reindexed only the 2 add-ons that had ratings we
-        # deleted.
-        assert index_addons_mock.delay.call_count == 1
-        index_addons_mock.delay.call_args == [self.addon1.pk, self.addon2.pk]
-
-
 class TestResignAddonsForCose(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_basic(self, sign_file_mock):
@@ -608,49 +528,6 @@ class TestResignAddonsForCose(TestCase):
         call_command('process_addons', task='resign_addons_for_cose')
 
         assert sign_file_mock.call_count == 5
-
-
-class TestContentApproveMigratedThemes(TestCase):
-    def test_basic(self):
-        # Pretend those 3 static themes were migrated. Only the first one
-        # should be marked as content approved by the command.
-        static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
-        static_theme_already_content_approved = addon_factory(
-            type=amo.ADDON_STATICTHEME)
-        static_theme_not_public = addon_factory(
-            type=amo.ADDON_STATICTHEME, status=amo.STATUS_NOMINATED)
-        AddonApprovalsCounter.approve_content_for_addon(
-            static_theme_already_content_approved)
-        migrated_themes = [
-            static_theme,
-            static_theme_already_content_approved,
-            static_theme_not_public
-        ]
-        migration_date = self.days_ago(123)
-        for addon in migrated_themes:
-            MigratedLWT.objects.create(
-                static_theme=addon,
-                lightweight_theme_id=9999,
-                getpersonas_id=0,
-                created=migration_date)
-        # Add another that never went through migration, it was born that way.
-        non_migrated_theme = addon_factory(type=amo.ADDON_STATICTHEME)
-
-        call_command('process_addons', task='content_approve_migrated_themes')
-
-        approvals_info = AddonApprovalsCounter.objects.get(addon=static_theme)
-        assert approvals_info.last_content_review == migration_date
-
-        approvals_info = AddonApprovalsCounter.objects.get(
-            addon=static_theme_already_content_approved)
-        assert approvals_info.last_content_review != migration_date
-        self.assertCloseToNow(approvals_info.last_content_review)
-
-        assert not AddonApprovalsCounter.objects.filter(
-            addon=non_migrated_theme).exists()
-
-        assert not AddonApprovalsCounter.objects.filter(
-            addon=static_theme_not_public).exists()
 
 
 @pytest.mark.django_db

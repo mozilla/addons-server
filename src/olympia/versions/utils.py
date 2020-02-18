@@ -4,26 +4,16 @@ import os
 import io
 import subprocess
 import tempfile
-import uuid
 import zipfile
 
 from base64 import b64encode
-from datetime import datetime
 
 from django.conf import settings
-from django.db import transaction
 from django.utils.encoding import force_text
 
-from django_statsd.clients import statsd
 from PIL import Image
 
-from olympia import amo
-from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.utils import StopWatch
-from olympia.core import get_user, logger
-from olympia.files.models import FileUpload
-from olympia.files.utils import get_filepath, parse_addon
-from olympia.lib.crypto.signing import sign_file
+from olympia.core import logger
 from olympia.lib.safe_xml import lxml
 
 from . import compare
@@ -195,42 +185,3 @@ def build_69_compatible_theme(old_xpi, new_xpi, new_version_number):
                     dest.writestr('manifest.json', json.dumps(manifest))
                 else:
                     dest.writestr(entry.filename, src.read(entry))
-
-
-@transaction.atomic
-@statsd.timer('versions.utils.new_theme_version_with_69_properties')
-def new_theme_version_with_69_properties(old_version):
-    timer = StopWatch(
-        'addons.tasks.repack_themes_for_69.new_theme_version.')
-    timer.start()
-
-    author = get_user()
-    # Wrap zip in FileUpload for Version from_upload to consume.
-    upload = FileUpload.objects.create(user=author, valid=True)
-    filename = uuid.uuid4().hex + '.xpi'
-    destination = os.path.join(user_media_path('addons'), 'temp', filename)
-    old_xpi = get_filepath(old_version.all_files[0])
-    build_69_compatible_theme(
-        old_xpi, destination, get_next_version_number(old_version.addon))
-    upload.update(path=destination, name=filename)
-    timer.log_interval('1.build_xpi')
-
-    # Create addon + version
-    parsed_data = parse_addon(upload, addon=old_version.addon, user=author)
-    timer.log_interval('2.parse_addon')
-
-    version = Version.from_upload(
-        upload, old_version.addon, selected_apps=[amo.FIREFOX.id],
-        channel=amo.RELEASE_CHANNEL_LISTED,
-        parsed_data=parsed_data)
-    timer.log_interval('3.initialize_version')
-
-    # And finally sign the files (actually just one)
-    for file_ in version.all_files:
-        sign_file(file_)
-        file_.update(
-            reviewed=datetime.now(),
-            status=amo.STATUS_APPROVED)
-    timer.log_interval('4.sign_files')
-
-    return version

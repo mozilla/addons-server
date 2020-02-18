@@ -19,7 +19,7 @@ FROM
          WHERE group_id IN
              (SELECT id
               FROM groups
-              WHERE name IN ('Staff', 'No Reviewer Incentives'))) THEN 'volunteer' ELSE 'all' END AS `group_category`
+              WHERE name = 'No Reviewer Incentives')) THEN 'volunteer' ELSE 'all' END AS `group_category`
       FROM reviewer_scores rs
       JOIN users u ON u.id = rs.user_id
       WHERE DATE(rs.created) BETWEEN @WEEK_BEGIN AND @WEEK_END

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-03 12:28+0000\n"
+"PO-Revision-Date: 2020-02-16 05:58+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -788,9 +788,8 @@ msgstr "ร้องขอการพิจารณาชุดตกแต่
 msgid "Admin theme-review requested"
 msgstr "ร้องขอการพิจารณาชุดตกแต่งโดยผู้ดูแลระบบแล้ว"
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} ถูกเอาออกจาก {collection}"
+msgstr "{addon} ถูกโอนย้ายจากชุดตกแต่งขนาดเล็ก"
 
 msgid "User {user} api key reset."
 msgstr "รีเซ็ตคีย์ api ของผู้ใช้ {user} แล้ว"
@@ -1304,25 +1303,20 @@ msgstr "บทวิจารณ์ส่วนเสริมที่ปรั
 msgid "Add-on Review Moderation Reverted"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "บทวิจารณ์เนื้อหาส่วนเสริม"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "บทวิจารณ์ส่วนเสริม"
+msgstr "บทวิจารณ์ส่วนเสริม (ความเสี่ยงสูงที่สุด)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "บทวิจารณ์ส่วนเสริม"
+msgstr "บทวิจารณ์ส่วนเสริม (ความเสี่ยงสูง)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "บทวิจารณ์ส่วนเสริม"
+msgstr "บทวิจารณ์ส่วนเสริม (ความเสี่ยงปานกลาง)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "บทวิจารณ์ส่วนเสริม"
+msgstr "บทวิจารณ์ส่วนเสริม (ความเสี่ยงต่ำ)"
 
 msgid "Level 1"
 msgstr "ระดับ 1"
@@ -1502,10 +1496,10 @@ msgid "License text is required when choosing Other."
 msgstr "จำเป็นต้องระบุข้อความใบอนุญาตเมื่อเลือก อื่น ๆ"
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "ส่วนเสริมนี้มีข้อตกลงสัญญาอนุญาตผู้ใช้ปลายทาง"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "โปรดระบุข้อตกลงสัญญาอนุญาตผู้ใช้ปลายทางของส่วนเสริมของคุณ:"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "ส่วนเสริมนี้มีนโยบายความเป็นส่วนตัว"
@@ -1514,7 +1508,7 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "กรุณาระบุนโยบายความเป็นส่วนตัวของส่วนเสริมของคุณ"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "ไม่รองรับไฟล์ชนิดนี้ โปรดอัปโหลดไฟล์เก็บถาวร {extensions}"
 
 #, fuzzy
 msgid "Invalid or broken archive."
@@ -1533,7 +1527,7 @@ msgid "There was an error with your upload. Please try again."
 msgstr "มีข้อผิดพลาดกับการอัปโหลดของคุณ โปรดลองอีกครั้ง"
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "เขียนทับการตรวจสอบความถูกต้องที่ล้มเหลว"
 
 msgid "Need to select at least one application."
 msgstr "ต้องเลือกอย่างน้อยหนึ่งแอปพลิเคชัน"
@@ -1556,9 +1550,8 @@ msgstr "ใช่"
 msgid "No"
 msgstr "ไม่"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "คุณไม่สามารถอัปโหลดไฟล์สำหรับรุ่นนี้เพิ่มเติมได้อีกแล้ว"
+msgstr "คุณไม่ได้อัปโหลดไฟล์ต้นฉบับ"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -1578,7 +1571,7 @@ msgid "Display Name"
 msgstr "ชื่อที่แสดงผล"
 
 msgid "Categories cannot be changed while your add-on is featured."
-msgstr ""
+msgstr "ไม่สามารถเปลี่ยนหมวดหมู่ขณะที่ส่วนเสริมของคุณอยู่ในรายการเด่นได้"
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -1595,7 +1588,7 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "เกิดข้อผิดพลาด/คำเตือนหลายข้อในการตรวจสอบความถูกต้อง %s ข้อความจึงถูกตัดทอน หลังจากที่จัดการกับข้อความที่มองเห็นได้แล้ว คุณจะสามารถเห็นข้อความอื่น ๆ ได้"
 
 msgid "Updated"
 msgstr "อัปเดตแล้ว"
@@ -2028,9 +2021,8 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "ป้ายกำกับที่สงวนไว้:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "ผู้มีส่วนร่วม"
+msgstr "URL การมีส่วนร่วม"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -2358,9 +2350,8 @@ msgstr "ดูการเปลี่ยนแปลงล่าสุด"
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "ส่วนเสริมนี้ไม่เข้ากันกับรุ่นของ %(app)s ของคุณ"
+msgstr "ส่วนเสริมนี้ไม่มีรุ่นใด ๆ"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2405,9 +2396,8 @@ msgstr "สรุป:"
 msgid "Description:"
 msgstr "คำอธิบาย:"
 
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "ส่วนเสริมนี้ถูกเอาออกโดยผู้สร้างส่วนเสริม"
+msgstr "ส่วนเสริมนี้เป็นรุ่นทดลอง"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
@@ -2415,13 +2405,11 @@ msgstr ""
 msgid "Select a category for this add-on:"
 msgstr "เลือกหมวดหมู่สำหรับส่วนเสริมนี้:"
 
-#, fuzzy
 msgid "Support email:"
-msgstr "อีเมลการสนับสนุน"
+msgstr "อีเมลการสนับสนุน:"
 
-#, fuzzy
 msgid "Support website:"
-msgstr "เว็บไซต์การสนับสนุน"
+msgstr "เว็บไซต์การสนับสนุน:"
 
 msgid "License:"
 msgstr "สัญญาอนุญาต:"
@@ -2478,20 +2466,17 @@ msgstr ""
 msgid "Submission Complete"
 msgstr "การส่งเสร็จสมบูรณ์"
 
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "ส่งบทวิจารณ์"
+msgstr "รุ่นที่ส่งเพื่อตรวจสอบ"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "รุ่น"
+msgstr "ตัวอย่างของรุ่นที่ส่ง"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "รุ่น"
+msgstr "รุ่นที่ส่ง"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -2505,9 +2490,8 @@ msgstr ""
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
 
-#, fuzzy
 msgid "Manage Listing"
-msgstr "จัดการ"
+msgstr "จัดการการแสดงรายการ"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
@@ -2515,9 +2499,8 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "แก้ไขรุ่น {0}"
 
-#, fuzzy
 msgid "Version Signed"
-msgstr "รุ่น"
+msgstr "รุ่นที่ลงลายเซ็น"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
@@ -2585,9 +2568,8 @@ msgstr ""
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "ส่ง"
+msgstr "วิธีส่ง:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr ""
@@ -2632,13 +2614,11 @@ msgstr "สร้างชุดตกแต่ง"
 msgid "Sign Add-on"
 msgstr "เซ็นส่วนเสริม"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "ลบชุดตกแต่งแล้ว"
+msgstr "การสร้างชุดตกแต่ง"
 
-#, fuzzy
 msgid "Theme generator"
-msgstr "ลบชุดตกแต่งแล้ว"
+msgstr "ตัวสร้างชุดตกแต่ง"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
 msgstr ""
@@ -2668,20 +2648,17 @@ msgstr "เลือกภาพส่วนหัวอื่น"
 msgid "Select colors for your theme"
 msgstr "เลือกไอคอนสำหรับส่วนเสริมของคุณ"
 
-#, fuzzy
 msgid "optional"
-msgstr "(ไม่บังคับ)"
+msgstr "ไม่บังคับ"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "เขียนบทวิจารณ์"
+msgstr "ตัวอย่างเบราว์เซอร์"
 
 msgid "Uploading Theme"
 msgstr "กำลังอัปโหลดชุดตกแต่ง"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s ชุดตกแต่ง"
+msgstr "สิ้นสุดการสร้างชุดตกแต่ง"
 
 msgid "Back"
 msgstr "ย้อนกลับ"
@@ -2909,9 +2886,8 @@ msgstr ""
 msgid "Contribute"
 msgstr "บริจาค"
 
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "วิจารณ์ส่วนเสริมนี้"
+msgstr "วิจารณ์ส่วนเสริม"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr ""
@@ -3067,9 +3043,8 @@ msgstr "ตรวจทานประวัติ"
 msgid "Close Review History"
 msgstr ""
 
-#, fuzzy
 msgid "Request Review"
-msgstr "บทวิจารณ์ชุดตกแต่ง"
+msgstr "ร้องขอการตรวจสอบ"
 
 msgid "Cancel Review Request"
 msgstr "ยกเลิกคำขอตรวจทาน"
@@ -3108,10 +3083,10 @@ msgid "Listed versions"
 msgstr "ดูรุ่นอื่น"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "อยู่บน AMO ในขณะนี้"
 
 msgid "Validation"
-msgstr ""
+msgstr "การตรวจสอบ"
 
 msgid "Delete/Disable"
 msgstr "ลบ/ปิดใช้งาน"
@@ -5298,9 +5273,8 @@ msgstr "อธิบายส่วนเสริมของคุณ"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "นักพัฒนา"
+msgstr "การตอบกลับของผู้ตรวจสอบ"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
@@ -5328,13 +5302,11 @@ msgstr ""
 msgid "Other Pending Review ({0})"
 msgstr "ยังไม่ถูกตรวจสอบ"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "หมายเหตุบทวิจารณ์"
+msgstr "รายการบันทึกการตรวจสอบ"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "บทวิจารณ์ส่วนเสริม"
+msgstr "คำแนะนำในการตรวจสอบส่วนเสริม"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5350,9 +5322,8 @@ msgstr ""
 msgid "Review Guide"
 msgstr "คู่มือบทวิจารณ์"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "การตรวจสอบเนื้อหา"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
@@ -5364,9 +5335,8 @@ msgstr "ใหม่ ({0})"
 msgid "Updates ({0})"
 msgstr "การอัปเดต ({0})"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "บทวิจารณ์ชุดตกแต่ง"
+msgstr "คำแนะนำในการตรวจสอบชุดตกแต่ง"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -5441,9 +5411,8 @@ msgstr "ทำงานกับ"
 msgid "Visibility"
 msgstr "การมองเห็น"
 
-#, fuzzy
 msgid "Visible"
-msgstr "การมองเห็น"
+msgstr "มองเห็นได้"
 
 msgid "View Statistics"
 msgstr "ดูสถิติ"
@@ -5526,9 +5495,8 @@ msgstr ""
 msgid "Log details"
 msgstr ""
 
-#, fuzzy
 msgid "Review Author"
-msgstr "วิจารณ์ส่วนเสริมนี้"
+msgstr "ผู้เขียนบทวิจารณ์"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -5830,9 +5798,9 @@ msgstr ""
 msgid "Rejected or Unreviewed"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "สถานะ:"
+msgstr "[สถานะ:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"

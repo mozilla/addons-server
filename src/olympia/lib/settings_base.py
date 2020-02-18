@@ -1060,21 +1060,13 @@ CELERY_TASK_EAGER_PROPAGATES = True
 # a separate, shorter timeout for validation tasks.
 CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 
-# List of modules that contain tasks and that wouldn't necessarily be imported
-# automatically when celery starts.
+# List of modules that contain tasks and that wouldn't be autodiscovered by
+# celery. Typically, it's either `tasks` modules from something not in
+# INSTALLED_APPS, or modules not called `tasks`.
 CELERY_IMPORTS = (
-    'olympia.activity.tasks',
-    'olympia.bandwagon.tasks',
-    'olympia.files.tasks',
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
-    'olympia.ratings.tasks',
-    'olympia.reviewers.tasks',
-    'olympia.versions.tasks',
     'olympia.stats.management.commands.index_stats',
-    'olympia.tags.tasks',
-    'olympia.users.tasks',
-    'olympia.zadmin.tasks',
 )
 
 CELERY_TASK_QUEUES = (
@@ -1106,20 +1098,39 @@ CELERY_TASK_ROUTES = {
     # are routed to the priority queue.
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
+    'olympia.blocklist.tasks.create_blocks_from_multi_block': {
+        'queue': 'priority'
+    },
+    'olympia.blocklist.tasks.import_block_from_blocklist': {
+        'queue': 'priority'
+    },
     'olympia.versions.tasks.generate_static_theme_preview': {
-        'queue': 'priority'},
+        'queue': 'priority'
+    },
 
     # Other queues we prioritize below.
+
+    # 'Default' queue.
+    'celery.accumulate': {'queue': 'default'},
+    'celery.backend_cleanup': {'queue': 'default'},
+    'celery.chain': {'queue': 'default'},
+    'celery.chord': {'queue': 'default'},
+    'celery.chunks': {'queue': 'default'},
+    'celery.group': {'queue': 'default'},
+    'celery.map': {'queue': 'default'},
+    'celery.starmap': {'queue': 'default'},
 
     # AMO Devhub.
     'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_initial_validation_results': {
-        'queue': 'devhub'},
+        'queue': 'devhub'
+    },
     'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
-        'queue': 'devhub'},
+        'queue': 'devhub'
+    },
     'olympia.devhub.tasks.revoke_api_key': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
@@ -1129,6 +1140,7 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
+    'olympia.scanners.tasks.call_ml_api': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1141,6 +1153,7 @@ CELERY_TASK_ROUTES = {
 
     # Images.
     'olympia.users.tasks.resize_photo': {'queue': 'images'},
+    'olympia.devhub.tasks.recreate_previews': {'queue': 'images'},
     'olympia.devhub.tasks.resize_icon': {'queue': 'images'},
     'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
 
@@ -1149,11 +1162,30 @@ CELERY_TASK_ROUTES = {
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
+    'olympia.amo.tasks.sync_object_to_basket': {'queue': 'amo'},
 
     # Addons
+    'olympia.addons.tasks.add_dynamic_theme_tag': {'queue': 'addons'},
+    'olympia.addons.tasks.delete_addons': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
-    'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
+    'olympia.addons.tasks.migrate_webextensions_to_git_storage': {
+        'queue': 'addons'
+    },
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
+    'olympia.files.tasks.extract_webext_permissions': {'queue': 'addons'},
+    'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
+    'olympia.versions.tasks.extract_version_to_git': {'queue': 'addons'},
+    'olympia.versions.tasks.extract_version_source_to_git': {
+        'queue': 'addons'
+    },
+    # Additional image processing tasks that aren't as important go in the
+    # addons queue to leave the 'devhub' queue free to process validations etc.
+    'olympia.addons.tasks.extract_colors_from_static_themes': {
+        'queue': 'addons'
+    },
+    'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'addons'},
+    'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
+    'olympia.addons.tasks.recreate_theme_previews': {'queue': 'addons'},
 
     # Crons
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
@@ -1173,15 +1205,23 @@ CELERY_TASK_ROUTES = {
 
     # Search
     'olympia.lib.es.management.commands.reindex.create_new_index': {
-        'queue': 'search'},
+        'queue': 'search'
+    },
     'olympia.lib.es.management.commands.reindex.delete_indexes': {
-        'queue': 'search'},
+        'queue': 'search'
+    },
     'olympia.lib.es.management.commands.reindex.flag_database': {
-        'queue': 'search'},
+        'queue': 'search'
+    },
     'olympia.lib.es.management.commands.reindex.unflag_database': {
-        'queue': 'search'},
+        'queue': 'search'
+    },
     'olympia.lib.es.management.commands.reindex.update_aliases': {
-        'queue': 'search'},
+        'queue': 'search'
+    },
+    'olympia.addons.tasks.find_inconsistencies_between_es_and_db': {
+        'queue': 'search'
+    },
 
     # Ratings
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'ratings'},
@@ -1197,6 +1237,7 @@ CELERY_TASK_ROUTES = {
     'olympia.tags.tasks.update_tag_stat': {'queue': 'tags'},
 
     # Users
+    'olympia.accounts.tasks.primary_email_change_event': {'queue': 'users'},
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
 
@@ -1209,12 +1250,6 @@ CELERY_TASK_ROUTES = {
         'queue': 'zadmin'
     },
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
-
-    # Temporary tasks to crush existing images.
-    # Go in the addons queue to leave the 'devhub' queue free to process
-    # validations etc.
-    'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'addons'},
-    'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
 }
 
 # See PEP 391 for formatting help.
