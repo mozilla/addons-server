@@ -9,21 +9,20 @@ from .utils import splitlines
 
 
 class MultiGUIDInputForm(forms.Form):
+    existing_block = None
+
     guids = forms.CharField(
         widget=forms.Textarea(attrs={
             'cols': '80', 'rows': '10', 'required wrap': 'off'}))
 
 
 class MultiDeleteForm(MultiGUIDInputForm):
-    existing_block_qs = None
 
     def clean(self):
         guids = splitlines(self.cleaned_data.get('guids'))
         if len(guids) >= 1:
-            # Note: we retrieve a full queryset here because we later need one
-            # to pass to admin.actions.delete_selected in delete_multiple_view.
-            self.existing_block_qs = Block.objects.filter(guid__in=guids)
-            matching_guids = [block.guid for block in self.existing_block_qs]
+            qs = Block.objects.filter(guid__in=guids)
+            matching_guids = qs.values_list('guid', flat=True)
             missing_guids = [
                 guid for guid in guids if guid not in matching_guids]
             if missing_guids:
@@ -35,7 +34,6 @@ class MultiDeleteForm(MultiGUIDInputForm):
 
 
 class MultiAddForm(MultiGUIDInputForm):
-    existing_block = None
 
     def clean(self):
         guids = splitlines(self.cleaned_data.get('guids'))
@@ -88,7 +86,10 @@ class BlockSubmissionForm(forms.ModelForm):
         guids = splitlines(data.get('input_guids'))
         # Ignore for a single guid because we always update it irrespective of
         # whether it needs to be updated.
-        if len(guids) > 1:
+        is_addchange_submission = (
+            data.get('action', BlockSubmission.ACTION_ADDCHANGE) ==
+            BlockSubmission.ACTION_ADDCHANGE)
+        if len(guids) > 1 and is_addchange_submission:
             blocks_have_changed = self._check_if_existing_blocks_changed(
                 guids,
                 data.get('min_version'),

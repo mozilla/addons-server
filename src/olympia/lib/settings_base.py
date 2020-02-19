@@ -1098,7 +1098,7 @@ CELERY_TASK_ROUTES = {
     # are routed to the priority queue.
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
-    'olympia.blocklist.tasks.create_blocks_from_multi_block': {
+    'olympia.blocklist.tasks.process_blocksubmission': {
         'queue': 'priority'
     },
     'olympia.blocklist.tasks.import_block_from_blocklist': {

@@ -52,15 +52,35 @@ def block_activity_log_save(obj, change, submission_obj=None):
     add_version_log_for_blocked_versions(obj, al)
 
 
-def block_activity_log_delete(obj, user):
+def block_activity_log_delete(obj, submission_obj):
+    details = {
+        'guid': obj.guid,
+        'min_version': obj.min_version,
+        'max_version': obj.max_version,
+        'url': obj.url,
+        'reason': obj.reason,
+        'include_in_legacy': obj.include_in_legacy,
+        'comments': f'Versions {obj.min_version} - {obj.max_version} blocked.',
+    }
+    if submission_obj:
+        details['signoff_state'] = submission_obj.SIGNOFF_STATES.get(
+            submission_obj.signoff_state)
+        if submission_obj.signoff_by:
+            details['signoff_by'] = submission_obj.signoff_by.id
     args = (
         [amo.LOG.BLOCKLIST_BLOCK_DELETED] +
         ([obj.addon] if obj.addon else []) +
         [obj.guid, obj])
     al = log_create(
-        *args, details={'guid': obj.guid}, user=user)
+        *args, details=details, user=submission_obj.updated_by)
     if obj.addon:
         add_version_log_for_blocked_versions(obj, al)
+    if submission_obj.signoff_by:
+        args = (
+            [amo.LOG.BLOCKLIST_SIGNOFF] +
+            ([obj.addon] if obj.addon else []) +
+            [obj.guid, amo.LOG.BLOCKLIST_BLOCK_DELETED.action_class, obj])
+        log_create(*args, user=submission_obj.signoff_by)
 
 
 def splitlines(text):

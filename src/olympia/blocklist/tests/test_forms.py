@@ -89,3 +89,26 @@ class TestBlockSubmissionForm(TestCase):
         form = block_admin.get_form(request=request)(data=data)
         form.is_valid()
         form.clean()  # would raise
+
+    def test_all_existing_blocks_but_delete_action(self):
+        data = {
+            'input_guids': 'any@thing,second@thing',
+            'action': BlockSubmission.ACTION_DELETE}
+        block_admin = BlockSubmissionAdmin(
+            model=BlockSubmission, admin_site=admin_site)
+        request = RequestFactory().get('/')
+
+        # The checks are bypassed if action != BlockSubmission.ACTION_ADDCHANGE
+        form = block_admin.get_form(request=request)(data=data)
+        form.is_valid()
+        form.clean()  # would raise
+
+        # Even if min_version or max_version are provided
+        data.update(
+            min_version='0',
+            max_version='*',
+            existing_min_version='1234',
+            existing_max_version='4567')
+        form = block_admin.get_form(request=request)(data=data)
+        form.is_valid()
+        form.clean()  # would raise

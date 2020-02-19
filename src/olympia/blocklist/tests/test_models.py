@@ -33,7 +33,7 @@ class TestBlock(TestCase):
 
 
 class TestMultiBlockSubmission(TestCase):
-    def test_is_save_to_blocks_permitted(self):
+    def test_is_submission_ready(self):
         submitter = user_factory()
         signoffer = user_factory()
         block = BlockSubmission.objects.create()
@@ -41,29 +41,29 @@ class TestMultiBlockSubmission(TestCase):
         # No signoff_by so not permitted
         assert not block.signoff_state
         assert not block.signoff_by
-        assert not block.is_save_to_blocks_permitted
+        assert not block.is_submission_ready
 
         # Except when the state is NOTNEEDED.
         block.update(signoff_state=BlockSubmission.SIGNOFF_NOTNEEDED)
-        assert block.is_save_to_blocks_permitted
+        assert block.is_submission_ready
 
         # But if the state is APPROVED we need to know the signoff user
         block.update(signoff_state=BlockSubmission.SIGNOFF_APPROVED)
-        assert not block.is_save_to_blocks_permitted
+        assert not block.is_submission_ready
 
         # If different users update and signoff, it's permitted.
         block.update(
             updated_by=submitter,
             signoff_by=signoffer)
-        assert block.is_save_to_blocks_permitted
+        assert block.is_submission_ready
 
         # But not if submitter is also the sign off user.
         block.update(signoff_by=submitter)
-        assert not block.is_save_to_blocks_permitted
+        assert not block.is_submission_ready
 
         # Except when that's not enforced locally
         with override_settings(DEBUG=True):
-            assert block.is_save_to_blocks_permitted
+            assert block.is_submission_ready
 
     def test_get_submissions_from_guid(self):
         addon = addon_factory(guid='guid@')
@@ -85,9 +85,10 @@ class TestMultiBlockSubmission(TestCase):
         assert list(BlockSubmission.get_submissions_from_guid('guid@')) == []
 
         # Except when we override the states to exclude
-        assert list(
-            BlockSubmission.get_submissions_from_guid('guid@', states=())) == [
-                block_subm]
+        assert (
+            list(BlockSubmission.get_submissions_from_guid(
+                'guid@', excludes=())) ==
+            [block_subm])
 
         # And check that a guid that doesn't exist in any submissions is empty
         assert list(BlockSubmission.get_submissions_from_guid('ggguid@')) == []

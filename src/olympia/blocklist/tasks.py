@@ -21,10 +21,14 @@ bracket_close_regex = re.compile(r'(?<!\\)}')
 
 @task
 @use_primary_db
-def create_blocks_from_multi_block(multi_block_submit_id, **kw):
+def process_blocksubmission(multi_block_submit_id, **kw):
     obj = BlockSubmission.objects.get(pk=multi_block_submit_id)
-    # create the blocks from the guids in the multi_block
-    obj.save_to_blocks()
+    if obj.action == BlockSubmission.ACTION_ADDCHANGE:
+        # create the blocks from the guids in the multi_block
+        obj.save_to_block_objects()
+    elif obj.action == BlockSubmission.ACTION_DELETE:
+        # delete the blocks
+        obj.delete_block_objects()
 
 
 @task

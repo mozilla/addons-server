@@ -4,5 +4,6 @@
 {% block submit_buttons_bottom %}
   {# This is so we can submit directly to the blocksubmission add view - it expect an input_guids field #}
   <input type="hidden" name="input_guids" value="{{ original.guid }}">
+  <input type="hidden" name="action" value="0">
   {{ block.super }}
 {% endblock %}
