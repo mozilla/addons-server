@@ -73,9 +73,6 @@
         {{ form.min_version.errors }}
         {{ form.min_version.label_tag }}
         {{ form.min_version }}
-        {% if not is_single_guid %}
-        <div class="help">{% trans 'Note: changing this will force a form refresh on Save to re-evaluate which Blocks will be updated.' %}</div>
-        {% endif %}
         {{ form.existing_min_version }}
       </div>
     </div>
@@ -83,9 +80,6 @@
       {{ form.max_version.errors }}
       {{ form.max_version.label_tag }}
       {{ form.max_version }}
-      {% if not is_single_guid %}
-      <div class="help">{% trans 'Note: changing this will force a form refresh on Save to re-evaluate which Blocks will be updated.' %}</div>
-      {% endif %}
       {{ form.existing_max_version }}
     </div>
     <div class="form-row">

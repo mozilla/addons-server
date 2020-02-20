@@ -232,21 +232,23 @@ class BlockSubmission(ModelBase):
             )
         )
 
-    def save(self, *args, **kwargs):
+    def _serialize_blocks(self, blocks):
         def serialize_block(block):
             return {
                 'id': block.id,
                 'guid': block.guid,
                 'average_daily_users': block.addon.average_daily_users,
             }
+
+        return [serialize_block(block) for block in blocks]
+
+    def save(self, *args, **kwargs):
         if self.input_guids and not self.to_block:
             processed = self.process_input_guids(
                 self.input_guids, self.min_version, self.max_version,
                 load_full_objects=False)
             # serialize blocks so we can save them as JSON
-            self.to_block = [
-                serialize_block(block) for block in processed.get('blocks', [])
-            ]
+            self.to_block = self._serialize_blocks(processed.get('blocks', []))
         super().save(*args, **kwargs)
 
     @classmethod
@@ -316,7 +318,8 @@ class BlockSubmission(ModelBase):
             block = (
                 blocks_to_update_dict.get(addon.guid, None) or (
                     Block(addon=addon) if load_full_objects else
-                    cls.FakeBlock(0, addon.guid, addon, Block.MIN, Block.MAX)
+                    cls.FakeBlock(
+                        None, addon.guid, addon, Block.MIN, Block.MAX)
                 ))
             blocks.append(block)
 

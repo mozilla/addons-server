@@ -151,7 +151,6 @@ class TestBlockSubmissionAdmin(TestCase):
         assert str(addon.average_daily_users) in content
         assert Block.objects.count() == 0  # Check we didn't create it already
         assert 'Block History' in content
-        assert 'changing this will force' not in content
 
         # Create the block
         response = self.client.post(
@@ -240,8 +239,6 @@ class TestBlockSubmissionAdmin(TestCase):
         assert str(existing_and_full.addon.average_daily_users) not in content
         # no metadata for an invalid guid but it should be shown
         assert 'invalid@' in content
-        # we show the warning when the versions can affect existing blocks
-        assert 'changing this will force' in content
         # Check we didn't create the block already
         assert Block.objects.count() == 2
         assert BlockSubmission.objects.count() == 0
@@ -340,7 +337,7 @@ class TestBlockSubmissionAdmin(TestCase):
         assert submission.reason == new_block.reason
 
         assert submission.to_block == [
-            {'guid': 'any@new', 'id': 0,
+            {'guid': 'any@new', 'id': None,
              'average_daily_users': new_addon.average_daily_users},
             {'guid': 'partial@existing', 'id': existing_and_partial.id,
              'average_daily_users': partial_addon.average_daily_users}
@@ -427,6 +424,7 @@ class TestBlockSubmissionAdmin(TestCase):
             },
             follow=True)
         assert response.status_code == 200
+        assert b'Blocks to be updated are different' in response.content
         # No Block should have been changed or added
         assert Block.objects.count() == 2
         assert BlockSubmission.objects.count() == 0
@@ -515,7 +513,7 @@ class TestBlockSubmissionAdmin(TestCase):
         assert multi.reason == new_block.reason
 
         assert multi.to_block == [
-            {'guid': 'any@new', 'id': 0,
+            {'guid': 'any@new', 'id': None,
              'average_daily_users': new_addon.average_daily_users},
             {'guid': 'full@existing', 'id': existing_zero_to_max.id,
              'average_daily_users':
@@ -705,7 +703,7 @@ class TestBlockSubmissionAdmin(TestCase):
         mbs.save()
         assert mbs.to_block == [
             {'guid': 'guid@',
-             'id': 0,
+             'id': None,
              'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
@@ -747,7 +745,7 @@ class TestBlockSubmissionAdmin(TestCase):
             updated_by=user_factory())
         assert mbs.to_block == [
             {'guid': 'guid@',
-             'id': 0,
+             'id': None,
              'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
@@ -810,7 +808,7 @@ class TestBlockSubmissionAdmin(TestCase):
             updated_by=user_factory())
         assert mbs.to_block == [
             {'guid': 'guid@',
-             'id': 0,
+             'id': None,
              'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
@@ -862,7 +860,7 @@ class TestBlockSubmissionAdmin(TestCase):
             updated_by=user_factory())
         assert mbs.to_block == [
             {'guid': 'guid@',
-             'id': 0,
+             'id': None,
              'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
@@ -919,7 +917,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         assert mbs.to_block == [
             {'guid': 'guid@',
-             'id': 0,
+             'id': None,
              'average_daily_users': addon.average_daily_users}]
         assert list(mbs.block_set.all()) == [new_block]
 
@@ -945,7 +943,7 @@ class TestBlockSubmissionAdmin(TestCase):
             updated_by=user_factory())
         assert mbs.to_block == [
             {'guid': 'guid@',
-             'id': 0,
+             'id': None,
              'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
@@ -1001,7 +999,7 @@ class TestBlockSubmissionAdmin(TestCase):
             updated_by=user_factory())
         assert mbs.to_block == [
             {'guid': 'guid@',
-             'id': 0,
+             'id': None,
              'average_daily_users': addon.average_daily_users}]
 
         user = user_factory()
@@ -1041,7 +1039,7 @@ class TestBlockSubmissionAdmin(TestCase):
             signoff_state=BlockSubmission.SIGNOFF_APPROVED)
         assert mbs.to_block == [
             {'guid': 'guid@',
-             'id': 0,
+             'id': None,
              'average_daily_users': addon.average_daily_users}]
         mbs.save_to_blocks()
         block = Block.objects.get()
