@@ -13,7 +13,6 @@ from elasticsearch import Elasticsearch
 from unittest.mock import patch
 from rest_framework.test import APIRequestFactory
 from waffle import switch_is_active
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser, Category, ReplacementAddon
@@ -967,8 +966,6 @@ class TestAddonSearchView(ESTestCase):
         self.url = reverse_ns('addon-search')
         self.create_switch('return-to-amo', active=True)
         switch_is_active('return-to-amo')
-        self.create_switch('api-recommendations-priority', active=True)
-        switch_is_active('api-recommendations-priority')
 
     def tearDown(self):
         super(TestAddonSearchView, self).tearDown()
@@ -1016,7 +1013,6 @@ class TestAddonSearchView(ESTestCase):
 
     def perform_search(self, url, data=None, expected_status=200,
                        expected_queries=0, **headers):
-        switch_is_active('api-recommendations-priority')  # just to cache it
         with self.assertNumQueries(expected_queries):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
@@ -1766,7 +1762,6 @@ class TestAddonSearchView(ESTestCase):
         self.refresh()
         query = (u'남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 '
                  u'남포역op남포역유흥≡남포역안마남포역오피 ♠♣')
-        assert switch_is_active('api-recommendations-priority')
         data = self.perform_search(self.url, {'q': query})
         # No results, but no 500 either.
         assert data['count'] == 0
@@ -1800,14 +1795,6 @@ class TestAddonSearchView(ESTestCase):
         # addon2 and addon4 will be first because they're recommended
         assert ids == [addon2.id, addon4.id, addon1.id, addon3.id, addon5.id]
 
-        # But if the waffle is off the recommended add-ons don't have priority.
-        with override_switch('api-recommendations-priority', active=False):
-            assert not switch_is_active('api-recommendations-priority')
-            data = self.perform_search(self.url)  # No query.
-            ids = [result['id'] for result in data['results']]
-            assert ids == [
-                addon1.id, addon2.id, addon3.id, addon4.id, addon5.id]
-
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
     client_class = APITestClient
@@ -1816,8 +1803,6 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def setUp(self):
         super(TestAddonAutoCompleteSearchView, self).setUp()
-        self.create_switch('api-recommendations-priority', active=True)
-        switch_is_active('api-recommendations-priority')
         self.url = reverse_ns('addon-autocomplete', api_version='v5')
 
     def tearDown(self):
@@ -1941,7 +1926,6 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         self.refresh()
 
         # page_size should be ignored, we should get 10 results.
-        switch_is_active('api-recommendations-priority')  # just to cache it
         data = self.perform_search(self.url, {'page_size': 1})
         assert 'count' not in data
         assert 'next' not in data

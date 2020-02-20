@@ -698,7 +698,8 @@ class SearchQueryFilter(BaseFilterBackend):
         secondary_should = self.secondary_should_rules(search_query, analyzer)
 
         # We alter scoring depending on add-on popularity and whether the
-        # add-on is reviewed & public & non-experimental.
+        # add-on is reviewed & public & non-experimental, and whether or not
+        # it's recommended.
         functions = [
             query.SF(
                 'field_value_factor',
@@ -713,15 +714,13 @@ class SearchQueryFilter(BaseFilterBackend):
                     Q('term', is_disabled=False)
                 )
             }),
+            query.SF({
+                'weight': 5.0,
+                'filter': (
+                    Q('term', is_recommended=True)
+                )
+            }),
         ]
-        if switch_is_active('api-recommendations-priority'):
-            functions.append(
-                query.SF({
-                    'weight': 5.0,
-                    'filter': (
-                        Q('term', is_recommended=True)
-                    )
-                }))
 
         # Assemble everything together
         qs = qs.query(
@@ -879,12 +878,10 @@ class SortingFilter(BaseFilterBackend):
         if not split_sort_params:
             # The default sort depends on the presence of a query: we sort by
             # relevance if we have a query, otherwise by recommended,downloads.
-            recommended_waffle_on = switch_is_active(
-                'api-recommendations-priority')
             split_sort_params = (
                 ['relevance'] if search_query_param else
-                ['recommended', 'users'] if recommended_waffle_on else
-                ['downloads'])
+                ['recommended', 'users']
+            )
 
         try:
             order_by = [self.SORTING_PARAMS[name] for name in
