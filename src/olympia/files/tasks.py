@@ -90,6 +90,6 @@ def repack_fileupload(results, upload_pk):
 
 @task
 @use_primary_db
-def hide_disabled_files(**kw):
-    for file_ in File.objects.filter(**kw):
+def hide_disabled_files(addon_id):
+    for file_ in File.objects.filter(version__addon=addon_id):
         file_.hide_disabled_file()

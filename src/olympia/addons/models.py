@@ -628,10 +628,11 @@ class Addon(OnChangeMixin, ModelBase):
             self._ratings.all().delete()
             # We avoid triggering signals for Version & File on purpose to
             # avoid extra work. Files will be moved to the correct storage
-            # location with hide_disabled_files cron later.
+            # location with hide_disabled_files task or hide_disabled_files
+            # cron as a fallback.
             File.objects.filter(version__addon=self).update(
                 status=amo.STATUS_DISABLED)
-            file_tasks.hide_disabled_files.delay(version__addon=self.id)
+            file_tasks.hide_disabled_files.delay(addon_id=self.id)
 
             self.versions.all().update(deleted=True)
             # The last parameter is needed to automagically create an AddonLog.

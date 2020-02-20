@@ -532,7 +532,7 @@ class TestAddonModels(TestCase):
         addon = addon_factory()
         addon.delete()
         hide_disabled_files_mock.delay.assert_called_with(
-            version__addon=addon.id)
+            addon_id=addon.id)
 
     def _delete_url(self):
         """Test deleting addon has URL in the email."""

@@ -102,7 +102,7 @@ class TestHideDisabledFile(TestCase):
 
     @mock.patch('olympia.files.models.File.move_file')
     def test_hide_disabled_files(self, move_file_mock):
-        hide_disabled_files.delay(version__addon=self.addon1.id)
+        hide_disabled_files.delay(addon_id=self.addon1.id)
         move_file_mock.assert_called_once_with(
             self.file1.file_path,
             self.file1.guarded_file_path,
