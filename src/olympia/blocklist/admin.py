@@ -1,6 +1,6 @@
 from django.contrib import admin, auth, contenttypes
 from django.core.exceptions import PermissionDenied
-from django.forms.fields import CharField, ChoiceField
+from django.forms.fields import ChoiceField
 from django.forms.widgets import HiddenInput
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -12,7 +12,7 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 
-from .forms import MultiAddForm, MultiDeleteForm
+from .forms import BlockSubmissionForm, MultiAddForm, MultiDeleteForm
 from .models import Block, BlockSubmission
 from .tasks import create_blocks_from_multi_block
 from .utils import block_activity_log_delete, format_block_history, splitlines
@@ -115,6 +115,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
     view_on_site = False
     list_select_related = ('updated_by', 'signoff_by')
     change_form_template = 'blocklist/block_submission_change_form.html'
+    form = BlockSubmissionForm
 
     class Media:
         css = {
@@ -227,27 +228,13 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             )
         return ro_fields
 
-    @property
-    def form(self):
-        super_form = super().form
-        model_form_fields = {
-            'existing_min_version': CharField(
-                widget=HiddenInput, required=False),
-            'existing_max_version': CharField(
-                widget=HiddenInput, required=False)}
-        return type(super_form.__name__, (super_form,), model_form_fields)
-
-    def is_single_guid(self, request):
-        """We special case a single guid in a few places."""
-        return len(self._get_input_guids(request)) == 1
-
     def _get_input_guids(self, request):
         return splitlines(
             request.POST.get('guids', request.GET.get(
                 'guids', request.POST.get('input_guids', ''))))
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
-        single_guid = self.is_single_guid(request)
+        single_guid = len(self._get_input_guids(request)) == 1
         if single_guid and db_field.name in ('min_version', 'max_version'):
             return ChoiceField(**kwargs)
         return super().formfield_for_dbfield(db_field, request, **kwargs)
@@ -270,7 +257,6 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             raise PermissionDenied
 
         MultiBlockForm = self.get_form(request, change=False, **kwargs)
-        is_single_guid = self.is_single_guid(request)
 
         guids_data = request.POST.get('guids', request.GET.get('guids'))
         if guids_data and 'input_guids' not in request.POST:
@@ -284,17 +270,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         elif request.method == 'POST':
             # Otherwise, if its a POST try to process the form.
             form = MultiBlockForm(request.POST)
-            frm_data = form.data
-            # Check if the versions specified were the ones we calculated which
-            # Blocks would be updated or skipped on.
-            # Ignore for a single guid because we always update it irrespective
-            # of whether it needs to be updated.
-            # TODO: make this more intelligent and don't force a refresh when
-            # we have multiple new Blocks (but no existing blocks to update)
-            versions_unchanged = is_single_guid or (
-                frm_data['min_version'] == frm_data['existing_min_version'] and
-                frm_data['max_version'] == frm_data['existing_max_version'])
-            if form.is_valid() and versions_unchanged:
+            if form.is_valid():
                 # Save the object so we have the guids
                 obj = form.save(commit=False)
                 obj.updated_by = request.user
@@ -307,13 +283,15 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             else:
                 guids_data = request.POST.get('input_guids')
                 form_data = form.data.copy()
+                # each time we render the form we pass along the existing
+                # versions so we can detect if they've been changed and we'd '
+                # need a recalculation how existing blocks are affected.
                 form_data['existing_min_version'] = form_data['min_version']
                 form_data['existing_max_version'] = form_data['max_version']
                 form.data = form_data
         else:
             # if its not a POST and no ?guids there's nothing to do so go back
             return redirect('admin:blocklist_block_add')
-
         context = {
             'form': form,
             'add': True,
@@ -326,7 +304,6 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             'save_as': False,
             'block_history': self.block_history(
                 self.model(input_guids=guids_data)),
-            'is_single_guid': is_single_guid,
         }
         context.update(**self._get_enhanced_guid_context(request, guids_data))
         return TemplateResponse(

@@ -54,3 +54,48 @@ class MultiAddForm(MultiGUIDInputForm):
                     params={'guid': guid}))
         if errors:
             raise ValidationError(errors)
+
+
+class BlockSubmissionForm(forms.ModelForm):
+    existing_min_version = forms.fields.CharField(
+        widget=forms.widgets.HiddenInput, required=False)
+    existing_max_version = forms.fields.CharField(
+        widget=forms.widgets.HiddenInput, required=False)
+
+    def _check_if_existing_blocks_changed(self, all_guids, v_min, v_max,
+                                          existing_v_min, existing_v_max):
+        # shortcut if the min/max versions havn't changed
+        if v_min == existing_v_min and v_max == existing_v_max:
+            return False
+
+        block_data = list(Block.objects.filter(guid__in=all_guids).values_list(
+            'guid', 'min_version', 'max_version'))
+
+        to_update_based_on_existing_v = [
+            guid for (guid, min_version, max_version) in block_data
+            if not (
+                min_version == existing_v_min and
+                max_version == existing_v_max)]
+        to_update_based_on_new_v = [
+            guid for (guid, min_version, max_version) in block_data
+            if not (min_version == v_min and max_version == v_max)]
+
+        return to_update_based_on_existing_v != to_update_based_on_new_v
+
+    def clean(self):
+        super().clean()
+        data = self.cleaned_data
+        guids = splitlines(data.get('input_guids'))
+        # Ignore for a single guid because we always update it irrespective of
+        # whether it needs to be updated.
+        if len(guids) > 1:
+            blocks_have_changed = self._check_if_existing_blocks_changed(
+                guids,
+                data.get('min_version'),
+                data.get('max_version'),
+                data.get('existing_min_version'),
+                data.get('existing_max_version'))
+            if blocks_have_changed:
+                raise ValidationError(
+                    _('Blocks to be updated are different because Min or '
+                      'Max version has changed.'))
