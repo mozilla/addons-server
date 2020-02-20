@@ -1065,9 +1065,12 @@ class TestScannerQueryResultAdmin(TestCase):
         )
 
     def test_list_view(self):
+        addon = addon_factory()
+        addon.authors.add(user_factory(email='foo@bar.com'))
+        addon.authors.add(user_factory(email='bar@foo.com'))
         rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)
         result = ScannerQueryResult.objects.create(
-            scanner=YARA, version=addon_factory().current_version
+            scanner=YARA, version=addon.current_version
         )
         result.add_yara_result(rule=rule.name)
         result.save()
@@ -1075,6 +1078,18 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         html = pq(response.content)
         assert html('.field-formatted_addon').length == 1
+        authors = html('.field-authors a')
+        assert authors.length == 2
+        result = sorted(
+            (a.text, a.attrib['href']) for a in html('.field-authors a')
+        )
+        expected = sorted(
+            (user.email, '%s%s' % (
+                settings.EXTERNAL_SITE_URL,
+                reverse('admin:users_userprofile_change', args=(user.pk,))))
+            for user in addon.authors.all()
+        )
+        assert result == expected
 
     def test_list_view_no_query_permissions(self):
         rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)
@@ -1346,6 +1361,42 @@ class TestScannerQueryResultAdmin(TestCase):
             content = self.admin.formatted_matched_rules_with_files(result)
         assert expect_file_item in content
         assert rule_url in content
+
+    def test_matching_filenames_in_changelist(self):
+        rule = ScannerQueryRule.objects.create(
+            name='foo', scanner=YARA, created=self.days_ago(2))
+        result1 = ScannerQueryResult.objects.create(
+            scanner=YARA, version=addon_factory().current_version
+        )
+        result1.add_yara_result(
+            rule=rule.name, meta={'filename': 'some/file/somewhere.js'})
+        result1.add_yara_result(
+            rule=rule.name, meta={'filename': 'another/file/somewhereelse.js'})
+        result1.save()
+        result2 = ScannerQueryResult.objects.create(
+            scanner=YARA, version=addon_factory().current_version,
+            created=self.days_ago(1),
+        )
+        result2.add_yara_result(
+            rule=rule.name, meta={'filename': 'a/file/from/another_addon.js'})
+        result2.save()
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        links = doc('.field-matching_filenames a')
+        assert len(links) == 3
+        expected = [
+            'http://testserver{}'.format(reverse('files.list', args=[
+                result1.version.all_files[0].pk, 'file',
+                'some/file/somewhere.js'])),
+            'http://testserver{}'.format(reverse('files.list', args=[
+                result1.version.all_files[0].pk, 'file',
+                'another/file/somewhereelse.js'])),
+            'http://testserver{}'.format(reverse('files.list', args=[
+                result2.version.all_files[0].pk, 'file',
+                'a/file/from/another_addon.js'])),
+        ]
+        assert [link.attrib['href'] for link in links] == expected
 
 
 class TestIsSafeUrl(TestCase):
