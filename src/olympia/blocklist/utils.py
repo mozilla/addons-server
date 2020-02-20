@@ -1,7 +1,5 @@
 import math
 
-from django.template.loader import render_to_string
-
 from filtercascade import FilterCascade
 
 import olympia.core.logger
@@ -63,12 +61,6 @@ def block_activity_log_delete(obj, user):
         *args, details={'guid': obj.guid}, user=user)
     if obj.addon:
         add_version_log_for_blocked_versions(obj, al)
-
-
-def format_block_history(logs, additional_content=''):
-    return render_to_string(
-        'blocklist/includes/logs.html',
-        {'logs': logs, 'addtional_content': additional_content})
 
 
 def splitlines(text):

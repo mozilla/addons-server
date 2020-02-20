@@ -21,5 +21,10 @@
         </ul>
       </li>
     {% endfor %}
-    {{ addtional_content }}
+    {% if block_submission %}
+      <li>
+        {{ block_submission.modified|date:"Y-m-d" }}.
+        <a href="{% url 'admin:blocklist_blocksubmission_change' block_submission.id %}">Changes pending</a>
+      </li>
+    {% endif %}
 </ul>

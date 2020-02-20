@@ -15,7 +15,7 @@ from olympia.amo.utils import HttpResponseTemporaryRedirect
 from .forms import MultiAddForm, MultiDeleteForm
 from .models import Block, BlockSubmission
 from .tasks import create_blocks_from_multi_block
-from .utils import block_activity_log_delete, format_block_history, splitlines
+from .utils import block_activity_log_delete, splitlines
 
 
 # The limit for how many GUIDs should be fully loaded with all metadata
@@ -450,9 +450,10 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         guids = splitlines(obj.input_guids)
         if len(guids) != 1:
             return ''
-        return format_block_history(
-            ActivityLog.objects.for_guidblock(guids[0]).filter(
-                action__in=Block.ACTIVITY_IDS).order_by('created'))
+        logs = ActivityLog.objects.for_guidblock(guids[0]).filter(
+            action__in=Block.ACTIVITY_IDS).order_by('created')
+        return render_to_string(
+            'blocklist/includes/logs.html', {'logs': logs})
 
 
 @admin.register(Block)
@@ -504,18 +505,12 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     def block_history(self, obj):
         submission = BlockSubmission.get_submissions_from_guid(
             obj.guid).first()
-        submission_log = (
-            format_html(
-                '<li>{date}. <a href="{url}">Changes pending</a></li>',
-                date=submission.modified.date(),
-                url=reverse(
-                    'admin:blocklist_blocksubmission_change',
-                    args=(submission.id,)))
-            if submission else '')
-        return format_block_history(
-            ActivityLog.objects.for_guidblock(obj.guid).filter(
-                action__in=Block.ACTIVITY_IDS).order_by('created'),
-            additional_content=submission_log)
+
+        logs = ActivityLog.objects.for_guidblock(obj.guid).filter(
+            action__in=Block.ACTIVITY_IDS).order_by('created')
+        return render_to_string(
+            'blocklist/includes/logs.html',
+            {'logs': logs, 'block_submission': submission})
 
     def get_fieldsets(self, request, obj):
         details = (
