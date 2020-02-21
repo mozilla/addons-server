@@ -4,8 +4,6 @@ import json
 from django.conf import settings
 from django.utils.encoding import force_text
 
-from waffle.testutils import override_switch
-
 from olympia import amo
 from olympia.amo.tests import (
     APITestClient, ESTestCase, reverse_ns, create_switch)
@@ -525,16 +523,16 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_tabby_cat(self):
         self._check_scenario('Tabby cat', (
-            ['Tabby Cat', 56.777256],
+            ['Tabby Cat', 283.8863],
         ))
 
     def test_scenario_tabbycat(self):
         self._check_scenario('tabbycat', (
-            ['Tabby Cat', 0.95445126],
-            ['OneTab', 0.8880905],
+            ['Tabby Cat', 4.7722564],
+            ['OneTab', 0.88809050],
             ['FoxyTab', 0.76142323],
             ['Authenticator', 0.68661183],
-            ['Tab Mix Plus', 0.51704407],
+            ['Tab Mix Plus', 0.517044070],
             ['Open Bookmarks in New Tab', 0.40527225],
             ['Tab Center Redux', 0.39011657],
             ['Open image in a new tab', 0.3115263],
@@ -543,8 +541,8 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_tabbbycat(self):
         self._check_scenario('tabbbycat', (
-            ['OneTab', 0.88739204],
-            ['Tabby Cat', 0.8728613],
+            ['Tabby Cat', 4.364307],
+            ['OneTab', 0.887392040],
             ['FoxyTab', 0.7608244],
             ['Authenticator', 0.6860718],
             ['Tab Mix Plus', 0.51663744],
@@ -556,10 +554,10 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_tabbicat(self):
         self._check_scenario('tabbicat', (
+            ['Tabby Cat', 3.4082708],
             ['OneTab', 0.8880905],
             ['FoxyTab', 0.76142323],
             ['Authenticator', 0.68661183],
-            ['Tabby Cat', 0.68165416],
             ['Tab Mix Plus', 0.51704407],
             ['Open Bookmarks in New Tab', 0.40527225],
             ['Tab Center Redux', 0.39011657],
@@ -794,56 +792,7 @@ class TestRankingScenarios(ESTestCase):
             [u'Foobar unique english', 4.957241],
         ), lang='en-US')
 
-    @override_switch('api-recommendations-priority', active=True)
-    def test_scenario_tabby_cat_recommendations_priority(self):
-        self._check_scenario('Tabby cat', (
-            ['Tabby Cat', 283.8863],
-        ))
-
-    @override_switch('api-recommendations-priority', active=True)
-    def test_scenario_tabbycat_recommendations_priority(self):
-        self._check_scenario('tabbycat', (
-            ['Tabby Cat', 4.7722564],
-            ['OneTab', 0.88809050],
-            ['FoxyTab', 0.76142323],
-            ['Authenticator', 0.68661183],
-            ['Tab Mix Plus', 0.517044070],
-            ['Open Bookmarks in New Tab', 0.40527225],
-            ['Tab Center Redux', 0.39011657],
-            ['Open image in a new tab', 0.3115263],
-            ['Open Image in New Tab', 0.24481377],
-        ))
-
-    @override_switch('api-recommendations-priority', active=True)
-    def test_scenario_tabbbycat_recommendations_priority(self):
-        self._check_scenario('tabbbycat', (
-            ['Tabby Cat', 4.364307],
-            ['OneTab', 0.887392040],
-            ['FoxyTab', 0.7608244],
-            ['Authenticator', 0.6860718],
-            ['Tab Mix Plus', 0.51663744],
-            ['Open Bookmarks in New Tab', 0.4049535],
-            ['Tab Center Redux', 0.38980976],
-            ['Open image in a new tab', 0.3112813],
-            ['Open Image in New Tab', 0.24462123],
-        ))
-
-    @override_switch('api-recommendations-priority', active=True)
-    def test_scenario_tabbicat_recommendations_priority(self):
-        self._check_scenario('tabbicat', (
-            ['Tabby Cat', 3.4082708],
-            ['OneTab', 0.8880905],
-            ['FoxyTab', 0.76142323],
-            ['Authenticator', 0.68661183],
-            ['Tab Mix Plus', 0.51704407],
-            ['Open Bookmarks in New Tab', 0.40527225],
-            ['Tab Center Redux', 0.39011657],
-            ['Open image in a new tab', 0.3115263],
-            ['Open Image in New Tab', 0.24481377],
-        ))
-
-    @override_switch('api-recommendations-priority', active=True)
-    def test_scenario_tab_recommendations_priority(self):
+    def test_scenario_tab(self):
         self._check_scenario('tab', (
             ['Tabby Cat', 9.2712755],
             ['OneTab', 4.11413670],
@@ -853,10 +802,4 @@ class TestRankingScenarios(ESTestCase):
             ['Open Bookmarks in New Tab', 2.9872396],
             ['Open image in a new tab', 2.5463212],
             ['Open Image in New Tab', 2.08934],
-        ))
-
-    @override_switch('api-recommendations-priority', active=True)
-    def test_scenario_websocket_recommendations_priority(self):
-        self._check_scenario('websocket', (
-            ['Simple WebSocket Client', 4.808697],
         ))
