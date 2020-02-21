@@ -1,0 +1,30 @@
+{% load i18n %}
+
+<ul>
+    {% for log in logs %}
+      <li>
+        {% if log.details.url %}
+            <a href="{{ log.details.url }}">{{ log.created|date:"Y-m-d" }}</a>.
+        {% else %}
+            {{ log.created|date:"Y-m-d" }}.
+        {% endif %}
+        {{ log.log.short }} by {{ log.author_name }}:
+        {% if log.details %}{{ log.details.guid }}{% else %}{{ log.arguments.1 }}{% endif %}{% if 'min_version' in log.details %}
+            , {% trans 'versions' %} {{ log.details.min_version }} - {{ log.details.max_version }}.
+        {% else %}.
+        {% endif %}
+        {% if log.details.include_in_legacy %}
+            {% trans 'Included in legacy blocklist.' %}
+        {% endif %}
+        <ul>
+            <li>{{ log.details.reason }}</li>
+        </ul>
+      </li>
+    {% endfor %}
+    {% if block_submission %}
+      <li>
+        {{ block_submission.modified|date:"Y-m-d" }}.
+        <a href="{% url 'admin:blocklist_blocksubmission_change' block_submission.id %}">Changes pending</a>
+      </li>
+    {% endif %}
+</ul>
