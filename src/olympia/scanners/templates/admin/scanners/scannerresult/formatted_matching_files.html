@@ -1,0 +1,16 @@
+{% load admin_urls %}
+{# This template can be used for both scanner results and scanner query results. Keep it generic. #}
+
+<ul>
+  {% for rule in matched_rules %}
+    {% for file in rule.files %}
+      <li>
+        {% if file_id %}
+          <a href="{{ external_site_url }}{% url 'files.list' file_id 'file' file %}">{{ file }}</a>
+        {% else %}
+          {{ file }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  {% endfor %}
+</ul>

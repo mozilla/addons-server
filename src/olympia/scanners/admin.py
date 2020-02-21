@@ -6,7 +6,7 @@ from django.db.models import FieldDoesNotExist, Prefetch
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
-from django.utils.html import format_html
+from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode, is_safe_url
 from django.utils.translation import ugettext, gettext_lazy as _
 
@@ -180,6 +180,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     list_display = (
         'id',
         'formatted_addon',
+        'authors',
         'guid',
         'channel',
         'scanner',
@@ -202,6 +203,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         'id',
         'upload',
         'formatted_addon',
+        'authors',
         'guid',
         'channel',
         'scanner',
@@ -230,6 +232,8 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                 # including the deleted ones.
                 queryset=Addon.unfiltered.all().only_translations(),
             ),
+            'version__files',
+            'version__addon__authors',
             'matched_rules',
         )
 
@@ -292,6 +296,17 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     formatted_addon.short_description = 'Add-on'
 
+    def authors(self, obj):
+        if not obj.version:
+            return '-'
+        contents = format_html_join(
+            '', '<li><a href="{}">{}</a></li>',
+            ((urljoin(
+                settings.EXTERNAL_SITE_URL,
+                reverse('admin:users_userprofile_change', args=(author.pk,))),
+             author.email) for author in obj.version.addon.authors.all()))
+        return format_html('<ul>{}</ul>', contents)
+
     def guid(self, obj):
         if obj.version:
             return obj.version.addon.guid
@@ -332,13 +347,13 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     formatted_matched_rules.short_description = 'Matched rules'
 
-    def formatted_matched_rules_with_files(self, obj):
+    def formatted_matched_rules_with_files(
+            self, obj, template_name='formatted_matched_rules_with_files'):
         files_by_matched_rules = obj.get_files_by_matched_rules()
         rule_model = self.model.matched_rules.rel.model
         info = rule_model._meta.app_label, rule_model._meta.model_name
         return render_to_string(
-            'admin/scanners/scannerresult/'
-            'formatted_matched_rules_with_files.html',
+            f'admin/scanners/scannerresult/{template_name}.html',
             {
                 'rule_change_urlname': 'admin:%s_%s_change' % info,
                 'external_site_url': settings.EXTERNAL_SITE_URL,
@@ -562,6 +577,17 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
 class ScannerQueryResultAdmin(
         AbstractScannerResultAdminMixin, admin.ModelAdmin):
     raw_id_fields = ('version',)
+    list_display = (
+        'id',
+        'formatted_addon',
+        'authors',
+        'guid',
+        'channel',
+        'scanner',
+        'formatted_matched_rules',
+        'matching_filenames',
+        'created',
+    )
     list_filter = (
         ('matched_rules', ScannerRuleListFilter),
         ('version__channel', VersionChannelFilter),
@@ -570,6 +596,10 @@ class ScannerQueryResultAdmin(
         ('version__files__status', FileStatusFiler),
         ('version__files__is_signed', FileIsSigned),
     )
+
+    def matching_filenames(self, obj):
+        return self.formatted_matched_rules_with_files(
+            obj, template_name='formatted_matching_files')
 
     def has_actions_permission(self, request):
         return acl.action_allowed(

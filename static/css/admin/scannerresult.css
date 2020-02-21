@@ -10,3 +10,21 @@
 .field-result_actions .button.default {
   float: none;
 }
+
+.field-matching_filenames ul, .field-authors ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.field-matching_filenames li, .field-authors li {
+    display: block;
+    max-width: 36em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.field-authors li {
+    max-width: 24em;
+}
