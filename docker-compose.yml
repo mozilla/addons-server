@@ -39,6 +39,7 @@ services:
       - ./site-static:/srv/site-static
       - ./storage/shared_storage/uploads:/srv/user-media
       - ./storage/files:/srv/user-media/addons
+      - ./storage/guarded-addons:/srv/user-media/guarded-addons
     ports:
       - "80:80"
 

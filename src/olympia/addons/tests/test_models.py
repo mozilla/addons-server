@@ -527,6 +527,13 @@ class TestAddonModels(TestCase):
         dpf_vesions_mock.assert_called_with(
             sender=None, instance=version_preview)
 
+    @patch('olympia.files.tasks.hide_disabled_files')
+    def test_delete_hides_files(self, hide_disabled_files_mock):
+        addon = addon_factory()
+        addon.delete()
+        hide_disabled_files_mock.delay.assert_called_with(
+            addon_id=addon.id)
+
     def _delete_url(self):
         """Test deleting addon has URL in the email."""
         a = Addon.objects.get(pk=4594)
