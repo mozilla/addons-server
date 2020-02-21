@@ -297,6 +297,8 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     formatted_addon.short_description = 'Add-on'
 
     def authors(self, obj):
+        if not obj.version:
+            return '-'
         contents = format_html_join(
             '', '<li><a href="{}">{}</a></li>',
             ((urljoin(
