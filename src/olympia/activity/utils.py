@@ -107,8 +107,9 @@ class ActivityEmailParser(object):
             raise ActivityEmailToNotificationsError(
                 'This email address is not meant to receive emails directly. '
                 'If you want to get in contact with add-on reviewers, please '
-                'reply to the original email or join us in IRC on '
-                'irc.mozilla.org/#addon-reviewers. Thank you.')
+                'reply to the original email or join us in Matrix on '
+                'https://chat.mozilla.org/#/room/#addon-reviewers:mozilla.org '
+                '. Thank you.')
         log.exception(
             'TO: address missing or not related to activity emails. (%s)'
             % ', '.join(addresses))

@@ -9,17 +9,7 @@
     "participate": {
         "home": "https://wiki.mozilla.org/Add-ons/Contribute/AMO/Code",
         "docs": "http://addons-server.readthedocs.io/",
-        "irc": "irc://irc.mozilla.org/#amo",
-        "irc-contacts": [
-            "bsilverberg", 
-            "cgrebs", 
-            "eviljeff", 
-            "kumar", 
-            "mat", 
-            "muffinresearch", 
-            "rebm", 
-            "willdurand"
-        ]
+        "matrix": "https://chat.mozilla.org/#/room/#amo:mozilla.org",
     },
     "bugs": {
         "list": "https://github.com/mozilla/addons-server/issues",

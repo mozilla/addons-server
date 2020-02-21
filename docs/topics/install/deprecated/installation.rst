@@ -298,8 +298,8 @@ The :ref:`contributing` page has more on managing branches.
 Contact
 -------
 
-Come talk to us on irc://irc.mozilla.org/amo if you have questions, issues, or
-compliments.
+Come talk to us on https://chat.mozilla.org/#/room/#amo:mozilla.org if you have
+questions, issues, or compliments.
 
 
 Submitting a Patch
