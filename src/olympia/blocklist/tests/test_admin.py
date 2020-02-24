@@ -126,7 +126,7 @@ class TestBlockAdmin(TestCase):
 class TestBlockSubmissionAdmin(TestCase):
     def setUp(self):
         self.submission_url = reverse('admin:blocklist_blocksubmission_add')
-        self.multi_list_url = reverse(
+        self.submission_list_url = reverse(
             'admin:blocklist_blocksubmission_changelist')
 
     def test_add_single(self):
@@ -711,7 +711,7 @@ class TestBlockSubmissionAdmin(TestCase):
         self.grant_permission(user, permission)
         self.client.login(email=user.email)
 
-        response = self.client.get(self.multi_list_url, follow=True)
+        response = self.client.get(self.submission_list_url, follow=True)
         assert response.status_code == 200
         assert 'Bób' in response.content.decode('utf-8')
         doc = pq(response.content)
@@ -731,7 +731,7 @@ class TestBlockSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
 
-        response = self.client.get(self.multi_list_url, follow=True)
+        response = self.client.get(self.submission_list_url, follow=True)
         assert response.status_code == 403
         assert 'Bób' not in response.content.decode('utf-8')
 
@@ -1062,6 +1062,49 @@ class TestBlockSubmissionAdmin(TestCase):
         assert guid_link.attrib['href'] == reverse(
             'admin:blocklist_block_change', args=(block.pk,))
         assert not doc('submit-row input')
+
+    def test_list_filters(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Signoff')
+        self.client.login(email=user.email)
+        addon_factory(guid='pending1@')
+        addon_factory(guid='pending2@')
+        addon_factory(guid='published@')
+        BlockSubmission.objects.create(
+            input_guids='pending1@\npending2@',
+            signoff_state=BlockSubmission.SIGNOFF_PENDING)
+        BlockSubmission.objects.create(
+            input_guids='missing@',
+            signoff_state=BlockSubmission.SIGNOFF_APPROVED)
+        BlockSubmission.objects.create(
+            input_guids='published@',
+            signoff_state=BlockSubmission.SIGNOFF_PUBLISHED)
+
+        response = self.client.get(self.submission_list_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        expected = [
+            ('All', '?'),
+            ('Pending', '?signoff_state__exact=0'),
+            ('Approved', '?signoff_state__exact=1'),
+            ('Rejected', '?signoff_state__exact=2'),
+            ('No Sign-off', '?signoff_state__exact=3'),
+            ('Published to Blocks', '?signoff_state__exact=4'),
+        ]
+        filters = [
+            (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
+        ]
+        assert filters == expected
+
+        response = self.client.get(self.submission_list_url, {
+            'signoff_state__exact': 0,
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-blocks_count').text() == '2 add-ons'
 
 
 class TestBlockAdminEdit(TestCase):
