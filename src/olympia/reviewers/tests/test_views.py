@@ -42,7 +42,7 @@ from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
-from olympia.blocklist.models import Block
+from olympia.blocklist.models import Block, BlockSubmission
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.lib.git import AddonGitRepository
@@ -3590,6 +3590,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#block_addon')
         assert not doc('#edit_addon_block')
+        assert not doc('#edit_addon_blocksubmission')
         assert doc('#block_addon')[0].attrib.get('href') == (
             reverse('admin:blocklist_blocksubmission_add') + '?guids=' +
             self.addon.guid)
@@ -3601,8 +3602,20 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('#block_addon')
         assert doc('#edit_addon_block')
+        assert not doc('#edit_addon_blocksubmission')
         assert doc('#edit_addon_block')[0].attrib.get('href') == (
             reverse('admin:blocklist_block_change', args=(block.id,)))
+
+        # If the guid is in a pending submission we show a link to that instead
+        subm = BlockSubmission.objects.create(input_guids=self.addon.guid)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#block_addon')
+        assert not doc('#edit_addon_block')
+        assert doc('#edit_addon_blocksubmission')
+        assert doc('#edit_addon_blocksubmission')[0].attrib.get('href') == (
+            reverse('admin:blocklist_blocksubmission_change', args=(subm.id,)))
 
     def test_unflag_option_forflagged_as_admin(self):
         self.login_as_admin()
