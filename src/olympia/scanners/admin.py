@@ -237,6 +237,17 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             'matched_rules',
         )
 
+    def get_unfiltered_changelist_params(self):
+        """Return query parameters dict used to link to the changelist with
+        no filtering applied.
+
+        Needed to link to results from a rule, because the changelist view
+        might filter out some results by default."""
+        return {
+            WithVersionFilter.parameter_name: 'all',
+            StateFilter.parameter_name: 'all',
+        }
+
     # Remove the "add" button
     def has_add_permission(self, request):
         return False
@@ -553,13 +564,13 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
                 ResultModel._meta.app_label, ResultModel._meta.model_name
             )
         )
-        url = (
-            f'{url}?matched_rules__id__exact={obj.pk}'
-            f'&{WithVersionFilter.parameter_name}=all'
-            f'&{StateFilter.parameter_name}=all'
-            f'&scanner={obj.scanner}'
-        )
-        return format_html('<a href="{}">{}</a>', url, count)
+        params = {
+            'matched_rules__id__exact': str(obj.pk),
+        }
+        result_admin = admin.site._registry[ResultModel]
+        params.update(result_admin.get_unfiltered_changelist_params())
+        return format_html(
+            '<a href="{}?{}">{}</a>', url, urlencode(params), count)
 
     matched_results_link.short_description = 'Matched Results'
 
@@ -596,6 +607,9 @@ class ScannerQueryResultAdmin(
         ('version__files__status', FileStatusFiler),
         ('version__files__is_signed', FileIsSigned),
     )
+
+    def get_unfiltered_changelist_params(self):
+        return {}
 
     def matching_filenames(self, obj):
         return self.formatted_matched_rules_with_files(

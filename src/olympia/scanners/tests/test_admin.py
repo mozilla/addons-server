@@ -753,10 +753,13 @@ class TestScannerRuleAdmin(TestCase):
         results_list_url = reverse('admin:scanners_scannerresult_changelist')
         expected_href = (
             f'{results_list_url}?matched_rules__id__exact={rule.pk}'
-            f'&has_version=all&state=all&scanner={rule.scanner}'
+            f'&has_version=all&state=all'
         )
         assert link.attr('href') == expected_href
         assert link.text() == '1'  # Our rule has only one result.
+
+        link_response = self.client.get(expected_href)
+        assert link_response.status_code == 200
 
     def test_create_view_doesnt_contain_link_to_results(self):
         url = reverse('admin:scanners_scannerrule_add')
@@ -823,10 +826,12 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
             'admin:scanners_scannerqueryresult_changelist')
         expected_href = (
             f'{results_list_url}?matched_rules__id__exact={rule.pk}'
-            f'&has_version=all&state=all&scanner={rule.scanner}'
         )
         assert link.attr('href') == expected_href
         assert link.text() == '1'
+
+        link_response = self.client.get(expected_href)
+        assert link_response.status_code == 200
 
     def test_create_view_doesnt_contain_link_to_results(self):
         url = reverse('admin:scanners_scannerqueryrule_add')
@@ -1315,6 +1320,9 @@ class TestScannerQueryResultAdmin(TestCase):
         link = doc('.field-formatted_matched_rules_with_files td a')
         assert link.text() == 'darule ???'
         assert link.attr('href') == rule_url
+
+        link_response = self.client.get(rule_url)
+        assert link_response.status_code == 200
 
     def test_change_view_no_query_permissions(self):
         self.user = user_factory()
