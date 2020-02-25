@@ -6093,7 +6093,7 @@ class TestReviewAddonVersionViewSetDetail(
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
 
         apply_changes(
-            repo, new_version, u'(function() {})\n', u'content script.js')
+            repo, new_version, '(function() {})\n', 'content script.js')
 
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
@@ -6875,7 +6875,7 @@ class TestReviewAddonVersionCompareViewSet(
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
 
         apply_changes(
-            repo, new_version, u'(function() {})\n', u'content script.js')
+            repo, new_version, '(function() {})\n', 'content script.js')
 
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
