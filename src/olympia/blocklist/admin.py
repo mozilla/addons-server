@@ -104,6 +104,9 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         'updated_by',
         'modified',
     )
+    list_filter = (
+        'signoff_state',
+    )
     ordering = ['-created']
     view_on_site = False
     list_select_related = ('updated_by', 'signoff_by')
