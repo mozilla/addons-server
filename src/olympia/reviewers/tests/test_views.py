@@ -6086,6 +6086,38 @@ class TestReviewAddonVersionViewSetDetail(
         response = self.client.get(self.url + '?file=UNKNOWN_FILE')
         assert response.status_code == 404
 
+    def test_requested_file_contains_whitespace(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(
+            repo, new_version, '(function() {})\n', 'content script.js')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        url = reverse_ns('reviewers-versions-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(url + '?file=content script.js')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['file']['content'] == '(function() {})\n'
+
+        # make sure the correct download url is correctly generated
+        assert result['file']['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': new_version.pk,
+                'filename': 'content script.js'
+            }
+        ))
+
     def test_supports_search_plugins(self):
         self.addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
@@ -6834,6 +6866,33 @@ class TestReviewAddonVersionCompareViewSet(
         change = result['file']['diff']['hunks'][0]['changes'][0]
 
         assert change['content'] == '# beastify'
+        assert change['type'] == 'insert'
+
+    def test_requested_file_contains_whitespace(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(
+            repo, new_version, '(function() {})\n', 'content script.js')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(url + '?file=content script.js')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        change = result['file']['diff']['hunks'][0]['changes'][0]
+
+        assert result['file']['diff']['path'] == 'content script.js'
+        assert change['content'] == '(function() {})'
         assert change['type'] == 'insert'
 
     def test_supports_search_plugins(self):
