@@ -96,11 +96,11 @@ class FileEntriesSerializer(FileSerializer):
         commit = self._get_commit(obj)
         tree = self.repo.get_root_tree(commit)
 
-        cache_key = make_key(
+        selected_file_key = make_key(
+            selected_file, with_locale=False, normalize=True)
+        cache_key = (
             f'reviewers:fileentriesserializer:hashes'
-            f':{commit.hex}:{selected_file}',
-            with_locale=False,
-            normalize=True)
+            f':{commit.hex}:{selected_file_key}')
 
         def _calculate_hash():
             try:
