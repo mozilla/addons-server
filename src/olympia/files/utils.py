@@ -474,7 +474,7 @@ class ManifestJSONExtractor(object):
 
         if self.guid is None and doesnt_support_no_id:
             raise forms.ValidationError(
-                ugettext('GUID is required for Firefox 47 and below.')
+                ugettext('Add-on ID is required for Firefox 47 and below.')
             )
 
         # If a minimum strict version is specified, it needs to be higher
@@ -1062,7 +1062,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         guids = ' or '.join(
                 '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
         raise forms.ValidationError(
-            ugettext('You cannot submit an add-on using a guid ending with '
+            ugettext('You cannot submit an add-on using an ID ending with '
                      '%s' % guids))
 
     if not mozilla_signed_extension_submission_allowed(user, xpi_info):

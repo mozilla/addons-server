@@ -1399,7 +1399,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == [
             {'tier': 1,
-             'message': 'You cannot submit an add-on using a guid ending with '
+             'message': 'You cannot submit an add-on using an ID ending with '
                         '"@mozilla.com" or "@mozilla.org" or '
                         '"@pioneer.mozilla.org" or "@search.mozilla.org" or '
                         '"@shield.mozilla.org"',

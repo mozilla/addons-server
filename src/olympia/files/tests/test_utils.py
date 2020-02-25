@@ -461,7 +461,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
         assert (
             exc.value.message ==
-            'GUID is required for Firefox 47 and below.')
+            'Add-on ID is required for Firefox 47 and below.')
 
     def test_comments_are_allowed(self):
         json_string = """
