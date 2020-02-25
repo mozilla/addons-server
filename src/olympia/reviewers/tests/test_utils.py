@@ -19,7 +19,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
-from olympia.blocklist.models import Block
+from olympia.blocklist.models import Block, BlockSubmission
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
@@ -1492,8 +1492,18 @@ class TestReviewHelper(TestReviewHelperBase):
         assert logs[0].created == logs[1].created
 
         # We should have set redirect_url to point to the Block admin page
-        assert self.helper.redirect_url == redirect_url % (
-            old_version.version, self.version.version)
+        if '%s' in redirect_url:
+            redirect_url = redirect_url % (
+                old_version.version, self.version.version)
+        assert self.helper.redirect_url == redirect_url
+
+    def test_pending_blocksubmission_multiple_unlisted_versions(self):
+        subm = BlockSubmission.objects.create(
+            input_guids=self.addon.guid, updated_by=user_factory())
+        redirect_url = (
+            reverse('admin:blocklist_blocksubmission_change', args=(subm.id,)))
+        assert Block.objects.count() == 0
+        self._test_block_multiple_unlisted_versions(redirect_url)
 
     def test_new_block_multiple_unlisted_versions(self):
         redirect_url = (

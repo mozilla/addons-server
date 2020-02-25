@@ -22,7 +22,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
-from olympia.blocklist.models import Block
+from olympia.blocklist.models import Block, BlockSubmission
 from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.discovery.models import DiscoveryItem
@@ -1674,18 +1674,29 @@ class TestAddonModels(TestCase):
     def test_block_property(self):
         addon = Addon.objects.get(id=3615)
         assert addon.block is None
-        assert not addon.is_addon_blocklisted
 
         del addon.block
         block = Block.objects.create(
             guid=addon.guid, updated_by=user_factory())
-        assert addon.block == addon.block
-        assert addon.is_addon_blocklisted
+        assert addon.block == block
 
         del addon.block
         block.update(guid='not-a-guid')
         assert addon.block is None
-        assert not addon.is_addon_blocklisted
+
+    def test_blocksubmission_property(self):
+        addon = Addon.objects.get(id=3615)
+        assert addon.blocksubmission is None
+
+        del addon.blocksubmission
+        submission = BlockSubmission.objects.create(
+            input_guids=addon.guid, updated_by=user_factory())
+        assert addon.blocksubmission == submission
+
+        del addon.blocksubmission
+        submission.update(input_guids='not-a-guid')
+        submission.update(to_block=None)
+        assert addon.blocksubmission is None
 
 
 class TestShouldRedirectToSubmitFlow(TestCase):

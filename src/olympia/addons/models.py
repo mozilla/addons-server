@@ -1521,9 +1521,12 @@ class Addon(OnChangeMixin, ModelBase):
         # Block.guid is unique so it's either on the list or not.
         return Block.objects.filter(guid=self.guid).last()
 
-    @property
-    def is_addon_blocklisted(self):
-        return self.block is not None
+    @cached_property
+    def blocksubmission(self):
+        from olympia.blocklist.models import BlockSubmission
+
+        # GUIDs should only exist in one (active) submission at once.
+        return BlockSubmission.get_submissions_from_guid(self.guid).last()
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
