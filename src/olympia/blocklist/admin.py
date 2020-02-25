@@ -14,8 +14,8 @@ from olympia.amo.utils import HttpResponseTemporaryRedirect
 
 from .forms import BlockSubmissionForm, MultiAddForm, MultiDeleteForm
 from .models import Block, BlockSubmission
-from .tasks import create_blocks_from_multi_block
-from .utils import block_activity_log_delete, splitlines
+from .tasks import process_blocksubmission
+from .utils import splitlines
 
 
 # The limit for how many GUIDs should be fully loaded with all metadata
@@ -53,8 +53,18 @@ class BlockAdminAddMixin():
         return my_urls + super().get_urls()
 
     def add_view(self, request, form_url='', extra_context=None):
+        return self._multi_input_view(
+            request, add=True, form_url=form_url, extra_context=extra_context)
+
+    def delete_multiple_view(self, request, form_url='', extra_context=None):
+        return self._multi_input_view(
+            request, add=False, form_url=form_url, extra_context=extra_context)
+
+    def _multi_input_view(self, request, *, add, form_url='',
+                          extra_context=None):
+        MultiForm = MultiAddForm if add else MultiDeleteForm
         if request.method == 'POST':
-            form = MultiAddForm(request.POST)
+            form = MultiForm(request.POST)
             if form.is_valid():
                 guids = splitlines(form.data.get('guids'))
                 if len(guids) == 1 and form.existing_block:
@@ -67,26 +77,8 @@ class BlockAdminAddMixin():
                     return HttpResponseTemporaryRedirect(
                         reverse('admin:blocklist_blocksubmission_add'))
         else:
-            form = MultiAddForm()
-        return self._render_multi_guid_input(
-            request, form, title='Block Add-ons')
+            form = MultiForm()
 
-    def delete_multiple_view(self, request, form_url='', extra_context=None):
-        if request.method == 'POST':
-            if request.POST.get('action') == 'delete_selected':
-                # it's the confirmation so redirect to changelist to handle
-                return HttpResponseTemporaryRedirect(
-                    reverse('admin:blocklist_block_changelist'))
-            form = MultiDeleteForm(request.POST)
-            if form.is_valid():
-                return admin.actions.delete_selected(
-                    self, request, form.existing_block_qs)
-        else:
-            form = MultiDeleteForm()
-        return self._render_multi_guid_input(
-            request, form, title='Delete Blocks', add=False)
-
-    def _render_multi_guid_input(self, request, form, title, add=True):
         context = {
             'form': form,
             'add': add,
@@ -96,7 +88,7 @@ class BlockAdminAddMixin():
             'has_change_permission': self.has_change_permission(request, None),
             'app_label': 'blocklist',
             'opts': self.model._meta,
-            'title': title,
+            'title': 'Block Add-ons' if add else 'Delete Blocks',
             'save_as': False,
         }
         return TemplateResponse(
@@ -107,6 +99,7 @@ class BlockAdminAddMixin():
 class BlockSubmissionAdmin(admin.ModelAdmin):
     list_display = (
         'blocks_count',
+        'action',
         'signoff_state',
         'updated_by',
         'modified',
@@ -130,6 +123,17 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
     def is_pending_signoff(self, obj):
         return obj and obj.signoff_state == BlockSubmission.SIGNOFF_PENDING
 
+    def get_value(self, name, request, obj=None, default=None):
+        """Gets the named property from the obj if provided, or POST or GET."""
+        return (
+            getattr(obj, name, default) if obj else
+            request.POST.get(name, request.GET.get(name, default)))
+
+    def is_add_change_submission(self, request, obj):
+        return (
+            str(self.get_value('action', request, obj, 0)) ==
+            str(BlockSubmission.ACTION_ADDCHANGE))
+
     def has_change_permission(self, request, obj=None, strict=False):
         """ While a block submission is pending we want it to be partially
         editable (the url and reason).  Once it's been rejected or approved it
@@ -137,9 +141,8 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         we need to return true if the user has sign-off permission instead.
         We can override that permissive behavior with `strict=True`."""
         change_perm = super().has_change_permission(request, obj=obj)
-        signoff_perm = (
-            self.has_signoff_permission(request, obj=obj) and not strict)
-        either_perm = change_perm or signoff_perm
+        signoff_perm = self.has_signoff_permission(request, obj=obj)
+        either_perm = change_perm or (signoff_perm and not strict)
         return either_perm and (not obj or self.is_pending_signoff(obj))
 
     def has_view_permission(self, request, obj=None):
@@ -162,6 +165,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         input_guids = (
             'Input Guids', {
                 'fields': (
+                    'action',
                     'input_guids',
                 ),
                 'classes': ('collapse',)
@@ -179,7 +183,8 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             edit_title = 'Blocks Published'
         else:
             edit_title = 'Proposed New Blocks'
-        edit = (
+
+        add_change = (
             edit_title, {
                 'fields': (
                     'blocks',
@@ -194,8 +199,24 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                 ),
             })
 
-        return (
-            (input_guids, edit) if obj else (input_guids, block_history, edit))
+        delete = (
+            'Delete Blocks', {
+                'fields': (
+                    'blocks',
+                    'updated_by',
+                    'signoff_by',
+                    'submission_logs',
+                ),
+            })
+
+        if self.is_add_change_submission(request, obj):
+            return (
+                (input_guids, add_change) if obj else
+                (input_guids, block_history, add_change))
+        else:
+            return (
+                (input_guids, delete) if obj else
+                (input_guids, block_history, delete))
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
@@ -209,6 +230,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                     'signoff_by',
                     'submission_logs',
                     'input_guids',
+                    'action',
                     'min_version',
                     'max_version',
                     'existing_min_version',
@@ -229,9 +251,8 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         return ro_fields
 
     def _get_input_guids(self, request):
-        return splitlines(
-            request.POST.get('guids', request.GET.get(
-                'guids', request.POST.get('input_guids', ''))))
+        return splitlines(self.get_value(
+            'guids', request, default=request.POST.get('input_guids', '')))
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         single_guid = len(self._get_input_guids(request)) == 1
@@ -245,11 +266,13 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             guids = self._get_input_guids(request)
             if len(guids) == 1:
                 block_obj = Block(guid=guids[0])
-                form.base_fields['min_version'].choices = _get_version_choices(
-                    block_obj, 'min_version')
-                form.base_fields['max_version'].choices = _get_version_choices(
-                    block_obj, 'max_version')
+                if 'min_version' in form.base_fields:
+                    form.base_fields['min_version'].choices = (
+                        _get_version_choices(block_obj, 'min_version'))
+                    form.base_fields['max_version'].choices = (
+                        _get_version_choices(block_obj, 'max_version'))
             form.base_fields['input_guids'].widget = HiddenInput()
+            form.base_fields['action'].widget = HiddenInput()
         return form
 
     def add_view(self, request, **kwargs):
@@ -257,15 +280,19 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             raise PermissionDenied
 
         MultiBlockForm = self.get_form(request, change=False, **kwargs)
+        is_delete = not self.is_add_change_submission(request, None)
 
-        guids_data = request.POST.get('guids', request.GET.get('guids'))
+        guids_data = self.get_value('guids', request)
         if guids_data and 'input_guids' not in request.POST:
             # If we get a guids param it's a redirect from input_guids_view.
             initial = {key: values for key, values in request.GET.items()}
             initial.update(**{
                 'input_guids': guids_data,
-                'existing_min_version': Block.MIN,
-                'existing_max_version': Block.MAX})
+                'existing_min_version': initial.get('min_version', Block.MIN),
+                'existing_max_version': initial.get('max_version', Block.MAX),
+            })
+            if 'action' in request.POST:
+                initial['action'] = request.POST['action']
             form = MultiBlockForm(initial=initial)
         elif request.method == 'POST':
             # Otherwise, if its a POST try to process the form.
@@ -280,7 +307,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
                     return redirect('admin:blocklist_block_add')
                 else:
                     return redirect('admin:blocklist_block_changelist')
-            else:
+            elif not is_delete:
                 guids_data = request.POST.get('input_guids')
                 form_data = form.data.copy()
                 # each time we render the form we pass along the existing
@@ -294,13 +321,14 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             return redirect('admin:blocklist_block_add')
         context = {
             'form': form,
+            'fieldsets': self.get_fieldsets(request, None),
             'add': True,
             'change': False,
             'has_view_permission': self.has_view_permission(request, None),
             'has_add_permission': self.has_add_permission(request),
             'app_label': 'blocklist',
             'opts': self.model._meta,
-            'title': 'Block Add-ons',
+            'title': 'Delete Blocks' if is_delete else 'Block Add-ons',
             'save_as': False,
             'block_history': self.block_history(
                 self.model(input_guids=guids_data)),
@@ -309,13 +337,15 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         return TemplateResponse(
             request, 'blocklist/block_submission_add_form.html', context)
 
-    def _get_enhanced_guid_context(self, request, guids_data):
+    def _get_enhanced_guid_context(self, request, guids_data, obj=None):
         load_full_objects = len(splitlines(guids_data)) <= GUID_FULL_LOAD_LIMIT
         objects = self.model.process_input_guids(
             guids_data,
-            v_min=request.POST.get('min_version', Block.MIN),
-            v_max=request.POST.get('max_version', Block.MAX),
-            load_full_objects=load_full_objects)
+            v_min=self.get_value('min_version', request, obj, Block.MIN),
+            v_max=self.get_value('max_version', request, obj, Block.MAX),
+            load_full_objects=load_full_objects,
+            filter_existing=self.is_add_change_submission(request, obj),
+        )
         if load_full_objects:
             Block.preload_addon_versions(objects['blocks'])
         return objects
@@ -329,10 +359,10 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             self.has_change_permission(request, obj, strict=True))
         extra_context['is_pending_signoff'] = self.is_pending_signoff(obj)
         if obj.signoff_state != BlockSubmission.SIGNOFF_PUBLISHED:
-            extra_context.update(
-                **self._get_enhanced_guid_context(request, obj.input_guids))
+            extra_context.update(**self._get_enhanced_guid_context(
+                request, obj.input_guids, obj))
         else:
-            extra_context['blocks'] = obj.get_blocks_saved(
+            extra_context['blocks'] = obj.get_blocks_submitted(
                 load_full_objects_threshold=GUID_FULL_LOAD_LIMIT)
             if len(extra_context['blocks']) <= GUID_FULL_LOAD_LIMIT:
                 # if it's less than the limit we loaded full Block instances
@@ -369,13 +399,11 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
 
         super().save_model(request, obj, form, change)
 
-        if obj.signoff_state == BlockSubmission.SIGNOFF_PENDING:
-            if not obj.needs_signoff():
-                obj.update(signoff_state=BlockSubmission.SIGNOFF_NOTNEEDED)
+        obj.update_if_signoff_not_needed()
 
-        if obj.is_save_to_blocks_permitted:
+        if obj.is_submission_ready:
             # Then launch a task to async save the individual blocks
-            create_blocks_from_multi_block.delay(obj.id)
+            process_blocksubmission.delay(obj.id)
 
     def log_change(self, request, obj, message):
         log_entry = None
@@ -454,7 +482,6 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     ordering = ['-modified']
     view_on_site = False
     list_select_related = ('updated_by',)
-    actions = ['delete_selected']
     change_list_template = 'blocklist/block_change_list.html'
     change_form_template = 'blocklist/block_change_form.html'
 
@@ -523,19 +550,14 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         else:
             return super().has_change_permission(request, obj=obj)
 
+    def has_delete_permission(self, request, obj=None):
+        # TODO: restore this functionality so bulk delete isn't the only option
+        return False
+
     def save_model(self, request, obj, form, change):
         # We don't actually save via this Admin so if we get here something has
         # gone wrong.
         raise PermissionDenied
-
-    def delete_model(self, request, obj):
-        block_activity_log_delete(obj, request.user)
-        super().delete_model(request, obj)
-
-    def delete_queryset(self, request, queryset):
-        for obj in queryset:
-            block_activity_log_delete(obj, request.user)
-        super().delete_queryset(request, queryset)
 
     def get_form(self, request, obj=None, change=False, **kwargs):
         form = super().get_form(request, obj=obj, change=change, **kwargs)

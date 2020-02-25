@@ -156,6 +156,7 @@ class TestBlockSubmissionAdmin(TestCase):
         response = self.client.post(
             self.submission_url, {
                 'input_guids': 'guid@',
+                'action': '0',
                 'min_version': '0',
                 'max_version': addon.current_version.version,
                 'existing_min_version': '0',
@@ -248,6 +249,7 @@ class TestBlockSubmissionAdmin(TestCase):
             self.submission_url, {
                 'input_guids': (
                     'any@new\npartial@existing\nfull@existing\ninvalid@'),
+                'action': '0',
                 'min_version': '0',
                 'max_version': '*',
                 'existing_min_version': '0',
@@ -365,8 +367,8 @@ class TestBlockSubmissionAdmin(TestCase):
         multi.update(
             signoff_state=BlockSubmission.SIGNOFF_APPROVED,
             signoff_by=user_factory())
-        assert multi.is_save_to_blocks_permitted
-        multi.save_to_blocks()
+        assert multi.is_submission_ready
+        multi.save_to_block_objects()
         self._test_add_multiple_verify_blocks(
             new_addon, existing_and_full, partial_addon, existing_and_partial)
 
@@ -414,6 +416,7 @@ class TestBlockSubmissionAdmin(TestCase):
             self.submission_url, {
                 'input_guids': (
                     'any@new\npartial@existing\nfull@existing'),
+                'action': '0',
                 'min_version': '1',  # this is the field we can change
                 'max_version': '10',  # this is the field we can change
                 'existing_min_version': '0',  # this is a hidden field
@@ -440,6 +443,7 @@ class TestBlockSubmissionAdmin(TestCase):
             self.submission_url, {
                 'input_guids': (
                     'any@new\npartial@existing\nfull@existing'),
+                'action': '0',
                 'min_version': '1',  # this is the field we can change
                 'max_version': '10',  # this is the field we can change
                 'existing_min_version': '1',  # this is a hidden field
@@ -642,6 +646,7 @@ class TestBlockSubmissionAdmin(TestCase):
         response = self.client.post(
             self.submission_url, {
                 'input_guids': 'any@new\npartial@existing\ninvalid@',
+                'action': '0',
                 'min_version': '5',
                 'max_version': '3',
                 'existing_min_version': '5',
@@ -680,6 +685,7 @@ class TestBlockSubmissionAdmin(TestCase):
         response = self.client.post(
             self.submission_url, {
                 'input_guids': 'guid@\nfoo@baa\ninvalid@',
+                'action': '0',
                 'min_version': '0',
                 'max_version': '*',
                 'existing_min_version': '0',
@@ -695,16 +701,37 @@ class TestBlockSubmissionAdmin(TestCase):
         assert existing.min_version == '1'  # check the values didn't update.
 
     def _test_can_list_with_permission(self, permission):
-        mbs = BlockSubmission.objects.create(
-            updated_by=user_factory(display_name='Bób'))
         # add some guids to the multi block to test out the counts in the list
         addon = addon_factory(guid='guid@', name='Danger Danger')
-        mbs.update(input_guids='guid@\ninvalid@\nsecond@invalid')
-        mbs.save()
-        assert mbs.to_block == [
+        block = Block.objects.create(
+            addon=addon_factory(
+                guid='block@', name='High Voltage', average_daily_users=1),
+            updated_by=user_factory(),
+        )
+        add_change_subm = BlockSubmission.objects.create(
+            input_guids='guid@\ninvalid@\nblock@',
+            updated_by=user_factory(display_name='Bób'),
+            min_version='123',
+            action=BlockSubmission.ACTION_ADDCHANGE)
+        delete_subm = BlockSubmission.objects.create(
+            input_guids='block@',
+            updated_by=user_factory(display_name='Sué'),
+            action=BlockSubmission.ACTION_DELETE)
+        add_change_subm.save()
+        delete_subm.save()
+        assert add_change_subm.to_block == [
             {'guid': 'guid@',
              'id': None,
-             'average_daily_users': addon.average_daily_users}]
+             'average_daily_users': addon.average_daily_users},
+            {'guid': 'block@',
+             'id': block.id,
+             'average_daily_users': block.addon.average_daily_users},
+        ]
+        assert delete_subm.to_block == [
+            {'guid': 'block@',
+             'id': block.id,
+             'average_daily_users': block.addon.average_daily_users},
+        ]
 
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -714,9 +741,12 @@ class TestBlockSubmissionAdmin(TestCase):
         response = self.client.get(self.multi_list_url, follow=True)
         assert response.status_code == 200
         assert 'Bób' in response.content.decode('utf-8')
+        assert 'Sué' in response.content.decode('utf-8')
         doc = pq(response.content)
-        assert doc('th.field-blocks_count').text() == '1 add-ons'
-        assert doc('.field-signoff_state').text() == 'Pending'
+        assert doc('th.field-blocks_count').text() == '1 add-ons 2 add-ons'
+        assert doc('.field-action').text() == (
+            'Delete Add/Change')
+        assert doc('.field-signoff_state').text() == 'Pending Pending'
 
     def test_can_list_with_blocklist_create(self):
         self._test_can_list_with_permission('Blocklist:Create')
@@ -831,6 +861,7 @@ class TestBlockSubmissionAdmin(TestCase):
         response = self.client.post(
             multi_url, {
                 'input_guids': 'guid2@\nfoo@baa',
+                'action': '1',
                 'min_version': '1',
                 'max_version': '99',
                 'url': 'new.url',
@@ -843,6 +874,7 @@ class TestBlockSubmissionAdmin(TestCase):
 
         # none of the values above were changed because they're all read-only.
         assert mbs.input_guids == 'guid@\ninvalid@\nsecond@invalid'
+        assert mbs.action == 0
         assert mbs.min_version == '0'
         assert mbs.max_version == '*'
         assert mbs.url != 'new.url'
@@ -975,7 +1007,7 @@ class TestBlockSubmissionAdmin(TestCase):
         # And the blocksubmission was rejected, so no Blocks created
         assert mbs.signoff_state == BlockSubmission.SIGNOFF_REJECTED
         assert Block.objects.count() == 0
-        assert not mbs.is_save_to_blocks_permitted
+        assert not mbs.is_submission_ready
 
         log_entry = LogEntry.objects.last()
         assert log_entry.user == user
@@ -1041,7 +1073,7 @@ class TestBlockSubmissionAdmin(TestCase):
             {'guid': 'guid@',
              'id': None,
              'average_daily_users': addon.average_daily_users}]
-        mbs.save_to_blocks()
+        mbs.save_to_block_objects()
         block = Block.objects.get()
 
         user = user_factory()
@@ -1092,6 +1124,7 @@ class TestBlockAdminEdit(TestCase):
             self.change_url, {
                 'addon_id': addon_factory().id,  # new addon should be ignored
                 'input_guids': self.block.guid,
+                'action': '0',
                 'min_version': '0',
                 'max_version': self.addon.current_version.version,
                 'url': 'https://foo.baa',
@@ -1158,6 +1191,7 @@ class TestBlockAdminEdit(TestCase):
 
         data = {
             'input_guids': self.block.guid,
+            'action': '0',
             'url': 'https://foo.baa',
             'reason': 'some other reason',
             'include_in_legacy': True,
@@ -1265,47 +1299,10 @@ class TestBlockAdminDelete(TestCase):
             'admin:blocklist_block_delete', args=(self.block.pk,))
         self.submission_url = reverse('admin:blocklist_blocksubmission_add')
 
-    def test_can_delete(self):
+    def test_can_not_delete_through_normal_django_admin_delete(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
-        self.client.login(email=user.email)
-        assert Block.objects.count() == 1
-        guid = self.block.guid
-
-        # Can access delete confirmation page.
-        response = self.client.get(self.delete_url, follow=True)
-        assert response.status_code == 200
-        assert Block.objects.count() == 1
-
-        # Can actually delete.
-        response = self.client.post(
-            self.delete_url,
-            {'post': 'yes'},
-            follow=True)
-        assert response.status_code == 200
-        assert Block.objects.count() == 0
-
-        log = ActivityLog.objects.for_addons(self.addon).last()
-        assert log.action == amo.LOG.BLOCKLIST_BLOCK_DELETED.id
-        assert log.arguments == [self.addon, self.addon.guid, None]
-
-        # The BlockLog is still there too so it can be referenced by guid
-        blocklog = ActivityLog.objects.for_guidblock(guid).first()
-        assert log == blocklog
-        vlog = ActivityLog.objects.for_version(
-            self.addon.current_version).last()
-        assert vlog == log
-
-        # And if we try to add the guid again the old history is there
-        response = self.client.get(
-            self.submission_url, {'guids': 'guid@'}, follow=True)
-        content = response.content.decode('utf-8')
-        assert f'Block deleted by {user.name}:\n        guid@.' in content
-
-    def test_can_not_delete_without_permission(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
         assert Block.objects.count() == 1
 
@@ -1330,8 +1327,9 @@ class TestBlockAdminDelete(TestCase):
 class TestBlockAdminBulkDelete(TestCase):
     def setUp(self):
         self.delete_url = reverse('admin:blocklist_block_delete_multiple')
+        self.submission_url = reverse('admin:blocklist_blocksubmission_add')
 
-    def test_input(self):
+    def test_delete_input(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
@@ -1347,35 +1345,129 @@ class TestBlockAdminBulkDelete(TestCase):
         assert b'This field is required' in response.content
 
         # Any invalid guids should redirect back to the page too, with an error
-        block_with_addon = Block.objects.create(
+        Block.objects.create(
             addon=addon_factory(guid='guid@'), updated_by=user_factory())
         response = self.client.post(
             self.delete_url, {'guids': 'guid@\n{12345-6789}'}, follow=False)
         assert b'Add-on GUIDs (one per line)' in response.content
         assert b'Block with GUID {12345-6789} not found' in response.content
 
+        # Valid blocks are redirected to the multiple guid view
         # We're purposely not creating the add-on here to test the edge-case
         # where the addon has been hard-deleted or otherwise doesn't exist.
-        block_no_addon = Block.objects.create(
+        Block.objects.create(
             guid='{12345-6789}', updated_by=user_factory())
         assert Block.objects.count() == 2
-        # But should continue to django's deleted_selected if they all exist
         response = self.client.post(
             self.delete_url, {'guids': 'guid@\n{12345-6789}'}, follow=True)
-        assert b'Add-on GUIDs (one per line)' not in response.content
-        assert b'Are you sure?' in response.content
+        self.assertRedirects(response, self.submission_url, status_code=307)
 
-        # The delete selected form is different but submits to the current url,
-        # so we have to redirect to the changelist page to takeover and
-        # actually delete.
-        data = {
-            'action': 'delete_selected',
-            'post': 'yes',
-            '_selected_action': (
-                str(block_with_addon.id), str(block_no_addon.id)),
-        }
-        response = self.client.post(self.delete_url, data, follow=True)
-        self.assertRedirects(
-            response,
-            reverse('admin:blocklist_block_changelist'), status_code=307)
+    def _test_delete_multiple_submit(self, addon_adu):
+        """addon_adu is important because whether dual signoff is needed is
+        based on what the average_daily_users is."""
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+
+        block_normal = Block.objects.create(
+            addon=addon_factory(
+                guid='guid@', name='Normal', average_daily_users=addon_adu),
+            updated_by=user_factory())
+        block_no_addon = Block.objects.create(
+            guid='{12345-6789}',
+            updated_by=user_factory())  #
+
+        response = self.client.post(
+            self.submission_url, {
+                'guids': 'guid@\n{12345-6789}',
+                'action': '1',
+            },
+            follow=True)
+        content = response.content.decode('utf-8')
+        # meta data for block:
+        assert 'Add-on GUIDs (one per line)' not in content
+        assert 'Delete Blocks' in content
+        assert 'guid@' in content
+        assert 'Normal' in content
+        assert str(block_normal.addon.average_daily_users) in content
+        assert '{12345-6789}' in content
+        # The fields only used for Add/Change submissions shouldn't be shown
+        assert '"min_version"' not in content
+        assert '"max_version"' not in content
+        assert 'reason' not in content
+        assert 'include_in_legacy' not in content
+        # Check we didn't delete the blocks already
+        assert Block.objects.count() == 2
+        assert BlockSubmission.objects.count() == 0
+
+        # Create the block submission
+        response = self.client.post(
+            self.submission_url, {
+                'input_guids': (
+                    'guid@\n{12345-6789}'),
+                'action': '1',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 200
+        return block_normal, block_no_addon
+
+    def _test_delete_verify(self, block_with_addon, block_no_addon,
+                            has_signoff=True):
+        block_from_addon = block_with_addon.addon
         assert Block.objects.count() == 0
+        assert BlockSubmission.objects.count() == 1
+        submission = BlockSubmission.objects.get()
+
+        add_log = ActivityLog.objects.for_addons(block_from_addon).last()
+        assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_DELETED.id
+        assert add_log.arguments == [
+            block_from_addon, block_from_addon.guid, None]
+        if has_signoff:
+            assert add_log.details['signoff_state'] == 'Approved'
+            assert add_log.details['signoff_by'] == submission.signoff_by.id
+        else:
+            assert add_log.details['signoff_state'] == 'No Sign-off'
+            assert 'signoff_by' not in add_log.details
+        vlog = ActivityLog.objects.for_version(
+            block_from_addon.current_version).last()
+        assert vlog == add_log
+
+        assert submission.input_guids == (
+            'guid@\n{12345-6789}')
+
+        assert submission.to_block == [
+            {'guid': 'guid@', 'id': block_with_addon.id,
+             'average_daily_users': block_from_addon.average_daily_users},
+            {'guid': '{12345-6789}', 'id': block_no_addon.id,
+             'average_daily_users': -1}
+        ]
+        assert not submission.block_set.all().exists()
+
+    def test_submit_no_dual_signoff(self):
+        addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+        block_with_addon, block_no_addon = self._test_delete_multiple_submit(
+            addon_adu=addon_adu)
+        self._test_delete_verify(
+            block_with_addon,
+            block_no_addon,
+            has_signoff=False)
+
+    def test_submit_dual_signoff(self):
+        addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1
+        block_with_addon, block_no_addon = self._test_delete_multiple_submit(
+            addon_adu=addon_adu)
+        # Blocks shouldn't have been deleted yet
+        assert Block.objects.count() == 2, Block.objects.all()
+
+        submission = BlockSubmission.objects.get()
+        submission.update(
+            signoff_state=BlockSubmission.SIGNOFF_APPROVED,
+            signoff_by=user_factory())
+        assert submission.is_submission_ready
+        submission.delete_block_objects()
+        self._test_delete_verify(
+            block_with_addon,
+            block_no_addon,
+            has_signoff=True)

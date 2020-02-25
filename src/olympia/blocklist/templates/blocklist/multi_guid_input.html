@@ -24,6 +24,7 @@
 {% block content %}<div id="content-main">
   <form action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>
   {% csrf_token %}
+  <input type="hidden" name="action" value="{% if add %}0{% else %}1{% endif %}">
   <div>
     <h2>{% trans 'Add-on GUIDs (one per line)' %}</h2>
     {% if form.non_field_errors %}

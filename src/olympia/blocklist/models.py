@@ -20,7 +20,8 @@ from django.utils.translation import gettext_lazy as _
 from olympia.versions.compare import addon_version_int
 from olympia.versions.models import Version
 
-from .utils import block_activity_log_save, splitlines
+from .utils import (
+    block_activity_log_save, block_activity_log_delete, splitlines)
 
 
 class Block(ModelBase):
@@ -77,7 +78,7 @@ class Block(ModelBase):
         If you're calling this on a list of blocks it's expected that you've
         set cached_property self.addon in a db efficient way beforehand.
         """
-        addon_ids = [block.addon.id for block in blocks]
+        addon_ids = [block.addon.id for block in blocks if block.addon]
         qs = Version.unfiltered.filter(addon_id__in=addon_ids).order_by(
             'id').values('addon_id', 'version', 'id', 'channel')
         addons_versions = defaultdict(OrderedDict)
@@ -85,7 +86,8 @@ class Block(ModelBase):
             addons_versions[str(version['addon_id'])][version['version']] = (
                 version['id'], version['channel'])
         for block in blocks:
-            block.addon_versions = addons_versions[str(block.addon.id)]
+            block.addon_versions = (
+                addons_versions[str(block.addon.id)] if block.addon else {})
 
     @cached_property
     def min_version_vint(self):
@@ -156,9 +158,18 @@ class BlockSubmission(ModelBase):
         SIGNOFF_REJECTED,
         SIGNOFF_PUBLISHED,
     )
+    ACTION_ADDCHANGE = 0
+    ACTION_DELETE = 1
+    ACTIONS = {
+        ACTION_ADDCHANGE: 'Add/Change',
+        ACTION_DELETE: 'Delete',
+    }
     FakeBlock = namedtuple(
         'FakeBlock', ('id', 'guid', 'addon', 'min_version', 'max_version'))
     FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
+
+    action = models.SmallIntegerField(
+        choices=ACTIONS.items(), default=ACTION_ADDCHANGE)
 
     input_guids = models.TextField()
     to_block = JSONField(default=[])
@@ -196,7 +207,7 @@ class BlockSubmission(ModelBase):
             raise ValidationError(
                 _('Min version can not be greater than Max version'))
 
-    def get_blocks_saved(self, load_full_objects_threshold=1_000_000_000):
+    def get_blocks_submitted(self, load_full_objects_threshold=1_000_000_000):
         blocks = self.block_set.all().order_by('id')
         if blocks.count() > load_full_objects_threshold:
             # If we'd be returning too many Block objects, fake them with the
@@ -213,17 +224,20 @@ class BlockSubmission(ModelBase):
             self.updated_by != signoff_user)
         return not require_different_users or different_users
 
-    def needs_signoff(self):
+    def update_if_signoff_not_needed(self):
         threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
 
-        def unsafe(daily_users):
-            return daily_users > threshold or daily_users == 0
+        def any_unsafe():
+            return any(
+                (lambda du: du > threshold or du == 0)(
+                    block['average_daily_users'])
+                for block in self.to_block)
 
-        return any(
-            unsafe(block['average_daily_users']) for block in self.to_block)
+        if self.signoff_state == self.SIGNOFF_PENDING and not any_unsafe():
+            self.update(signoff_state=BlockSubmission.SIGNOFF_NOTNEEDED)
 
     @property
-    def is_save_to_blocks_permitted(self):
+    def is_submission_ready(self):
         """Has this submission been signed off, or sign-off isn't required."""
         return (
             self.signoff_state == self.SIGNOFF_NOTNEEDED or (
@@ -237,7 +251,8 @@ class BlockSubmission(ModelBase):
             return {
                 'id': block.id,
                 'guid': block.guid,
-                'average_daily_users': block.addon.average_daily_users,
+                'average_daily_users': (
+                    block.addon.average_daily_users if block.addon else -1),
             }
 
         return [serialize_block(block) for block in blocks]
@@ -245,18 +260,23 @@ class BlockSubmission(ModelBase):
     def save(self, *args, **kwargs):
         if self.input_guids and not self.to_block:
             processed = self.process_input_guids(
-                self.input_guids, self.min_version, self.max_version,
-                load_full_objects=False)
+                self.input_guids,
+                self.min_version,
+                self.max_version,
+                load_full_objects=False,
+                filter_existing=(self.action == self.ACTION_ADDCHANGE))
             # serialize blocks so we can save them as JSON
             self.to_block = self._serialize_blocks(processed.get('blocks', []))
         super().save(*args, **kwargs)
 
     @classmethod
-    def process_input_guids(cls, guids, v_min, v_max, load_full_objects=True):
+    def process_input_guids(cls, guids, v_min, v_max, load_full_objects=True,
+                            filter_existing=True):
         """Process a line-return separated list of guids into a list of invalid
         guids, a list of guids that are blocked already for v_min - vmax, and a
         list of Block instances - including new Blocks (unsaved) and existing
-        partial Blocks.
+        partial Blocks. If `filter_existing` is False, all existing blocks are
+        included.
 
         If `load_full_objects=False` is passed the Block instances are fake
         (namedtuples) with only minimal data available in the "Block" objects:
@@ -285,19 +305,18 @@ class BlockSubmission(ModelBase):
             list(block_qs)
             if load_full_objects else
             [cls.FakeBlock(
-                id_, guid, addon_guid_dict[guid], min_version, max_version)
+                id_, guid, addon_guid_dict.get(guid), min_version, max_version)
              for id_, guid, min_version, max_version in block_qs.values_list(
                 'id', 'guid', 'min_version', 'max_version')])
         if load_full_objects:
             # hook up block.addon cached_property (FakeBlock sets it above)
             for block in existing_blocks:
-                block.addon = addon_guid_dict[block.guid]
+                block.addon = addon_guid_dict.get(block.guid)
 
-        if len(all_guids) == 1:
+        if len(all_guids) == 1 or not filter_existing:
             # We special case a single guid to always update it.
-            blocks_to_update_dict = (
-                {existing_blocks[0].guid: existing_blocks[0]}
-                if existing_blocks else {})
+            blocks_to_update_dict = {
+                block.guid: block for block in existing_blocks}
         else:
             # identify the blocks that need updating -
             # i.e. not v_min - vmax already
@@ -322,6 +341,12 @@ class BlockSubmission(ModelBase):
                         None, addon.guid, addon, Block.MIN, Block.MAX)
                 ))
             blocks.append(block)
+        if not filter_existing:
+            # we want to be able to delete a block without an addon (which
+            # should never happen... but might) so we have to add any missing
+            # blocks on too
+            blocks.extend(
+                block for block in existing_blocks if block not in blocks)
 
         invalid_guids = list(
             all_guids - set(existing_guids) - {block.guid for block in blocks})
@@ -333,7 +358,7 @@ class BlockSubmission(ModelBase):
         }
 
     @classmethod
-    def _get_blocks_from_list(cls, guids_to_block):
+    def _get_block_instances_to_save(cls, guids_to_block):
         """Cut down version of `process_input_guids` for saving - we've already
         filtered the guids so we know they all need to be either created or
         updated.
@@ -360,8 +385,9 @@ class BlockSubmission(ModelBase):
             blocks.append(block)
         return blocks
 
-    def save_to_blocks(self):
-        assert self.is_save_to_blocks_permitted
+    def save_to_block_objects(self):
+        assert self.is_submission_ready
+        assert self.action == self.ACTION_ADDCHANGE
         common_args = {
             'min_version': self.min_version,
             'max_version': self.max_version,
@@ -374,7 +400,7 @@ class BlockSubmission(ModelBase):
         modified_datetime = datetime.datetime.now()
         all_guids_to_block = [block['guid'] for block in self.to_block]
         for guids_chunk in chunked(all_guids_to_block, 100):
-            blocks = self._get_blocks_from_list(guids_chunk)
+            blocks = self._get_block_instances_to_save(guids_chunk)
             Block.preload_addon_versions(blocks)
             for block in blocks:
                 change = bool(block.id)
@@ -390,10 +416,24 @@ class BlockSubmission(ModelBase):
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
 
+    def delete_block_objects(self):
+        assert self.is_submission_ready
+        assert self.action == self.ACTION_DELETE
+        block_ids_to_delete = [block['id'] for block in self.to_block]
+        for ids_chunk in chunked(block_ids_to_delete, 100):
+            blocks = Block.objects.filter(id__in=ids_chunk)
+            Block.preload_addon_versions(blocks)
+            for block in blocks:
+                block_activity_log_delete(block, submission_obj=self)
+            self.save()
+            blocks.delete()
+
+        self.update(signoff_state=self.SIGNOFF_PUBLISHED)
+
     @classmethod
-    def get_submissions_from_guid(cls, guid, states=SIGNOFF_STATES_FINISHED):
+    def get_submissions_from_guid(cls, guid, excludes=SIGNOFF_STATES_FINISHED):
         return (
-            cls.objects.exclude(signoff_state__in=states)
+            cls.objects.exclude(signoff_state__in=excludes)
                        .filter(to_block__contains=f'"{guid}"'))
 
 
