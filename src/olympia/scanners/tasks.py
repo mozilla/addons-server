@@ -1,4 +1,5 @@
 import os
+import uuid
 
 from django.conf import settings
 
@@ -267,10 +268,8 @@ def run_yara_query_rule(query_rule_pk):
         return
     log.info('Fetching versions for run_yara_query_rule on rule %s', rule.pk)
     # Build a huge list of all pks we're going to run the tasks on.
-    qs = Version.unfiltered.all(
-    ).filter(
-        addon__type=amo.ADDON_EXTENSION,
-        files__is_webextension=True,
+    qs = Version.unfiltered.filter(
+        addon__type=amo.ADDON_EXTENSION, files__is_webextension=True,
     )
     if not rule.run_on_disabled_addons:
         qs = qs.exclude(addon__status=amo.STATUS_DISABLED)
@@ -281,6 +280,14 @@ def run_yara_query_rule(query_rule_pk):
     chunked_tasks = create_chunked_tasks_signatures(
         run_yara_query_rule_on_versions_chunk, list(qs), chunk_size,
         task_args=(query_rule_pk,))
+    # Force the group id to be generated for those tasks, and store it in the
+    # result backend.
+    group_result = chunked_tasks.freeze()
+    group_result.save()
+    rule.update(
+        task_count=len(chunked_tasks),
+        group_result_id=uuid.UUID(group_result.id)
+    )
     workflow = (
         chunked_tasks |
         mark_yara_query_rule_as_completed_or_aborted.si(query_rule_pk)
@@ -291,7 +298,7 @@ def run_yara_query_rule(query_rule_pk):
     workflow.apply_async()
 
 
-@task
+@task(ignore_result=False)  # We want the results to track completion rate.
 @use_primary_db
 def run_yara_query_rule_on_versions_chunk(version_pks, query_rule_pk):
     """
