@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 13:41+0000\n"
+"PO-Revision-Date: 2020-02-26 14:32+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -394,10 +394,10 @@ msgid "Browse Listing Up and Coming Sort"
 msgstr "Pretraži listu perspektivnih sortirano"
 
 msgid "Total Amount Contributed"
-msgstr "Ukupno doprineseno"
+msgstr "Ukupan iznos doprinesenog"
 
 msgid "Average Contribution"
-msgstr "Prosječno doprineseno"
+msgstr "Prosječni doprinos"
 
 msgid "Usage"
 msgstr "Korištenje"
@@ -553,11 +553,11 @@ msgstr "Dodaci ažurirani od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "Napisano ocjena, posljednjih {0} dana"
+msgstr "Recenzije napisane, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "Napisano ocjena od {0} do {1}"
+msgstr "Recenzije napisane od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -569,11 +569,11 @@ msgstr "Korisničkih prijava od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr "Kolekcija napravljeno, posljednjih {0} dana"
+msgstr "Zbirki napravljeno, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr "Kolekcija napravljeno od {0} do {1}"
+msgstr "Zbirki napravljeno od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
