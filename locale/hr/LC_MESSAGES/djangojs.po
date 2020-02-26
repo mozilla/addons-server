@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 12:52+0000\n"
+"PO-Revision-Date: 2020-02-26 13:41+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -115,10 +115,10 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Prijenos zastarjelog Firefox dodatka na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Uključite detaljne zabilješke verzije (ovo se može uraditi u slijedećem koraku)."
+msgstr "Uključite detaljne napomene o verziji (ovo se može uraditi u sljedećem koraku)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Ako vaš dodatak zahtjeva račun na web stranci kako bi se potpuno testirao, dodajte testno korisničko ime i lozinku u Zabilješkama ocjenjivaču (ovo se može uraditi u slijedećem koraku)."
+msgstr "Ako je za vaš dodatak potreban račun na web stranci kako bi se potpuno testirao, dodajte testno korisničko ime i lozinku u „Napomene za recenzente” (ovo se može uraditi u sljedećem koraku)."
 
 msgid "Add-on submission checklist"
 msgstr "Spisak za podnošenje dodatka"
@@ -739,19 +739,19 @@ msgid "Loading&hellip;"
 msgstr "Učitavam&hellip;"
 
 msgid "Version Notes"
-msgstr "Bilješke verzije"
+msgstr "Napomene o verziji"
 
 msgid "Notes for Reviewers"
-msgstr "Bilješke za recenzente"
+msgstr "Napomene za recenzente"
 
 msgid "No version notes found"
-msgstr "Nema bilješki verzije"
+msgstr "Nema napomena o verziji"
 
 msgid "Review Text"
 msgstr "Ocjeni tekst"
 
 msgid "Review notes found"
-msgstr "Pronađene bilješke ocjene"
+msgstr "Pronađene napomene o recenziji"
 
 msgid "Average Reviews"
 msgstr "Prosječno recenzija"
