@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 12:39+0000\n"
+"PO-Revision-Date: 2020-02-26 13:12+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -128,7 +128,7 @@ msgid "Review note"
 msgstr "Napomena pregleda"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr "Samo najnovije verzije dodataka mogu imati dodane bilješke."
+msgstr "Bilješke se mogu dodati samo najnovijim verzijama dodataka."
 
 # 85%
 msgid "Ratings"
