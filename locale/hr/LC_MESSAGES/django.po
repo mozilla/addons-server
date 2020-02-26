@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 17:22+0000\n"
+"PO-Revision-Date: 2020-02-26 17:27+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5298,22 +5298,22 @@ msgid "This will send a message to the developer. You will be notified when they
 msgstr "Ovime će se poslati poruka programeru. Dobit ćeš obavijest kad odgovore."
 
 msgid "Request super-review"
-msgstr "Zatraži administratorsku recenziju"
+msgstr "Zatraži administratorski pregled"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "Ako smatraš, da bi administrator trebao pregledati ovaj dodatak, upiši svoj komentar. Komentari se ne šalju programeru."
 
 msgid "Comment"
 msgstr "Komentar"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Napiši komentar za ovu verziju. Programer to neće moći vidjeti."
 
 msgid "Pre-Review Add-ons"
 msgstr "Pretpregledaj dodatke"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Preporučeno ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "Ostala recenzija na čekanju ({0})"
