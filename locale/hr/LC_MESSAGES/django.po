@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 13:52+0000\n"
+"PO-Revision-Date: 2020-02-26 14:01+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4040,7 +4040,7 @@ msgstr "Zapiši {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Sastavi opće napomene i napomene za web-stranicu za kasniji pregled."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4556,7 +4556,7 @@ msgstr "Promijeni izgled preglednika. Jednostavno dizajniraj vlastite vizualne m
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Spremaj bilješke {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
+msgstr "Spremaj napomene {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
