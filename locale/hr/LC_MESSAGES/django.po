@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 18:52+0000\n"
+"PO-Revision-Date: 2020-02-26 19:02+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5707,7 +5707,7 @@ msgid "Clear information request"
 msgstr "Izbriši zahtjev za informacijama"
 
 msgid "Clear Admin Code Review Flag"
-msgstr ""
+msgstr "Izbriši oznaku administratorskog pregleda koda"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Izbriši oznaku za administratorski pregled sadržaja"
@@ -5716,13 +5716,13 @@ msgid "Clear Admin Static Theme Review Flag"
 msgstr "Izbriši oznaku za administratorski pregled statičkog motiva"
 
 msgid "(admin)"
-msgstr ""
+msgstr "(administrator)"
 
 msgid "Admin Page"
 msgstr "Stranica administratora"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Pregledaj ovaj dodatak"
 
 msgid "More Information"
 msgstr "Više informacija"
@@ -5735,41 +5735,41 @@ msgid "Reviewer"
 msgstr "Recenzent"
 
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Dodatak je izbrisan."
 
 msgid "Show Comments"
-msgstr ""
+msgstr "Prikaži komentare"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "Sakrij komentare"
 
 msgid "No reviews found for this period."
 msgstr "Nisu nađene revizije za ovaj period."
 
 msgid "Method:"
-msgstr ""
+msgstr "Metoda:"
 
 msgid "Source:"
-msgstr ""
+msgstr "Izvor:"
 
 msgid "Dismiss this announcement"
 msgstr "Odbaci ovu najavu"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Datoteke u ovoj verziji:"
 
 msgid "Contents"
-msgstr ""
+msgstr "Sadržaj"
 
 msgid "Compare"
-msgstr ""
+msgstr "Usporedi"
 
 msgid "Permissions:"
 msgstr "Dopuštenja:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Od %(user)s, %(date)s</div>"
 
 msgid "Older"
 msgstr "Starije"
@@ -5778,44 +5778,43 @@ msgid "Newer"
 msgstr "Novije"
 
 msgid "Recent Points"
-msgstr ""
+msgstr "Nedavni bodovi"
 
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Još nije dodijeljen niti jedan bod."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Najbolji recenzenti (posljednjih 7 dana)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Još nema najboljih recenzenata."
 
 msgid "All Time"
 msgstr ""
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Imaš <span>{0}</span> bodova."
 
 msgid "Theme"
 msgstr "Motiv"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s, %(date)s [%(ip_address)s]"
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Odbijeno ili nepregledano"
 
 #, python-format
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Čeka na ažuriranje ({0})"
-msgstr[1] "Čekaju na ažuriranje ({0})"
-msgstr[2] ""
+msgstr[0] "Aktualiziranje ({0})"
+msgstr[1] "Aktualiziranja ({0})"
+msgstr[2] "Aktualiziranja ({0})"
 
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
@@ -5843,17 +5842,17 @@ msgstr ""
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr ""
+msgstr "Neispravni parametar „%s”."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Neispravna kombinacija parametara „%s” i „%s”."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Povratak na AMO trenutačno je onemogućen"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Neispravna guid oznaka za povratak na AMO (nije base64url formata?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
 msgstr ""
