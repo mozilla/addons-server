@@ -3367,7 +3367,7 @@ class TestReview(ReviewBase):
             ('View Product Page', self.addon.get_url_path()),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
-                reverse('zadmin.addon_manage', args=[self.addon.id])),
+                reverse('admin:addons_addon_change', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
@@ -3384,7 +3384,7 @@ class TestReview(ReviewBase):
                 'reviewers.review', args=('unlisted', self.addon.slug))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse(
-                'zadmin.addon_manage', args=[self.addon.id])),
+                'admin:addons_addon_change', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
@@ -3404,7 +3404,7 @@ class TestReview(ReviewBase):
                 'reviewers.review', args=('unlisted', self.addon.slug))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse(
-                'zadmin.addon_manage', args=[self.addon.id])),
+                'admin:addons_addon_change', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
@@ -3426,7 +3426,7 @@ class TestReview(ReviewBase):
                 reverse('reviewers.review', args=(self.addon.slug,))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
-                reverse('zadmin.addon_manage', args=[self.addon.id])),
+                reverse('admin:addons_addon_change', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 

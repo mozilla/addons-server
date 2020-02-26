@@ -95,7 +95,7 @@ def addon_search(request):
         else:
             qs = Addon.search().query(name__text=q.lower())[:100]
         if len(qs) == 1:
-            return redirect('zadmin.addon_manage', qs[0].id)
+            return redirect('admin:addons_addon_change', qs[0].id)
         ctx['addons'] = qs
     return render(request, 'zadmin/addon-search.html', ctx)
 
