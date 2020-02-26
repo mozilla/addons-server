@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 19:12+0000\n"
+"PO-Revision-Date: 2020-02-26 19:18+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5882,34 +5882,34 @@ msgstr "Verzija ne odgovara datoteci manifesta."
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr ""
+msgstr "Verzija već postoji. Najnovija verzija je: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "GUID smiju ispustiti samo web-proširenja"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Navedi GUID oznaku svog dodatka u manifestu, ako je duži od 64 znaka."
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "Neispravna GUID oznaka u URL-u"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Ne možeš dodati navedenu verziju ovom dodatku putem sučelja, jer nedostaju metapodaci. Pošalji putem web stranice"
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Nema prenesene datoteke za taj dodatak i verziju."
 
 msgid "Overview"
-msgstr ""
+msgstr "Pregled"
 
 msgid "by Source"
-msgstr ""
+msgstr "prema izvoru"
 
 msgid "Daily Users"
 msgstr "Dnevni korisnici"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "prema verziji dodatka"
 
 # 78%
 msgid "by Application"
