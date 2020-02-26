@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 19:26+0000\n"
+"PO-Revision-Date: 2020-02-26 20:55+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5959,25 +5959,25 @@ msgid "Statistics Dashboard"
 msgstr "Pregledna ploča statistike"
 
 msgid "Controls:"
-msgstr ""
+msgstr "Upravljanje:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "Poništi uvećanje"
 
 msgid "Group by:"
-msgstr ""
+msgstr "Grupiraj po:"
 
 msgid "day"
-msgstr ""
+msgstr "danu"
 
 msgid "week"
-msgstr ""
+msgstr "tjednu"
 
 msgid "month"
-msgstr ""
+msgstr "mjesecu"
 
 msgid "For last:"
-msgstr ""
+msgstr "Za zadnjih:"
 
 msgid "7 days"
 msgstr "7 dana"
@@ -5992,78 +5992,81 @@ msgid "365 days"
 msgstr "365 dana"
 
 msgid "Custom..."
-msgstr ""
+msgstr "Prilagođeno …"
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
+"Obrada statistike trenutačno je deaktivirana, tako da nedavni podaci nisu dostupni. Statistički podaci se još uvijek prikupljaju, a ova će se stranica uskoro aktualizirati podacima koji nedostaju."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Učitavanje najnovijih podataka&hellip;"
 
 msgid "No data available."
-msgstr ""
+msgstr "Nema podataka."
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Ova je ploča trenutačno <b>javna</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Ova je ploča trenutačno <b>privatna</b>."
 
 msgid "Change settings."
-msgstr ""
+msgstr "Promijeni postavke."
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Upotreba aplikacije po datumu"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Preuzeto po datumu"
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Kako se broje preuzimanja?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Kako se broje preuzimanja?</h2> <p>Broj preuzimanja aktualizira se svake večeri i uključuje samo preuzimanja izvornih dodataka, a ne nadogradnji. Preuzimanja je moguće navesti ovisno o "
+"specifičnom izvoru na koji se odnosi preuzimanje.</p>"
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "Korisnički jezici po datumu"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Upotreba platformi po datumu"
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> preuzimanja"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Učitavanje …"
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr "<b>{0}</b> dnevnih korisnika prosječno"
 
 msgid "Top Applications"
-msgstr ""
+msgstr "Najčešće korišteni programi"
 
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Pogledaj daljnje programe&hellip;"
 
 msgid "Top Languages"
-msgstr ""
+msgstr "Najčešće korišteni jezici"
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Pogledaj daljnje jezike&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "Najčešće korištene platforme"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Pogledaj daljnje platforme&hellip;"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Preuzmi izvore po datumu"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "O praćenju vanjskih izvora …"
 
 #, python-format
 msgid ""
@@ -6075,7 +6078,7 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Stanje dodataka po datumu"
 
 msgid "Daily Users by Date"
 msgstr "Dnevni korisnici prema datumu"
@@ -6089,39 +6092,41 @@ msgid ""
 msgstr ""
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Verzije programa po datumu"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla dodaci"
 
 msgid "Back to Add-ons"
 msgstr "Povratak na dodatke"
 
 msgid "Footer logo"
-msgstr ""
+msgstr "Logotip u podnožju"
 
 msgid "Legal Notices"
 msgstr "Pravne napomene"
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Prijavi zloupotrebu trgovačkog znaka"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Nova web stranica podržava klijente za mobilne uređaje i računala"
 
 msgid "View the new site"
 msgstr "Pogledaj novu web stranicu"
 
 msgid "Site Status"
-msgstr ""
+msgstr "Stanje stranice"
 
 msgid "Report a bug"
-msgstr ""
+msgstr "Prijavi grešku"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Osim ako je drugačije <a href=\"https://www.mozilla.org/about/legal/\">navedeno</a>, sadržaj na ovoj web stranici licenciran je pod <br /> <a href = \"https: / /creativecommons.org/licenses/by-"
+"sa/3.0 / \"> Creative Commons Imenovanje – Dijeli pod istim uvjetima v3.0 </a> ili bilo kojoj novijoj verziji."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "upoznajte <b>dodatke</b>"
@@ -6139,19 +6144,19 @@ msgid "Android Browser"
 msgstr "Android preglednik"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS preglednik"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus preglednik"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Desktop preglednik"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr "Beta, Nightly, razvojno izdanje"
 
 msgid "Other languages"
-msgstr ""
+msgstr "Drugi jezici"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Natrag na {0} početnu stranicu dodataka"
@@ -6166,17 +6171,17 @@ msgid "My Account"
 msgstr "Moj račun"
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "Pozdrav, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registrirajte se</a> ili <a href=\"%(login)s\">Prijavite se</a>"
 
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Dodaci za Android"
 
 msgid "Required fields"
-msgstr ""
+msgstr "Obavezna polja"
 
 msgid "(optional)"
 msgstr "(opcionalno)"
@@ -6184,34 +6189,34 @@ msgstr "(opcionalno)"
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Prevedi na: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
 msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Postojeći jezici"
 
 msgid "New Locales"
-msgstr ""
+msgstr "Novi jezici"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Imaš nespremljene promjene u prijevodu za <b>{0}</b> Želiš li spremiti promjene prije mijenjanja jezika?"
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "Odbaci promjene"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Zaista želiš ukloniti sve prijevode za <b>{0}</b>? To nije moguće vratiti."
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "Izbriši prijevod"
 
 msgid "User Restriction History"
-msgstr ""
+msgstr "Povijest ograničenja korisnika"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -6219,7 +6224,7 @@ msgstr "Korisnik „%(user)s” je isključen."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Slika koja pripada korisniku \"% (user) s\" je izbrisana."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
@@ -6236,7 +6241,7 @@ msgid "Reset API Key"
 msgstr "Resetiraj API ključ"
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "Fotografija profila"
 
 msgid "Collections"
 msgstr "Zbirke"
@@ -6245,31 +6250,31 @@ msgid "Activity Logs"
 msgstr "Dnevnici aktivnosti"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Upiši izpravnu IPv4 ili IPv6 adresu, npr. 127.0.0.1. Pretvorit će se u /32 mrežu."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Možeš unijeti samo jedno – ili IP adresu ili mrežu."
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Nema korisnika s tom e-adresom."
 
 msgid "Firefox user {id}"
 msgstr "Korisnik Firefoxa {id}"
 
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Nema dodataka za mobilne uređaje"
 
 msgid "My Favorite Add-ons"
 msgstr "Moji omiljeni dodaci"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Upiši ispravni raspon CIDR IPv6 ili IPv6 mreže, npr. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "S tvoje lokacije su poslani dodaci koji krše naša pravila. IP adresa je blokirana."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Uzorak za e-adresu"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
@@ -6277,7 +6282,7 @@ msgid ""
 msgstr ""
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr ""
+msgstr "E-adresi koja se koristi za tvoj račun, nije dozvoljeno slati dodatke."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
@@ -6290,16 +6295,16 @@ msgid ""
 msgstr ""
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "programer dodataka odgovara na moju recenziju"
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "dostupni su novi dodaci ili funkcije Firefoxa"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "kompatibilnost mog dodatka uspješno je nadograđena"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "netko piše recenziju za moj dodatak"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr ""
