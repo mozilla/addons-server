@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 14:32+0000\n"
+"PO-Revision-Date: 2020-02-26 14:33+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -561,27 +561,27 @@ msgstr "Recenzije napisane od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "Korisničkih prijava, posljednjih {0} dana"
+msgstr "Korisničke prijave, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "Korisničkih prijava od {0} do {1}"
+msgstr "Korisničke prijave od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr "Zbirki napravljeno, posljednjih {0} dana"
+msgstr "Zbirke napravljene, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr "Zbirki napravljeno od {0} do {1}"
+msgstr "Zbirke napravljene od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr "Pretplatnika, posljednjih {0} dana"
+msgstr "Pretplatnici, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr "Pretplatnika od {0} do {1}"
+msgstr "Pretplatnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
