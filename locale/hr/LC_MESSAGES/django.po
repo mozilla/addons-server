@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 16:31+0000\n"
+"PO-Revision-Date: 2020-02-26 16:42+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5052,29 +5052,29 @@ msgid "You can't change the add-on of a review once it has been created."
 msgstr "Ne možeš promijeniti dodatak recenzije nakon što je stvoren."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Ne možeš odgovoriti na recenziju koja je sama već odgovor."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Ne možeš promijeniti verziju recenziranog dodatka nakon što je recenzija stvorena."
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Ova verzija dodatka ne postoji ili nije javna."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Ne možeš napisati recenziju za vlastiti dodatak."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "Ne možeš napisati više od jedne recenzije za istu verziju dodatka."
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Neispravna oznaka [%s] – mora biti jedna od [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Ovu ocjenu nije moguće označiti, jer nema recenziju."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Kad se odabere opcija \"Ostalo\" kao razlog oznake, mora se navesti kratko objašnjenje."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
