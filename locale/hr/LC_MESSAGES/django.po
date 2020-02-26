@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 20:55+0000\n"
+"PO-Revision-Date: 2020-02-26 20:59+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -6307,19 +6307,19 @@ msgid "someone writes a review of my add-on"
 msgstr "netko piše recenziju za moj dodatak"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "dobivaj relevantne obavijesti za programere dodataka (uključuje bilten za about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "kompatibilnost mog dodatka ne može se nadograditi"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "moj dodatak pregledava recenzent"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla me mora kontaktirati u vezi s mojim dodatkom"
 
 msgid "User Notifications"
-msgstr ""
+msgstr "Obavijesti korisnika"
 
 msgid "Ban"
 msgstr "Isključi"
@@ -6329,10 +6329,10 @@ msgstr "Ukloni sliku"
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "drugi"
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} i noviji"
 
 msgid "Deleted versions can`t be changed."
 msgstr ""
