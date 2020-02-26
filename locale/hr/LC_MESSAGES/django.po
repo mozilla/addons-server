@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 16:51+0000\n"
+"PO-Revision-Date: 2020-02-26 17:03+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5198,19 +5198,19 @@ msgid "WebExtension"
 msgstr "Web-proširenje"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Raščlanjivanje rizika nije dostupno."
 
 msgid "Is locked by a reviewer"
-msgstr ""
+msgstr "Zaključano od strane recenzenta"
 
 msgid "Has auto-approval disabled flag set"
-msgstr ""
+msgstr "Postavljena je oznaka za deativirano automatsko odobravanje"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "Preporučljivo je"
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "Odgođeno, jer je ovo prva navedena verzija"
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Možeš poslati komentar, ako je `canned_response` (pripremljeni odgovor) definiran."
@@ -5222,17 +5222,17 @@ msgid "Waiting Time"
 msgstr "Vrijeme čekanja"
 
 msgid "Flags"
-msgstr ""
+msgstr "Oznake"
 
 msgid "moments ago"
-msgstr ""
+msgstr "prije nekoliko trenutaka"
 
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} minuta"
+msgstr[1] "{0} minute"
+msgstr[2] "{0} minuta"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
