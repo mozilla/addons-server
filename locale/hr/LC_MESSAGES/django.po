@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 17:07+0000\n"
+"PO-Revision-Date: 2020-02-26 17:22+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5258,7 +5258,7 @@ msgid "No Reviews"
 msgstr "Nema recenzija"
 
 msgid "Weight"
-msgstr ""
+msgstr "Težina"
 
 msgid "Information Request Deadline"
 msgstr "Rok za zahtjev za informacijama"
@@ -5267,38 +5267,38 @@ msgid "Last Updated"
 msgstr "Zadnje aktualiziranje"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Ovime će se odobriti, potpisati i objaviti ova verzija. Komentari će se poslati programeru."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "Ovime će se verzija odbiti i ukloniti iz reda čekanja. Komentari će se poslati programeru."
 
 msgid "Approve Content"
 msgstr "Odobri sadržaj"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "Ovime se zapisuje odobrenje sadržaja najnovije javne verzije, bez obavještavanja programera."
 
 msgid "Confirm Approval"
-msgstr ""
+msgstr "Potvrdi odobrenje"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
+msgstr "Najnovija javna verzija ovog dodatka automatski je odobrena. Ovime se zapisuje tvoja potvrda o odobrenju te verzije, bez obavještavanja programera."
 
 msgid "Reject Multiple Versions"
 msgstr "Odbaci višestruke verzije"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Ovime će se odbaciti odabrane javne verzije. Komentari će se poslati programeru."
 
 # 100%
 msgid "Reviewer reply"
 msgstr "Odgovor recenzenta"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "Ovime će se poslati poruka programeru. Dobit ćeš obavijest kad odgovore."
 
 msgid "Request super-review"
-msgstr ""
+msgstr "Zatraži administratorsku recenziju"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
