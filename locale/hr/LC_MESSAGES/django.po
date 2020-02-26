@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 17:59+0000\n"
+"PO-Revision-Date: 2020-02-26 18:09+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5574,16 +5574,16 @@ msgid "All-Time"
 msgstr ""
 
 msgid "Advanced Search"
-msgstr ""
+msgstr "Napredna pretraga"
 
 msgid "clear search"
 msgstr "očisti pretraživanje"
 
 msgid "Process Reviews"
-msgstr ""
+msgstr "Obrada recenzija"
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Radnje moderiranja:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5591,13 +5591,13 @@ msgstr "od strane %(user)s %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označeno od %(user)s, %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Sve recenzije su moderirane. Odlično!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Trenutačno nema dodataka ove vrste koji bi se trebali pregledati."
 
 msgid "Helpful Links:"
 msgstr "Korisni linkovi:"
