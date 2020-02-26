@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 17:50+0000\n"
+"PO-Revision-Date: 2020-02-26 17:59+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5470,26 +5470,26 @@ msgid "Image Gallery"
 msgstr "Galerija slika"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Ovdje nema ničega! Programer nije dodao nikakve detalje."
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Vrati se na nadzornu ploču s alatima za recenzente"
 
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Oglasna ploča vodećih recenzenata"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Još nije dodijeljen niti jedan bod."
 
 msgid "Rank"
 msgstr "Poredak"
 
 msgid "Score"
-msgstr ""
+msgstr "Rezultat"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr ""
+msgstr "Filtar"
 
 msgid "Date"
 msgstr "Datum"
@@ -5501,29 +5501,29 @@ msgid "More details."
 msgstr "Više detalja."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "Nema događaja za ovo razdoblje."
 
 msgid "Log details"
-msgstr ""
+msgstr "Detalji log-zapisa"
 
 msgid "Review Author"
 msgstr "Autor recenzije"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "Naslov dodatka"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Tekst recenzije"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Recenzija je označena prije brisanja."
 
 msgid "Undelete"
-msgstr ""
+msgstr "Poništi brisanje"
 
 msgid "Save"
 msgstr "Spremi"
@@ -5532,22 +5532,22 @@ msgid "Add-on Reviewer Performance"
 msgstr "Učinkovitost recenzenta dodatka"
 
 msgid "View statistics for user"
-msgstr ""
+msgstr "Pogledaj statistiku o korisniku"
 
 msgid "Range"
-msgstr ""
+msgstr "Raspon"
 
 msgid "Your Reviews"
-msgstr ""
+msgstr "Tvoje recenzije"
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "Od {user_name}"
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "Recenzija ukupno"
 
 msgid "Active Contributors"
-msgstr ""
+msgstr "Aktivni doprinositelji"
 
 msgid "This Month"
 msgstr "Ovaj mjesec"
