@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 19:02+0000\n"
+"PO-Revision-Date: 2020-02-26 19:12+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5855,30 +5855,30 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Neispravna guid oznaka za povratak na AMO (nije base64url formata?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Neispravna guid oznaka za povratak na AMO (nije kuriran dodatak)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Neispravna kombinacija parametara „%s” , „%s” i „%s”."
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Prekoračena je maksimalna duljina upita."
 
 msgid "Could not find add-on with guid \"{}\"."
-msgstr ""
+msgstr "Nije bilo moguće pronaći dodatak s guid oznakom „{}”."
 
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Nisi vlasnik/vlasnica ovog dodatka."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "U višedjelnoj datoteci nedostaje ključ \"upload\"."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Ne možeš dodati verzije dodatku, čije je stanje: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Verzija ne odgovara datoteci manifesta."
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
