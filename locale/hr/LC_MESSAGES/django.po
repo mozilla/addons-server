@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 16:42+0000\n"
+"PO-Revision-Date: 2020-02-26 16:51+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5086,42 +5086,42 @@ msgid "Not yet rated"
 msgstr "Još nije ocijenjeno"
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Ocijenjeno s {0} od 5 zvjezdica"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Ocijenjeno s %(rating)s od 5 zvjezdica"
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "Odobrene recenzije"
 
 msgid "Deleted reviews"
 msgstr "Obrisane revizije"
 
 msgid "View entries between"
-msgstr ""
+msgstr "Pogledaj unose između"
 
 msgid "and"
 msgstr "i"
 
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filtriraj prema vrsti/radnji"
 
 msgid "containing"
-msgstr ""
+msgstr "sadrži"
 
 msgid "start"
-msgstr ""
+msgstr "početak"
 
 msgid "end"
-msgstr ""
+msgstr "kraj"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
 msgstr "dodatak, recenzent ili komentar"
 
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Traži po imenu/e-adresi autora"
 
 msgid "Needs Admin Code Review"
 msgstr "Potreban je administratorski pregled koda"
@@ -5133,16 +5133,16 @@ msgid "no"
 msgstr "ne"
 
 msgid "Add-on Types"
-msgstr ""
+msgstr "Vrste dodataka"
 
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Traži po imenu/e-adresi autora/guid oznaci"
 
 msgid "Max. Version"
 msgstr "Maks. inačica"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "Najprije odaberi program"
 
 # 77%
 msgid "Comments:"
@@ -5156,7 +5156,7 @@ msgid "Applications:"
 msgstr "Aplikacije:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Zahtijevaj, da programer odgovori u roku od …"
 
 msgid "days"
 msgstr "dana"
@@ -5165,16 +5165,16 @@ msgid "Choose a canned response..."
 msgstr "Odaberi pripremljeni odgovor …"
 
 msgid "Private Whiteboard"
-msgstr ""
+msgstr "Privatna ploča"
 
 msgid "Keep review; remove flags"
 msgstr "Zadržati reviziju, ukloniti zastavice"
 
 msgid "Skip for now"
-msgstr ""
+msgstr "Za sada preskoči"
 
 msgid "Delete review"
-msgstr ""
+msgstr "Izbriši recenziju"
 
 msgid "Needs Admin Content Review"
 msgstr "Potreban je administratorski pregled sadržaja"
@@ -5186,16 +5186,16 @@ msgid "Requires Restart"
 msgstr "Zahtjeva ponovno pokretanje"
 
 msgid "More Information Requested"
-msgstr ""
+msgstr "Zatražene su daljnje informacije"
 
 msgid "Expired Information Request"
 msgstr "Istekao zahtjev za informacijama"
 
 msgid "Sources provided"
-msgstr ""
+msgstr "Izvori osigurani"
 
 msgid "WebExtension"
-msgstr ""
+msgstr "Web-proširenje"
 
 msgid "Risk breakdown not available."
 msgstr ""
