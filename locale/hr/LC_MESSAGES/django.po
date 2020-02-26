@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 13:17+0000\n"
+"PO-Revision-Date: 2020-02-26 13:52+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -128,7 +128,7 @@ msgid "Review note"
 msgstr "Napomena pregleda"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr "Bilješke se mogu dodati samo najnovijim verzijama dodataka."
+msgstr "Napomene se mogu dodati samo najnovijim verzijama dodataka."
 
 # 85%
 msgid "Ratings"
@@ -732,10 +732,10 @@ msgid "Reviewer Reply"
 msgstr "Odgovor recenzenta"
 
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Bilješke o odobrenju su promijenjene za {addon} {version}."
+msgstr "Napomene o odobrenju su promijenjene za {addon} {version}."
 
 msgid "Approval notes changed"
-msgstr "Bilješke o odobrenju su promijenjene"
+msgstr "Napomene o odobrenju su promijenjene"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Izvorni kȏd prenesen za {addon} {version}."
@@ -2477,7 +2477,7 @@ msgstr ""
 " zahtjevima pravila %(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Ove bilješke ćeš vidjeti samo ti i tvoji recenzenti."
+msgstr "Ove napomene ćeš vidjeti samo ti i naši recenzenti."
 
 msgid "Submit Version"
 msgstr "Pošalji verziju"
@@ -2495,7 +2495,7 @@ msgid "Let your users know what's new and what's changed in this version."
 msgstr "Obavijesti korisnike što je novo i što se promijenilo u ovoj verziji."
 
 msgid "These notes will appear on the detail page."
-msgstr "Ove bilješke će se pojaviti na stranici s detaljima."
+msgstr "Ove napomene će se pojaviti na stranici detalja."
 
 msgid "How to Distribute this Version"
 msgstr "Kako distribuirati ovu verziju"
@@ -2534,7 +2534,7 @@ msgid "Manage Listing"
 msgstr "Upravljanje popisom"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "Ovu verziju možeš i urediti, dodavanjem napomena o verziji ili dodavanjem izvornog koda, ako tvoja prijava uključuje umanjen, nečitljiv ili sastavljeni kȏd."
+msgstr "Ovu verziju možeš i urediti, dodavanjem napomena o verziji ili dodavanjem izvornog koda, ako tvoja prijava uključuje umanjen, nečitljiv ili kompiliran kod."
 
 # 91%
 msgid "Edit version {0}"
@@ -2615,7 +2615,7 @@ msgid "Include instructions in a README file in the source code,"
 msgstr ""
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "ili u napomenama recenzenta na sljedećoj stranici (ako je primjenjivo)."
 
 msgid "Upload source code:"
 msgstr "Prenesi izvorni kȏd:"
@@ -2884,7 +2884,7 @@ msgid "If your add-on contains binary or obfuscated code other than known librar
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Uključite upute o tome kako reproducirati konačnu datoteku dodataka, bilo u datoteci README ili u „Napomene za recenzente” za ovu verziju."
 
 msgid "Read more about the source code review policy."
 msgstr ""
@@ -3026,7 +3026,7 @@ msgid "Files"
 msgstr "Datoteke"
 
 msgid "Version Notes"
-msgstr "Biljesške verzije"
+msgstr "Napomene o verziji"
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
@@ -3089,7 +3089,7 @@ msgid "Loading Review History..."
 msgstr "Učitavanje povijesti recenzija …"
 
 msgid "We had a problem retrieving review notes"
-msgstr "Imali smo problem s prikupljanjem napomena za recenziju"
+msgstr "Došlo je do problem tijekom prikupljanja napomena za recenziju"
 
 msgid "Load older..."
 msgstr "Učitaj starije …"
