@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 16:20+0000\n"
+"PO-Revision-Date: 2020-02-26 16:31+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5031,25 +5031,25 @@ msgid "User"
 msgstr "Korisnik"
 
 msgid "IP Address"
-msgstr ""
+msgstr "IP adresa"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Neželjena pošta ili na drugi način ne revizirani sadržaj"
 
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Neprikladan jezik/dijalog"
 
 msgid "Misplaced bug report or support request"
 msgstr "Zagubljeno izvješće greške ili zahtjev za podršku"
 
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Ostalo (navedi)"
 
 msgid "This field is required."
-msgstr ""
+msgstr "Ovo je obavezno polje."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "Ne možeš promijeniti dodatak recenzije nakon što je stvoren."
 
 msgid "You can't reply to a review that is already a reply."
 msgstr ""
