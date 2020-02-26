@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 18:41+0000\n"
+"PO-Revision-Date: 2020-02-26 18:52+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5641,13 +5641,13 @@ msgid "Additional sources:"
 msgstr "Dodatni izvori:"
 
 msgid "Download files"
-msgstr ""
+msgstr "Preuzmi datoteke"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Programer je pružio izvorni kod."
 
 msgid "Weight:"
-msgstr ""
+msgstr "Težina:"
 
 msgid "Download"
 msgstr "Preuzimanje"
@@ -5656,43 +5656,43 @@ msgid "Not Auto Approved Because"
 msgstr "Nije automatski odobreno jer"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Skripta automatskog odobravanja još nije pokrenuta na ovu verziju."
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Ova verzija nije pregledna."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Odaberi jednu ili više verzija s gornjeg popisa."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "I nadalje možeš poslati ovaj obrazac, ali pazi da ne dođe do sukoba."
 
 msgid "Insert canned response..."
 msgstr "Umetni pripremljeni odgovor …"
 
 msgid "Tested on:"
-msgstr ""
+msgstr "Testirano:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Upozorenje!</strong> Jedan drugi korisnik je pregledavao ovu stranicu prije tebe."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Ploča je mjesto za razmjenu informacija, relevantnih za ovaj dodatak (bez obzira na verziju), između programera i recenzenta. Obje osobe je mogu vidjeti i urediti."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Privatna ploča koristi se za razmjenu informacija između recenzenata, neovisno o verziji. Ostani objektivan. Ploču vide samo recenzenti."
 
 msgid "Update whiteboards"
-msgstr ""
+msgstr "Aktualiziraj ploče"
 
 msgid "More Actions"
 msgstr "Daljnje radnje"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Obavijesti me o novim navedenim verzijama"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Prisilno deaktiviraj dodatak"
 
 msgid "Force-enable add-on"
 msgstr "Prisilno omogući dodatak"
