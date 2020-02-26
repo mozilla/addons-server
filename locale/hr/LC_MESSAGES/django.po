@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 19:18+0000\n"
+"PO-Revision-Date: 2020-02-26 19:26+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5926,37 +5926,37 @@ msgid "by Add-on Status"
 msgstr "prema statusu dodatka"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Prilagođeno razdoblje"
 
 msgid "From"
-msgstr ""
+msgstr "Od"
 
 msgid "To"
-msgstr ""
+msgstr "Do"
 
 msgid "Update"
-msgstr ""
+msgstr "Aktualiziraj"
 
 msgid "Export"
-msgstr ""
+msgstr "Izvezi"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Pregledna ploča statistike :: Dodaci za {1}"
 
 # 77%
 msgid "{0} :: Statistics Dashboard"
 msgstr "{0} :: Nadzorna ploča statistike"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Pregledna ploča :: Dodaci za {1}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Statistika za {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Pregledna ploča statistike"
 
 msgid "Controls:"
 msgstr ""
