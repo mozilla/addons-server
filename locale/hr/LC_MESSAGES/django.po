@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 17:27+0000\n"
+"PO-Revision-Date: 2020-02-26 17:42+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5358,10 +5358,10 @@ msgid "Theme Review Guide"
 msgstr "Vodič za pregled motiva"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderacija korisničkih ocjenjivanja"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Ocjenjivanja, koja čekaju na moderaciju ({0})"
 
 msgid "Moderated Review Log"
 msgstr "Moderirani revizijski zapis"
@@ -5373,10 +5373,10 @@ msgid "Unlisted Add-ons"
 msgstr "Nenavedeni dodaci"
 
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Svi nenavedeni dodaci"
 
 msgid "Announcement"
-msgstr ""
+msgstr "Nagovještaj"
 
 msgid "Update message of the day"
 msgstr "Ažuriraj poruku dana"
@@ -5385,10 +5385,10 @@ msgid "Expired Information Requests ({0})"
 msgstr "Istekli zahtjevi za informacijama ({0})"
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Dogodila se nepoznata greška"
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Recenziranje vlastitog nije dozvoljeno."
 
 msgid "Review successfully processed."
 msgstr ""
