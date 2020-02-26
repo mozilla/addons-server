@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 12:33+0000\n"
+"PO-Revision-Date: 2020-02-26 12:42+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -256,7 +256,7 @@ msgid "Collections Created"
 msgstr "Zbirki napravljeno"
 
 msgid "Add-ons in Use"
-msgstr "Dodaci koji se koriste"
+msgstr "Dodaci u upotrebi"
 
 msgid "Add-ons Created"
 msgstr "Dodataka napravljeno"
@@ -425,19 +425,19 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Preuzimanja i dnevno korištenje, posljednjih {0} dana"
+msgstr "Preuzimanja i dnevni korisnici, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Preuzimanja i dnevno korištenje od {0} do {1}"
+msgstr "Preuzimanja i dnevni korisnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr "Instaliranja i dnevno korištenje, posljednjih {0} dana"
+msgstr "Instaliranja i dnevni korisnici, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Instaliranja i dnevno korištenje od {0} do {1}"
+msgstr "Instaliranja i dnevni korisnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -754,7 +754,7 @@ msgid "Review notes found"
 msgstr "Pronađene bilješke ocjene"
 
 msgid "Average Reviews"
-msgstr "Prosječne ocjene"
+msgstr "Prosječno recenzija"
 
 msgid "Number of Reviews"
 msgstr "Broj ocjena"
