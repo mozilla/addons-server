@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 17:42+0000\n"
+"PO-Revision-Date: 2020-02-26 17:50+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5391,25 +5391,25 @@ msgid "Self-reviews are not allowed."
 msgstr "Recenziranje vlastitog nije dozvoljeno."
 
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Recenzija je uspješno obrađena."
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Dostignuto ograničenje zaključavanja recenzije"
 
 msgid "{addon} :: EULA"
-msgstr ""
+msgstr "{addon} :: licenca korisnika (EULA)"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: Pravila o privatnosti"
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: izvještaji o zloupotrebi"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "Izvještaji o zloupotrebi za {addon} i njegove programere ({num})"
 
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Izvještaji o zloupotrebi"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
@@ -5419,7 +5419,7 @@ msgid "Add-on ID"
 msgstr "ID dodatka"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Interni AMO ID"
 
 msgid "Works with"
 msgstr "Kompatibilan sa"
@@ -5440,16 +5440,16 @@ msgid "View Privacy Policy"
 msgstr "Pogledajte Zaštitu Privatnosti"
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "Zahtijeva plaćanje"
 
 msgid "EULA"
 msgstr "EULA"
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Pogledaj Ugovor o licenci za krajnjeg korisnika"
 
 msgid "Last Approval Date"
-msgstr ""
+msgstr "Datum zadnjeg odobrenja"
 
 msgid "Abuse Reports ({num})"
 msgstr "Izvještaji o zloupotrebi ({num})"
