@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 18:09+0000\n"
+"PO-Revision-Date: 2020-02-26 18:41+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5618,27 +5618,27 @@ msgid "Review {0}"
 msgstr "Revizija {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Kronologija promjene korisnika dodatka"
 
 msgid "Add-on History"
-msgstr ""
+msgstr "Kronologija dodatka"
 
 msgid "Previously deleted entries"
-msgstr ""
+msgstr "Prethodno izbrisani unosi"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Verzija %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Potvrđeno)"
 
 # 92%
 msgid "Compatibility:"
 msgstr "Kompatibilnost:"
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "Dodatni izvori:"
 
 msgid "Download files"
 msgstr ""
