@@ -440,7 +440,7 @@ class TestSortingFilter(FilterTestsBase):
             {'random_score': {'seed': 737481}}
         ]
 
-    @freeze_time('2020-02-26')
+    @freeze_time('2020-02-27')
     def test_sort_random(self):
         qs = self._filter(data={'recommended': 'true', 'sort': 'random'})
         # Note: this test does not call AddonRecommendedQueryParam so it won't
@@ -448,7 +448,7 @@ class TestSortingFilter(FilterTestsBase):
         # TestCombinedFilter.test_filter_recommended_sort_random
         assert qs['sort'] == ['_score']
         assert qs['query']['function_score']['functions'] == [
-            {'random_score': {'seed': 737481}}
+            {'random_score': {'seed': 737482}}
         ]
 
     def test_sort_recommended_only(self):
