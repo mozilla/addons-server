@@ -5949,7 +5949,7 @@ msgid "{0} :: Statistics Dashboard"
 msgstr "{0} :: Nadzorna ploča statistike"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "Pregledna ploča :: Dodaci za {1}"
+msgstr "Pregledna ploča :: Dodaci za {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
