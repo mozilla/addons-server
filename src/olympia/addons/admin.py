@@ -115,7 +115,10 @@ class AddonAdmin(admin.ModelAdmin):
         css = {
             'all': ('css/admin/l10n.css', 'css/admin/pagination.css')
         }
-        js = ('js/admin/l10n.js', 'js/admin/recalc_hash.js')
+        js = (
+            'admin/js/jquery.init.js', 'js/admin/l10n.js',
+            'js/admin/recalc_hash.js'
+        )
 
     exclude = ('authors',)
     list_display = ('__str__', 'type', 'guid', 'status', 'average_rating')
