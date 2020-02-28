@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 20:59+0000\n"
+"PO-Revision-Date: 2020-02-28 23:01+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2731,7 +2731,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr ""
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Poslat ćemo ti poveznicu za potvrdu na tvoju e-adresu. Nakon potvrđivanja, pronaći ćeš API ključeve na ovoj stranici."
 
 msgid "You don't have any API credentials."
 msgstr "Nemaš API vjerodajnice."
