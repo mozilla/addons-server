@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-29 16:19+0000\n"
+"PO-Revision-Date: 2020-02-29 20:32+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2761,7 +2761,7 @@ msgid "You will receive an email when the review is complete. Until then, your a
 msgstr ""
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr "Vaš dodatak je prikazan u našoj galeriji, a korisnici dobivaju automatska ažuriranja."
+msgstr "Tvoj se dodatak prikazuje u našoj galeriji, a korisnici dobivaju automatska ažuriranja."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr ""
