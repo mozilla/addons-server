@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-29 20:52+0000\n"
+"PO-Revision-Date: 2020-02-29 21:03+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -222,7 +222,7 @@ msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Tijekom održavanja naših web stranica su neke funkcije privremeno deaktivirane. Uskoro ćemo uspostaviti puni kapacitet."
+msgstr "Tijekom održavanja naših web stranica, neke su funkcije privremeno deaktivirane. Uskoro ćemo uspostaviti puni kapacitet."
 
 msgid "Must contain at least one printable character."
 msgstr "Mora sadržati barem jedan ispisiv znak."
@@ -245,7 +245,7 @@ msgid ""
 msgstr ""
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr "Ako je tvoj preglednik konfiguriran na način, da isključuje zaglavlja \"Referer\", ponovo ih uključi, barem za ovu stranicu ili za HTTPS veze ili za zahtjeve istog podrijetla ('same-origin')."
+msgstr "Ako je tvoj preglednik konfiguriran na način, da deaktivira zaglavlja \"Referer\", ponovo ih aktiviraj, barem za ovu stranicu ili za HTTPS veze ili za zahtjeve istog podrijetla ('same-origin')."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -319,10 +319,10 @@ msgid "Maintenance in progress"
 msgstr "Održavanje u tijeku"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "Tijekom održavanja naših web stranica je funkcija privremeno deaktivirana. Koristi gumb Natrag u pregledniku i pokušaj kasnije ponovo."
+msgstr "Tijekom održavanja naših web stranica, funkcija je privremeno deaktivirana. Koristi gumb Natrag u pregledniku i pokušaj kasnije ponovo."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Tijekom održavanja naših web stranica su pojedine funkcije na ovoj stranici privremeno deaktivirane. Pokušaj ponovo malo kasnije."
+msgstr "Tijekom održavanja naših web stranica, pojedine su funkcije na ovoj stranici privremeno deaktivirane. Pokušaj ponovo malo kasnije."
 
 msgid "Are you human?"
 msgstr "Jesi li ljudsko biće?"
@@ -504,10 +504,10 @@ msgid "Contributions for {addon}."
 msgstr "Doprinosi za {addon}."
 
 msgid "{addon} disabled."
-msgstr "{addon} onemogućen."
+msgstr "Dodatak {addon} je deaktiviran."
 
 msgid "{addon} enabled."
-msgstr "Dodatak {addon} je uključen."
+msgstr "Dodatak {addon} je aktiviran."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
@@ -750,10 +750,10 @@ msgid "Auto-Approval confirmed"
 msgstr "Automatsko odobrenje potvrđeno"
 
 msgid "{addon} {version} re-enabled."
-msgstr "Dodatak {addon} {version} je ponovo uključen."
+msgstr "Dodatak {addon} {version} je reaktiviran."
 
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} onemogućen."
+msgstr "Dodatak {addon} {version} je deaktiviran."
 
 msgid "{addon} {version} content approved."
 msgstr "{addon} {version} sadržaj odobren."
@@ -1708,11 +1708,11 @@ msgid "There was an error uploading your preview."
 msgstr "Došlo je do pogreške prilikom učitavanja Vašeg pregleda."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Najnoviju odobrenu verziju preporučenog proširenja nije moguće izbrisati ili deaktivirati. Ako trebaš pomoć, obrati se AMO administratorima."
 
 #, python-format
 msgid "Version %s disabled."
-msgstr "Verzija %s onemogućena."
+msgstr "Verzija %s je deaktivirana."
 
 #, python-format
 msgid "Version %s deleted."
@@ -2485,7 +2485,7 @@ msgid "Submit Version"
 msgstr "Pošalji verziju"
 
 msgid "Cancel and Disable Version"
-msgstr "Prekini i onemogući verziju"
+msgstr "Prekini i deaktiviraj verziju"
 
 msgid "Describe Version"
 msgstr "Opiši verziju"
@@ -2764,7 +2764,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "Tvoj se dodatak prikazuje u našoj galeriji, a korisnici dobivaju automatska ažuriranja."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
+msgstr "Administrator web stranice je deaktivirao dodatak i više se ne prikazuje u našoj galeriji. Ako imaš bilo kakvih pitanja, pošalji e-mail na amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -3073,7 +3073,7 @@ msgid "0 files"
 msgstr "0 datoteka"
 
 msgid "Re-enable Version"
-msgstr "Aktiviraj verziju"
+msgstr "Reaktiviraj verziju"
 
 msgid "Review History"
 msgstr "Povijest recenzija"
@@ -3966,7 +3966,7 @@ msgstr "Smanji naprezanje očiju {start_sub_heading}pomoću {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr "Uključi noćni način rada za bolji prikaz."
+msgstr "Aktiviraj noćni način rada za bolji prikaz."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5695,13 +5695,13 @@ msgid "Force-disable add-on"
 msgstr "Prisilno deaktiviraj dodatak"
 
 msgid "Force-enable add-on"
-msgstr "Prisilno omogući dodatak"
+msgstr "Prisilno aktiviraj dodatak"
 
 msgid "Disable Auto-Approval"
 msgstr "Onemogući automatsko odobravanje"
 
 msgid "Enable Auto-Approval"
-msgstr "Omogući automatsko odobravanje"
+msgstr "Aktiviraj automatsko odobravanje"
 
 msgid "Clear information request"
 msgstr "Izbriši zahtjev za informacijama"
