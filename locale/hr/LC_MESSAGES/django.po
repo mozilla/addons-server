@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-29 14:42+0000\n"
+"PO-Revision-Date: 2020-02-29 14:43+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3958,7 +3958,7 @@ msgstr "Jednostavno čitanje {start_sub_heading}pomoću {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Pregledaj sve svoje omiljene RSS feedove na jednoj stranici."
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4122,7 +4122,7 @@ msgstr "Sigurno upravljaj lozinkama {start_sub_heading}pomoću {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Spremi lozinke sigurno i automatski se prijavi na poznate web stranice."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
