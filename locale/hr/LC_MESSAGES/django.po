@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-29 21:03+0000\n"
+"PO-Revision-Date: 2020-02-29 21:31+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2768,6 +2768,7 @@ msgstr "Administrator web stranice je deaktivirao dodatak i više se ne prikazuj
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Tvoj dodatak neće biti uključen u rezultate pretraživanja, a njegova će stranica s popisom ukazivati na to da je deaktiviran. Podnošenja nove verzije za uvrštenje neće se prihvatiti u ovom stanju."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -3114,7 +3115,7 @@ msgstr "{label_open}Vidljivo:{label_close} Vidljiv svima na {site_url} i uključ
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Nevidljivo:{label_close} Neće biti uključen u rezultate pretraživanja, a na stranici proizvoda dodatka će biti označen kao deaktiviran. Prijave za nove verzije proizvoda se neće "
+"{label_open}Nevidljivo:{label_close} Neće biti uključen u rezultate pretraživanja, a na stranici proizvoda dodatka bit će označen kao deaktiviran. Prijave za nove verzije proizvoda se neće "
 "prihvaćati u ovom stanju."
 
 msgid "Listed versions"
@@ -5698,7 +5699,7 @@ msgid "Force-enable add-on"
 msgstr "Prisilno aktiviraj dodatak"
 
 msgid "Disable Auto-Approval"
-msgstr "Onemogući automatsko odobravanje"
+msgstr "Deaktiviraj automatsko odobravanje"
 
 msgid "Enable Auto-Approval"
 msgstr "Aktiviraj automatsko odobravanje"
@@ -5849,7 +5850,7 @@ msgid "Invalid combination of \"%s\" and \"%s\" parameters."
 msgstr "Neispravna kombinacija parametara „%s” i „%s”."
 
 msgid "Return To AMO is currently disabled"
-msgstr "Povratak na AMO trenutačno je onemogućen"
+msgstr "Povratak na AMO trenutačno je onemogućeno"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Neispravna guid oznaka za povratak na AMO (nije base64url formata?)"
