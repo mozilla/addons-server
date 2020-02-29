@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-29 14:43+0000\n"
+"PO-Revision-Date: 2020-02-29 15:03+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4050,7 +4050,7 @@ msgstr "Pomicanje kao na mobitelu {start_sub_heading}pomoću {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Klizanje kao na mobitelu za desktop uređaje – pokret mišem po principu „ugrabi-i-povuci”."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6110,7 +6110,7 @@ msgid "Report Trademark Abuse"
 msgstr "Prijavi zloupotrebu trgovačkog znaka"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr "Nova web stranica podržava klijente za mobilne uređaje i računala"
+msgstr "Nova web stranica podržava klijente za mobilne i desktop uređaje"
 
 msgid "View the new site"
 msgstr "Pogledaj novu web stranicu"
@@ -6150,7 +6150,7 @@ msgid "Focus Browser"
 msgstr "Focus preglednik"
 
 msgid "Desktop Browser"
-msgstr "Desktop preglednik"
+msgstr "Preglednik za desktop uređaje"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr "Beta, Nightly, razvojno izdanje"
