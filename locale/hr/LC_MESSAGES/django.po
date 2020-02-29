@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-29 20:32+0000\n"
+"PO-Revision-Date: 2020-02-29 20:52+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -245,7 +245,7 @@ msgid ""
 msgstr ""
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "Ako je tvoj preglednik konfiguriran na način, da isključuje zaglavlja \"Referer\", ponovo ih uključi, barem za ovu stranicu ili za HTTPS veze ili za zahtjeve istog podrijetla ('same-origin')."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -507,7 +507,7 @@ msgid "{addon} disabled."
 msgstr "{addon} onemogućen."
 
 msgid "{addon} enabled."
-msgstr "{addon} omogućen."
+msgstr "Dodatak {addon} je uključen."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
@@ -750,7 +750,7 @@ msgid "Auto-Approval confirmed"
 msgstr "Automatsko odobrenje potvrđeno"
 
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} ponovo omogućen."
+msgstr "Dodatak {addon} {version} je ponovo uključen."
 
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} onemogućen."
@@ -1720,7 +1720,7 @@ msgstr "Inačica %s izbrisana."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr "Verzija %s ponovo omogućena."
+msgstr "Verzija %s je reaktivirana."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -3073,7 +3073,7 @@ msgid "0 files"
 msgstr "0 datoteka"
 
 msgid "Re-enable Version"
-msgstr "Reaktiviraj verziju"
+msgstr "Aktiviraj verziju"
 
 msgid "Review History"
 msgstr "Povijest recenzija"
@@ -3966,7 +3966,7 @@ msgstr "Smanji naprezanje očiju {start_sub_heading}pomoću {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Uključi noćni način rada za bolji prikaz."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4570,7 +4570,7 @@ msgstr "Glasovno pretraživanje {start_sub_heading}pomoću {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Koristi prepoznavanje govora za omogućavanje pretrage na Google, Yahoo i DuckDuckGo."
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
