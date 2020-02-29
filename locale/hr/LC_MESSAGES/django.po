@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-29 15:03+0000\n"
+"PO-Revision-Date: 2020-02-29 16:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -6175,7 +6175,7 @@ msgstr "Pozdrav, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Registrirajte se</a> ili <a href=\"%(login)s\">Prijavite se</a>"
+msgstr "<a href=\"%(reg)s\">Registriraj se</a> ili <a href=\"%(login)s\">Prijavi se</a>"
 
 msgid "Android Add-ons"
 msgstr "Dodaci za Android"
