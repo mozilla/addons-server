@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-28 23:25+0000\n"
+"PO-Revision-Date: 2020-02-29 14:42+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2886,7 +2886,7 @@ msgid "If your add-on contains binary or obfuscated code other than known librar
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Uključite upute o tome kako reproducirati konačnu datoteku dodataka, bilo u datoteci README ili u „Napomene za recenzente” za ovu verziju."
+msgstr "Uključi upute o tome kako reproducirati konačnu datoteku dodataka, bilo u datoteci README ili u „Napomene za recenzente” za ovu verziju."
 
 msgid "Read more about the source code review policy."
 msgstr ""
@@ -2933,7 +2933,7 @@ msgid "Join us!"
 msgstr "Pridruži nam se!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "Napiši neki kȏd"
 
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
@@ -3598,7 +3598,7 @@ msgstr "Surfaj sigurno {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "Dodaj šifriranu sigurnost bilo kojoj web-stranici koja podržava HTTPS. Pregledaj web sigurno."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3702,7 +3702,7 @@ msgstr "Dodaj slike u rezultate pretraživanja {start_sub_heading}pomoću {addon
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "Uživaj u sličicama web-stranica pored rezultata pretrage."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3726,7 +3726,7 @@ msgstr "Prilagodi svoje omiljene web lokacije {start_sub_heading}pomoću {addon_
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Prilagodi izgled bilo koje web stranice. Mijenjaj boje, pozadinu stranice i još mnogo toga."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6138,7 +6138,7 @@ msgid "Forum"
 msgstr "Forum"
 
 msgid "Download Firefox"
-msgstr "Preuzmite Firefox"
+msgstr "Preuzmi Firefox"
 
 msgid "Android Browser"
 msgstr "Android preglednik"
