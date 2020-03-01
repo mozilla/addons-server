@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-20 17:15+0000\n"
-"Last-Translator: siam <iwata@mxq.mesh.ne.jp>\n"
+"PO-Revision-Date: 2020-03-01 10:41+0000\n"
+"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -406,7 +406,7 @@ msgid "Error decoding signature."
 msgstr "署名の復号に失敗しました。"
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "ペイロードの 1 つ以上のキーの種類が間違っています"
 
 msgid "Invalid JWT Token."
 msgstr "JWT トークンが無効です。"
@@ -1642,10 +1642,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL 名が正しくありません。アドオンは削除されませんでした。"
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "招待を受け入れました。"
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "招待を辞退しました。"
 
 msgid "An author has been added to your add-on"
 msgstr "このアドオンの作者が追加されました"
@@ -1655,7 +1655,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "{addon} への寄付。"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "確認メールを {email} に送信しました"
 
 #, fuzzy
 msgid "An author role has been changed on your add-on"
@@ -1973,7 +1973,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr ""
 
 msgid "Decline"
-msgstr ""
+msgstr "拒否"
 
 msgid "Manage Authors & License"
 msgstr "作者とライセンスを管理"
@@ -3062,11 +3062,9 @@ msgstr "返信"
 msgid "Listing visibility"
 msgstr "公開状態"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}公開:{label_close} {site_url} 上ですべての人に公開され、検索結果や一覧ページにも表示されます。"
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr "{label_open}非公開:{label_close} 検索結果に含まれず、詳細ページにはあなたがそれを無効化していることが記載されます。この状態では、新バージョンの登録は受け付けられません。"
@@ -4620,16 +4618,14 @@ msgid "Some sites have difficulty playing videos on Firefox for Android. This ex
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "旧式の拡張機能は Firefox でサポートされなくなりました。"
+msgstr "拡張機能は Firefox 向けのアプリのようなものです。"
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
 msgstr "すべての拡張機能を見る"
 
@@ -4651,9 +4647,8 @@ msgstr "詳細"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Explore extensions"
-msgstr "拡張機能"
+msgstr "拡張機能を探す"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4699,10 +4694,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "アップロードされたファイルを解析できませんでした。<%s> 要素が見当たらないか空白です。"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: XML セキュリティーエラー。"
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: XML 解析エラー。"
 
 msgid "Could not parse uploaded file."
 msgstr "アップロードされたファイルを解析できませんでした。"
@@ -4722,7 +4717,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "アーカイブ内のファイルがサイズ制限を超えています: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "展開後のサイズが大きすぎます"
 
 msgid "Invalid archive."
 msgstr "不正なアーカイブです。"
@@ -4756,20 +4751,18 @@ msgstr "%sで終わる GUID が設定されたアドオンを投稿すること�
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "あなたは Mozilla Signed Extension を登録できません"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "あなたは Mozilla Signed Extension を登録できません"
+msgstr "あなたは言語パックを登録できません"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "非対応のファイル形式です。アーカイブファイル {extensions} をアップロードしてください。"
+msgstr "非対応のファイル形式です。サポートされた {extensions} ファイルをアップロードしてください。"
 
 msgid "Unexpected error."
 msgstr "予期しないエラーが発生しました。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "install.rdf 内の <em:type>(%s) が AMO 上のあなたのアドオンのタイプ (%s) と一致しません"
+msgstr "type (%s) が AMO 上のあなたのアドオンの type (%s) と一致しません"
 
 msgid "Back to review"
 msgstr "レビューのページへ戻る"
@@ -5216,13 +5209,11 @@ msgstr "WebExtension"
 msgid "Risk breakdown not available."
 msgstr ""
 
-#, fuzzy
 msgid "Is locked by a reviewer"
-msgstr "審査担当者によってロックされています。"
+msgstr "審査担当者によってロックされています"
 
-#, fuzzy
 msgid "Has auto-approval disabled flag set"
-msgstr "自動承認無効フラグが設定されています。"
+msgstr "自動承認無効フラグが設定されています"
 
 msgid "Is recommendable"
 msgstr ""
@@ -5275,9 +5266,8 @@ msgstr "重み"
 msgid "Information Request Deadline"
 msgstr "情報請求期限"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "最終更新日:"
+msgstr "最終更新日"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "これにより、このバージョンを承認、署名、公開します。コメントは開発者へ送られます。"
@@ -5629,9 +5619,8 @@ msgstr "アドオンユーザー変更履歴"
 msgid "Add-on History"
 msgstr "アドオンの履歴"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "前のメモ"
+msgstr "以前に削除されたエントリー"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -5752,11 +5741,10 @@ msgid "No reviews found for this period."
 msgstr "この期間に審査が行われたアドオンはありません。"
 
 msgid "Method:"
-msgstr ""
+msgstr "メソッド:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "参照元別"
+msgstr "ソース:"
 
 msgid "Dismiss this announcement"
 msgstr "このお知らせを削除"
@@ -6236,9 +6224,8 @@ msgstr "選択したユーザーのアカウントを停止"
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr "ユーザー「%(users)s」のアカウントが停止されました。"
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "API キーを管理"
+msgstr "API キーをリセット"
 
 msgid "Profile Photo"
 msgstr "プロファイル写真"
