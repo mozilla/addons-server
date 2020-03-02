@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-02 13:47+0000\n"
+"PO-Revision-Date: 2020-03-02 14:01+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -275,7 +275,7 @@ msgstr "Naslovnica dodataka"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "Ako si pratio/la neku poveznicu, %(open_bug_link)sprijavi problem%(close_bug_link)s. Reci nam odakle dolaziš i što tražiš, a mi ćemo se potrudit ispraviti problem."
 
 msgid "Not Found"
 msgstr "Nije pronađeno"
@@ -299,7 +299,7 @@ msgstr "Ups"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Ups! Dogodila se greška.</h1> <p>To ćemo uskoro ispraviti.</p> <p>Možeš pokušati ponovo učitati stranicu ili se vrati na <a href=\"%(home)s\">početnu stranicu dodataka</a>. </p>"
 
 msgid "No results found"
 msgstr "Nema rezultata"
@@ -4383,11 +4383,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ispravi dosadni zvuk {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
+msgstr "Ispravi zvuk {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Ispravi zvuk. Je li glasnoća na web stranici previše tiha? Preglasna? SoundFixer može pomoći."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4603,7 +4603,7 @@ msgstr "Video pomoć za Android {start_sub_heading}pomoću {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Neke web stranice imaju poteškoće s reprodukcijom videozapisa na Firefoxu za Android. Ovo proširenje to ispravlja."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
