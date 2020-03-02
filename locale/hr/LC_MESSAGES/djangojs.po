@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-26 14:33+0000\n"
+"PO-Revision-Date: 2020-02-29 21:32+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -658,7 +658,7 @@ msgid "Download for {0} anyway"
 msgstr "Preuzmi za {0} svejedno"
 
 msgid "Not available for your platform"
-msgstr "Nije dostupno za vašu platformu"
+msgstr "Nije dostupno za tvoju platformu"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
@@ -724,7 +724,7 @@ msgstr[1] "preostala <b>{0}</b> slova"
 msgstr[2] "preostalo <b>{0}</b> slova"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Usluga je privremeno onemogućena tijekom radova na održavanju stranice. Molimo pokušajte kasnije."
+msgstr "Usluga je privremeno deaktivirana tijekom radova na održavanju stranice. Pokušaj kasnije."
 
 msgid "Remove this localization"
 msgstr "Ukloni ovaj prijevod"
