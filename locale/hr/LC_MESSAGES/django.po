@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-02 14:01+0000\n"
+"PO-Revision-Date: 2020-03-02 17:03+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1631,7 +1631,7 @@ msgid "All Activity"
 msgstr "Sve aktivnosti"
 
 msgid "Add-on Updates"
-msgstr "Ažuriranja dodataka"
+msgstr "Aktualiziranje dodataka"
 
 msgid "Add-on Status"
 msgstr "Status dodataka"
@@ -1902,8 +1902,7 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Ovaj dodatak nije kompatibilan s <b>%(app_name)s %(app_version)s</b>, najnovijim izdanjem %(app_name)s. Molimo razmislite o ažuriranju kompatibilnosnih informacija Vašeg dodatka, ili postavljanju "
-"novije inačice ovog dodatka."
+"Ovaj dodatak nije kompatibilan s <b>%(app_name)s %(app_version)s</b>, najnovijim %(app_name)s izdanjem. Aktualiziraj podatke o kompatibilnosti tvog dodatka ili preuzmi noviju verziju ovog dodatka."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -2761,7 +2760,7 @@ msgid "You will receive an email when the review is complete. Until then, your a
 msgstr ""
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr "Tvoj se dodatak prikazuje u našoj galeriji, a korisnici dobivaju automatska ažuriranja."
+msgstr "Tvoj se dodatak prikazuje u našoj galeriji, a korisnici dobivaju automatska aktualiziranja."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr "Administrator web stranice je deaktivirao dodatak i više se ne prikazuje u našoj galeriji. Ako imaš bilo kakvih pitanja, pošalji e-mail na amo-admins@mozilla.com."
