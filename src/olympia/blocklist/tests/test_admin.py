@@ -765,7 +765,7 @@ class TestBlockSubmissionAdmin(TestCase):
         assert response.status_code == 403
         assert 'Bób' not in response.content.decode('utf-8')
 
-    def test_signoff_page(self):
+    def test_edit_with_blocklist_create(self):
         threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         addon = addon_factory(
             guid='guid@', name='Danger Danger',
@@ -1514,3 +1514,35 @@ class TestBlockAdminBulkDelete(TestCase):
             block_with_addon,
             block_no_addon,
             has_signoff=True)
+
+    def test_edit_with_delete_submission(self):
+        threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+        block = Block.objects.create(
+            addon=addon_factory(
+                guid='guid@', name='Danger Danger',
+                average_daily_users=threshold + 1),
+            updated_by=user_factory())
+        mbs = BlockSubmission.objects.create(
+            input_guids='guid@',
+            updated_by=user_factory(),
+            action=BlockSubmission.ACTION_DELETE)
+        assert mbs.to_block == [
+            {'guid': 'guid@',
+             'id': block.id,
+             'average_daily_users': block.addon.average_daily_users}]
+
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+        multi_url = reverse(
+            'admin:blocklist_blocksubmission_change', args=(mbs.id,))
+
+        response = self.client.get(multi_url, follow=True)
+        assert response.status_code == 200
+        assert b'guid@' in response.content
+        doc = pq(response.content)
+        buttons = doc('.submit-row input')
+        assert len(buttons) == 0
+        assert b'Reject Submission' not in response.content
+        assert b'Approve Submission' not in response.content

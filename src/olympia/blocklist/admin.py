@@ -358,7 +358,8 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         obj = self.model.objects.filter(id=object_id).latest()
         extra_context['has_signoff_permission'] = self.has_signoff_permission(
             request, obj)
-        extra_context['has_change_permission_strict'] = (
+        extra_context['can_change_object'] = (
+            obj.action == BlockSubmission.ACTION_ADDCHANGE and
             self.has_change_permission(request, obj, strict=True))
         extra_context['is_pending_signoff'] = self.is_pending_signoff(obj)
         if obj.signoff_state != BlockSubmission.SIGNOFF_PUBLISHED:
