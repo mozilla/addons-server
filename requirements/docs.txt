@@ -68,24 +68,24 @@ requests==2.23.0 \
 sphinxcontrib-httpdomain==1.7.0 \
     --hash=sha256:1fb5375007d70bf180cdd1c79e741082be7aa2d37ba99efe561e1c2e3f38191e \
     --hash=sha256:ac40b4fba58c76b073b03931c7b8ead611066a6aebccafb34dc19694f4eb6335
-sphinxcontrib-serializinghtml==1.1.3 \
-    --hash=sha256:c0efb33f8052c04fd7a26c0a07f1678e8512e0faec19f4aa8f2473a8b81d5227 \
-    --hash=sha256:db6615af393650bf1151a6cd39120c29abaf93cc60db8c48eb2dddbfdc3a9768
+sphinxcontrib-serializinghtml==1.1.4 \
+    --hash=sha256:eaa0eccc86e982a9b939b2b82d12cc5d013385ba5eadcc7e4fed23f4405f77bc \
+    --hash=sha256:f242a81d423f59617a8e5cf16f5d4d74e28ee9a66f9e5b637a18082991db5a9a
 sphinxcontrib-applehelp==1.0.2 \
     --hash=sha256:806111e5e962be97c29ec4c1e7fe277bfd19e9652fb1a4392105b43e01af885a \
     --hash=sha256:a072735ec80e7675e3f432fcae8610ecf509c5f1869d17e2eecff44389cdbc58
-sphinxcontrib-devhelp==1.0.1 \
-    --hash=sha256:9512ecb00a2b0821a146736b39f7aeb90759834b07e81e8cc23a9c70bacb9981 \
-    --hash=sha256:6c64b077937330a9128a4da74586e8c2130262f014689b4b89e2d08ee7294a34
+sphinxcontrib-devhelp==1.0.2 \
+    --hash=sha256:8165223f9a335cc1af7ffe1ed31d2871f325254c0423bc0c4c7cd1c1e4734a2e \
+    --hash=sha256:ff7f1afa7b9642e7060379360a67e9c41e8f3121f2ce9164266f61b9f4b338e4
 sphinxcontrib-jsmath==1.0.1 \
     --hash=sha256:2ec2eaebfb78f3f2078e73666b1415417a116cc848b72e5172e596c871103178 \
     --hash=sha256:a9925e4a4587247ed2191a22df5f6970656cb8ca2bd6284309578f2153e0c4b8
 sphinxcontrib-htmlhelp==1.0.3 \
     --hash=sha256:3c0bc24a2c41e340ac37c85ced6dafc879ab485c095b1d65d2461ac2f7cca86f \
     --hash=sha256:e8f5bb7e31b2dbb25b9cc435c8ab7a79787ebf7f906155729338f3156d93659b
-sphinxcontrib-qthelp==1.0.2 \
-    --hash=sha256:513049b93031beb1f57d4daea74068a4feb77aa5630f856fcff2e50de14e9a20 \
-    --hash=sha256:79465ce11ae5694ff165becda529a600c754f4bc459778778c7017374d4d406f
+sphinxcontrib-qthelp==1.0.3 \
+    --hash=sha256:4c33767ee058b70dba89a6fc5c1892c0d57a54be67ddd3e7875a18d14cba5a72 \
+    --hash=sha256:bd9fc24bcb748a8d51fd4ecaade681350aa63009a347a8c14e637895444dfab6
 sphinx-rtd-theme==0.4.3 \
     --hash=sha256:00cf895504a7895ee433807c62094cf1e95f065843bf3acd17037c3e9a2becd4 \
     --hash=sha256:728607e34d60456d736cc7991fd236afb828b21b82f956c5ea75f94c8414040a
