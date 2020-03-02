@@ -110,9 +110,9 @@ bleach==3.1.1 \
 boto3==1.12.11 \
     --hash=sha256:41cb779ff393a9a0a3e9dccce7689ec10c383c18deb5c69059181db8c0ccecc3 \
     --hash=sha256:b21d781a7fb0bfa50771362c3495e30dc3cddd7e91d65c21bcb9fe37acf36b1e
-celery==4.4.0 \
-    --hash=sha256:7c544f37a84a5eadc44cab1aa8c9580dff94636bb81978cdf9bf8012d9ea7d8f \
-    --hash=sha256:d3363bb5df72d74420986a435449f3c3979285941dff57d5d97ecba352a0e3e2
+celery==4.4.1 \
+    --hash=sha256:3c5fcd6bfcf9a6323cb742cfc121d1790d50cfeddf300ba723cfa0b356413f07 \
+    --hash=sha256:a650525303ee866fb0c62c82f68681fcc2183eebbfafae552c27d30125fe518b
 botocore==1.15.11 \
     --hash=sha256:35d553b8975a3810010fabb885e42d1bbc97bdae52c873f7640a2dd87772c455 \
     --hash=sha256:87a53301ee9e32e776d2d805c121753091fbddc3457dfdb8d6bdf7dbd945295a
