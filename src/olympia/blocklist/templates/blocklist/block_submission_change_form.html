@@ -10,8 +10,10 @@
     {% if can_change_object and change %}
         <input type="submit" value="{% trans 'Update' %}" class="default" name="_save">
     {% endif %}
-    {% if has_signoff_permission and is_pending_signoff %}
+    {% if has_signoff_reject_permission and is_pending_signoff %}
       <input type="submit" value="{% trans 'Reject Submission' %}" name="_reject">
+    {% endif %}
+    {% if has_signoff_approve_permission and is_pending_signoff %}
       <input type="submit" value="{% trans 'Approve Submission' %}" name="_signoff">
     {% endif %}
   </div>

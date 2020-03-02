@@ -144,17 +144,18 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         we need to return true if the user has sign-off permission instead.
         We can override that permissive behavior with `strict=True`."""
         change_perm = super().has_change_permission(request, obj=obj)
-        signoff_perm = self.has_signoff_permission(request, obj=obj)
-        either_perm = change_perm or (signoff_perm and not strict)
+        approve_perm = self.has_signoff_approve_permission(request, obj=obj)
+        either_perm = change_perm or (approve_perm and not strict)
         return either_perm and (not obj or self.is_pending_signoff(obj))
 
     def has_view_permission(self, request, obj=None):
         return (
             super().has_view_permission(request, obj) or
-            self.has_signoff_permission(request, obj))
+            self.has_signoff_approve_permission(request, obj) or
+            self.has_signoff_reject_permission(request, obj))
 
-    def has_signoff_permission(self, request, obj=None):
-        """ This controls whether the sign-off approve and reject actions are
+    def has_signoff_approve_permission(self, request, obj=None):
+        """ This controls whether the sign-off approve action is
         available on the change form.  `BlockSubmission.can_user_signoff`
         confirms the current user, who will signoff, is different from the user
         who submitted the guids (unless settings.DEBUG is True when the check
@@ -163,6 +164,16 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         codename = auth.get_permission_codename('signoff', opts)
         has_perm = request.user.has_perm("%s.%s" % (opts.app_label, codename))
         return has_perm and (not obj or obj.can_user_signoff(request.user))
+
+    def has_signoff_reject_permission(self, request, obj=None):
+        """ This controls whether the sign-off reject action is
+        available on the change form.  Users can reject their own submission
+        regardless."""
+        opts = self.opts
+        codename = auth.get_permission_codename('signoff', opts)
+        has_perm = request.user.has_perm("%s.%s" % (opts.app_label, codename))
+        is_own_submission = obj and obj.updated_by == request.user
+        return has_perm or is_own_submission
 
     def get_fieldsets(self, request, obj):
         input_guids = (
@@ -356,8 +367,10 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
         obj = self.model.objects.filter(id=object_id).latest()
-        extra_context['has_signoff_permission'] = self.has_signoff_permission(
-            request, obj)
+        extra_context['has_signoff_approve_permission'] = (
+            self.has_signoff_approve_permission(request, obj))
+        extra_context['has_signoff_reject_permission'] = (
+            self.has_signoff_reject_permission(request, obj))
         extra_context['can_change_object'] = (
             obj.action == BlockSubmission.ACTION_ADDCHANGE and
             self.has_change_permission(request, obj, strict=True))
@@ -387,15 +400,16 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         if change and self.is_pending_signoff(obj):
-            is_signoff = '_signoff' in request.POST
+            is_approve = '_signoff' in request.POST
             is_reject = '_reject' in request.POST
-            if ((is_signoff or is_reject) and
-                    not self.has_signoff_permission(request, obj)):
-                raise PermissionDenied
-            if is_signoff:
+            if is_approve:
+                if not self.has_signoff_approve_permission(request, obj):
+                    raise PermissionDenied
                 obj.signoff_state = BlockSubmission.SIGNOFF_APPROVED
                 obj.signoff_by = request.user
             elif is_reject:
+                if not self.has_signoff_reject_permission(request, obj):
+                    raise PermissionDenied
                 obj.signoff_state = BlockSubmission.SIGNOFF_REJECTED
             elif not self.has_change_permission(request, obj, strict=True):
                 # users without full change permission should only do signoff
