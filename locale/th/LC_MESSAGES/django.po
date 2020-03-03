@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-03 18:51+0000\n"
+"PO-Revision-Date: 2020-03-03 19:03+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2257,10 +2257,10 @@ msgid "Can others create derivative works from your Add-on?"
 msgstr ""
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "ใช่ ตราบใดที่พวกเขาแบ่งปันเหมือนกัน"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "ผู้อนุญาตอนุญาตให้ผู้อื่นแจกจ่ายงานอนุพันธ์ภายใต้ใบอนุญาตเดียวกันหรืออย่างใดอย่างหนึ่งที่เข้ากันได้กับงานที่ควบคุมงานของผู้อนุญาต"
 
 msgid "Your Add-on will be released under the following license:"
 msgstr ""
@@ -2360,7 +2360,7 @@ msgstr[0] "<strong>{0}</strong> ดาวน์โหลดต่อสัปด
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
+msgstr[0] "<strong>{0}</strong> ผู้ใช้ที่มีความเคลื่อนไหว"
 
 msgid "Submit a New Version"
 msgstr "ส่งรุ่นใหม่"
@@ -2381,7 +2381,7 @@ msgid "Add-on URL:"
 msgstr "URL ส่วนเสริม:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "โปรดใช้เฉพาะตัวอักษร, ตัวเลข, ขีดล่าง, และขีดกลางเท่านั้นใน URL ของคุณ"
 
 msgid "Name:"
 msgstr "ชื่อ:"
@@ -2423,7 +2423,7 @@ msgid "Notes to Reviewer:"
 msgstr "หมายเหตุถึงนักวิจารณ์:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "มีอะไรที่ผู้ตรวจทานของเราควรคำนึงถึงเมื่อตรวจทานส่วนเสริมนี้?"
 
 msgid "Remember"
 msgstr "จดจำ"
@@ -2435,7 +2435,7 @@ msgid ""
 msgstr ""
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "หมายเหตุเหล่านี้จะปรากฏแก่คุณและผู้ตรวจทานของเราเท่านั้น"
 
 msgid "Submit Version"
 msgstr "ส่งรุ่น"
@@ -2450,7 +2450,7 @@ msgid "Release Notes:"
 msgstr "บันทึกประจำรุ่น:"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "ให้ผู้ใช้ของคุณรู้ว่ามีอะไรใหม่และมีอะไรเปลี่ยนแปลงในรุ่นนี้"
 
 msgid "These notes will appear on the detail page."
 msgstr "โน้ตเหล่านี้จะปรากฏบนหน้ารายละเอียด"
@@ -2459,7 +2459,7 @@ msgid "How to Distribute this Version"
 msgstr "วิธีแจกจ่ายรุ่นนี้"
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "ข้อมูลเพิ่มเติมเกี่ยวกับการกระจายและการลงลายเซ็นส่วนเสริม"
 
 msgid "Submission Complete"
 msgstr "การส่งเสร็จสมบูรณ์"
@@ -2600,7 +2600,7 @@ msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "การเขียนทับโดยผู้ดูแล"
 
 msgid "Create a Theme Version"
 msgstr "สร้างรุ่นชุดตกแต่ง"
@@ -2636,7 +2636,7 @@ msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG หรือ GIF (ไม่เคลื่อนไหว)"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "จัดชิดขวาบน"
 
 msgid "Select a different header image"
 msgstr "เลือกภาพส่วนหัวอื่น"
@@ -2690,13 +2690,13 @@ msgid "A confirmation link will be sent to your email address. After confirmatio
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "คุณไม่มีข้อมูลประจำตัว API ใด ๆ"
 
 msgid "Revoke"
 msgstr "เพิกถอน"
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "เพิกถอนและสร้างข้อมูลประจำตัวใหม่"
 
 #, fuzzy
 msgid "Confirm and generate new credentials"
@@ -2713,13 +2713,13 @@ msgid "Approved and recommended"
 msgstr "บทวิจารณ์ที่อนุมัติ"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "โปรดเติมข้อมูลเกี่ยวกับส่วนเสริมของคุณให้สมบูรณ์โดยเพิ่มข้อมูลเกี่ยวกับรุ่นหรือข้อมูลเมตาที่หายไป"
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "คุณจะได้รับอีเมลเมื่อการตรวจทานเสร็จสมบูรณ์ โดยส่วนเสริมของคุณจะยังไม่ปรากฏในแกลเลอรีของเรา แต่จะสามารถเข้าถึงได้โดยตรงจากหน้ารายละเอียดจนกว่าการตรวจทานจะเสร็จสมบูรณ์"
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "ส่วนเสริมของคุณจะปรากฏในแกลเลอรีของเราและผู้ใช้จะได้รับการอัปเดตอัตโนมัติ"
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr ""
@@ -2757,10 +2757,10 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr ""
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "ส่วนเสริมอาจไม่ถูกตรวจทานตามลำดับคิวเสมอไป"
 
 msgid "Queue Position:"
-msgstr ""
+msgstr "ตำแหน่งคิว:"
 
 #, python-format
 msgid "%(position)s of %(total)s"
