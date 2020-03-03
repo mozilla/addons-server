@@ -117,6 +117,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         css = {
             'all': ('css/admin/blocklist_blocksubmission.css',)
         }
+        js = ('js/i18n/en-US.js',)
 
     def has_delete_permission(self, request, obj=None):
         # For now, keep all BlockSubmission records.
@@ -507,6 +508,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         css = {
             'all': ('css/admin/blocklist_block.css',)
         }
+        js = ('js/i18n/en-US.js',)
 
     def addon_guid(self, obj):
         return obj.guid
