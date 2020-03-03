@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-02 12:58+0000\n"
+"PO-Revision-Date: 2020-03-02 17:03+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -275,7 +275,7 @@ msgstr "Naslovnica dodataka"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "Ako si pratio/la neku poveznicu, %(open_bug_link)sprijavi problem%(close_bug_link)s. Reci nam odakle dolaziš i što tražiš, a mi ćemo se potrudit ispraviti problem."
 
 msgid "Not Found"
 msgstr "Nije pronađeno"
@@ -299,7 +299,7 @@ msgstr "Ups"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Ups! Dogodila se greška.</h1> <p>To ćemo uskoro ispraviti.</p> <p>Možeš pokušati ponovo učitati stranicu ili se vrati na <a href=\"%(home)s\">početnu stranicu dodataka</a>. </p>"
 
 msgid "No results found"
 msgstr "Nema rezultata"
@@ -1480,7 +1480,7 @@ msgstr "URL domena mora biti jedna od [%s] ili poddomena."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Prije nego što promijenite zadani jezik trebate imati ime, sažetak i opis na tom jeziku. Nedostaje vam %s."
+msgstr "Prije mijenjanja standardnog jezika moraš imati ime, sažetak i opis na tom jeziku. Nedostaje ti %s."
 
 msgid "Users can not be added directly"
 msgstr "Korisnici se ne mogu izravno dodati"
@@ -1631,7 +1631,7 @@ msgid "All Activity"
 msgstr "Sve aktivnosti"
 
 msgid "Add-on Updates"
-msgstr "Ažuriranja dodataka"
+msgstr "Aktualiziranje dodataka"
 
 msgid "Add-on Status"
 msgstr "Status dodataka"
@@ -1902,8 +1902,7 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Ovaj dodatak nije kompatibilan s <b>%(app_name)s %(app_version)s</b>, najnovijim izdanjem %(app_name)s. Molimo razmislite o ažuriranju kompatibilnosnih informacija Vašeg dodatka, ili postavljanju "
-"novije inačice ovog dodatka."
+"Ovaj dodatak nije kompatibilan s <b>%(app_name)s %(app_version)s</b>, najnovijim %(app_name)s izdanjem. Aktualiziraj podatke o kompatibilnosti tvog dodatka ili preuzmi noviju verziju ovog dodatka."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -2055,7 +2054,7 @@ msgid "If you would like to request monetary contributions from your users, set 
 msgstr ""
 
 msgid "Default Locale"
-msgstr "Zadani jezik"
+msgstr "Standardni jezik"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
@@ -2761,7 +2760,7 @@ msgid "You will receive an email when the review is complete. Until then, your a
 msgstr ""
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr "Tvoj se dodatak prikazuje u našoj galeriji, a korisnici dobivaju automatska ažuriranja."
+msgstr "Tvoj se dodatak prikazuje u našoj galeriji, a korisnici dobivaju automatska aktualiziranja."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr "Administrator web stranice je deaktivirao dodatak i više se ne prikazuje u našoj galeriji. Ako imaš bilo kakvih pitanja, pošalji e-mail na amo-admins@mozilla.com."
@@ -3803,7 +3802,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Popravi svoje favorite {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
+msgstr "Ispravi svoje favorite {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
@@ -3927,7 +3926,7 @@ msgstr "WhatsApp na webu {start_sub_heading}pomoću {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp na webu. Pristupi WhatsApp-u s ploče alatne trake za dobivanje obavijesti o nepročitanim poruka."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4383,11 +4382,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ispravi dosadni zvuk {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
+msgstr "Ispravi zvuk {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Ispravi zvuk. Je li glasnoća na web stranici previše tiha? Preglasna? SoundFixer može pomoći."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4603,7 +4602,7 @@ msgstr "Video pomoć za Android {start_sub_heading}pomoću {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Neke web stranice imaju poteškoće s reprodukcijom videozapisa na Firefoxu za Android. Ovo proširenje to ispravlja."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
