@@ -101,7 +101,7 @@ argparse==1.4.0 \
 # billiard is required by celery, pinned to <3.6 until we upgrade Celery to a version that
 # supports it.
 billiard==3.6.0.0 \
-    --hash=sha256:756bf323f250db8bf88462cd042c992ba60d8f5e07fc5636c24ba7d6f4261d84 # pyup: <3.6
+    --hash=sha256:756bf323f250db8bf88462cd042c992ba60d8f5e07fc5636c24ba7d6f4261d84 # pyup: <4.0
 # bitarray is required by filtercascade
 bitarray == 1.2.1 \
     --hash=sha256:2ed675f460bb0d3d66fd8042a6f1f0d36cf213e52e72a745283ddb245da7b9cf
