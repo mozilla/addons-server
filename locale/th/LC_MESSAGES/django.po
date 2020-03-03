@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-03 19:10+0000\n"
+"PO-Revision-Date: 2020-03-03 19:23+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -4637,7 +4637,7 @@ msgid "Problems decoding {0}."
 msgstr "เกิดปัญหาในการถอดรหัส {0}"
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "ไฟล์นี้ไม่สามารถดูออนไลน์ได้ โปรดดาวน์โหลดไฟล์เพื่อดูเนื้อหา"
 
 msgid "This file is a directory."
 msgstr "ไฟล์นี้เป็นไดเรกทอรี"
@@ -4678,17 +4678,17 @@ msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "ชื่อไฟล์ไม่ถูกต้องในที่เก็บถาวร: {0}"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "ไฟล์มีขนาดเกินขีดจำกัดในที่เก็บถาวร: {0}"
 
 msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "ที่เก็บถาวรไม่ถูกต้อง"
 
 msgid "Could not find an add-on ID."
 msgstr "ไม่พบ ID ส่วนเสริม"
@@ -4701,16 +4701,16 @@ msgid "Duplicate add-on ID found."
 msgstr ""
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "หมายเลขรุ่นควรมีอักขระน้อยกว่า 32 ตัว"
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "หมายเลขรุ่นควรประกอบด้วยเฉพาะตัวอักษร, ตัวเลข, และอักขระเครื่องหมายวรรคตอนเหล่านี้: +*.-_"
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "คุณไม่สามารถส่งส่วนเสริมชนิดนี้ได้"
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
@@ -4749,7 +4749,7 @@ msgid "File Viewer :: Reviewer tools"
 msgstr ""
 
 msgid "Validation failed:"
-msgstr ""
+msgstr "การตรวจสอบความถูกต้องล้มเหลว:"
 
 msgid "File content not supported for syntax highlighting"
 msgstr ""
@@ -4765,10 +4765,10 @@ msgid "Go"
 msgstr "ไป"
 
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "กำลังประมวลผลไฟล์ส่วนเสริม โปรดรอสักครู่"
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "กำลังดึงข้อมูลผลลัพธ์การตรวจสอบความถูกต้อง..."
 
 msgid "Files:"
 msgstr "ไฟล์:"
