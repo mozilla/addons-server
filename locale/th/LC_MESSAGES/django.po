@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-03 19:23+0000\n"
+"PO-Revision-Date: 2020-03-03 19:29+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1705,7 +1705,7 @@ msgid "Version %s re-enabled."
 msgstr "เปิดใช้งานรุ่น %s ใหม่แล้ว"
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "การอัปโหลดนี้ไม่ผ่านการตรวจสอบความถูกต้อง และอาจขาดผลลัพธ์การตรวจสอบความถูกต้องที่สมบูรณ์ โปรดใช้ความระมัดระวังเมื่อตรวจทาน"
 
 msgid "Header area background"
 msgstr "พื้นหลังของพื้นที่ส่วนหัว"
@@ -4780,7 +4780,7 @@ msgid "Hide known files"
 msgstr "ซ่อนไฟล์ที่รู้จัก"
 
 msgid "Tab stops:"
-msgstr ""
+msgstr "แท็บหยุด:"
 
 msgid "Up file"
 msgstr ""
@@ -4789,22 +4789,22 @@ msgid "Down file"
 msgstr ""
 
 msgid "Previous diff"
-msgstr ""
+msgstr "ความแตกต่างก่อนหน้า"
 
 msgid "Previous note"
-msgstr ""
+msgstr "บันทึกก่อนหน้า"
 
 msgid "Next diff"
-msgstr ""
+msgstr "ความแตกต่างถัดไป"
 
 msgid "Next note"
-msgstr ""
+msgstr "บันทึกถัดไป"
 
 msgid "Expand all"
 msgstr "ขยายทั้งหมด"
 
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "ซ่อนหรือเลิกซ่อนต้นไม้"
 
 msgid "Wrap or unwrap text"
 msgstr ""
@@ -4813,7 +4813,7 @@ msgid "No files in the uploaded file."
 msgstr "ไม่มีไฟล์ในไฟล์ที่อัพโหลด"
 
 msgid "Fetching file."
-msgstr ""
+msgstr "กำลังดึงข้อมูลไฟล์"
 
 msgid "About Mozilla Add-ons"
 msgstr "เกี่ยวกับส่วนเสริม Mozilla"
@@ -4827,7 +4827,7 @@ msgid ""
 msgstr ""
 
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "ใครเป็นผู้สร้างส่วนเสริมเหล่านี้?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
@@ -4835,7 +4835,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "ฉันจะติดตามสิ่งที่เกิดขึ้นที่ AMO ได้อย่างไร?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
@@ -4856,7 +4856,7 @@ msgid "This sounds great! How can I get involved?"
 msgstr "ฟังดูดีนะ! ฉันจะมีส่วนร่วมได้อย่างไร?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "มีวิธีมากมายในการเข้าร่วม หากคุณถนัดด้านเทคนิค:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
@@ -4876,7 +4876,7 @@ msgid "If you're interested in add-ons but not quite as technical, there are sti
 msgstr ""
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "บอกเพื่อนของคุณ! บอกให้คนอื่นรู้ว่าคุณใช้ส่วนเสริมใด"
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -4906,7 +4906,7 @@ msgid "Review Guidelines"
 msgstr "แนวทางการวิจารณ์"
 
 msgid "Sections"
-msgstr ""
+msgstr "ส่วน"
 
 msgid "Some tips for writing a great review"
 msgstr ""
