@@ -31,6 +31,17 @@ class TestBlock(TestCase):
         assert block.is_version_blocked('10.1')
         assert block.is_version_blocked('10.%s' % (MAX_VERSION_PART + 1))
 
+    def test_is_imported_from_kinto_regex(self):
+        block = Block.objects.create(guid='foo@baa', updated_by=user_factory())
+        # no kinto_id
+        assert not block.is_imported_from_kinto_regex
+        # from a regex kinto_id
+        block.update(kinto_id='*123456789')
+        assert block.is_imported_from_kinto_regex
+        # and a normal one
+        block.update(kinto_id='1234567890')
+        assert not block.is_imported_from_kinto_regex
+
 
 class TestMultiBlockSubmission(TestCase):
     def test_is_submission_ready(self):
