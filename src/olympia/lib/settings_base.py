@@ -1924,3 +1924,9 @@ YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
+
+# The path to the current google service account configuration. This is
+# being used to query Google BigQuery as part of our stats processing.
+# If this is `None` we're going to use service mocks for testing
+GOOGLE_APPLICATION_CREDENTIALS = env(
+    'GOOGLE_APPLICATION_CREDENTIALS', default=None)
