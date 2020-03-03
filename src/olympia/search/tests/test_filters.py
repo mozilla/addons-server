@@ -7,6 +7,7 @@ from django.test.client import RequestFactory
 from django.utils import translation
 
 from elasticsearch_dsl import Search
+from freezegun import freeze_time
 from rest_framework import serializers
 
 from olympia import amo
@@ -428,6 +429,7 @@ class TestSortingFilter(FilterTestsBase):
                       'sort': 'random'})
         assert context.exception.detail == [expected]
 
+    @freeze_time('2020-02-26')
     def test_sort_random_featured(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
         # Note: this test does not call AddonFeaturedQueryParam so it won't
@@ -435,9 +437,10 @@ class TestSortingFilter(FilterTestsBase):
         # TestCombinedFilter.test_filter_featured_sort_random
         assert qs['sort'] == ['_score']
         assert qs['query']['function_score']['functions'] == [
-            {'random_score': {}}
+            {'random_score': {'seed': 737481}}
         ]
 
+    @freeze_time('2020-02-27')
     def test_sort_random(self):
         qs = self._filter(data={'recommended': 'true', 'sort': 'random'})
         # Note: this test does not call AddonRecommendedQueryParam so it won't
@@ -445,7 +448,7 @@ class TestSortingFilter(FilterTestsBase):
         # TestCombinedFilter.test_filter_recommended_sort_random
         assert qs['sort'] == ['_score']
         assert qs['query']['function_score']['functions'] == [
-            {'random_score': {}}
+            {'random_score': {'seed': 737482}}
         ]
 
     def test_sort_recommended_only(self):
@@ -943,6 +946,7 @@ class TestCombinedFilter(FilterTestsBase):
         }
         assert expected in should
 
+    @freeze_time('2020-02-26')
     def test_filter_featured_sort_random(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
         bool_ = qs['query']['bool']
@@ -957,9 +961,10 @@ class TestCombinedFilter(FilterTestsBase):
         assert qs['sort'] == ['_score']
 
         assert bool_['must'][0]['function_score']['functions'] == [
-            {'random_score': {}}
+            {'random_score': {'seed': 737481}}
         ]
 
+    @freeze_time('2020-02-26')
     def test_filter_recommended_sort_random(self):
         qs = self._filter(data={'recommended': 'true', 'sort': 'random'})
         bool_ = qs['query']['bool']
@@ -974,5 +979,5 @@ class TestCombinedFilter(FilterTestsBase):
         assert qs['sort'] == ['_score']
 
         assert bool_['must'][0]['function_score']['functions'] == [
-            {'random_score': {}}
+            {'random_score': {'seed': 737481}}
         ]

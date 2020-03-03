@@ -343,7 +343,7 @@ msgid "User Profile"
 msgstr "Profil utilizator"
 
 msgid "Version History"
-msgstr "Istoricul versiunilor"
+msgstr "Istoric versiuni"
 
 msgid "Sharing"
 msgstr "Partajare"

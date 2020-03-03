@@ -315,7 +315,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                      'mozilla_guid.xpi')
         assert response.status_code == 400
         assert response.data['error'] == (
-            'You cannot submit an add-on using a guid ending with '
+            'You cannot submit an add-on using an ID ending with '
             '"@mozilla.com" or "@mozilla.org" or "@pioneer.mozilla.org" or '
             '"@search.mozilla.org" or "@shield.mozilla.org"')
 
@@ -463,6 +463,22 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         error_msg = (
             'You cannot add a listed version to this addon via the API')
         assert error_msg in response.data['error']
+
+    def test_invalid_guid_in_package_post(self):
+        Addon.objects.all().delete()
+
+        response = self.request(
+            'POST',
+            url=reverse_ns('signing.version'),
+            version='1.0',
+            filename='src/olympia/files/fixtures/files/invalid_guid.xpi')
+        assert response.status_code == 400
+        assert response.data == {
+            'error': 'Invalid Add-on ID in URL or package'
+        }
+        assert not Addon.unfiltered.filter(
+            guid='this_guid_is_invalid').exists()
+        assert not Addon.objects.exists()
 
     def _test_throttling_verb_ip_burst(self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
@@ -828,7 +844,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
             addon=guid,  # Will end up in the url since we're not passing one.
             version='1.0')
         assert response.status_code == 400
-        assert response.data['error'] == u'Invalid GUID in URL'
+        assert response.data['error'] == 'Invalid Add-on ID in URL or package'
         assert not Addon.unfiltered.filter(guid=guid).exists()
 
     def test_webextension_reuse_guid(self):
@@ -917,8 +933,8 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 400
         assert response.data == {
             'error': (
-                u'Please specify your Add-on GUID in the manifest if it\'s '
-                u'longer than 64 characters.')
+                "Please specify your Add-on ID in the manifest if it's "
+                "longer than 64 characters.")
         }
 
         assert not Addon.unfiltered.filter(guid=guid).exists()
@@ -978,7 +994,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.get(self.url('foo', '12.5'))
         assert response.status_code == 404
         assert response.data['error'] == (
-            'Could not find add-on with guid "foo".')
+            'Could not find Add-on with ID "foo".')
 
     def test_user_does_not_own_addon(self):
         self.create_version('3.0')

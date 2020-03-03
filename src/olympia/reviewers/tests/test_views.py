@@ -42,7 +42,7 @@ from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
-from olympia.blocklist.models import Block
+from olympia.blocklist.models import Block, BlockSubmission
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.lib.git import AddonGitRepository
@@ -3367,7 +3367,7 @@ class TestReview(ReviewBase):
             ('View Product Page', self.addon.get_url_path()),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
-                reverse('zadmin.addon_manage', args=[self.addon.id])),
+                reverse('admin:addons_addon_change', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
@@ -3384,7 +3384,7 @@ class TestReview(ReviewBase):
                 'reviewers.review', args=('unlisted', self.addon.slug))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse(
-                'zadmin.addon_manage', args=[self.addon.id])),
+                'admin:addons_addon_change', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
@@ -3404,7 +3404,7 @@ class TestReview(ReviewBase):
                 'reviewers.review', args=('unlisted', self.addon.slug))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse(
-                'zadmin.addon_manage', args=[self.addon.id])),
+                'admin:addons_addon_change', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
@@ -3426,7 +3426,7 @@ class TestReview(ReviewBase):
                 reverse('reviewers.review', args=(self.addon.slug,))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
-                reverse('zadmin.addon_manage', args=[self.addon.id])),
+                reverse('admin:addons_addon_change', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
@@ -3590,6 +3590,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#block_addon')
         assert not doc('#edit_addon_block')
+        assert not doc('#edit_addon_blocksubmission')
         assert doc('#block_addon')[0].attrib.get('href') == (
             reverse('admin:blocklist_blocksubmission_add') + '?guids=' +
             self.addon.guid)
@@ -3601,8 +3602,20 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('#block_addon')
         assert doc('#edit_addon_block')
+        assert not doc('#edit_addon_blocksubmission')
         assert doc('#edit_addon_block')[0].attrib.get('href') == (
             reverse('admin:blocklist_block_change', args=(block.id,)))
+
+        # If the guid is in a pending submission we show a link to that instead
+        subm = BlockSubmission.objects.create(input_guids=self.addon.guid)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#block_addon')
+        assert not doc('#edit_addon_block')
+        assert doc('#edit_addon_blocksubmission')
+        assert doc('#edit_addon_blocksubmission')[0].attrib.get('href') == (
+            reverse('admin:blocklist_blocksubmission_change', args=(subm.id,)))
 
     def test_unflag_option_forflagged_as_admin(self):
         self.login_as_admin()
@@ -6086,6 +6099,38 @@ class TestReviewAddonVersionViewSetDetail(
         response = self.client.get(self.url + '?file=UNKNOWN_FILE')
         assert response.status_code == 404
 
+    def test_requested_file_contains_whitespace(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(
+            repo, new_version, '(function() {})\n', 'content script.js')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        url = reverse_ns('reviewers-versions-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(url + '?file=content script.js')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['file']['content'] == '(function() {})\n'
+
+        # make sure the correct download url is correctly generated
+        assert result['file']['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': new_version.pk,
+                'filename': 'content script.js'
+            }
+        ))
+
     def test_supports_search_plugins(self):
         self.addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
@@ -6834,6 +6879,33 @@ class TestReviewAddonVersionCompareViewSet(
         change = result['file']['diff']['hunks'][0]['changes'][0]
 
         assert change['content'] == '# beastify'
+        assert change['type'] == 'insert'
+
+    def test_requested_file_contains_whitespace(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(
+            repo, new_version, '(function() {})\n', 'content script.js')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(url + '?file=content script.js')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        change = result['file']['diff']['hunks'][0]['changes'][0]
+
+        assert result['file']['diff']['path'] == 'content script.js'
+        assert change['content'] == '(function() {})'
         assert change['type'] == 'insert'
 
     def test_supports_search_plugins(self):

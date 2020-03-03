@@ -629,7 +629,7 @@ class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
     list_display = (
         'name', 'scanner', 'run_on_disabled_addons', 'state_with_actions',
-        'matched_results_link',
+        'completion_rate', 'matched_results_link',
     )
     list_filter = ('state',)
     fields = (
@@ -639,11 +639,13 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         'name',
         'created',
         'modified',
+        'completion_rate',
         'matched_results_link',
         'definition',
     )
     readonly_fields = (
-        'created', 'modified', 'matched_results_link', 'state_with_actions',
+        'completion_rate', 'created', 'modified', 'matched_results_link',
+        'state_with_actions',
     )
 
     def has_change_permission(self, request, obj=None):

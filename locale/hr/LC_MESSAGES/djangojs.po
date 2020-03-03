@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-13 17:37+0000\n"
+"PO-Revision-Date: 2020-03-02 17:01+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -115,10 +115,10 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Prijenos zastarjelog Firefox dodatka na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Uključite detaljne zabilješke verzije (ovo se može uraditi u slijedećem koraku)."
+msgstr "Uključite detaljne napomene o verziji (ovo se može uraditi u sljedećem koraku)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Ako vaš dodatak zahtjeva račun na web stranci kako bi se potpuno testirao, dodajte testno korisničko ime i lozinku u Zabilješkama ocjenjivaču (ovo se može uraditi u slijedećem koraku)."
+msgstr "Ako je za vaš dodatak potreban račun na web stranci kako bi se potpuno testirao, dodajte testno korisničko ime i lozinku u „Napomene za recenzente” (ovo se može uraditi u sljedećem koraku)."
 
 msgid "Add-on submission checklist"
 msgstr "Spisak za podnošenje dodatka"
@@ -165,7 +165,7 @@ msgid "Marked for deletion"
 msgstr "Označeno za brisanje"
 
 msgid "Updating results&hellip;"
-msgstr "Ažuriranje rezultata&hellip;"
+msgstr "Aktualiziranje rezultata …"
 
 msgid "Category"
 msgstr "Kategorija"
@@ -205,9 +205,9 @@ msgstr[2] "{0} dodataka"
 
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} kolekcija"
-msgstr[1] "{0} kolekcija"
-msgstr[2] "{0} kolekcija"
+msgstr[0] "{0} zbirka"
+msgstr[1] "{0} zbirke"
+msgstr[2] "{0} zbirki"
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
@@ -223,9 +223,9 @@ msgstr[2] "{0} prodaja"
 
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} povratak novca"
-msgstr[1] "{0} povratka novca"
-msgstr[2] "{0} povratka novca"
+msgstr[0] "{0} povrat novca"
+msgstr[1] "{0} povrata novca"
+msgstr[2] "{0} povrata novca"
 
 msgid "{0} install"
 msgid_plural "{0} installs"
@@ -253,10 +253,10 @@ msgid "Details for {0}"
 msgstr "Detalji za {0}"
 
 msgid "Collections Created"
-msgstr "Kolekcija napravljeno"
+msgstr "Zbirki napravljeno"
 
 msgid "Add-ons in Use"
-msgstr "Dodaci koji se koriste"
+msgstr "Dodaci u upotrebi"
 
 msgid "Add-ons Created"
 msgstr "Dodataka napravljeno"
@@ -268,7 +268,7 @@ msgid "Add-ons Updated"
 msgstr "Dodataka ažurirano"
 
 msgid "Reviews Written"
-msgstr "Ocjena napisao"
+msgstr "Recenzija napisano"
 
 msgid "User Signups"
 msgstr "Korisničkih prijava"
@@ -280,7 +280,7 @@ msgid "Ratings"
 msgstr "Ocjene"
 
 msgid "Sales"
-msgstr "Prodaja"
+msgstr "Prodaje"
 
 msgid "Installs"
 msgstr "Instaliranja"
@@ -292,13 +292,13 @@ msgid "Add-ons Manager"
 msgstr "Upravljač dodataka"
 
 msgid "Add-ons Manager Promo"
-msgstr "Upravljač dodataka, unaprijeđeno"
+msgstr "Promocija upravljača dodataka"
 
 msgid "Add-ons Manager Featured"
-msgstr "Upravljač dodataka, istaknuto"
+msgstr "Istaknuti upravljač dodataka"
 
 msgid "Add-ons Manager Learn More"
-msgstr "Upravljač dodataka, nauči više"
+msgstr "Nauči više o upravljaču dodataka"
 
 msgid "Search Suggestions"
 msgstr "Prijedlozi za pretragu"
@@ -355,7 +355,7 @@ msgid "Category Pages"
 msgstr "Stranice kategorija"
 
 msgid "Collections"
-msgstr "Kolekcije"
+msgstr "Zbirke"
 
 msgid "Category Landing Featured Carousel"
 msgstr "Vrtuljak istaknutih odredišnih kategorija"
@@ -397,7 +397,7 @@ msgid "Total Amount Contributed"
 msgstr "Ukupan iznos doprinesenog"
 
 msgid "Average Contribution"
-msgstr "Prosječno doprineseno"
+msgstr "Prosječni doprinos"
 
 msgid "Usage"
 msgstr "Korištenje"
@@ -425,19 +425,19 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Preuzimanja i dnevno korištenje, posljednjih {0} dana"
+msgstr "Preuzimanja i dnevni korisnici, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Preuzimanja i dnevno korištenje od {0} do {1}"
+msgstr "Preuzimanja i dnevni korisnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr "Instaliranja i dnevno korištenje, posljednjih {0} dana"
+msgstr "Instaliranja i dnevni korisnici, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Instaliranja i dnevno korištenje od {0} do {1}"
+msgstr "Instaliranja i dnevni korisnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -553,35 +553,35 @@ msgstr "Dodaci ažurirani od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "Napisano ocjena, posljednjih {0} dana"
+msgstr "Recenzije napisane, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "Napisano ocjena od {0} do {1}"
+msgstr "Recenzije napisane od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "Korisničkih prijava, posljednjih {0} dana"
+msgstr "Korisničke prijave, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "Korisničkih prijava od {0} do {1}"
+msgstr "Korisničke prijave od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr "Kolekcija napravljeno, posljednjih {0} dana"
+msgstr "Zbirke napravljene, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr "Kolekcija napravljeno od {0} do {1}"
+msgstr "Zbirke napravljene od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr "Pretplatnika, posljednjih {0} dana"
+msgstr "Pretplatnici, posljednjih {0} dana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr "Pretplatnika od {0} do {1}"
+msgstr "Pretplatnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
@@ -658,7 +658,7 @@ msgid "Download for {0} anyway"
 msgstr "Preuzmi za {0} svejedno"
 
 msgid "Not available for your platform"
-msgstr "Nije dostupno za vašu platformu"
+msgstr "Nije dostupno za tvoju platformu"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
@@ -724,7 +724,7 @@ msgstr[1] "preostala <b>{0}</b> slova"
 msgstr[2] "preostalo <b>{0}</b> slova"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Usluga je privremeno onemogućena tijekom radova na održavanju stranice. Molimo pokušajte kasnije."
+msgstr "Usluga je privremeno deaktivirana tijekom radova na održavanju stranice. Pokušaj kasnije."
 
 msgid "Remove this localization"
 msgstr "Ukloni ovaj prijevod"
@@ -739,22 +739,22 @@ msgid "Loading&hellip;"
 msgstr "Učitavam&hellip;"
 
 msgid "Version Notes"
-msgstr "Bilješke verzije"
+msgstr "Napomene o verziji"
 
 msgid "Notes for Reviewers"
-msgstr "Bilješke za recenzente"
+msgstr "Napomene za recenzente"
 
 msgid "No version notes found"
-msgstr "Nema bilješki verzije"
+msgstr "Nema napomena o verziji"
 
 msgid "Review Text"
 msgstr "Ocjeni tekst"
 
 msgid "Review notes found"
-msgstr "Pronađene bilješke ocjene"
+msgstr "Pronađene napomene o recenziji"
 
 msgid "Average Reviews"
-msgstr "Prosječne ocjene"
+msgstr "Prosječno recenzija"
 
 msgid "Number of Reviews"
 msgstr "Broj ocjena"

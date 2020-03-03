@@ -31,6 +31,7 @@ from olympia.files.models import File
 from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
 from olympia.lib.git import AddonGitRepository, get_mime_type_for_blob
+from olympia.lib.cache import make_key
 from olympia.lib import unicodehelper
 
 
@@ -95,9 +96,13 @@ class FileEntriesSerializer(FileSerializer):
         commit = self._get_commit(obj)
         tree = self.repo.get_root_tree(commit)
 
-        cache_key = (
+        # Normalize the key as we want to avoid that we exceed max
+        # key lengh because of selected_file.
+        cache_key = make_key(
             f'reviewers:fileentriesserializer:hashes'
-            f':{commit.hex}:{selected_file}')
+            f':{commit.hex}:{selected_file}',
+            with_locale=False,
+            normalize=True)
 
         def _calculate_hash():
             try:

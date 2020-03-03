@@ -604,7 +604,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         assert links.eq(2).attr('href') == reverse(
             'reviewers.review', args=['unlisted', self.addon.slug])
         assert links.eq(3).attr('href') == reverse(
-            'zadmin.addon_manage', args=[self.addon.slug])
+            'admin:addons_addon_change', args=[self.addon.id])
 
     def test_not_experimental_flag(self):
         response = self.client.get(self.url)

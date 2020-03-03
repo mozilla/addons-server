@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-11-23 21:45+0000\n"
+"PO-Revision-Date: 2020-03-01 16:10+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -812,9 +812,8 @@ msgstr "Ζητήθηκε αξιολόγηση θέματος από διαχει
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "Το {addon} μεταφέρθηκε από \"ελαφρύ\" θέμα."
 
-#, fuzzy
 msgid "User {user} api key reset."
-msgstr "Η εικόνα του χρήστη {user} διαγράφτηκε."
+msgstr "Έγινε επαναφορά του κλειδιού api του χρήστη {user}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4744,9 +4743,8 @@ msgid "Some sites have difficulty playing videos on Firefox for Android. This ex
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "Οι επεκτάσεις παλαιού τύπου δεν υποστηρίζονται πλέον στο Firefox."
+msgstr "Οι επεκτάσεις είναι σαν εφαρμογές για το Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
@@ -4774,9 +4772,8 @@ msgstr "Μάθετε περισσότερα"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Επεκτάσεις"
+msgstr "Εξερεύνηση επεκτάσεων"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -6373,9 +6370,8 @@ msgstr "Φραγή επιλεγμένων χρηστών"
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr "Οι χρήστες \"%(users)s\" έχουν αποκλειστεί."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Διαχείριση κλειδιών API"
+msgstr "Επαναφορά κλειδιού API"
 
 msgid "Profile Photo"
 msgstr "Φωτογραφία προφίλ"
@@ -6419,7 +6415,7 @@ msgid ""
 msgstr ""
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr ""
+msgstr "Δεν επιτρέπεται η υποβολή προσθέτου στη διεύθυνση email του λογαριασμού σας."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

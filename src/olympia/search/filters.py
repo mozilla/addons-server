@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.utils import translation
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
@@ -853,8 +855,15 @@ class SortingFilter(BaseFilterBackend):
                     not search_query_param
                 )
                 if is_random_sort_available:
+                    # We want randomness to change only once every 24 hours, so
+                    # we use a seed that depends on the date.
                     qs = qs.query(
-                        'function_score', functions=[query.SF('random_score')])
+                        'function_score', functions=[
+                            query.SF(
+                                'random_score',
+                                seed=date.today().toordinal(),
+                            )
+                        ])
                 else:
                     raise serializers.ValidationError(
                         'The "sort" parameter "random" can only be specified '

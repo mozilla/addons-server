@@ -126,7 +126,7 @@ class TestBlockAdmin(TestCase):
 class TestBlockSubmissionAdmin(TestCase):
     def setUp(self):
         self.submission_url = reverse('admin:blocklist_blocksubmission_add')
-        self.multi_list_url = reverse(
+        self.submission_list_url = reverse(
             'admin:blocklist_blocksubmission_changelist')
 
     def test_add_single(self):
@@ -738,7 +738,7 @@ class TestBlockSubmissionAdmin(TestCase):
         self.grant_permission(user, permission)
         self.client.login(email=user.email)
 
-        response = self.client.get(self.multi_list_url, follow=True)
+        response = self.client.get(self.submission_list_url, follow=True)
         assert response.status_code == 200
         assert 'Bób' in response.content.decode('utf-8')
         assert 'Sué' in response.content.decode('utf-8')
@@ -761,11 +761,11 @@ class TestBlockSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
 
-        response = self.client.get(self.multi_list_url, follow=True)
+        response = self.client.get(self.submission_list_url, follow=True)
         assert response.status_code == 403
         assert 'Bób' not in response.content.decode('utf-8')
 
-    def test_signoff_page(self):
+    def test_edit_with_blocklist_create(self):
         threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         addon = addon_factory(
             guid='guid@', name='Danger Danger',
@@ -910,7 +910,7 @@ class TestBlockSubmissionAdmin(TestCase):
                 'max_version': '99',  # should be ignored
                 'url': 'new.url',  # should be ignored
                 'reason': 'a reason',  # should be ignored
-                '_signoff': 'Approve Submission',
+                '_approve': 'Approve Submission',
             },
             follow=True)
         assert response.status_code == 200
@@ -1058,7 +1058,7 @@ class TestBlockSubmissionAdmin(TestCase):
                 'max_version': '99',  # should be ignored
                 'url': 'new.url',  # could be updated with this permission
                 'reason': 'a reason',  # could be updated with this permission
-                '_signoff': 'Approve Submission',
+                '_approve': 'Approve Submission',
             },
             follow=True)
         assert response.status_code == 403
@@ -1070,8 +1070,68 @@ class TestBlockSubmissionAdmin(TestCase):
         assert mbs.url != 'new.url'
         assert mbs.reason != 'a reason'
 
-    def test_cannot_reject_with_only_block_create_permission(self):
-        pass
+    def test_can_only_reject_your_own_with_only_block_create_permission(self):
+        addon = addon_factory(guid='guid@', name='Danger Danger')
+        submission = BlockSubmission.objects.create(
+            input_guids='guid@\ninvalid@',
+            updated_by=user_factory())
+        assert submission.to_block == [
+            {'guid': 'guid@',
+             'id': None,
+             'average_daily_users': addon.average_daily_users}]
+
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+        change_url = reverse(
+            'admin:blocklist_blocksubmission_change', args=(submission.id,))
+        response = self.client.post(
+            change_url, {
+                'input_guids': 'guid2@\nfoo@baa',  # should be ignored
+                'min_version': '1',  # should be ignored
+                'max_version': '99',  # should be ignored
+                'url': 'new.url',  # could be updated with this permission
+                'reason': 'a reason',  # could be updated with this permission
+                '_reject': 'Reject Submission',
+            },
+            follow=True)
+        assert response.status_code == 403
+        submission = submission.reload()
+        # It wasn't signed off
+        assert not submission.signoff_by
+        assert submission.signoff_state == BlockSubmission.SIGNOFF_PENDING
+        # And the details weren't updated either
+        assert submission.url != 'new.url'
+        assert submission.reason != 'a reason'
+
+        # except if it's your own submission
+        submission.update(updated_by=user)
+        response = self.client.get(change_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        buttons = doc('.submit-row input')
+        assert buttons[0].attrib['value'] == 'Update'
+        assert buttons[1].attrib['value'] == 'Reject Submission'
+        assert len(buttons) == 2
+        assert b'Approve Submission' not in response.content
+
+        response = self.client.post(
+            change_url, {
+                'input_guids': 'guid2@\nfoo@baa',  # should be ignored
+                'min_version': '1',  # should be ignored
+                'max_version': '99',  # should be ignored
+                'url': 'new.url',  # could be updated with this permission
+                'reason': 'a reason',  # could be updated with this permission
+                '_reject': 'Reject Submission',
+            },
+            follow=True)
+        assert response.status_code == 200
+        submission = submission.reload()
+        assert submission.signoff_state == BlockSubmission.SIGNOFF_REJECTED
+        assert not submission.signoff_by
+        assert submission.url == 'new.url'
+        assert submission.reason == 'a reason'
 
     def test_signed_off_view(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')
@@ -1105,6 +1165,49 @@ class TestBlockSubmissionAdmin(TestCase):
         assert guid_link.attrib['href'] == reverse(
             'admin:blocklist_block_change', args=(block.pk,))
         assert not doc('submit-row input')
+
+    def test_list_filters(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Signoff')
+        self.client.login(email=user.email)
+        addon_factory(guid='pending1@')
+        addon_factory(guid='pending2@')
+        addon_factory(guid='published@')
+        BlockSubmission.objects.create(
+            input_guids='pending1@\npending2@',
+            signoff_state=BlockSubmission.SIGNOFF_PENDING)
+        BlockSubmission.objects.create(
+            input_guids='missing@',
+            signoff_state=BlockSubmission.SIGNOFF_APPROVED)
+        BlockSubmission.objects.create(
+            input_guids='published@',
+            signoff_state=BlockSubmission.SIGNOFF_PUBLISHED)
+
+        response = self.client.get(self.submission_list_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        expected = [
+            ('All', '?'),
+            ('Pending', '?signoff_state__exact=0'),
+            ('Approved', '?signoff_state__exact=1'),
+            ('Rejected', '?signoff_state__exact=2'),
+            ('No Sign-off', '?signoff_state__exact=3'),
+            ('Published to Blocks', '?signoff_state__exact=4'),
+        ]
+        filters = [
+            (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
+        ]
+        assert filters == expected
+
+        response = self.client.get(self.submission_list_url, {
+            'signoff_state__exact': 0,
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-blocks_count').text() == '2 add-ons'
 
 
 class TestBlockAdminEdit(TestCase):
@@ -1490,3 +1593,35 @@ class TestBlockAdminBulkDelete(TestCase):
             has_signoff=True)
         legacy_delete_blocks_mock.assert_called_with(
             [block_with_addon, block_no_addon])
+
+    def test_edit_with_delete_submission(self):
+        threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+        block = Block.objects.create(
+            addon=addon_factory(
+                guid='guid@', name='Danger Danger',
+                average_daily_users=threshold + 1),
+            updated_by=user_factory())
+        mbs = BlockSubmission.objects.create(
+            input_guids='guid@',
+            updated_by=user_factory(),
+            action=BlockSubmission.ACTION_DELETE)
+        assert mbs.to_block == [
+            {'guid': 'guid@',
+             'id': block.id,
+             'average_daily_users': block.addon.average_daily_users}]
+
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+        multi_url = reverse(
+            'admin:blocklist_blocksubmission_change', args=(mbs.id,))
+
+        response = self.client.get(multi_url, follow=True)
+        assert response.status_code == 200
+        assert b'guid@' in response.content
+        doc = pq(response.content)
+        buttons = doc('.submit-row input')
+        assert len(buttons) == 0
+        assert b'Reject Submission' not in response.content
+        assert b'Approve Submission' not in response.content

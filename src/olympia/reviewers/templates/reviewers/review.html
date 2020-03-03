@@ -245,18 +245,18 @@
                   data-toggle-button-selector="#force_disable_addon"
                   id="force_enable_addon" type="button">{{ _('Force-enable add-on') }}</button>
         </li>
-
-        {% if not addon.block %}
         <li>
+        {% if addon.blocksubmission %}
+          <a href="{{ url('admin:blocklist_blocksubmission_change', addon.blocksubmission.id) }}" class="button"
+                  id="edit_addon_blocksubmission" type="button">{{ _('View Block Submission') }}</a>
+        {% elif not addon.block %}
           <a href="{{ url('admin:blocklist_blocksubmission_add') }}?guids={{ addon.guid }}" class="button"
                   id="block_addon" type="button">{{ _('Block add-on') }}</a>
-        </li>
         {% else %}
-        <li>
           <a href="{{ url('admin:blocklist_block_change', addon.block.id) }}" class="button"
                   id="edit_addon_block" type="button">{{ _('Update add-on block') }}</a>
-        </li>
         {% endif %}
+        </li>
 
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT, amo.ADDON_SEARCH) %}
           <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
@@ -333,10 +333,9 @@
   <div id="scroll_sidebar">
   <div class="currently_viewing_warning"></div>
 
-  {% if not addon.is_deleted %}
   <strong>{{ _('Actions') }}</strong>
   <ul id="actions-addon">
-    {% if addon.has_listed_versions() %}
+    {% if not addon.is_deleted and addon.has_listed_versions() %}
       <li><a href="{{ addon.get_url_path() }}">{{ _('View Product Page') }}</a></li>
     {% endif %}
     {# If we are on the unlisted review page, show the link to the listed review page #}
@@ -347,11 +346,12 @@
       <li><a href="{{ url('reviewers.review', 'unlisted', addon.slug) }}">{{ _('Unlisted Review Page') }}</a></li>
     {% endif %}
     {% if is_admin %}
-    <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
-    <li><a href="{{ url('zadmin.addon_manage', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
+      {% if not addon.is_deleted %}
+        <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
+      {% endif %}
+    <li><a href="{{ url('admin:addons_addon_change', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
     {% endif %}
   </ul>
-  {% endif %}
 
 
   <strong>{{ _('Review This Add-on') }}</strong>

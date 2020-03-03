@@ -12,7 +12,7 @@
   <ul>
     {% for addon in addons %}
     <li>
-      <a href="{{ url('zadmin.addon_manage', addon.slug) }}">
+      <a href="{{ url('admin:addons_addon_change', addon.id) }}">
         {{ addon.name }} [{{ addon.id }}]</a>
     </li>
     {% endfor %}

@@ -42,14 +42,14 @@ def with_addon(allow_missing=False):
             guid = kwargs.get('guid', None)
             try:
                 if guid is None:
-                    raise Addon.DoesNotExist('No GUID')
+                    raise Addon.DoesNotExist('No Add-on ID')
                 addon = Addon.unfiltered.get(guid=guid)
             except Addon.DoesNotExist:
                 if allow_missing:
                     addon = None
                 else:
                     msg = ugettext(
-                        'Could not find add-on with guid "{}".').format(guid)
+                        'Could not find Add-on with ID "{}".').format(guid)
                     return Response(
                         {'error': msg},
                         status=status.HTTP_404_NOT_FOUND)
@@ -184,24 +184,30 @@ class VersionView(APIView):
 
         if dont_allow_no_guid:
             raise forms.ValidationError(
-                ugettext('Only WebExtensions are allowed to omit the GUID'),
+                ugettext(
+                    'Only WebExtensions are allowed to omit the Add-on ID'),
                 status.HTTP_400_BAD_REQUEST)
 
         if guid is not None and not addon and not package_guid:
             # No guid was present in the package, but one was provided in the
-            # URL, so we take it instead of generating one ourselves. But
-            # first, validate it properly.
+            # URL, so we take it instead of generating one ourselves. There is
+            # an extra validation check for those: guids passed in the URL are
+            # not allowed to be longer than 64 chars.
             if len(guid) > 64:
                 raise forms.ValidationError(ugettext(
-                    'Please specify your Add-on GUID in the manifest if it\'s '
+                    'Please specify your Add-on ID in the manifest if it\'s '
                     'longer than 64 characters.'
                 ))
 
-            if not amo.ADDON_GUID_PATTERN.match(guid):
-                raise forms.ValidationError(
-                    ugettext('Invalid GUID in URL'),
-                    status.HTTP_400_BAD_REQUEST)
             parsed_data['guid'] = guid
+
+        if package_guid or guid:
+            # If we did get a guid, regardless of its source, validate it now
+            # before creating anything.
+            if not amo.ADDON_GUID_PATTERN.match(package_guid or guid):
+                raise forms.ValidationError(
+                    ugettext('Invalid Add-on ID in URL or package'),
+                    status.HTTP_400_BAD_REQUEST)
 
         # channel will be ignored for new addons.
         if addon is None:
