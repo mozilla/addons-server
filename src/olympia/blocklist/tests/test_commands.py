@@ -75,6 +75,7 @@ class TestImportBlocklist(TestCase):
             assert block.kinto_id == '*' + this_block['id']
             assert block.include_in_legacy
             assert block.modified == datetime(2019, 11, 29, 22, 22, 46, 785000)
+            assert block.is_imported_from_kinto_regex
         assert KintoImport.objects.count() == 6
         assert KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_NOMATCH).count() == 4
@@ -101,6 +102,7 @@ class TestImportBlocklist(TestCase):
         assert blocks[0].kinto_id == blocklist_json['data'][1]['id']
         assert blocks[0].include_in_legacy
         assert blocks[0].modified == datetime(2019, 11, 29, 15, 32, 56, 477000)
+        assert not blocks[0].is_imported_from_kinto_regex
 
         assert blocks[1].guid == 'Ytarkovpn.5.14@firefox.com'
         assert blocks[1].url == blocklist_json['data'][2]['details']['bug']
@@ -112,6 +114,8 @@ class TestImportBlocklist(TestCase):
         assert blocks[1].kinto_id == blocklist_json['data'][2]['id']
         assert blocks[1].include_in_legacy
         assert blocks[1].modified == datetime(2019, 11, 22, 16, 49, 58, 416000)
+        assert not blocks[1].is_imported_from_kinto_regex
+
         assert KintoImport.objects.count() == 6
         assert KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_NOMATCH).count() == 3
