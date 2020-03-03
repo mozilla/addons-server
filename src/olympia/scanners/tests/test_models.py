@@ -438,14 +438,14 @@ class TestScannerQueryRule(TestScannerRuleMixin, TestCase):
     def test_completed_task_count(self, restore_mock):
         restore_mock.return_value.completed_count.return_value = 42
         rule = ScannerQueryRule(
-            state=RUNNING, group_result_id=str(uuid.uuid4()))
+            state=RUNNING, celery_group_result_id=str(uuid.uuid4()))
         assert rule._get_completed_tasks_count() == 42
 
         restore_mock.return_value = None
         assert rule._get_completed_tasks_count() is None
 
     def test_completed_task_count_no_group_id(self):
-        rule = ScannerQueryRule(state=RUNNING, group_result_id=None)
+        rule = ScannerQueryRule(state=RUNNING, celery_group_result_id=None)
         assert rule._get_completed_tasks_count() is None
 
     @mock.patch.object(ScannerQueryRule, '_get_completed_tasks_count')

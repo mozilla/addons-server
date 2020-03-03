@@ -306,7 +306,7 @@ class ScannerQueryRule(AbstractScannerRule):
     run_on_disabled_addons = models.BooleanField(
         default=False, help_text=_('Run this rule on add-ons that have been '
                                    'force-disabled as well.'))
-    group_result_id = models.UUIDField(default=None, null=True)
+    celery_group_result_id = models.UUIDField(default=None, null=True)
     task_count = models.PositiveIntegerField(default=0)
 
     class Meta(AbstractScannerRule.Meta):
@@ -337,9 +337,10 @@ class ScannerQueryRule(AbstractScannerRule):
             raise ImproperScannerQueryRuleStateError()
 
     def _get_completed_tasks_count(self):
-        if self.group_result_id is not None:
+        if self.celery_group_result_id is not None:
             from olympia.amo.celery import app as celery_app
-            result = celery_app.GroupResult.restore(str(self.group_result_id))
+            result = celery_app.GroupResult.restore(
+                str(self.celery_group_result_id))
             if result:
                 return result.completed_count()
         return None

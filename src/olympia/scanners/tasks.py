@@ -286,7 +286,7 @@ def run_yara_query_rule(query_rule_pk):
     group_result.save()
     rule.update(
         task_count=len(chunked_tasks),
-        group_result_id=uuid.UUID(group_result.id)
+        celery_group_result_id=uuid.UUID(group_result.id)
     )
     workflow = (
         chunked_tasks |

@@ -511,7 +511,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert self.rule.task_count == 1
         # We run tests in eager mode, so we can't retrieve the result for real,
         # just make sure the id was set to something.
-        assert self.rule.group_result_id is not None
+        assert self.rule.celery_group_result_id is not None
 
     def test_run_on_disabled_addons(self):
         self.version.addon.update(status=amo.STATUS_DISABLED)

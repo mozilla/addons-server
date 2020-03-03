@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='scannerqueryrule',
-            name='group_result_id',
+            name='celery_group_result_id',
             field=models.UUIDField(default=None, null=True),
         ),
         migrations.AddField(
