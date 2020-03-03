@@ -1096,6 +1096,15 @@ class TestBlockSubmissionAdmin(TestCase):
 
         # except if it's your own submission
         submission.update(updated_by=user)
+        response = self.client.get(change_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        buttons = doc('.submit-row input')
+        assert buttons[0].attrib['value'] == 'Update'
+        assert buttons[1].attrib['value'] == 'Reject Submission'
+        assert len(buttons) == 2
+        assert b'Approve Submission' not in response.content
+
         response = self.client.post(
             change_url, {
                 'input_guids': 'guid2@\nfoo@baa',  # should be ignored
