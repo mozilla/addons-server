@@ -43,7 +43,7 @@
           {{ _('Unlisted Review Page') }}</a></li>
       {% endif %}
       {% if action_allowed(amo.permissions.REVIEWS_ADMIN) %}
-        <li><a href="{{ url('zadmin.addon_manage', addon.slug) }}">
+        <li><a href="{{ url('admin:addons_addon_change', addon.id) }}">
           {{ _('Admin Manage') }}</a></li>
       {% endif %}
       <li><a href="{{ url('devhub.feed', addon.slug) }}">

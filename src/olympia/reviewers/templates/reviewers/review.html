@@ -333,10 +333,9 @@
   <div id="scroll_sidebar">
   <div class="currently_viewing_warning"></div>
 
-  {% if not addon.is_deleted %}
   <strong>{{ _('Actions') }}</strong>
   <ul id="actions-addon">
-    {% if addon.has_listed_versions() %}
+    {% if not addon.is_deleted and addon.has_listed_versions() %}
       <li><a href="{{ addon.get_url_path() }}">{{ _('View Product Page') }}</a></li>
     {% endif %}
     {# If we are on the unlisted review page, show the link to the listed review page #}
@@ -347,11 +346,12 @@
       <li><a href="{{ url('reviewers.review', 'unlisted', addon.slug) }}">{{ _('Unlisted Review Page') }}</a></li>
     {% endif %}
     {% if is_admin %}
-    <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
-    <li><a href="{{ url('zadmin.addon_manage', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
+      {% if not addon.is_deleted %}
+        <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
+      {% endif %}
+    <li><a href="{{ url('admin:addons_addon_change', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
     {% endif %}
   </ul>
-  {% endif %}
 
 
   <strong>{{ _('Review This Add-on') }}</strong>
