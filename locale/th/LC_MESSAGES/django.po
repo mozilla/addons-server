@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-03 19:03+0000\n"
+"PO-Revision-Date: 2020-03-03 19:10+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2826,7 +2826,7 @@ msgstr "เอาแอปพลิเคชันนี้ออก"
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
+msgstr[0] "เลือกหมวดหมู่ {1} <b>สูงสุด {0}</b> หมวดหมู่สำหรับส่วนเสริมนี้:"
 
 msgid "End-User License Agreement"
 msgstr "ข้อตกลงใบอนุญาตสำหรับผู้ใช้ทั่วไป"
@@ -2847,7 +2847,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr ""
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "อ่านเพิ่มเติมเกี่ยวกับนโยบายการตรวจทานรหัสต้นฉบับ"
 
 msgid "Build best-in-class extensions and themes"
 msgstr ""
@@ -2870,7 +2870,7 @@ msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: สร้างและทดสอบส่วนขยาย"
 
 msgid "Promote"
-msgstr ""
+msgstr "โปรโมต"
 
 msgid "\"Get The Add-on\" button"
 msgstr "ปุ่ม \"รับส่วนเสริม\""
@@ -2891,7 +2891,7 @@ msgid "Join us!"
 msgstr "มาร่วมกับเรา!"
 
 msgid "Write Some Code"
-msgstr ""
+msgstr "เขียนรหัสสักหน่อย"
 
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
@@ -3036,7 +3036,7 @@ msgid "Review History"
 msgstr "ตรวจทานประวัติ"
 
 msgid "Close Review History"
-msgstr ""
+msgstr "ปิดประวัติการตรวจทาน"
 
 msgid "Request Review"
 msgstr "ร้องขอการตรวจสอบ"
@@ -3109,10 +3109,10 @@ msgid ""
 msgstr ""
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "การลบรุ่นนี้จะลบรายการดังต่อไปนี้อย่างถาวร:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>สำคัญ:</strong> เมื่อลบรุ่นใดรุ่นหนึ่งแล้ว คุณจะไม่สามารถอัปโหลดรุ่นใหม่ด้วยหมายเลขรุ่นเดียวกันได้"
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบรุ่นนี้?"
@@ -3136,10 +3136,10 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการซ่อนส่วนเสริมของคุณ?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "การยกเลิกคำขอตรวจทานของคุณจะทำเครื่องหมายส่วนเสริมว่าไม่สมบูรณ์ และรุ่นใด ๆ ก็ตามที่รอการตรวจทานจะถูกปิดใช้งาน"
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการยกเลิกคำขอตรวจทานของคุณ?"
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "เอกสารประกอบส่วนเสริม :: ศูนย์กลางนักพัฒนา"
