@@ -1,4 +1,5 @@
 import pytest
+import uuid
 
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
@@ -432,6 +433,55 @@ class TestScannerQueryRule(TestScannerRuleMixin, TestCase):
         field = self.model._meta.get_field('scanner')
         assert field.choices == ((YARA, 'yara'),)
         assert field.default == YARA
+
+    @mock.patch('olympia.amo.celery.app.GroupResult.restore')
+    def test_completed_task_count(self, restore_mock):
+        restore_mock.return_value.completed_count.return_value = 42
+        rule = ScannerQueryRule(
+            state=RUNNING, celery_group_result_id=str(uuid.uuid4()))
+        assert rule._get_completed_tasks_count() == 42
+
+        restore_mock.return_value = None
+        assert rule._get_completed_tasks_count() is None
+
+    def test_completed_task_count_no_group_id(self):
+        rule = ScannerQueryRule(state=RUNNING, celery_group_result_id=None)
+        assert rule._get_completed_tasks_count() is None
+
+    @mock.patch.object(ScannerQueryRule, '_get_completed_tasks_count')
+    def test_completion_rate(self, _get_completed_tasks_count_mock):
+        rule = ScannerQueryRule(state=RUNNING, task_count=10000)
+
+        _get_completed_tasks_count_mock.return_value = None
+        assert rule.completion_rate() is None
+
+        _get_completed_tasks_count_mock.return_value = 0
+        assert rule.completion_rate() == '0.00%'
+
+        _get_completed_tasks_count_mock.return_value = 1000
+        assert rule.completion_rate() == '10.00%'
+
+        _get_completed_tasks_count_mock.return_value = 3333
+        assert rule.completion_rate() == '33.33%'
+
+        _get_completed_tasks_count_mock.return_value = 10000
+        assert rule.completion_rate() == '100.00%'
+
+        rule.task_count = 0
+        assert rule.completion_rate() is None
+
+    def test_completion_rate_not_running(self):
+        rule = ScannerQueryRule(state=NEW, task_count=10000)
+        assert rule.completion_rate() is None
+
+        rule.state = SCHEDULED
+        assert rule.completion_rate() is None
+
+        rule.state = ABORTING
+        assert rule.completion_rate() is None
+
+        rule.state = ABORTED
+        assert rule.completion_rate() is None
 
 
 @pytest.mark.django_db
