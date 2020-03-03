@@ -2,9 +2,13 @@ from unittest import mock
 
 import pytest
 
-from olympia.amo.tests import user_factory
+from olympia import amo
+from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.blocklist.models import Block
-from olympia.blocklist.utils import legacy_delete_blocks, legacy_publish_blocks
+from olympia.blocklist.utils import (
+    get_all_guids, get_blocked_guids, hash_filter_inputs, legacy_delete_blocks,
+    legacy_publish_blocks)
+from olympia.files.models import File
 from olympia.lib.kinto import KintoServer
 
 
@@ -76,3 +80,70 @@ def test_legacy_delete_blocks(delete_record_mock):
         [block, block_regex, block_not_legacy, block_not_imported])
     assert delete_record_mock.call_args_list == [mock.call('legacy')]
     assert block.kinto_id == ''
+
+
+@pytest.mark.django_db
+def test_get_blocked_guids():
+    for idx in range(0, 10):
+        addon_factory()
+    # one version, 0 - *
+    Block.objects.create(
+        addon=addon_factory(),
+        updated_by=user_factory())
+    # one version, 0 - 9999
+    Block.objects.create(
+        addon=addon_factory(),
+        updated_by=user_factory(),
+        max_version='9999')
+    # one version, 0 - *, unlisted
+    Block.objects.create(
+        addon=addon_factory(
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}),
+        updated_by=user_factory())
+    # three versions, but only two within block (123.40, 123.5)
+    three_ver = Block.objects.create(
+        addon=addon_factory(
+            version_kw={'version': '123.40'}),
+        updated_by=user_factory(), max_version='123.45')
+    version_factory(
+        addon=three_ver.addon, version='123.5')
+    version_factory(
+        addon=three_ver.addon, version='123.45.1')
+    # no matching versions (edge cases)
+    over = Block.objects.create(
+        addon=addon_factory(),
+        updated_by=user_factory(),
+        max_version='0')
+    under = Block.objects.create(
+        addon=addon_factory(),
+        updated_by=user_factory(),
+        min_version='9999')
+
+    all_guids = get_all_guids()
+    assert len(all_guids) == File.objects.count() == 10 + 8
+    assert (three_ver.guid, '123.40') in all_guids
+    assert (three_ver.guid, '123.5') in all_guids
+    assert (three_ver.guid, '123.45.1') in all_guids
+    over_tuple = (over.guid, over.addon.current_version.version)
+    under_tuple = (under.guid, under.addon.current_version.version)
+    assert over_tuple in all_guids
+    assert under_tuple in all_guids
+
+    blocked_guids = get_blocked_guids()
+    assert len(blocked_guids) == 5
+    assert (three_ver.guid, '123.40') in blocked_guids
+    assert (three_ver.guid, '123.5') in blocked_guids
+    assert (three_ver.guid, '123.45.1') not in blocked_guids
+    assert over_tuple not in blocked_guids
+    assert under_tuple not in blocked_guids
+
+
+def test_hash_filter_inputs():
+    data = [
+        ('guid@', '1.0'),
+        ('foo@baa', '999.223a'),
+    ]
+    assert hash_filter_inputs(data, 37872) == [
+        '37872:guid@:1.0',
+        '37872:foo@baa:999.223a',
+    ]

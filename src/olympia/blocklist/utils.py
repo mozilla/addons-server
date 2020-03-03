@@ -12,6 +12,7 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 KINTO_BUCKET = 'staging'
 KINTO_COLLECTION_LEGACY = 'addons'
+KINTO_COLLECTION_MLBF = 'addons-mblf'
 
 
 def add_version_log_for_blocked_versions(obj, al):
@@ -91,23 +92,58 @@ def splitlines(text):
     return [line.strip() for line in str(text or '').splitlines()]
 
 
-def generateMLBF(stats, *, blocked, not_blocked, capacity, diffMetaFile=None):
+def get_blocked_guids():
+    from olympia.addons.models import Addon
+    from olympia.blocklist.models import Block
+
+    blocks = Block.objects.all()
+    blocks_guids = [block.guid for block in blocks]
+    addons_dict = Addon.unfiltered.in_bulk(blocks_guids, field_name='guid')
+    for block in blocks:
+        block.addon = addons_dict.get(block.guid)
+    Block.preload_addon_versions(blocks)
+    all_versions = {}
+    # collect all the blocked versions
+    for block in blocks:
+        is_all_versions = (
+            block.min_version == Block.MIN and
+            block.max_version == Block.MAX)
+        versions = {
+            version_id: (block.guid, version)
+            for version, (version_id, _) in block.addon_versions.items()
+            if is_all_versions or block.is_version_blocked(version)}
+        all_versions.update(versions)
+    return all_versions.values()
+
+
+def get_all_guids():
+    from olympia.versions.models import Version
+
+    return Version.objects.values_list('addon__guid', 'version')
+
+
+def hash_filter_inputs(input_list, salt):
+    return [
+        f'{salt}:{guid}:{version}' for (guid, version) in input_list]
+
+
+def generate_mlbf(stats, salt, *, blocked=None, not_blocked=None):
     """Based on:
     https://github.com/mozilla/crlite/blob/master/create_filter_cascade/certs_to_crlite.py
     """
+    blocked = hash_filter_inputs(blocked or get_blocked_guids(), salt)
+    not_blocked = hash_filter_inputs(not_blocked or get_all_guids(), salt)
+
+    not_blocked = list(set(not_blocked) - set(blocked))
+
+    stats['mlbf_blocked_count'] = len(blocked)
+    stats['mlbf_unblocked_count'] = len(not_blocked)
+
     fprs = [len(blocked) / (math.sqrt(2) * len(not_blocked)), 0.5]
 
-    if diffMetaFile is not None:
-        log.info(
-            "Generating filter with characteristics from mlbf base file {}".
-            format(diffMetaFile))
-        mlbf_meta_file = open(diffMetaFile, 'rb')
-        cascade = FilterCascade.loadDiffMeta(mlbf_meta_file)
-        cascade.error_rates = fprs
-    else:
-        log.info("Generating filter")
-        cascade = FilterCascade.cascade_with_characteristics(
-            int(len(blocked) * capacity), fprs)
+    log.info("Generating filter")
+    cascade = FilterCascade.cascade_with_characteristics(
+        int(len(blocked) * 1.1), fprs)
 
     cascade.version = 1
     cascade.initialize(include=blocked, exclude=not_blocked)
@@ -119,6 +155,8 @@ def generateMLBF(stats, *, blocked, not_blocked, capacity, diffMetaFile=None):
 
     log.debug("Filter cascade layers: {layers}, bit: {bits}".format(
         layers=cascade.layerCount(), bits=cascade.bitCount()))
+
+    cascade.check(entries=blocked, exclusions=not_blocked)
     return cascade
 
 
