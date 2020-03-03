@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-16 05:58+0000\n"
-"Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
+"PO-Revision-Date: 2020-03-03 18:42+0000\n"
+"Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -1296,9 +1296,8 @@ msgstr ""
 msgid "Updated Complete Theme Review"
 msgstr "บทวิจารณ์ชุดตกแต่งแบบสมบูรณ์ที่อัปเดตแล้ว"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "บทวิจารณ์ส่วนเสริมที่ปรับปรุงแล้ว                "
+msgstr "บทวิจารณ์ส่วนเสริมที่รอการตรวจสอบ"
 
 msgid "Add-on Review Moderation Reverted"
 msgstr ""
@@ -2420,9 +2419,8 @@ msgstr ""
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
 
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "หมายเหตุถึงนักวิจารณ์:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
@@ -2512,9 +2510,8 @@ msgstr "ดาวน์โหลด {0}"
 msgid "Go to My Submissions"
 msgstr "ไปยังการส่งของฉัน"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "ใบอนุญาตซอร์สโค้ด"
+msgstr "การอัปโหลดรหัสต้นฉบับ"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
@@ -2784,9 +2781,8 @@ msgstr "อัปโหลดรุ่นใหม่"
 msgid "View All"
 msgstr "ดูทั้งหมด"
 
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "หน้าบทวิจารณ์ที่อยู่ในรายการ"
 
 msgid "Unlisted Review Page"
 msgstr ""
@@ -2806,9 +2802,8 @@ msgstr "ดูบล็อก &#9658;"
 msgid "Pending information request:"
 msgstr ""
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "รุ่นนี้ยังไม่ถูกตรวจสอบ"
+msgstr "คำขอสำหรับข้อมูลนี้ได้ถูกแก้ไขแล้ว"
 
 msgid "License"
 msgstr "ใบอนุญาต"
@@ -5106,9 +5101,8 @@ msgstr ""
 msgid "Search by add-on name / author email"
 msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "บทวิจารณ์ส่วนเสริมที่ปรับปรุงแล้ว                "
+msgstr "ต้องการการตรวจสอบรหัสโดยผู้ดูแล"
 
 msgid "yes"
 msgstr "ใช่"
