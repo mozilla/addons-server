@@ -14,7 +14,7 @@
       <input type="submit" value="{% trans 'Reject Submission' %}" name="_reject">
     {% endif %}
     {% if has_signoff_approve_permission and is_pending_signoff %}
-      <input type="submit" value="{% trans 'Approve Submission' %}" name="_signoff">
+      <input type="submit" value="{% trans 'Approve Submission' %}" name="_approve">
     {% endif %}
   </div>
 {% endblock %}

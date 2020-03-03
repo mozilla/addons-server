@@ -908,7 +908,7 @@ class TestBlockSubmissionAdmin(TestCase):
                 'max_version': '99',  # should be ignored
                 'url': 'new.url',  # should be ignored
                 'reason': 'a reason',  # should be ignored
-                '_signoff': 'Approve Submission',
+                '_approve': 'Approve Submission',
             },
             follow=True)
         assert response.status_code == 200
@@ -1047,7 +1047,7 @@ class TestBlockSubmissionAdmin(TestCase):
                 'max_version': '99',  # should be ignored
                 'url': 'new.url',  # could be updated with this permission
                 'reason': 'a reason',  # could be updated with this permission
-                '_signoff': 'Approve Submission',
+                '_approve': 'Approve Submission',
             },
             follow=True)
         assert response.status_code == 403
@@ -1059,7 +1059,7 @@ class TestBlockSubmissionAdmin(TestCase):
         assert mbs.url != 'new.url'
         assert mbs.reason != 'a reason'
 
-    def test_cannot_reject_with_only_block_create_permission(self):
+    def test_can_only_reject_your_own_with_only_block_create_permission(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')
         submission = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@',

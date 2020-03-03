@@ -400,7 +400,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         if change and self.is_pending_signoff(obj):
-            is_approve = '_signoff' in request.POST
+            is_approve = '_approve' in request.POST
             is_reject = '_reject' in request.POST
             if is_approve:
                 if not self.has_signoff_approve_permission(request, obj):
@@ -425,9 +425,9 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
 
     def log_change(self, request, obj, message):
         log_entry = None
-        is_signoff = '_signoff' in request.POST
+        is_approve = '_approve' in request.POST
         is_reject = '_reject' in request.POST
-        if is_signoff:
+        if is_approve:
             signoff_msg = 'Sign-off Approval'
         elif is_reject:
             signoff_msg = 'Sign-off Rejection'
