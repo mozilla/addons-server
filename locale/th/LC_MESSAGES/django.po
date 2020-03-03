@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-03 18:42+0000\n"
+"PO-Revision-Date: 2020-03-03 18:51+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1285,7 +1285,7 @@ msgid "Preliminary Search Provider Review"
 msgstr ""
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "บทวิจารณ์ผู้ให้บริการค้นหาที่อัปเดต"
 
 msgid "New Complete Theme Review"
 msgstr "บทวิจารณ์ชุดตกแต่งแบบสมบูรณ์ใหม่"
@@ -1410,7 +1410,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "เราอนุญาตและสนับสนุนให้อัปเกรด แต่คุณจะไม่สามารถย้อนกลับไปได้อีก เมื่อคุณติดตั้ง WebExtension คุณจะไม่สามารถติดตั้งส่วนเสริมแบบเดิมได้อีก"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "สลักนี้ถูกใช้แล้ว โปรดเลือกอันอื่น"
@@ -1762,7 +1762,7 @@ msgid "My add-on doesn't fit into any of the categories"
 msgstr "ส่วนเสริมของฉันไม่ตรงกับหมวดหมู่ใด ๆ"
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "ข้อตกลงการแจกจ่ายส่วนเสริม Firefox"
 
 msgid "Review Policies and Rules"
 msgstr "นโยบายและกติกาสำหรับการวิจารณ์"
@@ -1838,10 +1838,10 @@ msgid "Search"
 msgstr "ค้นหา"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "ใช้ฟิลด์ด้านล่างเพื่ออัปโหลดแพกเกจส่วนเสริมของคุณ"
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "หลังจากที่อัปโหลดแล้ว ชุดทดสอบการตรวจสอบความถูกต้องอัตโนมัติจะทำงานบนไฟล์ของคุณ"
 
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "คุณต้องการเผยแพร่ส่วนเสริมของคุณลงบนไซต์นี้หรือไม่?"
@@ -1899,7 +1899,7 @@ msgid "Update Compatibility"
 msgstr "อัปเดตความเข้ากันได้"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
+msgstr "การปรับเปลี่ยนข้อมูลแอปพลิเคชันที่นี่จะทำให้ผู้ใช้สามารถติดตั้งส่วนเสริมของคุณได้แม้ว่าข้อมูลกำกับการติดตั้งในแพกเกจจะระบุว่าส่วนเสริมเข้ากันไม่ได้"
 
 msgid "Application"
 msgstr "แอปพลิเคชัน"
@@ -2105,7 +2105,7 @@ msgstr ""
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
+msgstr "ไม่สามารถเปลี่ยนหมวดหมู่ได้ขณะที่ส่วนเสริมของคุณโดดเด่นสำหรับแอปพลิเคชันนี้ โปรดส่งอีเมลมาที่ <a href=\"mailto:%(email)s\">%(email)s</a> หากมีเหตุผลที่คุณต้องเปลี่ยนแปลงหมวดหมู่ของคุณ"
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
@@ -2164,7 +2164,7 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
+msgstr "UUID ของส่วนเสริมของคุณจะถูกระบุในข้อมูลกำกับการติดตั้งโดยไม่ซ้ำกัน คุณจะไม่สามารถเปลี่ยน UUID ของคุณได้หลังจากที่ถูกส่งไปแล้ว"
 
 msgid "Whiteboard"
 msgstr "Whiteboard"
@@ -2227,7 +2227,7 @@ msgid "Screenshots"
 msgstr "ภาพถ่ายหน้าจอ"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "โปรดระบุภาพหน้าจออย่างน้อยหนึ่งภาพของส่วนเสริมของคุณ:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "โปรดระบุคำอธิบายสำหรับภาพหน้าจอนี้:"
