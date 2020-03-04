@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-04 11:02+0000\n"
+"PO-Revision-Date: 2020-03-04 11:11+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -966,19 +966,19 @@ msgid "Shopping"
 msgstr "Shopping"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja mogu poboljšati iskustvo kupovanja putem interneta pomoću pronalaženja kupona i popusta, analizu recenzija i još mnogo toga."
 
 msgid "Social & Communication"
 msgstr "Društveno i komunikacije"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za poboljšanje društvenih mreža i slanje trenutnih poruka. Ova kategorija uključuje poboljšane obavijesti na karticama, preuzimanje videozapisa i još mnogo toga."
 
 msgid "Tabs"
 msgstr "Kartice"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za prilagođavanje kartica i stranicu nove kartice. Otkrij proširenja, koja mogu upravljati karticama, promijeniti način interakcije s njima i još mnogo toga."
 
 msgid "Web Development"
 msgstr "Razvoj weba"
@@ -991,7 +991,7 @@ msgid "Other"
 msgstr "Ostalo"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja mogu biti nepredvidiva i kreativna, ali korisne za čudne zadatke."
 
 msgid "Device Features & Location"
 msgstr "Mogućnosti uređaja i lokacija"
