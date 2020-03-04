@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-04 10:50+0000\n"
+"PO-Revision-Date: 2020-03-04 11:02+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -931,34 +931,36 @@ msgid "Feeds, News & Blogging"
 msgstr "Kanali, vijesti i blogovi"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja uklanjaju nered i omogućuju ostati u tijeku s društvenim mrežama, blogovima, RSS feedovima, smanjiti opterećenje očiju i još mnogo toga."
 
 msgid "Games & Entertainment"
 msgstr "Igre i zabava"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za poboljšanje doživljaja. Ova kategorija uključuje proširenja, koja mogu poboljšati igranje, kontrolirati reprodukciju videozapisa i još mnogo toga."
 
 msgid "Language Support"
 msgstr "Podrška za jezike"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja nude jezičnu podršku poput provjere gramatike, pretraživanje riječi, prevođenje teksta, pretvaranje teksta u govor i još mnogo toga."
 
 msgid "Photos, Music & Videos"
 msgstr "Fotografije, glazba i video"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja poboljšavaju fotografije, muziku i video doživljaje. Proširenja u ovoj kategoriji mijenjaju audio i video zapise, pretražuju obrnute slike i još mnogo toga."
 
 msgid "Privacy & Security"
 msgstr "Privatnost i sigurnost"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Preuzmi Firefox proširenja za privatno i sigurno pregledavanje. Ova kategorija uključuje proširenja, koja blokiraju dosadne oglase, sprečavaju praćenje, upravljaju preusmjeravanjima i još mnogo "
+"toga."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za pretraživanje. Ova kategorija uključuje proširenja, koja ističu i pretražuju tekst, pretražuju IP adrese i domene i još mnogo toga."
 
 msgid "Shopping"
 msgstr "Shopping"
