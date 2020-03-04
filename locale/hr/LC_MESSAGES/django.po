@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-04 10:04+0000\n"
+"PO-Revision-Date: 2020-03-04 10:09+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2089,7 +2089,7 @@ msgid "Add-on URL"
 msgstr "URL dodatka"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Odaberi kratak, jedinstven URL umetak za Vaš dodatak."
+msgstr "Odaberi kratko, jedinstveno URL ime stranice za tvoj dodatak."
 
 msgid "View Listing"
 msgstr "Prikaži popis"
@@ -2219,7 +2219,7 @@ msgstr ""
 "dodatke."
 
 msgid "Select an icon for your add-on:"
-msgstr "Odaberite ikonu za Vaš dodatak:"
+msgstr "Odaberi ikonu za tvoj dodatak:"
 
 #. The size of the icon
 msgid "32x32px"
