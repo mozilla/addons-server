@@ -251,7 +251,7 @@ SUPPORTED_NONAPPS_NONLOCALES_REGEX = DRF_API_REGEX
 SUPPORTED_NONAPPS = (
     'about', 'admin', 'apps', 'contribute.json',
     'developer_agreement', 'developers', 'editors',
-    'jsi18n', 'review_guide', 'google1f3e37b7351799a5.html',
+    'review_guide', 'google1f3e37b7351799a5.html',
     'google231a41e803e464e9.html', 'reviewers', 'robots.txt', 'statistics',
     'services', 'static', 'user-media', '__version__',
 )

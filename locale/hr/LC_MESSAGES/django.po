@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-03 12:57+0000\n"
+"PO-Revision-Date: 2020-03-04 12:00+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -100,7 +100,7 @@ msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Nije vas bilo moguće prijaviti. Molimo pokušajte ponovo."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Vašeg Firefox računa nije moguće pronaći. Molimo pokušajte ponovno."
+msgstr "Tvoj Firefox račun nije pronađen. Pokušaj ponovo."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Nije vas bilo moguće prijaviti. Molimo pokušajte ponovo."
@@ -356,7 +356,7 @@ msgstr "Kategorije"
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Stranica <a href=\"%(current_pg_url)s\">%(current_pg)s</a> od <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 msgid "Jump to first page"
 msgstr "Skoči na prvu stranicu"
@@ -430,7 +430,7 @@ msgstr "Moraš navesti objekt za {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Nevažeći primarni ključ ili URL naziv stranice „%s” – objekt ne postoji."
 
 msgid "Confirmation for developer API keys"
 msgstr "Potvrda za razvijateljske API ključeve"
@@ -907,6 +907,7 @@ msgstr "Upozorenja i obavijesti"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"Preuzmi Firefox proširenja, koja pomažu ostati u tijeku, pratiti zadatke, poboljšavati učinkovitost. Pronađi proširenja, koja ponovo učitavaju kartice, upravljaju produktivnošću i još mnogo toga."
 
 msgid "Appearance"
 msgstr "Izgled"
@@ -918,64 +919,66 @@ msgid "Bookmarks"
 msgstr "Zabilješke"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Preuzmi proširenja, koja štite zabilješke pomoću lozinke, traže duplikate, pronalaze pokvarene zabilješke i još mnogo toga."
 
 msgid "Download Management"
 msgstr "Upravljanje preuzimanjima"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja mogu pomoći u preuzimanju weba, glazbe i video sadržaja. Možeš pronaći i proširenja za upravljanje preuzimanjima, dijeljenje datoteka i još mnogo toga."
 
 msgid "Feeds, News & Blogging"
 msgstr "Kanali, vijesti i blogovi"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja uklanjaju nered i omogućuju ostati u tijeku s društvenim mrežama, blogovima, RSS feedovima, smanjiti opterećenje očiju i još mnogo toga."
 
 msgid "Games & Entertainment"
 msgstr "Igre i zabava"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za poboljšanje doživljaja. Ova kategorija uključuje proširenja, koja mogu poboljšati igranje, kontrolirati reprodukciju videozapisa i još mnogo toga."
 
 msgid "Language Support"
 msgstr "Podrška za jezike"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja nude jezičnu podršku poput provjere gramatike, pretraživanje riječi, prevođenje teksta, pretvaranje teksta u govor i još mnogo toga."
 
 msgid "Photos, Music & Videos"
 msgstr "Fotografije, glazba i video"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja poboljšavaju fotografije, muziku i video doživljaje. Proširenja u ovoj kategoriji mijenjaju audio i video zapise, pretražuju obrnute slike i još mnogo toga."
 
 msgid "Privacy & Security"
 msgstr "Privatnost i sigurnost"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Preuzmi Firefox proširenja za privatno i sigurno pregledavanje. Ova kategorija uključuje proširenja, koja blokiraju dosadne oglase, sprečavaju praćenje, upravljaju preusmjeravanjima i još mnogo "
+"toga."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za pretraživanje. Ova kategorija uključuje proširenja, koja ističu i pretražuju tekst, pretražuju IP adrese i domene i još mnogo toga."
 
 msgid "Shopping"
 msgstr "Shopping"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja mogu poboljšati iskustvo kupovanja putem interneta pomoću pronalaženja kupona i popusta, analizu recenzija i još mnogo toga."
 
 msgid "Social & Communication"
 msgstr "Društveno i komunikacije"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za poboljšanje društvenih mreža i slanje trenutnih poruka. Ova kategorija uključuje poboljšane obavijesti na karticama, preuzimanje videozapisa i još mnogo toga."
 
 msgid "Tabs"
 msgstr "Kartice"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za prilagođavanje kartica i stranicu nove kartice. Otkrij proširenja, koja mogu upravljati karticama, promijeniti način interakcije s njima i još mnogo toga."
 
 msgid "Web Development"
 msgstr "Razvoj weba"
@@ -988,7 +991,7 @@ msgid "Other"
 msgstr "Ostalo"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja, koja mogu biti nepredvidiva i kreativna, ali korisne za čudne zadatke."
 
 msgid "Device Features & Location"
 msgstr "Mogućnosti uređaja i lokacija"
@@ -1014,13 +1017,15 @@ msgid "Photos & Media"
 msgstr "Slike i multimedija"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za poboljšanje fotografija i medija. Ova kategorija uključuje proširenja za obrnuto pretraživanje slika, snimanje ekrana cijelih stranica i još mnogo toga."
 
 msgid "Security & Privacy"
 msgstr "Sigurnost i privatnost"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Preuzmi Firefox proširenja za sigurno i privatno pregledavanje interneta. Otkrij proširenja, koja mogu zaustaviti tajne programe za praćenje u oglasima, jednostavno uklanjanju povijest pregledavanja"
+" i još mnogo toga."
 
 msgid "Social Networking"
 msgstr "Društvene mreže"
@@ -1032,13 +1037,13 @@ msgid "Sports & Games"
 msgstr "Sport i igre"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za bolji doživljaj prijenosa u živo, sportske novosti i još mnogo toga."
 
 msgid "User Interface"
 msgstr "Korisničko sučelje"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja korisničkog sučelja, za mijenjanje izgleda web stranica radi lakšeg čitanja, pretraživanje, pregledavanje i još mnogo toga."
 
 msgid "Animals"
 msgstr "Životinje"
@@ -1406,7 +1411,7 @@ msgid "flag for human review"
 msgstr ""
 
 msgid "Core"
-msgstr ""
+msgstr "Osnovni"
 
 #, python-format
 msgid "Recent Changes for %s"
@@ -1425,11 +1430,11 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Ovaj se URL naziv stranice već koristi. Odaberi jedan drugi naziv."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr ""
+msgstr "URL naziv stranice ne može biti „%(slug)s”. Odaberi jedan drugi naziv."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1498,7 +1503,7 @@ msgid "At least one author must be listed."
 msgstr "Barem jedan autor mora biti naveden."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "URL naziv stranice nije točan."
 
 msgid "Details"
 msgstr "Detalji"
@@ -1525,7 +1530,7 @@ msgid "This add-on has a Privacy Policy"
 msgstr "Ovaj dodatak sadrži pravila o privatnosti"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Molimo Vas, odredite Policu Privatnosti za vaš dodatak:"
+msgstr "Odredi politiku privatnosti za tvoj dodatak:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nepodržana vrsta datoteke, prenesi arhivsku datoteku {extensions}."
@@ -1543,7 +1548,7 @@ msgid "Need at least one compatible application."
 msgstr "Potrebna je barem jedna kompatibilna aplikacija."
 
 msgid "There was an error with your upload. Please try again."
-msgstr "Dogodila se greška prilikom Vašeg učitavanja. Molimo, pokušajte ponovno."
+msgstr "Dogodila se greška u tvom prijenosu. Pokušaj ponovo."
 
 msgid "Override failed validation"
 msgstr "Zanemari neuspjelu provjeru"
@@ -1705,7 +1710,7 @@ msgid "Icon must be square (same width and height)."
 msgstr "Ikona mora biti kvadratična (iste širine i visine)."
 
 msgid "There was an error uploading your preview."
-msgstr "Došlo je do pogreške prilikom učitavanja Vašeg pregleda."
+msgstr "Dogodila se greška prilikom prijenosa tvog pregleda."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
 msgstr "Najnoviju odobrenu verziju preporučenog proširenja nije moguće izbrisati ili deaktivirati. Ako trebaš pomoć, obrati se AMO administratorima."
@@ -1895,7 +1900,7 @@ msgid "Activity"
 msgstr "Aktivnost"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Pretplati se na ovaj feed"
 
 #, python-format
 msgid ""
@@ -2089,7 +2094,7 @@ msgid "Add-on URL"
 msgstr "URL dodatka"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Odaberi kratak, jedinstven URL umetak za Vaš dodatak."
+msgstr "Odaberi kratak, jedinstven URL naziv stranice za tvoj dodatak."
 
 msgid "View Listing"
 msgstr "Prikaži popis"
@@ -2219,7 +2224,7 @@ msgstr ""
 "dodatke."
 
 msgid "Select an icon for your add-on:"
-msgstr "Odaberite ikonu za Vaš dodatak:"
+msgstr "Odaberi ikonu za tvoj dodatak:"
 
 #. The size of the icon
 msgid "32x32px"
@@ -2622,7 +2627,7 @@ msgid "Upload source code:"
 msgstr "Prenesi izvorni kȏd:"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Sporazum o distribuciji dodatka"
 
 msgid "Upload Add-on"
 msgstr "Prenesi dodatak"
@@ -3207,7 +3212,7 @@ msgstr "Zaustavi prikrivene programe za praćenje {start_sub_heading}pomoću {ad
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blokiraj nevidljive programe za praćenje i špijunirajuće oglase koji te prate po webu."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3215,7 +3220,7 @@ msgstr "Prilagodi stranice novih kartica {start_sub_heading}pomoću {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Uživaj u prekrasnoj novoj stranici s prilagodljivim pozadinama, lokalnim vremenskim prognozama i još mnogo toga."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3231,7 +3236,7 @@ msgstr "Traži slike {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Pretraživanje obrnute slike s nizom tražilica."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3239,7 +3244,7 @@ msgstr "Blokiranje oglasa i zaštita privatnosti {start_sub_heading}pomoću {add
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Blokiranje oglasa i zaštita privatnosti. Jednostavno postavljanje omogućuje kontrolu nad oglasima koje vidiš i kako te se prati na internetu."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3247,7 +3252,7 @@ msgstr "Osmisli kartice na novo {start_sub_heading}pomoću {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Imaš gomilu otvorenih kartica? Organiziraj ih u urednoj bočnoj traci."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3263,7 +3268,7 @@ msgstr "Pojednostavi pretraživanje {start_sub_heading}pomoću {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Pojednostavi pretraživanje isticanjem teksta na bilo kojoj web stranici, radi pretraživanja izraza u raznim tražilicama."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3271,7 +3276,7 @@ msgstr "Trenutno aktualiziranje vremenske prognoze {start_sub_heading}pomoću {a
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Trenutne vremenske prognoze iz cijelog svijeta."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3279,7 +3284,7 @@ msgstr "Prilagođavanje kartica {start_sub_heading}pomoću {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "Odaberi stranicu, koja će se prikazati svaki put kad otvoriš novu karticu."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3287,7 +3292,7 @@ msgstr "Obrnuto pretraživanje slika {start_sub_heading}pomoću {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Našao/la si zanimljivu sliku na webu i želi saznati više o njoj? Isprobaj ovaj alat za pretraživanje slika."
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4835,23 +4840,27 @@ msgid "Fetching file."
 msgstr "Dohvat datoteke."
 
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "O Mozillinim dodacima"
 
 msgid "What is this website?"
-msgstr ""
+msgstr "Čemu služi ova web stranica?"
 
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, uobičajeno poznato kao „AMO”, je Mozillino službeno mjesto za dodavanja softvera Mozilla, kao što su Firefox, Thunderbird i SeaMonkey. Dodaci omogućuju dodavanje novih funkcija i"
+" mijenjanje načina rada preglednika ili programa. Pogledaj i istraži tisuće načina kako prilagoditi vlastite aktivnosti na internetu."
 
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Tko stvara ove dodatke?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"Ovdje navedene dodatke stvorilo je tisuće programera iz naše zajednice, od pojedinačnih hobista do velikih korporacija. Prije objavljivanja, ekipa pregledatelja pregledava sve javno navedene "
+"dodatke. Dodaci označeni kao eksperimentalni nisu pregledani i treba ih se instalirati s oprezom."
 
 msgid "How do I keep up with what's happening at AMO?"
 msgstr ""

@@ -3,7 +3,6 @@ import json
 import re
 import sys
 
-from datetime import datetime, timedelta
 from unittest import mock
 from urllib.parse import urlparse
 
@@ -292,26 +291,6 @@ class TestOtherStuff(TestCase):
         assert set_remote_addr_mock.call_count == 2
         assert set_remote_addr_mock.call_args_list[0] == (('1.1.1.1',), {})
         assert set_remote_addr_mock.call_args_list[1] == ((None,), {})
-
-    @pytest.mark.needs_locales_compilation
-    def test_jsi18n(self):
-        """Test that the jsi18n library has an actual catalog of translations
-        rather than just identity functions."""
-
-        response = self.client.get(reverse('jsi18n'))
-        self.assertCloseToNow(response['Expires'],
-                              now=datetime.now() + timedelta(days=365))
-
-        en = self.client.get(reverse('jsi18n')).content.decode('utf-8')
-
-        with self.activate('fr'):
-            fr = self.client.get(reverse('jsi18n')).content.decode('utf-8')
-
-        assert en != fr
-
-        for content in (en, fr):
-            assert 'django.catalog = ' in content
-            assert '/* gettext identity library */' not in content
 
     def test_opensearch(self):
         client = test.Client()
