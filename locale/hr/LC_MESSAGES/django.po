@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-04 11:11+0000\n"
+"PO-Revision-Date: 2020-03-04 11:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1017,13 +1017,15 @@ msgid "Photos & Media"
 msgstr "Slike i multimedija"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za poboljšanje fotografija i medija. Ova kategorija uključuje proširenja za obrnuto pretraživanje slika, snimanje ekrana cijelih stranica i još mnogo toga."
 
 msgid "Security & Privacy"
 msgstr "Sigurnost i privatnost"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Preuzmi Firefox proširenja za sigurno i privatno pregledavanje interneta. Otkrij proširenja, koja mogu zaustaviti tajne programe za praćenje u oglasima, jednostavno uklanjanju povijest pregledavanja"
+" i još mnogo toga."
 
 msgid "Social Networking"
 msgstr "Društvene mreže"
@@ -1035,13 +1037,13 @@ msgid "Sports & Games"
 msgstr "Sport i igre"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja za bolji doživljaj prijenosa u živo, sportske novosti i još mnogo toga."
 
 msgid "User Interface"
 msgstr "Korisničko sučelje"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Preuzmi Firefox proširenja korisničkog sučelja, za mijenjanje izgleda web stranica radi lakšeg čitanja, pretraživanje, pregledavanje i još mnogo toga."
 
 msgid "Animals"
 msgstr "Životinje"
