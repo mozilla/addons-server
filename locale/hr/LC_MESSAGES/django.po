@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-04 10:09+0000\n"
+"PO-Revision-Date: 2020-03-04 10:16+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -430,7 +430,7 @@ msgstr "Moraš navesti objekt za {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Nevažeći primarni ključ ili adresno ime stranice „%s” – objekt ne postoji."
 
 msgid "Confirmation for developer API keys"
 msgstr "Potvrda za razvijateljske API ključeve"
