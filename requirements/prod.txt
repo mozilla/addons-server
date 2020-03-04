@@ -1,6 +1,6 @@
-Django==2.2.10 \
-    --hash=sha256:1226168be1b1c7efd0e66ee79b0e0b58b2caa7ed87717909cd8a57bb13a7079a \
-    --hash=sha256:9a4635813e2d498a3c01b10c701fe4a515d76dd290aaa792ccb65ca4ccb6b038 # pyup: <3.0
+Django==2.2.11 \
+    --hash=sha256:65e2387e6bde531d3bb803244a2b74e0253550a9612c64a60c8c5be267b30f50 \
+    --hash=sha256:b51c9c548d5c3b3ccbb133d0bebc992e8ec3f14899bce8936e6fdda6b23a1881 # pyup: <3.0
 Babel==2.8.0 \
     --hash=sha256:1aac2ae2d0d8ea368fa90906567f5c08463d98ade155c0c4bfedd6a0f7160e38 \
     --hash=sha256:d670ea0b10f8b723672d3a6abeb87b565b244da220d76b4dba1b66269ec152d4
