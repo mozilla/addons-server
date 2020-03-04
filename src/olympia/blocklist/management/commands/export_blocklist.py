@@ -8,7 +8,7 @@ from django.core.files.storage import default_storage
 
 import olympia.core.logger
 
-from olympia.blocklist.utils import generate_mlbf
+from olympia.blocklist.mlbf import generate_mlbf, get_mlbf_key_format
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -24,7 +24,7 @@ class Command(BaseCommand):
             type=int,
             default=secrets.randbits(128),
             dest='salt',
-            help='MLBF capacity.')
+            help='Bloom filter salt')
         parser.add_argument(
             'id',
             help="CT baseline identifier",
@@ -74,7 +74,7 @@ class Command(BaseCommand):
                 self.load_json(options.get('addon_guids_input')))
 
         salt = options.get('salt')
-        mlbf = generate_mlbf(stats, salt, **generate_kw)
+        mlbf = generate_mlbf(stats, get_mlbf_key_format(salt), **generate_kw)
         self.save_blocklist(
             stats,
             mlbf,
