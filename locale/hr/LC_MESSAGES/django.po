@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-04 11:19+0000\n"
+"PO-Revision-Date: 2020-03-04 11:40+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1411,7 +1411,7 @@ msgid "flag for human review"
 msgstr ""
 
 msgid "Core"
-msgstr ""
+msgstr "Osnovni"
 
 #, python-format
 msgid "Recent Changes for %s"
@@ -1900,7 +1900,7 @@ msgid "Activity"
 msgstr "Aktivnost"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Pretplati se na ovaj feed"
 
 #, python-format
 msgid ""
@@ -2627,7 +2627,7 @@ msgid "Upload source code:"
 msgstr "Prenesi izvorni kȏd:"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Sporazum o distribuciji dodatka"
 
 msgid "Upload Add-on"
 msgstr "Prenesi dodatak"
@@ -3212,7 +3212,7 @@ msgstr "Zaustavi prikrivene programe za praćenje {start_sub_heading}pomoću {ad
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blokiraj nevidljive programe za praćenje i špijunirajuće oglase koji te prate po webu."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3220,7 +3220,7 @@ msgstr "Prilagodi stranice novih kartica {start_sub_heading}pomoću {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Uživaj u prekrasnoj novoj stranici s prilagodljivim pozadinama, lokalnim vremenskim prognozama i još mnogo toga."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
