@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-04 11:40+0000\n"
+"PO-Revision-Date: 2020-03-04 11:48+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3236,7 +3236,7 @@ msgstr "Traži slike {start_sub_heading}pomoću {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Pretraživanje obrnute slike s nizom tražilica."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3244,7 +3244,7 @@ msgstr "Blokiranje oglasa i zaštita privatnosti {start_sub_heading}pomoću {add
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Blokiranje oglasa i zaštita privatnosti. Jednostavno postavljanje omogućuje kontrolu nad oglasima koje vidiš i kako te se prati na internetu."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3252,7 +3252,7 @@ msgstr "Osmisli kartice na novo {start_sub_heading}pomoću {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Imaš gomilu otvorenih kartica? Organiziraj ih u urednoj bočnoj traci."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3268,7 +3268,7 @@ msgstr "Pojednostavi pretraživanje {start_sub_heading}pomoću {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Pojednostavi pretraživanje isticanjem teksta na bilo kojoj web stranici, radi pretraživanja izraza u raznim tražilicama."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3276,7 +3276,7 @@ msgstr "Trenutno aktualiziranje vremenske prognoze {start_sub_heading}pomoću {a
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Trenutne vremenske prognoze iz cijelog svijeta."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3284,7 +3284,7 @@ msgstr "Prilagođavanje kartica {start_sub_heading}pomoću {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "Odaberi stranicu, koja će se prikazati svaki put kad otvoriš novu karticu."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3292,7 +3292,7 @@ msgstr "Obrnuto pretraživanje slika {start_sub_heading}pomoću {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Našao/la si zanimljivu sliku na webu i želi saznati više o njoj? Isprobaj ovaj alat za pretraživanje slika."
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
