@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-04 10:16+0000\n"
+"PO-Revision-Date: 2020-03-04 10:28+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -430,7 +430,7 @@ msgstr "Moraš navesti objekt za {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "Nevažeći primarni ključ ili adresno ime stranice „%s” – objekt ne postoji."
+msgstr "Nevažeći primarni ključ ili URL naziv stranice „%s” – objekt ne postoji."
 
 msgid "Confirmation for developer API keys"
 msgstr "Potvrda za razvijateljske API ključeve"
@@ -1425,11 +1425,11 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Ovaj se URL naziv stranice već koristi. Odaberi jedan drugi naziv."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr ""
+msgstr "URL naziv stranice ne može biti „%(slug)s”. Odaberi jedan drugi naziv."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1498,7 +1498,7 @@ msgid "At least one author must be listed."
 msgstr "Barem jedan autor mora biti naveden."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "URL naziv stranice nije točan."
 
 msgid "Details"
 msgstr "Detalji"
@@ -2089,7 +2089,7 @@ msgid "Add-on URL"
 msgstr "URL dodatka"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Odaberi kratko, jedinstveno URL ime stranice za tvoj dodatak."
+msgstr "Odaberi kratak, jedinstven URL naziv stranice za tvoj dodatak."
 
 msgid "View Listing"
 msgstr "Prikaži popis"
