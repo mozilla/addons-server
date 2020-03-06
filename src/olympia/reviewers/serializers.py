@@ -24,7 +24,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.addons.serializers import (
     FileSerializer, MinimalVersionSerializer, SimpleAddonSerializer)
 from olympia.addons.models import AddonReviewerFlags
-from olympia.api.fields import SplitField
+from olympia.api.fields import ReverseChoiceField, SplitField
 from olympia.users.models import UserProfile
 from olympia.files.utils import get_sha256
 from olympia.files.models import File
@@ -237,6 +237,8 @@ class FileEntriesSerializer(FileSerializer):
 
 
 class AddonBrowseVersionSerializer(MinimalVersionSerializer):
+    channel = ReverseChoiceField(
+        choices=list(amo.CHANNEL_CHOICES_API.items()))
     validation_url_json = serializers.SerializerMethodField()
     validation_url = serializers.SerializerMethodField()
     has_been_validated = serializers.SerializerMethodField()
