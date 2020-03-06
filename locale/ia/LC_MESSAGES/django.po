@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-08 15:04+0000\n"
+"PO-Revision-Date: 2020-03-06 04:12+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4945,13 +4945,13 @@ msgid "Over the years, many people have contributed to this website, including b
 msgstr "Durante le annos, plure personas ha contribuite a iste sito web, sia voluntarios del communitate que un equipa dedicate de AMO."
 
 msgid "Review Guidelines"
-msgstr "Lineas guida del revisiones"
+msgstr "Lineas guida pro recensiones"
 
 msgid "Sections"
 msgstr "Sectiones"
 
 msgid "Some tips for writing a great review"
-msgstr "Alcun suggestiones pro scriber un grande revision"
+msgstr "Alcun suggestiones pro scriber un bon recension"
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr "Folio a questiones sur le recensiones"
@@ -6329,7 +6329,7 @@ msgid "my add-on's compatibility is upgraded successfully"
 msgstr "le compatibilitate de mi additivo es promovite con successo"
 
 msgid "someone writes a review of my add-on"
-msgstr "alicuno scribe un revision de mi additivo"
+msgstr "alicuno scribe un recension de mi additivo"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "remane ajornate con novas e eventos pertinente al disveloppatores de additivos (anque le littera de novas about:addons)"
