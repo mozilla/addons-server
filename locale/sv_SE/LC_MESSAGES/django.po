@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-09-30 23:18+0000\n"
+"PO-Revision-Date: 2020-03-06 16:01+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4631,7 +4631,7 @@ msgstr "Tillägg är som appar för Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "De lägger till funktioner i Firefox för att göra surfning snabbare, säkrar eller helt enkelt roligare."
+msgstr "De lägger till funktioner i Firefox för att göra surfningen snabbare, säkrare eller helt enkelt rolig."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
