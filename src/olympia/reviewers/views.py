@@ -1339,10 +1339,9 @@ class ReviewAddonVersionMixin(object):
 
     def get_addon_object(self):
         if not hasattr(self, 'addon_object'):
-            # We don't need any transforms on the add-on: we'll only need basic
-            # fields for it, not even translations.
+            # We only need translations on the add-on, no other transforms.
             self.addon_object = get_object_or_404(
-                Addon.objects.get_queryset().no_transforms(),
+                Addon.objects.get_queryset().only_translations(),
                 pk=self.kwargs.get('addon_pk'))
         return self.addon_object
 
