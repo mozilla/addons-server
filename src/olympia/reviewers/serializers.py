@@ -22,9 +22,9 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.addons.serializers import (
-    VersionSerializer, FileSerializer, SimpleAddonSerializer)
+    FileSerializer, MinimalVersionSerializer, SimpleAddonSerializer)
 from olympia.addons.models import AddonReviewerFlags
-from olympia.api.fields import SplitField
+from olympia.api.fields import ReverseChoiceField, SplitField
 from olympia.users.models import UserProfile
 from olympia.files.utils import get_sha256
 from olympia.files.models import File
@@ -236,7 +236,16 @@ class FileEntriesSerializer(FileSerializer):
         ))
 
 
-class AddonBrowseVersionSerializer(VersionSerializer):
+class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):
+    channel = ReverseChoiceField(
+        choices=list(amo.CHANNEL_CHOICES_API.items()))
+
+    class Meta:
+        model = Version
+        fields = ('id', 'channel', 'version')
+
+
+class AddonBrowseVersionSerializer(MinimalVersionSerializerWithChannel):
     validation_url_json = serializers.SerializerMethodField()
     validation_url = serializers.SerializerMethodField()
     has_been_validated = serializers.SerializerMethodField()
@@ -245,13 +254,13 @@ class AddonBrowseVersionSerializer(VersionSerializer):
 
     class Meta:
         model = Version
-        # Doesn't contain `files` from VersionSerializer
-        fields = ('id', 'channel', 'compatibility', 'edit_url',
-                  'is_strict_compatibility_enabled', 'license',
-                  'release_notes', 'reviewed', 'version',
-                  # Our custom fields
-                  'file', 'validation_url', 'validation_url_json',
-                  'has_been_validated', 'addon')
+        fields = (
+            # Bare minimum fields we need from parent...
+            'id', 'channel', 'reviewed', 'version',
+            # Plus our custom ones.
+            'addon', 'file', 'has_been_validated', 'validation_url',
+            'validation_url_json'
+        )
 
     def get_validation_url_json(self, obj):
         return absolutify(reverse('devhub.json_file_validation', args=[
@@ -267,11 +276,8 @@ class AddonBrowseVersionSerializer(VersionSerializer):
         return obj.current_file.has_been_validated
 
 
-class DiffableVersionSerializer(VersionSerializer):
-
-    class Meta:
-        model = Version
-        fields = ('id', 'channel', 'version')
+class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
+    pass
 
 
 class FileEntriesDiffSerializer(FileEntriesSerializer):
