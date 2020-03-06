@@ -147,6 +147,8 @@ class CompactLicenseSerializer(LicenseSerializer):
 
 
 class MinimalVersionSerializer(serializers.ModelSerializer):
+    channel = ReverseChoiceField(
+        choices=list(amo.CHANNEL_CHOICES_API.items()))
     files = FileSerializer(source='all_files', many=True)
 
     class Meta:
@@ -192,8 +194,6 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
 
 
 class VersionSerializer(SimpleVersionSerializer):
-    channel = ReverseChoiceField(
-        choices=list(amo.CHANNEL_CHOICES_API.items()))
     license = LicenseSerializer()
 
     class Meta:
