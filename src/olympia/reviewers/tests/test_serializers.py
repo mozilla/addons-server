@@ -578,7 +578,7 @@ class TestFileEntriesDiffSerializer(TestCase):
         # Let's create a validation for the parent but not the current file
         # which will result in us notifying the frontend of a minified file
         # as well
-        FileValidation.objects.create(
+        current_validation = FileValidation.objects.create(
             file=file, validation=json.dumps(validation_data))
 
         data = self.serialize(
@@ -589,7 +589,7 @@ class TestFileEntriesDiffSerializer(TestCase):
             file, parent_version=parent_version, file='manifest.json')
         assert not data['uses_unknown_minified_code']
 
-        FileValidation.objects.all().delete()
+        current_validation.delete()
 
         # Creating a validation object for the current one works as well
         FileValidation.objects.create(
