@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-06 04:12+0000\n"
+"PO-Revision-Date: 2020-03-06 04:18+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4970,7 +4970,7 @@ msgid "Write like you are telling a friend about your experience with the add-on
 msgstr "Scribe como tu conta a un amico circa tu experientia con le additivos."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr "Scribe tu revisiones concise e facile a comprender."
+msgstr "Scribe recensiones in maniera concise e facile a comprender."
 
 msgid "Give specific and helpful details. For example:"
 msgstr "Da detalios specific e utile. Per exemplo:"
@@ -4991,7 +4991,7 @@ msgid "Will you continue to use this add-on?"
 msgstr "Continuara tu a usar iste additivo?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Prende un momento pro leger tu revision ante lo inviar pro minimisar le errores."
+msgstr "Prende un momento pro leger tu recension ante de inviar lo pro minimisar le errores de orthographia."
 
 msgid "Don’t:"
 msgstr "Non facer:"
