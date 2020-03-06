@@ -9,9 +9,10 @@ from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.amo.decorators import login_required
+from olympia.constants import permissions
 
 
-def dev_required(owner_for_post=False, allow_reviewers=False,
+def dev_required(owner_for_post=False, allow_reviewers_for_get=False,
                  submitting=False):
     """Requires user to be add-on owner or admin.
 
@@ -25,20 +26,23 @@ def dev_required(owner_for_post=False, allow_reviewers=False,
             def fun():
                 return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 
-            if allow_reviewers:
-                if acl.is_reviewer(request, addon):
-                    return fun()
             # Require an owner or dev for POST requests.
             if request.method == 'POST':
                 if acl.check_addon_ownership(request, addon,
                                              dev=not owner_for_post):
                     return fun()
-            # Ignore disabled so they can view their add-on.
+            # Gotta be a GET at this point.
+            # Ignore disabled so they can view their add-on
             elif acl.check_addon_ownership(request, addon, dev=True,
                                            ignore_disabled=True):
                 # Redirect to the submit flow if they're not done.
                 if (not submitting and addon.should_redirect_to_submit_flow()):
                     return redirect('devhub.submit.details', addon.slug)
+                return fun()
+            # allow_reviewers_for_get lets reviewers access that view on GET.
+            elif allow_reviewers_for_get and (
+                    acl.is_reviewer(request, addon) or acl.action_allowed(
+                        request, permissions.REVIEWER_TOOLS_VIEW)):
                 return fun()
             raise PermissionDenied
         return wrapper

@@ -650,7 +650,7 @@ def upload_detail_for_version(request, addon_id, addon, uuid):
         raise
 
 
-@dev_required(allow_reviewers=True)
+@dev_required(allow_reviewers_for_get=True)
 def file_validation(request, addon_id, addon, file_id):
     file_ = get_object_or_404(File, version__addon=addon, id=file_id)
 
@@ -670,7 +670,7 @@ def file_validation(request, addon_id, addon, file_id):
 
 
 @csrf_exempt
-@dev_required(allow_reviewers=True)
+@dev_required(allow_reviewers_for_get=True)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, version__addon=addon, id=file_id)
     try:
