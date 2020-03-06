@@ -236,9 +236,16 @@ class FileEntriesSerializer(FileSerializer):
         ))
 
 
-class AddonBrowseVersionSerializer(MinimalVersionSerializer):
+class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):
     channel = ReverseChoiceField(
         choices=list(amo.CHANNEL_CHOICES_API.items()))
+
+    class Meta:
+        model = Version
+        fields = ('id', 'channel', 'version')
+
+
+class AddonBrowseVersionSerializer(MinimalVersionSerializerWithChannel):
     validation_url_json = serializers.SerializerMethodField()
     validation_url = serializers.SerializerMethodField()
     has_been_validated = serializers.SerializerMethodField()
@@ -269,11 +276,8 @@ class AddonBrowseVersionSerializer(MinimalVersionSerializer):
         return obj.current_file.has_been_validated
 
 
-class DiffableVersionSerializer(MinimalVersionSerializer):
-
-    class Meta:
-        model = Version
-        fields = ('id', 'channel', 'version')
+class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
+    pass
 
 
 class FileEntriesDiffSerializer(FileEntriesSerializer):
