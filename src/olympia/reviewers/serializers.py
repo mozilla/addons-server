@@ -2,6 +2,7 @@ import io
 import os
 import mimetypes
 import pathlib
+import json
 from collections import OrderedDict
 from datetime import datetime
 
@@ -27,7 +28,7 @@ from olympia.addons.models import AddonReviewerFlags
 from olympia.api.fields import SplitField
 from olympia.users.models import UserProfile
 from olympia.files.utils import get_sha256
-from olympia.files.models import File
+from olympia.files.models import File, FileValidation
 from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
 from olympia.lib.git import AddonGitRepository, get_mime_type_for_blob
@@ -50,13 +51,15 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
 
 class FileEntriesSerializer(FileSerializer):
     content = serializers.SerializerMethodField()
+    uses_unknown_minified_code = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
     entries = serializers.SerializerMethodField()
     selected_file = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
-            'content', 'entries', 'selected_file', 'download_url'
+            'content', 'entries', 'selected_file', 'download_url',
+            'uses_unknown_minified_code'
         )
         model = File
 
@@ -213,6 +216,20 @@ class FileEntriesSerializer(FileSerializer):
         # more explanation.
         return ''
 
+    def get_uses_unknown_minified_code(self, obj):
+        try:
+            validation = obj.validation
+        except FileValidation.DoesNotExist:
+            # We don't have any idea about whether it could be minified or not
+            # so let's assume it's not for now.
+            return False
+
+        validation_data = json.loads(validation.validation)
+
+        prop = 'unknownMinifiedFiles'
+        minified_files = validation_data.get('metadata', {}).get(prop, [])
+        return self.get_selected_file(obj) in minified_files
+
     def get_download_url(self, obj):
         commit = self._get_commit(obj)
         tree = self.repo.get_root_tree(commit)
@@ -279,10 +296,12 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
     entries = serializers.SerializerMethodField()
     selected_file = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
+    uses_unknown_minified_code = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
-            'diff', 'entries', 'selected_file', 'download_url'
+            'diff', 'entries', 'selected_file', 'download_url',
+            'uses_unknown_minified_code'
         )
         model = File
 
@@ -377,6 +396,22 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                     }
 
         return entries
+
+    def get_uses_unknown_minified_code(self, obj):
+        parent = self.context['parent_version']
+        selected_file = self.get_selected_file(obj)
+
+        validation_objects = FileValidation.objects.filter(file_id__in=(
+            (obj.pk, parent.pk)))
+
+        for validation in validation_objects:
+            data = json.loads(validation.validation)
+
+            prop = 'unknownMinifiedFiles'
+            minified_files = data.get('metadata', {}).get(prop, [])
+            if selected_file in minified_files:
+                return True
+        return False
 
 
 class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
