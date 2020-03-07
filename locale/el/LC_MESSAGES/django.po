@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-07 11:33+0000\n"
+"PO-Revision-Date: 2020-03-07 12:33+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -40,7 +40,7 @@ msgid "Reporter's country"
 msgstr "Χώρα αναφέροντος"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Απόσπασμα μηνύματος"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -2041,7 +2041,7 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Η προεπισκόπηση δημιουργείται ακόμη - επιστρέψτε αργότερα ή ανανεώστε τη σελίδα."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Έχετε προσκληθεί να γίνετε δημιουργός του {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
 msgstr ""
@@ -3827,18 +3827,16 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Προσαρμογή αγαπημένων ιστοσελίδων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Αλλάξτε την εμφάνιση οποιασδήποτε ιστοσελίδας! Αλλάξτε χρώματα, φόντα σελίδων και πολλά άλλα."
+msgstr "Προσαρμόστε την εμφάνιση όλων των ιστοσελίδων! Αλλάξτε χρώματα, φόντα σελίδων και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Προσαρμογή νέας καρτέλας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Επεξεργαστείτε τη σελίδα νέας καρτέλας για εμφάνιση του προτιμώμενου αριθμού καρτελών, εικόνας φόντου και πολλά άλλα."
+msgstr "Προσαρμόστε τη σελίδα νέας καρτέλας σας για εμφάνιση προτιμώμενου αριθμού πλακιδίων, εικόνας φόντου και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3952,9 +3950,8 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Εξατομίκευση Wikipedia {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr "Εφαρμόζει μια ανανεωμένη και σύγχρονη εμφάνιση στο Wikipedia."
+msgstr "Εφαρμόζει μια \"φρέσκια\" και μοντέρνα εμφάνιση στο Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4093,9 +4090,8 @@ msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end
 msgstr "Εύκολη επιλογή τοποθεσιών σελιδοδεικτών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Ένας καλύτερος τρόπος αποθήκευσης σελιδοδεικτών αν χρησιμοποιείτε πολλαπλούς φακέλους σελιδοδεικτών."
+msgstr "Ένας πιο αποτελεσματικός τρόπος αποθήκευσης σελιδοδεικτών αν χρησιμοποιείτε πολλαπλούς φακέλους σελιδοδεικτών."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4277,7 +4273,7 @@ msgstr "Ανακαλύψτε περιεχόμενο για κάθε ιστοσε
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Βρείτε αυτό που ψάχνετε σε ένα συγκεκριμένο τομέα."
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4600,9 +4596,8 @@ msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{
 msgstr "Αυτόματος έλεγχος ορθογραφίας & γραμματικής {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτίωση εμπειρίας ανάγνωσης {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Καλύτερη εμπειρία ανάγνωσης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
@@ -4645,9 +4640,8 @@ msgid "Enjoy the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Μεγέθυνση εικόνων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Ευχάριστες σελίδες {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
@@ -4663,18 +4657,16 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποθήκευση ιστοσελίδων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αναβίωση νεκρών σελίδων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αναζήτηση Firefox {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αλλάξτε την εμφάνιση του Firefox {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
@@ -4830,7 +4822,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Το μέγεθος χωρίς συμπίεση είναι πολύ μεγάλο"
 
 msgid "Invalid archive."
 msgstr "Μη έγκυρο συμπιεσμένο αρχείο."
