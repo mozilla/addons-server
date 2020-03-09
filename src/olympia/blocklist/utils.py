@@ -126,16 +126,15 @@ def legacy_publish_blocks(blocks):
     server = KintoServer(KINTO_BUCKET, KINTO_COLLECTION_LEGACY)
     for block in blocks:
         needs_updating = block.include_in_legacy and block.kinto_id
-        needs_creating = block.include_in_legacy and not needs_updating
+        needs_creating = block.include_in_legacy and not block.kinto_id
         needs_deleting = block.kinto_id and not block.include_in_legacy
 
         if needs_updating or needs_creating:
             if block.is_imported_from_kinto_regex:
                 log.debug(
                     f'Block [{block.guid}] was imported from a regex guid so '
-                    'can\'t be safely updated.  Creating as a new Block '
-                    'instead.')
-                needs_creating = True
+                    'can\'t be safely updated.  Skipping.')
+                continue
             data = {
                 'guid': block.guid,
                 'details': {
@@ -156,7 +155,12 @@ def legacy_publish_blocks(blocks):
             else:
                 server.publish_record(data, block.kinto_id)
         elif needs_deleting:
-            server.delete_record(block.kinto_id)
+            if block.is_imported_from_kinto_regex:
+                log.debug(
+                    f'Block [{block.guid}] was imported from a regex guid so '
+                    'can\'t be safely deleted.  Skipping.')
+            else:
+                server.delete_record(block.kinto_id)
             block.update(kinto_id='')
         # else no existing kinto record and it shouldn't be in legacy so skip
     server.signoff_request()
@@ -172,5 +176,5 @@ def legacy_delete_blocks(blocks):
                     'can\'t be safely deleted.  Skipping.')
             else:
                 server.delete_record(block.kinto_id)
-                block.update(kinto_id='')
+            block.update(kinto_id='')
     server.signoff_request()
