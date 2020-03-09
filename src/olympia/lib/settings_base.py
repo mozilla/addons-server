@@ -1917,7 +1917,7 @@ CUSTOMS_API_KEY = env('CUSTOMS_API_KEY', default=None)
 WAT_API_URL = env('WAT_API_URL', default=None)
 WAT_API_KEY = env('WAT_API_KEY', default=None)
 MAD_API_URL = env('MAD_API_URL', default=None)
-MAD_API_TIMEOUT = 10  # seconds
+MAD_API_TIMEOUT = 1  # seconds
 # Git(Hub) repository names, e.g., `owner/repo-name`
 CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
 YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)
