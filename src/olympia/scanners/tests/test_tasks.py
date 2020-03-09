@@ -17,7 +17,7 @@ from olympia.constants.scanners import (
     ABORTING,
     COMPLETED,
     CUSTOMS,
-    ML_API,
+    MAD,
     NEW,
     RUNNING,
     SCHEDULED,
@@ -33,7 +33,7 @@ from olympia.scanners.models import (
     ScannerRule,
 )
 from olympia.scanners.tasks import (
-    call_ml_api,
+    call_mad_api,
     mark_yara_query_rule_as_completed_or_aborted,
     run_scanner,
     run_customs,
@@ -616,11 +616,9 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert self.rule.state == NEW  # Not touched by this task.
 
 
-class TestCallMlApi(UploadTest, TestCase):
-    ML_API_URL = 'http://ml.example.org'
-
+class TestCallMadApi(UploadTest, TestCase):
     def setUp(self):
-        super(TestCallMlApi, self).setUp()
+        super(TestCallMadApi, self).setUp()
 
         self.upload = self.get_upload('webextension.xpi')
         self.results = [
@@ -638,7 +636,7 @@ class TestCallMlApi(UploadTest, TestCase):
             upload=self.upload, scanner=YARA, results=[{'rule': 'fake'}]
         )
         self.default_results_count = len(ScannerResult.objects.all())
-        self.create_switch('enable-scanner-ml-api-call', active=True)
+        self.create_switch('enable-mad', active=True)
 
     def create_response(self, status_code=200, data=None):
         response = mock.Mock(status_code=status_code)
@@ -652,7 +650,7 @@ class TestCallMlApi(UploadTest, TestCase):
             'metadata': {'is_webextension': False},
         }
 
-        returned_results = call_ml_api([results], upload.pk)
+        returned_results = call_mad_api([results], upload.pk)
 
         assert len(ScannerResult.objects.all()) == self.default_results_count
         assert returned_results == results
@@ -665,27 +663,27 @@ class TestCallMlApi(UploadTest, TestCase):
         requests_mock.return_value = self.create_response(data=ml_results)
         assert len(ScannerResult.objects.all()) == self.default_results_count
 
-        returned_results = call_ml_api(self.results, self.upload.pk)
+        returned_results = call_mad_api(self.results, self.upload.pk)
 
         assert requests_mock.called
         requests_mock.assert_called_with(
-            url=settings.ML_API_URL,
+            url=settings.MAD_API_URL,
             json={'customs': self.customs_result.results},
-            timeout=settings.ML_API_TIMEOUT,
+            timeout=settings.MAD_API_TIMEOUT,
         )
         assert (
             len(ScannerResult.objects.all()) == self.default_results_count + 1
         )
         last_result = ScannerResult.objects.latest()
         assert last_result.upload == self.upload
-        assert last_result.scanner == ML_API
+        assert last_result.scanner == MAD
         assert last_result.results == ml_results
         assert returned_results == self.results[0]
         assert incr_mock.called
         assert incr_mock.call_count == 1
-        incr_mock.assert_has_calls([mock.call('devhub.ml_api.success')])
+        incr_mock.assert_has_calls([mock.call('devhub.mad.success')])
         assert timer_mock.called
-        timer_mock.assert_called_with('devhub.ml_api')
+        timer_mock.assert_called_with('devhub.mad')
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch('olympia.scanners.tasks.requests.post')
@@ -694,14 +692,14 @@ class TestCallMlApi(UploadTest, TestCase):
             status_code=504, data={'message': 'http timeout'}
         )
 
-        returned_results = call_ml_api(self.results, self.upload.pk)
+        returned_results = call_mad_api(self.results, self.upload.pk)
 
         assert requests_mock.called
         assert len(ScannerResult.objects.all()) == self.default_results_count
         assert returned_results == self.results[0]
         assert incr_mock.called
         assert incr_mock.call_count == 1
-        incr_mock.assert_has_calls([mock.call('devhub.ml_api.failure')])
+        incr_mock.assert_has_calls([mock.call('devhub.mad.failure')])
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch('olympia.scanners.tasks.requests.post')
@@ -710,19 +708,19 @@ class TestCallMlApi(UploadTest, TestCase):
         response.json.side_effect = ValueError('not json')
         requests_mock.return_value = response
 
-        returned_results = call_ml_api(self.results, self.upload.pk)
+        returned_results = call_mad_api(self.results, self.upload.pk)
 
         assert requests_mock.called
         assert len(ScannerResult.objects.all()) == self.default_results_count
         assert returned_results == self.results[0]
         assert incr_mock.called
         assert incr_mock.call_count == 1
-        incr_mock.assert_has_calls([mock.call('devhub.ml_api.failure')])
+        incr_mock.assert_has_calls([mock.call('devhub.mad.failure')])
 
     @mock.patch('olympia.scanners.tasks.requests.post')
     def test_does_not_run_when_switch_is_off(self, requests_mock):
-        self.create_switch('enable-scanner-ml-api-call', active=False)
+        self.create_switch('enable-mad', active=False)
 
-        call_ml_api(self.results, self.upload.pk)
+        call_mad_api(self.results, self.upload.pk)
 
         assert not requests_mock.called

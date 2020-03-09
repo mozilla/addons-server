@@ -19,7 +19,7 @@ from olympia.constants.scanners import (
     ABORTING,
     COMPLETED,
     CUSTOMS,
-    ML_API,
+    MAD,
     RUNNING,
     SCANNERS,
     WAT,
@@ -358,9 +358,9 @@ def _run_yara_query_rule_on_version(version, rule):
 
 @task
 @use_primary_db
-def call_ml_api(all_results, upload_pk):
+def call_mad_api(all_results, upload_pk):
     """
-    Call the machine learning (ML) API for a given FileUpload.
+    Call the machine learning API (mad-server) for a given FileUpload.
 
     This task is the callback of the Celery chord in the validation chain. It
     receives all the results returned by all the tasks in this chord.
@@ -373,15 +373,16 @@ def call_ml_api(all_results, upload_pk):
     # chord is `forward_linter_results()`:
     results = all_results[0]
 
-    if not waffle.switch_is_active('enable-scanner-ml-api-call'):
-        log.debug('Skipping ML API task, switch is off')
+    if not waffle.switch_is_active('enable-mad'):
+        log.debug('Skipping scanner "mad" task, switch is off')
         return results
 
-    log.info('Starting ML API task for FileUpload %s.', upload_pk)
+    log.info('Starting scanner "mad" task for FileUpload %s.', upload_pk)
 
     if not results['metadata']['is_webextension']:
         log.info(
-            'Not calling ML API for FileUpload %s, it is not a webextension.',
+            'Not calling scanner "mad" for FileUpload %s, it is not '
+            'a webextension.',
             upload_pk,
         )
         return results
@@ -392,12 +393,12 @@ def call_ml_api(all_results, upload_pk):
             upload_id=upload_pk, scanner=CUSTOMS
         )
 
-        with statsd.timer('devhub.ml_api'):
+        with statsd.timer('devhub.mad'):
             json_payload = {'customs': customs_results.results}
             response = requests.post(
-                url=settings.ML_API_URL,
+                url=settings.MAD_API_URL,
                 json=json_payload,
-                timeout=settings.ML_API_TIMEOUT,
+                timeout=settings.MAD_API_TIMEOUT,
             )
 
         try:
@@ -410,15 +411,17 @@ def call_ml_api(all_results, upload_pk):
             raise ValueError(data)
 
         ScannerResult.objects.create(
-            upload_id=upload_pk, scanner=ML_API, results=data
+            upload_id=upload_pk, scanner=MAD, results=data
         )
 
-        statsd.incr('devhub.ml_api.success')
-        log.info('Ending ML API task for FileUpload %s.', upload_pk)
+        statsd.incr('devhub.mad.success')
+        log.info('Ending scanner "mad" task for FileUpload %s.', upload_pk)
     except Exception:
-        statsd.incr('devhub.ml_api.failure')
+        statsd.incr('devhub.mad.failure')
         # We log the exception but we do not raise to avoid perturbing the
         # submission flow.
-        log.exception('Error in ML API task for FileUpload %s.', upload_pk)
+        log.exception(
+            'Error in scanner "mad" task for FileUpload %s.', upload_pk
+        )
 
     return results
