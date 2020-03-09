@@ -1857,6 +1857,8 @@ CRON_JOBS = {
     'category_totals': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',
 
+    'upload_mlbf_to_kinto': 'olympia.blocklist.cron',
+
     'update_blog_posts': 'olympia.devhub.cron',
 
     'cleanup_extracted_file': 'olympia.files.cron',

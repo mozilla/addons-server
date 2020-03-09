@@ -17,8 +17,8 @@ HOME=/tmp
 50 * * * * %(z_cron)s cleanup_extracted_file
 55 * * * * %(z_cron)s unhide_disabled_files
 
-# Twice per day
-35 18,6 * * * %(z_cron)s cleanup_image_files
+# Four times per day
+35 18,12,6,0 * * * %(z_cron)s upload_mlbf_to_kinto
 
 # Once per day
 1 6 * * * %(django)s clear_old_last_login_ip

@@ -1,3 +1,6 @@
+import tempfile
+from unittest import mock
+
 from django.conf import settings
 from django.test.utils import override_settings
 
@@ -115,6 +118,39 @@ class TestKintoServer(TestCase):
 
         record = server.publish_record({'something': 'somevalue'}, 'an-id')
         assert record == {'id': 'updated'}
+
+    @mock.patch('olympia.lib.kinto.uuid')
+    def test_publish_attachment(self, uuidmock):
+        uuidmock.uuid4.return_value = 1234567890
+        server = KintoServer('foo', 'baa')
+        server._setup_done = True
+        assert not server._needs_signoff
+        url = (
+            settings.KINTO_API_URL +
+            'buckets/foo/collections/baa/records/1234567890/attachment')
+        responses.add(
+            responses.POST,
+            url,
+            json={'data': {'id': '1234567890'}})
+
+        with tempfile.TemporaryFile() as attachment:
+            record = server.publish_attachment(
+                {'something': 'somevalue'}, ('file', attachment))
+        assert server._needs_signoff
+        assert record == {'id': '1234567890'}
+
+        url = (
+            settings.KINTO_API_URL +
+            'buckets/foo/collections/baa/records/an-id/attachment')
+        responses.add(
+            responses.POST,
+            url,
+            json={'data': {'id': 'an-id'}})
+
+        with tempfile.TemporaryFile() as attachment:
+            record = server.publish_attachment(
+                {'something': 'somevalue'}, ('otherfile', attachment), 'an-id')
+        assert record == {'id': 'an-id'}
 
     def test_delete_record(self):
         server = KintoServer('foo', 'baa')
