@@ -35,7 +35,7 @@ def get_blocked_guids():
 def get_all_guids():
     from olympia.versions.models import Version
 
-    return Version.objects.values_list('addon__guid', 'version')
+    return Version.unfiltered.values_list('addon__guid', 'version')
 
 
 def hash_filter_inputs(input_list, key_format):
@@ -45,7 +45,7 @@ def hash_filter_inputs(input_list, key_format):
 
 
 def get_mlbf_key_format(salt=None):
-    salt = salt or secrets.randbits(128)
+    salt = salt or secrets.token_hex(16)
     return '%s:{guid}:{version}' % salt
 
 

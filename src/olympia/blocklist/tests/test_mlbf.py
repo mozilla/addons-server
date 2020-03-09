@@ -36,7 +36,7 @@ class TestMLBF(TestCase):
                 version_kw={'version': '123.40'}),
             updated_by=user_factory(), max_version='123.45')
         version_factory(
-            addon=self.three_ver.addon, version='123.5')
+            addon=self.three_ver.addon, version='123.5', deleted=True)
         version_factory(
             addon=self.three_ver.addon, version='123.45.1')
         # no matching versions (edge cases)

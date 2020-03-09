@@ -1,6 +1,5 @@
 import json
 import os
-import secrets
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -22,7 +21,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--salt',
             type=int,
-            default=secrets.randbits(128),
+            default=None,
             dest='salt',
             help='Bloom filter salt')
         parser.add_argument(
