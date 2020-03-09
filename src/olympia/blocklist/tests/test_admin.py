@@ -547,9 +547,17 @@ class TestBlockSubmissionAdmin(TestCase):
             max_version='99',
             include_in_legacy=True,
             updated_by=user_factory())
+        Block.objects.create(
+            addon=addon_factory(guid='regex@legacy'),
+            min_version='23',
+            max_version='567',
+            include_in_legacy=True,
+            kinto_id='*regexlegacy',
+            updated_by=user_factory())
         response = self.client.post(
             self.submission_url,
-            {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@'},
+            {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@\n'
+                      'regex@legacy'},
             follow=True)
         content = response.content.decode('utf-8')
         # This metadata should exist
@@ -560,12 +568,68 @@ class TestBlockSubmissionAdmin(TestCase):
         assert 'full@existing' in content
         assert 'invalid@' in content
 
+        assert 'regex@legacy' in content
+        assert 'imported from a regex based legacy' in content
+        assert 'regex@legacy' in pq(response.content)(
+            '.regexlegacywarning').text()
+        assert 'full@existing' not in pq(response.content)(
+            '.regexlegacywarning').text()
+
         # But Addon names or review links shouldn't have been loaded
         assert 'New Danger' not in content
         assert 'Partial Danger' not in content
         assert 'Full Danger' not in content
         assert 'Review Listed' not in content
         assert 'Review Unlisted' not in content
+
+    def test_legacy_regex_warning(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+
+        new_addon = addon_factory(guid='any@new', name='New Danger')
+        Block.objects.create(
+            addon=addon_factory(guid='full@existing', name='Full Danger'),
+            min_version='0',
+            max_version='*',
+            include_in_legacy=True,
+            updated_by=user_factory())
+        partial_addon = addon_factory(
+            guid='partial@existing', name='Partial Danger')
+        Block.objects.create(
+            addon=partial_addon,
+            min_version='1',
+            max_version='99',
+            include_in_legacy=True,
+            updated_by=user_factory())
+        Block.objects.create(
+            addon=addon_factory(guid='regex@legacy'),
+            min_version='23',
+            max_version='567',
+            include_in_legacy=True,
+            kinto_id='*regexlegacy',
+            updated_by=user_factory())
+        response = self.client.post(
+            self.submission_url,
+            {'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@\n'
+                      'regex@legacy'},
+            follow=True)
+        content = response.content.decode('utf-8')
+        # This metadata should exist
+        assert new_addon.guid in content
+        assert str(new_addon.average_daily_users) in content
+        assert partial_addon.guid in content
+        assert str(partial_addon.average_daily_users) in content
+        assert 'full@existing' in content
+        assert 'invalid@' in content
+
+        assert 'regex@legacy' in content
+        assert 'imported from a regex based legacy' in content
+        assert 'regex@legacy' in pq(response.content)(
+            '.regexlegacywarning').text()
+        assert 'full@existing' not in pq(response.content)(
+            '.regexlegacywarning').text()
 
     def test_review_links(self):
         user = user_factory()
@@ -1232,6 +1296,7 @@ class TestBlockAdminEdit(TestCase):
         assert 'Danger Danger' in content
         assert str(self.addon.average_daily_users) in content
         assert 'Block History' in content
+        assert 'imported from a regex based legacy' not in content
 
         # Change the block
         response = self.client.post(
@@ -1402,6 +1467,22 @@ class TestBlockAdminEdit(TestCase):
             follow=True)
         assert response.status_code == 403
         assert self.block.max_version == '*'  # not changed
+
+    def test_imported_regex_block(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+        self.block.update(kinto_id='*foo@baa')
+
+        response = self.client.get(self.change_url, follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Add-on GUIDs (one per line)' not in content
+        assert 'guid@' in content
+        assert 'Danger Danger' in content
+        assert str(self.addon.average_daily_users) in content
+        assert 'Block History' in content
+        assert 'imported from a regex based legacy' in content
 
 
 class TestBlockAdminDelete(TestCase):

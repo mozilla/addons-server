@@ -69,6 +69,15 @@
       {{ form.non_field_errors }}
     </div>
     {% endif %}
+    {% if is_imported_from_kinto_regex %}
+      <p class="errornote regexlegacywarning">
+        {% trans "The following block(s) were imported from a regex based legacy kinto Block." %}
+        {% trans "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui." %}
+        {% for guid in is_imported_from_kinto_regex %}
+          {{ guid }}
+        {% endfor %}
+      </p>
+    {% endif %}
     <div class="form-row">
       <div>
         {{ form.min_version.errors }}

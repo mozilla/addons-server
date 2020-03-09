@@ -171,7 +171,8 @@ class BlockSubmission(ModelBase):
         ACTION_DELETE: 'Delete',
     }
     FakeBlock = namedtuple(
-        'FakeBlock', ('id', 'guid', 'addon', 'min_version', 'max_version'))
+        'FakeBlock', ('id', 'guid', 'addon', 'min_version', 'max_version',
+                      'is_imported_from_kinto_regex'))
     FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
 
     action = models.SmallIntegerField(
@@ -219,7 +220,7 @@ class BlockSubmission(ModelBase):
             # If we'd be returning too many Block objects, fake them with the
             # minimum needed to display the link to the Block change page.
             blocks = [
-                self.FakeBlock(block.id, block.guid, None, None, None)
+                self.FakeBlock(block.id, block.guid, None, None, None, None)
                 for block in blocks]
         return blocks
 
@@ -311,9 +312,11 @@ class BlockSubmission(ModelBase):
             list(block_qs)
             if load_full_objects else
             [cls.FakeBlock(
-                id_, guid, addon_guid_dict.get(guid), min_version, max_version)
-             for id_, guid, min_version, max_version in block_qs.values_list(
-                'id', 'guid', 'min_version', 'max_version')])
+                id_, guid, addon_guid_dict.get(guid), min_version, max_version,
+                (kinto_id.startswith('*')))
+             for id_, guid, min_version, max_version, kinto_id in
+             block_qs.values_list(
+                 'id', 'guid', 'min_version', 'max_version', 'kinto_id')])
         if load_full_objects:
             # hook up block.addon cached_property (FakeBlock sets it above)
             for block in existing_blocks:
@@ -344,7 +347,7 @@ class BlockSubmission(ModelBase):
                 blocks_to_update_dict.get(addon.guid, None) or (
                     Block(addon=addon) if load_full_objects else
                     cls.FakeBlock(
-                        None, addon.guid, addon, Block.MIN, Block.MAX)
+                        None, addon.guid, addon, Block.MIN, Block.MAX, False)
                 ))
             blocks.append(block)
         if not filter_existing:
