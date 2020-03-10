@@ -45,7 +45,7 @@ def _get_recommendation_data(path):
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
-class TestSigning(TestCase):
+class TestAddonSigning(TestCase):
 
     def setUp(self):
         super().setUp()
@@ -841,3 +841,28 @@ class TestSignatureInfo(object):
             ('extensions', None)])
 
         assert self.info.signer_certificate == expected
+
+
+@pytest.mark.django_db
+@override_switch('blocklist_mlbf_sign', active=True)
+def test_call_data_signing():
+    responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
+
+    data = b'iub3ubef973948y9h9834y9ubuibyegefbIUB8B4BFiub87guibdkf'
+    sig = signing.call_data_signing(data)
+    assert sig['signature']
+    assert sig['mode'] == 'p384ecdsa'
+    assert sig['type'] == 'contentsignature'
+    assert sig['signer_id'] == 'addon-blocklist_content-signature_mozilla_org'
+    assert sig['public_key'] == (
+        'MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE7oM/ewOhz6qtHyQhqJvT3SiefGPWqGwEUAZGV'
+        'kuSIwvteVKrd8jnAjHYyCaYpIg9Vo10WnhXvm96L3KAbOE6Cyu3fMtKhZZIMf+Qqes9+6'
+        '6ae/NTeIWlDiGrjNeD+ClM')
+
+
+@pytest.mark.django_db
+@override_switch('blocklist_mlbf_sign', active=False)
+def test_call_data_signing_disabled_when_waffle_off():
+    data = b'iub3ubef973948y9h9834y9ubuibyegefbIUB8B4BFiub87guibdkf'
+    sig = signing.call_data_signing(data)
+    assert sig == {}

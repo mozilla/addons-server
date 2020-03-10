@@ -240,11 +240,25 @@ signers:
           PIDNiTxNecePOmrD+1ivAEXcoL+e1w==
           -----END PRIVATE KEY-----
 
+    - id: addon-blocklist_content-signature_mozilla_org
+      type: contentsignature
+      privatekey: |
+          -----BEGIN EC PARAMETERS-----
+          BgUrgQQAIg==
+          -----END EC PARAMETERS-----
+          -----BEGIN EC PRIVATE KEY-----
+          MIGkAgEBBDART/nn3fKlhyENdc2u3klbvRJ5+odP0kWzt9p+v5hDyggbtVA4M1Mb
+          fL9KoaiAAv2gBwYFK4EEACKhZANiAATugz97A6HPqq0fJCGom9PdKJ58Y9aobARQ
+          BkZWS5IjC+15Uqt3yOcCMdjIJpikiD1WjXRaeFe+b3ovcoBs4ToLK7d8y0qFlkgx
+          /5Cp6z37rpp781N4haUOIauM14P4KUw=
+          -----END EC PRIVATE KEY-----
+
 authorizations:
     - id: alice
       key: fs5wgcer9qj819kfptdlp8gm227ewxnzvsuj9ztycsx08hfhzu
       signers:
           - webextensions-rsa
+          - addon-blocklist_content-signature_mozilla_org
     - id: bob
       key: 9vh6bhlc10y63ow2k4zke7k0c3l9hpr8mo96p92jmbfqngs9e7d
       signers:

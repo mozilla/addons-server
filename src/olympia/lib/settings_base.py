@@ -1627,7 +1627,9 @@ AUTOGRAPH_CONFIG = {
     'recommendation_signer_key': env(
         'AUTOGRAPH_RECOMMENDATION_SIGNER_HAWK_KEY',
         default='9vh6bhlc10y63ow2k4zke7k0c3l9hpr8mo96p92jmbfqngs9e7d'),
-
+    'bloomfilter_signer': env(
+        'AUTOGRAPH_BLOOM_FILTER_SIGNER_ID',
+        default='addon-blocklist_content-signature_mozilla_org'),
 }
 
 # Enable addon signing. Autograph is configured to something reasonable

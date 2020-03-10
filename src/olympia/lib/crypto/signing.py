@@ -269,3 +269,38 @@ def get_signer_organizational_unit_name(pkcs7):
     """Return the OU of the signer certificate."""
     cert = SignatureInfo(pkcs7).signer_certificate
     return cert['subject']['organizational_unit_name']
+
+
+def call_data_signing(data_blob, conf_signer_key_id='bloomfilter_signer'):
+    """Sign the mlbf data via autographs /sign/data endpoint.
+
+    :returns: The content signature dict:
+    {'mode': ..., 'signature': ..., 'x5u': ...}
+    """
+    if not waffle.switch_is_active('blocklist_mlbf_sign'):
+        log.info('MLBF signing disabled')
+        return {}
+    conf = settings.AUTOGRAPH_CONFIG
+
+    input_data = force_text(b64encode(data_blob))
+
+    signing_data = {
+        'input': input_data,
+        'keyid': conf[conf_signer_key_id],
+    }
+
+    hawk_auth = HawkAuth(id=conf['user_id'], key=conf['key'])
+
+    with statsd.timer('services.sign.data.autograph'):
+        response = requests.post(
+            '{server}/sign/data'.format(server=conf['server_url']),
+            json=[signing_data],
+            auth=hawk_auth)
+
+    if response.status_code != requests.codes.CREATED:
+        msg = 'Posting to data signing failed: {0} {1}'.format(
+            response.reason, response.text)
+        log.error(msg)
+        raise SigningError(msg)
+
+    return response.json()[0]
