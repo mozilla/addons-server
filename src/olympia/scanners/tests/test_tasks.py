@@ -592,7 +592,8 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # We avoid triggering the on_change callback that would move the file
         # when the status is updated by doing an update() on the queryset.
         File.objects.filter(pk=self.version.all_files[0].pk).update(
-            status=amo.STATUS_DISABLED)
+            status=amo.STATUS_DISABLED
+        )
         self.test_run_on_chunk()
 
     def test_run_on_chunk_fallback_path_guarded(self):
@@ -668,7 +669,7 @@ class TestCallMadApi(UploadTest, TestCase):
         assert requests_mock.called
         requests_mock.assert_called_with(
             url=settings.MAD_API_URL,
-            json={'customs': self.customs_result.results},
+            json={'scanners': {'customs': self.customs_result.results}},
             timeout=settings.MAD_API_TIMEOUT,
         )
         assert (

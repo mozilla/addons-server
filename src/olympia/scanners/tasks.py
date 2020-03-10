@@ -394,7 +394,7 @@ def call_mad_api(all_results, upload_pk):
         )
 
         with statsd.timer('devhub.mad'):
-            json_payload = {'customs': customs_results.results}
+            json_payload = {'scanners': {'customs': customs_results.results}}
             response = requests.post(
                 url=settings.MAD_API_URL,
                 json=json_payload,
