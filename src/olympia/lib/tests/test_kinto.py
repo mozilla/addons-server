@@ -1,3 +1,4 @@
+import json
 import tempfile
 from unittest import mock
 
@@ -96,7 +97,7 @@ class TestKintoServer(TestCase):
     def test_publish_record(self):
         server = KintoServer('foo', 'baa')
         server._setup_done = True
-        assert not server._needs_signoff
+        assert not server._changes
         responses.add(
             responses.POST,
             settings.KINTO_API_URL + 'buckets/foo/collections/baa/records',
@@ -104,7 +105,7 @@ class TestKintoServer(TestCase):
             json={'data': {'id': 'new!'}})
 
         record = server.publish_record({'something': 'somevalue'})
-        assert server._needs_signoff
+        assert server._changes
         assert record == {'id': 'new!'}
 
         url = (
@@ -124,7 +125,7 @@ class TestKintoServer(TestCase):
         uuidmock.uuid4.return_value = 1234567890
         server = KintoServer('foo', 'baa')
         server._setup_done = True
-        assert not server._needs_signoff
+        assert not server._changes
         url = (
             settings.KINTO_API_URL +
             'buckets/foo/collections/baa/records/1234567890/attachment')
@@ -136,7 +137,7 @@ class TestKintoServer(TestCase):
         with tempfile.TemporaryFile() as attachment:
             record = server.publish_attachment(
                 {'something': 'somevalue'}, ('file', attachment))
-        assert server._needs_signoff
+        assert server._changes
         assert record == {'id': '1234567890'}
 
         url = (
@@ -155,7 +156,7 @@ class TestKintoServer(TestCase):
     def test_delete_record(self):
         server = KintoServer('foo', 'baa')
         server._setup_done = True
-        assert not server._needs_signoff
+        assert not server._changes
         url = (
             settings.KINTO_API_URL +
             'buckets/foo/collections/baa/records/an-id')
@@ -165,15 +166,15 @@ class TestKintoServer(TestCase):
             content_type='application/json')
 
         server.delete_record('an-id')
-        assert server._needs_signoff
+        assert server._changes
 
-    def test_signoff(self):
+    def test_complete_session(self):
         server = KintoServer('foo', 'baa')
         server._setup_done = True
         # should return because nothing to signoff
-        server.signoff_request()
+        server.complete_session()
 
-        server._needs_signoff = True
+        server._changes = True
         url = (
             settings.KINTO_API_URL +
             'buckets/foo/collections/baa')
@@ -181,5 +182,26 @@ class TestKintoServer(TestCase):
             responses.PATCH,
             url,
             content_type='application/json')
-        server.signoff_request()
-        assert not server._needs_signoff
+        server.complete_session()
+        assert not server._changes
+        assert responses.calls[0].request.body == json.dumps(
+            {'data': {'status': 'to-review'}}).encode()
+
+    def test_complete_session_no_kinto_signoff(self):
+        server = KintoServer('foo', 'baa', kinto_sign_off_needed=False)
+        server._setup_done = True
+        # should return because nothing to signoff
+        server.complete_session()
+
+        server._changes = True
+        url = (
+            settings.KINTO_API_URL +
+            'buckets/foo/collections/baa')
+        responses.add(
+            responses.PATCH,
+            url,
+            content_type='application/json')
+        server.complete_session()
+        assert not server._changes
+        assert responses.calls[0].request.body == json.dumps(
+            {'data': {'status': 'to-sign'}}).encode()

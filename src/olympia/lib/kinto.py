@@ -17,14 +17,16 @@ class KintoServer(object):
     password = None
     bucket = None
     collection = None
+    kinto_sign_off_needed = True
     _setup_done = False
-    _needs_signoff = False
+    _changes = False
 
-    def __init__(self, bucket, collection):
+    def __init__(self, bucket, collection, kinto_sign_off_needed=True):
         self.username = settings.BLOCKLIST_KINTO_USERNAME
         self.password = settings.BLOCKLIST_KINTO_PASSWORD
         self.bucket = bucket
         self.collection = collection
+        self.kinto_sign_off_needed = kinto_sign_off_needed
 
     def setup(self):
         if self._setup_done:
@@ -117,7 +119,7 @@ class KintoServer(object):
                 (data.get('guid'), response.content),
                 stack_info=True)
             raise ConnectionError('Kinto record not created/updated')
-        self._needs_signoff = True
+        self._changes = True
         return response.json().get('data', {})
 
     def publish_attachment(self, data, attachment, kinto_id=None):
@@ -152,7 +154,7 @@ class KintoServer(object):
                 (kinto_id, response.content),
                 stack_info=True)
             raise ConnectionError('Kinto record not created/updated')
-        self._needs_signoff = True
+        self._changes = True
         return response.json().get('data', {})
 
     def delete_record(self, kinto_id):
@@ -162,15 +164,16 @@ class KintoServer(object):
             f'collections/{self.collection}/records/{kinto_id}')
         requests.delete(
             url, headers=self.headers)
-        self._needs_signoff = True
+        self._changes = True
 
-    def signoff_request(self):
-        if not self._needs_signoff:
+    def complete_session(self):
+        if not self._changes:
             return
         self.setup()
         url = (
             f'{settings.KINTO_API_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}')
+        status = 'to-review' if self.kinto_sign_off_needed else 'to-sign'
         requests.patch(
-            url, json={'data': {'status': 'to-review'}}, headers=self.headers)
-        self._needs_signoff = False
+            url, json={'data': {'status': status}}, headers=self.headers)
+        self._changes = False
