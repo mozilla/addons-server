@@ -58,6 +58,37 @@
         window.location.hash = "id=" + $("#addon, #persona").attr("data-id");
       });
     }
+
+    // Toggle expansion for whiteboard
+    $("#id_whiteboard-public").click(function(){
+        $("#id_whiteboard-public").css("height", "200px");
+    });
+
+    // Toggle expansion for whiteboard private
+    $("#id_whiteboard-private").click(function(){
+        $("#id_whiteboard-private").css("height", "200px");
+    });
+
+    // When clicking on areas other than whiteboard/whiteboard private on the page
+    $('html').click(function(e) {
+        // When whiteboard is clicked
+        if (!$(e.target).is("#id_whiteboard-public")) {
+            console.log("Non-id_whiteboard-public clicked");
+            // When whiteboard is still empty, collapse
+            if (!$("#id_whiteboard-public").val()) {
+                $("#id_whiteboard-public").css("height", "20px");
+            }
+        }
+        // When whiteboard private is clicked
+        if (!$(e.target).is("#id_whiteboard-private")) {
+            console.log("Non-id_whiteboard-private clicked");
+            // When whiteboard private is still empty, collapse
+            if (!$("#id_whiteboard-private").val()) {
+                $("#id_whiteboard-private").css("height", "20px");
+            }
+        }
+    });
+
 })();
 
 
