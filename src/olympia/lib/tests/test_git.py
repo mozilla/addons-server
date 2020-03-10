@@ -858,11 +858,14 @@ def test_get_diff_newline_new_file():
         commit=version.git_hash,
         parent=parent_version.git_hash)
 
+    # The file has been modified, so as far as git is concerned there should
+    # be one change.
     assert len(changes) == 1
     assert changes[0]['new_ending_new_line'] is True
     assert changes[0]['old_ending_new_line'] is True
 
-    assert len(changes[0]['hunks']) == 0
+    # We are ignoring all whitespace modifications so there is no diff.
+    assert not changes[0]['hunks']
 
 
 @pytest.mark.django_db
@@ -897,8 +900,12 @@ def test_get_diff_eol_changes():
         commit=version.git_hash,
         parent=parent_version.git_hash)
 
+    # The file has been modified, so as far as git is concerned there should
+    # be one change.
     assert len(changes) == 1
-    assert len(changes[0]['hunks']) == 0
+
+    # We are ignoring all whitespace modifications so there is no diff.
+    assert not changes[0]['hunks']
 
 
 @pytest.mark.django_db
