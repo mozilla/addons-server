@@ -6076,9 +6076,18 @@ class TestReviewAddonVersionViewSetDetail(
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
-        response = self.client.get(self.url + '?file=README.md')
+        with self.assertNumQueries(10):
+            # - 2 savepoints because tests
+            # - 2 user and groups
+            # - 2 add-on and translations
+            # - 1 add-on author check
+            # - 1 version
+            # - 2 file and file validation
+            response = self.client.get(self.url + '?file=README.md&lang=en-US')
         assert response.status_code == 200
         result = json.loads(response.content)
+
+        assert result['addon']['name'] == str(self.addon.name)
 
         assert result['file']['content'] == '# beastify\n'
 
@@ -6299,9 +6308,15 @@ class TestReviewAddonVersionViewSetList(TestCase):
         unlisted_version = version_factory(
             addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        # We have a .only() and .no_transforms or .only_translations
-        # querysets which reduces the amount of queries to "only" 10
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(8):
+            # - 2 savepoints because of tests
+            # - 2 user and groups
+            # - 1 add-on
+            # - 1 add-on translations (not needed, could be avoided, but we
+            #     currently re-use the same get_addon_object() implementation
+            #     for other APIs where we do need the add-on name)
+            # - 1 versions exists to figure out if add-on is listed
+            # - 1 versions
             response = self.client.get(self.url)
 
         assert response.status_code == 200
@@ -6399,13 +6414,11 @@ class TestDraftCommentViewSet(TestCase):
             'addon_pk': self.addon.pk,
             'version_pk': self.version.pk
         })
-        with self.assertNumQueries(15):
+        with self.assertNumQueries(11):
             # - 2 savepoints because of tests
             # - 2 user and groups
             # - 2 addon and translations
-            # - 2 version and translations
-            # - 1 applications versions
-            # - 2 licenses and translations
+            # - 1 version
             # - 1 files
             # - 1 file validation
             # - 1 count
@@ -6978,10 +6991,15 @@ class TestReviewAddonVersionCompareViewSet(
             'version_pk': self.version.pk,
             'pk': new_version.pk})
 
-        response = self.client.get(self.url + '?file=README.md')
+        with self.assertNumQueries(12):
+            # FIXME: check queries and see if there is a need to optimize, 12
+            # seems too high.
+            response = self.client.get(self.url + '?file=README.md&lang=en-US')
         assert response.status_code == 200
 
         result = json.loads(response.content)
+
+        assert result['addon']['name'] == str(self.addon.name)
 
         assert result['file']['diff']['path'] == 'README.md'
         assert result['file']['diff']['hunks'][0]['changes'] == [

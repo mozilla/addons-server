@@ -1,4 +1,7 @@
+import json
+import uuid
 from base64 import b64encode
+
 from django.conf import settings
 
 import requests
@@ -112,6 +115,41 @@ class KintoServer(object):
             log.error(
                 'Creating record for [%s] failed: %s' %
                 (data.get('guid'), response.content),
+                stack_info=True)
+            raise ConnectionError('Kinto record not created/updated')
+        self._needs_signoff = True
+        return response.json().get('data', {})
+
+    def publish_attachment(self, data, attachment, kinto_id=None):
+        """Publish an attachment to a record on kinto.  If `kinto_id` is not
+        None the existing record will be updated; otherwise a new record will
+        be created.
+        `attachment` is a tuple of (filename, file object, content type)"""
+        self.setup()
+
+        if not kinto_id:
+            log.info('Creating record')
+        else:
+            log.info(
+                'Updating record [%s]' % kinto_id)
+
+        headers = self.headers
+        del headers['Content-Type']
+        json_data = {'data': json.dumps(data)}
+        kinto_id = kinto_id or uuid.uuid4()
+        attach_url = (
+            f'{settings.KINTO_API_URL}buckets/{self.bucket}/'
+            f'collections/{self.collection}/records/{kinto_id}/attachment')
+        files = [('attachment', attachment)]
+        response = requests.post(
+            attach_url,
+            data=json_data,
+            headers=headers,
+            files=files)
+        if response.status_code not in (200, 201):
+            log.error(
+                'Creating record for [%s] failed: %s' %
+                (kinto_id, response.content),
                 stack_info=True)
             raise ConnectionError('Kinto record not created/updated')
         self._needs_signoff = True

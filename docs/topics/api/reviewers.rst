@@ -156,7 +156,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
 
 .. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/
 
-    Inherits most properties from :ref:`version detail <version-detail-object>` except ``files``.
+    Inherits the following properties from :ref:`version detail <version-detail-object>`: ``id``, ``channel``, ``reviewed`` and ``version``.
 
     .. _reviewers-versions-browse-detail:
 
