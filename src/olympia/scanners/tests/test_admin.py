@@ -277,7 +277,7 @@ class TestScannerResultAdmin(TestCase):
             ('customs', '?scanner__exact=1'),
             ('wat', '?scanner__exact=2'),
             ('yara', '?scanner__exact=3'),
-            ('ml_api', '?scanner__exact=4'),
+            ('mad', '?scanner__exact=4'),
 
             ('All', '?has_matched_rules=all'),
             (' With matched rules only', '?'),

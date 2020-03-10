@@ -1140,7 +1140,7 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
-    'olympia.scanners.tasks.call_ml_api': {'queue': 'devhub'},
+    'olympia.scanners.tasks.call_mad_api': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1918,8 +1918,8 @@ CUSTOMS_API_URL = env('CUSTOMS_API_URL', default=None)
 CUSTOMS_API_KEY = env('CUSTOMS_API_KEY', default=None)
 WAT_API_URL = env('WAT_API_URL', default=None)
 WAT_API_KEY = env('WAT_API_KEY', default=None)
-ML_API_URL = env('ML_API_URL', default=None)
-ML_API_TIMEOUT = 10  # seconds
+MAD_API_URL = env('MAD_API_URL', default=None)
+MAD_API_TIMEOUT = 1  # seconds
 # Git(Hub) repository names, e.g., `owner/repo-name`
 CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
 YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)
