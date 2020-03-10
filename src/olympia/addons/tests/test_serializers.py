@@ -364,18 +364,6 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['is_disabled'] is True
 
-    # def test_is_source_public(self):
-    #     self.addon = addon_factory()
-    #     result = self.serialize()
-    #
-    #     assert 'is_source_public' not in result
-    #
-    #     # It's only present in v3
-    #     gates = {None: ('is-source-public-shim',)}
-    #     with override_settings(DRF_API_GATES=gates):
-    #         result = self.serialize()
-    #         assert result['is_source_public'] is False
-
     def test_is_experimental(self):
         self.addon = addon_factory(is_experimental=True)
         result = self.serialize()
