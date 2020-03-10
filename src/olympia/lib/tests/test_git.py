@@ -861,6 +861,7 @@ def test_get_diff_newline_new_file():
     # The file has been modified, so as far as git is concerned there should
     # be one change.
     assert len(changes) == 1
+    assert changes[0]['mode'] == 'M'
     assert changes[0]['new_ending_new_line'] is True
     assert changes[0]['old_ending_new_line'] is True
 
@@ -903,6 +904,7 @@ def test_get_diff_eol_changes():
     # The file has been modified, so as far as git is concerned there should
     # be one change.
     assert len(changes) == 1
+    assert changes[0]['mode'] == 'M'
 
     # We are ignoring all whitespace modifications so there is no diff.
     assert not changes[0]['hunks']
