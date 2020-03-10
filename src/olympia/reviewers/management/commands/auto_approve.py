@@ -154,8 +154,7 @@ class Command(BaseCommand):
                     'This version has been screened and approved for the '
                     'public. Keep in mind that other reviewers may look into '
                     'this version in the future and determine that it '
-                    'requires changes or should be taken down. In that case, '
-                    'you will be notified again with details and next steps.'
+                    'requires changes or should be taken down.'
                     '\r\n\r\nThank you!'
             }
         else:
