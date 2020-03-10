@@ -471,7 +471,7 @@
                         $('<h5>').text(gettext("Add-on submission checklist")).appendTo(checklist_box);
                         $('<p>').text(gettext("Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:")).appendTo(checklist_box);
                         if (results.validation.metadata.contains_binary_extension) {
-                            messages.push(gettext("Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload field to avoid having your submission rejected."));
+                            messages.push(gettext("Compiled binaries, as well as minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload field to avoid having your submission rejected."));
                         }
                         for (var i = 0; i < results.validation.messages.length; i++) {
                             current = results.validation.messages[i];

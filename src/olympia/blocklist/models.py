@@ -7,6 +7,7 @@ from django.db import models
 from django.utils.html import format_html
 from django.utils.functional import cached_property
 
+import waffle
 from django_extensions.db.fields.json import JSONField
 
 from olympia import amo
@@ -21,7 +22,8 @@ from olympia.versions.compare import addon_version_int
 from olympia.versions.models import Version
 
 from .utils import (
-    block_activity_log_save, block_activity_log_delete, splitlines)
+    block_activity_log_save, block_activity_log_delete, legacy_delete_blocks,
+    legacy_publish_blocks, splitlines)
 
 
 class Block(ModelBase):
@@ -60,6 +62,10 @@ class Block(ModelBase):
     def save(self, **kwargs):
         assert self.updated_by
         return super().save(**kwargs)
+
+    @property
+    def is_imported_from_kinto_regex(self):
+        return self.kinto_id.startswith('*')
 
     @cached_property
     def addon(self):
@@ -399,6 +405,8 @@ class BlockSubmission(ModelBase):
 
         modified_datetime = datetime.datetime.now()
         all_guids_to_block = [block['guid'] for block in self.to_block]
+        kinto_submit_legacy_switch = waffle.switch_is_active(
+            'blocklist_legacy_submit')
         for guids_chunk in chunked(all_guids_to_block, 100):
             blocks = self._get_block_instances_to_save(guids_chunk)
             Block.preload_addon_versions(blocks)
@@ -412,6 +420,8 @@ class BlockSubmission(ModelBase):
                 block.submission.add(self)
                 block_activity_log_save(
                     block, change=change, submission_obj=self)
+            if kinto_submit_legacy_switch:
+                legacy_publish_blocks(blocks)
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
@@ -420,13 +430,17 @@ class BlockSubmission(ModelBase):
         assert self.is_submission_ready
         assert self.action == self.ACTION_DELETE
         block_ids_to_delete = [block['id'] for block in self.to_block]
+        kinto_submit_legacy_switch = waffle.switch_is_active(
+            'blocklist_legacy_submit')
         for ids_chunk in chunked(block_ids_to_delete, 100):
-            blocks = Block.objects.filter(id__in=ids_chunk)
+            blocks = list(Block.objects.filter(id__in=ids_chunk))
             Block.preload_addon_versions(blocks)
             for block in blocks:
                 block_activity_log_delete(block, submission_obj=self)
+            if kinto_submit_legacy_switch:
+                legacy_delete_blocks(blocks)
             self.save()
-            blocks.delete()
+            Block.objects.filter(id__in=ids_chunk).delete()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
 

@@ -50,7 +50,7 @@
   {% if addon.type != amo.ADDON_STATICTHEME %}
     <p>
       {{ _("You can also edit this version to add version notes, or source code "
-           "if your submission includes minified, obfuscated or compiled code.") }}
+           "if your submission includes minified, concatenated or otherwise machine-generated code.") }}
     </p>
     <p>
       <a class="button" href="{{ version_edit_url }}">{{

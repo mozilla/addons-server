@@ -19,6 +19,7 @@ INSTALLED_APPS += (
     'debug_toolbar',
 )
 
+
 # django-debug-doolbar middleware needs to be inserted as high as possible
 # but after GZip middleware
 def insert_debug_toolbar_middleware(middlewares):
@@ -31,6 +32,7 @@ def insert_debug_toolbar_middleware(middlewares):
             break
 
     return tuple(ret_middleware)
+
 
 MIDDLEWARE = insert_debug_toolbar_middleware(MIDDLEWARE)
 
@@ -65,7 +67,8 @@ DOMAIN = SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 SERVICES_URL = SITE_URL
 EXTERNAL_SITE_URL = SITE_URL
 
-CODE_MANAGER_URL = os.environ.get('CODE_MANAGER_URL') or 'http://localhost:3000'
+CODE_MANAGER_URL = (
+    os.environ.get('CODE_MANAGER_URL') or 'http://localhost:3000')
 
 ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
 
@@ -104,7 +107,7 @@ FXA_CONFIG = {
         'client_secret': env(
             'FXA_CLIENT_SECRET',
             default='d7d5f1148a35b12c067fb9eafafc29d35165a90f5d8b0032f1fcd37468ae49fe'),  # noqa
-        # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  #noqa
+        # noqa fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  #noqa
     },
 }
 FXA_CONTENT_HOST = 'https://stable.dev.lcip.org'
@@ -131,6 +134,8 @@ CUSTOMS_API_URL = 'http://customs:10101/'
 CUSTOMS_API_KEY = 'customssecret'
 WAT_API_URL = 'http://wat:10102/'
 WAT_API_KEY = 'watsecret'
+
+KINTO_API_IS_TEST_SERVER = True
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

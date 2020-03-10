@@ -1319,11 +1319,12 @@ class ReviewAddonVersionMixin(object):
         addon = self.get_addon_object()
 
         qset = (
-            Version.unfiltered
-            .get_queryset()
-            .only_translations()
-            .filter(addon=addon)
-            .order_by('-created'))
+            addon.versions(manager='unfiltered_for_relations').all()
+            # We don't need any transforms on the version, not even
+            # translations.
+            .no_transforms()
+            .order_by('-created')
+        )
 
         # Allow viewing unlisted for reviewers with permissions or
         # addon authors.
@@ -1337,9 +1338,12 @@ class ReviewAddonVersionMixin(object):
         return qset
 
     def get_addon_object(self):
-        return get_object_or_404(
-            Addon.objects.get_queryset().only_translations(),
-            pk=self.kwargs.get('addon_pk'))
+        if not hasattr(self, 'addon_object'):
+            # We only need translations on the add-on, no other transforms.
+            self.addon_object = get_object_or_404(
+                Addon.objects.get_queryset().only_translations(),
+                pk=self.kwargs.get('addon_pk'))
+        return self.addon_object
 
     def get_version_object(self):
         return self.get_object(pk=self.kwargs['version_pk'])
@@ -1391,15 +1395,8 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
         """Return all (re)viewable versions for this add-on.
 
         Full list, no pagination."""
-        qset = self.filter_queryset(self.get_queryset())
-
-        # Smaller performance optimization, only list fields we actually
-        # need.
-        qset = qset.no_transforms().only(
-            *DiffableVersionSerializer.Meta.fields)
-
-        serializer = DiffableVersionSerializer(qset, many=True)
-
+        qs = self.filter_queryset(self.get_queryset())
+        serializer = DiffableVersionSerializer(qs, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
@@ -1474,9 +1471,9 @@ class ReviewAddonVersionDraftCommentViewSet(
     def get_version_object(self):
         if not hasattr(self, 'version_object'):
             self.version_object = get_object_or_404(
-                # The serializer will need to return a bunch of info about the
-                # version, so keep the default transformer.
-                self.get_addon_object().versions.all(),
+                # The serializer will not need any of the stuff the
+                # transformers give us for the version.
+                self.get_addon_object().versions.all().no_transforms(),
                 pk=self.kwargs['version_pk'])
             self._verify_object_permissions(
                 self.version_object, self.version_object)

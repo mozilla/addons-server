@@ -885,7 +885,9 @@ class TestBlockSubmissionAdmin(TestCase):
         assert Block.objects.count() == 0
         assert LogEntry.objects.count() == 0
 
-    def test_signoff_approve(self):
+    @override_switch('blocklist_legacy_submit', active=True)
+    @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
+    def test_signoff_approve(self, legacy_publish_blocks_mock):
         addon = addon_factory(guid='guid@', name='Danger Danger')
         mbs = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@',
@@ -947,6 +949,10 @@ class TestBlockSubmissionAdmin(TestCase):
         assert signoff_log.arguments == [addon, addon.guid, 'add', new_block]
         assert signoff_log.user == user
 
+        # blocks would have been submitted to kinto legacy collection
+        legacy_publish_blocks_mock.assert_called()
+        legacy_publish_blocks_mock.assert_called_with([new_block])
+
         assert mbs.to_block == [
             {'guid': 'guid@',
              'id': None,
@@ -968,7 +974,9 @@ class TestBlockSubmissionAdmin(TestCase):
             response.content)
         assert b'not a Block!' not in response.content
 
-    def test_signoff_reject(self):
+    @override_switch('blocklist_legacy_submit', active=True)
+    @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
+    def test_signoff_reject(self, legacy_publish_blocks_mock):
         addon = addon_factory(guid='guid@', name='Danger Danger')
         mbs = BlockSubmission.objects.create(
             input_guids='guid@\ninvalid@',
@@ -1003,6 +1011,9 @@ class TestBlockSubmissionAdmin(TestCase):
         assert mbs.max_version == '*'
         assert mbs.url != 'new.url'
         assert mbs.reason != 'a reason'
+
+        # blocks would not have been submitted to kinto legacy collection
+        legacy_publish_blocks_mock.assert_not_called()
 
         # And the blocksubmission was rejected, so no Blocks created
         assert mbs.signoff_state == BlockSubmission.SIGNOFF_REJECTED
@@ -1548,7 +1559,9 @@ class TestBlockAdminBulkDelete(TestCase):
         ]
         assert not submission.block_set.all().exists()
 
-    def test_submit_no_dual_signoff(self):
+    @override_switch('blocklist_legacy_submit', active=True)
+    @mock.patch('olympia.blocklist.models.legacy_delete_blocks')
+    def test_submit_no_dual_signoff(self, legacy_delete_blocks_mock):
         addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
         block_with_addon, block_no_addon = self._test_delete_multiple_submit(
             addon_adu=addon_adu)
@@ -1556,8 +1569,12 @@ class TestBlockAdminBulkDelete(TestCase):
             block_with_addon,
             block_no_addon,
             has_signoff=False)
+        legacy_delete_blocks_mock.assert_called_with(
+            [block_with_addon, block_no_addon])
 
-    def test_submit_dual_signoff(self):
+    @override_switch('blocklist_legacy_submit', active=True)
+    @mock.patch('olympia.blocklist.models.legacy_delete_blocks')
+    def test_submit_dual_signoff(self, legacy_delete_blocks_mock):
         addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1
         block_with_addon, block_no_addon = self._test_delete_multiple_submit(
             addon_adu=addon_adu)
@@ -1574,6 +1591,8 @@ class TestBlockAdminBulkDelete(TestCase):
             block_with_addon,
             block_no_addon,
             has_signoff=True)
+        legacy_delete_blocks_mock.assert_called_with(
+            [block_with_addon, block_no_addon])
 
     def test_edit_with_delete_submission(self):
         threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD

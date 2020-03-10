@@ -1,6 +1,6 @@
-Django==2.2.10 \
-    --hash=sha256:1226168be1b1c7efd0e66ee79b0e0b58b2caa7ed87717909cd8a57bb13a7079a \
-    --hash=sha256:9a4635813e2d498a3c01b10c701fe4a515d76dd290aaa792ccb65ca4ccb6b038 # pyup: <3.0
+Django==2.2.11 \
+    --hash=sha256:65e2387e6bde531d3bb803244a2b74e0253550a9612c64a60c8c5be267b30f50 \
+    --hash=sha256:b51c9c548d5c3b3ccbb133d0bebc992e8ec3f14899bce8936e6fdda6b23a1881 # pyup: <3.0
 Babel==2.8.0 \
     --hash=sha256:1aac2ae2d0d8ea368fa90906567f5c08463d98ade155c0c4bfedd6a0f7160e38 \
     --hash=sha256:d670ea0b10f8b723672d3a6abeb87b565b244da220d76b4dba1b66269ec152d4
@@ -100,32 +100,34 @@ argparse==1.4.0 \
     --hash=sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4
 # billiard is required by celery, pinned to <3.6 until we upgrade Celery to a version that
 # supports it.
-billiard==3.6.0.0 \
-    --hash=sha256:756bf323f250db8bf88462cd042c992ba60d8f5e07fc5636c24ba7d6f4261d84 # pyup: <3.6
+billiard==3.6.3.0 \
+    --hash=sha256:bff575450859a6e0fbc2f9877d9b715b0bbc07c3565bb7ed2280526a0cdf5ede \
+    --hash=sha256:d91725ce6425f33a97dfa72fb6bfef0e47d4652acd98a032bd1a7fbf06d5fa6a # pyup: <4.0
 # bitarray is required by filtercascade
 bitarray == 1.2.1 \
     --hash=sha256:2ed675f460bb0d3d66fd8042a6f1f0d36cf213e52e72a745283ddb245da7b9cf
 bleach==3.1.1 \
     --hash=sha256:aa8b870d0f46965bac2c073a93444636b0e1ca74e9777e34f03dd494b8a59d48
-boto3==1.12.12 \
-    --hash=sha256:08886cd451c2ab89912372262208f2c041f4f88b333291e364723d46e97be5b5 \
-    --hash=sha256:f191e02140e9691e91fac8cb87d74ad111015a1c98c3b99a24bba9982dc5ae7e
-celery==4.4.0 \
-    --hash=sha256:7c544f37a84a5eadc44cab1aa8c9580dff94636bb81978cdf9bf8012d9ea7d8f \
-    --hash=sha256:d3363bb5df72d74420986a435449f3c3979285941dff57d5d97ecba352a0e3e2
-botocore==1.15.12 \
-    --hash=sha256:c4efa61c90604913ac093fe4fe9f47e404ad980bc658a9f5fc1c9046e9fe094d \
-    --hash=sha256:f12dd27c759992460b8ce70bfeed600437829b0293e6a08211237f11757678e5
-bsdiff4==1.1.9 \
-    --hash=sha256:a7c48ec58dc1c4a2b9fb5da05637524d5dbb1643a3df7cdc6ed105636909ff79
+# REMEMBER: leave a few lines between boto3 and botocore requirements to avoid an
+# annoying merge conflict every day when pyup generates prs for both.
+boto3==1.12.17 \
+    --hash=sha256:13ac5526d80e1f1c9f7adcaeae7237f8bd1a5f268e918ca16e770eb865d3292b \
+    --hash=sha256:ef2d050e0c37e00dab6ff1135befe7ed4b9e1ec26c752b8ad01d043e184ea6d1
+# see last comment - celery is in between boto3 and botocore on purpose.
+celery==4.4.1 \
+    --hash=sha256:3c5fcd6bfcf9a6323cb742cfc121d1790d50cfeddf300ba723cfa0b356413f07 \
+    --hash=sha256:a650525303ee866fb0c62c82f68681fcc2183eebbfafae552c27d30125fe518b
+botocore==1.15.17 \
+    --hash=sha256:17a70c5d8743237896907d00f3de0f51d31aeca863ab0da8d0d8c178608b7ce1 \
+    --hash=sha256:b09aed94cd7a01fbccbbf5746b69ca62ed37c0feaed42e0420f9a121ae7df755
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
     --hash=sha256:84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae
 # click is required by dennis, pyupio
-click==7.0 \
-    --hash=sha256:2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13 \
-    --hash=sha256:5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7
+click==7.1.1 \
+    --hash=sha256:8a18b4ea89d8820c5d0c7da8a64b2c324b4dabb695804dbfea19b9be9d88c0cc \
+    --hash=sha256:e345d143d80bf5ee7534056164e5e112ea5e22716bbb1ce727941f4c8b471b9a
 colorgram.py==1.2.0 \
     --hash=sha256:e990769fa6df7261a450c7d5bef3a1a062f09ba1214bff67b4d6f02970a1a27b \
     --hash=sha256:e77766a5f9de7207bdef8f1c22a702cbf09630eae3bc46a450b9d9f12a7bfdbf
@@ -212,9 +214,10 @@ feedparser==5.2.1 \
     --hash=sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02 \
     --hash=sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9 \
     --hash=sha256:cd2485472e41471632ed3029d44033ee420ad0b57111db95c240c9160a85831c
-filtercascade==0.2.0 \
-    --hash=sha256:f81715ba219ec5f385779d9bfaed5fefa44648ed8b04c1722223662400165a01 \
-    --hash=sha256:b89a9a77f558becddbe3a9ac39c50a1d409b9a51a1e941d1da8562d6a3dd4ad2
+filtercascade==0.2.1 \
+    --hash=sha256:075e1ca0ad3a0c39d9c1a191ca038999ea88e6e77ff5c7332c234a503c0c3e1c \
+    --hash=sha256:6c78987504713b537323f009fa962b4afb7f2b4ebab6b838f251d61962de3550 \
+    --hash=sha256:b1182a7fa0ea86e3218e7b478f1a1ff211c6639a015b9163fb2619374f5e66ec
 # funcsigs is required by mock
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
@@ -283,8 +286,8 @@ mmh3==2.5.1 \
 python-memcached==1.59 \
     --hash=sha256:4dac64916871bd3550263323fc2ce18e1e439080a2d5670c594cf3118d99b594 \
     --hash=sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f
-newrelic==5.8.0.136 \
-    --hash=sha256:9228556dc93bd02d9164e3755f971c2ffba45ad2d8a9b6620f630a6d475421fc
+newrelic==5.10.0.138 \
+    --hash=sha256:5d83887781683975bd75ec624baa8de5e1e75c2bf89e7269ed2811b559da1504
 nobot==0.5 \
     --hash=sha256:fa0582d81f562cd5b61e241005feb3f51548fe3fc165aed292952ff78676e28a \
     --hash=sha256:0a1c43a74f1c55f06cf2eb98cb472762dbdd7df5eb693d438c9fb42cfcfe79e5
