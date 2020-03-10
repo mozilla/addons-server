@@ -858,32 +858,56 @@ def test_get_diff_newline_new_file():
         commit=version.git_hash,
         parent=parent_version.git_hash)
 
+    # The file has been modified, so as far as git is concerned there should
+    # be one change.
     assert len(changes) == 1
+    assert changes[0]['mode'] == 'M'
     assert changes[0]['new_ending_new_line'] is True
-    assert changes[0]['old_ending_new_line'] is False
+    assert changes[0]['old_ending_new_line'] is True
 
-    hunk_changes = changes[0]['hunks'][0]['changes']
+    # We are ignoring all whitespace modifications so there is no diff.
+    assert not changes[0]['hunks']
 
-    assert hunk_changes == [
-        {
-            'content': '{"id": "random"}',
-            'new_line_number': -1,
-            'old_line_number': 1,
-            'type': 'delete'
-        },
-        {
-            'content': '\n\\ No newline at end of file',
-            'new_line_number': -1,
-            'old_line_number': 1,
-            'type': 'insert-eofnl'
-        },
-        {
-            'content': '{"id": "random"}',
-            'new_line_number': 1,
-            'old_line_number': -1,
-            'type': 'insert'
-        }
-    ]
+
+@pytest.mark.django_db
+def test_get_diff_eol_changes():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    parent_version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(parent_version)
+
+    # Let's replace the unix eol with dos ones.
+    apply_changes(
+        repo, parent_version,
+        '{"id": "random",\r\n"name": "foo"\r\n}', 'manifest.json')
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    # Now go back to unix eol.
+    apply_changes(
+        repo, version,
+        '{"id": "random",\n"name": "foo"\n}', 'manifest.json')
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=parent_version.git_hash)
+
+    # The file has been modified, so as far as git is concerned there should
+    # be one change.
+    assert len(changes) == 1
+    assert changes[0]['mode'] == 'M'
+
+    # We are ignoring all whitespace modifications so there is no diff.
+    assert not changes[0]['hunks']
 
 
 @pytest.mark.django_db
