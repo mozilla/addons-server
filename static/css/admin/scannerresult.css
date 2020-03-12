@@ -3,6 +3,19 @@
   white-space: nowrap;
 }
 
+#changelist .field-formatted_addon table {
+  margin: 4px 0 0 0;
+}
+
+#changelist .field-formatted_addon table td {
+  border: none;
+  padding: 2px;
+}
+
+#changelist .field-guid {
+  min-width: 250px;
+}
+
 .field-result_actions .button {
   padding: 4px 6px;
 }
