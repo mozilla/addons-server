@@ -19,12 +19,6 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         """Handle command arguments."""
         parser.add_argument(
-            '--salt',
-            type=int,
-            default=None,
-            dest='salt',
-            help='Bloom filter salt')
-        parser.add_argument(
             'id',
             help="CT baseline identifier",
             metavar=('ID'))
@@ -72,8 +66,7 @@ class Command(BaseCommand):
             generate_kw['not_blocked'] = (
                 self.load_json(options.get('addon_guids_input')))
 
-        salt = options.get('salt')
-        mlbf = generate_mlbf(stats, get_mlbf_key_format(salt), **generate_kw)
+        mlbf = generate_mlbf(stats, get_mlbf_key_format(), **generate_kw)
         self.save_blocklist(
             stats,
             mlbf,

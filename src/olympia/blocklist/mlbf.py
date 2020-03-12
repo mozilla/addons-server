@@ -1,5 +1,4 @@
 import math
-import secrets
 
 from filtercascade import FilterCascade
 
@@ -11,6 +10,7 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 def get_blocked_guids():
     from olympia.addons.models import Addon
     from olympia.blocklist.models import Block
+    from olympia.files.models import File
 
     blocks = Block.objects.all()
     blocks_guids = [block.guid for block in blocks]
@@ -25,28 +25,33 @@ def get_blocked_guids():
             block.min_version == Block.MIN and
             block.max_version == Block.MAX)
         versions = {
-            version_id: (block.guid, version)
+            version_id: {'guid': block.guid, 'version': version}
             for version, (version_id, _) in block.addon_versions.items()
             if is_all_versions or block.is_version_blocked(version)}
         all_versions.update(versions)
-    return all_versions.values()
+    # and get the hashes from the File records
+    file_hashes = File.objects.filter(
+        version_id__in=all_versions.keys()).values_list('version_id', 'hash')
+    return [
+        (all_versions[v_id]['guid'], all_versions[v_id]['version'], hash)
+        for v_id, hash in file_hashes]
 
 
 def get_all_guids():
-    from olympia.versions.models import Version
+    from olympia.files.models import File
 
-    return Version.unfiltered.values_list('addon__guid', 'version')
+    return File.objects.values_list(
+        'version__addon__guid', 'version__version', 'hash')
 
 
 def hash_filter_inputs(input_list, key_format):
     return [
-        key_format.format(guid=guid, version=version)
-        for (guid, version) in input_list]
+        key_format.format(guid=guid, version=version, xpi_hash=hash)
+        for (guid, version, hash) in input_list]
 
 
 def get_mlbf_key_format(salt=None):
-    salt = salt or secrets.token_hex(16)
-    return '%s:{guid}:{version}' % salt
+    return '{guid}:{version}:{xpi_hash}'
 
 
 def generate_mlbf(stats, key_format, *, blocked=None, not_blocked=None):
