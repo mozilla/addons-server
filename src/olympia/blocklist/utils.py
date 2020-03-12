@@ -129,7 +129,7 @@ def legacy_publish_blocks(blocks):
                 server.delete_record(block.kinto_id)
             block.update(kinto_id='')
         # else no existing kinto record and it shouldn't be in legacy so skip
-    server.signoff_request()
+    server.complete_session()
 
 
 def legacy_delete_blocks(blocks):
@@ -143,4 +143,4 @@ def legacy_delete_blocks(blocks):
             else:
                 server.delete_record(block.kinto_id)
             block.update(kinto_id='')
-    server.signoff_request()
+    server.complete_session()

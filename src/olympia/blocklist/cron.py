@@ -17,7 +17,8 @@ def upload_mlbf_to_kinto():
         log.info('Upload MLBF to kinto cron job disabled.')
         return
     log.info('Starting Upload MLBF to kinto cron job.')
-    server = KintoServer(KINTO_BUCKET, KINTO_COLLECTION_MLBF)
+    server = KintoServer(
+        KINTO_BUCKET, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
     stats = {}
     key_format = get_mlbf_key_format()
     bloomfilter = generate_mlbf(stats, key_format)
@@ -28,4 +29,5 @@ def upload_mlbf_to_kinto():
         data = {'key_format': key_format}
         attachment = ('filter.bin', filter_file, 'application/octet-stream')
         server.publish_attachment(data, attachment)
+    server.complete_session()
     log.info(json.dumps(stats))
