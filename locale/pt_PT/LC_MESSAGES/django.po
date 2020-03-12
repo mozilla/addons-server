@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-07 16:55+0000\n"
+"PO-Revision-Date: 2020-03-11 15:13+0000\n"
 "Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -452,7 +452,7 @@ msgstr ""
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Por favor, esteja ciente que a WebExtensions não aceita um \"*\" em %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "Por favor, esteja ciente que a WebExtensions não irá aceitar um \"*\" em %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
