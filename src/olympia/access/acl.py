@@ -151,10 +151,11 @@ def is_reviewer(request, addon):
     return check_addons_reviewer(request)
 
 
-def is_user_any_kind_of_reviewer(user):
+def is_user_any_kind_of_reviewer(user, allow_viewers=False):
     """More lax version of is_reviewer: does not check what kind of reviewer
     the user is, and accepts unlisted reviewers, post reviewers, content
-    reviewers, or people with just revierwer tools view access.
+    reviewers. If allow_viewers is passed and truthy, also allows users with
+    just reviewer tools view access.
 
     Don't use on anything that would alter add-on data.
 

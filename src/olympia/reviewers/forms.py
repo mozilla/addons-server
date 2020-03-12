@@ -379,10 +379,14 @@ class ReviewForm(forms.Form):
                 canned_choices.append([action['label'], action_choices])
 
         # Now, add everything not in a group.
-        for r in responses:
-            if not r.sort_group:
-                canned_choices.append([r.response, r.name])
+        for canned_response in responses:
+            if not canned_response.sort_group:
+                canned_choices.append(
+                    [canned_response.response, canned_response.name])
         self.fields['canned_response'].choices = canned_choices
+
+        # Set choices on the action field dynamically to raise an error when
+        # someone tries to use an action they don't have access to.
         self.fields['action'].choices = [
             (k, v['label']) for k, v in self.helper.actions.items()]
 

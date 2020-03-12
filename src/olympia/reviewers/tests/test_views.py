@@ -3012,7 +3012,21 @@ class TestReview(ReviewBase):
     def test_needs_unlisted_reviewer_for_only_unlisted(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update_version()
+        self.url = reverse(
+            'reviewers.review', args=('unlisted', self.addon.slug))
         assert self.client.head(self.url).status_code == 404
+
+        # Adding a listed version makes it pass @reviewer_addon_view_factory
+        # decorator that only depends on the addon being purely unlisted or
+        # not, but still fail the check inside the view because we're looking
+        # at the unlisted channel specifically.
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            version='9.9')
+        assert self.client.head(self.url).status_code == 403
+        assert self.client.post(self.url).status_code == 403
+
+        # It works with the right permission.
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         assert self.client.head(self.url).status_code == 200
 
@@ -3029,14 +3043,27 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_need_recommended_reviewer_for_recommendable_addon(self):
-        item = DiscoveryItem.objects.create(addon=self.addon)
-        assert self.client.head(self.url).status_code == 200
-
-        item.update(recommendable=True)
-        assert self.client.head(self.url).status_code == 403
+        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        choices = list(
+            dict(response.context['form'].fields['action'].choices).keys()
+        )
+        expected_choices = ['reply', 'super', 'comment']
+        assert choices == expected_choices
 
         self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
-        assert self.client.head(self.url).status_code == 200
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        choices = list(
+            dict(response.context['form'].fields['action'].choices).keys()
+        )
+        expected_choices = [
+            'public', 'reject', 'reject_multiple_versions', 'reply', 'super',
+            'comment'
+        ]
+        assert choices == expected_choices
 
     def test_not_flags(self):
         self.addon.current_version.files.update(is_restart_required=False)
@@ -4296,6 +4323,21 @@ class TestReview(ReviewBase):
             [u'Select a valid choice. public is not one of the available '
              u'choices.'])
 
+        # Same if it's the content review flag.
+        flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        flags.update(
+            needs_admin_content_review=True, needs_admin_code_review=False)
+        response = self.client.post(self.url, self.get_dict(action='public'))
+        assert response.status_code == 200  # Form error.
+        addon = self.get_addon()
+        assert addon.status == amo.STATUS_NOMINATED
+        assert self.version == addon.current_version
+        assert addon.current_version.files.all()[0].status == (
+            amo.STATUS_AWAITING_REVIEW)
+        assert response.context['form'].errors['action'] == (
+            [u'Select a valid choice. public is not one of the available '
+             u'choices.'])
+
     def test_admin_flagged_addon_actions_as_content_reviewer(self):
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_code_review=True)
@@ -4326,7 +4368,9 @@ class TestReview(ReviewBase):
         self.login_as_reviewer()  # Legacy reviewer, not post-review.
         response = self.client.post(
             self.url, {'action': 'confirm_auto_approved'})
-        assert response.status_code == 403
+        assert response.status_code == 200
+        assert not response.context['form'].is_valid()
+        assert response.context['form'].errors['action']
         # Nothing happened: the user did not have the permission to do that.
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
@@ -4341,7 +4385,9 @@ class TestReview(ReviewBase):
         self.login_as_reviewer()
         response = self.client.post(
             self.url, {'action': 'confirm_auto_approved'})
-        assert response.status_code == 403
+        assert response.status_code == 200
+        assert not response.context['form'].is_valid()
+        assert response.context['form'].errors['action']
         # Nothing happened: the user did not have the permission to do that.
         assert ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
@@ -4387,14 +4433,11 @@ class TestReview(ReviewBase):
         assert ActivityLog.objects.filter(
             action=amo.LOG.APPROVE_CONTENT.id).count() == 0
 
-    def test_cant_addonreview_if_admin_content_review_flag_is_set(self):
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+    def test_cant_postreview_if_admin_content_review_flag_is_set(self):
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_content_review=True)
         self.grant_permission(self.reviewer, 'Addons:PostReview')
-        for action in ['approve_content', 'public', 'reject',
-                       'reject_multiple_versions']:
+        for action in ['approve_content', 'reject_multiple_versions']:
             response = self.client.post(self.url, self.get_dict(action=action))
             assert response.status_code == 200  # Form error.
             # The add-on status must not change as non-admin reviewers are not
@@ -4833,13 +4876,14 @@ class TestReview(ReviewBase):
 
     def test_data_value_attributes_unreviewed(self):
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
 
         expected_actions_values = [
-            'public|', 'reject|', 'reply|', 'super|', 'comment|']
+            'public|', 'reject|', 'reject_multiple_versions|', 'reply|',
+            'super|', 'comment|'
+        ]
         assert [
             act.attrib['data-value'] for act in
             doc('.data-toggle.review-actions-desc')] == expected_actions_values
@@ -4848,7 +4892,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
-            'public|reject|reply|super|comment|')
+            'public|reject|reject_multiple_versions|reply|super|comment|')
         assert (
             doc('.data-toggle.review-files')[0].attrib['data-value'] ==
             'public|reject|')
@@ -5371,29 +5415,37 @@ class TestWhiteboard(ReviewBase):
         private_whiteboard_info = u'Private whiteboard info.'
         url = reverse(
             'reviewers.whiteboard', args=['listed', self.addon_param])
+        self.client.login(email='regular@mozilla.com')  # No permissions.
+        response = self.client.post(url, {
+            'whiteboard-private': private_whiteboard_info,
+            'whiteboard-public': public_whiteboard_info
+        })
+        assert response.status_code == 403  # Not a reviewer.
+
+        self.login_as_reviewer()
         response = self.client.post(url, {
             'whiteboard-private': private_whiteboard_info,
             'whiteboard-public': public_whiteboard_info
         })
         self.assert3xx(response, reverse(
             'reviewers.review', args=('listed', self.addon_param)))
-        addon = self.addon.reload()
-        assert addon.whiteboard.public == public_whiteboard_info
-        assert addon.whiteboard.private == private_whiteboard_info
+
+        whiteboard = self.addon.whiteboard.reload()
+        assert whiteboard.public == public_whiteboard_info
+        assert whiteboard.private == private_whiteboard_info
 
     def test_whiteboard_addition_content_review(self):
-        public_whiteboard_info = u'Public whiteboard info for content.'
-        private_whiteboard_info = u'Private whiteboard info for content.'
+        public_whiteboard_info = 'Public whiteboard info for content.'
+        private_whiteboard_info = 'Private whiteboard info for content.'
         url = reverse(
             'reviewers.whiteboard', args=['content', self.addon_param])
+        self.client.login(email='regular@mozilla.com')  # No permissions.
         response = self.client.post(url, {
             'whiteboard-private': private_whiteboard_info,
             'whiteboard-public': public_whiteboard_info
         })
-        assert response.status_code == 403  # Not a content reviewer.
+        assert response.status_code == 403  # Not a reviewer.
 
-        user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.grant_permission(user, 'Addons:ContentReview')
         self.login_as_reviewer()
 
         response = self.client.post(url, {
@@ -5406,25 +5458,69 @@ class TestWhiteboard(ReviewBase):
         assert addon.whiteboard.public == public_whiteboard_info
         assert addon.whiteboard.private == private_whiteboard_info
 
-    def test_whiteboard_addition_unlisted_addon(self):
+        public_whiteboard_info = 'New content for public'
+        private_whiteboard_info = 'New content for private'
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.login_as_reviewer()
+        self.grant_permission(user, 'Addons:ContentReview')
+        response = self.client.post(url, {
+            'whiteboard-private': private_whiteboard_info,
+            'whiteboard-public': public_whiteboard_info
+        })
+        self.assert3xx(response, reverse(
+            'reviewers.review', args=('content', self.addon_param)))
+
+        whiteboard = self.addon.whiteboard.reload()
+        assert whiteboard.public == public_whiteboard_info
+        assert whiteboard.private == private_whiteboard_info
+
+    def test_whiteboard_addition_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
-        public_whiteboard_info = u'Public whiteboard info unlisted.'
-        private_whiteboard_info = u'Private whiteboard info unlisted.'
+        public_whiteboard_info = 'Public whiteboard info unlisted.'
+        private_whiteboard_info = 'Private whiteboard info unlisted.'
         url = reverse(
             'reviewers.whiteboard', args=['unlisted', self.addon_param])
+
+        self.client.login(email='regular@mozilla.com')  # No permissions.
+        response = self.client.post(url, {
+            'whiteboard-private': private_whiteboard_info,
+            'whiteboard-public': public_whiteboard_info
+        })
+        assert response.status_code == 403  # Not a reviewer.
+
+        self.login_as_reviewer()
+        response = self.client.post(url, {
+            'whiteboard-private': private_whiteboard_info,
+            'whiteboard-public': public_whiteboard_info
+        })
+        # Not an unlisted reviewer, we'll get a 404 from the
+        # @reviewer_addon_view_factory decorator as it uses addon_view
+        # under the hood.
+        assert response.status_code == 404  # Not an unlisted reviewer.
+
+        # Now the addon is not purely unlisted, but because we've requested the
+        # unlisted channel we'll still get an error - this time it's a 403 from
+        # the view itself
+        version_factory(
+            addon=self.addon, version='9.99',
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        response = self.client.post(url, {
+            'whiteboard-private': private_whiteboard_info,
+            'whiteboard-public': public_whiteboard_info
+        })
+        assert response.status_code == 403
+
+        # Everything works once you have permission.
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
         response = self.client.post(url, {
             'whiteboard-private': private_whiteboard_info,
             'whiteboard-public': public_whiteboard_info
         })
         self.assert3xx(response, reverse(
             'reviewers.review', args=('unlisted', self.addon_param)))
-
-        addon = self.addon.reload()
-        assert addon.whiteboard.public == public_whiteboard_info
-        assert addon.whiteboard.private == private_whiteboard_info
+        whiteboard = self.addon.whiteboard.reload()
+        assert whiteboard.public == public_whiteboard_info
+        assert whiteboard.private == private_whiteboard_info
 
     def test_delete_empty(self):
         url = reverse(
@@ -5551,16 +5647,18 @@ class TestPolicyView(ReviewerTest):
         self.assertContains(response, str(self.review_url))
 
     def test_eula_with_channel(self):
+        self.make_addon_unlisted(self.addon)
         unlisted_review_url = reverse(
             'reviewers.review', args=('unlisted', self.addon.slug,))
         self.addon.eula = u'Eulá!'
         self.addon.save()
         assert bool(self.addon.eula)
         response = self.client.get(self.eula_url + '?channel=unlisted')
-        assert response.status_code == 403  # Because unlisted
-        self.grant_permission(
-            UserProfile.objects.get(email='reviewer@mozilla.com'),
-            'ReviewerTools:View')  # so get the view permissions
+        assert response.status_code == 404
+
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login(email=user.email)
         response = self.client.get(self.eula_url + '?channel=unlisted')
         assert response.status_code == 200
         self.assertContains(response, u'Eulá!')
@@ -5584,16 +5682,18 @@ class TestPolicyView(ReviewerTest):
         self.assertContains(response, str(self.review_url))
 
     def test_privacy_with_channel(self):
+        self.make_addon_unlisted(self.addon)
         unlisted_review_url = reverse(
             'reviewers.review', args=('unlisted', self.addon.slug,))
         self.addon.privacy_policy = u'Prívacy Pólicy?'
         self.addon.save()
         assert bool(self.addon.privacy_policy)
         response = self.client.get(self.privacy_url + '?channel=unlisted')
-        assert response.status_code == 403  # Because unlisted
-        self.grant_permission(
-            UserProfile.objects.get(email='reviewer@mozilla.com'),
-            'ReviewerTools:View')  # so get the view permissions
+        assert response.status_code == 404
+
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login(email=user.email)
         response = self.client.get(self.privacy_url + '?channel=unlisted')
         assert response.status_code == 200
         self.assertContains(response, u'Prívacy Pólicy?')

@@ -54,7 +54,7 @@ def any_reviewer_required(f):
     dashboard.
 
     Allows access to users with any of those permissions:
-    - ReviewerTools:View
+    - ReviewerTools:View (for GET requests only)
     - Addons:Review
     - Addons:ReviewUnlisted
     - Addons:ContentReview
@@ -64,7 +64,8 @@ def any_reviewer_required(f):
     """
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        if acl.is_user_any_kind_of_reviewer(request.user):
+        if acl.is_user_any_kind_of_reviewer(
+                request.user, allow_viewers=(request.method == 'GET')):
             return f(request, *args, **kw)
         raise PermissionDenied
     return wrapper
@@ -76,7 +77,8 @@ def any_reviewer_or_moderator_required(f):
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
         allow_access = (
-            acl.is_user_any_kind_of_reviewer(request.user) or
+            acl.is_user_any_kind_of_reviewer(
+                request.user, allow_viewers=(request.method == 'GET')) or
             acl.action_allowed(request, permissions.RATINGS_MODERATE))
         if allow_access:
             return f(request, *args, **kw)

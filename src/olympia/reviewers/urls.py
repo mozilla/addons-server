@@ -5,7 +5,7 @@ from olympia.addons.urls import ADDON_ID
 from olympia.reviewers import views
 
 
-# All URLs under /editors/
+# All URLs under /reviewers/
 urlpatterns = (
     url(r'^$', views.dashboard, name='reviewers.dashboard'),
     url(r'^dashboard$',
