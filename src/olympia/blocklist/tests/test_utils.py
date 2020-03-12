@@ -21,6 +21,9 @@ def test_legacy_publish_blocks(delete_mock, publish_mock):
     block_legacy_dropped = Block.objects.create(
         guid='drop@guid', include_in_legacy=False, updated_by=user_factory(),
         kinto_id='dropped_legacy')
+    block_legacy_dropped_regex = Block.objects.create(
+        guid='rgdrop@guid', include_in_legacy=False, updated_by=user_factory(),
+        kinto_id='*dropped_legacy')
     block_never_legacy = Block.objects.create(
         guid='never@guid', include_in_legacy=False, updated_by=user_factory())
     block_update = Block.objects.create(
@@ -42,19 +45,23 @@ def test_legacy_publish_blocks(delete_mock, publish_mock):
         }],
     }
 
-    legacy_publish_blocks(
-        [block_new, block_regex, block_legacy_dropped, block_never_legacy,
-         block_update])
+    legacy_publish_blocks([
+        block_new,
+        block_regex,
+        block_legacy_dropped,
+        block_legacy_dropped_regex,
+        block_never_legacy,
+        block_update])
     assert publish_mock.call_args_list == [
         mock.call(dict(guid='new@guid', **data)),
-        mock.call(dict(guid='regex@guid', **data)),
         mock.call(dict(guid='update@guid', **data), 'update')]
     assert delete_mock.call_args_list == [
         mock.call('dropped_legacy')]
     assert block_new.kinto_id == 'a-kinto-id'
-    assert block_regex.kinto_id == 'a-kinto-id'  # it'd be unique if not mocked
+    assert block_regex.kinto_id == '*regex'  # not changed
+    assert block_legacy_dropped_regex.kinto_id == ''  # cleared anyway
     assert block_legacy_dropped.kinto_id == ''
-    assert block_update.kinto_id == 'update'  # it's not changed
+    assert block_update.kinto_id == 'update'  # not changed
 
 
 @pytest.mark.django_db
@@ -76,3 +83,4 @@ def test_legacy_delete_blocks(delete_record_mock):
         [block, block_regex, block_not_legacy, block_not_imported])
     assert delete_record_mock.call_args_list == [mock.call('legacy')]
     assert block.kinto_id == ''
+    assert block_regex.kinto_id == ''  # cleared anyway

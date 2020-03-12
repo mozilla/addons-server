@@ -85,8 +85,8 @@ Pillow==7.0.0 \
 PyJWT==1.7.1 \
     --hash=sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e \
     --hash=sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96
-SQLAlchemy==1.3.13 \
-    --hash=sha256:64a7b71846db6423807e96820993fa12a03b89127d278290ca25c0b11ed7b4fb
+SQLAlchemy==1.3.15 \
+    --hash=sha256:c4cca4aed606297afbe90d4306b49ad3a4cd36feb3f87e4bfd655c57fd9ef445
 # amqp is required by kombu
 amqp==2.5.2 \
     --hash=sha256:6e649ca13a7df3faacdc8bbb280aa9a6602d22fd9d545336077e573a1f4ff3b8 \
@@ -110,16 +110,16 @@ bleach==3.1.1 \
     --hash=sha256:aa8b870d0f46965bac2c073a93444636b0e1ca74e9777e34f03dd494b8a59d48
 # REMEMBER: leave a few lines between boto3 and botocore requirements to avoid an
 # annoying merge conflict every day when pyup generates prs for both.
-boto3==1.12.17 \
-    --hash=sha256:13ac5526d80e1f1c9f7adcaeae7237f8bd1a5f268e918ca16e770eb865d3292b \
-    --hash=sha256:ef2d050e0c37e00dab6ff1135befe7ed4b9e1ec26c752b8ad01d043e184ea6d1
+boto3==1.12.18 \
+    --hash=sha256:5e145fa27b56c6f3db20c20d4e0084e146a400007064af8d46c1b3bfcc779c42 \
+    --hash=sha256:95d2fb21e3f0575f8b599706100c42a5a7ae576671f6f4beea6e42ab0f57166b
 # see last comment - celery is in between boto3 and botocore on purpose.
 celery==4.4.1 \
     --hash=sha256:3c5fcd6bfcf9a6323cb742cfc121d1790d50cfeddf300ba723cfa0b356413f07 \
     --hash=sha256:a650525303ee866fb0c62c82f68681fcc2183eebbfafae552c27d30125fe518b
-botocore==1.15.17 \
-    --hash=sha256:17a70c5d8743237896907d00f3de0f51d31aeca863ab0da8d0d8c178608b7ce1 \
-    --hash=sha256:b09aed94cd7a01fbccbbf5746b69ca62ed37c0feaed42e0420f9a121ae7df755
+botocore==1.15.18 \
+    --hash=sha256:2f1a54e19531bdf2d953c2db5f76b49c6936565366b2503a528b04cbbf55671a \
+    --hash=sha256:9827c6f3bffb9e316427c276e3f22e5d82b377dd43dcbbbe71ecbd9ac2b959ab
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -214,10 +214,8 @@ feedparser==5.2.1 \
     --hash=sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02 \
     --hash=sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9 \
     --hash=sha256:cd2485472e41471632ed3029d44033ee420ad0b57111db95c240c9160a85831c
-filtercascade==0.2.1 \
-    --hash=sha256:075e1ca0ad3a0c39d9c1a191ca038999ea88e6e77ff5c7332c234a503c0c3e1c \
-    --hash=sha256:6c78987504713b537323f009fa962b4afb7f2b4ebab6b838f251d61962de3550 \
-    --hash=sha256:b1182a7fa0ea86e3218e7b478f1a1ff211c6639a015b9163fb2619374f5e66ec
+filtercascade==0.2.2 \
+    --hash=sha256:f8b472eddbe6f9860aff8816815848fb5f520c6e06ca75dafe811eb9824a9ab1
 # funcsigs is required by mock
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
