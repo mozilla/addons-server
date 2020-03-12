@@ -408,7 +408,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         selected_file = self.get_selected_file(obj)
 
         validation_objects = FileValidation.objects.filter(file_id__in=(
-            (obj.pk, parent.pk)))
+            (obj.pk, parent.current_file.pk)))
 
         for validation in validation_objects:
             data = json.loads(validation.validation)
