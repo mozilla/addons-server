@@ -363,6 +363,10 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         )
         if load_full_objects:
             Block.preload_addon_versions(objects['blocks'])
+        objects['is_imported_from_kinto_regex'] = [
+            obj.guid for obj in objects['blocks']
+            if obj.is_imported_from_kinto_regex
+        ]
         return objects
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
@@ -595,8 +599,9 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
 
     def changeform_view(self, request, obj_id=None, form_url='',
                         extra_context=None):
-        if obj_id and request.method == 'POST':
-            obj = self.get_object(request, obj_id)
+        extra_context = extra_context or {}
+        obj = self.get_object(request, obj_id) if obj_id else None
+        if obj and request.method == 'POST':
             if not self.has_change_permission(request, obj):
                 raise PermissionDenied
             ModelForm = self.get_form(request, obj, change=bool(obj_id))
@@ -605,8 +610,10 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                 return HttpResponseTemporaryRedirect(
                     reverse('admin:blocklist_blocksubmission_add'))
 
-        extra_context = extra_context or {}
         extra_context['show_save_and_continue'] = False
+        extra_context['is_imported_from_kinto_regex'] = (
+            obj and obj.is_imported_from_kinto_regex)
+
         return super().changeform_view(
             request, object_id=obj_id, form_url=form_url,
             extra_context=extra_context)

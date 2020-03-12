@@ -171,7 +171,8 @@ class BlockSubmission(ModelBase):
         ACTION_DELETE: 'Delete',
     }
     FakeBlock = namedtuple(
-        'FakeBlock', ('id', 'guid', 'addon', 'min_version', 'max_version'))
+        'FakeBlock', ('id', 'guid', 'addon', 'min_version', 'max_version',
+                      'is_imported_from_kinto_regex'))
     FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
 
     action = models.SmallIntegerField(
@@ -219,7 +220,13 @@ class BlockSubmission(ModelBase):
             # If we'd be returning too many Block objects, fake them with the
             # minimum needed to display the link to the Block change page.
             blocks = [
-                self.FakeBlock(block.id, block.guid, None, None, None)
+                self.FakeBlock(
+                    id=block.id,
+                    guid=block.guid,
+                    addon=None,
+                    min_version=None,
+                    max_version=None,
+                    is_imported_from_kinto_regex=None)
                 for block in blocks]
         return blocks
 
@@ -276,50 +283,21 @@ class BlockSubmission(ModelBase):
         super().save(*args, **kwargs)
 
     @classmethod
-    def process_input_guids(cls, guids, v_min, v_max, load_full_objects=True,
-                            filter_existing=True):
-        """Process a line-return separated list of guids into a list of invalid
-        guids, a list of guids that are blocked already for v_min - vmax, and a
-        list of Block instances - including new Blocks (unsaved) and existing
-        partial Blocks. If `filter_existing` is False, all existing blocks are
-        included.
-
-        If `load_full_objects=False` is passed the Block instances are fake
-        (namedtuples) with only minimal data available in the "Block" objects:
-        Block.guid,
-        Block.addon.guid,
-        Block.addon.average_daily_users,
-        Block.min_version,
-        Block.max_version.
-        """
-        all_guids = set(splitlines(guids))
-
+    def _split_guids_full(cls, guids, v_min, v_max, filter_existing):
         # load all the Addon instances together
-        addon_qs = Addon.unfiltered.filter(guid__in=all_guids).order_by(
-            '-average_daily_users')
-        addons = (
-            list(addon_qs.only_translations())
-            if load_full_objects else
-            [cls.FakeAddon(guid, addon_users)
-             for guid, addon_users in addon_qs.values_list(
-                'guid', 'average_daily_users')])
+        addon_qs = Addon.unfiltered.filter(guid__in=guids).order_by(
+            '-average_daily_users').only_translations()
+        addons = list(addon_qs)
         addon_guid_dict = {addon.guid: addon for addon in addons}
 
         # And then any existing block instances
-        block_qs = Block.objects.filter(guid__in=all_guids)
-        existing_blocks = (
-            list(block_qs)
-            if load_full_objects else
-            [cls.FakeBlock(
-                id_, guid, addon_guid_dict.get(guid), min_version, max_version)
-             for id_, guid, min_version, max_version in block_qs.values_list(
-                'id', 'guid', 'min_version', 'max_version')])
-        if load_full_objects:
-            # hook up block.addon cached_property (FakeBlock sets it above)
-            for block in existing_blocks:
-                block.addon = addon_guid_dict.get(block.guid)
+        block_qs = Block.objects.filter(guid__in=guids)
+        existing_blocks = list(block_qs)
+        # hook up block.addon cached_property
+        for block in existing_blocks:
+            block.addon = addon_guid_dict.get(block.guid)
 
-        if len(all_guids) == 1 or not filter_existing:
+        if len(guids) == 1 or not filter_existing:
             # We special case a single guid to always update it.
             blocks_to_update_dict = {
                 block.guid: block for block in existing_blocks}
@@ -341,11 +319,8 @@ class BlockSubmission(ModelBase):
                 continue
             # get the existing block object or create a new instance
             block = (
-                blocks_to_update_dict.get(addon.guid, None) or (
-                    Block(addon=addon) if load_full_objects else
-                    cls.FakeBlock(
-                        None, addon.guid, addon, Block.MIN, Block.MAX)
-                ))
+                blocks_to_update_dict.get(addon.guid, None) or
+                Block(addon=addon))
             blocks.append(block)
         if not filter_existing:
             # we want to be able to delete a block without an addon (which
@@ -353,6 +328,96 @@ class BlockSubmission(ModelBase):
             # blocks on too
             blocks.extend(
                 block for block in existing_blocks if block not in blocks)
+        return blocks, existing_guids
+
+    @classmethod
+    def _split_guids_fake(cls, guids, v_min, v_max, filter_existing):
+        # load all the Addon instances together
+        addon_qs = (
+            Addon.unfiltered
+            .filter(guid__in=guids)
+            .order_by('-average_daily_users')
+            .values_list('guid', 'average_daily_users'))
+        addons = [
+            cls.FakeAddon(guid, addon_users) for guid, addon_users in addon_qs]
+        addon_guid_dict = {addon.guid: addon for addon in addons}
+
+        # And then any existing block instances
+        block_qs = Block.objects.filter(guid__in=guids).values_list(
+            'id', 'guid', 'min_version', 'max_version', 'kinto_id')
+        existing_blocks = [
+            cls.FakeBlock(
+                id=id_,
+                guid=guid,
+                addon=addon_guid_dict.get(guid),
+                min_version=min_version,
+                max_version=max_version,
+                is_imported_from_kinto_regex=kinto_id.startswith('*'))
+            for id_, guid, min_version, max_version, kinto_id in block_qs]
+
+        if len(guids) == 1 or not filter_existing:
+            # We special case a single guid to always update it.
+            blocks_to_update_dict = {
+                block.guid: block for block in existing_blocks}
+        else:
+            # identify the blocks that need updating -
+            # i.e. not v_min - vmax already
+            blocks_to_update_dict = {
+                block.guid: block for block in existing_blocks
+                if not (
+                    block.min_version == v_min and block.max_version == v_max)}
+        existing_guids = [
+            block.guid for block in existing_blocks
+            if block.guid not in blocks_to_update_dict]
+
+        blocks = []
+        for addon in addons:
+            if addon.guid in existing_guids:
+                # it's an existing block but doesn't need updating
+                continue
+            # get the existing block object or create a new instance
+            block = blocks_to_update_dict.get(addon.guid, None)
+            if not block:
+                block = cls.FakeBlock(
+                    id=None,
+                    guid=addon.guid,
+                    addon=addon,
+                    min_version=Block.MIN,
+                    max_version=Block.MAX,
+                    is_imported_from_kinto_regex=False)
+            blocks.append(block)
+        if not filter_existing:
+            # we want to be able to delete a block without an addon (which
+            # should never happen... but might) so we have to add any missing
+            # blocks on too
+            blocks.extend(
+                block for block in existing_blocks if block not in blocks)
+        return blocks, existing_guids
+
+    @classmethod
+    def process_input_guids(cls, guids, v_min, v_max, load_full_objects=True,
+                            filter_existing=True):
+        """Process a line-return separated list of guids into a list of invalid
+        guids, a list of guids that are blocked already for v_min - vmax, and a
+        list of Block instances - including new Blocks (unsaved) and existing
+        partial Blocks. If `filter_existing` is False, all existing blocks are
+        included.
+
+        If `load_full_objects=False` is passed the Block instances are fake
+        (namedtuples) with only minimal data available in the "Block" objects:
+        Block.guid,
+        Block.addon.guid,
+        Block.addon.average_daily_users,
+        Block.min_version,
+        Block.max_version,
+        Block.process_input_guids
+        """
+        all_guids = set(splitlines(guids))
+
+        blocks, existing_guids = (
+            cls._split_guids_full(all_guids, v_min, v_max, filter_existing)
+            if load_full_objects else
+            cls._split_guids_fake(all_guids, v_min, v_max, filter_existing))
 
         invalid_guids = list(
             all_guids - set(existing_guids) - {block.guid for block in blocks})
