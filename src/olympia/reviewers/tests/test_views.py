@@ -6991,9 +6991,14 @@ class TestReviewAddonVersionCompareViewSet(
             'version_pk': self.version.pk,
             'pk': new_version.pk})
 
-        with self.assertNumQueries(12):
-            # FIXME: check queries and see if there is a need to optimize, 12
-            # seems too high.
+        with self.assertNumQueries(10):
+            # - 2 savepoints because of tests
+            # - 2 user and groups
+            # - 2 add-on and translations
+            # - 1 add-on author check
+            # - 1 all versions
+            # - 1 all files
+            # - 1 all file validation
             response = self.client.get(self.url + '?file=README.md&lang=en-US')
         assert response.status_code == 200
 
