@@ -7,11 +7,11 @@
     formaction="{% url handlefalsepositive_urlname obj.pk %}"
     formtarget="_blank"
   >
-    {% trans 'Report as false positive' %}
+    {% trans 'False positive' %}
   </button>
   &nbsp;
   <button class="button default" formaction="{% url handletruepositive_urlname obj.pk %}">
-    {% trans 'Mark as true positive' %}
+    {% trans 'True positive' %}
   </button>
   &nbsp;
   <button
@@ -19,7 +19,7 @@
     formaction="{% url handleinconclusive_urlname obj.pk %}"
     title="{% trans 'Useful when the scanner result is a true positive but the add-on is not malicious' %}"
   >
-    {% trans 'Mark as inconclusive' %}
+    {% trans 'Inconclusive' %}
   </button>
 {% elif obj.can_revert_feedback %}
   <button class="button default" formaction="{% url handlerevert_urlname obj.pk %}">

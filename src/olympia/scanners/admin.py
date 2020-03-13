@@ -180,13 +180,11 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     list_display = (
         'id',
         'formatted_addon',
-        'authors',
         'guid',
-        'channel',
+        'authors',
         'scanner',
         'formatted_matched_rules',
-        'created',
-        'state',
+        'formatted_created',
         'result_actions',
     )
     list_filter = (
@@ -205,7 +203,6 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         'formatted_addon',
         'authors',
         'guid',
-        'channel',
         'scanner',
         'created',
         'state',
@@ -287,7 +284,12 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     def formatted_addon(self, obj):
         if obj.version:
             return format_html(
-                '<a href="{}">{} (version: {})</a>',
+                '<a href="{}">{}</a>'
+                '<br>'
+                '<table>'
+                '  <tr><td>Version:</td><td>{}</td></tr>'
+                '  <tr><td>Channel:</td><td>{}</td></tr>'
+                '</table>',
                 # We use the add-on's ID to support deleted add-ons.
                 urljoin(
                     settings.EXTERNAL_SITE_URL,
@@ -302,6 +304,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                 ),
                 obj.version.addon.name,
                 obj.version.version,
+                obj.version.get_channel_display(),
             )
         return '-'
 
@@ -324,7 +327,6 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         return '-'
 
     guid.short_description = 'Add-on GUID'
-    guid.admin_order_field = 'version__addon__guid'
 
     def channel(self, obj):
         if obj.version:
@@ -332,6 +334,11 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         return '-'
 
     channel.short_description = 'Channel'
+
+    def formatted_created(self, obj):
+        return obj.created.strftime('%Y-%m-%d %H:%M:%S')
+
+    formatted_created.short_description = 'Created'
 
     def formatted_results(self, obj):
         return format_html('<pre>{}</pre>', obj.get_pretty_results())
@@ -591,13 +598,12 @@ class ScannerQueryResultAdmin(
     list_display = (
         'id',
         'formatted_addon',
-        'authors',
         'guid',
-        'channel',
+        'authors',
         'scanner',
         'formatted_matched_rules',
         'matching_filenames',
-        'created',
+        'formatted_created',
     )
     list_filter = (
         ('matched_rules', ScannerRuleListFilter),
