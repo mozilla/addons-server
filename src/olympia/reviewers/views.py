@@ -1318,7 +1318,7 @@ class ReviewAddonVersionMixin(object):
         # filter the base queryset here.
         addon = self.get_addon_object()
 
-        qset = (
+        qs = (
             addon.versions(manager='unfiltered_for_relations').all()
             # We don't need any transforms on the version, not even
             # translations.
@@ -1326,16 +1326,22 @@ class ReviewAddonVersionMixin(object):
             .order_by('-created')
         )
 
-        # Allow viewing unlisted for reviewers with permissions or
-        # addon authors.
-        can_view_unlisted = (
-            acl.check_unlisted_addons_reviewer(self.request) or
-            addon.has_author(self.request.user))
+        if not self.can_access_unlisted():
+            qs = qs.filter(channel=amo.RELEASE_CHANNEL_LISTED)
 
-        if not can_view_unlisted:
-            qset = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        return qs
 
-        return qset
+    def can_access_unlisted(self):
+        """Return True if we can access unlisted versions with the current
+        request. Cached on the viewset instance."""
+        if not hasattr(self, 'can_view_unlisted'):
+            # Allow viewing unlisted for reviewers with permissions or
+            # addon authors.
+            addon = self.get_addon_object()
+            self.can_view_unlisted = (
+                acl.check_unlisted_addons_reviewer(self.request) or
+                addon.has_author(self.request.user))
+        return self.can_view_unlisted
 
     def get_addon_object(self):
         if not hasattr(self, 'addon_object'):
@@ -1347,28 +1353,6 @@ class ReviewAddonVersionMixin(object):
 
     def get_version_object(self):
         return self.get_object(pk=self.kwargs['version_pk'])
-
-    def get_object(self, **kwargs):
-        qset = self.filter_queryset(self.get_queryset())
-
-        kwargs.setdefault(
-            self.lookup_field,
-            self.kwargs.get(self.lookup_url_kwarg or self.lookup_field))
-
-        obj = get_object_or_404(qset, **kwargs)
-
-        # If the instance is marked as deleted and the client is not allowed to
-        # see deleted instances, we want to return a 404, behaving as if it
-        # does not exist.
-        if obj.deleted and not (
-                GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
-                has_object_permission(self.request, self, obj.addon)):
-            raise http.Http404
-
-        # Now we can checking permissions
-        self.check_object_permissions(self.request, obj)
-
-        return obj
 
     def check_permissions(self, request):
         if self.action == u'list':
@@ -1383,9 +1367,21 @@ class ReviewAddonVersionMixin(object):
         super(ReviewAddonVersionMixin, self).check_permissions(request)
 
     def check_object_permissions(self, request, obj):
-        """Check permissions against the parent add-on object."""
-        return super(ReviewAddonVersionMixin, self).check_object_permissions(
-            request, obj.addon)
+        """
+        Check if the request should be permitted for a given version object.
+        Raises an appropriate exception if the request is not permitted.
+        """
+        # If the instance is marked as deleted and the client is not allowed to
+        # see deleted instances, we want to return a 404, behaving as if it
+        # does not exist.
+        if obj.deleted and not (
+                GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
+                has_object_permission(self.request, self, obj.addon)):
+            raise http.Http404
+
+        # Now check permissions using DRF implementation on the add-on, it
+        # should be all we need.
+        return super().check_object_permissions(request, obj.addon)
 
 
 class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
@@ -1504,13 +1500,41 @@ class ReviewAddonVersionDraftCommentViewSet(
 class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
                                        RetrieveModelMixin, GenericViewSet):
 
+    def filter_queryset(self, qs):
+        return qs.prefetch_related('files__validation')
+
+    def get_objects(self):
+        """Return a dict with both versions needed for the comparison,
+        emulating what get_object() and get_version_object() do, but avoiding
+        redundant queries.
+
+        Dict keys are `instance` and `parent_version` for the main version
+        object and the one to compare to, respectively."""
+        pk = int(self.kwargs['pk'])
+        parent_version_pk = int(self.kwargs['version_pk'])
+        all_pks = set([pk, parent_version_pk])
+        qs = self.filter_queryset(self.get_queryset())
+        objs = qs.in_bulk(all_pks)
+        if len(objs) != len(all_pks):
+            # Return 404 if one of the objects requested failed to load. For
+            # convenience in tests we allow self-comparaison even though it's
+            # pointless, so check against len(all_pks) and not just `2`.
+            raise http.Http404
+        for obj in objs.values():
+            self.check_object_permissions(self.request, obj)
+        return {
+            'instance': objs[pk],
+            'parent_version': objs[parent_version_pk]
+        }
+
     def retrieve(self, request, *args, **kwargs):
+        objs = self.get_objects()
         serializer = AddonCompareVersionSerializer(
-            instance=self.get_object(),
+            instance=objs['instance'],
             context={
                 'file': self.request.GET.get('file', None),
                 'request': self.request,
-                'parent_version': self.get_version_object(),
+                'parent_version': objs['parent_version'],
             })
 
         return Response(serializer.data)
