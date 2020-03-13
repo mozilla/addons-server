@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2017-12-19 01:49+0000\n"
+"PO-Revision-Date: 2018-12-13 01:17+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2608,7 +2608,7 @@ msgstr "Este posibil să trebuiască să depui și codul sursă. Dacă nu o faci
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "Te rugăm să consulți <a %(a_attrs)s>politica pentru depunerea de coduri sursă</a>."
+msgstr "Te rugăm să consulți <a %(a_attrs)s>politica pentru depunerea de cod sursă</a>."
 
 msgid "Do you use any of the following?"
 msgstr "Folosești vreuna dintre uneltele următoare?"
