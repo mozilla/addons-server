@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2017-08-22 07:03+0000\n"
-"Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
+"PO-Revision-Date: 2019-08-18 19:30+0000\n"
+"Last-Translator: Parsa <parsa76ghorbanian@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
+msgstr[0] "افزونه شما با {0} خطا، نتوانست اعتبارسنجی شود."
 msgstr[1] "افزونه شما با {0} خطا، نتوانست اعتبارسنجی شود."
 
 msgid "&hellip;and {0} more"
@@ -84,7 +84,7 @@ msgstr ""
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "افزونه شما بدون خطا و با {0} اخطار، اعتبار سنجی شد."
 msgstr[1] "افزونه شما بدون خطا و با {0} اخطار، اعتبار سنجی شد."
 
 msgid "Your add-on was validated with no errors and {0} message."
@@ -176,11 +176,10 @@ msgstr ""
 msgid "Week of {0}"
 msgstr ""
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " بارگیری‌ها"
-msgstr[1] " بارگیری‌ها"
+msgstr[0] "{0} بارگیری‌"
+msgstr[1] ""
 
 #, fuzzy
 msgid "{0} user"
@@ -805,12 +804,12 @@ msgstr ""
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} خطا"
 msgstr[1] "{0} خطا"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} هشدار"
 msgstr[1] "{0} هشدار"
 
 msgid "{0} notice"
