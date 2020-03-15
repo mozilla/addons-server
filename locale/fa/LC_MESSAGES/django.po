@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2015-11-02 11:53+0000\n"
+"PO-Revision-Date: 2015-11-02 11:51+0000\n"
 "Last-Translator: Ramin.Najarbashi <Ramin.Najarbashi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fa\n"
@@ -3286,7 +3286,7 @@ msgstr ""
 # {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} خطا"
 msgstr[1] "{0} خطا"
 
 #. L10n: first parameter is the number of warnings
