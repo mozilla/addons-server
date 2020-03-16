@@ -297,7 +297,7 @@ class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
     pass
 
 
-class MinimalParentFileSerializer(FileSerializer):
+class MinimalBaseFileSerializer(FileSerializer):
     class Meta:
         model = File
         fields = ('id',)
@@ -430,7 +430,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         # We can't directly use `source=` in the file definitions above
         # because the parent version gets passed through the `context`
         base_file = self.context['parent_version'].current_file
-        return MinimalParentFileSerializer(instance=base_file).data
+        return MinimalBaseFileSerializer(instance=base_file).data
 
 
 class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
