@@ -421,7 +421,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         return False
 
     def get_parent_id(self, obj):
-        return self.context['parent_version'].pk
+        return self.context['parent_version'].current_file.pk
 
 
 class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
