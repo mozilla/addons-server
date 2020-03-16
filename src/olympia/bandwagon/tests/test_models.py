@@ -1,9 +1,12 @@
 import uuid
+from unittest import mock
+
+from django.conf import settings
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.bandwagon.models import Collection
 from olympia.users.models import UserProfile
 
@@ -83,6 +86,47 @@ class TestCollections(TestCase):
         assert c.slug == 'boom-1'
         c = Collection.objects.create(author=self.user, slug='boom')
         assert c.slug == 'boom-2'
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_add_addon_reindex(self, index_addons_mock):
+        collection = Collection.objects.create(author=self.user, slug='foo')
+        addon = addon_factory()
+        index_addons_mock.reset_mock()
+        collection.add_addon(addon)
+        assert index_addons_mock.call_count == 0
+
+        collection = Collection.objects.create(
+            author=self.user, slug='featured',
+            id=settings.COLLECTION_FEATURED_THEMES_ID)
+        addon_featured = addon_factory()
+        index_addons_mock.reset_mock()
+
+        collection.add_addon(addon_featured)
+        assert collection.addons.count() == 1
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon_featured.pk],)
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_remove_addon_reindex(self, index_addons_mock):
+        collection = Collection.objects.create(author=self.user, slug='foo')
+        addon = addon_factory()
+        collection.add_addon(addon)
+        index_addons_mock.reset_mock()
+
+        collection.remove_addon(addon)
+        assert index_addons_mock.call_count == 0
+
+        collection = Collection.objects.create(
+            author=self.user, slug='featured',
+            id=settings.COLLECTION_FEATURED_THEMES_ID)
+        addon_featured = addon_factory()
+        collection.add_addon(addon_featured)
+        index_addons_mock.reset_mock()
+
+        collection.remove_addon(addon_featured)
+        assert collection.addons.count() == 0
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon_featured.pk],)
 
 
 class TestCollectionQuerySet(TestCase):
