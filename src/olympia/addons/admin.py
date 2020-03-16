@@ -194,9 +194,22 @@ class AddonAdmin(admin.ModelAdmin):
                     url += '?' + request.GET.urlencode()
                 return http.HttpResponsePermanentRedirect(url)
 
-        return super(AddonAdmin, self).change_view(
-            request, object_id, form_url, extra_context=None,
+        response = super(AddonAdmin, self).change_view(
+            request, object_id, form_url, extra_context=extra_context
         )
+        if request.method == 'GET':
+            obj = response.context_data.get('original', None)
+            response.context_data.update(
+                {
+                    'has_listed_versions': obj.has_listed_versions(
+                        include_deleted=True
+                    ) if obj else False,
+                    'has_unlisted_versions': obj.has_unlisted_versions(
+                        include_deleted=True
+                    ) if obj else False,
+                }
+            )
+        return response
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
