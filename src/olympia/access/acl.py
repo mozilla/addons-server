@@ -164,7 +164,8 @@ def is_user_any_kind_of_reviewer(user, allow_viewers=False):
     add-on but still need to be restricted to reviewers only.
     """
     allow_access = (
-        action_allowed_user(user, amo.permissions.REVIEWER_TOOLS_VIEW) or
+        (allow_viewers and
+            action_allowed_user(user, amo.permissions.REVIEWER_TOOLS_VIEW)) or
         action_allowed_user(user, amo.permissions.ADDONS_REVIEW) or
         action_allowed_user(user, amo.permissions.ADDONS_REVIEW_UNLISTED) or
         action_allowed_user(user, amo.permissions.ADDONS_CONTENT_REVIEW) or
