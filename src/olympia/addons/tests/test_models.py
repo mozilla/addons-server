@@ -639,6 +639,22 @@ class TestAddonModels(TestCase):
         for version in versions:
             assert version.deleted
 
+    def test_force_disable(self):
+        addon = Addon.unfiltered.get(pk=3615)
+        assert addon.status != amo.STATUS_DISABLED
+        files = File.objects.filter(version__addon=addon)
+        assert files
+        for file_ in files:
+            assert file_.status != amo.STATUS_DISABLED
+
+        addon.force_disable()
+
+        assert addon.status == amo.STATUS_DISABLED
+        files = File.objects.filter(version__addon=addon)
+        assert files
+        for file_ in files:
+            assert file_.status == amo.STATUS_DISABLED
+
     def test_incompatible_latest_apps(self):
         a = Addon.objects.get(pk=3615)
         assert a.incompatible_latest_apps() == []
