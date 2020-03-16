@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-07 13:17+0000\n"
+"PO-Revision-Date: 2020-03-16 23:51+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -43,7 +43,7 @@ msgid "Reporter's country"
 msgstr "Bildirenin ülkesi"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Mesaj alıntısı"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -2566,7 +2566,7 @@ msgid "Preview of the version submitted"
 msgstr "Gönderilen sürümün ön izlemesi"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "Hepsi bu kadar! Bu sürüm, incelemeyi geçtikten sonra yayımlanacak. İncelendiğinde size bildirilecektir."
 
 msgid "Version Submitted"
 msgstr "Sürüm gönderildi"
@@ -2649,10 +2649,10 @@ msgid "Step-by-step build instructions to create an exact copy of the add-on cod
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Gerekli tüm teknik adımları uygulayan bir derleme betiği."
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "İşletim sistemi ve yapı ortamı gereksinimleri."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
@@ -2671,9 +2671,8 @@ msgstr "Talimatları kaynak kodunuzdaki bir README dosyasına ekleyin,"
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Kaynak kodu"
+msgstr ""
 
 msgid "Add-on Distribution Agreement"
 msgstr "Eklenti Dağıtım Sözleşmesi"
@@ -2805,9 +2804,8 @@ msgstr "Yeni kimlik bilgileri oluştur"
 msgid "Invisible"
 msgstr "Görünmez"
 
-#, fuzzy
 msgid "Approved and recommended"
-msgstr "Onaylanmış incelemeler"
+msgstr "Onaylı ve önerilen"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Lütfen bir sürüm bilgisi veya eksik üst veriyi ekleyerek eklentinizi tamamlayın."
@@ -2818,7 +2816,6 @@ msgstr "İnceleme tamamlandığında bir e-posta alacaksınız. O zamana kadar e
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Eklentiniz galerimizde gösteriliyor ve kullanıcılar otomatik güncellemeler alıyor."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr "Eklentiniz bir site yöneticisi tarafından devre dışı bırakıldı ve artık galerimizde gösterilmiyor. Herhangi bir sorunuz varsa lütfen amo-admins@mozilla.com adresine e-posta gönderin."
 
@@ -3310,7 +3307,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Bir sürü açık sekmeniz var mı? Bunları bir kenar çubuğunda düzenleyin."
+msgstr "Bir sürü açık sekmeniz mi var? Bunları bir kenar çubuğunda düzenleyin."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
