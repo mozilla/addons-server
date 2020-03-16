@@ -299,6 +299,7 @@ class TestFileEntriesDiffSerializer(TestCase):
         data = self.serialize(file, parent_version=parent_version)
 
         assert data['id'] == file.pk
+        assert data['parent_id'] == parent_version.pk
         assert data['status'] == 'public'
         assert data['hash'] == ''
         assert data['is_webextension'] is True

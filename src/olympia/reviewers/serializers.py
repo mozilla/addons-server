@@ -303,11 +303,12 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
     selected_file = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
     uses_unknown_minified_code = serializers.SerializerMethodField()
+    parent_id = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
             'diff', 'entries', 'selected_file', 'download_url',
-            'uses_unknown_minified_code'
+            'uses_unknown_minified_code', 'parent_id'
         )
         model = File
 
@@ -418,6 +419,9 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             if selected_file in minified_files:
                 return True
         return False
+
+    def get_parent_id(self, obj):
+        return self.context['parent_version'].pk
 
 
 class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
