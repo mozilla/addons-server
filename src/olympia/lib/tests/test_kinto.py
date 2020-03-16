@@ -43,13 +43,18 @@ class TestKintoServer(TestCase):
         server = KintoServer('foo', 'baa')
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa/records',
+            settings.KINTO_API_URL + 'buckets/foo',
             content_type='application/json',
             status=403)
         responses.add(
             responses.PUT,
             settings.KINTO_API_URL + 'buckets/foo',
             content_type='application/json')
+        responses.add(
+            responses.GET,
+            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
+            content_type='application/json',
+            status=404)
         responses.add(
             responses.PUT,
             settings.KINTO_API_URL + 'buckets/foo/collections/baa',
@@ -60,7 +65,11 @@ class TestKintoServer(TestCase):
         # If repeated then the collection shouldn't 403 a second time
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa/records',
+            settings.KINTO_API_URL + 'buckets/foo',
+            content_type='application/json')
+        responses.add(
+            responses.GET,
+            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
             content_type='application/json')
         server.setup_test_server_collection()
 
@@ -80,12 +89,16 @@ class TestKintoServer(TestCase):
             settings.KINTO_API_URL,
             content_type='application/json',
             json={'user': {'id': 'account:test_username'}})
-        records_url = (
+        bucket_url = (
             settings.KINTO_API_URL +
-            'buckets/foo_test_username/collections/baa/records')
+            'buckets/foo_test_username')
         responses.add(
             responses.GET,
-            records_url,
+            bucket_url,
+            content_type='application/json')
+        responses.add(
+            responses.GET,
+            bucket_url + '/collections/baa',
             content_type='application/json')
 
         server.setup()
