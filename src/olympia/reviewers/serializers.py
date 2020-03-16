@@ -297,18 +297,24 @@ class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
     pass
 
 
+class MinimalParentFileSerializer(FileSerializer):
+    class Meta:
+        model = File
+        fields = ('id',)
+
+
 class FileEntriesDiffSerializer(FileEntriesSerializer):
     diff = serializers.SerializerMethodField()
     entries = serializers.SerializerMethodField()
     selected_file = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
     uses_unknown_minified_code = serializers.SerializerMethodField()
-    base_file_id = serializers.SerializerMethodField()
+    base_file = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
             'diff', 'entries', 'selected_file', 'download_url',
-            'uses_unknown_minified_code', 'base_file_id'
+            'uses_unknown_minified_code', 'base_file'
         )
         model = File
 
@@ -420,8 +426,11 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                 return True
         return False
 
-    def get_base_file_id(self, obj):
-        return self.context['parent_version'].current_file.pk
+    def get_base_file(self, obj):
+        # We can't directly use `source=` in the file definitions above
+        # because the parent version gets passed through the `context`
+        base_file = self.context['parent_version'].current_file
+        return MinimalParentFileSerializer(instance=base_file).data
 
 
 class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):

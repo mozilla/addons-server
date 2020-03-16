@@ -204,7 +204,6 @@ This endpoint allows you to compare two Add-on versions with each other.
 
     Properties specific to this endpoint:
 
-    :>json int file.base_file_id: The base file id of the file you're comparing against.
     :>json array file.entries[]: The complete file-tree of the extracted XPI.
     :>json string file.entries[].status: Status of this file, see https://git-scm.com/docs/git-status#_short_format
     :>json int|null file.entries[].depth: Level of folder-tree depth, starting with 0.
@@ -216,6 +215,8 @@ This endpoint allows you to compare two Add-on versions with each other.
     :>json int|null file.entries[].size: The size in bytes.
     :>json string|null file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.
     :>json object|null diff: See the following output with inline comments for a complete description.
+    :>json object base_file: The file attached to the base version you're comparing against.
+    :>json object base_file.id: The id of the base file.
     :>json boolean uses_unknown_minified_code: Indicates that the selected file in either the current or the parent version could be using minified code.
 
     Git patch we're talking about:
