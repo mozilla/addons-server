@@ -303,12 +303,12 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
     selected_file = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
     uses_unknown_minified_code = serializers.SerializerMethodField()
-    parent_id = serializers.SerializerMethodField()
+    base_file_id = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
             'diff', 'entries', 'selected_file', 'download_url',
-            'uses_unknown_minified_code', 'parent_id'
+            'uses_unknown_minified_code', 'base_file_id'
         )
         model = File
 
@@ -420,7 +420,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                 return True
         return False
 
-    def get_parent_id(self, obj):
+    def get_base_file_id(self, obj):
         return self.context['parent_version'].current_file.pk
 
 
