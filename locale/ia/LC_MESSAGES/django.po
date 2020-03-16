@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-08 15:04+0000\n"
+"PO-Revision-Date: 2020-03-06 04:37+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4945,13 +4945,13 @@ msgid "Over the years, many people have contributed to this website, including b
 msgstr "Durante le annos, plure personas ha contribuite a iste sito web, sia voluntarios del communitate que un equipa dedicate de AMO."
 
 msgid "Review Guidelines"
-msgstr "Lineas guida del revisiones"
+msgstr "Lineas guida pro recensiones"
 
 msgid "Sections"
 msgstr "Sectiones"
 
 msgid "Some tips for writing a great review"
-msgstr "Alcun suggestiones pro scriber un grande revision"
+msgstr "Alcun suggestiones pro scriber un bon recension"
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr "Folio a questiones sur le recensiones"
@@ -4970,7 +4970,7 @@ msgid "Write like you are telling a friend about your experience with the add-on
 msgstr "Scribe como tu conta a un amico circa tu experientia con le additivos."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr "Scribe tu revisiones concise e facile a comprender."
+msgstr "Scribe recensiones in maniera concise e facile a comprender."
 
 msgid "Give specific and helpful details. For example:"
 msgstr "Da detalios specific e utile. Per exemplo:"
@@ -4991,29 +4991,29 @@ msgid "Will you continue to use this add-on?"
 msgstr "Continuara tu a usar iste additivo?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Prende un momento pro leger tu revision ante lo inviar pro minimisar le errores."
+msgstr "Prende un momento pro leger tu recension ante de inviar lo pro minimisar le errores de orthographia."
 
 msgid "Don’t:"
-msgstr "Non facer:"
+msgstr "A evitar:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Inviar revisiones de un sol parola tal como \"Grande!\", \"meraviliose,\" o \"mal.\""
+msgstr "Inviar recensiones de un sol parola, p.ex. \"Optimo!\", \"meraviliose,\" o \"mal\"."
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
-"Reporta problemas technic, requesta adjuta, o suggere functionalitate. Usa le optiones de supporto disponibile pro cata additivo, si presente. Tu pote trovar los in le columna lateral presso le "
-"section 'A proposito de iste additivo'."
+"Inviar problemas technic, requestas de adjuta, o suggestiones de functionalitate. Usa in vice le optiones de supporto disponibile pro cata additivo, si presente. Tu pote trovar los in le columna "
+"lateral presso le section 'A proposito de iste additivo'."
 
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "Scriber recensiones de additivos que tu non ha usate personalmente."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Usar profanitate, linguage sexual o linguage que pote ser interpretate como odiose."
+msgstr "Usar profanitate, linguage sexual o linguage que pote esser interpretate como odiose."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Includer HTML, ligamines, codice fonte o fragmentos de codice. Les revisiones es intendite pro esser texto solmente."
+msgstr "Includer HTML, ligamines, codice fonte o fragmentos de codice. Le recensiones debe continer solmente texto."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "Facer declarationes false, denigrar autores del additivos o insultar les personalmente."
@@ -5032,23 +5032,21 @@ msgstr ""
 "le scopo explicite del additivo, o le additivo require le collecta de datos pro functionar."
 
 msgid "How can I report a problematic review?"
-msgstr "Como pote io reportar un revision problematic?"
+msgstr "Como pote io signalar un recension problematic?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Per favor reporta o signala omne recension problematic con le button \"Reportar iste recension\" e illo essera submittite al attention del moderatores. Nostre equipa de moderation usara le "
-"directivas sur le recensiones pro determinar si deler o restaurar le recension sur le sito."
+"Per favor reporta o signala omne recension problematic con le button \"Signalar iste recension\" e illo essera submittite al attention del moderatores. Nostre equipa de moderation usara le Lineas "
+"Guida pro Recensiones pro determinar si deler o restaurar le recension sur le sito."
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Io es un autor de additivos, pote io responder al revisiones?"
+msgstr "Io es le un autor de un additivo, pote io responder al recensiones?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Si, le autores de additivos pote fornir un singule responsa a un revision. Tu pote altiar un argumento de discussion in nostre <a href=\"%(forum_url)s\">foro</a> pro ingagiar te o sequer altere "
-"discussiones."
+msgstr "Si, le autores de additivos pote fornir un sol responsa a un recension. Tu pote aperir un topico in nostre <a href=\"%(forum_url)s\">foro</a> pro continuar le discussion."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Io es le autor de un additivo, pote io deler recensiones o evalutationes non favorabile?"
@@ -6329,7 +6327,7 @@ msgid "my add-on's compatibility is upgraded successfully"
 msgstr "le compatibilitate de mi additivo es promovite con successo"
 
 msgid "someone writes a review of my add-on"
-msgstr "alicuno scribe un revision de mi additivo"
+msgstr "alicuno scribe un recension de mi additivo"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "remane ajornate con novas e eventos pertinente al disveloppatores de additivos (anque le littera de novas about:addons)"

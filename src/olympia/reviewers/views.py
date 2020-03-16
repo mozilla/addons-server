@@ -607,10 +607,9 @@ def queue_moderated(request):
 
 
 @any_reviewer_required
-@post_required
 @json_view
 def application_versions_json(request):
-    app_id = request.POST['application_id']
+    app_id = request.GET.get('application_id', amo.FIREFOX.id)
     form = QueueSearchForm()
     return {'choices': form.version_choices_for_app_id(app_id)}
 
@@ -655,83 +654,30 @@ def queue_needs_human_review(request):
                   qs=qs, SearchForm=None)
 
 
-def perform_review_permission_checks(
-        request, addon, channel, content_review_only=False):
-    """Perform the permission checks needed by the review() view or anything
-    that follows the same behavior, such as the whiteboard() view.
-
-    Raises PermissionDenied when the current user on the request does not have
-    the right permissions for the context defined by addon, channel and
-    content_review_only boolean.
-    """
-    unlisted_only = (
-        channel == amo.RELEASE_CHANNEL_UNLISTED or
-        not addon.has_listed_versions(include_deleted=True))
-    was_auto_approved = (
-        channel == amo.RELEASE_CHANNEL_LISTED and
-        addon.current_version and addon.current_version.was_auto_approved)
-    static_theme = addon.type == amo.ADDON_STATICTHEME
-    try:
-        is_recommendable = addon.discoveryitem.recommendable
-    except DiscoveryItem.DoesNotExist:
-        is_recommendable = False
-
-    # Are we looking at an unlisted review page, or (weirdly) the listed
-    # review page of an unlisted-only add-on?
-    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
-        raise PermissionDenied
-    # Recommended add-ons need special treatment.
-    if is_recommendable and not acl.action_allowed(
-            request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
-        raise PermissionDenied
-    # If we're only doing a content review, we just need to check for the
-    # content review permission, otherwise it's the "main" review page.
-    if content_review_only:
-        if not acl.action_allowed(
-                request, amo.permissions.ADDONS_CONTENT_REVIEW):
-            raise PermissionDenied
-    elif static_theme:
-        if not acl.action_allowed(
-                request, amo.permissions.STATIC_THEMES_REVIEW):
-            raise PermissionDenied
-    else:
-        # Was the add-on auto-approved?
-        if was_auto_approved and not acl.action_allowed(
-                request, amo.permissions.ADDONS_POST_REVIEW):
-            raise PermissionDenied
-
-        # Finally, if it wasn't auto-approved, check for legacy reviewer
-        # permission.
-        if not was_auto_approved and not acl.action_allowed(
-                request, amo.permissions.ADDONS_REVIEW):
-            raise PermissionDenied
-
-
 def determine_channel(channel_as_text):
     """Determine which channel the review is for according to the channel
     parameter as text, and whether we should be in content-review only mode."""
     if channel_as_text == 'content':
         # 'content' is not a real channel, just a different review mode for
         # listed add-ons.
-        content_review_only = True
+        content_review = True
         channel = 'listed'
     else:
-        content_review_only = False
+        content_review = False
     # channel is passed in as text, but we want the constant.
     channel = amo.CHANNEL_CHOICES_LOOKUP.get(
         channel_as_text, amo.RELEASE_CHANNEL_LISTED)
-    return channel, content_review_only
+    return channel, content_review
 
 
-# Permission checks for this view are done inside, depending on type of review
-# needed, using perform_review_permission_checks().
 @login_required
+@any_reviewer_required  # Additional permission checks are done inside.
 @reviewer_addon_view_factory
 def review(request, addon, channel=None):
     whiteboard_url = reverse(
         'reviewers.whiteboard',
         args=(channel or 'listed', addon.slug if addon.slug else addon.pk))
-    channel, content_review_only = determine_channel(channel)
+    channel, content_review = determine_channel(channel)
 
     was_auto_approved = (
         channel == amo.RELEASE_CHANNEL_LISTED and
@@ -742,15 +688,16 @@ def review(request, addon, channel=None):
     except DiscoveryItem.DoesNotExist:
         is_recommendable = False
 
-    # If we're just looking (GET) we can bypass the specific permissions checks
-    # if we have ReviewerTools:View.
-    bypass_more_specific_permissions_because_read_only = (
-        request.method == 'GET' and acl.action_allowed(
-            request, amo.permissions.REVIEWER_TOOLS_VIEW))
+    # Are we looking at an unlisted review page, or (weirdly) the listed
+    # review page of an unlisted-only add-on?
+    unlisted_only = (
+        channel == amo.RELEASE_CHANNEL_UNLISTED or
+        not addon.has_listed_versions(include_deleted=True))
+    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
+        raise PermissionDenied
 
-    if not bypass_more_specific_permissions_because_read_only:
-        perform_review_permission_checks(
-            request, addon, channel, content_review_only=content_review_only)
+    # Other cases are handled in ReviewHelper by limiting what actions are
+    # available depending on user permissions and add-on/version state.
 
     version = addon.find_latest_version(channel=channel, exclude=())
 
@@ -781,7 +728,7 @@ def review(request, addon, channel=None):
 
     form_helper = ReviewHelper(
         request=request, addon=addon, version=version,
-        content_review_only=content_review_only)
+        content_review=content_review)
     form = ReviewForm(request.POST if request.method == 'POST' else None,
                       helper=form_helper, initial=form_initial)
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
@@ -811,7 +758,7 @@ def review(request, addon, channel=None):
             except AddonApprovalsCounter.DoesNotExist:
                 pass
 
-        if content_review_only:
+        if content_review:
             queue_type = 'content_review'
         elif is_recommendable:
             queue_type = 'recommended'
@@ -826,6 +773,8 @@ def review(request, addon, channel=None):
         redirect_url = reverse('reviewers.unlisted_queue_all')
 
     if request.method == 'POST' and form.is_valid():
+        # Execute the action (is_valid() ensures the action is available to the
+        # reviewer)
         form.helper.process()
 
         amo.messages.success(
@@ -927,7 +876,7 @@ def review(request, addon, channel=None):
         actions_full=actions_full, addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
-        content_review_only=content_review_only, count=count,
+        content_review=content_review, count=count,
         deleted_addon_ids=deleted_addon_ids, flags=flags,
         form=form, is_admin=is_admin, now=datetime.now(), num_pages=num_pages,
         pager=pager, reports=reports, show_diff=show_diff,
@@ -943,6 +892,9 @@ def review(request, addon, channel=None):
 
 @never_cache
 @json_view
+# This will 403 for users with only ReviewerTools:View, but they shouldn't
+# acquire reviewer locks anyway, and it's not a big deal if they don't see
+# existing locks.
 @any_reviewer_required
 def review_viewing(request):
     if 'addon_id' not in request.POST:
@@ -1087,15 +1039,17 @@ def leaderboard(request):
         context(scores=ReviewerScore.all_users_by_score()))
 
 
-# Permission checks for this view are done inside, depending on type of review
-# needed, using perform_review_permission_checks().
-@login_required
+@any_reviewer_required
 @reviewer_addon_view_factory
 def whiteboard(request, addon, channel):
     channel_as_text = channel
-    channel, content_review_only = determine_channel(channel)
-    perform_review_permission_checks(
-        request, addon, channel, content_review_only=content_review_only)
+    channel, content_review = determine_channel(channel)
+
+    unlisted_only = (
+        channel == amo.RELEASE_CHANNEL_UNLISTED or
+        not addon.has_listed_versions(include_deleted=True))
+    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
+        raise PermissionDenied
 
     whiteboard, _ = Whiteboard.objects.get_or_create(pk=addon.pk)
     form = WhiteboardForm(request.POST or None, instance=whiteboard,
@@ -1122,15 +1076,7 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
     if not eula_or_privacy:
         raise http.Http404
     channel_text = request.GET.get('channel')
-    channel, content_review_only = determine_channel(channel_text)
-    # It's a read-only view so we can bypass the specific permissions checks
-    # if we have ReviewerTools:View.
-    bypass_more_specific_permissions_because_read_only = (
-        acl.action_allowed(
-            request, amo.permissions.REVIEWER_TOOLS_VIEW))
-    if not bypass_more_specific_permissions_because_read_only:
-        perform_review_permission_checks(
-            request, addon, channel, content_review_only=content_review_only)
+    channel, content_review = determine_channel(channel_text)
 
     review_url = reverse(
         'reviewers.review',
@@ -1142,7 +1088,7 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
                    'page_title': page_title, 'long_title': long_title})
 
 
-@login_required
+@any_reviewer_required
 @reviewer_addon_view_factory
 def eula(request, addon):
     return policy_viewer(request, addon, addon.eula,
@@ -1150,7 +1096,7 @@ def eula(request, addon):
                          long_title=ugettext('End-User License Agreement'))
 
 
-@login_required
+@any_reviewer_required
 @reviewer_addon_view_factory
 def privacy(request, addon):
     return policy_viewer(request, addon, addon.privacy_policy,
@@ -1318,53 +1264,41 @@ class ReviewAddonVersionMixin(object):
         # filter the base queryset here.
         addon = self.get_addon_object()
 
-        qset = (
-            Version.unfiltered
-            .get_queryset()
-            .only_translations()
-            .filter(addon=addon)
-            .order_by('-created'))
+        qs = (
+            addon.versions(manager='unfiltered_for_relations').all()
+            # We don't need any transforms on the version, not even
+            # translations.
+            .no_transforms()
+            .order_by('-created')
+        )
 
-        # Allow viewing unlisted for reviewers with permissions or
-        # addon authors.
-        can_view_unlisted = (
-            acl.check_unlisted_addons_reviewer(self.request) or
-            addon.has_author(self.request.user))
+        if not self.can_access_unlisted():
+            qs = qs.filter(channel=amo.RELEASE_CHANNEL_LISTED)
 
-        if not can_view_unlisted:
-            qset = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        return qs
 
-        return qset
+    def can_access_unlisted(self):
+        """Return True if we can access unlisted versions with the current
+        request. Cached on the viewset instance."""
+        if not hasattr(self, 'can_view_unlisted'):
+            # Allow viewing unlisted for reviewers with permissions or
+            # addon authors.
+            addon = self.get_addon_object()
+            self.can_view_unlisted = (
+                acl.check_unlisted_addons_reviewer(self.request) or
+                addon.has_author(self.request.user))
+        return self.can_view_unlisted
 
     def get_addon_object(self):
-        return get_object_or_404(
-            Addon.objects.get_queryset().only_translations(),
-            pk=self.kwargs.get('addon_pk'))
+        if not hasattr(self, 'addon_object'):
+            # We only need translations on the add-on, no other transforms.
+            self.addon_object = get_object_or_404(
+                Addon.objects.get_queryset().only_translations(),
+                pk=self.kwargs.get('addon_pk'))
+        return self.addon_object
 
     def get_version_object(self):
         return self.get_object(pk=self.kwargs['version_pk'])
-
-    def get_object(self, **kwargs):
-        qset = self.filter_queryset(self.get_queryset())
-
-        kwargs.setdefault(
-            self.lookup_field,
-            self.kwargs.get(self.lookup_url_kwarg or self.lookup_field))
-
-        obj = get_object_or_404(qset, **kwargs)
-
-        # If the instance is marked as deleted and the client is not allowed to
-        # see deleted instances, we want to return a 404, behaving as if it
-        # does not exist.
-        if obj.deleted and not (
-                GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
-                has_object_permission(self.request, self, obj.addon)):
-            raise http.Http404
-
-        # Now we can checking permissions
-        self.check_object_permissions(self.request, obj)
-
-        return obj
 
     def check_permissions(self, request):
         if self.action == u'list':
@@ -1379,9 +1313,21 @@ class ReviewAddonVersionMixin(object):
         super(ReviewAddonVersionMixin, self).check_permissions(request)
 
     def check_object_permissions(self, request, obj):
-        """Check permissions against the parent add-on object."""
-        return super(ReviewAddonVersionMixin, self).check_object_permissions(
-            request, obj.addon)
+        """
+        Check if the request should be permitted for a given version object.
+        Raises an appropriate exception if the request is not permitted.
+        """
+        # If the instance is marked as deleted and the client is not allowed to
+        # see deleted instances, we want to return a 404, behaving as if it
+        # does not exist.
+        if obj.deleted and not (
+                GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
+                has_object_permission(self.request, self, obj.addon)):
+            raise http.Http404
+
+        # Now check permissions using DRF implementation on the add-on, it
+        # should be all we need.
+        return super().check_object_permissions(request, obj.addon)
 
 
 class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
@@ -1391,15 +1337,8 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
         """Return all (re)viewable versions for this add-on.
 
         Full list, no pagination."""
-        qset = self.filter_queryset(self.get_queryset())
-
-        # Smaller performance optimization, only list fields we actually
-        # need.
-        qset = qset.no_transforms().only(
-            *DiffableVersionSerializer.Meta.fields)
-
-        serializer = DiffableVersionSerializer(qset, many=True)
-
+        qs = self.filter_queryset(self.get_queryset())
+        serializer = DiffableVersionSerializer(qs, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
@@ -1474,9 +1413,9 @@ class ReviewAddonVersionDraftCommentViewSet(
     def get_version_object(self):
         if not hasattr(self, 'version_object'):
             self.version_object = get_object_or_404(
-                # The serializer will need to return a bunch of info about the
-                # version, so keep the default transformer.
-                self.get_addon_object().versions.all(),
+                # The serializer will not need any of the stuff the
+                # transformers give us for the version.
+                self.get_addon_object().versions.all().no_transforms(),
                 pk=self.kwargs['version_pk'])
             self._verify_object_permissions(
                 self.version_object, self.version_object)
@@ -1507,13 +1446,41 @@ class ReviewAddonVersionDraftCommentViewSet(
 class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
                                        RetrieveModelMixin, GenericViewSet):
 
+    def filter_queryset(self, qs):
+        return qs.prefetch_related('files__validation')
+
+    def get_objects(self):
+        """Return a dict with both versions needed for the comparison,
+        emulating what get_object() and get_version_object() do, but avoiding
+        redundant queries.
+
+        Dict keys are `instance` and `parent_version` for the main version
+        object and the one to compare to, respectively."""
+        pk = int(self.kwargs['pk'])
+        parent_version_pk = int(self.kwargs['version_pk'])
+        all_pks = set([pk, parent_version_pk])
+        qs = self.filter_queryset(self.get_queryset())
+        objs = qs.in_bulk(all_pks)
+        if len(objs) != len(all_pks):
+            # Return 404 if one of the objects requested failed to load. For
+            # convenience in tests we allow self-comparaison even though it's
+            # pointless, so check against len(all_pks) and not just `2`.
+            raise http.Http404
+        for obj in objs.values():
+            self.check_object_permissions(self.request, obj)
+        return {
+            'instance': objs[pk],
+            'parent_version': objs[parent_version_pk]
+        }
+
     def retrieve(self, request, *args, **kwargs):
+        objs = self.get_objects()
         serializer = AddonCompareVersionSerializer(
-            instance=self.get_object(),
+            instance=objs['instance'],
             context={
                 'file': self.request.GET.get('file', None),
                 'request': self.request,
-                'parent_version': self.get_version_object(),
+                'parent_version': objs['parent_version'],
             })
 
         return Response(serializer.data)

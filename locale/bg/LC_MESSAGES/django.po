@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-29 01:47+0000\n"
-"Last-Translator: Пламен <plamen_mbx@yahoo.com>\n"
+"PO-Revision-Date: 2020-03-05 10:00+0000\n"
+"Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr ""
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Моля, уверете се, че в това поле няма повече от {max_length} знака."
 
 msgid "Modified on:"
 msgstr "Променено на:"
@@ -216,7 +216,7 @@ msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Някои възможности са временно изключени, докато извършваме поддръжка на сайта. Скоро ще се върнем в пълния си капацитет."
 
 msgid "Must contain at least one printable character."
 msgstr "Трябва да съдържа поне един печатаем символ."
@@ -237,6 +237,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Виждате това съобщение, тъй като този сайт по HTTPS изисква „Referer header“ да бъде изпратен от вашия мрежов четец, но не беше. Заглавката е необходима от съображения за сигурност, за да сме "
+"сигурни, че четецът ви не е хакнат."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
@@ -391,7 +393,7 @@ msgid "Another Body"
 msgstr "Друго тяло"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Невалидно удостоверяване. Не са предоставени данни за вход."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
@@ -400,7 +402,7 @@ msgid "Signature has expired."
 msgstr "Подписът е изтекъл."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Грешка при декодиране на подписа."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr ""
@@ -724,13 +726,13 @@ msgid "Reply by developer on {addon} {version}."
 msgstr "Отговор от разработчик на {addon} {version}."
 
 msgid "Developer Reply"
-msgstr ""
+msgstr "Отговор на разработчика"
 
 msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Отговор на рецензента"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
@@ -1407,7 +1409,7 @@ msgid "Violence, war, or weaponry images"
 msgstr ""
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Нацистко или друго съдържание съдържащо омраза"
 
 msgid "Defamatory content"
 msgstr ""
@@ -1436,7 +1438,7 @@ msgstr "Ядро"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Последни промени за %s"
 
 msgid "Recent Changes for My Add-ons"
 msgstr ""
@@ -5757,7 +5759,7 @@ msgid "You can still submit this form, however only do so if you know it won't c
 msgstr ""
 
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Въведете готов отговор…"
 
 msgid "Tested on:"
 msgstr ""

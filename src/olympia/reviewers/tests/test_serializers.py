@@ -593,27 +593,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
         data = self.serialize()
         assert data['id'] == self.version.pk
 
-        assert data['compatibility'] == {
-            'firefox': {'max': u'*', 'min': u'50.0'}
-        }
-
         assert data['channel'] == 'listed'
-        assert data['edit_url'] == absolutify(self.addon.get_dev_url(
-            'versions.edit', args=[self.version.pk], prefix_only=True))
-        assert data['release_notes'] == {
-            'en-US': u'Release notes in english',
-            'fr': u'Notes de version en français',
-        }
-        assert data['license']
-        assert dict(data['license']) == {
-            'id': self.version.license.pk,
-            'is_custom': True,
-            'name': {'en-US': u'My License', 'fr': u'Mä Licence'},
-            'text': {
-                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
-            },
-            'url': 'http://license.example.com/',
-        }
         assert data['reviewed'] == (
             self.version.reviewed.replace(microsecond=0).isoformat() + 'Z')
 

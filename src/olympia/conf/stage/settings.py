@@ -123,3 +123,5 @@ VAMO_URL = 'https://versioncheck.allizom.org'
 
 EXTENSION_WORKSHOP_URL = env(
     'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.allizom.org')
+
+KINTO_API_URL = 'https://settings-writer.stage.mozaws.net/v1/'

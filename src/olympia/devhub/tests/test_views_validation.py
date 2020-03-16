@@ -168,6 +168,22 @@ class TestFileValidation(TestCase):
         assert self.client.login(email='reviewer@mozilla.com')
         assert self.client.head(self.json_url, follow=True).status_code == 200
 
+    def test_reviewer_tools_view_can_see_results(self):
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        self.grant_permission(
+            UserProfile.objects.get(email='regular@mozilla.com'),
+            'ReviewerTools:View')
+        assert self.client.head(self.url, follow=True).status_code == 200
+
+    def test_reviewer_tools_view_can_see_json_results(self):
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        self.grant_permission(
+            UserProfile.objects.get(email='regular@mozilla.com'),
+            'ReviewerTools:View')
+        assert self.client.head(self.json_url, follow=True).status_code == 200
+
     def test_reviewer_cannot_see_files_not_validated(self):
         file_not_validated = File.objects.get(pk=100400)
         json_url = reverse('devhub.json_file_validation',

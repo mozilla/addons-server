@@ -2,8 +2,6 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.shortcuts import redirect
-from django.views.decorators.cache import cache_page
-from django.views.i18n import JavaScriptCatalog
 from django.views.static import serve as serve_static
 
 from olympia.amo.urlresolvers import reverse
@@ -77,14 +75,6 @@ urlpatterns = [
 
     # Search
     url(r'^search/', include('olympia.search.urls')),
-
-    # Javascript translations.
-    # Should always be called with a cache-busting querystring.
-    # Still served for the moment, but superseded by a fully static version we
-    # generate at deploy-time through our generate_jsi18n_files command.
-    url(r'^jsi18n\.js$',
-        cache_page(60 * 60 * 24 * 365)(JavaScriptCatalog.as_view()),
-        {'domain': 'djangojs', 'packages': []}, name='jsi18n'),
 
     # API v3+.
     url(r'^api/', include('olympia.api.urls')),

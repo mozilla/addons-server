@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-01-19 18:00+0000\n"
-"Last-Translator: Ігор <igor.ck.ua@pm.me>\n"
+"PO-Revision-Date: 2020-01-19 17:52+0000\n"
+"Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -4339,7 +4339,7 @@ msgstr "Стежте за продуктивністю. Вимірюйте кі�
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr ""
-"Зберігайте свої улюблені матеріали в Інтернеті. Робіть вирізки веб-вмісту, наприклад, статей, відео, зображень та інших матеріалів, щоб зберігати й використовувати їх у власних проектах або для "
+"Зберігайте свої улюблені матеріали в Інтернеті. Робіть вирізки вебвмісту, наприклад, статей, відео, зображень та інших матеріалів, щоб зберігати й використовувати їх у власних проєктах або для "
 "співпраці в реальному часі."
 
 #. editorial content for the discovery pane.

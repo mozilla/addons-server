@@ -16,7 +16,7 @@ from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
-from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_ml_api
+from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_mad_api
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.users.models import (
@@ -282,7 +282,7 @@ class Validator(object):
             repack_fileupload.s(upload_pk),
             tasks.validate_upload.s(upload_pk, channel),
             tasks.check_for_api_keys_in_file.s(upload_pk),
-            chord(tasks_in_parallel, call_ml_api.s(upload_pk)),
+            chord(tasks_in_parallel, call_mad_api.s(upload_pk)),
             tasks.handle_upload_validation_result.s(upload_pk,
                                                     channel,
                                                     is_mozilla_signed)

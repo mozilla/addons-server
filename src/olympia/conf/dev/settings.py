@@ -124,3 +124,5 @@ FXA_SQS_AWS_QUEUE_URL = (
     'amo-account-change-dev')
 
 VAMO_URL = 'https://versioncheck-dev.allizom.org'
+
+KINTO_API_IS_TEST_SERVER = True

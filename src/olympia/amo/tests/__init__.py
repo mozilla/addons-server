@@ -576,7 +576,8 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     def change_channel_for_addon(self, addon, listed):
         channel = (amo.RELEASE_CHANNEL_LISTED if listed else
                    amo.RELEASE_CHANNEL_UNLISTED)
-        for version in addon.versions.all():
+        for version in addon.versions(
+                manager='unfiltered_for_relations').all():
             version.update(channel=channel)
 
     def _add_fake_throttling_action(

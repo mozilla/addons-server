@@ -180,7 +180,7 @@ class AllowAnyKindOfReviewer(BasePermission):
     alter add-on data.
 
     Allows access to users with any of those permissions:
-    - ReviewerTools:View
+    - ReviewerTools:View (if request is safe)
     - Addons:Review
     - Addons:ReviewUnlisted
     - Addons:ContentReview
@@ -190,7 +190,9 @@ class AllowAnyKindOfReviewer(BasePermission):
     See also any_reviewer_required() decorator.
     """
     def has_permission(self, request, view):
-        return acl.is_user_any_kind_of_reviewer(request.user)
+        allow_viewers = request.method in SAFE_METHODS
+        return acl.is_user_any_kind_of_reviewer(
+            request.user, allow_viewers=allow_viewers)
 
     def has_object_permission(self, request, view, obj):
         return self.has_permission(request, view)

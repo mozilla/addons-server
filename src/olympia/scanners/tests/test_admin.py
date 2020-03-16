@@ -1,4 +1,6 @@
 import json
+
+from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
@@ -113,16 +115,20 @@ class TestScannerResultAdmin(TestCase):
         )
         result = ScannerResult(version=version)
 
-        assert self.admin.formatted_addon(result) == (
-            '<a href="{}">{} (version: {})</a>'.format(
+        formatted_addon = self.admin.formatted_addon(result)
+        assert (
+            '<a href="{}">{}</a>'.format(
                 urljoin(
                     settings.EXTERNAL_SITE_URL,
                     reverse('reviewers.review', args=['listed', addon.id]),
                 ),
                 addon.name,
-                version.version,
-            )
+            ) in formatted_addon
         )
+        assert ('Version:</td><td>{}'.format(version.version) in
+                formatted_addon)
+        assert ('Channel:</td><td>{}'.format(version.get_channel_display()) in
+                formatted_addon)
 
     def test_formatted_unlisted_addon(self):
         addon = addon_factory()
@@ -131,16 +137,20 @@ class TestScannerResultAdmin(TestCase):
         )
         result = ScannerResult(version=version)
 
-        assert self.admin.formatted_addon(result) == (
-            '<a href="{}">{} (version: {})</a>'.format(
+        formatted_addon = self.admin.formatted_addon(result)
+        assert (
+            '<a href="{}">{}</a>'.format(
                 urljoin(
                     settings.EXTERNAL_SITE_URL,
                     reverse('reviewers.review', args=['unlisted', addon.id]),
                 ),
                 addon.name,
-                version.version,
-            )
+            ) in formatted_addon
         )
+        assert ('Version:</td><td>{}'.format(version.version) in
+                formatted_addon)
+        assert ('Channel:</td><td>{}'.format(version.get_channel_display()) in
+                formatted_addon)
 
     def test_formatted_addon_without_version(self):
         result = ScannerResult(version=None)
@@ -191,6 +201,13 @@ class TestScannerResultAdmin(TestCase):
         result = ScannerResult()
 
         assert self.admin.formatted_results(result) == '<pre>[]</pre>'
+
+    def test_formmatted_created(self):
+        created = datetime.now()
+        result = ScannerResult(created=created)
+
+        assert (self.admin.formatted_created(result) ==
+                created.strftime('%Y-%m-%d %H:%M:%S'))
 
     def test_formatted_matched_rules_with_files(self):
         version = addon_factory().current_version
@@ -260,7 +277,7 @@ class TestScannerResultAdmin(TestCase):
         assert response.status_code == 200
         html = pq(response.content)
         expected_length = ScannerResult.objects.count()
-        assert html('#result_list tbody tr').length == expected_length
+        assert html('#result_list tbody > tr').length == expected_length
         # The name of the deleted add-on should be displayed.
         assert str(deleted_addon.name) in html.text()
 
@@ -277,7 +294,7 @@ class TestScannerResultAdmin(TestCase):
             ('customs', '?scanner__exact=1'),
             ('wat', '?scanner__exact=2'),
             ('yara', '?scanner__exact=3'),
-            ('ml_api', '?scanner__exact=4'),
+            ('mad', '?scanner__exact=4'),
 
             ('All', '?has_matched_rules=all'),
             (' With matched rules only', '?'),
@@ -321,7 +338,7 @@ class TestScannerResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-formatted_matched_rules').text() == 'bar, hello'
 
     def test_list_default(self):
@@ -354,7 +371,7 @@ class TestScannerResultAdmin(TestCase):
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         html = pq(response.content)
-        assert html('#result_list tbody tr').length == 1
+        assert html('#result_list tbody > tr').length == 1
 
     def test_list_can_show_all_entries(self):
         # Create one entry without matches
@@ -384,7 +401,7 @@ class TestScannerResultAdmin(TestCase):
         assert response.status_code == 200
         html = pq(response.content)
         expected_length = ScannerResult.objects.count()
-        assert html('#result_list tbody tr').length == expected_length
+        assert html('#result_list tbody > tr').length == expected_length
 
     def test_handle_true_positive(self):
         # Create one entry with matches
@@ -411,7 +428,7 @@ class TestScannerResultAdmin(TestCase):
         # filters should hide the result (because its state is not UNKNOWN
         # anymore).
         html = pq(response.content)
-        assert html('#result_list tbody tr').length == 0
+        assert html('#result_list tbody > tr').length == 0
         # A confirmation message should also appear.
         assert html('.messagelist .info').length == 1
 
@@ -548,7 +565,7 @@ class TestScannerResultAdmin(TestCase):
         # The action should redirect to the list view and the default list
         # filters should show the result (because its state is UNKNOWN again).
         html = pq(response.content)
-        assert html('#result_list tbody tr').length == 1
+        assert html('#result_list tbody > tr').length == 1
         # A confirmation message should also appear.
         assert html('.messagelist .info').length == 1
 
@@ -667,7 +684,7 @@ class TestScannerResultAdmin(TestCase):
         result.refresh_from_db()
         assert result.state == INCONCLUSIVE
         html = pq(response.content)
-        assert html('#result_list tbody tr').length == 0
+        assert html('#result_list tbody > tr').length == 0
         # A confirmation message should also appear.
         assert html('.messagelist .info').length == 1
 
@@ -1176,7 +1193,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-formatted_matched_rules').text() == 'bar'
 
     def test_list_filter_channel(self):
@@ -1194,7 +1211,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == unlisted_addon.guid
 
         response = self.client.get(self.list_url, {
@@ -1202,7 +1219,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == addon.guid
 
     def test_list_filter_addon_status(self):
@@ -1218,7 +1235,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == incomplete_addon.guid
 
         response = self.client.get(self.list_url, {
@@ -1226,7 +1243,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == deleted_addon.guid
 
     def test_list_filter_addon_visibility(self):
@@ -1242,7 +1259,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == invisible_addon.guid
 
         response = self.client.get(self.list_url, {
@@ -1250,7 +1267,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == visible_addon.guid
 
     def test_list_filter_file_status(self):
@@ -1268,7 +1285,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == addon_disabled_file.guid
 
         response = self.client.get(self.list_url, {
@@ -1276,7 +1293,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == addon_approved_file.guid
 
     def test_list_filter_file_is_signed(self):
@@ -1292,7 +1309,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == signed_addon.guid
 
         response = self.client.get(self.list_url, {
@@ -1300,7 +1317,7 @@ class TestScannerQueryResultAdmin(TestCase):
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 1
+        assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == unsigned_addon.guid
 
     def test_change_page(self):

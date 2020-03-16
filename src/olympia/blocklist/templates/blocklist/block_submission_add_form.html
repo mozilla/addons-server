@@ -2,7 +2,7 @@
 {% load i18n admin_urls static admin_modify %}
 
 {% block extrahead %}{{ block.super }}
-<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+<script type="text/javascript" src="{% static 'js/i18n/en-US.js' %}"></script>
 {{ media }}
 {% endblock %}
 
@@ -68,6 +68,15 @@
     <div class="form-row">
       {{ form.non_field_errors }}
     </div>
+    {% endif %}
+    {% if is_imported_from_kinto_regex %}
+      <p class="errornote regexlegacywarning">
+        {% trans "The following block(s) were imported from a regex based legacy kinto Block." %}
+        {% trans "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui." %}
+        {% for guid in is_imported_from_kinto_regex %}
+          {{ guid }}
+        {% endfor %}
+      </p>
     {% endif %}
     <div class="form-row">
       <div>

@@ -196,7 +196,7 @@ class TestReviewHelperBase(TestCase):
 
     def setup_data(self, status, file_status=amo.STATUS_AWAITING_REVIEW,
                    channel=amo.RELEASE_CHANNEL_LISTED,
-                   content_review_only=False, type=amo.ADDON_EXTENSION):
+                   content_review=False, type=amo.ADDON_EXTENSION):
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
         self.addon.update(status=status, type=type)
@@ -205,7 +205,7 @@ class TestReviewHelperBase(TestCase):
             self.make_addon_unlisted(self.addon)
             self.version.reload()
             self.file.reload()
-        self.helper = self.get_helper(content_review_only=content_review_only)
+        self.helper = self.get_helper(content_review=content_review)
         data = self.get_data().copy()
         self.helper.set_data(data)
 
@@ -218,10 +218,10 @@ class TestReviewHelperBase(TestCase):
             'info_request': self.addon.pending_info_request
         }
 
-    def get_helper(self, content_review_only=False):
+    def get_helper(self, content_review=False):
         return ReviewHelper(
             request=self.request, addon=self.addon, version=self.version,
-            content_review_only=content_review_only)
+            content_review=content_review)
 
     def setup_type(self, status):
         self.addon.update(status=status)
@@ -243,11 +243,11 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_no_request(self):
         self.request = None
         helper = self.get_helper()
-        assert helper.content_review_only is False
+        assert helper.content_review is False
         assert helper.actions == {}
 
-        helper = self.get_helper(content_review_only=True)
-        assert helper.content_review_only is True
+        helper = self.get_helper(content_review=True)
+        assert helper.content_review is True
         assert helper.actions == {}
 
     def test_type_nominated(self):
@@ -281,6 +281,8 @@ class TestReviewHelper(TestReviewHelperBase):
             self.helper.process()
 
     def test_process_action_good(self):
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.helper = self.get_helper()
         self.helper.set_data({'action': 'reply', 'comments': 'foo'})
         self.helper.process()
         assert len(mail.outbox) == 1
@@ -294,28 +296,33 @@ class TestReviewHelper(TestReviewHelperBase):
                 assert str(v['details']), "Missing details for: %s" % k
 
     def get_review_actions(
-            self, addon_status, file_status, content_review_only=False):
+            self, addon_status, file_status, content_review=False):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
         # Need to clear self.version.all_files cache since we updated the file.
         if self.version:
             del self.version.all_files
-        return self.get_helper(content_review_only=content_review_only).actions
+        return self.get_helper(content_review=content_review).actions
 
     def test_actions_full_nominated(self):
-        expected = ['public', 'reject', 'reply', 'super', 'comment']
+        self.grant_permission(self.request.user, 'Addons:Review')
+        expected = ['public', 'reject', 'reject_multiple_versions', 'reply',
+                    'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_NOMINATED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
 
     def test_actions_full_update(self):
-        expected = ['public', 'reject', 'reply', 'super', 'comment']
+        self.grant_permission(self.request.user, 'Addons:Review')
+        expected = ['public', 'reject', 'reject_multiple_versions', 'reply',
+                    'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
 
     def test_actions_full_nonpending(self):
-        expected = ['reply', 'super', 'comment']
+        self.grant_permission(self.request.user, 'Addons:Review')
+        expected = ['reject_multiple_versions', 'reply', 'super', 'comment']
         f_statuses = [amo.STATUS_APPROVED, amo.STATUS_DISABLED]
         for file_status in f_statuses:
             assert list(self.get_review_actions(
@@ -345,7 +352,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED,
-            content_review_only=True).keys()) == expected
+            content_review=True).keys()) == expected
 
     def test_actions_content_review_non_approved_addon(self):
         # Content reviewers can also see add-ons before they are approved for
@@ -356,7 +363,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_NOMINATED,
             file_status=amo.STATUS_AWAITING_REVIEW,
-            content_review_only=True).keys()) == expected
+            content_review=True).keys()) == expected
 
     def test_actions_public_static_theme(self):
         # Having Addons:PostReview and dealing with a public add-on would
@@ -364,6 +371,14 @@ class TestReviewHelper(TestReviewHelperBase):
         # action, but it should not be available for static themes.
         self.grant_permission(self.request.user, 'Addons:PostReview')
         self.addon.update(type=amo.ADDON_STATICTHEME)
+        expected = []
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # Themes reviewers get access to everything.
+        self.request.user.groupuser_set.all().delete()
+        self.grant_permission(self.request.user, 'Addons:ThemeReview')
         expected = ['public', 'reject', 'reply', 'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
@@ -372,7 +387,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_no_version(self):
         """Deleted addons and addons with no versions in that channel have no
         version set."""
-        expected = ['comment']
+        expected = []
         self.version = None
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
@@ -1126,7 +1141,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_auto_approved_admin_content_review(self):
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
-                        content_review_only=True)
+                        content_review=True)
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.helper.handler.process_super_review()
@@ -1347,7 +1362,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.version = version_factory(addon=self.addon, version='3.0')
         self.setup_data(
             amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
-            content_review_only=True)
+            content_review=True)
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
@@ -1384,7 +1399,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
         self.setup_data(
             amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
-            content_review_only=True)
+            content_review=True)
         summary = AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED)
         self.create_paths()
