@@ -64,28 +64,22 @@ class KintoServer(object):
                 raise ConnectionError('Kinto account not created')
 
     def setup_test_server_collection(self):
-        # check if the bucket and collection exist
-        host = settings.KINTO_API_URL
-        url = (
-            f'{host}buckets/{self.bucket}/'
-            f'collections/{self.collection}/records')
+        # check if the bucket exists
+        bucket_url = f'{settings.KINTO_API_URL}buckets/{self.bucket}'
         headers = self.headers
-        response = requests.get(url, headers=headers)
+        response = requests.get(bucket_url, headers=headers)
         if response.status_code == 403:
             # lets create them
             data = {'permissions': {'read': ["system.Everyone"]}}
             log.info(
                 'Creating kinto bucket %s and collection %s' %
                 (self.bucket, self.collection))
-            response = requests.put(
-                f'{host}buckets/{self.bucket}',
-                json=data,
-                headers=headers)
-            response = requests.put(
-                f'{host}buckets/{self.bucket}/collections/{self.collection}',
-                json=data,
-                headers=headers)
-
+            response = requests.put(bucket_url, json=data, headers=headers)
+        # and the collection
+        collection_url = f'{bucket_url}/collections/{self.collection}'
+        response = requests.get(collection_url, headers=headers)
+        if response.status_code == 404:
+            response = requests.put(collection_url, json=data, headers=headers)
             if response.status_code != 201:
                 log.error(
                     'Creating collection %s/%s failed: %s' %
