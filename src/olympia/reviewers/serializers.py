@@ -407,11 +407,11 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         parent = self.context['parent_version']
         selected_file = self.get_selected_file(obj)
 
-        validation_objects = FileValidation.objects.filter(file_id__in=(
-            (obj.pk, parent.current_file.pk)))
-
-        for validation in validation_objects:
-            data = json.loads(validation.validation)
+        for file in [parent.current_file, obj]:
+            try:
+                data = json.loads(file.validation.validation)
+            except FileValidation.DoesNotExist:
+                continue
 
             prop = 'unknownMinifiedFiles'
             minified_files = data.get('metadata', {}).get(prop, [])
