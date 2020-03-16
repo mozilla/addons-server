@@ -169,6 +169,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string file.content: Raw content of the requested file.
     :>json string file.selected_file: The selected file, either from the ``file`` parameter or the default (manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines).
     :>json string|null file.download_url: The download url of the selected file or ``null`` in case of a directory.
+    :>json boolean uses_unknown_minified_code: Indicates that the selected file could be using minified code.
     :>json array file.entries[]: The complete file-tree of the extracted XPI.
     :>json int file.entries[].depth: Level of folder-tree depth, starting with 0.
     :>json string file.entries[].filename: The filename of the file.
@@ -214,6 +215,7 @@ This endpoint allows you to compare two Add-on versions with each other.
     :>json int|null file.entries[].size: The size in bytes.
     :>json string|null file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.
     :>json object|null diff: See the following output with inline comments for a complete description.
+    :>json boolean uses_unknown_minified_code: Indicates that the selected file in either the current or the parent version could be using minified code.
 
     Git patch we're talking about:
 
