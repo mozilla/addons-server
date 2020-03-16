@@ -313,13 +313,35 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     def authors(self, obj):
         if not obj.version:
             return '-'
+
+        authors = obj.version.addon.authors.all()
         contents = format_html_join(
-            '', '<li><a href="{}">{}</a></li>',
-            ((urljoin(
+            '',
+            '<li><a href="{}">{}</a></li>',
+            (
+                (
+                    urljoin(
+                        settings.EXTERNAL_SITE_URL,
+                        reverse(
+                            'admin:users_userprofile_change', args=(author.pk,)
+                        ),
+                    ),
+                    author.email,
+                )
+                for author in authors
+            ),
+        )
+        return format_html(
+            '<ul>{}</ul>'
+            '<br>'
+            '[<a href="{}?authors={}">Other add-ons by these authors</a>]',
+            contents,
+            urljoin(
                 settings.EXTERNAL_SITE_URL,
-                reverse('admin:users_userprofile_change', args=(author.pk,))),
-             author.email) for author in obj.version.addon.authors.all()))
-        return format_html('<ul>{}</ul>', contents)
+                reverse('admin:addons_addon_changelist'),
+            ),
+            ','.join(str(author.pk) for author in authors),
+        )
 
     def guid(self, obj):
         if obj.version:

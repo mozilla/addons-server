@@ -1103,10 +1103,12 @@ class TestScannerQueryResultAdmin(TestCase):
         html = pq(response.content)
         assert html('.field-formatted_addon').length == 1
         authors = html('.field-authors a')
-        assert authors.length == 2
-        result = sorted(
-            (a.text, a.attrib['href']) for a in html('.field-authors a')
-        )
+        assert authors.length == 3
+        authors_links = list((a.text, a.attrib['href']) for a in
+                             html('.field-authors a'))
+        # Last link should point to the addons model.
+        link_to_addons = authors_links.pop()
+        result = sorted(authors_links)
         expected = sorted(
             (user.email, '%s%s' % (
                 settings.EXTERNAL_SITE_URL,
@@ -1114,6 +1116,11 @@ class TestScannerQueryResultAdmin(TestCase):
             for user in addon.authors.all()
         )
         assert result == expected
+        assert 'Other add-ons' in link_to_addons[0]
+        expected_querystring = '?authors={}'.format(
+            ','.join(str(author.pk) for author in addon.authors.all())
+        )
+        assert expected_querystring in link_to_addons[1]
 
     def test_list_view_no_query_permissions(self):
         rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)
