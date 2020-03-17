@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-16 23:51+0000\n"
+"PO-Revision-Date: 2020-03-16 23:55+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3338,9 +3338,8 @@ msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} sekme özelleştirme"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Choose the page you see every time you open a new tab."
-msgstr "Yeni bir sekme açtığınızda gördüğünüz sayfayı ayarlayın."
+msgstr "Yeni sekme açtığınızda göreceğiniz sayfayı ayarlayın."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3602,7 +3601,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Belirlediğiniz zaman aralığına göre sekmeler otomatik olarak tazelensin."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3659,7 +3658,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Video hızını ve daha fazlasını ayarlayarak izleme deneyiminizi geliştirin."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4980,7 +4979,7 @@ msgid "Help improve this website. It's open source, and you can file bugs and su
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "Eklentilerle ilgileniyorsanız ama teknik bilginiz yeterli değilse yine de yardımcı olabileceğiniz yollar var:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
 msgstr "Arkadaşlarına söyleyin! İnsanlara hangi eklentileri kullandığınızı gösterin."
@@ -4990,7 +4989,7 @@ msgid "Participate in our <a href=\"%(url)s\">forums</a>."
 msgstr "<a href=\"%(url)s\">%(name)s</a> altında yayımlanmış"
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "Sitedeki eklentilere inceleme yazın. Eklenti geliştiricileri, çalışmalarının takdir edildiğini bilirlerse yeni eklentiler yazmaları ve eklentilerini iyileştirmeleri daha olasıdır."
 
 msgid "I have a question"
 msgstr "Bir sorum var"
@@ -5030,7 +5029,7 @@ msgid "Do:"
 msgstr "Bunları yapın:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Eklentiyle ilgili deneyiminizi bir arkadaşınıza anlatıyormuş gibi yazın."
 
 msgid "Keep reviews concise and easy to understand."
 msgstr "İncelemeleriniz kısa ve anlaşılması kolay olsun."
@@ -5076,16 +5075,16 @@ msgid "Use profanity, sexual language or language that can be construed as hatef
 msgstr "Küfür, cinsellikle ilgili veya nefret dolu olarak yorumlanabilecek bir dil kullanmak."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "HTML, bağlantı, kaynak kodu veya kod parçaları eklemeyin. İncelemeler düz metin olmalıdır."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Gerçek olmayan şeyleri yazmayın, eklenti geliştiricilerini küçümsemeyin ve onlara hakaret etmeyin."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "Kendinizin veya başkasının e-posta adresini, telefon numarasını veya diğer kişisel bilgilerini yazmayın."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "Kendinizin veya şirketinizin geliştirdiği veya temsil ettiği eklentiler için inceleme yazmayın."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
@@ -5885,7 +5884,7 @@ msgid "No reviews found for this period."
 msgstr ""
 
 msgid "Method:"
-msgstr ""
+msgstr "Yöntem:"
 
 #, fuzzy
 msgid "Source:"
@@ -5980,9 +5979,9 @@ msgstr ""
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Geçersiz sürüm aralığı."
+msgstr "Geçersiz \"%s\" parametresi."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
@@ -6019,11 +6018,11 @@ msgid "You cannot add versions to an addon that has status: %s."
 msgstr ""
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Sürüm, manifest dosyasıyla eşleşmiyor."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr "Sürüm hâlihazırda mevcut."
+msgstr "Sürüm zaten mevut. En son sürüm: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr ""
@@ -6102,9 +6101,8 @@ msgstr "İstatistik Panosu"
 
 # 81%
 # 100%
-#, fuzzy
 msgid "Controls:"
-msgstr "Katkıda Bulunan"
+msgstr "Kontroller:"
 
 msgid "reset zoom"
 msgstr "yakınlaşmayı sıfırla"
@@ -6388,9 +6386,8 @@ msgstr "Seçilen kullanıcıları engelle"
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr ""
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "API Anahtarlarını Yönet"
+msgstr "API anahtarını sıfırla"
 
 msgid "Profile Photo"
 msgstr "Profil Resmi"
@@ -6410,9 +6407,8 @@ msgstr ""
 msgid "No user with that email."
 msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
 
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Android İçin Firefox"
+msgstr ""
 
 msgid "My Mobile Add-ons"
 msgstr "Mobil eklentilerim"
@@ -6478,13 +6474,11 @@ msgstr "Mozilla'nın eklentim hakkında benle iletişim kurması gerekiyor"
 msgid "User Notifications"
 msgstr "Kullanıcı Bildirimleri"
 
-#, fuzzy
 msgid "Ban"
-msgstr "ve"
+msgstr "Engelle"
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Kullanıcı resmimi sil"
+msgstr "Resmi sil"
 
 msgctxt "user_list_others"
 msgid "others"
