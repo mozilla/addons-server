@@ -24,7 +24,11 @@
   float: none;
 }
 
-.field-matching_filenames ul, .field-authors ul {
+.field-matching_filenames ul,
+.field-authors ul,
+/* This rule is for the change page. */
+.aligned .field-authors ul
+{
     display: block;
     margin: 0;
     padding: 0;
