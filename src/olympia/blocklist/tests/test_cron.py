@@ -28,7 +28,7 @@ def test_upload_mlbf_to_kinto(publish_mock, get_mlbf_key_format_mock):
 
     publish_mock.assert_called_with(
         {'key_format': key_format,
-         'last_version_time':
+         'generation_time':
             datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000},
         ('filter.bin', mock.ANY, 'application/octet-stream'))
 
