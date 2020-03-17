@@ -22,6 +22,13 @@ def upload_mlbf_to_kinto():
         KINTO_BUCKET, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
     stats = {}
     key_format = get_mlbf_key_format()
+    # This timestamp represents the point in time when all previous addon
+    # guid + versions and blocks were used to generate the bloomfilter.
+    # An add-on version/file from before this time will definitely be accounted
+    # for in the bloomfilter so we can reliably assert if it's blocked or not.
+    # An add-on version/file from after this time can't be reliably asserted -
+    # there may be false positives or false negatives.
+    # https://github.com/mozilla/addons-server/issues/13695
     generation_time = int(time.time() * 1000)
     bloomfilter = generate_mlbf(stats, key_format)
     with tempfile.NamedTemporaryFile() as filter_file:
