@@ -197,7 +197,7 @@ class AddonAdmin(admin.ModelAdmin):
         response = super(AddonAdmin, self).change_view(
             request, object_id, form_url, extra_context=extra_context
         )
-        if request.method == 'GET':
+        if response.status_code == 200:
             obj = response.context_data.get('original', None)
             response.context_data.update(
                 {
