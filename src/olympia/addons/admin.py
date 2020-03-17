@@ -214,7 +214,6 @@ class AddonAdmin(admin.ModelAdmin):
                                           add=add, change=change,
                                           form_url=form_url, obj=obj)
 
-
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
         if 'status' in form.changed_data:
