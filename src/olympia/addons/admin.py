@@ -203,10 +203,10 @@ class AddonAdmin(admin.ModelAdmin):
             {
                 'has_listed_versions': obj.has_listed_versions(
                     include_deleted=True
-                ),
+                ) if obj else False,
                 'has_unlisted_versions': obj.has_unlisted_versions(
                     include_deleted=True
-                )
+                ) if obj else False
             }
         )
 
