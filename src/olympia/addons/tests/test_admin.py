@@ -149,9 +149,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
-        assert 'Reviewer Tools (listed)' in response.content.decode('utf-8')
-        assert ('Reviewer Tools (unlisted)' not in
-                response.content.decode('utf-8'))
+        assert b'Reviewer Tools (listed)' in response.content
+        assert b'Reviewer Tools (unlisted)' not in response.content
 
     def test_show_link_to_reviewer_tools_unlisted(self):
         version_kw = {'channel': amo.RELEASE_CHANNEL_UNLISTED}
@@ -162,9 +161,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
-        assert ('Reviewer Tools (listed)' not in
-                response.content.decode('utf-8'))
-        assert 'Reviewer Tools (unlisted)' in response.content.decode('utf-8')
+        assert b'Reviewer Tools (listed)' not in response.content
+        assert b'Reviewer Tools (unlisted)' in response.content
 
     def test_show_links_to_reviewer_tools_with_both_channels(self):
         addon = addon_factory(guid='@foo')
@@ -176,8 +174,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
-        assert 'Reviewer Tools (listed)' in response.content.decode('utf-8')
-        assert 'Reviewer Tools (unlisted)' in response.content.decode('utf-8')
+        assert b'Reviewer Tools (listed)' in response.content
+        assert b'Reviewer Tools (unlisted)' in response.content
 
     def test_can_not_list_without_addons_edit_permission(self):
         addon = addon_factory()
