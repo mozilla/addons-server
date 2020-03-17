@@ -379,7 +379,8 @@ class TestReviewHelper(TestReviewHelperBase):
         # Themes reviewers get access to everything.
         self.request.user.groupuser_set.all().delete()
         self.grant_permission(self.request.user, 'Addons:ThemeReview')
-        expected = ['public', 'reject', 'reply', 'super', 'comment']
+        expected = ['public', 'reject', 'reject_multiple_versions',
+                    'reply', 'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected

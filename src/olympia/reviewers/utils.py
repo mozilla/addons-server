@@ -386,6 +386,7 @@ class ReviewHelper(object):
                 is_appropriate_reviewer or
                 (acl.action_allowed_user(
                     request.user, amo.permissions.ADDONS_POST_REVIEW) and
+                 self.addon.type != amo.ADDON_STATICTHEME and
                  not is_admin_needed)
             )
 
@@ -467,7 +468,6 @@ class ReviewHelper(object):
                          'versions. The comments will be sent to the '
                          'developer.'),
             'available': (
-                self.addon.type != amo.ADDON_STATICTHEME and
                 addon_is_valid_and_version_is_listed and
                 can_reject_multiple
             ),
