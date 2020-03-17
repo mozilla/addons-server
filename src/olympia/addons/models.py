@@ -510,10 +510,10 @@ class Addon(OnChangeMixin, ModelBase):
         self.disable_all_files()
 
     def force_enable(self):
-        activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_APPROVED)
+        activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_INCOMPLETE)
         log.info('Addon "%s" status changed to: %s',
-                 self.slug, amo.STATUS_APPROVED)
-        self.update(status=amo.STATUS_APPROVED)
+                 self.slug, amo.STATUS_INCOMPLETE)
+        self.update(status=amo.STATUS_INCOMPLETE)
         # Call update_status() to fix the status if the add-on is not actually
         # in a state that allows it to be public.
         self.update_status()
