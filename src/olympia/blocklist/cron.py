@@ -1,5 +1,6 @@
 import json
 import tempfile
+import time
 
 import waffle
 
@@ -21,12 +22,15 @@ def upload_mlbf_to_kinto():
         KINTO_BUCKET, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
     stats = {}
     key_format = get_mlbf_key_format()
+    last_version_time = int(time.time() * 1000)
     bloomfilter = generate_mlbf(stats, key_format)
     with tempfile.NamedTemporaryFile() as filter_file:
         bloomfilter.tofile(filter_file)
         filter_file.seek(0)
-        # TODO: sign filter blob
-        data = {'key_format': key_format}
+        data = {
+            'key_format': key_format,
+            'last_version_time': last_version_time,
+        }
         attachment = ('filter.bin', filter_file, 'application/octet-stream')
         server.publish_attachment(data, attachment)
     server.complete_session()
