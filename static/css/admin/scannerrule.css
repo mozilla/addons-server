@@ -1,5 +1,10 @@
 /* note: this is shared between scannerrule and scannerqueryrule admins */
 
 .model-scannerqueryrule.hide-action-buttons .field-state_with_actions button {
+    /* 
+    Hide query rule action buttons if user has no permission (through class set
+    on body by the change view/list template). We use visibility: hidden so
+    that the view looks the same for people with or without the buttons
+    */
     visibility: hidden;
 }
