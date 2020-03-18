@@ -7,7 +7,7 @@ from olympia.blocklist.serializers import BlockSerializer
 class TestBlockViewSet(TestCase):
     def setUp(self):
         self.block = Block.objects.create(
-            guid='foo@baa',
+            guid='foo@baa.com',
             min_version='45',
             reason='something happened',
             url='https://goo.gol',
