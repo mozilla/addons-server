@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-02 22:56+0000\n"
+"PO-Revision-Date: 2020-03-18 23:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1498,9 +1498,8 @@ msgstr "Chuwäch najäl ri ach'ab'äl k'o wi, k'o chi k'o jun rub'i', jun ch'uti
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Jun b'anel xa xe tikirel nicholajïx jumul."
+msgstr "Jun b'anel xa xe tikirel nik'ut jumul."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
@@ -1610,9 +1609,8 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Man tikirel ta yejal ri taq ruwäch toq ri atz'aqat ya'on ruq'ij."
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Man okel ta yakb'äl."
+msgstr "Man okel ta o itzelanel tz'aqat yakb'äl."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Xilitäj ri API ewan atzij richin b'anonel pa ri yakb'äl xtaq. Richin nichajïx ri rub'i' ataqoya'l, xtiyuj ri ewan tzij."
@@ -1820,9 +1818,8 @@ msgstr "Tik'ul"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "o <a href=\"{0}\">Tiq'at</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Ch'aqa' chik etamab'äl chi rij ri taq Ruya'öl Q'ij Creative Commons"
+msgstr "Ch'aqa' chik etamab'äl chi rij ri Rub'i' Kitaqoya'l B'anonela'"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -1838,9 +1835,8 @@ msgstr "<small>Tz'aqat</small> Rochoch B'anonel"
 msgid "more add-ons..."
 msgstr "ch'aqa' chik tz'aqat..."
 
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Taq k'amal"
+msgstr "Tijonïk richin K'amal"
 
 msgid "Documentation"
 msgstr "Yaköl wuj"
@@ -1851,9 +1847,8 @@ msgstr "Kib'anik K'amal"
 msgid "Themes"
 msgstr "Taq wachinel"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Kitzijol B'anonela'"
+msgstr "Kina'ojil B'anonela'"
 
 msgid "Add-on Validator"
 msgstr "Rujikib'anel Tz'aqat"
