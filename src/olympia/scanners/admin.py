@@ -574,6 +574,9 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     )
     readonly_fields = ('created', 'modified', 'matched_results_link')
 
+    class Media:
+        css = {'all': ('css/admin/scannerrule.css',)}
+
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)
         if not self.has_change_permission(request, obj):
@@ -675,6 +678,22 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         'completion_rate', 'created', 'modified', 'matched_results_link',
         'state_with_actions',
     )
+
+    def change_view(self, request, *args, **kwargs):
+        kwargs['extra_context'] = kwargs.get('extra_context') or {}
+        kwargs['extra_context']['hide_action_buttons'] = (
+            not acl.action_allowed(
+                request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+        )
+        return super().change_view(request, *args, **kwargs)
+
+    def changelist_view(self, request, *args, **kwargs):
+        kwargs['extra_context'] = kwargs.get('extra_context') or {}
+        kwargs['extra_context']['hide_action_buttons'] = (
+            not acl.action_allowed(
+                request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+        )
+        return super().changelist_view(request, *args, **kwargs)
 
     def has_change_permission(self, request, obj=None):
         if obj and obj.state != NEW:

@@ -818,6 +818,30 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         ScannerQueryRule.objects.create(name='bar', scanner=YARA)
         response = self.client.get(self.list_url)
         assert response.status_code == 200
+        doc = pq(response.content)
+        classes = set(doc('body')[0].attrib['class'].split())
+        expected_classes = set([
+            'app-scanners',
+            'model-scannerqueryrule',
+            'change-list',
+        ])
+        assert classes == expected_classes
+
+    def test_list_view_viewer(self):
+        self.user.groupuser_set.all().delete()
+        self.grant_permission(self.user, 'Admin:ScannersQueryView')
+        ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        classes = set(doc('body')[0].attrib['class'].split())
+        expected_classes = set([
+            'app-scanners',
+            'model-scannerqueryrule',
+            'change-list',
+            'hide-action-buttons'
+        ])
+        assert classes == expected_classes
 
     def test_list_view_is_restricted(self):
         user = user_factory()
@@ -837,6 +861,13 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
+        classes = set(doc('body')[0].attrib['class'].split())
+        expected_classes = set([
+            'app-scanners',
+            'model-scannerqueryrule',
+            'change-form',
+        ])
+        assert classes == expected_classes
         link = doc('.field-matched_results_link a')
         assert link
         results_list_url = reverse(
@@ -849,6 +880,24 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
 
         link_response = self.client.get(expected_href)
         assert link_response.status_code == 200
+
+    def test_change_view_viewer(self):
+        self.user.groupuser_set.all().delete()
+        self.grant_permission(self.user, 'Admin:ScannersQueryView')
+        rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        url = reverse(
+            'admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        classes = set(doc('body')[0].attrib['class'].split())
+        expected_classes = set([
+            'app-scanners',
+            'model-scannerqueryrule',
+            'change-form',
+            'hide-action-buttons',
+        ])
+        assert classes == expected_classes
 
     def test_create_view_doesnt_contain_link_to_results(self):
         url = reverse('admin:scanners_scannerqueryrule_add')
@@ -995,7 +1044,7 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
 
     def test_run_action_no_permission(self):
         user = user_factory()
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, 'Admin:ScannersQueryView')
         self.client.login(email=user.email)
         rule = ScannerQueryRule.objects.create(
             name='bar', scanner=YARA, state=NEW)
@@ -1044,7 +1093,7 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
 
     def test_abort_action_no_permission(self):
         user = user_factory()
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, 'Admin:ScannersQueryView')
         self.client.login(email=user.email)
         rule = ScannerQueryRule.objects.create(
             name='bar', scanner=YARA, state=RUNNING)
