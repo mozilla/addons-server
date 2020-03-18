@@ -57,8 +57,8 @@ class TestImportBlocklist(TestCase):
         assert Block.objects.count() == 3
         blocks = list(Block.objects.all())
         this_block = blocklist_json['data'][0]
-        assert blocks[0].guid == '_qdNembers_@exmys.myysarch.com'
-        assert blocks[1].guid == '_dqMNemberstst_@www.dowespedtgttest.com'
+        assert blocks[0].guid == '_dqMNemberstst_@www.dowespedtgttest.com'
+        assert blocks[1].guid == '_qdNembers_@exmys.myysarch.com'
         assert blocks[2].guid == '{90ac2d06-caf8-46b9-5325-59c82190b687}'
         # the rest of the metadata should be the same
         for block in blocks:
@@ -156,8 +156,8 @@ class TestImportBlocklist(TestCase):
         assert Block.objects.count() == 2
         blocks = list(Block.objects.all())
         this_block = blocklist_json['data'][3]
-        assert blocks[0].guid == addon1.guid
-        assert blocks[1].guid == addon2.guid
+        assert blocks[0].guid == addon2.guid
+        assert blocks[1].guid == addon1.guid
         # the rest of the metadata should be the same
         for block in blocks:
             assert block.url == this_block['details']['bug']
