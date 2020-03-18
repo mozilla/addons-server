@@ -15,6 +15,8 @@
                          type="submit">{% trans "Ban" %}</button>
                  <button formaction="{% url 'admin:users_userprofile_reset_api_key' original.pk|admin_urlquote %}"
                          type="submit">{% trans "Reset API Key" %}</button>
+                 <button formaction="{% url 'admin:users_userprofile_reset_session' original.pk|admin_urlquote %}"
+                         type="submit">{% trans "Reset session(s)" %}</button>
              {% endif %}
              <button formaction="{% url 'admin:users_userprofile_delete_picture' original.pk|admin_urlquote %}"
                      type="submit">{% trans "Delete picture" %}</button>
