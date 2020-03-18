@@ -1,0 +1,5 @@
+/* note: this is shared between scannerrule and scannerqueryrule admins */
+
+.model-scannerqueryrule.hide-action-buttons .field-state_with_actions button {
+    visibility: hidden;
+}
