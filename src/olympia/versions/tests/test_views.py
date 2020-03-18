@@ -125,12 +125,14 @@ class TestDownloadsBase(TestCase):
                 host, self.addon.id, urlquote(file_.filename)
             ), filehash=file_.hash))
         assert response['X-Target-Digest'] == file_.hash
+        assert response['Access-Control-Allow-Origin'] == '*'
 
     def assert_served_internally(self, response, guarded=True):
         assert response.status_code == 200
         file_path = (self.file.guarded_file_path if guarded else
                      self.file.file_path)
         assert response[settings.XSENDFILE_HEADER] == file_path
+        assert response['Access-Control-Allow-Origin'] == '*'
 
     def assert_served_locally(self, response, file_=None, attachment=False):
         path = user_media_url('addons')
