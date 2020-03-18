@@ -12,7 +12,7 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.users.utils import get_task_user
 
-from .models import Block, BlockSubmission, KintoImport
+from .models import Block, BLSubmission, KintoImport
 from .utils import block_activity_log_save
 
 
@@ -24,12 +24,12 @@ bracket_close_regex = re.compile(r'(?<!\\)}')
 
 @task
 @use_primary_db
-def process_blocksubmission(multi_block_submit_id, **kw):
-    obj = BlockSubmission.objects.get(pk=multi_block_submit_id)
-    if obj.action == BlockSubmission.ACTION_ADDCHANGE:
+def process_blsubmission(multi_block_submit_id, **kw):
+    obj = BLSubmission.objects.get(pk=multi_block_submit_id)
+    if obj.action == BLSubmission.ACTION_ADDCHANGE:
         # create the blocks from the guids in the multi_block
         obj.save_to_block_objects()
-    elif obj.action == BlockSubmission.ACTION_DELETE:
+    elif obj.action == BLSubmission.ACTION_DELETE:
         # delete the blocks
         obj.delete_block_objects()
 

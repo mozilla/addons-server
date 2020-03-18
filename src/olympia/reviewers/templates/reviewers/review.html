@@ -246,11 +246,11 @@
                   id="force_enable_addon" type="button">{{ _('Force-enable add-on') }}</button>
         </li>
         <li>
-        {% if addon.blocksubmission %}
-          <a href="{{ url('admin:blocklist_blocksubmission_change', addon.blocksubmission.id) }}" class="button"
-                  id="edit_addon_blocksubmission" type="button">{{ _('View Block Submission') }}</a>
+        {% if addon.blsubmission %}
+          <a href="{{ url('admin:blocklist_blsubmission_change', addon.blsubmission.id) }}" class="button"
+                  id="edit_addon_blsubmission" type="button">{{ _('View Blocklist Submission') }}</a>
         {% elif not addon.block %}
-          <a href="{{ url('admin:blocklist_blocksubmission_add') }}?guids={{ addon.guid }}" class="button"
+          <a href="{{ url('admin:blocklist_blsubmission_add') }}?guids={{ addon.guid }}" class="button"
                   id="block_addon" type="button">{{ _('Block add-on') }}</a>
         {% else %}
           <a href="{{ url('admin:blocklist_block_change', addon.block.id) }}" class="button"

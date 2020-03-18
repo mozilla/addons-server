@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from olympia.addons.models import Addon
 
-from .models import Block, BlockSubmission
+from .models import Block, BLSubmission
 from .utils import splitlines
 
 
@@ -46,15 +46,15 @@ class MultiAddForm(MultiGUIDInputForm):
                     _('Addon with GUID %(guid)s does not exist'),
                     params={'guid': guid}))
         for guid in guids:
-            if BlockSubmission.get_submissions_from_guid(guid):
+            if BLSubmission.get_submissions_from_guid(guid):
                 errors.append(ValidationError(
-                    _('GUID %(guid)s is already in a pending BlockSubmission'),
+                    _('GUID %(guid)s is already in a pending Submission'),
                     params={'guid': guid}))
         if errors:
             raise ValidationError(errors)
 
 
-class BlockSubmissionForm(forms.ModelForm):
+class BLSubmissionForm(forms.ModelForm):
     existing_min_version = forms.fields.CharField(
         widget=forms.widgets.HiddenInput, required=False)
     existing_max_version = forms.fields.CharField(
@@ -87,8 +87,8 @@ class BlockSubmissionForm(forms.ModelForm):
         # Ignore for a single guid because we always update it irrespective of
         # whether it needs to be updated.
         is_addchange_submission = (
-            data.get('action', BlockSubmission.ACTION_ADDCHANGE) ==
-            BlockSubmission.ACTION_ADDCHANGE)
+            data.get('action', BLSubmission.ACTION_ADDCHANGE) ==
+            BLSubmission.ACTION_ADDCHANGE)
         if len(guids) > 1 and is_addchange_submission:
             blocks_have_changed = self._check_if_existing_blocks_changed(
                 guids,

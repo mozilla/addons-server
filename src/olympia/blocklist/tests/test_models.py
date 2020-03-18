@@ -3,7 +3,7 @@ from django.test.utils import override_settings
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.versions.compare import MAX_VERSION_PART
 
-from ..models import Block, BlockSubmission
+from ..models import Block, BLSubmission
 
 
 class TestBlock(TestCase):
@@ -43,11 +43,11 @@ class TestBlock(TestCase):
         assert not block.is_imported_from_kinto_regex
 
 
-class TestMultiBlockSubmission(TestCase):
+class TestMultiBLSubmission(TestCase):
     def test_is_submission_ready(self):
         submitter = user_factory()
         signoffer = user_factory()
-        block = BlockSubmission.objects.create()
+        block = BLSubmission.objects.create()
 
         # No signoff_by so not permitted
         assert not block.signoff_state
@@ -55,11 +55,11 @@ class TestMultiBlockSubmission(TestCase):
         assert not block.is_submission_ready
 
         # Except when the state is NOTNEEDED.
-        block.update(signoff_state=BlockSubmission.SIGNOFF_NOTNEEDED)
+        block.update(signoff_state=BLSubmission.SIGNOFF_NOTNEEDED)
         assert block.is_submission_ready
 
         # But if the state is APPROVED we need to know the signoff user
-        block.update(signoff_state=BlockSubmission.SIGNOFF_APPROVED)
+        block.update(signoff_state=BLSubmission.SIGNOFF_APPROVED)
         assert not block.is_submission_ready
 
         # If different users update and signoff, it's permitted.
@@ -78,28 +78,28 @@ class TestMultiBlockSubmission(TestCase):
 
     def test_get_submissions_from_guid(self):
         addon = addon_factory(guid='guid@')
-        block_subm = BlockSubmission.objects.create(
+        block_subm = BLSubmission.objects.create(
             input_guids='guid@\n{sdsd-dssd}')
         # add another one which shouldn't match
-        BlockSubmission.objects.create(input_guids='gguid@\n{4545-986}')
+        BLSubmission.objects.create(input_guids='gguid@\n{4545-986}')
         assert block_subm.to_block == [{
             'id': None,
             'guid': 'guid@',
             'average_daily_users': addon.average_daily_users}]
 
-        # The guid is in a BlockSubmission
-        assert list(BlockSubmission.get_submissions_from_guid('guid@')) == [
+        # The guid is in a BLSubmission
+        assert list(BLSubmission.get_submissions_from_guid('guid@')) == [
             block_subm]
 
-        # But by default we ignored "finished" BlockSubmissions
-        block_subm.update(signoff_state=BlockSubmission.SIGNOFF_PUBLISHED)
-        assert list(BlockSubmission.get_submissions_from_guid('guid@')) == []
+        # But by default we ignored "finished" BLSubmissions
+        block_subm.update(signoff_state=BLSubmission.SIGNOFF_PUBLISHED)
+        assert list(BLSubmission.get_submissions_from_guid('guid@')) == []
 
         # Except when we override the states to exclude
         assert (
-            list(BlockSubmission.get_submissions_from_guid(
+            list(BLSubmission.get_submissions_from_guid(
                 'guid@', excludes=())) ==
             [block_subm])
 
         # And check that a guid that doesn't exist in any submissions is empty
-        assert list(BlockSubmission.get_submissions_from_guid('ggguid@')) == []
+        assert list(BLSubmission.get_submissions_from_guid('ggguid@')) == []
