@@ -520,7 +520,9 @@ class AddonGitRepository(object):
         """
         diff_cache = getattr(self, '_diff_cache', {})
 
-        flags = pygit2.GIT_DIFF_NORMAL
+        flags = (
+            pygit2.GIT_DIFF_NORMAL | pygit2.GIT_DIFF_IGNORE_WHITESPACE_CHANGE
+        )
 
         if include_unmodifed:
             flags |= pygit2.GIT_DIFF_INCLUDE_UNMODIFIED

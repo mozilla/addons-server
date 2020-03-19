@@ -2,6 +2,9 @@ import re
 import time
 from datetime import datetime
 
+from django.conf import settings
+from django.db import transaction
+
 import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
@@ -33,8 +36,10 @@ def process_blocksubmission(multi_block_submit_id, **kw):
 
 @task
 @use_primary_db
+@transaction.atomic
 def import_block_from_blocklist(record):
     kinto_id = record.get('id')
+    using_db = 'replica' if 'replica' in settings.DATABASES else 'default'
     log.debug('Processing block id: [%s]', kinto_id)
     kinto = KintoImport.objects.create(kinto_id=kinto_id, record=record)
 
@@ -71,7 +76,8 @@ def import_block_from_blocklist(record):
         log.debug(
             'Kinto %s: Attempting to create Blocks for addons matching [%s]',
             kinto_id, guid_regexp)
-        addons_qs = Addon.unfiltered.filter(guid__regex=guid_regexp)
+        addons_guids_qs = Addon.unfiltered.using(using_db).filter(
+            guid__regex=guid_regexp).values_list('guid', flat=True)
         # We need to mark this id in a way so we know its from a
         # regex guid - otherwise we might accidentally overwrite it.
         block_kw['kinto_id'] = '*' + block_kw['kinto_id']
@@ -80,19 +86,20 @@ def import_block_from_blocklist(record):
         log.debug(
             'Kinto %s: Attempting to create a Block for guid [%s]',
             kinto_id, guid)
-        addons_qs = Addon.unfiltered.filter(guid=guid)
+        addons_guids_qs = Addon.unfiltered.using(using_db).filter(
+            guid=guid).values_list('guid', flat=True)
         regex = False
-    for addon in addons_qs:
+    for guid in addons_guids_qs:
         (block, created) = Block.objects.update_or_create(
-            guid=addon.guid,
-            defaults=dict(guid=addon.guid, **block_kw))
+            guid=guid,
+            defaults=dict(guid=guid, **block_kw))
         block_activity_log_save(block, change=not created)
         if created:
             log.debug('Kinto %s: Added Block for [%s]', kinto_id, block.guid)
             block.update(modified=modified_date)
         else:
             log.debug('Kinto %s: Updated Block for [%s]', kinto_id, block.guid)
-    if addons_qs:
+    if addons_guids_qs:
         kinto.update(outcome=(KintoImport.OUTCOME_REGEXBLOCKS if regex else
                               KintoImport.OUTCOME_BLOCK))
     else:

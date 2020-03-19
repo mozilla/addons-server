@@ -1,6 +1,21 @@
+/* note: this is shared between scannerresult and scannerqueryresult admins */
+
 #changelist .field-result_actions {
   text-align: center;
   white-space: nowrap;
+}
+
+#changelist .field-formatted_addon table {
+  margin: 4px 0 0 0;
+}
+
+#changelist .field-formatted_addon table td {
+  border: none;
+  padding: 2px;
+}
+
+#changelist .field-guid {
+  min-width: 250px;
 }
 
 .field-result_actions .button {
@@ -11,7 +26,11 @@
   float: none;
 }
 
-.field-matching_filenames ul, .field-authors ul {
+.field-matching_filenames ul,
+.field-authors ul,
+/* This rule is for the change page. */
+.aligned .field-authors ul
+{
     display: block;
     margin: 0;
     padding: 0;

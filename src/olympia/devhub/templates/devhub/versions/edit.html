@@ -123,7 +123,7 @@
           {% with field = version_form.source %}
             <th>
               <label for="{{ field.auto_id }}">{{ _("Source code") }}</label>
-              {{ tip(None, _("If your add-on contain binary or obfuscated code, make the source available here for reviewers.")) }}
+              {{ tip(None, _("If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers.")) }}
             </th>
             <td>
               {{ field.errors }}

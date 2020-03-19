@@ -408,7 +408,7 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
         user = subscriber.user
         is_reviewer = (
             user and not user.deleted and user.email and
-            acl.is_user_any_kind_of_reviewer(user))
+            acl.is_user_any_kind_of_reviewer(user, allow_viewers=True))
         if is_reviewer:
             subscriber.send_notification(instance)
 

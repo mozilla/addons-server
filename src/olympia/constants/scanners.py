@@ -4,9 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 CUSTOMS = 1
 WAT = 2
 YARA = 3
-ML_API = 4
+MAD = 4
 
-SCANNERS = {CUSTOMS: 'customs', WAT: 'wat', YARA: 'yara', ML_API: 'ml_api'}
+SCANNERS = {CUSTOMS: 'customs', WAT: 'wat', YARA: 'yara', MAD: 'mad'}
 
 # Action IDs are also used for severity (the higher, the more severe).
 # The field is a PositiveSmallIntegerField, it should go up to 65535.
