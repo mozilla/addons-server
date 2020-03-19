@@ -41,18 +41,20 @@ def import_block_from_blocklist(record):
     kinto_id = record.get('id')
     using_db = 'replica' if 'replica' in settings.DATABASES else 'default'
     log.debug('Processing block id: [%s]', kinto_id)
-    kinto = KintoImport.objects.create(kinto_id=kinto_id, record=record)
+    kinto_import = KintoImport(kinto_id=kinto_id, record=record)
 
     guid = record.get('guid')
     if not guid:
-        kinto.update(outcome=KintoImport.OUTCOME_MISSINGGUID)
+        kinto_import.outcome = KintoImport.OUTCOME_MISSINGGUID
+        kinto_import.save()
         log.error('Kinto %s: GUID is falsey, skipping.', kinto_id)
         return
     version_range = record.get('versionRange', [{}])[0]
     target_application = version_range.get('targetApplication') or [{}]
     target_GUID = target_application[0].get('guid')
     if target_GUID and target_GUID != amo.FIREFOX.guid:
-        kinto.update(outcome=KintoImport.OUTCOME_NOTFIREFOX)
+        kinto_import.outcome = KintoImport.OUTCOME_NOTFIREFOX
+        kinto_import.save()
         log.error(
             'Kinto %s: targetApplication (%s) is not Firefox, skipping.',
             kinto_id, target_GUID)
@@ -91,8 +93,7 @@ def import_block_from_blocklist(record):
         regex = False
     for guid in addons_guids_qs:
         (block, created) = Block.objects.update_or_create(
-            guid=guid,
-            defaults=dict(guid=guid, **block_kw))
+            guid=guid, defaults=dict(guid=guid, **block_kw))
         block_activity_log_save(block, change=not created)
         if created:
             log.debug('Kinto %s: Added Block for [%s]', kinto_id, block.guid)
@@ -100,9 +101,11 @@ def import_block_from_blocklist(record):
         else:
             log.debug('Kinto %s: Updated Block for [%s]', kinto_id, block.guid)
     if addons_guids_qs:
-        kinto.update(outcome=(KintoImport.OUTCOME_REGEXBLOCKS if regex else
-                              KintoImport.OUTCOME_BLOCK))
+        kinto_import.outcome = (
+            KintoImport.OUTCOME_REGEXBLOCKS if regex else
+            KintoImport.OUTCOME_BLOCK
+        )
     else:
-        kinto.update(outcome=KintoImport.OUTCOME_NOMATCH)
-        log.debug(
-            'Kinto %s: No addon found', kinto_id)
+        kinto_import.outcome = KintoImport.OUTCOME_NOMATCH
+        log.debug('Kinto %s: No addon found', kinto_id)
+    kinto_import.save()
