@@ -334,7 +334,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         return format_html(
             '<ul>{}</ul>'
             '<br>'
-            '[<a href="{}?authors={}">Other add-ons by these authors</a>]',
+            '[<a href="{}?authors__in={}">Other add-ons by these authors</a>]',
             contents,
             urljoin(
                 settings.EXTERNAL_SITE_URL,
