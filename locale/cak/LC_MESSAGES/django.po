@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-18 23:51+0000\n"
+"PO-Revision-Date: 2020-03-19 00:02+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -2037,16 +2037,14 @@ msgstr ""
 "<p>Ri taq tz'aqat tikirel e k'ïy yeb'ano ri tikirel 2 kisamaj:</p> <ul> <li><b>Rajaw:</b> Nitikïr nusamajij ronojel ri rub'anikil tz'aqat cholajin, achi'el yerutz'aqatisaj chuqa' yeruyüj ch'aqa' "
 "chik taq b'anel</li> <li><b>B'anonel:</b> Nitikïr nusamajij ronojel ri rub'anikil tz'aqat cholajin, man ke ta ri' richin yerutz'aqatisaj o yeruyüj ch'aqa' chik taq b'anel</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Kib'anikil Tz'aqat"
+msgstr "Rutz'aqat B'anikil"
 
 msgid "Edit"
 msgstr "Tinuk'"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Kib'anikil Rutz'aqat {0}"
+msgstr "Rutz'aqat Rub'anikil {0}"
 
 msgid "Tags"
 msgstr "Taq etal"
@@ -2093,13 +2091,11 @@ msgid "Describe Add-on"
 msgstr "Titzijöx rij Tz'aqat"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Titzijöx rij Tz'aqat"
+msgstr "Tichol {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Ch'utitzijol"
+msgstr "B'i'aj chuqa' B'anikil"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2118,9 +2114,8 @@ msgstr "Tacha' jun ruyonil jeb'ël ruximob'al atz'aqat."
 msgid "View Listing"
 msgstr "Titz'et Cholb'äl"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Titz'et Ruwäch B'i'aj"
+msgstr "Titz'et Ruxaq Tikojil"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Wawe' k'o ta chi naya' rutzijol rusamaj nub'än ri achokoy. Xtiwachin pa taq cholb'äl chuqa' pa taq kanoxïk chuqa' xtikokisaj ri nik'onela' richin nikitojtob'ej ri achokoy."
@@ -2432,9 +2427,8 @@ msgstr[1] "<strong>{0}</strong> ketzij okisanela'"
 msgid "Submit a New Version"
 msgstr "Titaq jun K'ak'a' Ruwäch"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Ch'utitzijol:"
+msgstr "B'i'aj chuqa' B'anikil:"
 
 msgid "required"
 msgstr "ajowan"
@@ -3264,9 +3258,8 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Kiq'atik eltzijonem & ruchajixik ichinanem {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Jun man k'ayew ta runuk'ulem nuya' q'ij chawe ye'achajij ri taq eltzijol ye'atz'ët chuqa' rub'eyal yatkojqaj pa k'amaya'l."
+msgstr "Ruchajixïk richin nichinäx chuqa' niq'at eltzijol. Jun man k'ayew ta runuk'ulem nuya' q'ij chawe ye'achajij ri taq eltzijol ye'atz'ët chuqa' rub'eyal yatkojqaj pa k'amaya'l."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
