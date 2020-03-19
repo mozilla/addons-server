@@ -27,10 +27,10 @@
     @media @medium {
         display: grid;
         grid-template-areas:
-          'logo amo-links browsers-links products-link'
-          'legal-links legal-links legal-links legal-links'
-          'copyright copyright language language';
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+          'logo amo-links firefox-links'
+          'legal-links legal-links legal-links'
+          'copyright copyright language';
+        grid-template-columns: 1fr 1fr 1fr;
         margin: 0 auto;
         max-width: @grid-max;
         width: 100%;
@@ -74,12 +74,8 @@
     grid-area: amo-links;
 }
 
-.Footer-browsers-links {
-    grid-area: browsers-links;
-}
-
-.Footer-products-links {
-    grid-area: products-links;
+.Footer-firefox-links {
+    grid-area: firefox-links;
 }
 
 .Footer-links-header {
