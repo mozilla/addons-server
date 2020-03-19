@@ -340,10 +340,10 @@
     {% endif %}
     {# If we are on the unlisted review page, show the link to the listed review page #}
     {% if unlisted and addon.has_listed_versions() %}
-      <li><a href="{{ url('reviewers.review', addon.slug) }}">{{ _('Listed Review Page') }}</a></li>
+      <li><a href="{{ url('reviewers.review', addon.id) }}">{{ _('Listed Review Page') }}</a></li>
     {# On the listed review page, show link to unlisted version review if necessary and allowed #}
     {% elif not unlisted and action_allowed(amo.permissions.ADDONS_REVIEW_UNLISTED) and addon.has_unlisted_versions() %}
-      <li><a href="{{ url('reviewers.review', 'unlisted', addon.slug) }}">{{ _('Unlisted Review Page') }}</a></li>
+      <li><a href="{{ url('reviewers.review', 'unlisted', addon.id) }}">{{ _('Unlisted Review Page') }}</a></li>
     {% endif %}
     {% if is_admin %}
       {% if not addon.is_deleted %}
