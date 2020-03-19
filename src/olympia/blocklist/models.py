@@ -40,7 +40,7 @@ class Block(ModelBase):
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
     kinto_id = models.CharField(max_length=255, null=False, default='')
-    submission = models.ManyToManyField('BLSubmission')
+    submission = models.ManyToManyField('BlocklistSubmission')
 
     ACTIVITY_IDS = (
         amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
@@ -147,7 +147,7 @@ class Block(ModelBase):
         return ''
 
 
-class BLSubmission(ModelBase):
+class BlocklistSubmission(ModelBase):
     SIGNOFF_PENDING = 0
     SIGNOFF_APPROVED = 1
     SIGNOFF_REJECTED = 2
@@ -197,7 +197,7 @@ class BLSubmission(ModelBase):
         choices=SIGNOFF_STATES.items(), default=SIGNOFF_PENDING)
 
     class Meta:
-        db_table = 'blocklist_blocksubmission'
+        db_table = 'blocklist_blocklistsubmission'
 
     def __str__(self):
         guids = splitlines(self.input_guids)

@@ -17,7 +17,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 
-from ..models import Block, BLSubmission
+from ..models import Block, BlocklistSubmission
 
 
 class TestBlockAdmin(TestCase):
@@ -25,7 +25,8 @@ class TestBlockAdmin(TestCase):
         self.admin_home_url = reverse('admin:index')
         self.list_url = reverse('admin:blocklist_block_changelist')
         self.add_url = reverse('admin:blocklist_block_add')
-        self.submission_url = reverse('admin:blocklist_blsubmission_add')
+        self.submission_url = reverse(
+            'admin:blocklist_blocklistsubmission_add')
 
     def test_can_see_addon_module_in_admin_with_review_admin(self):
         user = user_factory()
@@ -89,10 +90,10 @@ class TestBlockAdmin(TestCase):
         assert b'Add-on GUIDs (one per line)' in response.content
         assert b'Addon with GUID guid@ does not exist' in response.content
 
-        # If the guid already exists in a pending BLSubmission the guid is
-        # invalid also
+        # If the guid already exists in a pending BlocklistSubmission the guid
+        # is invalid also
         addon = addon_factory(guid='guid@')
-        submission = BLSubmission.objects.create(input_guids='guid@')
+        submission = BlocklistSubmission.objects.create(input_guids='guid@')
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=False)
         assert b'Add-on GUIDs (one per line)' in response.content
@@ -100,7 +101,7 @@ class TestBlockAdmin(TestCase):
             response.content)
 
         # It's okay if the submission isn't pending (rejected, etc) though.
-        submission.update(signoff_state=BLSubmission.SIGNOFF_REJECTED)
+        submission.update(signoff_state=BlocklistSubmission.SIGNOFF_REJECTED)
 
         # But should continue to the django admin add page if it exists
         response = self.client.post(
@@ -123,11 +124,12 @@ class TestBlockAdmin(TestCase):
         )
 
 
-class TestBLSubmissionAdmin(TestCase):
+class TestBlocklistSubmissionAdmin(TestCase):
     def setUp(self):
-        self.submission_url = reverse('admin:blocklist_blsubmission_add')
+        self.submission_url = reverse(
+            'admin:blocklist_blocklistsubmission_add')
         self.submission_list_url = reverse(
-            'admin:blocklist_blsubmission_changelist')
+            'admin:blocklist_blocklistsubmission_changelist')
 
     def test_add_single(self):
         user = user_factory()
@@ -242,7 +244,7 @@ class TestBLSubmissionAdmin(TestCase):
         assert 'invalid@' in content
         # Check we didn't create the block already
         assert Block.objects.count() == 2
-        assert BLSubmission.objects.count() == 0
+        assert BlocklistSubmission.objects.count() == 0
 
         # Create the block submission
         response = self.client.post(
@@ -267,8 +269,8 @@ class TestBLSubmissionAdmin(TestCase):
                                          partial_addon, existing_and_partial,
                                          has_signoff=True):
         assert Block.objects.count() == 3
-        assert BLSubmission.objects.count() == 1
-        submission = BLSubmission.objects.get()
+        assert BlocklistSubmission.objects.count() == 1
+        submission = BlocklistSubmission.objects.get()
         all_blocks = Block.objects.all()
 
         new_block = all_blocks[2]
@@ -363,9 +365,9 @@ class TestBLSubmissionAdmin(TestCase):
         assert Block.objects.count() == 2
         # and existing block wasn't updated
 
-        multi = BLSubmission.objects.get()
+        multi = BlocklistSubmission.objects.get()
         multi.update(
-            signoff_state=BLSubmission.SIGNOFF_APPROVED,
+            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
             signoff_by=user_factory())
         assert multi.is_submission_ready
         multi.save_to_block_objects()
@@ -409,7 +411,7 @@ class TestBLSubmissionAdmin(TestCase):
 
         # Check we didn't create the block already
         assert Block.objects.count() == 2
-        assert BLSubmission.objects.count() == 0
+        assert BlocklistSubmission.objects.count() == 0
 
         # Change the min/max versions
         response = self.client.post(
@@ -430,7 +432,7 @@ class TestBLSubmissionAdmin(TestCase):
         assert b'Blocks to be updated are different' in response.content
         # No Block should have been changed or added
         assert Block.objects.count() == 2
-        assert BLSubmission.objects.count() == 0
+        assert BlocklistSubmission.objects.count() == 0
 
         # The guids should have been processed differently now
         doc = pq(response.content)
@@ -456,7 +458,7 @@ class TestBLSubmissionAdmin(TestCase):
 
         # This time the blocks are updated
         assert Block.objects.count() == 3
-        assert BLSubmission.objects.count() == 1
+        assert BlocklistSubmission.objects.count() == 1
         all_blocks = Block.objects.all()
 
         new_block = all_blocks[2]
@@ -508,7 +510,7 @@ class TestBLSubmissionAdmin(TestCase):
         assert not ActivityLog.objects.for_version(
             existing_one_to_ten.addon.current_version).exists()
 
-        multi = BLSubmission.objects.get()
+        multi = BlocklistSubmission.objects.get()
         assert multi.input_guids == (
             'any@new\npartial@existing\nfull@existing')
         assert multi.min_version == new_block.min_version
@@ -772,15 +774,15 @@ class TestBLSubmissionAdmin(TestCase):
                 guid='block@', name='High Voltage', average_daily_users=1),
             updated_by=user_factory(),
         )
-        add_change_subm = BLSubmission.objects.create(
+        add_change_subm = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@\nblock@',
             updated_by=user_factory(display_name='Bób'),
             min_version='123',
-            action=BLSubmission.ACTION_ADDCHANGE)
-        delete_subm = BLSubmission.objects.create(
+            action=BlocklistSubmission.ACTION_ADDCHANGE)
+        delete_subm = BlocklistSubmission.objects.create(
             input_guids='block@',
             updated_by=user_factory(display_name='Sué'),
-            action=BLSubmission.ACTION_DELETE)
+            action=BlocklistSubmission.ACTION_DELETE)
         add_change_subm.save()
         delete_subm.save()
         assert add_change_subm.to_block == [
@@ -819,7 +821,7 @@ class TestBLSubmissionAdmin(TestCase):
         self._test_can_list_with_permission('Blocklist:Signoff')
 
     def test_can_not_list_without_permission(self):
-        BLSubmission.objects.create(
+        BlocklistSubmission.objects.create(
             updated_by=user_factory(display_name='Bób'))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -834,7 +836,7 @@ class TestBLSubmissionAdmin(TestCase):
         addon = addon_factory(
             guid='guid@', name='Danger Danger',
             average_daily_users=threshold + 1)
-        mbs = BLSubmission.objects.create(
+        mbs = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory())
         assert mbs.to_block == [
@@ -847,7 +849,7 @@ class TestBLSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         multi_url = reverse(
-            'admin:blocklist_blsubmission_change', args=(mbs.id,))
+            'admin:blocklist_blocklistsubmission_change', args=(mbs.id,))
 
         response = self.client.get(multi_url, follow=True)
         assert response.status_code == 200
@@ -880,8 +882,8 @@ class TestBLSubmissionAdmin(TestCase):
         assert mbs.url == 'new.url'
         assert mbs.reason == 'a reason'
 
-        # The blsubmission wasn't approved or rejected though
-        assert mbs.signoff_state == BLSubmission.SIGNOFF_PENDING
+        # The blocklistsubmission wasn't approved or rejected though
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
         assert Block.objects.count() == 0
 
         log_entry = LogEntry.objects.get()
@@ -897,7 +899,7 @@ class TestBLSubmissionAdmin(TestCase):
 
     def test_edit_page_with_blocklist_signoff(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')
-        mbs = BLSubmission.objects.create(
+        mbs = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory())
         assert mbs.to_block == [
@@ -910,7 +912,7 @@ class TestBLSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Signoff')
         self.client.login(email=user.email)
         multi_url = reverse(
-            'admin:blocklist_blsubmission_change', args=(mbs.id,))
+            'admin:blocklist_blocklistsubmission_change', args=(mbs.id,))
 
         response = self.client.get(multi_url, follow=True)
         assert response.status_code == 200
@@ -944,8 +946,8 @@ class TestBLSubmissionAdmin(TestCase):
         assert mbs.url != 'new.url'
         assert mbs.reason != 'a reason'
 
-        # The blsubmission wasn't approved or rejected either
-        assert mbs.signoff_state == BLSubmission.SIGNOFF_PENDING
+        # The blocklistsubmission wasn't approved or rejected either
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
         assert Block.objects.count() == 0
         assert LogEntry.objects.count() == 0
 
@@ -953,7 +955,7 @@ class TestBLSubmissionAdmin(TestCase):
     @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
     def test_signoff_approve(self, legacy_publish_blocks_mock):
         addon = addon_factory(guid='guid@', name='Danger Danger')
-        mbs = BLSubmission.objects.create(
+        mbs = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@',
             updated_by=user_factory())
         assert mbs.to_block == [
@@ -966,7 +968,7 @@ class TestBLSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Signoff')
         self.client.login(email=user.email)
         multi_url = reverse(
-            'admin:blocklist_blsubmission_change', args=(mbs.id,))
+            'admin:blocklist_blocklistsubmission_change', args=(mbs.id,))
         response = self.client.post(
             multi_url, {
                 'input_guids': 'guid2@\nfoo@baa',  # should be ignored
@@ -1042,7 +1044,7 @@ class TestBLSubmissionAdmin(TestCase):
     @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
     def test_signoff_reject(self, legacy_publish_blocks_mock):
         addon = addon_factory(guid='guid@', name='Danger Danger')
-        mbs = BLSubmission.objects.create(
+        mbs = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@',
             updated_by=user_factory())
         assert mbs.to_block == [
@@ -1055,7 +1057,7 @@ class TestBLSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Signoff')
         self.client.login(email=user.email)
         multi_url = reverse(
-            'admin:blocklist_blsubmission_change', args=(mbs.id,))
+            'admin:blocklist_blocklistsubmission_change', args=(mbs.id,))
         response = self.client.post(
             multi_url, {
                 'input_guids': 'guid2@\nfoo@baa',  # should be ignored
@@ -1079,8 +1081,8 @@ class TestBLSubmissionAdmin(TestCase):
         # blocks would not have been submitted to kinto legacy collection
         legacy_publish_blocks_mock.assert_not_called()
 
-        # And the blsubmission was rejected, so no Blocks created
-        assert mbs.signoff_state == BLSubmission.SIGNOFF_REJECTED
+        # And the blocklistsubmission was rejected, so no Blocks created
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_REJECTED
         assert Block.objects.count() == 0
         assert not mbs.is_submission_ready
 
@@ -1101,7 +1103,7 @@ class TestBLSubmissionAdmin(TestCase):
 
     def test_cannot_approve_with_only_block_create_permission(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')
-        mbs = BLSubmission.objects.create(
+        mbs = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@',
             updated_by=user_factory())
         assert mbs.to_block == [
@@ -1114,7 +1116,7 @@ class TestBLSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         multi_url = reverse(
-            'admin:blocklist_blsubmission_change', args=(mbs.id,))
+            'admin:blocklist_blocklistsubmission_change', args=(mbs.id,))
         response = self.client.post(
             multi_url, {
                 'input_guids': 'guid2@\nfoo@baa',  # should be ignored
@@ -1129,14 +1131,14 @@ class TestBLSubmissionAdmin(TestCase):
         mbs = mbs.reload()
         # It wasn't signed off
         assert not mbs.signoff_by
-        assert mbs.signoff_state == BLSubmission.SIGNOFF_PENDING
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
         # And the details weren't updated either
         assert mbs.url != 'new.url'
         assert mbs.reason != 'a reason'
 
     def test_can_only_reject_your_own_with_only_block_create_permission(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')
-        submission = BLSubmission.objects.create(
+        submission = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@',
             updated_by=user_factory())
         assert submission.to_block == [
@@ -1149,7 +1151,8 @@ class TestBLSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         change_url = reverse(
-            'admin:blocklist_blsubmission_change', args=(submission.id,))
+            'admin:blocklist_blocklistsubmission_change',
+            args=(submission.id,))
         response = self.client.post(
             change_url, {
                 'input_guids': 'guid2@\nfoo@baa',  # should be ignored
@@ -1164,7 +1167,7 @@ class TestBLSubmissionAdmin(TestCase):
         submission = submission.reload()
         # It wasn't signed off
         assert not submission.signoff_by
-        assert submission.signoff_state == BLSubmission.SIGNOFF_PENDING
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
         # And the details weren't updated either
         assert submission.url != 'new.url'
         assert submission.reason != 'a reason'
@@ -1192,18 +1195,18 @@ class TestBLSubmissionAdmin(TestCase):
             follow=True)
         assert response.status_code == 200
         submission = submission.reload()
-        assert submission.signoff_state == BLSubmission.SIGNOFF_REJECTED
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_REJECTED
         assert not submission.signoff_by
         assert submission.url == 'new.url'
         assert submission.reason == 'a reason'
 
     def test_signed_off_view(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')
-        mbs = BLSubmission.objects.create(
+        mbs = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory(),
             signoff_by=user_factory(),
-            signoff_state=BLSubmission.SIGNOFF_APPROVED)
+            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED)
         assert mbs.to_block == [
             {'guid': 'guid@',
              'id': None,
@@ -1216,7 +1219,7 @@ class TestBLSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         multi_view_url = reverse(
-            'admin:blocklist_blsubmission_change', args=(mbs.id,))
+            'admin:blocklist_blocklistsubmission_change', args=(mbs.id,))
 
         response = self.client.get(multi_view_url, follow=True)
         assert response.status_code == 200
@@ -1238,15 +1241,15 @@ class TestBLSubmissionAdmin(TestCase):
         addon_factory(guid='pending1@')
         addon_factory(guid='pending2@')
         addon_factory(guid='published@')
-        BLSubmission.objects.create(
+        BlocklistSubmission.objects.create(
             input_guids='pending1@\npending2@',
-            signoff_state=BLSubmission.SIGNOFF_PENDING)
-        BLSubmission.objects.create(
+            signoff_state=BlocklistSubmission.SIGNOFF_PENDING)
+        BlocklistSubmission.objects.create(
             input_guids='missing@',
-            signoff_state=BLSubmission.SIGNOFF_APPROVED)
-        BLSubmission.objects.create(
+            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED)
+        BlocklistSubmission.objects.create(
             input_guids='published@',
-            signoff_state=BLSubmission.SIGNOFF_PUBLISHED)
+            signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED)
 
         response = self.client.get(self.submission_list_url, follow=True)
         assert response.status_code == 200
@@ -1281,7 +1284,8 @@ class TestBlockAdminEdit(TestCase):
             guid=self.addon.guid, updated_by=user_factory())
         self.change_url = reverse(
             'admin:blocklist_block_change', args=(self.block.pk,))
-        self.submission_url = reverse('admin:blocklist_blsubmission_add')
+        self.submission_url = reverse(
+            'admin:blocklist_blocklistsubmission_add')
 
     def test_edit(self):
         user = user_factory()
@@ -1431,12 +1435,13 @@ class TestBlockAdminEdit(TestCase):
         assert response.status_code == 403
         assert Block.objects.count() == 1
 
-    def test_cannot_edit_when_guid_in_blsubmission(self):
+    def test_cannot_edit_when_guid_in_blocklistsubmission(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
-        blocksubm = BLSubmission.objects.create(input_guids=self.block.guid)
+        blocksubm = BlocklistSubmission.objects.create(
+            input_guids=self.block.guid)
         assert blocksubm.to_block == [{
             'id': self.block.id,
             'guid': self.block.guid,
@@ -1449,7 +1454,7 @@ class TestBlockAdminEdit(TestCase):
         assert 'Danger Danger' in content
         assert 'Changes pending' in content
         submission_url = reverse(
-            'admin:blocklist_blsubmission_change', args=(blocksubm.id,))
+            'admin:blocklist_blocklistsubmission_change', args=(blocksubm.id,))
         assert submission_url in content
         assert 'Close' in content
         assert '_save' not in content
@@ -1492,7 +1497,8 @@ class TestBlockAdminDelete(TestCase):
             guid=self.addon.guid, updated_by=user_factory())
         self.delete_url = reverse(
             'admin:blocklist_block_delete', args=(self.block.pk,))
-        self.submission_url = reverse('admin:blocklist_blsubmission_add')
+        self.submission_url = reverse(
+            'admin:blocklist_blocklistsubmission_add')
 
     def test_can_not_delete_through_normal_django_admin_delete(self):
         user = user_factory()
@@ -1522,7 +1528,8 @@ class TestBlockAdminDelete(TestCase):
 class TestBlockAdminBulkDelete(TestCase):
     def setUp(self):
         self.delete_url = reverse('admin:blocklist_block_delete_multiple')
-        self.submission_url = reverse('admin:blocklist_blsubmission_add')
+        self.submission_url = reverse(
+            'admin:blocklist_blocklistsubmission_add')
 
     def test_delete_input(self):
         user = user_factory()
@@ -1594,7 +1601,7 @@ class TestBlockAdminBulkDelete(TestCase):
         assert 'include_in_legacy' not in content
         # Check we didn't delete the blocks already
         assert Block.objects.count() == 2
-        assert BLSubmission.objects.count() == 0
+        assert BlocklistSubmission.objects.count() == 0
 
         # Create the block submission
         response = self.client.post(
@@ -1612,8 +1619,8 @@ class TestBlockAdminBulkDelete(TestCase):
                             has_signoff=True):
         block_from_addon = block_with_addon.addon
         assert Block.objects.count() == 0
-        assert BLSubmission.objects.count() == 1
-        submission = BLSubmission.objects.get()
+        assert BlocklistSubmission.objects.count() == 1
+        submission = BlocklistSubmission.objects.get()
 
         add_log = ActivityLog.objects.for_addons(block_from_addon).last()
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_DELETED.id
@@ -1662,9 +1669,9 @@ class TestBlockAdminBulkDelete(TestCase):
         # Blocks shouldn't have been deleted yet
         assert Block.objects.count() == 2, Block.objects.all()
 
-        submission = BLSubmission.objects.get()
+        submission = BlocklistSubmission.objects.get()
         submission.update(
-            signoff_state=BLSubmission.SIGNOFF_APPROVED,
+            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
             signoff_by=user_factory())
         assert submission.is_submission_ready
         submission.delete_block_objects()
@@ -1682,10 +1689,10 @@ class TestBlockAdminBulkDelete(TestCase):
                 guid='guid@', name='Danger Danger',
                 average_daily_users=threshold + 1),
             updated_by=user_factory())
-        mbs = BLSubmission.objects.create(
+        mbs = BlocklistSubmission.objects.create(
             input_guids='guid@',
             updated_by=user_factory(),
-            action=BLSubmission.ACTION_DELETE)
+            action=BlocklistSubmission.ACTION_DELETE)
         assert mbs.to_block == [
             {'guid': 'guid@',
              'id': block.id,
@@ -1696,7 +1703,7 @@ class TestBlockAdminBulkDelete(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         multi_url = reverse(
-            'admin:blocklist_blsubmission_change', args=(mbs.id,))
+            'admin:blocklist_blocklistsubmission_change', args=(mbs.id,))
 
         response = self.client.get(multi_url, follow=True)
         assert response.status_code == 200

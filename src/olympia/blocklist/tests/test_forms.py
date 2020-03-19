@@ -3,11 +3,11 @@ from django.core.exceptions import ValidationError
 from django.test import RequestFactory
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.blocklist.admin import BLSubmissionAdmin
-from olympia.blocklist.models import Block, BLSubmission
+from olympia.blocklist.admin import BlocklistSubmissionAdmin
+from olympia.blocklist.models import Block, BlocklistSubmission
 
 
-class TestBLSubmissionForm(TestCase):
+class TestBlocklistSubmissionForm(TestCase):
     def setUp(self):
         self.new_addon = addon_factory(
             guid='any@new', average_daily_users=100,
@@ -37,8 +37,8 @@ class TestBLSubmissionForm(TestCase):
             'max_version': '*',
             'existing_min_version': '1',
             'existing_max_version': '10'}
-        block_admin = BLSubmissionAdmin(
-            model=BLSubmission, admin_site=admin_site)
+        block_admin = BlocklistSubmissionAdmin(
+            model=BlocklistSubmission, admin_site=admin_site)
         request = RequestFactory().get('/')
 
         # All new guids should always be fine
@@ -53,8 +53,8 @@ class TestBLSubmissionForm(TestCase):
             'max_version': '*',
             'existing_min_version': '1',
             'existing_max_version': '10'}
-        block_admin = BLSubmissionAdmin(
-            model=BLSubmission, admin_site=admin_site)
+        block_admin = BlocklistSubmissionAdmin(
+            model=BlocklistSubmission, admin_site=admin_site)
         request = RequestFactory().get('/')
 
         # A single guid is always updated so checks are bypassed
@@ -93,12 +93,12 @@ class TestBLSubmissionForm(TestCase):
     def test_all_existing_blocks_but_delete_action(self):
         data = {
             'input_guids': 'any@thing,second@thing',
-            'action': BLSubmission.ACTION_DELETE}
-        block_admin = BLSubmissionAdmin(
-            model=BLSubmission, admin_site=admin_site)
+            'action': BlocklistSubmission.ACTION_DELETE}
+        block_admin = BlocklistSubmissionAdmin(
+            model=BlocklistSubmission, admin_site=admin_site)
         request = RequestFactory().get('/')
 
-        # The checks are bypassed if action != BLSubmission.ACTION_ADDCHANGE
+        # checks are bypassed if action != BlocklistSubmission.ACTION_ADDCHANGE
         form = block_admin.get_form(request=request)(data=data)
         form.is_valid()
         form.clean()  # would raise

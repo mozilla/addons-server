@@ -42,7 +42,7 @@ from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
-from olympia.blocklist.models import Block, BLSubmission
+from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.lib.git import AddonGitRepository
@@ -3617,9 +3617,9 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#block_addon')
         assert not doc('#edit_addon_block')
-        assert not doc('#edit_addon_blsubmission')
+        assert not doc('#edit_addon_blocklistsubmission')
         assert doc('#block_addon')[0].attrib.get('href') == (
-            reverse('admin:blocklist_blsubmission_add') + '?guids=' +
+            reverse('admin:blocklist_blocklistsubmission_add') + '?guids=' +
             self.addon.guid)
 
         block = Block.objects.create(
@@ -3629,20 +3629,22 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('#block_addon')
         assert doc('#edit_addon_block')
-        assert not doc('#edit_addon_blsubmission')
+        assert not doc('#edit_addon_blocklistsubmission')
         assert doc('#edit_addon_block')[0].attrib.get('href') == (
             reverse('admin:blocklist_block_change', args=(block.id,)))
 
         # If the guid is in a pending submission we show a link to that instead
-        subm = BLSubmission.objects.create(input_guids=self.addon.guid)
+        subm = BlocklistSubmission.objects.create(input_guids=self.addon.guid)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#block_addon')
         assert not doc('#edit_addon_block')
-        assert doc('#edit_addon_blsubmission')
-        assert doc('#edit_addon_blsubmission')[0].attrib.get('href') == (
-            reverse('admin:blocklist_blsubmission_change', args=(subm.id,)))
+        blocklistsubmission_block = doc('#edit_addon_blocklistsubmission')
+        assert blocklistsubmission_block
+        assert blocklistsubmission_block[0].attrib.get('href') == (
+            reverse(
+                'admin:blocklist_blocklistsubmission_change', args=(subm.id,)))
 
     def test_unflag_option_forflagged_as_admin(self):
         self.login_as_admin()
@@ -4608,7 +4610,7 @@ class TestReview(ReviewBase):
 
         assert response.status_code == 302
         new_block_url = (
-            reverse('admin:blocklist_blsubmission_add') +
+            reverse('admin:blocklist_blocklistsubmission_add') +
             '?guids=%s&min_version=%s&max_version=%s' % (
                 self.addon.guid, old_version.version, self.version.version))
         self.assertRedirects(response, new_block_url)

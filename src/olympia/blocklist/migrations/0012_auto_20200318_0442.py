@@ -14,14 +14,14 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RenameModel(
             old_name='BlockSubmission',
-            new_name='BLSubmission',
+            new_name='BlocklistSubmission',
         ),
         migrations.AlterModelOptions(
-            name='blsubmission',
+            name='blocklistsubmission',
             options={},
         ),
         migrations.AlterModelTable(
-            name='blsubmission',
-            table='blocklist_blocksubmission',
+            name='blocklistsubmission',
+            table='blocklist_blocklistsubmission',
         ),
     ]
