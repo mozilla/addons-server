@@ -371,6 +371,7 @@ v4 API changelog
 * 2020-02-06: added /reviewers/addon/(int:addon_id)/allow_resubmission/ and /reviewers/addon/(int:addon_id)/deny_resubmission/. https://github.com/mozilla/addons-server/issues/13409
 * 2020-02-20: added ``addon_install_source_url`` to abuse report endpoint
 * 2020-03-19: added /blocklist/block endpoint to expose add-on blocks https://github.com/mozilla/addons-server/issues/13706.
+* 2020-03-26: added ``addon_name`` to blocklist/block api https://github.com/mozilla/addons-server/issues/13757
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
