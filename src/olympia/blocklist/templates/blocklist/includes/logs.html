@@ -21,10 +21,10 @@
         </ul>
       </li>
     {% endfor %}
-    {% if block_submission %}
+    {% if blocklistsubmission %}
       <li>
-        {{ block_submission.modified|date:"Y-m-d" }}.
-        <a href="{% url 'admin:blocklist_blocksubmission_change' block_submission.id %}">Changes pending</a>
+        {{ blocklistsubmission.modified|date:"Y-m-d" }}.
+        <a href="{% url 'admin:blocklist_blocklistsubmission_change' blocklistsubmission.id %}">Changes pending</a>
       </li>
     {% endif %}
 </ul>

@@ -12,9 +12,9 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 
-from .forms import BlockSubmissionForm, MultiAddForm, MultiDeleteForm
-from .models import Block, BlockSubmission
-from .tasks import process_blocksubmission
+from .forms import BlocklistSubmissionForm, MultiAddForm, MultiDeleteForm
+from .models import Block, BlocklistSubmission
+from .tasks import process_blocklistsubmission
 from .utils import splitlines
 
 
@@ -75,7 +75,7 @@ class BlockAdminAddMixin():
                 elif len(guids) > 0:
                     # Otherwise go to multi view.
                     return HttpResponseTemporaryRedirect(
-                        reverse('admin:blocklist_blocksubmission_add'))
+                        reverse('admin:blocklist_blocklistsubmission_add'))
         else:
             form = MultiForm()
 
@@ -95,8 +95,8 @@ class BlockAdminAddMixin():
             request, 'blocklist/multi_guid_input.html', context)
 
 
-@admin.register(BlockSubmission)
-class BlockSubmissionAdmin(admin.ModelAdmin):
+@admin.register(BlocklistSubmission)
+class BlocklistSubmissionAdmin(admin.ModelAdmin):
     list_display = (
         'blocks_count',
         'action',
@@ -110,22 +110,22 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
     ordering = ['-created']
     view_on_site = False
     list_select_related = ('updated_by', 'signoff_by')
-    change_form_template = 'blocklist/block_submission_change_form.html'
-    form = BlockSubmissionForm
+    change_form_template = 'blocklist/blocklistsubmission_change_form.html'
+    form = BlocklistSubmissionForm
 
     class Media:
         css = {
-            'all': ('css/admin/blocklist_blocksubmission.css',)
+            'all': ('css/admin/blocklist_blocklistsubmission.css',)
         }
         js = ('js/i18n/en-US.js',)
 
     def has_delete_permission(self, request, obj=None):
-        # For now, keep all BlockSubmission records.
+        # For now, keep all BlocklistSubmission records.
         # TODO: define under what cirumstances records can be safely deleted.
         return False
 
     def is_pending_signoff(self, obj):
-        return obj and obj.signoff_state == BlockSubmission.SIGNOFF_PENDING
+        return obj and obj.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
 
     def get_value(self, name, request, obj=None, default=None):
         """Gets the named property from the obj if provided, or POST or GET."""
@@ -136,7 +136,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
     def is_add_change_submission(self, request, obj):
         return (
             str(self.get_value('action', request, obj, 0)) ==
-            str(BlockSubmission.ACTION_ADDCHANGE))
+            str(BlocklistSubmission.ACTION_ADDCHANGE))
 
     def has_change_permission(self, request, obj=None, strict=False):
         """ While a block submission is pending we want it to be partially
@@ -157,7 +157,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
 
     def has_signoff_approve_permission(self, request, obj=None):
         """ This controls whether the sign-off approve action is
-        available on the change form.  `BlockSubmission.can_user_signoff`
+        available on the change form.  `BlocklistSubmission.can_user_signoff`
         confirms the current user, who will signoff, is different from the user
         who submitted the guids (unless settings.DEBUG is True when the check
         is ignored)"""
@@ -194,7 +194,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         )
         if not obj:
             edit_title = 'Add New Blocks'
-        elif obj.signoff_state == BlockSubmission.SIGNOFF_PUBLISHED:
+        elif obj.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED:
             edit_title = 'Blocks Published'
         else:
             edit_title = 'Proposed New Blocks'
@@ -350,7 +350,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
         }
         context.update(**self._get_enhanced_guid_context(request, guids_data))
         return TemplateResponse(
-            request, 'blocklist/block_submission_add_form.html', context)
+            request, 'blocklist/blocklistsubmission_add_form.html', context)
 
     def _get_enhanced_guid_context(self, request, guids_data, obj=None):
         load_full_objects = len(splitlines(guids_data)) <= GUID_FULL_LOAD_LIMIT
@@ -371,16 +371,16 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
-        obj = self.model.objects.filter(id=object_id).latest()
+        obj = self.model.objects.filter(id=object_id).last()
         extra_context['has_signoff_approve_permission'] = (
             self.has_signoff_approve_permission(request, obj))
         extra_context['has_signoff_reject_permission'] = (
             self.has_signoff_reject_permission(request, obj))
         extra_context['can_change_object'] = (
-            obj.action == BlockSubmission.ACTION_ADDCHANGE and
+            obj.action == BlocklistSubmission.ACTION_ADDCHANGE and
             self.has_change_permission(request, obj, strict=True))
         extra_context['is_pending_signoff'] = self.is_pending_signoff(obj)
-        if obj.signoff_state != BlockSubmission.SIGNOFF_PUBLISHED:
+        if obj.signoff_state != BlocklistSubmission.SIGNOFF_PUBLISHED:
             extra_context.update(**self._get_enhanced_guid_context(
                 request, obj.input_guids, obj))
         else:
@@ -410,12 +410,12 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
             if is_approve:
                 if not self.has_signoff_approve_permission(request, obj):
                     raise PermissionDenied
-                obj.signoff_state = BlockSubmission.SIGNOFF_APPROVED
+                obj.signoff_state = BlocklistSubmission.SIGNOFF_APPROVED
                 obj.signoff_by = request.user
             elif is_reject:
                 if not self.has_signoff_reject_permission(request, obj):
                     raise PermissionDenied
-                obj.signoff_state = BlockSubmission.SIGNOFF_REJECTED
+                obj.signoff_state = BlocklistSubmission.SIGNOFF_REJECTED
             elif not self.has_change_permission(request, obj, strict=True):
                 # users without full change permission should only do signoff
                 raise PermissionDenied
@@ -426,7 +426,7 @@ class BlockSubmissionAdmin(admin.ModelAdmin):
 
         if obj.is_submission_ready:
             # Then launch a task to async save the individual blocks
-            process_blocksubmission.delay(obj.id)
+            process_blocklistsubmission.delay(obj.id)
 
     def log_change(self, request, obj, message):
         log_entry = None
@@ -531,14 +531,14 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return format_html('<a href="{}">{}</a>', obj.url, obj.url)
 
     def block_history(self, obj):
-        submission = BlockSubmission.get_submissions_from_guid(
+        submission = BlocklistSubmission.get_submissions_from_guid(
             obj.guid).first()
 
         logs = ActivityLog.objects.for_guidblock(obj.guid).filter(
             action__in=Block.ACTIVITY_IDS).order_by('created')
         return render_to_string(
             'blocklist/includes/logs.html',
-            {'logs': logs, 'block_submission': submission})
+            {'logs': logs, 'blocklistsubmission': submission})
 
     def get_fieldsets(self, request, obj):
         details = (
@@ -569,7 +569,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return (details, history, edit)
 
     def has_change_permission(self, request, obj=None):
-        if obj and BlockSubmission.get_submissions_from_guid(obj.guid):
+        if obj and BlocklistSubmission.get_submissions_from_guid(obj.guid):
             return False
         else:
             return super().has_change_permission(request, obj=obj)
@@ -608,7 +608,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
             form = ModelForm(request.POST, request.FILES, instance=obj)
             if form.is_valid():
                 return HttpResponseTemporaryRedirect(
-                    reverse('admin:blocklist_blocksubmission_add'))
+                    reverse('admin:blocklist_blocklistsubmission_add'))
 
         extra_context['show_save_and_continue'] = False
         extra_context['is_imported_from_kinto_regex'] = (

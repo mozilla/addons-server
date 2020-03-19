@@ -1065,11 +1065,11 @@ class ReviewUnlisted(ReviewBase):
         params = (
             f'?min_version={min_version[0]}&max_version={max_version[0]}')
 
-        if self.addon.blocksubmission:
+        if self.addon.blocklistsubmission:
             self.redirect_url = (
                 reverse(
-                    'admin:blocklist_blocksubmission_change',
-                    args=(self.addon.blocksubmission.pk,)
+                    'admin:blocklist_blocklistsubmission_change',
+                    args=(self.addon.blocklistsubmission.pk,)
                 ))
         elif self.addon.block:
             self.redirect_url = (
@@ -1079,7 +1079,7 @@ class ReviewUnlisted(ReviewBase):
                 ) + params)
         else:
             self.redirect_url = (
-                reverse('admin:blocklist_blocksubmission_add') + params +
+                reverse('admin:blocklist_blocklistsubmission_add') + params +
                 f'&guids={self.addon.guid}')
 
     def confirm_multiple_versions(self):
