@@ -19,7 +19,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadTest
-from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_ml_api
+from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_mad_api
 from olympia.users.models import (
     EmailUserRestriction, IPNetworkUserRestriction, UserRestrictionHistory)
 
@@ -63,7 +63,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                call_ml_api.s(file_upload.pk)
+                call_mad_api.s(file_upload.pk)
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk,
                                                     channel,
@@ -468,7 +468,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                call_ml_api.s(file_upload.pk)
+                call_mad_api.s(file_upload.pk)
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk,
                                                     channel,
@@ -509,7 +509,7 @@ class TestValidator(UploadTest, TestCase):
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_yara.s(file_upload.pk),
                 ],
-                call_ml_api.s(file_upload.pk)
+                call_mad_api.s(file_upload.pk)
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk,
                                                     channel,
@@ -532,7 +532,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                call_ml_api.s(file_upload.pk),
+                call_mad_api.s(file_upload.pk),
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk,
                                                     channel,
@@ -558,7 +558,7 @@ class TestValidator(UploadTest, TestCase):
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_customs.s(file_upload.pk),
                 ],
-                call_ml_api.s(file_upload.pk),
+                call_mad_api.s(file_upload.pk),
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk,
                                                     channel,
@@ -581,7 +581,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                call_ml_api.s(file_upload.pk),
+                call_mad_api.s(file_upload.pk),
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk,
                                                     channel,
@@ -607,7 +607,7 @@ class TestValidator(UploadTest, TestCase):
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_wat.s(file_upload.pk),
                 ],
-                call_ml_api.s(file_upload.pk),
+                call_mad_api.s(file_upload.pk),
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk,
                                                     channel,
@@ -630,7 +630,7 @@ class TestValidator(UploadTest, TestCase):
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
-                call_ml_api.s(file_upload.pk),
+                call_mad_api.s(file_upload.pk),
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk,
                                                     channel,
@@ -658,7 +658,7 @@ class TestValidator(UploadTest, TestCase):
                     run_yara.s(file_upload.pk),
                     run_customs.s(file_upload.pk),
                 ],
-                call_ml_api.s(file_upload.pk),
+                call_mad_api.s(file_upload.pk),
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk,
                                                     channel,
@@ -688,7 +688,7 @@ class TestValidator(UploadTest, TestCase):
                     run_customs.s(file_upload.pk),
                     run_wat.s(file_upload.pk),
                 ],
-                call_ml_api.s(file_upload.pk),
+                call_mad_api.s(file_upload.pk),
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk,
                                                     channel,
@@ -734,4 +734,6 @@ class TestValidator(UploadTest, TestCase):
         assert (expected_parallel_tasks == [task.name for task in
                                             scanners_chord.tasks])
         # Callback
-        assert scanners_chord.body.name == 'olympia.scanners.tasks.call_ml_api'
+        assert (
+            scanners_chord.body.name == 'olympia.scanners.tasks.call_mad_api'
+        )

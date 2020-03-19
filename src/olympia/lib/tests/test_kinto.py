@@ -1,3 +1,7 @@
+import json
+import tempfile
+from unittest import mock
+
 from django.conf import settings
 from django.test.utils import override_settings
 
@@ -39,13 +43,18 @@ class TestKintoServer(TestCase):
         server = KintoServer('foo', 'baa')
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa/records',
+            settings.KINTO_API_URL + 'buckets/foo',
             content_type='application/json',
             status=403)
         responses.add(
             responses.PUT,
             settings.KINTO_API_URL + 'buckets/foo',
             content_type='application/json')
+        responses.add(
+            responses.GET,
+            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
+            content_type='application/json',
+            status=404)
         responses.add(
             responses.PUT,
             settings.KINTO_API_URL + 'buckets/foo/collections/baa',
@@ -56,7 +65,11 @@ class TestKintoServer(TestCase):
         # If repeated then the collection shouldn't 403 a second time
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa/records',
+            settings.KINTO_API_URL + 'buckets/foo',
+            content_type='application/json')
+        responses.add(
+            responses.GET,
+            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
             content_type='application/json')
         server.setup_test_server_collection()
 
@@ -76,12 +89,16 @@ class TestKintoServer(TestCase):
             settings.KINTO_API_URL,
             content_type='application/json',
             json={'user': {'id': 'account:test_username'}})
-        records_url = (
+        bucket_url = (
             settings.KINTO_API_URL +
-            'buckets/foo_test_username/collections/baa/records')
+            'buckets/foo_test_username')
         responses.add(
             responses.GET,
-            records_url,
+            bucket_url,
+            content_type='application/json')
+        responses.add(
+            responses.GET,
+            bucket_url + '/collections/baa',
             content_type='application/json')
 
         server.setup()
@@ -93,7 +110,7 @@ class TestKintoServer(TestCase):
     def test_publish_record(self):
         server = KintoServer('foo', 'baa')
         server._setup_done = True
-        assert not server._needs_signoff
+        assert not server._changes
         responses.add(
             responses.POST,
             settings.KINTO_API_URL + 'buckets/foo/collections/baa/records',
@@ -101,7 +118,7 @@ class TestKintoServer(TestCase):
             json={'data': {'id': 'new!'}})
 
         record = server.publish_record({'something': 'somevalue'})
-        assert server._needs_signoff
+        assert server._changes
         assert record == {'id': 'new!'}
 
         url = (
@@ -116,10 +133,43 @@ class TestKintoServer(TestCase):
         record = server.publish_record({'something': 'somevalue'}, 'an-id')
         assert record == {'id': 'updated'}
 
+    @mock.patch('olympia.lib.kinto.uuid')
+    def test_publish_attachment(self, uuidmock):
+        uuidmock.uuid4.return_value = 1234567890
+        server = KintoServer('foo', 'baa')
+        server._setup_done = True
+        assert not server._changes
+        url = (
+            settings.KINTO_API_URL +
+            'buckets/foo/collections/baa/records/1234567890/attachment')
+        responses.add(
+            responses.POST,
+            url,
+            json={'data': {'id': '1234567890'}})
+
+        with tempfile.TemporaryFile() as attachment:
+            record = server.publish_attachment(
+                {'something': 'somevalue'}, ('file', attachment))
+        assert server._changes
+        assert record == {'id': '1234567890'}
+
+        url = (
+            settings.KINTO_API_URL +
+            'buckets/foo/collections/baa/records/an-id/attachment')
+        responses.add(
+            responses.POST,
+            url,
+            json={'data': {'id': 'an-id'}})
+
+        with tempfile.TemporaryFile() as attachment:
+            record = server.publish_attachment(
+                {'something': 'somevalue'}, ('otherfile', attachment), 'an-id')
+        assert record == {'id': 'an-id'}
+
     def test_delete_record(self):
         server = KintoServer('foo', 'baa')
         server._setup_done = True
-        assert not server._needs_signoff
+        assert not server._changes
         url = (
             settings.KINTO_API_URL +
             'buckets/foo/collections/baa/records/an-id')
@@ -129,15 +179,15 @@ class TestKintoServer(TestCase):
             content_type='application/json')
 
         server.delete_record('an-id')
-        assert server._needs_signoff
+        assert server._changes
 
-    def test_signoff(self):
+    def test_complete_session(self):
         server = KintoServer('foo', 'baa')
         server._setup_done = True
         # should return because nothing to signoff
-        server.signoff_request()
+        server.complete_session()
 
-        server._needs_signoff = True
+        server._changes = True
         url = (
             settings.KINTO_API_URL +
             'buckets/foo/collections/baa')
@@ -145,5 +195,26 @@ class TestKintoServer(TestCase):
             responses.PATCH,
             url,
             content_type='application/json')
-        server.signoff_request()
-        assert not server._needs_signoff
+        server.complete_session()
+        assert not server._changes
+        assert responses.calls[0].request.body == json.dumps(
+            {'data': {'status': 'to-review'}}).encode()
+
+    def test_complete_session_no_kinto_signoff(self):
+        server = KintoServer('foo', 'baa', kinto_sign_off_needed=False)
+        server._setup_done = True
+        # should return because nothing to signoff
+        server.complete_session()
+
+        server._changes = True
+        url = (
+            settings.KINTO_API_URL +
+            'buckets/foo/collections/baa')
+        responses.add(
+            responses.PATCH,
+            url,
+            content_type='application/json')
+        server.complete_session()
+        assert not server._changes
+        assert responses.calls[0].request.body == json.dumps(
+            {'data': {'status': 'to-sign'}}).encode()

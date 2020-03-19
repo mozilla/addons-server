@@ -1,6 +1,8 @@
 {% extends "admin/change_form.html" %}
 {% load static %}
 
+{% block bodyclass %}{{ block.super }} {% if hide_action_buttons %}hide-action-buttons {% endif %}{% endblock %}
+
 {% block admin_change_form_document_ready %}
   {{ block.super }}
 

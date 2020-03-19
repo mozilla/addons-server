@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+
 from datetime import datetime
 
 from django.core.cache import cache
@@ -11,6 +13,7 @@ from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.urlresolvers import reverse
+from olympia.files.models import FileValidation
 from olympia.lib.git import AddonGitRepository
 from olympia.lib.tests.test_git import apply_changes
 from olympia.reviewers.models import CannedResponse
@@ -68,6 +71,7 @@ class TestFileEntriesSerializer(TestCase):
                 'filename': 'manifest.json'
             }
         ))
+        assert not data['uses_unknown_minified_code']
 
         assert set(data['entries'].keys()) == {
             'README.md',
@@ -211,6 +215,24 @@ class TestFileEntriesSerializer(TestCase):
             '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0')
         assert data['entries']['icons/LICENSE']['sha256'] is None
 
+    def test_uses_unknown_minified_code(self):
+        validation_data = {
+            'metadata': {
+                'unknownMinifiedFiles': ['content-script.js']
+            }
+        }
+
+        fobj = self.addon.current_version.current_file
+
+        FileValidation.objects.create(
+            file=fobj, validation=json.dumps(validation_data))
+
+        data = self.serialize(fobj, file='content-script.js')
+        assert data['uses_unknown_minified_code']
+
+        data = self.serialize(fobj, file='background-script.js')
+        assert not data['uses_unknown_minified_code']
+
 
 class TestFileEntriesDiffSerializer(TestCase):
     def setUp(self):
@@ -277,6 +299,9 @@ class TestFileEntriesDiffSerializer(TestCase):
         data = self.serialize(file, parent_version=parent_version)
 
         assert data['id'] == file.pk
+        assert data['base_file'] == {
+            'id': parent_version.current_file.pk
+        }
         assert data['status'] == 'public'
         assert data['hash'] == ''
         assert data['is_webextension'] is True
@@ -294,12 +319,15 @@ class TestFileEntriesDiffSerializer(TestCase):
                 'filename': 'manifest.json'
             }
         ))
+        assert not data['uses_unknown_minified_code']
 
         assert set(data['entries'].keys()) == {
             'manifest.json', 'README.md', 'test.txt'}
 
         # The API always renders a diff, even for unmodified files.
         assert data['diff'] is not None
+
+        assert not data['uses_unknown_minified_code']
 
         # Unmodified file
         manifest_data = data['entries']['manifest.json']
@@ -531,6 +559,54 @@ class TestFileEntriesDiffSerializer(TestCase):
 
         assert data['diff'] is not None
 
+    def test_uses_unknown_minified_code(self):
+        parent_version = self.addon.current_version
+
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+        AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        file = self.addon.current_version.current_file
+
+        validation_data = {
+            'metadata': {
+                'unknownMinifiedFiles': ['README.md']
+            }
+        }
+
+        # Let's create a validation for the parent but not the current file
+        # which will result in us notifying the frontend of a minified file
+        # as well
+        current_validation = FileValidation.objects.create(
+            file=file, validation=json.dumps(validation_data))
+
+        data = self.serialize(
+            file, parent_version=parent_version, file='README.md')
+        assert data['uses_unknown_minified_code']
+
+        data = self.serialize(
+            file, parent_version=parent_version, file='manifest.json')
+        assert not data['uses_unknown_minified_code']
+
+        current_validation.delete()
+
+        # Creating a validation object for the current one works as well
+        FileValidation.objects.create(
+            file=parent_version.current_file,
+            validation=json.dumps(validation_data))
+
+        data = self.serialize(
+            file, parent_version=parent_version, file='README.md')
+        assert data['uses_unknown_minified_code']
+
+        data = self.serialize(
+            file, parent_version=parent_version, file='manifest.json')
+        assert not data['uses_unknown_minified_code']
+
 
 class TestAddonBrowseVersionSerializer(TestCase):
     def setUp(self):
@@ -593,27 +669,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
         data = self.serialize()
         assert data['id'] == self.version.pk
 
-        assert data['compatibility'] == {
-            'firefox': {'max': u'*', 'min': u'50.0'}
-        }
-
         assert data['channel'] == 'listed'
-        assert data['edit_url'] == absolutify(self.addon.get_dev_url(
-            'versions.edit', args=[self.version.pk], prefix_only=True))
-        assert data['release_notes'] == {
-            'en-US': u'Release notes in english',
-            'fr': u'Notes de version en français',
-        }
-        assert data['license']
-        assert dict(data['license']) == {
-            'id': self.version.license.pk,
-            'is_custom': True,
-            'name': {'en-US': u'My License', 'fr': u'Mä Licence'},
-            'text': {
-                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
-            },
-            'url': 'http://license.example.com/',
-        }
         assert data['reviewed'] == (
             self.version.reviewed.replace(microsecond=0).isoformat() + 'Z')
 

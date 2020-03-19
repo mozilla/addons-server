@@ -1,4 +1,7 @@
+import json
+import uuid
 from base64 import b64encode
+
 from django.conf import settings
 
 import requests
@@ -14,14 +17,16 @@ class KintoServer(object):
     password = None
     bucket = None
     collection = None
+    kinto_sign_off_needed = True
     _setup_done = False
-    _needs_signoff = False
+    _changes = False
 
-    def __init__(self, bucket, collection):
+    def __init__(self, bucket, collection, kinto_sign_off_needed=True):
         self.username = settings.BLOCKLIST_KINTO_USERNAME
         self.password = settings.BLOCKLIST_KINTO_PASSWORD
         self.bucket = bucket
         self.collection = collection
+        self.kinto_sign_off_needed = kinto_sign_off_needed
 
     def setup(self):
         if self._setup_done:
@@ -59,28 +64,22 @@ class KintoServer(object):
                 raise ConnectionError('Kinto account not created')
 
     def setup_test_server_collection(self):
-        # check if the bucket and collection exist
-        host = settings.KINTO_API_URL
-        url = (
-            f'{host}buckets/{self.bucket}/'
-            f'collections/{self.collection}/records')
+        # check if the bucket exists
+        bucket_url = f'{settings.KINTO_API_URL}buckets/{self.bucket}'
         headers = self.headers
-        response = requests.get(url, headers=headers)
+        response = requests.get(bucket_url, headers=headers)
         if response.status_code == 403:
             # lets create them
             data = {'permissions': {'read': ["system.Everyone"]}}
             log.info(
                 'Creating kinto bucket %s and collection %s' %
                 (self.bucket, self.collection))
-            response = requests.put(
-                f'{host}buckets/{self.bucket}',
-                json=data,
-                headers=headers)
-            response = requests.put(
-                f'{host}buckets/{self.bucket}/collections/{self.collection}',
-                json=data,
-                headers=headers)
-
+            response = requests.put(bucket_url, json=data, headers=headers)
+        # and the collection
+        collection_url = f'{bucket_url}/collections/{self.collection}'
+        response = requests.get(collection_url, headers=headers)
+        if response.status_code == 404:
+            response = requests.put(collection_url, json=data, headers=headers)
             if response.status_code != 201:
                 log.error(
                     'Creating collection %s/%s failed: %s' %
@@ -114,7 +113,42 @@ class KintoServer(object):
                 (data.get('guid'), response.content),
                 stack_info=True)
             raise ConnectionError('Kinto record not created/updated')
-        self._needs_signoff = True
+        self._changes = True
+        return response.json().get('data', {})
+
+    def publish_attachment(self, data, attachment, kinto_id=None):
+        """Publish an attachment to a record on kinto.  If `kinto_id` is not
+        None the existing record will be updated; otherwise a new record will
+        be created.
+        `attachment` is a tuple of (filename, file object, content type)"""
+        self.setup()
+
+        if not kinto_id:
+            log.info('Creating record')
+        else:
+            log.info(
+                'Updating record [%s]' % kinto_id)
+
+        headers = self.headers
+        del headers['Content-Type']
+        json_data = {'data': json.dumps(data)}
+        kinto_id = kinto_id or uuid.uuid4()
+        attach_url = (
+            f'{settings.KINTO_API_URL}buckets/{self.bucket}/'
+            f'collections/{self.collection}/records/{kinto_id}/attachment')
+        files = [('attachment', attachment)]
+        response = requests.post(
+            attach_url,
+            data=json_data,
+            headers=headers,
+            files=files)
+        if response.status_code not in (200, 201):
+            log.error(
+                'Creating record for [%s] failed: %s' %
+                (kinto_id, response.content),
+                stack_info=True)
+            raise ConnectionError('Kinto record not created/updated')
+        self._changes = True
         return response.json().get('data', {})
 
     def delete_record(self, kinto_id):
@@ -124,15 +158,16 @@ class KintoServer(object):
             f'collections/{self.collection}/records/{kinto_id}')
         requests.delete(
             url, headers=self.headers)
-        self._needs_signoff = True
+        self._changes = True
 
-    def signoff_request(self):
-        if not self._needs_signoff:
+    def complete_session(self):
+        if not self._changes:
             return
         self.setup()
         url = (
             f'{settings.KINTO_API_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}')
+        status = 'to-review' if self.kinto_sign_off_needed else 'to-sign'
         requests.patch(
-            url, json={'data': {'status': 'to-review'}}, headers=self.headers)
-        self._needs_signoff = False
+            url, json={'data': {'status': status}}, headers=self.headers)
+        self._changes = False

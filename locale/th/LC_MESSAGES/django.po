@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-03 19:29+0000\n"
+"PO-Revision-Date: 2020-03-15 12:37+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1282,7 +1282,7 @@ msgid "New Search Provider Review"
 msgstr "บทวิจารณ์ผู้ให้บริการค้นหาใหม่"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "การตรวจทานผู้ให้บริการค้นหาเบื้องต้น"
 
 msgid "Updated Search Provider Review"
 msgstr "บทวิจารณ์ผู้ให้บริการค้นหาที่อัปเดต"
@@ -1291,7 +1291,7 @@ msgid "New Complete Theme Review"
 msgstr "บทวิจารณ์ชุดตกแต่งแบบสมบูรณ์ใหม่"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "การตรวจทานชุดตกแต่งแบบสมบูรณ์เบื้องต้น"
 
 msgid "Updated Complete Theme Review"
 msgstr "บทวิจารณ์ชุดตกแต่งแบบสมบูรณ์ที่อัปเดตแล้ว"
@@ -1300,7 +1300,7 @@ msgid "Moderated Add-on Review"
 msgstr "บทวิจารณ์ส่วนเสริมที่รอการตรวจสอบ"
 
 msgid "Add-on Review Moderation Reverted"
-msgstr ""
+msgstr "แปลงกลับการควบคุมการตรวจทานส่วนเสริมแล้ว"
 
 msgid "Add-on Content Review"
 msgstr "บทวิจารณ์เนื้อหาส่วนเสริม"
@@ -5152,13 +5152,11 @@ msgstr "ข้ามไปก่อนตอนนี้"
 msgid "Delete review"
 msgstr "ลบบทวิจารณ์"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "ต้องการการตรวจสอบเนื้อหาโดยผู้ดูแล"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "บทวิจารณ์ส่วนเสริมที่ปรับปรุงแล้ว                "
+msgstr "ต้องการการตรวจสอบชุดตกแต่งคงที่โดยผู้ดูแล"
 
 msgid "Requires Restart"
 msgstr "ต้องเริ่มการทำงานใหม่"
@@ -5454,9 +5452,8 @@ msgstr "คลังภาพ"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "ที่นี่ไม่มีอะไรให้ดู!  นักพัฒนายังไม่ได้ใส่รายละเอียดที่นี่"
 
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "กลับไปยังหน้าแรกของส่วนเสริม {0}"
+msgstr "กลับไปที่แดชบอร์ดเครื่องมือผู้ตรวจทาน"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
@@ -5588,14 +5585,12 @@ msgstr "ลิงก์ที่มีประโยชน์:"
 msgid "Add-on Policy"
 msgstr "นโยบายส่วนเสริม"
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "แนวทางการวิจารณ์"
+msgstr "คู่มือสำหรับผู้ตรวจทาน"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "การตรวจสอบเนื้อหา {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5693,13 +5688,11 @@ msgstr "ล้างคำข้อข้อมูล"
 msgid "Clear Admin Code Review Flag"
 msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "ล้างค่าสถานะการตรวจสอบเนื้อหาโดยผู้ดูแล"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "ล้างค่าสถานะการตรวจสอบชุดตกแต่งคงที่โดยผู้ดูแล"
 
 msgid "(admin)"
 msgstr "(ผู้ดูแล)"

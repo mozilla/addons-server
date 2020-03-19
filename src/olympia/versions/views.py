@@ -96,16 +96,17 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
                      file_id=file_id, user_id=request.user.pk))
         raise http.Http404()  # Not owner or admin.
 
-    if not use_cdn:
-        return HttpResponseXSendFile(
+    if use_cdn:
+        attachment = bool(type == 'attachment')
+        loc = urlparams(file_.get_file_cdn_url(attachment=attachment),
+                        filehash=file_.hash)
+        response = http.HttpResponseRedirect(loc)
+        response['X-Target-Digest'] = file_.hash
+    else:
+        response = HttpResponseXSendFile(
             request, file_.current_file_path,
             content_type='application/x-xpinstall')
-
-    attachment = bool(type == 'attachment')
-    loc = urlparams(file_.get_file_cdn_url(attachment=attachment),
-                    filehash=file_.hash)
-    response = http.HttpResponseRedirect(loc)
-    response['X-Target-Digest'] = file_.hash
+    response['Access-Control-Allow-Origin'] = '*'
     return response
 
 
@@ -167,11 +168,12 @@ def download_source(request, version_id):
     if not has_permission:
         raise http.Http404()
 
-    res = HttpResponseXSendFile(request, version.source.path)
+    response = HttpResponseXSendFile(request, version.source.path)
     path = version.source.path
     if not isinstance(path, str):
         path = path.decode('utf8')
     name = os.path.basename(path.replace('"', ''))
     disposition = 'attachment; filename="{0}"'.format(name).encode('utf8')
-    res['Content-Disposition'] = disposition
-    return res
+    response['Content-Disposition'] = disposition
+    response['Access-Control-Allow-Origin'] = '*'
+    return response

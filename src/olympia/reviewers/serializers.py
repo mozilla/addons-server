@@ -2,6 +2,7 @@ import io
 import os
 import mimetypes
 import pathlib
+import json
 from collections import OrderedDict
 from datetime import datetime
 
@@ -22,12 +23,12 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.addons.serializers import (
-    VersionSerializer, FileSerializer, SimpleAddonSerializer)
+    FileSerializer, MinimalVersionSerializer, SimpleAddonSerializer)
 from olympia.addons.models import AddonReviewerFlags
-from olympia.api.fields import SplitField
+from olympia.api.fields import ReverseChoiceField, SplitField
 from olympia.users.models import UserProfile
 from olympia.files.utils import get_sha256
-from olympia.files.models import File
+from olympia.files.models import File, FileValidation
 from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
 from olympia.lib.git import AddonGitRepository, get_mime_type_for_blob
@@ -50,13 +51,15 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
 
 class FileEntriesSerializer(FileSerializer):
     content = serializers.SerializerMethodField()
+    uses_unknown_minified_code = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
     entries = serializers.SerializerMethodField()
     selected_file = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
-            'content', 'entries', 'selected_file', 'download_url'
+            'content', 'entries', 'selected_file', 'download_url',
+            'uses_unknown_minified_code'
         )
         model = File
 
@@ -213,6 +216,20 @@ class FileEntriesSerializer(FileSerializer):
         # more explanation.
         return ''
 
+    def get_uses_unknown_minified_code(self, obj):
+        try:
+            validation = obj.validation
+        except FileValidation.DoesNotExist:
+            # We don't have any idea about whether it could be minified or not
+            # so let's assume it's not for now.
+            return False
+
+        validation_data = json.loads(validation.validation)
+
+        prop = 'unknownMinifiedFiles'
+        minified_files = validation_data.get('metadata', {}).get(prop, [])
+        return self.get_selected_file(obj) in minified_files
+
     def get_download_url(self, obj):
         commit = self._get_commit(obj)
         tree = self.repo.get_root_tree(commit)
@@ -236,7 +253,16 @@ class FileEntriesSerializer(FileSerializer):
         ))
 
 
-class AddonBrowseVersionSerializer(VersionSerializer):
+class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):
+    channel = ReverseChoiceField(
+        choices=list(amo.CHANNEL_CHOICES_API.items()))
+
+    class Meta:
+        model = Version
+        fields = ('id', 'channel', 'version')
+
+
+class AddonBrowseVersionSerializer(MinimalVersionSerializerWithChannel):
     validation_url_json = serializers.SerializerMethodField()
     validation_url = serializers.SerializerMethodField()
     has_been_validated = serializers.SerializerMethodField()
@@ -245,13 +271,13 @@ class AddonBrowseVersionSerializer(VersionSerializer):
 
     class Meta:
         model = Version
-        # Doesn't contain `files` from VersionSerializer
-        fields = ('id', 'channel', 'compatibility', 'edit_url',
-                  'is_strict_compatibility_enabled', 'license',
-                  'release_notes', 'reviewed', 'version',
-                  # Our custom fields
-                  'file', 'validation_url', 'validation_url_json',
-                  'has_been_validated', 'addon')
+        fields = (
+            # Bare minimum fields we need from parent...
+            'id', 'channel', 'reviewed', 'version',
+            # Plus our custom ones.
+            'addon', 'file', 'has_been_validated', 'validation_url',
+            'validation_url_json'
+        )
 
     def get_validation_url_json(self, obj):
         return absolutify(reverse('devhub.json_file_validation', args=[
@@ -267,11 +293,14 @@ class AddonBrowseVersionSerializer(VersionSerializer):
         return obj.current_file.has_been_validated
 
 
-class DiffableVersionSerializer(VersionSerializer):
+class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
+    pass
 
+
+class MinimalBaseFileSerializer(FileSerializer):
     class Meta:
-        model = Version
-        fields = ('id', 'channel', 'version')
+        model = File
+        fields = ('id',)
 
 
 class FileEntriesDiffSerializer(FileEntriesSerializer):
@@ -279,10 +308,13 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
     entries = serializers.SerializerMethodField()
     selected_file = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
+    uses_unknown_minified_code = serializers.SerializerMethodField()
+    base_file = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
-            'diff', 'entries', 'selected_file', 'download_url'
+            'diff', 'entries', 'selected_file', 'download_url',
+            'uses_unknown_minified_code', 'base_file'
         )
         model = File
 
@@ -377,6 +409,28 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                     }
 
         return entries
+
+    def get_uses_unknown_minified_code(self, obj):
+        parent = self.context['parent_version']
+        selected_file = self.get_selected_file(obj)
+
+        for file in [parent.current_file, obj]:
+            try:
+                data = json.loads(file.validation.validation)
+            except FileValidation.DoesNotExist:
+                continue
+
+            prop = 'unknownMinifiedFiles'
+            minified_files = data.get('metadata', {}).get(prop, [])
+            if selected_file in minified_files:
+                return True
+        return False
+
+    def get_base_file(self, obj):
+        # We can't directly use `source=` in the file definitions above
+        # because the parent version gets passed through the `context`
+        base_file = self.context['parent_version'].current_file
+        return MinimalBaseFileSerializer(instance=base_file).data
 
 
 class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):

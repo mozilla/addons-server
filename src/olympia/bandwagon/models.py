@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.db import models
 
 from olympia import activity, amo
@@ -188,6 +189,13 @@ class Collection(ModelBase):
             return
         tasks.collection_meta.delay(instance.id)
 
+    def index_addons(self, addons=None):
+        """Index add-ons belonging to that collection."""
+        from olympia.addons.tasks import index_addons
+        addon_ids = [addon.id for addon in (addons or self.addons.all())]
+        if addon_ids:
+            index_addons.delay(addon_ids)
+
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
         """
@@ -240,19 +248,32 @@ class CollectionAddon(ModelBase):
         if instance.collection.listed:
             activity.log_create(
                 amo.LOG.ADD_TO_COLLECTION, instance.addon, instance.collection)
+        kwargs['addons'] = [instance.addon]
         Collection.post_save(sender, instance.collection, **kwargs)
+        if instance.collection.id == settings.COLLECTION_FEATURED_THEMES_ID:
+            # That collection is special: each add-on in it is considered
+            # recommended, so we need to index the corresponding add-on.
+            # (Note: we are considering the add-on in a given CollectionAddon
+            #  never changes, to change add-ons belonging to a collection we
+            #  add or remove CollectionAddon instances, we never modify the
+            #  addon foreignkey of an existing instance).
+            instance.collection.index_addons(addons=[instance.addon])
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
-        from . import tasks
-
         if kwargs.get('raw'):
             return
         if instance.collection.listed:
             activity.log_create(
                 amo.LOG.REMOVE_FROM_COLLECTION, instance.addon,
                 instance.collection)
-        tasks.collection_meta.delay(instance.collection.id)
+        kwargs['addons'] = [instance.addon]
+        Collection.post_save(sender, instance.collection, **kwargs)
+        if instance.collection.id == settings.COLLECTION_FEATURED_THEMES_ID:
+            # That collection is special: each add-on in it is considered
+            # recommended, so we need to index the add-on we just removed from
+            # it.
+            instance.collection.index_addons(addons=[instance.addon])
 
 
 models.signals.pre_save.connect(save_signal, sender=CollectionAddon,

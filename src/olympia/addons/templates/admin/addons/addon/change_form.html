@@ -1,0 +1,22 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+{% block object-tools-items %}
+  {% if has_listed_versions %}
+  <li>
+    <a href="{% url 'reviewers.review' 'listed' object_id %}">
+      {% trans 'Reviewer Tools (listed)' %}
+    </a>
+  </li>
+  {% endif %}
+
+  {% if has_unlisted_versions %}
+  <li>
+    <a href="{% url 'reviewers.review' 'unlisted' object_id %}">
+      {% trans 'Reviewer Tools (unlisted)' %}
+    </a>
+  </li>
+  {% endif %}
+
+  {{ block.super }}
+{% endblock %}

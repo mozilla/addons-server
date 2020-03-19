@@ -506,6 +506,8 @@ class Addon(OnChangeMixin, ModelBase):
                  self.slug, amo.STATUS_DISABLED)
         self.update(status=amo.STATUS_DISABLED)
         self.update_version()
+        # See: https://github.com/mozilla/addons-server/issues/13194
+        self.disable_all_files()
 
     def force_enable(self):
         activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_APPROVED)
@@ -531,6 +533,10 @@ class Addon(OnChangeMixin, ModelBase):
         activity.log_create(amo.LOG.DENIED_GUID_DELETED, self)
         log.info('Allow resubmission for addon "%s"', self.slug)
         DeniedGuid.objects.filter(guid=self.guid).delete()
+
+    def disable_all_files(self):
+        File.objects.filter(version__addon=self).update(
+            status=amo.STATUS_DISABLED)
 
     @property
     def is_guid_denied(self):
@@ -630,8 +636,7 @@ class Addon(OnChangeMixin, ModelBase):
             # avoid extra work. Files will be moved to the correct storage
             # location with hide_disabled_files task or hide_disabled_files
             # cron as a fallback.
-            File.objects.filter(version__addon=self).update(
-                status=amo.STATUS_DISABLED)
+            self.disable_all_files()
             file_tasks.hide_disabled_files.delay(addon_id=self.id)
 
             self.versions.all().update(deleted=True)
