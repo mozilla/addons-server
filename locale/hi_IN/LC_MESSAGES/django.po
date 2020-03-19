@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-08-26 17:37+0000\n"
-"Last-Translator: Rahilsha <18bcs1203@gmail.com>\n"
+"PO-Revision-Date: 2020-03-19 13:04+0000\n"
+"Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -1870,7 +1870,7 @@ msgstr "{0} के लिए हालिया गतिविधि"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "%(user)s द्वारा <time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time>"
 
 msgid "No results found."
 msgstr "कोई परिणाम नहीं मिला।"
@@ -1942,7 +1942,7 @@ msgstr "हाल की गतिविधि"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(user)s द्वारा %(ago)s"
 
 msgid "Older activity for My Add-ons"
 msgstr ""
@@ -1969,7 +1969,7 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "आपको {addon_name} का लेखक बनने के लिए आमंत्रित किया गया है।"
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
 msgstr ""
@@ -2001,7 +2001,7 @@ msgid ""
 msgstr ""
 
 msgid "Additional Details"
-msgstr ""
+msgstr "अतिरिक्त जानकारियां"
 
 msgid "Edit"
 msgstr "संपादन"
@@ -2058,7 +2058,7 @@ msgid "Describe {0}"
 msgstr "संस्करण {0}"
 
 msgid "Name and Summary"
-msgstr ""
+msgstr "नाम और सारांश"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2375,7 +2375,7 @@ msgid "Submit a New Version"
 msgstr "एक नया संस्करण जमा करें"
 
 msgid "Name and Summary:"
-msgstr ""
+msgstr "नाम और सारांश:"
 
 msgid "required"
 msgstr "जरूरी"
