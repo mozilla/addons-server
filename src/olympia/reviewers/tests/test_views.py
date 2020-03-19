@@ -3408,7 +3408,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         expected = [
             ('Unlisted Review Page', reverse(
-                'reviewers.review', args=('unlisted', self.addon.slug))),
+                'reviewers.review', args=('unlisted', self.addon.id))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse(
                 'admin:addons_addon_change', args=[self.addon.id])),
@@ -3428,7 +3428,7 @@ class TestReview(ReviewBase):
         expected = [
             ('View Product Page', self.addon.get_url_path()),
             ('Unlisted Review Page', reverse(
-                'reviewers.review', args=('unlisted', self.addon.slug))),
+                'reviewers.review', args=('unlisted', self.addon.id))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse(
                 'admin:addons_addon_change', args=[self.addon.id])),
@@ -3450,7 +3450,7 @@ class TestReview(ReviewBase):
         expected = [
             ('View Product Page', self.addon.get_url_path()),
             ('Listed Review Page',
-                reverse('reviewers.review', args=(self.addon.slug,))),
+                reverse('reviewers.review', args=(self.addon.id,))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
                 reverse('admin:addons_addon_change', args=[self.addon.id])),
