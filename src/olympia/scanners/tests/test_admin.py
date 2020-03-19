@@ -1117,7 +1117,7 @@ class TestScannerQueryResultAdmin(TestCase):
         )
         assert result == expected
         assert 'Other add-ons' in link_to_addons[0]
-        expected_querystring = '?authors={}'.format(
+        expected_querystring = '?authors__in={}'.format(
             ','.join(str(author.pk) for author in addon.authors.all())
         )
         assert expected_querystring in link_to_addons[1]
