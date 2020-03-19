@@ -867,7 +867,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'min_version': '1',  # should be ignored
                 'max_version': '99',  # should be ignored
                 'url': 'new.url',
-                'reason': 'a reason',
+                'reason': 'a new reason thats longer than 40 charactors',
                 '_save': 'Update',
             },
             follow=True)
@@ -880,7 +880,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert mbs.max_version == '*'
         # but the other details were
         assert mbs.url == 'new.url'
-        assert mbs.reason == 'a reason'
+        assert mbs.reason == 'a new reason thats longer than 40 charactors'
 
         # The blocklistsubmission wasn't approved or rejected though
         assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
@@ -894,7 +894,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            b'Changed &quot;Pending: guid@, ...; new.url; a reason' in
+            b'Changed &quot;Pending: guid@, invalid@, second@invalid; '
+            b'new.url; a new reason thats longer than 40 cha...' in
             response.content)
 
     def test_edit_page_with_blocklist_signoff(self):
@@ -1035,7 +1036,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            b'Changed &quot;Approved: guid@, ...; ; '
+            b'Changed &quot;Approved: guid@, invalid@'
             b'&quot; - Sign-off Approval' in
             response.content)
         assert b'not a Block!' not in response.content
@@ -1096,7 +1097,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            b'Changed &quot;Rejected: guid@, ...; ; '
+            b'Changed &quot;Rejected: guid@, invalid@'
             b'&quot; - Sign-off Rejection' in
             response.content)
         assert b'not a Block!' not in response.content
