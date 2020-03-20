@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-19 13:04+0000\n"
+"PO-Revision-Date: 2020-03-20 16:41+0000\n"
 "Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -20,10 +20,10 @@ msgid "type"
 msgstr ""
 
 msgid "Users"
-msgstr ""
+msgstr "उपयोगकर्ता"
 
 msgid "Addons"
-msgstr ""
+msgstr "ऐड-ऑन"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
@@ -62,7 +62,7 @@ msgstr "रूपांतरि‌त:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "%(filter_title)s द्वारा"
 
 msgid "All"
 msgstr "सभी"
@@ -484,7 +484,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "यह ऐड-ऑन पहले ही संग्रह मे मौजूद है"
 
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} का निर्माण किया गया था।"
 
 msgid "{addon} properties edited."
 msgstr "{addon} गुण संपादित किए गए।"
