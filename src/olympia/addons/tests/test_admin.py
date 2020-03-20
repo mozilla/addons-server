@@ -174,8 +174,15 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
-        assert b'Reviewer Tools (listed)' in response.content
-        assert b'Reviewer Tools (unlisted)' in response.content
+        content = response.content.decode('utf-8')
+        assert 'Reviewer Tools (listed)' in content
+        assert ('http://testserver{}'.format(
+            reverse('reviewers.review', args=('listed', addon.pk))
+        ) in content)
+        assert 'Reviewer Tools (unlisted)' in content
+        assert ('http://testserver{}'.format(
+            reverse('reviewers.review', args=('unlisted', addon.pk))
+        ) in content)
 
     def test_can_not_list_without_addons_edit_permission(self):
         addon = addon_factory()
