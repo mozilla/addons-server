@@ -201,6 +201,7 @@ class AddonAdmin(admin.ModelAdmin):
                            form_url='', obj=None):
         context.update(
             {
+                'external_site_url': settings.EXTERNAL_SITE_URL,
                 'has_listed_versions': obj.has_listed_versions(
                     include_deleted=True
                 ) if obj else False,
