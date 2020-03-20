@@ -165,7 +165,7 @@ class TestTranslationSerializerField(TestCase):
         self.addon.mymock = Mock()
         self.addon.mymock.mymocked_field = self.addon.name
         field = self.field_class(source='mymock.mymocked_field')
-        result = field.to_internal_value(field.get_attribute(self.addon))
+        result = field.get_attribute(self.addon)
         expected = {
             'en-US': str(Translation.objects.get(
                 id=self.addon.name.id, locale='en-US')),
@@ -173,6 +173,12 @@ class TestTranslationSerializerField(TestCase):
                 id=self.addon.name.id, locale='es')),
         }
         assert result == expected
+
+    def test_get_attribute_source_missing_parent_object(self):
+        self.addon.mymock = None
+        field = self.field_class(source='mymock.mymocked_field')
+        result = field.get_attribute(self.addon)
+        assert result is None
 
     def test_get_attribute_empty_context(self):
         mock_serializer = serializers.Serializer(context={})
