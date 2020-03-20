@@ -1,5 +1,6 @@
 import argparse
 
+from datetime import datetime
 from importlib import import_module
 
 from django.conf import settings
@@ -36,6 +37,10 @@ class Command(BaseCommand):
 
         module = import_module(path)
 
-        log.info("Beginning job: %s %s" % (name, args))
+        current_millis = datetime.now().timestamp() * 1000
+
+        log.info("Beginning job: %s %s (start timestamp: %s)" % (
+            name, args, current_millis))
         getattr(module, name)(*args)
-        log.info("Ending job: %s %s" % (name, args))
+        log.info("Ending job: %s %s (start timestamp: %s)" % (
+            name, args, current_millis))
