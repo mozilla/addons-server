@@ -7,6 +7,7 @@ from django.db.utils import IntegrityError
 from django.http import (
     Http404, HttpResponseForbidden, HttpResponseNotAllowed,
     HttpResponseRedirect)
+from django.urls import reverse
 from django.utils.encoding import force_text
 from django.utils.html import format_html, format_html_join
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -160,7 +161,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         kw = {'user': force_text(obj)}
         self.message_user(
             request, ugettext('The user "%(user)s" has been banned.' % kw))
-        return HttpResponseRedirect('../')
+        return HttpResponseRedirect(
+            reverse('admin:users_userprofile_change', args=(obj.pk, )))
 
     def reset_api_key_view(self, request, object_id, extra_context=None):
         if request.method != 'POST':
@@ -176,7 +178,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         self.reset_api_key_action(
             request, UserProfile.objects.filter(pk=obj.pk))
 
-        return HttpResponseRedirect('../')
+        return HttpResponseRedirect(
+            reverse('admin:users_userprofile_change', args=(obj.pk, )))
 
     def reset_session_view(self, request, object_id, extra_context=None):
         if request.method != 'POST':
@@ -192,7 +195,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         self.reset_session_action(
             request, UserProfile.objects.filter(pk=obj.pk))
 
-        return HttpResponseRedirect('../')
+        return HttpResponseRedirect(
+            reverse('admin:users_userprofile_change', args=(obj.pk, )))
 
     def delete_picture_view(self, request, object_id, extra_context=None):
         if request.method != 'POST':
@@ -212,7 +216,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             request, ugettext(
                 'The picture belonging to user "%(user)s" has been deleted.' %
                 kw))
-        return HttpResponseRedirect('../')
+        return HttpResponseRedirect(
+            reverse('admin:users_userprofile_change', args=(obj.pk, )))
 
     def ban_action(self, request, qs):
         users = []
