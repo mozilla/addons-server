@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-21 13:21+0000\n"
+"PO-Revision-Date: 2020-03-21 13:24+0000\n"
 "Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -1174,7 +1174,7 @@ msgid "Video"
 msgstr "वीडियो"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "सर्वाधिकार सुरक्षित"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr ""
@@ -1704,7 +1704,7 @@ msgstr "संस्करण %s अक्षम।"
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "संस्करण %s मिटाया गया।"
 
 #, python-format
 msgid "Version %s re-enabled."
