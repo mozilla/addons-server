@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-21 13:12+0000\n"
+"PO-Revision-Date: 2020-03-21 13:21+0000\n"
 "Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -516,17 +516,17 @@ msgid "{addon} status changed to {status}."
 msgstr "{addon} स्थिति {status} में परिवर्तित हो गई है।"
 
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{addon} में {version} जोड़ा गया।"
 
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{addon} के लिए {version} संपादित किया गया।"
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "{addon} से संस्करण {0} हटाया गया।"
 
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "{addon} के {version} में फ़ाइल {0.name} जोड़ा गया।"
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "{addon} के {version} से फ़ाइल {0} को हटा दिया गया।"
@@ -586,10 +586,10 @@ msgid "Commented"
 msgstr "टिप्पणी की गई"
 
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{addon} में {tag} जोड़ा गया।"
 
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{addon} से {tag} हटाया गया।"
 
 msgid "{addon} added to {collection}."
 msgstr ""
@@ -695,13 +695,13 @@ msgid "User {user} banned."
 msgstr ""
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "उपयोगकर्ता {user} तस्वीर मिटाया गया।"
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "{group} में उपयोगकर्ता {0.name} जोड़ा गया।"
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "{group} से उपयोगकर्ता {0.name} हटाया गया।"
 
 msgid "{addon} unlisted."
 msgstr "{addon} गैर-सूचीबद्ध ।"
