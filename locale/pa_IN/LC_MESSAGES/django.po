@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-22 17:05+0000\n"
+"PO-Revision-Date: 2020-03-22 17:06+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1983,7 +1983,7 @@ msgid "Accepting the invitation will give you access to edit the add-on, and may
 msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "ਇਹ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਹੇਠਾਂ ਸਵੀਕਾਰ ਕਰੋ ਬਟਨ ਤੇ ਕਲਿਕ ਕਰੋ ਕਿ ਤੁਸੀਂ {addon_name}for ਦੇ ਲੇਖਕ ਵਜੋਂ ਸ਼ਾਮਲ ਹੋਣਾ ਚਾਹੁੰਦੇ ਹੋ।"
 
 msgid "Decline"
 msgstr "ਇਨਕਾਰ"
