@@ -493,7 +493,7 @@ msgid "{addon} description edited."
 msgstr "{addon} विवरण संपादित किया गया।"
 
 msgid "Categories edited for {addon}."
-msgstr "{Addon} के लिए श्रेणियां संपादित की गई।"
+msgstr "{addon} के लिए श्रेणियां संपादित की गई।"
 
 msgid "{0.name} ({1}) added to {addon}."
 msgstr ""
