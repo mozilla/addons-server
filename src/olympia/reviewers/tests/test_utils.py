@@ -345,6 +345,14 @@ class TestReviewHelper(TestReviewHelperBase):
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED).keys()) == expected
 
+        # Now make it recommendable. The user should lose all approve/reject
+        # actions.
+        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED).keys()) == expected
+
     def test_actions_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
         expected = ['approve_content', 'reject_multiple_versions',
@@ -368,7 +376,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_public_static_theme(self):
         # Having Addons:PostReview and dealing with a public add-on would
         # normally be enough to give you access to reject multiple versions
-        # action, but it should not be available for static themes.
+        # action, but it should not be available if you're not theme reviewer.
         self.grant_permission(self.request.user, 'Addons:PostReview')
         self.addon.update(type=amo.ADDON_STATICTHEME)
         expected = []
@@ -376,10 +384,13 @@ class TestReviewHelper(TestReviewHelperBase):
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
 
-        # Themes reviewers get access to everything.
+        # Themes reviewers get access to everything, including reject multiple.
         self.request.user.groupuser_set.all().delete()
         self.grant_permission(self.request.user, 'Addons:ThemeReview')
-        expected = ['public', 'reject', 'reply', 'super', 'comment']
+        expected = [
+            'public', 'reject', 'reject_multiple_versions', 'reply', 'super',
+            'comment'
+        ]
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected

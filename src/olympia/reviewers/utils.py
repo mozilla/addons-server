@@ -375,7 +375,9 @@ class ReviewHelper(object):
             request.user, permission)
 
         # Special logic for availability of reject multiple action:
-        if self.content_review:
+        if (self.content_review or
+                is_recommendable or
+                self.addon.type == amo.ADDON_STATICTHEME):
             can_reject_multiple = is_appropriate_reviewer
         else:
             # When doing a code review, this action is also available to
@@ -467,7 +469,6 @@ class ReviewHelper(object):
                          'versions. The comments will be sent to the '
                          'developer.'),
             'available': (
-                self.addon.type != amo.ADDON_STATICTHEME and
                 addon_is_valid_and_version_is_listed and
                 can_reject_multiple
             ),
