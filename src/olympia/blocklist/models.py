@@ -201,14 +201,15 @@ class BlocklistSubmission(ModelBase):
 
     def __str__(self):
         guids = splitlines(self.input_guids)
-        repr = []
-        if len(guids) == 1:
-            repr.append(guids[0])
-        elif len(guids) > 1:
-            repr.append(guids[0] + ', ...')
-        repr.append(str(self.url))
-        repr.append(str(self.reason))
-        return f'{self.get_signoff_state_display()}: {"; ".join(repr)}'
+        repr = [', '.join(guids)]
+        if self.url:
+            repr.append(str(self.url))
+        if self.reason:
+            repr.append(str(self.reason))
+        # A single uuid-style guid is 38, but otherwise these string limits
+        # are pretty arbitrary and just so the str repr isn't _too_ long.
+        trimmed = [rep if len(rep) < 40 else rep[0:37] + '...' for rep in repr]
+        return f'{self.get_signoff_state_display()}: {"; ".join(trimmed)}'
 
     def clean(self):
         min_vint = addon_version_int(self.min_version)
