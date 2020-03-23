@@ -1267,6 +1267,7 @@ class Addon(OnChangeMixin, ModelBase):
             channel=amo.RELEASE_CHANNEL_LISTED, exclude=())
         return [
             self.all_categories,
+            self.name,
             self.summary,
             (version and version.license),
         ]

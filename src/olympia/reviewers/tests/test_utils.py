@@ -557,6 +557,18 @@ class TestReviewHelper(TestReviewHelperBase):
         assert '/addon/a3615' in mail.outbox[0].body
         assert 'Your add-on, Delicious Bookmarks ' in mail.outbox[0].body
 
+    def test_email_no_name(self):
+        self.addon.name.delete()
+        self.addon.refresh_from_db()
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_public()
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            u'Mozilla Add-ons: None 2.1.072 Approved')
+        assert '/addon/a3615' in mail.outbox[0].body
+        assert 'Your add-on, None ' in mail.outbox[0].body
+
     def test_nomination_to_public_no_files(self):
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.process_public()
