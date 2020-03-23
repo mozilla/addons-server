@@ -4924,7 +4924,8 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
-            'public|', 'reject|', 'reply|', 'super|', 'comment|']
+            'public|', 'reject|', 'reject_multiple_versions|', 'reply|',
+            'super|', 'comment|']
         assert [
             act.attrib['data-value'] for act in
             doc('.data-toggle.review-actions-desc')] == expected_actions_values
@@ -4933,7 +4934,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
-            'public|reject|reply|super|comment|')
+            'public|reject|reject_multiple_versions|reply|super|comment|')
         # we don't show files and tested with for any static theme actions
         assert (
             doc('.data-toggle.review-files')[0].attrib['data-value'] ==
