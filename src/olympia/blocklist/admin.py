@@ -318,10 +318,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
                 obj.updated_by = request.user
                 self.save_model(request, obj, form, change=False)
                 self.log_addition(request, obj, [{'added': {}}])
-                if '_addanother'in request.POST:
-                    return redirect('admin:blocklist_block_add')
-                else:
-                    return redirect('admin:blocklist_block_changelist')
+                return self.response_add(request, obj)
             elif not is_delete:
                 guids_data = request.POST.get('input_guids')
                 form_data = form.data.copy()
