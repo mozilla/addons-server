@@ -3053,6 +3053,13 @@ class TestReview(ReviewBase):
         expected_choices = ['reply', 'super', 'comment']
         assert choices == expected_choices
 
+        doc = pq(response.content)
+        assert doc('.is_recommendable')
+        assert doc('.is_recommendable').text() == (
+            'This is a recommended extension. '
+            'You don\'t have permission to review it.'
+        )
+
         self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3064,6 +3071,19 @@ class TestReview(ReviewBase):
             'comment'
         ]
         assert choices == expected_choices
+
+        doc = pq(response.content)
+        assert doc('.is_recommendable')
+        assert doc('.is_recommendable').text() == (
+            'This is a recommended extension.'
+        )
+
+    def test_not_recommendable(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('h2.addon').text() == 'Review Public 0.1 (Listed)'
+        assert not doc('.is_recommendable')
 
     def test_not_flags(self):
         self.addon.current_version.files.update(is_restart_required=False)
