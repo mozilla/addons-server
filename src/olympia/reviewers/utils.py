@@ -335,14 +335,14 @@ class ReviewHelper(object):
             self.addon.current_version and
             self.addon.current_version.was_auto_approved)
 
-        if self.content_review:
-            is_admin_needed = self.addon.needs_admin_content_review
-            permission = amo.permissions.ADDONS_CONTENT_REVIEW
-        elif is_recommendable:
+        if is_recommendable:
             is_admin_needed = (
                 self.addon.needs_admin_content_review or
                 self.addon.needs_admin_code_review)
             permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
+        elif self.content_review:
+            is_admin_needed = self.addon.needs_admin_content_review
+            permission = amo.permissions.ADDONS_CONTENT_REVIEW
         elif version_is_unlisted:
             is_admin_needed = self.addon.needs_admin_code_review
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED

@@ -83,6 +83,16 @@
     </div>
   </div>
 
+  {% if is_recommendable %}
+    {# Technically could be just pending recommendation, but that doesn't matter for this message. #}
+    <p class="is_recommendable">
+      {{ _('This is a recommended extension.') }}
+      {% if not action_allowed(amo.permissions.ADDONS_RECOMMENDED_REVIEW) %}
+        {{ _("You don't have permission to review it.") }}
+      {% endif %}
+    </p>
+  {% endif %}
+
   <div id="review-actions" class="review-actions">
     <div class="action_nav">
       {{ form.action }}
