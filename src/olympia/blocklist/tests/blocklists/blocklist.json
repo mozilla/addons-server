@@ -139,6 +139,45 @@
       ],
       "id": "9085fdba-8598-46a9-b9fd-4e7343a15c62",
       "last_modified": 1490653926191
+    },
+    {
+      "guid": "/(__TEMPLATE__APPLICATION__@puua-mapa\\.com)|(\\{84aebb36-1433-4082-b7ec-29b790d12c17\\})/",
+      "prefs": [],
+      "schema": 1523216496621,
+      "details": {
+        "bug": null,
+        "why": "Those add-ons do not provide a real functionality for users, other than silently tracking browsing behavior.",
+        "name": "Tracking Add-ons (harmful)"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "36f97298-8bef-4372-a548-eb829413bee9",
+      "last_modified": 1523286321447
+    },
+    {
+      "guid": "/{0c9970a2-6874-493b-a486-2295cfe251c2}|{fc0d52bd-3c50-4139-9109-7df6c1115a9d}/",
+      "prefs": [],
+      "schema": 1519766961483,
+      "details": {
+        "why": "This malicious add-on claims to be a Firefox \"helper\" or \"updater\" or similar.",
+        "name": "FF updater (malware)"
+      },
+      "enabled": true,
+      "versionRange": [
+        {
+          "severity": 3,
+          "maxVersion": "*",
+          "minVersion": "0"
+        }
+      ],
+      "id": "48b14881-5f6b-4e48-afc5-3d9a7fae26a3",
+      "last_modified": 1519826648080
     }
   ]
 }
