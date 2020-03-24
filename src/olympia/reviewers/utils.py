@@ -669,9 +669,11 @@ class ReviewBase(object):
         # We need to display the name in some language that is relevant to the
         # recipient(s) instead of using the reviewer's. addon.default_locale
         # should work.
-        if self.addon.name.locale != self.addon.default_locale:
+        if (self.addon.name and
+                self.addon.name.locale != self.addon.default_locale):
             lang = to_language(self.addon.default_locale)
             with translation.override(lang):
+                # Force a reload of translations for this addon.
                 addon = Addon.unfiltered.get(pk=self.addon.pk)
         else:
             addon = self.addon

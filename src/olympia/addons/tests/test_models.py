@@ -1338,6 +1338,16 @@ class TestAddonModels(TestCase):
         assert addon.has_complete_metadata(
             has_listed_versions=False)
 
+    def test_listed_has_complete_metadata_no_name(self):
+        addon = Addon.objects.get(id=3615)
+        assert addon.has_complete_metadata()  # Confirm complete already.
+
+        delete_translation(addon, 'name')
+        addon = Addon.objects.get(id=3615)
+        assert not addon.has_complete_metadata()
+        assert addon.has_complete_metadata(
+            has_listed_versions=False)
+
     def test_listed_has_complete_metadata_no_license(self):
         addon = Addon.objects.get(id=3615)
         assert addon.has_complete_metadata()  # Confirm complete already.
