@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-21 13:24+0000\n"
+"PO-Revision-Date: 2020-03-24 09:06+0000\n"
 "Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -45,11 +45,11 @@ msgstr ""
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "चुने गए %d रिपोर्ट को मान्य के रूप में चिह्नित किया गया है।"
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "चुने गए %d रिपोर्ट को संदेहजनक के रूप में चिह्नित किया गया है।"
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr ""
