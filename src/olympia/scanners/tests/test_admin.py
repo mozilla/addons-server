@@ -28,6 +28,7 @@ from olympia.constants.scanners import (
     CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
+    MAD,
     NEW,
     RUNNING,
     SCHEDULED,
@@ -246,6 +247,27 @@ class TestScannerResultAdmin(TestCase):
         # version.
         assert ('/file/' not in
                 self.admin.formatted_matched_rules_with_files(result))
+
+    def test_formatted_score_when_scanner_is_not_mad_or_customs(self):
+        result = ScannerResult(score=0.123, scanner=WAT)
+
+        assert self.admin.formatted_score(result) == '-'
+
+    def test_formatted_score_for_customs(self):
+        result = ScannerResult(score=0.123, scanner=CUSTOMS)
+
+        assert self.admin.formatted_score(result) == '12%'
+
+    def test_formatted_score_for_mad(self):
+        result = ScannerResult(score=0.456, scanner=MAD)
+
+        assert self.admin.formatted_score(result) == '46%'
+
+    def test_formatted_score_when_not_available(self):
+        result = ScannerResult(score=-1, scanner=MAD)
+
+        assert self.admin.formatted_score(result) == 'n/a'
+
 
     def test_list_queries(self):
         ScannerResult.objects.create(
