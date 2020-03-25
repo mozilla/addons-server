@@ -38,6 +38,7 @@ from olympia.constants.scanners import (
 )
 from olympia.files.models import FileUpload
 from olympia.scanners.admin import (
+    ExcludeMatchedRuleFilter,
     MatchesFilter,
     ScannerQueryResultAdmin,
     ScannerResultAdmin,
@@ -259,12 +260,12 @@ class TestScannerResultAdmin(TestCase):
         )
         deleted_addon.delete()
 
-        with self.assertNumQueries(13):
-            # 13 queries:
+        with self.assertNumQueries(14):
+            # 14 queries:
             # - 2 transaction savepoints because of tests
             # - 2 request user and groups
             # - 2 COUNT(*) on scanners results for pagination and total display
-            # - 1 get all available rules for filtering
+            # - 2 get all available rules for filtering
             # - 1 scanners results and versions in one query
             # - 1 all add-ons in one query
             # - 1 all files in one query
@@ -312,6 +313,11 @@ class TestScannerResultAdmin(TestCase):
 
             ('All', '?has_version=all'),
             (' With version only', '?'),
+
+            ('No excluded rule', '?'),
+            ('foo (customs)', f'?exclude_rule={rule_foo.pk}'),
+            ('bar (yara)', f'?exclude_rule={rule_bar.pk}'),
+            ('hello (yara)', f'?exclude_rule={rule_hello.pk}'),
         ]
         filters = [
             (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
@@ -340,6 +346,29 @@ class TestScannerResultAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-formatted_matched_rules').text() == 'bar, hello'
+
+    def test_exclude_matched_rule_filter(self):
+        rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
+        rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
+        with_bar_matches = ScannerResult(scanner=YARA)
+        with_bar_matches.add_yara_result(rule=rule_bar.name)
+        with_bar_matches.add_yara_result(rule=rule_hello.name)
+        with_bar_matches.save()
+        ScannerResult.objects.create(
+            scanner=CUSTOMS, results={'matchedRules': [rule_foo.name]}
+        )
+        with_hello_match = ScannerResult(scanner=YARA)
+        with_hello_match.add_yara_result(rule=rule_hello.name)
+
+        response = self.client.get(self.list_url, {
+            ExcludeMatchedRuleFilter.parameter_name: rule_bar.pk,
+            WithVersionFilter.parameter_name: 'all',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-formatted_matched_rules').text() == 'foo'
 
     def test_list_default(self):
         # Create one entry without matches, it will not be shown by default

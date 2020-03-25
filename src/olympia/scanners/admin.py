@@ -116,6 +116,37 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
         ]
 
 
+class ExcludeMatchedRuleFilter(SimpleListFilter):
+    title = ugettext('all but this rule')
+    parameter_name = 'exclude_rule'
+
+    def lookups(self, request, model_admin):
+        return [(None, 'No excluded rule')] + [
+            (rule.pk, f'{rule.name} ({rule.get_scanner_display()})')
+            for rule in ScannerRule.objects.only(
+                'pk', 'scanner', 'name'
+            ).order_by('scanner', 'name')
+        ]
+
+    def choices(self, cl):
+        for lookup, title in self.lookup_choices:
+            selected = (lookup is None
+                        if self.value() is None
+                        else self.value() == str(lookup))
+            yield {
+                'selected': selected,
+                'query_string': cl.get_query_string(
+                    {self.parameter_name: lookup}, []
+                ),
+                'display': title,
+            }
+
+    def queryset(self, request, queryset):
+        if self.value() is None:
+            return queryset
+        return queryset.exclude(matched_rules=self.value())
+
+
 class WithVersionFilter(PresenceFilter):
     title = ugettext('presence of a version')
     parameter_name = 'has_version'
@@ -186,13 +217,6 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         'formatted_matched_rules',
         'formatted_created',
         'result_actions',
-    )
-    list_filter = (
-        'scanner',
-        MatchesFilter,
-        StateFilter,
-        ('matched_rules', ScannerRuleListFilter),
-        WithVersionFilter,
     )
     list_select_related = ('version',)
     raw_id_fields = ('version', 'upload')
@@ -613,7 +637,14 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
 
 @admin.register(ScannerResult)
 class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
-    pass
+    list_filter = (
+        'scanner',
+        MatchesFilter,
+        StateFilter,
+        ('matched_rules', ScannerRuleListFilter),
+        WithVersionFilter,
+        ExcludeMatchedRuleFilter,
+    )
 
 
 @admin.register(ScannerQueryResult)
