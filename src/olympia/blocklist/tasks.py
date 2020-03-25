@@ -75,21 +75,20 @@ def import_block_from_blocklist(record):
         # need to escape the {} brackets or mysql chokes.
         guid_regexp = bracket_open_regex.sub(r'\{', guid[1:-1])
         guid_regexp = bracket_close_regex.sub(r'\}', guid_regexp)
-        log.debug(
-            'Kinto %s: Attempting to create Blocks for addons matching [%s]',
-            kinto_id, guid_regexp)
         # we're going to try to split the regex into a list for efficiency.
         guids_list = split_regex_to_list(guid_regexp)
         if guids_list:
             log.debug(
-                'Kinto %s: Broke down regex into list of guids [%s]',
+                'Kinto %s: Broke down regex into list; '
+                'attempting to create Blocks for guids in %s',
                 kinto_id, guids_list)
             addons_guids_qs = Addon.unfiltered.using(using_db).filter(
                 guid__in=guids_list).values_list('guid', flat=True)
         else:
             log.debug(
-                'Kinto %s: Unable to break down regex into list of guids',
-                kinto_id)
+                'Kinto %s: Unable to break down regex into list; '
+                'attempting to create Blocks for guids matching [%s]',
+                kinto_id, guid_regexp)
             addons_guids_qs = Addon.unfiltered.using(using_db).filter(
                 guid__regex=guid_regexp).values_list('guid', flat=True)
         # We need to mark this id in a way so we know its from a
