@@ -188,6 +188,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert log == ActivityLog.objects.for_version(first_version).last()
         assert log == ActivityLog.objects.for_version(second_version).last()
         assert not ActivityLog.objects.for_version(pending_version).exists()
+        assert [msg.message for msg in response.context['messages']] == [
+            'The blocklist submission "No Sign-off: guid@; dfd; some reason" '
+            'was added successfully.']
 
         response = self.client.get(
             reverse('admin:blocklist_block_change', args=(block.pk,)))
@@ -456,6 +459,11 @@ class TestBlocklistSubmissionAdmin(TestCase):
             },
             follow=True)
 
+        assert [msg.message for msg in response.context['messages']] == [
+            'The blocklist submission '
+            '"No Sign-off: any@new, partial@existing, full@exist...; dfd; '
+            'some reason" was added successfully.']
+
         # This time the blocks are updated
         assert Block.objects.count() == 3
         assert BlocklistSubmission.objects.count() == 1
@@ -510,22 +518,23 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert not ActivityLog.objects.for_version(
             existing_one_to_ten.addon.current_version).exists()
 
-        multi = BlocklistSubmission.objects.get()
-        assert multi.input_guids == (
+        submission = BlocklistSubmission.objects.get()
+        assert submission.input_guids == (
             'any@new\npartial@existing\nfull@existing')
-        assert multi.min_version == new_block.min_version
-        assert multi.max_version == new_block.max_version
-        assert multi.url == new_block.url
-        assert multi.reason == new_block.reason
+        assert submission.min_version == new_block.min_version
+        assert submission.max_version == new_block.max_version
+        assert submission.url == new_block.url
+        assert submission.reason == new_block.reason
 
-        assert multi.to_block == [
+        assert submission.to_block == [
             {'guid': 'any@new', 'id': None,
              'average_daily_users': new_addon.average_daily_users},
             {'guid': 'full@existing', 'id': existing_zero_to_max.id,
              'average_daily_users':
              existing_zero_to_max.addon.average_daily_users}
         ]
-        assert set(multi.block_set.all()) == {new_block, existing_zero_to_max}
+        assert set(submission.block_set.all()) == {
+            new_block, existing_zero_to_max}
 
     @mock.patch('olympia.blocklist.admin.GUID_FULL_LOAD_LIMIT', 1)
     def test_add_multiple_bulk_so_fake_block_objects(self):
