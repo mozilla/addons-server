@@ -8,6 +8,7 @@ from .serializers import BlockSerializer
 class BlockViewSet(RetrieveModelMixin, GenericViewSet):
     queryset = Block.objects
     serializer_class = BlockSerializer
+    lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
 
     def get_object(self):
         identifier = self.kwargs.pop('pk')

@@ -42,7 +42,7 @@ from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
-from olympia.blocklist.models import Block, BlockSubmission
+from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.lib.git import AddonGitRepository
@@ -3053,6 +3053,13 @@ class TestReview(ReviewBase):
         expected_choices = ['reply', 'super', 'comment']
         assert choices == expected_choices
 
+        doc = pq(response.content)
+        assert doc('.is_recommendable')
+        assert doc('.is_recommendable').text() == (
+            'This is a recommended extension. '
+            'You don\'t have permission to review it.'
+        )
+
         self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3064,6 +3071,19 @@ class TestReview(ReviewBase):
             'comment'
         ]
         assert choices == expected_choices
+
+        doc = pq(response.content)
+        assert doc('.is_recommendable')
+        assert doc('.is_recommendable').text() == (
+            'This is a recommended extension.'
+        )
+
+    def test_not_recommendable(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('h2.addon').text() == 'Review Public 0.1 (Listed)'
+        assert not doc('.is_recommendable')
 
     def test_not_flags(self):
         self.addon.current_version.files.update(is_restart_required=False)
@@ -3408,7 +3428,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         expected = [
             ('Unlisted Review Page', reverse(
-                'reviewers.review', args=('unlisted', self.addon.slug))),
+                'reviewers.review', args=('unlisted', self.addon.id))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse(
                 'admin:addons_addon_change', args=[self.addon.id])),
@@ -3428,7 +3448,7 @@ class TestReview(ReviewBase):
         expected = [
             ('View Product Page', self.addon.get_url_path()),
             ('Unlisted Review Page', reverse(
-                'reviewers.review', args=('unlisted', self.addon.slug))),
+                'reviewers.review', args=('unlisted', self.addon.id))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse(
                 'admin:addons_addon_change', args=[self.addon.id])),
@@ -3450,7 +3470,7 @@ class TestReview(ReviewBase):
         expected = [
             ('View Product Page', self.addon.get_url_path()),
             ('Listed Review Page',
-                reverse('reviewers.review', args=(self.addon.slug,))),
+                reverse('reviewers.review', args=(self.addon.id,))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
                 reverse('admin:addons_addon_change', args=[self.addon.id])),
@@ -3617,9 +3637,9 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#block_addon')
         assert not doc('#edit_addon_block')
-        assert not doc('#edit_addon_blocksubmission')
+        assert not doc('#edit_addon_blocklistsubmission')
         assert doc('#block_addon')[0].attrib.get('href') == (
-            reverse('admin:blocklist_blocksubmission_add') + '?guids=' +
+            reverse('admin:blocklist_blocklistsubmission_add') + '?guids=' +
             self.addon.guid)
 
         block = Block.objects.create(
@@ -3629,20 +3649,22 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('#block_addon')
         assert doc('#edit_addon_block')
-        assert not doc('#edit_addon_blocksubmission')
+        assert not doc('#edit_addon_blocklistsubmission')
         assert doc('#edit_addon_block')[0].attrib.get('href') == (
             reverse('admin:blocklist_block_change', args=(block.id,)))
 
         # If the guid is in a pending submission we show a link to that instead
-        subm = BlockSubmission.objects.create(input_guids=self.addon.guid)
+        subm = BlocklistSubmission.objects.create(input_guids=self.addon.guid)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#block_addon')
         assert not doc('#edit_addon_block')
-        assert doc('#edit_addon_blocksubmission')
-        assert doc('#edit_addon_blocksubmission')[0].attrib.get('href') == (
-            reverse('admin:blocklist_blocksubmission_change', args=(subm.id,)))
+        blocklistsubmission_block = doc('#edit_addon_blocklistsubmission')
+        assert blocklistsubmission_block
+        assert blocklistsubmission_block[0].attrib.get('href') == (
+            reverse(
+                'admin:blocklist_blocklistsubmission_change', args=(subm.id,)))
 
     def test_unflag_option_forflagged_as_admin(self):
         self.login_as_admin()
@@ -4608,7 +4630,7 @@ class TestReview(ReviewBase):
 
         assert response.status_code == 302
         new_block_url = (
-            reverse('admin:blocklist_blocksubmission_add') +
+            reverse('admin:blocklist_blocklistsubmission_add') +
             '?guids=%s&min_version=%s&max_version=%s' % (
                 self.addon.guid, old_version.version, self.version.version))
         self.assertRedirects(response, new_block_url)
@@ -4922,7 +4944,8 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
-            'public|', 'reject|', 'reply|', 'super|', 'comment|']
+            'public|', 'reject|', 'reject_multiple_versions|', 'reply|',
+            'super|', 'comment|']
         assert [
             act.attrib['data-value'] for act in
             doc('.data-toggle.review-actions-desc')] == expected_actions_values
@@ -4931,7 +4954,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
-            'public|reject|reply|super|comment|')
+            'public|reject|reject_multiple_versions|reply|super|comment|')
         # we don't show files and tested with for any static theme actions
         assert (
             doc('.data-toggle.review-files')[0].attrib['data-value'] ==

@@ -40,7 +40,7 @@ class Block(ModelBase):
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
     kinto_id = models.CharField(max_length=255, null=False, default='')
-    submission = models.ManyToManyField('BlockSubmission')
+    submission = models.ManyToManyField('BlocklistSubmission')
 
     ACTIVITY_IDS = (
         amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
@@ -147,7 +147,7 @@ class Block(ModelBase):
         return ''
 
 
-class BlockSubmission(ModelBase):
+class BlocklistSubmission(ModelBase):
     SIGNOFF_PENDING = 0
     SIGNOFF_APPROVED = 1
     SIGNOFF_REJECTED = 2
@@ -196,16 +196,20 @@ class BlockSubmission(ModelBase):
     signoff_state = models.SmallIntegerField(
         choices=SIGNOFF_STATES.items(), default=SIGNOFF_PENDING)
 
+    class Meta:
+        db_table = 'blocklist_blocklistsubmission'
+
     def __str__(self):
         guids = splitlines(self.input_guids)
-        repr = []
-        if len(guids) == 1:
-            repr.append(guids[0])
-        elif len(guids) > 1:
-            repr.append(guids[0] + ', ...')
-        repr.append(str(self.url))
-        repr.append(str(self.reason))
-        return f'{self.get_signoff_state_display()}: {"; ".join(repr)}'
+        repr = [', '.join(guids)]
+        if self.url:
+            repr.append(str(self.url))
+        if self.reason:
+            repr.append(str(self.reason))
+        # A single uuid-style guid is 38, but otherwise these string limits
+        # are pretty arbitrary and just so the str repr isn't _too_ long.
+        trimmed = [rep if len(rep) < 40 else rep[0:37] + '...' for rep in repr]
+        return f'{self.get_signoff_state_display()}: {"; ".join(trimmed)}'
 
     def clean(self):
         min_vint = addon_version_int(self.min_version)
@@ -247,7 +251,7 @@ class BlockSubmission(ModelBase):
                 for block in self.to_block)
 
         if self.signoff_state == self.SIGNOFF_PENDING and not any_unsafe():
-            self.update(signoff_state=BlockSubmission.SIGNOFF_NOTNEEDED)
+            self.update(signoff_state=self.SIGNOFF_NOTNEEDED)
 
     @property
     def is_submission_ready(self):

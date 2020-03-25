@@ -38,6 +38,7 @@ from olympia.constants.scanners import (
 )
 from olympia.files.models import FileUpload
 from olympia.scanners.admin import (
+    ExcludeMatchedRuleFilter,
     MatchesFilter,
     ScannerQueryResultAdmin,
     ScannerResultAdmin,
@@ -259,12 +260,12 @@ class TestScannerResultAdmin(TestCase):
         )
         deleted_addon.delete()
 
-        with self.assertNumQueries(13):
-            # 13 queries:
+        with self.assertNumQueries(14):
+            # 14 queries:
             # - 2 transaction savepoints because of tests
             # - 2 request user and groups
             # - 2 COUNT(*) on scanners results for pagination and total display
-            # - 1 get all available rules for filtering
+            # - 2 get all available rules for filtering
             # - 1 scanners results and versions in one query
             # - 1 all add-ons in one query
             # - 1 all files in one query
@@ -312,6 +313,11 @@ class TestScannerResultAdmin(TestCase):
 
             ('All', '?has_version=all'),
             (' With version only', '?'),
+
+            ('No excluded rule', '?'),
+            ('foo (customs)', f'?exclude_rule={rule_foo.pk}'),
+            ('bar (yara)', f'?exclude_rule={rule_bar.pk}'),
+            ('hello (yara)', f'?exclude_rule={rule_hello.pk}'),
         ]
         filters = [
             (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
@@ -340,6 +346,29 @@ class TestScannerResultAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-formatted_matched_rules').text() == 'bar, hello'
+
+    def test_exclude_matched_rule_filter(self):
+        rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
+        rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
+        with_bar_matches = ScannerResult(scanner=YARA)
+        with_bar_matches.add_yara_result(rule=rule_bar.name)
+        with_bar_matches.add_yara_result(rule=rule_hello.name)
+        with_bar_matches.save()
+        ScannerResult.objects.create(
+            scanner=CUSTOMS, results={'matchedRules': [rule_foo.name]}
+        )
+        with_hello_match = ScannerResult(scanner=YARA)
+        with_hello_match.add_yara_result(rule=rule_hello.name)
+
+        response = self.client.get(self.list_url, {
+            ExcludeMatchedRuleFilter.parameter_name: rule_bar.pk,
+            WithVersionFilter.parameter_name: 'all',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-formatted_matched_rules').text() == 'foo'
 
     def test_list_default(self):
         # Create one entry without matches, it will not be shown by default
@@ -818,6 +847,30 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         ScannerQueryRule.objects.create(name='bar', scanner=YARA)
         response = self.client.get(self.list_url)
         assert response.status_code == 200
+        doc = pq(response.content)
+        classes = set(doc('body')[0].attrib['class'].split())
+        expected_classes = set([
+            'app-scanners',
+            'model-scannerqueryrule',
+            'change-list',
+        ])
+        assert classes == expected_classes
+
+    def test_list_view_viewer(self):
+        self.user.groupuser_set.all().delete()
+        self.grant_permission(self.user, 'Admin:ScannersQueryView')
+        ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        classes = set(doc('body')[0].attrib['class'].split())
+        expected_classes = set([
+            'app-scanners',
+            'model-scannerqueryrule',
+            'change-list',
+            'hide-action-buttons'
+        ])
+        assert classes == expected_classes
 
     def test_list_view_is_restricted(self):
         user = user_factory()
@@ -837,6 +890,13 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
+        classes = set(doc('body')[0].attrib['class'].split())
+        expected_classes = set([
+            'app-scanners',
+            'model-scannerqueryrule',
+            'change-form',
+        ])
+        assert classes == expected_classes
         link = doc('.field-matched_results_link a')
         assert link
         results_list_url = reverse(
@@ -849,6 +909,24 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
 
         link_response = self.client.get(expected_href)
         assert link_response.status_code == 200
+
+    def test_change_view_viewer(self):
+        self.user.groupuser_set.all().delete()
+        self.grant_permission(self.user, 'Admin:ScannersQueryView')
+        rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        url = reverse(
+            'admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        classes = set(doc('body')[0].attrib['class'].split())
+        expected_classes = set([
+            'app-scanners',
+            'model-scannerqueryrule',
+            'change-form',
+            'hide-action-buttons',
+        ])
+        assert classes == expected_classes
 
     def test_create_view_doesnt_contain_link_to_results(self):
         url = reverse('admin:scanners_scannerqueryrule_add')
@@ -995,7 +1073,7 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
 
     def test_run_action_no_permission(self):
         user = user_factory()
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, 'Admin:ScannersQueryView')
         self.client.login(email=user.email)
         rule = ScannerQueryRule.objects.create(
             name='bar', scanner=YARA, state=NEW)
@@ -1044,7 +1122,7 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
 
     def test_abort_action_no_permission(self):
         user = user_factory()
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, 'Admin:ScannersQueryView')
         self.client.login(email=user.email)
         rule = ScannerQueryRule.objects.create(
             name='bar', scanner=YARA, state=RUNNING)
@@ -1103,10 +1181,12 @@ class TestScannerQueryResultAdmin(TestCase):
         html = pq(response.content)
         assert html('.field-formatted_addon').length == 1
         authors = html('.field-authors a')
-        assert authors.length == 2
-        result = sorted(
-            (a.text, a.attrib['href']) for a in html('.field-authors a')
-        )
+        assert authors.length == 3
+        authors_links = list((a.text, a.attrib['href']) for a in
+                             html('.field-authors a'))
+        # Last link should point to the addons model.
+        link_to_addons = authors_links.pop()
+        result = sorted(authors_links)
         expected = sorted(
             (user.email, '%s%s' % (
                 settings.EXTERNAL_SITE_URL,
@@ -1114,6 +1194,11 @@ class TestScannerQueryResultAdmin(TestCase):
             for user in addon.authors.all()
         )
         assert result == expected
+        assert 'Other add-ons' in link_to_addons[0]
+        expected_querystring = '?authors__in={}'.format(
+            ','.join(str(author.pk) for author in addon.authors.all())
+        )
+        assert expected_querystring in link_to_addons[1]
 
     def test_list_view_no_query_permissions(self):
         rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)

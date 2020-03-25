@@ -116,6 +116,37 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
         ]
 
 
+class ExcludeMatchedRuleFilter(SimpleListFilter):
+    title = ugettext('all but this rule')
+    parameter_name = 'exclude_rule'
+
+    def lookups(self, request, model_admin):
+        return [(None, 'No excluded rule')] + [
+            (rule.pk, f'{rule.name} ({rule.get_scanner_display()})')
+            for rule in ScannerRule.objects.only(
+                'pk', 'scanner', 'name'
+            ).order_by('scanner', 'name')
+        ]
+
+    def choices(self, cl):
+        for lookup, title in self.lookup_choices:
+            selected = (lookup is None
+                        if self.value() is None
+                        else self.value() == str(lookup))
+            yield {
+                'selected': selected,
+                'query_string': cl.get_query_string(
+                    {self.parameter_name: lookup}, []
+                ),
+                'display': title,
+            }
+
+    def queryset(self, request, queryset):
+        if self.value() is None:
+            return queryset
+        return queryset.exclude(matched_rules=self.value())
+
+
 class WithVersionFilter(PresenceFilter):
     title = ugettext('presence of a version')
     parameter_name = 'has_version'
@@ -186,13 +217,6 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         'formatted_matched_rules',
         'formatted_created',
         'result_actions',
-    )
-    list_filter = (
-        'scanner',
-        MatchesFilter,
-        StateFilter,
-        ('matched_rules', ScannerRuleListFilter),
-        WithVersionFilter,
     )
     list_select_related = ('version',)
     raw_id_fields = ('version', 'upload')
@@ -313,13 +337,35 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     def authors(self, obj):
         if not obj.version:
             return '-'
+
+        authors = obj.version.addon.authors.all()
         contents = format_html_join(
-            '', '<li><a href="{}">{}</a></li>',
-            ((urljoin(
+            '',
+            '<li><a href="{}">{}</a></li>',
+            (
+                (
+                    urljoin(
+                        settings.EXTERNAL_SITE_URL,
+                        reverse(
+                            'admin:users_userprofile_change', args=(author.pk,)
+                        ),
+                    ),
+                    author.email,
+                )
+                for author in authors
+            ),
+        )
+        return format_html(
+            '<ul>{}</ul>'
+            '<br>'
+            '[<a href="{}?authors__in={}">Other add-ons by these authors</a>]',
+            contents,
+            urljoin(
                 settings.EXTERNAL_SITE_URL,
-                reverse('admin:users_userprofile_change', args=(author.pk,))),
-             author.email) for author in obj.version.addon.authors.all()))
-        return format_html('<ul>{}</ul>', contents)
+                reverse('admin:addons_addon_changelist'),
+            ),
+            ','.join(str(author.pk) for author in authors),
+        )
 
     def guid(self, obj):
         if obj.version:
@@ -552,6 +598,9 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     )
     readonly_fields = ('created', 'modified', 'matched_results_link')
 
+    class Media:
+        css = {'all': ('css/admin/scannerrule.css',)}
+
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)
         if not self.has_change_permission(request, obj):
@@ -588,7 +637,14 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
 
 @admin.register(ScannerResult)
 class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
-    pass
+    list_filter = (
+        'scanner',
+        MatchesFilter,
+        StateFilter,
+        ('matched_rules', ScannerRuleListFilter),
+        WithVersionFilter,
+        ExcludeMatchedRuleFilter,
+    )
 
 
 @admin.register(ScannerQueryResult)
@@ -653,6 +709,22 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         'completion_rate', 'created', 'modified', 'matched_results_link',
         'state_with_actions',
     )
+
+    def change_view(self, request, *args, **kwargs):
+        kwargs['extra_context'] = kwargs.get('extra_context') or {}
+        kwargs['extra_context']['hide_action_buttons'] = (
+            not acl.action_allowed(
+                request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+        )
+        return super().change_view(request, *args, **kwargs)
+
+    def changelist_view(self, request, *args, **kwargs):
+        kwargs['extra_context'] = kwargs.get('extra_context') or {}
+        kwargs['extra_context']['hide_action_buttons'] = (
+            not acl.action_allowed(
+                request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+        )
+        return super().changelist_view(request, *args, **kwargs)
 
     def has_change_permission(self, request, obj=None):
         if obj and obj.state != NEW:
