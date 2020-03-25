@@ -16,7 +16,8 @@ class TestUploadToKinto(TestCase):
     def setUp(self):
         addon_factory()
         self.block = Block.objects.create(
-            addon=addon_factory(),
+            addon=addon_factory(
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
 
     @freeze_time('2020-01-01 12:34:56')
@@ -63,7 +64,8 @@ class TestUploadToKinto(TestCase):
         # But if we add a new Block a new filter is needed
         addon_factory()
         Block.objects.create(
-            addon=addon_factory(),
+            addon=addon_factory(
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
         upload_mlbf_to_kinto()
         publish_mock.assert_called_once()
