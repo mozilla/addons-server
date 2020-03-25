@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-24 09:06+0000\n"
+"PO-Revision-Date: 2020-03-25 09:34+0000\n"
 "Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -2979,7 +2979,7 @@ msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "संस्करण {0} प्रबंधित करें"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
