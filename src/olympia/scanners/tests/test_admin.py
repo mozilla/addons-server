@@ -268,7 +268,6 @@ class TestScannerResultAdmin(TestCase):
 
         assert self.admin.formatted_score(result) == 'n/a'
 
-
     def test_list_queries(self):
         ScannerResult.objects.create(
             scanner=CUSTOMS, version=addon_factory().current_version
