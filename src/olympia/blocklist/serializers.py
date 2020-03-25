@@ -20,7 +20,7 @@ class BlockSerializer(serializers.ModelSerializer):
 
         if ('request' in self.context and
                 'wrap_outgoing_links' in self.context['request'].GET and
-                'url' in data):
+                data.get('url')):
             data['url'] = get_outgoing_url(data['url'])
 
         return data

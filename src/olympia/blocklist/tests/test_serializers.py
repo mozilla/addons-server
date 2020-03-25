@@ -41,3 +41,8 @@ class TestBlockSerializer(TestCase):
             instance=self.block, context={'request': request})
 
         assert serializer.data['url'] == get_outgoing_url(self.block.url)
+
+        self.block.update(url='')
+        serializer = BlockSerializer(
+            instance=self.block, context={'request': request})
+        assert serializer.data['url'] == ''
