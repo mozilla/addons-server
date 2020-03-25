@@ -404,6 +404,51 @@ class TestReviewHelper(TestReviewHelperBase):
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED).keys()) == expected
 
+    def test_actions_recommended(self):
+        # Having Addons:PostReview or Addons:Review is not enough to review
+        # recommended extensions.
+        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED).keys()) == expected
+
+        self.grant_permission(self.request.user, 'Addons:Review')
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_NOMINATED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # Having Addons:RecommendedReview allows you to do it.
+        self.grant_permission(self.request.user, 'Addons:RecommendedReview')
+        expected = ['public', 'reject', 'reject_multiple_versions',
+                    'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+    def test_actions_recommended_content_review(self):
+        # Having Addons:ContentReview is not enough to content review
+        # recommended extensions.
+        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.grant_permission(self.request.user, 'Addons:ContentReview')
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+            content_review=True).keys()) == expected
+
+        # Having Addons:RecommendedReview allows you to do it (though you'd
+        # be better off just do a full review).
+        self.grant_permission(self.request.user, 'Addons:RecommendedReview')
+        expected = ['approve_content', 'reject_multiple_versions',
+                    'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+            content_review=True).keys()) == expected
+
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.handler.set_files(amo.STATUS_APPROVED,
