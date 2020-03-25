@@ -19,8 +19,10 @@ from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
     ABORTING,
+    CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
+    MAD,
     NEW,
     RESULT_STATES,
     RUNNING,
@@ -214,6 +216,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         'guid',
         'authors',
         'scanner',
+        'formatted_score',
         'formatted_matched_rules',
         'formatted_created',
         'result_actions',
@@ -228,6 +231,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         'authors',
         'guid',
         'scanner',
+        'formatted_score',
         'created',
         'state',
         'formatted_matched_rules_with_files',
@@ -435,6 +439,15 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         )
 
     formatted_matched_rules_with_files.short_description = 'Matched rules'
+
+    def formatted_score(self, obj):
+        if obj.scanner not in [CUSTOMS, MAD]:
+            return '-'
+        if obj.score < 0:
+            return 'n/a'
+        return '{:0.0f}%'.format(obj.score * 100)
+
+    formatted_score.short_description = 'Score'
 
     def safe_referer_redirect(self, request, default_url):
         referer = request.META.get('HTTP_REFERER')

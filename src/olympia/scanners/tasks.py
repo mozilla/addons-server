@@ -410,9 +410,21 @@ def call_mad_api(all_results, upload_pk):
         if response.status_code != 200:
             raise ValueError(data)
 
+        default_score = -1
         ScannerResult.objects.create(
-            upload_id=upload_pk, scanner=MAD, results=data
+            upload_id=upload_pk,
+            scanner=MAD,
+            results=data,
+            score=data.get('ensemble', default_score),
         )
+
+        # Update the individual scanner results scores.
+        customs_score = (
+            data.get('scanners', {})
+            .get('customs', {})
+            .get('score', default_score)
+        )
+        customs_results.update(score=customs_score)
 
         statsd.incr('devhub.mad.success')
         log.info('Ending scanner "mad" task for FileUpload %s.', upload_pk)
