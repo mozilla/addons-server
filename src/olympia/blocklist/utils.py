@@ -1,3 +1,5 @@
+import re
+
 import olympia.core.logger
 from olympia import amo
 from olympia.activity import log_create
@@ -144,3 +146,44 @@ def legacy_delete_blocks(blocks):
                 server.delete_record(block.kinto_id)
             block.update(kinto_id='')
     server.complete_session()
+
+
+# Started out based on the regexs in the following url but needed some changes:
+# https://dxr.mozilla.org/mozilla-central/source/toolkit/mozapps/extensions/Blocklist.jsm  # noqa
+
+# The whole ID should be surrounded by literal ().
+# IDs may contain alphanumerics, _, -, {}, @ and a literal '.'
+# They may also contain backslashes (needed to escape the {} and dot)
+# We filter out backslash escape sequences (like `\w`) separately
+IS_MULTIPLE_ID_SUB_REGEX = r"\([\\\w .{}@-]+\)"
+# Find regular expressions of the form:
+# /^((id1)|(id2)|(id3)|...|(idN))$/
+# The outer set of parens enclosing the entire list of IDs is optional.
+IS_MULTIPLE_IDS = re.compile(
+    # Start with literal ^ then an optional `(``
+    r"^\^\(?" +
+    # Then at least one ID in parens ().
+    IS_MULTIPLE_ID_SUB_REGEX +
+    # Followed by any number of IDs in () separated by pipes.
+    r"(?:\|" + IS_MULTIPLE_ID_SUB_REGEX + r")*" +
+    # Finally, we need to end with a literal sequence )$
+    #  (the leading `)` is optional like at the start)
+    r"\)?\$$"
+)
+# Check for a backslash followed by anything other than a literal . or curlies
+REGEX_ESCAPE_SEQS = re.compile(r"\\[^.{}]")
+# Used to remove the following 3 things:
+# leading literal ^(
+#    plus an optional (
+# any backslash
+# trailing literal )$
+#    plus an optional ) before the )$
+REGEX_REMOVAL_REGEX = re.compile(r"^\^\(\(?|\\|\)\)?\$$")
+GUID_SPLIT = re.compile(r"\)\|\(")
+
+
+def split_regex_to_list(guid_re):
+    if not IS_MULTIPLE_IDS.match(guid_re) or REGEX_ESCAPE_SEQS.match(guid_re):
+        return
+    trimmed = REGEX_REMOVAL_REGEX.sub('', guid_re)
+    return GUID_SPLIT.split(trimmed)

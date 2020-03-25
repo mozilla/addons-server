@@ -40,12 +40,12 @@ class TestImportBlocklist(TestCase):
         assert Block.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 0
-        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.count() == 8
         # the sample blocklist.json contains one regex for Thunderbird only
         assert KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
         assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 5
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 7
 
     def test_regex(self):
         """ Test regex style "guids" are parsed and expanded to blocks."""
@@ -72,13 +72,26 @@ class TestImportBlocklist(TestCase):
             assert block.include_in_legacy
             assert block.modified == datetime(2019, 11, 29, 22, 22, 46, 785000)
             assert block.is_imported_from_kinto_regex
-        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.count() == 8
         assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 4
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 6
         kinto = KintoImport.objects.get(
             outcome=KintoImport.OUTCOME_REGEXBLOCKS)
         assert kinto.kinto_id == this_block['id']
         assert kinto.record == this_block
+
+    def test_no_start_end_regex(self):
+        """There are some regex that don't start with ^ and end with $"""
+        addon_factory(guid='__TEMPLATE__APPLICATION__@puua-mapa.com')
+        addon_factory(guid='{84aebb36-1433-4082-b7ec-29b790d12c17}')
+        addon_factory(guid='{0c9970a2-6874-493b-a486-2295cfe251c2}')
+        addon_factory()
+        call_command('import_blocklist')
+        assert Block.objects.count() == 3
+        blocks = list(Block.objects.all())
+        assert blocks[0].guid == '__TEMPLATE__APPLICATION__@puua-mapa.com'
+        assert blocks[1].guid == '{84aebb36-1433-4082-b7ec-29b790d12c17}'
+        assert blocks[2].guid == '{0c9970a2-6874-493b-a486-2295cfe251c2}'
 
     def test_single_guid(self):
         addon_factory(guid='{99454877-975a-443e-a0c7-03ab910a8461}')
@@ -112,9 +125,9 @@ class TestImportBlocklist(TestCase):
         assert blocks[1].modified == datetime(2019, 11, 22, 16, 49, 58, 416000)
         assert not blocks[1].is_imported_from_kinto_regex
 
-        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.count() == 8
         assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 3
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 5
         kintos = KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_BLOCK).order_by('created')
         assert kintos.count() == 2
@@ -137,9 +150,9 @@ class TestImportBlocklist(TestCase):
             this_block['versionRange'][0]['targetApplication'][0]['guid'] ==
             amo.FIREFOX.guid)
         assert Block.objects.get().guid == fx_addon.guid
-        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.count() == 8
         assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 4
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 6
         kinto = KintoImport.objects.get(
             outcome=KintoImport.OUTCOME_REGEXBLOCKS)
         assert kinto.kinto_id == this_block['id']
@@ -176,10 +189,10 @@ class TestImportBlocklist(TestCase):
         addon_factory()
         imported = KintoImport.objects.create(
             kinto_id='5d2778e3-cbaa-5192-89f0-5abf3ea10656')
-        assert len(blocklist_json['data']) == 6
+        assert len(blocklist_json['data']) == 8
 
         call_command('import_blocklist')
-        assert import_task_mock.call_count == 5
+        assert import_task_mock.call_count == 7
         assert import_task_mock.call_args_list[0][0] == (
             blocklist_json['data'][0],)
         assert import_task_mock.call_args_list[1][0] == (
