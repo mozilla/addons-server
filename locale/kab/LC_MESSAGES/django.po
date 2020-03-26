@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-26 19:19+0000\n"
+"PO-Revision-Date: 2020-03-26 19:32+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -275,7 +275,7 @@ msgstr ""
 msgid "Not Found"
 msgstr "Ulac-it"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -283,11 +283,11 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Suref-aɣ, ur nezmir ara ad d-naf ayen tettnadiḍ.</h1> <p> Asebter neɣ afaylu i tebɣiḍ ulac-it deg usmel nneɣ. Ahat tsiteḍ ɣef useɣwen yemmmuten neɣ yegber tuccḍa. </p> <ul> <li>Ma yella turiḍ "
-"tansa, senqed-itt.</li> <li> La yella tḍefred aseɣwen, ma ulac aɣilif <a href=\"https://github.com/mozilla/addons-server/issues/new/\">azen-d abug</a>. Ini-yaɣ-d ansa d-ekkiḍ udiɣ ayen tettnadiḍ, ad"
-" neg ayen nezmer  akken ad nefru ugur. </li> </ul> <p>Tzemreḍ daɣen ad tedduḍ ar isebtar nneɣ izayazen.</p> <ul> <li>Ahat tebɣiḍ <a href=\"%(rec)s\">tabdart n izegrar s yetran</a> ?</li> <li> Tebɣiḍ"
-" <a href=\"%(search)s\">ad tnadiḍ izegrar</a>&nbsp;? Tzemreḍ ad tedduḍ ar <a href=\"%(search)s\">usebter n unadi</a> neɣ ad tesqedceḍ urti n unadi daw-a. </li> <li> Ma tebɣiḍ ad talseḍ, ddu ar <a "
-"href=\"%(home)s\">usebter agejdan n izegrar</a>. </li> </ul>"
+"<h1>Suref-aɣ, ur nezmir ara ad d-naf ayen tettnadiḍ.</h1> <p> Asebter neɣ afaylu i tebɣiḍ ulac-it deg usmel-nneɣ. Ahat tsiteḍ ɣef useɣwen yemmuten neɣ yegber tuccḍa. </p> <ul> <li>Ma yella turiḍ "
+"tansa, senqed-itt.</li> <li> La yella tḍefred aseɣwen, ma ulac aɣilif %(open_bug_link)sazen-d abug%(close_bug_link)s.. Ini-aɣ-d ansa d-tekkiḍ d wayen tettnadiḍ, ad neg ayen nezmer  akken ad nefru "
+"ugur. </li> </ul> <p>Tzemreḍ daɣen ad tedduḍ ar isebtar nneɣ izayazen.</p> <ul> <li>Ahat tebɣiḍ <a href=\"%(search)s\">ad tnadiḍ izegrar</a> ?</li> <li> Tebɣiḍ <a href=\"%(search)s\">ad tnadiḍ "
+"izegrar</a>&nbsp;? Tzemreḍ ad tedduḍ ar <a href=\"%(search)s\">usebter n unadi</a> neɣ ad tesqedceḍ urti n unadi daw-a. </li> <li> Ma tebɣiḍ ad talseḍ, ddu ar <a href=\"%(home)s\">usebter agejdan n "
+"izegrar</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ay ay ay"
@@ -410,9 +410,8 @@ msgstr "Yir anaw i yiwet neɣ ugar n tsura deg usali"
 msgid "Invalid JWT Token."
 msgstr "Ajiṭun JWT mačči d ameɣtu."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Yir aɣbaṛ"
+msgstr "Yir ajiṭun neɣ awgelhen."
 
 msgid "Email address not found."
 msgstr "Tansa imayl ur tettwaf ara."
@@ -430,9 +429,8 @@ msgstr "Yessefk ad tmuddeḍ xaṛsum taɣawsa {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Tasarut tamezwarut neɣ asulay ilulen \"%s\" mačči d ameɣtu. Taɣawsa ulmac-itt."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Ugar n telɣut ɣef turagin Creative Commons"
+msgstr "Asentem i tsura n API n uneflay"
 
 msgid "Application Versions"
 msgstr "Ileqman n usnas"
@@ -796,9 +794,8 @@ msgstr "acegger n usentel n unedbal yettwasuter."
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} yekka-d seg usentel afessas."
 
-#, fuzzy
 msgid "User {user} api key reset."
-msgstr "Tawlaft n useqdac {user} tettwakkes."
+msgstr "Awennez n tsarut API n useqdac {user}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1229,17 +1226,14 @@ msgstr "Asentel usbiḍ"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Ikayaden n tγellist"
+msgstr "Taɣellist"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Tasertit n tbaḍnit"
+msgstr "Tabaḍnit"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Isallen n uneflay"
+msgstr "Asemres n tneflit"
 
 msgid "No Reputation"
 msgstr "Ulac tisellet"
@@ -1256,16 +1250,14 @@ msgstr "D afellaq (3)"
 msgid "Manual Reviewer Points"
 msgstr "Tineqqiḍin n usenqed s ufus"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Aɛiwed n tɣuṛi amaynut n uzegrir"
+msgstr "Lqem amaynut n yizegrar iqbuṛen"
 
 msgid "Preliminary Add-on Review"
 msgstr "Asenqed amezwaru n uzegrir"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Asenqed n uzegrir yettwaleqmen"
+msgstr "Lqem amaynut n yizegrar iqbuṛen i yettwaleqmen"
 
 msgid "New Dictionary Review"
 msgstr "Acegger amaynut n umawal"
