@@ -122,6 +122,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         # For now, keep all BlocklistSubmission records.
         # TODO: define under what cirumstances records can be safely deleted.
+        # https://github.com/mozilla/addons-server/issues/13278
         return False
 
     def is_pending_signoff(self, obj):
@@ -528,14 +529,12 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return format_html('<a href="{}">{}</a>', obj.url, obj.url)
 
     def block_history(self, obj):
-        submission = BlocklistSubmission.get_submissions_from_guid(
-            obj.guid).first()
-
         logs = ActivityLog.objects.for_guidblock(obj.guid).filter(
             action__in=Block.ACTIVITY_IDS).order_by('created')
         return render_to_string(
-            'blocklist/includes/logs.html',
-            {'logs': logs, 'blocklistsubmission': submission})
+            'blocklist/includes/logs.html', {
+                'logs': logs,
+                'blocklistsubmission': obj.active_submissions.last()})
 
     def get_fieldsets(self, request, obj):
         details = (
@@ -566,18 +565,25 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return (details, history, edit)
 
     def has_change_permission(self, request, obj=None):
-        if obj and BlocklistSubmission.get_submissions_from_guid(obj.guid):
+        if obj and obj.active_submissions:
             return False
         else:
             return super().has_change_permission(request, obj=obj)
 
     def has_delete_permission(self, request, obj=None):
-        # TODO: restore this functionality so bulk delete isn't the only option
-        return False
+        if obj and obj.active_submissions:
+            return False
+        else:
+            return super().has_delete_permission(request, obj=obj)
 
     def save_model(self, request, obj, form, change):
-        # We don't actually save via this Admin so if we get here something has
-        # gone wrong.
+        # We don't save via this Admin so if we get here something has gone
+        # wrong.
+        raise PermissionDenied
+
+    def delete_model(self, request, obj):
+        # We don't delete via this Admin so if we get here something has gone
+        # wrong.
         raise PermissionDenied
 
     def get_form(self, request, obj=None, change=False, **kwargs):
@@ -614,3 +620,11 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return super().changeform_view(
             request, object_id=obj_id, form_url=form_url,
             extra_context=extra_context)
+
+    def delete_view(self, request, object_id, extra_context=None):
+        obj = self.get_object(request, object_id)
+        if not self.has_delete_permission(request, obj):
+            raise PermissionDenied
+        return redirect(
+            reverse('admin:blocklist_blocklistsubmission_add') +
+            f'?guids={obj.guid}&action={BlocklistSubmission.ACTION_DELETE}')
