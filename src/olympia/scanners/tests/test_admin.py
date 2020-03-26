@@ -303,6 +303,18 @@ class TestScannerResultAdmin(TestCase):
         # The name of the deleted add-on should be displayed.
         assert str(deleted_addon.name) in html.text()
 
+    def test_guid_column_is_sortable_in_list(self):
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
+        ScannerResult.objects.create(
+            scanner=CUSTOMS,
+            results={'matchedRules': [rule_foo.name]},
+            version=version_factory(addon=addon_factory()),
+        )
+
+        response = self.client.get(self.list_url)
+        doc = pq(response.content)
+        assert 'sortable' in doc('.column-guid').attr('class').split(' ')
+
     def test_list_filters(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
         rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
