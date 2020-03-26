@@ -1,5 +1,6 @@
 import math
 import secrets
+from collections import defaultdict
 
 from filtercascade import FilterCascade
 
@@ -9,15 +10,26 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 
 def get_blocked_guids():
-    from olympia.addons.models import Addon
+    from olympia.files.models import File
     from olympia.blocklist.models import Block
 
     blocks = Block.objects.all()
     blocks_guids = [block.guid for block in blocks]
-    addons_dict = Addon.unfiltered.in_bulk(blocks_guids, field_name='guid')
-    for block in blocks:
-        block.addon = addons_dict.get(block.guid)
-    Block.preload_addon_versions(blocks)
+
+    file_qs = File.objects.filter(
+        version__addon__guid__in=blocks_guids,
+        is_signed=True,
+        is_webextension=True,
+    ).order_by('version_id').values(
+        'version__addon__guid',
+        'version__version',
+        'version_id')
+    addons_versions = defaultdict(dict)
+    for file_ in file_qs:
+        addon_key = file_['version__addon__guid']
+        addons_versions[addon_key][file_['version__version']] = (
+            file_['version_id'])
+
     all_versions = {}
     # collect all the blocked versions
     for block in blocks:
@@ -26,7 +38,7 @@ def get_blocked_guids():
             block.max_version == Block.MAX)
         versions = {
             version_id: (block.guid, version)
-            for version, (version_id, _) in block.addon_versions.items()
+            for version, version_id in addons_versions[block.guid].items()
             if is_all_versions or block.is_version_blocked(version)}
         all_versions.update(versions)
     return all_versions.values()

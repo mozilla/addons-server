@@ -18,43 +18,60 @@ class TestMLBF(TestCase):
             addon_factory()
         # one version, 0 - *
         Block.objects.create(
-            addon=addon_factory(),
+            addon=addon_factory(
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
         # one version, 0 - 9999
         Block.objects.create(
-            addon=addon_factory(),
+            addon=addon_factory(
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory(),
             max_version='9999')
         # one version, 0 - *, unlisted
         Block.objects.create(
             addon=addon_factory(
-                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}),
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
-        # three versions, but only two within block (123.40, 123.5)
-        self.three_ver = Block.objects.create(
+        # five versions, but only two within block (123.40, 123.5)
+        self.five_ver = Block.objects.create(
             addon=addon_factory(
-                version_kw={'version': '123.40'}),
+                version_kw={'version': '123.40'},
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory(), max_version='123.45')
         version_factory(
-            addon=self.three_ver.addon, version='123.5', deleted=True)
+            addon=self.five_ver.addon, version='123.5', deleted=True,
+            file_kw={'is_signed': True, 'is_webextension': True})
         version_factory(
-            addon=self.three_ver.addon, version='123.45.1')
+            addon=self.five_ver.addon, version='123.45.1',
+            file_kw={'is_signed': True, 'is_webextension': True})
+        # these two would be included if they were signed and webextensions
+        self.not_signed_version = version_factory(
+            addon=self.five_ver.addon, version='123.5.1',
+            file_kw={'is_signed': False, 'is_webextension': True})
+        self.not_webext_version = version_factory(
+            addon=self.five_ver.addon, version='123.5.2',
+            file_kw={'is_signed': True, 'is_webextension': False})
         # no matching versions (edge cases)
         self.over = Block.objects.create(
-            addon=addon_factory(),
+            addon=addon_factory(
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory(),
             max_version='0')
         self.under = Block.objects.create(
-            addon=addon_factory(),
+            addon=addon_factory(
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory(),
             min_version='9999')
 
     def test_all_guids(self):
         all_guids = get_all_guids()
-        assert len(all_guids) == File.objects.count() == 10 + 8
-        assert (self.three_ver.guid, '123.40') in all_guids
-        assert (self.three_ver.guid, '123.5') in all_guids
-        assert (self.three_ver.guid, '123.45.1') in all_guids
+        assert len(all_guids) == File.objects.count() == 10 + 10
+        assert (self.five_ver.guid, '123.40') in all_guids
+        assert (self.five_ver.guid, '123.5') in all_guids
+        assert (self.five_ver.guid, '123.45.1') in all_guids
+        assert (self.five_ver.guid, '123.5.1') in all_guids
+        assert (self.five_ver.guid, '123.5.2') in all_guids
         over_tuple = (self.over.guid, self.over.addon.current_version.version)
         under_tuple = (
             self.under.guid, self.under.addon.current_version.version)
@@ -64,14 +81,22 @@ class TestMLBF(TestCase):
     def test_get_blocked_guids(self):
         blocked_guids = get_blocked_guids()
         assert len(blocked_guids) == 5
-        assert (self.three_ver.guid, '123.40') in blocked_guids
-        assert (self.three_ver.guid, '123.5') in blocked_guids
-        assert (self.three_ver.guid, '123.45.1') not in blocked_guids
+        assert (self.five_ver.guid, '123.40') in blocked_guids
+        assert (self.five_ver.guid, '123.5') in blocked_guids
+        assert (self.five_ver.guid, '123.45.1') not in blocked_guids
+        assert (self.five_ver.guid, '123.5.1') not in blocked_guids
+        assert (self.five_ver.guid, '123.5.2') not in blocked_guids
         over_tuple = (self.over.guid, self.over.addon.current_version.version)
         under_tuple = (
             self.under.guid, self.under.addon.current_version.version)
         assert over_tuple not in blocked_guids
         assert under_tuple not in blocked_guids
+
+        # doublecheck if the versions were signed & webextensions they'd be in.
+        self.not_signed_version.all_files[0].update(is_signed=True)
+        self.not_webext_version.all_files[0].update(is_webextension=True)
+        blocked_guids = get_blocked_guids()
+        assert len(blocked_guids) == 7
 
     def test_hash_filter_inputs(self):
         data = [
