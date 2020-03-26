@@ -373,6 +373,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         return '-'
 
     guid.short_description = 'Add-on GUID'
+    guid.admin_order_field = 'version__addon__guid'
 
     def channel(self, obj):
         if obj.version:
