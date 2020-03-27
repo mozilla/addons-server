@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 14:34+0000\n"
+"PO-Revision-Date: 2020-03-27 14:37+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1313,17 +1313,14 @@ msgstr "Asentem n ugbur n uzegrir"
 msgid "Add-on Review (Highest Risk)"
 msgstr "Acegger n uzegrir (amihi meqqren)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Asentem send aqbal (tamijewt meqqren)"
+msgstr "Acegger n uzegrir (amihi meqqren)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Asentem send aqbal (tamijewt alemmas)"
+msgstr "Acegger n uzegrir (amihi alemmas)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Aɣmis n ucegger n uzegrir"
+msgstr "Acegger n uzegrir (amihi meẓẓiyen)"
 
 msgid "Level 1"
 msgstr "Aswir 1"
@@ -1476,9 +1473,8 @@ msgstr "Send asnifel n usideg inek amezwer yessefk ad tmuddeḍ isem, agzul akke
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Ameskar ad d-yeswasken kan yiwet n tikelt."
+msgstr "Ameskar ad d-yettwasken kan tikkelt."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
@@ -1522,9 +1518,8 @@ msgstr "Ma ulac aɣilif, mudd-d tasertit n tbadnit n uzegrir inek:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Anaw n ufaylu ur ittusefrak ara, ma ulac aɣilif sali afaylu n uḥraz {extensions}."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Yir aɣbaṛ"
+msgstr "Taṛcivt diri-tt neɣ ahat texseṛ."
 
 msgid "View current"
 msgstr "Wal lqem amiran"
