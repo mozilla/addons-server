@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 15:12+0000\n"
+"PO-Revision-Date: 2020-03-27 15:23+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2621,9 +2621,8 @@ msgstr "Sali lqem"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Seqdec urtan ddaw-a akken ad tazneḍ akemmus n uzegrir-ik. Seld tuzna, ikayaden n usentem iwurmanen ad ttwaselkmen ɣef ufaylu-ik."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Anwa anagraw yemṣadan akked uzegrir inek?"
+msgstr "Anwa isnasen ukud imṣada lqem-agi?"
 
 msgid "Administrative overrides"
 msgstr ""
@@ -2652,9 +2651,8 @@ msgstr "isem n usentel"
 msgid "Select a header image for your theme"
 msgstr "Fren tugna n uqeṛṛu i usentel-ik."
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "Awrir n tugna yessef ad yili 200 n ipiksilen"
+msgstr "Awrir yelhan: 200 n yipiksilen"
 
 msgid "6.9MB max"
 msgstr "6.9MAṬ afellay"
@@ -2726,9 +2724,8 @@ msgstr "Ḥwi"
 msgid "Revoke and regenerate credentials"
 msgstr "Ḥwi sakin sirew talɣut n usesteb"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Sirew talɣut tamaynut n usesteb"
+msgstr "Sentem daɣen sirew inekcam imaynuten"
 
 msgid "Generate new credentials"
 msgstr "Sirew talɣut tamaynut n usesteb"
@@ -2736,9 +2733,8 @@ msgstr "Sirew talɣut tamaynut n usesteb"
 msgid "Invisible"
 msgstr "Aruman"
 
-#, fuzzy
 msgid "Approved and recommended"
-msgstr "Iceggiren yettwasnetmen"
+msgstr "Yettwaqbel daɣen yelha"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Ma ulac aɣilif, kemmel azegrir-ik s tmerna n lqem neɣ iɣefiseka ixuṣṣen."
@@ -2749,9 +2745,8 @@ msgstr "Ad -dremseḍ imayl ticki acegger yemmed. Uqbel aya, azegrir-ik ur d-yet
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Azegrir inek yettwasken di tmidelt-nneɣ udiɣ iseqdacen ad d-remsen ileqman s wudem awurman."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "azegrir-ik yessens-it unedba n usmel, ur yezgi yettban-d deg timidelt-nneɣ. Ma ɣur-k isteqsiyen, azen-d imayl ar amo-admins@mozilla.com."
+msgstr "Azegrir-ik yessens-it unedba n usmel, ur yezgi yettban-d deg timidelt-nneɣ. Ma ɣur-k isteqsiyen, azen-d imayl ar amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Azegrir-ik ur yerni ara ar igmaḍ n unadi daɣen asebter n unadi n telqayt yemmal-d d akken tsenseḍ-t. Tuzniwin n ileqman imaynuten ur tezzin ad ttwaqeblen deg addad-agi."
@@ -2765,9 +2760,8 @@ msgid "Last Updated:"
 msgstr "Aleqqem aneggaru:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Ad d-banen ɣef usmel-a deffir n ucegger n tengalt. Ileqman iwurmanen ttwasefraken deg usmel-agi."
+msgstr "Ad d-banen ɣef usmel-a deffir n ucegger n tengalt. Ileqman iwurmanen ttwasefraken deg usmel-agi"
 
 msgid "Status:"
 msgstr "Addad:"
@@ -2775,16 +2769,14 @@ msgstr "Addad:"
 msgid "Listed Version:"
 msgstr "Lqem yettwabedren:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "D lqem n uzegrir ara yebedden ticki yiwen isenned ɣef tqeffalt Sebedd di addons.mozilla.org."
+msgstr "D lqem n uzegrir ara yebedden ticki yiwen isenned ɣef tqeffalt Sebedd di addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Lqem yettwabedren d-iteddun:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Wagi d lqem amaynut i yettwaznen, dacu mazal ur yelli ara deg usmel."
+msgstr "Wagi d lqem amaynut i yettwaznen, dacu mazal ur yelli ara yakan deg usmel"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Idrasen ur ttwaceggren ara seg umezwaru ar uneggaru"
@@ -2802,9 +2794,8 @@ msgstr "Yettwasezmel i uzuzer udmawan. Ad tesferkeḍ ileqman."
 msgid "Latest Version:"
 msgstr "Lqem aneggaru:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Wagi d lqem aneggaru i d-yulin, mazal ur yettwabder ara."
+msgstr "Wagi d lqem aneggaru i d-yulin, mazal ur yettwabder ara"
 
 msgid "Upload New Version"
 msgstr "Sali lqem amaynut"
@@ -2863,9 +2854,8 @@ msgstr[1] "Kren <b>arma d {0}</b> {1} n taggayin i uzegrir-agi:"
 msgid "End-User License Agreement"
 msgstr "Amtawa n uselkin n useqdac aneggaru"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "MA ulac aɣilif, fren turgat ilaqen i yizerfan i tebɣiḍ ad tmuddeḍ i tengalt inek aɣbalu. Urti-agi yettwaseqdac kan i yizegrar yettwasnen, yettwakelsen."
+msgstr "Ma ulac aɣilif ẓer d akken EULA mačči d turagt am tin n tengalt, am GPL neɣ MPL. Aya yerza kan izegrar i d-yettwabedren."
 
 msgid "Privacy Policy"
 msgstr "Tasertit n tbaḍnit"
@@ -3098,14 +3088,14 @@ msgstr "Err"
 msgid "Listing visibility"
 msgstr "Tuman n uzegrir"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Visible:{label_close} Ad d-iban i yal yiwen di {site_url} daɣen ad d-yeddu deg igmaḍ n unadi s telqayt."
+msgstr "{label_open} Yettban:{label_close} Ad d-iban i yal yiwen deg {site_url} daɣen ad d-yeddu deg igmaḍ n unadi s telqayt.akked isebtar n ufaris."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr "Azegrir-ik ur yerni ara ar igmaḍ n unadi daɣen asebter n unadi n telqayt yemmal-d d akken tsenseḍ-t. Tuzniwin n ileqman imaynuten ur tezzin ad ttwaqeblen deg addad-agi."
+msgstr ""
+"{label_open} Yettban-d: {label_close} Ur d-yettban ara deg igmaḍ n unadi, daɣen asebter n ufaris ad d-yemmel d akken tsenseḍ-t. Tuzniwin n yileqman imaynuten i ufaris ur tettezii ara ad tetttwaqbel "
+"deg waddad-agi."
 
 msgid "Listed versions"
 msgstr "Ileqman yettwabedren"
