@@ -36,7 +36,7 @@ class TestImportBlocklist(TestCase):
         """ Test nothing is added if none of the guids match - any nothing
         fails.
         """
-        addon_factory(file_kw={'is_signed': True, 'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
         assert Block.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 0
@@ -51,22 +51,19 @@ class TestImportBlocklist(TestCase):
         """ Test regex style "guids" are parsed and expanded to blocks."""
         addon_factory(
             guid='_qdNembers_@exmys.myysarch.com',
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
         addon_factory(
             guid='_dqMNemberstst_@www.dowespedtgttest.com',
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
         addon_factory(
             guid='{90ac2d06-caf8-46b9-5325-59c82190b687}',
-            file_kw={'is_signed': True, 'is_webextension': True})
-        # these two are in the regex but aren't signed, or aren't webextensions
-        addon_factory(
-            guid='{_ohNe6mbers_@www.hizd2s1.com}',
-            file_kw={'is_signed': False, 'is_webextension': True})
+            file_kw={'is_webextension': True})
+        # this one is in the regex but doesn't have any webextension versions.
         addon_factory(
             guid='{_qjNembers_@wwqw.texcenteernow.com}',
-            file_kw={'is_signed': True, 'is_webextension': False})
+            file_kw={'is_webextension': False})
         # And random other addon
-        addon_factory(file_kw={'is_signed': True, 'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
 
         call_command('import_blocklist')
         assert Block.objects.count() == 3
@@ -99,14 +96,14 @@ class TestImportBlocklist(TestCase):
         """There are some regex that don't start with ^ and end with $"""
         addon_factory(
             guid='__TEMPLATE__APPLICATION__@puua-mapa.com',
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
         addon_factory(
             guid='{84aebb36-1433-4082-b7ec-29b790d12c17}',
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
         addon_factory(
             guid='{0c9970a2-6874-493b-a486-2295cfe251c2}',
-            file_kw={'is_signed': True, 'is_webextension': True})
-        addon_factory(file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
         call_command('import_blocklist')
         assert Block.objects.count() == 3
         blocks = list(Block.objects.all())
@@ -117,12 +114,12 @@ class TestImportBlocklist(TestCase):
     def test_single_guid(self):
         addon_factory(
             guid='{99454877-975a-443e-a0c7-03ab910a8461}',
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
         addon_factory(
             guid='Ytarkovpn.5.14@firefox.com',
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
         # And random other addon
-        addon_factory(file_kw={'is_signed': True, 'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
 
         call_command('import_blocklist')
         assert Block.objects.count() == 2
@@ -163,15 +160,12 @@ class TestImportBlocklist(TestCase):
         assert kintos[1].kinto_id == blocks[1].kinto_id
         assert kintos[1].record == blocklist_json['data'][2]
 
-    def test_single_guids_not_signed_or_not_webextension(self):
-        addon_factory(
-            guid='{99454877-975a-443e-a0c7-03ab910a8461}',
-            file_kw={'is_signed': False, 'is_webextension': True})
+    def test_single_guids_not_webextension(self):
         addon_factory(
             guid='Ytarkovpn.5.14@firefox.com',
-            file_kw={'is_signed': True, 'is_webextension': False})
+            file_kw={'is_webextension': False})
         # And random other addon
-        addon_factory(file_kw={'is_signed': True, 'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
 
         call_command('import_blocklist')
         assert Block.objects.count() == 0
@@ -183,12 +177,12 @@ class TestImportBlocklist(TestCase):
     def test_target_application(self):
         fx_addon = addon_factory(
             guid='mozilla_ccc2.2@inrneg4gdownlomanager.com',
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
         # Block only for Thunderbird
         addon_factory(
             guid='{0D2172E4-C3AE-465A-B80D-53F840275B5E}',
-            file_kw={'is_signed': True, 'is_webextension': True})
-        addon_factory(file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
 
         call_command('import_blocklist')
         assert Block.objects.count() == 1
@@ -210,11 +204,11 @@ class TestImportBlocklist(TestCase):
         Check we escape it correctly."""
         addon1 = addon_factory(
             guid='{f0af364e-5167-45ca-9cf0-66b396d1918c}',
-            file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
         addon2 = addon_factory(
             guid='{01e26e69-a2d8-48a0-b068-87869bdba3d0}',
-            file_kw={'is_signed': True, 'is_webextension': True})
-        addon_factory(file_kw={'is_signed': True, 'is_webextension': True})
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
 
         call_command('import_blocklist')
         assert Block.objects.count() == 2

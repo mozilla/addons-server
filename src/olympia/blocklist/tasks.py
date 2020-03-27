@@ -106,10 +106,10 @@ def import_block_from_blocklist(record):
     new_blocks = []
     for guid in addons_guids_qs:
         valid_files_qs = File.objects.filter(
-            version__addon__guid=guid, is_signed=True, is_webextension=True)
+            version__addon__guid=guid, is_webextension=True)
         if not valid_files_qs.exists():
             log.debug(
-                'Kinto %s: Skipped Block for [%s] because it has no signed '
+                'Kinto %s: Skipped Block for [%s] because it has no '
                 'webextension files', kinto_id, guid)
             continue
         (block, created) = Block.objects.update_or_create(
