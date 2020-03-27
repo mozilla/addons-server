@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-12-18 07:17+0000\n"
+"PO-Revision-Date: 2020-03-27 12:59+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2295,7 +2295,7 @@ msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size 
 msgstr "PNG en JPG wurde stipe, PNG wurdt oanrekommandearre. De maksimale en oanrekommandearre grutte foar skermôfbyldingen is 2400x1800 piksels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "De minimale grutte is 1000x750, en in ferhâlding fan 4:3 is fereaske."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
