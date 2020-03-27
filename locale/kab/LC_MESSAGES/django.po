@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 17:29+0000\n"
+"PO-Revision-Date: 2020-03-27 17:41+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3709,45 +3709,40 @@ msgid "Customize the look of any website. Shift colors, page backgrounds, and mo
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mudd udem i yiccer-ik maynut {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sefrek awalen-ik uffiren {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Err lewhi-ik ɣer web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Snerni tarmit-ik n tɣuri {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ldi ddeqs n yiseɣwan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag links you want open in new tabs."
