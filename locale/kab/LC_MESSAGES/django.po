@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 15:02+0000\n"
+"PO-Revision-Date: 2020-03-27 15:12+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2242,9 +2242,8 @@ msgstr "PNG d JPG ttwasefraken."
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG akked  JPG ttusefraken. Ignitin ad uɣalent ar 64x64 ipiksilen ticki kkant-d nig waya."
+msgstr "Tignitin ad uɣalent ɣer 128x128 n yipiksilen ma meqqerit."
 
 msgid "Screenshots"
 msgstr "Tuṭṭfiwin n wegdil"
@@ -2337,9 +2336,8 @@ msgstr "Ma ulac aɣilif, iniya-ɣ-d acuɣeṛ ad tekksed azegrir inek:"
 msgid "Actions"
 msgstr "Tigawin"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Kemmel akala n tuzna n uzegrir-agi."
+msgstr "Kemmel akala n tuzna n uzegrir-agi"
 
 msgid "Resume"
 msgstr "Kemmel"
@@ -2350,20 +2348,17 @@ msgstr "Kkes azegrir-agi."
 msgid "Delete"
 msgstr "Kkes"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "Ẓreg talqayt n tebdart n usentel-agi."
+msgstr "Ẓreg talqayt n usebter n ufaris n uzegrir-a"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Sali lqem amaynut n uzegrir-agi."
+msgstr "Sali lqem amaynut n uzegrir-agi"
 
 msgid "New Version"
 msgstr "Lqem amaynut"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Tidaddanin n yal ass ɣef usider akked iseqdacen."
+msgstr "Tidaddanin n yal ass ɣef usader akked yiseqdacen"
 
 msgid "Statistics"
 msgstr "Tidaddanin"
@@ -2395,9 +2390,8 @@ msgstr[1] "<strong>{0}</strong> iseqdacen urmiden"
 msgid "Submit a New Version"
 msgstr "Azen lqem amaynut"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Agzul:"
+msgstr "Isem d ugzul:"
 
 msgid "required"
 msgstr "yettwasra"
@@ -2423,9 +2417,8 @@ msgstr ""
 msgid "Summary:"
 msgstr "Agzul:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Aglam"
+msgstr "Aglam:"
 
 msgid "This add-on is experimental"
 msgstr "Azegrir-agi d armitan"
@@ -2543,9 +2536,8 @@ msgstr "Sider {0}"
 msgid "Go to My Submissions"
 msgstr "Ddu ar isumar inu"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Tangalt aɣbalu tuli"
+msgstr "Tuzna n tengalt aɣbalu"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr "Tesriḍ ad tazneḍ tangalt aɣbalu?"
@@ -2599,9 +2591,8 @@ msgstr ""
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "Azen"
+msgstr "Amek ara tazneḍ:"
 
 msgid "Include instructions in a README file in the source code,"
 msgstr ""
@@ -2609,9 +2600,8 @@ msgstr ""
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Tangalt aɣbalu"
+msgstr "Sali tangalt aɣbalu:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Amtawa n uzuzer n uzegrir"
