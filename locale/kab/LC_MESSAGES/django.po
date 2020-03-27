@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 15:23+0000\n"
+"PO-Revision-Date: 2020-03-27 15:32+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3180,72 +3180,64 @@ msgstr[0] "{0} alγu"
 msgstr[1] "{0} ilɣa"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel aḍfaṛ n sneaky {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mudd udem i yisebtar n yiccer amaynut {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Suqel s wudem fessusen {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Nadi tugniwin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Asewḥel n udellel & ummesten n tbaḍnit {start_sub_heading} s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Accaṛen, ttwafeṣlen s wudem amaynut {start_sub_heading}s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel aḍfaṛ n Facebook {start_sub_heading}s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sifses anadi n {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
@@ -3264,9 +3256,8 @@ msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Choose the page you see every time you open a new tab."
-msgstr "Swel asebter tẓerreḍ yal tikkelt ara teldiḍ iccer amaynut."
+msgstr "Fren asebter i tettwaliḍ yal tikkelt mi ara teldiḍ iccer amaynut."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3281,18 +3272,16 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sader tividyutin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Ileḥḥu s YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, akked imyaten n ysimal nniḍen n tvidyutin."
+msgstr "Sader tividyutin s tifses. Iteddu deg YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, d waṭas n yismal-nniḍen n uvidyu."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Ddeqs n tignitin n yiḥulfan, yal tikelt ɣef afus."
+msgstr "Snerni tagrumma-ik n yizamulen n yiḥulfan. D timrawin n yizamulen n yiḥulfan — yal tikkelt ɣef afus."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3311,18 +3300,16 @@ msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of co
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Snerni tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d s tifses tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
