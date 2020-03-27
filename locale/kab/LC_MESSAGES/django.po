@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 16:29+0000\n"
+"PO-Revision-Date: 2020-03-27 16:36+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3412,9 +3412,8 @@ msgid "Darken the page around video players for a focused viewing experience."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Nadi war tesḥesbeḍ i kra {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
@@ -3422,50 +3421,44 @@ msgid "Ecosia uses 80% of its search profits to fund tree-planting programs arou
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d agbur web ixuṣṣen  {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d agbur web ixuṣṣen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Semɣer tugniwin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hover over an image to magnify it."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Kkes inagan n tuqqna {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ṣeggem teɣzi n usebter {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel ineḍfaṛen yeffren {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
