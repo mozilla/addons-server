@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 20:49+0000\n"
+"PO-Revision-Date: 2020-03-27 21:04+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1564,7 +1564,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Afaylu aɣbalu dayen yettwasuder-d, maca tenniḍ-d belli aɣbalu ur ilaq."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Ḍmen d dakken isem akked ugzul gebren ma aṭas {limit_value} n yisekkilen (ɣur-sen meṛṛa {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -1696,7 +1696,7 @@ msgid "There was an error uploading your preview."
 msgstr "Taḍra-d tuccḍa di tuzzna n teskant inek."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Lqem aneggaru n usiqzef yelhan ur izmir ara ad yettwakkes neɣ ad yens. Ma ulac aɣilif nermes inedbalen n AMO ma yella teḥwaǧeḍ tallelt ɣef waya."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1777,7 +1777,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Ɣriɣ yerna qebleɣ amtawa-agi akk d walugen d tsertiyin"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Isem ara d-tsekneḍ akken ad tkemmleḍ amiḍan-ik akken iseqdacen d tseqdacin ad issinen anwa i xedmen azegrir-ik. Ma ulac aɣilif aru yiwen ddaw-a."
 
 msgid "Accept"
 msgstr "Qbel"
@@ -1967,16 +1967,16 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Taskant tezga deg usirew. Ma ulac aɣilif, ales aɛraḍ tikelt-nniḍen neɣ smiren asebter."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Tettwanecdeḍ ad tuɣaleḍ d ameskar n {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Ma tqebleḍ tinubga, ad tizmireḍ ad tbeddleḍ azegrir daɣen ad tsekneḍ isem-ik deg tebdert n yimeskaren n usmel web."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Tekki ɣef tqeffalt Qbel ddaw-a akkend ad tesnetmeḍ ayen tebɣiḍ ad yettwarnu s yisem n umeskar i {addon_name}."
 
 msgid "Decline"
-msgstr ""
+msgstr "Agi"
 
 msgid "Manage Authors & License"
 msgstr "Sefrek imeskaren & iselkinen"
@@ -1988,10 +1988,10 @@ msgid "About author roles"
 msgstr "Γef temlilin"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Imeskaren yettraǧun asentem"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Imeskaren yettwarnan ɣer uzegrir-a maca ur ttwasnetmen ara yakan."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2240,7 +2240,7 @@ msgid "PNG and JPG supported."
 msgstr "PNG d JPG ttwasefraken."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Tignitin ilaq ad ilint s talɣa n umkuẓ daɣen ad sɛun teɣzi taddayt n 128x128 n yipiksilen."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Tignitin ad uɣalent ɣer 128x128 n yipiksilen ma meqqerit."
