@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 14:37+0000\n"
+"PO-Revision-Date: 2020-03-27 14:53+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1536,9 +1536,8 @@ msgstr "Teḍra-d tuccḍa akked usali inek. Ma ulac aɣilif ɛreḍ tikelt nni�
 msgid "Override failed validation"
 msgstr "Zgel asentem yeccḍen"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Yesra xaṛsum yiwen n usnas amṣadan."
+msgstr "Fren xarṣum yiwen n usnas."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr ""
@@ -1558,9 +1557,8 @@ msgstr "Ih"
 msgid "No"
 msgstr "Ala"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Ur izmir ara ad isleḍ afaylu yulin."
+msgstr "Ur tessuliḍ ara afaylu aɣbalu."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Afaylu aɣbalu dayen yettwasuder-d, maca tenniḍ-d belli aɣbalu ur ilaq."
@@ -1585,9 +1583,8 @@ msgstr "Sken-d Isem"
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Taggayint ur zmirent ara ad beddlent ticki azegrir-ik d itri."
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Yir aɣbaṛ"
+msgstr "Afaylu n uzegrir d arameɣtu neɣ yexṣeṛ."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Tasarut-ik API n tneflit tettwaf deg ufaylu yettwaznen. Akken ad tḥerzeḍ amiḍan-ik, tasarutt ad tattwaḥwi."
@@ -1659,16 +1656,14 @@ msgstr "Tinubga tettwagi."
 msgid "An author has been added to your add-on"
 msgstr "Ameskar yettwarna ad uzegrir inek"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Ittekkiyen di {addon}."
+msgstr "Tinubga n umeskar ɣer {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Imayl n usentem yettwazen ɣer {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "Tamlilt n umeskar tettusnifel ɣef uzegri inek"
+msgstr "Tamlilt n umeskar tbeddel deg uzegrir-ik"
 
 msgid "An author has been removed from your add-on"
 msgstr "Ameskar yettwakkes seg uzegrir inek"
@@ -1685,9 +1680,8 @@ msgstr "Tiginitin zemrent kan ad ilint PNG neɣ JPG."
 msgid "Icons cannot be animated."
 msgstr "Tignitin ur zmirent ara ad mbiwlent."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Yessefk tugna ad tili s {0} n ipiksilen di tehri akked {1} n ipiksilen di teɣzi."
+msgstr "Yessefk tugna ad tili s xarṣum {0} n yipiksilen di tehri akked {1} n yipiksilen di teɣzi."
 
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
