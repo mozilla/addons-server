@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 18:25+0000\n"
+"PO-Revision-Date: 2020-03-27 18:39+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4009,81 +4009,72 @@ msgid "Download YouTube videos and/or audio."
 msgstr "Sader tividyutin akked/neɣ imeslawen YouTube."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Suqel s wudem fessusen {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d agbur ara teɣreḍ {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Aru tizmilin s zreb {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Sedrurem amtilifun {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Kkes isefka {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sebṛureq aḍris {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Faṛes aẓawan i d-yekkan seg umaḍal meṛṛa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sɣed i tvidyutin {start_sub_heading}s{addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Selket aḍris ɣer tugniwin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Inig s tɣellist {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically navigate to the secure version of a website if it's available."
