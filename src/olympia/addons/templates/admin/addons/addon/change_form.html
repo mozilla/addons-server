@@ -4,7 +4,7 @@
 {% block object-tools-items %}
   {% if has_listed_versions %}
   <li>
-    <a href="{% url 'reviewers.review' 'listed' object_id %}">
+    <a href="{{ external_site_url }}{% url 'reviewers.review' 'listed' object_id %}">
       {% trans 'Reviewer Tools (listed)' %}
     </a>
   </li>
@@ -12,7 +12,7 @@
 
   {% if has_unlisted_versions %}
   <li>
-    <a href="{% url 'reviewers.review' 'unlisted' object_id %}">
+    <a href="{{ external_site_url }}{% url 'reviewers.review' 'unlisted' object_id %}">
       {% trans 'Reviewer Tools (unlisted)' %}
     </a>
   </li>

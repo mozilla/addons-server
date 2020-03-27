@@ -68,9 +68,9 @@ class KintoServer(object):
         bucket_url = f'{settings.KINTO_API_URL}buckets/{self.bucket}'
         headers = self.headers
         response = requests.get(bucket_url, headers=headers)
+        data = {'permissions': {'read': ["system.Everyone"]}}
         if response.status_code == 403:
             # lets create them
-            data = {'permissions': {'read': ["system.Everyone"]}}
             log.info(
                 'Creating kinto bucket %s and collection %s' %
                 (self.bucket, self.collection))

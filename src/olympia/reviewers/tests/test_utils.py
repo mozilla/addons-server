@@ -19,7 +19,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
-from olympia.blocklist.models import Block, BlockSubmission
+from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
@@ -345,6 +345,14 @@ class TestReviewHelper(TestReviewHelperBase):
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED).keys()) == expected
 
+        # Now make it recommendable. The user should lose all approve/reject
+        # actions.
+        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED).keys()) == expected
+
     def test_actions_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
         expected = ['approve_content', 'reject_multiple_versions',
@@ -368,7 +376,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_public_static_theme(self):
         # Having Addons:PostReview and dealing with a public add-on would
         # normally be enough to give you access to reject multiple versions
-        # action, but it should not be available for static themes.
+        # action, but it should not be available if you're not theme reviewer.
         self.grant_permission(self.request.user, 'Addons:PostReview')
         self.addon.update(type=amo.ADDON_STATICTHEME)
         expected = []
@@ -376,10 +384,13 @@ class TestReviewHelper(TestReviewHelperBase):
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
 
-        # Themes reviewers get access to everything.
+        # Themes reviewers get access to everything, including reject multiple.
         self.request.user.groupuser_set.all().delete()
         self.grant_permission(self.request.user, 'Addons:ThemeReview')
-        expected = ['public', 'reject', 'reply', 'super', 'comment']
+        expected = [
+            'public', 'reject', 'reject_multiple_versions', 'reply', 'super',
+            'comment'
+        ]
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
@@ -392,6 +403,51 @@ class TestReviewHelper(TestReviewHelperBase):
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED).keys()) == expected
+
+    def test_actions_recommended(self):
+        # Having Addons:PostReview or Addons:Review is not enough to review
+        # recommended extensions.
+        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED).keys()) == expected
+
+        self.grant_permission(self.request.user, 'Addons:Review')
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_NOMINATED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # Having Addons:RecommendedReview allows you to do it.
+        self.grant_permission(self.request.user, 'Addons:RecommendedReview')
+        expected = ['public', 'reject', 'reject_multiple_versions',
+                    'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+    def test_actions_recommended_content_review(self):
+        # Having Addons:ContentReview is not enough to content review
+        # recommended extensions.
+        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.grant_permission(self.request.user, 'Addons:ContentReview')
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+            content_review=True).keys()) == expected
+
+        # Having Addons:RecommendedReview allows you to do it (though you'd
+        # be better off just do a full review).
+        self.grant_permission(self.request.user, 'Addons:RecommendedReview')
+        expected = ['approve_content', 'reject_multiple_versions',
+                    'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+            content_review=True).keys()) == expected
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
@@ -556,6 +612,18 @@ class TestReviewHelper(TestReviewHelperBase):
         assert '/es/firefox/addon/a3615' not in mail.outbox[0].body
         assert '/addon/a3615' in mail.outbox[0].body
         assert 'Your add-on, Delicious Bookmarks ' in mail.outbox[0].body
+
+    def test_email_no_name(self):
+        self.addon.name.delete()
+        self.addon.refresh_from_db()
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_public()
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            u'Mozilla Add-ons: None 2.1.072 Approved')
+        assert '/addon/a3615' in mail.outbox[0].body
+        assert 'Your add-on, None ' in mail.outbox[0].body
 
     def test_nomination_to_public_no_files(self):
         self.setup_data(amo.STATUS_NOMINATED)
@@ -1512,17 +1580,17 @@ class TestReviewHelper(TestReviewHelperBase):
                 old_version.version, self.version.version)
         assert self.helper.redirect_url == redirect_url
 
-    def test_pending_blocksubmission_multiple_unlisted_versions(self):
-        subm = BlockSubmission.objects.create(
+    def test_pending_blocklistsubmission_multiple_unlisted_versions(self):
+        subm = BlocklistSubmission.objects.create(
             input_guids=self.addon.guid, updated_by=user_factory())
-        redirect_url = (
-            reverse('admin:blocklist_blocksubmission_change', args=(subm.id,)))
+        redirect_url = reverse(
+            'admin:blocklist_blocklistsubmission_change', args=(subm.id,))
         assert Block.objects.count() == 0
         self._test_block_multiple_unlisted_versions(redirect_url)
 
     def test_new_block_multiple_unlisted_versions(self):
         redirect_url = (
-            reverse('admin:blocklist_blocksubmission_add') +
+            reverse('admin:blocklist_blocklistsubmission_add') +
             '?min_version=%s&max_version=%s&guids=' + self.addon.guid)
         assert Block.objects.count() == 0
         self._test_block_multiple_unlisted_versions(redirect_url)

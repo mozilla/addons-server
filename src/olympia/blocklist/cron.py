@@ -6,17 +6,32 @@ import waffle
 
 import olympia.core.logger
 from olympia.lib.kinto import KintoServer
+from olympia.zadmin.models import get_config, set_config
 
 from .mlbf import generate_mlbf, get_mlbf_key_format
+from .models import Block
 from .utils import KINTO_BUCKET, KINTO_COLLECTION_MLBF
 
 log = olympia.core.logger.getLogger('z.cron')
+
+MLBF_TIME_CONFIG_KEY = 'blocklist_mlbf_generation_time'
+
+
+def _get_blocklist_last_modified_time():
+    latest_block = Block.objects.order_by('-modified').first()
+    return int(latest_block.modified.timestamp() * 1000) if latest_block else 0
 
 
 def upload_mlbf_to_kinto():
     if not waffle.switch_is_active('blocklist_mlbf_submit'):
         log.info('Upload MLBF to kinto cron job disabled.')
         return
+    last_generation_time = get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
+    if last_generation_time > _get_blocklist_last_modified_time():
+        log.info(
+            'No new/modified Blocks in database; skipping MLBF generation')
+        return
+
     log.info('Starting Upload MLBF to kinto cron job.')
     server = KintoServer(
         KINTO_BUCKET, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
@@ -41,4 +56,5 @@ def upload_mlbf_to_kinto():
         attachment = ('filter.bin', filter_file, 'application/octet-stream')
         server.publish_attachment(data, attachment)
     server.complete_session()
+    set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
     log.info(json.dumps(stats))

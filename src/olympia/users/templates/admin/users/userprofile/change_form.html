@@ -11,13 +11,15 @@
               could become the default submit button of the page
              {% endcomment %}
              {% if has_users_edit_permission %}
-                 <button formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
-                         type="submit">{% trans "Ban" %}</button>
-                 <button formaction="{% url 'admin:users_userprofile_reset_api_key' original.pk|admin_urlquote %}"
-                         type="submit">{% trans "Reset API Key" %}</button>
+                 <input formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
+                        type="submit" value="{% trans 'Ban' %}" />
+                 <input formaction="{% url 'admin:users_userprofile_reset_api_key' original.pk|admin_urlquote %}"
+                        type="submit" value="{% trans 'Reset API Key' %}" />
+                 <input formaction="{% url 'admin:users_userprofile_reset_session' original.pk|admin_urlquote %}"
+                        type="submit" value="{% trans 'Reset session(s)' %}" />
              {% endif %}
-             <button formaction="{% url 'admin:users_userprofile_delete_picture' original.pk|admin_urlquote %}"
-                     type="submit">{% trans "Delete picture" %}</button>
+             <input formaction="{% url 'admin:users_userprofile_delete_picture' original.pk|admin_urlquote %}"
+                    type="submit" value="{% trans 'Delete picture' %}" />
         </div>
     </div>
 {% endblock %}

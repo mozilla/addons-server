@@ -220,7 +220,7 @@ class TestUserAdmin(TestCase):
         request.user = user_factory()
         self.grant_permission(request.user, 'Users:Edit')
         assert list(user_admin.get_actions(request).keys()) == [
-            'ban_action', 'reset_api_key_action'
+            'ban_action', 'reset_api_key_action', 'reset_session_action'
         ]
 
     def test_ban_action(self):
@@ -298,6 +298,30 @@ class TestUserAdmin(TestCase):
         assert ActivityLog.objects.filter(
             action=amo.LOG.ADMIN_API_KEY_RESET.id).count() == 2
 
+    def test_reset_session_action(self):
+        assert self.user.auth_id
+        another_user = user_factory()
+        assert another_user.auth_id
+        a_third_user = user_factory()
+        assert a_third_user.auth_id
+        old_auth_id = a_third_user.auth_id
+
+        users = UserProfile.objects.filter(
+            pk__in=(another_user.pk, self.user.pk))
+        user_admin = UserAdmin(UserProfile, admin.site)
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        core.set_user(request.user)
+        request._messages = default_messages_storage(request)
+        user_admin.reset_session_action(request, users)
+
+        self.user.reload()
+        assert self.user.auth_id is None
+        another_user.reload()
+        assert another_user.auth_id is None
+        a_third_user.reload()
+        assert a_third_user.auth_id == old_auth_id
+
     def test_reset_api_key_button_in_change_view(self):
         reset_api_key_url = reverse(
             'admin:users_userprofile_reset_api_key', args=(self.user.pk, ))
@@ -308,6 +332,17 @@ class TestUserAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert reset_api_key_url in response.content.decode('utf-8')
+
+    def test_session_button_in_change_view(self):
+        reset_session_url = reverse(
+            'admin:users_userprofile_reset_session', args=(self.user.pk, ))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert reset_session_url in response.content.decode('utf-8')
 
     def test_delete_picture_button_in_change_view(self):
         delete_picture_url = reverse('admin:users_userprofile_delete_picture',
@@ -386,6 +421,35 @@ class TestUserAdmin(TestCase):
         assert self.user.api_keys.exists()
         assert not self.user.api_keys.filter(is_active=True).exists()
         assert not APIKeyConfirmation.objects.filter(user=self.user).exists()
+
+    def test_reset_session(self):
+        assert self.user.auth_id
+        reset_session_url = reverse(
+            'admin:users_userprofile_reset_session', args=(self.user.pk, ))
+        wrong_reset_session_url = reverse(
+            'admin:users_userprofile_reset_session', args=(self.user.pk + 9, ))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        response = self.client.post(reset_session_url, follow=True)
+        assert response.status_code == 403
+        self.grant_permission(user, 'Users:Edit')
+        response = self.client.get(reset_session_url, follow=True)
+        assert response.status_code == 405  # Wrong http method.
+        response = self.client.post(wrong_reset_session_url, follow=True)
+        assert response.status_code == 404  # Wrong pk.
+
+        response = self.client.post(reset_session_url, follow=True)
+        assert response.status_code == 200
+        assert response.redirect_chain[-1][0].endswith(self.detail_url)
+        assert response.redirect_chain[-1][1] == 302
+
+        alog = ActivityLog.objects.latest('pk')
+        assert alog.action == amo.LOG.ADMIN_USER_SESSION_RESET.id
+        assert alog.arguments == [self.user]
+
+        self.user.reload()
+        assert not self.user.auth_id
 
     @mock.patch.object(UserProfile, 'delete_picture')
     def test_delete_picture(self, delete_picture_mock):

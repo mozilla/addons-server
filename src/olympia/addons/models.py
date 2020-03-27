@@ -1267,6 +1267,7 @@ class Addon(OnChangeMixin, ModelBase):
             channel=amo.RELEASE_CHANNEL_LISTED, exclude=())
         return [
             self.all_categories,
+            self.name,
             self.summary,
             (version and version.license),
         ]
@@ -1527,11 +1528,11 @@ class Addon(OnChangeMixin, ModelBase):
         return Block.objects.filter(guid=self.guid).last()
 
     @cached_property
-    def blocksubmission(self):
-        from olympia.blocklist.models import BlockSubmission
+    def blocklistsubmission(self):
+        from olympia.blocklist.models import BlocklistSubmission
 
         # GUIDs should only exist in one (active) submission at once.
-        return BlockSubmission.get_submissions_from_guid(self.guid).last()
+        return BlocklistSubmission.get_submissions_from_guid(self.guid).last()
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
