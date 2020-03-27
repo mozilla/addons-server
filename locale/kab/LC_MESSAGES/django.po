@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 14:53+0000\n"
+"PO-Revision-Date: 2020-03-27 15:02+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1683,13 +1683,11 @@ msgstr "Tignitin ur zmirent ara ad mbiwlent."
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Yessefk tugna ad tili s xarṣum {0} n yipiksilen di tehri akked {1} n yipiksilen di teɣzi."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Tugniwin zemrent ad ilint PNG neɣ JPG."
+msgstr "Issefk tisektiwin n tugna ad ilint deg ufmiḍi 4:3."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Yessefk tugna ad tili s {0} n ipiksilen di tehri akked {1} n ipiksilen di teɣzi."
+msgstr "Issefk tignit ad tili xarṣum {0} n yipiksilen deg tehri akked teɣzi."
 
 msgid "Icon must be square (same width and height)."
 msgstr "Issefk tignit ad tili d amkuẓ (teɣzi tegda tehri)."
@@ -1718,16 +1716,14 @@ msgstr "Tuzna-agi ur teddi ara deg usentem, ihi tezmer akken ur yelli ara ɣur-s
 msgid "Header area background"
 msgstr "Tallunt n ugerru"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "Initen n ugilal n uqeṛṛu, i d-yettwaseknen deg uḥric n uqerru ur neffir ara neɣ win yettbanen s tugna n uqerru. Urti n umeskan: accentcolor."
+msgstr "Initen n ugilal n uqeṛṛu, i d-yettwaseknen deg uḥric n uqerru ur neffir ara neɣ win yettbanen s tugna n uqerru. Urti n umeskan:   frame."
 
 msgid "Header area text and icons"
 msgstr "Aḍris akked tignitin n uqerru"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Ini n uḍris akked tignitin deg tjumma n uqerru, anagar iccer urmid. Urti n umeskan:  textcolor."
+msgstr "Ini n uḍris akked tignitin deg tjumma n uqerru, anagar iccer urmid. Urti n umeskan:  tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Agilal n ufeggag n yifecka"
@@ -1738,9 +1734,8 @@ msgstr "Ini n ugilal i ufeggag n tunigin, afeggag udmawan akked yiccer yettwafer
 msgid "Toolbar area text and icons"
 msgstr "Aḍris akked tignitin n ufeggag n yifecka"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Ini n uḍris akked tignitin def ufeggag n yifecka akked yiccer urmid. Urti n umeskan:   toolbar_text."
+msgstr "Ini n uḍris akked tignitin def ufeggag n yifecka akked yiccer urmid. Urti n umeskan:   bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Agilal n wurtan n ufeggag n yifecka"
@@ -1790,9 +1785,8 @@ msgstr "Qbel"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "neɣ <a href=\"{0}\">Sefsex</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Ugar n telɣut ɣef turagin Creative Commons"
+msgstr "Ugar n telɣut ɣef yimiḍanen n uneflay"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -1808,9 +1802,8 @@ msgstr "Ammas n ineflayen <small>izegrar</small>"
 msgid "more add-ons..."
 msgstr "ugar n izegrar..."
 
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Isiɣzaf"
+msgstr "Tanemsel n usiɣzef"
 
 msgid "Documentation"
 msgstr "Tasemlit"
@@ -1821,9 +1814,8 @@ msgstr "Taneflit n isiɣzaf"
 msgid "Themes"
 msgstr "Isental"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Isallen n uneflay"
+msgstr "Tasertit i yineflayen"
 
 msgid "Add-on Validator"
 msgstr "Asentam n izegrar"
@@ -1901,9 +1893,8 @@ msgstr "Azegrir-agi ur imṣada ara akked <b>%(app_name)s%(app_version)s</b>, lq
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Leqqem amṣada</a> <a href=\"%(version_url)s\" class=\"button\">Azen lqem amaynut</a> ou <a href=\"#\" class=\"close\">Anef</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Wali sakin leqqem izilalen n umṣada n yesnasen."
+msgstr "Wali sakin leqqem izilalen n umṣada n yesnasen"
 
 msgid "Compatibility"
 msgstr "Amṣada"
@@ -2009,16 +2000,14 @@ msgstr ""
 "<p>Izegrar zemren ad sɛun ugar n yiwen n umeskar s snat n twuriwin:</p> <ul> <li><b>Bab-is :</b> yezmer ad isefrek meṛṛa anaḍen n uzegrir, am timerna neɣ tukksa n yimeskaren</li> "
 "<li><b>Aneflay :</b> yezmer ad isefrek meṛṛa anaḍen, ala timerna neɣ tukksa n yimeskaren akked usefrek n usellek</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Talqayt γef uzegrir"
+msgstr "Talqayt-nniḍen"
 
 msgid "Edit"
 msgstr "Ẓreg"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Talqayt n uzigrir i {0}"
+msgstr "Talqayt-nniḍen i {0}"
 
 msgid "Tags"
 msgstr "Tibzimin"
@@ -2065,13 +2054,11 @@ msgid "Describe Add-on"
 msgstr "Seglem azegrir"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Seglem azegrir"
+msgstr "Seglem {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Agzul"
+msgstr "Isem d ugzul"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2092,9 +2079,8 @@ msgstr "Fren tansa URL wezzilen s war isekkilen imezliyen i uzegrir inek."
 msgid "View Listing"
 msgstr "Asebter n usnas"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Sken amaɣnu"
+msgstr "Sken asbter n ufaris"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -2244,9 +2230,8 @@ msgstr "Yettwaseqdec deg isebtar n telqayt n uzegrir."
 msgid "128x128px"
 msgstr "128x128 ipiksilen."
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Yettwaseqdec deg isebtar n telqayt n uzegrir."
+msgstr "Ad yili d alugen deg yisebtar n telqayt n yizegrar i d-iteddun."
 
 msgid "Upload a Custom Icon..."
 msgstr "Sali tignit tudmawant..."
