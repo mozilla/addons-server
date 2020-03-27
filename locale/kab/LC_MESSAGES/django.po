@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 14:20+0000\n"
+"PO-Revision-Date: 2020-03-27 14:34+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1107,28 +1107,28 @@ msgid "Download Firefox themes for musical interests and artists. This category 
 msgstr "Sader isental i Firefox i yemṣadan d uẓawan d yinaẓuren i tḥemmleḍ. Taggayt-a tegber tirebbaɛ tiɣerffanin am Nirvana d BTS, allalen n uẓawan, tividyutin n uẓawan, d wayen-nniḍen."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Sader isental i Firefox ɣef yiɣersiwen d ugama. Taggayt-a tegber ijeggigen, aɣelluy n yiṭij, uccanen, tisemhuyin, imtiwagen, imcac meẓẓiyen, igḍaḍ, d wayen-nniḍen."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Sader isental yelhan i Firefox, d ucbiḥen, ur sɛin timital."
 
 msgid "Scenery"
 msgstr "Iẓir"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Sader isental i Firefox i d-yeskanen tawennadt akked umaḍal n ugama. Taggayt-a tegber aɣelluy n yiṭij, tiftisin, unuɣen, iglan n temdinin, d wayen-nniḍen."
 
 msgid "Seasonal"
 msgstr "Asemhay"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Sader isental n Firefox yal tasemhuyt — amwan, tagrest, tafsut, d unebdu. Ifriwen n umwan, tiqiṛṛucin n udfel, ussan n unebdu s yiṭij akked ijeǧǧigen n tefsut."
 
 msgid "Solid"
 msgstr "Ukmil"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Sader isental i Firefox s yiniten yedduklen neɣ udabder akken ad tmuddeḍ udem i Firefox. Taggayt-a tegber azeggaɣ iḥ€mqen, pastel, amumad aceɛlal, atg."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr ""
@@ -1310,9 +1310,8 @@ msgstr "Aceggir n uzegrir yefsex deg ucegger"
 msgid "Add-on Content Review"
 msgstr "Asentem n ugbur n uzegrir"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "Asentem send aqbal (tamijewt meqqren ugar)"
+msgstr "Acegger n uzegrir (amihi meqqren)"
 
 #, fuzzy
 msgid "Add-on Review (High Risk)"
@@ -1657,10 +1656,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Tansa URL mačči d tameɣtut. Azegrir ur yettwakkes ara."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Tinubga tettwaqbel."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Tinubga tettwagi."
 
 msgid "An author has been added to your add-on"
 msgstr "Ameskar yettwarna ad uzegrir inek"
@@ -1670,7 +1669,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "Ittekkiyen di {addon}."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Imayl n usentem yettwazen ɣer {email}"
 
 #, fuzzy
 msgid "An author role has been changed on your add-on"
@@ -1704,7 +1703,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Yessefk tugna ad tili s {0} n ipiksilen di tehri akked {1} n ipiksilen di teɣzi."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Issefk tignit ad tili d amkuẓ (teɣzi tegda tehri)."
 
 msgid "There was an error uploading your preview."
 msgstr "Taḍra-d tuccḍa di tuzzna n teskant inek."
@@ -4833,9 +4832,8 @@ msgid "Learn More"
 msgstr "Issin ugar"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Isiɣzaf"
+msgstr "Snirem isiɣzaf"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
