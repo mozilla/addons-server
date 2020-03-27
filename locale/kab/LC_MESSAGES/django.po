@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-27 19:47+0000\n"
+"PO-Revision-Date: 2020-03-27 20:28+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1131,13 +1131,13 @@ msgid "Download Firefox themes with solid and gradient colors to personalize you
 msgstr "Sader isental i Firefox s yiniten yedduklen neɣ udabder akken ad tmuddeḍ udem i Firefox. Taggayt-a tegber azeggaɣ iḥ€mqen, pastel, amumad aceɛlal, atg."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Sader isental Firefox i d-yekkan seg ddeqs n waddalen. Taggayt-a tegber anayen n tmura, tirebbaɛ n waddal, ddabax n uḍaṛ, hockey, d wayen-nniden."
 
 msgid "Websites"
 msgstr "Ismal web"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Sader isental Firefox i ijebbden ul n web — ijebbed, izehhu daɣen ur yesɛi timital."
 
 msgid "General"
 msgstr "Amatu"
