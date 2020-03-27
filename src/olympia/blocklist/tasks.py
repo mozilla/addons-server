@@ -10,6 +10,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
+from olympia.files.models import File
 from olympia.users.utils import get_task_user
 
 from .models import Block, BlocklistSubmission, KintoImport
@@ -102,16 +103,25 @@ def import_block_from_blocklist(record):
         addons_guids_qs = Addon.unfiltered.using(using_db).filter(
             guid=guid).values_list('guid', flat=True)
         regex = False
+    new_blocks = []
     for guid in addons_guids_qs:
+        valid_files_qs = File.objects.filter(
+            version__addon__guid=guid, is_webextension=True)
+        if not valid_files_qs.exists():
+            log.debug(
+                'Kinto %s: Skipped Block for [%s] because it has no '
+                'webextension files', kinto_id, guid)
+            continue
         (block, created) = Block.objects.update_or_create(
             guid=guid, defaults=dict(guid=guid, **block_kw))
         block_activity_log_save(block, change=not created)
         if created:
-            log.debug('Kinto %s: Added Block for [%s]', kinto_id, block.guid)
+            log.debug('Kinto %s: Added Block for [%s]', kinto_id, guid)
             block.update(modified=modified_date)
         else:
-            log.debug('Kinto %s: Updated Block for [%s]', kinto_id, block.guid)
-    if addons_guids_qs:
+            log.debug('Kinto %s: Updated Block for [%s]', kinto_id, guid)
+        new_blocks.append(block)
+    if new_blocks:
         kinto_import.outcome = (
             KintoImport.OUTCOME_REGEXBLOCKS if regex else
             KintoImport.OUTCOME_BLOCK

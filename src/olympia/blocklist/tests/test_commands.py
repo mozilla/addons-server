@@ -36,7 +36,7 @@ class TestImportBlocklist(TestCase):
         """ Test nothing is added if none of the guids match - any nothing
         fails.
         """
-        addon_factory()
+        addon_factory(file_kw={'is_webextension': True})
         assert Block.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 0
@@ -49,10 +49,22 @@ class TestImportBlocklist(TestCase):
 
     def test_regex(self):
         """ Test regex style "guids" are parsed and expanded to blocks."""
-        addon_factory(guid='_qdNembers_@exmys.myysarch.com')
-        addon_factory(guid='_dqMNemberstst_@www.dowespedtgttest.com')
-        addon_factory(guid='{90ac2d06-caf8-46b9-5325-59c82190b687}')
-        addon_factory()
+        addon_factory(
+            guid='_qdNembers_@exmys.myysarch.com',
+            file_kw={'is_webextension': True})
+        addon_factory(
+            guid='_dqMNemberstst_@www.dowespedtgttest.com',
+            file_kw={'is_webextension': True})
+        addon_factory(
+            guid='{90ac2d06-caf8-46b9-5325-59c82190b687}',
+            file_kw={'is_webextension': True})
+        # this one is in the regex but doesn't have any webextension versions.
+        addon_factory(
+            guid='{_qjNembers_@wwqw.texcenteernow.com}',
+            file_kw={'is_webextension': False})
+        # And random other addon
+        addon_factory(file_kw={'is_webextension': True})
+
         call_command('import_blocklist')
         assert Block.objects.count() == 3
         blocks = list(Block.objects.all())
@@ -82,10 +94,16 @@ class TestImportBlocklist(TestCase):
 
     def test_no_start_end_regex(self):
         """There are some regex that don't start with ^ and end with $"""
-        addon_factory(guid='__TEMPLATE__APPLICATION__@puua-mapa.com')
-        addon_factory(guid='{84aebb36-1433-4082-b7ec-29b790d12c17}')
-        addon_factory(guid='{0c9970a2-6874-493b-a486-2295cfe251c2}')
-        addon_factory()
+        addon_factory(
+            guid='__TEMPLATE__APPLICATION__@puua-mapa.com',
+            file_kw={'is_webextension': True})
+        addon_factory(
+            guid='{84aebb36-1433-4082-b7ec-29b790d12c17}',
+            file_kw={'is_webextension': True})
+        addon_factory(
+            guid='{0c9970a2-6874-493b-a486-2295cfe251c2}',
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
         call_command('import_blocklist')
         assert Block.objects.count() == 3
         blocks = list(Block.objects.all())
@@ -94,9 +112,15 @@ class TestImportBlocklist(TestCase):
         assert blocks[2].guid == '{0c9970a2-6874-493b-a486-2295cfe251c2}'
 
     def test_single_guid(self):
-        addon_factory(guid='{99454877-975a-443e-a0c7-03ab910a8461}')
-        addon_factory(guid='Ytarkovpn.5.14@firefox.com')
-        addon_factory()
+        addon_factory(
+            guid='{99454877-975a-443e-a0c7-03ab910a8461}',
+            file_kw={'is_webextension': True})
+        addon_factory(
+            guid='Ytarkovpn.5.14@firefox.com',
+            file_kw={'is_webextension': True})
+        # And random other addon
+        addon_factory(file_kw={'is_webextension': True})
+
         call_command('import_blocklist')
         assert Block.objects.count() == 2
         blocks = list(Block.objects.all())
@@ -136,13 +160,30 @@ class TestImportBlocklist(TestCase):
         assert kintos[1].kinto_id == blocks[1].kinto_id
         assert kintos[1].record == blocklist_json['data'][2]
 
+    def test_single_guids_not_webextension(self):
+        addon_factory(
+            guid='Ytarkovpn.5.14@firefox.com',
+            file_kw={'is_webextension': False})
+        # And random other addon
+        addon_factory(file_kw={'is_webextension': True})
+
+        call_command('import_blocklist')
+        assert Block.objects.count() == 0
+
+        assert KintoImport.objects.count() == 8
+        assert KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 7
+
     def test_target_application(self):
         fx_addon = addon_factory(
-            guid='mozilla_ccc2.2@inrneg4gdownlomanager.com')
+            guid='mozilla_ccc2.2@inrneg4gdownlomanager.com',
+            file_kw={'is_webextension': True})
         # Block only for Thunderbird
-        addon_factory(guid='{0D2172E4-C3AE-465A-B80D-53F840275B5E}')
+        addon_factory(
+            guid='{0D2172E4-C3AE-465A-B80D-53F840275B5E}',
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
 
-        addon_factory()
         call_command('import_blocklist')
         assert Block.objects.count() == 1
         this_block = blocklist_json['data'][5]
@@ -161,10 +202,14 @@ class TestImportBlocklist(TestCase):
     def test_bracket_escaping(self):
         """Some regexs don't escape the {} which is invalid in mysql regex.
         Check we escape it correctly."""
-        addon1 = addon_factory(guid='{f0af364e-5167-45ca-9cf0-66b396d1918c}')
-        addon2 = addon_factory(guid='{01e26e69-a2d8-48a0-b068-87869bdba3d0}')
+        addon1 = addon_factory(
+            guid='{f0af364e-5167-45ca-9cf0-66b396d1918c}',
+            file_kw={'is_webextension': True})
+        addon2 = addon_factory(
+            guid='{01e26e69-a2d8-48a0-b068-87869bdba3d0}',
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
 
-        addon_factory()
         call_command('import_blocklist')
         assert Block.objects.count() == 2
         blocks = list(Block.objects.all())
