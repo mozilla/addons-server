@@ -895,11 +895,6 @@ class ESTestCase(TestCase):
         # right before each test.
         stop_es_mocks()
         cls.es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
-        cls._SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
-        amo.SEARCH_ANALYZER_MAP = {
-            'english': ['en-us'],
-            'spanish': ['es'],
-        }
         super(ESTestCase, cls).setUpClass()
 
     def setUp(self):
@@ -912,11 +907,6 @@ class ESTestCase(TestCase):
     def setUpTestData(cls):
         setup_es_test_data(cls.es)
         super(ESTestCase, cls).setUpTestData()
-
-    @classmethod
-    def tearDownClass(cls):
-        amo.SEARCH_ANALYZER_MAP = cls._SEARCH_ANALYZER_MAP
-        super(ESTestCase, cls).tearDownClass()
 
     @classmethod
     def refresh(cls, index='default'):

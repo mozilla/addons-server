@@ -41,65 +41,129 @@ class TestQueryFilter(FilterTestsBase):
     filter_classes = [SearchQueryFilter]
 
     def _test_q(self, qs):
-        # Spot check a few queries.
         should = qs['query']['function_score']['query']['bool']['should']
 
-        expected = {
+        assert len(should) == 8
+
+        assert should[0] == {
+            'dis_max': {
+                '_name': 'DisMax(Term(name.raw), Term(name_l10n_en-us.raw), '
+                         'Term(name_l10n_en-ca.raw), '
+                         'Term(name_l10n_en-gb.raw))',
+                'boost': 100.0,
+                'queries': [{'term': {'name.raw': 'tea pot'}},
+                            {'term': {'name_l10n_en-us.raw': 'tea pot'}},
+                            {'term': {'name_l10n_en-ca.raw': 'tea pot'}},
+                            {'term': {'name_l10n_en-gb.raw': 'tea pot'}}]
+            }
+        }
+
+        assert should[1] == {
+            'multi_match': {
+                '_name': 'MultiMatch(name_l10n_en-us,name_l10n_en-ca,'
+                         'name_l10n_en-gb)',
+                'analyzer': 'english',
+                'boost': 5.0,
+                'fields': ['name_l10n_en-us',
+                           'name_l10n_en-ca',
+                           'name_l10n_en-gb'],
+                'operator': 'and',
+                'query': 'tea pot'
+            }
+        }
+
+        assert should[2] == {
             'match_phrase': {
                 'name': {
-                    'query': 'tea pot', 'boost': 8.0, 'slop': 1,
                     '_name': 'MatchPhrase(name)',
+                    'boost': 8.0,
+                    'query': 'tea pot',
+                    'slop': 1
                 }
             }
         }
-        assert expected in should
 
-        expected = {
+        assert should[3] == {
+            'match': {
+                'name': {
+                    '_name': 'Match(name)',
+                    'analyzer': 'standard',
+                    'query': 'tea pot',
+                    'boost': 6.0,
+                    'operator': 'and'
+                }
+            }
+        }
+
+        assert should[4] == {
             'prefix': {
                 'name': {
-                    'boost': 3.0, 'value': 'tea pot',
                     '_name': 'Prefix(name)',
+                    'value': 'tea pot',
+                    'boost': 3.0
                 }
             }
         }
-        assert expected in should
 
-        expected = {
-            'match': {
-                'name_l10n_english': {
-                    'query': 'tea pot', 'boost': 5.0,
-                    'analyzer': 'english',
-                    'operator': 'and',
-                    '_name': 'Match(name_l10n_english)',
-                }
+        assert should[5] == {
+            'dis_max': {
+                '_name': 'DisMax(FuzzyMatch(name), Match(name.trigrams))',
+                'boost': 4.0,
+                'queries': [{
+                    'match': {
+                        'name': {
+                            'fuzziness': 'AUTO',
+                            'minimum_should_match': '2<2 3<-25%',
+                            'prefix_length': 2,
+                            'query': 'tea pot'
+                        }
+                    }
+                }, {
+                    'match': {
+                        'name.trigrams': {
+                            'minimum_should_match': '66%',
+                            'query': 'tea pot'
+                        }
+                    }
+                }]
             }
         }
-        assert expected in should
 
-        expected = {
+        assert should[6] == {
             'multi_match': {
-                '_name': (
-                    'MultiMatch(Match(summary),Match(summary_l10n_english))'),
+                '_name': 'MultiMatch(Match(summary), '
+                         'Match(summary_l10n_en-us), '
+                         'Match(summary_l10n_en-ca), '
+                         'Match(summary_l10n_en-gb))',
                 'query': 'tea pot',
-                'operator': 'and',
-                'fields': ['summary', 'summary_l10n_english'],
+                'fields': [
+                    'summary',
+                    'summary_l10n_en-us',
+                    'summary_l10n_en-ca',
+                    'summary_l10n_en-gb'
+                ],
                 'boost': 3.0,
+                'operator': 'and'
             }
         }
-        assert expected in should
 
-        expected = {
+        assert should[7] == {
             'multi_match': {
-                '_name': (
-                    'MultiMatch(Match(description),'
-                    'Match(description_l10n_english))'),
+                '_name': 'MultiMatch(Match(description), '
+                         'Match(description_l10n_en-us), '
+                         'Match(description_l10n_en-ca), '
+                         'Match(description_l10n_en-gb))',
                 'query': 'tea pot',
-                'operator': 'and',
-                'fields': ['description', 'description_l10n_english'],
+                'fields': [
+                    'description',
+                    'description_l10n_en-us',
+                    'description_l10n_en-ca',
+                    'description_l10n_en-gb'
+                ],
                 'boost': 2.0,
+                'operator': 'and'
             }
         }
-        assert expected in should
 
         functions = qs['query']['function_score']['functions']
         assert len(functions) == 3
@@ -141,25 +205,38 @@ class TestQueryFilter(FilterTestsBase):
                     {
                         'multi_match': {
                             '_name': (
-                                'MultiMatch(MatchPhrase(summary),'
-                                'MatchPhrase(summary_l10n_english))'),
+                                'MultiMatch(MatchPhrase(summary), '
+                                'MatchPhrase(summary_l10n_en-us), '
+                                'MatchPhrase(summary_l10n_en-ca), '
+                                'MatchPhrase(summary_l10n_en-gb))'),
                             'query': 'tea pot',
                             'slop': 10,
                             'type': 'phrase',
-                            'fields': ['summary', 'summary_l10n_english'],
+                            'fields': [
+                                'summary',
+                                'summary_l10n_en-us',
+                                'summary_l10n_en-ca',
+                                'summary_l10n_en-gb',
+                            ],
                             'boost': 3.0,
                         },
                     },
                     {
                         'multi_match': {
                             '_name': (
-                                'MultiMatch(MatchPhrase(description),'
-                                'MatchPhrase(description_l10n_english))'),
+                                'MultiMatch(MatchPhrase(description), '
+                                'MatchPhrase(description_l10n_en-us), '
+                                'MatchPhrase(description_l10n_en-ca), '
+                                'MatchPhrase(description_l10n_en-gb))'),
                             'query': 'tea pot',
                             'slop': 10,
                             'type': 'phrase',
-                            'fields': ['description',
-                                       'description_l10n_english'],
+                            'fields': [
+                                'description',
+                                'description_l10n_en-us',
+                                'description_l10n_en-ca',
+                                'description_l10n_en-gb',
+                            ],
                             'boost': 2.0,
                         },
                     }
@@ -289,12 +366,14 @@ class TestQueryFilter(FilterTestsBase):
 
         expected = {
             'dis_max': {
-                'queries': [
-                    {'term': {'name.raw': u'adblock plus'}},
-                    {'term': {'name_l10n_english.raw': u'adblock plus'}},
-                ],
+                '_name': 'DisMax(Term(name.raw), Term(name_l10n_en-us.raw), '
+                         'Term(name_l10n_en-ca.raw), '
+                         'Term(name_l10n_en-gb.raw))',
                 'boost': 100.0,
-                '_name': 'DisMax(Term(name.raw), Term(name_l10n_english.raw))'
+                'queries': [{'term': {'name.raw': 'adblock plus'}},
+                            {'term': {'name_l10n_en-us.raw': 'adblock plus'}},
+                            {'term': {'name_l10n_en-ca.raw': 'adblock plus'}},
+                            {'term': {'name_l10n_en-gb.raw': 'adblock plus'}}]
             }
         }
 
@@ -310,7 +389,7 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'term': {
                 'name.raw': {
-                    'boost': 100, 'value': u'adblock plus',
+                    'boost': 100, 'value': 'adblock plus',
                     '_name': 'Term(name.raw)'
                 }
             }
@@ -937,11 +1016,16 @@ class TestCombinedFilter(FilterTestsBase):
 
         should = bool_['must'][0]['function_score']['query']['bool']['should']
         expected = {
-            'match': {
-                'name_l10n_english': {
-                    'analyzer': 'english', 'boost': 5.0, 'query': u'test',
-                    'operator': 'and', '_name': 'Match(name_l10n_english)',
-                }
+            'multi_match': {
+                '_name': 'MultiMatch(name_l10n_en-us,name_l10n_en-ca,'
+                         'name_l10n_en-gb)',
+                'analyzer': 'english',
+                'boost': 5.0,
+                'fields': ['name_l10n_en-us',
+                           'name_l10n_en-ca',
+                           'name_l10n_en-gb'],
+                'operator': 'and',
+                'query': 'test'
             }
         }
         assert expected in should
