@@ -348,6 +348,8 @@ class RatingFlag(ModelBase):
                                     name='index_review_user')
         ]
 
+class RatingVote(ModelBase):
+    """to be added"""
 
 class GroupedRating(object):
     """
@@ -389,3 +391,6 @@ class GroupedRating(object):
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
         cache.set(cls.key(addon_pk), ratings)
         return ratings
+
+class GroupedVoting(object):
+    """to be added"""
