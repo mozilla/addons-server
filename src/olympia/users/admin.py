@@ -7,6 +7,7 @@ from django.db.utils import IntegrityError
 from django.http import (
     Http404, HttpResponseForbidden, HttpResponseNotAllowed,
     HttpResponseRedirect)
+from django.urls import reverse
 from django.utils.encoding import force_text
 from django.utils.html import format_html, format_html_join
 from django.utils.translation import ugettext, ugettext_lazy as _
@@ -88,7 +89,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         }),
     )
 
-    actions = ['ban_action', 'reset_api_key_action']
+    actions = ['ban_action', 'reset_api_key_action', 'reset_session_action']
 
     def get_urls(self):
         def wrap(view):
@@ -104,6 +105,9 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             url(r'^(?P<object_id>.+)/reset_api_key/$',
                 wrap(self.reset_api_key_view),
                 name='users_userprofile_reset_api_key'),
+            url(r'^(?P<object_id>.+)/reset_session/$',
+                wrap(self.reset_session_view),
+                name='users_userprofile_reset_session'),
             url(r'^(?P<object_id>.+)/delete_picture/$',
                 wrap(self.delete_picture_view),
                 name='users_userprofile_delete_picture')
@@ -117,6 +121,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             # key confirmation.
             actions.pop('ban_action')
             actions.pop('reset_api_key_action')
+            actions.pop('reset_session_action')
         return actions
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
@@ -156,7 +161,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         kw = {'user': force_text(obj)}
         self.message_user(
             request, ugettext('The user "%(user)s" has been banned.' % kw))
-        return HttpResponseRedirect('../')
+        return HttpResponseRedirect(
+            reverse('admin:users_userprofile_change', args=(obj.pk, )))
 
     def reset_api_key_view(self, request, object_id, extra_context=None):
         if request.method != 'POST':
@@ -169,9 +175,28 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
             return HttpResponseForbidden()
 
-        self.reset_api_key_action(request, [obj])
+        self.reset_api_key_action(
+            request, UserProfile.objects.filter(pk=obj.pk))
 
-        return HttpResponseRedirect('../')
+        return HttpResponseRedirect(
+            reverse('admin:users_userprofile_change', args=(obj.pk, )))
+
+    def reset_session_view(self, request, object_id, extra_context=None):
+        if request.method != 'POST':
+            return HttpResponseNotAllowed(['POST'])
+
+        obj = self.get_object(request, unquote(object_id))
+        if obj is None:
+            raise Http404()
+
+        if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
+            return HttpResponseForbidden()
+
+        self.reset_session_action(
+            request, UserProfile.objects.filter(pk=obj.pk))
+
+        return HttpResponseRedirect(
+            reverse('admin:users_userprofile_change', args=(obj.pk, )))
 
     def delete_picture_view(self, request, object_id, extra_context=None):
         if request.method != 'POST':
@@ -191,7 +216,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             request, ugettext(
                 'The picture belonging to user "%(user)s" has been deleted.' %
                 kw))
-        return HttpResponseRedirect('../')
+        return HttpResponseRedirect(
+            reverse('admin:users_userprofile_change', args=(obj.pk, )))
 
     def ban_action(self, request, qs):
         users = []
@@ -203,6 +229,18 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         self.message_user(
             request, ugettext('The users "%(users)s" have been banned.' % kw))
     ban_action.short_description = _('Ban selected users')
+
+    def reset_session_action(self, request, qs):
+        users = []
+        qs.update(auth_id=None)  # A new value will be generated at next login.
+        for obj in qs:
+            ActivityLog.create(amo.LOG.ADMIN_USER_SESSION_RESET, obj)
+            users.append(force_text(obj))
+        kw = {'users': ', '.join(users)}
+        self.message_user(
+            request,
+            ugettext('The users "%(users)s" had their session(s) reset.' % kw))
+    reset_session_action.short_description = _('Reset session')
 
     def reset_api_key_action(self, request, qs):
         users = []

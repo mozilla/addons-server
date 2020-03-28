@@ -878,7 +878,8 @@ def review(request, addon, channel=None):
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
         content_review=content_review, count=count,
         deleted_addon_ids=deleted_addon_ids, flags=flags,
-        form=form, is_admin=is_admin, now=datetime.now(), num_pages=num_pages,
+        form=form, is_admin=is_admin, is_recommendable=is_recommendable,
+        now=datetime.now(), num_pages=num_pages,
         pager=pager, reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),

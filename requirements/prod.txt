@@ -106,20 +106,21 @@ billiard==3.6.3.0 \
 # bitarray is required by filtercascade
 bitarray == 1.2.1 \
     --hash=sha256:2ed675f460bb0d3d66fd8042a6f1f0d36cf213e52e72a745283ddb245da7b9cf
-bleach==3.1.1 \
-    --hash=sha256:aa8b870d0f46965bac2c073a93444636b0e1ca74e9777e34f03dd494b8a59d48
+bleach==3.1.3 \
+    --hash=sha256:53165a6596e7899c4338d847315fec508110a53bd6fd15c127c2e0d0860264e3 \
+    --hash=sha256:f8dfd8a7e26443e986c4e44df31870da8e906ea61096af06ba5d5cc2d519842a
 # REMEMBER: leave a few lines between boto3 and botocore requirements to avoid an
 # annoying merge conflict every day when pyup generates prs for both.
-boto3==1.12.23 \
-    --hash=sha256:0080ea1cce4c87d9f1e4e47fed4b994451b0022fcf6e120d1fb653eb3874506d \
-    --hash=sha256:a3a89a254b068dbcc23298dea11d15b9e6e19f825290ebe43fcf4ccbbe423994
+boto3==1.12.28 \
+    --hash=sha256:6f113f02f3098b3e37d24caa726a8e81fbc16f6d5cafbf61b7d285b9f7e104e9 \
+    --hash=sha256:af09a4f3254fcf6a781ad1a700f702ce15526a25ebe96a14f5cd2ec46e9d924c
 # see last comment - celery is in between boto3 and botocore on purpose.
-celery==4.4.1 \
-    --hash=sha256:3c5fcd6bfcf9a6323cb742cfc121d1790d50cfeddf300ba723cfa0b356413f07 \
-    --hash=sha256:a650525303ee866fb0c62c82f68681fcc2183eebbfafae552c27d30125fe518b
-botocore==1.15.23 \
-    --hash=sha256:5b6bf68bd484fbf83e27f56a0a92e38cee223b689121c1184a0292311b88f888 \
-    --hash=sha256:e4fc86574043b20267f863b9168bd1c9ed50a53f0f7222ce8c99f64355174515
+celery==4.4.2 \
+    --hash=sha256:108a0bf9018a871620936c33a3ee9f6336a89f8ef0a0f567a9001f4aa361415f \
+    --hash=sha256:5b4b37e276033fe47575107a2775469f0b721646a08c96ec2c61531e4fe45f2a
+botocore==1.15.28 \
+    --hash=sha256:21674f491f6bdc886179de644d00dec05276fac292117f86685513006d83fe0a \
+    --hash=sha256:74f81aca90cdbe084bcfa19589bd2c6470bb47dd1fd9635bf5484ecf7577fd61
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \

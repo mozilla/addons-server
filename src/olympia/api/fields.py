@@ -102,7 +102,10 @@ class TranslationSerializerField(fields.Field):
 
     def get_attribute(self, obj):
         source = self.source or self.field_name
-        field = fields.get_attribute(obj, source.split('.'))
+        try:
+            field = fields.get_attribute(obj, source.split('.'))
+        except AttributeError:
+            field = None
 
         if not field:
             return None
