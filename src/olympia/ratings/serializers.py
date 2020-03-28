@@ -226,9 +226,10 @@ class RatingSerializer(BaseRatingSerializer):
 
 
 class RatingVoteSerializer(serializers.ModelSerializer):
-    vote = serializers.CharField()
+    vote_option = serializers.IntegerField(min_value=0, max_value=1, source='vote_option')
     rating = RatingSerializer(read_only=True)
     user = BaseUserSerializer(read_only=True)
+    addon = RatingAddonSerializer(read_only=True)
 
     class Meta:
         model = RatingVote
