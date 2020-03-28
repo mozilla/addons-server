@@ -349,13 +349,41 @@ class RatingFlag(ModelBase):
         ]
 
 class RatingVote(ModelBase):
-    """to be added"""
+    """newly added"""
+    VOTES = (
+        (None, _('None')),
+        (0, 'down_vote'),
+        (1, 'up_vote'),
+    )
+
+    rating = models.ForeignKey(
+        Rating, db_column='review_id', on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        'users.UserProfile', null=True, on_delete=models.CASCADE)
+    addon = models.ForeignKey(
+        'addons.Addon', related_name='_ratings', on_delete=models.CASCADE)
+    vote_option = models.PositiveSmallIntegerField(
+        null=True, choices=VOTES)
+
+    class Meta:
+        db_table = 'rating_vote'
+        indexes = [
+            models.Index(fields=('user',), name='index_user'),
+            models.Index(fields=('rating',), name='index_review'),
+            models.Index(fields=('modified',), name='index_modified'),
+            models.Index(fields=('addon',), name='addon_id'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('rating', 'user'),
+                                    name='index_review_user')
+        ]
 
 class GroupedRating(object):
     """
     Group an add-on's ratings so we can have a graph of rating counts.
 
     SELECT rating, COUNT(rating) FROM reviews where addon=:id
+    SELECT rating,COUNT(rating) FROM reviews where addon_id=36 group by rating;
     """
     # Non-critical data, so we always leave it in memcache. Cache for a
     # particular add-on is cleared when a rating is added/modified and updated
@@ -393,4 +421,44 @@ class GroupedRating(object):
         return ratings
 
 class GroupedVoting(object):
-    """to be added"""
+    """
+    Newly added.
+    Group an add-on's votes so we can have a graph of voting counts.
+
+    SELECT rating, COUNT(rating) FROM reviews where addon=:id
+    SELECT vote_option,COUNT(vote_option) FROM rating_vote where addon_id=36 and vote_option='up_vote' group by rating;
+    """
+    # Non-critical data, so we always leave it in memcache. Cache for a
+    # particular add-on is cleared when a rating is added/modified and updated
+    # when a request tries to retrieve them and the cache is empty.
+    prefix = 'addons:grouped:voting'
+
+    @classmethod
+    def key(cls, addon_pk):
+        return '%s:%s' % (cls.prefix, addon_pk)
+
+    @classmethod
+    def delete(cls, addon_pk):
+        cache.delete(cls.key(addon_pk))
+
+    @classmethod
+    def get(cls, addon_pk, update_none=True):
+        try:
+            grouped_votings = cache.get(cls.key(addon_pk))
+            if update_none and grouped_votings is None:
+                return cls.set(addon_pk)
+            return grouped_votings
+        except Exception:
+            # Don't worry about failures, especially timeouts.
+            return
+
+    @classmethod
+    def set(cls, addon_pk, using=None):
+        qs = (RatingVote.all().using(using)
+              .filter(addon=addon_pk, is_latest=True)
+              .values_list('vote_option')
+              .annotate(models.Count('vote_option')).order_by())
+        counts = dict(qs)
+        votings = [(vote_option, counts.get(vote_option, 0)) for vote_option in range(1, 2)]
+        cache.set(cls.key(addon_pk), votings)
+        return votings
