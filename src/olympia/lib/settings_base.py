@@ -1789,6 +1789,7 @@ DRF_API_GATES = {
         'collections-downloads-shim'
     ),
     'v4': (
+        'l10n_flat_input_output'
     ),
 }
 
