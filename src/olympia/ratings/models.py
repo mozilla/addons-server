@@ -361,7 +361,7 @@ class RatingVote(ModelBase):
     user = models.ForeignKey(
         'users.UserProfile', null=True, on_delete=models.CASCADE)
     addon = models.ForeignKey(
-        'addons.Addon', related_name='_ratings', on_delete=models.CASCADE)
+        'addons.Addon', related_name='_votings', on_delete=models.CASCADE)
     vote_option = models.PositiveSmallIntegerField(
         null=True, choices=VOTES)
 
