@@ -20,10 +20,11 @@ from olympia.api.permissions import (
 from olympia.api.throttling import GranularUserRateThrottle
 from olympia.api.utils import is_gate_active
 
-from .models import GroupedRating, Rating, RatingFlag
-from .permissions import CanDeleteRatingPermission
+from .models import GroupedRating, Rating, RatingFlag, RatingVote
+from .permissions import CanDeleteRatingPermission, CanVoteRatingPermission
 from .serializers import (
-    RatingFlagSerializer, RatingSerializer, RatingSerializerReply)
+    RatingFlagSerializer, RatingSerializer,
+    RatingSerializerReply, RatingVoteSerializer)
 
 
 class RatingThrottle(GranularUserRateThrottle):
@@ -71,6 +72,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
     reply_serializer_class = RatingSerializerReply
     flag_permission_classes = [AllowNotOwner]
     throttle_classes = (RatingThrottle,)
+    vote_permission_classes = [CanVoteRatingPermission]
 
     def set_addon_object_from_rating(self, rating):
         """Set addon object on the instance from a rating object."""
@@ -271,6 +273,27 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         except (PermissionDenied, NotAuthenticated):
             return False
 
+    def check_can_vote_permission_for_ratings_list(self):
+        """Check whether or not the current request contains an user that can
+        vote to ratings we're about to return.
+
+        Used to populate the `can_vote` property in ratings list, when an
+        addon is passed."""
+        # Clone the current viewset, but change permission_classes.
+        viewset = self.__class__(**self.__dict__)
+        viewset.permission_classes = self.vote_permission_classes
+
+        # Create a fake rating with the addon object attached, to be passed to
+        # check_object_permissions().
+        dummy_rating = Rating(addon=self.get_addon_object())
+
+        try:
+            viewset.check_permissions(self.request)
+            viewset.check_object_permissions(self.request, dummy_rating)
+            return True
+        except (PermissionDenied, NotAuthenticated):
+            return False
+
     def get_queryset(self):
         requested = self.request.GET.get('filter', '').split(',')
         has_addons_edit = acl.action_allowed(self.request,
@@ -347,6 +370,35 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
 
     @action(
         detail=True, methods=['post'],
+        permission_classes=vote_permission_classes,
+        # serializer_class=reply_serializer_class,
+        throttle_classes=[])
+    def vote(self, request, *args, **kwargs):
+        # We load the add-on object from the rating to trigger permission
+        # checks.
+        self.rating_object = self.get_object()
+        self.set_addon_object_from_rating(self.rating_object)
+
+        try:
+            vote_instance = RatingVote.objects.get(
+                rating=self.rating_object, user=self.request.user)
+        except RatingVote.DoesNotExist:
+            vote_instance = None
+        if vote_instance is None:
+            serializer = RatingVoteSerializer(
+                data=request.data, context=self.get_serializer_context())
+        else:
+            serializer = RatingVoteSerializer(
+                vote_instance, data=request.data, partial=False,
+                context=self.get_serializer_context())
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=HTTP_202_ACCEPTED, headers=headers)
+
+    @action(
+        detail=True, methods=['post'],
         permission_classes=flag_permission_classes,
         throttle_classes=[])
     def flag(self, request, *args, **kwargs):
@@ -375,3 +427,4 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
 
     def perform_destroy(self, instance):
         instance.delete(user_responsible=self.request.user)
+
