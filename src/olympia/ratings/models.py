@@ -32,7 +32,7 @@ class RatingQuerySet(models.QuerySet):
             Q(addon__isnull=True) |
             Q(version__channel=amo.RELEASE_CHANNEL_UNLISTED) |
             Q(ratingflag__isnull=True)).filter(
-                editorreview=True, addon__status__in=amo.VALID_ADDON_STATUSES)
+            editorreview=True, addon__status__in=amo.VALID_ADDON_STATUSES)
 
     def delete(self, user_responsible=None, hard_delete=False):
         if hard_delete:
@@ -172,6 +172,8 @@ class Rating(ModelBase):
                 is_flagged=self.ratingflag_set.exists()))
         for flag in self.ratingflag_set.all():
             flag.delete()
+        for vote in self.ratingvote_set.all():
+            vote.delete()
         self.editorreview = False
         # We've already logged what we want to log, no need to pass
         # user_responsible=user.
@@ -201,6 +203,10 @@ class Rating(ModelBase):
             )
             for flag in self.ratingflag_set.all():
                 flag.delete()
+
+        # Delete the review: <RatingVote>.review should be deleted as well.
+        for vote in self.ratingvote_set.all():
+            vote.delete()
 
         log.info(u'Rating deleted: %s deleted id:%s by %s ("%s")',
                  user_responsible.name, self.pk, self.user.name,
@@ -362,7 +368,7 @@ class RatingVote(ModelBase):
         'users.UserProfile', null=True, on_delete=models.CASCADE)
     addon = models.ForeignKey(
         'addons.Addon', related_name='_votings', on_delete=models.CASCADE)
-    vote_option = models.PositiveSmallIntegerField(
+    vote = models.PositiveSmallIntegerField(
         null=True, choices=VOTES)
 
     class Meta:
@@ -383,7 +389,6 @@ class GroupedRating(object):
     Group an add-on's ratings so we can have a graph of rating counts.
 
     SELECT rating, COUNT(rating) FROM reviews where addon=:id
-    SELECT rating,COUNT(rating) FROM reviews where addon_id=36 group by rating;
     """
     # Non-critical data, so we always leave it in memcache. Cache for a
     # particular add-on is cleared when a rating is added/modified and updated
@@ -425,8 +430,8 @@ class GroupedVoting(object):
     Newly added.
     Group an add-on's votes so we can have a graph of voting counts.
 
-    SELECT rating, COUNT(rating) FROM reviews where addon=:id
-    SELECT vote_option,COUNT(vote_option) FROM rating_vote where addon_id=36 and vote_option='up_vote' group by rating;
+    SELECT vote, COUNT(vote) FROM reviews where addon=:id and rating=:id2;
+    SELECT vote,COUNT(vote) FROM rating_vote where addon_id=36 and review_id=163;
     """
     # Non-critical data, so we always leave it in memcache. Cache for a
     # particular add-on is cleared when a rating is added/modified and updated
@@ -434,31 +439,31 @@ class GroupedVoting(object):
     prefix = 'addons:grouped:voting'
 
     @classmethod
-    def key(cls, addon_pk):
-        return '%s:%s' % (cls.prefix, addon_pk)
+    def key(cls, addon_pk,rating_pk):
+        return '%s:%s,%s' % (cls.prefix, addon_pk,rating_pk)
 
     @classmethod
-    def delete(cls, addon_pk):
-        cache.delete(cls.key(addon_pk))
+    def delete(cls, addon_pk,rating_pk):
+        cache.delete(cls.key(addon_pk,rating_pk))
 
     @classmethod
-    def get(cls, addon_pk, update_none=True):
+    def get(cls, addon_pk,rating_pk, update_none=True):
         try:
-            grouped_votings = cache.get(cls.key(addon_pk))
+            grouped_votings = cache.get(cls.key(addon_pk,rating_pk))
             if update_none and grouped_votings is None:
-                return cls.set(addon_pk)
+                return cls.set(addon_pk,rating_pk)
             return grouped_votings
         except Exception:
             # Don't worry about failures, especially timeouts.
             return
 
     @classmethod
-    def set(cls, addon_pk, using=None):
-        qs = (RatingVote.all().using(using)
-              .filter(addon=addon_pk, is_latest=True)
-              .values_list('vote_option')
-              .annotate(models.Count('vote_option')).order_by())
+    def set(cls, addon_pk,rating_pk):
+        qs = (RatingVote.objects
+              .filter(addon=addon_pk,rating=rating_pk)
+              .values_list('vote')
+              .annotate(models.Count('vote')).order_by())
         counts = dict(qs)
-        votings = [(vote_option, counts.get(vote_option, 0)) for vote_option in range(1, 2)]
-        cache.set(cls.key(addon_pk), votings)
+        votings = [(vote, counts.get(vote, 0)) for vote in range(0, 2)]
+        cache.set(cls.key(addon_pk,rating_pk), votings)
         return votings

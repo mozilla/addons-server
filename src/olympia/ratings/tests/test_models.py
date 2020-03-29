@@ -8,12 +8,64 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import ESTestCase, TestCase, addon_factory, user_factory
-from olympia.ratings.models import GroupedRating, Rating, RatingFlag
+from olympia.ratings.models import GroupedRating,GroupedVoting, Rating, RatingFlag,RatingVote
 from olympia.users.models import UserProfile
 
 
 class TestRatingModel(TestCase):
     fixtures = ['ratings/test_models']
+    #new_code
+    def test_rating_vote_db(self):
+        # check the number of records currently in RatingVote
+        assert RatingVote.objects.count() == 2
+
+        voting = RatingVote.objects.get(id=2)
+        # check the vote in RatingVote for id=2
+        assert voting.vote == 0
+
+        voting = RatingVote.objects.get(id=1)
+        # check the vote in RatingVote for id=1
+        assert voting.vote == 1
+
+        rating = Rating.objects.get(id=1)
+        user=UserProfile.objects.get(id=1)
+        addon=Addon.objects.get(id=4)
+        # add one more record in RatingVote
+        vote = RatingVote.objects.create(rating=rating,
+                                         user=user,
+                                         addon=addon,
+                                         vote=1)
+        # update the vote field in newly added record in RatingVote
+        RatingVote.objects.filter(pk=vote.pk).update(vote=None)
+        vote.refresh_from_db()
+
+        # check the vote in RatingVote for newly added record
+        assert vote.vote is None
+
+        RatingVote.objects.get(id=1).delete()
+        # check the number of the records in RatingVote after deleting a record
+        assert RatingVote.objects.count() == 2
+
+    #new_code
+    def test_vote_for_relations(self):
+        rating = Rating.objects.get(id=1)
+        user=UserProfile.objects.get(id=1)
+        addon=Addon.objects.get(id=4)
+        # add one more record in RatingVote
+        vote = RatingVote.objects.create(rating=rating,
+                                         user=user,
+                                         addon=addon,
+                                         vote=0)
+        # check if the new record is successfully added to RatingVote
+        assert vote.rating == rating
+        assert vote.user == user
+        assert vote.addon == addon
+        assert vote.vote == 0
+
+        # Delete the review: <RatingVote>.review should be deleted as well.
+        Rating.objects.get(id=1).delete()
+        assert RatingVote.objects.count() == 2
+
 
     def test_soft_delete(self):
         addon = Addon.objects.get()
@@ -50,7 +102,7 @@ class TestRatingModel(TestCase):
 
         # update_denormalized_fields() is still called.
         rating = Rating.objects.get(id=2)
-        assert rating.previous_count == 0
+        assert rating.previous_count == 1
         assert rating.is_latest is True
 
         # post_save() isn't though, so average_rating of the add-on should stay
@@ -340,6 +392,83 @@ class TestGroupedRating(TestCase):
         assert GroupedRating.get(self.addon.pk, update_none=False) is None
         assert GroupedRating.get(self.addon.pk, update_none=True) == (
             self.expected_grouped_rating)
+
+#new_code
+class TestGroupedVoting(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.addon = addon_factory()
+
+        # Create a few ratings with various scores.
+        rating1 = Rating.objects.create(addon=cls.addon, rating=3, user=user_factory())
+        rating2 = Rating.objects.create(addon=cls.addon, rating=2, user=user_factory())
+        rating3 = Rating.objects.create(addon=cls.addon, rating=1, user=user_factory())
+        rating4 = Rating.objects.create(addon=cls.addon, rating=1, user=user_factory())
+        rating5 = Rating.objects.create(addon=cls.addon, rating=1, user=user_factory())
+
+        cls.rating1 = rating1
+        cls.rating2 = rating2
+        cls.rating3 = rating3
+        cls.rating4 = rating4
+        cls.rating5 = rating5
+        # Create a few ratingvote with various votes.
+        RatingVote.objects.create(rating=rating1,user=user_factory(),addon=cls.addon,vote=1)
+        RatingVote.objects.create(rating=rating1,user=user_factory(),addon=cls.addon,vote=0)
+        RatingVote.objects.create(rating=rating1,user=user_factory(),addon=cls.addon,vote=1)
+        RatingVote.objects.create(rating=rating2,user=user_factory(),addon=cls.addon,vote=None)
+        RatingVote.objects.create(rating=rating3,user=user_factory(),addon=cls.addon,vote=1)
+        RatingVote.objects.create(rating=rating4,user=user_factory(),addon=cls.addon,vote=1)
+        RatingVote.objects.create(rating=rating5,user=user_factory(),addon=cls.addon,vote=0)
+
+        # There are one '0' vote, two '1' vote in rating1
+        # There are zero '0' vote, zero '1' vote in rating2
+        # There are zero '0' vote, one '1' vote in rating3
+        # There are zero '0' vote, one '1' vote in rating4
+        # There are one '0' vote, zero '1' vote in rating5
+        cls.expected_grouped_voting1 = [(0, 1), (1, 2)]
+        cls.expected_grouped_voting2 = [(0, 0), (1, 0)]
+        cls.expected_grouped_voting3 = [(0, 0), (1, 1)]
+        cls.expected_grouped_voting4 = [(0, 0), (1, 1)]
+        cls.expected_grouped_voting5 = [(0, 1), (1, 0)]
+
+    def test_set(self):
+        assert GroupedVoting.get(self.addon.pk, self.rating1.pk,update_none=False) is None
+
+        GroupedVoting.set(self.addon.pk,self.rating1.pk)
+        assert GroupedVoting.get(self.addon.pk,self.rating1.pk, update_none=False) == (
+            self.expected_grouped_voting1)
+
+        GroupedVoting.set(self.addon.pk,self.rating2.pk)
+        assert GroupedVoting.get(self.addon.pk,self.rating2.pk, update_none=False) == (
+            self.expected_grouped_voting2)
+
+        GroupedVoting.set(self.addon.pk,self.rating3.pk)
+        assert GroupedVoting.get(self.addon.pk,self.rating3.pk, update_none=False) == (
+            self.expected_grouped_voting3)
+
+        GroupedVoting.set(self.addon.pk,self.rating4.pk)
+        assert GroupedVoting.get(self.addon.pk,self.rating4.pk, update_none=False) == (
+            self.expected_grouped_voting4)
+
+        GroupedVoting.set(self.addon.pk,self.rating5.pk)
+        assert GroupedVoting.get(self.addon.pk,self.rating5.pk, update_none=False) == (
+            self.expected_grouped_voting5)
+
+    def test_delete_grouped_voting_on_save(self):
+
+        GroupedVoting.set(self.addon.pk,self.rating1.pk)
+        assert GroupedVoting.get(self.addon.pk,self.rating1.pk, update_none=False) == (
+            self.expected_grouped_voting1)
+
+        GroupedVoting.delete(self.addon.pk,self.rating1.pk)
+        assert GroupedVoting.get(self.addon.pk, self.rating1.pk,update_none=False) is None
+
+    def test_get_unknown_addon_id(self):
+        assert GroupedVoting.get(3, self.rating1.pk,update_none=False) is None
+        assert GroupedVoting.get(3,self.rating1.pk) == [(0, 0), (1, 0)]
+
+    def test_update_none(self):
+        assert GroupedVoting.get(3, self.rating1.pk,update_none=True) == [(0, 0), (1, 0)]
 
 
 class TestRefreshTest(ESTestCase):
