@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-29 21:04+0000\n"
+"PO-Revision-Date: 2020-03-29 21:13+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3311,7 +3311,7 @@ msgstr "Snerni tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Faṛs tagnit seg tmahilin timaynutin YouTube, am uskar sinima, asewḥel n udellel, taɣuri tawurmant, atg."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3319,7 +3319,7 @@ msgstr "Af-d s tifses tividyutin {start_sub_heading} s {addon_name} {end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Sebṛureq yal tukkist n uḍris, sakin eg yiwen n utekki s tqeffalt tayeffust akken ad tesnekreḍ anadi n tugniwin."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3335,7 +3335,7 @@ msgstr "Kcem ɣer tmusni {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Sken-d igburen n tsanayt Britanica deg yigmaḍ-ik n unadi."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3343,7 +3343,7 @@ msgstr "Kkes adellel YouTube {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Sewḥel adellel i yestqelliqen akked iwenniten i d-yettbanen deg YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3351,7 +3351,7 @@ msgstr "Ɣer sekra wanida telliḍ {start_sub_heading}s {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Azen isallen, talɣut, imagraden n ublug akked igburen-nniḍen ɣer yimeɣri Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3359,7 +3359,7 @@ msgstr "Eg taggayin i yiccaren-ik s useqdec n yiniten {start_sub_heading}s {addo
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Suddes iccaren-ik s ussdukel-nsen s yini, neɣ s tansiwin-nsen URL."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3529,6 +3529,8 @@ msgstr "Ɛzel timagiyin-ik tumḍinin {start_sub_heading}s {addon_name}{end_sub_
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
+"Semgared gar timeddurin-ik tumḍinin. Eg amgired gar timagiyin-ik srid — tasadrant, tudmawant, anezzeh, atg.— s useqdec n yiccaren s yini yemgaraden ara ak-d-imudden tallelt ad tesɛerqeḍ abrid s "
+"uḥraz n yinagan n tuqqna yemgaraden."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3536,7 +3538,7 @@ msgstr "Sewḥel ineḍfaṛen {start_sub_heading}s {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Faṛes tagnit s uswir-nniḍen n ummesten mgal aḍfaṛ ticki tettinigeḍ deg web."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
