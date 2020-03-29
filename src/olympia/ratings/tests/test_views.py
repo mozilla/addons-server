@@ -17,7 +17,7 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, reverse_ns, user_factory,
     version_factory)
-from olympia.ratings.models import Rating, RatingFlag
+from olympia.ratings.models import Rating, RatingFlag, RatingVote
 
 
 locmem_cache = settings.CACHES.copy()
@@ -2061,3 +2061,200 @@ class TestRatingViewSetReply(TestCase):
                 'body': u'Really réply!',
             })
             assert response.status_code == 201
+
+
+class TestRatingViewSetVote(TestCase):
+    client_class = APITestClient
+    vote_url_name = 'rating-vote'
+
+    def setUp(self):
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.rating_user = user_factory()
+        self.rating = Rating.objects.create(
+            addon=self.addon, version=self.addon.current_version, rating=1,
+            body='My review', user=self.rating_user)
+        self.url = reverse_ns(
+            self.vote_url_name, kwargs={'pk': self.rating.pk})
+
+    def test_url_v3(self):
+        expected_url = '/v3/reviews/review/%d/vote/' % self.rating.pk
+        v3_url = reverse_ns(
+            'rating-vote', api_version='v3', kwargs={'pk': self.rating.pk})
+        assert v3_url.endswith(expected_url)
+
+    def test_url_default(self):
+        expected_url = '/v4/ratings/rating/%d/vote/' % self.rating.pk
+        assert self.url.endswith(expected_url)
+
+    def test_vote_anonymous(self):
+        response = self.client.post(self.url)
+        assert response.status_code == 401
+        assert self.rating.reload().editorreview is False
+
+    def test_vote_logged_in_no_vote_field(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(self.url)
+        assert response.status_code == 400
+        data = json.loads(force_text(response.content))
+        assert data['vote'] == [u'This field is required.']
+        assert self.rating.reload().editorreview is False
+
+    def test_vote_logged_in(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'vote': 1})
+        assert response.status_code == 202
+        data = json.loads(force_text(response.content))
+        assert data['vote'] == 1
+        assert data['rating']['addon']['id'] == self.addon.id
+        assert data['user']['id'] == self.user.id
+        assert RatingVote.objects.count() == 1
+        vote = RatingVote.objects.latest('pk')
+        assert vote.vote == 1
+        assert vote.user == self.user
+        assert vote.rating == self.rating
+        assert self.rating.reload().editorreview is True
+
+    def test_vote_logged_in_unknown_vote_option(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'vote': 3})
+        assert response.status_code == 400
+        data = json.loads(force_text(response.content))
+        assert data['vote'] == [
+            'Invalid vote [3] - must be one of [1, 2]']
+        assert self.rating.reload().editorreview is False
+
+    def test_upvote_logged_in_upvote_already_exists(self):
+        self.user = user_factory()
+        vote = RatingVote.objects.create(
+            user=self.user, rating=self.rating,
+            vote=1)
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'vote': 1})
+        assert response.status_code == 202
+        # We should have re-used the existing vote posted by self.user, so the
+        # count should still be 1.
+        assert RatingFlag.objects.count() == 1
+        vote.reload()
+        # Vote was changed from upvote to not voted.
+        assert vote.vote is None
+        assert vote.user == self.user
+        assert vote.rating == self.rating
+        assert self.rating.reload().editorreview is True
+
+    def test_upvote_logged_in_downvote_already_exists(self):
+        self.user = user_factory()
+        vote = RatingVote.objects.create(
+            user=self.user, rating=self.rating,
+            vote=0)
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'vote': 1})
+        assert response.status_code == 202
+        # We should have re-used the existing vote posted by self.user, so the
+        # count should still be 1.
+        assert RatingFlag.objects.count() == 1
+        vote.reload()
+        # Vote was changed from downvote to upvote.
+        assert vote.vote == 1
+        assert vote.user == self.user
+        assert vote.rating == self.rating
+        assert self.rating.reload().editorreview is True
+
+    def test_downvote_logged_in_upvote_already_exists(self):
+        self.user = user_factory()
+        vote = RatingVote.objects.create(
+            user=self.user, rating=self.rating,
+            vote=1)
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'vote': 0})
+        assert response.status_code == 202
+        # We should have re-used the existing vote posted by self.user, so the
+        # count should still be 1.
+        assert RatingFlag.objects.count() == 1
+        vote.reload()
+        # Vote was changed from upvote to downvote.
+        assert vote.vote == 0
+        assert vote.user == self.user
+        assert vote.rating == self.rating
+        assert self.rating.reload().editorreview is True
+
+    def test_downvote_logged_in_downvote_already_exists(self):
+        self.user = user_factory()
+        vote = RatingVote.objects.create(
+            user=self.user, rating=self.rating,
+            vote=0)
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'vote': 0})
+        assert response.status_code == 202
+        # We should have re-used the existing vote posted by self.user, so the
+        # count should still be 1.
+        assert RatingFlag.objects.count() == 1
+        vote.reload()
+        # Vote was changed from downvote to not voted.
+        assert vote.vote is None
+        assert vote.user == self.user
+        assert vote.rating == self.rating
+        assert self.rating.reload().editorreview is True
+
+    def test_vote_logged_in_addon_denied(self):
+        self.make_addon_unlisted(self.addon)
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'vote': 1})
+        assert response.status_code == 403
+        assert self.rating.reload().editorreview is False
+
+    def test_vote_logged_in_no_such_review(self):
+        self.rating.delete()
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'vote': 1})
+        assert response.status_code == 404
+        assert Rating.unfiltered.get(pk=self.rating.pk).editorreview is False
+
+    def test_vote_logged_in_review_author(self):
+        self.client.login_api(self.rating_user)
+        response = self.client.post(
+            self.url, data={'vote': 1})
+        assert response.status_code == 403
+        assert self.rating.reload().editorreview is False
+
+    def test_vote_logged_in_admin(self):
+        self.admin_user = user_factory()
+        self.grant_permission(self.admin_user, 'Addons:Edit')
+        self.client.login_api(self.admin_user)
+        response = self.client.post(
+            self.url, data={'vote': 1})
+        assert response.status_code == 403
+        assert self.rating.reload().editorreview is False
+
+    def test_no_throttle(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        # Create another addon for us to vote
+        addon_b = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        rating_b = Rating.objects.create(
+            addon=addon_b, version=addon_b.current_version, rating=2,
+            body='My review', user=self.rating_user)
+        url_b = reverse_ns(self.vote_url_name, kwargs={'pk': rating_b.pk})
+
+        response = self.client.post(
+            self.url, data={'vote': 1})
+        assert response.status_code == 202
+        response = self.client.post(
+            url_b, data={'vote': 1})
+        assert response.status_code == 202
+        # Both should have been voted.
+        assert RatingVote.objects.count() == 2
