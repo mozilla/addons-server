@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-29 10:01+0000\n"
+"PO-Revision-Date: 2020-03-29 10:23+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2569,23 +2569,23 @@ msgid "Any other tool that takes code or files, applies processing, and generate
 msgstr "Yal afecku-nniden i yessesfaren tangalt neɣ ifuyla daɣen wid yessiriwen tangalt neɣ ifuyla ara tsedduḍ deg uzegrir"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Ur tesriḍ ara ad tazneḍ tangalt aɣbalu daɣen ad tizmireḍ ad tedduḍ ɣer umecwaṛ i d-iteddun."
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "Tuzzna-inek tesra tangalt taqbalut.Tangalt-ik aɣbalu tlaq i tuzna-ik."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+msgstr "Tangalt aɣbalu issefk ad tqadeṛ <a %(a_attrs)s>ilugan n tsertit-nneɣ</a>, ayen i igebren:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr ""
+msgstr "Iwellihen d bennu leqqyen ara yeǧǧen ad ternuḍ anɣel usdid n tengalt n uzegrir."
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Askript n usbeddi ara i uselkem n meṛṛa imecwaṛen itiknikanen n tazwara."
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "Anagraw n wammud akked twennaḍt n usbeddi i ilaqen."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
