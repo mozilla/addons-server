@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-29 21:47+0000\n"
+"PO-Revision-Date: 2020-03-29 22:22+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3630,11 +3630,11 @@ msgstr "Inig s tedreg {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Inig s tedreg. Inig deg web s timagit n ureṭṭal — tzemreḍ ula ad terreḍ ad amnen d akken teqqneḍ seg tmurt-nniḍen."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Faṛes tagnit seg ticraḍ n yisebtar yettbanen. Tagrumma n uqermud icebḥen, iteddun akken iwata ara k-yeǧǧen ad tkecmeḍ ɣer yismal i tebɣiḍ, ɣer yiccaren imedlen melmi kan, atg."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3642,7 +3642,7 @@ msgstr "Sbadu asebter-ik agejdan {start_sub_heading}s {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Mmel asebter agejdan i yiccaren imaynuten."
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3650,7 +3650,7 @@ msgstr "Bder-d iccaren-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Aselket n yiccaren-ik meṛṛa yeldin ad ten-isefrek s tifses, s zreb deg Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
