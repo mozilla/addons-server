@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-29 21:13+0000\n"
+"PO-Revision-Date: 2020-03-29 21:17+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3546,7 +3546,7 @@ msgstr "Ɣer ifuyala ePub {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Ɣer ifuyla ePub srid deg Firefox — Semɣer teɣzi n tsefsit, teɣzi n usebter, d wayen-nniḍen."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3554,7 +3554,7 @@ msgstr "Sali tarmit-ik YouTube {start_sub_heading}s {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Ɣer yal tikkelt tividyutin YouTube s tɣara yelhan: Taɣara meqqren ugar, iwenniten nsan, atg."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3562,7 +3562,7 @@ msgstr "Ddu deffir n yineḍfaṛen {start_sub_heading}s {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Ɣass ineḍfaren. S utekki afessas, sken-d talɣut ɣef yineḍfaṛen i k-yettɛassan."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3570,7 +3570,7 @@ msgstr "Beddel aqeddac apṛuksi {start_sub_heading}s {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Beddel aqeddac apruksi daɣen inig s yiɣewwaṛen n upruksi ara tferneḍ."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3578,7 +3578,7 @@ msgstr "Ɛass taɣuri n tvidyutin {start_sub_heading}s {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Snerni tarmit-ik n uskan s uṣeggem n urured n tɣuri n tvidyutin akked iɣawwaṛen-nniḍen."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3586,7 +3586,7 @@ msgstr "Snirem s wudem aɣelsan {start_sub_heading}s {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "Rnu aswir n tɣellist awgelhan i yismal i yessefraken aneggaf HTTPS. Inig s tɣellist."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
