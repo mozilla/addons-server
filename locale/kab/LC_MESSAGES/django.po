@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-29 14:04+0000\n"
+"PO-Revision-Date: 2020-03-29 14:08+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3474,7 +3474,7 @@ msgstr "Eǧǧ adsil umḍin zeddigen {start_sub_heading}s {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Ur ttaǧǧa ara lǧeṛṛa tumḍint. Suter i Firefox ad yettu isefka n yismal web am yinagan n tuqqna akked usekles adigan, maca ala i tɣula i tferneḍ."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3494,7 +3494,7 @@ msgstr "Sewḥel adellel n yimayl {start_sub_heading}s {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Sali tallunt yellan deg ugdil-ik s tukksa n udellel i d-yettbanen s wudem awurman deg tebwadt n urmas web n yimaylen."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3502,7 +3502,7 @@ msgstr "Af-d iccaren-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Sefrek iccaren yeldin deg ufeggag adisan."
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3510,7 +3510,7 @@ msgstr "Rwel i yineḍfaren akked usenɣes n tsirag {start_sub_heading}s {addon_
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Zgel ineḍfaṛen akked tmara. Sers-as iceṭṭiḍen i tunigin-is akken ad teffer timagit n yiminig-ik akked unagraw-ik n wammud."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3518,7 +3518,7 @@ msgstr "Smiren iccaren {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Ales asali awurman n yiccaren yeldin sya ɣer da."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
