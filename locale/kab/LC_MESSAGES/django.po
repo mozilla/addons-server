@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-29 20:53+0000\n"
+"PO-Revision-Date: 2020-03-29 21:04+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3215,7 +3215,7 @@ msgstr "Nadi tugniwin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Eg inadiyen yettin n tugniwin seg tegrumma n yimseddayen n unadi."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3223,7 +3223,7 @@ msgstr "Asewḥel n udellel & ummesten n tbaḍnit {start_sub_heading} s {addon_
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Asewḥel n udellel akked ummesten n tudert tusligt. Tawila fessusen ad k-teǧǧ ad qarɛeḍ adellel i tettwaliḍ akked lǧeṛṛat i tettaǧǧaḍ deg Internet."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3231,7 +3231,7 @@ msgstr "Accaṛen, ttwafeṣlen s wudem amaynut {start_sub_heading}s {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Tesɛiḍ ddeqs n yiccaren yeldin? Suddes-iten deg yiwen n ugalis adisan."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3239,7 +3239,7 @@ msgstr "Sewḥel aḍfaṛ n Facebook {start_sub_heading}s {addon_name} {end_sub
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Seḥbes aḍfaṛ sɣur Facebook. Ɛzel timagit-ik Facebook deg “umagbar” iman-is akken ad tɛezleḍ Facebook ur k-yeṭṭafaṛ ara deg Web."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3247,7 +3247,7 @@ msgstr "Sifses anadi n {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Sifses inadiyen-ik s ujerreḍ n uḍris deg usevter web, sakin nadi aḍri deg yimseddayen-nniḍen."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3255,7 +3255,7 @@ msgstr "Awi ileqman n tegnawt {start_sub_heading}s {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Ileqman n tegnawt d iskudanen seg umaḍal meṛṛa."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3295,7 +3295,7 @@ msgstr "Sefrek awalen uffiren {start_sub_heading} s {addon_name} {end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Asefrek n wawalen uffiren fessus. Mtawi meṛṛa inekcam-ik ɣef yibenkan-ik s wawal uffir akken ad ḥekmeḍ deg-sen meṛṛa."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3303,7 +3303,7 @@ msgstr "Sewḥel adellel {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Amsewḥal n udellel d afessas, maca ixeddem ccɣel-is. uBlock Origin, isemras agimen n yimsizdigen n ugbur maca yettaṭṭaf drus n tkatut."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
