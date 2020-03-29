@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-28 06:40+0000\n"
+"PO-Revision-Date: 2020-03-29 10:01+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2563,10 +2563,10 @@ msgid "Tools that combine multiple files into a single file, such as <span class
 msgstr "Ifecka yessemlilin ifuyla yemgaraden deg yiwen ufaylu am <span class = \"tech-emphasis\"> webpack </ span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Amsedday n tneɣrufin web i HTML akked CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "Yal afecku-nniden i yessesfaren tangalt neɣ ifuyla daɣen wid yessiriwen tangalt neɣ ifuyla ara tsedduḍ deg uzegrir"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr ""
