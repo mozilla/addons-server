@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-29 22:22+0000\n"
+"PO-Revision-Date: 2020-03-29 22:31+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3658,7 +3658,7 @@ msgstr "Seǧhed asefrek n usader {start_sub_heading}s {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Asefrek n usader iǧehden. Sefrek asader-ik s useqdec n ufeggag n waddad, asebter n uzray, atg."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3666,7 +3666,7 @@ msgstr "Sekles agbur web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Sekles talɣut seg Internet ɣer OneNote akken ad tizmireḍ ad tẓergeḍ, ad ternuḍ iwenniten, d wayen-nniḍen."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3674,7 +3674,7 @@ msgstr "Nadi ammesten mgal aḍfaṛ {start_sub_heading}s {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Sewḥel ineḍfaṛen n udellel yal tikkelt ad tettekkiḍ ɣef ugmuḍ n unadi Google neɣ Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3682,7 +3682,7 @@ msgstr "Inig s wudem asmussan {start_sub_heading}s {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Seqdec taɣerdayt akken ad tmedleḍ iccaren, ad tuɣaleḍ ɣer defiir deg usebter, ad talseḍ asmiren n usebter, atg."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3690,7 +3690,7 @@ msgstr "Rnu tugniwin i yigmaḍ-ik n unadi {start_sub_heading}s {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "Cudd tignitin n yismal web ɣer yigmaḍ-ik n unadi."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3698,7 +3698,7 @@ msgstr "Senɣes ɛeggu n wallen {start_sub_heading}s {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Err web d afessas i wallen s usebrek n tafat-is."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3706,7 +3706,7 @@ msgstr "Sewḥel isfuyla udhimen {start_sub_heading}s {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Sewḥel meṛṛa isfuyal udhimen s wudem amezwer, sakin fren tid i tebɣiḍ ad d-teldiḍ."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3714,7 +3714,7 @@ msgstr "Mudd udem i yismal-ik web inurifen {start_sub_heading}s {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Mudd udem n yal asmel web. Beddel initen, agilal n yisebtar, atg."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3722,7 +3722,7 @@ msgstr "Mudd udem i yiccer-ik maynut {start_sub_heading}s {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Mudd udem i usebter n yiccer amaynut akked ad yesken amḍan n yiqermyad, agilal udmawan, atg."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3730,7 +3730,7 @@ msgstr "Sefrek awalen-ik uffiren {start_sub_heading}s {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Sekles awalen-ik uffiren s tɣellist daɣen wali-ten deg yibenkan yemgaraden."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3738,7 +3738,7 @@ msgstr "Err lewhi-ik ɣer web {start_sub_heading}s {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Issin aniɣer i tettedduḍ deg web. Wali timura anida llan yismal-a. Inig deg uzeṭṭa am win yessnen."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3826,7 +3826,7 @@ msgstr "Snirem ayen iteddun deg web {start_sub_heading}s {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Sken talɣut leqqayen ɣef ugman d tiddin n yal asmel web."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3834,7 +3834,7 @@ msgstr "Mudd udem i Wikipedia {start_sub_heading}s {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Semres asentel atrar, ucbiḥ i wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3842,7 +3842,7 @@ msgstr "Mahel s zreb {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Seqdec talɣiwin n uḥerrek n tɣerdayt akken ad tgeḍ axeddim s zreb."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
