@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-29 18:52+0000\n"
+"PO-Revision-Date: 2020-03-29 18:54+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2649,7 +2649,7 @@ msgid "Theme generator"
 msgstr "Asaraw n usentel"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Ɣurk: timeẓliyin-a n umeskan, i yesseqdac lqem yettwaznen, ur ttwasefrakent ara deg umarag-a ihi ttwazeglent:"
 
 msgid "Theme name"
 msgstr "isem n usentel"
@@ -2716,10 +2716,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Ma ulac aɣilif, tekki ɣef tqeffalt n usentem akken ad ternuḍ tasarut API i useqdac <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Aseɣwen n usentem ad ak-d-yettwazen s yimayl. Seld asentem, ad tafeḍ tisura-ik API deg usebter-a."
 
 msgid "You don't have any API credentials."
 msgstr "Ur ɣur-k ara talɣut n usesteb API."
