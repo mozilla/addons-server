@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-29 18:54+0000\n"
+"PO-Revision-Date: 2020-03-29 20:53+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3141,7 +3141,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr "Tukksa n lqem-agi ad yekkes ilebda:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Axater:</strong> Ticki lqem yettwakkes, ur tettizmired ara ad tazneḍ lqem s wuṭun-a."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Tebɣiḍ ad tekkseḍ lqem-agi?"
@@ -3156,16 +3156,16 @@ msgid "Hide Add-on"
 msgstr "Ffer lqem"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Tuffra n uzegrir ad isewḥel win ara d-ibanen deg thanut daɣen iseqdacen ur tezzin ara ad d-remsen ilɣa iwurmanen."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Ifuyla yettraǧun acegger ad nsen daɣen issefk ad tazneḍ ileqman imaynuten."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Tebɣiḍ ad teffreḍ azegrir-agi?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Asefsex n usuter n ucegger ad yecreḍ azegrir-ik am akken ur yemmid ara, daɣen yal lqem yettragun acegger ad yens."
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Tebɣiḍ ad tesfesxeḍ tuttra n ucegger?"
@@ -3191,7 +3191,7 @@ msgstr "Sewḥel aḍfaṛ n sneaky {start_sub_heading} s {addon_name} {end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Sewḥel ineḍfaṛen ara k-iḍefṛen deg web."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3199,7 +3199,7 @@ msgstr "Mudd udem i yisebtar n yiccer amaynut {start_sub_heading} s {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Rnu asebter ijebbden s ugilal i tebɣiḍ, tagnawt tadigant, atg."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3207,7 +3207,7 @@ msgstr "Suqel s wudem fessusen {start_sub_heading} s {addon_name} {end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Fre yal aḍris, sakin eg atekki s tqeffalt tayeffusr akken ad twaliḍ tasuqilt tawurmant."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
