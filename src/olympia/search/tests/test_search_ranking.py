@@ -500,6 +500,7 @@ class TestRankingScenarios(ESTestCase):
         names = {
             'fr': 'Foobar unique francais',
             'en-US': 'Foobar unique english',
+            'en-ca': 'Foobar unique english',
         }
         amo.tests.addon_factory(
             name=names, type=amo.ADDON_EXTENSION,
@@ -523,7 +524,7 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_tabby_cat(self):
         self._check_scenario('Tabby cat', (
-            ['Tabby Cat', 283.8863],
+            ['Tabby Cat', 245.98746],
         ))
 
     def test_scenario_tabbycat(self):
@@ -567,7 +568,7 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_tab_center_redux(self):
         self._check_scenario('tab center redux', (
-            ['Tab Center Redux', 64.47371],
+            ['Tab Center Redux', 55.912884],
             # Those used to be found but we now require all terms to be present
             # through minimum_should_match on the fuzzy name query (and they
             # have nothing else to match).
@@ -584,8 +585,8 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_open_image_new_tab(self):
         self._check_scenario('Open Image in New Tab', (
-            ['Open Image in New Tab', 39.14946],
-            ['Open image in a new tab', 10.629712],
+            ['Open Image in New Tab', 34.222008],
+            ['Open image in a new tab', 9.426583],
         ))
 
     def test_scenario_coinhive(self):
@@ -634,7 +635,7 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_frame_demolition(self):
         self._check_scenario('Frame Demolition', (
-            ['Frame Demolition', 25.774979],
+            ['Frame Demolition', 22.324621],
         ))
 
     def test_scenario_demolition(self):
@@ -645,14 +646,14 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_restyle(self):
         self._check_scenario('reStyle', (
-            ['reStyle', 33.079796],
+            ['reStyle', 28.525782],
         ))
 
     def test_scenario_megaupload_downloadhelper(self):
         # Doesn't find "RapidShare DownloadHelper" anymore
         # since we now query by "MegaUpload AND DownloadHelper"
         self._check_scenario('MegaUpload DownloadHelper', (
-            ['MegaUpload DownloadHelper', 44.07817],
+            ['MegaUpload DownloadHelper', 38.75448],
         ))
 
     def test_scenario_downloadhelper(self):
@@ -673,18 +674,18 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_no_flash(self):
         self._check_scenario('No Flash', (
-            ['No Flash', 47.198143],
-            ['Download Flash and Video', 3.5473902],
-            ['YouTube Flash Video Player', 3.1835887],
-            ['YouTube Flash Player', 3.0987425],
+            ['No Flash', 40.736015],
+            ['Download Flash and Video', 3.120618],
+            ['YouTube Flash Video Player', 2.8127284],
+            ['YouTube Flash Player', 2.7136805],
         ))
 
         # Case should not matter.
         self._check_scenario('no flash', (
-            ['No Flash', 47.198143],
-            ['Download Flash and Video', 3.5473902],
-            ['YouTube Flash Video Player', 3.1835887],
-            ['YouTube Flash Player', 3.0987425],
+            ['No Flash', 40.736015],
+            ['Download Flash and Video', 3.120618],
+            ['YouTube Flash Video Player', 2.8127284],
+            ['YouTube Flash Player', 2.7136805],
         ))
 
     def test_scenario_youtube_html5_player(self):
@@ -697,7 +698,7 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario('Disable Hello, Pocket & Reader+', (
-            ['Disable Hello, Pocket & Reader+', 59.53093],  # yeay!
+            ['Disable Hello, Pocket & Reader+', 51.88581],  # yeay!
         ))
 
     def test_scenario_grapple(self):
@@ -725,71 +726,91 @@ class TestRankingScenarios(ESTestCase):
         # Tests that we match directly "Merge Windows" and also find
         # "Merge All Windows" because of slop=1
         self._check_scenario('merge windows', (
-            ['Merge Windows', 7.648495],
-            ['Merge All Windows', 1.4710722],
+            ['Merge Windows', 6.633535],
+            ['Merge All Windows', 1.27586],
         ))
 
         self._check_scenario('merge all windows', (
-            ['Merge All Windows', 8.40278],
-            ['Merge Windows', 0.064924695],
+            ['Merge All Windows', 7.3235965],
+            ['Merge Windows', 0.056586303],
         ))
 
     def test_score_boost_exact_match(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('test addon test21', (
-            ['test addon test21', 8.511524],
-            ['test addon test31', 0.2356849],
-            ['test addon test11', 0.053726178],
+            ['test addon test21', 7.419672],
+            ['test addon test31', 0.22147967],
+            ['test addon test11', 0.04683423],
         ))
 
     def test_score_boost_exact_match_description_hijack(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('Amazon 1-Click Lock', (
-            ['Amazon 1-Click Lock', 32.15099],
-            ['1-Click YouTube Video Download', 0.21279065],
+            ['Amazon 1-Click Lock', 28.076418],
+            ['1-Click YouTube Video Download', 0.20881501],
         ))
 
     def test_score_boost_exact_match_in_right_language(self):
         """Test that exact matches are using the translation if possible."""
         # First in english. Straightforward: it should be an exact match, the
         # translation exists.
-        self._check_scenario(u'foobar unique english', (
-            [u'Foobar unique english', 2.0474255],
+        self._check_scenario('foobar unique english', (
+            ['Foobar unique english', 2.0474255],
         ), lang='en-US')
+
+        # Then in canadian english. Should get the same score.
+        self._check_scenario('foobar unique english', (
+            ['Foobar unique english', 2.0474255],
+        ), lang='en-CA')
+
+        # Then in british english. This is a bit of an edge case, because the
+        # add-on isn't translated in that locale, but we are still able to find
+        # matches using the other english translations we have (en-US and
+        # en-ca, but the returned translation will follow the default locale,
+        # which is fr (our translation system isn't smart enough to return an
+        # english string, even though our search system is).
+        # In any case it should not boost the score over the previous searches
+        # in english above.
+        # Note that we need to pass expected_lang because the name object won't
+        # contain the lang we requested, instead it will return an object with
+        # the default_locale for this addon (fr).
+        self._check_scenario('foobar unique english', (
+            ['Foobar unique francais', 2.0474255],
+        ), lang='en-GB', expected_lang='fr')
 
         # Then check in french. Also straightforward: it should be an exact
         # match, the translation exists, it's even the default locale.
-        self._check_scenario(u'foobar unique francais', (
-            [u'Foobar unique francais', 7.6185403],
+        self._check_scenario('foobar unique francais', (
+            ['Foobar unique francais', 7.6185403],
         ), lang='fr')
 
         # Check with a language that we don't have a translation for (mn), and
-        # that we do not have a language-specific analyzer for. Note that we
-        # need to pass expected_lang because the name object won't contain
-        # 'mn', instead it will return an object with the default_locale for
-        # this addon.
+        # that we do not have a language-specific analyzer for.
+        # Note that we need to pass expected_lang because the name object won't
+        # contain the lang we requested, instead it will return an object with
+        # the default_locale for this addon (fr).
         assert 'mn' not in SEARCH_LANGUAGE_TO_ANALYZER
         assert 'mn' in settings.LANGUAGES
-        self._check_scenario(u'foobar unique francais', (
-            [u'Foobar unique francais', 6.648044],
+        self._check_scenario('foobar unique francais', (
+            ['Foobar unique francais', 6.648044],
         ), lang='mn', expected_lang='fr')
 
         # Check with a language that we don't have a translation for (ca), and
-        # that we *do* have a language-specific analyzer for. Note that we need
-        # to pass expected_lang because the name object won't contain 'ca',
-        # instead it will return an object with the default_locale for this
-        # addon.
+        # that we *do* have a language-specific analyzer for.
+        # Note that we need to pass expected_lang because the name object won't
+        # contain the lang we requested, instead it will return an object with
+        # the default_locale for this addon (fr).
         assert 'ca' in SEARCH_LANGUAGE_TO_ANALYZER
         assert 'ca' in settings.LANGUAGES
-        self._check_scenario(u'foobar unique francais', (
-            [u'Foobar unique francais', 5.700276],
+        self._check_scenario('foobar unique francais', (
+            ['Foobar unique francais', 4.9706616],
         ), lang='ca', expected_lang='fr')
 
         # Check with a language that we do have a translation for (en-US), but
         # we're requesting the string that matches the default locale (fr).
         # Note that the name returned follows the language requested.
         self._check_scenario(u'foobar unique francais', (
-            [u'Foobar unique english', 4.957241],
+            ['Foobar unique english', 4.957241],
         ), lang='en-US')
 
     def test_scenario_tab(self):
