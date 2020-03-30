@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 14:21+0000\n"
+"PO-Revision-Date: 2020-03-30 14:35+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3906,7 +3906,7 @@ msgstr "Sewḥel abeddel n tensa {start_sub_heading}s {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr "Kcem srid ɣer usmel web i tebɣiḍ war abeddel n tensa deg tlemmast."
+msgstr "Ddu srid ɣer usmel n web wuɣur tebɣiḍ ad tkecmeḍ mebla ma tettuwellaheḍ gar-asen."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3998,7 +3998,7 @@ msgstr "Nser ser ubeddel n yisebtar & ineḍfaṛen {start_sub_heading}s {addon_
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Kkes isebtar n ubeddel n tnila n tansiwin akked iɣewwaren n uḍfar n tansiwin URL. Iteddu s wudem awurman."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4574,7 +4574,7 @@ msgstr "Err web d aberkan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Sens web neɣ fren tagrumma n yiniten tusligt i wakken ad tsedduḍ Internet akken tebɣiḍ."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4582,7 +4582,7 @@ msgstr "Asnerni n unadi deg Android {start_sub_heading}s {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Af-d asebter n unadi lqayen aṭas ɣef Firefox i Android."
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4590,15 +4590,15 @@ msgstr "Tallelt s tvidyut deg Android {start_sub_heading}s {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin di Firefox i Android. Asiɣzef-agi ad d-yefk tifrat."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr ""
+msgstr "Isiɣzaf am yisnasen i Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Rennun timahilin i Firefox i wakken ad tili tunigin tserreḥ, d taɣelsant, neɣ ad d-nini kan d tazehwanit."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -4606,11 +4606,11 @@ msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr ""
+msgstr "Semtawi isiɣzaf gar wallalen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Tabaḍnit beṛṛa n yisiɣzaf n yiminig"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
@@ -4643,7 +4643,7 @@ msgid "Problems decoding {0}."
 msgstr "Ugur deg ukestengel n {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Afaylu-agi ur yettwasenqad ara srid. Ttxil-k sider-d afaylu akken ad d-iban ugbur."
 
 msgid "This file is a directory."
 msgstr "Afaylu-agi d akaram."
