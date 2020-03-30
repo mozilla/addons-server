@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 21:35+0000\n"
+"PO-Revision-Date: 2020-03-30 23:53+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4218,7 +4218,7 @@ msgstr "Nadi s Firefox n unekcum s wudem fessusen ɣer yiccaren-ik yeldin, ticar
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Ddeqs n yiccaren yeldin? Anef timhalin n udrurem ur nettfak ara daɣen nadi s yinegzumen n unasiw."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
