@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 13:40+0000\n"
+"PO-Revision-Date: 2020-03-30 14:21+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3938,7 +3938,7 @@ msgstr "Mahel s tiḥerci {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Sefrek tiffursa-ik s umahel deg wakud ara tesbadud."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3946,7 +3946,7 @@ msgstr "Taɣuri fessusen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Sefqed isuddam-ik RSS inurifen deg yiwen n usebter."
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3954,7 +3954,7 @@ msgstr "Senɣes ɛeggu n wallen {start_sub_heading}s {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Rme askar n yiḍ i termit n usekkud iwulmen."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3962,7 +3962,7 @@ msgstr "Nadi tugniwin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Nadi seg tugna s usenerni n tignatin deg ddeqs n yimseddayen n unadi."
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3970,7 +3970,7 @@ msgstr "Fren s wudem fessusen akaram n aniɣer ara terreḍ ticraḍ-ik n yisebt
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Sefrek ticraḍ-ik n yisebtar s wudem ufrin ma tseqdaceḍ ddeqs n yikaramen n ticraḍ n yisebtar."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3978,11 +3978,11 @@ msgstr "Kkes tarusi n telɣa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Kkes iferdisen n trusi n yisebtar ur nemɛin ara daɣen nɣel kan aḍris."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Selket asebter wem i meṛṛa ɣer tutlayt-ik tanurift — s utekki ɣef tqeffalt."
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3990,7 +3990,7 @@ msgstr "Awi-d iseɣwan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Sken iseɣwan n usebter web deg yiccaren imaynuten."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
