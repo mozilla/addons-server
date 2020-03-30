@@ -400,7 +400,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         #     create
         # else:
         #     if vote
-        serializer.save()
+        serializer.save(user=self.request.user,rating=self.rating_object,addon=self.get_addon_object())
         headers = self.get_success_headers(serializer.data)
         return Response(
             serializer.data, status=HTTP_202_ACCEPTED, headers=headers)
