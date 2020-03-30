@@ -53,3 +53,11 @@ private/
 # do not ignore the following files
 !docker-compose.private.yml
 !private/README.md
+
+# new ignores
+*.pdf
+*.dot
+package-lock.json
+*.iml
+.idea/*
+*.xpi

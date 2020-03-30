@@ -226,7 +226,7 @@ class RatingSerializer(BaseRatingSerializer):
 
 
 class RatingVoteSerializer(serializers.ModelSerializer):
-    vote = serializers.IntegerField(min_value=0, max_value=1, source='vote')
+    vote = serializers.IntegerField(min_value=0, max_value=1, source=None)
     rating = RatingSerializer(read_only=True)
     user = BaseUserSerializer(read_only=True)
     addon = RatingAddonSerializer(read_only=True)
@@ -258,6 +258,7 @@ class RatingVoteSerializer(serializers.ModelSerializer):
         if not data['rating'].body:
             raise serializers.ValidationError(ugettext(
                 "This rating can't be flagged because it has no review text."))
+        return data
 
     def save(self, **kwargs):
         instance = super().save(**kwargs)
