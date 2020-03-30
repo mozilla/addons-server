@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 19:05+0000\n"
+"PO-Revision-Date: 2020-03-30 19:09+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4086,7 +4086,7 @@ msgstr "Inig s tɣellist {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Seqdec s wudem awurman ɣer lqem aɣelsan n usmel web ma yella."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4094,7 +4094,7 @@ msgstr "Kkes azray-ik n tunigin {start_sub_heading}s {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Kkes azray-ik n tunigin. Mudd amḍan n wussan ara tḥ€rzeḍ azray n yiminig uqbel ad yettwasfeḍ swudem awurman."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4102,7 +4102,7 @@ msgstr "Kkes adellel n unadi {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Seḥbes askan n yilɣa deg yigmaḍ-ik n unadi."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4110,7 +4110,7 @@ msgstr "Seffek awalen uffiren s wudem aɣelsan {start_sub_heading}s {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Sekles awalen uffiren s uskar aɣelsan daɣen qqen s wudem awurman ɣer yismal web yettwassnen."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
