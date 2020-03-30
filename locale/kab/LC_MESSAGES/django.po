@@ -3850,7 +3850,7 @@ msgstr "Disgffer meṛṛa iferdisen n usebter web i tebɣiḍ {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Ffer kra n yiferdisen i tettwaliḍ deg yismal web."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
