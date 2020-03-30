@@ -13,9 +13,8 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import (
     SimpleAddonSerializer, SimpleVersionSerializer)
 from olympia.api.utils import is_gate_active
-from olympia.ratings.models import Rating, RatingFlag
+from olympia.ratings.models import Rating, RatingFlag, RatingVote
 from olympia.versions.models import Version
-
 
 # This matches the following three types of patterns:
 # http://... or https://..., generic domain names, and IPv4 octets. It does not
@@ -151,7 +150,6 @@ class RatingSerializerReply(BaseRatingSerializer):
 
 
 class RatingVersionSerializer(SimpleVersionSerializer):
-
     class Meta:
         model = Version
         fields = ('id', 'version')
@@ -178,8 +176,8 @@ class RatingSerializer(BaseRatingSerializer):
     def __init__(self, *args, **kwargs):
         super(RatingSerializer, self).__init__(*args, **kwargs)
         score_to_rating = (
-            self.request and
-            is_gate_active(self.request, 'ratings-rating-shim'))
+                self.request and
+                is_gate_active(self.request, 'ratings-rating-shim'))
         if score_to_rating:
             score_field = self.fields.pop('score')
             score_field.source = None  # drf complains if we specify source.
@@ -227,6 +225,46 @@ class RatingSerializer(BaseRatingSerializer):
         return super(RatingSerializer, self).create(validated_data)
 
 
+class RatingVoteSerializer(serializers.ModelSerializer):
+    vote = serializers.IntegerField(min_value=0, max_value=1, source='vote')
+    rating = RatingSerializer(read_only=True)
+    user = BaseUserSerializer(read_only=True)
+    addon = RatingAddonSerializer(read_only=True)
+
+    class Meta:
+        model = RatingVote
+        fields = ('vote', 'rating', 'user','addon')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.request = kwargs.get('context', {}).get('request')
+
+    def validate_vote(self, vote):
+        """
+         ensure the value of the vote option field in the database can either be upvote or downvote.
+        """
+        votes = dict(RatingVote.VOTES)
+        if vote not in votes:
+            raise serializers.ValidationError(ugettext(
+                'Invalid vote [%s] - must be one of [%s]' %
+                (vote, ','.join(votes))))
+        return vote
+
+    def validate(self, data):
+        """
+        ensure voting only applies on reviews with text.
+        """
+        data['rating'] = self.context['view'].rating_object
+        if not data['rating'].body:
+            raise serializers.ValidationError(ugettext(
+                "This rating can't be flagged because it has no review text."))
+
+    def save(self, **kwargs):
+        instance = super().save(**kwargs)
+        instance.rating.update(editorreview=True)
+        return instance
+
+
 class RatingFlagSerializer(serializers.ModelSerializer):
     flag = serializers.CharField()
     note = serializers.CharField(allow_null=True, required=False)
@@ -246,7 +284,7 @@ class RatingFlagSerializer(serializers.ModelSerializer):
         if flag not in flags:
             raise serializers.ValidationError(ugettext(
                 'Invalid flag [%s] - must be one of [%s]' %
-                (flag, ','. join(flags))))
+                (flag, ','.join(flags))))
         return flag
 
     def validate(self, data):
