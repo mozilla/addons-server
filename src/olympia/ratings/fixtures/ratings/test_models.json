@@ -21,6 +21,16 @@
         }
     },
     {
+        "pk": 2,
+        "model": "users.userprofile",
+        "fields": {
+            "created": "2009-10-19 06:21:05",
+            "modified": "2009-10-19 06:21:05",
+            "username": "no two",
+            "email": "ar@example.com"
+        }
+    },
+    {
         "pk": 4,
         "model": "addons.addon",
         "fields": {
@@ -81,6 +91,44 @@
             "reply_to": null,
             "previous_count": 1,
             "is_latest": true
+        }
+    },
+    {
+        "pk": 3,
+        "model": "ratings.rating",
+        "fields": {
+            "body": "r2 body",
+            "rating": 3,
+            "created": "2009-12-22 20:12:20",
+            "modified": "2009-12-22 20:12:20",
+            "version": 5,
+            "addon": 4,
+            "user": 2,
+            "reply_to": null
+        }
+    },
+    {
+        "pk": 1,
+        "model": "ratings.ratingvote",
+        "fields": {
+            "rating": 3,
+            "addon": 4,
+            "user": 1,
+            "modified": "2009-12-22 20:11:20",
+            "vote": 1
+
+        }
+    },
+    {
+        "pk": 2,
+        "model": "ratings.ratingvote",
+        "fields": {
+            "rating": 2,
+            "addon": 4,
+            "user": 2,
+            "modified": "2009-12-22 20:15:20",
+            "vote": 0
+
         }
     },
     {

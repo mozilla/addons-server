@@ -32,7 +32,7 @@ class RatingQuerySet(models.QuerySet):
             Q(addon__isnull=True) |
             Q(version__channel=amo.RELEASE_CHANNEL_UNLISTED) |
             Q(ratingflag__isnull=True)).filter(
-                editorreview=True, addon__status__in=amo.VALID_ADDON_STATUSES)
+            editorreview=True, addon__status__in=amo.VALID_ADDON_STATUSES)
 
     def delete(self, user_responsible=None, hard_delete=False):
         if hard_delete:
@@ -172,6 +172,8 @@ class Rating(ModelBase):
                 is_flagged=self.ratingflag_set.exists()))
         for flag in self.ratingflag_set.all():
             flag.delete()
+        for vote in self.ratingvote_set.all():
+            vote.delete()
         self.editorreview = False
         # We've already logged what we want to log, no need to pass
         # user_responsible=user.
@@ -201,6 +203,10 @@ class Rating(ModelBase):
             )
             for flag in self.ratingflag_set.all():
                 flag.delete()
+
+        # Delete the review: <RatingVote>.review should be deleted as well.
+        for vote in self.ratingvote_set.all():
+            vote.delete()
 
         log.info(u'Rating deleted: %s deleted id:%s by %s ("%s")',
                  user_responsible.name, self.pk, self.user.name,
@@ -348,6 +354,35 @@ class RatingFlag(ModelBase):
                                     name='index_review_user')
         ]
 
+class RatingVote(ModelBase):
+    """newly added"""
+    VOTES = (
+        (None, _('None')),
+        (0, 'down_vote'),
+        (1, 'up_vote'),
+    )
+
+    rating = models.ForeignKey(
+        Rating, db_column='review_id', on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        'users.UserProfile', null=True, on_delete=models.CASCADE)
+    addon = models.ForeignKey(
+        'addons.Addon', related_name='_votings', on_delete=models.CASCADE)
+    vote = models.PositiveSmallIntegerField(
+        null=True, choices=VOTES)
+
+    class Meta:
+        db_table = 'rating_vote'
+        indexes = [
+            models.Index(fields=('user',), name='index_user'),
+            models.Index(fields=('rating',), name='index_review'),
+            models.Index(fields=('modified',), name='index_modified'),
+            models.Index(fields=('addon',), name='addon_id'),
+        ]
+        constraints = [
+            models.UniqueConstraint(fields=('rating', 'user'),
+                                    name='index_review_user')
+        ]
 
 class GroupedRating(object):
     """
@@ -389,3 +424,46 @@ class GroupedRating(object):
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
         cache.set(cls.key(addon_pk), ratings)
         return ratings
+
+class GroupedVoting(object):
+    """
+    Newly added.
+    Group an add-on's votes so we can have a graph of voting counts.
+
+    SELECT vote, COUNT(vote) FROM reviews where addon=:id and rating=:id2;
+    SELECT vote,COUNT(vote) FROM rating_vote where addon_id=36 and review_id=163;
+    """
+    # Non-critical data, so we always leave it in memcache. Cache for a
+    # particular add-on is cleared when a rating is added/modified and updated
+    # when a request tries to retrieve them and the cache is empty.
+    prefix = 'addons:grouped:voting'
+
+    @classmethod
+    def key(cls, addon_pk,rating_pk):
+        return '%s:%s,%s' % (cls.prefix, addon_pk,rating_pk)
+
+    @classmethod
+    def delete(cls, addon_pk,rating_pk):
+        cache.delete(cls.key(addon_pk,rating_pk))
+
+    @classmethod
+    def get(cls, addon_pk,rating_pk, update_none=True):
+        try:
+            grouped_votings = cache.get(cls.key(addon_pk,rating_pk))
+            if update_none and grouped_votings is None:
+                return cls.set(addon_pk,rating_pk)
+            return grouped_votings
+        except Exception:
+            # Don't worry about failures, especially timeouts.
+            return
+
+    @classmethod
+    def set(cls, addon_pk,rating_pk):
+        qs = (RatingVote.objects
+              .filter(addon=addon_pk,rating=rating_pk)
+              .values_list('vote')
+              .annotate(models.Count('vote')).order_by())
+        counts = dict(qs)
+        votings = [(vote, counts.get(vote, 0)) for vote in range(0, 2)]
+        cache.set(cls.key(addon_pk,rating_pk), votings)
+        return votings
