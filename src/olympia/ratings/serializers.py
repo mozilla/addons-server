@@ -226,27 +226,28 @@ class RatingSerializer(BaseRatingSerializer):
 
 
 class RatingVoteSerializer(serializers.ModelSerializer):
-    vote_option = serializers.IntegerField(min_value=0, max_value=1, source='vote_option')
+    vote = serializers.IntegerField(min_value=0, max_value=1, source='vote')
     rating = RatingSerializer(read_only=True)
     user = BaseUserSerializer(read_only=True)
     addon = RatingAddonSerializer(read_only=True)
 
     class Meta:
         model = RatingVote
-        fields = ('vote', 'rating', 'user')
+        fields = ('vote', 'rating', 'user','addon')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.request = kwargs.get('context', {}).get('request')
 
     def validate_vote(self, vote):
         """
          ensure the value of the vote option field in the database can either be upvote or downvote.
         """
-        vote_options = dict(RatingVote.VOTES)
-        if vote not in vote_options:
+        votes = dict(RatingVote.VOTES)
+        if vote not in votes:
             raise serializers.ValidationError(ugettext(
                 'Invalid vote [%s] - must be one of [%s]' %
-                (vote, ','.join(vote_options))))
+                (vote, ','.join(votes))))
         return vote
 
     def validate(self, data):
