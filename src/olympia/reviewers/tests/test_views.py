@@ -4393,7 +4393,8 @@ class TestReview(ReviewBase):
     def test_attempt_to_use_content_review_permission_for_post_review_actions(
             self):
         # Try to use confirm_auto_approved outside of content review, while
-        # only having Addons:ContentReview permission.
+        # only having Addons:Review and Addons:ContentReview permission
+        # (no Addons:PostReview).
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
@@ -4447,6 +4448,19 @@ class TestReview(ReviewBase):
         assert response.status_code == 200  # Form error
         assert ActivityLog.objects.filter(
             action=amo.LOG.APPROVE_CONTENT.id).count() == 0
+
+    def test_content_review_redirect_if_only_permission(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        content_review_url = reverse(
+            'reviewers.review', args=['content', self.addon.pk])
+        response = self.client.get(self.url)
+        assert response.status_code == 302
+        self.assert3xx(response, content_review_url)
+
+        response = self.client.post(self.url, {'action': 'anything'})
+        assert response.status_code == 302
+        self.assert3xx(response, content_review_url)
 
     def test_cant_postreview_if_admin_content_review_flag_is_set(self):
         AddonReviewerFlags.objects.create(

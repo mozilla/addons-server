@@ -696,6 +696,17 @@ def review(request, addon, channel=None):
     if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
         raise PermissionDenied
 
+    # Are we looking at a listed review page while only having content review
+    # permissions ? Redirect to content review page, it will be more useful.
+    if (channel == amo.RELEASE_CHANNEL_LISTED and content_review is False and
+        acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) and
+        not any(
+            acl.action_allowed(request, perm) for perm in (
+                amo.permissions.ADDONS_REVIEW,
+                amo.permissions.ADDONS_POST_REVIEW,
+                amo.permissions.ADDONS_RECOMMENDED_REVIEW))):
+        return redirect('reviewers.review', 'content', addon.pk)
+
     # Other cases are handled in ReviewHelper by limiting what actions are
     # available depending on user permissions and add-on/version state.
 
