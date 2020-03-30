@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 19:59+0000\n"
+"PO-Revision-Date: 2020-03-30 21:12+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4126,7 +4126,7 @@ msgstr "Inig s tbadnit {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Nadi s wudem abaḍni s yiwen n utekki."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4134,7 +4134,7 @@ msgstr "Seḥber abeddel n leqhi n yiccaren {start_sub_heading}s {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Seḥes takerḍa n yiccaren. Ur ttsennid ara ɣef yiseɣwan ara yeṭṭfen ɣur-s iccer amaynut daɣen ad d-yessali igburen ur tsutreḍ ara."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4142,7 +4142,7 @@ msgstr "Kcem ɣer Wikipedia s wudem fessusen {start_sub_heading}s {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Eg anadi deg Wikipedia s usebṛureq n uḍris sakin s utekki s tqeffalt tayeffust ɣer uḍris yettwafernen deg usebter."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
