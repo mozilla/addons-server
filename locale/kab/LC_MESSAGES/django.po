@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 21:17+0000\n"
+"PO-Revision-Date: 2020-03-30 21:33+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4198,7 +4198,7 @@ msgstr "Ddu ɣer tmnaḍ n yimcac d warraw-nsen {start_sub_heading}s {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Yal tikkelt ad teldiḍ iccer, ad ak-d-iban umcic ivebḥen. Sluf-as deffir n umeẓẓuɣ sakin wali d acu ara yeḍrun."
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
