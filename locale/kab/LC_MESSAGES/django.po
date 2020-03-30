@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 12:44+0000\n"
+"PO-Revision-Date: 2020-03-30 12:56+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3858,7 +3858,7 @@ msgstr "Sader tiwlafin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Sader tugniqin i tettwaliḍe deg web."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3866,7 +3866,7 @@ msgstr "Sefrek aqareɛ n yimawlan {start_sub_heading}s {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Eg imsizdeg akken ad tgedleḍ anekcum i yigburen ur nlaq ara."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3874,7 +3874,7 @@ msgstr "Snerni iccaren imaynuten {start_sub_heading}s {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Ldi iccer amaynut ɣer tama tayeffus n yiccer yeldin, mačči ɣer taggara n yizirig."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3882,7 +3882,7 @@ msgstr "Nnaɣ akken iwata mgal ispamen {start_sub_heading}s {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Ḥwi ispamen. Seqdec tansa n yimayl taskudant akken ad teqqimeḍ d udrig daɣen ad tesḥebseḍ imaylen."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3890,7 +3890,7 @@ msgstr "Beddel tabaḍnit-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Anekcum srid ɣer yiɣewwaṛen udmawanen n tbaḍnit n Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3898,7 +3898,7 @@ msgstr "Suqel s wudem askudan {start_sub_heading}s {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Awi tasuqilt taskudant s usebṛureq n uḍris s utekki sayeffus ɣef tqeffalt ara d-ibanen."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
