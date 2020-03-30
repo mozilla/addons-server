@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 21:12+0000\n"
+"PO-Revision-Date: 2020-03-30 21:17+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4150,7 +4150,7 @@ msgstr "Wali agbur ibanen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Eg inadiyen deg taɣult i tebɣiḍ."
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4158,7 +4158,7 @@ msgstr "Af-d tividyutin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Sebṛureq aḍris seg yal asmel web sakin tekki ɣef tqaffalt tayeffust akken ad tnadiḍ deg YouTube ɣef tvidyutin yerzan aḍris."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4166,7 +4166,7 @@ msgstr "Faṛes seg Amazon {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Awi asenɣes n ssuma seg Amazone. Ticki tettnadiḍ deg yisebtar n yifarisen deg tḥuna srid, yella daɣen deg Amazone, tekki kan ɣef tqeffalt akken ad twaliḍ asebter anida yella ufaris-a."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4174,7 +4174,7 @@ msgstr "Qareɛ meṛṛa iccaren-ik {start_sub_heading}s {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Faṛes tagnit seg tuṭṭfa n yicarren-ik gar ifassen-ik — mdel iccaren usligen, sdukel isfuyla, nɣel azwel n yiccer, d wayen-nniḍen."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4190,7 +4190,7 @@ msgstr "Beddel iccer-ik amaynut {start_sub_heading}s {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Swel isebtart n yiccer amaynut akked ad tsekneḍ initen n ugilal akked tugniwin udmawanen."
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
