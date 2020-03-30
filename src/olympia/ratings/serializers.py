@@ -226,7 +226,7 @@ class RatingSerializer(BaseRatingSerializer):
 
 
 class RatingVoteSerializer(serializers.ModelSerializer):
-    vote = serializers.IntegerField(min_value=0, max_value=1, source=None)
+    vote = serializers.IntegerField(min_value=-1, max_value=1, source=None)
     rating = RatingSerializer(read_only=True)
     user = BaseUserSerializer(read_only=True)
     addon = RatingAddonSerializer(read_only=True)

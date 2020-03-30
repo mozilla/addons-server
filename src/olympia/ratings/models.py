@@ -357,7 +357,7 @@ class RatingFlag(ModelBase):
 class RatingVote(ModelBase):
     """newly added"""
     VOTES = (
-        (None, _('None')),
+        (-1, 'cleaned_vote'),
         (0, 'down_vote'),
         (1, 'up_vote'),
     )
@@ -368,8 +368,7 @@ class RatingVote(ModelBase):
         'users.UserProfile', null=True, on_delete=models.CASCADE)
     addon = models.ForeignKey(
         'addons.Addon', related_name='_votings', on_delete=models.CASCADE)
-    vote = models.PositiveSmallIntegerField(
-        null=True, choices=VOTES)
+    vote = models.SmallIntegerField(choices=VOTES)
 
     class Meta:
         db_table = 'rating_vote'
