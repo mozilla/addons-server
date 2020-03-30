@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 12:56+0000\n"
+"PO-Revision-Date: 2020-03-30 13:05+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3906,7 +3906,7 @@ msgstr "Sewḥel abeddel n tensa {start_sub_heading}s {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Kcem srid ɣer usmel web i tebɣiḍ war abeddel n tensa deg tlemmast."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3914,7 +3914,7 @@ msgstr "WhatsApp deg web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp deg web. Kcem ɣer WhatsApp seg ugalis n ufeggag n yifecka n Firefox akken ad tawiḍ ilɣa n tnelli n yisallen ur teɣriḍ ara."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
