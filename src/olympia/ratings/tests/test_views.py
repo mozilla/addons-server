@@ -18,6 +18,7 @@ from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, reverse_ns, user_factory,
     version_factory)
 from olympia.ratings.models import Rating, RatingFlag, RatingVote
+from olympia.addons.models import Addon
 
 
 locmem_cache = settings.CACHES.copy()
@@ -2121,12 +2122,18 @@ class TestRatingViewSetVote(TestCase):
     def test_vote_logged_in_unknown_vote_option(self):
         self.user = user_factory()
         self.client.login_api(self.user)
-        response = self.client.post(
+        response_a = self.client.post(
             self.url, data={'vote': 3})
-        assert response.status_code == 400
-        data = json.loads(force_text(response.content))
-        assert data['vote'] == [
-            'Invalid vote [3] - must be one of [1, 2]']
+        assert response_a.status_code == 400
+        data_a = json.loads(force_text(response_a.content))
+        assert data_a['vote'] == [
+            'Ensure this value is less than or equal to 1.']
+        response_b = self.client.post(
+            self.url, data={'vote': 0.5})
+        assert response_b.status_code == 400
+        data_b = json.loads(force_text(response_b.content))
+        assert data_b['vote'] == [
+            'A valid integer is required.']
         assert self.rating.reload().editorreview is False
 
     def test_upvote_logged_in_upvote_already_exists(self):
@@ -2143,7 +2150,7 @@ class TestRatingViewSetVote(TestCase):
         assert RatingFlag.objects.count() == 1
         vote.reload()
         # Vote was changed from upvote to not voted.
-        assert vote.vote is None
+        assert vote.vote == -1
         assert vote.user == self.user
         assert vote.rating == self.rating
         assert self.rating.reload().editorreview is True
@@ -2200,7 +2207,7 @@ class TestRatingViewSetVote(TestCase):
         assert RatingFlag.objects.count() == 1
         vote.reload()
         # Vote was changed from downvote to not voted.
-        assert vote.vote is None
+        assert vote.vote == -1
         assert vote.user == self.user
         assert vote.rating == self.rating
         assert self.rating.reload().editorreview is True
@@ -2231,11 +2238,17 @@ class TestRatingViewSetVote(TestCase):
         assert self.rating.reload().editorreview is False
 
     def test_vote_logged_in_admin(self):
-        self.admin_user = user_factory()
-        self.grant_permission(self.admin_user, 'Addons:Edit')
-        self.client.login_api(self.admin_user)
+        user = user_factory()
+        addon = Addon.objects.create(
+            guid=generate_addon_guid(), name=u'My Addôn',
+            slug='my-addon', author=user)
+        rating = Rating.objects.create(
+            addon=addon, rating=1, body='My review', user=user)
+        url = reverse_ns(
+            self.reply_url_name, kwargs={'pk': rating.pk})
+        self.client.login_api(user)
         response = self.client.post(
-            self.url, data={'vote': 1})
+            url, data={'vote': 1})
         assert response.status_code == 403
         assert self.rating.reload().editorreview is False
 
