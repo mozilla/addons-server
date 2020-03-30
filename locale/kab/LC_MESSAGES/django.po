@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 19:09+0000\n"
+"PO-Revision-Date: 2020-03-30 19:59+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4118,7 +4118,7 @@ msgstr "Ččaṛ tiferkiyin s wudem awurman {start_sub_heading}s {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Ččar tiferkiyin s wudem awurman. Sekles isefka ikecmen tikkelt, sakin ad ččaren s wudem awurman deg tikkelt i d-iteddun."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
