@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-29 22:31+0000\n"
+"PO-Revision-Date: 2020-03-30 12:26+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3746,7 +3746,7 @@ msgstr "Snerni tarmit-ik n tɣuri {start_sub_heading}s {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Snerni tarmit-ik n tɣuri. Err aḍris i teqqareḍ ijebbed ugar ticki tekkseḍ iferdisen ur nemɛin ara i as-d-yezzin."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
