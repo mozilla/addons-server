@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 13:05+0000\n"
+"PO-Revision-Date: 2020-03-30 13:40+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3922,7 +3922,7 @@ msgstr "Suqel seg/ɣer telmanit {start_sub_heading}s {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Awi tisuqilin n yimussnawen n telmanit seg teglizit, seg tefṛansist, taspanit, taqbaylit, d tutlayin-nniḍen."
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3930,7 +3930,7 @@ msgstr "Rnu tabdert taberkant n yismal web {start_sub_heading}s {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Err talast i Firefox akken ur ikeččem ara ɣer yismal i tesbaduḍ. Afecku meqqren akken ad tesmerseḍ ttrebga-ik srid."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
