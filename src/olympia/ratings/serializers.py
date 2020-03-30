@@ -226,14 +226,15 @@ class RatingSerializer(BaseRatingSerializer):
 
 
 class RatingVoteSerializer(serializers.ModelSerializer):
-    vote = serializers.IntegerField(min_value=-1, max_value=1, source=None)
+    # vote = serializers.IntegerField(min_value=-1, max_value=1, source=None)
+    vote = serializers.IntegerField(source=None)
     rating = RatingSerializer(read_only=True)
     user = BaseUserSerializer(read_only=True)
     addon = RatingAddonSerializer(read_only=True)
 
     class Meta:
         model = RatingVote
-        fields = ('vote', 'rating', 'user','addon')
+        fields = ('vote', 'rating', 'user', 'addon')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -244,10 +245,11 @@ class RatingVoteSerializer(serializers.ModelSerializer):
          ensure the value of the vote option field in the database can either be upvote or downvote.
         """
         votes = dict(RatingVote.VOTES)
+        votes_str = [votes[vote]+'('+str(vote)+')' for vote in votes][1:]
         if vote not in votes:
             raise serializers.ValidationError(ugettext(
                 'Invalid vote [%s] - must be one of [%s]' %
-                (vote, ','.join(votes))))
+                (vote, ', '.join(votes_str))))
         return vote
 
     def validate(self, data):
@@ -257,7 +259,7 @@ class RatingVoteSerializer(serializers.ModelSerializer):
         data['rating'] = self.context['view'].rating_object
         if not data['rating'].body:
             raise serializers.ValidationError(ugettext(
-                "This rating can't be flagged because it has no review text."))
+                "This rating can't be voted because it has no review text."))
         return data
 
     def save(self, **kwargs):
