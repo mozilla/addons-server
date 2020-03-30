@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 18:47+0000\n"
+"PO-Revision-Date: 2020-03-30 19:05+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4038,7 +4038,7 @@ msgstr "Sedrurem amtilifun {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Adrurem icuban ɣer win n tiliɣri i uselkim-ik n tnarit. Iḥerriken n tɣerdayt n wanaw \"zuɣer-u-sers\"."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4046,7 +4046,7 @@ msgstr "Kkes isefka {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Sfeḍ tuffirt n yiwen n utekki neɣ s unegzum n unasiw."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4054,7 +4054,7 @@ msgstr "Sebṛureq aḍris {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Sebṛureq aḍris ɣef yisebtar web akken ad teskelseḍ daɣen ad tkecmeḍ ɣur-sen ɣer zdat."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4062,7 +4062,7 @@ msgstr "Faṛes aẓawan i d-yekkan seg umaḍal meṛṛa {start_sub_heading}s 
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Sɣed i wugar n 30,000 n ṛṛadyuwat deg umaḍal."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4070,7 +4070,7 @@ msgstr "Sɣed i tvidyutin {start_sub_heading}s{addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Ḥrez azawag n usezger s uzuzer n yimeslawen n tuṭṭfiwin YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4078,7 +4078,7 @@ msgstr "Selket aḍris ɣer tugniwin {start_sub_heading}s {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Selket awalen uffiren neɣ tifyar s yizwal ijebbden neɣ aserkeb n uḍris ɣef tewlafin."
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
