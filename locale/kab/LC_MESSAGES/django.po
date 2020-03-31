@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 12:37+0000\n"
+"PO-Revision-Date: 2020-03-31 12:54+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4359,7 +4359,7 @@ msgstr "Zuɣer-d aḍris, tiwlafin neɣ iseɣwan akken ad tgeḍ tigawin am nɣe
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Sader tividyutin akked/neɣ imeslawen s talɣiwin yemgaraden."
 
 #. editorial content for the discovery pane.
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4367,7 +4367,7 @@ msgstr "Af-d idigen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Issin anida yella yal aqeddac n usmel web. Qqim deg yisallen ɣef web."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4375,7 +4375,7 @@ msgstr "Frun uguren n umeslaw {start_sub_heading}s {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Fru uguren n umeslaw. Ableɣ deg usmel web meẓẓi aṭas? Meqqer aṭas? SoundFixer izmer ad yefru aya."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4383,7 +4383,7 @@ msgstr "Beddel uwbel asiggez {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Beddel asebter web uqbel asiggez-is. Beddel igburen i d-yettbanen — kkes adellel neɣ yir agbur — i yal asebter wab i tebɣiḍ ad siggẓeḍ."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4391,7 +4391,7 @@ msgstr "Ɛass azray n ssuma deg Amazon {start_sub_heading}s {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Ḍfeṛ azray n ssuma deg Amazon. Gzem-itt di ṛṛay ɣef tiɣin tuḥrict daɣen rmes ilɣa ɣef ibeddieln deg ssuma deg yifarisen n Amazon i tḥemmleḍ."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4399,7 +4399,7 @@ msgstr "Ṭṭef ameslaw gar ifassen-ik {start_sub_heading}s {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Ṣeggem iɣewwaṛen n umeslaw n yiminig s tseddi meqqren."
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4407,7 +4407,7 @@ msgstr "Ammesten n tbadnit {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Seḥbiber mgal ineḍfaṛen qessiḥen."
 
 #. editorial content for the discovery pane.
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4415,7 +4415,7 @@ msgstr "Sfeḍ lǧerrat-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Nadi s usewḥel n yineḍfaṛen yennernan, awgelhen uḥric, d tmahilin-nniḍen yesseǧhaden tabadnit."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4423,7 +4423,7 @@ msgstr "Sifses iccaren {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "Sifses iccaren. Suddes iccaren-ik yegten i yeldin deg ugalis adisan ubdin."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4431,7 +4431,7 @@ msgstr "Asekref alqayan n yinagan n tuqqna {start_sub_heading}s {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Kkes s wudem awurman inagan n tuqqna ur tebɣiḍ ara. Yettmuddu tallelt i tebdarin timellalin neɣ tiberkanin."
 
 #. editorial content for the discovery pane.
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4439,7 +4439,7 @@ msgstr "Wali tawlaft-a meqqren {start_sub_heading}s {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "S yiwen kan n utekki ɣef tɣerdayt, tzemreḍ ad twaliḍ tividyutin deg ugdil aččuran."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
