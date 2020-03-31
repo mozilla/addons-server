@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 10:21+0000\n"
+"PO-Revision-Date: 2020-03-31 10:28+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4291,6 +4291,7 @@ msgstr "Ḍfeṛ tiffursa-ik. Ktazel akud i tesɛeddayeḍ deg uselkim neɣ deg 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr ""
+"Sekles afran-in deg web. Ṭṭef agbrur am yimagraden, tividyutin, tugniwin d wayen-nniḍen akken ad ten-teskelseḍ sakin ad ten-tesqedceḍ deg yisenfaṛen udmawanen neɣ i uttekki gar terbaɛt s wakud ilaw."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4298,7 +4299,7 @@ msgstr "Inig s tɣellist {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Sireg kan igburen web i d-kkan-d seg yismal i tettamneḍ. Inig s tɣellist."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4306,7 +4307,7 @@ msgstr "Sefrek inagan n tuqqna {start_sub_heading}s {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Senqed s telqey inagan n tuqqna ara d-tgemmreḍ mi ara tettiniged."
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4314,7 +4315,7 @@ msgstr "Sfeḍ azray-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Kkes s wudem awurman azray n yiminig i yismal web ara tferrneḍ."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4322,7 +4323,7 @@ msgstr "Sekles ticraḍ n yisebtar {start_sub_heading}s {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Ḥrez ticraḍ n yisebtar-inek tudmawanin s wawal uffir."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4330,7 +4331,7 @@ msgstr "Sewḥel tarewla n tensa IP {start_sub_heading}s {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Tseqdaceḍ VPN? Tansa-inek n IP tezmer ad terwel. Seḥbes ayagi s usensi n WebRTC."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4338,7 +4339,7 @@ msgstr "Mdel tarusi ta ɣef ta ur nlaq ara {start_sub_heading}s {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Mdel isfuyla udhimen imεekkṛen s yiwen n usiti kan."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4550,7 +4551,7 @@ msgstr "Aru tizmilin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Ḥrez tizmilin-ik tudmawanin sekra wanida tebɣiḍ deg web. Seqdec kan afeggag adisan akken ad tcuddeḍ tizmilin-ik ɣer kra n yisbtar web ibanen."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4558,7 +4559,7 @@ msgstr "Anadi s taɣect yermed {start_sub_heading}s {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Seqdec aɛqal n taɣect akken ad tremdeḍ anadi s taɣect deg Google, Yahoo akked DuckDuckGo."
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
