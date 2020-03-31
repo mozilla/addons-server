@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 14:56+0000\n"
+"PO-Revision-Date: 2020-03-31 15:05+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5663,7 +5663,7 @@ msgid "The whiteboard is the place to exchange information relevant to this addo
 msgstr "Tafelwit tamellalt d amḍiq i umbaddal n telɣut icudden ɣer uzegrir-a (akken yebɣu yella lqem), gar uneflay akked umaẓrag. Tafelwit-a zemren ad tt-wali i sin."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Tafelwit-a tamellalt tettwaseqdec deg tulsa n tɣuri i beṭṭu n telɣut tamunant ɣef lqem. Ma ulac aɣilif qqim kan deg tmussni. Ala wid yettalsen taɣuri ara t-iwalin."
 
 msgid "Update whiteboards"
 msgstr "Snifel tafelwit tamellalt"
@@ -5970,7 +5970,7 @@ msgid "Custom..."
 msgstr "Udmawan..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
+msgstr "Asesfer n tiddadanin yensa akka tura daɣen isefka inegura ur ttilin ara. Tiddadanin ad kemmlent ad ttwalqaḍent daɣen asebter-a ad yettwalqem ɣer zdat s yisefka i ixuṣṣen."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Asali n isefka ineggura &hellip;"
