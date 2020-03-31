@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 11:40+0000\n"
+"PO-Revision-Date: 2020-03-31 11:53+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4702,19 +4702,19 @@ msgstr "Ur izmir ara ad d-yaf asulay ID n uzegrir."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Asulay n uzegrir deg umeskan-ik manifest.json neɣ install.rdf (%s) ur yemṣada ara d usulay uzegrir-ik deg AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Asulay ID uslig n uzegrir yettwaf."
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Uṭṭunen n yileqman issefk ad ilin xarṣum s 32 n yisekkilen."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Uṭṭunen n yileqman issefk ad gebren kan isekkilen, izwilen akked isekkilen-a: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Amḍan afellay i yisental WebExtension d {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Ur tezmireḍ ara ad tazneḍ anaw-agi n uzegrir"
@@ -4737,7 +4737,7 @@ msgstr "Tuccḍa tarussint."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Anaw (%s) ur imṣada ara d wanaw n uzegrir-ik deg AMO (%s)"
 
 msgid "Back to review"
 msgstr "Uɣal ar ucegger"
