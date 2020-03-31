@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 10:47+0000\n"
+"PO-Revision-Date: 2020-03-31 10:57+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4615,7 +4615,7 @@ msgstr "Tabaḍnit beṛṛa n yisiɣzaf n yiminig"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Tarmit tufrint d yiferdisen amet amidya deg Firefox"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
@@ -4627,7 +4627,7 @@ msgstr "Snirem isiɣzaf"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Tameskant n yifuyla teske, tukkist i %s tezmmer ad tili tetteddu. Ma ulac aɣilif, ɛreḍ tikkelt-nniḍen deg 5 n tesdatin."
 
 #, python-format
 msgid "There was an error accessing file %s."
