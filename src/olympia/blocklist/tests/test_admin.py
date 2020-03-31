@@ -1574,6 +1574,14 @@ class TestBlockAdminBulkDelete(TestCase):
             self.delete_url, {'guids': 'guid@\n{12345-6789}'}, follow=True)
         self.assertRedirects(response, self.submission_url, status_code=307)
 
+        # If a block is already present in a submission though, we error
+        BlocklistSubmission.objects.create(
+            input_guids='guid@', min_version='1').save()
+        response = self.client.post(
+            self.delete_url, {'guids': 'guid@\n{12345-6789}'}, follow=False)
+        assert b'Add-on GUIDs (one per line)' in response.content
+        assert b'GUID guid@ is in a pending Submission' in response.content
+
     def _test_delete_multiple_submit(self, addon_adu):
         """addon_adu is important because whether dual signoff is needed is
         based on what the average_daily_users is."""

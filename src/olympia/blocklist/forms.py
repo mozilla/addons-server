@@ -20,17 +20,25 @@ class MultiDeleteForm(MultiGUIDInputForm):
 
     def clean(self):
         guids = splitlines(self.cleaned_data.get('guids'))
+        errors = []
         if len(guids) >= 1:
             qs = Block.objects.filter(guid__in=guids)
-            matching_guids = qs.values_list('guid', flat=True)
+            matching_guids = list(qs.values_list('guid', flat=True))
             missing_guids = [
                 guid for guid in guids if guid not in matching_guids]
             if missing_guids:
-                raise ValidationError(
+                errors.append(
                     [ValidationError(
                         _('Block with GUID %(guid)s not found'),
                         params={'guid': guid})
                      for guid in missing_guids])
+            for guid in matching_guids:
+                if BlocklistSubmission.get_submissions_from_guid(guid):
+                    errors.append(ValidationError(
+                        _('GUID %(guid)s is in a pending Submission'),
+                        params={'guid': guid}))
+        if errors:
+            raise ValidationError(errors)
 
 
 class MultiAddForm(MultiGUIDInputForm):
