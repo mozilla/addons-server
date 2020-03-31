@@ -390,7 +390,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         else:
             # If the current vote option is the same as the existing one in db,
             # the exisiting vote option should be undone.
-            if request.data['vote'] == str(vote_instance.vote):
+            if int(request.data['vote']) == vote_instance.vote:
                 serializer = RatingVoteSerializer(
                     vote_instance, data={'vote': -1}, partial=False,
                     context=self.get_serializer_context())
