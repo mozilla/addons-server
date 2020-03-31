@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 23:56+0000\n"
+"PO-Revision-Date: 2020-03-31 08:52+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4242,7 +4242,7 @@ msgstr "Senɣes alethu {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Sers aqerru-ik ɣef wayen i tettwaliḍ s usenɣes n tafat i yigburen yettwaseknen deg umeɣri n tvidyut."
 
 #. editorial content for the discovery pane.
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4250,7 +4250,7 @@ msgstr "Sefrek ticraḍ n yisebtar {start_sub_heading}s {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Beddel ticraḍ-ik n yisebtar deg ugalis adisan fessusen i unekcum."
 
 #. editorial content for the discovery pane.
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4258,11 +4258,11 @@ msgstr "Ḥrez awalen-ik uffiren d iɣelsanen {start_sub_heading}s {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Ḥrez awalen uffiren s wudem aɣelsan syen qqen s wudem awurman ɣer yismal web yettwassnen."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Asmenyaf n usewḥel n udellel afessas yettwafren i uskan n ugbur kan i tebɣiḍ."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4270,7 +4270,7 @@ msgstr "Ɛass azray-ik n ssuma deg Amazon {start_sub_heading}s {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Ḍfeṛ azray n ssuma deg Amazon. Qqim deg yisallen akken ad tt-tgezmeḍ di ṛṛay."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4510,7 +4510,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "Faṛes ibaɣuren n usefrek iǧehden n wawalen uffiren."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
