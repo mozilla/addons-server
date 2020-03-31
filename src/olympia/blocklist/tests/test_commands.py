@@ -278,4 +278,3 @@ class TestExportBlocklist(TestCase):
         call_command('export_blocklist', '1')
         out_path = os.path.join(settings.TMP_PATH, 'mlbf', '1')
         assert os.path.exists(os.path.join(out_path, 'filter'))
-        assert os.path.exists(os.path.join(out_path, 'filter.meta'))

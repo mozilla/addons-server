@@ -7,7 +7,7 @@ from django.core.files.storage import default_storage
 
 import olympia.core.logger
 
-from olympia.blocklist.mlbf import generate_mlbf, get_mlbf_key_format
+from olympia.blocklist.mlbf import generate_mlbf
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -18,12 +18,6 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         """Handle command arguments."""
-        parser.add_argument(
-            '--salt',
-            type=int,
-            default=None,
-            dest='salt',
-            help='Bloom filter salt')
         parser.add_argument(
             'id',
             help="CT baseline identifier",
@@ -48,18 +42,12 @@ class Command(BaseCommand):
 
     def save_blocklist(self, stats, mlbf, id_):
         out_file = os.path.join(settings.TMP_PATH, 'mlbf', id_, 'filter')
-        meta_file = os.path.join(settings.TMP_PATH, 'mlbf', id_, 'filter.meta')
 
         os.makedirs(os.path.dirname(out_file), exist_ok=True)
         with default_storage.open(out_file, 'wb') as mlbf_file:
             log.info("Writing to file {}".format(out_file))
             mlbf.tofile(mlbf_file)
         stats['mlbf_filesize'] = os.stat(out_file).st_size
-
-        with default_storage.open(meta_file, 'wb') as mlbf_meta_file:
-            log.info("Writing to meta file {}".format(meta_file))
-            mlbf.saveDiffMeta(mlbf_meta_file)
-        stats['mlbf_metafilesize'] = os.stat(meta_file).st_size
 
     def handle(self, *args, **options):
         log.debug('Exporting blocklist to file')
@@ -72,8 +60,7 @@ class Command(BaseCommand):
             generate_kw['not_blocked'] = (
                 self.load_json(options.get('addon_guids_input')))
 
-        salt = options.get('salt')
-        mlbf = generate_mlbf(stats, get_mlbf_key_format(salt), **generate_kw)
+        mlbf = generate_mlbf(stats, **generate_kw)
         self.save_blocklist(
             stats,
             mlbf,

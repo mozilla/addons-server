@@ -6,7 +6,7 @@ from waffle.testutils import override_switch
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.blocklist.cron import MLBF_TIME_CONFIG_KEY, upload_mlbf_to_kinto
-from olympia.blocklist.mlbf import get_mlbf_key_format
+from olympia.blocklist.mlbf import MLBF_KEY_FORMAT
 from olympia.blocklist.models import Block
 from olympia.lib.kinto import KintoServer
 from olympia.zadmin.models import get_config, set_config
@@ -22,16 +22,12 @@ class TestUploadToKinto(TestCase):
 
     @freeze_time('2020-01-01 12:34:56')
     @override_switch('blocklist_mlbf_submit', active=True)
-    @mock.patch('olympia.blocklist.cron.get_mlbf_key_format')
     @mock.patch.object(KintoServer, 'publish_attachment')
-    def test_upload_mlbf_to_kinto(self, publish_mock, get_mlbf_key_mock):
-        key_format = get_mlbf_key_format()
-        get_mlbf_key_mock.return_value = key_format
-
+    def test_upload_mlbf_to_kinto(self, publish_mock):
         upload_mlbf_to_kinto()
 
         publish_mock.assert_called_with(
-            {'key_format': key_format,
+            {'key_format': MLBF_KEY_FORMAT,
              'generation_time':
                 datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000},
             ('filter.bin', mock.ANY, 'application/octet-stream'))

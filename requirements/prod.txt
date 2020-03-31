@@ -151,6 +151,9 @@ defusedxml==0.6.0 \
 dennis==0.9 \
     --hash=sha256:f6487392ac91800c5f0684a99b404b7fd0f72ceb48faeb5a0ce4e2c24fb62d3f \
     --hash=sha256:8c942dd5da7d03c65daebc069c5ee5c7f1374ac9b0c8c89c627caa66fe822604
+Deprecated==1.2.7 \
+    --hash=sha256:8b6a5aa50e482d8244a62e5582b96c372e87e3a28e8b49c316e46b95c76a611d \
+    --hash=sha256:408038ab5fdeca67554e8f6742d1521cd3cd0ee0ff9d47f29318a4f4da31c308
 django-aesfield==2.2 \
     --hash=sha256:3b5f8816ed2e57f233bbcc10ea6f815aa5c07eeadfc7a27895729a3c99792d7a \
     --hash=sha256:b3b09351df1bc272506e47a37889dbfe539d7075ba27470379a4964a1a8325f2
@@ -214,8 +217,8 @@ feedparser==5.2.1 \
     --hash=sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02 \
     --hash=sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9 \
     --hash=sha256:cd2485472e41471632ed3029d44033ee420ad0b57111db95c240c9160a85831c
-filtercascade==0.2.2 \
-    --hash=sha256:f8b472eddbe6f9860aff8816815848fb5f520c6e06ca75dafe811eb9824a9ab1
+filtercascade==0.3.0 \
+    --hash=sha256:a16952af79da10b26df4c731ccc3339d5a3edb4b3c5519f96772ecfd80bc3144
 # funcsigs is required by mock
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
@@ -436,3 +439,5 @@ protobuf==3.11.3 \
     --hash=sha256:fdfb6ad138dbbf92b5dbea3576d7c8ba7463173f7d2cb0ca1bd336ec88ddbd80
 googleapis-common-protos==1.51.0 \
     --hash=sha256:013c91704279119150e44ef770086fdbba158c1f978a6402167d47d5409e226e
+wrapt==1.12.1 \
+    --hash=sha256:b62ffa81fb85f4332a4f609cab4ac40709470da05643a082ec1eb88e6d9b97d7
