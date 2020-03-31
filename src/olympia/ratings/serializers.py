@@ -13,7 +13,7 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import (
     SimpleAddonSerializer, SimpleVersionSerializer)
 from olympia.api.utils import is_gate_active
-from olympia.ratings.models import Rating, RatingFlag, RatingVote
+from olympia.ratings.models import Rating, RatingFlag, RatingVote, GroupedVoting
 from olympia.versions.models import Version
 
 # This matches the following three types of patterns:
@@ -42,10 +42,11 @@ class BaseRatingSerializer(serializers.ModelSerializer):
     previous_count = serializers.IntegerField(read_only=True)
     user = BaseUserSerializer(read_only=True)
     flags = serializers.SerializerMethodField()
+    votes = serializers.SerializerMethodField()
 
     class Meta:
         model = Rating
-        fields = ('id', 'addon', 'body', 'created', 'flags', 'is_deleted',
+        fields = ('id', 'addon', 'body', 'created', 'flags', 'votes', 'is_deleted',
                   'is_developer_reply', 'is_latest', 'previous_count', 'user')
 
     def __init__(self, *args, **kwargs):
@@ -109,12 +110,33 @@ class BaseRatingSerializer(serializers.ModelSerializer):
                 for flag in rating_flags]
         return None
 
+    def get_votes(self, obj):
+        if self.context['view'].should_include_votes():
+            # should be maximum one RatingVote per rating+user anyway.
+            # vote = obj.ratingvote_set.filter(
+            #     addon=self.context['request'].query_params['addon'],
+            #     rating=obj.pk)
+            # raise TypeError("self.context['request']: ", self.context['request'].query_params)
+            # raise TypeError("self.context['view']: ", self.context['view'])
+            # raise TypeError("obj.pk:", obj.pk)
+            # raise TypeError("vote:", vote)
+            rating_votes = GroupedVoting.get(
+                self.context['request'].query_params['addon'], obj.pk)
+            # raise TypeError(
+            #     "addon id:", self.context['request'].query_params['addon'],
+            #     "rating id:", obj.pk, "rating_votes: ", rating_votes)
+            return {
+                'upvote': rating_votes[1][1], 'downvote': rating_votes[0][1]}
+        return None
+
     def to_representation(self, instance):
         out = super(BaseRatingSerializer, self).to_representation(instance)
         if self.request and is_gate_active(self.request, 'ratings-title-shim'):
             out['title'] = None
         if not self.context['view'].should_include_flags():
             out.pop('flags', None)
+        if not self.context['view'].should_include_votes():
+            out.pop('votes', None)
         return out
 
 
