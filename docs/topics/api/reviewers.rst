@@ -169,13 +169,14 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string file.content: Raw content of the requested file.
     :>json string file.selected_file: The selected file, either from the ``file`` parameter or the default (manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines).
     :>json string|null file.download_url: The download url of the selected file or ``null`` in case of a directory.
+    :>json boolean uses_unknown_minified_code: Indicates that the selected file could be using minified code.
     :>json array file.entries[]: The complete file-tree of the extracted XPI.
     :>json int file.entries[].depth: Level of folder-tree depth, starting with 0.
     :>json string file.entries[].filename: The filename of the file.
     :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
     :>json string|null file.entries[].sha256: SHA256 hash. This is only set for the currently selected file.
     :>json string file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined.
-    :>json string files.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
+    :>json string file.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json int file.entries[].size: The size in bytes.
     :>json string file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.
 
@@ -192,7 +193,7 @@ This endpoint allows you to compare two Add-on versions with each other.
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
-.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/compare_to/(int:version_id)/
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:base_version_id)/compare_to/(int:version_id)/
 
     .. note::
 
@@ -204,16 +205,19 @@ This endpoint allows you to compare two Add-on versions with each other.
     Properties specific to this endpoint:
 
     :>json array file.entries[]: The complete file-tree of the extracted XPI.
-    :>json string files.entries[].status: Status of this file, see https://git-scm.com/docs/git-status#_short_format
+    :>json string file.entries[].status: Status of this file, see https://git-scm.com/docs/git-status#_short_format
     :>json int|null file.entries[].depth: Level of folder-tree depth, starting with 0.
     :>json string file.entries[].filename: The filename of the file.
     :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
     :>json string|null file.entries[].sha256: SHA256 hash. This is only set for the currently selected file. It may also be `null` for deleted files.
     :>json string|null file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined. Can be ``null`` in case of a deleted file.
-    :>json string|null files.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
+    :>json string|null file.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json int|null file.entries[].size: The size in bytes.
     :>json string|null file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.
     :>json object|null diff: See the following output with inline comments for a complete description.
+    :>json object base_file: The file attached to the base version you're comparing against.
+    :>json object base_file.id: The id of the base file.
+    :>json boolean uses_unknown_minified_code: Indicates that the selected file in either the current or the parent version could be using minified code.
 
     Git patch we're talking about:
 

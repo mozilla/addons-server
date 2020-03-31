@@ -22,14 +22,15 @@ class Config(models.Model):
             return {}
 
 
-def get_config(conf):
+def get_config(conf, default=None, *, json_value=False):
     try:
-        return Config.objects.get(key=conf).value
+        config = Config.objects.get(key=conf)
+        return config.value if not json_value else config.json
     except Config.DoesNotExist:
-        return None
+        return default
 
 
-def set_config(conf, value):
+def set_config(conf, value, *, json_value=False):
     cf, created = Config.objects.get_or_create(key=conf)
-    cf.value = value
+    cf.value = (value if not json_value else json.dumps(value))
     cf.save()

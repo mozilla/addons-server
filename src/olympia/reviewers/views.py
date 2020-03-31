@@ -607,10 +607,9 @@ def queue_moderated(request):
 
 
 @any_reviewer_required
-@post_required
 @json_view
 def application_versions_json(request):
-    app_id = request.POST['application_id']
+    app_id = request.GET.get('application_id', amo.FIREFOX.id)
     form = QueueSearchForm()
     return {'choices': form.version_choices_for_app_id(app_id)}
 
@@ -655,83 +654,30 @@ def queue_needs_human_review(request):
                   qs=qs, SearchForm=None)
 
 
-def perform_review_permission_checks(
-        request, addon, channel, content_review_only=False):
-    """Perform the permission checks needed by the review() view or anything
-    that follows the same behavior, such as the whiteboard() view.
-
-    Raises PermissionDenied when the current user on the request does not have
-    the right permissions for the context defined by addon, channel and
-    content_review_only boolean.
-    """
-    unlisted_only = (
-        channel == amo.RELEASE_CHANNEL_UNLISTED or
-        not addon.has_listed_versions(include_deleted=True))
-    was_auto_approved = (
-        channel == amo.RELEASE_CHANNEL_LISTED and
-        addon.current_version and addon.current_version.was_auto_approved)
-    static_theme = addon.type == amo.ADDON_STATICTHEME
-    try:
-        is_recommendable = addon.discoveryitem.recommendable
-    except DiscoveryItem.DoesNotExist:
-        is_recommendable = False
-
-    # Are we looking at an unlisted review page, or (weirdly) the listed
-    # review page of an unlisted-only add-on?
-    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
-        raise PermissionDenied
-    # Recommended add-ons need special treatment.
-    if is_recommendable and not acl.action_allowed(
-            request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
-        raise PermissionDenied
-    # If we're only doing a content review, we just need to check for the
-    # content review permission, otherwise it's the "main" review page.
-    if content_review_only:
-        if not acl.action_allowed(
-                request, amo.permissions.ADDONS_CONTENT_REVIEW):
-            raise PermissionDenied
-    elif static_theme:
-        if not acl.action_allowed(
-                request, amo.permissions.STATIC_THEMES_REVIEW):
-            raise PermissionDenied
-    else:
-        # Was the add-on auto-approved?
-        if was_auto_approved and not acl.action_allowed(
-                request, amo.permissions.ADDONS_POST_REVIEW):
-            raise PermissionDenied
-
-        # Finally, if it wasn't auto-approved, check for legacy reviewer
-        # permission.
-        if not was_auto_approved and not acl.action_allowed(
-                request, amo.permissions.ADDONS_REVIEW):
-            raise PermissionDenied
-
-
 def determine_channel(channel_as_text):
     """Determine which channel the review is for according to the channel
     parameter as text, and whether we should be in content-review only mode."""
     if channel_as_text == 'content':
         # 'content' is not a real channel, just a different review mode for
         # listed add-ons.
-        content_review_only = True
+        content_review = True
         channel = 'listed'
     else:
-        content_review_only = False
+        content_review = False
     # channel is passed in as text, but we want the constant.
     channel = amo.CHANNEL_CHOICES_LOOKUP.get(
         channel_as_text, amo.RELEASE_CHANNEL_LISTED)
-    return channel, content_review_only
+    return channel, content_review
 
 
-# Permission checks for this view are done inside, depending on type of review
-# needed, using perform_review_permission_checks().
 @login_required
+@any_reviewer_required  # Additional permission checks are done inside.
 @reviewer_addon_view_factory
 def review(request, addon, channel=None):
     whiteboard_url = reverse(
         'reviewers.whiteboard',
         args=(channel or 'listed', addon.slug if addon.slug else addon.pk))
-    channel, content_review_only = determine_channel(channel)
+    channel, content_review = determine_channel(channel)
 
     was_auto_approved = (
         channel == amo.RELEASE_CHANNEL_LISTED and
@@ -742,15 +688,27 @@ def review(request, addon, channel=None):
     except DiscoveryItem.DoesNotExist:
         is_recommendable = False
 
-    # If we're just looking (GET) we can bypass the specific permissions checks
-    # if we have ReviewerTools:View.
-    bypass_more_specific_permissions_because_read_only = (
-        request.method == 'GET' and acl.action_allowed(
-            request, amo.permissions.REVIEWER_TOOLS_VIEW))
+    # Are we looking at an unlisted review page, or (weirdly) the listed
+    # review page of an unlisted-only add-on?
+    unlisted_only = (
+        channel == amo.RELEASE_CHANNEL_UNLISTED or
+        not addon.has_listed_versions(include_deleted=True))
+    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
+        raise PermissionDenied
 
-    if not bypass_more_specific_permissions_because_read_only:
-        perform_review_permission_checks(
-            request, addon, channel, content_review_only=content_review_only)
+    # Are we looking at a listed review page while only having content review
+    # permissions ? Redirect to content review page, it will be more useful.
+    if (channel == amo.RELEASE_CHANNEL_LISTED and content_review is False and
+        acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) and
+        not any(
+            acl.action_allowed(request, perm) for perm in (
+                amo.permissions.ADDONS_REVIEW,
+                amo.permissions.ADDONS_POST_REVIEW,
+                amo.permissions.ADDONS_RECOMMENDED_REVIEW))):
+        return redirect('reviewers.review', 'content', addon.pk)
+
+    # Other cases are handled in ReviewHelper by limiting what actions are
+    # available depending on user permissions and add-on/version state.
 
     version = addon.find_latest_version(channel=channel, exclude=())
 
@@ -781,7 +739,7 @@ def review(request, addon, channel=None):
 
     form_helper = ReviewHelper(
         request=request, addon=addon, version=version,
-        content_review_only=content_review_only)
+        content_review=content_review)
     form = ReviewForm(request.POST if request.method == 'POST' else None,
                       helper=form_helper, initial=form_initial)
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
@@ -811,7 +769,7 @@ def review(request, addon, channel=None):
             except AddonApprovalsCounter.DoesNotExist:
                 pass
 
-        if content_review_only:
+        if content_review:
             queue_type = 'content_review'
         elif is_recommendable:
             queue_type = 'recommended'
@@ -826,6 +784,8 @@ def review(request, addon, channel=None):
         redirect_url = reverse('reviewers.unlisted_queue_all')
 
     if request.method == 'POST' and form.is_valid():
+        # Execute the action (is_valid() ensures the action is available to the
+        # reviewer)
         form.helper.process()
 
         amo.messages.success(
@@ -927,9 +887,10 @@ def review(request, addon, channel=None):
         actions_full=actions_full, addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
-        content_review_only=content_review_only, count=count,
+        content_review=content_review, count=count,
         deleted_addon_ids=deleted_addon_ids, flags=flags,
-        form=form, is_admin=is_admin, now=datetime.now(), num_pages=num_pages,
+        form=form, is_admin=is_admin, is_recommendable=is_recommendable,
+        now=datetime.now(), num_pages=num_pages,
         pager=pager, reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
@@ -943,6 +904,9 @@ def review(request, addon, channel=None):
 
 @never_cache
 @json_view
+# This will 403 for users with only ReviewerTools:View, but they shouldn't
+# acquire reviewer locks anyway, and it's not a big deal if they don't see
+# existing locks.
 @any_reviewer_required
 def review_viewing(request):
     if 'addon_id' not in request.POST:
@@ -1087,15 +1051,17 @@ def leaderboard(request):
         context(scores=ReviewerScore.all_users_by_score()))
 
 
-# Permission checks for this view are done inside, depending on type of review
-# needed, using perform_review_permission_checks().
-@login_required
+@any_reviewer_required
 @reviewer_addon_view_factory
 def whiteboard(request, addon, channel):
     channel_as_text = channel
-    channel, content_review_only = determine_channel(channel)
-    perform_review_permission_checks(
-        request, addon, channel, content_review_only=content_review_only)
+    channel, content_review = determine_channel(channel)
+
+    unlisted_only = (
+        channel == amo.RELEASE_CHANNEL_UNLISTED or
+        not addon.has_listed_versions(include_deleted=True))
+    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
+        raise PermissionDenied
 
     whiteboard, _ = Whiteboard.objects.get_or_create(pk=addon.pk)
     form = WhiteboardForm(request.POST or None, instance=whiteboard,
@@ -1122,15 +1088,7 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
     if not eula_or_privacy:
         raise http.Http404
     channel_text = request.GET.get('channel')
-    channel, content_review_only = determine_channel(channel_text)
-    # It's a read-only view so we can bypass the specific permissions checks
-    # if we have ReviewerTools:View.
-    bypass_more_specific_permissions_because_read_only = (
-        acl.action_allowed(
-            request, amo.permissions.REVIEWER_TOOLS_VIEW))
-    if not bypass_more_specific_permissions_because_read_only:
-        perform_review_permission_checks(
-            request, addon, channel, content_review_only=content_review_only)
+    channel, content_review = determine_channel(channel_text)
 
     review_url = reverse(
         'reviewers.review',
@@ -1142,7 +1100,7 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
                    'page_title': page_title, 'long_title': long_title})
 
 
-@login_required
+@any_reviewer_required
 @reviewer_addon_view_factory
 def eula(request, addon):
     return policy_viewer(request, addon, addon.eula,
@@ -1150,7 +1108,7 @@ def eula(request, addon):
                          long_title=ugettext('End-User License Agreement'))
 
 
-@login_required
+@any_reviewer_required
 @reviewer_addon_view_factory
 def privacy(request, addon):
     return policy_viewer(request, addon, addon.privacy_policy,

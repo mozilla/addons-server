@@ -42,6 +42,13 @@ services:
       - ./storage/guarded-addons:/srv/user-media/guarded-addons
     ports:
       - "80:80"
+    networks:
+      default:
+        aliases:
+          - olympia.test
+    depends_on:
+      - web
+      - addons-frontend
 
   memcached:
     image: memcached:1.4
@@ -100,5 +107,3 @@ services:
       - "3000:3000"
       - "3001:3001"
     command: yarn amo
-    links:
-      - "nginx:olympia.test"

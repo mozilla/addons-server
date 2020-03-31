@@ -106,6 +106,40 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
 
+    def test_list_show_link_to_reviewer_tools_listed(self):
+        addon = addon_factory()
+        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url, follow=True)
+        assert b'Reviewer Tools (listed)' in response.content
+        assert b'Reviewer Tools (unlisted)' not in response.content
+
+    def test_list_show_link_to_reviewer_tools_unlisted(self):
+        version_kw = {'channel': amo.RELEASE_CHANNEL_UNLISTED}
+        addon_factory(guid='@foo', version_kw=version_kw)
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url, follow=True)
+        assert b'Reviewer Tools (listed)' not in response.content
+        assert b'Reviewer Tools (unlisted)' in response.content
+
+    def test_list_show_link_to_reviewer_tools_with_both_channels(self):
+        addon = addon_factory()
+        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url, follow=True)
+        assert b'Reviewer Tools (listed)' in response.content
+        assert b'Reviewer Tools (unlisted)' in response.content
+
     def test_can_edit_with_addons_edit_permission(self):
         addon = addon_factory(guid='@foo')
         self.detail_url = reverse(
@@ -139,6 +173,50 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         addon.reload()
         assert addon.guid == '@bar'
+
+    def test_show_link_to_reviewer_tools_listed(self):
+        addon = addon_factory(guid='@foo')
+        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(detail_url, follow=True)
+        assert b'Reviewer Tools (listed)' in response.content
+        assert b'Reviewer Tools (unlisted)' not in response.content
+
+    def test_show_link_to_reviewer_tools_unlisted(self):
+        version_kw = {'channel': amo.RELEASE_CHANNEL_UNLISTED}
+        addon = addon_factory(guid='@foo', version_kw=version_kw)
+        detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(detail_url, follow=True)
+        assert b'Reviewer Tools (listed)' not in response.content
+        assert b'Reviewer Tools (unlisted)' in response.content
+
+    def test_show_links_to_reviewer_tools_with_both_channels(self):
+        addon = addon_factory(guid='@foo')
+        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(detail_url, follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Reviewer Tools (listed)' in content
+        assert ('http://testserver{}'.format(
+            reverse('reviewers.review', args=('listed', addon.pk))
+        ) in content)
+        assert 'Reviewer Tools (unlisted)' in content
+        assert ('http://testserver{}'.format(
+            reverse('reviewers.review', args=('unlisted', addon.pk))
+        ) in content)
 
     def test_can_not_list_without_addons_edit_permission(self):
         addon = addon_factory()
@@ -409,7 +487,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
-        with self.assertNumQueries(23):
+        with self.assertNumQueries(24):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             response = self.client.get(self.detail_url, follow=True)
@@ -417,7 +495,7 @@ class TestAddonAdmin(TestCase):
         assert addon.guid in response.content.decode('utf-8')
 
         version_factory(addon=addon)
-        with self.assertNumQueries(23):
+        with self.assertNumQueries(24):
             # confirm it scales
             response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200

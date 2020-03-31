@@ -23,12 +23,13 @@ v4_api_urls = [
     url(r'^accounts/', include(accounts_v4)),
     url(r'^activity/', include('olympia.activity.urls')),
     url(r'^addons/', include(addons_v4)),
+    url(r'^blocklist/', include('olympia.blocklist.urls')),
     url(r'^', include('olympia.discovery.api_urls')),
+    url(r'^hero/', include('olympia.hero.urls')),
     url(r'^ratings/', include(ratings_v4.urls)),
     url(r'^reviewers/', include('olympia.reviewers.api_urls')),
     url(r'^', include('olympia.signing.urls')),
     url(r'^', include(amo_api_patterns)),
-    url(r'^hero/', include('olympia.hero.urls')),
     url(r'^scanner/', include('olympia.scanners.api_urls')),
 ]
 

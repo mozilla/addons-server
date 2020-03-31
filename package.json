@@ -6,7 +6,7 @@
     "node": ">= 8.10"
   },
   "dependencies": {
-    "addons-linter": "1.22.0",
+    "addons-linter": "1.23.0",
     "clean-css": "4.2.3",
     "clean-css-cli": "4.3.0",
     "jqmodal": "1.4.2",
@@ -20,8 +20,8 @@
     "less": "3.11.1",
     "source-map": "0.7.3",
     "timeago": "1.6.7",
-    "uglify-js": "3.8.0",
-    "underscore": "1.9.2"
+    "uglify-js": "3.8.1",
+    "underscore": "1.10.2"
   },
   "devDependencies": {}
 }

@@ -275,12 +275,12 @@ class ReviewHelper(object):
     process off to the correct handler.
     """
     def __init__(self, request=None, addon=None, version=None,
-                 content_review_only=False):
+                 content_review=False):
         self.handler = None
         self.required = {}
         self.addon = addon
         self.version = version
-        self.content_review_only = content_review_only
+        self.content_review = content_review
         self.set_review_handler(request)
         self.actions = self.get_actions(request)
 
@@ -292,19 +292,20 @@ class ReviewHelper(object):
         self.handler.set_data(data)
 
     def set_review_handler(self, request):
+        """Set the handler property."""
         if (self.version and
                 self.version.channel == amo.RELEASE_CHANNEL_UNLISTED):
             self.handler = ReviewUnlisted(
                 request, self.addon, self.version, 'unlisted',
-                content_review_only=self.content_review_only)
+                content_review=self.content_review)
         elif self.addon.status == amo.STATUS_NOMINATED:
             self.handler = ReviewAddon(
                 request, self.addon, self.version, 'nominated',
-                content_review_only=self.content_review_only)
+                content_review=self.content_review)
         else:
             self.handler = ReviewFiles(
                 request, self.addon, self.version, 'pending',
-                content_review_only=self.content_review_only)
+                content_review=self.content_review)
 
     def get_actions(self, request):
         actions = OrderedDict()
@@ -314,58 +315,91 @@ class ReviewHelper(object):
             # the actions.
             return actions
 
-        # Conditions used below.
-        is_post_reviewer = acl.action_allowed(
-            request, amo.permissions.ADDONS_POST_REVIEW)
-        is_unlisted_reviewer = acl.action_allowed(
-            request, amo.permissions.ADDONS_REVIEW_UNLISTED)
-        is_content_reviewer = acl.action_allowed(
-            request, amo.permissions.ADDONS_CONTENT_REVIEW)
-        is_admin_tools_viewer = acl.action_allowed(
-            request, amo.permissions.REVIEWS_ADMIN)
-        reviewable_because_complete = self.addon.status not in (
-            amo.STATUS_NULL, amo.STATUS_DELETED)
-        regular_addon_review_is_allowed = (
-            not self.content_review_only and
-            not self.addon.needs_admin_code_review and
-            not self.addon.needs_admin_content_review and
-            not self.addon.needs_admin_theme_review
-        )
-        regular_content_review_is_allowed = (
-            self.content_review_only and
-            not self.addon.needs_admin_content_review)
-        reviewable_because_not_reserved_for_admins_or_user_is_admin = (
-            is_admin_tools_viewer or
-            (
-                self.version and
-                (
-                    regular_addon_review_is_allowed or
-                    regular_content_review_is_allowed
-                )
-            ))
-        reviewable_because_pending = (
-            self.version and self.version.is_unreviewed)
-        is_listed_was_auto_approved_and_user_can_post_review = (
+        # 2 kind of checks are made for the review page.
+        # - Base permission checks to access the review page itself, done in
+        #   the review() view
+        # - A more specific check for each action, done below, restricting
+        #   their availability while not affecting whether the user can see
+        #   the review page or not.
+        permission = None
+        version_is_unlisted = (
+            self.version and
+            self.version.channel == amo.RELEASE_CHANNEL_UNLISTED)
+        try:
+            is_recommendable = self.addon.discoveryitem.recommendable
+        except DiscoveryItem.DoesNotExist:
+            is_recommendable = False
+        current_version_is_listed_and_auto_approved = (
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED and
             self.addon.current_version and
-            self.addon.current_version.was_auto_approved and
-            is_post_reviewer and
-            not self.content_review_only)
-        is_unlisted_and_user_can_review_unlisted = (
+            self.addon.current_version.was_auto_approved)
+
+        if is_recommendable:
+            is_admin_needed = (
+                self.addon.needs_admin_content_review or
+                self.addon.needs_admin_code_review)
+            permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
+        elif self.content_review:
+            is_admin_needed = self.addon.needs_admin_content_review
+            permission = amo.permissions.ADDONS_CONTENT_REVIEW
+        elif version_is_unlisted:
+            is_admin_needed = self.addon.needs_admin_code_review
+            permission = amo.permissions.ADDONS_REVIEW_UNLISTED
+        elif self.addon.type == amo.ADDON_STATICTHEME:
+            is_admin_needed = self.addon.needs_admin_theme_review
+            permission = amo.permissions.STATIC_THEMES_REVIEW
+        elif current_version_is_listed_and_auto_approved:
+            is_admin_needed = (
+                self.addon.needs_admin_content_review or
+                self.addon.needs_admin_code_review)
+            permission = amo.permissions.ADDONS_POST_REVIEW
+        else:
+            is_admin_needed = (
+                self.addon.needs_admin_content_review or
+                self.addon.needs_admin_code_review)
+            permission = amo.permissions.ADDONS_REVIEW
+
+        assert permission is not None
+
+        if is_admin_needed:
+            permission = amo.permissions.REVIEWS_ADMIN
+
+        # Is the current user a reviewer for this kind of add-on ?
+        is_reviewer = acl.is_reviewer(request, self.addon)
+
+        # Is the current user an appropriate reviewer, noy only for this kind
+        # of add-on, but also for the state the add-on is in ? (Allows more
+        # impactful actions).
+        is_appropriate_reviewer = acl.action_allowed_user(
+            request.user, permission)
+
+        # Special logic for availability of reject multiple action:
+        if (self.content_review or
+                is_recommendable or
+                self.addon.type == amo.ADDON_STATICTHEME):
+            can_reject_multiple = is_appropriate_reviewer
+        else:
+            # When doing a code review, this action is also available to
+            # users with Addons:PostReview even if the current version hasn't
+            # been auto-approved, provided that the add-on isn't marked as
+            # needing admin review.
+            can_reject_multiple = (
+                is_appropriate_reviewer or
+                (acl.action_allowed_user(
+                    request.user, amo.permissions.ADDONS_POST_REVIEW) and
+                 not is_admin_needed)
+            )
+
+        addon_is_complete = self.addon.status not in (
+            amo.STATUS_NULL, amo.STATUS_DELETED)
+        version_is_unreviewed = self.version and self.version.is_unreviewed
+        addon_is_valid = self.addon.is_public() or self.addon.is_unreviewed()
+        addon_is_valid_and_version_is_listed = (
+            addon_is_valid and
             self.version and
-            self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
-            is_unlisted_reviewer)
-        is_public_and_listed_and_user_can_post_review = (
-            self.version and
-            self.addon.status == amo.STATUS_APPROVED and
-            self.version.channel == amo.RELEASE_CHANNEL_LISTED and
-            is_post_reviewer)
-        is_valid_and_listed_and_user_can_content_review = (
-            self.version and
-            (self.addon.is_public() or self.addon.is_unreviewed()) and
-            self.version.channel == amo.RELEASE_CHANNEL_LISTED and
-            is_content_reviewer and self.content_review_only)
+            self.version.channel == amo.RELEASE_CHANNEL_LISTED
+        )
 
         # Definitions for all actions.
         actions['public'] = {
@@ -376,10 +410,11 @@ class ReviewHelper(object):
                          'developer.'),
             'label': _('Approve'),
             'available': (
-                reviewable_because_complete and
-                reviewable_because_not_reserved_for_admins_or_user_is_admin and
-                reviewable_because_pending and
-                not self.content_review_only)
+                not self.content_review and
+                addon_is_complete and
+                version_is_unreviewed and
+                is_appropriate_reviewer
+            )
         }
         actions['reject'] = {
             'method': self.handler.process_sandbox,
@@ -388,7 +423,12 @@ class ReviewHelper(object):
                          'from the queue. The comments will be sent '
                          'to the developer.'),
             'minimal': False,
-            'available': actions['public']['available'],
+            'available': (
+                not self.content_review and
+                addon_is_complete and
+                version_is_unreviewed and
+                is_appropriate_reviewer
+            )
         }
         actions['approve_content'] = {
             'method': self.handler.approve_content,
@@ -399,8 +439,9 @@ class ReviewHelper(object):
             'minimal': False,
             'comments': False,
             'available': (
-                reviewable_because_not_reserved_for_admins_or_user_is_admin and
-                is_valid_and_listed_and_user_can_content_review
+                self.content_review and
+                addon_is_valid_and_version_is_listed and
+                is_appropriate_reviewer
             ),
         }
         actions['confirm_auto_approved'] = {
@@ -413,8 +454,10 @@ class ReviewHelper(object):
             'minimal': True,
             'comments': False,
             'available': (
-                reviewable_because_not_reserved_for_admins_or_user_is_admin and
-                is_listed_was_auto_approved_and_user_can_post_review
+                not self.content_review and
+                addon_is_valid_and_version_is_listed and
+                current_version_is_listed_and_auto_approved and
+                is_appropriate_reviewer
             ),
         }
         actions['reject_multiple_versions'] = {
@@ -426,10 +469,8 @@ class ReviewHelper(object):
                          'versions. The comments will be sent to the '
                          'developer.'),
             'available': (
-                self.addon.type != amo.ADDON_STATICTHEME and
-                reviewable_because_not_reserved_for_admins_or_user_is_admin and
-                (is_public_and_listed_and_user_can_post_review or
-                 is_valid_and_listed_and_user_can_content_review)
+                addon_is_valid_and_version_is_listed and
+                can_reject_multiple
             ),
         }
         actions['block_multiple_versions'] = {
@@ -443,8 +484,8 @@ class ReviewHelper(object):
                          'admin page.'),
             'available': (
                 self.addon.type != amo.ADDON_STATICTHEME and
-                reviewable_because_not_reserved_for_admins_or_user_is_admin and
-                is_unlisted_and_user_can_review_unlisted
+                version_is_unlisted and
+                is_appropriate_reviewer
             ),
         }
         actions['confirm_multiple_versions'] = {
@@ -456,7 +497,9 @@ class ReviewHelper(object):
                          'versions without notifying the developer.'),
             'comments': False,
             'available': (
-                is_unlisted_and_user_can_review_unlisted
+                self.addon.type != amo.ADDON_STATICTHEME and
+                version_is_unlisted and
+                is_appropriate_reviewer
             ),
         }
         actions['reply'] = {
@@ -465,7 +508,10 @@ class ReviewHelper(object):
             'details': _('This will send a message to the developer. '
                          'You will be notified when they reply.'),
             'minimal': True,
-            'available': self.version is not None,
+            'available': (
+                self.version is not None and
+                is_reviewer
+            )
         }
         actions['super'] = {
             'method': self.handler.process_super_review,
@@ -475,7 +521,10 @@ class ReviewHelper(object):
                          'your comments in the area below. They will '
                          'not be sent to the developer.'),
             'minimal': True,
-            'available': self.version is not None,
+            'available': (
+                self.version is not None and
+                is_reviewer
+            )
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -483,7 +532,9 @@ class ReviewHelper(object):
             'details': _('Make a comment on this version. The developer '
                          'won\'t be able to see this.'),
             'minimal': True,
-            'available': True,
+            'available': (
+                is_reviewer
+            )
         }
 
         return OrderedDict(
@@ -501,7 +552,7 @@ class ReviewHelper(object):
 class ReviewBase(object):
 
     def __init__(self, request, addon, version, review_type,
-                 content_review_only=False):
+                 content_review=False):
         self.request = request
         if request:
             self.user = self.request.user
@@ -517,7 +568,7 @@ class ReviewBase(object):
             ('theme_%s' if addon.type == amo.ADDON_STATICTHEME
              else 'extension_%s') % review_type)
         self.files = self.version.unreviewed_files if self.version else []
-        self.content_review_only = content_review_only
+        self.content_review = content_review
         self.redirect_url = None
 
     def set_addon(self, **kw):
@@ -618,9 +669,11 @@ class ReviewBase(object):
         # We need to display the name in some language that is relevant to the
         # recipient(s) instead of using the reviewer's. addon.default_locale
         # should work.
-        if self.addon.name.locale != self.addon.default_locale:
+        if (self.addon.name and
+                self.addon.name.locale != self.addon.default_locale):
             lang = to_language(self.addon.default_locale)
             with translation.override(lang):
+                # Force a reload of translations for this addon.
                 addon = Addon.unfiltered.get(pk=self.addon.pk)
         else:
             addon = self.addon
@@ -707,7 +760,7 @@ class ReviewBase(object):
 
         # Safeguard to make sure this action is not used for content review
         # (it should use confirm_auto_approved instead).
-        assert not self.content_review_only
+        assert not self.content_review
 
         # Sign addon.
         self.sign_files()
@@ -758,7 +811,7 @@ class ReviewBase(object):
 
         # Safeguard to make sure this action is not used for content review
         # (it should use reject_multiple_versions instead).
-        assert not self.content_review_only
+        assert not self.content_review
 
         # Hold onto the status before we change it.
         status = self.addon.status
@@ -793,7 +846,7 @@ class ReviewBase(object):
         if addon_type == amo.ADDON_STATICTHEME:
             needs_admin_property = 'needs_admin_theme_review'
             log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_THEME
-        elif self.content_review_only:
+        elif self.content_review:
             needs_admin_property = 'needs_admin_content_review'
             log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT
         else:
@@ -812,7 +865,7 @@ class ReviewBase(object):
         version = self.addon.current_version
 
         # Content review only action.
-        assert self.content_review_only
+        assert self.content_review
 
         # Doesn't make sense for unlisted versions.
         assert channel == amo.RELEASE_CHANNEL_LISTED
@@ -834,7 +887,7 @@ class ReviewBase(object):
             ReviewerScore.award_points(
                 self.user, self.addon, self.addon.status,
                 version=version, post_review=is_post_review,
-                content_review=self.content_review_only)
+                content_review=self.content_review)
 
     def confirm_auto_approved(self):
         """Confirm an auto-approval decision."""
@@ -879,7 +932,7 @@ class ReviewBase(object):
             ReviewerScore.award_points(
                 self.user, self.addon, self.addon.status,
                 version=version, post_review=is_post_review,
-                content_review=self.content_review_only)
+                content_review=self.content_review)
 
     def reject_multiple_versions(self):
         """Reject a list of versions."""
@@ -890,7 +943,7 @@ class ReviewBase(object):
         latest_version = self.version
         self.version = None
         self.files = None
-        action_id = (amo.LOG.REJECT_CONTENT if self.content_review_only
+        action_id = (amo.LOG.REJECT_CONTENT if self.content_review
                      else amo.LOG.REJECT_VERSION)
         timestamp = datetime.now()
         for version in self.data['versions']:
@@ -931,7 +984,7 @@ class ReviewBase(object):
         if self.human_review:
             ReviewerScore.award_points(
                 self.user, self.addon, status, version=latest_version,
-                post_review=True, content_review=self.content_review_only)
+                post_review=True, content_review=self.content_review)
 
     def confirm_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
@@ -1015,11 +1068,11 @@ class ReviewUnlisted(ReviewBase):
         params = (
             f'?min_version={min_version[0]}&max_version={max_version[0]}')
 
-        if self.addon.blocksubmission:
+        if self.addon.blocklistsubmission:
             self.redirect_url = (
                 reverse(
-                    'admin:blocklist_blocksubmission_change',
-                    args=(self.addon.blocksubmission.pk,)
+                    'admin:blocklist_blocklistsubmission_change',
+                    args=(self.addon.blocklistsubmission.pk,)
                 ))
         elif self.addon.block:
             self.redirect_url = (
@@ -1029,7 +1082,7 @@ class ReviewUnlisted(ReviewBase):
                 ) + params)
         else:
             self.redirect_url = (
-                reverse('admin:blocklist_blocksubmission_add') + params +
+                reverse('admin:blocklist_blocklistsubmission_add') + params +
                 f'&guids={self.addon.guid}')
 
     def confirm_multiple_versions(self):

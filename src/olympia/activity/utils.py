@@ -2,7 +2,7 @@ import re
 
 from datetime import datetime, timedelta
 from email.utils import formataddr
-from html.parser import HTMLParser
+from html import unescape
 
 from django.conf import settings
 from django.forms import ValidationError
@@ -242,8 +242,7 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
         with translation.override(settings.LANGUAGE_CODE):
             comments = '%s' % amo.LOG_BY_ID[note.action].short
     else:
-        htmlparser = HTMLParser()
-        comments = htmlparser.unescape(comments)
+        comments = unescape(comments)
 
     # Collect add-on authors (excl. the person who sent the email.) and build
     # the context for them.

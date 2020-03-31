@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-08-26 17:37+0000\n"
-"Last-Translator: Rahilsha <18bcs1203@gmail.com>\n"
+"PO-Revision-Date: 2020-03-25 09:34+0000\n"
+"Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -17,19 +17,19 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "प्रकार"
 
 msgid "Users"
-msgstr ""
+msgstr "उपयोगकर्ता"
 
 msgid "Addons"
-msgstr ""
+msgstr "ऐड-ऑन"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
 
 msgid "creation date"
-msgstr ""
+msgstr "निर्माण तिथि"
 
 msgid "User / Add-on"
 msgstr "उपयोगकर्ता / ऐड-ऑन"
@@ -45,11 +45,11 @@ msgstr ""
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "चुने गए %d रिपोर्ट को मान्य के रूप में चिह्नित किया गया है।"
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "चुने गए %d रिपोर्ट को संदेहजनक के रूप में चिह्नित किया गया है।"
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr ""
@@ -62,7 +62,7 @@ msgstr "रूपांतरि‌त:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "%(filter_title)s द्वारा"
 
 msgid "All"
 msgstr "सभी"
@@ -417,7 +417,7 @@ msgid "Invalid token or hash."
 msgstr "अमान्य JWT टोकन।"
 
 msgid "Email address not found."
-msgstr ""
+msgstr "ईमेल पता नहीं मिला।"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "इस क्षेत्र में कम से कम एक {num} वर्णों की लंबाई होना चाहिए।"
@@ -484,7 +484,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "यह ऐड-ऑन पहले ही संग्रह मे मौजूद है"
 
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} का निर्माण किया गया था।"
 
 msgid "{addon} properties edited."
 msgstr "{addon} गुण संपादित किए गए।"
@@ -493,7 +493,7 @@ msgid "{addon} description edited."
 msgstr "{addon} विवरण संपादित किया गया।"
 
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "{addon} के लिए श्रेणियां संपादित की गई।"
 
 msgid "{0.name} ({1}) added to {addon}."
 msgstr ""
@@ -516,17 +516,17 @@ msgid "{addon} status changed to {status}."
 msgstr "{addon} स्थिति {status} में परिवर्तित हो गई है।"
 
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{addon} में {version} जोड़ा गया।"
 
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{addon} के लिए {version} संपादित किया गया।"
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "{addon} से संस्करण {0} हटाया गया।"
 
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "{addon} के {version} में फ़ाइल {0.name} जोड़ा गया।"
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "{addon} के {version} से फ़ाइल {0} को हटा दिया गया।"
@@ -586,10 +586,10 @@ msgid "Commented"
 msgstr "टिप्पणी की गई"
 
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{addon} में {tag} जोड़ा गया।"
 
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{addon} से {tag} हटाया गया।"
 
 msgid "{addon} added to {collection}."
 msgstr ""
@@ -695,13 +695,13 @@ msgid "User {user} banned."
 msgstr ""
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "उपयोगकर्ता {user} तस्वीर मिटाया गया।"
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "{group} में उपयोगकर्ता {0.name} जोड़ा गया।"
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "{group} से उपयोगकर्ता {0.name} हटाया गया।"
 
 msgid "{addon} unlisted."
 msgstr "{addon} गैर-सूचीबद्ध ।"
@@ -1174,7 +1174,7 @@ msgid "Video"
 msgstr "वीडियो"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "सर्वाधिकार सुरक्षित"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr ""
@@ -1704,7 +1704,7 @@ msgstr "संस्करण %s अक्षम।"
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "संस्करण %s मिटाया गया।"
 
 #, python-format
 msgid "Version %s re-enabled."
@@ -1870,7 +1870,7 @@ msgstr "{0} के लिए हालिया गतिविधि"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "%(user)s द्वारा <time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time>"
 
 msgid "No results found."
 msgstr "कोई परिणाम नहीं मिला।"
@@ -1942,7 +1942,7 @@ msgstr "हाल की गतिविधि"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(user)s द्वारा %(ago)s"
 
 msgid "Older activity for My Add-ons"
 msgstr ""
@@ -1969,7 +1969,7 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "आपको {addon_name} का लेखक बनने के लिए आमंत्रित किया गया है।"
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
 msgstr ""
@@ -2001,7 +2001,7 @@ msgid ""
 msgstr ""
 
 msgid "Additional Details"
-msgstr ""
+msgstr "अतिरिक्त जानकारियां"
 
 msgid "Edit"
 msgstr "संपादन"
@@ -2058,7 +2058,7 @@ msgid "Describe {0}"
 msgstr "संस्करण {0}"
 
 msgid "Name and Summary"
-msgstr ""
+msgstr "नाम और सारांश"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2375,7 +2375,7 @@ msgid "Submit a New Version"
 msgstr "एक नया संस्करण जमा करें"
 
 msgid "Name and Summary:"
-msgstr ""
+msgstr "नाम और सारांश:"
 
 msgid "required"
 msgstr "जरूरी"
@@ -2979,7 +2979,7 @@ msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "संस्करण {0} प्रबंधित करें"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"

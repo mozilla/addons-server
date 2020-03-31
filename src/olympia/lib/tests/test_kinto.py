@@ -16,7 +16,7 @@ from olympia.lib.kinto import KintoServer
     BLOCKLIST_KINTO_PASSWORD='test_password')
 class TestKintoServer(TestCase):
 
-    def test_setup_test_server_auth(self):
+    def test_setup_server_auth(self):
         server = KintoServer('foo', 'baa')
         responses.add(
             responses.GET,
@@ -39,17 +39,24 @@ class TestKintoServer(TestCase):
             json={'user': {'id': 'account:test_username'}})
         server.setup_test_server_auth()
 
-    def test_setup_test_server_collection(self):
+    def test_setup_server_bucket(self):
         server = KintoServer('foo', 'baa')
+        # if the server 403s on the bucket it's because it doesn't exist
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa/records',
+            settings.KINTO_API_URL + 'buckets/foo',
             content_type='application/json',
             status=403)
         responses.add(
             responses.PUT,
             settings.KINTO_API_URL + 'buckets/foo',
             content_type='application/json')
+        # if the server 404s on the collection it's because it doesn't exist
+        responses.add(
+            responses.GET,
+            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
+            content_type='application/json',
+            status=404)
         responses.add(
             responses.PUT,
             settings.KINTO_API_URL + 'buckets/foo/collections/baa',
@@ -57,11 +64,23 @@ class TestKintoServer(TestCase):
             status=201)
         server.setup_test_server_collection()
 
-        # If repeated then the collection shouldn't 403 a second time
+    def test_setup_server_collection(self):
+        server = KintoServer('foo', 'baa')
+        # But if the bucket exists then the collection should still be created
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa/records',
+            settings.KINTO_API_URL + 'buckets/foo',
             content_type='application/json')
+        responses.add(
+            responses.GET,
+            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
+            content_type='application/json',
+            status=404)
+        responses.add(
+            responses.PUT,
+            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
+            content_type='application/json',
+            status=201)
         server.setup_test_server_collection()
 
     @override_settings(KINTO_API_IS_TEST_SERVER=False)
@@ -80,12 +99,16 @@ class TestKintoServer(TestCase):
             settings.KINTO_API_URL,
             content_type='application/json',
             json={'user': {'id': 'account:test_username'}})
-        records_url = (
+        bucket_url = (
             settings.KINTO_API_URL +
-            'buckets/foo_test_username/collections/baa/records')
+            'buckets/foo_test_username')
         responses.add(
             responses.GET,
-            records_url,
+            bucket_url,
+            content_type='application/json')
+        responses.add(
+            responses.GET,
+            bucket_url + '/collections/baa',
             content_type='application/json')
 
         server.setup()
