@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 14:41+0000\n"
+"PO-Revision-Date: 2020-03-31 14:56+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5660,7 +5660,7 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Ɣur-k!</strong> Aseqdac-nniḍen iwala asebter-a uqbel-ik."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Tafelwit tamellalt d amḍiq i umbaddal n telɣut icudden ɣer uzegrir-a (akken yebɣu yella lqem), gar uneflay akked umaẓrag. Tafelwit-a zemren ad tt-wali i sin."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr ""
@@ -5866,13 +5866,13 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Ala WebExtensions i yettwasirgen ad yezgel GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Ma ulac aɣilif, efk-d GUID n uzegrir-ik deg umeskan ma yella iɛedda 64 n yisekkilen."
 
 msgid "Invalid GUID in URL"
 msgstr "GUID arameɣu di URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Ur tezmireḍ ara ad tbedreḍ lqem-a n uzegrir s API imi tettuḍ iɣef isefka. Ma ulac aɣilif, azen-d deg usmel web"
 
 msgid "No uploaded file for that addon and version."
 msgstr "Ulac afaylu yulin i uzegrir neɣ lqem-nni."
@@ -6181,7 +6181,7 @@ msgstr "Tutlayin timaynutin"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Ɣur-k ibeddilen ur yettwaskelsen ara yakan deg tutlayt <b>{0}</b>. Tebɣiḍ ad teskelseḍ ibeddilen send ad tbeddleḍ tutlayt?"
 
 msgid "Discard Changes"
 msgstr "Sefsex asinifel"
@@ -6249,7 +6249,7 @@ msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Sekcem tansa IPv6 tameɣtut neɣ azilal n uzeṭṭa IPv6 CIDR, amedya. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "DDeqs n yizegrar ur iqudṛen ara ilugan-nneɣ ttwaznen-d seg tensa-ik. Tansa IP tewḥel."
 
 msgid "Email Pattern"
 msgstr "Taneɣruft n yimayl"
@@ -6260,7 +6260,7 @@ msgid ""
 msgstr ""
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr ""
+msgstr "Tansa n yimayl i yettwasqedcen i yumiḍan-ik ur tettwaqbal ara i tuzna n yizegrar."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
@@ -6287,7 +6287,7 @@ msgid "someone writes a review of my add-on"
 msgstr "yella win yuran acegger ɣef uzegrir inu"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "qqim deg yisallen s urmas n telɣut ɣef yineḍruyen i yineflayen n yizegrar (rmes ula d tabrat n telɣut about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "amṣada n uzegrir-inu ur yettwalqem ara"
