@@ -103,6 +103,9 @@ class TestRatingViewSetGet(TestCase):
             assert 'flags' not in data['results'][0]
             assert 'flags' not in data['results'][1]
 
+            assert 'votes' not in data['results'][0]
+            assert 'votes' not in data['results'][1]
+
         return data
 
     def test_list_show_permission_for_anonymous(self):
@@ -714,6 +717,89 @@ class TestRatingViewSetGet(TestCase):
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
         assert 'flags' not in data['results'][0]
+
+    def test_list_show_votes_for_anonymous(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        rating1 = Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory(),
+            rating=2)
+        rating0 = Rating.objects.create(
+            addon=self.addon, body='review 0', user=user_factory(),
+            rating=1)
+        # then add some RatingFlag for a rating
+        RatingVote.objects.create(
+            addon=self.addon, rating=rating1, user=self.user, vote=1)
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'show_votes_for': 1})
+        assert response.status_code == 200
+        data = json.loads(force_text(response.content))
+        rating0 = data['results'][0]
+        rating1 = data['results'][1]
+        # Assuming voting feature is not supported for replies, so just
+        # check the voting data for the rating
+        assert 'votes' in rating0
+        assert 'votes' in rating1
+        assert rating0['votes'] == {'upvote': 0, 'downvote': 0}
+        assert rating1['votes'] == {'upvote': 1, 'downvote': 0}
+
+    def test_list_show_votes_for_not_boolean(self):
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'show_votes_for': 'dummy'})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_votes_for parameter should be a boolean')
+
+    # def test_list_rating_votes(self):
+    #     self.user = user_factory()
+    #     self.client.login_api(self.user)
+    #     rating1 = Rating.objects.create(
+    #         addon=self.addon, body='review 1', user=user_factory(),
+    #         rating=2)
+    #     rating0 = Rating.objects.create(
+    #         addon=self.addon, body='review 0', user=user_factory(),
+    #         rating=1)
+    #
+    #     # First, not voted
+    #     response = self.client.get(
+    #         self.url, {'addon': self.addon.pk, 'show_votes_for': 1})
+    #     assert response.status_code == 200
+    #     data = json.loads(force_text(response.content))
+    #     assert data['results'][0]['votes'] == {'upvote': 0, 'downvote': 0}
+    #     assert data['results'][1]['votes'] == {'upvote': 0, 'downvote': 0}
+    #
+    #     # then add some RatingVote - one for a rating, the other doesn't have
+    #     new_vote = RatingVote.objects.create(
+    #         addon=self.addon, rating=rating1, user=self.user, vote=1)
+    #     # raise TypeError("new_vote", new_vote.addon, new_vote.rating, new_vote.user, new_vote.vote)
+    #     response = self.client.get(
+    #         self.url, {'addon': self.addon.pk, 'show_votes_for': 1})
+    #     assert response.status_code == 200
+    #     data = json.loads(force_text(response.content))
+    #     raise TypeError("data", data)
+    #     rating0 = data['results'][0]
+    #     rating1 = data['results'][1]
+    #     assert 'votes' in rating0
+    #     assert 'votes' in rating1
+    #     raise TypeError("rating0['votes']", rating0['votes'], "rating1['votes']", rating1['votes'])
+    #     assert rating0['votes'] == {'upvote': 0, 'downvote': 0}
+    #     assert rating1['votes'] == {'upvote': 1, 'downvote': 0}
+    #
+    # def test_list_rating_flags_absent_in_v3(self):
+    #     self.user = user_factory()
+    #     self.client.login_api(self.user)
+    #     rating = Rating.objects.create(
+    #         addon=self.addon, body='review', user=user_factory(),
+    #         rating=1)
+    #     RatingFlag.objects.create(
+    #         rating=rating, user=self.user, flag=RatingFlag.OTHER,
+    #         note=u'foo')
+    #     params = {'addon': self.addon.pk, 'show_flags_for': self.user.pk}
+    #     response = self.client.get(
+    #         reverse_ns('rating-list', api_version='v3'), params)
+    #     assert response.status_code == 200
+    #     data = json.loads(force_text(response.content))
+    #     assert 'flags' not in data['results'][0]
 
     def test_detail(self):
         review = Rating.objects.create(
