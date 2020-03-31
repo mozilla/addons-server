@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 11:22+0000\n"
+"PO-Revision-Date: 2020-03-31 11:27+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4662,26 +4662,26 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Azal adday yettusefraken i \"strict_min_version\" d 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "\"strict_min_version\" {appver} arussin i {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Ur izmir ara ad isleḍ afaylu yulin, aferdis <%s>ulac-it neɣ d ilem"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: tuccḍa n tɣellist XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: Tuccḍa n usweḍ XML."
 
 msgid "Could not parse uploaded file."
 msgstr "Ur izmir ara ad isleḍ afaylu yulin."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Anaw n teṛcivt ur yettwasefrak ara."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Yir isem n ufaylu deg teṛcivt. Sefqed meṛṛa ismawen n yifuyla ma llan s usettengel utf-8 neɣ latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
