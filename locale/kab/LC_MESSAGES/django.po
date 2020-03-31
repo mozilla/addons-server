@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 10:28+0000\n"
+"PO-Revision-Date: 2020-03-31 10:47+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4567,7 +4567,7 @@ msgstr "Ḍfeṛ ssuma n yifarisen {start_sub_heading}s {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Ḍfeṛ ifarisen daɣen rmes alɣu ticki ssuma tenɣes deg yiferdisen i tḥemmleḍ deg Amazon, Bst Buy, eBay, Home Depot, d Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
