@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 13:52+0000\n"
+"PO-Revision-Date: 2020-03-31 14:02+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4519,7 +4519,7 @@ msgstr "Isebtar icebḥen i tmuɣli {start_sub_heading}s {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Mud tafat neɣ tebrek i yisebtar web ara yuɣalen cebḥit i tmuɣli."
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4527,7 +4527,7 @@ msgstr "Senɣes aletu {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Sewḥel ismal web yesṛuḥuyen akud. Bder-d kan ismal web i tebɣiḍ ad isewḥel usiɣzef. Ttṛebga taskudant!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4535,7 +4535,7 @@ msgstr "Saki-d isebtar yemmuten {start_sub_heading}s {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Af-d isebtar web yellan deg teṛcivt, mmuten neɣ ṛuḥen."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4543,7 +4543,7 @@ msgstr "Beddel udem n Firefox {start_sub_heading}s {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Beddel udem n yiminig-ik. Feṣṣel s tifses isental-ik n ucebbeḥ akken ad terreḍ Firefox yettban-d akken tebɣid."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
