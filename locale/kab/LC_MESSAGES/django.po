@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-30 23:53+0000\n"
+"PO-Revision-Date: 2020-03-30 23:56+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4226,7 +4226,7 @@ msgstr "Sewḥel abeddel n uwelleh yisebtar & uḍfaṛ {start_sub_heading}s {ad
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Anef i ubeddel n tnilla akken ad tkecmeḍ ɣer yismal i tḥemmleḍ — s zreb."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4234,7 +4234,7 @@ msgstr "Sken-d awalen uffiren ticki tettaruḍ {start_sub_heading}s {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Ad yernu sken/ffer i wurtan meṛṛa n wawalen uffiren."
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4937,13 +4937,13 @@ msgid "Do:"
 msgstr "Eg:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Aru am wakken tettmeslayeḍ i umeddakkel-ik ɣef tirmit-inek d uzegrir."
 
 msgid "Keep reviews concise and easy to understand."
 msgstr "Ḍmen d akken asenqed-ik ad yeqqim meẓẓi daɣen fessus i wugzay."
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Mudd-d ttfaṣil ilaqen s telqey. D amedya:"
 
 msgid "Did the add-on work as you expected it to?"
 msgstr "Azegrir iteddu akken i terǧiḍ?"
@@ -4961,13 +4961,13 @@ msgid "Will you continue to use this add-on?"
 msgstr "Ad tettekkiḍ deg useqdec n uzegrir-agi?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "Γer s leεqel-ik alɣu-inek uqbel ad t-tazneḍ akken ur ṭuqqutent ara tuccḍiwin."
 
 msgid "Don’t:"
 msgstr "Ur teg ara:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "Efk-d tamuɣli-k s yiwen n wawal kan am \"Gedha!\", \"Igerrez\" neɣ \"diri-t\"."
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
@@ -6197,14 +6197,14 @@ msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Iseqdacen \"%(users)s\" ttwagedlen."
 
 msgid "Ban selected users"
 msgstr "Gdel aseqdac-a"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
+msgstr "Iseqdacen \"%(users)s\" wennzen tasarut-nsen n API."
 
 msgid "Reset API Key"
 msgstr "Ales awennez n tsarut n API"
@@ -6219,10 +6219,10 @@ msgid "Activity Logs"
 msgstr "Iɣmisen n urmud"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Sekcem tansa n IPv4 neɣ IPv6 iṣeḥḥan, e.g 127.0.0.1. Ad tettwaselket ɣer uzeṭṭa 32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad teskecmeḍ ugar n yiwet n tansa n IP neɣ n uzeṭṭa."
 
 msgid "No user with that email."
 msgstr "Ulac aseqdac s yimayl-agi."
