@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 12:58+0000\n"
+"PO-Revision-Date: 2020-03-31 13:52+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4491,7 +4491,7 @@ msgstr "Sader s wudem fessusen imidytane {start_sub_heading}s {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Faṛ€s tagnit seg usefrek n usader n tnelli n usqerdec. Af-d s wudem awurman anawen yemgaraden n yimidyaten yellan i usader."
 
 #. editorial content for the discovery pane.
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4499,7 +4499,7 @@ msgstr "Sekles s wudem fessusen tugniwin {start_sub_heading}s {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "Sekles tugniwin s wudem fessusen — awi-d kan tugniwin ɣer yiccer-ik amiran."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4507,7 +4507,7 @@ msgstr "Ktazel isebtar web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Ktazel isebtar web. Suneɣ alugen umḍin ɣef yal asebter tebɣiḍ akken ad tektazleḍ teɣzi, tehri akked ureyyec n yiferdisen n usebter."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
