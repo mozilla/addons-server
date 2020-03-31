@@ -143,16 +143,17 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             if self._should_include_votes:
                 # Check the parameter was sent correctly
                 try:
-                    show_votes_for = (
-                        serializers.IntegerField().to_internal_value(
+                    # set "show_votes_for" to be boolean such that 0 means False,
+                    # which don't display "vote" while 1 means True and display
+                    # "vote"
+                    self._show_votes_for = (
+                        serializers.BooleanField().to_internal_value(
                             request.GET['show_votes_for']))
-                    if show_votes_for != request.user.pk:
-                        raise serializers.ValidationError
                 except serializers.ValidationError:
                     raise ParseError(
-                        'show_votes_for parameter value should be equal to '
-                        'the user id of the authenticated user')
-        return self._should_include_votes
+                        'show_votes_for parameter should be a boolean')
+
+        return self._should_include_votes and self._show_votes_for is True
 
     def check_permissions(self, request):
         """Perform permission checks.

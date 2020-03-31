@@ -120,13 +120,22 @@ class BaseRatingSerializer(serializers.ModelSerializer):
             # raise TypeError("self.context['view']: ", self.context['view'])
             # raise TypeError("obj.pk:", obj.pk)
             # raise TypeError("vote:", vote)
-            rating_votes = GroupedVoting.get(
-                self.context['request'].query_params['addon'], obj.pk)
+
+            #if we only specify rating id (Detail display)
+            if 'addon' not in self.context['request'].query_params:
+                # raise TypeError("obj.pk:", obj.addon.pk)
+                rating_votes = GroupedVoting.get(obj.addon.pk, obj.id)
+                return {
+                    'upvote': rating_votes[1][1], 'downvote': rating_votes[0][1]}
+            else:
+            #if we specify addon id (List ratings display)
+                rating_votes = GroupedVoting.get(
+                    self.context['request'].query_params['addon'], obj.pk)
             # raise TypeError(
             #     "addon id:", self.context['request'].query_params['addon'],
-            #     "rating id:", obj.pk, "rating_votes: ", rating_votes)
-            return {
-                'upvote': rating_votes[1][1], 'downvote': rating_votes[0][1]}
+            #     "rating id:", obj.id, "rating_votes: ", rating_votes)
+                return {
+                    'upvote': rating_votes[1][1], 'downvote': rating_votes[0][1]}
         return None
 
     def to_representation(self, instance):
