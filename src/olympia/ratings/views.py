@@ -133,6 +133,27 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                         'the user id of the authenticated user')
         return self._should_include_flags
 
+    def should_include_votes(self):
+        if not hasattr(self, '_should_include_votes'):
+            request = self.request
+            self._should_include_votes = (
+                'show_votes_for' in request.GET and
+                not is_gate_active(request, 'del-ratings-votes')
+            )
+            if self._should_include_votes:
+                # Check the parameter was sent correctly
+                try:
+                    show_votes_for = (
+                        serializers.IntegerField().to_internal_value(
+                            request.GET['show_votes_for']))
+                    if show_votes_for != request.user.pk:
+                        raise serializers.ValidationError
+                except serializers.ValidationError:
+                    raise ParseError(
+                        'show_votes_for parameter value should be equal to '
+                        'the user id of the authenticated user')
+        return self._should_include_votes
+
     def check_permissions(self, request):
         """Perform permission checks.
 
@@ -244,9 +265,11 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                     'the user id of the authenticated user')
             extra_data['can_reply'] = (
                 self.check_can_reply_permission_for_ratings_list())
-        # Call this here so the validation checks on the `show_flags_for` are
-        # carried out even when there are no results to serialize.
+        # Call this here so the validation checks on the `show_flags_for` and
+        # `show_votes_for` are carried out even when there are no results
+        # to serialize.
         self.should_include_flags()
+        self.should_include_votes()
         response = super(RatingViewSet, self).get_paginated_response(data)
         if extra_data:
             response.data.update(extra_data)

@@ -1733,6 +1733,7 @@ DRF_API_GATES = {
         'del-accounts-fxa-edit-email-url',
         'del-version-license-is-custom',
         'del-ratings-flags',
+        'del-ratings-votes',
         'activity-user-shim',
         'autocomplete-sort-param',
         'is-source-public-shim',

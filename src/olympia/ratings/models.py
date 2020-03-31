@@ -430,7 +430,7 @@ class GroupedVoting(object):
     Group an add-on's votes so we can have a graph of voting counts.
 
     SELECT vote, COUNT(vote) FROM reviews where addon=:id and rating=:id2;
-    SELECT vote,COUNT(vote) FROM rating_vote where addon_id=36 and review_id=163;
+    SELECT vote, COUNT(vote) FROM rating_vote where addon_id=36 and review_id=163;
     """
     # Non-critical data, so we always leave it in memcache. Cache for a
     # particular add-on is cleared when a rating is added/modified and updated
@@ -446,11 +446,11 @@ class GroupedVoting(object):
         cache.delete(cls.key(addon_pk,rating_pk))
 
     @classmethod
-    def get(cls, addon_pk,rating_pk, update_none=True):
+    def get(cls, addon_pk, rating_pk, update_none=True):
         try:
-            grouped_votings = cache.get(cls.key(addon_pk,rating_pk))
+            grouped_votings = cache.get(cls.key(addon_pk, rating_pk))
             if update_none and grouped_votings is None:
-                return cls.set(addon_pk,rating_pk)
+                return cls.set(addon_pk, rating_pk)
             return grouped_votings
         except Exception:
             # Don't worry about failures, especially timeouts.
