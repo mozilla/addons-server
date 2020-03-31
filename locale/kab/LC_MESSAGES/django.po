@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 12:12+0000\n"
+"PO-Revision-Date: 2020-03-31 12:17+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5036,7 +5036,7 @@ msgid "Inappropriate language/dialog"
 msgstr "Yir tutlayt /amsawal"
 
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Aneqqis n yibugen neɣ yir asuter n tallelt deg tegnit-a"
 
 msgid "Other (please specify)"
 msgstr "Ayen nniḍen (ini-d)"
@@ -5048,10 +5048,10 @@ msgid "You can't change the add-on of a review once it has been created."
 msgstr "Ur tezmireḍ ara ad tesnifleḍ azegrir n ucegger ticki yettwarna."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad terreḍ i usenqed i yellan yakan d tiririt."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad tbeddleḍ lqem n uzegrir ticki yettwarna usenqed."
 
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Lqem-agi n uzegrir ulac-it neɣ ur yelli ara d azayez."
@@ -5064,13 +5064,13 @@ msgstr "Ur tezmireḍ ara ad ternuḍ ugar n yiwen n ucegger i yiwen n lqem n uz
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Yir anay [%s] - ilaq ad yili d yiwen segf [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Asenqed-a ur izmir ara ad yettwammel acku ur igbir ara aḍris."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Asegzi wezzilen ilaq ad d-ittunefk s ufran n \"Wayeḍ\" d sebba n tummla."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5149,7 +5149,7 @@ msgid "Applications:"
 msgstr "Isnasen:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Ilaq uneflay ad d-yerr tiririt ddaw n…"
 
 msgid "days"
 msgstr "ussan"
@@ -5161,7 +5161,7 @@ msgid "Private Whiteboard"
 msgstr "Tafelwit tamellalt tusligt"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Ḥrez acegger; kkes anayen"
 
 msgid "Skip for now"
 msgstr "Suref akka tura"
