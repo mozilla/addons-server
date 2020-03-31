@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 14:34+0000\n"
+"PO-Revision-Date: 2020-03-31 14:41+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5648,7 +5648,7 @@ msgid "Please select one or more versions in the list above."
 msgstr "Ma ulac aɣilif, fren yiwen neɣ ugar n yileqman deg  tabdart ddaw-a."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "Tzemreḍ yal tikkelt ad tazenḍ tiferkit-a, maca ur t-teg ara arma teẓriḍ ur d-yeggar ara tillas."
 
 msgid "Insert canned response..."
 msgstr "Sekcem tiririt yettwakelsen..."
@@ -5657,7 +5657,7 @@ msgid "Tested on:"
 msgstr "Yettwasekyed di:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Ɣur-k!</strong> Aseqdac-nniḍen iwala asebter-a uqbel-ik."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
@@ -5830,14 +5830,14 @@ msgid "Return To AMO is currently disabled"
 msgstr "Tuɣalin ɣer AMO yensa akka tura"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Yir tuɣalin ɣe guid n AMO (ulac-it s talɣa base64url?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Yir tuɣalin ɣe guid n AMO (mačči d yisen seg yizegrar yettwafernen)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Yir asdukel n yiɣewwaren \"%s\", \"%s\" d \"%s\"."
 
 msgid "Maximum query length exceeded."
 msgstr "Teɣzi tafellayt n usuter iɛeddan."
@@ -5982,7 +5982,7 @@ msgid "This dashboard is currently <b>public</b>."
 msgstr "Tafelwit-agi n usenqded akka tura d <b>tazayezt</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Tafelwit-agi n usenqded akka tura d <b>tusligt</b>."
 
 msgid "Change settings."
 msgstr "Iɣewwaṛen n usnifel."
@@ -6038,7 +6038,7 @@ msgid "Download sources by Date"
 msgstr "Iɣbula n usider s wazemz"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Ɣef uḍfar n yiɣbula izɣarayanen..."
 
 #, python-format
 msgid ""
@@ -6088,7 +6088,7 @@ msgid "Report Trademark Abuse"
 msgstr "Mmel yir aseqdec n tecreṭ"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Asmel-a web amaynut ur yessefrak ara tunigin deg yiselkimen akked izirazen"
 
 msgid "View the new site"
 msgstr "Wali asmel amaynut"
@@ -6198,11 +6198,11 @@ msgstr "Azray n useḥreṣ n yiseqdacen"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Aseqdac \"%(user)s\" yettwagdel."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Tawlaft n useqdac \"%(user)s\" tettwakkes."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
@@ -6246,13 +6246,13 @@ msgid "My Favorite Add-ons"
 msgstr "Izegrar inu inurifen"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Sekcem tansa IPv6 tameɣtut neɣ azilal n uzeṭṭa IPv6 CIDR, amedya. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Taneɣruft n yimayl"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
