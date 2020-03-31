@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 12:54+0000\n"
+"PO-Revision-Date: 2020-03-31 12:58+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4447,7 +4447,7 @@ msgstr "Ḥrez takatut {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Seḥbes aḍeggeṛ n tkatut s yiccaren ur nenfiɛ ara."
 
 #. editorial content for the discovery pane.
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4455,7 +4455,7 @@ msgstr "Sekles isebtar web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Sekles isebtar ummiden — neɣ iḥricen seg-sen — seg yiwen n ufaylu HTML."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4463,7 +4463,7 @@ msgstr "Zgel iferdisen ur nemɛin ara {start_sub_heading}s {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr ""
+msgstr "D ayen, timseɛra n textilin n useqdec. Asiɣzef-a uḥric ad ak-d-yefk tallelt ad tegzuḍ s zreb ayen i ak-d-yettwasutren ad tqebled."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4475,7 +4475,7 @@ msgstr "Snerni tarmit n tɣuri {start_sub_heading}s {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Ɣer s wugar n usegzi akked tefses. Kkes ayen ur nemwin seg uḍris deg yisebtar web."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4483,7 +4483,7 @@ msgstr "Sewḥel adelle & wayen-nniḍen {start_sub_heading}s {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "Sewḥel adellel daɣen awi ugar n ummesten yennernan mgal yir iseɣzanen akked uḍfaṛ n udellel."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
