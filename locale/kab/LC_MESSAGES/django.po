@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 14:22+0000\n"
+"PO-Revision-Date: 2020-03-31 14:34+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5206,7 +5206,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Yeɛṭel acku d lqem amenzu i d-yettwabedren"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Tzemreḍ ad tazneḍ awennit ma yella `canned_response` yettusbadu."
 
 msgid "Type"
 msgstr "Anaw"
@@ -5266,13 +5266,13 @@ msgid "Approve Content"
 msgstr "Qbel agbur"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "Aya ad isekles aqbayl-ik n ugbur n lqem azayaz aneggaru, wa ma tneremseḍ aneflay."
 
 msgid "Confirm Approval"
 msgstr "Sentem aqbal"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
+msgstr "Lqem aneggaru azayaz n uzegrir-a yettwaqbel s wudem awurman. Aya ad isekles asentel-ik n uqbal n lqem-nni, wa ma tneremseḍ aneflay."
 
 msgid "Reject Multiple Versions"
 msgstr "Aggwi aṭas n ilqman"
@@ -5284,25 +5284,25 @@ msgid "Reviewer reply"
 msgstr "Tiririt n umcegger"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "Ad yazen izen i uneflay. Ad tremseḍ alɣu ticki tella tririt."
 
 msgid "Request super-review"
 msgstr "Suter acegger meqqren"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "Ma tɣileḍ d akken azegrir-a ilaq ad t-iwali unedbal, aru iwenniten-ik deg temnadt ddaw-a. Ur ttwazanen ara i uneflay."
 
 msgid "Comment"
 msgstr "Awennit"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Aru awennit deg lqem-a. Aneflay ur izmir ara ad t-iwli."
 
 msgid "Pre-Review Add-ons"
 msgstr "Cegger s wudem uzwir izegrar"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Lhan ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "Izegrar-nniḍen deg umecwaṛ n ucegger ({0})"
@@ -5343,13 +5343,13 @@ msgid "Theme Review Guide"
 msgstr "Amnir n ucegger n usentel"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Acegger n tizmilin n yiseqdacen"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Tizmilin yettragun acegger ({0})"
 
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Aɣmis n ucegger yettwaneqden"
 
 msgid "Moderation Guide"
 msgstr "Amnir n usenqed"
@@ -5373,13 +5373,13 @@ msgid "An unknown error occurred"
 msgstr "Taḍra-d tuccda tarussint"
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Iceggiren iwurmanen ur ttwaqbalen ara."
 
 msgid "Review successfully processed."
 msgstr "Acegger yemmed akken iwata."
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Talast n yiceggiren tewweḍ"
 
 msgid "{addon} :: EULA"
 msgstr "{addon} :: EULA"
@@ -5391,7 +5391,7 @@ msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Aneqqis n yir aseqdec"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "Aneqqis n yir aseqdec i {addon} akked yineflayen-is ({num})"
 
 msgid "Abuse Reports"
 msgstr "Assaγ n uẓekker"
@@ -5404,7 +5404,7 @@ msgid "Add-on ID"
 msgstr "Asulay ID n uzegrir"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Asulay ID azɣaray n AMO"
 
 msgid "Works with"
 msgstr "Iteddu s"
@@ -5464,7 +5464,7 @@ msgid "Reviewer Leaderboard"
 msgstr "Agzul n umaẓrag"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Ulac yakan agazen n ucegger i rrbeḥ."
 
 msgid "Rank"
 msgstr "Aswir"
@@ -5568,7 +5568,7 @@ msgid "Process Reviews"
 msgstr "Ddu ar ucegger"
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Tigawin n usenqed n ucegger:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5639,7 +5639,7 @@ msgid "Not Auto Approved Because"
 msgstr "Ur ittwaqbel ara s wudem awurman acku"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Askript n uqbal awurman ur yettwaselkem ara yakan i lqem-a."
 
 msgid "This version has not been reviewed."
 msgstr "Lqem-agi ur yettwacegger ara yakan."
@@ -5672,7 +5672,7 @@ msgid "More Actions"
 msgstr "Ugar n tigawin"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Lɣu-yi-d ɣef yileqman imaynuten i d-yettwabedren"
 
 msgid "Force-disable add-on"
 msgstr "Ḥettem asensi n uzegrir"
@@ -5729,7 +5729,7 @@ msgid "No reviews found for this period."
 msgstr "Ulac iceggiren yettwafen di twala-agi."
 
 msgid "Method:"
-msgstr ""
+msgstr "Tarrayt:"
 
 msgid "Source:"
 msgstr "Aɣbalu:"
@@ -5824,10 +5824,10 @@ msgstr "Aɣewwaṛ \"%s\" diri-t."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Yir asdukel n yiɣewwaren \"%s\" akked \"%s\"."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Tuɣalin ɣer AMO yensa akka tura"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
