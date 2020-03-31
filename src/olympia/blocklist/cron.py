@@ -8,7 +8,7 @@ import olympia.core.logger
 from olympia.lib.kinto import KintoServer
 from olympia.zadmin.models import get_config, set_config
 
-from .mlbf import generate_mlbf, get_mlbf_key_format
+from .mlbf import generate_mlbf, MLBF_KEY_FORMAT
 from .models import Block
 from .utils import KINTO_BUCKET, KINTO_COLLECTION_MLBF
 
@@ -36,7 +36,7 @@ def upload_mlbf_to_kinto():
     server = KintoServer(
         KINTO_BUCKET, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
     stats = {}
-    key_format = get_mlbf_key_format()
+
     # This timestamp represents the point in time when all previous addon
     # guid + versions and blocks were used to generate the bloomfilter.
     # An add-on version/file from before this time will definitely be accounted
@@ -45,12 +45,12 @@ def upload_mlbf_to_kinto():
     # there may be false positives or false negatives.
     # https://github.com/mozilla/addons-server/issues/13695
     generation_time = int(time.time() * 1000)
-    bloomfilter = generate_mlbf(stats, key_format)
+    bloomfilter = generate_mlbf(stats)
     with tempfile.NamedTemporaryFile() as filter_file:
         bloomfilter.tofile(filter_file)
         filter_file.seek(0)
         data = {
-            'key_format': key_format,
+            'key_format': MLBF_KEY_FORMAT,
             'generation_time': generation_time,
         }
         attachment = ('filter.bin', filter_file, 'application/octet-stream')
