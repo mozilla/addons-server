@@ -14,9 +14,12 @@ from olympia.ratings.serializers import RatingSerializer
 class TestBaseRatingSerializer(TestCase):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
-        self.view = Mock(spec=['get_addon_object', 'should_include_flags'])
+        self.view = Mock(spec=['get_addon_object',
+                               'should_include_flags',
+                               'should_include_votes'])
         self.view.get_addon_object.return_value = None
         self.view.should_include_flags.return_value = False
+        self.view.should_include_votes.return_value = False
         self.user = user_factory()
 
     def serialize(self, **extra_context):
