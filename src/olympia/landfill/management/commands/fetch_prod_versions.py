@@ -17,7 +17,7 @@ class KeyboardInterruptError(Exception):
 
 
 class Command(BaseCommand):
-    """Download and save all AMO add-ons public data."""
+    """Download versions for a particular add-on from AMO public data."""
     VERSIONS_API_URL = (
         'https://addons.mozilla.org/api/v4/addons/addon/%(slug)s/versions/'
     )
