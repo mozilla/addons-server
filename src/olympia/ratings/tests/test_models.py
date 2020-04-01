@@ -14,7 +14,6 @@ from olympia.users.models import UserProfile
 
 class TestRatingModel(TestCase):
     fixtures = ['ratings/test_models']
-    #new_code
     def test_rating_vote_db(self):
         # check the number of records currently in RatingVote
         assert RatingVote.objects.count() == 2
@@ -46,7 +45,6 @@ class TestRatingModel(TestCase):
         # check the number of the records in RatingVote after deleting a record
         assert RatingVote.objects.count() == 2
 
-    #new_code
     def test_vote_for_relations(self):
         rating = Rating.objects.get(id=1)
         user=UserProfile.objects.get(id=1)
@@ -71,14 +69,14 @@ class TestRatingModel(TestCase):
         addon = Addon.objects.get()
         assert addon.average_rating == 0.0  # Hasn't been computed yet.
 
-        assert Rating.objects.count() == 2
-        assert Rating.unfiltered.count() == 2
+        assert Rating.objects.count() == 3
+        assert Rating.unfiltered.count() == 3
 
         Rating.objects.get(id=1).delete()
 
-        assert Rating.objects.count() == 1
-        assert Rating.without_replies.count() == 1
-        assert Rating.unfiltered.count() == 2
+        assert Rating.objects.count() == 2
+        assert Rating.without_replies.count() == 2
+        assert Rating.unfiltered.count() == 3
 
         rating = Rating.objects.get(id=2)
         assert rating.previous_count == 0
@@ -91,18 +89,18 @@ class TestRatingModel(TestCase):
         addon = Addon.objects.get()
         assert addon.average_rating == 0.0  # Hasn't been computed yet.
 
-        assert Rating.objects.count() == 2
-        assert Rating.unfiltered.count() == 2
+        assert Rating.objects.count() == 3
+        assert Rating.unfiltered.count() == 3
 
         Rating.objects.get(id=1).delete(send_post_save_signal=False)
 
-        assert Rating.objects.count() == 1
-        assert Rating.without_replies.count() == 1
-        assert Rating.unfiltered.count() == 2
+        assert Rating.objects.count() == 2
+        assert Rating.without_replies.count() == 2
+        assert Rating.unfiltered.count() == 3
 
         # update_denormalized_fields() is still called.
         rating = Rating.objects.get(id=2)
-        assert rating.previous_count == 1
+        assert rating.previous_count == 0
         assert rating.is_latest is True
 
         # post_save() isn't though, so average_rating of the add-on should stay
@@ -126,9 +124,9 @@ class TestRatingModel(TestCase):
     def test_hard_delete(self):
         # Hard deletion is only for tests, but it's still useful to make sure
         # it's working properly.
-        assert Rating.unfiltered.count() == 2
+        assert Rating.unfiltered.count() == 3
         Rating.objects.filter(id=1).delete(hard_delete=True)
-        assert Rating.unfiltered.count() == 1
+        assert Rating.unfiltered.count() == 2
         assert Rating.objects.filter(id=2).exists()
 
     def test_undelete(self):
