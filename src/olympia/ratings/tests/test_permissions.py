@@ -51,7 +51,7 @@ class TestCanVoteRatingPermission(TestCase):
         user_can_vote_rating_mock.return_value = True
         assert self.perm.has_object_permission(self.request, None, object())
 
-    @mock.patch('olympia.ratings.permissions.user_can_delete_rating')
+    @mock.patch('olympia.ratings.permissions.user_can_vote_rating')
     def test_has_object_permission_false(self, user_can_vote_rating_mock):
         user_can_vote_rating_mock.return_value = False
         assert not self.perm.has_object_permission(
