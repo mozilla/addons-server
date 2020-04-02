@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 13:51+0000\n"
+"PO-Revision-Date: 2020-04-02 13:54+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4141,7 +4141,7 @@ msgstr "Smyt jo navigaasjeskiednis fuort {start_sub_heading}mei {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Smyt jo navigaasjeskiednis. Jou in oanpast oantal dagen op foar it behâlden fan browserskiednis eardat dizze automatysk wiske wurdt."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4149,7 +4149,7 @@ msgstr "Smyt sykadvertinsjes fuort {start_sub_heading}mei {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Stopje advertinsjes dy't binnen jo sykresultaten ferskine."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4157,7 +4157,7 @@ msgstr "Behear wachtwurden feilich {start_sub_heading}mei {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Bewarje wachtwurden feilich en meld jo automatysk oan by bekende websites."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4165,7 +4165,7 @@ msgstr "Folje formulieren automatysk {start_sub_heading}mei {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Folje formulieren automatysk yn. Bewarje ynfierde gegevens ien kear en lit se de folgjende kear automatysk ynfolje."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
