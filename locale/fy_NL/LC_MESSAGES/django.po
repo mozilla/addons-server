@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 11:55+0000\n"
+"PO-Revision-Date: 2020-04-02 12:12+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3801,7 +3801,7 @@ msgstr "Iepenje meardere keppelingen {start_sub_heading}mei {addon_name} {end_su
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag links you want open in new tabs."
-msgstr ""
+msgstr "Klik mei de rjochtermûsknop en sleep keppelingen dy't jo yn nije ljepblêden iepenje wolle."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3809,7 +3809,7 @@ msgstr "Lûk ljepblêden werom {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Benaderje koartlyn sluten ljepblêden troch mei de rjochtermûsknop op it piktogram yn jo arkbalke te klikken."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3817,7 +3817,7 @@ msgstr "Ynspirearje produktiviteit {start_sub_heading}mei {addon_name} {end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Ynspirearje produktiviteit. Pas jo nij-ljepblêdside oan om in moaie eftergrûn wer te jaan, jo deistige fokus te bepalen, en mear."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3825,7 +3825,7 @@ msgstr "Ferbetterje produktiviteit {start_sub_heading}mei {addon_name} {end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Blokkearje tiid fergriemende websites, sadat jo jo op de aktuele taak rjochtsje kinne."
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3833,7 +3833,7 @@ msgstr "Fernij ljepblêden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Laad automatysk ljepblêden opnij op basis fan tiidsynterfallen."
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
