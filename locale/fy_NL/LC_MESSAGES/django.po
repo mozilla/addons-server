@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 15:22+0000\n"
+"PO-Revision-Date: 2020-04-02 15:25+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4599,7 +4599,7 @@ msgstr "Hâld notysjes by {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Bewarje persoanlike oantekeningen oeral op it ynternet. Brûk gewoan in sydbalke om notysjes oan spesifike websiden ta te foegjen."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4607,7 +4607,7 @@ msgstr "Stimaktivearre sykje {start_sub_heading}mei {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Brûk spraakwerkenning om sprutsen sykopdrachten op Google, Yahoo en DuckDuckGo yn te skeakeljen."
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4615,7 +4615,7 @@ msgstr "Hâld produktprizen by {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Folgje produkten en ûntfang in melding wannear prizen fan artikelen wêryn jo ynteressearre binne by Amazon, Best Buy, eBay, Home Depot en Walmart dale."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4623,7 +4623,7 @@ msgstr "Meitsje it web donker {start_sub_heading}mei {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Meitsje it web donker of selektearje in oanpast kleureskema om it ynternet fisueel oan jo eigen smaak oan te passen."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
