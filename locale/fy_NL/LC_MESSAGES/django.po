@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 15:11+0000\n"
+"PO-Revision-Date: 2020-04-02 15:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4495,7 +4495,7 @@ msgstr "Besparje ûnthâld {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Stop mei fergriemen fan weardefolle ûnthâldromte mei ynaktive ljepblêden."
 
 #. editorial content for the discovery pane.
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4503,7 +4503,7 @@ msgstr "Bewarje websiden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Bewarje folsleine siden — of allinnich dielen — as ien HTML-bestân."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4511,7 +4511,7 @@ msgstr "Negearje de ûnsin {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr ""
+msgstr "Begryp de nonsens fan typyske TOS-oerienkomsten. Dizze tûke útwreiding helpt jo fluch te begripen wêrmei't jo akkoard gean."
 
 #. editorial content for the discovery pane.
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4523,7 +4523,7 @@ msgstr "Ferbetterje jo lêsûnderfining {start_sub_heading}mei {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Lês mei mear dúdlikheid en gemak. Smyt de rommel rûnom tekst op websiden fuort."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4531,7 +4531,7 @@ msgstr "Blokkearje advertinsjes en mear {start_sub_heading}mei {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "Blokkearje advertinsjes en krij ferbettere beskerming tsjin malware en advertinsjetracking."
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4539,7 +4539,7 @@ msgstr "Download ienfâldiger fideo’s {start_sub_heading}mei {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Genietsje fan stipe foar multi-threading-downloads. Detektearje automatysk ferskate soarten media dy't te downloaden binne."
 
 #. editorial content for the discovery pane.
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4547,7 +4547,7 @@ msgstr "Bewarje ienfâldich ôfbyldingen {start_sub_heading}mei {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "Bewarje ôfbyldingen maklik - sleep se gewoan fan jo aktive ljepblêd."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4555,11 +4555,11 @@ msgstr "Mjit websiden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Mjit websiden. Tekenje in digitale liniaal op elke webside om de hichte, breedte en útlining fan side-eleminten te kontrolearjen."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "Genietsje fan de foardielen fan sterk wachtwurdbehear."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4567,7 +4567,7 @@ msgstr "Oantreklike siden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Pas ljochte en donkere tinten oan om websiden fisueel oantrekliker te meitsjen."
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4575,7 +4575,7 @@ msgstr "Blokkearje ôfliedende websites {start_sub_heading}mei {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Blokkearje ôfliedende websites. Meitsje ienfâldich in list fan de websites dy't jo de útwreiding blokkearje litte wolle. Daliks dissipline!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4583,7 +4583,7 @@ msgstr "Bring deade siden opnij ta libben {start_sub_heading}mei {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Fyn argivearre, deade of oars wat ferdwûne websiden."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4591,7 +4591,7 @@ msgstr "Wizigje it úterlik fan Firefox {start_sub_heading}mei {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Wizigje hoe't jo browser der út sjocht. Untwerp ienfâldich jo eigen fisuele tema’s om Firefox der út sjen te litten sa as jo dat wolle."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
