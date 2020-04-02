@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 09:42+0000\n"
+"PO-Revision-Date: 2020-04-02 09:52+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3416,7 +3416,7 @@ msgstr "Foarkom kryptomining {start_sub_heading}mei {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Stopje it gebrûk fan jo kompjûter foar mining fan kryptofaluta troch kweawollende websites."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3424,7 +3424,7 @@ msgstr "Automatysk stavering hifkje {start_sub_heading}mei {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Krij help mei grammatika, oeral wêr't jo op it web skriuwe – sosjale media, e-mail, dokuminten en mear."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3432,7 +3432,7 @@ msgstr "Besjoch wrâldtiden {start_sub_heading}mei {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Lit aktuele wrâldtiden sjen yn de steatbalke fan Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3440,7 +3440,7 @@ msgstr "Maklike oersettingen {start_sub_heading}mei {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Ienfâldige oersettingen. Markearje tekst op siden – of selektearje in hiele side – om daliks oer te setten."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3448,7 +3448,7 @@ msgstr "Untskoattelje akademyske kennis {start_sub_heading}mei {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "Meitsje gebrûk fan akademyske wiisheid. Fergeze tagong ta mear as 10 miljoen ûndersyksdokuminten."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3456,7 +3456,7 @@ msgstr "Pas mûsbewegingen oan {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Pas jo mûsbewegingen oan. Untdek in nije manier fan navigearjen mei mear as 50 nuttige mûsbewegingen."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4059,7 +4059,7 @@ msgstr "Download YouTube-fideo’s {start_sub_heading}mei {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "Download YouTube-fideo’s en/of audio."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4171,7 +4171,7 @@ msgstr "Sneup privee {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Sykje privee mei mar ien klik."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4195,7 +4195,7 @@ msgstr "Untdek websitespesifike ynhâld {start_sub_heading}mei {addon_name} {end
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Fyn wat jo sykje yn in spesifyk domein."
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4203,7 +4203,7 @@ msgstr "Fyn fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Markearje tekst fan elke webside en klik mei de rjochtermûisknop om op YouTube te sykjen nei relatearre media."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4627,7 +4627,7 @@ msgstr "Ferbettere sykje foar Android {start_sub_heading}mei {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Krij in avansearre sykside op Firefox foar Android."
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4635,7 +4635,7 @@ msgstr "Help by fideo’s op Android {start_sub_heading}mei {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo's op Firefox foar Android. Dizze útwreiding biedt in oplossing."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
