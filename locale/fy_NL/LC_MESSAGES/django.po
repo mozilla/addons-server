@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 12:12+0000\n"
+"PO-Revision-Date: 2020-04-02 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3841,7 +3841,7 @@ msgstr "Reparearje jo blêdwizers {start_sub_heading}mei {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Fyn en ferhelp defekte blêdwizers, duplikaten en mear."
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3849,7 +3849,7 @@ msgstr "Minder stress {start_sub_heading}mei {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Krij dingen dien mei in nuttige to-dolist dy't tusken apparaten syngronisearret."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3857,7 +3857,7 @@ msgstr "Winkelje tûker {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Folgje histoarysk priisferrin, fyn konkurrearjende produkten, besjoch wurdearringen foar de ferkeaper, en mear."
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3865,7 +3865,7 @@ msgstr "Meitsje YouTube fan jo {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Meitsje it jo YouTube. Spylje fideo’s ôf yn in pop-outfinster, sjoch allinnich advertinsjes binnen abonnearre kanalen, meitsje fideoôfbyldingen, en sa folle mear."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3873,7 +3873,7 @@ msgstr "Undersyk ynternetferkear {start_sub_heading}mei {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Krij ynformaasje oer belutsenheid en ferkear foar alle websites."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3881,7 +3881,7 @@ msgstr "Wizigje de styl fan Wikiperdia {start_sub_heading}mei {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Past in frisse en moderne foarmjouwing ta op Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3889,7 +3889,7 @@ msgstr "Wurkje tûker {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Brûk mûsbewegingen om dingen flugger foar inoar te krijen."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3897,7 +3897,7 @@ msgstr "Ferstopje de side {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Ferstopje parten fan de website dy't jo besjogge."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3913,7 +3913,7 @@ msgstr "Brûk selssensuer {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Behein tagong ta net paste of net winske ynhâld mei in filter."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3921,7 +3921,7 @@ msgstr "Ferbetterje nije ljepblêden {start_sub_heading}mei {addon_name} {end_su
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Iepenje in nij ljepblêd neist jo aktuele ljepblêd, net oan it ein fan de rige."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3929,7 +3929,7 @@ msgstr "Bestriid spam {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Oerwin spam. Brûk tûke tydlike e-mailadressen om anonym te bliuwen en spam te mijen."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3937,7 +3937,7 @@ msgstr "Bewurkje jo privacy {start_sub_heading}mei {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "In streekrjocht paad nei oanpassing fan de ynboude privacyynstellingen yn Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3945,7 +3945,7 @@ msgstr "Krij daliks oersettingen {start_sub_heading}mei {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Krij daliks in oersetting troch tekst te markearjen en op de knop dy't ferskynt te klikken."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3953,7 +3953,7 @@ msgstr "Gjin trochferwizingen mear {start_sub_heading}mei {addon_name} {end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Gean streekrjocht nei de winske website sûnder tuskentroch omlaad te wurden."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3961,7 +3961,7 @@ msgstr "WhatsApp op it ynternet {start_sub_heading}mei {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp op it web. Benaderje WhatsApp fan de arkbalke fan Firefox út om meldingen fan net lêzen konversaasjes te krijen."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3969,7 +3969,7 @@ msgstr "Set oer nei/fan Dútsk {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Krij profesjonele Dútsk oersettingen fan it Ingelsk, Frânsk, Spaansk en oare talen út."
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
