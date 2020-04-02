@@ -373,6 +373,13 @@ def call_mad_api(all_results, upload_pk):
     # chord is `forward_linter_results()`:
     results = all_results[0]
 
+    # In case of a validation (linter) error, we do want to skip this task.
+    # This is similar to the behavior of all other tasks decorated with
+    # `@validation_task` but, because this task is the callback of a Celery
+    # chord, we cannot use this decorator.
+    if results['errors'] > 0:
+        return results
+
     if not waffle.switch_is_active('enable-mad'):
         log.debug('Skipping scanner "mad" task, switch is off')
         return results
