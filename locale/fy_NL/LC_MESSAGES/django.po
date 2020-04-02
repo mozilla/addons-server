@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 09:29+0000\n"
+"PO-Revision-Date: 2020-04-02 09:42+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3264,7 +3264,7 @@ msgstr "Sykje ôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Omkeard ôfbyldingen sykje mei in oantal sykmasinen."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3272,7 +3272,7 @@ msgstr "Advertinsjes blokkearje en privacybeskerming {start_sub_heading}mei {add
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Advertinskeblokkearring en privacybeskerming. Mei inkelde ienfâldige ynstellingen kontrolearje jo de advertinsjes dy't oan jo toand wurde en hoe't jo op it ynternet folge wurde."
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3280,7 +3280,7 @@ msgstr "Ljepblêden opnij útfûn {start_sub_heading}mei {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Hawwe jo in enoarm oantal iepensteande ljepblêden? Organisearje se yn in lytse sidebalke."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3288,7 +3288,7 @@ msgstr "Stop folgjen fan Facebook {start_sub_heading}mei {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Stopje folgjen troch Facebook. Isolearje jo Facebook-identiteit yn in aparte ‘kontener’ om foar te kommen dat Facebook jo op it web folget."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3296,7 +3296,7 @@ msgstr "Sykjen ferienfâldigje {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Aksintuearje ienfâldichwei tekst op in webside om mei in oantal sykmasinen nei de wurdgroep te sykjen."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3304,7 +3304,7 @@ msgstr "Daliks waarfernijingen {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Streekrjochte waarupdates fan oer de hiele wrâld."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3320,7 +3320,7 @@ msgstr "Omkeard ôfbyldingen sykje {start_sub_heading}mei {addon_name} {end_sub_
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Sjogge jo in ynteressante ôfbylding op it web en wolle jo hjir mear oer witte? Probearje dit sykhelpmiddel foar ôfbyldingen."
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3328,7 +3328,7 @@ msgstr "Download fideo’s {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Download ienfâldich fideo’s. Wurket mei YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope en hûnderten oare fideowebsites."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3344,7 +3344,7 @@ msgstr "Behear wachtwurden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Wachtwurdbehear ferienfâldige. Syngronisearje al jo oanmeldgegevens foar websites tusken ferskate apparaten mei ien mienskiplik wachtwurd."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3368,7 +3368,7 @@ msgstr "Maklik ôfbyldingen fine {start_sub_heading}mei {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Markearje elke tekst en klik mei de rjochtermûsknop om fluch in ôfbylding te sykjen."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3384,7 +3384,7 @@ msgstr "Benaderje kennis {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Foegje automatysk feiten fan Britannica ta oan jo sykresultaten."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3392,7 +3392,7 @@ msgstr "Smyt YouTube-advertinsjes fuort {start_sub_heading}mei {addon_name} {end
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Blokkearje ferfelende advertinsjes en oantekeningen dy't ferskine op YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3400,7 +3400,7 @@ msgstr "Lês wêr't jo wolle {start_sub_heading}mei {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Ferstjoer nijsartikelen, ferhalen, blogberjochten en mear nei jo Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3408,7 +3408,7 @@ msgstr "Fervje jo ljepblêden {start_sub_heading}mei {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Oardenje jo ljepblêden troch se op basis fan URL-patroanen op kleur te groepearjen."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
