@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 13:54+0000\n"
+"PO-Revision-Date: 2020-04-02 14:12+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4181,7 +4181,7 @@ msgstr "Stop it oernimmen fan ljepblêden {start_sub_heading}mei {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Meitsje in ein oan kapen fan ljepblêden. Lit oanklikke keppelingen gjin behear oer jo aktuele ljepblêd krije en ynhâld lade wêr't jo net om frege hawwe."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4189,7 +4189,7 @@ msgstr "Ienfâldich tagong ta Wikipedia {start_sub_heading}mei {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Fier ienfâldich in Wikipedia-sykopdracht út troch tekst fan websiden te markearjen en mei de rjochtermûsknop te klikken."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4213,7 +4213,7 @@ msgstr "Krij koarting op Amazon {start_sub_heading}mei {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Krij in foarsprong by Amazon. By it besjen fan produktsiden op oare onlinewinkels, kinne jo op ien knop klikke om de fermelding derfan op Amazon te besjen as it dêr beskikber is."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4221,7 +4221,7 @@ msgstr "Ultym ljepblêdkontrôle {start_sub_heading}mei {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Genietsje fan ultym ljepblêdbehear – slút dûbele ljepblêden, foegje finsters tegearre, kopiearje de ljepblêdtitel en mear."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4237,7 +4237,7 @@ msgstr "Wizigje jo nije ljepblêd {start_sub_heading}mei {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Konfigurearje nij-ljepblêdsiden sadat oanpaste eftergrûnkleuren en -ôfbyldingen werjûn wurde."
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4245,7 +4245,7 @@ msgstr "Katleafhawwers út de skroeven {start_sub_heading}mei {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Moetsje in skattich katsje mei elk nij ljepblêd. Jou it in kras efter it ear en sjoch wat der bart."
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4253,7 +4253,7 @@ msgstr "Minder produktyf wêze {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Foar dy mominten wêrop jo lasers fan in kat út sjitte moatte."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4261,11 +4261,11 @@ msgstr "Sykje troch Firefox {start_sub_heading}mei {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Sykje troch Firefox troch ienfâldich tagong ta jo iepen ljepblêden, blêdwizers en skiednis."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "In soad iepen ljepblêden? Skip it skowen en sykje fia fluchtoetsen."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
