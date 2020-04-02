@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 14:52+0000\n"
+"PO-Revision-Date: 2020-04-02 15:05+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4333,11 +4333,13 @@ msgstr "Bring produktiviteit yn byld {start_sub_heading}mei {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Folgje produktiviteit. Mjit de hoemannichte tiid dy't jo op de kompjûter trochbringe, of op spesifike wurk-apps lykas Trello, JIRA, Basecamp, GitHub, en folle mear."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr ""
+"Bewarje jo favorite saken op it ynternet. Sammelje webynhâld lykas artikelen, fideo’s, ôfbyldingen en mear om te bewarjen en foar yndividuele projekten of realtime gearwurking yn teamferbân te "
+"brûken."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4345,7 +4347,7 @@ msgstr "Sneup feilich {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Lit allinnich webynhâld útfiere fan websites dy't jo fertrouwe. Navigearje feilich."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4353,7 +4355,7 @@ msgstr "Behear cookies {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Nim de folsleine kontrôle oer cookies dy't jo wylst it browsen sammele hawwe."
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4361,7 +4363,7 @@ msgstr "Ferjit skiednis {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Wiskje automatysk browserskiednis foar websites dy't jo selektearje."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4369,7 +4371,7 @@ msgstr "Beskermje blêdwizers {start_sub_heading}mei {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Beskermje jo persoanlike blêdwizers mei in wachtwurd."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4377,7 +4379,7 @@ msgstr "Foarkom it lekken fan IP-adressen {start_sub_heading}mei {addon_name} {e
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Brûkê jo in VPN? Jo IP-adres kin lekke. Stop dat troch WebRTC út te skeakeljen."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4385,7 +4387,7 @@ msgstr "Slút steurende overlays {start_sub_heading}mei {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Slút ferfelende pop-ups mei ien simpele klik."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4393,7 +4395,7 @@ msgstr "Undersykje elke ôfbylding {start_sub_heading}mei {addon_name} {end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "In ynteressante ôfbylding op it web fûn? Brûk TinEye om de werkomst derfan te efterheljen."
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4401,11 +4403,11 @@ msgstr "Ienfâldiger wurkje {start_sub_heading}mei {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Fersleep ienfâldich tekst, ôfbyldingen of keppelingen om aksjes lykas kopiearjen, iepenjen, sykjen, en mear út te fieren."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Brûk de mooglikheid om fideo en/of audio yn mear yndielingen te downloaden."
 
 #. editorial content for the discovery pane.
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4413,7 +4415,7 @@ msgstr "Ynformaasje oer de lokaasje {start_sub_heading}mei {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Untdek wêr't de server fan in website har geografysk leit. Wês in ynformearre webreizger."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4421,7 +4423,7 @@ msgstr "Reparearje steurend lûd {start_sub_heading}mei {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Fiks ferfelend lûd. Is it folume op in website te leech? Te heech? SoundFixer kin helpe."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
