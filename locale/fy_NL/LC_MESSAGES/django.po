@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 15:05+0000\n"
+"PO-Revision-Date: 2020-04-02 15:11+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4431,7 +4431,7 @@ msgstr "Bewurkje foar it ôfdrukken {start_sub_heading}mei {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Bewurkje in webside eardat jo dizze ôfdrukke. Meitsje bûtengewoane fisuele oanpassingen – smyt advertinsjes of ûnsmaaklike ynhâld fuort – foar websiden dy't jo ôfdrukke wolle."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4439,7 +4439,7 @@ msgstr "Folgje it priisferrin op Amazon {start_sub_heading}mei {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Folgje de skiednis fan prizen op Amazon. Nim tûe oankeapbeslissingen, troch warskôgingen foar priiswizigingen foar Amazon-produkten wêryn jo ynteressearre binne te ûntfangen."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4447,7 +4447,7 @@ msgstr "Behear lûd {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Pas browseraudio-ynstellingen oan mei ekstreme helderheid."
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4455,7 +4455,7 @@ msgstr "Privacybeskerming {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Ferdigenje josels tsjin de meast stikeme trackers."
 
 #. editorial content for the discovery pane.
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4463,7 +4463,7 @@ msgstr "Ferstopje jo spoaren {start_sub_heading}mei {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Sykje mei bettere blokkearring fan trackers, tûke fersifering, en oare privacyfoardielen."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4471,7 +4471,7 @@ msgstr "Ferienfâldigje ljepblêden {start_sub_heading}mei {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "Ferienfâldigje ljepblêden. Organisearje jo protte iepen ljepblêden yn in kreaze fertikale sydbalke."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4479,7 +4479,7 @@ msgstr "Avansearre cookiebehear {start_sub_heading}mei {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Smyt automatysk net winske cookies fuort. Biedt stipe foar witte en swarte listen."
 
 #. editorial content for the discovery pane.
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4487,7 +4487,7 @@ msgstr "Besjoch it grutte gehiel {start_sub_heading}mei {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "Yn ien mûsklik kinne jo fideo’s yn harren folle glory op folslein skerm besjen."
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
