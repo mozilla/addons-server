@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 11:51+0000\n"
+"PO-Revision-Date: 2020-04-02 11:55+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3769,7 +3769,7 @@ msgstr "Pas jo nij-ljepblêd oan {start_sub_heading}mei {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Bewurkje jo nij-ljepblêdside, sadat dizze jo winske oantal ljepblêden, in eftergrûndôfbylding en mear werjout."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3777,7 +3777,7 @@ msgstr "Behear jo wachturden {start_sub_heading}mei {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Bewarje wachtwurden feilich en benaderje se op mear apparaten."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3785,7 +3785,7 @@ msgstr "Wit wêr't jo hinne gean op it ynternet {start_sub_heading}mei {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Witte wêr't jo nei ta gean op it web. Untdek de lânlokaasje foar websites dy't jo besykje. Wês in ynformearre ynternetreizger."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3793,7 +3793,7 @@ msgstr "Ferbetterje jo lêsûnderfining {start_sub_heading}mei {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Ferbetterje jo lêsûnderfining. Meitsje de tekst dy't jo lêze oantrekliker troch de rommel deromhinne fuort te smiten."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
