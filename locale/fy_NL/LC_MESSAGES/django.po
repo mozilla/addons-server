@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 10:09+0000\n"
+"PO-Revision-Date: 2020-04-02 10:32+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3561,7 +3561,7 @@ msgstr "Stop stikeme folgers en beheinigen {start_sub_heading}mei {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Mij stikeme trackers en beheiningen. Maskearje jo navigaasje troch de identiteit fan jo browser en bestjoeringssysteem te ferbergjen."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3569,7 +3569,7 @@ msgstr "Laad ljepblêden opnij {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Laad automatysk ljepblêden opnij op basis fan tiidsynterfallen dy't jo ynstelle."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3577,7 +3577,7 @@ msgstr "Skied jo online libben {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr ""
+msgstr "Skiedzje jo online-libbens. Meitsje ûnderskied yn jo ferskate online-identiteiten – wurk, persoanlik ensfh. – fia kleurkodearre ljepblêden dy't jo digitale cookiespoar splitse."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3585,7 +3585,7 @@ msgstr "Stop folgers {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Foegje in ekstra laach oan beskerming tsjin tracking ta wylst jo op it web surfe."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3593,7 +3593,7 @@ msgstr "Lês ePub-bestannen {start_sub_heading}mei {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Lês ePub-bestannen binnen Firefox – ferheegje lettergrutte, side-ôfmjittingen en mear."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3601,7 +3601,7 @@ msgstr "Ferbetterje jo YouTube-ûnderfining {start_sub_heading}mei {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Spylje YouTube-fideo’s standert ôf yn de heechste kwaliteit, set oantekeningen út, en mear."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3609,7 +3609,7 @@ msgstr "Folgje de folgers {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Folgje de trackers. Krij in glimp fan wa't jo folget mei ien simpele klik."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
