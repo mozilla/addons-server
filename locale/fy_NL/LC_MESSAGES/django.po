@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 14:13+0000\n"
+"PO-Revision-Date: 2020-04-02 14:52+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4281,7 +4281,7 @@ msgstr "Lit yntypte wachtwurden sjen {start_sub_heading}mei {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Foeget in mooglikheid ta toanen/ferstopjen ta oan alle wachtwurdfjilden."
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4289,7 +4289,7 @@ msgstr "Ferminderje ôfliedingen {start_sub_heading}mei {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Rjocht jo op wêr't jo nei sjogge troch alles útsein de fideospiler donker te meitsjen."
 
 #. editorial content for the discovery pane.
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4297,7 +4297,7 @@ msgstr "Behear blêdwizers {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Pas jo blêdwizers oan fia in ienfâldich tagonklik paniel."
 
 #. editorial content for the discovery pane.
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4305,11 +4305,11 @@ msgstr "Hâld wachtwurden feilich {start_sub_heading}mei {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Bewarje wachtwurden feilich en meld jo automatysk oan by bekende websites."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "In simpele adblocker, rjochte op it allinnich werjaan fan winske ynhâld."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4317,7 +4317,7 @@ msgstr "Folgje it priisferrin op Amazon {start_sub_heading}mei {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Folgje de skiednis fan prizen op Amazon. Nim ynformearre oankeapbeslissingen."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4325,7 +4325,7 @@ msgstr "Winkelje mei fetrouwen {start_sub_heading}mei {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Winkelje mei fertrouwen. Dizze útwreiding biedt in ekstra kontrôle om te ferzekerjen dat jo op in website winkelje dy't op betrouberheid kontrolearre is."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
