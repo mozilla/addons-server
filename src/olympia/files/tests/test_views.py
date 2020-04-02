@@ -783,6 +783,19 @@ class TestBrowseRedirect(TestCase):
             reverse('files.list', args=[self.version.current_file.id]),
         )
 
+    def test_redirects_to_file_viewer_with_file_query_param(self):
+        file = 'some/file.js'
+        response = self.client.get(self.browse_redirect_url + f'?file={file}')
+
+        self.assert3xx(
+            response,
+            reverse('files.list', args=[
+                self.version.current_file.id,
+                'file',
+                file,
+            ]),
+        )
+
     def test_returns_404_when_version_is_not_found(self):
         browse_redirect_url = reverse('files.browse_redirect', args=[123456])
 
@@ -803,7 +816,7 @@ class TestCompareRedirect(TestCase):
             args=[self.base_version.pk, self.head_version.pk],
         )
 
-    def test_redirects_to_file_viewer_with_file_id(self):
+    def test_redirects_to_file_viewer_with_file_ids(self):
         response = self.client.get(self.compare_redirect_url)
 
         self.assert3xx(
@@ -811,6 +824,20 @@ class TestCompareRedirect(TestCase):
             reverse('files.compare', args=[
                 self.base_version.current_file.id,
                 self.head_version.current_file.id,
+            ]),
+        )
+
+    def test_redirects_to_file_viewer_with_file_query_param(self):
+        file = 'some/file.js'
+        response = self.client.get(self.compare_redirect_url + f'?file={file}')
+
+        self.assert3xx(
+            response,
+            reverse('files.compare', args=[
+                self.base_version.current_file.id,
+                self.head_version.current_file.id,
+                'file',
+                file,
             ]),
         )
 
