@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-02 09:19+0000\n"
+"PO-Revision-Date: 2020-04-02 09:29+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3240,7 +3240,7 @@ msgstr "Stop stikeme trackers {start_sub_heading}mei {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blokkearje ûnsichtbere trackers en spionearjende advertinsjes dy't jo op it web folgje."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3248,7 +3248,7 @@ msgstr "Pas nije ljepblêden oan {start_sub_heading}mei {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Genietsje fan in moaie nije side mei oanpasbere eftergrûnen, lokale waarynfo en mear."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3256,7 +3256,7 @@ msgstr "Set ienfâldich oer {start_sub_heading}mei {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Markearje tekst, klik mei de rjochtermûsknop, en set daliks oer."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
