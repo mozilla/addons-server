@@ -24,6 +24,10 @@ urlpatterns = [
     url(r'^browse/(?P<file_id>\d+)/', include(file_patterns)),
     url(r'^compare/(?P<one_id>\d+)\.{3}(?P<two_id>\d+)/',
         include(compare_patterns)),
+    url(r'^browse-redirect/(?P<version_id>\d+)/', views.browse_redirect,
+        name='files.browse_redirect'),
+    url(r'^compare-redirect/(?P<base_id>\d+)\.{3}(?P<head_id>\d+)/',
+        views.compare_redirect, name='files.compare_redirect'),
 ]
 
 # This set of URL patterns is not included under `/files/` in
