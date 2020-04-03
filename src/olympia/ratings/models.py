@@ -355,7 +355,6 @@ class RatingFlag(ModelBase):
         ]
 
 class RatingVote(ModelBase):
-    """newly added"""
     VOTES = (
         (-1, 'cleaned_vote'),
         (0, 'down_vote'),
@@ -426,11 +425,9 @@ class GroupedRating(object):
 
 class GroupedVoting(object):
     """
-    Newly added.
     Group an add-on's votes so we can have a graph of voting counts.
 
     SELECT vote, COUNT(vote) FROM reviews where addon=:id and rating=:id2;
-    SELECT vote, COUNT(vote) FROM rating_vote where addon_id=36 and review_id=163;
     """
     # Non-critical data, so we always leave it in memcache. Cache for a
     # particular add-on is cleared when a rating is added/modified and updated

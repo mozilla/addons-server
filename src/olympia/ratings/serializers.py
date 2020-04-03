@@ -244,7 +244,6 @@ class RatingSerializer(BaseRatingSerializer):
 
 
 class RatingVoteSerializer(serializers.ModelSerializer):
-    # vote = serializers.IntegerField(min_value=-1, max_value=1, source=None)
     vote = serializers.IntegerField(source=None)
     rating = RatingSerializer(read_only=True)
     user = BaseUserSerializer(read_only=True)
@@ -260,7 +259,7 @@ class RatingVoteSerializer(serializers.ModelSerializer):
 
     def validate_vote(self, vote):
         """
-         ensure the value of the vote option field in the database can either be upvote or downvote.
+         ensure the value of the vote field in the database can either be 1 or 0.
         """
         votes = dict(RatingVote.VOTES)
         votes_str = [votes[vote]+'('+str(vote)+')' for vote in votes][1:]
