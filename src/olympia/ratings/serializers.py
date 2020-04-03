@@ -112,18 +112,8 @@ class BaseRatingSerializer(serializers.ModelSerializer):
 
     def get_votes(self, obj):
         if self.context['view'].should_include_votes():
-            # should be maximum one RatingVote per rating+user anyway.
-            # vote = obj.ratingvote_set.filter(
-            #     addon=self.context['request'].query_params['addon'],
-            #     rating=obj.pk)
-            # raise TypeError("self.context['request']: ", self.context['request'].query_params)
-            # raise TypeError("self.context['view']: ", self.context['view'])
-            # raise TypeError("obj.pk:", obj.pk)
-            # raise TypeError("vote:", vote)
-
             # if we only specify rating id (Detail display)
             if 'addon' not in self.context['request'].query_params:
-                # raise TypeError("obj.pk:", obj.addon.pk)
                 rating_votes = GroupedVoting.get(obj.addon.pk, obj.id)
                 return {
                     'upvote': rating_votes[1][1], 'downvote': rating_votes[0][1]}
@@ -131,9 +121,6 @@ class BaseRatingSerializer(serializers.ModelSerializer):
             # if we specify addon id (List ratings display)
                 rating_votes = GroupedVoting.get(
                     self.context['request'].query_params['addon'], obj.pk)
-                # raise TypeError(
-                #     "addon id:", self.context['request'].query_params['addon'],
-                #     "rating id:", obj.id, "rating_votes: ", rating_votes)
                 return {
                     'upvote': rating_votes[1][1], 'downvote': rating_votes[0][1]}
         return None
