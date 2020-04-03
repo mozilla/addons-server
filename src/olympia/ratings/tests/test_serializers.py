@@ -7,7 +7,7 @@ from rest_framework.test import APIRequestFactory
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.ratings.models import Rating, RatingFlag
+from olympia.ratings.models import Rating, RatingFlag, RatingVote
 from olympia.ratings.serializers import RatingSerializer
 
 
@@ -320,3 +320,32 @@ class TestBaseRatingSerializer(TestCase):
         result = self.serialize()
         assert 'flags' in result
         assert result['flags'] == [{'flag': RatingFlag.OTHER, 'note': 'foo'}]
+
+    def test_include_votes_without_vote_record(self):
+        addon = addon_factory()
+        self.request.user = user_factory()
+        self.request.query_params = {'addon': addon.pk}
+        self.view.get_addon_object.return_value = addon
+        self.view.should_include_votes.return_value = True
+        self.rating = Rating.objects.create(
+            addon=addon, user=user_factory(), rating=4,
+            version=addon.current_version, body=u'This is my vote. Like ît?')
+        result = self.serialize()
+        assert 'votes' in result
+        assert result['votes'] == {'upvote': 0, 'downvote': 0}
+
+    def test_include_votes_with_vote_record(self):
+        addon = addon_factory()
+        self.request.user = user_factory()
+        self.request.query_params = {'addon': addon.pk}
+        self.view.get_addon_object.return_value = addon
+        self.view.should_include_votes.return_value = True
+        self.rating = Rating.objects.create(
+            addon=addon, user=user_factory(), rating=4,
+            version=addon.current_version, body=u'This is my vote. Like ît?')
+        vote = RatingVote.objects.create(rating=self.rating,
+                                         user=self.request.user,
+                                         addon=addon, vote=1)
+        result = self.serialize()
+        assert 'votes' in result
+        assert result['votes'] == {'upvote': 1, 'downvote': 0}
