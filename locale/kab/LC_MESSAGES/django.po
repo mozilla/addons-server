@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-31 15:32+0000\n"
+"PO-Revision-Date: 2020-04-03 16:18+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3375,7 +3375,7 @@ msgstr "Senqed tajerrumt s wudem awurman {start_sub_heading}s {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Faṛ€s tagnit seg tallelt n tjerrumt yal tikkelt ara taruḍ deg web: iẓeḍwa n tmetti, imaylen, isemliyen, atg."
+msgstr "Faṛes tagnit seg tallelt n tjerrumt yal tikkelt ara taruḍ deg web: iẓeḍwa n tmetti, imaylen, isemliyen, atg."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3403,7 +3403,7 @@ msgstr "Tamusni tasdawant ɣef afus. Kcem baṭel ɣer wugar n 10 n yimelyan n y
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i uḥ€rrek n tɣerdayt {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Mudd udem i uḥerrek n tɣerdayt {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
@@ -4094,7 +4094,7 @@ msgstr "Kkes azray-ik n tunigin {start_sub_heading}s {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Kkes azray-ik n tunigin. Mudd amḍan n wussan ara tḥ€rzeḍ azray n yiminig uqbel ad yettwasfeḍ swudem awurman."
+msgstr "Kkes azray-ik n tunigin. Mudd amḍan n wussan ara tḥerzeḍ azray n yiminig uqbel ad yettwasfeḍ swudem awurman."
 
 #. editorial content for the discovery pane.
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4491,7 +4491,7 @@ msgstr "Sader s wudem fessusen imidytane {start_sub_heading}s {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr "Faṛ€s tagnit seg usefrek n usader n tnelli n usqerdec. Af-d s wudem awurman anawen yemgaraden n yimidyaten yellan i usader."
+msgstr "Faṛes tagnit seg usefrek n usader n tnelli n usqerdec. Af-d s wudem awurman anawen yemgaraden n yimidyaten yellan i usader."
 
 #. editorial content for the discovery pane.
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
