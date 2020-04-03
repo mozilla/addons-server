@@ -146,22 +146,22 @@ class TestRatingModel(TestCase):
         Rating.objects.create(
             addon=rating.addon, reply_to=rating,
             user=UserProfile.objects.all()[0])
-        assert Rating.objects.count() == 3
-        assert Rating.unfiltered.count() == 3
-        assert Rating.without_replies.count() == 2
+        assert Rating.objects.count() == 4
+        assert Rating.unfiltered.count() == 4
+        assert Rating.without_replies.count() == 3
 
         Rating.objects.get(id=1).delete()
 
         # objects should only have 1 object, because we deleted the parent
         # review of the one we just created, so it should not be returned.
-        assert Rating.objects.count() == 1
+        assert Rating.objects.count() == 2
 
         # without_replies should also only have 1 object, because, because it
         # does not include replies anyway.
-        assert Rating.without_replies.count() == 1
+        assert Rating.without_replies.count() == 2
 
         # Unfiltered should have them all still.
-        assert Rating.unfiltered.count() == 3
+        assert Rating.unfiltered.count() == 4
 
     @mock.patch('olympia.ratings.models.log')
     def test_author_delete(self, log_mock):
