@@ -227,6 +227,22 @@ class TestImportBlocklist(TestCase):
             assert block.kinto_id == '*' + this_block['id']
             assert block.include_in_legacy
 
+    def test_regex_syntax_changed_to_mysql(self):
+        """mysql doesn't support /d special charactor, only [:digit:]."""
+        addon1 = addon_factory(
+            guid='aapbdbdomjkkjkaonfhkkikfgjllcleb@chrome-store-foxified-990648491',  # noqa
+            file_kw={'is_webextension': True})
+        addon2 = addon_factory(
+            guid='aapbdbdomjkkjkaonfhkkikfgjllcleb@chromeStoreFoxified-1006328831',  # noqa
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
+
+        call_command('import_blocklist')
+        assert Block.objects.count() == 2
+        blocks = list(Block.objects.all())
+        assert blocks[0].guid == addon1.guid
+        assert blocks[1].guid == addon2.guid
+
     @mock.patch('olympia.blocklist.management.commands.import_blocklist.'
                 'import_block_from_blocklist.delay')
     def test_blocks_are_not_imported_twice(self, import_task_mock):
