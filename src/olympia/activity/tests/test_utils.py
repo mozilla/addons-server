@@ -27,6 +27,7 @@ from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import reverse
+from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -287,6 +288,8 @@ class TestLogAndNotify(TestCase):
             self.addon.name, self.version.version)
         assert ('visit %s' % url) in body
         assert ('receiving this email because %s' % reason_text) in body
+        print(days_text)
+        print(body)
         if days_text is not None:
             assert 'If we do not hear from you within' in body
             assert days_text in body
@@ -309,7 +312,8 @@ class TestLogAndNotify(TestCase):
     def test_reviewer_request_for_information(self, send_mail_mock):
         AddonReviewerFlags.objects.create(
             addon=self.addon,
-            pending_info_request=datetime.now() + timedelta(days=7))
+            pending_info_request=datetime.now() + timedelta(
+                days=REVIEWER_NEED_INFO_DAYS_DEFAULT))
         self._create(amo.LOG.REQUEST_INFORMATION, self.reviewer)
         log_and_notify(
             amo.LOG.REQUEST_INFORMATION, 'blah', self.reviewer, self.version)
@@ -329,12 +333,12 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[0],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            'seven (7) days of this notification')
+            '14 days of this notification')
         self._check_email_info_request(
             send_mail_mock.call_args_list[1],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            'seven (7) days of this notification')
+            '14 days of this notification')
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_reviewer_request_for_information_close_date(self, send_mail_mock):

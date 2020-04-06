@@ -20,6 +20,7 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
@@ -541,7 +542,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.assertCloseToNow(
             self.addon.pending_info_request,
-            now=datetime.now() + timedelta(days=7))
+            now=datetime.now() + timedelta(
+                days=REVIEWER_NEED_INFO_DAYS_DEFAULT))
 
         assert len(mail.outbox) == 1
         assert (
@@ -582,7 +584,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.assertCloseToNow(
             flags.pending_info_request,
-            now=datetime.now() + timedelta(days=7))
+            now=datetime.now() + timedelta(
+                days=REVIEWER_NEED_INFO_DAYS_DEFAULT))
         assert not flags.notified_about_expiring_info_request
 
         assert len(mail.outbox) == 1
