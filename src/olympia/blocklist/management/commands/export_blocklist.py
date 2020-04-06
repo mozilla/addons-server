@@ -41,7 +41,7 @@ class Command(BaseCommand):
         return [tuple(record) for record in data]
 
     def save_blocklist(self, stats, mlbf, id_):
-        out_file = os.path.join(settings.TMP_PATH, 'mlbf', id_, 'filter')
+        out_file = os.path.join(settings.MLBF_STORAGE_PATH, f'{id_}.filter')
 
         os.makedirs(os.path.dirname(out_file), exist_ok=True)
         with default_storage.open(out_file, 'wb') as mlbf_file:
