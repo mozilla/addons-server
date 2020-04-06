@@ -1426,8 +1426,10 @@ class ReviewAddonVersionDraftCommentViewSet(
         if not hasattr(self, 'version_object'):
             self.version_object = get_object_or_404(
                 # The serializer will not need any of the stuff the
-                # transformers give us for the version.
-                self.get_addon_object().versions.all().no_transforms(),
+                # transformers give us for the version. We do need to fetch
+                # using an unfiltered manager to see deleted versions, though.
+                self.get_addon_object().versions(
+                    manager='unfiltered_for_relations').all().no_transforms(),
                 pk=self.kwargs['version_pk'])
             self._verify_object_permissions(
                 self.version_object, self.version_object)

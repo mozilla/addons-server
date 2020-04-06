@@ -6911,6 +6911,33 @@ class TestDraftCommentViewSet(TestCase):
         response = self.client.post(url, data)
         assert response.status_code == 404
 
+    def test_deleted_version_reviewer_who_can_view_deleted_versions(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, 'Addons:ViewDeleted')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.delete()
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk
+        })
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+
+        response = self.client.post(url, data)
+        assert response.status_code == 201
+
+        assert DraftComment.objects.count() == 1
+
     def test_deleted_version_user_but_not_author(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
