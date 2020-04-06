@@ -90,6 +90,8 @@ def import_block_from_blocklist(record):
                 'Kinto %s: Unable to break down regex into list; '
                 'attempting to create Blocks for guids matching [%s]',
                 kinto_id, guid_regexp)
+            # mysql doesn't support \d - only [:digit:]
+            guid_regexp = guid_regexp.replace(r'\d', '[[:digit:]]')
             addons_guids_qs = Addon.unfiltered.using(using_db).filter(
                 guid__regex=guid_regexp).values_list('guid', flat=True)
         # We need to mark this id in a way so we know its from a
