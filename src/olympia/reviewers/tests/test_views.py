@@ -4302,6 +4302,28 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'The developer has provided source code.' in response.content
 
+    def test_translations(self):
+        self.addon.name = {
+            'fr': 'Traduction En Français',
+            'en-CA': 'English Translation',
+            'en-GB': 'English Translation',  # Duplicate
+            'de': None,
+            'es': '',
+        }
+        self.addon.save()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        translations = sorted(
+            [li.text_content() for li in doc('#name-translations li')]
+        )
+        expected = [
+            'English (British): English Translation',
+            'English (Canadian): English Translation',
+            'English (US): Public',
+            'Français: Traduction En Français'
+        ]
+        assert translations == expected
+
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_approve_recommended_addon(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)

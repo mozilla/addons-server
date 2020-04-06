@@ -882,6 +882,14 @@ def review(request, addon, channel=None):
         amo.LOG.REMOVE_USER_WITH_ROLE.id]
     user_changes_log = ActivityLog.objects.filter(
         action__in=user_changes_actions, addonlog__addon=addon).order_by('id')
+
+    name_translations = (
+        addon.name.__class__.objects.filter(
+            id=addon.name.id, localized_string__isnull=False).exclude(
+            localized_string='')
+        if addon.name else []
+    )
+
     ctx = context(
         actions=actions, actions_comments=actions_comments,
         actions_full=actions_full, addon=addon,
@@ -890,8 +898,8 @@ def review(request, addon, channel=None):
         content_review=content_review, count=count,
         deleted_addon_ids=deleted_addon_ids, flags=flags,
         form=form, is_admin=is_admin, is_recommendable=is_recommendable,
-        now=datetime.now(), num_pages=num_pages,
-        pager=pager, reports=reports, show_diff=show_diff,
+        name_translations=name_translations, now=datetime.now(),
+        num_pages=num_pages, pager=pager, reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),

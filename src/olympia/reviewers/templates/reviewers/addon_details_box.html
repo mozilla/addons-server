@@ -214,3 +214,14 @@
       </em>
     </div>
   {% endif %}
+
+  {% if name_translations %}
+  <div id="name-translations">
+    <h3> {{ _('Add-on name translations') }} </h3>
+    <ul>
+      {% for translation in name_translations %}
+        <li><strong>{{ LANGUAGES.get(translation.locale|lower) }}:</strong> <span lang="{{ translation.locale|to_language }}">{{ translation }}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
