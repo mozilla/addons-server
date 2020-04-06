@@ -1,13 +1,17 @@
 import datetime
+import os
 from unittest import mock
+
+from django.conf import settings
 
 from freezegun import freeze_time
 from waffle.testutils import override_switch
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.blocklist.cron import MLBF_TIME_CONFIG_KEY, upload_mlbf_to_kinto
+from olympia.blocklist.cron import upload_mlbf_to_kinto
 from olympia.blocklist.mlbf import MLBF_KEY_FORMAT
 from olympia.blocklist.models import Block
+from olympia.blocklist.tasks import MLBF_TIME_CONFIG_KEY
 from olympia.lib.kinto import KintoServer
 from olympia.zadmin.models import get_config, set_config
 
@@ -26,14 +30,20 @@ class TestUploadToKinto(TestCase):
     def test_upload_mlbf_to_kinto(self, publish_mock):
         upload_mlbf_to_kinto()
 
+        generation_time = int(
+            datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
         publish_mock.assert_called_with(
             {'key_format': MLBF_KEY_FORMAT,
-             'generation_time':
-                datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000},
+             'generation_time': generation_time},
             ('filter.bin', mock.ANY, 'application/octet-stream'))
         assert (
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
-            int(datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000))
+            generation_time)
+
+        mlfb_path = os.path.join(
+            settings.MLBF_STORAGE_PATH, f'{generation_time}.filter')
+        assert os.path.exists(mlfb_path)
+        assert os.path.getsize(mlfb_path)
 
     @override_switch('blocklist_mlbf_submit', active=False)
     @mock.patch.object(KintoServer, 'publish_attachment')
