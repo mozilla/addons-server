@@ -19,6 +19,7 @@ from olympia.addons.models import (
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
+from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.discovery.models import DiscoveryItem
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
@@ -711,7 +712,8 @@ class ReviewBase(object):
                 # And the deadline for the info request will be created or
                 # updated x days in the future.
                 info_request_deadline_days = int(
-                    self.data.get('info_request_deadline', 7))
+                    self.data.get('info_request_deadline',
+                                  REVIEWER_NEED_INFO_DAYS_DEFAULT))
                 info_request_deadline = (
                     datetime.now() + timedelta(days=info_request_deadline_days)
                 )
