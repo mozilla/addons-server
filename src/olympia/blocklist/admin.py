@@ -2,13 +2,14 @@ from django.contrib import admin, auth, contenttypes
 from django.core.exceptions import PermissionDenied
 from django.forms.fields import ChoiceField
 from django.forms.widgets import HiddenInput
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
 from django.urls import path
 from django.utils.html import format_html
 
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 
@@ -49,6 +50,10 @@ class BlockAdminAddMixin():
                 'delete_multiple/',
                 self.admin_site.admin_view(self.delete_multiple_view),
                 name='blocklist_block_delete_multiple'),
+            path(
+                'add_addon/<path:pk>/',
+                self.admin_site.admin_view(self.add_from_addon_pk_view),
+                name='blocklist_block_addaddon'),
         ]
         return my_urls + super().get_urls()
 
@@ -93,6 +98,13 @@ class BlockAdminAddMixin():
         }
         return TemplateResponse(
             request, 'blocklist/multi_guid_input.html', context)
+
+    def add_from_addon_pk_view(self, request, pk, **kwargs):
+        addon = get_object_or_404(Addon.unfiltered, pk=pk or kwargs.get('pk'))
+        get_params = request.GET.urlencode()
+        return redirect(
+            reverse('admin:blocklist_blocklistsubmission_add') +
+            f'?guids={addon.guid}&{get_params}')
 
 
 @admin.register(BlocklistSubmission)

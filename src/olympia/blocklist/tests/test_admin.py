@@ -123,6 +123,23 @@ class TestBlockAdmin(TestCase):
             reverse('admin:blocklist_block_change', args=(block.pk,))
         )
 
+    def test_add_from_addon_pk_view(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+
+        addon = addon_factory()
+        url = reverse('admin:blocklist_block_addaddon', args=(addon.id,))
+        response = self.client.post(url, follow=True)
+        self.assertRedirects(
+            response, self.submission_url + f'?guids={addon.guid}')
+
+        response = self.client.post(url + '?min_version=23', follow=True)
+        self.assertRedirects(
+            response,
+            self.submission_url + f'?guids={addon.guid}&min_version=23')
+
 
 class TestBlocklistSubmissionAdmin(TestCase):
     def setUp(self):

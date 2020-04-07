@@ -3639,8 +3639,7 @@ class TestReview(ReviewBase):
         assert not doc('#edit_addon_block')
         assert not doc('#edit_addon_blocklistsubmission')
         assert doc('#block_addon')[0].attrib.get('href') == (
-            reverse('admin:blocklist_blocklistsubmission_add') + '?guids=' +
-            self.addon.guid)
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.id,)))
 
         block = Block.objects.create(
             addon=self.addon, updated_by=user_factory())
@@ -4651,11 +4650,12 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         self.grant_permission(self.reviewer, 'Blocklist:Create')
 
-        response = self.client.post(self.url, {
-            'action': 'block_multiple_versions',
-            'comments': 'multiblock!',  # should be ignored anyway
-            'versions': [old_version.pk, self.version.pk],
-        })
+        response = self.client.post(
+            self.url, {
+                'action': 'block_multiple_versions',
+                'comments': 'multiblock!',  # should be ignored anyway
+                'versions': [old_version.pk, self.version.pk],
+            }, follow=True)
 
         for version in [old_version, self.version]:
             version.reload()
@@ -4663,7 +4663,6 @@ class TestReview(ReviewBase):
             file_ = version.files.all().get()
             assert file_.status == amo.STATUS_DISABLED
 
-        assert response.status_code == 302
         new_block_url = (
             reverse('admin:blocklist_blocklistsubmission_add') +
             '?guids=%s&min_version=%s&max_version=%s' % (
