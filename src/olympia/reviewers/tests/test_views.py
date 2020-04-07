@@ -43,6 +43,7 @@ from olympia.amo.tests import (
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.lib.git import AddonGitRepository
@@ -3788,9 +3789,9 @@ class TestReview(ReviewBase):
         assert 'checked' not in doc('#id_info_request')[0].attrib
         elm = doc('#id_info_request_deadline')[0]
         assert elm.attrib['readonly'] == 'readonly'
-        assert elm.attrib['min'] == '7'
-        assert elm.attrib['max'] == '7'
-        assert elm.attrib['value'] == '7'
+        assert elm.attrib['min'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
+        assert elm.attrib['max'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
+        assert elm.attrib['value'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
 
         AddonReviewerFlags.objects.create(
             addon=self.addon,
@@ -3811,7 +3812,7 @@ class TestReview(ReviewBase):
         assert 'readonly' not in elm.attrib
         assert elm.attrib['min'] == '1'
         assert elm.attrib['max'] == '99'
-        assert elm.attrib['value'] == '7'
+        assert elm.attrib['value'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
 
     def test_no_public(self):
         has_public = self.version.files.filter(
