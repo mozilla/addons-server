@@ -40,7 +40,6 @@ addons:
       - librsvg2-bin
       - pngcrush
       - uuid
-      - libgit2-dev
 
 services:
   - mysql
