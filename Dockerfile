@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
-ADD docker/debian-buster-testing-repo /etc/apt/sources.list.d/testing.list
+ADD docker/debian-buster-repo /etc/apt/sources.list.d/buster.list
+ADD docker/debian-buster-backports-repo /etc/apt/sources.list.d/buster-backports.list
 
 RUN apt-get update && apt-get -t stretch install -y \
         # General (dev-) dependencies
@@ -59,9 +60,15 @@ RUN apt-get update && apt-get -t stretch install -y \
 # Install `file` and `libmagic` from the `buster` repositories for an up-to-date
 # file-detection.
 RUN apt-get update && apt-get -t buster install -y \
-       file \
-       libmagic-dev \
+        file \
+        libmagic-dev \
     && rm -rf /var/lib/apt/lists/*
+
+# Install a recent libgit2-dev version...
+RUN apt-get update && apt-get -t buster-backports install -y \
+        libgit2-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
