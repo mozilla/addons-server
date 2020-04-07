@@ -3,7 +3,7 @@
   "version": "0.0.17",
   "private": true,
   "engines": {
-    "node": ">= 8.10"
+    "node": ">= 10.13"
   },
   "dependencies": {
     "addons-linter": "1.23.0",
