@@ -101,10 +101,10 @@ class BlockAdminAddMixin():
 
     def add_from_addon_pk_view(self, request, pk, **kwargs):
         addon = get_object_or_404(Addon.unfiltered, pk=pk or kwargs.get('pk'))
-        get_params = [f'{key}={value}' for key, value in request.GET.items()]
+        get_params = request.GET.urlencode()
         return redirect(
-            reverse('admin:blocklist_blocklistsubmission_add') + '?' +
-            '&'.join([f'guids={addon.guid}'] + get_params))
+            reverse('admin:blocklist_blocklistsubmission_add') +
+            f'?guids={addon.guid}&{get_params}')
 
 
 @admin.register(BlocklistSubmission)
