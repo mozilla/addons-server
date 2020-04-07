@@ -4304,11 +4304,11 @@ class TestReview(ReviewBase):
 
     def test_translations(self):
         self.addon.name = {
-            'fr': 'Traduction En Français',
+            'de': None,
             'en-CA': 'English Translation',
             'en-GB': 'English Translation',  # Duplicate
-            'de': None,
             'es': '',
+            'fr': 'Traduction En Français',
         }
         self.addon.save()
         response = self.client.get(self.url)
@@ -4317,8 +4317,7 @@ class TestReview(ReviewBase):
             [li.text_content() for li in doc('#name-translations li')]
         )
         expected = [
-            'English (British): English Translation',
-            'English (Canadian): English Translation',
+            'English (Canadian), English (British): English Translation',
             'English (US): Public',
             'Français: Traduction En Français'
         ]
