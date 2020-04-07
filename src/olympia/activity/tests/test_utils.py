@@ -288,8 +288,6 @@ class TestLogAndNotify(TestCase):
             self.addon.name, self.version.version)
         assert ('visit %s' % url) in body
         assert ('receiving this email because %s' % reason_text) in body
-        print(days_text)
-        print(body)
         if days_text is not None:
             assert 'If we do not hear from you within' in body
             assert days_text in body
