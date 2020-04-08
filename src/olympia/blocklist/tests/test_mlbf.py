@@ -6,8 +6,8 @@ from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
 from olympia.blocklist.models import Block
 from olympia.blocklist.mlbf import (
-    generate_mlbf, get_all_guids, get_blocked_guids, get_mlbf_key_format,
-    hash_filter_inputs)
+    generate_mlbf, get_all_guids, get_blocked_guids, hash_filter_inputs,
+    MLBF_KEY_FORMAT)
 from olympia.files.models import File
 
 
@@ -103,14 +103,14 @@ class TestMLBF(TestCase):
             ('guid@', '1.0'),
             ('foo@baa', '999.223a'),
         ]
-        assert hash_filter_inputs(data, get_mlbf_key_format(37872)) == [
-            '37872:guid@:1.0',
-            '37872:foo@baa:999.223a',
+        assert hash_filter_inputs(data) == [
+            'guid@:1.0',
+            'foo@baa:999.223a',
         ]
 
     def test_generate_mlbf(self):
         stats = {}
-        key_format = '{guid}:{version}'
+        key_format = MLBF_KEY_FORMAT
         blocked = [
             ('guid1@', '1.0'), ('@guid2', '1.0'), ('@guid2', '1.1'),
             ('guid3@', '0.01b1')]
@@ -119,16 +119,16 @@ class TestMLBF(TestCase):
             ('guid30@', '0.01b1'), ('guid100@', '1.0'), ('@guid200', '1.0'),
             ('@guid200', '1.1'), ('guid300@', '0.01b1')]
         bfilter = generate_mlbf(
-            stats, key_format, blocked=blocked, not_blocked=not_blocked)
+            stats, blocked=blocked, not_blocked=not_blocked)
         for entry in blocked:
             key = key_format.format(guid=entry[0], version=entry[1])
             assert key in bfilter
         for entry in not_blocked:
             key = key_format.format(guid=entry[0], version=entry[1])
             assert key not in bfilter
-        assert stats['mlbf_version'] == 1
+        assert stats['mlbf_version'] == 2
         assert stats['mlbf_layers'] == 2
-        assert stats['mlbf_bits'] == 14409
+        assert stats['mlbf_bits'] == 14416
         with tempfile.NamedTemporaryFile() as out:
             bfilter.tofile(out)
-            assert os.stat(out.name).st_size == 1824
+            assert os.stat(out.name).st_size == 1842

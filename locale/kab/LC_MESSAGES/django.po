@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-26 19:32+0000\n"
+"PO-Revision-Date: 2020-04-03 16:18+0000\n"
 "Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1098,46 +1098,46 @@ msgid "Holiday"
 msgstr "Amras"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Sader isental Firefox ɣef yimuṛas. Taggayt-a tegber isental yemmalen Noël, Haloween, Thanksgiving, St. Patrick’s Day, Easter, Rebɛa seg Yulyu, d wayen-nniḍen."
 
 msgid "Music"
 msgstr "Aẓawan"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Sader isental i Firefox i yemṣadan d uẓawan d yinaẓuren i tḥemmleḍ. Taggayt-a tegber tirebbaɛ tiɣerffanin am Nirvana d BTS, allalen n uẓawan, tividyutin n uẓawan, d wayen-nniḍen."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Sader isental i Firefox ɣef yiɣersiwen d ugama. Taggayt-a tegber ijeggigen, aɣelluy n yiṭij, uccanen, tisemhuyin, imtiwagen, imcac meẓẓiyen, igḍaḍ, d wayen-nniḍen."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Sader isental yelhan i Firefox, d ucbiḥen, ur sɛin timital."
 
 msgid "Scenery"
 msgstr "Iẓir"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Sader isental i Firefox i d-yeskanen tawennadt akked umaḍal n ugama. Taggayt-a tegber aɣelluy n yiṭij, tiftisin, unuɣen, iglan n temdinin, d wayen-nniḍen."
 
 msgid "Seasonal"
 msgstr "Asemhay"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Sader isental n Firefox yal tasemhuyt — amwan, tagrest, tafsut, d unebdu. Ifriwen n umwan, tiqiṛṛucin n udfel, ussan n unebdu s yiṭij akked ijeǧǧigen n tefsut."
 
 msgid "Solid"
 msgstr "Ukmil"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Sader isental i Firefox s yiniten yedduklen neɣ udabder akken ad tmuddeḍ udem i Firefox. Taggayt-a tegber azeggaɣ iḥ€mqen, pastel, amumad aceɛlal, atg."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Sader isental Firefox i d-yekkan seg ddeqs n waddalen. Taggayt-a tegber anayen n tmura, tirebbaɛ n waddal, ddabax n uḍaṛ, hockey, d wayen-nniden."
 
 msgid "Websites"
 msgstr "Ismal web"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Sader isental Firefox i ijebbden ul n web — ijebbed, izehhu daɣen ur yesɛi timital."
 
 msgid "General"
 msgstr "Amatu"
@@ -1310,21 +1310,17 @@ msgstr "Aceggir n uzegrir yefsex deg ucegger"
 msgid "Add-on Content Review"
 msgstr "Asentem n ugbur n uzegrir"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "Asentem send aqbal (tamijewt meqqren ugar)"
+msgstr "Acegger n uzegrir (amihi meqqren)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Asentem send aqbal (tamijewt meqqren)"
+msgstr "Acegger n uzegrir (amihi meqqren)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Asentem send aqbal (tamijewt alemmas)"
+msgstr "Acegger n uzegrir (amihi alemmas)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Aɣmis n ucegger n uzegrir"
+msgstr "Acegger n uzegrir (amihi meẓẓiyen)"
 
 msgid "Level 1"
 msgstr "Aswir 1"
@@ -1413,7 +1409,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Isnifal n melmi kan i yizegrar-iw"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Iseɣzaf iqburen dayen ur ttwasefraken ara deg Firefox."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Izegrar i Thunderbird akked SeaMonkey llan tura, daɣen ttwaseggmen deg izegrar di  addons.thunderbird.net. Tzemreḍ ad tesqedceḍ yiwen umiḍan i uleqqem n yizegrar-ik deg usmel amaynut."
@@ -1475,14 +1471,13 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Send asnifel n usideg inek amezwer yessefk ad tmuddeḍ isem, agzul akked uglam deg usideg agi aneggaru. Mazal xuṣṣen %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Iseqdacen ur zmiren ara ad ttwarnun srid"
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Ameskar ad d-yeswasken kan yiwet n tikelt."
+msgstr "Ameskar ad d-yettwasken kan tikkelt."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Amiḍan yesra i yisem n uskan send ad yettwarnu am umeskar."
 
 msgid "Must have at least one owner."
 msgstr "Yessefk ad yegber xaṛsum yiwen n bab."
@@ -1523,9 +1518,8 @@ msgstr "Ma ulac aɣilif, mudd-d tasertit n tbadnit n uzegrir inek:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Anaw n ufaylu ur ittusefrak ara, ma ulac aɣilif sali afaylu n uḥraz {extensions}."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Yir aɣbaṛ"
+msgstr "Taṛcivt diri-tt neɣ ahat texseṛ."
 
 msgid "View current"
 msgstr "Wal lqem amiran"
@@ -1542,12 +1536,11 @@ msgstr "Teḍra-d tuccḍa akked usali inek. Ma ulac aɣilif ɛreḍ tikelt nni�
 msgid "Override failed validation"
 msgstr "Zgel asentem yeccḍen"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Yesra xaṛsum yiwen n usnas amṣadan."
+msgstr "Fren xarṣum yiwen n usnas."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Ddeqs n yifuyla i d-tuzneḍ srid tineggura-a. Ma ulac aɣilif, ɛreḍ akka kra n wakud ticki."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Lqem {version} yuli yakan sakin yettwakkes"
@@ -1564,15 +1557,14 @@ msgstr "Ih"
 msgid "No"
 msgstr "Ala"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Ur izmir ara ad isleḍ afaylu yulin."
+msgstr "Ur tessuliḍ ara afaylu aɣbalu."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Afaylu aɣbalu dayen yettwasuder-d, maca tenniḍ-d belli aɣbalu ur ilaq."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Ḍmen d dakken isem akked ugzul gebren ma aṭas {limit_value} n yisekkilen (ɣur-sen meṛṛa {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -1591,9 +1583,8 @@ msgstr "Sken-d Isem"
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Taggayint ur zmirent ara ad beddlent ticki azegrir-ik d itri."
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Yir aɣbaṛ"
+msgstr "Afaylu n uzegrir d arameɣtu neɣ yexṣeṛ."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Tasarut-ik API n tneflit tettwaf deg ufaylu yettwaznen. Akken ad tḥerzeḍ amiḍan-ik, tasarutt ad tattwaḥwi."
@@ -1657,24 +1648,22 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Tansa URL mačči d tameɣtut. Azegrir ur yettwakkes ara."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Tinubga tettwaqbel."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Tinubga tettwagi."
 
 msgid "An author has been added to your add-on"
 msgstr "Ameskar yettwarna ad uzegrir inek"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Ittekkiyen di {addon}."
+msgstr "Tinubga n umeskar ɣer {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Imayl n usentem yettwazen ɣer {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "Tamlilt n umeskar tettusnifel ɣef uzegri inek"
+msgstr "Tamlilt n umeskar tbeddel deg uzegrir-ik"
 
 msgid "An author has been removed from your add-on"
 msgstr "Ameskar yettwakkes seg uzegrir inek"
@@ -1691,26 +1680,23 @@ msgstr "Tiginitin zemrent kan ad ilint PNG neɣ JPG."
 msgid "Icons cannot be animated."
 msgstr "Tignitin ur zmirent ara ad mbiwlent."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Yessefk tugna ad tili s {0} n ipiksilen di tehri akked {1} n ipiksilen di teɣzi."
+msgstr "Yessefk tugna ad tili s xarṣum {0} n yipiksilen di tehri akked {1} n yipiksilen di teɣzi."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Tugniwin zemrent ad ilint PNG neɣ JPG."
+msgstr "Issefk tisektiwin n tugna ad ilint deg ufmiḍi 4:3."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Yessefk tugna ad tili s {0} n ipiksilen di tehri akked {1} n ipiksilen di teɣzi."
+msgstr "Issefk tignit ad tili xarṣum {0} n yipiksilen deg tehri akked teɣzi."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Issefk tignit ad tili d amkuẓ (teɣzi tegda tehri)."
 
 msgid "There was an error uploading your preview."
 msgstr "Taḍra-d tuccḍa di tuzzna n teskant inek."
 
 msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Lqem aneggaru n usiqzef yelhan ur izmir ara ad yettwakkes neɣ ad yens. Ma ulac aɣilif nermes inedbalen n AMO ma yella teḥwaǧeḍ tallelt ɣef waya."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1730,16 +1716,14 @@ msgstr "Tuzna-agi ur teddi ara deg usentem, ihi tezmer akken ur yelli ara ɣur-s
 msgid "Header area background"
 msgstr "Tallunt n ugerru"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "Initen n ugilal n uqeṛṛu, i d-yettwaseknen deg uḥric n uqerru ur neffir ara neɣ win yettbanen s tugna n uqerru. Urti n umeskan: accentcolor."
+msgstr "Initen n ugilal n uqeṛṛu, i d-yettwaseknen deg uḥric n uqerru ur neffir ara neɣ win yettbanen s tugna n uqerru. Urti n umeskan:   frame."
 
 msgid "Header area text and icons"
 msgstr "Aḍris akked tignitin n uqerru"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Ini n uḍris akked tignitin deg tjumma n uqerru, anagar iccer urmid. Urti n umeskan:  textcolor."
+msgstr "Ini n uḍris akked tignitin deg tjumma n uqerru, anagar iccer urmid. Urti n umeskan:  tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Agilal n ufeggag n yifecka"
@@ -1750,9 +1734,8 @@ msgstr "Ini n ugilal i ufeggag n tunigin, afeggag udmawan akked yiccer yettwafer
 msgid "Toolbar area text and icons"
 msgstr "Aḍris akked tignitin n ufeggag n yifecka"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Ini n uḍris akked tignitin def ufeggag n yifecka akked yiccer urmid. Urti n umeskan:   toolbar_text."
+msgstr "Ini n uḍris akked tignitin def ufeggag n yifecka akked yiccer urmid. Urti n umeskan:   bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Agilal n wurtan n ufeggag n yifecka"
@@ -1794,7 +1777,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Ɣriɣ yerna qebleɣ amtawa-agi akk d walugen d tsertiyin"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Isem ara d-tsekneḍ akken ad tkemmleḍ amiḍan-ik akken iseqdacen d tseqdacin ad issinen anwa i xedmen azegrir-ik. Ma ulac aɣilif aru yiwen ddaw-a."
 
 msgid "Accept"
 msgstr "Qbel"
@@ -1802,9 +1785,8 @@ msgstr "Qbel"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "neɣ <a href=\"{0}\">Sefsex</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Ugar n telɣut ɣef turagin Creative Commons"
+msgstr "Ugar n telɣut ɣef yimiḍanen n uneflay"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -1820,9 +1802,8 @@ msgstr "Ammas n ineflayen <small>izegrar</small>"
 msgid "more add-ons..."
 msgstr "ugar n izegrar..."
 
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Isiɣzaf"
+msgstr "Tanemsel n usiɣzef"
 
 msgid "Documentation"
 msgstr "Tasemlit"
@@ -1833,9 +1814,8 @@ msgstr "Taneflit n isiɣzaf"
 msgid "Themes"
 msgstr "Isental"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Isallen n uneflay"
+msgstr "Tasertit i yineflayen"
 
 msgid "Add-on Validator"
 msgstr "Asentam n izegrar"
@@ -1913,9 +1893,8 @@ msgstr "Azegrir-agi ur imṣada ara akked <b>%(app_name)s%(app_version)s</b>, lq
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Leqqem amṣada</a> <a href=\"%(version_url)s\" class=\"button\">Azen lqem amaynut</a> ou <a href=\"#\" class=\"close\">Anef</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Wali sakin leqqem izilalen n umṣada n yesnasen."
+msgstr "Wali sakin leqqem izilalen n umṣada n yesnasen"
 
 msgid "Compatibility"
 msgstr "Amṣada"
@@ -1988,16 +1967,16 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Taskant tezga deg usirew. Ma ulac aɣilif, ales aɛraḍ tikelt-nniḍen neɣ smiren asebter."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Tettwanecdeḍ ad tuɣaleḍ d ameskar n {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Ma tqebleḍ tinubga, ad tizmireḍ ad tbeddleḍ azegrir daɣen ad tsekneḍ isem-ik deg tebdert n yimeskaren n usmel web."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Tekki ɣef tqeffalt Qbel ddaw-a akkend ad tesnetmeḍ ayen tebɣiḍ ad yettwarnu s yisem n umeskar i {addon_name}."
 
 msgid "Decline"
-msgstr ""
+msgstr "Agi"
 
 msgid "Manage Authors & License"
 msgstr "Sefrek imeskaren & iselkinen"
@@ -2009,10 +1988,10 @@ msgid "About author roles"
 msgstr "Γef temlilin"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Imeskaren yettraǧun asentem"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Imeskaren yettwarnan ɣer uzegrir-a maca ur ttwasnetmen ara yakan."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2021,16 +2000,14 @@ msgstr ""
 "<p>Izegrar zemren ad sɛun ugar n yiwen n umeskar s snat n twuriwin:</p> <ul> <li><b>Bab-is :</b> yezmer ad isefrek meṛṛa anaḍen n uzegrir, am timerna neɣ tukksa n yimeskaren</li> "
 "<li><b>Aneflay :</b> yezmer ad isefrek meṛṛa anaḍen, ala timerna neɣ tukksa n yimeskaren akked usefrek n usellek</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Talqayt γef uzegrir"
+msgstr "Talqayt-nniḍen"
 
 msgid "Edit"
 msgstr "Ẓreg"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Talqayt n uzigrir i {0}"
+msgstr "Talqayt-nniḍen i {0}"
 
 msgid "Tags"
 msgstr "Tibzimin"
@@ -2077,13 +2054,11 @@ msgid "Describe Add-on"
 msgstr "Seglem azegrir"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Seglem azegrir"
+msgstr "Seglem {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Agzul"
+msgstr "Isem d ugzul"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2104,9 +2079,8 @@ msgstr "Fren tansa URL wezzilen s war isekkilen imezliyen i uzegrir inek."
 msgid "View Listing"
 msgstr "Asebter n usnas"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Sken amaɣnu"
+msgstr "Sken asbter n ufaris"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -2256,9 +2230,8 @@ msgstr "Yettwaseqdec deg isebtar n telqayt n uzegrir."
 msgid "128x128px"
 msgstr "128x128 ipiksilen."
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Yettwaseqdec deg isebtar n telqayt n uzegrir."
+msgstr "Ad yili d alugen deg yisebtar n telqayt n yizegrar i d-iteddun."
 
 msgid "Upload a Custom Icon..."
 msgstr "Sali tignit tudmawant..."
@@ -2267,11 +2240,10 @@ msgid "PNG and JPG supported."
 msgstr "PNG d JPG ttwasefraken."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Tignitin ilaq ad ilint s talɣa n umkuẓ daɣen ad sɛun teɣzi taddayt n 128x128 n yipiksilen."
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG akked  JPG ttusefraken. Ignitin ad uɣalent ar 64x64 ipiksilen ticki kkant-d nig waya."
+msgstr "Tignitin ad uɣalent ɣer 128x128 n yipiksilen ma meqqerit."
 
 msgid "Screenshots"
 msgstr "Tuṭṭfiwin n wegdil"
@@ -2286,13 +2258,13 @@ msgid "Add a Screenshot..."
 msgstr "Rnu tuṭṭfa n ugdil"
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Talɣiwin PNG akked JPG ttwasefraken, PNG yelha. Teɣzi tafellayt yelhan i tuṭṭfa n ugdil d 2400x1800 n yipiksilen."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Tiddi taddayt d 1000x750, tafult n 4:3 t-ttusutred."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Askan n tuṭṭfiwin n ugdil des usebter n ufaris-ik ad yesnerni s waṭas tignatin-is akken ad yettwasebedd daɣen ad yers deg usebter agejdan."
 
 msgid "Continue"
 msgstr "Kemmel"
@@ -2364,9 +2336,8 @@ msgstr "Ma ulac aɣilif, iniya-ɣ-d acuɣeṛ ad tekksed azegrir inek:"
 msgid "Actions"
 msgstr "Tigawin"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Kemmel akala n tuzna n uzegrir-agi."
+msgstr "Kemmel akala n tuzna n uzegrir-agi"
 
 msgid "Resume"
 msgstr "Kemmel"
@@ -2377,20 +2348,17 @@ msgstr "Kkes azegrir-agi."
 msgid "Delete"
 msgstr "Kkes"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "Ẓreg talqayt n tebdart n usentel-agi."
+msgstr "Ẓreg talqayt n usebter n ufaris n uzegrir-a"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Sali lqem amaynut n uzegrir-agi."
+msgstr "Sali lqem amaynut n uzegrir-agi"
 
 msgid "New Version"
 msgstr "Lqem amaynut"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Tidaddanin n yal ass ɣef usider akked iseqdacen."
+msgstr "Tidaddanin n yal ass ɣef usader akked yiseqdacen"
 
 msgid "Statistics"
 msgstr "Tidaddanin"
@@ -2422,9 +2390,8 @@ msgstr[1] "<strong>{0}</strong> iseqdacen urmiden"
 msgid "Submit a New Version"
 msgstr "Azen lqem amaynut"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Agzul:"
+msgstr "Isem d ugzul:"
 
 msgid "required"
 msgstr "yettwasra"
@@ -2434,6 +2401,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Ɣur-k: Azalen i yisem akked ugzul deg tutlayin-nniḍen ad neɣsen akken ad qqimen deg talast n %(max_length)s n yisekkilen. Akken ad ten-tbeddleḍ, tekki ɣef Ẓreg asebter n ufaris ticki ifuk ukala n "
+"tuzna."
 
 msgid "Add-on URL:"
 msgstr "Tansa URL n uzegrir:"
@@ -2445,14 +2414,13 @@ msgid "Name:"
 msgstr "Isem:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Isem n uskan deg usmel-a. Wagi izmer ad yili yemgarad d yisem agensan n uzegrir, ara d-yettwaseknen deg Firefox"
 
 msgid "Summary:"
 msgstr "Agzul:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Aglam"
+msgstr "Aglam:"
 
 msgid "This add-on is experimental"
 msgstr "Azegrir-agi d armitan"
@@ -2494,6 +2462,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Ma tuzned-d tangalt-ik taɣbalut, maca ur d-tseddaḍ amek ileḥḥu, issefk ad t-id-muddeḍ dagi. Sekcem amek iteddu asurif asurif akken ad ternuḍ daɣen ad tekkseḍ anɣel n tengalt aɣbalu n uzegrir-ik, "
+"akken i d-qqaren %(policy_requirements_open)silugan-nneɣ n useqdec%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tizmilin-agi ad d-ttwaseknent kan i kečč akked imceggiren-nneɣ."
@@ -2570,9 +2540,8 @@ msgstr "Sider {0}"
 msgid "Go to My Submissions"
 msgstr "Ddu ar isumar inu"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Tangalt aɣbalu tuli"
+msgstr "Tuzna n tengalt aɣbalu"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr "Tesriḍ ad tazneḍ tangalt aɣbalu?"
@@ -2588,57 +2557,57 @@ msgid "Do you use any of the following?"
 msgstr "Tseqdaceḍ yiwen seg wigi?"
 
 msgid "Code minifiers or obfuscators"
-msgstr ""
+msgstr "Ussiden neɣ ifecka n tussda n tengalt"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Ifecka yessemlilin ifuyla yemgaraden deg yiwen ufaylu am <span class = \"tech-emphasis\"> webpack </ span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Amsedday n tneɣrufin web i HTML akked CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "Yal afecku-nniden i yessesfaren tangalt neɣ ifuyla daɣen wid yessiriwen tangalt neɣ ifuyla ara tsedduḍ deg uzegrir"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Ur tesriḍ ara ad tazneḍ tangalt aɣbalu daɣen ad tizmireḍ ad tedduḍ ɣer umecwaṛ i d-iteddun."
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "Tuzzna-inek tesra tangalt taqbalut.Tangalt-ik aɣbalu tlaq i tuzna-ik."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+msgstr "Tangalt aɣbalu issefk ad tqadeṛ <a %(a_attrs)s>ilugan n tsertit-nneɣ</a>, ayen i igebren:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr ""
+msgstr "Iwellihen d bennu leqqyen ara yeǧǧen ad ternuḍ anɣel usdid n tengalt n uzegrir."
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Askript n usbeddi ara i uselkem n meṛṛa imecwaṛen itiknikanen n tazwara."
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "Anagraw n wammud akked twennaḍt n usbeddi i ilaqen."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
 "emphasis\">npm</span> version used)."
 msgstr ""
+"Talɣut (ayen i igebren lqem ilaqen akked iwellihen n usbeddi), ɣef wahilen meṛṛa yettwasqedcen deg ukala n usdukel (amedya: lqem n <span class=\"tech-emphasis\">node</span>akked <span class=\"tech-"
+"emphasis\">npm</span>)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
-msgstr ""
+msgstr "<span class=\"instruction-emphasis\">Tamawt:</span> Ifuyla iɣbula (ala wid n temkarḍiyin n uɣbalu yeldin n wis kraḍ) ur zmiren ara ad ttwassden neɣ ahat ttwarnan s wudem awurman s kra n tarrayt."
 
-#, fuzzy
 msgid "How to Submit:"
-msgstr "Azen"
+msgstr "Amek ara tazneḍ:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "Seddu iwellihen deg ufaylu README deg tengalt aɣbalu,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "neɣ deg tezmilin i yimsekyaden deg usebter-a (ma yella aya yettwasemras)."
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Tangalt aɣbalu"
+msgstr "Sali tangalt aɣbalu:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Amtawa n uzuzer n uzegrir"
@@ -2658,12 +2627,11 @@ msgstr "Sali lqem"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Seqdec urtan ddaw-a akken ad tazneḍ akemmus n uzegrir-ik. Seld tuzna, ikayaden n usentem iwurmanen ad ttwaselkmen ɣef ufaylu-ik."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Anwa anagraw yemṣadan akked uzegrir inek?"
+msgstr "Anwa isnasen ukud imṣada lqem-agi?"
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Amuddu n tedbelt"
 
 msgid "Create a Theme Version"
 msgstr "Rnu Lqem n usentel"
@@ -2681,7 +2649,7 @@ msgid "Theme generator"
 msgstr "Asaraw n usentel"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Ɣurk: timeẓliyin-a n umeskan, i yesseqdac lqem yettwaznen, ur ttwasefrakent ara deg umarag-a ihi ttwazeglent:"
 
 msgid "Theme name"
 msgstr "isem n usentel"
@@ -2689,9 +2657,8 @@ msgstr "isem n usentel"
 msgid "Select a header image for your theme"
 msgstr "Fren tugna n uqeṛṛu i usentel-ik."
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "Awrir n tugna yessef ad yili 200 n ipiksilen"
+msgstr "Awrir yelhan: 200 n yipiksilen"
 
 msgid "6.9MB max"
 msgstr "6.9MAṬ afellay"
@@ -2749,10 +2716,10 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Ma ulac aɣilif, tekki ɣef tqeffalt n usentem akken ad ternuḍ tasarut API i useqdac <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Aseɣwen n usentem ad ak-d-yettwazen s yimayl. Seld asentem, ad tafeḍ tisura-ik API deg usebter-a."
 
 msgid "You don't have any API credentials."
 msgstr "Ur ɣur-k ara talɣut n usesteb API."
@@ -2763,9 +2730,8 @@ msgstr "Ḥwi"
 msgid "Revoke and regenerate credentials"
 msgstr "Ḥwi sakin sirew talɣut n usesteb"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Sirew talɣut tamaynut n usesteb"
+msgstr "Sentem daɣen sirew inekcam imaynuten"
 
 msgid "Generate new credentials"
 msgstr "Sirew talɣut tamaynut n usesteb"
@@ -2773,9 +2739,8 @@ msgstr "Sirew talɣut tamaynut n usesteb"
 msgid "Invisible"
 msgstr "Aruman"
 
-#, fuzzy
 msgid "Approved and recommended"
-msgstr "Iceggiren yettwasnetmen"
+msgstr "Yettwaqbel daɣen yelha"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Ma ulac aɣilif, kemmel azegrir-ik s tmerna n lqem neɣ iɣefiseka ixuṣṣen."
@@ -2786,9 +2751,8 @@ msgstr "Ad -dremseḍ imayl ticki acegger yemmed. Uqbel aya, azegrir-ik ur d-yet
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Azegrir inek yettwasken di tmidelt-nneɣ udiɣ iseqdacen ad d-remsen ileqman s wudem awurman."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "azegrir-ik yessens-it unedba n usmel, ur yezgi yettban-d deg timidelt-nneɣ. Ma ɣur-k isteqsiyen, azen-d imayl ar amo-admins@mozilla.com."
+msgstr "Azegrir-ik yessens-it unedba n usmel, ur yezgi yettban-d deg timidelt-nneɣ. Ma ɣur-k isteqsiyen, azen-d imayl ar amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Azegrir-ik ur yerni ara ar igmaḍ n unadi daɣen asebter n unadi n telqayt yemmal-d d akken tsenseḍ-t. Tuzniwin n ileqman imaynuten ur tezzin ad ttwaqeblen deg addad-agi."
@@ -2802,9 +2766,8 @@ msgid "Last Updated:"
 msgstr "Aleqqem aneggaru:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Ad d-banen ɣef usmel-a deffir n ucegger n tengalt. Ileqman iwurmanen ttwasefraken deg usmel-agi."
+msgstr "Ad d-banen ɣef usmel-a deffir n ucegger n tengalt. Ileqman iwurmanen ttwasefraken deg usmel-agi"
 
 msgid "Status:"
 msgstr "Addad:"
@@ -2812,16 +2775,14 @@ msgstr "Addad:"
 msgid "Listed Version:"
 msgstr "Lqem yettwabedren:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "D lqem n uzegrir ara yebedden ticki yiwen isenned ɣef tqeffalt Sebedd di addons.mozilla.org."
+msgstr "D lqem n uzegrir ara yebedden ticki yiwen isenned ɣef tqeffalt Sebedd di addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Lqem yettwabedren d-iteddun:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Wagi d lqem amaynut i yettwaznen, dacu mazal ur yelli ara deg usmel."
+msgstr "Wagi d lqem amaynut i yettwaznen, dacu mazal ur yelli ara yakan deg usmel"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Idrasen ur ttwaceggren ara seg umezwaru ar uneggaru"
@@ -2839,9 +2800,8 @@ msgstr "Yettwasezmel i uzuzer udmawan. Ad tesferkeḍ ileqman."
 msgid "Latest Version:"
 msgstr "Lqem aneggaru:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Wagi d lqem aneggaru i d-yulin, mazal ur yettwabder ara."
+msgstr "Wagi d lqem aneggaru i d-yulin, mazal ur yettwabder ara"
 
 msgid "Upload New Version"
 msgstr "Sali lqem amaynut"
@@ -2900,9 +2860,8 @@ msgstr[1] "Kren <b>arma d {0}</b> {1} n taggayin i uzegrir-agi:"
 msgid "End-User License Agreement"
 msgstr "Amtawa n uselkin n useqdac aneggaru"
 
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "MA ulac aɣilif, fren turgat ilaqen i yizerfan i tebɣiḍ ad tmuddeḍ i tengalt inek aɣbalu. Urti-agi yettwaseqdac kan i yizegrar yettwasnen, yettwakelsen."
+msgstr "Ma ulac aɣilif ẓer d akken EULA mačči d turagt am tin n tengalt, am GPL neɣ MPL. Aya yerza kan izegrar i d-yettwabedren."
 
 msgid "Privacy Policy"
 msgstr "Tasertit n tbaḍnit"
@@ -3135,14 +3094,14 @@ msgstr "Err"
 msgid "Listing visibility"
 msgstr "Tuman n uzegrir"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Visible:{label_close} Ad d-iban i yal yiwen di {site_url} daɣen ad d-yeddu deg igmaḍ n unadi s telqayt."
+msgstr "{label_open} Yettban:{label_close} Ad d-iban i yal yiwen deg {site_url} daɣen ad d-yeddu deg igmaḍ n unadi s telqayt.akked isebtar n ufaris."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr "Azegrir-ik ur yerni ara ar igmaḍ n unadi daɣen asebter n unadi n telqayt yemmal-d d akken tsenseḍ-t. Tuzniwin n ileqman imaynuten ur tezzin ad ttwaqeblen deg addad-agi."
+msgstr ""
+"{label_open} Yettban-d: {label_close} Ur d-yettban ara deg igmaḍ n unadi, daɣen asebter n ufaris ad d-yemmel d akken tsenseḍ-t. Tuzniwin n yileqman imaynuten i ufaris ur tettezii ara ad tetttwaqbel "
+"deg waddad-agi."
 
 msgid "Listed versions"
 msgstr "Ileqman yettwabedren"
@@ -3182,7 +3141,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr "Tukksa n lqem-agi ad yekkes ilebda:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Axater:</strong> Ticki lqem yettwakkes, ur tettizmired ara ad tazneḍ lqem s wuṭun-a."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Tebɣiḍ ad tekkseḍ lqem-agi?"
@@ -3197,16 +3156,16 @@ msgid "Hide Add-on"
 msgstr "Ffer lqem"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Tuffra n uzegrir ad isewḥel win ara d-ibanen deg thanut daɣen iseqdacen ur tezzin ara ad d-remsen ilɣa iwurmanen."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Ifuyla yettraǧun acegger ad nsen daɣen issefk ad tazneḍ ileqman imaynuten."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Tebɣiḍ ad teffreḍ azegrir-agi?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Asefsex n usuter n ucegger ad yecreḍ azegrir-ik am akken ur yemmid ara, daɣen yal lqem yettragun acegger ad yens."
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Tebɣiḍ ad tesfesxeḍ tuttra n ucegger?"
@@ -3227,76 +3186,68 @@ msgstr[0] "{0} alγu"
 msgstr[1] "{0} ilɣa"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel aḍfaṛ n sneaky {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Sewḥel ineḍfaṛen ara k-iḍefṛen deg web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mudd udem i yisebtar n yiccer amaynut {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Rnu asebter ijebbden s ugilal i tebɣiḍ, tagnawt tadigant, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Suqel s wudem fessusen {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Fre yal aḍris, sakin eg atekki s tqeffalt tayeffusr akken ad twaliḍ tasuqilt tawurmant."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Nadi tugniwin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Eg inadiyen yettin n tugniwin seg tegrumma n yimseddayen n unadi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Asewḥel n udellel & ummesten n tbaḍnit {start_sub_heading} s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Asewḥel n udellel akked ummesten n tudert tusligt. Tawila fessusen ad k-teǧǧ ad qarɛeḍ adellel i tettwaliḍ akked lǧeṛṛat i tettaǧǧaḍ deg Internet."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Accaṛen, ttwafeṣlen s wudem amaynut {start_sub_heading}s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Tesɛiḍ ddeqs n yiccaren yeldin? Suddes-iten deg yiwen n ugalis adisan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel aḍfaṛ n Facebook {start_sub_heading}s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Seḥbes aḍfaṛ sɣur Facebook. Ɛzel timagit-ik Facebook deg “umagbar” iman-is akken ad tɛezleḍ Facebook ur k-yeṭṭafaṛ ara deg Web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sifses anadi n {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Sifses inadiyen-ik s ujerreḍ n uḍris deg usevter web, sakin nadi aḍri deg yimseddayen-nniḍen."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3304,16 +3255,15 @@ msgstr "Awi ileqman n tegnawt {start_sub_heading}s {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Ileqman n tegnawt d iskudanen seg umaḍal meṛṛa."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Choose the page you see every time you open a new tab."
-msgstr "Swel asebter tẓerreḍ yal tikkelt ara teldiḍ iccer amaynut."
+msgstr "Fren asebter i tettwaliḍ yal tikkelt mi ara teldiḍ iccer amaynut."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3328,18 +3278,16 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sader tividyutin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Ileḥḥu s YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, akked imyaten n ysimal nniḍen n tvidyutin."
+msgstr "Sader tividyutin s tifses. Iteddu deg YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, d waṭas n yismal-nniḍen n uvidyu."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Ddeqs n tignitin n yiḥulfan, yal tikelt ɣef afus."
+msgstr "Snerni tagrumma-ik n yizamulen n yiḥulfan. D timrawin n yizamulen n yiḥulfan — yal tikkelt ɣef afus."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3347,7 +3295,7 @@ msgstr "Sefrek awalen uffiren {start_sub_heading} s {addon_name} {end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Asefrek n wawalen uffiren fessus. Mtawi meṛṛa inekcam-ik ɣef yibenkan-ik s wawal uffir akken ad ḥekmeḍ deg-sen meṛṛa."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3355,348 +3303,310 @@ msgstr "Sewḥel adellel {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Amsewḥal n udellel d afessas, maca ixeddem ccɣel-is. uBlock Origin, isemras agimen n yimsizdigen n ugbur maca yettaṭṭaf drus n tkatut."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Snerni tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Faṛs tagnit seg tmahilin timaynutin YouTube, am uskar sinima, asewḥel n udellel, taɣuri tawurmant, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d s tifses tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Sebṛureq yal tukkist n uḍris, sakin eg yiwen n utekki s tqeffalt tayeffust akken ad tesnekreḍ anadi n tugniwin."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Faṛes tagnit seg ticraḍ n yisebtar ibanen {start_sub_heading}s{addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Kcem ɣer yismal-ik ufrinen s wudem icuban aqermud."
+msgstr "Faṛes tagnit seg ticraḍ n yisebtar. Kcem ɣer yismal i tḥemmleḍ seg tneɣruft tabursant."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Kcem ɣer tmusni {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Sken-d igburen n tsanayt Britanica deg yigmaḍ-ik n unadi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Kkes adellel YouTube {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Sewḥel adellel i yestqelliqen akked iwenniten i d-yettbanen deg YouTube."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ɣer sekra wanida telliḍ {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Azen isallen, talɣut, imagraden n ublug akked igburen-nniḍen ɣer yimeɣri Kindle."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Eg taggayin i yiccaren-ik s useqdec n yiniten {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Suddes iccaren-ik s ussdukel-nsen s yini, neɣ s tansiwin-nsen URL."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ad isewḥel tandit s waṭas n tedrimt tumḍint {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Sewḥel yir ismal web seg useqdec n tezmert n uselkim-ik akken ad andin tifextin n tedrimt tumḍint."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Senqed tajerrumt s wudem awurman {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Faṛes tagnit seg tallelt n tjerrumt yal tikkelt ara taruḍ deg web: iẓeḍwa n tmetti, imaylen, isemliyen, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ger tiṭ ɣer wakud deg yal amḍiq deg umaḍal {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Sken akud n tmura i tebɣid deg ufeggag n waddad n Firefox."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Tasuqilt fessusen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Tasuqilt fessusen. Fren aḍris deg usebter web — neɣ asebter i meṛṛa — daɣen awi tasuqilt-is imren kan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Faṛes tagnit n tmsuni n uswir asdawan {start_sub_heading}s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "Tamusni tasdawant ɣef afus. Kcem baṭel ɣer wugar n 10 n yimelyan n yimagraden n unadi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mudd udem i uḥerrek n tɣerdayt {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Mudd udem i uḥerrek n tɣerdayt. Wali tarrayt tamaynut n tunigin s wugar n 50 n talɣiwin n uḥerrek n tɣerdayt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ṣeggem taɣuri n tvidyutin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Akken ad tesnerniḍ tallelt tumant n tvidyutin-ik, senɣes tafat n uskan i d-yezzin i umeɣri-ik n tvidyutin."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Nadi war tesḥesbeḍ i kra {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia tseqdac 80% n wayen i d-tessekcam i umuddu n tedrimt i wahilen n tuẓẓut n yisefka deg umaḍal. Sers Ecosia deg twennadt-ik n unadi n Firefox"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d agbur web ixuṣṣen  {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Asebter i tettnadiḍ ur lac-it? Sken-d lqem n teṛcivt neɣ n tkatut tuffirt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d agbur web ixuṣṣen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Semɣer tugniwin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hover over an image to magnify it."
-msgstr ""
+msgstr "Srifeg tugna akken ad timɣur."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Kkes inagan n tuqqna {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Sfeḍ swudem awurman inagan n tuqqna ticki tmedleḍ iccer."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ṣeggem teɣzi n usebter {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Tifrat fessusen akken ad tṣeggmeḍ teɣzi n uḍris deg usebter —neɣ daɣen akken ad tesmeɣreḍ asebter meṛṛa."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel ineḍfaṛen yeffren {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Sewḥel ineḍfaṛen daɣen issin ugar fell-asen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Suqel s wudem fessusen {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Eǧǧ adsil umḍin zeddigen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Ur ttaǧǧa ara lǧeṛṛa tumḍint. Suter i Firefox ad yettu isefka n yismal web am yinagan n tuqqna akked usekles adigan, maca ala i tɣula i tferneḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Sekles aḍris i ticki {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid ""
 "Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
 "when needed."
 msgstr ""
-"Berka i tettaruḍ tettalaseḍ i yiwet n tɣawsa kan dima! Ma llant tefyar i tesseqdaceḍ s waṭas deg uxeddim-ik(m) neɣ deg tyewlin nniḍen, ssekles-ient deg Clippings tessenṭḍeḍ-tent s sshala mi tent-"
-"tuεaǧeḍ."
+"Sekles aḍris i ticki. Ḥbes seg tira i tettalaseḍ i yiwet n tɣawsa yal tikkelt. Ma llant tefyar i tesseqdaceḍ s waṭas deg uxeddim-ik neɣ deg teywalin-nniḍen, sekles-ient deg Clippings sakin senteḍ-"
+"iten s wudem fessusen mi tent-teḥwaǧeḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel adellel n yimayl {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Sali tallunt yellan deg ugdil-ik s tukksa n udellel i d-yettbanen s wudem awurman deg tebwadt n urmas web n yimaylen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d iccaren-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Sefrek iccaren yeldin deg ufeggag adisan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Rwel i yineḍfaren akked usenɣes n tsirag {start_sub_heading}s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Zgel ineḍfaṛen akked tmara. Sers-as iceṭṭiḍen i tunigin-is akken ad teffer timagit n yiminig-ik akked unagraw-ik n wammud."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Smiren iccaren {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Ales asali awurman n yiccaren yeldin sya ɣer da."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ɛzel timagiyin-ik tumḍinin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
+"Semgared gar timeddurin-ik tumḍinin. Eg amgired gar timagiyin-ik srid — tasadrant, tudmawant, anezzeh, atg.— s useqdec n yiccaren s yini yemgaraden ara ak-d-imudden tallelt ad tesɛerqeḍ abrid s "
+"uḥraz n yinagan n tuqqna yemgaraden."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel ineḍfaṛen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Faṛes tagnit s uswir-nniḍen n ummesten mgal aḍfaṛ ticki tettinigeḍ deg web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ɣer ifuyala ePub {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Ɣer ifuyla ePub srid deg Firefox — Semɣer teɣzi n tsefsit, teɣzi n usebter, d wayen-nniḍen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sali tarmit-ik YouTube {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Ɣer yal tikkelt tividyutin YouTube s tɣara yelhan: Taɣara meqqren ugar, iwenniten nsan, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ddu deffir n yineḍfaṛen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Ɣass ineḍfaren. S utekki afessas, sken-d talɣut ɣef yineḍfaṛen i k-yettɛassan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Beddel aqeddac apṛuksi {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Beddel aqeddac apruksi daɣen inig s yiɣewwaṛen n upruksi ara tferneḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ɛass taɣuri n tvidyutin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Snerni tarmit-ik n uskan s uṣeggem n urured n tɣuri n tvidyutin akked iɣawwaṛen-nniḍen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Snirem s wudem aɣelsan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "Rnu aswir n tɣellist awgelhan i yismal i yessefraken aneggaf HTTPS. Inig s tɣellist."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Aɣ & sekles {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Faṛes seg usenɣes n ssuma ara yettwaḥesben ticki tettxelliseḍ mi ara d-tettaɣed."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Snerni Reddit {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Beddel tikli-ik deg tunigin deg Reddit s useqdec n tecraḍ akked wayen-nniḍen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sekles web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
@@ -3707,1139 +3617,1017 @@ msgid "A superior Windows-only downloader tool."
 msgstr "Afecku n usider ufrin i Windows kan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Issin ineḍfaṛen-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Af-d anwa i yeṭṭafaṛen armud-ik deg web daɣen issin amek zemren ad suffɣen talɣut-ik."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Inig s tedreg {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Inig s tedreg. Inig deg web s timagit n ureṭṭal — tzemreḍ ula ad terreḍ ad amnen d akken teqqneḍ seg tmurt-nniḍen."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Faṛes tagnit seg ticraḍ n yisebtar yettbanen. Tagrumma n uqermud icebḥen, iteddun akken iwata ara k-yeǧǧen ad tkecmeḍ ɣer yismal i tebɣiḍ, ɣer yiccaren imedlen melmi kan, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sbadu asebter-ik agejdan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Mmel asebter agejdan i yiccaren imaynuten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Bder-d iccaren-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Aselket n yiccaren-ik meṛṛa yeldin ad ten-isefrek s tifses, s zreb deg Firefox."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Seǧhed asefrek n usader {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Asefrek n usader iǧehden. Sefrek asader-ik s useqdec n ufeggag n waddad, asebter n uzray, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Sekles agbur web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Sekles talɣut seg Internet ɣer OneNote akken ad tizmireḍ ad tẓergeḍ, ad ternuḍ iwenniten, d wayen-nniḍen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Nadi ammesten mgal aḍfaṛ {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Sewḥel ineḍfaṛen n udellel yal tikkelt ad tettekkiḍ ɣef ugmuḍ n unadi Google neɣ Yandex."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Inig s wudem asmussan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Seqdec taɣerdayt akken ad tmedleḍ iccaren, ad tuɣaleḍ ɣer defiir deg usebter, ad talseḍ asmiren n usebter, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Rnu tugniwin i yigmaḍ-ik n unadi {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "Cudd tignitin n yismal web ɣer yigmaḍ-ik n unadi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Senɣes ɛeggu n wallen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Err web d afessas i wallen s usebrek n tafat-is."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel isfuyla udhimen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Sewḥel meṛṛa isfuyal udhimen s wudem amezwer, sakin fren tid i tebɣiḍ ad d-teldiḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mudd udem i yismal-ik web inurifen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Mudd udem n yal asmel web. Beddel initen, agilal n yisebtar, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mudd udem i yiccer-ik maynut {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Mudd udem i usebter n yiccer amaynut akked ad yesken amḍan n yiqermyad, agilal udmawan, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sefrek awalen-ik uffiren {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Sekles awalen-ik uffiren s tɣellist daɣen wali-ten deg yibenkan yemgaraden."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Err lewhi-ik ɣer web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Issin aniɣer i tettedduḍ deg web. Wali timura anida llan yismal-a. Inig deg uzeṭṭa am win yessnen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Snerni tarmit-ik n tɣuri {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Snerni tarmit-ik n tɣuri. Err aḍris i teqqareḍ ijebbed ugar ticki tekkseḍ iferdisen ur nemɛin ara i as-d-yezzin."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ldi ddeqs n yiseɣwan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag links you want open in new tabs."
-msgstr ""
+msgstr "Ldi iseɣwan deg yiccer amaynut s uzuɣer sakin s utekki ɣef tqeffalt tayeffus."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Nadi iccaren {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Kcem ɣer yiccaren i tmedleḍ melmi kan s utekki s tqaffalt tayeffust ɣer tignit deg ufeggag n yifecka."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sebɣes tiffursa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Tiffursa-ik tewwi-d amaynut. Beddel asebter n yiccer-ik amaynut akken ad tsekneḍ tugna nugilal icebḥen, ad tbedreḍ tiwuriwin n wass, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Snerni tiffursa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Sewḥel ismal i ak-yesṛuḥuyen akud-ik, akken ad tserseḍ aqerru-ik ɣef uxeddim amiran."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Smiren iccaren {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Ales asali awurman n yiccaren sya ɣer da."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ṣeggem inurifen-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Af-d daɣen fru uguren n ticraḍ n yisebtar ixeṣren, usligen, d wayen-nniden."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Senɣes atqelleq ɣef yiman-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Xdem ugar s tmerna n tbedert n twuriwin yemtawin ɣef yibenkan-ik-nniḍen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Aɣ s tiḥerci {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Ḍfer ssumat, af-d ifarisen yemgaraden, wali tikta n yiseqdacen ɣef imzenziyen, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mudd udem i YouTube {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Err-it d YouTube-ik. Sken-d tividyutin deg usfaylu udhim, err talast i udellel deg teẓririn i teṭṭafareḍ, ṭṭef agdil, d wayen-nniden."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Snirem ayen iteddun deg web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Sken talɣut leqqayen ɣef ugman d tiddin n yal asmel web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mudd udem i Wikipedia {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Semres asentel atrar, ucbiḥ i wikipedia."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mahel s zreb {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Seqdec talɣiwin n uḥerrek n tɣerdayt akken ad tgeḍ axeddim s zreb."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Disgffer meṛṛa iferdisen n usebter web i tebɣiḍ {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Ffer kra n yiferdisen i tettwaliḍ deg yismal web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sader tiwlafin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Sader tugniqin i tettwaliḍe deg web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sefrek aqareɛ n yimawlan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Eg imsizdeg akken ad tgedleḍ anekcum i yigburen ur nlaq ara."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Snerni iccaren imaynuten {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Ldi iccer amaynut ɣer tama tayeffus n yiccer yeldin, mačči ɣer taggara n yizirig."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Nnaɣ akken iwata mgal ispamen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Ḥwi ispamen. Seqdec tansa n yimayl taskudant akken ad teqqimeḍ d udrig daɣen ad tesḥebseḍ imaylen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Beddel tabaḍnit-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Anekcum srid ɣer yiɣewwaṛen udmawanen n tbaḍnit n Firefox."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Suqel s wudem askudan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Awi tasuqilt taskudant s usebṛureq n uḍris s utekki sayeffus ɣef tqeffalt ara d-ibanen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel abeddel n tensa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Ddu srid ɣer usmel n web wuɣur tebɣiḍ ad tkecmeḍ mebla ma tettuwellaheḍ gar-asen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "WhatsApp deg web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp deg web. Kcem ɣer WhatsApp seg ugalis n ufeggag n yifecka n Firefox akken ad tawiḍ ilɣa n tnelli n yisallen ur teɣriḍ ara."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Suqel seg/ɣer telmanit {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Awi tisuqilin n yimussnawen n telmanit seg teglizit, seg tefṛansist, taspanit, taqbaylit, d tutlayin-nniḍen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Rnu tabdert taberkant n yismal web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Err talast i Firefox akken ur ikeččem ara ɣer yismal i tesbaduḍ. Afecku meqqren akken ad tesmerseḍ ttrebga-ik srid."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mahel s tiḥerci {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Sefrek tiffursa-ik s umahel deg wakud ara tesbadud."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Taɣuri fessusen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Sefqed isuddam-ik RSS inurifen deg yiwen n usebter."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Senɣes ɛeggu n wallen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Rme askar n yiḍ i termit n usekkud iwulmen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Nadi tugniwin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Nadi seg tugna s usenerni n tignatin deg ddeqs n yimseddayen n unadi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Fren s wudem fessusen akaram n aniɣer ara terreḍ ticraḍ-ik n yisebtar {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Sefrek ticraḍ-ik n yisebtar s wudem ufrin ma tseqdaceḍ ddeqs n yikaramen n ticraḍ n yisebtar."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Kkes tarusi n telɣa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Kkes iferdisen n trusi n yisebtar ur nemɛin ara daɣen nɣel kan aḍris."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Selket asebter wem i meṛṛa ɣer tutlayt-ik tanurift — s utekki ɣef tqeffalt."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Awi-d iseɣwan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Sken iseɣwan n usebter web deg yiccaren imaynuten."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Nser ser ubeddel n yisebtar & ineḍfaṛen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Kkes isebtar n ubeddel n tnila n tansiwin akked iɣewwaren n uḍfar n tansiwin URL. Iteddu s wudem awurman."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel ineḍfaṛen n unadi {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Sewḥel imseddayen n unadi akken ad d-afen igmaḍ n unadi fiɣer i tettekkaḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sader tividyutin YouTube{start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Sider tavidyut neɣ/akk imesli."
+msgstr "Sader tividyutin akked/neɣ imeslawen YouTube."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Suqel s wudem fessusen {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d agbur ara teɣreḍ {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Imeɣri leqqayen i usdukel n meṛṛa tiɣbula-ik RSS/Atom/RDF."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Aru tizmilin s zreb {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Rnu tizmilin timatutin akked tizmilin yeɛnan kan kra nyismal web daɣeb sweḍ-itent ɣer zdat."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Sedrurem amtilifun {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Adrurem icuban ɣer win n tiliɣri i uselkim-ik n tnarit. Iḥerriken n tɣerdayt n wanaw \"zuɣer-u-sers\"."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Kkes isefka {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Sfeḍ tuffirt n yiwen n utekki neɣ s unegzum n unasiw."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sebṛureq aḍris {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Sebṛureq aḍris ɣef yisebtar web akken ad teskelseḍ daɣen ad tkecmeḍ ɣur-sen ɣer zdat."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Faṛes aẓawan i d-yekkan seg umaḍal meṛṛa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Sɣed i wugar n 30,000 n ṛṛadyuwat deg umaḍal."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sɣed i tvidyutin {start_sub_heading}s{addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Ḥrez azawag n usezger s uzuzer n yimeslawen n tuṭṭfiwin YouTube."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Selket aḍris ɣer tugniwin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Selket awalen uffiren neɣ tifyar s yizwal ijebbden neɣ aserkeb n uḍris ɣef tewlafin."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Inig s tɣellist {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Seqdec s wudem awurman ɣer lqem aɣelsan n usmel web ma yella."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Kkes azray-ik n tunigin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Kkes azray-ik n tunigin. Mudd amḍan n wussan ara tḥerzeḍ azray n yiminig uqbel ad yettwasfeḍ swudem awurman."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Kkes adellel n unadi {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Seḥbes askan n yilɣa deg yigmaḍ-ik n unadi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Seffek awalen uffiren s wudem aɣelsan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Sekles awalen uffiren s uskar aɣelsan daɣen qqen s wudem awurman ɣer yismal web yettwassnen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ččaṛ tiferkiyin s wudem awurman {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Ččar tiferkiyin s wudem awurman. Sekles isefka ikecmen tikkelt, sakin ad ččaren s wudem awurman deg tikkelt i d-iteddun."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Inig s tbadnit {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Nadi s wudem abaḍni s yiwen n utekki."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Seḥber abeddel n leqhi n yiccaren {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Seḥes takerḍa n yiccaren. Ur ttsennid ara ɣef yiseɣwan ara yeṭṭfen ɣur-s iccer amaynut daɣen ad d-yessali igburen ur tsutreḍ ara."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Kcem ɣer Wikipedia s wudem fessusen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Eg anadi deg Wikipedia s usebṛureq n uḍris sakin s utekki s tqeffalt tayeffust ɣer uḍris yettwafernen deg usebter."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Wali agbur ibanen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Eg inadiyen deg taɣult i tebɣiḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d tividyutin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Sebṛureq aḍris seg yal asmel web sakin tekki ɣef tqaffalt tayeffust akken ad tnadiḍ deg YouTube ɣef tvidyutin yerzan aḍris."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Faṛes seg Amazon {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Awi asenɣes n ssuma seg Amazone. Ticki tettnadiḍ deg yisebtar n yifarisen deg tḥuna srid, yella daɣen deg Amazone, tekki kan ɣef tqeffalt akken ad twaliḍ asebter anida yella ufaris-a."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Qareɛ meṛṛa iccaren-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Faṛes tagnit seg tuṭṭfa n yicarren-ik gar ifassen-ik — mdel iccaren usligen, sdukel isfuyla, nɣel azwel n yiccer, d wayen-nniḍen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Faṛes seg usegmi ur ǧǧin tessneḍ-t {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Swel asebter tẓerreḍ yal tikkelt ara teldiḍ iccer amaynut."
+msgstr "Wali s wudem amaynut. Sali-d amagrad Wikipedia s wudem agacuran yal tikkelt ara d-teldiḍ iccer amaynut."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Beddel iccer-ik amaynut {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Swel isebtart n yiccer amaynut akked ad tsekneḍ initen n ugilal akked tugniwin udmawanen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ddu ɣer tmnaḍ n yimcac d warraw-nsen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Yal tikkelt ad teldiḍ iccer, ad ak-d-iban umcic ivebḥen. Sluf-as deffir n umeẓẓuɣ sakin wali d acu ara yeḍrun."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Senɣes tiffursa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Ticki d ayen teɛyiḍ nezzeh, tbeqquḍ times n lazer s umcic."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Nadi deg Firefox {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Nadi s Firefox n unekcum s wudem fessusen ɣer yiccaren-ik yeldin, ticaraḍ n yisebtar, d uzray."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Ddeqs n yiccaren yeldin? Anef timhalin n udrurem ur nettfak ara daɣen nadi s yinegzumen n unasiw."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Suqel s wudem fessusen {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel abeddel n uwelleh yisebtar & uḍfaṛ {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Anef i ubeddel n tnilla akken ad tkecmeḍ ɣer yismal i tḥemmleḍ — s zreb."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sken-d awalen uffiren ticki tettaruḍ {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Ad yernu sken/ffer i wurtan meṛṛa n wawalen uffiren."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Senɣes alethu {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Sers aqerru-ik ɣef wayen i tettwaliḍ s usenɣes n tafat i yigburen yettwaseknen deg umeɣri n tvidyut."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sefrek ticraḍ n yisebtar {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Beddel ticraḍ-ik n yisebtar deg ugalis adisan fessusen i unekcum."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ḥrez awalen-ik uffiren d iɣelsanen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Ḥrez awalen uffiren s wudem aɣelsan syen qqen s wudem awurman ɣer yismal web yettwassnen."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Asmenyaf n usewḥel n udellel afessas yettwafren i uskan n ugbur kan i tebɣiḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Ɛass azray-ik n ssuma deg Amazon {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Ḍfeṛ azray n ssuma deg Amazon. Qqim deg yisallen akken ad tt-tgezmeḍ di ṛṛay."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Aɣ s laman {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Aɣ deg laman. Asiɣzef-a yettmuddu-d asenqed-nniḍen ad tḍemneḍ asuter n yifarisen deg usmel anida yella laman."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ḍfeṛ tiffursa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Ḍfeṛ tiffursa-ik. Ktazel akud i tesɛeddayeḍ deg uselkim neɣ deg kra n yisnasen am Trello, JIRA, Basecamp, GitHub, d wiyaḍ."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
 msgstr ""
+"Sekles afran-in deg web. Ṭṭef agbrur am yimagraden, tividyutin, tugniwin d wayen-nniḍen akken ad ten-teskelseḍ sakin ad ten-tesqedceḍ deg yisenfaṛen udmawanen neɣ i uttekki gar terbaɛt s wakud ilaw."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Inig s tɣellist {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Sireg kan igburen web i d-kkan-d seg yismal i tettamneḍ. Inig s tɣellist."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sefrek inagan n tuqqna {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Senqed s telqey inagan n tuqqna ara d-tgemmreḍ mi ara tettiniged."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sfeḍ azray-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Kkes s wudem awurman azray n yiminig i yismal web ara tferrneḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sekles ticraḍ n yisebtar {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Ḥrez ticraḍ n yisebtar-inek tudmawanin s wawal uffir."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel tarewla n tensa IP {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Tseqdaceḍ VPN? Tansa-inek n IP tezmer ad terwel. Seḥbes ayagi s usensi n WebRTC."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Mdel tarusi ta ɣef ta ur nlaq ara {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Mdel isfuyla udhimen imεekkṛen s yiwen n usiti kan."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sleḍ yal tugna {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Tufid-d tawlaft yelhan deg web? Seqdec TinEye akken ad tafeḍ ansa i d-tekka."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Zuzer tiɣawsiwin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Zuɣer-d aḍris, tiwlafin neɣ iseɣwan akken ad tgeḍ tigawin am nɣel, ldi, nadi, atg."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Sader tividyutin akked/neɣ imeslawen s talɣiwin yemgaraden."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Af-d idigen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Issin anida yella yal aqeddac n usmel web. Qqim deg yisallen ɣef web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Frun uguren n umeslaw {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Fru uguren n umeslaw. Ableɣ deg usmel web meẓẓi aṭas? Meqqer aṭas? SoundFixer izmer ad yefru aya."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Beddel uwbel asiggez {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Beddel asebter web uqbel asiggez-is. Beddel igburen i d-yettbanen — kkes adellel neɣ yir agbur — i yal asebter wab i tebɣiḍ ad siggẓeḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Ɛass azray n ssuma deg Amazon {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Ḍfeṛ azray n ssuma deg Amazon. Gzem-itt di ṛṛay ɣef tiɣin tuḥrict daɣen rmes ilɣa ɣef ibeddieln deg ssuma deg yifarisen n Amazon i tḥemmleḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ṭṭef ameslaw gar ifassen-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Ṣeggem iɣewwaṛen n umeslaw n yiminig s tseddi meqqren."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ammesten n tbadnit {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Seḥbiber mgal ineḍfaṛen qessiḥen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sfeḍ lǧerrat-ik {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Nadi s usewḥel n yineḍfaṛen yennernan, awgelhen uḥric, d tmahilin-nniḍen yesseǧhaden tabadnit."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sifses iccaren {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "Sifses iccaren. Suddes iccaren-ik yegten i yeldin deg ugalis adisan ubdin."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Asekref alqayan n yinagan n tuqqna {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Kkes s wudem awurman inagan n tuqqna ur tebɣiḍ ara. Yettmuddu tallelt i tebdarin timellalin neɣ tiberkanin."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Wali tawlaft-a meqqren {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "S yiwen kan n utekki ɣef tɣerdayt, tzemreḍ ad twaliḍ tividyutin deg ugdil aččuran."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Ḥrez takatut {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Seḥbes aḍeggeṛ n tkatut s yiccaren ur nenfiɛ ara."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sekles isebtar web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Sekles isebtar ummiden — neɣ iḥricen seg-sen — seg yiwen n ufaylu HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Zgel iferdisen ur nemɛin ara {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr ""
+msgstr "D ayen, timseɛra n textilin n useqdec. Asiɣzef-a uḥric ad ak-d-yefk tallelt ad tegzuḍ s zreb ayen i ak-d-yettwasutren ad tqebled."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Grammar & spell check automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Seɣti tajeṛṛumt & tira s wudem awurman {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Snerni tarmit n tɣuri {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Ɣer s wugar n usegzi akked tefses. Kkes ayen ur nemwin seg uḍris deg yisebtar web."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sewḥel adelle & wayen-nniḍen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "Sewḥel adellel daɣen awi ugar n ummesten yennernan mgal yir iseɣzanen akked uḍfaṛ n udellel."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sader s wudem fessusen imidytane {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Faṛes tagnit seg usefrek n usader n tnelli n usqerdec. Af-d s wudem awurman anawen yemgaraden n yimidyaten yellan i usader."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Sekles s wudem fessusen tugniwin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "Sekles tugniwin s wudem fessusen — awi-d kan tugniwin ɣer yiccer-ik amiran."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ktazel isebtar web {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Ktazel isebtar web. Suneɣ alugen umḍin ɣef yal asebter tebɣiḍ akken ad tektazleḍ teɣzi, tehri akked ureyyec n yiferdisen n usebter."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "Faṛes ibaɣuren n usefrek iǧehden n wawalen uffiren."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Isebtar icebḥen i tmuɣli {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Mud tafat neɣ tebrek i yisebtar web ara yuɣalen cebḥit i tmuɣli."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Senɣes aletu {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Sewḥel ismal web yesṛuḥuyen akud. Bder-d kan ismal web i tebɣiḍ ad isewḥel usiɣzef. Ttṛebga taskudant!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Saki-d isebtar yemmuten {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Af-d isebtar web yellan deg teṛcivt, mmuten neɣ ṛuḥen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Beddel udem n Firefox {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Beddel udem n yiminig-ik. Feṣṣel s tifses isental-ik n ucebbeḥ akken ad terreḍ Firefox yettban-d akken tebɣid."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
+msgstr "Aru tizmilin {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Ḥrez tizmilin-ik tudmawanin sekra wanida tebɣiḍ deg web. Seqdec kan afeggag adisan akken ad tcuddeḍ tizmilin-ik ɣer kra n yisbtar web ibanen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Anadi s taɣect yermed {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Seqdec aɛqal n taɣect akken ad tremdeḍ anadi s taɣect deg Google, Yahoo akked DuckDuckGo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Ḍfeṛ ssuma n yifarisen {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Ḍfeṛ ifarisen daɣen rmes alɣu ticki ssuma tenɣes deg yiferdisen i tḥemmleḍ deg Amazon, Bst Buy, eBay, Home Depot, d Walmart."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Err web d aberkan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Sens web neɣ fren tagrumma n yiniten tusligt i wakken ad tsedduḍ Internet akken tebɣiḍ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Asnerni n unadi deg Android {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Af-d asebter n unadi lqayen aṭas ɣef Firefox i Android."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+msgstr "Tallelt s tvidyut deg Android {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin di Firefox i Android. Asiɣzef-agi ad d-yefk tifrat."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr ""
+msgstr "Isiɣzaf am yisnasen i Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Rennun timahilin i Firefox i wakken ad tili tunigin tserreḥ, d taɣelsant, neɣ ad d-nini kan d tazehwanit."
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
-msgstr "Snirem akk isiɣzaf"
+msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
 msgid "Sync extensions across devices"
-msgstr ""
+msgstr "Semtawi isiɣzaf gar wallalen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Tabaḍnit beṛṛa n yisiɣzaf n yiminig"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Tarmit tufrint d yiferdisen amet amidya deg Firefox"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Issin ugar"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Isiɣzaf"
+msgstr "Snirem isiɣzaf"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Tameskant n yifuyla teske, tukkist i %s tezmmer ad tili tetteddu. Ma ulac aɣilif, ɛreḍ tikkelt-nniḍen deg 5 n tesdatin."
 
 #, python-format
 msgid "There was an error accessing file %s."
@@ -4856,7 +4644,7 @@ msgid "Problems decoding {0}."
 msgstr "Ugur deg ukestengel n {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Afaylu-agi ur yettwasenqad ara srid. Ttxil-k sider-d afaylu akken ad d-iban ugbur."
 
 msgid "This file is a directory."
 msgstr "Afaylu-agi d akaram."
@@ -4871,29 +4659,29 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID yettwasra i Firefox 47 neɣ daw."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Azal adday yettusefraken i \"strict_min_version\" d 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "\"strict_min_version\" {appver} arussin i {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Ur izmir ara ad isleḍ afaylu yulin, aferdis <%s>ulac-it neɣ d ilem"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: tuccḍa n tɣellist XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: Tuccḍa n usweḍ XML."
 
 msgid "Could not parse uploaded file."
 msgstr "Ur izmir ara ad isleḍ afaylu yulin."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Anaw n teṛcivt ur yettwasefrak ara."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Yir isem n ufaylu deg teṛcivt. Sefqed meṛṛa ismawen n yifuyla ma llan s usettengel utf-8 neɣ latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -4904,7 +4692,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Afaylu yezger talast n teɣzi deg uɣbaṛ: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Taɣzi ur nkussem meqqert aṭas"
 
 msgid "Invalid archive."
 msgstr "Yir aɣbaṛ"
@@ -4914,19 +4702,19 @@ msgstr "Ur izmir ara ad d-yaf asulay ID n uzegrir."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Asulay n uzegrir deg umeskan-ik manifest.json neɣ install.rdf (%s) ur yemṣada ara d usulay uzegrir-ik deg AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Asulay ID uslig n uzegrir yettwaf."
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Uṭṭunen n yileqman issefk ad ilin xarṣum s 32 n yisekkilen."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Uṭṭunen n yileqman issefk ad gebren kan isekkilen, izwilen akked isekkilen-a: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Amḍan afellay i yisental WebExtension d {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Ur tezmireḍ ara ad tazneḍ anaw-agi n uzegrir"
@@ -4938,20 +4726,18 @@ msgstr "Ur tezmireḍ ara ad tazneḍ azegrir yettfakan s %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
+msgstr "Ur tezmireḍ ara ad tazneḍ akemmus n tutlayt"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "Anaw n ufaylu ur ittusefrak ara, ma ulac aɣilif sali afaylu n uḥraz {extensions}."
+msgstr "Anaw-a n ufaylu ur ittusefrak ara, ma ulac aɣilif azen-d afaylu {extensions}."
 
 msgid "Unexpected error."
 msgstr "Tuccḍa tarussint."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Anaw (%s) ur imṣada ara d wanaw n uzegrir-ik deg AMO (%s)"
 
 msgid "Back to review"
 msgstr "Uɣal ar ucegger"
@@ -4977,7 +4763,7 @@ msgstr "Agbur n ufaylu ur yettwasefrak ara i usebṛureq n tseddast"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "Agmuḍ ahat yerreẓ, ma ulac aɣilif, ɣur-k daɣen %(link_start)smmel-d ugur%(link_end)s imir kan!"
 
 msgid "close"
 msgstr "mdel"
@@ -5146,19 +4932,19 @@ msgstr "Isteqsiyen d-ittuɣalen s waṭas ɣef iceggiren"
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
-msgstr ""
+msgstr "Asenqed n izegrar d abrid akken ad tebḍuḍ tamuɣli-inekɣef izegrar i tesqedceḍ. Tarbaεt-nneγ tesεa azref ad tekkes asenqed ur ittqadaṛen ara tiwtilin-nneγ."
 
 msgid "Do:"
 msgstr "Eg:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Aru am wakken tettmeslayeḍ i umeddakkel-ik ɣef tirmit-inek d uzegrir."
 
 msgid "Keep reviews concise and easy to understand."
 msgstr "Ḍmen d akken asenqed-ik ad yeqqim meẓẓi daɣen fessus i wugzay."
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Mudd-d ttfaṣil ilaqen s telqey. D amedya:"
 
 msgid "Did the add-on work as you expected it to?"
 msgstr "Azegrir iteddu akken i terǧiḍ?"
@@ -5176,18 +4962,18 @@ msgid "Will you continue to use this add-on?"
 msgstr "Ad tettekkiḍ deg useqdec n uzegrir-agi?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "Γer s leεqel-ik alɣu-inek uqbel ad t-tazneḍ akken ur ṭuqqutent ara tuccḍiwin."
 
 msgid "Don’t:"
 msgstr "Ur teg ara:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "Efk-d tamuɣli-k s yiwen n wawal kan am \"Gedha!\", \"Igerrez\" neɣ \"diri-t\"."
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
-msgstr ""
+msgstr "Azen-d uguren itiknikanen, suter tallelt neɣ sumer timahilin. Seqdec timahilin yettwagen deg yal azegrir, ma llant. Ad ten-tafeḍ deg tgejdit tadisant, deg tgezmi Ɣez uzegrir."
 
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "Aru asenqed ɣef izegrar i  tesqedceḍ yakan."
@@ -5211,6 +4997,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Asenqed n izegrar ittwaxdem akken ad nexdem kra. Amedya, tuzna n usenqed n uzegrir ɣef uskan n udellel neɣ alqaḍ n yisefka, ticki d iswi-is, neɣ ma yella azegrir ilaq-as ulqaḍ n yisefka akken ad "
+"yeddu."
 
 msgid "How can I report a problematic review?"
 msgstr "Amek ara d-mleɣ acegger ur nemɛin ara?"
@@ -5218,14 +5006,14 @@ msgstr "Amek ara d-mleɣ acegger ur nemɛin ara?"
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
+msgstr "Ttxil-k azen-d asteqsi neɣ asuter s usenqed s utekki ɣef \"Mmel-d awennit-a\" sakin ad aɣ-d-yawweḍ. Tarbaεt-nneɣ ad twali asenqed sakin ad nẓer ma ad ten-kkes neɣ ad t-id-nner ɣer usmel."
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Nek d ameskar n uzegrir, zemreɣ ad erreɣ i ucegger?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
+msgstr "Ih, bab n uzegrir izmer ad d-imudd yiwet n tiririt ɣef usenqed. Tzemred ad tesbaduḍ adiwenni deg <a href=\"%(forum_url)s\">unmager</a> akken ad nsenker awal-nniḍen neɣ ad t-neḍfeṛ."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Nek d ameskar n uzegrir, zemreɣ ad kkseɣ iwenniten neɣ tizmilin ur yeddan ara akked uzegrir?"
@@ -5235,22 +5023,20 @@ msgid ""
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr "S wwudem amatu, ala. Maca asenqed ur isεi ara tiwtilin n ussawen, tzemreḍ ad tsended ɣef \"Cegger asenqed-a\" sakin qaεed-it. Ma yella asenqed deg-s acetki ur ɣezzifet ara, nezmer ad ten-kkes."
 
-#, fuzzy
 msgid "User"
-msgstr "Isem n useqdac"
+msgstr "Aseqdac"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "Tansa imayl"
+msgstr "Tansa IP"
 
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Aspam neɣ agbur ur nelli d asenqed n uzegrir"
 
 msgid "Inappropriate language/dialog"
 msgstr "Yir tutlayt /amsawal"
 
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Aneqqis n yibugen neɣ yir asuter n tallelt deg tegnit-a"
 
 msgid "Other (please specify)"
 msgstr "Ayen nniḍen (ini-d)"
@@ -5262,10 +5048,10 @@ msgid "You can't change the add-on of a review once it has been created."
 msgstr "Ur tezmireḍ ara ad tesnifleḍ azegrir n ucegger ticki yettwarna."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad terreḍ i usenqed i yellan yakan d tiririt."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad tbeddleḍ lqem n uzegrir ticki yettwarna usenqed."
 
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Lqem-agi n uzegrir ulac-it neɣ ur yelli ara d azayez."
@@ -5278,13 +5064,13 @@ msgstr "Ur tezmireḍ ara ad ternuḍ ugar n yiwen n ucegger i yiwen n lqem n uz
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "Yir anay [%s] - ilaq ad yili d yiwen segf [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Asenqed-a ur izmir ara ad yettwammel acku ur igbir ara aḍris."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Asegzi wezzilen ilaq ad d-ittunefk s ufran n \"Wayeḍ\" d sebba n tummla."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5363,7 +5149,7 @@ msgid "Applications:"
 msgstr "Isnasen:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Ilaq uneflay ad d-yerr tiririt ddaw n…"
 
 msgid "days"
 msgstr "ussan"
@@ -5375,7 +5161,7 @@ msgid "Private Whiteboard"
 msgstr "Tafelwit tamellalt tusligt"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Ḥrez acegger; kkes anayen"
 
 msgid "Skip for now"
 msgstr "Suref akka tura"
@@ -5405,23 +5191,22 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Afraq n umihi ulac-it."
 
-#, fuzzy
 msgid "Is locked by a reviewer"
-msgstr "Iwḥel sγur imcegger."
+msgstr "Iwḥel sɣur imcegger"
 
 msgid "Has auto-approval disabled flag set"
-msgstr ""
+msgstr "Tacreḍt tawurmant n uqbal tensa"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "Ilha i uwelleh"
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "Yeɛṭel acku d lqem amenzu i d-yettwabedren"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Tzemreḍ ad tazneḍ awennit ma yella `canned_response` yettusbadu."
 
 msgid "Type"
 msgstr "Anaw"
@@ -5468,9 +5253,8 @@ msgstr "Taẓayt"
 msgid "Information Request Deadline"
 msgstr "Tagara n usuter n telɣut"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Aleqqem aneggaru:"
+msgstr "Aleqqem aneggaru"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad ttwaznen i uneflay."
@@ -5482,13 +5266,13 @@ msgid "Approve Content"
 msgstr "Qbel agbur"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "Aya ad isekles aqbayl-ik n ugbur n lqem azayaz aneggaru, wa ma tneremseḍ aneflay."
 
 msgid "Confirm Approval"
 msgstr "Sentem aqbal"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
+msgstr "Lqem aneggaru azayaz n uzegrir-a yettwaqbel s wudem awurman. Aya ad isekles asentel-ik n uqbal n lqem-nni, wa ma tneremseḍ aneflay."
 
 msgid "Reject Multiple Versions"
 msgstr "Aggwi aṭas n ilqman"
@@ -5500,30 +5284,28 @@ msgid "Reviewer reply"
 msgstr "Tiririt n umcegger"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "Ad yazen izen i uneflay. Ad tremseḍ alɣu ticki tella tririt."
 
 msgid "Request super-review"
 msgstr "Suter acegger meqqren"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "Ma tɣileḍ d akken azegrir-a ilaq ad t-iwali unedbal, aru iwenniten-ik deg temnadt ddaw-a. Ur ttwazanen ara i uneflay."
 
 msgid "Comment"
 msgstr "Awennit"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Aru awennit deg lqem-a. Aneflay ur izmir ara ad t-iwli."
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Cegger izegrar"
+msgstr "Cegger s wudem uzwir izegrar"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Lhan ({0})"
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Acegger n tezmilt ({0})"
+msgstr "Izegrar-nniḍen deg umecwaṛ n ucegger ({0})"
 
 msgid "Review Log"
 msgstr "Aɣmis n yiceggiren"
@@ -5561,13 +5343,13 @@ msgid "Theme Review Guide"
 msgstr "Amnir n ucegger n usentel"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Acegger n tizmilin n yiseqdacen"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Tizmilin yettragun acegger ({0})"
 
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Aɣmis n ucegger yettwaneqden"
 
 msgid "Moderation Guide"
 msgstr "Amnir n usenqed"
@@ -5591,27 +5373,25 @@ msgid "An unknown error occurred"
 msgstr "Taḍra-d tuccda tarussint"
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Iceggiren iwurmanen ur ttwaqbalen ara."
 
 msgid "Review successfully processed."
 msgstr "Acegger yemmed akken iwata."
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Talast n yiceggiren tewweḍ"
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon} :: Aneqqis n yir aseqdec"
+msgstr "{addon} :: EULA"
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Azegrir-agi ɣur-s tasertit tabaḍnit"
+msgstr "{addon} :: Tasertit tabaḍnit"
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Aneqqis n yir aseqdec"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "Aneqqis n yir aseqdec i {addon} akked yineflayen-is ({num})"
 
 msgid "Abuse Reports"
 msgstr "Assaγ n uẓekker"
@@ -5620,12 +5400,11 @@ msgstr "Assaγ n uẓekker"
 msgid "Add-on Information for {0}"
 msgstr "Talɣut n uzegrir i {0}"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Azegrir"
+msgstr "Asulay ID n uzegrir"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Asulay ID azɣaray n AMO"
 
 msgid "Works with"
 msgstr "Iteddu s"
@@ -5685,7 +5464,7 @@ msgid "Reviewer Leaderboard"
 msgstr "Agzul n umaẓrag"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Ulac yakan agazen n ucegger i rrbeḥ."
 
 msgid "Rank"
 msgstr "Aswir"
@@ -5789,7 +5568,7 @@ msgid "Process Reviews"
 msgstr "Ddu ar ucegger"
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Tigawin n usenqed n ucegger:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5828,9 +5607,8 @@ msgstr "Amezruy n ibeddilen n useqdac n uzegrir"
 msgid "Add-on History"
 msgstr "Amazray n uzegrir"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Tazmilt n deffir"
+msgstr "Inekcam ttwakksen yakan"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -5861,7 +5639,7 @@ msgid "Not Auto Approved Because"
 msgstr "Ur ittwaqbel ara s wudem awurman acku"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Askript n uqbal awurman ur yettwaselkem ara yakan i lqem-a."
 
 msgid "This version has not been reviewed."
 msgstr "Lqem-agi ur yettwacegger ara yakan."
@@ -5870,7 +5648,7 @@ msgid "Please select one or more versions in the list above."
 msgstr "Ma ulac aɣilif, fren yiwen neɣ ugar n yileqman deg  tabdart ddaw-a."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "Tzemreḍ yal tikkelt ad tazenḍ tiferkit-a, maca ur t-teg ara arma teẓriḍ ur d-yeggar ara tillas."
 
 msgid "Insert canned response..."
 msgstr "Sekcem tiririt yettwakelsen..."
@@ -5879,13 +5657,13 @@ msgid "Tested on:"
 msgstr "Yettwasekyed di:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Ɣur-k!</strong> Aseqdac-nniḍen iwala asebter-a uqbel-ik."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Tafelwit tamellalt d amḍiq i umbaddal n telɣut icudden ɣer uzegrir-a (akken yebɣu yella lqem), gar uneflay akked umaẓrag. Tafelwit-a zemren ad tt-wali i sin."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Tafelwit-a tamellalt tettwaseqdec deg tulsa n tɣuri i beṭṭu n telɣut tamunant ɣef lqem. Ma ulac aɣilif qqim kan deg tmussni. Ala wid yettalsen taɣuri ara t-iwalin."
 
 msgid "Update whiteboards"
 msgstr "Snifel tafelwit tamellalt"
@@ -5894,7 +5672,7 @@ msgid "More Actions"
 msgstr "Ugar n tigawin"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Lɣu-yi-d ɣef yileqman imaynuten i d-yettwabedren"
 
 msgid "Force-disable add-on"
 msgstr "Ḥettem asensi n uzegrir"
@@ -5951,11 +5729,10 @@ msgid "No reviews found for this period."
 msgstr "Ulac iceggiren yettwafen di twala-agi."
 
 msgid "Method:"
-msgstr ""
+msgstr "Tarrayt:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "s uɣbalu"
+msgstr "Aɣbalu:"
 
 msgid "Dismiss this announcement"
 msgstr "Agi alɣu-a"
@@ -6041,33 +5818,32 @@ msgstr ""
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Azilal n lqem mačči d ameɣtu."
+msgstr "Aɣewwaṛ \"%s\" diri-t."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Yir asdukel n yiɣewwaren \"%s\" akked \"%s\"."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Tuɣalin ɣer AMO yensa akka tura"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Yir tuɣalin ɣe guid n AMO (ulac-it s talɣa base64url?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Yir tuɣalin ɣe guid n AMO (mačči d yisen seg yizegrar yettwafernen)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Yir asdukel n yiɣewwaren \"%s\", \"%s\" d \"%s\"."
 
 msgid "Maximum query length exceeded."
 msgstr "Teɣzi tafellayt n usuter iɛeddan."
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "UR izmir ara ad d-yaf azegrir s usulay id \"{}\"."
+msgstr "Ur izmir ara ad d-yaf azegrir s usulay \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Azegrir-agi mačči yinek."
@@ -6082,21 +5858,21 @@ msgstr "Ur temirzḍ ar ad ternuḍ ileqman i uzegrir yelllan deg addad: %s."
 msgid "Version does not match the manifest file."
 msgstr "Lqem ur imenṭaḍ ara akked ufaylu n umeskan."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr "Lqem yella yakan."
+msgstr "Lqem-a yella yakan. Lqem aneggaru d: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Ala WebExtensions i yettwasirgen ad yezgel GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Ma ulac aɣilif, efk-d GUID n uzegrir-ik deg umeskan ma yella iɛedda 64 n yisekkilen."
 
 msgid "Invalid GUID in URL"
 msgstr "GUID arameɣu di URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Ur tezmireḍ ara ad tbedreḍ lqem-a n uzegrir s API imi tettuḍ iɣef isefka. Ma ulac aɣilif, azen-d deg usmel web"
 
 msgid "No uploaded file for that addon and version."
 msgstr "Ulac afaylu yulin i uzegrir neɣ lqem-nni."
@@ -6194,7 +5970,7 @@ msgid "Custom..."
 msgstr "Udmawan..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
+msgstr "Asesfer n tiddadanin yensa akka tura daɣen isefka inegura ur ttilin ara. Tiddadanin ad kemmlent ad ttwalqaḍent daɣen asebter-a ad yettwalqem ɣer zdat s yisefka i ixuṣṣen."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Asali n isefka ineggura &hellip;"
@@ -6206,7 +5982,7 @@ msgid "This dashboard is currently <b>public</b>."
 msgstr "Tafelwit-agi n usenqded akka tura d <b>tazayezt</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Tafelwit-agi n usenqded akka tura d <b>tusligt</b>."
 
 msgid "Change settings."
 msgstr "Iɣewwaṛen n usnifel."
@@ -6224,6 +6000,8 @@ msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Amek i yywaḥsab umḍa n usader?</h2> <p> Amḍan n usader yettwalqem yal tameddit daɣen igber kan isadaren imaynuten, mačči ileqman kan. Asader izmer ad yeṛṛez ɣef sebba n uɣbalu aneṣli u sader. "
+"</p>"
 
 msgid "User languages by Date"
 msgstr "Tutlayin n useqdac s wazemz"
@@ -6262,7 +6040,7 @@ msgid "Download sources by Date"
 msgstr "Iɣbula n usider s wazemz"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Ɣef uḍfar n yiɣbula izɣarayanen..."
 
 #, python-format
 msgid ""
@@ -6272,6 +6050,12 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>Aḍfaṛ n yiɣbula izɣarayen</h2> <p> Ma tgiḍ aseɣwen ɣer usebter n teqayt n uzegrir-ik neɣ srid ɣer ufaylu-is deg usmel azɣaray, am ublug-ik neɣ asmel web, tzemreḍ ad ternuḍ aɣewwaṛ ara "
+"yettwaḍefren am uɣbalu n usader-nniḍen deg usebter-a. Amedya, iseɣwan-a ad d-banen am uɣbalu deg ublug-ik: <dl> <dt>Asebter n telqayt ɣef uzegrir</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Aseɣwen n ufaylu usrid</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Ala iɣewwaṛen src i ibeddun s \"external-\" ara yettwaḍefṛen arma d 61 n "
+"yisekkilen-nniḍen. Yal aḍris seld \"external-\" ad ttwasqedcen i useglem n uɣbalu, am \"external-blog\", \"external-sidebar\", \"external-campaign225\", atg. Isekkilen n tansiwin URL iɣelsanen ara "
+"yettwaqeblen d wigi: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Addad n uzegrir s wazemz"
@@ -6286,6 +6070,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>D acu-ten yiseqdacen n wass?</h2> <p> Izegrar i d-yuderen seg usmel-a, ad sneqden ileqman tikkelt deg ass. Amḍan amatu n yilɣa-a ad yettwaseqdec i usileɣ n wayen ittusemman Iseqdacen urmiden n "
+"wass. Iseqdacen n wass zemren ad ttawsemlen ɣef lqem n uzegrir, anagraw n wammud, addad n uzegrir, asnas, akked tutlayt. </p>"
 
 msgid "Application versions by Date"
 msgstr "Ileqman n usnas s wazemz"
@@ -6306,7 +6092,7 @@ msgid "Report Trademark Abuse"
 msgstr "Mmel yir aseqdec n tecreṭ"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Asmel-a web amaynut ur yessefrak ara tunigin deg yiselkimen akked izirazen"
 
 msgid "View the new site"
 msgstr "Wali asmel amaynut"
@@ -6399,7 +6185,7 @@ msgstr "Tutlayin timaynutin"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Ɣur-k ibeddilen ur yettwaskelsen ara yakan deg tutlayt <b>{0}</b>. Tebɣiḍ ad teskelseḍ ibeddilen send ad tbeddleḍ tutlayt?"
 
 msgid "Discard Changes"
 msgstr "Sefsex asinifel"
@@ -6411,32 +6197,30 @@ msgstr "Tebɣiḍ ad tekkseḍ akk <b>{0}</b> n tsuqilin? Ur tezmireḍ ara ad t
 msgid "Delete Locale"
 msgstr "Kkes tutlayt"
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Mdel amazray n ucegger"
+msgstr "Azray n useḥreṣ n yiseqdacen"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Aseqdac \"%(user)s\" yettwagdel."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Tawlaft n useqdac \"%(user)s\" tettwakkes."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Iseqdacen \"%(users)s\" ttwagedlen."
 
 msgid "Ban selected users"
 msgstr "Gdel aseqdac-a"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
+msgstr "Iseqdacen \"%(users)s\" wennzen tasarut-nsen n API."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Sefrek tisura API"
+msgstr "Ales awennez n tsarut n API"
 
 msgid "Profile Photo"
 msgstr "Tawlaft n umaɣnu"
@@ -6448,17 +6232,16 @@ msgid "Activity Logs"
 msgstr "Iɣmisen n urmud"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Sekcem tansa n IPv4 neɣ IPv6 iṣeḥḥan, e.g 127.0.0.1. Ad tettwaselket ɣer uzeṭṭa 32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad teskecmeḍ ugar n yiwet n tansa n IP neɣ n uzeṭṭa."
 
 msgid "No user with that email."
 msgstr "Ulac aseqdac s yimayl-agi."
 
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox i Android"
+msgstr "Aseqdac Firefox {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Izegrarèiw izirazen"
@@ -6467,26 +6250,30 @@ msgid "My Favorite Add-ons"
 msgstr "Izegrar inu inurifen"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Sekcem tansa IPv6 tameɣtut neɣ azilal n uzeṭṭa IPv6 CIDR, amedya. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "DDeqs n yizegrar ur iqudṛen ara ilugan-nneɣ ttwaznen-d seg tensa-ik. Tansa IP tewḥel."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Taneɣruft n yimayl"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
 " Please note that we do not include \"@\" in the match so you  should do that in the pattern."
 msgstr ""
+"Sekcem isem n taɣult neɣ tansa n yimayl ara tesweḥleḍ, neɣ seqdec  isekkilen imuta n wanaw glob akken ad tawiḍ ugar n umṣada d tneɣrufin-nniḍen. Amedya \"@*.mail.com\"\n"
+" Ma ulac aɣilif, ẓer d akken ur nsedday ara \"@\" deg umṣada, ilaq ad ternuḍ taneɣruft."
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr ""
+msgstr "Tansa n yimayl i yettwasqedcen i yumiḍan-ik ur tettwaqbal ara i tuzna n yizegrar."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Sekcem isem n taɣult n yimayl ara tesweḥleḍ. Isekkilen imuta ur ttwasefraken ara. Ma tesriḍ-ten, neɣ ma tebɣiḍ ad tgeḍ amṣada i tansa-ik n yimayl yemmden mačči kan d isem n taɣult, seqdec \"Tamara n"
+" useqdec n yimayl\" deg umḍiq-is."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -6508,7 +6295,7 @@ msgid "someone writes a review of my add-on"
 msgstr "yella win yuran acegger ɣef uzegrir inu"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "qqim deg yisallen s urmas n telɣut ɣef yineḍruyen i yineflayen n yizegrar (rmes ula d tabrat n telɣut about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "amṣada n uzegrir-inu ur yettwalqem ara"
@@ -6522,13 +6309,11 @@ msgstr "Mozilla yesra a yid-inermes ɣef uzegrir inu udmawan"
 msgid "User Notifications"
 msgstr "Alɣu n useqdac"
 
-#, fuzzy
 msgid "Ban"
-msgstr "akked"
+msgstr "Kkes"
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Kkes tawlaft inu n useqdac tura"
+msgstr "Kkes tawlaft"
 
 msgctxt "user_list_others"
 msgid "others"

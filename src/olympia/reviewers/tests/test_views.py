@@ -43,6 +43,7 @@ from olympia.amo.tests import (
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.lib.git import AddonGitRepository
@@ -3639,8 +3640,7 @@ class TestReview(ReviewBase):
         assert not doc('#edit_addon_block')
         assert not doc('#edit_addon_blocklistsubmission')
         assert doc('#block_addon')[0].attrib.get('href') == (
-            reverse('admin:blocklist_blocklistsubmission_add') + '?guids=' +
-            self.addon.guid)
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.id,)))
 
         block = Block.objects.create(
             addon=self.addon, updated_by=user_factory())
@@ -3789,9 +3789,9 @@ class TestReview(ReviewBase):
         assert 'checked' not in doc('#id_info_request')[0].attrib
         elm = doc('#id_info_request_deadline')[0]
         assert elm.attrib['readonly'] == 'readonly'
-        assert elm.attrib['min'] == '7'
-        assert elm.attrib['max'] == '7'
-        assert elm.attrib['value'] == '7'
+        assert elm.attrib['min'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
+        assert elm.attrib['max'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
+        assert elm.attrib['value'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
 
         AddonReviewerFlags.objects.create(
             addon=self.addon,
@@ -3812,7 +3812,7 @@ class TestReview(ReviewBase):
         assert 'readonly' not in elm.attrib
         assert elm.attrib['min'] == '1'
         assert elm.attrib['max'] == '99'
-        assert elm.attrib['value'] == '7'
+        assert elm.attrib['value'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
 
     def test_no_public(self):
         has_public = self.version.files.filter(
@@ -4302,6 +4302,27 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'The developer has provided source code.' in response.content
 
+    def test_translations(self):
+        self.addon.name = {
+            'de': None,
+            'en-CA': 'English Translation',
+            'en-GB': 'English Translation',  # Duplicate
+            'es': '',
+            'fr': 'Traduction En Français',
+        }
+        self.addon.save()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        translations = sorted(
+            [li.text_content() for li in doc('#name-translations li')]
+        )
+        expected = [
+            'English (Canadian), English (British): English Translation',
+            'English (US): Public',
+            'Français: Traduction En Français'
+        ]
+        assert translations == expected
+
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_approve_recommended_addon(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -4413,7 +4434,8 @@ class TestReview(ReviewBase):
     def test_attempt_to_use_content_review_permission_for_post_review_actions(
             self):
         # Try to use confirm_auto_approved outside of content review, while
-        # only having Addons:ContentReview permission.
+        # only having Addons:Review and Addons:ContentReview permission
+        # (no Addons:PostReview).
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
@@ -4467,6 +4489,19 @@ class TestReview(ReviewBase):
         assert response.status_code == 200  # Form error
         assert ActivityLog.objects.filter(
             action=amo.LOG.APPROVE_CONTENT.id).count() == 0
+
+    def test_content_review_redirect_if_only_permission(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        content_review_url = reverse(
+            'reviewers.review', args=['content', self.addon.pk])
+        response = self.client.get(self.url)
+        assert response.status_code == 302
+        self.assert3xx(response, content_review_url)
+
+        response = self.client.post(self.url, {'action': 'anything'})
+        assert response.status_code == 302
+        self.assert3xx(response, content_review_url)
 
     def test_cant_postreview_if_admin_content_review_flag_is_set(self):
         AddonReviewerFlags.objects.create(
@@ -4616,11 +4651,12 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         self.grant_permission(self.reviewer, 'Blocklist:Create')
 
-        response = self.client.post(self.url, {
-            'action': 'block_multiple_versions',
-            'comments': 'multiblock!',  # should be ignored anyway
-            'versions': [old_version.pk, self.version.pk],
-        })
+        response = self.client.post(
+            self.url, {
+                'action': 'block_multiple_versions',
+                'comments': 'multiblock!',  # should be ignored anyway
+                'versions': [old_version.pk, self.version.pk],
+            }, follow=True)
 
         for version in [old_version, self.version]:
             version.reload()
@@ -4628,7 +4664,6 @@ class TestReview(ReviewBase):
             file_ = version.files.all().get()
             assert file_.status == amo.STATUS_DISABLED
 
-        assert response.status_code == 302
         new_block_url = (
             reverse('admin:blocklist_blocklistsubmission_add') +
             '?guids=%s&min_version=%s&max_version=%s' % (
@@ -6896,6 +6931,33 @@ class TestDraftCommentViewSet(TestCase):
 
         response = self.client.post(url, data)
         assert response.status_code == 404
+
+    def test_deleted_version_reviewer_who_can_view_deleted_versions(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, 'Addons:ViewDeleted')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.delete()
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk
+        })
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+
+        response = self.client.post(url, data)
+        assert response.status_code == 201
+
+        assert DraftComment.objects.count() == 1
 
     def test_deleted_version_user_but_not_author(self):
         user = user_factory(username='simpleuser')

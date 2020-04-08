@@ -40,6 +40,7 @@ addons:
       - librsvg2-bin
       - pngcrush
       - uuid
+      - libgit2-dev
 
 services:
   - mysql
@@ -60,8 +61,8 @@ before_install:
 install:
   - nvm current
   - nvm deactivate
-  - nvm install 8
-  - nvm use 8
+  - nvm install 10
+  - nvm use 10
   - pip install --no-deps -r requirements/travis_base.txt
 
 before_script:

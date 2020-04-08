@@ -10,7 +10,7 @@ from olympia.amo.models import SearchMixin
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase, file_factory
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
-from olympia.constants.search import SEARCH_ANALYZER_MAP
+from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.files.models import WebextPermission
 from olympia.versions.compare import version_int
 from olympia.versions.models import License, VersionPreview
@@ -60,16 +60,17 @@ class TestAddonIndexer(TestCase):
         nullable_fields = []
 
         # For each translated field that needs to be indexed, we store one
-        # version for each language-specific analyzer we have.
+        # version for each language we have an analyzer for.
         _indexed_translated_fields = ('name', 'description', 'summary')
         analyzer_fields = list(chain.from_iterable(
-            [['%s_l10n_%s' % (field, analyzer) for analyzer
-             in SEARCH_ANALYZER_MAP] for field in _indexed_translated_fields]))
+            [['%s_l10n_%s' % (field, lang) for lang, analyzer
+             in SEARCH_LANGUAGE_TO_ANALYZER.items()]
+             for field in _indexed_translated_fields]))
 
         # It'd be annoying to hardcode `analyzer_fields`, so we generate it,
         # but to make sure the test is correct we still do a simple check of
         # the length to make sure we properly flattened the list.
-        assert len(analyzer_fields) == (len(SEARCH_ANALYZER_MAP) *
+        assert len(analyzer_fields) == (len(SEARCH_LANGUAGE_TO_ANALYZER) *
                                         len(_indexed_translated_fields))
 
         # Each translated field that we want to return to the API.
@@ -301,28 +302,35 @@ class TestAddonIndexer(TestCase):
         self.addon.save()
         extracted = self._extract()
         assert extracted['name_translations'] == [
-            {'lang': u'en-US', 'string': translations_name['en-US']},
-            {'lang': u'es', 'string': translations_name['es']},
+            {'lang': 'en-US', 'string': translations_name['en-US']},
+            {'lang': 'es', 'string': translations_name['es']},
         ]
         assert extracted['description_translations'] == [
-            {'lang': u'en-US', 'string': translations_description['en-US']},
-            {'lang': u'es', 'string': translations_description['es']},
-            {'lang': u'it', 'string': '&lt;script&gt;alert(42)&lt;/script&gt;'}
+            {'lang': 'en-US', 'string': translations_description['en-US']},
+            {'lang': 'es', 'string': translations_description['es']},
+            {'lang': 'it', 'string': '&lt;script&gt;alert(42)&lt;/script&gt;'}
         ]
-        assert extracted['name_l10n_english'] == [translations_name['en-US']]
-        assert extracted['name_l10n_spanish'] == [translations_name['es']]
-        assert extracted['name_l10n_italian'] == []
-        assert (extracted['description_l10n_english'] ==
-                [translations_description['en-US']])
-        assert (extracted['description_l10n_spanish'] ==
-                [translations_description['es']])
-        assert extracted['description_l10n_french'] == []
-        assert (extracted['description_l10n_italian'] ==
-                ['&lt;script&gt;alert(42)&lt;/script&gt;'])
-        assert extracted['summary_l10n_english'] == []
+        assert extracted['name_l10n_en-us'] == translations_name['en-US']
+        assert extracted['name_l10n_en-gb'] == ''
+        assert extracted['name_l10n_es'] == translations_name['es']
+        assert extracted['name_l10n_it'] == ''
+        assert (
+            extracted['description_l10n_en-us'] ==
+            translations_description['en-US']
+        )
+        assert (
+            extracted['description_l10n_es'] ==
+            translations_description['es']
+        )
+        assert extracted['description_l10n_fr'] == ''
+        assert (
+            extracted['description_l10n_it'] ==
+            '&lt;script&gt;alert(42)&lt;/script&gt;'
+        )
+        assert extracted['summary_l10n_en-us'] == ''
         # The non-l10n fields are fallbacks in the addon's default locale, they
         # need to always contain a string.
-        assert extracted['name'] == u'Name in ënglish'
+        assert extracted['name'] == 'Name in ënglish'
         assert extracted['summary'] == ''
 
     def test_extract_translations_engb_default(self):
@@ -333,36 +341,41 @@ class TestAddonIndexer(TestCase):
                 'type': amo.ADDON_EXTENSION,
                 'default_locale': 'en-GB',
                 'name': 'Banana Bonkers',
-                'description': u'Let your browser eat your bananas',
-                'summary': u'Banana Summary',
+                'description': 'Let your browser eat your bananas',
+                'summary': 'Banana Summary',
             }
 
             self.addon = Addon.objects.create(**kwargs)
-            self.addon.name = {'es': u'Banana Bonkers espanole'}
+            self.addon.name = {'es': 'Banana Bonkers espanole'}
             self.addon.description = {
-                'es': u'Deje que su navegador coma sus plátanos'}
-            self.addon.summary = {'es': u'resumen banana'}
+                'es': 'Deje que su navegador coma sus plátanos'}
+            self.addon.summary = {'es': 'resumen banana'}
             self.addon.save()
 
         extracted = self._extract()
 
         assert extracted['name_translations'] == [
-            {'lang': u'en-GB', 'string': 'Banana Bonkers'},
-            {'lang': u'es', 'string': u'Banana Bonkers espanole'},
+            {'lang': 'en-GB', 'string': 'Banana Bonkers'},
+            {'lang': 'es', 'string': 'Banana Bonkers espanole'},
         ]
         assert extracted['description_translations'] == [
-            {'lang': u'en-GB', 'string': u'Let your browser eat your bananas'},
+            {'lang': 'en-GB', 'string': 'Let your browser eat your bananas'},
             {
-                'lang': u'es',
-                'string': u'Deje que su navegador coma sus plátanos'
+                'lang': 'es',
+                'string': 'Deje que su navegador coma sus plátanos'
             },
         ]
-        assert extracted['name_l10n_english'] == ['Banana Bonkers']
-        assert extracted['name_l10n_spanish'] == [u'Banana Bonkers espanole']
-        assert (extracted['description_l10n_english'] ==
-                [u'Let your browser eat your bananas'])
-        assert (extracted['description_l10n_spanish'] ==
-                [u'Deje que su navegador coma sus plátanos'])
+        assert extracted['name_l10n_en-gb'] == 'Banana Bonkers'
+        assert extracted['name_l10n_en-us'] == ''
+        assert extracted['name_l10n_es'] == 'Banana Bonkers espanole'
+        assert (
+            extracted['description_l10n_en-gb'] ==
+            'Let your browser eat your bananas'
+        )
+        assert (
+            extracted['description_l10n_es'] ==
+            'Deje que su navegador coma sus plátanos'
+        )
 
     def test_extract_previews(self):
         second_preview = Preview.objects.create(

@@ -214,3 +214,14 @@
       </em>
     </div>
   {% endif %}
+
+  {% if name_translations %}
+  <div id="name-translations">
+    <h3> {{ _('Add-on name translations') }} </h3>
+    <ul>
+      {% for translations in name_translations|groupby('localized_string') %}
+        <li><strong>{% for translation in translations.list|sort(attribute='locale') %}{{ LANGUAGES.get(translation.locale|lower) }}{% if not loop.last %}, {% endif %}{% endfor %}:</strong> {{ translations.grouper }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}

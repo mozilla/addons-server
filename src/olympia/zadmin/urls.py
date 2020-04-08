@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 
@@ -13,7 +14,8 @@ from . import views
 def login(request):
     # if the user has permission, just send them to the index page
     if request.method == 'GET' and admin.site.has_permission(request):
-        return redirect('admin:index')
+        next_path = request.GET.get(REDIRECT_FIELD_NAME)
+        return redirect(next_path or 'admin:index')
     # otherwise, they're logged in but don't have permission return a 403.
     elif request.user.is_authenticated:
         raise PermissionDenied
