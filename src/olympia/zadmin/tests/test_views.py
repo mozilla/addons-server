@@ -117,6 +117,24 @@ class TestHomeAndIndex(TestCase):
         response = self.client.get(url)
         self.assert3xx(response, '/en-US/admin/models/')
 
+    @mock.patch('olympia.accounts.utils.default_fxa_login_url')
+    def test_django_login_page_with_next(self, default_fxa_login_url):
+        login_url = 'https://example.com/fxalogin'
+        default_fxa_login_url.return_value = login_url
+
+        # if django admin passes on a next param, check we use it.
+        url = reverse('admin:login') + '?next=/en-US/admin/models/addon/'
+        response = self.client.get(url)
+        # redirect to the correct page
+        self.assert3xx(response, '/en-US/admin/models/addon/')
+
+        # Same with an "is_staff" user.
+        user = user_factory(username='staffperson', email='staffperson@m.c')
+        self.client.login(email='staffperson@m.c')
+        self.grant_permission(user, 'Admin:Tools')
+        response = self.client.get(url)
+        self.assert3xx(response, '/en-US/admin/models/addon/')
+
     def test_django_admin_logout(self):
         url = reverse('admin:logout')
         response = self.client.get(url, follow=False)

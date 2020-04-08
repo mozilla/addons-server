@@ -20,6 +20,7 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
@@ -541,7 +542,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.assertCloseToNow(
             self.addon.pending_info_request,
-            now=datetime.now() + timedelta(days=7))
+            now=datetime.now() + timedelta(
+                days=REVIEWER_NEED_INFO_DAYS_DEFAULT))
 
         assert len(mail.outbox) == 1
         assert (
@@ -582,7 +584,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.assertCloseToNow(
             flags.pending_info_request,
-            now=datetime.now() + timedelta(days=7))
+            now=datetime.now() + timedelta(
+                days=REVIEWER_NEED_INFO_DAYS_DEFAULT))
         assert not flags.notified_about_expiring_info_request
 
         assert len(mail.outbox) == 1
@@ -1590,8 +1593,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_new_block_multiple_unlisted_versions(self):
         redirect_url = (
-            reverse('admin:blocklist_blocklistsubmission_add') +
-            '?min_version=%s&max_version=%s&guids=' + self.addon.guid)
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.id,)) +
+            '?min_version=%s&max_version=%s')
         assert Block.objects.count() == 0
         self._test_block_multiple_unlisted_versions(redirect_url)
 

@@ -16,7 +16,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase, version_factory
+from olympia.amo.tests import TestCase, version_factory, addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.files.file_viewer import DiffHelper, FileViewer
 from olympia.files.models import File
@@ -764,3 +764,99 @@ class TestServeFileUpload(UploadTest, TestCase):
         resp = self.client.get(self.upload.get_authenticated_download_url())
 
         assert resp.status_code == 410
+
+
+class TestBrowseRedirect(TestCase):
+    def setUp(self):
+        super(TestBrowseRedirect, self).setUp()
+
+        self.version = version_factory(addon=addon_factory())
+        self.browse_redirect_url = reverse(
+            'files.browse_redirect', args=[self.version.pk]
+        )
+
+    def test_redirects_to_file_viewer_with_file_id(self):
+        response = self.client.get(self.browse_redirect_url)
+
+        self.assert3xx(
+            response,
+            reverse('files.list', args=[self.version.current_file.id]),
+        )
+
+    def test_redirects_to_file_viewer_with_file_query_param(self):
+        file = 'some/file.js'
+        response = self.client.get(self.browse_redirect_url + f'?file={file}')
+
+        self.assert3xx(
+            response,
+            reverse('files.list', args=[
+                self.version.current_file.id,
+                'file',
+                file,
+            ]),
+        )
+
+    def test_returns_404_when_version_is_not_found(self):
+        browse_redirect_url = reverse('files.browse_redirect', args=[123456])
+
+        response = self.client.get(browse_redirect_url)
+
+        assert response.status_code == 404
+
+
+class TestCompareRedirect(TestCase):
+    def setUp(self):
+        super(TestCompareRedirect, self).setUp()
+
+        addon = addon_factory()
+        self.base_version = version_factory(addon=addon)
+        self.head_version = version_factory(addon=addon)
+        self.compare_redirect_url = reverse(
+            'files.compare_redirect',
+            args=[self.base_version.pk, self.head_version.pk],
+        )
+
+    def test_redirects_to_file_viewer_with_file_ids(self):
+        response = self.client.get(self.compare_redirect_url)
+
+        self.assert3xx(
+            response,
+            reverse('files.compare', args=[
+                self.base_version.current_file.id,
+                self.head_version.current_file.id,
+            ]),
+        )
+
+    def test_redirects_to_file_viewer_with_file_query_param(self):
+        file = 'some/file.js'
+        response = self.client.get(self.compare_redirect_url + f'?file={file}')
+
+        self.assert3xx(
+            response,
+            reverse('files.compare', args=[
+                self.base_version.current_file.id,
+                self.head_version.current_file.id,
+                'file',
+                file,
+            ]),
+        )
+
+    def test_returns_404_when_head_version_is_not_found(self):
+        compare_redirect_url = reverse('files.compare_redirect', args=[
+            self.base_version.pk,
+            123456,
+        ])
+
+        response = self.client.get(compare_redirect_url)
+
+        assert response.status_code == 404
+
+    def test_returns_404_when_base_version_is_not_found(self):
+        compare_redirect_url = reverse('files.compare_redirect', args=[
+            123456,
+            self.base_version.pk,
+        ])
+
+        response = self.client.get(compare_redirect_url)
+
+        assert response.status_code == 404

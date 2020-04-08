@@ -42,6 +42,7 @@ static/js/i18n/*.js
 static/js/node_lib/*
 storage/files/*
 storage/git-storage/*
+storage/mlbf/*
 storage/guarded-addons/*
 storage/shared_storage/*
 supervisord.pid

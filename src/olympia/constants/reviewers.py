@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 # Reviewer Tools
 REVIEWER_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 REVIEWER_REVIEW_LOCK_LIMIT = 3  # How many pages can a reviewer "watch"
+REVIEWER_NEED_INFO_DAYS_DEFAULT = 14  # Default deadline in days for need-infos
 
 # Types of Canned Responses for reviewer tools.
 CANNED_RESPONSE_TYPE_ADDON = 1

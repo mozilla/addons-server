@@ -171,6 +171,7 @@ def test_pre_setup(request, tmpdir, settings):
     settings.ADDONS_PATH = _path(storage_root, 'files')
     settings.GUARDED_ADDONS_PATH = _path(storage_root, 'guarded-addons')
     settings.GIT_FILE_STORAGE_PATH = _path(storage_root, 'git-storage')
+    settings.MLBF_STORAGE_PATH = _path(storage_root, 'mlbf')
     settings.MEDIA_ROOT = _path(shared_storage, 'uploads')
     settings.TMP_PATH = _path(shared_storage, 'tmp')
 

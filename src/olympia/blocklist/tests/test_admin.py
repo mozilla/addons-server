@@ -123,6 +123,23 @@ class TestBlockAdmin(TestCase):
             reverse('admin:blocklist_block_change', args=(block.pk,))
         )
 
+    def test_add_from_addon_pk_view(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+
+        addon = addon_factory()
+        url = reverse('admin:blocklist_block_addaddon', args=(addon.id,))
+        response = self.client.post(url, follow=True)
+        self.assertRedirects(
+            response, self.submission_url + f'?guids={addon.guid}')
+
+        response = self.client.post(url + '?min_version=23', follow=True)
+        self.assertRedirects(
+            response,
+            self.submission_url + f'?guids={addon.guid}&min_version=23')
+
 
 class TestBlocklistSubmissionAdmin(TestCase):
     def setUp(self):
@@ -1468,6 +1485,7 @@ class TestBlockAdminEdit(TestCase):
         assert submission_url in content
         assert 'Close' in content
         assert '_save' not in content
+        assert 'deletelink' not in content
 
         # Try to edit the block anyway
         response = self.client.post(
@@ -1501,41 +1519,6 @@ class TestBlockAdminEdit(TestCase):
 
 
 class TestBlockAdminDelete(TestCase):
-    def setUp(self):
-        self.addon = addon_factory(guid='guid@', name='Danger Danger')
-        self.block = Block.objects.create(
-            guid=self.addon.guid, updated_by=user_factory())
-        self.delete_url = reverse(
-            'admin:blocklist_block_delete', args=(self.block.pk,))
-        self.submission_url = reverse(
-            'admin:blocklist_blocklistsubmission_add')
-
-    def test_can_not_delete_through_normal_django_admin_delete(self):
-        user = user_factory()
-        self.grant_permission(user, 'Admin:Tools')
-        self.grant_permission(user, 'Blocklist:Create')
-        self.client.login(email=user.email)
-        assert Block.objects.count() == 1
-
-        # Can't access delete confirmation page.
-        response = self.client.get(self.delete_url, follow=True)
-        assert response.status_code == 403
-
-        # Can't actually delete either.
-        response = self.client.post(
-            self.delete_url,
-            {'post': 'yes'},
-            follow=True)
-        assert response.status_code == 403
-        assert Block.objects.count() == 1
-
-        assert not ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id).exists()
-        assert not ActivityLog.objects.for_block(self.block).filter(
-            action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id).exists()
-
-
-class TestBlockAdminBulkDelete(TestCase):
     def setUp(self):
         self.delete_url = reverse('admin:blocklist_block_delete_multiple')
         self.submission_url = reverse(
@@ -1573,6 +1556,14 @@ class TestBlockAdminBulkDelete(TestCase):
         response = self.client.post(
             self.delete_url, {'guids': 'guid@\n{12345-6789}'}, follow=True)
         self.assertRedirects(response, self.submission_url, status_code=307)
+
+        # If a block is already present in a submission though, we error
+        BlocklistSubmission.objects.create(
+            input_guids='guid@', min_version='1').save()
+        response = self.client.post(
+            self.delete_url, {'guids': 'guid@\n{12345-6789}'}, follow=False)
+        assert b'Add-on GUIDs (one per line)' in response.content
+        assert b'GUID guid@ is in a pending Submission' in response.content
 
     def _test_delete_multiple_submit(self, addon_adu):
         """addon_adu is important because whether dual signoff is needed is
@@ -1723,3 +1714,45 @@ class TestBlockAdminBulkDelete(TestCase):
         assert len(buttons) == 0
         assert b'Reject Submission' not in response.content
         assert b'Approve Submission' not in response.content
+
+    def test_django_delete_redirects_to_bulk(self):
+        block = Block.objects.create(
+            addon=addon_factory(guid='foo@baa', name='Danger Danger'),
+            updated_by=user_factory())
+        django_delete_url = reverse(
+            'admin:blocklist_block_delete', args=(block.pk,))
+
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+        assert Block.objects.count() == 1
+
+        response = self.client.get(django_delete_url, follow=True)
+        self.assertRedirects(
+            response,
+            self.submission_url + '?guids=foo@baa&action=1',
+            target_status_code=200)
+
+        # No immediate delete.
+        assert Block.objects.count() == 1
+
+        assert not ActivityLog.objects.for_addons(block.addon).filter(
+            action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id).exists()
+        assert not ActivityLog.objects.for_block(block).filter(
+            action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id).exists()
+
+    def test_can_not_delete_without_permission(self):
+        block = Block.objects.create(
+            addon=addon_factory(guid='foo@baa', name='Danger Danger'),
+            updated_by=user_factory())
+        django_delete_url = reverse(
+            'admin:blocklist_block_delete', args=(block.pk,))
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        assert Block.objects.count() == 1
+
+        # Can't access delete confirmation page.
+        response = self.client.get(django_delete_url, follow=True)
+        assert response.status_code == 403

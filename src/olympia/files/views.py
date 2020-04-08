@@ -21,6 +21,7 @@ from olympia.files.decorators import (
     compare_file_view, etag, file_view, file_view_token, last_modified)
 from olympia.files.file_viewer import extract_file
 from olympia.lib.cache import Message, Token
+from olympia.versions.models import Version
 
 from .models import FileUpload
 from . import forms
@@ -120,6 +121,31 @@ def browse(request, viewer, key=None, type='file'):
 
     tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)
+
+
+def browse_redirect(request, version_id):
+    version = shortcuts.get_object_or_404(Version, pk=version_id)
+    url_args = [version.current_file.id]
+
+    file = request.GET.get('file')
+    if file:
+        url_args.extend(['file', file])
+    url = reverse('files.list', args=url_args)
+
+    return http.HttpResponseRedirect(url)
+
+
+def compare_redirect(request, base_id, head_id):
+    base_version = shortcuts.get_object_or_404(Version, pk=base_id)
+    head_version = shortcuts.get_object_or_404(Version, pk=head_id)
+    url_args = [base_version.current_file.id, head_version.current_file.id]
+
+    file = request.GET.get('file')
+    if file:
+        url_args.extend(['file', file])
+
+    url = reverse('files.compare', args=url_args)
+    return http.HttpResponseRedirect(url)
 
 
 @never_cache

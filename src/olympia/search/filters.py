@@ -18,12 +18,6 @@ from olympia.discovery.models import DiscoveryItem
 from olympia.versions.compare import version_int
 
 
-def get_locale_analyzer(lang):
-    """Return analyzer to use for the specified language code, or None."""
-    analyzer = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(lang)
-    return analyzer
-
-
 class AddonQueryParam(object):
     """Helper to build a simple ES query from a request.GET param."""
     operator = 'term'  # ES filter to use when filtering.
@@ -443,7 +437,7 @@ class SearchQueryFilter(BaseFilterBackend):
     MAX_QUERY_LENGTH = 100
     MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH = 20
 
-    def generate_exact_name_match_query(self, search_query, analyzer):
+    def generate_exact_name_match_query(self, search_query, lang):
         """
         Return the query used for exact name matching.
 
@@ -461,6 +455,7 @@ class SearchQueryFilter(BaseFilterBackend):
           match. This is where the DisMax comes in, it's what MultiMatch
           would do, except that it works with Term queries.
         """
+        analyzer = self.get_locale_analyzer(lang)
         if analyzer is None:
             clause = query.Term(**{
                 'name.raw': {
@@ -469,21 +464,30 @@ class SearchQueryFilter(BaseFilterBackend):
                 }
             })
         else:
-            query_name = 'DisMax(Term(name.raw), Term(name_l10n_%s.raw))' % (
-                analyzer)
+            queries = [
+                {'term': {'name.raw': search_query}},
+            ]
+            # Search in all languages supported by this analyzer. This allows
+            # us to return results in a different language that is close to the
+            # one requested ('en-ca' when searching in 'en-us' for instance).
+            fields = [
+                'name_l10n_%s.raw' % lang
+                for lang in amo.SEARCH_ANALYZER_MAP[analyzer]
+            ]
+            queries.extend([
+                {'term': {field: search_query}} for field in fields
+            ])
             clause = query.DisMax(
-                # We only care if one of these matches, so we leave tie_breaker
-                # to the default value of 0.0.
-                _name=query_name,
+                # Note: We only care if one of these matches, so we leave
+                # tie_breaker to the default value of 0.0.
+                _name='DisMax(Term(name.raw), %s)' % ', '.join(
+                    ['Term(%s)' % field for field in fields]),
                 boost=100.0,
-                queries=[
-                    {'term': {'name.raw': search_query}},
-                    {'term': {'name_l10n_%s.raw' % analyzer: search_query}},
-                ]
+                queries=queries,
             )
         return clause
 
-    def primary_should_rules(self, search_query, analyzer):
+    def primary_should_rules(self, search_query, lang):
         """Return "primary" should rules for the query.
 
         These are the ones using the strongest boosts and are only applied to
@@ -500,22 +504,28 @@ class SearchQueryFilter(BaseFilterBackend):
         * Then look for the query as a prefix of a name (boost=3.0)
         """
         should = [
-            self.generate_exact_name_match_query(search_query, analyzer)
+            self.generate_exact_name_match_query(search_query, lang)
         ]
 
         # If we are searching with a language that we support, we also try to
         # do a match against the translated field. If not, we'll do a match
         # against the name in default locale below.
+        analyzer = self.get_locale_analyzer(lang)
         if analyzer:
+            # Like in generate_exact_name_match_query() above, we want to
+            # search in all languages supported by this analyzer.
+            fields = [
+                'name_l10n_%s' % lang
+                for lang in amo.SEARCH_ANALYZER_MAP[analyzer]
+            ]
             should.append(
-                query.Match(**{
-                    'name_l10n_%s' % analyzer: {
-                        '_name': 'Match(name_l10n_%s)' % analyzer,
-                        'query': search_query,
-                        'boost': 5.0,
-                        'analyzer': analyzer,
-                        'operator': 'and'
-                    }
+                query.MultiMatch(**{
+                    '_name': 'MultiMatch(%s)' % ','.join(fields),
+                    'fields': fields,
+                    'query': search_query,
+                    'boost': 5.0,
+                    'analyzer': analyzer,
+                    'operator': 'and'
                 })
             )
 
@@ -592,7 +602,7 @@ class SearchQueryFilter(BaseFilterBackend):
         return should
 
     def secondary_should_rules(
-            self, search_query, analyzer, rescore_mode=False):
+            self, search_query, lang, rescore_mode=False):
         """Return "secondary" should rules for the query.
 
         These are the ones using the weakest boosts, they are applied to fields
@@ -633,54 +643,52 @@ class SearchQueryFilter(BaseFilterBackend):
                 'type': 'phrase',
             }
 
-        if analyzer:
-            summary_query_name = (
-                'MultiMatch(%s(summary),%s(summary_l10n_%s))' % (
-                    query_class_name, query_class_name, analyzer))
-            description_query_name = (
-                'MultiMatch(%s(description),%s(description_l10n_%s))' % (
-                    query_class_name, query_class_name, analyzer))
-            should = [
-                # When *not* doing a rescore, we do regular non-phrase matches
-                # with 'operator': 'and' (see query_class/multi_match_kwargs
-                # above). This may seem wrong, the ES docs warn against this,
-                # but this is exactly what we want here: we want all terms
-                # to be present in either of the fields individually, not some
-                # in one and some in another.
-                query.MultiMatch(
-                    _name=summary_query_name,
-                    query=search_query,
-                    fields=['summary', 'summary_l10n_%s' % analyzer],
-                    boost=3.0,
-                    **multi_match_kwargs
-                ),
-                query.MultiMatch(
-                    _name=description_query_name,
-                    query=search_query,
-                    fields=['description', 'description_l10n_%s' % analyzer],
-                    boost=2.0,
-                    **multi_match_kwargs
-                ),
-            ]
-        else:
-            should = [
-                query_class(
-                    summary=dict(
-                        _name='%s(summary)' % query_class_name,
+        analyzer = self.get_locale_analyzer(lang)
+        should = []
+        for field_name, boost in (('summary', 3.0), ('description', 2.0)):
+            if analyzer:
+                # Like in generate_exact_name_match_query() and
+                # primary_should_rules() above, we want to search in all
+                # languages supported by this analyzer.
+                fields = [field_name]
+                fields.extend([
+                    '%s_l10n_%s' % (field_name, lang)
+                    for lang in amo.SEARCH_ANALYZER_MAP[analyzer]
+                ])
+                query_name = (
+                    'MultiMatch(%s)' % ', '.join(
+                        ['%s(%s)' % (query_class_name, field)
+                         for field in fields]
+                    )
+                )
+                should.append(
+                    # When *not* doing a rescore, we do regular non-phrase
+                    # matches with 'operator': 'and' (see query_class and
+                    # multi_match_kwargs above). This may seem wrong, the ES
+                    # docs warn against this, but this is exactly what we want
+                    # here: we want all terms to be present in either of the
+                    # fields individually, not some in one and some in another.
+                    query.MultiMatch(
+                        _name=query_name,
                         query=search_query,
-                        boost=3.0,
-                        **query_kwargs)),
-                query_class(
-                    summary=dict(
-                        _name='%s(description)' % query_class_name,
-                        query=search_query,
-                        boost=2.0,
-                        **query_kwargs)),
-            ]
+                        fields=fields,
+                        boost=boost,
+                        **multi_match_kwargs
+                    )
+                )
+            else:
+                should.append(
+                    query_class(
+                        summary=dict(
+                            _name='%s(%s)' % (query_class_name, field_name),
+                            query=search_query,
+                            boost=boost,
+                            **query_kwargs)),
+                )
 
         return should
 
-    def rescore_rules(self, search_query, analyzer):
+    def rescore_rules(self, search_query, lang):
         """
         Rules for the rescore part of the query. Currently just more expensive
         version of secondary_search_rules(), doing match_phrase with a slop
@@ -688,16 +696,19 @@ class SearchQueryFilter(BaseFilterBackend):
         possible.
         """
         return self.secondary_should_rules(
-            search_query, analyzer, rescore_mode=True)
+            search_query, lang, rescore_mode=True)
+
+    def get_locale_analyzer(self, lang):
+        """Return analyzer to use for the specified language code, or None."""
+        return amo.SEARCH_LANGUAGE_TO_ANALYZER.get(lang)
 
     def apply_search_query(self, search_query, qs, sort=None):
         lang = translation.get_language()
-        analyzer = get_locale_analyzer(lang)
 
         # Our query consist of a number of should clauses. We call the ones
         # with the higher boost "primary" for convenience.
-        primary_should = self.primary_should_rules(search_query, analyzer)
-        secondary_should = self.secondary_should_rules(search_query, analyzer)
+        primary_should = self.primary_should_rules(search_query, lang)
+        secondary_should = self.secondary_should_rules(search_query, lang)
 
         # We alter scoring depending on add-on popularity and whether the
         # add-on is reviewed & public & non-experimental, and whether or not
@@ -734,7 +745,7 @@ class SearchQueryFilter(BaseFilterBackend):
             # If we are searching by relevancy, rescore the top 10
             # (window_size below) results per shard with more expensive rules
             # using match_phrase + slop.
-            rescore_query = self.rescore_rules(search_query, analyzer)
+            rescore_query = self.rescore_rules(search_query, lang)
             qs = qs.extra(rescore={'window_size': 10, 'query': {
                 'rescore_query': query.Bool(should=rescore_query).to_dict()}})
 
