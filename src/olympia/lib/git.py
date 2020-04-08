@@ -391,7 +391,19 @@ class AddonGitRepository(object):
 
     def find_or_create_branch(self, name):
         """Lookup or create the branch named `name`"""
-        branch = self.git_repository.branches.get(name)
+        try:
+            branch = self.git_repository.branches.get(name)
+        except pygit2.GitError:
+            # The ref (branch) is broken so we have to remove the file. In this
+            # case, there is no other way to solve the problem if we want to
+            # use the `name` branch.
+            # See: https://github.com/mozilla/addons-server/issues/13590
+            broken_ref_path = os.path.join(self.git_repository_path,
+                                           '.git/refs/heads/{}'.format(name))
+            os.unlink(broken_ref_path)
+            log.info('found broken ref for branch: "{}", removed file: '
+                     '"{}"'.format(name, broken_ref_path))
+            branch = None
 
         if branch is None:
             branch = self.git_repository.create_branch(

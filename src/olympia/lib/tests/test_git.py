@@ -6,6 +6,7 @@ import pytest
 import pygit2
 from unittest import mock
 from unittest.mock import MagicMock
+from pathlib import Path
 
 from django.conf import settings
 from django.core.files import temp
@@ -171,6 +172,21 @@ def test_extract_and_commit_from_version(settings):
         repr(addon.current_version), addon.current_version.id, repr(addon),
         repr(addon.current_version.all_files[0]))
     assert expected in output
+
+
+@pytest.mark.django_db
+def test_find_or_create_branch_repairs_broken_ref(settings):
+    repo = AddonGitRepository(addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi'}))
+    branch = 'listed'
+    # Create the git repo
+    repo.git_repository
+    assert repo.is_extracted
+    # Create a broken ref
+    Path(f'{repo.git_repository_path}/.git/refs/heads/{branch}').touch()
+
+    # This should create a branch
+    assert repo.find_or_create_branch(branch)
 
 
 @pytest.mark.django_db
