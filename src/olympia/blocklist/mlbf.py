@@ -3,10 +3,14 @@ import secrets
 from collections import defaultdict
 
 from filtercascade import FilterCascade
+from filtercascade.fileformats import HashAlgorithm
 
 import olympia.core.logger
 
+
 log = olympia.core.logger.getLogger('z.amo.blocklist')
+
+MLBF_KEY_FORMAT = '{guid}:{version}'
 
 
 def get_blocked_guids():
@@ -50,27 +54,22 @@ def get_all_guids():
     return Version.unfiltered.values_list('addon__guid', 'version')
 
 
-def hash_filter_inputs(input_list, key_format):
+def hash_filter_inputs(input_list):
     return [
-        key_format.format(guid=guid, version=version)
+        MLBF_KEY_FORMAT.format(guid=guid, version=version)
         for (guid, version) in input_list]
 
 
-def get_mlbf_key_format(salt=None):
-    salt = salt or secrets.token_hex(16)
-    return '%s:{guid}:{version}' % salt
-
-
-def generate_mlbf(stats, key_format, *, blocked=None, not_blocked=None):
-    """Based on:
+def generate_mlbf(stats, *, blocked=None, not_blocked=None):
+    """Originally based on:
     https://github.com/mozilla/crlite/blob/master/create_filter_cascade/certs_to_crlite.py
+    (not so much any longer, apart from the fprs calculation)
     """
-    blocked = hash_filter_inputs(
-        blocked or get_blocked_guids(), key_format)
-    not_blocked = hash_filter_inputs(
-        not_blocked or get_all_guids(), key_format)
-
+    blocked = hash_filter_inputs(blocked or get_blocked_guids())
+    not_blocked = hash_filter_inputs(not_blocked or get_all_guids())
     not_blocked = list(set(not_blocked) - set(blocked))
+
+    salt = secrets.token_bytes(16)
 
     stats['mlbf_blocked_count'] = len(blocked)
     stats['mlbf_unblocked_count'] = len(not_blocked)
@@ -79,9 +78,11 @@ def generate_mlbf(stats, key_format, *, blocked=None, not_blocked=None):
 
     log.info("Generating filter")
     cascade = FilterCascade.cascade_with_characteristics(
-        int(len(blocked) * 1.1), fprs)
-
-    cascade.version = 1
+        capacity=int(len(blocked) * 1.1),
+        error_rates=fprs,
+        defaultHashAlg=HashAlgorithm.SHA256,
+        salt=salt,
+    )
     cascade.initialize(include=blocked, exclude=not_blocked)
 
     stats['mlbf_fprs'] = fprs
@@ -92,5 +93,5 @@ def generate_mlbf(stats, key_format, *, blocked=None, not_blocked=None):
     log.debug("Filter cascade layers: {layers}, bit: {bits}".format(
         layers=cascade.layerCount(), bits=cascade.bitCount()))
 
-    cascade.check(entries=blocked, exclusions=not_blocked)
+    cascade.verify(include=blocked, exclude=not_blocked)
     return cascade

@@ -14,6 +14,7 @@ from olympia import amo, ratings
 from olympia.access import acl
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
+from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import CannedResponse, Whiteboard
@@ -296,7 +297,8 @@ class ReviewForm(forms.Form):
     info_request = forms.BooleanField(
         required=False, label=_(u'Require developer to respond in less than…'))
     info_request_deadline = forms.IntegerField(
-        required=False, widget=NumberInput, initial=7, label=_(u'days'),
+        required=False, widget=NumberInput,
+        initial=REVIEWER_NEED_INFO_DAYS_DEFAULT, label=_(u'days'),
         min_value=1, max_value=99)
 
     def is_valid(self):

@@ -10,7 +10,7 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 KINTO_BUCKET = 'staging'
 KINTO_COLLECTION_LEGACY = 'addons'
-KINTO_COLLECTION_MLBF = 'addons-mlbf'
+KINTO_COLLECTION_MLBF = 'addons-bloomfilters'
 
 
 def add_version_log_for_blocked_versions(obj, al):

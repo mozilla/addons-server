@@ -214,6 +214,12 @@ class AddonGitRepository(object):
             pygit2.GIT_CONFIG_LEVEL_GLOBAL,
             git_home)
 
+        # This will cause .keep file existence checks to be skipped when
+        # accessing packfiles, which can help performance with remote
+        # filesystems.
+        # See: https://github.com/mozilla/addons-server/issues/13019
+        pygit2.option(pygit2.GIT_OPT_DISABLE_PACK_KEEP_FILE_CHECKS, True)
+
         # Enable calling fsync() for various operations touching .git
         pygit2.option(pygit2.GIT_OPT_ENABLE_FSYNC_GITDIR, True)
 

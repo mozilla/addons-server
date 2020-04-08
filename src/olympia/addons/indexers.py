@@ -25,8 +25,8 @@ class AddonIndexer(BaseSearchIndexer):
         # Translated content that is used for filtering purposes is stored
         # under 3 different fields:
         # - One field with all translations (e.g., "name").
-        # - One field for each language, with language-specific analyzers
-        #   (e.g., "name_l10n_italian", "name_l10n_french", etc.)
+        # - One field for each language, using corresponding analyzer
+        #   (e.g., "name_l10n_en-us", "name_l10n_fr", etc.)
         # - One field with all translations in separate objects for the API
         #   (e.g. "name_translations")
         # Only that last one with all translations needs to be returned.

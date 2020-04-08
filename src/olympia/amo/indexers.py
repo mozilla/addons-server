@@ -2,7 +2,7 @@ from django.conf import settings
 
 import olympia.core.logger
 
-from olympia.constants.search import SEARCH_ANALYZER_MAP
+from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
 from .models import SearchMixin
 from .utils import to_language
@@ -100,9 +100,9 @@ class BaseSearchIndexer(object):
         """
         doc_name = cls.get_doctype_name()
 
-        for analyzer in SEARCH_ANALYZER_MAP:
+        for lang, analyzer in SEARCH_LANGUAGE_TO_ANALYZER.items():
             for field in field_names:
-                property_name = '%s_l10n_%s' % (field, analyzer)
+                property_name = '%s_l10n_%s' % (field, lang)
                 mapping[doc_name]['properties'][property_name] = {
                     'type': 'text',
                     'analyzer': analyzer,
@@ -117,9 +117,9 @@ class BaseSearchIndexer(object):
         """
         doc_name = cls.get_doctype_name()
 
-        for analyzer in SEARCH_ANALYZER_MAP:
+        for lang, analyzer in SEARCH_LANGUAGE_TO_ANALYZER.items():
             for field in field_names:
-                property_name = '%s_l10n_%s' % (field, analyzer)
+                property_name = '%s_l10n_%s' % (field, lang)
                 mapping[doc_name]['properties'][property_name] = {
                     'type': 'text',
                     'analyzer': analyzer,
@@ -165,20 +165,21 @@ class BaseSearchIndexer(object):
     @classmethod
     def extract_field_analyzed_translations(cls, obj, field, db_field=None):
         """
-        Returns a dict containing translations for each language-specific
-        analyzer for the given field. Empty translations are skipped entirely.
+        Returns a dict containing translations for each language that we have
+        an analyzer for, for the given field.
+
+        When no translation exist for a given language+field combo, the value
+        returned is an empty string, to avoid storing the word "None" as the
+        field does not understand null values.
         """
         if db_field is None:
             db_field = '%s_id' % field
 
-        extend_with_me = {}
+        translations = dict(
+            obj.translations[getattr(obj, db_field)]
+        )
 
-        # Indices for each language. languages is a list of locales we want to
-        # index with analyzer if the string's locale matches.
-        for analyzer, languages in SEARCH_ANALYZER_MAP.items():
-            extend_with_me['%s_l10n_%s' % (field, analyzer)] = list(
-                set(str(string) for locale, string
-                    in obj.translations[getattr(obj, db_field)]
-                    if locale.lower() in languages and string))
-
-        return extend_with_me
+        return {
+            '%s_l10n_%s' % (field, lang): translations.get(lang) or ''
+            for lang in SEARCH_LANGUAGE_TO_ANALYZER
+        }

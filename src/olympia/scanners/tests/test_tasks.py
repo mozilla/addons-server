@@ -735,3 +735,13 @@ class TestCallMadApi(UploadTest, TestCase):
         call_mad_api(self.results, self.upload.pk)
 
         assert not requests_mock.called
+
+    @mock.patch('olympia.scanners.tasks.requests.post')
+    def test_does_not_run_when_results_contain_errors(self, requests_mock):
+        self.create_switch('enable-mad', active=True)
+        self.results[0].update({'errors': 1})
+
+        returned_results = call_mad_api(self.results, self.upload.pk)
+
+        assert not requests_mock.called
+        assert returned_results == self.results[0]

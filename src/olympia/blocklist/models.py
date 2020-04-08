@@ -146,6 +146,10 @@ class Block(ModelBase):
                 '<a href="{}">{}</a>', url, _('Review Unlisted'))
         return ''
 
+    @cached_property
+    def active_submissions(self):
+        return BlocklistSubmission.get_submissions_from_guid(self.guid)
+
 
 class BlocklistSubmission(ModelBase):
     SIGNOFF_PENDING = 0
