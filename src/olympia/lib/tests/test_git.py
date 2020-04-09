@@ -204,6 +204,30 @@ def test_find_or_create_branch_raises_broken_ref_error(settings):
 
 
 @pytest.mark.django_db
+def test_delete(settings):
+    repo = AddonGitRepository(addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi'}))
+    # Create the git repo
+    repo.git_repository
+    assert repo.is_extracted
+
+    repo.delete()
+
+    assert not repo.is_extracted
+
+
+@pytest.mark.django_db
+def test_delete_non_extracted_repo(settings):
+    repo = AddonGitRepository(addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi'}))
+    assert not repo.is_extracted
+
+    repo.delete()
+
+    assert not repo.is_extracted
+
+
+@pytest.mark.django_db
 def test_extract_and_commit_from_version_multiple_versions(settings):
     addon = addon_factory(
         file_kw={'filename': 'webextension_no_id.xpi'},
