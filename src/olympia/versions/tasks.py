@@ -2,7 +2,6 @@ from __future__ import division
 import itertools
 import operator
 import os
-import time
 
 from django.template import loader
 
@@ -193,13 +192,14 @@ def extract_version_to_git(version_id, author_id=None, note=None,
                  'because the add-on is already being git-extracted.'
                  ''.format(version_id))
 
-        time.sleep(30)  # 30 seconds
-
-        extract_version_to_git.delay(
-            version_id=version_id,
-            author_id=author_id,
-            note=note,
-            stop_on_broken_ref=stop_on_broken_ref
+        extract_version_to_git.apply_async(
+            kwargs={
+                'version_id': version_id,
+                'author_id': author_id,
+                'note': note,
+                'stop_on_broken_ref': stop_on_broken_ref
+            },
+            countdown=30,  # Executes the task in 30 seconds from now.
         )
         return
 

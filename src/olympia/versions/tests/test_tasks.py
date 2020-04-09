@@ -1,6 +1,7 @@
 import os
 import zipfile
 from base64 import b64encode
+from pathlib import Path
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -11,6 +12,7 @@ from unittest import mock
 import pytest
 
 from olympia import amo
+from olympia.addons.models import GitExtraction
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory
 from olympia.addons.cron import hide_disabled_files
@@ -19,7 +21,7 @@ from olympia.versions.models import VersionPreview
 from olympia.versions.tasks import (
     generate_static_theme_preview, extract_version_to_git,
     extract_version_source_to_git)
-from olympia.lib.git import AddonGitRepository
+from olympia.lib.git import AddonGitRepository, BrokenRefError
 
 
 HEADER_ROOT = os.path.join(
@@ -425,6 +427,98 @@ def test_extract_version_to_git():
     assert repo.git_repository_path == os.path.join(
         settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
     assert os.listdir(repo.git_repository_path) == ['.git']
+
+
+@pytest.mark.django_db
+def test_extract_version_to_git_stops_on_broken_ref():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    repo = AddonGitRepository(addon.pk)
+    # Force the creation of the git repository.
+    repo.git_repository
+    assert repo.is_extracted
+    # Create a broken ref, see:
+    # https://github.com/mozilla/addons-server/issues/13590
+    Path(f'{repo.git_repository_path}/.git/refs/heads/listed').touch()
+
+    with pytest.raises(BrokenRefError):
+        extract_version_to_git(
+            addon.current_version.pk,
+            stop_on_broken_ref=True,
+        )
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.extract_addon_to_git.delay')
+def test_extract_version_to_git_with_broken_reference(
+        extract_addon_to_git_mock):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    repo = AddonGitRepository(addon.pk)
+    # Extract the current version once so that it has a git hash.
+    extract_version_to_git(addon.current_version.pk)
+    addon.current_version.refresh_from_db()
+    assert addon.current_version.git_hash
+    assert repo.is_extracted
+    # Emptying this file will break the git reference to the 'listed' branch.
+    Path(f'{repo.git_repository_path}/.git/refs/heads/listed').write_text('')
+
+    # Extract again. It does not really matter that we pass the same version
+    # because retrieving the branch will fail before we commit anything.
+    extract_version_to_git(addon.current_version.pk)
+    addon.current_version.refresh_from_db()
+
+    # When we detect a broken git reference, we reset the git hash of each
+    # version...
+    assert not addon.current_version.git_hash
+    # ...then delete the repository...
+    assert not repo.is_extracted
+    # ...and we create a new task to re-extract the add-on.
+    extract_addon_to_git_mock.assert_called_with(addon.id)
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.extract_version_to_git.apply_async')
+def test_extract_version_to_git_can_be_delayed(
+    extract_version_to_git_mock
+):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    repo = AddonGitRepository(addon.pk)
+    # Lock the add-on for git extraction.
+    GitExtraction.objects.create(addon=addon, in_progress=True)
+    note = 'some note'
+    author_id = 123
+
+    extract_version_to_git(
+        addon.current_version.pk,
+        author_id=author_id,
+        note=note,
+    )
+
+    assert not repo.is_extracted
+    extract_version_to_git_mock.assert_called_with(
+        kwargs={
+            'version_id': addon.current_version.pk,
+            'author_id': author_id,
+            'note': note,
+            'stop_on_broken_ref': False,
+        },
+        countdown=30,
+    )
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.extract_version_to_git.apply_async')
+def test_extract_version_to_git_cannot_be_delayed(
+    extract_version_to_git_mock
+):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    repo = AddonGitRepository(addon.pk)
+    # Lock the add-on for git extraction.
+    GitExtraction.objects.create(addon=addon, in_progress=True)
+
+    extract_version_to_git(addon.current_version.pk, can_be_delayed=False)
+
+    assert repo.is_extracted
+    extract_version_to_git_mock.assert_not_called()
 
 
 @pytest.mark.django_db
