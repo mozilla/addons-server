@@ -24,6 +24,7 @@ from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL_INDEFINITELY,
     FLAG_FOR_HUMAN_REVIEW,
     QUERY_RULE_STATES,
+    MAD,
     NEW,
     NO_ACTION,
     RESULT_STATES,
@@ -192,7 +193,10 @@ class AbstractScannerRule(ModelBase):
         max_length=200,
         help_text=_('This is the exact name of the rule used by a scanner.'),
     )
-    scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
+    select_scanner = SCANNERS
+    del select_scanner[WAT]
+    del select_scanner[MAD]
+    scanner = models.PositiveSmallIntegerField(choices=select_scanner.items())
     action = models.PositiveSmallIntegerField(
         choices=ACTIONS.items(), default=NO_ACTION
     )
