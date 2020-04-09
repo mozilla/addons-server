@@ -1534,6 +1534,12 @@ class Addon(OnChangeMixin, ModelBase):
         # GUIDs should only exist in one (active) submission at once.
         return BlocklistSubmission.get_submissions_from_guid(self.guid).last()
 
+    @property
+    def git_extraction_is_in_progress(self):
+        if not hasattr(self, 'gitstorage'):
+            return False
+        return self.gitstorage.in_progress
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
@@ -2099,3 +2105,14 @@ class ReusedGUID(ModelBase):
     guid = models.CharField(max_length=255, null=False)
     addon = models.OneToOneField(
         Addon, null=False, on_delete=models.CASCADE, unique=True)
+
+
+class GitStorage(ModelBase):
+    """
+    This is an add-on related model that stores information related to the git
+    extraction/storage (code-manager).
+    """
+    addon = models.OneToOneField(
+        Addon, on_delete=models.CASCADE, primary_key=True
+    )
+    in_progress = models.BooleanField(default=False)

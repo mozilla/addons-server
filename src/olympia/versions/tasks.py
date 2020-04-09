@@ -1,14 +1,15 @@
 from __future__ import division
+import itertools
 import operator
 import os
-import itertools
+import time
 
 from django.template import loader
 
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, GitStorage
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import extract_colors_from_image, pngcrush_image
@@ -115,8 +116,21 @@ def delete_preview_files(pk, **kw):
 @use_primary_db
 def extract_addon_to_git(addon_pk):
     addon = Addon.unfiltered.get(pk=addon_pk)
-    log.info('Starting extraction of addon "{}" to git '
-             'storage.'.format(addon_pk))
+    log.info(
+        'Starting extraction of addon "{}" to git storage.'.format(addon_pk)
+    )
+
+    if addon.git_extraction_is_in_progress:
+        log.info('Aborting extraction of addon "{}" to git storage because it '
+                 'is already in progress.'.format(addon_pk))
+        return
+
+    # "Lock" this add-on so that the git extraction can only run once and tasks
+    # for extracting related versions are delayed until this task has finished.
+    git_storage, created = GitStorage.objects.update_or_create(
+        addon=addon,
+        defaults={'in_progress': True},
+    )
 
     # Filter out versions that are already present in the git storage.
     versions = addon.versions.filter(git_hash='').order_by('created')
@@ -126,7 +140,15 @@ def extract_addon_to_git(addon_pk):
             log.info('Starting extraction of version "{}" for addon "{}" to '
                      'git storage.'.format(version.pk, addon_pk))
 
-            extract_version_to_git(version.pk, stop_on_broken_ref=True)
+            extract_version_to_git(
+                version.pk,
+                # We do not want to trigger an infinite loop so an error will
+                # be thrown if there is a broken git reference.
+                stop_on_broken_ref=True,
+                # The `extract_version_to_git` task also checks the lock we set
+                # above so we need to tell it to skip this check here.
+                can_be_delayed=False,
+            )
 
             log.info('Ending extraction of version "{}" for addon "{}" to '
                      'git storage.'.format(version.pk, addon_pk))
@@ -135,18 +157,51 @@ def extract_addon_to_git(addon_pk):
                           '"{}" to git storage.'.format(version.pk, addon_pk))
             continue
 
-    log.info('Ending extraction of addon "{}" to git '
-             'storage.'.format(addon_pk))
+    # Remove the "git extraction lock" on this add-on.
+    git_storage.update(in_progress=False)
+    log.info(
+        'Ending extraction of addon "{}" to git storage.'.format(addon_pk)
+    )
 
 
 @task
 @use_primary_db
 def extract_version_to_git(version_id, author_id=None, note=None,
-                           stop_on_broken_ref=False):
-    """Extract a `File` into our git storage backend."""
+                           stop_on_broken_ref=False, can_be_delayed=True):
+    """Extract a `File` into our git storage backend.
+
+    - `stop_on_broken_ref`: when we detect a broken git reference (when looking
+      up a git branch), the git repository is in a broken state and it is not
+      possible to recover from that state. In this case, we delete the git
+      repository, update all the versions and re-extract everything thanks to
+      the `extract_version_to_git` task, which uses `extract_version_to_git`
+      under the hood. This parameter is used to prevent a potential infinite
+      loop in case of another broken ref initiated by `extract_version_to_git`.
+
+    - `can_be_delayed`: each add-on object can be "locked" for git extraction
+      in `extract_addon_to_git()` so that we do not attempt to extract a
+      version while the add-on is being extracted. This parameter is used to
+      by-pass the lock check when `extract_addon_to_git()` calls this function.
+    """
     # We extract deleted or disabled versions as well so we need to make sure
     # we can access them.
     version = Version.unfiltered.get(pk=version_id)
+    addon = version.addon
+
+    if can_be_delayed and addon.git_extraction_is_in_progress:
+        log.info('Delaying task "extract_version_to_git" for version_id={} '
+                 'because the add-on is already being git-extracted.'
+                 ''.format(version_id))
+
+        time.sleep(30)  # 30 seconds
+
+        extract_version_to_git.delay(
+            version_id=version_id,
+            author_id=author_id,
+            note=note,
+            stop_on_broken_ref=stop_on_broken_ref
+        )
+        return
 
     if author_id is not None:
         author = UserProfile.objects.get(pk=author_id)
@@ -169,7 +224,6 @@ def extract_version_to_git(version_id, author_id=None, note=None,
         if stop_on_broken_ref:
             raise err
 
-        addon = version.addon
         # Reset the git hash of each version of the add-on related to the
         # current add-on because we want to re-extract everything.
         addon.versions.update(git_hash='')
