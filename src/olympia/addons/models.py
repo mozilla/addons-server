@@ -1536,9 +1536,9 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def git_extraction_is_in_progress(self):
-        if not hasattr(self, 'gitstorage'):
+        if not hasattr(self, 'gitextraction'):
             return False
-        return self.gitstorage.in_progress
+        return self.gitextraction.in_progress
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
@@ -2107,10 +2107,10 @@ class ReusedGUID(ModelBase):
         Addon, null=False, on_delete=models.CASCADE, unique=True)
 
 
-class GitStorage(ModelBase):
+class GitExtraction(ModelBase):
     """
     This is an add-on related model that stores information related to the git
-    extraction/storage (code-manager).
+    extraction (for code-manager).
     """
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE, primary_key=True

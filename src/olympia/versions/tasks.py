@@ -9,7 +9,7 @@ from django.template import loader
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon, GitStorage
+from olympia.addons.models import Addon, GitExtraction
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import extract_colors_from_image, pngcrush_image
@@ -127,7 +127,7 @@ def extract_addon_to_git(addon_pk):
 
     # "Lock" this add-on so that the git extraction can only run once and tasks
     # for extracting related versions are delayed until this task has finished.
-    git_storage, created = GitStorage.objects.update_or_create(
+    git_storage, created = GitExtraction.objects.update_or_create(
         addon=addon,
         defaults={'in_progress': True},
     )
