@@ -6,6 +6,7 @@ import pytest
 import pygit2
 from unittest import mock
 from unittest.mock import MagicMock
+from pathlib import Path
 
 from django.conf import settings
 from django.core.files import temp
@@ -16,8 +17,8 @@ from olympia import amo
 from olympia.amo.tests import (
     addon_factory, version_factory, user_factory, activate_locale)
 from olympia.lib.git import (
-    AddonGitRepository, TemporaryWorktree, BRANCHES, EXTRACTED_PREFIX,
-    get_mime_type_for_blob)
+    AddonGitRepository, BrokenRefError, TemporaryWorktree, BRANCHES,
+    EXTRACTED_PREFIX, get_mime_type_for_blob)
 from olympia.files.utils import id_to_path
 
 
@@ -184,6 +185,22 @@ def test_extract_and_commit_from_version_set_git_hash():
 
     addon.current_version.refresh_from_db()
     assert len(addon.current_version.git_hash) == 40
+
+
+@pytest.mark.django_db
+def test_find_or_create_branch_raises_broken_ref_error(settings):
+    repo = AddonGitRepository(addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi'}))
+    branch = 'listed'
+    # Create the git repo
+    repo.git_repository
+    assert repo.is_extracted
+    # Create a broken ref, see:
+    # https://github.com/mozilla/addons-server/issues/13590
+    Path(f'{repo.git_repository_path}/.git/refs/heads/{branch}').touch()
+
+    with pytest.raises(BrokenRefError):
+        repo.find_or_create_branch(branch)
 
 
 @pytest.mark.django_db

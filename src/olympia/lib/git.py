@@ -100,6 +100,10 @@ SIMPLIFIED_MIMETYPE_DETECTION = {
 }
 
 
+class BrokenRefError(RuntimeError):
+    pass
+
+
 def get_mime_type_for_blob(tree_or_blob, name, blob):
     """Returns the mimetype and type category for a git blob.
 
@@ -397,7 +401,11 @@ class AddonGitRepository(object):
 
     def find_or_create_branch(self, name):
         """Lookup or create the branch named `name`"""
-        branch = self.git_repository.branches.get(name)
+        try:
+            branch = self.git_repository.branches.get(name)
+        except pygit2.GitError:
+            raise BrokenRefError('Reference for branch "{}" is '
+                                 'broken'.format(name))
 
         if branch is None:
             branch = self.git_repository.create_branch(
