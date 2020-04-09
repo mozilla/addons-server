@@ -18,10 +18,13 @@ log = olympia.core.logger.getLogger('z.task')
 def collection_meta(*ids, **kw):
     log.info('[%s@%s] Updating collection metadata.' %
              (len(ids), collection_meta.rate_limit))
-    collections_counts = CollectionAddon.objects.filter(
-        collection__in=ids).values_list('collection').annotate(Count('id'))
+    qs = (CollectionAddon.objects.filter(collection__in=ids)
+          .values_list('collection'))
+    counts = dict(qs.annotate(Count('id')))
     now = datetime.now()
-    for collection_id, addon_count in collections_counts:
+    for collection_id in Collection.objects.filter(id__in=ids).values_list(
+            'pk', flat=True):
+        addon_count = counts.get(collection_id, 0)
         # We want to set addon_count & modified without triggering post_save
         # as it would cause an infinite loop (this task is called on
         # post_save). So we update queryset.update() and set modified ourselves

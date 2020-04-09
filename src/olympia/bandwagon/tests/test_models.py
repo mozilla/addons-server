@@ -61,15 +61,26 @@ class TestCollections(TestCase):
         assert isinstance(c.uuid, uuid.UUID)
 
     def test_collection_meta(self):
+        # Create a collection, making sure modified date is set in the past.
         some_time_ago = self.days_ago(442)
         collection = Collection.objects.create(author=self.user)
-        collection.update(modified=some_time_ago)
+        collection.update(modified=some_time_ago, _signal=False)
+        # Double check initial state just to be sure.
         assert collection.addon_count == 0
         self.assertCloseToNow(collection.modified, now=some_time_ago)
+
+        # Add an add-on and check the result.
         collection.add_addon(Addon.objects.all()[0])
         assert activitylog_count(amo.LOG.ADD_TO_COLLECTION) == 1
         collection.reload()
         assert collection.addon_count == 1
+        self.assertCloseToNow(collection.modified)
+
+        # Now remove it and check again.
+        collection.update(modified=some_time_ago, _signal=False)
+        collection.remove_addon(Addon.objects.all()[0])
+        collection.reload()
+        assert collection.addon_count == 0
         self.assertCloseToNow(collection.modified)
 
     def test_favorites_slug(self):
