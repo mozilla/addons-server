@@ -61,12 +61,16 @@ class TestCollections(TestCase):
         assert isinstance(c.uuid, uuid.UUID)
 
     def test_collection_meta(self):
-        c = Collection.objects.create(author=self.user)
-        assert c.addon_count == 0
-        c.add_addon(Addon.objects.all()[0])
+        some_time_ago = self.days_ago(442)
+        collection = Collection.objects.create(author=self.user)
+        collection.update(modified=some_time_ago)
+        assert collection.addon_count == 0
+        self.assertCloseToNow(collection.modified, now=some_time_ago)
+        collection.add_addon(Addon.objects.all()[0])
         assert activitylog_count(amo.LOG.ADD_TO_COLLECTION) == 1
-        c = Collection.objects.get(id=c.id)
-        assert c.addon_count == 1
+        collection.reload()
+        assert collection.addon_count == 1
+        self.assertCloseToNow(collection.modified)
 
     def test_favorites_slug(self):
         c = Collection.objects.create(author=self.user, slug='favorites')
