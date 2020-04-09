@@ -27,6 +27,11 @@ def dev_required(owner_for_post=False, allow_reviewers_for_read=False,
                 return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 
             if request.method in ('HEAD', 'GET'):
+                # Allow reviewers for read operations.
+                if allow_reviewers_for_read and (
+                    acl.is_reviewer(request, addon) or acl.action_allowed(
+                        request, permissions.REVIEWER_TOOLS_VIEW)):
+                    return fun()
                 # On read-only requests, ignore disabled so developers can
                 # still view their add-on.
                 if acl.check_addon_ownership(request, addon, dev=True,
@@ -35,11 +40,6 @@ def dev_required(owner_for_post=False, allow_reviewers_for_read=False,
                     if (not submitting and
                             addon.should_redirect_to_submit_flow()):
                         return redirect('devhub.submit.details', addon.slug)
-                    return fun()
-                # allow reviewers for read operations.
-                if allow_reviewers_for_read and (
-                    acl.is_reviewer(request, addon) or acl.action_allowed(
-                        request, permissions.REVIEWER_TOOLS_VIEW)):
                     return fun()
             # Require an owner or dev for POST requests (if the add-on status
             # is disabled that check will return False).
