@@ -14,8 +14,8 @@ from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
-    AppSupport, Category, DeniedGuid, DeniedSlug, FrozenAddon, MigratedLWT,
-    Preview, ReusedGUID, track_addon_status_change)
+    AppSupport, Category, DeniedGuid, DeniedSlug, FrozenAddon, GitExtraction,
+    MigratedLWT, Preview, ReusedGUID, track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
@@ -2736,3 +2736,19 @@ class TestAddonAndDeniedGuid(TestCase):
         addon = addon_factory()
         with pytest.raises(RuntimeError):
             addon.allow_resubmission()
+
+
+class TestAddonAndGitExtraction(TestCase):
+    def test_git_extraction_is_in_progress_returns_false_when_no_attr(self):
+        addon = addon_factory()
+        assert not addon.git_extraction_is_in_progress
+
+    def test_git_extraction_is_in_progress(self):
+        addon = addon_factory()
+        GitExtraction.objects.create(addon=addon, in_progress=True)
+        assert addon.git_extraction_is_in_progress
+
+    def test_git_extraction_is_not_in_progress(self):
+        addon = addon_factory()
+        GitExtraction.objects.create(addon=addon, in_progress=False)
+        assert not addon.git_extraction_is_in_progress
