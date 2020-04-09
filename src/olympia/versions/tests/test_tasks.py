@@ -14,13 +14,13 @@ import pytest
 from olympia import amo
 from olympia.addons.models import GitExtraction
 from olympia.amo.storage_utils import copy_stored_file
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, version_factory
 from olympia.addons.cron import hide_disabled_files
 from olympia.files.utils import id_to_path
 from olympia.versions.models import VersionPreview
 from olympia.versions.tasks import (
-    generate_static_theme_preview, extract_version_to_git,
-    extract_version_source_to_git)
+    generate_static_theme_preview, extract_addon_to_git,
+    extract_version_to_git, extract_version_source_to_git)
 from olympia.lib.git import AddonGitRepository, BrokenRefError
 
 
@@ -583,3 +583,79 @@ def test_extract_version_source_to_git_deleted_version():
     assert repo.git_repository_path == os.path.join(
         settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
     assert os.listdir(repo.git_repository_path) == ['.git']
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.extract_version_to_git')
+def test_extract_addon_to_git(extract_version_to_git_mock):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    # A brand new add-on does not have an associated GitExtraction model.
+    assert not hasattr(addon, 'gitextraction')
+
+    extract_addon_to_git(addon.pk)
+    addon.refresh_from_db()
+
+    extract_version_to_git_mock.assert_called_with(
+        addon.current_version.pk,
+        stop_on_broken_ref=True,
+        can_be_delayed=False,
+    )
+    # A GitExtraction object should have been created.
+    assert hasattr(addon, 'gitextraction')
+    # The add-on should not be locked anymore.
+    assert not addon.git_extraction_is_in_progress
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.extract_version_to_git')
+def test_extract_addon_to_git_with_gitextraction(extract_version_to_git_mock):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    # Create a GitExtraction object. It should be reused by the task.
+    GitExtraction.objects.create(addon=addon)
+
+    extract_addon_to_git(addon.pk)
+    addon.refresh_from_db()
+
+    extract_version_to_git_mock.assert_called_with(
+        addon.current_version.pk,
+        stop_on_broken_ref=True,
+        can_be_delayed=False,
+    )
+    # The add-on should not be locked anymore.
+    assert not addon.git_extraction_is_in_progress
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.extract_version_to_git')
+def test_extract_addon_to_git_returns_when_locked(extract_version_to_git_mock):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    # Lock the add-on for git extraction.
+    GitExtraction.objects.create(addon=addon, in_progress=True)
+
+    extract_addon_to_git(addon.pk)
+
+    extract_version_to_git_mock.assert_not_called()
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.extract_version_to_git')
+def test_extract_addon_to_git_multiple_versions(extract_version_to_git_mock):
+    file_kw = {'filename': 'webextension_no_id.xpi'}
+    addon = addon_factory(file_kw=file_kw)
+    version_factory(addon=addon, file_kw=file_kw)
+    versions = addon.versions.order_by('created')
+    assert len(versions) == 2
+
+    extract_addon_to_git(addon.pk)
+    addon.refresh_from_db()
+
+    extract_version_to_git_mock.assert_has_calls([
+        mock.call(
+            versions[0].pk, stop_on_broken_ref=True, can_be_delayed=False
+        ),
+        mock.call(
+            versions[1].pk, stop_on_broken_ref=True, can_be_delayed=False
+        ),
+    ])
+    # The add-on should not be locked anymore.
+    assert not addon.git_extraction_is_in_progress
