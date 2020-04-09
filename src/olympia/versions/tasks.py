@@ -8,6 +8,7 @@ from django.template import loader
 import olympia.core.logger
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import extract_colors_from_image, pngcrush_image
@@ -15,7 +16,7 @@ from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
 from olympia.versions.models import Version, VersionPreview
-from olympia.lib.git import AddonGitRepository
+from olympia.lib.git import AddonGitRepository, BrokenRefError
 from olympia.users.models import UserProfile
 
 from .utils import (
@@ -112,7 +113,36 @@ def delete_preview_files(pk, **kw):
 
 @task
 @use_primary_db
-def extract_version_to_git(version_id, author_id=None, note=None):
+def extract_addon_to_git(addon_pk):
+    addon = Addon.unfiltered.get(pk=addon_pk)
+    log.info('Starting extraction of addon "{}" to git '
+             'storage.'.format(addon_pk))
+
+    # Filter out versions that are already present in the git storage.
+    versions = addon.versions.filter(git_hash='').order_by('created')
+
+    for version in versions:
+        try:
+            log.info('Starting extraction of version "{}" for addon "{}" to '
+                     'git storage.'.format(version.pk, addon_pk))
+
+            extract_version_to_git(version.pk, stop_on_broken_ref=True)
+
+            log.info('Ending extraction of version "{}" for addon "{}" to '
+                     'git storage.'.format(version.pk, addon_pk))
+        except Exception:
+            log.exception('Error during extraction of version "{}" for addon '
+                          '"{}" to git storage.'.format(version.pk, addon_pk))
+            continue
+
+    log.info('Ending extraction of addon "{}" to git '
+             'storage.'.format(addon_pk))
+
+
+@task
+@use_primary_db
+def extract_version_to_git(version_id, author_id=None, note=None,
+                           stop_on_broken_ref=False):
     """Extract a `File` into our git storage backend."""
     # We extract deleted or disabled versions as well so we need to make sure
     # we can access them.
@@ -126,11 +156,30 @@ def extract_version_to_git(version_id, author_id=None, note=None):
     log.info('Extracting {version_id} into git backend'.format(
         version_id=version_id))
 
-    repo = AddonGitRepository.extract_and_commit_from_version(
-        version=version, author=author, note=note)
+    try:
+        repo = AddonGitRepository.extract_and_commit_from_version(
+            version=version, author=author, note=note)
 
-    log.info('Extracted {version} into {git_path}'.format(
-        version=version_id, git_path=repo.git_repository_path))
+        log.info('Extracted {version} into {git_path}'.format(
+            version=version_id, git_path=repo.git_repository_path))
+    except BrokenRefError as err:
+        # This is needed to prevent a potential infinite loop if a broken
+        # reference is detected in `extract_addon_to_git()`, which we call
+        # later in this block.
+        if stop_on_broken_ref:
+            raise err
+
+        addon = version.addon
+        # Reset the git hash of each version of the add-on related to the
+        # current add-on because we want to re-extract everything.
+        addon.versions.update(git_hash='')
+        # Retrieve the repo for the add-on and delete it.
+        addon_repo = AddonGitRepository(addon, package_type='addon')
+        addon_repo.delete()
+        log.warn('Deleted the git addon repository for addon_id={} because we '
+                 'detected a broken ref.'.format(addon.id))
+        # Create a task to re-extract the add-on.
+        extract_addon_to_git.delay(addon.pk)
 
 
 @task

@@ -265,6 +265,11 @@ class AddonGitRepository(object):
 
         return git_repository
 
+    def delete(self):
+        if not self.is_extracted:
+            return
+        shutil.rmtree(self.git_repository_path)
+
     @classmethod
     def extract_and_commit_from_version(cls, version, author=None, note=None):
         """Extract the XPI from `version` and comit it.
