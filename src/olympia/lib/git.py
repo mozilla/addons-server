@@ -267,6 +267,7 @@ class AddonGitRepository(object):
 
     def delete(self):
         if not self.is_extracted:
+            log.error('called delete() on a non-extracted git repository')
             return
         shutil.rmtree(self.git_repository_path)
 
@@ -409,8 +410,9 @@ class AddonGitRepository(object):
         try:
             branch = self.git_repository.branches.get(name)
         except pygit2.GitError:
-            raise BrokenRefError('Reference for branch "{}" is '
-                                 'broken'.format(name))
+            message = 'Reference for branch "{}" is broken'.format(name)
+            log.exception(message)
+            raise BrokenRefError(message)
 
         if branch is None:
             branch = self.git_repository.create_branch(
