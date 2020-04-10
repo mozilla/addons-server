@@ -197,7 +197,8 @@ def extract_version_to_git(version_id, author_id=None, note=None,
                 'version_id': version_id,
                 'author_id': author_id,
                 'note': note,
-                'stop_on_broken_ref': stop_on_broken_ref
+                'stop_on_broken_ref': stop_on_broken_ref,
+                'can_be_delayed': True,
             },
             countdown=30,  # Executes the task in 30 seconds from now.
         )
@@ -218,15 +219,16 @@ def extract_version_to_git(version_id, author_id=None, note=None,
         log.info('Extracted {version} into {git_path}'.format(
             version=version_id, git_path=repo.git_repository_path))
     except BrokenRefError as err:
+        # We only handle `BrokenRefError` here to recover from such errors and
+        # we cannot apply the same approach for all errors.
+        # See: https://github.com/mozilla/addons-server/issues/13590
+
         # This is needed to prevent a potential infinite loop if a broken
         # reference is detected in `extract_addon_to_git()`, which we call
         # later in this block.
         if stop_on_broken_ref:
             raise err
 
-        # Reset the git hash of each version of the add-on related to the
-        # current add-on because we want to re-extract everything.
-        addon.versions.update(git_hash='')
         # Retrieve the repo for the add-on and delete it.
         addon_repo = AddonGitRepository(addon, package_type='addon')
         addon_repo.delete()

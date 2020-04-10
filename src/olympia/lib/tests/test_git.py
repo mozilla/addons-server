@@ -20,6 +20,7 @@ from olympia.lib.git import (
     AddonGitRepository, BrokenRefError, TemporaryWorktree, BRANCHES,
     EXTRACTED_PREFIX, get_mime_type_for_blob)
 from olympia.files.utils import id_to_path
+from olympia.versions.models import Version
 
 
 # Aliases for easier and shorter access
@@ -205,15 +206,45 @@ def test_find_or_create_branch_raises_broken_ref_error(settings):
 
 @pytest.mark.django_db
 def test_delete(settings):
-    repo = AddonGitRepository(addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi'}))
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    addon.current_version.update(git_hash='some hash')
+    # Create an unrelated add-on with a version.
+    addon2 = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    addon2.current_version.update(git_hash='some other hash')
+    repo = AddonGitRepository(addon)
     # Create the git repo
     repo.git_repository
     assert repo.is_extracted
+    assert addon.current_version.git_hash
+    assert addon2.current_version.git_hash
 
     repo.delete()
+    addon.refresh_from_db()
+    addon2.refresh_from_db()
 
     assert not repo.is_extracted
+    assert not addon.current_version.git_hash
+    # The version of an unrelated add-on shouldn't be modified.
+    assert addon2.current_version.git_hash
+
+
+@pytest.mark.django_db
+def test_delete_with_deleted_version(settings):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    version = Version.unfiltered.get(pk=addon.current_version.pk)
+    version.update(git_hash='some hash')
+    version.delete()
+    repo = AddonGitRepository(addon)
+    # Create the git repo
+    repo.git_repository
+    assert repo.is_extracted
+    assert version.git_hash
+
+    repo.delete()
+    version.refresh_from_db()
+
+    assert not repo.is_extracted
+    assert not version.git_hash
 
 
 @pytest.mark.django_db

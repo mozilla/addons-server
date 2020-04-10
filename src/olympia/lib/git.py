@@ -20,6 +20,7 @@ from django.utils.functional import cached_property
 import olympia.core.logger
 
 from olympia import amo
+from olympia.versions.models import Version
 from olympia.files.utils import (
     id_to_path, extract_extension_to_dest, get_all_files)
 
@@ -227,14 +228,14 @@ class AddonGitRepository(object):
         # Enable calling fsync() for various operations touching .git
         pygit2.option(pygit2.GIT_OPT_ENABLE_FSYNC_GITDIR, True)
 
-        addon_id = (
+        self.addon_id = (
             addon_or_id.pk
             if isinstance(addon_or_id, Addon)
             else addon_or_id)
 
         self.git_repository_path = os.path.join(
             settings.GIT_FILE_STORAGE_PATH,
-            id_to_path(addon_id),
+            id_to_path(self.addon_id),
             package_type)
 
     @property
@@ -269,6 +270,8 @@ class AddonGitRepository(object):
         if not self.is_extracted:
             log.error('called delete() on a non-extracted git repository')
             return
+        # Reset the git hash of each version of the add-on.
+        Version.unfiltered.filter(addon_id=self.addon_id).update(git_hash='')
         shutil.rmtree(self.git_repository_path)
 
     @classmethod
