@@ -270,7 +270,8 @@ class AddonGitRepository(object):
         if not self.is_extracted:
             log.error('called delete() on a non-extracted git repository')
             return
-        # Reset the git hash of each version of the add-on.
+        # Reset the git hash of each version of the add-on related to this git
+        # repository.
         Version.unfiltered.filter(addon_id=self.addon_id).update(git_hash='')
         shutil.rmtree(self.git_repository_path)
 
