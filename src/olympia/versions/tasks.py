@@ -132,7 +132,11 @@ def extract_addon_to_git(addon_pk):
     )
 
     # Filter out versions that are already present in the git storage.
-    versions = addon.versions.filter(git_hash='').order_by('created')
+    versions = (
+        addon.versions(manager='unfiltered_for_relations')
+        .filter(git_hash='')
+        .order_by('created')
+    )
 
     for version in versions:
         try:

@@ -643,19 +643,27 @@ def test_extract_addon_to_git_multiple_versions(extract_version_to_git_mock):
     file_kw = {'filename': 'webextension_no_id.xpi'}
     addon = addon_factory(file_kw=file_kw)
     version_factory(addon=addon, file_kw=file_kw)
-    versions = addon.versions.order_by('created')
-    assert len(versions) == 2
+    version_factory(addon=addon, file_kw=file_kw, deleted=True)
+    versions = addon.versions(manager='unfiltered_for_relations').order_by(
+        'created'
+    )
+    assert len(versions) == 3
 
     extract_addon_to_git(addon.pk)
     addon.refresh_from_db()
 
-    extract_version_to_git_mock.assert_has_calls([
+    expected_calls = [
         mock.call(
             versions[0].pk, stop_on_broken_ref=True, can_be_delayed=False
         ),
         mock.call(
             versions[1].pk, stop_on_broken_ref=True, can_be_delayed=False
         ),
-    ])
+        mock.call(
+            versions[2].pk, stop_on_broken_ref=True, can_be_delayed=False
+        ),
+    ]
+    extract_version_to_git_mock.assert_has_calls(expected_calls)
+    assert extract_version_to_git_mock.call_count == len(expected_calls)
     # The add-on should not be locked anymore.
     assert not addon.git_extraction_is_in_progress
