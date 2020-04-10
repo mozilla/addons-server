@@ -500,6 +500,7 @@ def test_extract_version_to_git_can_be_delayed(
             'author_id': author_id,
             'note': note,
             'stop_on_broken_ref': False,
+            'can_be_delayed': True,
         },
         countdown=30,
     )
