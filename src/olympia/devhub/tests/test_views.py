@@ -1112,10 +1112,10 @@ class TestUpload(BaseUploadTest):
         self.url = reverse('devhub.upload')
         self.image_path = get_image_path('animated.png')
 
-    def post(self):
+    def post(self, **kwargs):
         # Has to be a binary, non xpi file.
         data = open(self.image_path, 'rb')
-        return self.client.post(self.url, {'upload': data})
+        return self.client.post(self.url, {'upload': data}, **kwargs)
 
     def test_login_required(self):
         self.client.logout()
@@ -1130,11 +1130,14 @@ class TestUpload(BaseUploadTest):
         data = open(self.image_path, 'rb').read()
         assert storage.open(upload.path).read() == data
 
-    def test_fileupload_user(self):
-        self.client.login(email='regular@mozilla.com')
-        self.post()
+    def test_fileupload_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        assert FileUpload.objects.get().user == user
+        self.client.login(email=user.email)
+        self.post(REMOTE_ADDR='4.8.15.16.23.42')
+        upload = FileUpload.objects.get()
+        assert upload.user == user
+        assert upload.source == amo.UPLOAD_SOURCE_DEVHUB
+        assert upload.remote_addr == '4.8.15.16.23.42'
 
     def test_fileupload_validation(self):
         self.post()

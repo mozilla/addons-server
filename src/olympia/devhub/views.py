@@ -24,7 +24,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia import amo
+from olympia import amo, core
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login, _is_safe_url
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
@@ -586,13 +586,18 @@ def validate_addon(request):
 
 
 def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
-                  submit=False):
+                  submit=False, source=amo.UPLOAD_SOURCE_DEVHUB):
     automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
 
     user = request.user if request.user.is_authenticated else None
     upload = FileUpload.from_post(
         filedata, filedata.name, filedata.size,
-        automated_signing=automated_signing, addon=addon, user=user)
+        addon=addon,
+        automated_signing=automated_signing,
+        remote_addr=(core.get_remote_addr() or '')[:255],
+        source=source,
+        user=user
+    )
     log.info('FileUpload created: %s' % upload.uuid.hex)
 
     if submit:

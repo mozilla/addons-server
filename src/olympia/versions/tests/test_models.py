@@ -702,6 +702,55 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         super(TestExtensionVersionFromUpload, self).setUp()
         self.dummy_parsed_data['is_webextension'] = True
 
+    @mock.patch('olympia.versions.models.log')
+    def test_logging_nulls(self, log_mock):
+        assert self.upload.user is None
+        assert self.upload.remote_addr is None
+        assert self.upload.source is None
+        version = Version.from_upload(
+            self.upload, self.addon, [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data)
+        assert log_mock.info.call_count == 2
+        assert log_mock.info.call_args_list[0][0] == ((
+            'New version: %r (%s) from %r' % (version, version.pk, self.upload)
+        ), )
+        assert log_mock.info.call_args_list[0][1] == {
+            'extra': {
+                'email': '',
+                'guid': self.addon.guid,
+                'upload': self.upload.uuid.hex,
+                'user_id': None,
+                'from_api': False
+            }
+        }
+
+    @mock.patch('olympia.versions.models.log')
+    def test_logging(self, log_mock):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.upload.update(
+            user=user,
+            remote_addr='5.6.7.8',
+            source=amo.UPLOAD_SOURCE_API,
+        )
+        version = Version.from_upload(
+            self.upload, self.addon, [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data)
+        assert log_mock.info.call_count == 2
+        assert log_mock.info.call_args_list[0][0] == ((
+            'New version: %r (%s) from %r' % (version, version.pk, self.upload)
+        ), )
+        assert log_mock.info.call_args_list[0][1] == {
+            'extra': {
+                'email': user.email,
+                'guid': self.addon.guid,
+                'upload': self.upload.uuid.hex,
+                'user_id': user.pk,
+                'from_api': True
+            }
+        }
+
     def test_carry_over_old_license(self):
         version = Version.from_upload(
             self.upload, self.addon, [self.selected_app],
