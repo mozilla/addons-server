@@ -19,6 +19,7 @@ from olympia.addons.models import (
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
+from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.discovery.models import DiscoveryItem
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
@@ -335,14 +336,14 @@ class ReviewHelper(object):
             self.addon.current_version and
             self.addon.current_version.was_auto_approved)
 
-        if self.content_review:
-            is_admin_needed = self.addon.needs_admin_content_review
-            permission = amo.permissions.ADDONS_CONTENT_REVIEW
-        elif is_recommendable:
+        if is_recommendable:
             is_admin_needed = (
                 self.addon.needs_admin_content_review or
                 self.addon.needs_admin_code_review)
             permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
+        elif self.content_review:
+            is_admin_needed = self.addon.needs_admin_content_review
+            permission = amo.permissions.ADDONS_CONTENT_REVIEW
         elif version_is_unlisted:
             is_admin_needed = self.addon.needs_admin_code_review
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED
@@ -375,7 +376,9 @@ class ReviewHelper(object):
             request.user, permission)
 
         # Special logic for availability of reject multiple action:
-        if self.content_review:
+        if (self.content_review or
+                is_recommendable or
+                self.addon.type == amo.ADDON_STATICTHEME):
             can_reject_multiple = is_appropriate_reviewer
         else:
             # When doing a code review, this action is also available to
@@ -467,7 +470,6 @@ class ReviewHelper(object):
                          'versions. The comments will be sent to the '
                          'developer.'),
             'available': (
-                self.addon.type != amo.ADDON_STATICTHEME and
                 addon_is_valid_and_version_is_listed and
                 can_reject_multiple
             ),
@@ -668,9 +670,11 @@ class ReviewBase(object):
         # We need to display the name in some language that is relevant to the
         # recipient(s) instead of using the reviewer's. addon.default_locale
         # should work.
-        if self.addon.name.locale != self.addon.default_locale:
+        if (self.addon.name and
+                self.addon.name.locale != self.addon.default_locale):
             lang = to_language(self.addon.default_locale)
             with translation.override(lang):
+                # Force a reload of translations for this addon.
                 addon = Addon.unfiltered.get(pk=self.addon.pk)
         else:
             addon = self.addon
@@ -708,7 +712,8 @@ class ReviewBase(object):
                 # And the deadline for the info request will be created or
                 # updated x days in the future.
                 info_request_deadline_days = int(
-                    self.data.get('info_request_deadline', 7))
+                    self.data.get('info_request_deadline',
+                                  REVIEWER_NEED_INFO_DAYS_DEFAULT))
                 info_request_deadline = (
                     datetime.now() + timedelta(days=info_request_deadline_days)
                 )
@@ -1065,11 +1070,11 @@ class ReviewUnlisted(ReviewBase):
         params = (
             f'?min_version={min_version[0]}&max_version={max_version[0]}')
 
-        if self.addon.blocksubmission:
+        if self.addon.blocklistsubmission:
             self.redirect_url = (
                 reverse(
-                    'admin:blocklist_blocksubmission_change',
-                    args=(self.addon.blocksubmission.pk,)
+                    'admin:blocklist_blocklistsubmission_change',
+                    args=(self.addon.blocklistsubmission.pk,)
                 ))
         elif self.addon.block:
             self.redirect_url = (
@@ -1079,8 +1084,9 @@ class ReviewUnlisted(ReviewBase):
                 ) + params)
         else:
             self.redirect_url = (
-                reverse('admin:blocklist_blocksubmission_add') + params +
-                f'&guids={self.addon.guid}')
+                reverse(
+                    'admin:blocklist_block_addaddon', args=(self.addon.pk,)
+                ) + params)
 
     def confirm_multiple_versions(self):
         """Confirm approval on a list of versions."""

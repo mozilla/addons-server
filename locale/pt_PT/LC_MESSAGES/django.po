@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-11 15:13+0000\n"
-"Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>\n"
+"PO-Revision-Date: 2020-04-01 21:55+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -3242,11 +3242,11 @@ msgstr[1] "{0} avisos"
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pare os trackers sorrateiros {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Pare os rastreadores sorrateiros {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr "Bloqueie trackers invisíveis e anúncios que lhe espiam e seguem pela web."
+msgstr "Bloqueie rastreadores invisíveis e publicidades que o espiam e o seguem pela Internet."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3519,11 +3519,11 @@ msgstr "Uma forma simples de ajustar o tamanho do texto de qualquer página — 
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloqueie ferramentas de monitorização invisíveis {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Bloqueie rastreadores invisíveis {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr "Impeça as ferramentas de monitorização e saiba mais sobre as mesmas."
+msgstr "Pare os rastreadores nos seus trilhos e saiba mais sobre os mesmos."
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"

@@ -1,4 +1,4 @@
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urljoin
 
 from django import http, forms
 from django.conf import settings
@@ -121,7 +121,8 @@ class AddonAdmin(admin.ModelAdmin):
         )
 
     exclude = ('authors',)
-    list_display = ('__str__', 'type', 'guid', 'status', 'average_rating')
+    list_display = ('__str__', 'type', 'guid', 'status', 'average_rating',
+                    'reviewer_links')
     list_filter = ('type', 'status')
     search_fields = ('id', '^guid', '^slug')
     inlines = (AddonUserInline, FileInline)
@@ -167,6 +168,32 @@ class AddonAdmin(admin.ModelAdmin):
             count=obj.total_ratings)
     total_ratings_link.short_description = _(u'Ratings')
 
+    def reviewer_links(self, obj):
+        links = []
+        if obj.has_listed_versions(include_deleted=True):
+            links.append(
+                '<a href="{}">{}</a>'.format(
+                    urljoin(
+                        settings.EXTERNAL_SITE_URL,
+                        reverse('reviewers.review', args=['listed', obj.id]),
+                    ),
+                    _(u'Reviewer Tools (listed)'),
+                )
+            )
+        if obj.has_unlisted_versions(include_deleted=True):
+            links.append(
+                '<a href="{}">{}</a>'.format(
+                    urljoin(
+                        settings.EXTERNAL_SITE_URL,
+                        reverse('reviewers.review', args=['unlisted', obj.id]),
+                    ),
+                    _(u'Reviewer Tools (unlisted)'),
+                )
+            )
+        return format_html('&nbsp;|&nbsp;'.join(links))
+
+    reviewer_links.short_description = _(u'Reviewer links')
+
     def status_with_admin_manage_link(self, obj):
         # We don't want admins to be able to change the status without logging
         # that it happened. So, for now, instead of letting them change the
@@ -201,6 +228,7 @@ class AddonAdmin(admin.ModelAdmin):
                            form_url='', obj=None):
         context.update(
             {
+                'external_site_url': settings.EXTERNAL_SITE_URL,
                 'has_listed_versions': obj.has_listed_versions(
                     include_deleted=True
                 ) if obj else False,

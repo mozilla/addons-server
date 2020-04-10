@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-04 12:00+0000\n"
+"PO-Revision-Date: 2020-03-31 21:55+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -3260,7 +3260,7 @@ msgstr "Zaustavi praćenje od Facebooka {start_sub_heading}pomoću {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Zaustavi praćenje od Facebooka. Izoliraj svoj identitet na Facebooku u zasebni „spremnik” i spriječi da te Facebook prati putem weba."
+msgstr "Zaustavi praćenje od Facebooka. Izoliraj svoj identitet na Facebooku u zasebni „spremnik” i spriječi da te Facebook prati na internetu."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4491,7 +4491,7 @@ msgstr "Bolji doživljaj tijekom čitanja {start_sub_heading}pomoću {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Čitaj jasnije i lakše. Ukloni nered oko teksta na web-stranicama."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4535,7 +4535,7 @@ msgstr "Oku ugodne stranice {start_sub_heading}pomoću {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Prilagodi svijetle i tamne nijanse kako bi web-stranice bile vizualno ugodnije."
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6162,7 +6162,7 @@ msgid "Desktop Browser"
 msgstr "Preglednik za desktop uređaje"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta, Nightly, razvojno izdanje"
+msgstr "Beta, Nightly, izdanje za programere"
 
 msgid "Other languages"
 msgstr "Drugi jezici"

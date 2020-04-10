@@ -279,6 +279,11 @@ class ScannerResult(AbstractScannerResult):
         'ScannerRule', through='ScannerMatch',
         related_name='results',
     )
+    # The value is a decimal between 0 and 1. `-1` is a special value to
+    # indicate an error or no score available.
+    score = models.DecimalField(
+        null=True, blank=True, max_digits=6, decimal_places=5, default=-1
+    )
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_results'

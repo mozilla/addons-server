@@ -65,24 +65,10 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
         scanner_result = ScannerResult(upload=upload, scanner=scanner)
 
         with statsd.timer('devhub.{}'.format(scanner_name)):
-            json_payload = {
-                'api_key': api_key,
-                'download_url': upload.get_authenticated_download_url(),
-            }
-            response = requests.post(url=api_url,
-                                     json=json_payload,
-                                     timeout=settings.SCANNER_TIMEOUT)
+            _run_scanner_for_url(
+                scanner_result, upload.get_authenticated_download_url(),
+                scanner, api_url, api_key)
 
-        try:
-            data = response.json()
-        except ValueError:
-            # Log the response body when JSON decoding has failed.
-            raise ValueError(response.text)
-
-        if response.status_code != 200 or 'error' in data:
-            raise ValueError(data)
-
-        scanner_result.results = data
         scanner_result.save()
 
         if scanner_result.has_matches:
@@ -105,6 +91,32 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
                       scanner_name, upload_pk)
 
     return results
+
+
+def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
+    """
+    Inner function to run a scanner on a particular URL via RPC and add results
+    to the given scanner_result. The caller is responsible for saving the
+    scanner_result to the database.
+    """
+    json_payload = {
+        'api_key': api_key,
+        'download_url': url,
+    }
+    response = requests.post(url=api_url,
+                             json=json_payload,
+                             timeout=settings.SCANNER_TIMEOUT)
+
+    try:
+        data = response.json()
+    except ValueError:
+        # Log the response body when JSON decoding has failed.
+        raise ValueError(response.text)
+
+    if response.status_code != 200 or 'error' in data:
+        raise ValueError(data)
+
+    scanner_result.results = data
 
 
 @validation_task
@@ -201,6 +213,14 @@ def run_yara(results, upload_pk):
 
 
 def _run_yara_for_path(scanner_result, path, definition=None):
+    """
+    Inner function to run yara on a particular path and add results to the
+    given scanner_result. The caller is responsible for saving the
+    scanner_result to the database.
+
+    Takes an optional definition to run a single arbitrary yara rule, otherwise
+    uses all active yara ScannerRules.
+    """
     with statsd.timer('devhub.yara'):
         if definition is None:
             # Retrieve then concatenate all the active/valid Yara rules.
@@ -373,6 +393,13 @@ def call_mad_api(all_results, upload_pk):
     # chord is `forward_linter_results()`:
     results = all_results[0]
 
+    # In case of a validation (linter) error, we do want to skip this task.
+    # This is similar to the behavior of all other tasks decorated with
+    # `@validation_task` but, because this task is the callback of a Celery
+    # chord, we cannot use this decorator.
+    if results['errors'] > 0:
+        return results
+
     if not waffle.switch_is_active('enable-mad'):
         log.debug('Skipping scanner "mad" task, switch is off')
         return results
@@ -410,9 +437,21 @@ def call_mad_api(all_results, upload_pk):
         if response.status_code != 200:
             raise ValueError(data)
 
+        default_score = -1
         ScannerResult.objects.create(
-            upload_id=upload_pk, scanner=MAD, results=data
+            upload_id=upload_pk,
+            scanner=MAD,
+            results=data,
+            score=data.get('ensemble', default_score),
         )
+
+        # Update the individual scanner results scores.
+        customs_score = (
+            data.get('scanners', {})
+            .get('customs', {})
+            .get('score', default_score)
+        )
+        customs_results.update(score=customs_score)
 
         statsd.incr('devhub.mad.success')
         log.info('Ending scanner "mad" task for FileUpload %s.', upload_pk)

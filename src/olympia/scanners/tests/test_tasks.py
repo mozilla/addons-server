@@ -1,5 +1,6 @@
 import os
 import shutil
+from decimal import Decimal
 from unittest import mock
 
 from django.conf import settings
@@ -660,9 +661,13 @@ class TestCallMadApi(UploadTest, TestCase):
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch('olympia.scanners.tasks.requests.post')
     def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock):
-        ml_results = {'some': 'results'}
+        ml_results = {
+            'ensemble': 0.56,
+            'scanners': {'customs': {'score': 0.123}},
+        }
         requests_mock.return_value = self.create_response(data=ml_results)
         assert len(ScannerResult.objects.all()) == self.default_results_count
+        assert self.customs_result.score == -1.
 
         returned_results = call_mad_api(self.results, self.upload.pk)
 
@@ -675,16 +680,21 @@ class TestCallMadApi(UploadTest, TestCase):
         assert (
             len(ScannerResult.objects.all()) == self.default_results_count + 1
         )
-        last_result = ScannerResult.objects.latest()
-        assert last_result.upload == self.upload
-        assert last_result.scanner == MAD
-        assert last_result.results == ml_results
+        mad_result = ScannerResult.objects.latest()
+        assert mad_result.upload == self.upload
+        assert mad_result.scanner == MAD
+        assert mad_result.results == ml_results
         assert returned_results == self.results[0]
         assert incr_mock.called
         assert incr_mock.call_count == 1
         incr_mock.assert_has_calls([mock.call('devhub.mad.success')])
         assert timer_mock.called
         timer_mock.assert_called_with('devhub.mad')
+        # The customs and mad results should be updated with the scores
+        # returned in the ML response.
+        self.customs_result.refresh_from_db()
+        assert self.customs_result.score == Decimal('0.123')
+        assert mad_result.score == Decimal('0.56')
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch('olympia.scanners.tasks.requests.post')
@@ -725,3 +735,13 @@ class TestCallMadApi(UploadTest, TestCase):
         call_mad_api(self.results, self.upload.pk)
 
         assert not requests_mock.called
+
+    @mock.patch('olympia.scanners.tasks.requests.post')
+    def test_does_not_run_when_results_contain_errors(self, requests_mock):
+        self.create_switch('enable-mad', active=True)
+        self.results[0].update({'errors': 1})
+
+        returned_results = call_mad_api(self.results, self.upload.pk)
+
+        assert not requests_mock.called
+        assert returned_results == self.results[0]

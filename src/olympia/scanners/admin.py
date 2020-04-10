@@ -19,8 +19,10 @@ from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.scanners import (
     ABORTING,
+    CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
+    MAD,
     NEW,
     RESULT_STATES,
     RUNNING,
@@ -116,6 +118,37 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
         ]
 
 
+class ExcludeMatchedRuleFilter(SimpleListFilter):
+    title = ugettext('all but this rule')
+    parameter_name = 'exclude_rule'
+
+    def lookups(self, request, model_admin):
+        return [(None, 'No excluded rule')] + [
+            (rule.pk, f'{rule.name} ({rule.get_scanner_display()})')
+            for rule in ScannerRule.objects.only(
+                'pk', 'scanner', 'name'
+            ).order_by('scanner', 'name')
+        ]
+
+    def choices(self, cl):
+        for lookup, title in self.lookup_choices:
+            selected = (lookup is None
+                        if self.value() is None
+                        else self.value() == str(lookup))
+            yield {
+                'selected': selected,
+                'query_string': cl.get_query_string(
+                    {self.parameter_name: lookup}, []
+                ),
+                'display': title,
+            }
+
+    def queryset(self, request, queryset):
+        if self.value() is None:
+            return queryset
+        return queryset.exclude(matched_rules=self.value())
+
+
 class WithVersionFilter(PresenceFilter):
     title = ugettext('presence of a version')
     parameter_name = 'has_version'
@@ -183,16 +216,10 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         'guid',
         'authors',
         'scanner',
+        'formatted_score',
         'formatted_matched_rules',
         'formatted_created',
         'result_actions',
-    )
-    list_filter = (
-        'scanner',
-        MatchesFilter,
-        StateFilter,
-        ('matched_rules', ScannerRuleListFilter),
-        WithVersionFilter,
     )
     list_select_related = ('version',)
     raw_id_fields = ('version', 'upload')
@@ -204,6 +231,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         'authors',
         'guid',
         'scanner',
+        'formatted_score',
         'created',
         'state',
         'formatted_matched_rules_with_files',
@@ -334,7 +362,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         return format_html(
             '<ul>{}</ul>'
             '<br>'
-            '[<a href="{}?authors={}">Other add-ons by these authors</a>]',
+            '[<a href="{}?authors__in={}">Other add-ons by these authors</a>]',
             contents,
             urljoin(
                 settings.EXTERNAL_SITE_URL,
@@ -349,6 +377,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         return '-'
 
     guid.short_description = 'Add-on GUID'
+    guid.admin_order_field = 'version__addon__guid'
 
     def channel(self, obj):
         if obj.version:
@@ -411,6 +440,15 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         )
 
     formatted_matched_rules_with_files.short_description = 'Matched rules'
+
+    def formatted_score(self, obj):
+        if obj.scanner not in [CUSTOMS, MAD]:
+            return '-'
+        if obj.score < 0:
+            return 'n/a'
+        return '{:0.0f}%'.format(obj.score * 100)
+
+    formatted_score.short_description = 'Score'
 
     def safe_referer_redirect(self, request, default_url):
         referer = request.META.get('HTTP_REFERER')
@@ -613,7 +651,14 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
 
 @admin.register(ScannerResult)
 class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
-    pass
+    list_filter = (
+        'scanner',
+        MatchesFilter,
+        StateFilter,
+        ('matched_rules', ScannerRuleListFilter),
+        WithVersionFilter,
+        ExcludeMatchedRuleFilter,
+    )
 
 
 @admin.register(ScannerQueryResult)

@@ -1098,10 +1098,13 @@ CELERY_TASK_ROUTES = {
     # are routed to the priority queue.
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
-    'olympia.blocklist.tasks.process_blocksubmission': {
+    'olympia.blocklist.tasks.process_blocklistsubmission': {
         'queue': 'priority'
     },
     'olympia.blocklist.tasks.import_block_from_blocklist': {
+        'queue': 'priority'
+    },
+    'olympia.blocklist.tasks.upload_mlbf_to_kinto': {
         'queue': 'priority'
     },
     'olympia.versions.tasks.generate_static_theme_preview': {
@@ -1685,6 +1688,7 @@ STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
 ADDONS_PATH = os.path.join(STORAGE_ROOT, 'files')
 GUARDED_ADDONS_PATH = os.path.join(STORAGE_ROOT, 'guarded-addons')
 GIT_FILE_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'git-storage')
+MLBF_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'mlbf')
 
 SHARED_STORAGE = os.path.join(STORAGE_ROOT, 'shared_storage')
 
@@ -1919,7 +1923,7 @@ CUSTOMS_API_KEY = env('CUSTOMS_API_KEY', default=None)
 WAT_API_URL = env('WAT_API_URL', default=None)
 WAT_API_KEY = env('WAT_API_KEY', default=None)
 MAD_API_URL = env('MAD_API_URL', default=None)
-MAD_API_TIMEOUT = 1  # seconds
+MAD_API_TIMEOUT = 5  # seconds
 # Git(Hub) repository names, e.g., `owner/repo-name`
 CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
 YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)

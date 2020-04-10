@@ -3,10 +3,10 @@
   "version": "0.0.17",
   "private": true,
   "engines": {
-    "node": ">= 8.10"
+    "node": ">= 10.13"
   },
   "dependencies": {
-    "addons-linter": "1.22.0",
+    "addons-linter": "1.23.0",
     "clean-css": "4.2.3",
     "clean-css-cli": "4.3.0",
     "jqmodal": "1.4.2",
@@ -16,12 +16,12 @@
     "@claviska/jquery-minicolors": "2.3.4",
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
-    "jszip": "3.2.2",
+    "jszip": "3.3.0",
     "less": "3.11.1",
     "source-map": "0.7.3",
     "timeago": "1.6.7",
-    "uglify-js": "3.8.0",
-    "underscore": "1.9.2"
+    "uglify-js": "3.8.1",
+    "underscore": "1.10.2"
   },
   "devDependencies": {}
 }

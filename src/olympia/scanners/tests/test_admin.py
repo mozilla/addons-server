@@ -28,6 +28,7 @@ from olympia.constants.scanners import (
     CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
+    MAD,
     NEW,
     RUNNING,
     SCHEDULED,
@@ -38,6 +39,7 @@ from olympia.constants.scanners import (
 )
 from olympia.files.models import FileUpload
 from olympia.scanners.admin import (
+    ExcludeMatchedRuleFilter,
     MatchesFilter,
     ScannerQueryResultAdmin,
     ScannerResultAdmin,
@@ -246,6 +248,26 @@ class TestScannerResultAdmin(TestCase):
         assert ('/file/' not in
                 self.admin.formatted_matched_rules_with_files(result))
 
+    def test_formatted_score_when_scanner_is_not_mad_or_customs(self):
+        result = ScannerResult(score=0.123, scanner=WAT)
+
+        assert self.admin.formatted_score(result) == '-'
+
+    def test_formatted_score_for_customs(self):
+        result = ScannerResult(score=0.123, scanner=CUSTOMS)
+
+        assert self.admin.formatted_score(result) == '12%'
+
+    def test_formatted_score_for_mad(self):
+        result = ScannerResult(score=0.456, scanner=MAD)
+
+        assert self.admin.formatted_score(result) == '46%'
+
+    def test_formatted_score_when_not_available(self):
+        result = ScannerResult(score=-1, scanner=MAD)
+
+        assert self.admin.formatted_score(result) == 'n/a'
+
     def test_list_queries(self):
         ScannerResult.objects.create(
             scanner=CUSTOMS, version=addon_factory().current_version
@@ -259,12 +281,12 @@ class TestScannerResultAdmin(TestCase):
         )
         deleted_addon.delete()
 
-        with self.assertNumQueries(13):
-            # 13 queries:
+        with self.assertNumQueries(14):
+            # 14 queries:
             # - 2 transaction savepoints because of tests
             # - 2 request user and groups
             # - 2 COUNT(*) on scanners results for pagination and total display
-            # - 1 get all available rules for filtering
+            # - 2 get all available rules for filtering
             # - 1 scanners results and versions in one query
             # - 1 all add-ons in one query
             # - 1 all files in one query
@@ -280,6 +302,18 @@ class TestScannerResultAdmin(TestCase):
         assert html('#result_list tbody > tr').length == expected_length
         # The name of the deleted add-on should be displayed.
         assert str(deleted_addon.name) in html.text()
+
+    def test_guid_column_is_sortable_in_list(self):
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
+        ScannerResult.objects.create(
+            scanner=CUSTOMS,
+            results={'matchedRules': [rule_foo.name]},
+            version=version_factory(addon=addon_factory()),
+        )
+
+        response = self.client.get(self.list_url)
+        doc = pq(response.content)
+        assert 'sortable' in doc('.column-guid').attr('class').split(' ')
 
     def test_list_filters(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
@@ -312,6 +346,11 @@ class TestScannerResultAdmin(TestCase):
 
             ('All', '?has_version=all'),
             (' With version only', '?'),
+
+            ('No excluded rule', '?'),
+            ('foo (customs)', f'?exclude_rule={rule_foo.pk}'),
+            ('bar (yara)', f'?exclude_rule={rule_bar.pk}'),
+            ('hello (yara)', f'?exclude_rule={rule_hello.pk}'),
         ]
         filters = [
             (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
@@ -340,6 +379,29 @@ class TestScannerResultAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-formatted_matched_rules').text() == 'bar, hello'
+
+    def test_exclude_matched_rule_filter(self):
+        rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
+        rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
+        with_bar_matches = ScannerResult(scanner=YARA)
+        with_bar_matches.add_yara_result(rule=rule_bar.name)
+        with_bar_matches.add_yara_result(rule=rule_hello.name)
+        with_bar_matches.save()
+        ScannerResult.objects.create(
+            scanner=CUSTOMS, results={'matchedRules': [rule_foo.name]}
+        )
+        with_hello_match = ScannerResult(scanner=YARA)
+        with_hello_match.add_yara_result(rule=rule_hello.name)
+
+        response = self.client.get(self.list_url, {
+            ExcludeMatchedRuleFilter.parameter_name: rule_bar.pk,
+            WithVersionFilter.parameter_name: 'all',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-formatted_matched_rules').text() == 'foo'
 
     def test_list_default(self):
         # Create one entry without matches, it will not be shown by default
@@ -1166,7 +1228,7 @@ class TestScannerQueryResultAdmin(TestCase):
         )
         assert result == expected
         assert 'Other add-ons' in link_to_addons[0]
-        expected_querystring = '?authors={}'.format(
+        expected_querystring = '?authors__in={}'.format(
             ','.join(str(author.pk) for author in addon.authors.all())
         )
         assert expected_querystring in link_to_addons[1]

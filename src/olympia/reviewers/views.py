@@ -696,6 +696,17 @@ def review(request, addon, channel=None):
     if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
         raise PermissionDenied
 
+    # Are we looking at a listed review page while only having content review
+    # permissions ? Redirect to content review page, it will be more useful.
+    if (channel == amo.RELEASE_CHANNEL_LISTED and content_review is False and
+        acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) and
+        not any(
+            acl.action_allowed(request, perm) for perm in (
+                amo.permissions.ADDONS_REVIEW,
+                amo.permissions.ADDONS_POST_REVIEW,
+                amo.permissions.ADDONS_RECOMMENDED_REVIEW))):
+        return redirect('reviewers.review', 'content', addon.pk)
+
     # Other cases are handled in ReviewHelper by limiting what actions are
     # available depending on user permissions and add-on/version state.
 
@@ -871,6 +882,14 @@ def review(request, addon, channel=None):
         amo.LOG.REMOVE_USER_WITH_ROLE.id]
     user_changes_log = ActivityLog.objects.filter(
         action__in=user_changes_actions, addonlog__addon=addon).order_by('id')
+
+    name_translations = (
+        addon.name.__class__.objects.filter(
+            id=addon.name.id, localized_string__isnull=False).exclude(
+            localized_string='')
+        if addon.name else []
+    )
+
     ctx = context(
         actions=actions, actions_comments=actions_comments,
         actions_full=actions_full, addon=addon,
@@ -878,8 +897,9 @@ def review(request, addon, channel=None):
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
         content_review=content_review, count=count,
         deleted_addon_ids=deleted_addon_ids, flags=flags,
-        form=form, is_admin=is_admin, now=datetime.now(), num_pages=num_pages,
-        pager=pager, reports=reports, show_diff=show_diff,
+        form=form, is_admin=is_admin, is_recommendable=is_recommendable,
+        name_translations=name_translations, now=datetime.now(),
+        num_pages=num_pages, pager=pager, reports=reports, show_diff=show_diff,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
@@ -1414,8 +1434,10 @@ class ReviewAddonVersionDraftCommentViewSet(
         if not hasattr(self, 'version_object'):
             self.version_object = get_object_or_404(
                 # The serializer will not need any of the stuff the
-                # transformers give us for the version.
-                self.get_addon_object().versions.all().no_transforms(),
+                # transformers give us for the version. We do need to fetch
+                # using an unfiltered manager to see deleted versions, though.
+                self.get_addon_object().versions(
+                    manager='unfiltered_for_relations').all().no_transforms(),
                 pk=self.kwargs['version_pk'])
             self._verify_object_permissions(
                 self.version_object, self.version_object)

@@ -36,23 +36,35 @@ class TestImportBlocklist(TestCase):
         """ Test nothing is added if none of the guids match - any nothing
         fails.
         """
-        addon_factory()
+        addon_factory(file_kw={'is_webextension': True})
         assert Block.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 0
-        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.count() == 8
         # the sample blocklist.json contains one regex for Thunderbird only
         assert KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
         assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 5
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 7
 
     def test_regex(self):
         """ Test regex style "guids" are parsed and expanded to blocks."""
-        addon_factory(guid='_qdNembers_@exmys.myysarch.com')
-        addon_factory(guid='_dqMNemberstst_@www.dowespedtgttest.com')
-        addon_factory(guid='{90ac2d06-caf8-46b9-5325-59c82190b687}')
-        addon_factory()
+        addon_factory(
+            guid='_qdNembers_@exmys.myysarch.com',
+            file_kw={'is_webextension': True})
+        addon_factory(
+            guid='_dqMNemberstst_@www.dowespedtgttest.com',
+            file_kw={'is_webextension': True})
+        addon_factory(
+            guid='{90ac2d06-caf8-46b9-5325-59c82190b687}',
+            file_kw={'is_webextension': True})
+        # this one is in the regex but doesn't have any webextension versions.
+        addon_factory(
+            guid='{_qjNembers_@wwqw.texcenteernow.com}',
+            file_kw={'is_webextension': False})
+        # And random other addon
+        addon_factory(file_kw={'is_webextension': True})
+
         call_command('import_blocklist')
         assert Block.objects.count() == 3
         blocks = list(Block.objects.all())
@@ -72,18 +84,43 @@ class TestImportBlocklist(TestCase):
             assert block.include_in_legacy
             assert block.modified == datetime(2019, 11, 29, 22, 22, 46, 785000)
             assert block.is_imported_from_kinto_regex
-        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.count() == 8
         assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 4
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 6
         kinto = KintoImport.objects.get(
             outcome=KintoImport.OUTCOME_REGEXBLOCKS)
         assert kinto.kinto_id == this_block['id']
         assert kinto.record == this_block
 
+    def test_no_start_end_regex(self):
+        """There are some regex that don't start with ^ and end with $"""
+        addon_factory(
+            guid='__TEMPLATE__APPLICATION__@puua-mapa.com',
+            file_kw={'is_webextension': True})
+        addon_factory(
+            guid='{84aebb36-1433-4082-b7ec-29b790d12c17}',
+            file_kw={'is_webextension': True})
+        addon_factory(
+            guid='{0c9970a2-6874-493b-a486-2295cfe251c2}',
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
+        call_command('import_blocklist')
+        assert Block.objects.count() == 3
+        blocks = list(Block.objects.all())
+        assert blocks[0].guid == '__TEMPLATE__APPLICATION__@puua-mapa.com'
+        assert blocks[1].guid == '{84aebb36-1433-4082-b7ec-29b790d12c17}'
+        assert blocks[2].guid == '{0c9970a2-6874-493b-a486-2295cfe251c2}'
+
     def test_single_guid(self):
-        addon_factory(guid='{99454877-975a-443e-a0c7-03ab910a8461}')
-        addon_factory(guid='Ytarkovpn.5.14@firefox.com')
-        addon_factory()
+        addon_factory(
+            guid='{99454877-975a-443e-a0c7-03ab910a8461}',
+            file_kw={'is_webextension': True})
+        addon_factory(
+            guid='Ytarkovpn.5.14@firefox.com',
+            file_kw={'is_webextension': True})
+        # And random other addon
+        addon_factory(file_kw={'is_webextension': True})
+
         call_command('import_blocklist')
         assert Block.objects.count() == 2
         blocks = list(Block.objects.all())
@@ -112,9 +149,9 @@ class TestImportBlocklist(TestCase):
         assert blocks[1].modified == datetime(2019, 11, 22, 16, 49, 58, 416000)
         assert not blocks[1].is_imported_from_kinto_regex
 
-        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.count() == 8
         assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 3
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 5
         kintos = KintoImport.objects.filter(
             outcome=KintoImport.OUTCOME_BLOCK).order_by('created')
         assert kintos.count() == 2
@@ -123,13 +160,30 @@ class TestImportBlocklist(TestCase):
         assert kintos[1].kinto_id == blocks[1].kinto_id
         assert kintos[1].record == blocklist_json['data'][2]
 
+    def test_single_guids_not_webextension(self):
+        addon_factory(
+            guid='Ytarkovpn.5.14@firefox.com',
+            file_kw={'is_webextension': False})
+        # And random other addon
+        addon_factory(file_kw={'is_webextension': True})
+
+        call_command('import_blocklist')
+        assert Block.objects.count() == 0
+
+        assert KintoImport.objects.count() == 8
+        assert KintoImport.objects.filter(
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 7
+
     def test_target_application(self):
         fx_addon = addon_factory(
-            guid='mozilla_ccc2.2@inrneg4gdownlomanager.com')
+            guid='mozilla_ccc2.2@inrneg4gdownlomanager.com',
+            file_kw={'is_webextension': True})
         # Block only for Thunderbird
-        addon_factory(guid='{0D2172E4-C3AE-465A-B80D-53F840275B5E}')
+        addon_factory(
+            guid='{0D2172E4-C3AE-465A-B80D-53F840275B5E}',
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
 
-        addon_factory()
         call_command('import_blocklist')
         assert Block.objects.count() == 1
         this_block = blocklist_json['data'][5]
@@ -137,9 +191,9 @@ class TestImportBlocklist(TestCase):
             this_block['versionRange'][0]['targetApplication'][0]['guid'] ==
             amo.FIREFOX.guid)
         assert Block.objects.get().guid == fx_addon.guid
-        assert KintoImport.objects.count() == 6
+        assert KintoImport.objects.count() == 8
         assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 4
+            outcome=KintoImport.OUTCOME_NOMATCH).count() == 6
         kinto = KintoImport.objects.get(
             outcome=KintoImport.OUTCOME_REGEXBLOCKS)
         assert kinto.kinto_id == this_block['id']
@@ -148,10 +202,14 @@ class TestImportBlocklist(TestCase):
     def test_bracket_escaping(self):
         """Some regexs don't escape the {} which is invalid in mysql regex.
         Check we escape it correctly."""
-        addon1 = addon_factory(guid='{f0af364e-5167-45ca-9cf0-66b396d1918c}')
-        addon2 = addon_factory(guid='{01e26e69-a2d8-48a0-b068-87869bdba3d0}')
+        addon1 = addon_factory(
+            guid='{f0af364e-5167-45ca-9cf0-66b396d1918c}',
+            file_kw={'is_webextension': True})
+        addon2 = addon_factory(
+            guid='{01e26e69-a2d8-48a0-b068-87869bdba3d0}',
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
 
-        addon_factory()
         call_command('import_blocklist')
         assert Block.objects.count() == 2
         blocks = list(Block.objects.all())
@@ -169,6 +227,22 @@ class TestImportBlocklist(TestCase):
             assert block.kinto_id == '*' + this_block['id']
             assert block.include_in_legacy
 
+    def test_regex_syntax_changed_to_mysql(self):
+        """mysql doesn't support /d special charactor, only [:digit:]."""
+        addon1 = addon_factory(
+            guid='aapbdbdomjkkjkaonfhkkikfgjllcleb@chrome-store-foxified-990648491',  # noqa
+            file_kw={'is_webextension': True})
+        addon2 = addon_factory(
+            guid='aapbdbdomjkkjkaonfhkkikfgjllcleb@chromeStoreFoxified-1006328831',  # noqa
+            file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
+
+        call_command('import_blocklist')
+        assert Block.objects.count() == 2
+        blocks = list(Block.objects.all())
+        assert blocks[0].guid == addon1.guid
+        assert blocks[1].guid == addon2.guid
+
     @mock.patch('olympia.blocklist.management.commands.import_blocklist.'
                 'import_block_from_blocklist.delay')
     def test_blocks_are_not_imported_twice(self, import_task_mock):
@@ -176,10 +250,10 @@ class TestImportBlocklist(TestCase):
         addon_factory()
         imported = KintoImport.objects.create(
             kinto_id='5d2778e3-cbaa-5192-89f0-5abf3ea10656')
-        assert len(blocklist_json['data']) == 6
+        assert len(blocklist_json['data']) == 8
 
         call_command('import_blocklist')
-        assert import_task_mock.call_count == 5
+        assert import_task_mock.call_count == 7
         assert import_task_mock.call_args_list[0][0] == (
             blocklist_json['data'][0],)
         assert import_task_mock.call_args_list[1][0] == (
@@ -201,20 +275,22 @@ class TestExportBlocklist(TestCase):
             addon_factory()
         # one version, 0 - *
         Block.objects.create(
-            addon=addon_factory(),
+            addon=addon_factory(
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
         # one version, 0 - 9999
         Block.objects.create(
-            addon=addon_factory(),
+            addon=addon_factory(
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory(),
             max_version='9999')
         # one version, 0 - *, unlisted
         Block.objects.create(
             addon=addon_factory(
-                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}),
+                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
 
         call_command('export_blocklist', '1')
-        out_path = os.path.join(settings.TMP_PATH, 'mlbf', '1')
-        assert os.path.exists(os.path.join(out_path, 'filter'))
-        assert os.path.exists(os.path.join(out_path, 'filter.meta'))
+        out_path = os.path.join(settings.MLBF_STORAGE_PATH, '1.filter')
+        assert os.path.exists(out_path)
