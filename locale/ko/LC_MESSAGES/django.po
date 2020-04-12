@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-12 22:39+0000\n"
+"PO-Revision-Date: 2020-04-12 22:48+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -5829,9 +5829,8 @@ msgstr "기간 내 제출된 검토 항목이 없습니다."
 msgid "Method:"
 msgstr ""
 
-#, fuzzy
 msgid "Source:"
-msgstr "판매처별"
+msgstr "출처:"
 
 msgid "Dismiss this announcement"
 msgstr "알림 무시하기"
@@ -5979,7 +5978,7 @@ msgid "Overview"
 msgstr "개요"
 
 msgid "by Source"
-msgstr "판매처별"
+msgstr "출처별"
 
 msgid "Daily Users"
 msgstr "일일 사용자"
