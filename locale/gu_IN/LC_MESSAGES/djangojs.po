@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2019-07-11 16:56+0000\n"
+"PO-Revision-Date: 2020-04-13 12:42+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -124,14 +124,14 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"સંકલિત દ્વિસંગીઓ, તેમજ minified અથવા obfuscated સ્ક્રિપ્ટો(જાણીતા લાઈબ્રેરીઓ સિવાય) તેમના સ્રોતો સમીક્ષા માટે અલગ સબમિટ કરવાની જરૂર છે. તમારી રજૂઆત નકારવાથી ટાળવા માટે તમે સ્ત્રોત કોડ અપલોડ ફીલ્ડનો ઉપયોગ કરો છો તેની "
-"ખાતરી કરો."
+"સંકલિત દ્વિસંગીઓ, તેમજ minified અથવા obfuscated સ્ક્રિપ્ટો(જાણીતા લાઈબ્રેરીઓ સિવાય) તેમના સ્રોતો સમીક્ષા માટે અલગ સબમિટ કરવાની જરૂર છે. તમારી રજૂઆત નકારવાથી ટાળવા માટે તમે સ્ત્રોત કોડ અપલોડ ફીલ્ડનો "
+"ઉપયોગ કરો છો તેની ખાતરી કરો."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "માન્યતા પ્રક્રિયાએ આ મુદ્દાઓ શોધી કાઢ્યાં છે જે અસ્વીકાર તરફ દોરી શકે છે:"
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "તમે અપલોડ કરેલી ફાઇલ નો પ્રકાર ઓળખાયેલ નથી."
 
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "તમારી ફાઇલ મહત્તમ {0}ના કદને ઓળંગે છે."
@@ -211,8 +211,8 @@ msgstr[1] "{0} વેચાણો"
 
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} રિફંડ"
+msgstr[1] "{0} રિફંડ્સ"
 
 msgid "{0} install"
 msgid_plural "{0} installs"
@@ -275,16 +275,16 @@ msgid "Unknown"
 msgstr "અજ્ઞાત"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "એડ-ઑન્સ સંચાલક"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "એડ-ઑન્સ સંચાલક પ્રોમો"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "ઍડ-ઑન્સ મેનેજર ફીચર્ડ"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "ઍડ-ઓન્સ વ્યવસ્થાપક વધુ જાણો"
 
 msgid "Search Suggestions"
 msgstr "શોધ સૂચનો"
