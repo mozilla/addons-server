@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-13 12:43+0000\n"
+"PO-Revision-Date: 2020-04-13 15:04+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -664,10 +664,10 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr "માફ કરશો, શોધ પ્લગઇન સ્થાપિત કરવા માટે તમને Mozilla-આધારિત બ્રાઉઝર (જેમ કે Firefox) ની જરૂર છે."
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "ફેરફારો સાચવ્યાં"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "એક નવા લેખકનું ઇમેઇલ સરનામું દાખલ કરો"
 
 msgid "There was an error uploading your file."
 msgstr ""
