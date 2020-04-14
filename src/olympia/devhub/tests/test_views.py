@@ -1137,7 +1137,7 @@ class TestUpload(BaseUploadTest):
         upload = FileUpload.objects.get()
         assert upload.user == user
         assert upload.source == amo.UPLOAD_SOURCE_DEVHUB
-        assert upload.remote_addr == '4.8.15.16.23.42'
+        assert upload.ip_address == '4.8.15.16.23.42'
 
     def test_fileupload_validation(self):
         self.post()

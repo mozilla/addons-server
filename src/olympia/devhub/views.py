@@ -590,11 +590,12 @@ def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
     automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
 
     user = request.user if request.user.is_authenticated else None
+    max_ip_length = FileUpload._meta.get_field('ip_address').max_length
     upload = FileUpload.from_post(
         filedata, filedata.name, filedata.size,
         addon=addon,
         automated_signing=automated_signing,
-        remote_addr=(core.get_remote_addr() or '')[:255],
+        ip_address=(core.get_remote_addr() or '')[:max_ip_length],
         source=source,
         user=user
     )

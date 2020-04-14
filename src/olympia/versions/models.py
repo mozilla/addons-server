@@ -242,7 +242,7 @@ class Version(OnChangeMixin, ModelBase):
             channel=channel,
         )
         email = upload.user.email if upload.user and upload.user.email else ''
-        with core.override_remote_addr(upload.remote_addr):
+        with core.override_remote_addr(upload.ip_address):
             log.info(
                 'New version: %r (%s) from %r' % (version, version.id, upload),
                 extra={

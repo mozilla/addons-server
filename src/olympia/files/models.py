@@ -454,7 +454,7 @@ class FileUpload(ModelBase):
     addon = models.ForeignKey(
         'addons.Addon', null=True, on_delete=models.CASCADE)
     access_token = models.CharField(max_length=40, null=True)
-    remote_addr = models.CharField(max_length=255, null=True, default=None)
+    ip_address = models.CharField(max_length=45, null=True, default=None)
     source = models.PositiveSmallIntegerField(
         choices=amo.UPLOAD_SOURCE_CHOICES, default=None, null=True)
 

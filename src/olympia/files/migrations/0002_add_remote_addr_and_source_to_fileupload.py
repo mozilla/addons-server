@@ -12,8 +12,8 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='fileupload',
-            name='remote_addr',
-            field=models.CharField(default=None, max_length=255, null=True),
+            name='ip_address',
+            field=models.CharField(default=None, max_length=45, null=True),
         ),
         migrations.AddField(
             model_name='fileupload',
