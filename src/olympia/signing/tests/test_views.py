@@ -175,9 +175,16 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert existing.count() == 1
         assert existing[0].channel == amo.RELEASE_CHANNEL_LISTED
 
-        response = self.request('PUT', self.url(self.guid, '3.0'))
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'),
+            extra_kwargs={'REMOTE_ADDR': '127.0.2.1'})
         assert response.status_code == 202
         assert 'processed' in response.data
+
+        upload = FileUpload.objects.latest('pk')
+        assert upload.source == amo.UPLOAD_SOURCE_API
+        assert upload.user == self.user
+        assert upload.ip_address == '127.0.2.1'
 
         version = qs.get()
         assert version.addon.guid == self.guid
@@ -704,7 +711,8 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
             'POST',
             url=reverse_ns('signing.version'),
             addon='@create-webextension',
-            version='1.0')
+            version='1.0',
+            extra_kwargs={'REMOTE_ADDR': '127.0.3.1'})
         assert response.status_code == 201
 
         guid = response.data['guid']
@@ -712,6 +720,12 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
 
         assert addon.guid is not None
         assert addon.guid != self.guid
+
+        upload = FileUpload.objects.latest('pk')
+        assert upload.version == '1.0'
+        assert upload.user == self.user
+        assert upload.source == amo.UPLOAD_SOURCE_API
+        assert upload.ip_address == '127.0.3.1'
 
         version = Version.objects.get(addon__guid=guid, version='1.0')
         assert version.files.all()[0].is_webextension is True
