@@ -184,7 +184,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         upload = FileUpload.objects.latest('pk')
         assert upload.source == amo.UPLOAD_SOURCE_API
         assert upload.user == self.user
-        assert upload.remote_addr == '127.0.2.1'
+        assert upload.ip_address == '127.0.2.1'
 
         version = qs.get()
         assert version.addon.guid == self.guid
@@ -725,7 +725,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert upload.version == '1.0'
         assert upload.user == self.user
         assert upload.source == amo.UPLOAD_SOURCE_API
-        assert upload.remote_addr == '127.0.3.1'
+        assert upload.ip_address == '127.0.3.1'
 
         version = Version.objects.get(addon__guid=guid, version='1.0')
         assert version.files.all()[0].is_webextension is True
