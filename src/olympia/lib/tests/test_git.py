@@ -19,7 +19,6 @@ from olympia.lib.git import (
     AddonGitRepository, TemporaryWorktree, BRANCHES, EXTRACTED_PREFIX,
     get_mime_type_for_blob)
 from olympia.files.utils import id_to_path
-from olympia.versions.models import Version
 
 
 # Aliases for easier and shorter access
@@ -189,11 +188,11 @@ def test_extract_and_commit_from_version_set_git_hash():
 
 @pytest.mark.django_db
 def test_delete(settings):
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-    addon.current_version.update(git_hash='some hash')
+    addon = addon_factory(version_kw={'git_hash': 'some hash'},
+                          file_kw={'filename': 'webextension_no_id.xpi'})
     # Create an unrelated add-on with a version.
-    addon2 = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-    addon2.current_version.update(git_hash='some other hash')
+    addon2 = addon_factory(version_kw={'git_hash': 'some hash'},
+                           file_kw={'filename': 'webextension_no_id.xpi'})
     repo = AddonGitRepository(addon)
     # Create the git repo
     repo.git_repository
@@ -213,9 +212,9 @@ def test_delete(settings):
 
 @pytest.mark.django_db
 def test_delete_with_deleted_version(settings):
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-    version = Version.unfiltered.get(pk=addon.current_version.pk)
-    version.update(git_hash='some hash')
+    addon = addon_factory(version_kw={'git_hash': 'some hash'},
+                          file_kw={'filename': 'webextension_no_id.xpi'})
+    version = addon.current_version
     version.delete()
     repo = AddonGitRepository(addon)
     # Create the git repo
