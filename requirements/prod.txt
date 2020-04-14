@@ -219,8 +219,8 @@ feedparser==5.2.1 \
     --hash=sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02 \
     --hash=sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9 \
     --hash=sha256:cd2485472e41471632ed3029d44033ee420ad0b57111db95c240c9160a85831c
-filtercascade==0.3.1 \
-    --hash=sha256:494478995f46d97354da7f6b99ff6206ef00003a830d01a53b12dafe8f04ad41
+filtercascade==0.4.0 \
+    --hash=sha256:30a74d4d6dcfc8e5bc76e18662193f3d2fb1aec73c6777ebaf65605b78925d3b
 # funcsigs is required by mock
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \

@@ -98,7 +98,7 @@ class TestMLBF(TestCase):
     def test_get_blocked_versions(self):
         blocked_versions = MLBF.get_blocked_versions()
         blocked_guids = blocked_versions.values()
-        assert len(blocked_guids) == 5
+        assert len(blocked_guids) == 5, blocked_guids
         assert (self.five_ver.guid, '123.40') in blocked_guids
         assert (self.five_ver.guid, '123.5') in blocked_guids
         assert (self.five_ver.guid, '123.45.1') not in blocked_guids
@@ -155,10 +155,10 @@ class TestMLBF(TestCase):
             assert key not in bfilter
         assert stats['mlbf_version'] == 2
         assert stats['mlbf_layers'] == 1
-        assert stats['mlbf_bits'] == 21608
+        assert stats['mlbf_bits'] == 2160
         with tempfile.NamedTemporaryFile() as out:
             bfilter.tofile(out)
-            assert os.stat(out.name).st_size == 2731
+            assert os.stat(out.name).st_size == 300
 
     def test_generate_and_write_mlbf(self):
         mlbf = MLBF(123456)
@@ -168,17 +168,15 @@ class TestMLBF(TestCase):
             buffer = filter_file.read()
             bfilter = FilterCascade.from_buf(buffer)
 
-        assert bfilter.bitCount() == 30024
-        # This isn't working currently due to upstream bug:
-        # https://github.com/mozilla/filter-cascade/issues/16
-        # blocked_versions = mlbf.get_blocked_versions()
-        # for guid, version_str in blocked_versions.values():
-        #     key = mlbf.KEY_FORMAT.format(guid=guid, version=version_str)
-        #     assert key in bfilter
-        # for guid, version_str in mlbf.get_all_guids(blocked_versions.keys()):
-        #     key = mlbf.KEY_FORMAT.format(guid=guid, version=version_str)
-        #     assert key not in bfilter
-        assert os.stat(mlbf.filter_path).st_size == 3783
+        assert bfilter.bitCount() == 3008
+        blocked_versions = mlbf.get_blocked_versions()
+        for guid, version_str in blocked_versions.values():
+            key = mlbf.KEY_FORMAT.format(guid=guid, version=version_str)
+            assert key in bfilter
+        for guid, version_str in mlbf.get_all_guids(blocked_versions.keys()):
+            key = mlbf.KEY_FORMAT.format(guid=guid, version=version_str)
+            assert key not in bfilter
+        assert os.stat(mlbf.filter_path).st_size == 406
 
     def test_generate_diffs(self):
         old_versions = [
