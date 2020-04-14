@@ -1,4 +1,3 @@
-import os
 import re
 import time
 from datetime import datetime
@@ -17,7 +16,7 @@ from olympia.lib.kinto import KintoServer
 from olympia.users.utils import get_task_user
 from olympia.zadmin.models import set_config
 
-from .mlbf import MLBF_KEY_FORMAT
+from .mlbf import MLBF
 from .models import Block, BlocklistSubmission, KintoImport
 from .utils import (
     block_activity_log_save, KINTO_BUCKET, KINTO_COLLECTION_MLBF,
@@ -144,15 +143,14 @@ def import_block_from_blocklist(record):
 
 
 @task
-def upload_mlbf_to_kinto(generation_time):
+def upload_filter_to_kinto(generation_time):
     server = KintoServer(
         KINTO_BUCKET, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
     data = {
-        'key_format': MLBF_KEY_FORMAT,
+        'key_format': MLBF.KEY_FORMAT,
         'generation_time': generation_time,
     }
-    mlbf_path = os.path.join(
-        settings.MLBF_STORAGE_PATH, f'{generation_time}.filter')
+    mlbf_path = MLBF(generation_time).filter_path
     with storage.open(mlbf_path) as filter_file:
         attachment = ('filter.bin', filter_file, 'application/octet-stream')
         server.publish_attachment(data, attachment)

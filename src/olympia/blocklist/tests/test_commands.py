@@ -292,5 +292,5 @@ class TestExportBlocklist(TestCase):
             updated_by=user_factory())
 
         call_command('export_blocklist', '1')
-        out_path = os.path.join(settings.MLBF_STORAGE_PATH, '1.filter')
+        out_path = os.path.join(settings.MLBF_STORAGE_PATH, '1', 'filter')
         assert os.path.exists(out_path)
