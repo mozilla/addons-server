@@ -50,10 +50,6 @@ simplegeneric==0.8.1 \
 isort==4.3.21 \
     --hash=sha256:54da7e92468955c4fceacd0c86bd0ec997b0e1ee80d97f67c35a78b719dccab1 \
     --hash=sha256:6e811fcb295968434526407adb8796944f1988c5b65e8139058f2014cbe100fd
-# meld3 is required by supervisor
-meld3==2.0.0 \
-    --hash=sha256:1efda676264490db2e30bfb81b27a918cc6d9c2de6d609491aa43410b9537eb9 \
-    --hash=sha256:a78cdcb6c0342b7ac82d900b584bd918ef72f86b60cdbf04754f840c070eb20c
 supervisor==4.1.0 \
     --hash=sha256:2dc86fe0476e945e61483d614ceb2cf4f93b95282eb243bdf792621994360383 \
     --hash=sha256:a76b2f77a560f2dc411c0254a4eb15f555e99faac48621b0f1fc9ab013944f47
