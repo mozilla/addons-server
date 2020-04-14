@@ -1,6 +1,7 @@
 import json
 import os
 import tempfile
+from unittest import mock
 
 from filtercascade import FilterCascade
 
@@ -57,6 +58,7 @@ class TestMLBF(TestCase):
         # no matching versions (edge cases)
         self.over = Block.objects.create(
             addon=addon_factory(
+                version_kw={'version': '0.1'},
                 file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory(),
             max_version='0')
@@ -194,7 +196,7 @@ class TestMLBF(TestCase):
         old_mlbf.generate_and_write_mlbf()
         new_mlbf = MLBF('new_no_change')
         new_mlbf.generate_and_write_mlbf()
-        new_mlbf.write_stash('old')
+        new_mlbf.write_stash(old_mlbf)
         with open(new_mlbf.stash_path) as stash_file:
             assert json.load(stash_file) == {'blocked': [], 'unblocked': []}
         # add a new Block and delete one
@@ -207,8 +209,42 @@ class TestMLBF(TestCase):
         self.five_ver_123_5.delete(hard=True)
         newer_mlbf = MLBF('new_one_change')
         newer_mlbf.generate_and_write_mlbf()
-        newer_mlbf.write_stash('new_no_change')
+        newer_mlbf.write_stash(new_mlbf)
         with open(newer_mlbf.stash_path) as stash_file:
             assert json.load(stash_file) == {
                 'blocked': ['fooo@baaaa:999'],
                 'unblocked': [f'{self.five_ver.guid}:123.5']}
+
+    def test_should_reset_base_filter(self):
+        base_mlbf = MLBF('base')
+        base_mlbf.generate_and_write_mlbf()
+        # should handle the files not existing
+        assert MLBF('no_files').should_reset_base_filter(base_mlbf)
+
+        no_change_mlbf = MLBF('no_change')
+        no_change_mlbf.generate_and_write_mlbf()
+        assert not no_change_mlbf.should_reset_base_filter(base_mlbf)
+
+        # make some changes
+        Block.objects.create(
+            addon=addon_factory(
+                guid='fooo@baaaa',
+                version_kw={'version': '999'},
+                file_kw={'is_signed': True, 'is_webextension': True}),
+            updated_by=user_factory())
+        self.five_ver_123_5.delete(hard=True)
+        small_change_mlbf = MLBF('small_change')
+        small_change_mlbf.generate_and_write_mlbf()
+        # but the changes were small (less than threshold) so no need for new
+        # base filter
+        assert not small_change_mlbf.should_reset_base_filter(base_mlbf)
+        # double check what the differences were
+        diffs = MLBF.generate_diffs(
+            previous=base_mlbf.blocked_json,
+            current=small_change_mlbf.blocked_json)
+        assert diffs == ({'fooo@baaaa:999'}, {f'{self.five_ver.guid}:123.5'})
+
+        # so lower the threshold
+        to_patch = 'olympia.blocklist.mlbf.MLBF.BASE_REPLACE_THRESHOLD'
+        with mock.patch(to_patch, 1):
+            assert small_change_mlbf.should_reset_base_filter(base_mlbf)

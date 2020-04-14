@@ -160,6 +160,14 @@ class KintoServer(object):
             url, headers=self.headers)
         self._changes = True
 
+    def delete_all_records(self):
+        self.setup()
+        url = (
+            f'{settings.KINTO_API_URL}buckets/{self.bucket}/'
+            f'collections/{self.collection}/records')
+        requests.delete(url, headers=self.headers)
+        self._changes = True
+
     def complete_session(self):
         if not self._changes:
             return

@@ -191,6 +191,21 @@ class TestKintoServer(TestCase):
         server.delete_record('an-id')
         assert server._changes
 
+    def test_delete_all_records(self):
+        server = KintoServer('foo', 'baa')
+        server._setup_done = True
+        assert not server._changes
+        url = (
+            settings.KINTO_API_URL +
+            'buckets/foo/collections/baa/records')
+        responses.add(
+            responses.DELETE,
+            url,
+            content_type='application/json')
+
+        server.delete_all_records()
+        assert server._changes
+
     def test_complete_session(self):
         server = KintoServer('foo', 'baa')
         server._setup_done = True
