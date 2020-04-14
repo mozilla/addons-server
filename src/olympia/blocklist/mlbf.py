@@ -90,7 +90,6 @@ class MLBF():
 
         log.info("Generating filter")
         cascade = FilterCascade(
-            filters=[],
             error_rates=fprs,
             defaultHashAlg=HashAlgorithm.SHA256,
             salt=salt,
