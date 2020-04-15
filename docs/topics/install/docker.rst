@@ -43,6 +43,22 @@ Setting up the containers
 
         pip install docker-compose
 
+.. note::
+    On Windows, ensure that Docker Desktop is running as Linux Container.
+    You can double-check this by ensuring you see "Switch to Windows containers..."
+    in the resulting context menu when right-clicking on the Docker Desktop icon in
+    the task-bar.
+
+    For more information see `switching docker containers`_.
+
+    Failure to do so will result in errors in later steps like ``make initialize``::
+
+        ValueError: Unable to configure handler 'statsd': [Errno -2] Name or service not known
+        Makefile-docker:71: recipe for target 'initialize_db' failed
+        make: *** [initialize_db] Error 1
+
+
+
 Next once you have Docker up and running follow these steps
 on your host machine::
 
@@ -173,6 +189,17 @@ or your docker-machine VM:
 This allows processes to allocate more `memory map areas`_.
 
 
+Docker for Windows only: elasticsearch container exits with code 137
+--------------------------------------------------------------------
+
+``docker-compose up -d`` brings up all containers, but running
+``make initialize`` causes the elasticsearch container to go down. Running
+``docker-compose ps`` shows ``Exited (137)`` against it.
+
+Increase RAM limit from 2 GB (preferably 4 GB) in Resources section of
+Docker Desktop settings and click on "Apply and Restart".
+
+
 Port collisions (nginx container fails to start)
 ------------------------------------------------
 
@@ -266,3 +293,4 @@ to Docker Hub for other developers to use after they pull image changes.
 .. _docker-for-windows: https://docs.docker.com/engine/installation/windows/#/docker-for-windows
 .. _docker-for-mac: https://docs.docker.com/engine/installation/mac/#/docker-for-mac
 .. _memory map areas: https://stackoverflow.com/a/11685165/4496684
+.. _switching docker containers: https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers
