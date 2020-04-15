@@ -713,6 +713,12 @@ class ADMIN_USER_SESSION_RESET(_LOG):
     admin_event = True
 
 
+class THROTTLED(_LOG):
+    id = 163
+    format = _('User {user} throttled for scope "{0}"')
+    admin_event = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
