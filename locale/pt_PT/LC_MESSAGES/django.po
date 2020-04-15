@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-01 21:55+0000\n"
+"PO-Revision-Date: 2020-04-15 23:09+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -541,7 +541,7 @@ msgid "Approved"
 msgstr "Aprovado"
 
 msgid "{addon} {version} given preliminary review."
-msgstr "Efetuada revisão preliminar de {addon} {version}."
+msgstr "Efetuada a revisão preliminar de {addon} {version}."
 
 msgid "Preliminarily approved"
 msgstr "Aprovado preliminarmente"
@@ -1280,7 +1280,7 @@ msgid "New Legacy Add-on Review"
 msgstr "Nova revisão de extra de legado"
 
 msgid "Preliminary Add-on Review"
-msgstr "Análise preliminar do extra"
+msgstr "Revisão preliminar do extra"
 
 msgid "Updated Legacy Add-on Review"
 msgstr "Revisão do extra de legado atualizada"
@@ -1298,7 +1298,7 @@ msgid "New Language Pack Review"
 msgstr "Nova revisão de pacote de idioma"
 
 msgid "Preliminary Language Pack Review"
-msgstr "Análise preliminar do pacote de idioma"
+msgstr "Revisão preliminar do pacote de idioma"
 
 msgid "Updated Language Pack Review"
 msgstr "Análise atualizada do pacote de idioma"
@@ -1313,7 +1313,7 @@ msgid "New Search Provider Review"
 msgstr "Nova revisão de mecanismo de pesquisa"
 
 msgid "Preliminary Search Provider Review"
-msgstr "Análise preliminar do mecanismo de pesquisa"
+msgstr "Revisão preliminar do motor de pesquisa"
 
 msgid "Updated Search Provider Review"
 msgstr "Análise atualizada do mecanismo de pesquisa"
@@ -1322,7 +1322,7 @@ msgid "New Complete Theme Review"
 msgstr "Nova revisão de tema completo"
 
 msgid "Preliminary Complete Theme Review"
-msgstr "Análise preliminar do tema completo"
+msgstr "Revisão preliminar do tema completo"
 
 msgid "Updated Complete Theme Review"
 msgstr "Análise de tema completo atualizada"
@@ -2742,7 +2742,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr "Para instruções detalhadas, consulte a <a href=\"%(docs_url)s\">documentação da API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Mantenha as suas chaves da API secretas e <strong>nunca as partilhe com ninguém</strong>, incluindo contribuidores da Mozilla."
+msgstr "Mantenha as suas chaves da API secretas e <strong>nunca as partilhe com ninguém</strong>, incluindo os colaboradores da Mozilla."
 
 msgid "JWT issuer"
 msgstr "Emissor JWT"
@@ -5597,7 +5597,7 @@ msgid "Total Reviews"
 msgstr "Total de revisões"
 
 msgid "Active Contributors"
-msgstr "Contribuições ativas"
+msgstr "Colaboradores ativos"
 
 msgid "This Month"
 msgstr "Este mês"
@@ -6342,7 +6342,7 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
-"Digite um domínio de e-mail completamente descartável que deva ser bloqueado. Os caracteres de substituição não são suportados: se necessitar dos mesmos, ou se precisar de corresponder um e-mail "
+"Insira um domínio de e-mail completamente descartável que deveria ser bloqueado. Os carateres de substituição não são suportados: se precisar destes, ou se precisar de corresponder um e-mail "
 "completo e não apenas a parte do domínio, utilize \"Restrições no e-mail do utilizador\"."
 
 msgid ""
