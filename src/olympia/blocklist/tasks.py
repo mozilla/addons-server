@@ -33,7 +33,6 @@ MLBF_BASE_ID_CONFIG_KEY = 'blocklist_mlbf_base_id'
 
 BLOCKLIST_RECORD_MLBF_BASE = 'bloomfilter-base'
 BLOCKLIST_RECORD_MLBF_UPDATE = 'bloomfilter-update'
-BLOCKLIST_RECORD_STASH = 'stash'
 
 
 @task
@@ -152,20 +151,18 @@ def upload_filter_to_kinto(generation_time, is_base=True, upload_stash=False):
     server = KintoServer(
         KINTO_BUCKET, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
     mlbf = MLBF(generation_time)
-    # Deal with possible stashes first
-    if upload_stash:
-        # If we have a stash, write the attachment for that
-        stash_data = {
-            'key_format': MLBF.KEY_FORMAT,
-            'stash_time': generation_time,
-            'attachment_type': BLOCKLIST_RECORD_STASH,
-        }
-        with storage.open(mlbf.stash_path, 'r') as stash_file:
-            attachment = ('stash.json', stash_file)
-            server.publish_attachment(stash_data, attachment)
     if is_base:
         # clear the collection for the base - we want to be the only filter
         server.delete_all_records()
+    # Deal with possible stashes first
+    if upload_stash:
+        # If we have a stash, write that
+        stash_data = {
+            'key_format': MLBF.KEY_FORMAT,
+            'stash_time': generation_time,
+            'stash': mlbf.stash_json,
+        }
+        server.publish_record(stash_data)
 
     # Then the bloomfilter
     data = {

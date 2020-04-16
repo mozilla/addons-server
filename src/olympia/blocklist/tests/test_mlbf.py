@@ -197,8 +197,10 @@ class TestMLBF(TestCase):
         new_mlbf = MLBF('new_no_change')
         new_mlbf.generate_and_write_mlbf()
         new_mlbf.write_stash(old_mlbf)
+        empty_stash = {'blocked': [], 'unblocked': []}
         with open(new_mlbf.stash_path) as stash_file:
-            assert json.load(stash_file) == {'blocked': [], 'unblocked': []}
+            assert json.load(stash_file) == empty_stash
+        assert new_mlbf.stash_json == empty_stash
         # add a new Block and delete one
         Block.objects.create(
             addon=addon_factory(
@@ -210,10 +212,12 @@ class TestMLBF(TestCase):
         newer_mlbf = MLBF('new_one_change')
         newer_mlbf.generate_and_write_mlbf()
         newer_mlbf.write_stash(new_mlbf)
+        full_stash = {
+            'blocked': ['fooo@baaaa:999'],
+            'unblocked': [f'{self.five_ver.guid}:123.5']}
         with open(newer_mlbf.stash_path) as stash_file:
-            assert json.load(stash_file) == {
-                'blocked': ['fooo@baaaa:999'],
-                'unblocked': [f'{self.five_ver.guid}:123.5']}
+            assert json.load(stash_file) == full_stash
+        assert newer_mlbf.stash_json == full_stash
 
     def test_should_reset_base_filter(self):
         base_mlbf = MLBF('base')

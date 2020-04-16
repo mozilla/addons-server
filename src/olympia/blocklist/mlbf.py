@@ -137,6 +137,11 @@ class MLBF():
         return os.path.join(
             settings.MLBF_STORAGE_PATH, self.id, 'stash.json')
 
+    @cached_property
+    def stash_json(self):
+        with storage.open(self.stash_path, 'r') as json_file:
+            return json.load(json_file)
+
     def generate_and_write_mlbf(self, *, blocked=None, not_blocked=None):
         stats = {}
 
@@ -186,7 +191,7 @@ class MLBF():
         # compare previous with current blocks
         extras, deletes = self.generate_diffs(
             previous_mlbf.blocked_json, self.blocked_json)
-        stash = {
+        self.stash_json = {
             'blocked': list(extras),
             'unblocked': list(deletes),
         }
@@ -194,7 +199,7 @@ class MLBF():
         stash_path = self.stash_path
         with storage.open(stash_path, 'w') as json_file:
             log.info("Writing to file {}".format(stash_path))
-            json.dump(stash, json_file)
+            json.dump(self.stash_json, json_file)
 
     def should_reset_base_filter(self, previous_base_mlbf):
         try:
