@@ -140,7 +140,7 @@ class FileEntriesSerializer(FileSerializer):
                 path = force_text(entry_wrapper.path)
                 blob = entry_wrapper.blob
 
-                commit_tzinfo = FixedOffset(commit.commit_time_offset)
+                commit_tzinfo = datetime.timezone
                 commit_time = datetime.fromtimestamp(
                     float(commit.commit_time),
                     commit_tzinfo)
