@@ -620,7 +620,6 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
             for key, value in SCANNERS.items():
                 if key not in [WAT, MAD]:
                     kwargs['choices'] += ((key, value),)
-            pass
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
     class Media:
