@@ -347,6 +347,42 @@ class TestRunYara(UploadTest, TestCase):
         assert received_results == self.results
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_filename(self, incr_mock):
+        assert len(ScannerResult.objects.all()) == 0
+        # This rule will match for just the manifest.json.
+        rule = ScannerRule.objects.create(
+            name='manifest_true',
+            scanner=YARA,
+            # 'filename' is an external variable we automatically provide.
+            definition='rule manifest_true { '
+                       'condition: filename matches /^manifest\.json$/ }',
+        )
+
+        received_results = run_yara(self.results, self.upload.pk)
+
+        yara_results = ScannerResult.objects.all()
+        assert len(yara_results) == 1
+        yara_result = yara_results[0]
+        assert yara_result.upload == self.upload
+        assert len(yara_result.results) == 1
+        assert yara_result.results[0] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': 'manifest.json'},
+        }
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.yara.has_matches'),
+                mock.call(f'devhub.yara.rule.{rule.id}.match'),
+                mock.call('devhub.yara.success'),
+            ]
+        )
+        # The task should always return the results.
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_no_matches(self, incr_mock):
         assert len(ScannerResult.objects.all()) == 0
         # This compiled rule will never match.

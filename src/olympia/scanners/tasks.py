@@ -229,8 +229,12 @@ def _run_yara_for_path(scanner_result, path, definition=None):
                     scanner=YARA, is_active=True, definition__isnull=False
                 ).values_list('definition', flat=True)
             )
-
-        rules = yara.compile(source=definition)
+        # Initialize external variables so that compilation works, we'll
+        # override them later when matching.
+        externals = {
+            'filename': '',
+        }
+        rules = yara.compile(source=definition, externals=externals)
 
         zip_file = SafeZip(source=path)
         for zip_info in zip_file.info_list:
@@ -238,8 +242,11 @@ def _run_yara_for_path(scanner_result, path, definition=None):
                 file_content = zip_file.read(zip_info).decode(
                     errors='ignore'
                 )
-                for match in rules.match(data=file_content):
-                    # Add the filename to the meta dict.
+                # Add filename to externals, making it available in the rule.
+                externals['filename'] = zip_info.filename
+                for match in rules.match(
+                        data=file_content, externals=externals):
+                    # Also add the filename to the meta dict in results.
                     meta = {**match.meta, 'filename': zip_info.filename}
                     scanner_result.add_yara_result(
                         rule=match.rule,
