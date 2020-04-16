@@ -355,7 +355,7 @@ class TestRunYara(UploadTest, TestCase):
             scanner=YARA,
             # 'filename' is an external variable we automatically provide.
             definition='rule json_true { '
-                       'condition: filename matches /\.json$/ }',
+                       'condition: filename matches /\\.json$/ }',
         )
 
         received_results = run_yara(self.results, self.upload.pk)
