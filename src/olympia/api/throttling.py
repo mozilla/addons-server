@@ -6,6 +6,13 @@ from django.conf import settings
 from rest_framework.permissions import SAFE_METHODS
 from rest_framework.throttling import UserRateThrottle
 
+import olympia
+from olympia import amo
+from olympia.activity.models import ActivityLog
+
+
+log = olympia.core.logger.getLogger('z.api.throttling')
+
 
 # Note: all classes defined in this module should obey API_THROTTLING and
 # deactivate throttling when this setting is False. This allows us to
@@ -20,6 +27,9 @@ class GranularUserRateThrottle(UserRateThrottle):
 
     Its scope defaults to `user` but in most cases we'll want the child class
     to override that and add a custom rate.
+
+    If the request is throttled, it will create activity log associated with
+    the user to help us track users that have tried to go over rate limits.
     """
 
     RATE_REGEX = r'(?P<num>\d+)\/(?P<period_num>\d{0,2})(?P<period>\w)'
@@ -33,8 +43,19 @@ class GranularUserRateThrottle(UserRateThrottle):
 
     def allow_request(self, request, view):
         if settings.API_THROTTLING:
-            return super(
+            request_allowed = super(
                 GranularUserRateThrottle, self).allow_request(request, view)
+
+            if not request_allowed:
+                user = getattr(request, 'user', None)
+                if user and request.user.is_authenticated:
+                    log.info(
+                        'User %s throttled for scope %s',
+                        request.user, self.scope)
+                    ActivityLog.create(
+                        amo.LOG.THROTTLED, self.scope, user=user)
+
+            return request_allowed
         else:
             return True
 

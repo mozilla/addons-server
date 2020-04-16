@@ -39,6 +39,7 @@ class RatingThrottle(GranularUserRateThrottle):
 
 class RatingReplyThrottle(RatingThrottle):
     rate = '1/5second'
+    scope = 'user_rating_reply'
 
 
 class RatingViewSet(AddonChildMixin, ModelViewSet):
