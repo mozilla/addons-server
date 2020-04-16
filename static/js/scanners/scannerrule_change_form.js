@@ -88,11 +88,3 @@ definitionTextarea.addEventListener('input', (event) => {
 // form does not have a pre-selected value for the `scanner` select.
 showOrHideName(scannerSelect);
 showOrHideDefinition(scannerSelect);
-
-const scannerSize = scannerSelect.length;
-
-for (i = 0; i < scannerSize; i++) {
-  if (scannerSelect[i].label == 'wat' || scannerSelect[i].label == 'mad' ) {
-    scannerSelect[i].hidden = true;
-  }
-}
