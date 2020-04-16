@@ -488,14 +488,20 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert not Addon.objects.exists()
 
     def _test_throttling_verb_ip_burst(self, verb, url, expected_status=201):
+        # Bulk-create a bunch of users we'll need to make sure the user is
+        # different every time, so that we test IP throttling specifically.
+        users = [
+            UserProfile(username='bûlk%d' % i, email='bulk%d@example.com' % i)
+            for i in range(0, 6)
+        ]
+        UserProfile.objects.bulk_create(users)
+        users = UserProfile.objects.filter(email__startswith='bulk')
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
-            for x in range(0, 6):
-                # Make the user different every time so that we test the ip
-                # throttling.
+            for user in users:
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
                     url=url,
-                    user=UserProfile(pk=42 + x),
+                    user=user,
                     remote_addr='63.245.208.194',
                 )
 
@@ -522,14 +528,22 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def _test_throttling_verb_ip_sustained(
             self, verb, url, expected_status=201):
+        # Bulk-create a bunch of users we'll need to make sure the user is
+        # different every time, so that we test IP throttling specifically.
+        users = [
+            UserProfile(username='bûlk%d' % i, email='bulk%d@example.com' % i)
+            for i in range(0, 50)
+        ]
+        UserProfile.objects.bulk_create(users)
+        users = UserProfile.objects.filter(email__startswith='bulk')
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
-            for x in range(0, 50):
+            for user in users:
                 # Make the user different every time so that we test the ip
                 # throttling.
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
                     url=url,
-                    user=UserProfile(pk=42 + x),
+                    user=user,
                     remote_addr='63.245.208.194',
                 )
 
@@ -568,7 +582,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
     def _test_throttling_verb_user_burst(self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
             for x in range(0, 6):
-                # Make the user different every time so that we test the ip
+                # Make the IP different every time so that we test the user
                 # throttling.
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
@@ -602,7 +616,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
             for x in range(0, 50):
-                # Make the user different every time so that we test the ip
+                # Make the IP different every time so that we test the user
                 # throttling.
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
