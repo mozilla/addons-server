@@ -349,13 +349,13 @@ class TestRunYara(UploadTest, TestCase):
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_filename(self, incr_mock):
         assert len(ScannerResult.objects.all()) == 0
-        # This rule will match for just the manifest.json.
+        # This rule will match for just all *.json files
         rule = ScannerRule.objects.create(
-            name='manifest_true',
+            name='json_true',
             scanner=YARA,
             # 'filename' is an external variable we automatically provide.
-            definition='rule manifest_true { '
-                       'condition: filename matches /^manifest\.json$/ }',
+            definition='rule json_true { '
+                       'condition: filename matches /\.json$/ }',
         )
 
         received_results = run_yara(self.results, self.upload.pk)
