@@ -90,9 +90,9 @@ class TestCollectionViewSetList(TestCase):
         col_a = collection_factory(author=self.user)
         col_b = collection_factory(author=self.user)
         col_c = collection_factory(author=self.user)
-        col_a.update(modified=self.days_ago(3))
-        col_b.update(modified=self.days_ago(1))
-        col_c.update(modified=self.days_ago(6))
+        col_a.update(modified=self.days_ago(3), _signal=False)
+        col_b.update(modified=self.days_ago(1), _signal=False)
+        col_c.update(modified=self.days_ago(6), _signal=False)
 
         self.client.login_api(self.user)
         response = self.client.get(self.url)

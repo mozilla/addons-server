@@ -4837,6 +4837,14 @@ class TestReview(ReviewBase):
 
         assert doc('.abuse_reports').text().split('\n') == expected
 
+        self.addon.delete()
+        self.url = reverse('reviewers.review', args=[self.addon.id])
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.abuse_reports')
+        assert doc('.abuse_reports').text().split('\n') == expected
+
     def test_abuse_reports_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
@@ -5217,6 +5225,13 @@ class TestAbuseReportsView(ReviewerTest):
             'Et mël mazim ludus.',
         ]
 
+        assert doc('.abuse_reports').text().split('\n') == expected
+
+        self.addon.delete()
+        self.url = reverse('reviewers.abuse_reports', args=[self.addon.id])
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('.abuse_reports')) == 1
         assert doc('.abuse_reports').text().split('\n') == expected
 
     def test_queries(self):

@@ -175,9 +175,16 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert existing.count() == 1
         assert existing[0].channel == amo.RELEASE_CHANNEL_LISTED
 
-        response = self.request('PUT', self.url(self.guid, '3.0'))
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'),
+            extra_kwargs={'REMOTE_ADDR': '127.0.2.1'})
         assert response.status_code == 202
         assert 'processed' in response.data
+
+        upload = FileUpload.objects.latest('pk')
+        assert upload.source == amo.UPLOAD_SOURCE_API
+        assert upload.user == self.user
+        assert upload.ip_address == '127.0.2.1'
 
         version = qs.get()
         assert version.addon.guid == self.guid
@@ -481,14 +488,20 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert not Addon.objects.exists()
 
     def _test_throttling_verb_ip_burst(self, verb, url, expected_status=201):
+        # Bulk-create a bunch of users we'll need to make sure the user is
+        # different every time, so that we test IP throttling specifically.
+        users = [
+            UserProfile(username='bûlk%d' % i, email='bulk%d@example.com' % i)
+            for i in range(0, 6)
+        ]
+        UserProfile.objects.bulk_create(users)
+        users = UserProfile.objects.filter(email__startswith='bulk')
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
-            for x in range(0, 6):
-                # Make the user different every time so that we test the ip
-                # throttling.
+            for user in users:
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
                     url=url,
-                    user=UserProfile(pk=42 + x),
+                    user=user,
                     remote_addr='63.245.208.194',
                 )
 
@@ -515,14 +528,22 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def _test_throttling_verb_ip_sustained(
             self, verb, url, expected_status=201):
+        # Bulk-create a bunch of users we'll need to make sure the user is
+        # different every time, so that we test IP throttling specifically.
+        users = [
+            UserProfile(username='bûlk%d' % i, email='bulk%d@example.com' % i)
+            for i in range(0, 50)
+        ]
+        UserProfile.objects.bulk_create(users)
+        users = UserProfile.objects.filter(email__startswith='bulk')
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
-            for x in range(0, 50):
+            for user in users:
                 # Make the user different every time so that we test the ip
                 # throttling.
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
                     url=url,
-                    user=UserProfile(pk=42 + x),
+                    user=user,
                     remote_addr='63.245.208.194',
                 )
 
@@ -561,7 +582,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
     def _test_throttling_verb_user_burst(self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
             for x in range(0, 6):
-                # Make the user different every time so that we test the ip
+                # Make the IP different every time so that we test the user
                 # throttling.
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
@@ -595,7 +616,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
             for x in range(0, 50):
-                # Make the user different every time so that we test the ip
+                # Make the IP different every time so that we test the user
                 # throttling.
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
@@ -704,7 +725,8 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
             'POST',
             url=reverse_ns('signing.version'),
             addon='@create-webextension',
-            version='1.0')
+            version='1.0',
+            extra_kwargs={'REMOTE_ADDR': '127.0.3.1'})
         assert response.status_code == 201
 
         guid = response.data['guid']
@@ -712,6 +734,12 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
 
         assert addon.guid is not None
         assert addon.guid != self.guid
+
+        upload = FileUpload.objects.latest('pk')
+        assert upload.version == '1.0'
+        assert upload.user == self.user
+        assert upload.source == amo.UPLOAD_SOURCE_API
+        assert upload.ip_address == '127.0.3.1'
 
         version = Version.objects.get(addon__guid=guid, version='1.0')
         assert version.files.all()[0].is_webextension is True

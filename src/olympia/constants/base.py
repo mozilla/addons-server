@@ -77,6 +77,13 @@ CHANNEL_CHOICES_LOOKUP = {
     'listed': RELEASE_CHANNEL_LISTED,
 }
 
+UPLOAD_SOURCE_DEVHUB = 1
+UPLOAD_SOURCE_API = 2
+UPLOAD_SOURCE_CHOICES = (
+    (UPLOAD_SOURCE_DEVHUB, _('Developer Hub')),
+    (UPLOAD_SOURCE_API, _('API')),
+)
+
 # Add-on author roles.
 AUTHOR_ROLE_DEV = 4
 AUTHOR_ROLE_OWNER = 5
@@ -368,7 +375,6 @@ DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID = '65.0'
 # to change our mind later.
 # Dicts are not compatible with Firefox for Android, only desktop is relevant.
 DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX = '61.0'
-
 
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)

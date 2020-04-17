@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-02-10 15:31+0000\n"
+"PO-Revision-Date: 2020-04-15 20:04+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -217,7 +217,7 @@ msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Některá funkčnost je v průběhu údržby webu dočasně nedostupná. Brzy opět poběžíme naplno."
+msgstr "Některá funkčnost je během údržby webu dočasně nedostupná. Brzy opět poběžíme naplno."
 
 msgid "Must contain at least one printable character."
 msgstr "Musí obsahovat alespoň jeden tisknutelný znak."
@@ -323,7 +323,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "Tato funkce je z důvodu údržby webu dočasně nedostupná. Použijte prosím tlačítko Zpět ve vašem prohlížeči a zkuste to později."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Některá funkčnost na této stránce je v průběhu údržby webu dočasně nedostupná. Zkuste to prosím později."
+msgstr "Některé funkce této stránky jsou během údržby webu dočasně nedostupné. Zkuste to prosím později."
 
 msgid "Are you human?"
 msgstr "Jste člověk?"

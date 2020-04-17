@@ -246,7 +246,7 @@ class VersionView(APIView):
 
         file_upload = devhub_handle_upload(
             filedata=filedata, request=request, addon=addon, submit=True,
-            channel=channel)
+            channel=channel, source=amo.UPLOAD_SOURCE_API)
 
         return file_upload, created
 

@@ -207,7 +207,7 @@ def run_yara(results, upload_pk):
         # We log the exception but we do not raise to avoid perturbing the
         # submission flow.
         log.exception('Error in scanner "yara" task for FileUpload %s.',
-                      upload_pk)
+                      upload_pk, exc_info=True)
 
     return results
 
@@ -229,8 +229,10 @@ def _run_yara_for_path(scanner_result, path, definition=None):
                     scanner=YARA, is_active=True, definition__isnull=False
                 ).values_list('definition', flat=True)
             )
-
-        rules = yara.compile(source=definition)
+        # Initialize external variables so that compilation works, we'll
+        # override them later when matching.
+        externals = ScannerRule.get_yara_externals()
+        rules = yara.compile(source=definition, externals=externals)
 
         zip_file = SafeZip(source=path)
         for zip_info in zip_file.info_list:
@@ -238,9 +240,18 @@ def _run_yara_for_path(scanner_result, path, definition=None):
                 file_content = zip_file.read(zip_info).decode(
                     errors='ignore'
                 )
-                for match in rules.match(data=file_content):
-                    # Add the filename to the meta dict.
-                    meta = {**match.meta, 'filename': zip_info.filename}
+                filename = zip_info.filename
+                # Fill externals variable for this file.
+                externals['is_json_file'] = filename.endswith('.json')
+                externals['is_manifest_file'] = filename == 'manifest.json'
+                externals['is_locale_file'] = (
+                    filename.startswith('_locales/') and
+                    filename.endswith('/messages.json')
+                )
+                for match in rules.match(
+                        data=file_content, externals=externals):
+                    # Also add the filename to the meta dict in results.
+                    meta = {**match.meta, 'filename': filename}
                     scanner_result.add_yara_result(
                         rule=match.rule,
                         tags=match.tags,

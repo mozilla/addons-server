@@ -28,6 +28,10 @@ const showOrHideDefinition = (select) => {
   // This is a stub definition that will never match.
   // See: https://yara.readthedocs.io/en/latest/
   condition: false
+  // The following special variables are always available:
+  // is_json_file (true for filenames ending with .json)
+  // is_manifest_file (true for manifest.json file at the root)
+  // is_locale_file (true for messages.json files in _locales/ folder at the root)
 }`;
     }
   }

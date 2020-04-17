@@ -1104,7 +1104,7 @@ CELERY_TASK_ROUTES = {
     'olympia.blocklist.tasks.import_block_from_blocklist': {
         'queue': 'priority'
     },
-    'olympia.blocklist.tasks.upload_mlbf_to_kinto': {
+    'olympia.blocklist.tasks.upload_filter_to_kinto': {
         'queue': 'priority'
     },
     'olympia.versions.tasks.generate_static_theme_preview': {
