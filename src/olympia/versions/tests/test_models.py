@@ -1242,6 +1242,30 @@ class TestStatusFromUpload(TestVersionFromUpload):
             amo.STATUS_DISABLED)
 
 
+class TestPermissionsFromUpload(TestVersionFromUpload):
+    filename = 'webextension_all_perms.xpi'
+
+    def setUp(self):
+        super(TestPermissionsFromUpload, self).setUp()
+        self.addon.update(guid="allPermissions1@mozilla.com")
+        self.current = self.addon.current_version
+
+    def test_permissions_includes_devtools(self):
+        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [amo.FIREFOX.id],
+            amo.RELEASE_CHANNEL_UNLISTED,
+            parsed_data=parsed_data,
+        )
+        file = version.all_files[0]
+
+        permissions = file.webext_permissions_list
+
+        assert 'devtools' in permissions
+
+
 class TestStaticThemeFromUpload(UploadTest):
 
     @classmethod

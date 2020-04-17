@@ -174,6 +174,12 @@ class File(OnChangeMixin, ModelBase):
 
         if file_.is_webextension:
             permissions = list(parsed_data.get('permissions', []))
+
+            # devtools_page isn't in permissions block but treated as one
+            # if a custom devtools page is added by an addon
+            if 'devtools_page' in parsed_data:
+                permissions.append('devtools')
+
             # Add content_scripts host matches too.
             for script in parsed_data.get('content_scripts', []):
                 permissions.extend(script.get('matches', []))
