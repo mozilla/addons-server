@@ -347,15 +347,14 @@ class TestRunYara(UploadTest, TestCase):
         assert received_results == self.results
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    def test_run_filename(self, incr_mock):
+    def test_run_is_json(self, incr_mock):
         assert len(ScannerResult.objects.all()) == 0
         # This rule will match for just all *.json files
         rule = ScannerRule.objects.create(
             name='json_true',
             scanner=YARA,
-            # 'filename' is an external variable we automatically provide.
-            definition='rule json_true { '
-                       'condition: filename matches /\\.json$/ }',
+            # 'is_json_file' is an external variable we automatically provide.
+            definition='rule json_true { condition: is_json_file and true }',
         )
 
         received_results = run_yara(self.results, self.upload.pk)
@@ -369,6 +368,109 @@ class TestRunYara(UploadTest, TestCase):
             'rule': rule.name,
             'tags': [],
             'meta': {'filename': 'manifest.json'},
+        }
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.yara.has_matches'),
+                mock.call(f'devhub.yara.rule.{rule.id}.match'),
+                mock.call('devhub.yara.success'),
+            ]
+        )
+        # The task should always return the results.
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_is_manifest(self, incr_mock):
+        assert len(ScannerResult.objects.all()) == 0
+        # This rule will match for just the manifest.json
+        rule = ScannerRule.objects.create(
+            name='is_manifest_true',
+            scanner=YARA,
+            # 'is_manifest_file' is an external variable we automatically
+            # provide.
+            definition='rule is_manifest_true { condition: is_manifest_file }',
+        )
+
+        received_results = run_yara(self.results, self.upload.pk)
+
+        yara_results = ScannerResult.objects.all()
+        assert len(yara_results) == 1
+        yara_result = yara_results[0]
+        assert yara_result.upload == self.upload
+        assert len(yara_result.results) == 1
+        assert yara_result.results[0] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': 'manifest.json'},
+        }
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.yara.has_matches'),
+                mock.call(f'devhub.yara.rule.{rule.id}.match'),
+                mock.call('devhub.yara.success'),
+            ]
+        )
+        # The task should always return the results.
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_is_locale_file(self, incr_mock):
+        self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
+        assert len(ScannerResult.objects.all()) == 0
+        # This rule will match for all _locales/*/messages.json files
+        rule = ScannerRule.objects.create(
+            name='is_locale_true',
+            scanner=YARA,
+            # 'is_locale_file' is an external variable we automatically
+            # provide.
+            definition='rule is_locale_true { condition: is_locale_file }',
+        )
+
+        received_results = run_yara(self.results, self.upload.pk)
+
+        yara_results = ScannerResult.objects.all()
+        assert len(yara_results) == 1
+        yara_result = yara_results[0]
+        assert yara_result.upload == self.upload
+        assert len(yara_result.results) == 7
+        assert yara_result.results[0] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': '_locales/de/messages.json'},
+        }
+        assert yara_result.results[1] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': '_locales/en/messages.json'},
+        }
+        assert yara_result.results[2] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': '_locales/ja/messages.json'},
+        }
+        assert yara_result.results[3] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': '_locales/nb_NO/messages.json'},
+        }
+        assert yara_result.results[4] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': '_locales/nl/messages.json'},
+        }
+        assert yara_result.results[5] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': '_locales/ru/messages.json'},
+        }
+        assert yara_result.results[6] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': '_locales/sv/messages.json'},
         }
         assert incr_mock.called
         assert incr_mock.call_count == 3
