@@ -323,7 +323,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         # the other transforms).
         return qs.prefetch_related(
             Prefetch(
-                'addon', queryset=Addon.objects.all().only_translations()),
+                'addon', queryset=Addon.unfiltered.all().only_translations()),
         )
 
     def get_fieldsets(self, request, obj=None):
