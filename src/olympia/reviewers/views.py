@@ -755,7 +755,8 @@ def review(request, addon, channel=None):
                 # a ton of potentially duplicate queries with all the useless
                 # Addon transforms.
                 Prefetch(
-                    'addon', queryset=Addon.objects.all().only_translations())
+                    'addon',
+                    queryset=Addon.unfiltered.all().only_translations())
             )
             .order_by('-created')), 5).page(1)
     user_ratings = Paginator(
@@ -1045,7 +1046,7 @@ def abuse_reports(request, addon):
         Q(addon=addon) | Q(user__in=developers)
     ).select_related('user').prefetch_related(
         # See review(): we only need the add-on objects and their translations.
-        Prefetch('addon', queryset=Addon.objects.all().only_translations()),
+        Prefetch('addon', queryset=Addon.unfiltered.all().only_translations()),
     ).order_by('-created')
     reports = amo.utils.paginate(request, reports)
     data = context(addon=addon, reports=reports, version=addon.current_version)
