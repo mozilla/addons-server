@@ -1462,13 +1462,14 @@ class TestBlockAdminEdit(TestCase):
         assert response.status_code == 403
         assert Block.objects.count() == 1
 
-    def test_cannot_edit_when_guid_in_blocklistsubmission(self):
+    def test_cannot_edit_when_guid_in_blocklistsubmission_change(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
         blocksubm = BlocklistSubmission.objects.create(
-            input_guids=self.block.guid)
+            input_guids=self.block.guid,
+            min_version='123.45')
         assert blocksubm.to_block == [{
             'id': self.block.id,
             'guid': self.block.guid,
@@ -1479,7 +1480,48 @@ class TestBlockAdminEdit(TestCase):
         assert 'Add-on GUIDs (one per line)' not in content
         assert 'guid@' in content
         assert 'Danger Danger' in content
-        assert 'Changes pending' in content
+        assert 'Add/Change submission pending' in content
+        submission_url = reverse(
+            'admin:blocklist_blocklistsubmission_change', args=(blocksubm.id,))
+        assert 'min_version: "0" to "123.45"' in content
+        assert submission_url in content
+        assert 'Close' in content
+        assert '_save' not in content
+        assert 'deletelink' not in content
+
+        # Try to edit the block anyway
+        response = self.client.post(
+            self.change_url, {
+                'input_guids': self.block.guid,
+                'min_version': '0',
+                'max_version': self.addon.current_version.version,
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 403
+        assert self.block.max_version == '*'  # not changed
+
+    def test_cannot_edit_when_guid_in_blocklistsubmission_delete(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+        blocksubm = BlocklistSubmission.objects.create(
+            input_guids=self.block.guid,
+            action=BlocklistSubmission.ACTION_DELETE)
+        assert blocksubm.to_block == [{
+            'id': self.block.id,
+            'guid': self.block.guid,
+            'average_daily_users': self.block.addon.average_daily_users}]
+
+        response = self.client.get(self.change_url, follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Add-on GUIDs (one per line)' not in content
+        assert 'guid@' in content
+        assert 'Danger Danger' in content
+        assert 'Delete submission pending' in content
         submission_url = reverse(
             'admin:blocklist_blocklistsubmission_change', args=(blocksubm.id,))
         assert submission_url in content

@@ -23,8 +23,14 @@
     {% endfor %}
     {% if blocklistsubmission %}
       <li>
+        {% url 'admin:blocklist_blocklistsubmission_change' blocklistsubmission.id as change_url%}
         {{ blocklistsubmission.modified|date:"Y-m-d" }}.
-        <a href="{% url 'admin:blocklist_blocklistsubmission_change' blocklistsubmission.id %}">Changes pending</a>
+        <a href="{{ change_url }}">{{ blocklistsubmission.get_action_display }} submission pending</a>
+        <ul>
+          {% for property, changes in blocklistsubmission_changes.items %}
+          <li>{{ property }}: "{{ changes.0 }}" to "{{ changes.1 }}"</li>
+        {% endfor %}
+        </ul>
       </li>
     {% endif %}
 </ul>

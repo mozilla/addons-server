@@ -543,10 +543,14 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     def block_history(self, obj):
         logs = ActivityLog.objects.for_guidblock(obj.guid).filter(
             action__in=Block.ACTIVITY_IDS).order_by('created')
+        submission = obj.active_submissions.last()
         return render_to_string(
             'blocklist/includes/logs.html', {
                 'logs': logs,
-                'blocklistsubmission': obj.active_submissions.last()})
+                'blocklistsubmission': submission,
+                'blocklistsubmission_changes':
+                    submission.get_changes_from_block(obj) if submission else
+                    {}})
 
     def get_fieldsets(self, request, obj):
         details = (
