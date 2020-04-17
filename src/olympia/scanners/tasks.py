@@ -231,11 +231,7 @@ def _run_yara_for_path(scanner_result, path, definition=None):
             )
         # Initialize external variables so that compilation works, we'll
         # override them later when matching.
-        externals = {
-            'is_json_file': False,
-            'is_manifest_file': False,
-            'is_locale_file': False,
-        }
+        externals = ScannerRule.get_yara_externals()
         rules = yara.compile(source=definition, externals=externals)
 
         zip_file = SafeZip(source=path)

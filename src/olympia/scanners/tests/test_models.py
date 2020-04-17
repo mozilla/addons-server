@@ -400,6 +400,17 @@ class TestScannerRuleMixin:
         ):
             rule.clean()
 
+    def test_clean_supports_our_external_variables(self):
+        externals = self.model.get_yara_externals()
+        assert externals
+        conditions = ' and '.join(externals)
+        rule = self.model(
+            name='some_rule',
+            scanner=YARA,
+            definition='rule some_rule { condition: %s}' % conditions,
+        )
+        rule.clean()  # Shouldn't raise, the externals are automatically added.
+
     @mock.patch('yara.compile')
     def test_clean_raises_generic_error_when_yara_compile_failed(
         self, yara_compile_mock

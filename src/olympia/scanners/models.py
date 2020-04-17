@@ -209,6 +209,18 @@ class AbstractScannerRule(ModelBase):
         abstract = True
         unique_together = ('name', 'scanner')
 
+    @classmethod
+    def get_yara_externals(cls):
+        """
+        Return a dict with the various external variables we inject in every
+        yara rule automatically and their default values.
+        """
+        return {
+            'is_json_file': False,
+            'is_manifest_file': False,
+            'is_locale_file': False,
+        }
+
     def __str__(self):
         return self.name
 
@@ -242,7 +254,8 @@ class AbstractScannerRule(ModelBase):
             )
 
         try:
-            yara.compile(source=self.definition)
+            yara.compile(
+                source=self.definition, externals=self.get_yara_externals())
         except yara.SyntaxError as syntaxError:
             raise ValidationError({
                 'definition': _('The definition is not valid: %(error)s') % {
