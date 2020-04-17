@@ -4,7 +4,7 @@ import mimetypes
 import pathlib
 import json
 from collections import OrderedDict
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 import pygit2
 
@@ -14,7 +14,6 @@ from rest_framework.exceptions import NotFound
 from django.core.cache import cache
 from django.utils.functional import cached_property
 from django.utils.encoding import force_text
-from django.utils.timezone import FixedOffset
 from django.utils.translation import ugettext
 
 from olympia import amo
@@ -140,7 +139,8 @@ class FileEntriesSerializer(FileSerializer):
                 path = force_text(entry_wrapper.path)
                 blob = entry_wrapper.blob
 
-                commit_tzinfo = datetime.timezone
+                commit_tzinfo = timezone(timedelta(
+                    minutes=commit.commit_time_offset))
                 commit_time = datetime.fromtimestamp(
                     float(commit.commit_time),
                     commit_tzinfo)
