@@ -22,7 +22,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia import activity, amo
+from olympia import activity, amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
@@ -241,9 +241,19 @@ class Version(OnChangeMixin, ModelBase):
             license_id=license_id,
             channel=channel,
         )
-        log.info(
-            'New version: %r (%s) from %r' % (version, version.id, upload))
-        activity.log_create(amo.LOG.ADD_VERSION, version, addon)
+        email = upload.user.email if upload.user and upload.user.email else ''
+        with core.override_remote_addr(upload.ip_address):
+            log.info(
+                'New version: %r (%s) from %r' % (version, version.id, upload),
+                extra={
+                    'email': email,
+                    'guid': addon.guid,
+                    'upload': upload.uuid.hex,
+                    'user_id': upload.user_id,
+                    'from_api': upload.source == amo.UPLOAD_SOURCE_API,
+                }
+            )
+            activity.log_create(amo.LOG.ADD_VERSION, version, addon)
 
         if addon.type == amo.ADDON_STATICTHEME:
             # We don't let developers select apps for static themes

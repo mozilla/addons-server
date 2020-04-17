@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-03 16:18+0000\n"
-"Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
+"PO-Revision-Date: 2020-04-12 19:18+0000\n"
+"Last-Translator: Selyan Slimane Amiri <selyan.kab@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -301,10 +301,10 @@ msgstr "Ulac igmad yettwafen"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr "Γer deffir"
+msgstr "Ɣer deffir"
 
 msgid "Next"
-msgstr "Γer zdat"
+msgstr "Ɣer zdat"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
@@ -359,7 +359,7 @@ msgid "Jump to first page"
 msgstr "Uɣal ɣer usebter amezwaru"
 
 msgid "Previous"
-msgstr "Γer deffir"
+msgstr "Ɣer deffir"
 
 msgid "Jump to last page"
 msgstr "Ddu ɣer usebter aneggaur"
@@ -459,7 +459,7 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Γas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel "
+"ɣas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel "
 "%(amo_manifests_mdn_link_open)sdagi%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -726,7 +726,7 @@ msgid "Reviewer Reply"
 msgstr "Tiririt n umcegger"
 
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Awennit γef {addon} {version}."
+msgstr "Awennit ɣef {addon} {version}."
 
 msgid "Approval notes changed"
 msgstr "Tizmilin n usentem ttusniflent"
@@ -1035,7 +1035,7 @@ msgid "Download user interface Firefox extensions to alter web pages for easier 
 msgstr "Sader isiɣzaf Firefox n ugrudem n useqdac akken ad tbeddleḍ isebtar web i tɣuri yelhan ugar, anadi, tunigin, d wayen-nniḍen."
 
 msgid "Animals"
-msgstr "Iγeṛsiwen"
+msgstr "Iɣeṛsiwen"
 
 msgid "Compact"
 msgstr "Ussid"
@@ -1399,7 +1399,7 @@ msgid "flag for human review"
 msgstr ""
 
 msgid "Core"
-msgstr "Iγes"
+msgstr "Iɣes"
 
 #, python-format
 msgid "Recent Changes for %s"
@@ -1422,7 +1422,7 @@ msgstr "Anegzum-agi  yettwaseqdec yakan. Ma ulac aɣilif ɛreḍ wayeḍ."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Anegzum-agi ur yizmir ara ad yili d \"%(slug)s\". Ma ulac aγilif fren wayeḍ."
+msgstr "Anegzum-agi ur yizmir ara ad yili d \"%(slug)s\". Ma ulac aɣilif fren wayeḍ."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1438,8 +1438,8 @@ msgstr[1] "\"{0}\" d tiṛekkizin yettuḥeṛṛen, ur zmirent  ara ad tettwase
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Γur-k {0} ugar n tebzimin."
-msgstr[1] "Γur-wen {0} ugar n tebzimin."
+msgstr[0] "Ɣur-k {0} ugar n tebzimin."
+msgstr[1] "Ɣur-wen {0} ugar n tebzimin."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."

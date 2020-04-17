@@ -10,7 +10,7 @@
     "clean-css": "4.2.3",
     "clean-css-cli": "4.3.0",
     "jqmodal": "1.4.2",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "jquery.browser": "0.1.0",
     "jquery.cookie": "1.4.1",
     "@claviska/jquery-minicolors": "2.3.4",
@@ -20,7 +20,7 @@
     "less": "3.11.1",
     "source-map": "0.7.3",
     "timeago": "1.6.7",
-    "uglify-js": "3.8.1",
+    "uglify-js": "3.9.1",
     "underscore": "1.10.2"
   },
   "devDependencies": {}

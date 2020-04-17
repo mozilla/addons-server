@@ -485,9 +485,8 @@ msgstr "İsim boş bırakılamaz."
 msgid "This name cannot be used."
 msgstr "Bu isim kullanılamaz."
 
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Harfler, rakamlar, alt çizgiler veya tirelerden oluşan geçerli bir kullanıcı adı girin."
+msgstr ""
 
 msgid "This custom URL cannot be used."
 msgstr "Bu özel URL kullanılamaz."

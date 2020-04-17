@@ -151,22 +151,22 @@ class TestFileValidation(TestCase):
     def test_only_dev_can_see_results(self):
         self.client.logout()
         assert self.client.login(email='regular@mozilla.com')
-        assert self.client.head(self.url, follow=True).status_code == 403
+        assert self.client.head(self.url, follow=False).status_code == 403
 
     def test_only_dev_can_see_json_results(self):
         self.client.logout()
         assert self.client.login(email='regular@mozilla.com')
-        assert self.client.head(self.json_url, follow=True).status_code == 403
+        assert self.client.head(self.json_url, follow=False).status_code == 403
 
     def test_reviewer_can_see_results(self):
         self.client.logout()
         assert self.client.login(email='reviewer@mozilla.com')
-        assert self.client.head(self.url, follow=True).status_code == 200
+        assert self.client.head(self.url, follow=False).status_code == 200
 
     def test_reviewer_can_see_json_results(self):
         self.client.logout()
         assert self.client.login(email='reviewer@mozilla.com')
-        assert self.client.head(self.json_url, follow=True).status_code == 200
+        assert self.client.head(self.json_url, follow=False).status_code == 200
 
     def test_reviewer_tools_view_can_see_results(self):
         self.client.logout()
@@ -174,7 +174,7 @@ class TestFileValidation(TestCase):
         self.grant_permission(
             UserProfile.objects.get(email='regular@mozilla.com'),
             'ReviewerTools:View')
-        assert self.client.head(self.url, follow=True).status_code == 200
+        assert self.client.head(self.url, follow=False).status_code == 200
 
     def test_reviewer_tools_view_can_see_json_results(self):
         self.client.logout()
@@ -182,7 +182,24 @@ class TestFileValidation(TestCase):
         self.grant_permission(
             UserProfile.objects.get(email='regular@mozilla.com'),
             'ReviewerTools:View')
-        assert self.client.head(self.json_url, follow=True).status_code == 200
+        assert self.client.head(self.json_url, follow=False).status_code == 200
+
+    def test_reviewer_tools_view_can_see_json_results_incomplete_addon(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        assert self.addon.should_redirect_to_submit_flow()
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        self.grant_permission(
+            UserProfile.objects.get(email='regular@mozilla.com'),
+            'ReviewerTools:View')
+        assert self.client.head(self.json_url, follow=False).status_code == 200
+
+    def test_admin_can_see_json_results_incomplete_addon(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        assert self.addon.should_redirect_to_submit_flow()
+        self.client.logout()
+        assert self.client.login(email='admin@mozilla.com')
+        assert self.client.head(self.json_url, follow=False).status_code == 200
 
     def test_reviewer_cannot_see_files_not_validated(self):
         file_not_validated = File.objects.get(pk=100400)
@@ -190,23 +207,23 @@ class TestFileValidation(TestCase):
                            args=[self.addon.slug, file_not_validated.id])
         self.client.logout()
         assert self.client.login(email='reviewer@mozilla.com')
-        assert self.client.head(json_url, follow=True).status_code == 404
+        assert self.client.head(json_url, follow=False).status_code == 404
 
     def test_developer_cant_see_results_from_other_addon(self):
         other_addon = addon_factory(users=[self.user])
         url = reverse(
             'devhub.file_validation', args=[other_addon.slug, self.file.id])
-        assert self.client.get(url, follow=True).status_code == 404
+        assert self.client.get(url, follow=False).status_code == 404
 
     def test_developer_cant_see_json_results_from_other_addon(self):
         other_addon = addon_factory(users=[self.user])
         url = reverse(
             'devhub.json_file_validation',
             args=[other_addon.slug, self.file.id])
-        assert self.client.get(url, follow=True).status_code == 404
+        assert self.client.get(url, follow=False).status_code == 404
 
     def test_only_safe_html_in_messages(self):
-        response = self.client.post(self.json_url, follow=True)
+        response = self.client.post(self.json_url, follow=False)
         assert response.status_code == 200
         data = json.loads(response.content)
         msg = data['validation']['messages'][0]
@@ -251,7 +268,7 @@ class TestFileValidation(TestCase):
             }],
             "metadata": {}
         }))
-        response = self.client.get(self.json_url, follow=True)
+        response = self.client.get(self.json_url, follow=False)
         assert response.status_code == 200
         data = json.loads(response.content)
         doc = pq(data['validation']['messages'][0]['description'][0])

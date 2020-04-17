@@ -7,11 +7,12 @@ from django.test.utils import override_settings
 from freezegun import freeze_time
 from rest_framework.test import APIRequestFactory, force_authenticate
 
-from olympia.amo.tests import TestCase
+from olympia import amo
+from olympia.activity.models import ActivityLog
+from olympia.amo.tests import TestCase, user_factory
 from olympia.api.throttling import (
     GranularIPRateThrottle, GranularUserRateThrottle
 )
-from olympia.users.models import UserProfile
 
 
 class TestGranularUserRateThrottle(TestCase):
@@ -64,6 +65,35 @@ class TestGranularUserRateThrottle(TestCase):
         assert old_time != 1554736583.42
         assert old_time != new_time
 
+    @mock.patch('rest_framework.throttling.UserRateThrottle.allow_request')
+    def test_activity_log(self, allow_request_mock):
+        request = RequestFactory().get('/test')
+        view = object()
+
+        allow_request_mock.return_value = False
+        assert self.throttle.allow_request(request, view) is False
+        # Shouldn't be any ActivityLog since there was no user associated with
+        # that request.
+        assert not ActivityLog.objects.exists()
+
+        allow_request_mock.return_value = True
+        request.user = user_factory()
+        assert self.throttle.allow_request(request, view) is True
+        # Shouldn't be any ActivityLog since the request was not throttled.
+        assert not ActivityLog.objects.exists()
+
+        allow_request_mock.return_value = False
+        request.user = user_factory()
+        assert self.throttle.allow_request(request, view) is False
+        assert ActivityLog.objects.exists()
+        activity = ActivityLog.objects.get()
+        assert activity.action == amo.LOG.THROTTLED.id
+        assert activity.arguments == [self.throttle.scope]
+        assert activity.user == request.user
+        activity_str = str(activity)
+        assert '/user/%d/' % request.user.pk in activity_str
+        assert self.throttle.scope in activity_str
+
 
 class TestGranularIPRateThrottle(TestGranularUserRateThrottle):
     def setUp(self):
@@ -74,7 +104,7 @@ class TestGranularIPRateThrottle(TestGranularUserRateThrottle):
         # except that we should get a cache key regardless of whether the user
         # is authenticated or not.
         request = APIRequestFactory().get('/')
-        user = UserProfile.objects.create(username='test')
+        user = user_factory()
         force_authenticate(request, user)
         request.user = user
         request.META['REMOTE_ADDR'] = '123.45.67.89'

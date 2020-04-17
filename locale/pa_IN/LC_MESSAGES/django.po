@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-03-22 17:06+0000\n"
+"PO-Revision-Date: 2020-04-12 18:08+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2724,7 +2724,7 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਉਪਭੋਗਤਾ <strong>%(name)s</strong> ਲਈ API ਪ੍ਰਮਾਣ ਪੱਤਰ ਤਿਆਰ ਕਰਨ ਲਈ ਹੇਠਾਂ ਦਿੱਤੇ ਪੁਸ਼ਟੀਕਰਣ ਬਟਨ ਤੇ ਕਲਿਕ ਕਰੋ।"
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr ""
@@ -4575,7 +4575,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿ
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "ਵੈਬ ਪੇਜਾਂ ਨੂੰ ਮਾਪੋ। ਉਚਾਈ, ਚੌੜਾਈ ਅਤੇ ਪੰਨੇ ਦੇ ਤੱਤ ਦੀ ਇਕਸਾਰਤਾ ਦੀ ਜਾਂਚ ਕਰਨ ਲਈ ਕਿਸੇ ਵੀ ਵੈਬ ਪੇਜ ਤੇ ਡਿਜੀਟਲ ਸ਼ਾਸਕ ਬਣਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
@@ -4770,7 +4770,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਫ਼ਾਈਲ ਨੇ ਅਕਾਰ ਸੀਮਾ ਲੰਘੀ: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "ਬੇਮਿਸਾਲ ਆਕਾਰ ਬਹੁਤ ਵੱਡਾ ਹੈ"
 
 msgid "Invalid archive."
 msgstr "ਗਲਤ ਅਕਾਈਵ।"
@@ -5291,7 +5291,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "ਦੇਰੀ ਕਰਕੇ ਕਿਉਂਕਿ ਇਹ ਪਹਿਲਾ ਸੂਚੀਬੱਧ ਵਰਜਨ ਹੈ"
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਟਿੱਪਣੀ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ ਜੇ `canned_response` ਪਰਿਭਾਸ਼ਤ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
 msgid "Type"
 msgstr "ਕਿਸਮ"
@@ -5918,7 +5918,7 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "AMO guid ਲਈ ਅਯੋਗ ਵਾਪਸੀ (base64url ਫਾਰਮੈਟ ਵਿੱਚ ਨਹੀਂ?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "AMO ਗਾਈਡ ਤੇ ਅਪ੍ਰਮਾਣਿਕ ਵਾਪਸੀ (ਇੱਕ ਕਯੂਰੇਟਿਡ ਐਡ-ਆਨ ਨਹੀਂ)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
@@ -6351,7 +6351,7 @@ msgstr ""
 " "
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਖਾਤੇ ਲਈ ਵਰਤਿਆ ਗਿਆ ਈਮੇਲ ਪਤਾ ਐਡ-ਆਨ ਸਬਮਿਸ਼ਨ ਲਈ ਆਗਿਆ ਨਹੀਂ ਹੈ।"
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

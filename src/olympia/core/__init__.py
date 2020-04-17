@@ -1,3 +1,4 @@
+import contextlib
 import threading
 
 
@@ -23,3 +24,12 @@ def get_remote_addr():
 
 def set_remote_addr(remote_addr):
     _locals.remote_addr = remote_addr
+
+
+@contextlib.contextmanager
+def override_remote_addr(remote_addr_override):
+    """Override value returned by get_remote_addr() for a specific context."""
+    original = get_remote_addr()
+    set_remote_addr(remote_addr_override)
+    yield
+    set_remote_addr(original)

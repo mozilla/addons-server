@@ -187,6 +187,60 @@ def test_extract_and_commit_from_version_set_git_hash():
 
 
 @pytest.mark.django_db
+def test_delete(settings):
+    addon = addon_factory(version_kw={'git_hash': 'some hash'},
+                          file_kw={'filename': 'webextension_no_id.xpi'})
+    # Create an unrelated add-on with a version.
+    addon2 = addon_factory(version_kw={'git_hash': 'some hash'},
+                           file_kw={'filename': 'webextension_no_id.xpi'})
+    repo = AddonGitRepository(addon)
+    # Create the git repo
+    repo.git_repository
+    assert repo.is_extracted
+    assert addon.current_version.git_hash
+    assert addon2.current_version.git_hash
+
+    repo.delete()
+    addon.refresh_from_db()
+    addon2.refresh_from_db()
+
+    assert not repo.is_extracted
+    assert not addon.current_version.git_hash
+    # The version of an unrelated add-on shouldn't be modified.
+    assert addon2.current_version.git_hash
+
+
+@pytest.mark.django_db
+def test_delete_with_deleted_version(settings):
+    addon = addon_factory(version_kw={'git_hash': 'some hash'},
+                          file_kw={'filename': 'webextension_no_id.xpi'})
+    version = addon.current_version
+    version.delete()
+    repo = AddonGitRepository(addon)
+    # Create the git repo
+    repo.git_repository
+    assert repo.is_extracted
+    assert version.git_hash
+
+    repo.delete()
+    version.refresh_from_db()
+
+    assert not repo.is_extracted
+    assert not version.git_hash
+
+
+@pytest.mark.django_db
+def test_delete_non_extracted_repo(settings):
+    repo = AddonGitRepository(addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi'}))
+    assert not repo.is_extracted
+
+    repo.delete()
+
+    assert not repo.is_extracted
+
+
+@pytest.mark.django_db
 def test_extract_and_commit_from_version_multiple_versions(settings):
     addon = addon_factory(
         file_kw={'filename': 'webextension_no_id.xpi'},
