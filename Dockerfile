@@ -1,4 +1,4 @@
-FROM python:3.6-slim-stretch
+FROM python:3.6-slim-buster
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
@@ -21,13 +21,12 @@ RUN apt-get update && apt-get install -y \
         gnupg2                           \
     && rm -rf /var/lib/apt/lists/*
 RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
-ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
-ADD docker/debian-buster-repo /etc/apt/sources.list.d/buster.list
+ADD docker/debian-buster-nodesource-repo /etc/apt/sources.list.d/nodesource.list
 ADD docker/debian-buster-backports-repo /etc/apt/sources.list.d/buster-backports.list
 
 # IMPORTANT: When editing this list below, make sure to also update
 # `Dockerfile.deploy`.
-RUN apt-get update && apt-get -t stretch install -y \
+RUN apt-get update && apt-get -t buster install -y \
         # General (dev-) dependencies
         bash-completion \
         build-essential \
@@ -46,7 +45,7 @@ RUN apt-get update && apt-get -t stretch install -y \
         # Git, because we're using git-checkout dependencies
         git \
         # Dependencies for mysql-python
-        mysql-client \
+        default-mysql-client \
         default-libmysqlclient-dev \
         swig \
         gettext \
@@ -57,17 +56,12 @@ RUN apt-get update && apt-get -t stretch install -y \
         # Use libmaxmind for speedy geoip lookups
         libmaxminddb0                    \
         libmaxminddb-dev                 \
+        file \
+        libmagic-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # IMPORTANT: When editing one of these lists below, make sure to also update
 # `Dockerfile.deploy`.
-
-# Install `file` and `libmagic` from the `buster` repositories for an up-to-date
-# file-detection.
-RUN apt-get update && apt-get -t buster install -y \
-        file \
-        libmagic-dev \
-    && rm -rf /var/lib/apt/lists/*
 
 # Install a recent libgit2-dev version...
 RUN apt-get update && apt-get -t buster-backports install -y \
