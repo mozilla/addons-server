@@ -84,7 +84,7 @@ class TestRatingModel(TestCase):
         assert rating.is_latest is True
 
         addon.reload()
-        assert addon.average_rating == 4.0  # Has been computed after deletion.
+        assert addon.average_rating == 3.5  # Has been computed after deletion.
 
     def test_soft_delete_dont_send_signal(self):
         addon = Addon.objects.get()
