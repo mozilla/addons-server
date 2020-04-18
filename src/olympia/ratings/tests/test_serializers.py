@@ -343,9 +343,8 @@ class TestBaseRatingSerializer(TestCase):
         self.rating = Rating.objects.create(
             addon=addon, user=user_factory(), rating=4,
             version=addon.current_version, body=u'This is my vote. Like ît?')
-        RatingVote.objects.create(rating=self.rating,
-                                         user=self.request.user,
-                                         addon=addon, vote=1)
+        RatingVote.objects.create(rating=self.rating, user=self.request.user,
+                                  addon=addon, vote=1)
         result = self.serialize()
         assert 'votes' in result
         assert result['votes'] == {'upvote': 1, 'downvote': 0}
