@@ -13,7 +13,8 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import (
     SimpleAddonSerializer, SimpleVersionSerializer)
 from olympia.api.utils import is_gate_active
-from olympia.ratings.models import Rating, RatingFlag, RatingVote, GroupedVoting
+from olympia.ratings.models import (
+    Rating, RatingFlag, RatingVote, GroupedVoting)
 from olympia.versions.models import Version
 
 # This matches the following three types of patterns:
@@ -271,7 +272,8 @@ class RatingVoteSerializer(serializers.ModelSerializer):
 
     def validate_vote(self, vote):
         """
-         ensure the value of the vote field in the database can either be 1 or 0.
+         ensure the value of the vote field in the database can either
+         be 1 or 0.
         """
         votes = dict(RatingVote.VOTES)
         votes_str = [votes[vote] + '(' + str(vote) + ')' for vote in votes][1:]

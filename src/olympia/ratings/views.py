@@ -144,9 +144,9 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             if self._should_include_votes:
                 # Check the parameter was sent correctly
                 try:
-                    # set "show_votes_for" to be boolean such that 0 means False,
-                    # which don't display "vote" while 1 means True and display
-                    # "vote"
+                    # set "show_votes_for" to be boolean such that 0 means
+                    # False, which don't display "vote" while 1 means True
+                    # and display "vote"
                     self._show_votes_for = (
                         serializers.BooleanField().to_internal_value(
                             request.GET['show_votes_for']))

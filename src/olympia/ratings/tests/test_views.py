@@ -774,7 +774,7 @@ class TestRatingViewSetGet(TestCase):
             'show_votes_for parameter should be a boolean')
 
     def test_list_rating_votes_without_votes(self):
-        rating0 = Rating.objects.create(
+        Rating.objects.create(
             addon=self.addon, body='review 0', user=user_factory(),
             rating=1)
         response = self.client.get(

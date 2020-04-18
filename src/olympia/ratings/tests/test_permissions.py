@@ -4,7 +4,8 @@ from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 
 from olympia.amo.tests import TestCase
-from olympia.ratings.permissions import CanDeleteRatingPermission, CanVoteRatingPermission
+from olympia.ratings.permissions import (
+    CanDeleteRatingPermission, CanVoteRatingPermission)
 from olympia.users.models import UserProfile
 
 
