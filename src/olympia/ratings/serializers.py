@@ -46,8 +46,18 @@ class BaseRatingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Rating
-        fields = ('id', 'addon', 'body', 'created', 'flags', 'votes', 'is_deleted',
-                  'is_developer_reply', 'is_latest', 'previous_count', 'user')
+        fields = (
+            'id',
+            'addon',
+            'body',
+            'created',
+            'flags',
+            'votes',
+            'is_deleted',
+            'is_developer_reply',
+            'is_latest',
+            'previous_count',
+            'user')
 
     def __init__(self, *args, **kwargs):
         super(BaseRatingSerializer, self).__init__(*args, **kwargs)
@@ -116,13 +126,15 @@ class BaseRatingSerializer(serializers.ModelSerializer):
             if 'addon' not in self.context['request'].query_params:
                 rating_votes = GroupedVoting.get(obj.addon.pk, obj.id)
                 return {
-                    'upvote': rating_votes[1][1], 'downvote': rating_votes[0][1]}
+                    'upvote': rating_votes[1][1],
+                    'downvote': rating_votes[0][1]}
             else:
-            # if we specify addon id (List ratings display)
+                # if we specify addon id (List ratings display)
                 rating_votes = GroupedVoting.get(
                     self.context['request'].query_params['addon'], obj.pk)
                 return {
-                    'upvote': rating_votes[1][1], 'downvote': rating_votes[0][1]}
+                    'upvote': rating_votes[1][1],
+                    'downvote': rating_votes[0][1]}
         return None
 
     def to_representation(self, instance):
@@ -194,8 +206,8 @@ class RatingSerializer(BaseRatingSerializer):
     def __init__(self, *args, **kwargs):
         super(RatingSerializer, self).__init__(*args, **kwargs)
         score_to_rating = (
-                self.request and
-                is_gate_active(self.request, 'ratings-rating-shim'))
+            self.request and
+            is_gate_active(self.request, 'ratings-rating-shim'))
         if score_to_rating:
             score_field = self.fields.pop('score')
             score_field.source = None  # drf complains if we specify source.
@@ -262,7 +274,7 @@ class RatingVoteSerializer(serializers.ModelSerializer):
          ensure the value of the vote field in the database can either be 1 or 0.
         """
         votes = dict(RatingVote.VOTES)
-        votes_str = [votes[vote]+'('+str(vote)+')' for vote in votes][1:]
+        votes_str = [votes[vote] + '(' + str(vote) + ')' for vote in votes][1:]
         if vote not in votes:
             raise serializers.ValidationError(ugettext(
                 'Invalid vote [%s] - must be one of [%s]' %

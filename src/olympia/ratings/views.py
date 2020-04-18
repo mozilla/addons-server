@@ -461,4 +461,3 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
 
     def perform_destroy(self, instance):
         instance.delete(user_responsible=self.request.user)
-

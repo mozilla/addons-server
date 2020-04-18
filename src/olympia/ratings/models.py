@@ -21,6 +21,7 @@ class RatingQuerySet(models.QuerySet):
     """
     A queryset modified for soft deletion.
     """
+
     def to_moderate(self):
         """Return ratings to moderate.
 
@@ -354,6 +355,7 @@ class RatingFlag(ModelBase):
                                     name='index_review_user')
         ]
 
+
 class RatingVote(ModelBase):
     VOTES = (
         (-1, 'cleaned_vote'),
@@ -381,6 +383,7 @@ class RatingVote(ModelBase):
             models.UniqueConstraint(fields=('rating', 'user'),
                                     name='index_review_user')
         ]
+
 
 class GroupedRating(object):
     """
@@ -423,6 +426,7 @@ class GroupedRating(object):
         cache.set(cls.key(addon_pk), ratings)
         return ratings
 
+
 class GroupedVoting(object):
     """
     Group an add-on's votes so we can have a graph of voting counts.
@@ -435,12 +439,12 @@ class GroupedVoting(object):
     prefix = 'addons:grouped:voting'
 
     @classmethod
-    def key(cls, addon_pk,rating_pk):
-        return '%s:%s,%s' % (cls.prefix, addon_pk,rating_pk)
+    def key(cls, addon_pk, rating_pk):
+        return '%s:%s,%s' % (cls.prefix, addon_pk, rating_pk)
 
     @classmethod
-    def delete(cls, addon_pk,rating_pk):
-        cache.delete(cls.key(addon_pk,rating_pk))
+    def delete(cls, addon_pk, rating_pk):
+        cache.delete(cls.key(addon_pk, rating_pk))
 
     @classmethod
     def get(cls, addon_pk, rating_pk, update_none=True):
@@ -454,12 +458,12 @@ class GroupedVoting(object):
             return
 
     @classmethod
-    def set(cls, addon_pk,rating_pk):
+    def set(cls, addon_pk, rating_pk):
         qs = (RatingVote.objects
-              .filter(addon=addon_pk,rating=rating_pk)
+              .filter(addon=addon_pk, rating=rating_pk)
               .values_list('vote')
               .annotate(models.Count('vote')).order_by())
         counts = dict(qs)
         votings = [(vote, counts.get(vote, 0)) for vote in range(0, 2)]
-        cache.set(cls.key(addon_pk,rating_pk), votings)
+        cache.set(cls.key(addon_pk, rating_pk), votings)
         return votings
