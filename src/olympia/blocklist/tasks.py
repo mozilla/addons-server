@@ -32,7 +32,7 @@ MLBF_TIME_CONFIG_KEY = 'blocklist_mlbf_generation_time'
 MLBF_BASE_ID_CONFIG_KEY = 'blocklist_mlbf_base_id'
 
 BLOCKLIST_RECORD_MLBF_BASE = 'bloomfilter-base'
-BLOCKLIST_RECORD_MLBF_UPDATE = 'bloomfilter-update'
+BLOCKLIST_RECORD_MLBF_UPDATE = 'bloomfilter-full'
 
 
 @task

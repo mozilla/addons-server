@@ -81,7 +81,7 @@ class TestUploadToKinto(TestCase):
         self.publish_attachment_mock.assert_called_with(
             {'key_format': MLBF.KEY_FORMAT,
              'generation_time': generation_time,
-             'attachment_type': 'bloomfilter-update'},
+             'attachment_type': 'bloomfilter-full'},
             ('filter.bin', mock.ANY, 'application/octet-stream'))
         self.publish_record_mock.assert_called_with({
             'key_format': MLBF.KEY_FORMAT,
@@ -120,7 +120,7 @@ class TestUploadToKinto(TestCase):
         self.publish_attachment_mock.assert_called_with(
             {'key_format': MLBF.KEY_FORMAT,
              'generation_time': generation_time,
-             'attachment_type': 'bloomfilter-update'},
+             'attachment_type': 'bloomfilter-full'},
             ('filter.bin', mock.ANY, 'application/octet-stream'))
         self.publish_record_mock.assert_called_with({
             'key_format': MLBF.KEY_FORMAT,
