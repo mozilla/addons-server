@@ -1536,9 +1536,9 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def git_extraction_is_in_progress(self):
-        if not hasattr(self, 'gitextraction'):
+        if not hasattr(self, 'addongitextraction'):
             return False
-        return self.gitextraction.in_progress
+        return self.addongitextraction.in_progress
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,

@@ -4,7 +4,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 
 
-class GitExtraction(ModelBase):
+class AddonGitExtraction(ModelBase):
     """
     This is an add-on related model that stores information related to the git
     extraction (for code-manager).
