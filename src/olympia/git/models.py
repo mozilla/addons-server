@@ -16,10 +16,11 @@ class AddonGitExtraction(ModelBase):
     in_progress = models.BooleanField(default=False)
 
 
-class GitExtractionQueue(ModelBase):
+class GitExtractionEntry(ModelBase):
     """
-    This is a model that represents a queue of add-ons for git extraction. When
-    an add-on is in this queue, its versions should be extracted to a git repo.
+    This is a model that represents an entry in a "queue" of add-ons scheduled
+    for git extraction. When an add-on is in this queue, its versions should be
+    extracted to a git repository.
     """
 
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE, null=True)
