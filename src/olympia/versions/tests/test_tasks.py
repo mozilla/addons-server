@@ -12,9 +12,10 @@ import pytest
 
 from olympia import amo
 from olympia.amo.storage_utils import copy_stored_file
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, create_switch
 from olympia.addons.cron import hide_disabled_files
 from olympia.files.utils import id_to_path
+from olympia.git.models import GitExtractionEntry
 from olympia.versions.models import VersionPreview
 from olympia.versions.tasks import (
     generate_static_theme_preview, extract_version_to_git,
@@ -489,3 +490,29 @@ def test_extract_version_source_to_git_deleted_version():
     assert repo.git_repository_path == os.path.join(
         settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
     assert os.listdir(repo.git_repository_path) == ['.git']
+
+
+@pytest.mark.django_db
+def test_extract_version_to_git_with_cron_enabled():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    repo = AddonGitRepository(addon.pk)
+    create_switch('enable-git-extraction-cron')
+    assert GitExtractionEntry.objects.count() == 0
+
+    extract_version_to_git(addon.current_version.pk)
+
+    assert GitExtractionEntry.objects.count() == 1
+    assert not repo.is_extracted
+
+
+@pytest.mark.django_db
+def test_extract_version_to_git_with_cron_enabled_and_force_extraction():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    repo = AddonGitRepository(addon.pk)
+    create_switch('enable-git-extraction-cron')
+    assert GitExtractionEntry.objects.count() == 0
+
+    extract_version_to_git(addon.current_version.pk, force_extraction=True)
+
+    assert GitExtractionEntry.objects.count() == 0
+    assert repo.is_extracted

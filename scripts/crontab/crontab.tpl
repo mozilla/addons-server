@@ -7,6 +7,7 @@ HOME=/tmp
 
 # Every 5 minutes
 */5 * * * * %(django)s auto_approve
+*/5 * * * * %(django)s git_extraction
 
 # Once per hour
 10 * * * * %(z_cron)s update_blog_posts
