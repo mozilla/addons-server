@@ -1534,6 +1534,12 @@ class Addon(OnChangeMixin, ModelBase):
         # GUIDs should only exist in one (active) submission at once.
         return BlocklistSubmission.get_submissions_from_guid(self.guid).last()
 
+    @property
+    def git_extraction_is_in_progress(self):
+        if not hasattr(self, 'gitextraction'):
+            return False
+        return self.gitextraction.in_progress
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')

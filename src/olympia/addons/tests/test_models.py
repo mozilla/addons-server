@@ -29,6 +29,7 @@ from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import Extractor, parse_addon
+from olympia.git.models import GitExtraction
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.translations.models import (
     Translation, TranslationSequence, delete_translation)
@@ -2736,3 +2737,19 @@ class TestAddonAndDeniedGuid(TestCase):
         addon = addon_factory()
         with pytest.raises(RuntimeError):
             addon.allow_resubmission()
+
+
+class TestAddonAndGitExtraction(TestCase):
+    def test_git_extraction_is_in_progress_returns_false_when_no_attr(self):
+        addon = addon_factory()
+        assert not addon.git_extraction_is_in_progress
+
+    def test_git_extraction_is_in_progress(self):
+        addon = addon_factory()
+        GitExtraction.objects.create(addon=addon, in_progress=True)
+        assert addon.git_extraction_is_in_progress
+
+    def test_git_extraction_is_not_in_progress(self):
+        addon = addon_factory()
+        GitExtraction.objects.create(addon=addon, in_progress=False)
+        assert not addon.git_extraction_is_in_progress
