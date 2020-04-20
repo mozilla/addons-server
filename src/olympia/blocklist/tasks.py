@@ -29,6 +29,10 @@ bracket_open_regex = re.compile(r'(?<!\\){')
 bracket_close_regex = re.compile(r'(?<!\\)}')
 
 MLBF_TIME_CONFIG_KEY = 'blocklist_mlbf_generation_time'
+MLBF_BASE_ID_CONFIG_KEY = 'blocklist_mlbf_base_id'
+
+BLOCKLIST_RECORD_MLBF_BASE = 'bloomfilter-base'
+BLOCKLIST_RECORD_MLBF_UPDATE = 'bloomfilter-full'
 
 
 @task
@@ -143,16 +147,35 @@ def import_block_from_blocklist(record):
 
 
 @task
-def upload_filter_to_kinto(generation_time):
+def upload_filter_to_kinto(generation_time, is_base=True, upload_stash=False):
     server = KintoServer(
         KINTO_BUCKET, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
+    mlbf = MLBF(generation_time)
+    if is_base:
+        # clear the collection for the base - we want to be the only filter
+        server.delete_all_records()
+    # Deal with possible stashes first
+    if upload_stash:
+        # If we have a stash, write that
+        stash_data = {
+            'key_format': MLBF.KEY_FORMAT,
+            'stash_time': generation_time,
+            'stash': mlbf.stash_json,
+        }
+        server.publish_record(stash_data)
+
+    # Then the bloomfilter
     data = {
         'key_format': MLBF.KEY_FORMAT,
         'generation_time': generation_time,
+        'attachment_type':
+            BLOCKLIST_RECORD_MLBF_BASE if is_base else
+            BLOCKLIST_RECORD_MLBF_UPDATE,
     }
-    mlbf_path = MLBF(generation_time).filter_path
-    with storage.open(mlbf_path) as filter_file:
+    with storage.open(mlbf.filter_path, 'rb') as filter_file:
         attachment = ('filter.bin', filter_file, 'application/octet-stream')
         server.publish_attachment(data, attachment)
     server.complete_session()
     set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
+    if is_base:
+        set_config(MLBF_BASE_ID_CONFIG_KEY, generation_time, json_value=True)
