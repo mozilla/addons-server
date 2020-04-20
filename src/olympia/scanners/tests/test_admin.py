@@ -866,6 +866,12 @@ class TestScannerRuleAdmin(TestCase):
         assert 'definition' not in self.admin.get_fields(request=request)
         assert 'formatted_definition' in self.admin.get_fields(request=request)
 
+    def test_create_form_filters_list_of_scanners(self):
+        url = reverse('admin:scanners_scannerrule_add')
+        response = self.client.get(url)
+        select = pq(response.content)('#id_scanner')
+        assert len(select.children()) == 3
+
 
 class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
     def setUp(self):

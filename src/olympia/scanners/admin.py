@@ -30,7 +30,6 @@ from olympia.constants.scanners import (
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
-    WAT,
     YARA,
 )
 
@@ -618,7 +617,7 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
         if db_field.name == "scanner":
             kwargs['choices'] = (("","---------"),)
             for key, value in SCANNERS.items():
-                if key not in [WAT, MAD]:
+                if key in [CUSTOMS, YARA]:
                     kwargs['choices'] += ((key, value),)
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
