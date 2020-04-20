@@ -43,7 +43,7 @@ class TestBlock(TestCase):
         assert not block.is_imported_from_kinto_regex
 
 
-class TestMultiBlocklistSubmission(TestCase):
+class TestBlocklistSubmission(TestCase):
     def test_is_submission_ready(self):
         submitter = user_factory()
         signoffer = user_factory()
@@ -55,7 +55,7 @@ class TestMultiBlocklistSubmission(TestCase):
         assert not block.is_submission_ready
 
         # Except when the state is NOTNEEDED.
-        block.update(signoff_state=BlocklistSubmission.SIGNOFF_NOTNEEDED)
+        block.update(signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED)
         assert block.is_submission_ready
 
         # But if the state is APPROVED we need to know the signoff user
@@ -107,3 +107,49 @@ class TestMultiBlocklistSubmission(TestCase):
         assert (
             list(BlocklistSubmission.get_submissions_from_guid('ggguid@')) ==
             [])
+
+    def test_all_adu_safe(self):
+        Block.objects.create(
+            addon=addon_factory(guid='zero@adu', average_daily_users=0),
+            updated_by=user_factory())
+        Block.objects.create(
+            addon=addon_factory(guid='normal@adu', average_daily_users=500),
+            updated_by=user_factory())
+        Block.objects.create(
+            addon=addon_factory(guid='high@adu', average_daily_users=999_999),
+            updated_by=user_factory())
+        submission = BlocklistSubmission.objects.create(
+            input_guids='zero@adu\nnormal@adu', min_version=99)
+
+        # not safe because 0 adu
+        submission.to_block = submission._serialize_blocks()
+        assert not submission.all_adu_safe()
+
+        # safe because just normal adu
+        submission.update(input_guids='normal@adu')
+        submission.update(to_block=submission._serialize_blocks())
+        assert submission.all_adu_safe()
+
+        # unsafe because just a high adu addon included
+        submission.update(input_guids='high@adu\nnormal@adu')
+        submission.update(to_block=submission._serialize_blocks())
+        assert not submission.all_adu_safe()
+
+    def test_has_version_changes(self):
+        block = Block.objects.create(
+            addon=addon_factory(guid='guid@'),
+            updated_by=user_factory())
+        submission = BlocklistSubmission.objects.create(
+            input_guids='guid@')
+
+        submission.to_block = submission._serialize_blocks()
+        # no changes to anything
+        assert not submission.has_version_changes()
+
+        block.update(min_version='999', reason='things')
+        # min_version has changed (and reason)
+        assert submission.has_version_changes()
+
+        submission.update(min_version='999')
+        # if min_version is the same then it's only the metadata (reason)
+        assert not submission.has_version_changes()

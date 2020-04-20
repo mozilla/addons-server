@@ -1335,8 +1335,7 @@ class TestBlockAdminEdit(TestCase):
         self.submission_url = reverse(
             'admin:blocklist_blocklistsubmission_add')
 
-    def test_edit(self):
-        user = user_factory()
+    def _test_edit(self, user, signoff_state):
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
@@ -1365,6 +1364,12 @@ class TestBlockAdminEdit(TestCase):
             },
             follow=True)
         assert response.status_code == 200
+        assert BlocklistSubmission.objects.exists()
+        submission = BlocklistSubmission.objects.get(
+            input_guids=self.block.guid)
+        assert submission.signoff_state == signoff_state
+
+    def _test_post_edit_logging(self, user):
         assert Block.objects.count() == 1  # check we didn't create another
         assert Block.objects.first().addon == self.addon  # wasn't changed
         log = ActivityLog.objects.for_addons(self.addon).last()
@@ -1392,6 +1397,37 @@ class TestBlockAdminEdit(TestCase):
             content)
         assert f'versions 0 - {self.addon.current_version.version}' in content
         assert f'Included in legacy blocklist' in content
+
+    def test_edit_low_adu(self):
+        user = user_factory()
+        self.addon.update(
+            average_daily_users=(
+                settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD))
+        self._test_edit(user, BlocklistSubmission.SIGNOFF_PUBLISHED)
+        self._test_post_edit_logging(user)
+
+    def test_edit_high_adu(self):
+        user = user_factory()
+        self.addon.update(
+            average_daily_users=(
+                settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1))
+        self._test_edit(user, BlocklistSubmission.SIGNOFF_PENDING)
+        submission = BlocklistSubmission.objects.get(
+            input_guids=self.block.guid)
+        submission.update(
+            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
+            signoff_by=user_factory())
+        submission.save_to_block_objects()
+        self._test_post_edit_logging(user)
+
+    def test_edit_high_adu_only_metadata(self):
+        user = user_factory()
+        self.addon.update(
+            average_daily_users=(
+                settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1))
+        self.block.update(max_version=self.addon.current_version.version)
+        self._test_edit(user, BlocklistSubmission.SIGNOFF_PUBLISHED)
+        self._test_post_edit_logging(user)
 
     def test_invalid_versions_not_accepted(self):
         user = user_factory()

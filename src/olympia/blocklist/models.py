@@ -29,6 +29,7 @@ from .utils import (
 class Block(ModelBase):
     MIN = '0'
     MAX = '*'
+
     guid = models.CharField(max_length=255, unique=True, null=False)
     min_version = models.CharField(max_length=255, blank=False, default=MIN)
     max_version = models.CharField(max_length=255, blank=False, default=MAX)
@@ -155,13 +156,13 @@ class BlocklistSubmission(ModelBase):
     SIGNOFF_PENDING = 0
     SIGNOFF_APPROVED = 1
     SIGNOFF_REJECTED = 2
-    SIGNOFF_NOTNEEDED = 3
+    SIGNOFF_AUTOAPPROVED = 3
     SIGNOFF_PUBLISHED = 4
     SIGNOFF_STATES = {
         SIGNOFF_PENDING: 'Pending',
         SIGNOFF_APPROVED: 'Approved',
         SIGNOFF_REJECTED: 'Rejected',
-        SIGNOFF_NOTNEEDED: 'No Sign-off',
+        SIGNOFF_AUTOAPPROVED: 'No Sign-off',
         SIGNOFF_PUBLISHED: 'Published to Blocks',
     }
     SIGNOFF_STATES_FINISHED = (
@@ -256,49 +257,65 @@ class BlocklistSubmission(ModelBase):
             self.updated_by != signoff_user)
         return not require_different_users or different_users
 
-    def update_if_signoff_not_needed(self):
+    def all_adu_safe(self):
         threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
 
-        def any_unsafe():
-            return any(
-                (lambda du: du > threshold or du == 0)(
-                    block['average_daily_users'])
-                for block in self.to_block)
+        return all(
+            (lambda du: du <= threshold and du)(block['average_daily_users'])
+            for block in self.to_block)
 
-        if self.signoff_state == self.SIGNOFF_PENDING and not any_unsafe():
-            self.update(signoff_state=self.SIGNOFF_NOTNEEDED)
+    def has_version_changes(self):
+        block_ids = [block['id'] for block in self.to_block]
+
+        has_new_blocks = any(not id_ for id_ in block_ids)
+        blocks_with_version_changes_qs = Block.objects.filter(
+            id__in=block_ids).exclude(
+                min_version=self.min_version, max_version=self.max_version)
+
+        return has_new_blocks or blocks_with_version_changes_qs.exists()
+
+    def update_if_signoff_not_needed(self):
+        is_pending = self.signoff_state == self.SIGNOFF_PENDING
+        add_action = self.action == self.ACTION_ADDCHANGE
+        if (
+            (is_pending and self.all_adu_safe()) or
+            (is_pending and add_action and not self.has_version_changes())
+        ):
+            self.update(signoff_state=self.SIGNOFF_AUTOAPPROVED)
 
     @property
     def is_submission_ready(self):
         """Has this submission been signed off, or sign-off isn't required."""
         return (
-            self.signoff_state == self.SIGNOFF_NOTNEEDED or (
+            self.signoff_state == self.SIGNOFF_AUTOAPPROVED or (
                 self.signoff_state == self.SIGNOFF_APPROVED and
                 self.can_user_signoff(self.signoff_by)
             )
         )
 
-    def _serialize_blocks(self, blocks):
+    def _serialize_blocks(self):
+
         def serialize_block(block):
             return {
                 'id': block.id,
                 'guid': block.guid,
-                'average_daily_users': (
-                    block.addon.average_daily_users if block.addon else -1),
+                'average_daily_users':
+                    block.addon.average_daily_users if block.addon else -1,
             }
 
-        return [serialize_block(block) for block in blocks]
+        processed = self.process_input_guids(
+            self.input_guids,
+            self.min_version,
+            self.max_version,
+            load_full_objects=False,
+            filter_existing=(self.action == self.ACTION_ADDCHANGE))
+        return [
+            serialize_block(block) for block in processed.get('blocks', [])]
 
     def save(self, *args, **kwargs):
         if self.input_guids and not self.to_block:
-            processed = self.process_input_guids(
-                self.input_guids,
-                self.min_version,
-                self.max_version,
-                load_full_objects=False,
-                filter_existing=(self.action == self.ACTION_ADDCHANGE))
             # serialize blocks so we can save them as JSON
-            self.to_block = self._serialize_blocks(processed.get('blocks', []))
+            self.to_block = self._serialize_blocks()
         super().save(*args, **kwargs)
 
     @classmethod
@@ -363,16 +380,16 @@ class BlocklistSubmission(ModelBase):
 
         # And then any existing block instances
         block_qs = Block.objects.filter(guid__in=guids).values_list(
-            'id', 'guid', 'min_version', 'max_version', 'kinto_id')
+            'id', 'guid', 'min_version', 'max_version', 'kinto_id', named=True)
         existing_blocks = [
             cls.FakeBlock(
-                id=id_,
-                guid=guid,
-                addon=addon_guid_dict.get(guid),
-                min_version=min_version,
-                max_version=max_version,
-                is_imported_from_kinto_regex=kinto_id.startswith('*'))
-            for id_, guid, min_version, max_version, kinto_id in block_qs]
+                id=block.id,
+                guid=block.guid,
+                addon=addon_guid_dict.get(block.guid),
+                min_version=block.min_version,
+                max_version=block.max_version,
+                is_imported_from_kinto_regex=block.kinto_id.startswith('*'))
+            for block in block_qs]
 
         if len(guids) == 1 or not filter_existing:
             # We special case a single guid to always update it.
@@ -429,7 +446,7 @@ class BlocklistSubmission(ModelBase):
         Block.addon.average_daily_users,
         Block.min_version,
         Block.max_version,
-        Block.process_input_guids
+        Block.is_imported_from_kinto_regex
         """
         all_guids = set(splitlines(guids))
 
