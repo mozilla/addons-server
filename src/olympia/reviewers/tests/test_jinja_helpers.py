@@ -20,7 +20,6 @@ def test_page_title_unicode():
     t = Translation(localized_string=u'\u30de\u30eb\u30c1\u30d712\u30eb')
     request = Mock()
     request.APP = amo.FIREFOX
-    jinja_helpers.reviewer_page_title({'request': request}, title=t)
 
 
 class TestCompareLink(TestCase):
