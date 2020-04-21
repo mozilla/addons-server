@@ -613,9 +613,9 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     )
     readonly_fields = ('created', 'modified', 'matched_results_link')
 
-    def formfield_for_choice_field(self, db_field, request,  **kwargs):
+    def formfield_for_choice_field(self, db_field, request, **kwargs):
         if db_field.name == "scanner":
-            kwargs['choices'] = (("","---------"),)
+            kwargs['choices'] = (("", "---------"),)
             for key, value in SCANNERS.items():
                 if key in [CUSTOMS, YARA]:
                     kwargs['choices'] += ((key, value),)
