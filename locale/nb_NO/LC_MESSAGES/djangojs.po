@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2018-08-21 11:18+0000\n"
+"PO-Revision-Date: 2020-04-21 07:31+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -26,9 +26,8 @@ msgstr "Et problem oppstod ved forsøk på å kontakte serveren."
 msgid "Select a file..."
 msgstr "Velg fil ..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Utvidelsen må ende på .zip, .xpi, .crx, .jar eller .xml"
+msgstr "Utvidelsen må ende på .zip, .xpi, .crx eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -49,7 +48,7 @@ msgid "Error with {0}"
 msgstr "Feil med {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "Sørg for å rapportere eventuelle linting-problemer på GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -179,28 +178,24 @@ msgstr "Bruk original"
 msgid "Week of {0}"
 msgstr "Uke {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " nedlastinger"
-msgstr[1] " nedlastinger"
+msgstr[0] "{0} nedlasting"
+msgstr[1] "{0} nedlastinger"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} brukere"
+msgstr[0] "{0} bruker"
 msgstr[1] "{0} brukere"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} utvidelser"
+msgstr[0] "{0} utvidelse"
 msgstr[1] "{0} utvidelser"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} samlinger"
+msgstr[0] "{0} samling"
 msgstr[1] "{0} samlinger"
 
 #, fuzzy
@@ -750,7 +745,7 @@ msgid "Number of Reviews"
 msgstr "Antall vurderinger"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Maksimal opplastningsstørrelse er {0} - velg et mindre bakgrunnsbilde."
 
 msgid "Requested Info"
 msgstr "Forespurt info"
