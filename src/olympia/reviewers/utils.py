@@ -379,13 +379,13 @@ class ReviewHelper(object):
         if (self.content_review or
                 is_recommendable or
                 self.addon.type == amo.ADDON_STATICTHEME):
-            can_reject_multiple = is_appropriate_reviewer
+            can_reject_multiple_listed = is_appropriate_reviewer
         else:
             # When doing a code review, this action is also available to
             # users with Addons:PostReview even if the current version hasn't
             # been auto-approved, provided that the add-on isn't marked as
             # needing admin review.
-            can_reject_multiple = (
+            can_reject_multiple_listed = (
                 is_appropriate_reviewer or
                 (acl.action_allowed_user(
                     request.user, amo.permissions.ADDONS_POST_REVIEW) and
@@ -466,16 +466,19 @@ class ReviewHelper(object):
             'label': _('Reject Multiple Versions'),
             'minimal': True,
             'versions': True,
-            'details': _('This will reject the selected public '
+            'details': _('This will reject the selected approved or pending'
                          'versions. The comments will be sent to the '
                          'developer.'),
             'available': (
-                addon_is_valid_and_version_is_listed and
-                can_reject_multiple
+                (addon_is_valid_and_version_is_listed and
+                 can_reject_multiple_listed) or
+                (version_is_unlisted and
+                 version_is_unreviewed and
+                 is_appropriate_reviewer)
             ),
         }
         actions['block_multiple_versions'] = {
-            'method': self.handler.reject_multiple_versions,
+            'method': self.handler.block_multiple_versions,
             'label': _('Block Multiple Versions'),
             'minimal': True,
             'versions': True,
@@ -967,7 +970,8 @@ class ReviewBase(object):
         # of the add-on instead of one of the versions we rejected, it will be
         # used to generate a token allowing the developer to reply, and that
         # only works with the latest version.
-        if self.addon.status != amo.STATUS_APPROVED:
+        if (self.addon.status != amo.STATUS_APPROVED and
+           latest_version.channel == amo.RELEASE_CHANNEL_LISTED):
             template = u'reject_multiple_versions_disabled_addon'
             subject = (u'Mozilla Add-ons: %s%s has been disabled on '
                        u'addons.mozilla.org')
@@ -1037,7 +1041,7 @@ class ReviewUnlisted(ReviewBase):
                  (self.addon, ', '.join([f.filename for f in self.files])))
         log.info(u'Sending email for %s' % (self.addon))
 
-    def reject_multiple_versions(self):
+    def block_multiple_versions(self):
         # self.version and self.files won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
