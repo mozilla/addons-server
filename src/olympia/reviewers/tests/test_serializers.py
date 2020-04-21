@@ -50,7 +50,9 @@ class TestFileEntriesSerializer(TestCase):
 
     def test_basic(self):
         expected_mimetype = 'application/json'
-        expected_sha256 = '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0'
+        expected_sha256 = (
+            '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0'
+        )
         expected_size = 622
 
         file = self.addon.current_version.current_file
@@ -146,7 +148,9 @@ class TestFileEntriesSerializer(TestCase):
             }
         ))
         assert data['mimetype'] == 'text/plain'
-        assert data['sha256'] == 'b48e66c02fe62dd47521def7c5ea11b86af91b94c23cfdf67592e1053952ed55'
+        assert data['sha256'] == (
+            'b48e66c02fe62dd47521def7c5ea11b86af91b94c23cfdf67592e1053952ed55'
+        )
         assert data['size'] == 136
 
     def test_requested_file_with_non_existent_file(self):
@@ -290,7 +294,9 @@ class TestFileEntriesDiffSerializer(TestCase):
 
     def test_basic(self):
         expected_mimetype = 'application/json'
-        expected_sha256 = 'bf9b0744c0011cad5caa55236951eda523f17676e91353a64a32353eac798631'
+        expected_sha256 = (
+            'bf9b0744c0011cad5caa55236951eda523f17676e91353a64a32353eac798631'
+        )
         expected_size = 621
 
         parent_version = self.addon.current_version
