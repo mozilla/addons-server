@@ -35,7 +35,8 @@ class TestReviewForm(TestCase):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
         # Need to clear self.version.all_files cache since we updated the file.
-        del self.version.all_files
+        if self.version.all_files:
+            del self.version.all_files
         form = self.get_form()
         return form.helper.get_actions(self.request)
 
@@ -43,6 +44,18 @@ class TestReviewForm(TestCase):
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_NOMINATED,
+            file_status=amo.STATUS_AWAITING_REVIEW)
+        action = actions['reject']['details']
+        assert force_text(action).startswith('This will reject this version')
+
+    def test_actions_reject_unlisted_unreviewed(self):
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        self.addon = addon_factory()
+        self.version = version_factory(addon=self.addon,
+                                       channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.file = self.version.files.all()[0]
+        actions = self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_NULL,
             file_status=amo.STATUS_AWAITING_REVIEW)
         action = actions['reject']['details']
         assert force_text(action).startswith('This will reject this version')

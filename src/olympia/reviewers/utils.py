@@ -401,6 +401,9 @@ class ReviewHelper(object):
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED
         )
+        version_is_unlisted = (
+            self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        )
 
         # Definitions for all actions.
         actions['public'] = {
@@ -426,7 +429,7 @@ class ReviewHelper(object):
             'minimal': False,
             'available': (
                 not self.content_review and
-                addon_is_complete and
+                (addon_is_complete or version_is_unlisted) and
                 version_is_unreviewed and
                 is_appropriate_reviewer
             )
