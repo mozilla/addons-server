@@ -171,7 +171,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string|null file.download_url: The download url of the selected file or ``null`` in case of a directory.
     :>json string file.mimetype: The determined mimetype of the selected file or ``application/octet-stream`` if none could be determined.
     :>json string file.sha256: SHA256 hash of the selected file.
-    :>json string file.size: The size of the selected file in bytes.
+    :>json int file.size: The size of the selected file in bytes.
     :>json boolean uses_unknown_minified_code: Indicates that the selected file could be using minified code.
     :>json array file.entries[]: The complete file-tree of the extracted XPI.
     :>json int file.entries[].depth: Level of folder-tree depth, starting with 0.
