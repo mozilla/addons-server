@@ -12,6 +12,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
+from olympia.versions.models import Version
 
 from .forms import BlocklistSubmissionForm, MultiAddForm, MultiDeleteForm
 from .models import Block, BlocklistSubmission
@@ -101,10 +102,22 @@ class BlockAdminAddMixin():
 
     def add_from_addon_pk_view(self, request, pk, **kwargs):
         addon = get_object_or_404(Addon.unfiltered, pk=pk or kwargs.get('pk'))
-        get_params = request.GET.urlencode()
-        return redirect(
-            reverse('admin:blocklist_blocklistsubmission_add') +
-            f'?guids={addon.guid}&{get_params}')
+        get_params = request.GET.copy()
+        for key in ('min', 'max'):
+            if key in get_params:
+                version = get_object_or_404(
+                    Version.unfiltered, pk=get_params.pop(key)[0])
+                get_params[f'{key}_version'] = version.version
+
+        if addon.block:
+            return redirect(
+                reverse(
+                    'admin:blocklist_block_change', args=(addon.block.pk,)) +
+                f'?{get_params.urlencode()}')
+        else:
+            return redirect(
+                reverse('admin:blocklist_blocklistsubmission_add') +
+                f'?guids={addon.guid}&{get_params.urlencode()}')
 
 
 @admin.register(BlocklistSubmission)
@@ -381,7 +394,10 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
-        obj = self.model.objects.filter(id=object_id).last()
+        obj = self.get_object(request, object_id)
+        if not obj:
+            return self._get_obj_does_not_exist_redirect(
+                request, self.model._meta, object_id)
         extra_context['has_signoff_approve_permission'] = (
             self.has_signoff_approve_permission(request, obj))
         extra_context['has_signoff_reject_permission'] = (

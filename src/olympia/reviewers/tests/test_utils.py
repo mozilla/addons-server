@@ -1579,8 +1579,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # We should have set redirect_url to point to the Block admin page
         if '%s' in redirect_url:
-            redirect_url = redirect_url % (
-                old_version.version, self.version.version)
+            redirect_url = redirect_url % (old_version.pk, self.version.pk)
         assert self.helper.redirect_url == redirect_url
 
     def test_pending_blocklistsubmission_multiple_unlisted_versions(self):
@@ -1594,16 +1593,16 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_new_block_multiple_unlisted_versions(self):
         redirect_url = (
             reverse('admin:blocklist_block_addaddon', args=(self.addon.id,)) +
-            '?min_version=%s&max_version=%s')
+            '?min=%s&max=%s')
         assert Block.objects.count() == 0
         self._test_block_multiple_unlisted_versions(redirect_url)
 
     def test_existing_block_multiple_unlisted_versions(self):
-        block = Block.objects.create(
+        Block.objects.create(
             guid=self.addon.guid, updated_by=user_factory())
         redirect_url = (
-            reverse('admin:blocklist_block_change', args=(block.id,)) +
-            '?min_version=%s&max_version=%s')
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.id,)) +
+            '?min=%s&max=%s')
         self._test_block_multiple_unlisted_versions(redirect_url)
 
 

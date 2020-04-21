@@ -135,10 +135,31 @@ class TestBlockAdmin(TestCase):
         self.assertRedirects(
             response, self.submission_url + f'?guids={addon.guid}')
 
-        response = self.client.post(url + '?min_version=23', follow=True)
+        # GET params are passed along
+        version = addon.current_version
+        response = self.client.post(
+            url + f'?min_version={version.version}', follow=True)
         self.assertRedirects(
             response,
-            self.submission_url + f'?guids={addon.guid}&min_version=23')
+            self.submission_url +
+            f'?guids={addon.guid}&min_version={version.version}')
+
+        # And version ids as short params are expanded and passed along
+        response = self.client.post(
+            url + f'?max={version.pk}', follow=True)
+        self.assertRedirects(
+            response,
+            self.submission_url +
+            f'?guids={addon.guid}&max_version={version.version}')
+
+        # Existing blocks are redirected to the change view instead
+        block = Block.objects.create(addon=addon, updated_by=user_factory())
+        response = self.client.post(
+            url + f'?max={version.pk}', follow=True)
+        self.assertRedirects(
+            response,
+            reverse('admin:blocklist_block_change', args=(block.pk,)) +
+            f'?max_version={version.version}')
 
 
 class TestBlocklistSubmissionAdmin(TestCase):

@@ -1067,22 +1067,15 @@ class ReviewUnlisted(ReviewBase):
                 self.addon,
                 ', '.join(str(v.pk) for v in self.data['versions'])))
 
-        params = (
-            f'?min_version={min_version[0]}&max_version={max_version[0]}')
-
         if self.addon.blocklistsubmission:
             self.redirect_url = (
                 reverse(
                     'admin:blocklist_blocklistsubmission_change',
                     args=(self.addon.blocklistsubmission.pk,)
                 ))
-        elif self.addon.block:
-            self.redirect_url = (
-                reverse(
-                    'admin:blocklist_block_change',
-                    args=(self.addon.block.pk,)
-                ) + params)
         else:
+            params = (
+                f'?min={min_version[0].pk}&max={max_version[0].pk}')
             self.redirect_url = (
                 reverse(
                     'admin:blocklist_block_addaddon', args=(self.addon.pk,)

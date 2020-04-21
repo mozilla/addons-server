@@ -3642,7 +3642,7 @@ class TestReview(ReviewBase):
         assert doc('#block_addon')[0].attrib.get('href') == (
             reverse('admin:blocklist_block_addaddon', args=(self.addon.id,)))
 
-        block = Block.objects.create(
+        Block.objects.create(
             addon=self.addon, updated_by=user_factory())
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3651,7 +3651,7 @@ class TestReview(ReviewBase):
         assert doc('#edit_addon_block')
         assert not doc('#edit_addon_blocklistsubmission')
         assert doc('#edit_addon_block')[0].attrib.get('href') == (
-            reverse('admin:blocklist_block_change', args=(block.id,)))
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.id,)))
 
         # If the guid is in a pending submission we show a link to that instead
         subm = BlocklistSubmission.objects.create(input_guids=self.addon.guid)
