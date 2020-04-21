@@ -402,6 +402,7 @@ class ReviewHelper(object):
             self.version.channel == amo.RELEASE_CHANNEL_LISTED
         )
         version_is_unlisted = (
+            self.version and
             self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
         )
 
