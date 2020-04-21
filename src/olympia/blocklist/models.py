@@ -215,6 +215,17 @@ class BlocklistSubmission(ModelBase):
         trimmed = [rep if len(rep) < 40 else rep[0:37] + '...' for rep in repr]
         return f'{self.get_signoff_state_display()}: {"; ".join(trimmed)}'
 
+    def get_changes_from_block(self, block):
+        # return a dict with properties that are different from a given block,
+        # as a dict of property_name: (old_value, new_value).
+        changes = {}
+        properties = (
+            'min_version', 'max_version', 'url', 'reason', 'include_in_legacy')
+        for prop in properties:
+            if getattr(self, prop) != getattr(block, prop):
+                changes[prop] = (getattr(block, prop), getattr(self, prop))
+        return changes
+
     def clean(self):
         min_vint = addon_version_int(self.min_version)
         max_vint = addon_version_int(self.max_version)
