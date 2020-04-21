@@ -26,6 +26,7 @@ from olympia.constants.scanners import (
     NEW,
     RESULT_STATES,
     RUNNING,
+    SCANNERS,
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
@@ -611,6 +612,14 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
         'definition',
     )
     readonly_fields = ('created', 'modified', 'matched_results_link')
+
+    def formfield_for_choice_field(self, db_field, request, **kwargs):
+        if db_field.name == "scanner":
+            kwargs['choices'] = (("", "---------"),)
+            for key, value in SCANNERS.items():
+                if key in [CUSTOMS, YARA]:
+                    kwargs['choices'] += ((key, value),)
+        return super().formfield_for_choice_field(db_field, request, **kwargs)
 
     class Media:
         css = {'all': ('css/admin/scannerrule.css',)}
