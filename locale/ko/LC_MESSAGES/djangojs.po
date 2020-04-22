@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-22 22:41+0000\n"
+"PO-Revision-Date: 2020-04-22 22:44+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -229,7 +229,7 @@ msgid "Details for {0}"
 msgstr "{0}에 대한 상세 정보"
 
 msgid "Collections Created"
-msgstr "만들어진 모음집"
+msgstr "제작된 컬렉션"
 
 msgid "Add-ons in Use"
 msgstr "사용 중인 부가 기능"
@@ -331,7 +331,7 @@ msgid "Category Pages"
 msgstr "분류 페이지"
 
 msgid "Collections"
-msgstr "모음집"
+msgstr "컬렉션"
 
 msgid "Category Landing Featured Carousel"
 msgstr "분류별 추천 부가 기능"
@@ -545,11 +545,11 @@ msgstr "{0}부터 {1}까지 가입한 사용자"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr "최근 {0}일간 제작된 모음집"
+msgstr "최근 {0}일간 제작된 컬렉션"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr "{0}부터 {1}까지 제작된 모음집"
+msgstr "{0}부터 {1}까지 제작된 컬렉션"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"

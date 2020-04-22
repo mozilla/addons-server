@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-22 22:35+0000\n"
+"PO-Revision-Date: 2020-04-22 22:47+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -172,7 +172,7 @@ msgid "Account Settings"
 msgstr "계정 설정"
 
 msgid "My Collections"
-msgstr "내 모음집"
+msgstr "내 컬렉션"
 
 msgid "My Favorites"
 msgstr "내 선호목록"
@@ -470,7 +470,7 @@ msgid ""
 msgstr "지원되는 애플리케이션이 매니페스트 파일을 요구하지 않으면, %(amo_manifests_mdn_link_open)s이곳%(amo_manifests_mdn_link_close)s에 명시된 요구 항목을 반드시 포함하고 있어야 합니다."
 
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "이 URL은 이미 다른 모음집에서 사용중입니다."
+msgstr "이 사용자 지정 URL은 이미 다른 컬렉션에서 사용 중입니다."
 
 msgid "Name cannot be empty."
 msgstr "이름은 비워둘 수 없습니다."
@@ -485,7 +485,7 @@ msgid "This custom URL cannot be used."
 msgstr "이 URL은 사용할 수 없습니다."
 
 msgid "This add-on already belongs to the collection"
-msgstr "이 부가 기능은 이미 다른 모음집에서 사용중입니다"
+msgstr "이 부가 기능은 이미 컬렉션에 속해 있습니다"
 
 msgid "{addon} was created."
 msgstr "{addon}이(가) 제작되었습니다."
@@ -1640,7 +1640,7 @@ msgid "Add-on Status"
 msgstr "부가 기능 상태"
 
 msgid "User Collections"
-msgstr "사용자 모음집"
+msgstr "사용자 컬렉션"
 
 msgid "User Reviews"
 msgstr "사용자 검토"
@@ -6333,7 +6333,7 @@ msgid "Profile Photo"
 msgstr "프로필 사진"
 
 msgid "Collections"
-msgstr "모음집"
+msgstr "컬렉션"
 
 msgid "Activity Logs"
 msgstr "활동 로그"
