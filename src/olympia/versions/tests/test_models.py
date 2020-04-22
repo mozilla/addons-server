@@ -1265,8 +1265,9 @@ class TestStaticThemeFromUpload(UploadTest):
 
     def setUp(self):
         path = 'src/olympia/devhub/tests/addons/static_theme.zip'
+        self.user = user_factory()
         self.upload = self.get_upload(
-            abspath=os.path.join(settings.ROOT, path))
+            abspath=os.path.join(settings.ROOT, path), user=self.user)
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_nominated(
@@ -1278,7 +1279,7 @@ class TestStaticThemeFromUpload(UploadTest):
                 'status': amo.STATUS_AWAITING_REVIEW
             }
         )
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
         version = Version.from_upload(
             self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data)
@@ -1289,7 +1290,7 @@ class TestStaticThemeFromUpload(UploadTest):
     def test_new_version_while_public(
             self, generate_static_theme_preview_mock):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
         version = Version.from_upload(
             self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data)
@@ -1302,8 +1303,8 @@ class TestStaticThemeFromUpload(UploadTest):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
         path = 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
         self.upload = self.get_upload(
-            abspath=os.path.join(settings.ROOT, path))
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+            abspath=os.path.join(settings.ROOT, path), user=self.user)
+        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
         version = Version.from_upload(
             self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data)
