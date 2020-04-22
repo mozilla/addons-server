@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-10-22 12:35+0000\n"
-"PO-Revision-Date: 2020-04-12 22:50+0000\n"
+"PO-Revision-Date: 2020-04-22 22:41+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -185,10 +185,9 @@ msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "부가 기능 {0}개"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "모음집 {0}개"
+msgstr[0] "컬렉션 {0}개"
 
 #, fuzzy
 msgid "{0} review"
