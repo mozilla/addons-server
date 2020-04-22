@@ -1536,9 +1536,11 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def git_extraction_is_in_progress(self):
-        if not hasattr(self, 'addongitextraction'):
-            return False
-        return self.addongitextraction.in_progress
+        from olympia.git.models import GitExtractionEntry
+
+        return GitExtractionEntry.objects.filter(
+            addon=self, in_progress=True
+        ).exists()
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,

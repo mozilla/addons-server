@@ -4,18 +4,6 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 
 
-class AddonGitExtraction(ModelBase):
-    """
-    This is an add-on related model that stores information related to the git
-    extraction (for code-manager).
-    """
-
-    addon = models.OneToOneField(
-        Addon, on_delete=models.CASCADE, primary_key=True
-    )
-    in_progress = models.BooleanField(default=False)
-
-
 class GitExtractionEntry(ModelBase):
     """
     This is a model that represents an entry in a "queue" of add-ons scheduled
@@ -23,4 +11,8 @@ class GitExtractionEntry(ModelBase):
     extracted to a git repository.
     """
 
-    addon = models.ForeignKey(Addon, on_delete=models.CASCADE, null=True)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
+    in_progress = models.NullBooleanField(default=None)
+
+    class Meta(ModelBase.Meta):
+        unique_together = ('addon', 'in_progress')
