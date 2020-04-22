@@ -1094,9 +1094,6 @@ class TestExtensionVersionFromUploadTransactional(
         # the behavior of `TransactionTestCase`
         amo.tests.create_default_webext_appversion()
 
-        self.upload = self.get_upload(self.filename)
-        self.addon = addon_factory()
-
     def get_upload(self, filename=None, abspath=None, validation=None,
                    addon=None, user=None, version=None, with_validation=True):
         fpath = self.file_fixture_path(filename)
@@ -1119,8 +1116,8 @@ class TestExtensionVersionFromUploadTransactional(
     @override_switch('enable-uploads-commit-to-git-storage', active=False)
     def test_doesnt_commit_to_git_by_default(self):
         addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
         user = user_factory(username='fancyuser')
+        upload = self.get_upload('webextension_no_id.xpi', user=user)
         parsed_data = parse_addon(upload, addon, user=user)
 
         with transaction.atomic():
@@ -1136,8 +1133,8 @@ class TestExtensionVersionFromUploadTransactional(
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_commits_to_git_waffle_enabled(self):
         addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
         user = user_factory(username='fancyuser')
+        upload = self.get_upload('webextension_no_id.xpi', user=user)
         parsed_data = parse_addon(upload, addon, user=user)
 
         with transaction.atomic():
@@ -1154,9 +1151,9 @@ class TestExtensionVersionFromUploadTransactional(
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_commits_to_git_async(self, extract_mock):
         addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
-        upload.user = user_factory(username='fancyuser')
-        parsed_data = parse_addon(upload, addon, user=upload.user)
+        user = user_factory(username='fancyuser')
+        upload = self.get_upload('webextension_no_id.xpi', user=user)
+        parsed_data = parse_addon(upload, addon, user=user)
 
         @transaction.atomic
         def create_new_version():
@@ -1180,9 +1177,9 @@ class TestExtensionVersionFromUploadTransactional(
             self, utc_millisecs_mock, extract_mock):
         utc_millisecs_mock.side_effect = ValueError
         addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
-        upload.user = user_factory(username='fancyuser')
-        parsed_data = parse_addon(upload, addon, user=upload.user)
+        user = user_factory(username='fancyuser')
+        upload = self.get_upload('webextension_no_id.xpi', user=user)
+        parsed_data = parse_addon(upload, addon, user=user)
 
         # Simulating an atomic transaction similar to what
         # create_version_for_upload does
