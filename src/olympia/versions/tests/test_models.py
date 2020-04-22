@@ -31,6 +31,7 @@ from olympia.files.utils import parse_addon
 from olympia.lib.git import AddonGitRepository
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview, source_upload_path)
@@ -724,6 +725,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 'from_api': False
             }
         }
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.latest('pk')
+        assert activity.arguments == [version, self.addon]
+        assert activity.user == get_task_user()
 
     @mock.patch('olympia.versions.models.log')
     def test_logging(self, log_mock):
@@ -750,6 +755,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 'from_api': True
             }
         }
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.latest('pk')
+        assert activity.arguments == [version, self.addon]
+        assert activity.user == user
 
     def test_carry_over_old_license(self):
         version = Version.from_upload(
@@ -1085,9 +1094,6 @@ class TestExtensionVersionFromUploadTransactional(
         # the behavior of `TransactionTestCase`
         amo.tests.create_default_webext_appversion()
 
-        self.upload = self.get_upload(self.filename)
-        self.addon = addon_factory()
-
     def get_upload(self, filename=None, abspath=None, validation=None,
                    addon=None, user=None, version=None, with_validation=True):
         fpath = self.file_fixture_path(filename)
@@ -1110,8 +1116,8 @@ class TestExtensionVersionFromUploadTransactional(
     @override_switch('enable-uploads-commit-to-git-storage', active=False)
     def test_doesnt_commit_to_git_by_default(self):
         addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
         user = user_factory(username='fancyuser')
+        upload = self.get_upload('webextension_no_id.xpi', user=user)
         parsed_data = parse_addon(upload, addon, user=user)
 
         with transaction.atomic():
@@ -1127,8 +1133,8 @@ class TestExtensionVersionFromUploadTransactional(
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_commits_to_git_waffle_enabled(self):
         addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
         user = user_factory(username='fancyuser')
+        upload = self.get_upload('webextension_no_id.xpi', user=user)
         parsed_data = parse_addon(upload, addon, user=user)
 
         with transaction.atomic():
@@ -1145,9 +1151,9 @@ class TestExtensionVersionFromUploadTransactional(
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_commits_to_git_async(self, extract_mock):
         addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
-        upload.user = user_factory(username='fancyuser')
-        parsed_data = parse_addon(upload, addon, user=upload.user)
+        user = user_factory(username='fancyuser')
+        upload = self.get_upload('webextension_no_id.xpi', user=user)
+        parsed_data = parse_addon(upload, addon, user=user)
 
         @transaction.atomic
         def create_new_version():
@@ -1171,9 +1177,9 @@ class TestExtensionVersionFromUploadTransactional(
             self, utc_millisecs_mock, extract_mock):
         utc_millisecs_mock.side_effect = ValueError
         addon = addon_factory()
-        upload = self.get_upload('webextension_no_id.xpi')
-        upload.user = user_factory(username='fancyuser')
-        parsed_data = parse_addon(upload, addon, user=upload.user)
+        user = user_factory(username='fancyuser')
+        upload = self.get_upload('webextension_no_id.xpi', user=user)
+        parsed_data = parse_addon(upload, addon, user=user)
 
         # Simulating an atomic transaction similar to what
         # create_version_for_upload does
@@ -1259,8 +1265,9 @@ class TestStaticThemeFromUpload(UploadTest):
 
     def setUp(self):
         path = 'src/olympia/devhub/tests/addons/static_theme.zip'
+        self.user = user_factory()
         self.upload = self.get_upload(
-            abspath=os.path.join(settings.ROOT, path))
+            abspath=os.path.join(settings.ROOT, path), user=self.user)
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_nominated(
@@ -1272,7 +1279,7 @@ class TestStaticThemeFromUpload(UploadTest):
                 'status': amo.STATUS_AWAITING_REVIEW
             }
         )
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
         version = Version.from_upload(
             self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data)
@@ -1283,7 +1290,7 @@ class TestStaticThemeFromUpload(UploadTest):
     def test_new_version_while_public(
             self, generate_static_theme_preview_mock):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
         version = Version.from_upload(
             self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data)
@@ -1296,8 +1303,8 @@ class TestStaticThemeFromUpload(UploadTest):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
         path = 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
         self.upload = self.get_upload(
-            abspath=os.path.join(settings.ROOT, path))
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+            abspath=os.path.join(settings.ROOT, path), user=self.user)
+        parsed_data = parse_addon(self.upload, self.addon, user=self.user)
         version = Version.from_upload(
             self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data)

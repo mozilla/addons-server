@@ -36,6 +36,7 @@ from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
 from olympia.scanners.models import ScannerResult
+from olympia.users.utils import get_task_user
 
 from .compare import version_int
 
@@ -253,7 +254,9 @@ class Version(OnChangeMixin, ModelBase):
                     'from_api': upload.source == amo.UPLOAD_SOURCE_API,
                 }
             )
-            activity.log_create(amo.LOG.ADD_VERSION, version, addon)
+            activity.log_create(
+                amo.LOG.ADD_VERSION, version, addon,
+                user=upload.user or get_task_user())
 
         if addon.type == amo.ADDON_STATICTHEME:
             # We don't let developers select apps for static themes
