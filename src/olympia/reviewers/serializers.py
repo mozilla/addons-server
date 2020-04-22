@@ -4,7 +4,6 @@ import mimetypes
 import pathlib
 import json
 from collections import OrderedDict
-from datetime import datetime, timezone, timedelta
 
 import pygit2
 
@@ -82,24 +81,87 @@ class FileEntriesSerializer(FileSerializer):
 
     def _get_commit(self, file_obj):
         """Return the pygit2 repository instance, preselect correct channel."""
+        if hasattr(self, '_commit'):
+            return self._commit
+
         try:
-            return self.git_repo.revparse_single(file_obj.version.git_hash)
+            self._commit = self.git_repo.revparse_single(
+                file_obj.version.git_hash)
         except pygit2.InvalidSpecError:
             raise NotFound(
                 'Couldn\'t find the requested version in git-repository')
 
-    def _get_hash_for_selected_file(self, obj):
-        selected_file = self.get_selected_file(obj)
+        return self._commit
 
-        # Return the hash if we already saved it to the locally cached
-        # `self._entries` dictionary.
-        _entries = getattr(self, '_entries', {})
-
-        if _entries and _entries[selected_file]['sha256']:
-            return _entries[selected_file]['sha256']
+    def _get_tree(self, obj):
+        if hasattr(self, '_tree'):
+            return self._tree
 
         commit = self._get_commit(obj)
-        tree = self.repo.get_root_tree(commit)
+        self._tree = self.repo.get_root_tree(commit)
+
+        return self._tree
+
+    def get_entries(self, obj):
+        # Given that this is a very expensive operation we have a two-fold
+        # cache, one that is stored on this instance for very-fast retrieval
+        # to support other method calls on this serializer
+        # and another that uses memcached for regular caching
+        if hasattr(self, '_entries'):
+            return self._entries
+
+        commit = self._get_commit(obj)
+        result = OrderedDict()
+
+        def _fetch_entries():
+            tree = self._get_tree(obj)
+
+            for entry_wrapper in self.repo.iter_tree(tree):
+                entry = entry_wrapper.tree_entry
+                path = force_text(entry_wrapper.path)
+                blob = entry_wrapper.blob
+
+                mimetype, entry_mime_category = get_mime_type_for_blob(
+                    tree_or_blob=entry.type, name=entry.name, blob=blob)
+
+                result[path] = {
+                    'depth': path.count(os.sep),
+                    'filename': force_text(entry.name),
+                    'mime_category': entry_mime_category,
+                    'path': path,
+                }
+            return result
+
+        self._entries = cache.get_or_set(
+            'reviewers:fileentriesserializer:entries:{}'.format(commit.hex),
+            _fetch_entries,
+            # Store information about this commit for 24h which should be
+            # enough to cover regular review-times but not overflow our
+            # cache
+            60 * 60 * 24)
+
+        return self._entries
+
+    def get_mimetype(self, obj):
+        tree = self._get_tree(obj)
+        selected_file = self.get_selected_file(obj)
+        if selected_file in tree:
+            blob_or_tree = tree[selected_file]
+
+            if blob_or_tree.type == pygit2.GIT_OBJ_BLOB:
+                blob = self.git_repo[blob_or_tree.oid]
+                mimetype, mime_category = get_mime_type_for_blob(
+                    tree_or_blob='blob', name=blob_or_tree.name, blob=blob)
+
+                return mimetype
+
+        # If we do not have a blob, return 'application/octet-stream'
+        return 'application/octet-stream'
+
+    def get_sha256(self, obj):
+        selected_file = self.get_selected_file(obj)
+        commit = self._get_commit(obj)
+        tree = self._get_tree(obj)
 
         # Normalize the key as we want to avoid that we exceed max
         # key lengh because of selected_file.
@@ -123,94 +185,72 @@ class FileEntriesSerializer(FileSerializer):
 
         return cache.get_or_set(cache_key, _calculate_hash, 60 * 60 * 24)
 
-    def get_entries(self, obj):
-        # Given that this is a very expensive operation we have a two-fold
-        # cache, one that is stored on this instance for very-fast retrieval
-        # to support other method calls on this serializer
-        # and another that uses memcached for regular caching
-        if hasattr(self, '_entries'):
-            return self._entries
-
-        commit = self._get_commit(obj)
-        result = OrderedDict()
-
-        def _fetch_entries():
-            tree = self.repo.get_root_tree(commit)
-
-            for entry_wrapper in self.repo.iter_tree(tree):
-                entry = entry_wrapper.tree_entry
-                path = force_text(entry_wrapper.path)
-                blob = entry_wrapper.blob
-
-                commit_tzinfo = timezone(timedelta(
-                    minutes=commit.commit_time_offset))
-                commit_time = datetime.fromtimestamp(
-                    float(commit.commit_time),
-                    commit_tzinfo)
-
-                mimetype, entry_mime_category = get_mime_type_for_blob(
-                    tree_or_blob=entry.type, name=entry.name, blob=blob)
-
-                result[path] = {
-                    'depth': path.count(os.sep),
-                    'filename': force_text(entry.name),
-                    'sha256': None,
-                    'mime_category': entry_mime_category,
-                    'mimetype': mimetype,
-                    'path': path,
-                    'size': blob.size if blob is not None else None,
-                    'modified': commit_time,
-                }
-            return result
-
-        self._entries = cache.get_or_set(
-            'reviewers:fileentriesserializer:entries:{}'.format(commit.hex),
-            _fetch_entries,
-            # Store information about this commit for 24h which should be
-            # enough to cover regular review-times but not overflow our
-            # cache
-            60 * 60 * 24)
-
-        # Fetch and set the sha hash for the currently selected file.
-        sha256 = self._get_hash_for_selected_file(obj)
-        self._entries[self.get_selected_file(obj)]['sha256'] = sha256
-
-        return self._entries
-
-    def get_mimetype(self, obj):
-        entries = self.get_entries(obj)
-        return entries[self.get_selected_file(obj)]['mimetype']
-
-    def get_sha256(self, obj):
-        return self._get_hash_for_selected_file(obj)
-
     def get_size(self, obj):
-        entries = self.get_entries(obj)
-        return entries[self.get_selected_file(obj)]['size']
+        tree = self._get_tree(obj)
+        selected_file = self.get_selected_file(obj)
+        if selected_file in tree:
+            blob_or_tree = tree[selected_file]
+
+            if blob_or_tree.type == pygit2.GIT_OBJ_BLOB:
+                blob = self.git_repo[blob_or_tree.oid]
+                if blob is not None:
+                    return blob.size
+
+        return None
 
     def get_selected_file(self, obj):
         requested_file = self.context.get('file', None)
-        files = self.get_entries(obj)
+        parent_version = self.context.get('parent_version', None)
+        deltas = None
+
+        if parent_version is not None:
+
+            commit = obj.version.git_hash
+            parent = self.context['parent_version'].git_hash
+
+            # Initial commits have both set to the same version
+            parent = parent if parent != commit else None
+
+            deltas = self.repo.get_deltas(
+                commit=commit,
+                parent=parent,
+                pathspec=None)
+
+        tree = self._get_tree(obj)
 
         if requested_file is None:
             default_files = ('manifest.json', 'install.rdf', 'package.json')
 
             for manifest in default_files:
-                if manifest in files:
+                if manifest in tree:
                     requested_file = manifest
                     break
-            else:
-                # This could be a search engine
-                requested_file = list(files.keys())[0]
 
-        if requested_file not in files:
-            raise NotFound('File not found')
+                # In case the default file has been deleted.
+                if deltas is not None:
+                    for delta in deltas:
+                        if delta['path'] == manifest:
+                            requested_file = manifest
+                            break
+
+            if requested_file is None:
+                # This could be a search engine
+                requested_file = next(tree.__iter__()).name
+
+        if requested_file not in tree:
+            # In case the requested file has been deleted.
+            if deltas is not None:
+                for delta in deltas:
+                    if delta['path'] == requested_file:
+                        break
+                    raise NotFound('File not found')
+            else:
+                raise NotFound('File not found')
 
         return requested_file
 
     def get_content(self, obj):
-        commit = self._get_commit(obj)
-        tree = self.repo.get_root_tree(commit)
+        tree = self._get_tree(obj)
         selected_file = self.get_selected_file(obj)
         blob_or_tree = tree[selected_file]
 
@@ -245,8 +285,7 @@ class FileEntriesSerializer(FileSerializer):
         return self.get_selected_file(obj) in minified_files
 
     def get_download_url(self, obj):
-        commit = self._get_commit(obj)
-        tree = self.repo.get_root_tree(commit)
+        tree = self._get_tree(obj)
         selected_file = self.get_selected_file(obj)
 
         try:
@@ -390,12 +429,8 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                 entries[path] = {
                     'depth': path_depth,
                     'filename': filename,
-                    'sha256': None,
                     'mime_category': None,
-                    'mimetype': mime,
                     'path': path,
-                    'size': None,
-                    'modified': None,
                 }
 
             # Now we can set the git-status.
@@ -415,12 +450,8 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                     entries[parent] = {
                         'depth': path_depth - 1 - index,
                         'filename': os.path.basename(parent),
-                        'sha256': None,
                         'mime_category': 'directory',
-                        'mimetype': 'application/octet-stream',
                         'path': parent,
-                        'size': None,
-                        'modified': None,
                     }
 
         return entries
