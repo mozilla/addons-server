@@ -31,6 +31,7 @@ from olympia.files.utils import parse_addon
 from olympia.lib.git import AddonGitRepository
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview, source_upload_path)
@@ -724,6 +725,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 'from_api': False
             }
         }
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.latest('pk')
+        assert activity.arguments == [version, self.addon]
+        assert activity.user == get_task_user()
 
     @mock.patch('olympia.versions.models.log')
     def test_logging(self, log_mock):
@@ -750,6 +755,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 'from_api': True
             }
         }
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.latest('pk')
+        assert activity.arguments == [version, self.addon]
+        assert activity.user == user
 
     def test_carry_over_old_license(self):
         version = Version.from_upload(
