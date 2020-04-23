@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 18:51+0000\n"
+"PO-Revision-Date: 2020-04-23 19:05+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -298,11 +298,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Hoppsan"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Hoppsan!  Något gick fel.</h1> <p>Vi kommer att fixa det snart.</p> <p> Du kan försöka uppdatera sidan eller gå tillbaka till <a href=\"%(home)s\">startsidan för tillägg</a>. </p>"
+msgstr ""
+"<h1>Hoppsan! Något gick fel.</h1> <p>Vi kommer att fixa det snart.</p> <p>Du kan prova att uppdatera sidan eller gå tillbaka till <a href=\"%(home)s\">tilläggets hemsida</a>. Du kan också hjälpa oss"
+" att fixa detta genom att <a href=\"https://github.com/mozilla/addons/issues/new\">rapportera ett problem</a> med information om hur du kom till den här sidan.</p>"
 
 msgid "No results found"
 msgstr "Inga träffar hittades"
@@ -472,68 +474,64 @@ msgstr "Denna tillägg hör redan till samlingen"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Blockera med GUID %(guid)s hittades inte"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s är en väntande inlämning"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Tillägg med GUID %(guid)s finns inte"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s är redan en väntande inlämning"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Block som ska uppdateras är olika eftersom Min- eller Max-versionen har ändrats."
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Ogiltigt versionsintervall."
+msgstr "Ogiltig version"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Min-versionen kan inte vara större än Max-versionen"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Granskning begärd"
+msgstr "Granskning listad"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Granskningsanteckning"
+msgstr "Granskning olistad"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Detta block importerades från ett regex-baserat äldre kinto-block."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Alla ändringar som görs kommer INTE att uppdateras i den gamla blocklistan - du måste göra en manuell ändring via kinto admin webui."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Avvisa flera versioner"
+msgstr "Ta bort dubbla %(name)s"
 
-#, fuzzy
 msgid "Home"
-msgstr "Hemsida"
+msgstr "Hem"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s GUID-tillägg är redan blockerade för %(v_min)s till %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s GUID-tillägg hittades inte"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Följande block importerades från en regex-baserad äldre kinto-block."
 
 msgid "Save"
 msgstr "Spara"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Spara och lägg till mer"
 
 msgid "Delete"
 msgstr "Ta bort"
@@ -541,42 +539,37 @@ msgstr "Ta bort"
 msgid "Update"
 msgstr "Uppdatera"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Gå till mina bidrag"
+msgstr "Avvisa inlämning"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Gå till mina bidrag"
+msgstr "Godkänn inlämning"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Lägg till %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "Tilläggs-GUID (en per rad)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "Skicka in version"
+msgstr "Skicka in"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s tilläggs-GUID"
 
-#, fuzzy
 msgid "users"
-msgstr "Användare"
+msgstr "användare"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Redigera block"
 
-#, fuzzy
 msgid "versions"
-msgstr "Versioner"
+msgstr "versioner"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Ingår i äldre blocklista."
 
 msgid "{addon} was created."
 msgstr "{addon} skapades."
@@ -898,24 +891,22 @@ msgid "User {user} api key reset."
 msgstr "Användare {user} återställning api-nyckel."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Block för {0} läggs till i blocklista."
 
 msgid "Block added"
-msgstr ""
+msgstr "Block har lagts till"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Block för {0} redigerat i blocklista."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Block redigerat"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Version {0} borttagen från {addon}."
+msgstr "Block för {0} raderat från blocklista."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Tillägg borttaget."
+msgstr "Block raderat"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
