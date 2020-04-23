@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 19:52+0000\n"
-"Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
+"PO-Revision-Date: 2020-04-23 20:03+0000\n"
+"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -3166,7 +3166,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Tageffalt \"awi-d azegrir\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Ahil n yisiɣzaf yelhan"
 
 msgid "Contribute"
 msgstr "Ttekki"
@@ -4861,7 +4861,7 @@ msgstr "Ileqman n tegnawt d iskudanen seg umaḍal meṛṛa."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Less inagan n tuqqna, amazray n tunigin, d yifulya yettwaffren s yiwen kan n usit."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
@@ -5996,9 +5996,8 @@ msgstr "Tarrayt:"
 msgid "Source:"
 msgstr "Aɣbalu:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Aɣbalu:"
+msgstr "URL aɣbalu:"
 
 msgid "Dismiss this announcement"
 msgstr "Agi alɣu-a"
@@ -6121,16 +6120,14 @@ msgstr[1] "Asuter n telɣut yemmut {0}"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Bdu"
+msgstr "Addad n ugmuḍ"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Taskant n lqem teffeɣ-d"
+msgstr "Yella lqem"
 
 #, fuzzy
 msgid "version channel"
