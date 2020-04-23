@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 23:43+0000\n"
+"PO-Revision-Date: 2020-04-23 23:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1569,9 +1569,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Plus recente"
+msgstr "Nove"
 
 msgid "Running"
 msgstr ""
@@ -1582,9 +1581,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Incomplete"
+msgstr "Completate"
 
 msgid "Scheduled"
 msgstr "Planificate"
@@ -1883,11 +1881,12 @@ msgstr "Le icone debe esser quadrate (altitude equal al latitude)."
 msgid "There was an error uploading your preview."
 msgstr "Error durante le incargamento de tu vista preliminar."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "Le ultime version approbate de un extension recommendate non pote esser delite o disactivate. Contacta le administratores de AMO si te require adjuta pro isto."
+msgstr ""
+"Le ultime version approbate de iste extension recommendate non pote esser delite o disactivate perque le previe version non ha essite approbate pro recommendation. Contacta le administratores de AMO"
+" si te require adjuta pro isto."
 
 #, python-format
 msgid "Version %s disabled."
@@ -3147,9 +3146,8 @@ msgstr ""
 msgid "Twitter"
 msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "Disveloppator"
+msgstr "Pro disveloppatores"
 
 msgid "For end users"
 msgstr ""
@@ -3176,9 +3174,8 @@ msgstr "Adresse IP"
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Clauder session"
+msgstr "Inscriber se"
 
 msgid "Thanks!"
 msgstr "Gratias!"
@@ -3279,9 +3276,8 @@ msgstr "Nulle photo"
 msgid "User Photo"
 msgstr "Photo del usator"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Mi profilo"
+msgstr "Profilo"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
@@ -5001,9 +4997,8 @@ msgstr "Impossibile comparar un version contra se mesme"
 msgid "Could not parse the manifest file."
 msgstr "Impossibile tractar le file manifesto."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Un GUID es obligatori pro le versiones 47 e precedente de Firefox."
+msgstr "Un ID de additivo es obligatori pro le versiones 47 e precedente de Firefox."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Le version compatibile minus recente, “strict_min_version”, es le 42.0."
@@ -5515,9 +5510,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} die"
 msgstr[1] "{0} dies"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Ultime revision"
