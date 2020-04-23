@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 21:03+0000\n"
+"PO-Revision-Date: 2020-04-23 21:12+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2993,6 +2993,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team\n"
 msgstr ""
+"Kära tilläggsutvecklare,\n"
+"\n"
+"Vi märkte att dina hemliga AMO API-referenser inkluderades i ett tillägg som skickades till addons.mozilla.org. För att skydda ditt konto och dina tillägg, återkallade vi läckta referenser.\n"
+"Du kan skapa nya API-referenser på %(api_keys_url)s\n"
+"\n"
+"Se till att du aldrig delar dina referenser med någon. Inkludera dem aldrig i ett offentligt arkiv, tillägg eller någon annan offentlig plats. Vi uppmuntrar dig att granska dina kodförråd och dina tillägg för att ta bort alla referenser till dina AMO-referenser.\n"
+"\n"
+"Tack,\n"
+"Mozilla tilläggsteam"
 
 msgid "Invisible"
 msgstr "Osynlig"
@@ -3143,16 +3152,16 @@ msgid "Read more about the source code review policy."
 msgstr "Läs mer om granskningspolicyn för källkod."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Skapa bäst-i-klass tillägg och teman"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "Oavsett om du är ny med tilläggsutveckling, uppdatering eller porting av ett befintligt tillägg eller ett tema eller att skapa en anpassad företagslösning, har vi resurser att stödja dig."
 
 msgid "Visit the Extension Workshop"
 msgstr "Besök Extensions Workshop"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Kontakta oss"
 
 msgid "Twitter"
 msgstr "Twitter"
@@ -3173,23 +3182,24 @@ msgid "Extensions Developers Newsletter"
 msgstr "Nyhetsbrev tilläggsutvecklare"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Håll dig uppdaterad om nyheter och händelser för Firefox-tilläggsutvecklare."
 
 msgid "Email Address"
 msgstr "E-postadress"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Jag är okej med att Mozilla hanterar min information som förklaras i denna%(link_open)ssekretesspolicy%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Registrera dig"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Tack!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Om du inte tidigare har bekräftat ett prenumeration på ett Mozilla-relaterat nyhetsbrev kan du behöva göra det. Kontrollera din inkorg eller ditt skräppostfilter för ett e-postmeddelande från oss."
 
 msgid "Resources"
 msgstr "Resurser"
@@ -3207,7 +3217,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Knappen \"Hämta tillägg\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Rekommenderat tilläggsprogram"
 
 msgid "Contribute"
 msgstr "Bidra"
@@ -3240,10 +3250,10 @@ msgid "See how"
 msgstr "Se hur"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Engagera dig"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Anslut med tusentals utvecklare och upptäck andra sätt du kan bidra till ekosystemet för utökningar."
 
 msgid "Learn more about the developer community"
 msgstr "Läs mer om utvecklargemenskapen"
@@ -3295,13 +3305,13 @@ msgid "Learn how to make an extension"
 msgstr "Lär dig hur man skapar ett tillägg"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Är du redo att skicka in eller hantera din utökning?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Logga in till Developer Hub för att skicka in eller hantera tillägg och teman."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Registrera dig för ett utvecklarkonto eller logga in till Developer Hub"
 
 msgid "Manage Version {0}"
 msgstr "Hantera version {0}"
@@ -3785,7 +3795,7 @@ msgstr "Lämna få digitalt spår. Få Firefox att glömma webbplatsinformation 
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Du behöver inte skriva samma sak om och om igen. Spara ofta inmatad text för att klistra in när som helst."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4889,7 +4899,7 @@ msgstr "Vissa webbplatser har svårt att spela video på Firefox för Android. D
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Välj, sortera och kör dina nedladdningar snabbare."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4897,23 +4907,23 @@ msgstr "Få väderuppdateringar direkt i webbläsaren."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Ta bort kakor, surfhistorik och cachade filer med bara ett enda klick."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Ta bort spårningselement från webblänkar."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Få automatiskt fyllda RSS-flödesbokmärken."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organisera enkelt massor av öppna flikar."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Skapa och anpassa flikgrupper."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4925,11 +4935,11 @@ msgstr "Ersätt automatiskt nedsättande ord på nätet."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blockera alla annonser—video, popup-fönster, banners och mer."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Se strömmande media med vänner och familj var som helst."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4945,7 +4955,7 @@ msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Flikarrangörer och verktyg"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5447,10 +5457,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Automatisk godkännande försenades tillfälligt"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Automatisk godkännande försenades på obestämd tid"
 
 msgid "Is locked by a reviewer"
 msgstr "Är låst av en granskare"
@@ -5474,7 +5484,7 @@ msgid "You can't submit an empty comment."
 msgstr "Du kan inte skicka in en tom kommentar."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Du kan inte skicka in ett radnummer utan att koppla det till ett filnamn."
 
 msgid "Type"
 msgstr "Typ"
@@ -5555,7 +5565,7 @@ msgid "Block Multiple Versions"
 msgstr "Blockera dubbla versioner"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Detta inaktiverar de valda godkända versionerna tyst och öppnar administrationssidan för blockskapning."
 
 msgid "Confirm Multiple Versions"
 msgstr "Bekräfta dubbla versioner"
@@ -5597,12 +5607,12 @@ msgid "Add-on Review Guide"
 msgstr "Granskningsriktlinjer för tillägg"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Flaggad av skannrar"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Flaggad av skannrar ({0})"
+msgstr[1] "Flaggad av skannrar ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatiskt godkända tillägg"
