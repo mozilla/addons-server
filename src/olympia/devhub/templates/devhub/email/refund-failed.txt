@@ -1,6 +1,0 @@
-{% trans %}
-A refund request from {{ name }} has failed. The error is:
-
-{{error}}
-
-{% endtrans %}

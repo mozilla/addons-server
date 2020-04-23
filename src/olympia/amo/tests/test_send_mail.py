@@ -183,8 +183,8 @@ class TestSendMail(TestCase):
     def test_send_html_mail_jinja(self):
         emails = ['omg@org.yes']
         subject = u'Mozilla Add-ons: Thank you for your submission!'
-        html_template = 'devhub/email/submission.html'
-        text_template = 'devhub/email/submission.txt'
+        html_template = 'devhub/emails/submission.html'
+        text_template = 'devhub/emails/submission.txt'
         send_html_mail_jinja(subject, html_template, text_template,
                              context={}, recipient_list=emails,
                              from_email=settings.ADDONS_EMAIL,

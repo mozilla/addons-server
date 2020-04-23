@@ -271,28 +271,26 @@ SECRET_KEY = env(
     'SECRET_KEY',
     default='this-is-a-dummy-key-and-its-overridden-for-prod-servers')
 
-# Templates
+# Templates configuration.
+# List of path patterns for which we should be using Django Template Language.
 JINJA_EXCLUDE_TEMPLATE_PATHS = (
+    # All emails should be processed with Django for consistency.
+    r'^.*\/emails\/',
+
+    # ^admin\/ covers most django admin templates, since their path should
+    # follow /admin/<app>/<model>/*
     r'^admin\/',
-    r'^users\/email',
-    r'^ratings\/emails',
-    r'^reviewers\/emails',
-    r'^amo\/emails',
-    r'^devhub\/email\/revoked-key-email.ltxt',
-    r'^devhub\/email\/new-key-email.ltxt',
-    r'^devhub\/email\/submission_api_key_revocation.txt',
-    r'^devhub\/email\/api_key_confirmation.ltxt',
-    r'^blocklist\/',
+
+    # Exception for admin stuff that doesn't follow admin/<app> convention.
     r'^addons\/admin\/',
 
-    # Django specific templates
-    r'^registration\/',
+    # Blocklist is also admin-only, but with custom paths & templates.
+    r'^blocklist\/',
 
-    # Third-party apps using django templates
-    r'^rangefilter\/',
-
-    # Django debug toolbar
+    # Third-party apps + django.
     r'debug_toolbar',
+    r'^rangefilter\/',
+    r'^registration\/',
 )
 
 TEMPLATES = [
