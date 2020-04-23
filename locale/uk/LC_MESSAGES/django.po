@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 21:40+0000\n"
+"PO-Revision-Date: 2020-04-23 21:48+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -981,7 +981,7 @@ msgid "Unlisted"
 msgstr "Не в списку"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "Власник"
@@ -3161,7 +3161,7 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "Для розробників"
@@ -3170,7 +3170,7 @@ msgid "For end users"
 msgstr ""
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 #, fuzzy
 msgid "Add-on Developers Mailing List"
@@ -3195,7 +3195,7 @@ msgid "Sign Up"
 msgstr "Вийти"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Дякуємо!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -5003,9 +5003,8 @@ msgstr "Різниця версії проти самої себе неможл�
 msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Для Firefox версії 47 і нижче GUID є обов'язковим."
+msgstr "ID додатка обов'язковий для Firefox 47 і старіших."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Найменша підтримувана \"strict_min_version\" - 42.0."
@@ -5522,9 +5521,8 @@ msgstr[0] "{0} день"
 msgstr[1] "{0} дні"
 msgstr[2] "{0} днів"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Остання перевірка"
@@ -6055,9 +6053,8 @@ msgstr "Метод:"
 msgid "Source:"
 msgstr "Джерело:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Джерело:"
+msgstr "URL-адреса джерела:"
 
 msgid "Dismiss this announcement"
 msgstr "Ігнорувати це оголошення"
