@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 18:42+0000\n"
+"PO-Revision-Date: 2020-04-23 18:43+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3205,9 +3205,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Ɣeṛ ugar ɣef tsertit n ucegger n tengalt aɣbalu."
+msgstr "Issin ugar ɣef terbaεt n unrflay"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Ad d-banen ɣef usmel-a deffir n ucegger n tengalt. Ileqman iwurmanen ttwasefraken deg usmel-agi."
@@ -3243,9 +3242,8 @@ msgstr "Ulac tawlaft"
 msgid "User Photo"
 msgstr "Tawlaft n useqdac"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Imeɣna yinu"
+msgstr "Amaɣnu"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
