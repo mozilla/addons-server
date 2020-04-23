@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 23:32+0000\n"
+"PO-Revision-Date: 2020-04-23 23:43+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3148,7 +3148,7 @@ msgid "Read more about the source code review policy."
 msgstr "Дізнайтеся більше про політику перевірки програмного коду."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Створюйте найкращі розширення та теми"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr "Незалежно від того, чи ви новачок у розробці розширень, оновлюєте чи переносите наявне розширення або тему, чи створюєте власний бізнес-інструмент, у нас є ресурси, які вам допоможуть."
@@ -4906,7 +4906,7 @@ msgstr "Дізнавайтеся прогноз погоди прямо брау
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Вилучайте куки, історію переглядів та кешовані файли лише одним натисканням."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
@@ -6530,7 +6530,7 @@ msgid "View the new site"
 msgstr "Відвідати новий сайт"
 
 msgid "Site Status"
-msgstr "Статус сайту "
+msgstr "Статус сайту"
 
 msgid "Report a bug"
 msgstr "Повідомити про помилку"
