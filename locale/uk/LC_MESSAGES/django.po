@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 23:13+0000\n"
+"PO-Revision-Date: 2020-04-23 23:18+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3151,13 +3151,13 @@ msgid "Build best-in-class extensions and themes"
 msgstr ""
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr "Незалежно від того, чи ви новачок у розробці розширень, оновлюєте чи переносите наявне розширення або тему, чи створюєте власний бізнес-інструмент, у нас є ресурси для допомоги вам."
+msgstr "Незалежно від того, чи ви новачок у розробці розширень, оновлюєте чи переносите наявне розширення або тему, чи створюєте власний бізнес-інструмент, у нас є ресурси, які вам допоможуть."
 
 msgid "Visit the Extension Workshop"
 msgstr "Відвідайте центр розробки розширень"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Зв'яжіться з нами"
 
 msgid "Twitter"
 msgstr "Twitter"
@@ -3166,7 +3166,7 @@ msgid "For developers"
 msgstr "Для розробників"
 
 msgid "For end users"
-msgstr ""
+msgstr "Для користувачів"
 
 msgid "Matrix"
 msgstr "Matrix"
