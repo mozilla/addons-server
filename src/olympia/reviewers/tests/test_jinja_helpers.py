@@ -16,12 +16,6 @@ from olympia.versions.models import Version
 pytestmark = pytest.mark.django_db
 
 
-def test_page_title_unicode():
-    t = Translation(localized_string=u'\u30de\u30eb\u30c1\u30d712\u30eb')
-    request = Mock()
-    request.APP = amo.FIREFOX
-
-
 class TestCompareLink(TestCase):
     fixtures = ['base/addon_3615']
 

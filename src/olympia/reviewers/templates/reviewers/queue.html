@@ -2,15 +2,15 @@
 
 {% block title %}
   {% if tab == "content_review" %}
-    Content Review – Add-ons for Firefox
+    {{ _('Content Review – Add-ons for Firefox') }}
   {% elif tab == "auto_approved" %}
-    Auto-approved Add-ons – Add-ons for Firefox
+    {{ _('Auto-approved Add-ons – Add-ons for Firefox') }}
   {% elif tab == "moderated" %}
-    Review Moderation – Add-ons for Firefox
+    {{ _('Review Moderation – Add-ons for Firefox') }}
   {% elif tab == "expired_info_requests" %}
-    Expired Information Requests – Add-ons for Firefox
+    {{ _('Expired Information Requests – Add-ons for Firefox') }}
   {% elif unlisted %}
-    Unlisted Add-ons – Add-ons for Firefox
+    {{ _('Unlisted Add-ons – Add-ons for Firefox') }}
   {% endif %}
 {% endblock %}
 

@@ -1,7 +1,7 @@
 {% extends "reviewers/base.html" %}
 
 {% block title %}
-  {{ page_title }} – {{ addon.name }} – Add-ons for Firefox
+  {{ _('{page_title} – {addon} – Add-ons for Firefox')|format_html(addon=addon.name) }}
 {% endblock %}
 
 {% block content %}
