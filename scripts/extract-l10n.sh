@@ -8,10 +8,10 @@
 #   - Update your code
 #   - Extract new strings and push to the .po files
 #
-# If you're running the script manually please make sure to expose
+# For the fully automated experience make sure to expose
 # the following variables to the environment:
 #   - GITHUB_TOKEN (to the github token of addons-robot,
-#                   talk to tofumatt or cgrebs)
+#                   talk to @diox or @muffinresearch)
 #   - TRAVIS_REPO_SLUG="mozilla/addons-server"
 #   - TRAVIS_BRANCH="master"
 
@@ -72,9 +72,11 @@ function extract_locales {
     echo "done."
 }
 
-
-function commit_and_push {
+function git_commit {
     git commit -m "$MESSAGE" --author "$ROBOT_NAME <$ROBOT_EMAIL>" --no-gpg-sign locale/*/LC_MESSAGES/*.po locale/templates/
+}
+
+function git_push {
     git push -q "https://addons-robot:$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG/"
 }
 
@@ -98,21 +100,23 @@ function create_auto_pull_request {
     echo "auto merge pull request is created ..."
 }
 
-if [ "$TRAVIS_BRANCH" != "master" ]; then
-  echo "This commit was made against the $TRAVIS_BRANCH and not the master! No extract!"
-  exit 0
-fi
-
-if [ "GITHUB_TOKEN" == "" ]
-then
-    echo "Must provide github token"
-    exit 0
-fi
-
 init_environment
 
 extract_locales
 
-commit_and_push
+git_commit
 
-create_auto_pull_request
+if [ "GITHUB_TOKEN" = "" ]
+then
+    echo "No Github token provided, you'll have to push the branch and create the pull request yourself."
+else
+    if [ "$TRAVIS_BRANCH" != "master" ]; then
+      echo "This commit was made against the $TRAVIS_BRANCH and not the master! No extract!"
+      exit 0
+    fi
+    git_push
+
+    create_auto_pull_request
+fi
+
+
