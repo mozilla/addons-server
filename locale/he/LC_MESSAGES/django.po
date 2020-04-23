@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 16:32+0000\n"
+"PO-Revision-Date: 2020-04-23 16:40+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -872,26 +872,22 @@ msgid "Information request removed"
 msgstr "הבקשה למידע הוסרה"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "נשלחה בקשה לסקירת מנהל עבור {addon} {version}."
+msgstr "נשלחה בקשה לסקירת תוספת על־ידי מנהל עבור {addon} {version}."
 
 msgid "Admin add-on-review requested"
-msgstr "נשלחה בקשה לסקירת מנהל"
+msgstr "נשלחה בקשה לסקירת תוספת על־ידי מנהל"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "נשלחה בקשה לסקירה עבור {addon} {version}."
+msgstr "נשלחה בקשה לסקירת תוכן על־ידי מנהל עבור {addon} {version}."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "נשלחה בקשה לסקירת־על"
+msgstr "נשלחה בקשה לסקירת תוכן על־ידי מנהל"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "נשלחה בקשה לסקירה עבור {addon} {version}."
+msgstr "נשלחה בקשה לסקירת ערכת נושא על־ידי מנהל עבור {addon} {version}."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "נוספה בקשה לסקירה"
+msgstr "נשלחה בקשה לסקירת ערכת נושא על־ידי מנהל"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
