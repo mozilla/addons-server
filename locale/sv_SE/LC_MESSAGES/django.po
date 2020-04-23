@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 20:21+0000\n"
+"PO-Revision-Date: 2020-04-23 20:22+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -3268,9 +3268,8 @@ msgstr "Användarfoto"
 msgid "Profile"
 msgstr "Profil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Skicka in en ny version"
+msgstr "Skicka eller hantera tillägg"
 
 msgid "Customize Firefox"
 msgstr "Anpassa Firefox"
@@ -5543,20 +5542,17 @@ msgstr "Avvisa flera versioner"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Detta kommer att avvisa de valda publika versionerna. Kommentarerna kommer att skickas till utvecklaren."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Avvisa flera versioner"
+msgstr "Blockera dubbla versioner"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Avvisa flera versioner"
+msgstr "Bekräfta dubbla versioner"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Detta registrerar ditt godkännande av innehållet i den senaste offentliga versionen utan att meddela utvecklaren."
+msgstr "Detta kommer att bekräfta godkännande av de valda versionerna utan att meddela utvecklaren."
 
 msgid "Reviewer reply"
 msgstr "Granskarsvar"
