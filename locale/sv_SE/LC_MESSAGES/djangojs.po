@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2019-10-20 07:42+0000\n"
+"PO-Revision-Date: 2020-04-23 21:19+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -118,13 +118,12 @@ msgstr "Checklista för att skicka in tillägg"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Vänligen kontrollera följande punkter innan du slutför ditt bidrag. Detta kommer att minimera förseningar eller missförstånd under granskningsprocessen:"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Kompilerade binärfiler, liksom minifierad eller förvrängda skript (exklusive kända bibliotek) måste skicka in sina källor separat för granskning. Se till att du använder uppladdningsfältet för "
-"källkoden för att undvika att ditt bidrag avvisas."
+"Minifierade, sammanlänkade eller på annat sätt maskingenererade skript (exklusive kända bibliotek) måste lämna sina källor separat för granskning. Se till att du använder fältet för uppladdning av "
+"källkod för att undvika att din inlämning avvisas."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Valideringsprocessen hittade dessa problem som kan leda till avslag:"

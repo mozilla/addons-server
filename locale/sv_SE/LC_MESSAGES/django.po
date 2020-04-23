@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 21:12+0000\n"
+"PO-Revision-Date: 2020-04-23 21:19+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -5912,7 +5912,7 @@ msgid "Previously deleted entries"
 msgstr "Tidigare borttagna poster"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Detta är en rekommenderad utökning."
 
 msgid "You don't have permission to review it."
 msgstr "Du har inte behörighet att granska det."
@@ -5966,7 +5966,7 @@ msgid "Block add-on"
 msgstr "Blockera tillägg"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Uppdatera tilläggsblockering"
 
 msgid "Disable Listed Auto-Approval"
 msgstr "Inaktivera listad automatisk godkännande"
@@ -6023,7 +6023,7 @@ msgid "No reviews found for this period."
 msgstr "Inga granskningar funna för denna period."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Ursprung:"
 
 msgid "Method:"
 msgstr "Metod:"
@@ -6060,7 +6060,7 @@ msgid "Newer"
 msgstr "Nyare"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} versioner som flaggas av skannrar på andra sidor."
 
 msgid "Recent Points"
 msgstr "Senaste poäng"
@@ -6111,7 +6111,7 @@ msgid "Weight:"
 msgstr "Vikt:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Flaggad av automatiska skannrar"
 
 msgid "Download"
 msgstr "Hämta"
@@ -6153,13 +6153,13 @@ msgstr[0] "Upphörd informationsbegäran ({0})"
 msgstr[1] "Upphörd informationsbegäran ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "närvaro av matchade regler"
 
 msgid "result state"
 msgstr "resultattillstånd"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "alla utom denna regel"
 
 msgid "presence of a version"
 msgstr "närvaro av en version"
@@ -6180,38 +6180,38 @@ msgid "file signature"
 msgstr "filsignatur"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Det här är det exakta namnet på den regel som används av en skanner."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Om det inte är markerat kommer skannerresultaten inte att vara bundna till denna regel och åtgärden kommer inte att genomföras."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara-reglerna bör ha en definition"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Namnet på regeln i definitionen ska matcha namnet på skannerregeln"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Endast en Yara-regel är tillåten i definitionen"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definitionen är inte giltig: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Ett fel inträffade vid kompilering av definitionen"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Kör denna regel på tillägg som också har tvingats inaktiveras."
 
 msgid "Abort"
-msgstr ""
+msgstr "Avbryt"
 
 msgid "Run"
-msgstr ""
+msgstr "Kör"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Användbart när skannerresultatet är en sann positiv men tillägget är inte skadligt"
 
 msgid "Revert report"
 msgstr "Återställ rapport"
@@ -6732,6 +6732,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"Följande författare har lagts till i ditt tillägg %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6749,6 +6752,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team\n"
 msgstr ""
+"Hälsningar %(author_name)s,\n"
+"\n"
+"Du har blivit inbjuden att bli författare till %(addon_name)s på %(domain)s Att acceptera inbjudan ger dig tillgång till redigering av tillägget och kan visa ditt namn i författarlistan på webbplatsen.\n"
+"\n"
+"Klicka på länken nedan för att svara om du vill läggas till som författare för %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Om du inte förväntade dig att få denna inbjudan, skicka ett e-postmeddelande till amo-admins@mozilla.com.\n"
+"\n"
+"Vänliga Hälsningar,\n"
+"Mozilla tilläggsteam"
 
 #, python-format
 msgid ""
@@ -6757,6 +6772,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"Följande författare har ändrats för ditt tillägg %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6765,6 +6783,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )\n"
 msgstr ""
+"Följande författare har tagits bort från tillägg %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
