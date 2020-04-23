@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-buster-nodesource-repo /etc/apt/sources.list.d/nodesource.list
-ADD docker/debian-buster-repo /etc/apt/sources.list.d/buster.list
 ADD docker/debian-buster-backports-repo /etc/apt/sources.list.d/buster-backports.list
 
 # IMPORTANT: When editing this list below, make sure to also update
