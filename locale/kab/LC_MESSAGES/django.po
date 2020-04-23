@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 17:49+0000\n"
+"PO-Revision-Date: 2020-04-23 17:56+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -922,9 +922,8 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Awennez n tsarut API n useqdac {user}."
+msgstr "Awennez n tɣimit (tɣimiyin) n useqdac {user}."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
