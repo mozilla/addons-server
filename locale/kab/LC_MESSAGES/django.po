@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 19:42+0000\n"
+"PO-Revision-Date: 2020-04-23 19:52+0000\n"
 "Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -545,9 +545,8 @@ msgstr "Leqqem"
 msgid "Reject Submission"
 msgstr "Ddu ar isumar inu"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Ddu ar isumar inu"
+msgstr "Qbel tuzna"
 
 #, python-format
 msgid "Add %(name)s"
@@ -3118,10 +3117,10 @@ msgid "For developers"
 msgstr "Aneflay"
 
 msgid "For end users"
-msgstr ""
+msgstr "I yiseqdacen n taggara"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 #, fuzzy
 msgid "Add-on Developers Mailing List"
@@ -3145,7 +3144,7 @@ msgid "Sign Up"
 msgstr "Ffeγ"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Tanemmirt!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3200,7 +3199,7 @@ msgid "See how"
 msgstr "Ẓer amek"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Ttekki"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -3257,7 +3256,7 @@ msgid "Learn how to make an extension"
 msgstr "Issin amek ara tesniflid azegrir"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Twejdeḍ ad tazneḍ neɣ ad tesferkeḍ isiɣzaf-ik?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
