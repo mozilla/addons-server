@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 18:06+0000\n"
+"PO-Revision-Date: 2020-04-23 18:14+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1532,9 +1532,8 @@ msgstr "Ulac tigawt"
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "RmeSens aqbal awurman"
+msgstr "Asεeṭṭel n uqbal awurman"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -1548,7 +1547,6 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
 msgstr "Amaynut"
 
@@ -1561,9 +1559,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Arummid"
+msgstr "Immed"
 
 msgid "Scheduled"
 msgstr ""
