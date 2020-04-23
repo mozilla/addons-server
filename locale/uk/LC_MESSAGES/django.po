@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 20:34+0000\n"
+"PO-Revision-Date: 2020-04-23 21:12+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -519,13 +519,12 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Відхилити кілька версій"
+msgstr "Видалити кілька %(name)s"
 
-#, fuzzy
 msgid "Home"
-msgstr "Домашня сторінка"
+msgstr "Домівка"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -550,13 +549,11 @@ msgstr "Вилучити"
 msgid "Update"
 msgstr "Оновити"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Перейти в мої подання"
+msgstr "Відхилити подання"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Перейти в мої подання"
+msgstr "Затвердити подання"
 
 #, python-format
 msgid "Add %(name)s"
@@ -565,9 +562,8 @@ msgstr "Додати %(name)s"
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "Надіслати версію"
+msgstr "Подати"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
@@ -580,9 +576,8 @@ msgstr "Користувачів"
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
-msgstr "Версії"
+msgstr "версії"
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -929,9 +924,8 @@ msgstr "Додаток видалений."
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} вилучено з {collection}."
+msgstr "GUID для {addon} вилучено з DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -998,9 +992,8 @@ msgstr "Розробник"
 msgid "Extension"
 msgstr "Розширення"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Оновлена перевірка повної теми"
+msgstr "Застаріла повна тема"
 
 msgid "Dictionary"
 msgstr "Словник"
@@ -1026,9 +1019,8 @@ msgstr "Тема (Статична)"
 msgid "Extensions"
 msgstr "Розширення"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Повні теми"
+msgstr "Застарілі повні теми"
 
 msgid "Dictionaries"
 msgstr "Словники"
@@ -1556,9 +1548,8 @@ msgstr "Низька якість, витягнуте чи пусте зобра
 msgid "Header image alignment problem"
 msgstr "Проблема розташування зображення в заголовку"
 
-#, fuzzy
 msgid "No action"
-msgstr "Додаткові дії"
+msgstr "Немає дії"
 
 msgid "Flag for human review"
 msgstr ""
@@ -2425,11 +2416,8 @@ msgstr "Оберіть піктограму для вашого додатка:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
-"Використовується у списках додатків, таких як\n"
-"                            результати пошуку та популярні додатки."
+msgstr "Використовується у переліках додатків, таких як результати пошуку."
 
 #. The size of the icon
 msgid "64x64px"
