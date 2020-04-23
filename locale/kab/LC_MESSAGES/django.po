@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 17:56+0000\n"
+"PO-Revision-Date: 2020-04-23 18:06+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -980,9 +980,8 @@ msgstr "Aneflay"
 msgid "Extension"
 msgstr "Asiɣzef"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Acegger n usentel yemden yettwaleqmen"
+msgstr "Asentel yemmden yezri"
 
 msgid "Dictionary"
 msgstr "Amawal"
@@ -1008,7 +1007,6 @@ msgstr "Asentel (Static)"
 msgid "Extensions"
 msgstr "Isiɣzaf"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
 msgstr "Isental yemden"
 
@@ -1528,9 +1526,8 @@ msgstr "Tugna tilemt, n yir taɣara neɣ ur nemɛin ara"
 msgid "Header image alignment problem"
 msgstr "Ugur deg ureyyec n tugna n uqeṛṛu"
 
-#, fuzzy
 msgid "No action"
-msgstr "Ugar n tigawin"
+msgstr "Ulac tigawt"
 
 msgid "Flag for human review"
 msgstr ""
