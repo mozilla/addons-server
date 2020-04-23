@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 18:23+0000\n"
+"PO-Revision-Date: 2020-04-23 18:33+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -2463,9 +2463,8 @@ msgstr "PNG und JPG werden unterstützt, PNG empfohlen. Die maximale und empfohl
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Die minimale Größe beträgt 1000 × 750, und ein Verhältnis von 4: 3 ist erforderlich."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Durch Bildschirmfotos auf Ihrer Produktseite steigen die Chancen, dass Ihr Add-on installiert und auf der Startseite vorgestellt wird, erheblich."
+msgstr "Durch Bildschirmfotos auf Ihrer Produktseite steigen die Chancen, dass Ihr Add-on installiert wird, erheblich."
 
 msgid "Continue"
 msgstr "Weiter"
@@ -2726,21 +2725,18 @@ msgstr "Ihr Listeneintrag wird erfolgreicher sein, wenn Sie eine detaillierte Be
 msgid "Manage Listing"
 msgstr "Listeneintrag verwalten"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr ""
-"Sie können die gerade eingereichte Version auch bearbeiten, um Versionshinweise oder Quelltext hinzuzufügen, wenn Ihre Einreichung minifizierten, verschleierten oder kompilierten Quelltext enthält."
+"Sie können diese Version auch bearbeiten, um Versionshinweise oder Quelltext hinzuzufügen, wenn Ihre Einreichung minifizierten, verkürzten oder anderweitig maschinengenerierten Quelltext enthält."
 
 msgid "Edit version {0}"
 msgstr "Version bearbeiten {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Version signiert"
+msgstr "Versionssignierung ausstehend"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Fertig! Diese Version ist verfügbar, sobald sie erfolgreich überprüft wurde. Nach der Überprüfung werden Sie benachrichtigt."
+msgstr "Fertig! Diese Version wird in Kürze für die Selbstverteilung signiert. Sie werden per E-Mail benachrichtigt, wenn die signierte Datei zum Download bereitsteht."
 
 msgid "Go to My Submissions"
 msgstr "Meine Einreichungen ansehen"
@@ -2799,11 +2795,10 @@ msgstr ""
 "Details (inklusive erforderliche Version und Installationsanleitung) aller Programme, die beim Build-Prozess benötigt werden (beispielsweise verwendete Version von <span class=\"tech-"
 "emphasis\">node</span> und <span class=\"tech-emphasis\">npm</span>)."
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">Hinweis:</span> Quelltext-Dateien (außer externen Open-Source-Bibliotheken) dürfen nicht querübersetzt, verschleiert, minifiziert oder anderweitig "
-"maschinengeneriert sein."
+"<span class=\"instruction-emphasis\">Hinweis:</span> Quelltext-Dateien (außer externen Open-Source-Bibliotheken) dürfen nicht querübersetzt, verkürzt, minifiziert oder anderweitig maschinengeneriert"
+" sein."
 
 msgid "How to Submit:"
 msgstr "Anleitung zum Übermitteln:"
@@ -3135,9 +3130,8 @@ msgstr ""
 "Wenn Ihr Add-on Daten vom Computer des Benutzers überträgt, muss eine Datenschutzerklärung angegeben werden, die die gesendeten Daten und deren Verwendung beschreibt. Dies ist nur für gelistete Add-"
 "ons wichtig."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Wenn Ihr Add-on binären oder verschleierten Quelltext enthält, der nicht zu bekannten Bibliotheken gehört, laden Sie seinen Quelltext zur Überprüfung hoch."
+msgstr "Wenn Ihr Add-on minifizierten, verkürzten oder anderweitig maschinengenerierten Quelltext enthält, der nicht zu bekannten Bibliotheken gehört, laden Sie seinen Quelltext zur Überprüfung hoch."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Bitte geben Sie an, wie man die endgültige Add-on-Datei reproduzieren kann, entweder über eine LIESMICH-Datei oder über die Anmerkungen für Kontrolleure zu dieser Version."
@@ -3152,9 +3146,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Erweiterungs-Workshop"
+msgstr "Besuchen Sie den Erweiterungsworkshop"
 
 msgid "Connect with us"
 msgstr ""
@@ -3162,9 +3155,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "Entwickler"
+msgstr "Für Entwickler"
 
 msgid "For end users"
 msgstr ""
@@ -3173,28 +3165,24 @@ msgid "Matrix"
 msgstr ""
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Add-on-Entwicklerzentrum"
+msgstr "Mailingliste für Add-on-Entwickler"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Erweiterungsentwicklung"
+msgstr "Newsletter für Erweiterungsentwickler"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP-Adresse"
+msgstr "E-Mail-Adresse"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Abmelden"
+msgstr "Registrieren"
 
 msgid "Thanks!"
 msgstr ""
@@ -3205,9 +3193,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Quellen"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions-API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: Erweiterungen entwickeln & testen"
@@ -3257,9 +3244,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Lesen Sie mehr über unsere Überprüfungsregeln für Quelltext."
+msgstr "Erfahren Sie mehr über die Entwicklergemeinschaft"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Wird nach bestandener Quelltextüberprüfung auf dieser Website gelistet. Automatische Updates werden von dieser Website verwaltet."
@@ -3297,20 +3283,17 @@ msgstr "Kein Foto"
 msgid "User Photo"
 msgstr "Benutzerbild"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Mein Profil"
+msgstr "Profil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Eine neue Version übermitteln"
+msgstr "Erweiterungen einsenden oder verwalten"
 
 msgid "Customize Firefox"
 msgstr "Firefox anpassen"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Erfahren Sie, wie man ein Add-on entwickelt"
+msgstr "Erfahren Sie, wie man eine Erweiterung entwickelt"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -3354,9 +3337,8 @@ msgstr "Optional können Sie auch andere Informationen eintragen, die für den P
 msgid "Source code"
 msgstr "Quelltext"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Wenn Ihr Add-on binären oder verschleierten Quelltext enthält, stellen Sie den Quelltext hier für die Kontrolleure zur Verfügung."
+msgstr "Wenn Ihr Add-on minifizierten, verkürzten oder anderweitig maschinengenerierten Quelltext enthält, stellen Sie den Quelltext hier für die Kontrolleure zur Verfügung."
 
 msgid "File {file_id} ({platform})"
 msgstr "Datei {file_id} ({platform})"
@@ -3732,9 +3714,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Passen Sie Mausgesten an {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Anpassbare Mausgesten. Entdecken Sie mit über 50 hilfreichen Mausgesten neue Wege der Navigation."
+msgstr "Anpassbare Mausgesten. Entdecken Sie mit über 50 hilfreichen Einstellungen neue Wege der Navigation."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3998,9 +3979,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dynamische Navigation {start_sub_heading}mit {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Verwenden Sie Mausgesten, um Tabs zu schließen, zur vorherigen Seite zu gehen, Seiten neu zu laden und mehr."
+msgstr "Verwenden Sie Mausgesten, um Tabs zu schließen, durch Seiten zu navigieren und vieles mehr."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4917,9 +4897,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Sofortige Wetternachrichten aus der ganzen Welt."
+msgstr "Holen Sie sich Wetter-Updates direkt im Browser."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4942,14 +4921,12 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Speichern Sie vollständige Seiten oder Teile davon in einer HTML-Datei."
+msgstr "Speichern Sie eine gesamte Webseite – einschließlich Grafiken und Stil – als einzelne HTML-Datei."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Löschen Sie Cookies automatisch nach dem Schließen eines Tabs."
+msgstr "Ersetzen Sie abfällige Wörter im Web automatisch."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -5022,9 +4999,8 @@ msgstr "Eine Version kann nicht mit sich selbst verglichen werden"
 msgid "Could not parse the manifest file."
 msgstr "Manifest-Datei konnte nicht verarbeitet werden."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID wird für Firefox 47 und höher benötigt."
+msgstr "Add-on-ID wird für Firefox 47 und höher benötigt."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Niedrigste unterstützte „strict_min_version“ ist 42.0."
@@ -5087,9 +5063,9 @@ msgstr "Maximale Größe für WebExtension-Themes ist {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Sie können kein Add-on dieses Typs einreichen"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Sie können kein Add-on einreichen, dessen GUID auf „%s“ endet"
+msgstr "Sie können kein Add-on einreichen, dessen ID auf „%s“ endet"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Sie können eine signierte Mozilla-Erweiterung nicht übermitteln"
@@ -5485,9 +5461,8 @@ msgstr ""
 msgid "Is locked by a reviewer"
 msgstr "Wurde von einem Überprüfer gesperrt"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Markierung „automatische Freischaltung deaktiviert“ ist gesetzt"
+msgstr "Markierung „automatische Freischaltung deaktiviert/verzögert“ ist gesetzt"
 
 msgid "Is recommendable"
 msgstr "Ist empfohlen"
@@ -5501,9 +5476,8 @@ msgstr "Risikoaufschlüsselung nicht verfügbar."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Sie können keinen Kommentar abgeben, wenn „canned_response“ definiert ist."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Sie können kein Sprachpaket einreichen"
+msgstr "Sie können keinen leeren Kommentar abgeben."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5538,9 +5512,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} Tag"
 msgstr[1] "{0} Tage"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Letzte Überprüfung"
@@ -5554,13 +5527,11 @@ msgstr "Termin für Informationsanforderung"
 msgid "Last Updated"
 msgstr "Zuletzt aktualisiert"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Andere ausstehende Überprüfung ({0})"
+msgstr "Gelistete Versionen, die einer menschlichen Überprüfung bedürfen ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Andere ausstehende Überprüfung ({0})"
+msgstr "Nicht gelistete Versionen, die einer menschlichen Überprüfung bedürfen ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Dadurch wird diese Version freigeschaltet, signiert und veröffentlicht. Die Kommentare werden an den Entwickler geschickt."
@@ -5586,20 +5557,17 @@ msgstr "Mehrere Versionen ablehnen"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Dadurch werden die gewählten öffentlichen Versionen abgelehnt. Die Kommentare werden an den Entwickler geschickt."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Mehrere Versionen ablehnen"
+msgstr "Mehrere Versionen sperren"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Mehrere Versionen ablehnen"
+msgstr "Mehrere Versionen bestätigen"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Dadurch wird Ihre Zustimmung zum Inhalt der neuesten öffentlichen Version aufgezeichnet, der Entwickler wird darüber nicht informiert."
+msgstr "Dadurch wird die Freischaltung der ausgewählten Versionen bestätigt, ohne dass der Entwickler benachrichtigt wird."
 
 msgid "Reviewer reply"
 msgstr "Überprüferantwort"
@@ -5786,9 +5754,8 @@ msgstr "Bildergalerie"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Hier gibt es nichts zu sehen! Der Entwickler hat keine Details angegeben."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "nach Add-on-Version"
+msgstr "Übersetzungen des Add-on-Namens"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Zurück zur Übersicht der Werkzeuge für Kontrolleure"
@@ -5943,9 +5910,8 @@ msgstr "Zuvor gelöschte Einträge"
 msgid "This is a recommended extension."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Sie haben keine API-Daten."
+msgstr "Sie haben keine Berechtigung, dies zu überprüfen."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Bitte wählen Sie aus obiger Liste eine oder mehrere Versionen."
@@ -5977,13 +5943,11 @@ msgstr "Weitere Aktionen"
 msgid "Notify me about new listed versions"
 msgstr "Mich über neue gelistete Versionen benachrichtigen"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Alle Einreichungen anzeigen"
+msgstr "Wiedervorlage zulassen"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Meine Einreichungen verwalten"
+msgstr "Wiedervorlage verweigern"
 
 msgid "Force-disable add-on"
 msgstr "Add-on zwangsweise deaktivieren"
@@ -5991,32 +5955,26 @@ msgstr "Add-on zwangsweise deaktivieren"
 msgid "Force-enable add-on"
 msgstr "Add-on zwangsweise aktivieren"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Alle Einreichungen anzeigen"
+msgstr "Einreichung für Sperrliste anzeigen"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Zurück zum Add-on"
+msgstr "Add-on sperren"
 
 msgid "Update add-on block"
 msgstr ""
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Automatische Freischaltung deaktivieren"
+msgstr "Automatische Freischaltung gelisteter Add-ons deaktivieren"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Automatische Freischaltung aktivieren"
+msgstr "Automatische Freischaltung gelisteter Add-ons aktivieren"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Markierung „automatische Freischaltung deaktiviert“ ist gesetzt"
+msgstr "Die automatische Freischaltung ist derzeit bis zum {date} deaktiviert"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Automatische Freischaltung aktivieren"
+msgstr "Zusätzliche Verzögerung für automatische Freischaltung entfernen"
 
 msgid "Clear information request"
 msgstr "Informationsanforderung löschen"
@@ -6069,9 +6027,8 @@ msgstr "Methode:"
 msgid "Source:"
 msgstr "Quelle:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Quelle:"
+msgstr "Quell-URL:"
 
 msgid "Dismiss this announcement"
 msgstr "Diese Ankündigung verwerfen"
@@ -6194,36 +6151,29 @@ msgstr[1] "Abgelaufene Infoanforderungen ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Erste Schritte"
+msgstr "Ergebniszustand"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Vorschau der gelisteten Version"
+msgstr "Vorhandensein einer Version"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Version signiert"
+msgstr "Versionskanal"
 
-#, fuzzy
 msgid "add-on status"
 msgstr "Add-on-Status"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Sichtbarkeit des Listeneintrags"
+msgstr "Sichtbarkeit des Add-on-Listeneintrags"
 
-#, fuzzy
 msgid "file status"
-msgstr "Status der Website"
+msgstr "Dateistatus"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} wurde signiert."
+msgstr "Dateisignatur"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6259,9 +6209,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Überprüferantwort"
+msgstr "Bericht zurücksetzen"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6287,9 +6236,8 @@ msgstr "Ungültige Kombination der Parameter „%s“, „%s“ und „%s“."
 msgid "Maximum query length exceeded."
 msgstr "Maximale Anfragenlänge überschritten."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Es wurde kein Add-on mit der GUID „{}“ gefunden."
+msgstr "Es wurde kein Add-on mit der ID „{}“ gefunden."
 
 msgid "You do not own this addon."
 msgstr "Sie sind nicht der Besitzer dieses Add-ons."
@@ -6308,21 +6256,17 @@ msgstr "Version passt nicht zur Manifest-Datei."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Version existiert bereits. Neueste Version ist: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Nur WebExtensions dürfen auf die GUID verzichten"
+msgstr "Nur WebExtensions dürfen auf die Add-on-ID verzichten"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Bitte geben Sie die GUID Ihres Add-ons im Manifest an, wenn sie länger als 64 Zeichen ist."
+msgstr "Bitte geben Sie die DD Ihres Add-ons im Manifest an, wenn sie länger als 64 Zeichen ist."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Ungültige GUID in URL"
+msgstr "Ungültige Add-on-ID in URL oder Paket"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Zu einem Add-on im Status %s können keine neuen Versionen hinzugefügt werden."
+msgstr "Zu einem Add-on im Status „unsichtbar“ können keine neuen gelisteten Versionen hinzugefügt werden."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Sie können diesem Add-on aufgrund fehlender Metadaten über die API keine neue Version hinzufügen. Bitte übermitteln Sie diese über die Website."
