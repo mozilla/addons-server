@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 16:22+0000\n"
+"PO-Revision-Date: 2020-04-23 16:57+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -511,11 +511,10 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Aggwi aṭas n ilqman"
+msgstr "Kkes aṭas %(name)s"
 
-#, fuzzy
 msgid "Home"
 msgstr "Asebter agejdan"
 
@@ -557,22 +556,19 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "Azen lqem"
+msgstr "Azen"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
 msgstr "Iseqdacen"
 
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
 msgstr "Ileqman"
 
