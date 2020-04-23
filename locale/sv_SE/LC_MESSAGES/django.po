@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 19:05+0000\n"
+"PO-Revision-Date: 2020-04-23 19:12+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -909,25 +909,22 @@ msgid "Block deleted"
 msgstr "Block raderat"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID för {addon} tillagd i DeniedGuid."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} togs bort från {collection}."
+msgstr "GUID för {addon} tas bort från DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Block {1} åtgärd för {0} godkänd."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Blockåtgärd godkänd"
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Användare {user} återställning api-nyckel."
+msgstr "Användare {user} sessionsåterställning."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Användare {user} redigerad, orsak: {1}"
+msgstr "Användare {user} stängde av för omfattningen \"{0}\""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -969,7 +966,7 @@ msgid "Unlisted"
 msgstr "Olistad"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "Ägare"
@@ -980,9 +977,8 @@ msgstr "Utvecklare"
 msgid "Extension"
 msgstr "Utökning"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Uppdaterad komplett temagranskning"
+msgstr "Inaktuellt komplett tema"
 
 msgid "Dictionary"
 msgstr "Ordlista"
@@ -1008,9 +1004,8 @@ msgstr "Tema (Statisk)"
 msgid "Extensions"
 msgstr "Utökningar"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Kompletta teman"
+msgstr "Inaktuella kompletta teman"
 
 msgid "Dictionaries"
 msgstr "Ordlistor"
@@ -1527,9 +1522,8 @@ msgstr "Låg kvalitet, sträckt eller tom bild"
 msgid "Header image alignment problem"
 msgstr "Problem med sidhuvudets bildjustering"
 
-#, fuzzy
 msgid "No action"
-msgstr "Fler åtgärder"
+msgstr "Ingen åtgärd"
 
 msgid "Flag for human review"
 msgstr ""
