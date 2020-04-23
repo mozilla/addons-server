@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 17:51+0000\n"
+"PO-Revision-Date: 2020-04-23 18:01+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5991,9 +5991,8 @@ msgstr "רשומות שנמחקו בעבר"
 msgid "This is a recommended extension."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "אין לך פרטי גישה כלשהם ל־API."
+msgstr "אין לך הרשאה לסקור את זה."
 
 msgid "Please select one or more versions in the list above."
 msgstr "נא לבחור בגרסה אחת או יותר מהרשימה שלמעלה."
@@ -6025,13 +6024,11 @@ msgstr "פעולות נוספות"
 msgid "Notify me about new listed versions"
 msgstr "להודיע לי על גרסאות חדשות שמפורסמות"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "צפייה בכל ההגשות"
+msgstr "לאפשר הגשה מחודשת"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "ניהול ההגשות שלי"
+msgstr "לדחות הגשה מחודשת"
 
 msgid "Force-disable add-on"
 msgstr "אילוץ נטרול התוספת"
@@ -6039,13 +6036,11 @@ msgstr "אילוץ נטרול התוספת"
 msgid "Force-enable add-on"
 msgstr "אילוץ הפעלת התוספת"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "צפייה בכל ההגשות"
+msgstr "הצגת הגשות של רשימת חסימה"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "חזרה לתוספת"
+msgstr "חסימת תוספת"
 
 msgid "Update add-on block"
 msgstr ""
@@ -6116,9 +6111,8 @@ msgstr ""
 msgid "Source:"
 msgstr "מקור:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "מקור:"
+msgstr "כתובת מקור:"
 
 msgid "Dismiss this announcement"
 msgstr "התעלמות מהכרזה זו"
@@ -6249,36 +6243,31 @@ msgstr[1] "בקשות מידע שפג תוקפן ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "תחילת עבודה"
+msgstr "מצב תוצאה"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "תצוגה מקדימה של גרסה מוצגת"
+msgstr "נוכחות של גרסה"
 
 #, fuzzy
 msgid "version channel"
 msgstr "הגרסה נחתמה"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "מצב תוספות"
+msgstr "מצב התוספת"
 
 #, fuzzy
 msgid "add-on listing visibility"
 msgstr "הצגת הרשומה"
 
-#, fuzzy
 msgid "file status"
-msgstr "מצב האתר"
+msgstr "מצב הקובץ"
 
-#, fuzzy
 msgid "file signature"
-msgstr "הקובץ {file} נחתם."
+msgstr "חתימת הקובץ"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6342,9 +6331,8 @@ msgstr "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
 msgid "Maximum query length exceeded."
 msgstr "חרגת מאורך השאילתה המרבי."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "לא ניתן למצוא תוספת עם ה־guid ״{}״."
+msgstr "לא ניתן למצוא תוספת עם המזהה \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "אינך הבעלים של תוספת זו."
@@ -6363,9 +6351,8 @@ msgstr ""
 msgid "Version already exists. Latest version is: %s."
 msgstr "הגרסה כבר קיימת. הגרסה העדכנית ביותר היא: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "רק WebExtensions מורשים להשמיט את ה־GUID"
+msgstr "רק WebExtensions מורשים להשמיט את מזהה התוספת"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
@@ -6373,9 +6360,8 @@ msgstr ""
 msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "לא ניתן להוסיף גרסאות לתוספת שנמצאת במצב: %s."
+msgstr "לא ניתן להוסיף גרסאות מוצגות לתוספת המוגדרת במצב \"בלתי נראה\"."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "לא ניתן להוסיף גרסה של התוספת הזו לרשימה דרך ה־API עקב נתוני על לוקים בחסר. נא לשלוח דרך האתר"
@@ -6720,9 +6706,8 @@ msgstr "הגבלת משתמשים נבחרים"
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr ""
 
-#, fuzzy
 msgid "Reset session"
-msgstr "מחיקת גרסה"
+msgstr "איפוס הפעלה"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6789,9 +6774,8 @@ msgid ""
 " which explains how we handle your information."
 msgstr "לפני שנתחיל, נא לקרוא ולאשר את הסכם הפצת התוספות של Firefox כמו גם הכללים והמדיניות שלנו לסקירה. הסכם הפצת התוספות של Firefox מקשר גם אל הצהרת הפרטיות שלנו שמסבירה איך אנחנו מטפלים במידע שלך."
 
-#, fuzzy
 msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "לפני שנתחיל, נא לקרוא ולאשר את הסכם הפצת התוספות של Firefox כמו גם הכללים והמדיניות שלנו לסקירה. הסכם הפצת התוספות של Firefox מקשר גם אל הצהרת הפרטיות שלנו שמסבירה איך אנחנו מטפלים במידע שלך."
+msgstr "נא לקרוא ולאשר את הסכם הפצת התוספות של Firefox כמו גם הכללים והמדיניות שלנו לסקירה על־ידי ביקור בכתובת {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "מפתח תוספת מגיב לסקירה שלי"
@@ -6823,9 +6807,8 @@ msgstr "התראות משתמש"
 msgid "Ban"
 msgstr "הגבלה"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "מחיקת גרסה"
+msgstr "איפוס הפעלות"
 
 # 80%
 # 100%
