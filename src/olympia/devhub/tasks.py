@@ -687,8 +687,8 @@ def send_welcome_email(addon_pk, emails, context, **kw):
     subject = (
         u'Mozilla Add-ons: %s has been submitted to addons.mozilla.org!' %
         context.get('addon_name', 'Your add-on'))
-    html_template = 'devhub/email/submission.html'
-    text_template = 'devhub/email/submission.txt'
+    html_template = 'devhub/emails/submission.html'
+    text_template = 'devhub/emails/submission.txt'
     return send_html_mail_jinja(subject, html_template, text_template,
                                 context, recipient_list=emails,
                                 from_email=settings.ADDONS_EMAIL,
@@ -701,7 +701,7 @@ def send_api_key_revocation_email(emails):
     subject = ugettext(
         u'Mozilla Security Notice: Your AMO API credentials have been revoked')
     template = loader.get_template(
-        'devhub/email/submission_api_key_revocation.txt')
+        'devhub/emails/submission_api_key_revocation.txt')
     context = {
         'api_keys_url': reverse('devhub.api_key')
     }

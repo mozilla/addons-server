@@ -767,8 +767,8 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
     send_html_mail_jinja_mock.assert_called_with(
         ('Mozilla Add-ons: Your add-on has been submitted to'
          ' addons.mozilla.org!'),
-        'devhub/email/submission.html',
-        'devhub/email/submission.txt',
+        'devhub/emails/submission.html',
+        'devhub/emails/submission.txt',
         {'omg': 'yes'},
         recipient_list=['del@icio.us'],
         from_email=settings.ADDONS_EMAIL,

@@ -139,7 +139,7 @@ class APIKeyConfirmation(ModelBase):
         }
         return send_mail_jinja(
             ugettext('Confirmation for developer API keys'),
-            'devhub/email/api_key_confirmation.ltxt',
+            'devhub/emails/api_key_confirmation.ltxt',
             context, recipient_list=[self.user.email],
             countdown=settings.API_KEY_CONFIRMATION_DELAY)
 

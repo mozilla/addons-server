@@ -497,7 +497,7 @@ def ownership(request, addon_id, addon):
         if extra_context:
             context_data.update(extra_context)
         template = loader.get_template(
-            'users/email/{part}.ltxt'.format(part=template_part))
+            'users/emails/{part}.ltxt'.format(part=template_part))
         send_mail(title, template.render(context_data),
                   None, recipients, use_deny_list=False)
 
@@ -1816,7 +1816,7 @@ def api_key(request):
 
 
 def send_key_change_email(to_email, key):
-    template = loader.get_template('devhub/email/new-key-email.ltxt')
+    template = loader.get_template('devhub/emails/new-key-email.ltxt')
     url = absolutify(reverse('devhub.api_key'))
     send_mail(
         ugettext('New API key created'),
@@ -1827,7 +1827,7 @@ def send_key_change_email(to_email, key):
 
 
 def send_key_revoked_email(to_email, key):
-    template = loader.get_template('devhub/email/revoked-key-email.ltxt')
+    template = loader.get_template('devhub/emails/revoked-key-email.ltxt')
     url = absolutify(reverse('devhub.api_key'))
     send_mail(
         ugettext('API key revoked'),
