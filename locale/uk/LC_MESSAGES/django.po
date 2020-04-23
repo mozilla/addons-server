@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 21:31+0000\n"
+"PO-Revision-Date: 2020-04-23 21:40+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4926,14 +4926,12 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Зберігайте цілі сторінки — або лише їх частини — в одному файлі HTML."
+msgstr "Зберігайте цілі сторінки — включно з зображеннями та стилями — в одному файлі HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Автоматично стирайте куки після закриття вкладки."
+msgstr "Автоматично замінюйте образливі слова під час переглядів в Мережі."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -6201,21 +6199,18 @@ msgstr "Перегляд оприлюдненої версії"
 msgid "version channel"
 msgstr "Версія підписана"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Статус додатка"
+msgstr "статус додатка"
 
 #, fuzzy
 msgid "add-on listing visibility"
 msgstr "Видимість додатка"
 
-#, fuzzy
 msgid "file status"
-msgstr "Статус сайту "
+msgstr "статус файлу"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} був підписаний."
+msgstr "підпис файлу"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6279,9 +6274,8 @@ msgstr "Неправильна комбінація параметрів \"%s\",
 msgid "Maximum query length exceeded."
 msgstr "Перевищена максимальна довжина запиту."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Не вдалося знайти додаток з guid \"{}\"."
+msgstr "Не вдалося знайти додаток з ID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Ви не володієте цим додатком."
