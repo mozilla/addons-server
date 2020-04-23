@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 18:33+0000\n"
+"PO-Revision-Date: 2020-04-23 18:34+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3193,7 +3193,7 @@ msgid "Read more about the source code review policy."
 msgstr "Leia mais sobre a política de revisão de código."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Crie extensões e temas de primeira classe"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -3207,17 +3207,17 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
 msgstr "Desenvolvedor"
 
 msgid "For end users"
-msgstr ""
+msgstr "Para usuários finais"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 #, fuzzy
@@ -3244,7 +3244,7 @@ msgid "Sign Up"
 msgstr "Sair"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Obrigado!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3266,7 +3266,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Botão \"Instalar a extensão\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Programa de extensões recomendadas"
 
 msgid "Contribute"
 msgstr "Contribuir"
@@ -3299,7 +3299,7 @@ msgid "See how"
 msgstr "Ver como"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Envolva-se"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
