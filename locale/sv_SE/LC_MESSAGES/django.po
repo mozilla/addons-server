@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 19:16+0000\n"
+"PO-Revision-Date: 2020-04-23 20:21+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -3138,9 +3138,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "Utvecklare"
+msgstr "För utvecklare"
 
 msgid "For end users"
 msgstr ""
@@ -3159,17 +3158,15 @@ msgstr "Utökningsutveckling"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP-adress"
+msgstr "E-postadress"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Logga ut"
+msgstr "Registrera dig"
 
 msgid "Thanks!"
 msgstr ""
@@ -3180,9 +3177,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Resurser"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: utveckla och testa utökningar"
@@ -3232,9 +3228,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Läs mer om granskningspolicyn för källkod."
+msgstr "Läs mer om utvecklargemenskapen"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listad på denna sida efter att ha passerat kodgranskning. Automatiska uppdateringar hanteras av den här webbplatsen."
@@ -3270,9 +3265,8 @@ msgstr "Inget foto"
 msgid "User Photo"
 msgstr "Användarfoto"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Min profil"
+msgstr "Profil"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
@@ -3281,7 +3275,6 @@ msgstr "Skicka in en ny version"
 msgid "Customize Firefox"
 msgstr "Anpassa Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
 msgstr "Lär dig hur man skapar ett tillägg"
 
@@ -3328,9 +3321,8 @@ msgstr "Alternativt, ange information som kan vara till nytta för den som grans
 msgid "Source code"
 msgstr "Källkod"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Om ditt tillägg innehåller binär eller förvrängd kod, gör källan tillgänglig här för granskarna."
+msgstr "Om ditt tillägg innehåller minifierad, sammanlänkad eller på annat sätt maskingenererad kod, gör källan tillgänglig här för granskare."
 
 msgid "File {file_id} ({platform})"
 msgstr "Fil {file_id} ({platform})"
@@ -5506,9 +5498,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} dag"
 msgstr[1] "{0} dagar"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Senaste granskning"
@@ -5522,13 +5513,11 @@ msgstr "Informationsgäran deadline"
 msgid "Last Updated"
 msgstr "Senast uppdaterad"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Annan pågående granskning ({0})"
+msgstr "Listade versioner som behöver mänsklig granskning ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Annan pågående granskning ({0})"
+msgstr "Olistade versioner som behöver mänsklig granskning ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Detta kommer godkänna, signera och publicera denna version. Kommentarerna kommer att skickas till utvecklaren."
@@ -5963,9 +5952,8 @@ msgstr "Aktivera tillägg med våld"
 msgid "View Blocklist Submission"
 msgstr "Visa alla bidrag"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Tillbaka till tillägg"
+msgstr "Blockera tillägg"
 
 msgid "Update add-on block"
 msgstr ""
@@ -6037,9 +6025,8 @@ msgstr "Metod:"
 msgid "Source:"
 msgstr "Källa:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Källa:"
+msgstr "Källadress:"
 
 msgid "Dismiss this announcement"
 msgstr "Avfärda detta meddelande"
@@ -6227,9 +6214,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Granskarsvar"
+msgstr "Återställ rapport"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6636,9 +6622,8 @@ msgstr "Bannlys valda användare"
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr "Användarna \"%(users)s\" hade återställning av API-nyckeln."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Ta bort version"
+msgstr "Återställ session"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6707,11 +6692,8 @@ msgstr ""
 "Innan du börjar, läs och acceptera vårt distributionsavtal för Firefox-tillägg samt våra granskningsprinciper och regler. Distributionsavtalet för Firefox-tillägg länkar också till vår "
 "sekretesspolicy som förklarar hur vi hanterar din information."
 
-#, fuzzy
 msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Innan du börjar, läs och acceptera vårt distributionsavtal för Firefox-tillägg samt våra granskningsprinciper och regler. Distributionsavtalet för Firefox-tillägg länkar också till vår "
-"sekretesspolicy som förklarar hur vi hanterar din information."
+msgstr "Läs och acceptera vårt distributionsavtal samt våra granskningsregler och regler genom att besöka {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "en tilläggsutvecklare svarar på min recension"
@@ -6743,9 +6725,8 @@ msgstr "Användaraviseringar"
 msgid "Ban"
 msgstr "Bannlys"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Ta bort version"
+msgstr "Återställ session(er)"
 
 msgid "Delete picture"
 msgstr "Ta bort bild"
