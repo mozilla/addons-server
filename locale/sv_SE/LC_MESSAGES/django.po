@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 20:22+0000\n"
+"PO-Revision-Date: 2020-04-23 20:48+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1578,7 +1578,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Tillägg för Thunderbird och SeaMonkey är nu listade och underhållna på addons.thunderbird.net. Du kan använda samma konto för att uppdatera dina tillägg på den nya sajten."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open Search-tillägg stöds {blog_link_open}inte längre på AMO{blog_link_close}. Du kan istället skapa ett {doc_link_open}söktillägg{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Sluggen används redan. Välj en annan."
@@ -1853,11 +1853,12 @@ msgstr "Ikonen måste vara fyrkantig (samma bredd och höjd)."
 msgid "There was an error uploading your preview."
 msgstr "Ett fel uppstod med uppladdning av förhandsvisning."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "Den senast godkända versionen av ett rekommenderat tillägg kan inte raderas eller inaktiveras. Vänligen kontakta AMO administratörerna om du behöver hjälp med detta."
+msgstr ""
+"Den senaste godkända versionen av detta rekommenderade tillägg kan inte tas bort eller inaktiveras eftersom den tidigare versionen inte godkändes för rekommendation. Kontakta AMO Admins om du "
+"behöver hjälp med detta."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2392,11 +2393,8 @@ msgstr "Välj en ikon för ditt tillägg:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
-"Används i listor över tillägg, som sökresultat\n"
-"                            och utvalda tillägg."
+msgstr "Används i listor över tillägg, som sökresultat."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2442,9 +2440,8 @@ msgstr "PNG och JPG stöds, PNG rekommenderas. Den maximala och rekommenderade s
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Minsta storlek är 1000x750, och ett förhållande av 4:3 krävs."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Att ha skärmdumpar på din produktsida ökar kraftigt chansen att den installeras och visas på hemsidan."
+msgstr "Att ha skärmdumpar på din produktsida ökar avsevärt chansen att installeras."
 
 msgid "Continue"
 msgstr "Fortsätt"
@@ -2705,20 +2702,17 @@ msgstr "Din listning kommer att bli mer framgångsrika genom att lägga till en 
 msgid "Manage Listing"
 msgstr "Hantera listning"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Du kan också redigera den här versionen för att lägga till versionsanteckningar eller källkod om ditt bidrag innehåller minified, obfuscated eller kompilerad kod."
+msgstr "Du kan också redigera denna version som du just skickat in genom att lägga till versionsanteckningar eller källkoden om ditt bidrag innehåller minifierad, sammanlänkad eller kompilerad kod."
 
 msgid "Edit version {0}"
 msgstr "Redigera version {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Version som signerats"
+msgstr "Väntande versionssignatur"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Du är klar! Den här versionen kommer att finnas tillgänglig efter det att den har gått igenom granskning. Du kommer bli underrättad när den har granskats."
+msgstr "Du är klar! Denna version kommer att signeras för självdistrubution inom kort. Du kommer att meddelas via e-post när den signerade filen är klar för nedladdning."
 
 msgid "Go to My Submissions"
 msgstr "Gå till mina bidrag"
@@ -2777,9 +2771,8 @@ msgstr ""
 "Detaljer (inklusive nödvändig version och installationsanvisningar), av program som används i byggprocessen (till exempel: <span class=\"tech-emphasis\"> nod</span> och <span class=\"tech-"
 "emphasis\">npm</span> version som används)."
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
-msgstr "<span class=\"instruction-emphasis\">Obs:</span> källkodsfiler (andra än externa bibliotek med öppen källkod) får inte överskridas, tillkrånglas, minifieras eller på annat sätt maskingenereras."
+msgstr "<span class=\"instruction-emphasis\">Obs:</span>Källfiler (bortsett från öppen källkodsbibliotek) kan inte transpileras, sammanlänkas, minifieras eller på annat sätt maskingenereras."
 
 msgid "How to Submit:"
 msgstr "Hur man skickar in:"
@@ -3112,9 +3105,8 @@ msgstr ""
 "Om ditt tillägg överför någon data från användarens dator, krävs en sekretesspolicy som förklarar vilka data som skickas och hur de används.\n"
 "                Detta är endast relevant för listade tillägg."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Om ditt tillägg innehåller binär eller förvrängd kod annat än kända bibliotek, ladda upp dess källor för granskning."
+msgstr "Om ditt tillägg innehåller minifierad, sammanlänkad eller på annat sätt maskingenererad kod annan än kända bibliotek, ladda upp dess källor för granskning."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Inkludera instruktioner om hur man återskapar den slutliga tilläggsfilen, antingen i en README-fil eller anteckningar till granskaren för den här versionen."
@@ -3128,9 +3120,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Utökningsverkstad"
+msgstr "Besök Extensions Workshop"
 
 msgid "Connect with us"
 msgstr ""
@@ -3147,13 +3138,11 @@ msgstr ""
 msgid "Matrix"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Utvecklarcenter för tillägg"
+msgstr "E-postlista tilläggsutvecklare"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Utökningsutveckling"
+msgstr "Nyhetsbrev tilläggsutvecklare"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3694,9 +3683,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Anpassa musgester {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Anpassa musgester. Upptäck ett nytt sätt att navigera med över 50 användbara musgester."
+msgstr "Anpassa musgester. Upptäck ett nytt sätt att navigera med över 50 konfigurationer."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3960,9 +3948,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dynamisk navigering {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Använd musgester för att stänga flikar, gå tillbaka en sida, ladda om och mer."
+msgstr "Använd musgester för att stänga flikar, navigera på sidor och mer."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4877,9 +4864,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Snabb väderuppdateringar från hela världen."
+msgstr "Få väderuppdateringar direkt i webbläsaren."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4902,14 +4888,12 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Spara fullständiga sidor—eller bara delar—som en enda HTML-fil."
+msgstr "Spara en hel webbsida—inklusive bilder och styling—som en enda HTML-fil."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Ta bort kakor automatiskt när du stänger en flik."
+msgstr "Ersätt automatiskt nedsättande ord på nätet."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -4981,9 +4965,8 @@ msgstr "Kan inte jämföra en version mot sig själv"
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID krävs för Firefox 47 och lägre."
+msgstr "Tilläggs-ID krävs för Firefox 47 och senare."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Lägsta \"strict_min_version\" som stöds är 42.0."
@@ -5046,9 +5029,9 @@ msgstr "Maximal storlek för WebExtension-teman är {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Du kan inte skicka in denna typ av tillägg"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Du kan inte skicka in ett tillägg med en guid som slutar med %s"
+msgstr "Du kan inte skicka in ett tillägg med ett ID som slutar med %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Du kan inte skicka in ett Mozilla-signerat tillägg"
@@ -5444,9 +5427,8 @@ msgstr ""
 msgid "Is locked by a reviewer"
 msgstr "Är låst av en granskare"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Har automatisk godkännande inaktiverad flagga satt"
+msgstr "Har automatisk godkännande inaktiverad/försenad flagga satt"
 
 msgid "Is recommendable"
 msgstr "Kan rekommenderas"
@@ -5460,9 +5442,8 @@ msgstr "Risknedbrytning inte tillgänglig."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Du kan inte skicka en kommentar om `canned_response` är definierat."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Du kan inte skicka in ett språkpaket"
+msgstr "Du kan inte skicka in en tom kommentar."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5739,9 +5720,8 @@ msgstr "Bildgalleri"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Inget att se här!  Utvecklaren inkluderade inga detaljer."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "efter tilläggsversion"
+msgstr "Översättningar tilläggsnamn"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Återgå till översikten för granskningsverktyg"
@@ -5896,9 +5876,8 @@ msgstr "Tidigare borttagna poster"
 msgid "This is a recommended extension."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Du har inte några API-inloggningsuppgifter."
+msgstr "Du har inte behörighet att granska det."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Vänligen välj en eller flera versioner i listan ovan."
@@ -5930,13 +5909,11 @@ msgstr "Fler åtgärder"
 msgid "Notify me about new listed versions"
 msgstr "Meddela mig om nya listade versioner"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Visa alla bidrag"
+msgstr "Tillåt återinsändning"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Hantera mina bidrag"
+msgstr "Avvisa återinsändning"
 
 msgid "Force-disable add-on"
 msgstr "Inaktivera tillägg med våld"
@@ -5944,9 +5921,8 @@ msgstr "Inaktivera tillägg med våld"
 msgid "Force-enable add-on"
 msgstr "Aktivera tillägg med våld"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Visa alla bidrag"
+msgstr "Visa blocklist inlämning"
 
 msgid "Block add-on"
 msgstr "Blockera tillägg"
@@ -5954,13 +5930,11 @@ msgstr "Blockera tillägg"
 msgid "Update add-on block"
 msgstr ""
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Inaktivera automatisk godkännande"
+msgstr "Inaktivera listad automatisk godkännande"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Aktivera automatisk godkännande"
+msgstr "Aktivera listad automatisk godkännande"
 
 #, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
