@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 18:33+0000\n"
+"PO-Revision-Date: 2020-04-23 18:41+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -486,28 +486,28 @@ msgstr "Dieses Add-on gehört dieser Sammlung bereits an"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Sperre mit GUID %(guid)s nicht gefunden"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "Einreichung zu GUID %(guid)s steht noch aus"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Add-on mit GUID %(guid)s existiert nicht"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "Einreichung zu GUID %(guid)s steht noch aus"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Zu aktualisierende Sperren unterscheiden sich, weil sich Min- oder Max-Version geändert haben."
 
 msgid "Invalid version"
 msgstr "Ungültige Version"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Die Min-Version darf nicht größer als die Max-Version sein"
 
 msgid "Review Listed"
 msgstr "Gelistete überprüfen"
@@ -516,10 +516,10 @@ msgid "Review Unlisted"
 msgstr "Ungelistete überprüfen"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Diese Sperre wurde aus einer Regex-basierten Legacy-Kinto-Sperre importiert."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Alle vorgenommenen Änderungen werden NICHT in der Legacy-Sperrliste aktualisiert. Sie müssen eine manuelle Änderung über die Kinto-Verwaltungs-Weboberfläche vornehmen."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -530,20 +530,20 @@ msgstr "Startseite"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s Add-on-GUIDs sind bereits für %(v_min)s bis %(v_max)s gesperrt"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s Add-on-GUIDs wurden nicht gefunden"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Die folgenden Sperre(n) wurde(n) aus einer Regex-basierten Legacy-Kinto-Sperre importiert."
 
 msgid "Save"
 msgstr "Speichern"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Speichern und weitere hinzufügen"
 
 msgid "Delete"
 msgstr "Löschen"
@@ -559,29 +559,29 @@ msgstr "Einreichung freischalten"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "%(name)s hinzufügen"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "Add-on-GUIDs (eine pro Zeile)"
 
 msgid "Submit"
 msgstr "Übermitteln"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s Add-on-GUIDs"
 
 msgid "users"
 msgstr "Benutzer"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Sperre bearbeiten"
 
 msgid "versions"
 msgstr "Versionen"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "In der Legacy-Blockliste enthalten."
 
 msgid "{addon} was created."
 msgstr "{addon} wurde erstellt."
@@ -903,16 +903,16 @@ msgid "User {user} api key reset."
 msgstr "API-Schlüssel von Benutzer {user} zurückgesetzt."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Sperre für {0} zu Sperrliste hinzugefügt."
 
 msgid "Block added"
-msgstr ""
+msgstr "Sperre hinzugefügt"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Sperre für {0} in Sperrliste bearbeitet."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Sperre bearbeitet"
 
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Sperre für {0} aus Sperrliste entfernt."
@@ -921,16 +921,16 @@ msgid "Block deleted"
 msgstr "Sperre entfernt"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID für {addon} zu DeniedGuid hinzugefügt."
 
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID für {addon} aus DeniedGuid entfernt."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Freigabe für Sperre von Aktion {1} für {0} erteilt."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Spere von Aktion freigeben"
 
 msgid "User {user} session(s) reset."
 msgstr "Sitzung(en) von Benutzer {user} zurückgesetzt."
@@ -978,7 +978,7 @@ msgid "Unlisted"
 msgstr "Nicht gelistet"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1561,40 +1561,40 @@ msgid "No action"
 msgstr "Keine Aktion"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Für menschliche Überprüfung vorlegen"
 
 msgid "Delay auto-approval"
 msgstr "Automatische Freischaltung verzögern"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Automatische Freischaltung auf unbestimmte Zeit verzögern"
 
 msgid "True positive"
-msgstr ""
+msgstr "Richtig positiv"
 
 msgid "False positive"
-msgstr ""
+msgstr "Falsch positiv"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Nicht eindeutig"
 
 msgid "New"
 msgstr "Neu"
 
 msgid "Running"
-msgstr ""
+msgstr "Wird ausgeführt"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Abgebrochen"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Wird abgebrochen"
 
 msgid "Completed"
 msgstr "Vollständig"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Geplant"
 
 msgid "Core"
 msgstr "Kern"
@@ -1615,7 +1615,7 @@ msgstr ""
 "aktualisieren."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open-Search-Add-ons werden von {blog_link_open}in AMO nicht mehr unterstützt{blog_link_close}. Sie können stattdessen eine {doc_link_open}Sucherweiterung erstellen{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Dieser Adressname wird bereits verwendet. Bitte wählen Sie einen anderen."
@@ -2494,10 +2494,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "Weitere Informationen zu Creative-Commons-Lizenzen"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Ihr Add-on ist derzeit auf „Unsichtbar“ eingestellt."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "In diesem Zustand können Sie Ihr Add-on nur selbst verteilen."
 
 msgid "General Tests"
 msgstr "Allgemeine Tests"
@@ -2758,7 +2758,7 @@ msgid "Do you use any of the following?"
 msgstr "Nutzen Sie einen der folgenden Punkte?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Quelltextgeneratoren oder Minifizierer"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Programme, die mehrere Dateien in einer Datei zusammenfassen, wie <span class=\"tech-emphasis\">Webpack</span>"
@@ -6610,13 +6610,12 @@ msgstr "Die Benutzer „%(users)s“ wurden gebannt."
 msgid "Ban selected users"
 msgstr "Ausgewählte Benutzer bannen"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Die API-Schlüssel der Benutzer „%(users)s“ wurden zurückgesetzt."
+msgstr "Die Sitzung(en) der Benutzer „%(users)s“ wurden zurückgesetzt."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Version löschen"
+msgstr "Sitzung zurücksetzen"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6685,11 +6684,8 @@ msgstr ""
 "Bevor Sie beginnen, lesen und akzeptieren Sie bitte unsere Einverständniserklärung zur Verteilung von Firefox-Add-ons sowie unsere Regeln und Richtlinien zu Überprüfungen. Die "
 "Einverständniserklärung verweist auch auf unseren Datenschutzhinweis, der erklärt, wie wir mit Ihren Daten umgehen."
 
-#, fuzzy
 msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Bevor Sie beginnen, lesen und akzeptieren Sie bitte unsere Einverständniserklärung zur Verteilung von Firefox-Add-ons sowie unsere Regeln und Richtlinien zu Überprüfungen. Die "
-"Einverständniserklärung verweist auch auf unseren Datenschutzhinweis, der erklärt, wie wir mit Ihren Daten umgehen."
+msgstr "Bitte lesen und akzeptieren Sie unsere Firefox-Vertriebsvereinbarung sowie unsere Überprüfungsrichtlinien und -regeln unter {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "Ein Add-on-Entwickler antwortet auf meine Bewertung"
@@ -6721,9 +6717,8 @@ msgstr "Benutzerbenachrichtigungen"
 msgid "Ban"
 msgstr "Bannen"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Version löschen"
+msgstr "Sitzung(en) zurücksetzen"
 
 msgid "Delete picture"
 msgstr "Grafik löschen"
