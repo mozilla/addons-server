@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 21:12+0000\n"
+"PO-Revision-Date: 2020-04-23 21:23+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2463,9 +2463,8 @@ msgstr "Підтримуються PNG та JPG. Рекомендовано PNG.
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Мінімальний розмір 1000х750. Обов'язкове співвідношення сторін 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Наявність знімків екрану на вашій сторінці додатка підвищує його шанси бути встановленим, а також відібраним на домівці."
+msgstr "Наявність знімків екрана на сторінці вашого додатка значно збільшує його шанси бути встановленим."
 
 msgid "Continue"
 msgstr "Продовжити"
@@ -3164,9 +3163,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "Розробник"
+msgstr "Для розробників"
 
 msgid "For end users"
 msgstr ""
@@ -3185,9 +3183,8 @@ msgstr "Розробка розширення"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP-адреса"
+msgstr "Адреса електронної пошти"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -3206,9 +3203,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Ресурси"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: створюйте і тестуйте розширення"
@@ -3258,9 +3254,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Дізнайтеся більше про політику перевірки програмного коду."
+msgstr "Дізнайтеся більше про спільноту розробників"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Опубліковано на цьому сайті після проходження перевірки коду. Автоматичні оновлення забезпечуються цим сайтом."
@@ -3296,9 +3291,8 @@ msgstr "Немає фото"
 msgid "User Photo"
 msgstr "Фото користувача"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Мій профіль"
+msgstr "Профіль"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
@@ -3307,9 +3301,8 @@ msgstr "Відправити нову версію"
 msgid "Customize Firefox"
 msgstr "Пристосуйте Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Дізнайтеся, як створити додаток"
+msgstr "Дізнайтеся, як створити розширення"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
