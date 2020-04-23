@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 17:05+0000\n"
+"PO-Revision-Date: 2020-04-23 17:12+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1876,11 +1876,10 @@ msgstr "הסמל חייב להיות בצורת ריבוע (באותו הרוח�
 msgid "There was an error uploading your preview."
 msgstr "אירעה שגיאה בהעלאת התצוגה המקדימה שלך."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "לא ניתן למחוק או להשבית את הגרסה המאושרת האחרונה של תוספת מומלצת. נא ליצור קשר עם מנהלי AMO אם יש לך צורך בעזרה לגבי לזה."
+msgstr "לא ניתן למחוק או להשבית את הגרסה המאושרת האחרונה של ההרחבה המומלצת הזאת. נא ליצור קשר עם מנהלי AMO אם יש לך צורך בעזרה לגבי לזה."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2395,9 +2394,8 @@ msgstr "בחירת סמל לתוספת שלך:"
 msgid "32x32px"
 msgstr "32×32 פיקסלים"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "נעשה שימוש ברשימות של תוספים כמו תוצאות חיפוש ותוספות מומלצות."
+msgstr "נעשה שימוש ברשימות של תוספות, כמו תוצאות חיפוש."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2706,9 +2704,8 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "עריכת גרסה {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "הגרסה נחתמה"
+msgstr "חתימת גרסה בהמתנה"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
