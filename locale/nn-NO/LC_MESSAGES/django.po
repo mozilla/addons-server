@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 17:10+0000\n"
+"PO-Revision-Date: 2020-04-23 17:29+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1998,7 +1998,7 @@ msgstr "Gå tilbake til heimesida for DevHub"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "<small>Utviding</small> Utviklarhubb"
+msgstr "Utviklarsenter for<small> tillegg</small>"
 
 msgid "more add-ons..."
 msgstr "fleire utvidingar…"
