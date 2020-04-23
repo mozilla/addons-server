@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 23:43+0000\n"
+"PO-Revision-Date: 2020-04-23 23:50+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3171,13 +3171,11 @@ msgstr "Для користувачів"
 msgid "Matrix"
 msgstr "Matrix"
 
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Центр розробників"
+msgstr "Список розсилки для розробників додатків"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Розробка розширення"
+msgstr "Новини для розробників розширень"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Будьте в курсі новин та подій для розробників розширень Firefox."
