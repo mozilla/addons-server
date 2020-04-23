@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 20:48+0000\n"
+"PO-Revision-Date: 2020-04-23 21:03+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2471,10 +2471,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "Mer information om Creative Commons licenser"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Ditt tillägg är för närvarande inställt på \"Osynligt\"."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "I det här läget är \"På egen hand\" den enda tillgängliga distributionsmetoden."
 
 msgid "General Tests"
 msgstr "Generella tester"
@@ -2734,7 +2734,7 @@ msgid "Do you use any of the following?"
 msgstr "Använder du något av följande?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Kodgeneratorer eller minifierare"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Verktyg som kombinerar flera filer i en enda fil, till exempel <span class=\"tech-emphasis\">webpack</span>"
@@ -2928,6 +2928,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team\n"
 msgstr ""
+"Hej,\n"
+"\n"
+"Du får det här meddelandet eftersom du begärde nya API-nycklar för utvecklare för\n"
+"%(domain)s. Klicka på länken nedan för att avsluta denna process:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Om du inte begärde detta, meddela amo-admins@mozilla.com.\n"
+"\n"
+"Hälsningar,\n"
+"\n"
+"Mozilla tilläggsteam"
 
 #, python-format
 msgid ""
@@ -2940,6 +2952,14 @@ msgid ""
 "\n"
 "%(url)s\n"
 msgstr ""
+"Följande API-nyckel lades till ditt konto:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Om du tror att denna nyckel har skapats felaktigt kan du ta bort nyckeln och\n"
+"inaktivera åtkomst på följande plats:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2952,6 +2972,14 @@ msgid ""
 "\n"
 "%(url)s\n"
 msgstr ""
+"API-nyckeln återkallades från ditt konto:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Om du tror att denna nyckel har återkallats av misstag kan du skapa en ny\n"
+"på följande plats:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3127,16 +3155,16 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "För utvecklare"
 
 msgid "For end users"
-msgstr ""
+msgstr "För slutanvändare"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matris"
 
 msgid "Add-on Developers Mailing List"
 msgstr "E-postlista tilläggsutvecklare"
@@ -5936,13 +5964,11 @@ msgstr "Inaktivera listad automatisk godkännande"
 msgid "Enable Listed Auto-Approval"
 msgstr "Aktivera listad automatisk godkännande"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Har automatisk godkännande inaktiverad flagga satt"
+msgstr "Automatisk godkännande är för närvarande inaktiverad till {date}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Aktivera automatisk godkännande"
+msgstr "Rensa extra försening för automatisk godkännande"
 
 msgid "Clear information request"
 msgstr "Rensa informationsbegäran"
@@ -6119,36 +6145,29 @@ msgstr[1] "Upphörd informationsbegäran ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Kom igång"
+msgstr "resultattillstånd"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Förhandsvisa listade versioner"
+msgstr "närvaro av en version"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Version som signerats"
+msgstr "versionskanal"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Status för tillägg"
+msgstr "status för tillägg"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Tilläggets synlighet"
+msgstr "tilläggets synlighet"
 
-#, fuzzy
 msgid "file status"
-msgstr "Webbplatsstatus "
+msgstr "filstatus"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} signerades."
+msgstr "filsignatur"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6211,9 +6230,8 @@ msgstr "Ogiltig kombination av parametrarna \"%s\", \"%s\" och \"%s\"."
 msgid "Maximum query length exceeded."
 msgstr "Maximal längd för förfrågan överskriven."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Det gick inte att hitta tillägg med guid \"{}\"."
+msgstr "Det gick inte att hitta tillägg med ID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Du äger inte detta tillägg."
@@ -6232,21 +6250,17 @@ msgstr "Version matchar inte manifest-fil."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Versionen finns redan. Senaste versionen är: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Endast WebExtensions får utelämna GUID"
+msgstr "Endast WebExtensions får utelämna tilläggs-ID"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Ange ditt tilläggs GUID i manifestet om det är längre än 64 tecken."
+msgstr "Vänligen ange ditt tilläggs-ID i manifestet om det är längre än 64 tecken."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Ogiltigt GUID i URL"
+msgstr "Ogiltigt tilläggs-ID i URL eller paket"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Du kan inte lägga till versioner till ett tillägg som har status: %s."
+msgstr "Du kan inte lägga till listade versioner i en tilläggsuppsättning som är \"Osynlig\"."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Du kan inte lägga till en listad version till detta tillägg via API på grund av saknad metadata. Vänligen skicka in via webbplatsen"
@@ -6588,9 +6602,9 @@ msgstr "Användarna \"%(users)s\" har blivit bannlysta."
 msgid "Ban selected users"
 msgstr "Bannlys valda användare"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Användarna \"%(users)s\" hade återställning av API-nyckeln."
+msgstr "Användarna \"%(users)s\" återställde sina sessioner."
 
 msgid "Reset session"
 msgstr "Återställ session"
