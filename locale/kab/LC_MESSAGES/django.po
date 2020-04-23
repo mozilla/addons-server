@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 16:11+0000\n"
+"PO-Revision-Date: 2020-04-23 16:22+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -298,11 +298,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Ay ay ay"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Ihuh! Teḍra-d tuccḍa.</h1> <p>Ad tt-neseɣti s zreb.</p> <p> Tzemreḍ ad ɛerḍeḍ asali n usebter neɣ uɣal ar <a href=\"%(home)s\">usebter agejdan n izegrar</a>. </p>"
+msgstr ""
+"<h1>Ihuh! Teḍra-d tuccḍa.</h1> <p>Ad tt-nseɣti s zzerb.</p> <p> Tzemreḍ ad tɛerḍeḍ asali n usebter neɣ uɣal ɣer <a href=\"%(home)s\">usebter agejdan n yizegrar</a>. Tzemreḍ daɣen ad aɣ-talleḍ ad "
+"nefru ugur-a deg <a href=\"https://github.com/mozilla/addons/issues/new\">s tuzzna n wugur</p> s telqey amek d-tewwḍeḍ ɣer usebter-a. </p>"
 
 msgid "No results found"
 msgstr "Ulac igmad yettwafen"
@@ -489,9 +491,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Azilal n lqem mačči d ameɣtu."
+msgstr "Lqem armeɣtu"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
