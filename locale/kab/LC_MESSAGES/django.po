@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 17:28+0000\n"
+"PO-Revision-Date: 2020-04-23 17:49+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -907,16 +907,14 @@ msgstr ""
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Sewḥel i {0} kkes seg wumuɣ n usewḥel."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Azegrir yettwakkes."
+msgstr "Yettwakkes usewḥel"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} yettwakkes si {collection}."
+msgstr "GUID i {addon} yettwakkes si DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
