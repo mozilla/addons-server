@@ -54,11 +54,14 @@ class FileEntriesSerializer(FileSerializer):
     download_url = serializers.SerializerMethodField()
     entries = serializers.SerializerMethodField()
     selected_file = serializers.SerializerMethodField()
+    mimetype = serializers.SerializerMethodField()
+    sha256 = serializers.SerializerMethodField()
+    size = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
             'content', 'entries', 'selected_file', 'download_url',
-            'uses_unknown_minified_code'
+            'uses_unknown_minified_code', 'mimetype', 'sha256', 'size'
         )
         model = File
 
@@ -173,6 +176,17 @@ class FileEntriesSerializer(FileSerializer):
         self._entries[self.get_selected_file(obj)]['sha256'] = sha256
 
         return self._entries
+
+    def get_mimetype(self, obj):
+        entries = self.get_entries(obj)
+        return entries[self.get_selected_file(obj)]['mimetype']
+
+    def get_sha256(self, obj):
+        return self._get_hash_for_selected_file(obj)
+
+    def get_size(self, obj):
+        entries = self.get_entries(obj)
+        return entries[self.get_selected_file(obj)]['size']
 
     def get_selected_file(self, obj):
         requested_file = self.context.get('file', None)
@@ -314,7 +328,8 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
     class Meta:
         fields = FileSerializer.Meta.fields + (
             'diff', 'entries', 'selected_file', 'download_url',
-            'uses_unknown_minified_code', 'base_file'
+            'uses_unknown_minified_code', 'base_file',
+            'sha256', 'size', 'mimetype'
         )
         model = File
 

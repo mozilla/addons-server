@@ -49,6 +49,12 @@ class TestFileEntriesSerializer(TestCase):
         return self.get_serializer(obj, **extra_context).data
 
     def test_basic(self):
+        expected_mimetype = 'application/json'
+        expected_sha256 = (
+            '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0'
+        )
+        expected_size = 622
+
         file = self.addon.current_version.current_file
 
         data = self.serialize(file)
@@ -72,6 +78,9 @@ class TestFileEntriesSerializer(TestCase):
             }
         ))
         assert not data['uses_unknown_minified_code']
+        assert data['mimetype'] == expected_mimetype
+        assert data['sha256'] == expected_sha256
+        assert data['size'] == expected_size
 
         assert set(data['entries'].keys()) == {
             'README.md',
@@ -87,12 +96,11 @@ class TestFileEntriesSerializer(TestCase):
         manifest_data = data['entries']['manifest.json']
         assert manifest_data['depth'] == 0
         assert manifest_data['filename'] == u'manifest.json'
-        assert manifest_data['sha256'] == (
-            '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0')
-        assert manifest_data['mimetype'] == 'application/json'
+        assert manifest_data['sha256'] == expected_sha256
+        assert manifest_data['mimetype'] == expected_mimetype
         assert manifest_data['mime_category'] == 'text'
         assert manifest_data['path'] == u'manifest.json'
-        assert manifest_data['size'] == 622
+        assert manifest_data['size'] == expected_size
 
         assert isinstance(manifest_data['modified'], datetime)
 
@@ -139,6 +147,11 @@ class TestFileEntriesSerializer(TestCase):
                 'filename': 'icons/LICENSE'
             }
         ))
+        assert data['mimetype'] == 'text/plain'
+        assert data['sha256'] == (
+            'b48e66c02fe62dd47521def7c5ea11b86af91b94c23cfdf67592e1053952ed55'
+        )
+        assert data['size'] == 136
 
     def test_requested_file_with_non_existent_file(self):
         file = self.addon.current_version.current_file
@@ -280,6 +293,12 @@ class TestFileEntriesDiffSerializer(TestCase):
         return self.get_serializer(obj, **extra_context).data
 
     def test_basic(self):
+        expected_mimetype = 'application/json'
+        expected_sha256 = (
+            'bf9b0744c0011cad5caa55236951eda523f17676e91353a64a32353eac798631'
+        )
+        expected_size = 621
+
         parent_version = self.addon.current_version
 
         new_version = version_factory(
@@ -320,6 +339,9 @@ class TestFileEntriesDiffSerializer(TestCase):
             }
         ))
         assert not data['uses_unknown_minified_code']
+        assert data['mimetype'] == expected_mimetype
+        assert data['sha256'] == expected_sha256
+        assert data['size'] == expected_size
 
         assert set(data['entries'].keys()) == {
             'manifest.json', 'README.md', 'test.txt'}
@@ -333,12 +355,11 @@ class TestFileEntriesDiffSerializer(TestCase):
         manifest_data = data['entries']['manifest.json']
         assert manifest_data['depth'] == 0
         assert manifest_data['filename'] == u'manifest.json'
-        assert manifest_data['sha256'] == (
-            'bf9b0744c0011cad5caa55236951eda523f17676e91353a64a32353eac798631')
-        assert manifest_data['mimetype'] == 'application/json'
+        assert manifest_data['sha256'] == expected_sha256
+        assert manifest_data['mimetype'] == expected_mimetype
         assert manifest_data['mime_category'] == 'text'
         assert manifest_data['path'] == u'manifest.json'
-        assert manifest_data['size'] == 621
+        assert manifest_data['size'] == expected_size
         assert manifest_data['status'] == ''
         assert isinstance(manifest_data['modified'], datetime)
 
@@ -386,6 +407,9 @@ class TestFileEntriesDiffSerializer(TestCase):
         # We deleted the selected file, so there should be a diff.
         assert data['diff'] is not None
         assert data['diff']['mode'] == 'D'
+        assert data['mimetype'] == 'application/json'
+        assert data['sha256'] is None
+        assert data['size'] is None
 
     def test_recreate_parent_dir_of_deleted_file(self):
         addon, repo, parent_version, new_version = \
