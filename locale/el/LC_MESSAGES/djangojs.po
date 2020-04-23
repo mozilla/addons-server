@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2019-11-23 21:27+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -122,8 +122,9 @@ msgstr "Λίστα καταχωρήσεων προσθέτων"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Παρακαλώ επιβεβαιώστε τα παρακάτω σημεία πριν την ολοκλήρωση της υποβολής σας. Αυτό θα μειώσει καθυστερήσεις είτε ασάφειες κατά την διαδικασία της αξιολόγησης."
 
+#, fuzzy
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 "Μεταγλωττισμένα εκτελέσιμα , καθώς και ελαχιστοποιημένα ή ασαφή σενάρια (με εξαίρεση γνωστές βιβλιοθήκες) είναι αναγκαίο να έχουν υποβάλει τις πηγές τους ξεχωριστά για αξιολόγηση. Βεβαιωθείτε ότι "

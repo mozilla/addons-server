@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2020-04-21 07:35+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,8 +119,9 @@ msgstr "Sjekkliste for å sende inn utvidelser"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Verifiser de følgende punktene før du fullfører innsendingen din. Dette vil minimalisere forsinkelser og misforståelser under vurderingsprosessen:"
 
+#, fuzzy
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 "Kompilerte binærfiler, så vel som minifiserte eller forvrengte skript (bortsett fra velkjente biblioteker) må ha kildene sine sendt inn til vurdering separat. Sørg for at du bruker "

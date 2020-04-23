@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2019-12-14 07:30+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,8 +115,9 @@ msgstr "Daftar cek pendaftaran pengaya"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Tolong verifikasi poin berikut sebelum benar-benar mengirimkan. Ini mengurangi penundaan atau salah pengertian dalam proses ulasan:"
 
+#, fuzzy
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 "Digit Biner terkompilasi, sekaligus skrip yang dikecilkan atau dikaburkan (tidak termasuk pustaka yang dikenali) , sumbernya harus diajukan terpisah untuk peninjauan. Pastikan Anda menggunakan "

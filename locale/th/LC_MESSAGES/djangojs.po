@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2019-11-03 12:07+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,12 +113,11 @@ msgstr "รายการตรวจสอบการส่งส่วนเ
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "โปรดตรวจสอบหัวข้อต่าง ๆ ก่อนส่งข้อมูลในขั้นสุดท้าย จะช่วยลดความล่าช้าหรือความเข้าใจผิดที่อาจเกิดขึ้นระหว่างทำการตรวจสอบ:"
 
+#, fuzzy
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"ไบนารีที่คอมไพล์แล้ว รวมถึงสคริปต์ย่อหรือร่าง (ยกเว้นไลบรารีที่รู้จัก) ต้องส่งซอร์สแยกต่างหากเพื่อใช้สำหรับตรวจทาน ตรวจสอบให้แน่ใจว่า "
-"คุณใช้ช่องอัปโหลดซอร์สโค้ดเพื่อหลีกเลี่ยงไม่ให้ข้อมูลที่คุณส่งถูกปฏิเสธ"
+msgstr "ไบนารีที่คอมไพล์แล้ว รวมถึงสคริปต์ย่อหรือร่าง (ยกเว้นไลบรารีที่รู้จัก) ต้องส่งซอร์สแยกต่างหากเพื่อใช้สำหรับตรวจทาน ตรวจสอบให้แน่ใจว่า คุณใช้ช่องอัปโหลดซอร์สโค้ดเพื่อหลีกเลี่ยงไม่ให้ข้อมูลที่คุณส่งถูกปฏิเสธ"
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "กระบวนการการตรวจสอบความถูกต้องพบปัญหาที่อาจก่อให้เกิดการปฏิเสธ:"

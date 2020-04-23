@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2020-04-13 15:04+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,12 +120,13 @@ msgstr "એડ-ઓન રજૂઆત તપાસ યાદી"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "તમારી રજૂઆતને અંતિમ રૂપ આપતા પહેલાં નીચેના મુદ્દાઓ ચકાસો. આ સમીક્ષા પ્રક્રિયા દરમિયાન વિલંબ અથવા ગેરસમજને ઘટાડેશે:"
 
+#, fuzzy
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"સંકલિત દ્વિસંગીઓ, તેમજ minified અથવા obfuscated સ્ક્રિપ્ટો(જાણીતા લાઈબ્રેરીઓ સિવાય) તેમના સ્રોતો સમીક્ષા માટે અલગ સબમિટ કરવાની જરૂર છે. તમારી રજૂઆત નકારવાથી ટાળવા માટે તમે સ્ત્રોત કોડ અપલોડ ફીલ્ડનો "
-"ઉપયોગ કરો છો તેની ખાતરી કરો."
+"સંકલિત દ્વિસંગીઓ, તેમજ minified અથવા obfuscated સ્ક્રિપ્ટો(જાણીતા લાઈબ્રેરીઓ સિવાય) તેમના સ્રોતો સમીક્ષા માટે અલગ સબમિટ કરવાની જરૂર છે. તમારી રજૂઆત નકારવાથી ટાળવા માટે તમે સ્ત્રોત કોડ અપલોડ ફીલ્ડનો ઉપયોગ કરો છો તેની "
+"ખાતરી કરો."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "માન્યતા પ્રક્રિયાએ આ મુદ્દાઓ શોધી કાઢ્યાં છે જે અસ્વીકાર તરફ દોરી શકે છે:"

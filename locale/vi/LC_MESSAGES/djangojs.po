@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2020-02-11 13:12+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,8 +115,9 @@ msgstr "Danh sách kiểm tra bản đệ trình tiện ích"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Vui lòng xác minh các điểm sau đây trước khi hoàn thành đệ trình của bạn. Điều này sẽ giảm thiểu sự chậm trễ hoặc hiểu lầm trong quá trình xem xét:"
 
+#, fuzzy
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 "Các tệp nhị phân được biên dịch, cũng như các tập lệnh rút gọn hoặc bị xáo trộn (không bao gồm các thư viện đã biết) cần phải có các nguồn được gửi riêng để xem xét. Đảm bảo rằng bạn sử dụng trường "

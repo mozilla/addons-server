@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2020-01-27 19:44+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,8 +122,9 @@ msgstr "საკონტროლო სია დამატების წ
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "გთხოვთ გადაამოწმოთ მოცემული პუნქტები, წარდგენის დასასრულებლად. ეს შეამცირებს განხილვის დროს შეფერხების ან გაუგებრობის წარმოშობას:"
 
+#, fuzzy
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 "შედგენილი ბინარები, ისევე როგორც გამარტივებული ან ფორმაშეცვლილი კოდები (ცნობილი ბიბლიოთეკების გარდა) განსახილველად უნდა გადაიგზავნოს სათითაოდ. დარწმუნდით, რომ სარგებლობთ პირველწყარო კოდის ასატვირთი "

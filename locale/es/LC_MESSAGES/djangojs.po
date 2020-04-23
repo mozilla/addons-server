@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2019-09-30 18:10+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,12 +119,13 @@ msgstr "Lista de verificación de envío de complementos"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Por favor, verifica los siguientes puntos antes de finalizar tu envío. Esto minimizará retrasos o malentendidos durante el proceso de revisión:"
 
+#, fuzzy
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
-" código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
+"subir código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
