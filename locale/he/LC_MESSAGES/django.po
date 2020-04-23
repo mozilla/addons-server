@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 17:13+0000\n"
+"PO-Revision-Date: 2020-04-23 17:51+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3128,9 +3128,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "מפתח"
+msgstr "למפתחים"
 
 msgid "For end users"
 msgstr ""
@@ -3139,9 +3138,8 @@ msgid "Matrix"
 msgstr ""
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "מרכז מפתחי תוספות"
+msgstr "רשימת תפוצה למפתחי תוספות"
 
 #, fuzzy
 msgid "Extensions Developers Newsletter"
@@ -3150,17 +3148,15 @@ msgstr "פיתוח הרחבה"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "כתובת IP"
+msgstr "כתובת דוא״ל"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "התנתקות"
+msgstr "הרשמה"
 
 msgid "Thanks!"
 msgstr ""
@@ -3171,9 +3167,8 @@ msgstr ""
 msgid "Resources"
 msgstr "משאבים"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: בנייה ובדיקה של הרחבות"
@@ -3225,9 +3220,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "מידע נוסף על מדיניות סקירה לקוד מקור."
+msgstr "מידע נוסף על קהילת המפתחים"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "מופיע באתר לאחר סקירת קוד מוצלחת. עדכונים אוטומטיים מנוהלים על־ידי אתר זה."
@@ -3267,20 +3261,17 @@ msgstr "אין תמונה"
 msgid "User Photo"
 msgstr "תמונת משתמש"
 
-#, fuzzy
 msgid "Profile"
-msgstr "הפרופיל שלי"
+msgstr "פרופיל"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "הגשת גרסה חדשה"
+msgstr "הגשה או ניהול הרחבות"
 
 msgid "Customize Firefox"
 msgstr "התאמה אישית של Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "למדו כיצד ליצור תוספת"
+msgstr "למדו כיצד ליצור הרחבה"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -5066,9 +5057,8 @@ msgstr "אי אפשר להשוות שינויים בין הגרסה לעצמה"
 msgid "Could not parse the manifest file."
 msgstr "לא ניתן לפענח את קובץ ה־manifest."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "‏GUID נדרש עבור Firefox 47 ומטה."
+msgstr "מזהה תוספת נדרש עבור Firefox 47 ומטה."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "ה־״strict_min_version״ הנמוך ביותר הנתמך הוא 42.0."
@@ -5131,9 +5121,9 @@ msgstr "הגודל המירב עבור ערכות נושא WebExtension הוא {
 msgid "You cannot submit this type of add-on"
 msgstr "לא ניתן להגיש תוספת מסוג זה"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "לא ניתן להגיש תוספת עם guid שמסתיים ב־%s"
+msgstr "לא ניתן להגיש תוספת עם המשתמשת במזהה שמסתיים ב־%s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "לא ניתן להגיש הרחבות החתומות על־ידי Mozilla"
@@ -5499,9 +5489,8 @@ msgstr "מחיקת סקירה"
 msgid "Needs Admin Content Review"
 msgstr "נדרשת סקירת תוכן של מנהל"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "נדרשת סקירת קוד של מנהל"
+msgstr "נדרשת סקירת ערכת נושא סטטית על־ידי מנהל"
 
 msgid "Requires Restart"
 msgstr "נדרשת הפעלה מחדש"
@@ -5542,9 +5531,8 @@ msgstr ""
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "לא ניתן להגיש ערכת שפה"
+msgstr "לא ניתן לשלוח הערה ריקה."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5579,9 +5567,8 @@ msgid_plural "{0} days"
 msgstr[0] "יום אחד"
 msgstr[1] "{0} ימים"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "מזהה"
 
 msgid "Last Review"
 msgstr "הסקירה האחרונה"
@@ -5595,13 +5582,11 @@ msgstr "מועד אחרון לבקשה למידע"
 msgid "Last Updated"
 msgstr "עודכנה לאחרונה"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "סקירה ממתינה אחרת ({0})"
+msgstr "גרסאות מוצגות שצריכות לעבור סקירה אנושית ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "סקירה ממתינה אחרת ({0})"
+msgstr "גרסאות לא מוצגות שצריכות לעבור סקירה אנושית ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "פעולה זו תאשר, תחתום ותפיץ את הגרסה הזאת. ההערות תישלחנה אל המפתח."
@@ -5631,22 +5616,19 @@ msgstr "פעולה זו תדחה את הגרסאות הציבוריות שנבח
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "דחיית גרסאות מרובות"
+msgstr "חסימת גרסאות מרובות"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "דחיית גרסאות מרובות"
+msgstr "אישור גרסאות מרובות"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "פעולה זו תדחה את הגרסאות הציבוריות שנבחרו. ההערות תישלחנה אל המפתח."
+msgstr "פעולה זו תאשר את הגרסאות שנבחרו מבלי להודיע למפתח."
 
 msgid "Reviewer reply"
 msgstr "תגובת הסוקר"
