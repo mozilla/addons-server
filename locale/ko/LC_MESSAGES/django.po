@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2020-04-22 22:47+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
@@ -134,8 +134,17 @@ msgstr "오직 최신 버젼의 부가 기능만 노트를 추가할 수 있습�
 msgid "Ratings"
 msgstr "별점"
 
-msgid "Status"
-msgstr "상태"
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "검토 도구"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "검토 도구"
+
+#, fuzzy
+msgid "Reviewer links"
+msgstr "검토 도구"
 
 msgid "- Add-on not on AMO -"
 msgstr ""
@@ -282,21 +291,24 @@ msgstr "찾을 수 없습니다."
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>죄송합니다. 찾으려 하는 것을 발견하지 못했습니다.</h1> <p> 찾고자 하는 페이지나 파일이 사이트에 없습니다. 너무 오래된 링크를 클릭했거나 주소를 정확히 입력하지 않았을 수도 있습니다. </p> <ul> <li>주소를 입력한 것이라면 주소 철자를 다시 한번 점검해 보세요.</li> <li> 다른 사이트에 올라온 링크를 따라서 온 것이라면 "
-"%(open_bug_link)s이슈 등록%(close_bug_link)s을 부탁드립니다. 사이트의 이름과 어떤 것을 찾고 있었는지 말씀해 주시면 최선을 다해 수정하도록 하겠습니다. </li> </ul> <p>웹사이트의 인기 페이지로 가보는 것도 권해드립니다.</p> <ul> <li><a href=\"%(rec)s\">추천 부가 기능 목록</a>에 관심이"
-" 있으십니까?</li> <li> <a href=\"%(search)s\">부가 기능을 검색</a>하고 싶으신가요? <a href=\"%(search)s\">검색 페이지</a>로 이동하시거나 위의 검색창을 사용해도 됩니다. </li> <li> 첫 페이지로 가서 다시 시작하고자 한다면 <a href=\"%(home)s\">부가 기능 첫 페이지</a>로 "
-"이동하기 바랍니다. </li> </ul>"
+"<h1>죄송합니다. 찾으려 하는 것을 발견하지 못했습니다.</h1> <p> 찾고자 하는 페이지나 파일이 사이트에 없습니다. 너무 오래된 링크를 클릭했거나 주소를 정확히 입력하지 않았을 수도 있습니다. </p> <ul> "
+"<li>주소를 입력한 것이라면 주소 철자를 다시 한번 점검해 보세요.</li> <li> 다른 사이트에 올라온 링크를 따라서 온 것이라면 %(open_bug_link)s이슈 등록%(close_bug_link)s을 부탁드립니다. 사이트의 이름과 "
+"어떤 것을 찾고 있었는지 말씀해 주시면 최선을 다해 수정하도록 하겠습니다. </li> </ul> <p>웹사이트의 인기 페이지로 가보는 것도 권해드립니다.</p> <ul> <li><a href=\"%(rec)s\">추천 부가 기능 목록</a>에 "
+"관심이 있으십니까?</li> <li> <a href=\"%(search)s\">부가 기능을 검색</a>하고 싶으신가요? <a href=\"%(search)s\">검색 페이지</a>로 이동하시거나 위의 검색창을 사용해도 됩니다. </li> <li> 첫 페이지로 "
+"가서 다시 시작하고자 한다면 <a href=\"%(home)s\">부가 기능 첫 페이지</a>로 이동하기 바랍니다. </li> </ul>"
 
 msgid "Oops"
 msgstr "앗 이런"
 
-#, python-format
-msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+#, fuzzy, python-format
+msgid ""
+"<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
+"this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr "<h1>저런!  오류가 발생했습니다.</h1> <p>빠른 시일 내에 고치도록 하겠습니다.</p> <p>현재 페이지를 새로고침해 보거나 <a href=\"%(home)s\">부가 기능 홈페이지</a>로 돌아가시기 바랍니다.</p>"
 
 msgid "No results found"
@@ -332,26 +344,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> 아래 <strong>모든 단어들을</strong> 입력하시고, <strong>필요하다면 공백으로 구분하십시오</strong>. </p> <p> 만약 읽기 어렵다면 <a href=\"#\" id=\"recaptcha_different\">다른 단어들을 시도해 보시거나</a><a href=\"#\" id=\"recaptcha_audio\"> 다른 "
-"유형으로</a> 시도해 보시기 바랍니다.</p>"
-
-msgid "Most Popular"
-msgstr "인기"
-
-msgid "Top Rated"
-msgstr "상위 별점"
-
-msgid "Newest"
-msgstr "신규 등록"
-
-msgid "Featured"
-msgstr "추천"
-
-msgid "Explore"
-msgstr "열기"
-
-msgid "Categories"
-msgstr "분류"
+"<p> 아래 <strong>모든 단어들을</strong> 입력하시고, <strong>필요하다면 공백으로 구분하십시오</strong>. </p> <p> 만약 읽기 어렵다면 <a href=\"#\" id=\"recaptcha_different\">다른 단어들을 시도해 보시"
+"거나</a><a href=\"#\" id=\"recaptcha_audio\"> 다른 유형으로</a> 시도해 보시기 바랍니다.</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -465,8 +459,8 @@ msgstr "버전"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr "지원되는 애플리케이션이 매니페스트 파일을 요구하지 않으면, %(amo_manifests_mdn_link_open)s이곳%(amo_manifests_mdn_link_close)s에 명시된 요구 항목을 반드시 포함하고 있어야 합니다."
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -486,6 +480,114 @@ msgstr "이 URL은 사용할 수 없습니다."
 
 msgid "This add-on already belongs to the collection"
 msgstr "이 부가 기능은 이미 컬렉션에 속해 있습니다"
+
+#, python-format
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "GUID %(guid)s is in a pending Submission"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr ""
+
+#, python-format
+msgid "GUID %(guid)s is already in a pending Submission"
+msgstr ""
+
+msgid "Blocks to be updated are different because Min or Max version has changed."
+msgstr ""
+
+#, fuzzy
+msgid "Invalid version"
+msgstr "잘못된 버전 범위입니다."
+
+msgid "Min version can not be greater than Max version"
+msgstr ""
+
+#, fuzzy
+msgid "Review Listed"
+msgstr "검토 요청됨"
+
+#, fuzzy
+msgid "Review Unlisted"
+msgstr "검토 노트"
+
+msgid "This block was imported from a regex based legacy kinto Block."
+msgstr ""
+
+msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
+msgstr ""
+
+#, fuzzy, python-format
+msgid "Delete Multiple %(name)s"
+msgstr "인쇄용 버전"
+
+#, fuzzy
+msgid "Home"
+msgstr "홈페이지"
+
+#, python-format
+msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
+msgstr ""
+
+#, python-format
+msgid "%(count)s Add-on GUIDs were not found"
+msgstr ""
+
+msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgstr ""
+
+msgid "Save"
+msgstr "저장"
+
+msgid "Save and add more"
+msgstr ""
+
+msgid "Delete"
+msgstr "삭제"
+
+msgid "Update"
+msgstr "업데이트"
+
+#, fuzzy
+msgid "Reject Submission"
+msgstr "나의 제출로 이동"
+
+#, fuzzy
+msgid "Approve Submission"
+msgstr "나의 제출로 이동"
+
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+msgid "Add-on GUIDs (one per line)"
+msgstr ""
+
+#, fuzzy
+msgid "Submit"
+msgstr "버전 제출"
+
+#, python-format
+msgid "%(count)s Add-on GUIDs"
+msgstr ""
+
+#, fuzzy
+msgid "users"
+msgstr "사용자 이름"
+
+msgid "Edit Block"
+msgstr ""
+
+#, fuzzy
+msgid "versions"
+msgstr "버전"
+
+msgid "Included in legacy blocklist."
+msgstr ""
 
 msgid "{addon} was created."
 msgstr "{addon}이(가) 제작되었습니다."
@@ -807,6 +909,47 @@ msgstr "{addon} 부가 기능이 가벼운 테마에서 마이그레이션 되�
 msgid "User {user} api key reset."
 msgstr "{user} 사용자의 사진이 삭제되었습니다."
 
+msgid "Block for {0} added to Blocklist."
+msgstr ""
+
+msgid "Block added"
+msgstr ""
+
+msgid "Block for {0} edited in Blocklist."
+msgstr ""
+
+msgid "Block edited"
+msgstr ""
+
+#, fuzzy
+msgid "Block for {0} deleted from Blocklist."
+msgstr "{addon}에서 {0} 버전이 삭제되었습니다."
+
+#, fuzzy
+msgid "Block deleted"
+msgstr "부가 기능이 삭제되었습니다."
+
+msgid "GUID for {addon} added to DeniedGuid."
+msgstr ""
+
+#, fuzzy
+msgid "GUID for {addon} removed from DeniedGuid."
+msgstr "{addon}이(가) {collection}에 삭제되었습니다."
+
+msgid "Block {1} action for {0} signed off."
+msgstr ""
+
+msgid "Block action signoff"
+msgstr ""
+
+#, fuzzy
+msgid "User {user} session(s) reset."
+msgstr "{user} 사용자의 사진이 삭제되었습니다."
+
+#, fuzzy
+msgid "User {user} throttled for scope \"{0}\""
+msgstr "사용자 {user}이(가) 수정됨, 사유: {1}"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -846,6 +989,9 @@ msgstr "삭제됨"
 msgid "Unlisted"
 msgstr "목록에서 제거됨"
 
+msgid "API"
+msgstr ""
+
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
 msgstr "소유자"
@@ -856,8 +1002,9 @@ msgstr "개발자"
 msgid "Extension"
 msgstr "확장 기능"
 
-msgid "Complete Theme"
-msgstr "완전 테마"
+#, fuzzy
+msgid "Deprecated Complete Theme"
+msgstr "업데이트된 완전 테마 검토"
 
 msgid "Dictionary"
 msgstr "맞춤법 사전"
@@ -884,7 +1031,8 @@ msgstr "테마(정적)"
 msgid "Extensions"
 msgstr "확장 기능"
 
-msgid "Complete Themes"
+#, fuzzy
+msgid "Deprecated Complete Themes"
 msgstr "완전 테마"
 
 # Plural in this context means many of the add-on type
@@ -1409,10 +1557,46 @@ msgid "Header image alignment problem"
 msgstr "헤더 이미지 정렬 문제"
 
 #, fuzzy
-msgid "no action"
+msgid "No action"
 msgstr "다른 작업:"
 
-msgid "flag for human review"
+msgid "Flag for human review"
+msgstr ""
+
+#, fuzzy
+msgid "Delay auto-approval"
+msgstr "승인 상태"
+
+msgid "Delay auto-approval indefinitely"
+msgstr ""
+
+msgid "True positive"
+msgstr ""
+
+msgid "False positive"
+msgstr ""
+
+msgid "Inconclusive"
+msgstr ""
+
+#, fuzzy
+msgid "New"
+msgstr "다음 목록"
+
+msgid "Running"
+msgstr ""
+
+msgid "Aborted"
+msgstr ""
+
+msgid "Aborting"
+msgstr ""
+
+#, fuzzy
+msgid "Completed"
+msgstr "미완료"
+
+msgid "Scheduled"
 msgstr ""
 
 msgid "Core"
@@ -1431,8 +1615,8 @@ msgstr ""
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "우리는 업그레이드를 허용하고 장려하지만, 이 절차를 거꾸로 할 수는 없습니다. 당신의 사용자들이 WebExtension을 설치하였다면, 그들은 레거시 부가 기능을 설치할 수 없을 것입니다."
+msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
+msgstr ""
 
 msgid "This slug is already in use. Please choose another."
 msgstr "이미 사용중인 주화입니다. 다른걸 사용해 주세요."
@@ -1462,9 +1646,6 @@ msgstr "모든 태그는 유효하지 않은 글자 제거 후 %s자 이하여�
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "태그는 최소한 {0} 글자 이상이어야 합니다."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "이 애플리케이션의 추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1586,14 +1767,12 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Display Name"
 msgstr "표시 이름"
-
-msgid "Categories cannot be changed while your add-on is featured."
-msgstr "추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -1712,7 +1891,9 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "미리보기 업로드 도중 오류가 있었습니다."
 
-msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgid ""
+"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
+"with this."
 msgstr ""
 
 #, python-format
@@ -1913,8 +2094,12 @@ msgid ""
 msgstr "이 부가 기능은 %(app_name)s의 최신 버전인 <b>%(app_name)s %(app_version)s</b>에서 호환되지 않습니다. 부가 기능의 호환성 정보를 업데이트 하거나 최신 버전을 올리는 것을 검토해 주시기 바랍니다."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">호환성 업데이트</a> <a href=\"%(version_url)s\" class=\"button\">새 버전 업로드</a> or <a href=\"#\" class=\"close\">무시</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
+msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">호환성 업데이트</a> <a href=\"%(version_url)s\" class=\"button\">새 버전 업로드</a> or <a href=\"#\" class=\"close\">무"
+"시</a>"
 
 #, fuzzy
 msgid "View and update application compatibility ranges"
@@ -2023,8 +2208,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>부가 기능 제작자엔 3가지 종류가 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자의 추가와 삭제 및 부가 기능 전시에 사용되는 모든 항목의 관리 권한 보유</li> <li><b>개발자:</b> 다른 제작자의 추가 기능 및 결제 관련 권한을 제외한 권한 보유</li> <li><b>참관인:</b> 부가 기능의 설정 및 통계를 조회할"
-" 수 있지만 변경 불가</li> </ul>"
+"<p>부가 기능 제작자엔 3가지 종류가 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자의 추가와 삭제 및 부가 기능 전시에 사용되는 모든 항목의 관리 권한 보유</li> <li><b>개발자:</b> 다른 제작자의 추가 "
+"기능 및 결제 관련 권한을 제외한 권한 보유</li> <li><b>참관인:</b> 부가 기능의 설정 및 통계를 조회할 수 있지만 변경 불가</li> </ul>"
 
 #, fuzzy
 msgid "Additional Details"
@@ -2138,23 +2323,18 @@ msgstr ""
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
+msgid "Categories"
+msgstr "분류"
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
-
-#, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr "이 애플리케이션의 추천 부가 기능이 된 동안은 분류를 변경할 수 없습니다. 굳이 분류를 조정해야 할 이유가 있으시다면 <a href=\"mailto:%(email)s\">%(email)s</a> 주소로 메일을 보내주세요."
-
-#, fuzzy, python-format
-msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr "이 애플리케이션의 추천 부가 기능이 된 동안은 분류를 변경할 수 없습니다. 굳이 분류를 조정해야 할 이유가 있으시다면 <a href=\"mailto:%(email)s\">%(email)s</a> 주소로 메일을 보내주세요."
 
 msgid "Email"
 msgstr "이메일"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2230,7 +2410,8 @@ msgstr "부가 기능에 들어갈 아이콘을 선택하세요:"
 msgid "32x32px"
 msgstr "32x32px"
 
-msgid "Used in listings of add-ons, like search results and featured add-ons."
+#, fuzzy
+msgid "Used in listings of add-ons, like search results."
 msgstr "검색 결과나 추천 부가 기능과 같은 부가 기능 목록에 쓰입니다."
 
 #. The size of the icon
@@ -2279,7 +2460,7 @@ msgstr ""
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr ""
 
-msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgid "Having screenshots in your product page greatly increases its chances of being installed."
 msgstr ""
 
 msgid "Continue"
@@ -2317,6 +2498,12 @@ msgstr "다른 라이선스를 선택하세요."
 #, fuzzy
 msgid "More information on Creative Commons licenses"
 msgstr "추가 정보 필요"
+
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr ""
+
+msgid "While in this state, \"On your own\" is the only distribution method available."
+msgstr ""
 
 msgid "General Tests"
 msgstr "일반 테스트"
@@ -2370,9 +2557,6 @@ msgstr "계속"
 
 msgid "Delete this add-on."
 msgstr "부가 기능을 삭제합니다."
-
-msgid "Delete"
-msgstr "삭제"
 
 #, fuzzy
 msgid "Edit details on this add-on's product page"
@@ -2546,22 +2730,19 @@ msgstr "자세한 설명과 스크린샷이 추가된다면 목록에서 더 성
 msgid "Manage Listing"
 msgstr "목록 관리"
 
-msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
+#, fuzzy
+msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr "압축되거나 난독화, 컴파일된 코드를 포함하고 있다면 버전 노트나 소스코드를 추가하도록 버전을 수정할 수 있습니다."
 
 msgid "Edit version {0}"
 msgstr "버전 {0} 수정"
 
-msgid "Version Signed"
+#, fuzzy
+msgid "Version Signature Pending"
 msgstr "버전 사인됨"
 
-msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
+msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
 msgstr ""
-
-# 75%
-# 100%
-msgid "Download {0}"
-msgstr "다운로드 {0}"
 
 msgid "Go to My Submissions"
 msgstr "나의 제출로 이동"
@@ -2582,7 +2763,7 @@ msgstr ""
 msgid "Do you use any of the following?"
 msgstr ""
 
-msgid "Code minifiers or obfuscators"
+msgid "Code generators or minifiers"
 msgstr ""
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
@@ -2614,11 +2795,11 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
 
 msgid "How to Submit:"
@@ -2738,8 +2919,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2764,6 +2945,60 @@ msgstr "새 자격 증명 생성"
 
 msgid "Generate new credentials"
 msgstr "새 자격 증명 생성"
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested new developer API keys for\n"
+"%(domain)s. To finish this process, please click on the link below:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"The following API Key was added to your account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"If you believe this key was created in error, you can remove the key and\n"
+"disable access at the following location:\n"
+"\n"
+"%(url)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"The API Key was revoked from your account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"If you believe this key was revoked in error, you can create a new one\n"
+"at the following location:\n"
+"\n"
+"%(url)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"Dear add-on developer,\n"
+"\n"
+"We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
+"You can generate new API credentials at %(api_keys_url)s\n"
+"\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
+"\n"
+"Thank you,\n"
+"The Mozilla Add-ons team\n"
+msgstr ""
 
 msgid "Invisible"
 msgstr "보이지 않음"
@@ -2906,7 +3141,7 @@ msgstr "개인 정보 보호 정책"
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
+msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
@@ -2925,6 +3160,52 @@ msgstr ""
 #, fuzzy
 msgid "Visit the Extension Workshop"
 msgstr "확장 기능"
+
+msgid "Connect with us"
+msgstr ""
+
+msgid "Twitter"
+msgstr ""
+
+#, fuzzy
+msgid "For developers"
+msgstr "개발자"
+
+msgid "For end users"
+msgstr ""
+
+msgid "Matrix"
+msgstr ""
+
+# The title for a user if they are a developer
+#, fuzzy
+msgid "Add-on Developers Mailing List"
+msgstr "부가 기능 개발자"
+
+#, fuzzy
+msgid "Extensions Developers Newsletter"
+msgstr "확장 기능 개발"
+
+msgid "Stay up-to-date on news and events for Firefox extension developers."
+msgstr ""
+
+#, fuzzy
+msgid "Email Address"
+msgstr "이메일 주소"
+
+#, python-format
+msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
+msgstr ""
+
+#, fuzzy
+msgid "Sign Up"
+msgstr "로그아웃"
+
+msgid "Thanks!"
+msgstr ""
+
+msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
+msgstr ""
 
 msgid "Resources"
 msgstr "자원"
@@ -3009,9 +3290,6 @@ msgstr "테마 제출"
 msgid "Add-on Developer Hub"
 msgstr "부가 기능 개발자"
 
-msgid "Docs"
-msgstr "문서"
-
 msgid "Support"
 msgstr "도움말"
 
@@ -3028,9 +3306,13 @@ msgstr "사진 없음"
 msgid "User Photo"
 msgstr "사용자 사진"
 
-#, python-format
-msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
-msgstr ""
+#, fuzzy
+msgid "Profile"
+msgstr "내 프로필"
+
+#, fuzzy
+msgid "Submit or Manage Extensions"
+msgstr "새 버전 올리기"
 
 #, fuzzy
 msgid "Customize Firefox"
@@ -3052,8 +3334,8 @@ msgstr ""
 msgid "Manage Version {0}"
 msgstr "버전 {0} 관리"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "{0} 관리"
 
@@ -3080,7 +3362,8 @@ msgstr "선택적으로, 이 부가 기능을 검토할 검토자에게 도움�
 msgid "Source code"
 msgstr "소스 코드"
 
-msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
+#, fuzzy
+msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "만약 부가기능에 바이너리나 난독화된 코드가 포함되어 있다면 검토자들이 소스를 확인할 수 있도록 해 주세요."
 
 msgid "File {file_id} ({platform})"
@@ -3157,6 +3440,9 @@ msgstr "다른 버전 보기"
 msgid "Currently on AMO"
 msgstr "AMO상의 버전"
 
+msgid "Status"
+msgstr "상태"
+
 # Header for a column in a table
 msgid "Validation"
 msgstr "검사"
@@ -3223,14 +3509,14 @@ msgstr "정말 검토 요청을 취소하시겠습니까?"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "부가 기능 문서 자료 :: 개발자 허브"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "오류 {0}개"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
@@ -3458,7 +3744,7 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
+msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3531,13 +3817,7 @@ msgid "Leave a clean digital trail. Make Firefox forget website data like cookie
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
-"Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
-"when needed."
+msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3729,7 +4009,7 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
+msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4640,6 +4920,50 @@ msgstr ""
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Select, sort, and run your downloads faster."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get weather updates right in the browser."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Delete cookies, browsing history, and cached files with just a single click."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Remove tracking elements from web links."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get auto-populated RSS feed bookmark folders."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easily organize tons of open tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Create and customize tab groups."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save an entire web page—including images and styling—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatically replace derogatory words across the web."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block all ads—video, pop-ups, banners & more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Watch streaming media with friends and family anywhere."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4654,7 +4978,7 @@ msgid "See all extensions"
 msgstr "모든 확장 기능 탐색하기"
 
 #. editorial content for the secondary hero shelves.
-msgid "Sync extensions across devices"
+msgid "Tab organizers and tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4665,15 +4989,15 @@ msgstr ""
 msgid "Media enhancers for Firefox"
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "더 알아보기"
-
-#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Explore extensions"
 msgstr "확장 기능"
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "더 알아보기"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4705,7 +5029,7 @@ msgstr "같은 파일끼리 버전 비교는 할 수 없습니다."
 msgid "Could not parse the manifest file."
 msgstr ""
 
-msgid "GUID is required for Firefox 47 and below."
+msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
@@ -4770,7 +5094,7 @@ msgid "You cannot submit this type of add-on"
 msgstr "이런 종류의 부가 기능은 제출할 수 없음"
 
 #, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
+msgid "You cannot submit an add-on using an ID ending with %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -4799,6 +5123,11 @@ msgstr "검토로 돌아가기"
 #, fuzzy
 msgid "Back to add-on"
 msgstr "부가 기능으로 돌아가기"
+
+# 75%
+# 100%
+msgid "Download {0}"
+msgstr "다운로드 {0}"
 
 #, fuzzy, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -4879,96 +5208,6 @@ msgstr "업로드한 파일 내역에 파일이 없습니다."
 msgid "Fetching file."
 msgstr "파일을 가져오고 있습니다."
 
-msgid "About Mozilla Add-ons"
-msgstr "Mozilla 부가 기능 소개"
-
-msgid "What is this website?"
-msgstr "이 웹 사이트는 어떤 곳인가요?"
-
-msgid ""
-"addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
-"the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
-msgstr ""
-"흔히 \"AMO\"로 통하는 addons.mozilla.org는 Firefox, Thunderbird, SeaMonkey 등과 같은 Mozilla 소프트웨어의 부가 기능을 관리하는 공식 사이트입니다. 부가 기능은 웹 브라우저나 애플리케이션에 새 기능을 추가하고 구동 방식을 바꿀 수 있습니다. 한번 둘러보시고 온라인을 통한 수천가지 개인화 방법들을 탐구해"
-" 보시기 바랍니다."
-
-msgid "Who creates these add-ons?"
-msgstr "누가 이런 부가 기능들을 만들고 있나요?"
-
-msgid ""
-"The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr "이곳에 등록된 부가 기능은 커뮤니티의 수천명의 개발자가 제작한 것으로써, 개인의 취미 활동부터 큰 기업까지 범위가 넓습니다. 모든 공개 부가 기능은 출시에 앞서 검토자 팀에 의해 검토를 받습니다. 실험적으로 표시된 부가 기능은 검토를 받지 않았으므로 설치시 주의해야 합니다."
-
-msgid "How do I keep up with what's happening at AMO?"
-msgstr "AMO에 대한 소식을 계속 받아볼 수 있을까요?"
-
-msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr "부가 기능 세계의 최신 뉴스를 볼 수 있는 여러 방법들이 있습니다:"
-
-#, python-format
-msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr "<a href=\"%(url)s\">부가 기능 블로그</a>에 정기적으로 부가 기능 열성 팬과 개발자에 관한 정보가 올라옵니다."
-
-#, python-format
-msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr "트위터 계정 <a href=\"%(url)s\">mozamo</a>에 뉴스, 팁, 트릭 등이 자주 올라옵니다."
-
-#, python-format
-msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr "<a href=\"%(url)s\">포럼</a>은 부가 기능 커뮤니티와 교류하고 AMO의 향후 변경 사항에 관해 토론할 수 있는 최적의 장소입니다."
-
-msgid "This sounds great! How can I get involved?"
-msgstr "멋지군요! 저도 참여하고 싶은데 어떻게 해야죠?"
-
-msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr "참여할 수 있는 매우 다양한 방법들이 있습니다. 기술적 지식이 있다면:"
-
-#, python-format
-msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr "<a href=\"%(url)s\">나만의 부가 기능을 만들어 보세요</a>. 무료 호스팅과 업데이트 서비스를 제공하고 있으며 사용자에게 쉽게 다가갈 수 있도록 도와드리겠습니다."
-
-#, python-format
-msgid ""
-"If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
-"stability."
-msgstr "부가 기능 개발 경험이 있다면 <a href=\"%(url)s\">검토자가 되어보세요</a>! 검토자들은 기술적 배경 지식을 가진 부가 기능 팬 집단으로 부가 기능의 코드 품질과 안정성을 검토합니다."
-
-#, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
-msgstr ""
-
-msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr "부가 기능에 관심이 있긴 하지만 기술적 지식이 많지 않을 경우에도, 여전히 도울 방법은 있습니다:"
-
-msgid "Tell your friends! Let people know which add-ons you use."
-msgstr "친구들에게 알려주세요! 사람들에게 어떤 부가 기능을 사용하는지 알려주세요."
-
-#, python-format
-msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr "<a href=\"%(url)s\">포럼</a>에도 참여해 보세요."
-
-msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr "사이트의 부가 기능을 검토해 주세요. 제작자들은 사람들이 자기 작품을 쓰면서 기뻐한다는 걸 알면 좀 더 개선하거나 새 작품을 만들려고 하니까요."
-
-msgid "I have a question"
-msgstr "질문이 있어요"
-
-#, fuzzy, python-format
-msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr "먼저 <a href=\"%(faq_url)s\"><abbr title=\"자주 묻는 질문\">FAQ</abbr></a>에서 시작하는게 좋겠네요. 저기에서 원하는 답을 찾지 못했다면 <a href=\"%(forum_url)s\">포럼에 물어보세요</a>."
-
-#, python-format
-msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "정말 Mozilla 팀원과 연락을 취하고 싶다면 <a href=\"%(url)s\">연락처 정보</a> 페이지를 참고하시기 바랍니다."
-
-msgid "Who works on this website?"
-msgstr "누가 이 사이트를 운영하나요?"
-
-#, fuzzy
-msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr "커뮤니티에서 오신 자원 봉사자들과 헌신적인 AMO팀을 포함한 많은 사람들이 여러해 동안 이곳 웹사이트에 공헌해 주셨습니다. 전체 공헌자 명단은 <a href=\"%(url)s\">사이트 공헌자</a> 페이지에서 확인하실 수 있습니다."
-
 msgid "Review Guidelines"
 msgstr "검토 가이드"
 
@@ -4982,8 +5221,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "검토 작성에 관한 자주 묻는 질문들"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -5249,14 +5488,17 @@ msgstr "원본 제공됨"
 msgid "WebExtension"
 msgstr "WebExtension"
 
-msgid "Risk breakdown not available."
+msgid "Auto-approval delayed temporarily"
+msgstr ""
+
+msgid "Auto-approval delayed indefinitely"
 msgstr ""
 
 #, fuzzy
 msgid "Is locked by a reviewer"
 msgstr "검토자에 의해 잠겼습니다."
 
-msgid "Has auto-approval disabled flag set"
+msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
 msgid "Is recommendable"
@@ -5265,7 +5507,17 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "Risk breakdown not available."
+msgstr ""
+
 msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
+#, fuzzy
+msgid "You can't submit an empty comment."
+msgstr "이런 종류의 부가 기능은 제출할 수 없음"
+
+msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
 msgid "Type"
@@ -5295,14 +5547,12 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 일"
 
+#, fuzzy
+msgid "ID"
+msgstr "GUID"
+
 msgid "Last Review"
 msgstr "최신 리뷰"
-
-msgid "Last Update"
-msgstr "최신 업데이트"
-
-msgid "No Reviews"
-msgstr "리뷰 없음"
 
 msgid "Weight"
 msgstr "무게"
@@ -5314,6 +5564,14 @@ msgstr "추가 정보 필요"
 #, fuzzy
 msgid "Last Updated"
 msgstr "마지막 업데이트:"
+
+#, fuzzy
+msgid "Listed versions needing human review ({0})"
+msgstr "심사 조정 ({0})"
+
+#, fuzzy
+msgid "Unlisted versions needing human review ({0})"
+msgstr "심사 조정 ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5340,6 +5598,21 @@ msgid "Reject Multiple Versions"
 msgstr "인쇄용 버전"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr "선택된 공개 버전을 거부하게 됩니다. 의견이 개발자에게 보내집니다."
+
+#, fuzzy
+msgid "Block Multiple Versions"
+msgstr "인쇄용 버전"
+
+msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
+msgstr ""
+
+#, fuzzy
+msgid "Confirm Multiple Versions"
+msgstr "인쇄용 버전"
+
+#, fuzzy
+msgid "This will confirm approval of the selected versions without notifying the developer."
 msgstr "선택된 공개 버전을 거부하게 됩니다. 의견이 개발자에게 보내집니다."
 
 msgid "Reviewer reply"
@@ -5378,6 +5651,13 @@ msgstr "검토 기록"
 
 msgid "Add-on Review Guide"
 msgstr "부가 기능 검토 가이드"
+
+msgid "Flagged By Scanners"
+msgstr ""
+
+msgid "Flagged By Scanners ({0})"
+msgid_plural "Flagged By Scanners ({0})"
+msgstr[0] ""
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5544,6 +5824,10 @@ msgstr "이미지 갤러리"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "내용이 없습니다!  이 개발자는 세부 정보를 올려놓지 않았습니다."
 
+#, fuzzy
+msgid "Add-on name translations"
+msgstr "부가 기능 버전별"
+
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "검토자 도구 대시보드로 돌아가기"
 
@@ -5597,9 +5881,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "삭제 취소"
-
-msgid "Save"
-msgstr "저장"
 
 msgid "Add-on Reviewer Performance"
 msgstr "부가 기능 검토자 활동 내역"
@@ -5702,40 +5983,12 @@ msgstr "부가 기능 변경 내역"
 msgid "Previously deleted entries"
 msgstr "이전 메모"
 
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "버전 %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr "(확인됨)"
-
-msgid "Compatibility:"
-msgstr "호환성:"
-
-msgid "Additional sources:"
-msgstr "추가 자원:"
-
-msgid "Download files"
-msgstr "다운로드된 파일"
-
-msgid "The developer has provided source code."
-msgstr "이 개발자는 소스 코드를 제공합니다."
-
-msgid "Weight:"
+msgid "This is a recommended extension."
 msgstr ""
-
-msgid "Download"
-msgstr "다운로드"
 
 #, fuzzy
-msgid "Not Auto Approved Because"
-msgstr "안드로이드용 부가 기능"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-msgid "This version has not been reviewed."
-msgstr "이 버전은 아직 검토를 거치지 않았습니다."
+msgid "You don't have permission to review it."
+msgstr "API 자격 증명이 없습니다."
 
 msgid "Please select one or more versions in the list above."
 msgstr ""
@@ -5769,6 +6022,14 @@ msgstr "다른 작업:"
 msgid "Notify me about new listed versions"
 msgstr ""
 
+#, fuzzy
+msgid "Allow resubmission"
+msgstr "모든 버전 보기"
+
+#, fuzzy
+msgid "Deny resubmission"
+msgstr "내 제출물 관리"
+
 msgid "Force-disable add-on"
 msgstr ""
 
@@ -5776,11 +6037,32 @@ msgstr ""
 msgid "Force-enable add-on"
 msgstr "인쇄용 버전"
 
-msgid "Disable Auto-Approval"
+#, fuzzy
+msgid "View Blocklist Submission"
+msgstr "모든 버전 보기"
+
+# 80%
+# 100%
+#, fuzzy
+msgid "Block add-on"
+msgstr "부가 기능으로 돌아가기"
+
+msgid "Update add-on block"
 msgstr ""
 
 #, fuzzy
-msgid "Enable Auto-Approval"
+msgid "Disable Listed Auto-Approval"
+msgstr "승인 상태"
+
+#, fuzzy
+msgid "Enable Listed Auto-Approval"
+msgstr "승인 상태"
+
+msgid "Auto-Approval currently disabled until {date}"
+msgstr ""
+
+#, fuzzy
+msgid "Clear Auto-Approval Extra Delay"
 msgstr "승인 상태"
 
 #, fuzzy
@@ -5826,10 +6108,17 @@ msgstr "코멘트 숨김"
 msgid "No reviews found for this period."
 msgstr "기간 내 제출된 검토 항목이 없습니다."
 
+msgid "Origin:"
+msgstr ""
+
 msgid "Method:"
 msgstr ""
 
 msgid "Source:"
+msgstr "출처:"
+
+#, fuzzy
+msgid "Source URL:"
 msgstr "출처:"
 
 msgid "Dismiss this announcement"
@@ -5857,6 +6146,9 @@ msgstr "이전 목록"
 msgid "Newer"
 msgstr "다음 목록"
 
+msgid "{num} versions flagged by scanners on other pages."
+msgstr ""
+
 msgid "Recent Points"
 msgstr "최근 포인트"
 
@@ -5882,6 +6174,44 @@ msgstr "테마"
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "사용자: %(user)s 날짜: %(date)s [%(ip_address)s]"
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr "버전 %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+
+msgid "(Confirmed)"
+msgstr "(확인됨)"
+
+msgid "Compatibility:"
+msgstr "호환성:"
+
+msgid "Additional sources:"
+msgstr "추가 자원:"
+
+msgid "Download files"
+msgstr "다운로드된 파일"
+
+msgid "The developer has provided source code."
+msgstr "이 개발자는 소스 코드를 제공합니다."
+
+msgid "Weight:"
+msgstr ""
+
+msgid "Flagged by automated scanners"
+msgstr ""
+
+msgid "Download"
+msgstr "다운로드"
+
+#, fuzzy
+msgid "Not Auto Approved Because"
+msgstr "안드로이드용 부가 기능"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr ""
+
+msgid "This version has not been reviewed."
+msgstr "이 버전은 아직 검토를 거치지 않았습니다."
 
 msgid "Rejected or Unreviewed"
 msgstr "거부 또는 미검토"
@@ -5909,11 +6239,77 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "추가 정보 제공 요청: {0}"
 
-msgid "matches"
+msgid "presence of matched rules"
 msgstr ""
+
+#, fuzzy
+msgid "result state"
+msgstr "시작하기"
+
+msgid "all but this rule"
+msgstr ""
+
+#, fuzzy
+msgid "presence of a version"
+msgstr "다른 버전 보기"
+
+#, fuzzy
+msgid "version channel"
+msgstr "버전 사인됨"
+
+#, fuzzy
+msgid "add-on status"
+msgstr "부가 기능 상태"
+
+#, fuzzy
+msgid "add-on listing visibility"
+msgstr "부가 기능 변경 내역"
+
+#, fuzzy
+msgid "file status"
+msgstr "사이트 상태"
+
+#, fuzzy
+msgid "file signature"
+msgstr "{file} 파일이 서명되었습니다."
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr ""
+
+msgid "Yara rules should have a definition"
+msgstr ""
+
+msgid "The name of the rule in the definition should match the name of the scanner rule"
+msgstr ""
+
+msgid "Only one Yara rule is allowed in the definition"
+msgstr ""
+
+#, python-format
+msgid "The definition is not valid: %(error)s"
+msgstr ""
+
+msgid "An error occurred when compiling the definition"
+msgstr ""
+
+msgid "Run this rule on add-ons that have been force-disabled as well."
+msgstr ""
+
+msgid "Abort"
+msgstr ""
+
+msgid "Run"
+msgstr ""
+
+msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
+msgstr ""
+
+#, fuzzy
+msgid "Revert report"
+msgstr "검토자 답변"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5939,7 +6335,7 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Could not find add-on with guid \"{}\"."
+msgid "Could not find Add-on with ID \"{}\"."
 msgstr ""
 
 msgid "You do not own this addon."
@@ -5959,13 +6355,16 @@ msgstr ""
 msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
-msgid "Only WebExtensions are allowed to omit the GUID"
+msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr ""
 
-msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
 
-msgid "Invalid GUID in URL"
+msgid "Invalid Add-on ID in URL or package"
+msgstr ""
+
+msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
 msgstr ""
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
@@ -6006,9 +6405,6 @@ msgstr "시작일"
 
 msgid "To"
 msgstr "종료일"
-
-msgid "Update"
-msgstr "업데이트"
 
 msgid "Export"
 msgstr "내보내기"
@@ -6107,7 +6503,9 @@ msgstr "다운로드 횟수는 어떤 방식으로 집계되나요?"
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
-msgstr "<h2>다운로드 횟수는 어떤 방식으로 집계되나요?</h2> <p>다운로드 횟수는 매일 저녁에 갱신되며 업데이트를 뺀 순수 다운로드 횟수만 포함됩니다. 다운로드 횟수는 명시된 출처의 다운로드 조회 과정에 따라 제대로 표시되지 않을 수도 있습니다. </p>"
+msgstr ""
+"<h2>다운로드 횟수는 어떤 방식으로 집계되나요?</h2> <p>다운로드 횟수는 매일 저녁에 갱신되며 업데이트를 뺀 순수 다운로드 횟수만 포함됩니다. 다운로드 횟수는 명시된 출처의 다운로드 조회 과정에 따라 제대"
+"로 표시되지 않을 수도 있습니다. </p>"
 
 msgid "User languages by Date"
 msgstr "날짜별 사용자 언어"
@@ -6150,16 +6548,17 @@ msgstr "외부 자원 추적 안내..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>외부 자원 추적</h2> <p>부가 기능 상세 정보 페이지나 파일과 직접 연결되어 있는 블로그 내지는 웹 사이트 등과 같은 외부 사이트를 보유하고 있을 경우, 추가 다운로드 출처를 추적할 수 있는 파라미터를 적용할 수 있습니다. 그 예로, 아래의 링크는 블로그를 출처로 하게 될 것입니다: <dl> <dt>부가 기능 상세 정보 페이지로 링크 "
-"예제</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>파일 직접 연결 예제</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> src 파라미터는 반드시 \"external-\"로 시작해야 하며 영문 61자를 넘어선 안됩니다. \"external-\" 뒤에는 "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\" 등과 같이 출처를 설명하는 텍스트를 입력해야 합니다. 다음의 URL 입력 가능 문자만 허용됩니다: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>외부 자원 추적</h2> <p>부가 기능 상세 정보 페이지나 파일과 직접 연결되어 있는 블로그 내지는 웹 사이트 등과 같은 외부 사이트를 보유하고 있을 경우, 추가 다운로드 출처를 추적할 수 있는 파라미터를 "
+"적용할 수 있습니다. 그 예로, 아래의 링크는 블로그를 출처로 하게 될 것입니다: <dl> <dt>부가 기능 상세 정보 페이지로 링크 예제</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</"
+"b></dd> <dt>파일 직접 연결 예제</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> src 파라미터는 반드시 \"external-\"로 시작"
+"해야 하며 영문 61자를 넘어선 안됩니다. \"external-\" 뒤에는 \"external-blog\", \"external-sidebar\", \"external-campaign225\" 등과 같이 출처를 설명하는 텍스트를 입력해야 합니다. 다음의 URL 입력 가"
+"능 문자만 허용됩니다: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "날짜순 부가 기능 상태"
@@ -6173,7 +6572,9 @@ msgstr "일일 사용자 수란?"
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr "<h2>일일 사용자 수란?</h2> <p> 이 사이트를 통해 다운로드 된 부가 기능의 수는 일일 단위로 업데이트 됩니다. 이러한 업데이트 핑의 총합이 일일 사용자 수가 됩니다. 일일 사용자 수는 부가 기능 버전, 운영 체제, 부가 기능 상태, 애플리케이션 종류, 사용 언어별로 제대로 집계가 되지 않을 수도 있습니다. </p>"
+msgstr ""
+"<h2>일일 사용자 수란?</h2> <p> 이 사이트를 통해 다운로드 된 부가 기능의 수는 일일 단위로 업데이트 됩니다. 이러한 업데이트 핑의 총합이 일일 사용자 수가 됩니다. 일일 사용자 수는 부가 기능 버전, 운영 "
+"체제, 부가 기능 상태, 애플리케이션 종류, 사용 언어별로 제대로 집계가 되지 않을 수도 있습니다. </p>"
 
 msgid "Application versions by Date"
 msgstr "날짜별 애플리케이션 버전"
@@ -6211,8 +6612,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"일부 아이콘은 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5 "
-"License</a>를 따르고 있습니다."
+"일부 아이콘은 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
+"Attribution 2.5 License</a>를 따르고 있습니다."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>부가 기능</b> 안내"
@@ -6322,6 +6723,14 @@ msgid "Ban selected users"
 msgstr ""
 
 #, python-format
+msgid "The users \"%(users)s\" had their session(s) reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset session"
+msgstr "버전 삭제"
+
+#, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr ""
 
@@ -6380,9 +6789,17 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
-msgstr "시작하기 전에 Firefox 부가 기능 배포 계약과 검토 정책과 규칙에 대해서 읽고 동의해주세요. Firefox 부가 기능 배포 계약은 사용자의 정보를 다루는 기준이 명시된 우리의 개인정보 보호 고지와 연결되어 있습니다."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+"시작하기 전에 Firefox 부가 기능 배포 계약과 검토 정책과 규칙에 대해서 읽고 동의해주세요. Firefox 부가 기능 배포 계약은 사용자의 정보를 다루는 기준이 명시된 우리의 개인정보 보호 고지와 연결되어 있습"
+"니다."
+
+#, fuzzy
+msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgstr ""
+"시작하기 전에 Firefox 부가 기능 배포 계약과 검토 정책과 규칙에 대해서 읽고 동의해주세요. Firefox 부가 기능 배포 계약은 사용자의 정보를 다루는 기준이 명시된 우리의 개인정보 보호 고지와 연결되어 있습"
+"니다."
 
 msgid "an add-on developer replies to my review"
 msgstr "부가 기능 개발자가 검토에 댓글을 달았습니다"
@@ -6414,8 +6831,54 @@ msgstr "사용자 알림 메시지"
 msgid "Ban"
 msgstr "차단"
 
+#, fuzzy
+msgid "Reset session(s)"
+msgstr "버전 삭제"
+
 msgid "Delete picture"
 msgstr "사진 삭제"
+
+#, python-format
+msgid ""
+"\n"
+"The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Greetings %(author_name)s,\n"
+"\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
+"\n"
+"Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"If you didn't expect to receive this invitation, please send an email to amo-admins@mozilla.com.\n"
+"\n"
+"Kind regards,\n"
+"The Mozilla Add-ons Team\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )\n"
+msgstr ""
 
 msgctxt "user_list_others"
 msgid "others"

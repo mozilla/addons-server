@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2019-09-25 17:21+0000\n"
 "Last-Translator: chaitanyavarma000 <chaitanyavarma000@gmail.com>\n"
 "Language-Team: none\n"
@@ -125,8 +125,17 @@ msgstr "పొడగింతల సరికొత్త వెర్షన్�
 msgid "Ratings"
 msgstr "రేటింగులు"
 
-msgid "Status"
-msgstr "స్థితి"
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "సమీక్షకుని పనిముట్లు"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "సమీక్షకుని పనిముట్లు"
+
+#, fuzzy
+msgid "Reviewer links"
+msgstr "సమీక్షకుని పనిముట్లు"
 
 msgid "- Add-on not on AMO -"
 msgstr "- AMOలో పొడిగింత లేదు -"
@@ -272,17 +281,19 @@ msgstr "కనబడలేదు"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 
 msgid "Oops"
 msgstr "అయ్యో"
 
 #, python-format
-msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgid ""
+"<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
+"this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
 
 msgid "No results found"
@@ -318,24 +329,6 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-
-msgid "Most Popular"
-msgstr "అత్యంత ప్రసిద్ధమైనది"
-
-msgid "Top Rated"
-msgstr "ఉత్తమ రేటింగు"
-
-msgid "Newest"
-msgstr "సరికొత్తవి"
-
-msgid "Featured"
-msgstr "విశేషత పొందినవి"
-
-msgid "Explore"
-msgstr "అన్వేషించు"
-
-msgid "Categories"
-msgstr "వర్గాలు"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -444,8 +437,8 @@ msgstr "వెర్షన్లు"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -465,6 +458,114 @@ msgstr "ఈ అభిమత URLను ఉపయోగించలేము."
 
 msgid "This add-on already belongs to the collection"
 msgstr "ఈ పొడగింత ఇప్పటికీ ఆ సేకరణలో ఉంది"
+
+#, python-format
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "GUID %(guid)s is in a pending Submission"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr ""
+
+#, python-format
+msgid "GUID %(guid)s is already in a pending Submission"
+msgstr ""
+
+msgid "Blocks to be updated are different because Min or Max version has changed."
+msgstr ""
+
+#, fuzzy
+msgid "Invalid version"
+msgstr "చెల్లని వెర్షను అవధి."
+
+msgid "Min version can not be greater than Max version"
+msgstr ""
+
+#, fuzzy
+msgid "Review Listed"
+msgstr "సమీక్ష అభ్యర్థించబడింది"
+
+#, fuzzy
+msgid "Review Unlisted"
+msgstr "గమనికను సమీక్షించండి"
+
+msgid "This block was imported from a regex based legacy kinto Block."
+msgstr ""
+
+msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
+msgstr ""
+
+#, python-format
+msgid "Delete Multiple %(name)s"
+msgstr ""
+
+#, fuzzy
+msgid "Home"
+msgstr "ముంగిలిపేజీ"
+
+#, python-format
+msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
+msgstr ""
+
+#, python-format
+msgid "%(count)s Add-on GUIDs were not found"
+msgstr ""
+
+msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgstr ""
+
+msgid "Save"
+msgstr "భద్రపరచు"
+
+msgid "Save and add more"
+msgstr ""
+
+msgid "Delete"
+msgstr "తొలగించు"
+
+msgid "Update"
+msgstr "తాజాకరించు"
+
+#, fuzzy
+msgid "Reject Submission"
+msgstr "నా సమర్పణలకు వెళ్ళండి"
+
+#, fuzzy
+msgid "Approve Submission"
+msgstr "నా సమర్పణలకు వెళ్ళండి"
+
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+msgid "Add-on GUIDs (one per line)"
+msgstr ""
+
+#, fuzzy
+msgid "Submit"
+msgstr "వెర్షనును సమర్పించు"
+
+#, python-format
+msgid "%(count)s Add-on GUIDs"
+msgstr ""
+
+#, fuzzy
+msgid "users"
+msgstr "వాడుకరులు"
+
+msgid "Edit Block"
+msgstr ""
+
+#, fuzzy
+msgid "versions"
+msgstr "వెర్షన్లు"
+
+msgid "Included in legacy blocklist."
+msgstr ""
 
 msgid "{addon} was created."
 msgstr "{addon} సృష్టించబడింది."
@@ -784,6 +885,47 @@ msgstr "{addon} తేలికపాటి అలంకారం నుండ�
 msgid "User {user} api key reset."
 msgstr "వాడుకరి {user} బొమ్మ తొలగించబడింది."
 
+msgid "Block for {0} added to Blocklist."
+msgstr ""
+
+msgid "Block added"
+msgstr ""
+
+msgid "Block for {0} edited in Blocklist."
+msgstr ""
+
+msgid "Block edited"
+msgstr ""
+
+#, fuzzy
+msgid "Block for {0} deleted from Blocklist."
+msgstr "{addon} నుండి వెర్షన్ {0} తొలగించబడింది."
+
+#, fuzzy
+msgid "Block deleted"
+msgstr "పొడిగింత తొలగించబడింది."
+
+msgid "GUID for {addon} added to DeniedGuid."
+msgstr ""
+
+#, fuzzy
+msgid "GUID for {addon} removed from DeniedGuid."
+msgstr "{addon} {collection} నుండి తొలగించబడింది."
+
+msgid "Block {1} action for {0} signed off."
+msgstr ""
+
+msgid "Block action signoff"
+msgstr ""
+
+#, fuzzy
+msgid "User {user} session(s) reset."
+msgstr "వాడుకరి {user} బొమ్మ తొలగించబడింది."
+
+#, fuzzy
+msgid "User {user} throttled for scope \"{0}\""
+msgstr "వాడుకరి {user}‌ని మార్చారు, కారణం: {1}"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -823,6 +965,9 @@ msgstr "తొలగించబడింది"
 msgid "Unlisted"
 msgstr "జాబితాచేయని"
 
+msgid "API"
+msgstr ""
+
 msgid "Owner"
 msgstr "యజమాని"
 
@@ -832,7 +977,8 @@ msgstr "డెవలపర్"
 msgid "Extension"
 msgstr "పొడిగింత"
 
-msgid "Complete Theme"
+#, fuzzy
+msgid "Deprecated Complete Theme"
 msgstr "పూర్తి అలంకారం"
 
 msgid "Dictionary"
@@ -859,7 +1005,8 @@ msgstr "అలంకారం (అచలం)"
 msgid "Extensions"
 msgstr "పొడిగింతలు"
 
-msgid "Complete Themes"
+#, fuzzy
+msgid "Deprecated Complete Themes"
 msgstr "పూర్తి అలంకారాలు"
 
 msgid "Dictionaries"
@@ -1377,10 +1524,45 @@ msgid "Header image alignment problem"
 msgstr "శీర్షిక చిత్రం అమరిక సమస్య"
 
 #, fuzzy
-msgid "no action"
+msgid "No action"
 msgstr "మరిన్ని చర్యలు"
 
-msgid "flag for human review"
+msgid "Flag for human review"
+msgstr ""
+
+msgid "Delay auto-approval"
+msgstr ""
+
+msgid "Delay auto-approval indefinitely"
+msgstr ""
+
+msgid "True positive"
+msgstr ""
+
+msgid "False positive"
+msgstr ""
+
+msgid "Inconclusive"
+msgstr ""
+
+#, fuzzy
+msgid "New"
+msgstr "సరికొత్తవి"
+
+msgid "Running"
+msgstr ""
+
+msgid "Aborted"
+msgstr ""
+
+msgid "Aborting"
+msgstr ""
+
+#, fuzzy
+msgid "Completed"
+msgstr "అసంపూర్తి"
+
+msgid "Scheduled"
 msgstr ""
 
 msgid "Core"
@@ -1399,7 +1581,7 @@ msgstr ""
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
@@ -1434,9 +1616,6 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "అన్ని ట్యాగ్లు కనీసం {0} అక్షరం కలిగి ఉండాలి."
 msgstr[1] "అన్ని ట్యాగ్లు కనీసం {0} అక్షరాలు కలిగి ఉండాలి."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1556,14 +1735,12 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Display Name"
 msgstr "ప్రదర్శన పేరు"
-
-msgid "Categories cannot be changed while your add-on is featured."
-msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "చెల్లని లేదా పాడైన పొడగింత ఫైలు."
@@ -1678,7 +1855,9 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "మీ మునుజూపును ఎక్కించడంలో పొరపాటు జరిగింది."
 
-msgid "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgid ""
+"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
+"with this."
 msgstr ""
 
 #, python-format
@@ -1873,7 +2052,9 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges"
@@ -2089,23 +2270,18 @@ msgstr ""
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
 
+msgid "Categories"
+msgstr "వర్గాలు"
+
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
-
-#, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr ""
-
-#, python-format
-msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 msgid "Email"
 msgstr "ఇమెయిల్"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2181,7 +2357,7 @@ msgstr "మీ పొడగింత కోసం ఒక ప్రతీకా�
 msgid "32x32px"
 msgstr "32x32px"
 
-msgid "Used in listings of add-ons, like search results and featured add-ons."
+msgid "Used in listings of add-ons, like search results."
 msgstr ""
 
 #. The size of the icon
@@ -2228,7 +2404,7 @@ msgstr ""
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "కనిష్ఠ పరిమాణం 1000x750, 4:3 నిష్పత్తి అవసరం."
 
-msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgid "Having screenshots in your product page greatly increases its chances of being installed."
 msgstr ""
 
 msgid "Continue"
@@ -2257,6 +2433,12 @@ msgstr "వేరే లైసెన్స్ని ఎంచుకోండ�
 
 msgid "More information on Creative Commons licenses"
 msgstr "క్రియేటివ్ కామన్స్ లైసెన్సుల గురించి మరింత సమాచారం"
+
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr ""
+
+msgid "While in this state, \"On your own\" is the only distribution method available."
+msgstr ""
 
 msgid "General Tests"
 msgstr "సాధారణ పరీక్షలు"
@@ -2307,9 +2489,6 @@ msgstr "తిరిగికొనసాగించు"
 
 msgid "Delete this add-on."
 msgstr "ఈ పొడగింతని తొలగించండి."
-
-msgid "Delete"
-msgstr "తొలగించు"
 
 msgid "Edit details on this add-on's product page"
 msgstr ""
@@ -2479,20 +2658,18 @@ msgstr ""
 msgid "Manage Listing"
 msgstr "జాబితాను నిర్వహించండి"
 
-msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
+msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr ""
 
 msgid "Edit version {0}"
 msgstr "వెర్షన్ను సవరించండి {0}"
 
-msgid "Version Signed"
+#, fuzzy
+msgid "Version Signature Pending"
 msgstr "వెర్షన్ సంతకం చేయబడింది"
 
-msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
+msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
 msgstr ""
-
-msgid "Download {0}"
-msgstr "{0} దించుకోండి"
 
 msgid "Go to My Submissions"
 msgstr "నా సమర్పణలకు వెళ్ళండి"
@@ -2513,7 +2690,7 @@ msgstr ""
 msgid "Do you use any of the following?"
 msgstr "వీటిలో మీరు దేనినైనా వాడుతారా?"
 
-msgid "Code minifiers or obfuscators"
+msgid "Code generators or minifiers"
 msgstr ""
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
@@ -2545,11 +2722,11 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
 
 msgid "How to Submit:"
@@ -2663,8 +2840,8 @@ msgstr "JWT రహస్యము"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2687,6 +2864,60 @@ msgid "Confirm and generate new credentials"
 msgstr ""
 
 msgid "Generate new credentials"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested new developer API keys for\n"
+"%(domain)s. To finish this process, please click on the link below:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"The following API Key was added to your account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"If you believe this key was created in error, you can remove the key and\n"
+"disable access at the following location:\n"
+"\n"
+"%(url)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"The API Key was revoked from your account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"If you believe this key was revoked in error, you can create a new one\n"
+"at the following location:\n"
+"\n"
+"%(url)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"Dear add-on developer,\n"
+"\n"
+"We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
+"You can generate new API credentials at %(api_keys_url)s\n"
+"\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
+"\n"
+"Thank you,\n"
+"The Mozilla Add-ons team\n"
 msgstr ""
 
 msgid "Invisible"
@@ -2822,7 +3053,7 @@ msgstr "గోప్యతా విధానం"
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
+msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
@@ -2840,6 +3071,51 @@ msgstr ""
 #, fuzzy
 msgid "Visit the Extension Workshop"
 msgstr "పొడగింతల కార్యశాల"
+
+msgid "Connect with us"
+msgstr ""
+
+msgid "Twitter"
+msgstr ""
+
+#, fuzzy
+msgid "For developers"
+msgstr "డెవలపర్"
+
+msgid "For end users"
+msgstr ""
+
+msgid "Matrix"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on Developers Mailing List"
+msgstr "పొడిగింతల డెవలపర్ హబ్"
+
+#, fuzzy
+msgid "Extensions Developers Newsletter"
+msgstr "పొడగింతల డెవలప్‌మెంట్"
+
+msgid "Stay up-to-date on news and events for Firefox extension developers."
+msgstr ""
+
+#, fuzzy
+msgid "Email Address"
+msgstr "ఐపీ చిరునామా"
+
+#, python-format
+msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
+msgstr ""
+
+#, fuzzy
+msgid "Sign Up"
+msgstr "నిష్క్రమించు"
+
+msgid "Thanks!"
+msgstr ""
+
+msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
+msgstr ""
 
 msgid "Resources"
 msgstr "వనరులు"
@@ -2919,9 +3195,6 @@ msgstr "మీ మొదటి అలంకారాన్ని సమర్ప
 msgid "Add-on Developer Hub"
 msgstr "పొడిగింతల డెవలపర్ హబ్"
 
-msgid "Docs"
-msgstr "పత్రాలు"
-
 msgid "Support"
 msgstr "మద్దతు"
 
@@ -2937,9 +3210,13 @@ msgstr "చిత్రం లేదు"
 msgid "User Photo"
 msgstr "వాడుకరి చిత్రం"
 
-#, python-format
-msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
-msgstr ""
+#, fuzzy
+msgid "Profile"
+msgstr "నా ప్రొఫైలు"
+
+#, fuzzy
+msgid "Submit or Manage Extensions"
+msgstr "కొత్త వెర్షనును సమర్పించండి"
 
 msgid "Customize Firefox"
 msgstr "Firefox‌ను తీర్చిదిద్దుకోండి"
@@ -2987,7 +3264,7 @@ msgstr ""
 msgid "Source code"
 msgstr "మూల కోడ్"
 
-msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
+msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
 msgid "File {file_id} ({platform})"
@@ -3058,6 +3335,9 @@ msgstr "జాబితా చేసిన వెర్షన్లు"
 
 msgid "Currently on AMO"
 msgstr "ప్రస్తుతం AMO లో"
+
+msgid "Status"
+msgstr "స్థితి"
 
 msgid "Validation"
 msgstr "నిర్ధారణ"
@@ -3356,7 +3636,7 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Customize mouse gestures. Discover a new way to navigate with 50+ helpful mouse gestures."
+msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3429,13 +3709,7 @@ msgid "Leave a clean digital trail. Make Firefox forget website data like cookie
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
-"Save text for later. Stop writing the same thing over and over again. If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them "
-"when needed."
+msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3627,7 +3901,7 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
+msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4552,6 +4826,50 @@ msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుక�
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Select, sort, and run your downloads faster."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get weather updates right in the browser."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Delete cookies, browsing history, and cached files with just a single click."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Remove tracking elements from web links."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get auto-populated RSS feed bookmark folders."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easily organize tons of open tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Create and customize tab groups."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save an entire web page—including images and styling—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatically replace derogatory words across the web."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block all ads—video, pop-ups, banners & more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Watch streaming media with friends and family anywhere."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4566,7 +4884,7 @@ msgid "See all extensions"
 msgstr "పొడగింతలన్నీ చూడండి"
 
 #. editorial content for the secondary hero shelves.
-msgid "Sync extensions across devices"
+msgid "Tab organizers and tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4578,13 +4896,13 @@ msgid "Media enhancers for Firefox"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "ఇంకా తెలుసుకోండి"
-
-#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Explore extensions"
 msgstr "పొడిగింతలు"
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "ఇంకా తెలుసుకోండి"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4616,7 +4934,7 @@ msgstr ""
 msgid "Could not parse the manifest file."
 msgstr ""
 
-msgid "GUID is required for Firefox 47 and below."
+msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
@@ -4681,7 +4999,7 @@ msgid "You cannot submit this type of add-on"
 msgstr "మీరు ఈ పొడిగింతపు రకాన్ని సమర్పించలేరు"
 
 #, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
+msgid "You cannot submit an add-on using an ID ending with %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -4706,6 +5024,9 @@ msgstr "తిరిగి సమీక్షకి"
 
 msgid "Back to add-on"
 msgstr "పొడిగింతకు తిరిగి వెళ్ళు"
+
+msgid "Download {0}"
+msgstr "{0} దించుకోండి"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -4784,93 +5105,6 @@ msgstr "ఎక్కించిన ఫైలులో ఫైళ్ళు ఏమ
 msgid "Fetching file."
 msgstr ""
 
-msgid "About Mozilla Add-ons"
-msgstr "మొజిల్లా పొడగింతల గురించి"
-
-msgid "What is this website?"
-msgstr "ఈ వెబ్‌సైటు ఏమిటి?"
-
-msgid ""
-"addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
-"the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
-msgstr ""
-
-msgid "Who creates these add-ons?"
-msgstr "ఈ పొడగింతలను ఎవరు సృష్టించారు?"
-
-msgid ""
-"The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
-"of reviewers before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr ""
-
-msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
-
-msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
-
-#, python-format
-msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
-
-#, python-format
-msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
-
-#, python-format
-msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
-
-msgid "This sounds great! How can I get involved?"
-msgstr "అద్భుతంగా ఉంది! నేను ఎలా పాలుపంచుకోగలను?"
-
-msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
-
-#, python-format
-msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
-
-#, python-format
-msgid ""
-"If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
-"stability."
-msgstr ""
-
-#, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
-msgstr ""
-
-msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
-
-msgid "Tell your friends! Let people know which add-ons you use."
-msgstr "మీ స్నేహితులకు చెప్పండి! మీరు ఏయే పొడగింతలు వాడుతున్నారో ప్రజలకు తెలియనివ్వండి."
-
-#, python-format
-msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
-
-msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
-
-msgid "I have a question"
-msgstr "నాకు ప్రశ్న ఉంది"
-
-#, python-format
-msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
-
-#, python-format
-msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
-
-msgid "Who works on this website?"
-msgstr "ఈ వెబ్‌సైటుపై ఎవరు పని చేస్తారు?"
-
-msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
-
 msgid "Review Guidelines"
 msgstr "మార్గదర్శకాలను సమీక్షించండి"
 
@@ -4884,8 +5118,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "సమీక్షల గురించి తరచూ అడిగే ప్రశ్నలు"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -5142,13 +5376,16 @@ msgstr "అందించిన మూలాలు"
 msgid "WebExtension"
 msgstr "WebExtension"
 
-msgid "Risk breakdown not available."
+msgid "Auto-approval delayed temporarily"
+msgstr ""
+
+msgid "Auto-approval delayed indefinitely"
 msgstr ""
 
 msgid "Is locked by a reviewer"
 msgstr ""
 
-msgid "Has auto-approval disabled flag set"
+msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
 msgid "Is recommendable"
@@ -5157,7 +5394,17 @@ msgstr "సిఫార్సు చేయబడింది"
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "Risk breakdown not available."
+msgstr ""
+
 msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
+#, fuzzy
+msgid "You can't submit an empty comment."
+msgstr "మీరు ఈ పొడిగింతపు రకాన్ని సమర్పించలేరు"
+
+msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
 msgid "Type"
@@ -5190,14 +5437,12 @@ msgid_plural "{0} days"
 msgstr[0] "{0} రోజు"
 msgstr[1] "{0} రోజులు"
 
+#, fuzzy
+msgid "ID"
+msgstr "CIDR"
+
 msgid "Last Review"
 msgstr "చివరి సమీక్ష"
-
-msgid "Last Update"
-msgstr "చివరి నవీకరణ"
-
-msgid "No Reviews"
-msgstr "సమీక్షలు లేవు"
 
 msgid "Weight"
 msgstr "బరువు"
@@ -5207,6 +5452,14 @@ msgstr "సమాచార అభ్యర్ధన కాలపరిమిత�
 
 msgid "Last Updated"
 msgstr "చివరిగా తాజాకరణ"
+
+#, fuzzy
+msgid "Listed versions needing human review ({0})"
+msgstr "ఇతర వేచివున్న సమీక్ష ({0})"
+
+#, fuzzy
+msgid "Unlisted versions needing human review ({0})"
+msgstr "ఇతర వేచివున్న సమీక్ష ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5230,6 +5483,20 @@ msgid "Reject Multiple Versions"
 msgstr ""
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgstr ""
+
+#, fuzzy
+msgid "Block Multiple Versions"
+msgstr "అనువర్తనపు వెర్షన్లు"
+
+msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
+msgstr ""
+
+#, fuzzy
+msgid "Confirm Multiple Versions"
+msgstr "తోడ్పాటున్న వెర్షనులు"
+
+msgid "This will confirm approval of the selected versions without notifying the developer."
 msgstr ""
 
 msgid "Reviewer reply"
@@ -5264,6 +5531,14 @@ msgstr "సమీక్షల చిట్టా"
 
 msgid "Add-on Review Guide"
 msgstr "యాడ్-ఆన్ సమీక్ష గైడు"
+
+msgid "Flagged By Scanners"
+msgstr ""
+
+msgid "Flagged By Scanners ({0})"
+msgid_plural "Flagged By Scanners ({0})"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Auto-Approved Add-ons"
 msgstr ""
@@ -5409,6 +5684,10 @@ msgstr "బొమ్మల సేకరణ"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
+#, fuzzy
+msgid "Add-on name translations"
+msgstr "ద్వారా పొడిగింత వెర్షన్"
+
 msgid "Return to the Reviewer Tools dashboard"
 msgstr ""
 
@@ -5461,9 +5740,6 @@ msgstr ""
 
 msgid "Undelete"
 msgstr "తొలగించనిది"
-
-msgid "Save"
-msgstr "భద్రపరచు"
 
 msgid "Add-on Reviewer Performance"
 msgstr ""
@@ -5562,38 +5838,10 @@ msgstr "పొడగింత చరిత్ర"
 msgid "Previously deleted entries"
 msgstr ""
 
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgid "This is a recommended extension."
 msgstr ""
 
-msgid "(Confirmed)"
-msgstr "(ధ్రువీకరించారు)"
-
-msgid "Compatibility:"
-msgstr "అనుకూలత:"
-
-msgid "Additional sources:"
-msgstr "అదనపు వనరులు:"
-
-msgid "Download files"
-msgstr "ఫైళ్లను దింపుకోళ్ళు చేయండి"
-
-msgid "The developer has provided source code."
-msgstr "డెవలపర్ సోర్స్ కోడ్ను అందుబాటులోవుంచాడు."
-
-msgid "Weight:"
-msgstr "బరువు:"
-
-msgid "Download"
-msgstr "దింపుకోలు"
-
-msgid "Not Auto Approved Because"
-msgstr ""
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-msgid "This version has not been reviewed."
+msgid "You don't have permission to review it."
 msgstr ""
 
 msgid "Please select one or more versions in the list above."
@@ -5626,16 +5874,41 @@ msgstr "మరిన్ని చర్యలు"
 msgid "Notify me about new listed versions"
 msgstr ""
 
+#, fuzzy
+msgid "Allow resubmission"
+msgstr "అన్ని సమర్పణలను వీక్షించండి"
+
+#, fuzzy
+msgid "Deny resubmission"
+msgstr "నా సమర్పణలను నిర్వహించండి"
+
 msgid "Force-disable add-on"
 msgstr ""
 
 msgid "Force-enable add-on"
 msgstr ""
 
-msgid "Disable Auto-Approval"
+#, fuzzy
+msgid "View Blocklist Submission"
+msgstr "అన్ని సమర్పణలను వీక్షించండి"
+
+#, fuzzy
+msgid "Block add-on"
+msgstr "పొడిగింతకు తిరిగి వెళ్ళు"
+
+msgid "Update add-on block"
 msgstr ""
 
-msgid "Enable Auto-Approval"
+msgid "Disable Listed Auto-Approval"
+msgstr ""
+
+msgid "Enable Listed Auto-Approval"
+msgstr ""
+
+msgid "Auto-Approval currently disabled until {date}"
+msgstr ""
+
+msgid "Clear Auto-Approval Extra Delay"
 msgstr ""
 
 msgid "Clear information request"
@@ -5680,10 +5953,17 @@ msgstr "వ్యాఖ్యలను దాచు"
 msgid "No reviews found for this period."
 msgstr ""
 
+msgid "Origin:"
+msgstr ""
+
 msgid "Method:"
 msgstr ""
 
 msgid "Source:"
+msgstr "మూలం:"
+
+#, fuzzy
+msgid "Source URL:"
 msgstr "మూలం:"
 
 msgid "Dismiss this announcement"
@@ -5711,6 +5991,9 @@ msgstr "పాతవి"
 msgid "Newer"
 msgstr "సరికొత్తవి"
 
+msgid "{num} versions flagged by scanners on other pages."
+msgstr ""
+
 msgid "Recent Points"
 msgstr "ఇటీవలి పాయింట్లు"
 
@@ -5735,6 +6018,43 @@ msgstr "అలంకారం"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr ""
+
+#, python-format
+msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
+msgstr ""
+
+msgid "(Confirmed)"
+msgstr "(ధ్రువీకరించారు)"
+
+msgid "Compatibility:"
+msgstr "అనుకూలత:"
+
+msgid "Additional sources:"
+msgstr "అదనపు వనరులు:"
+
+msgid "Download files"
+msgstr "ఫైళ్లను దింపుకోళ్ళు చేయండి"
+
+msgid "The developer has provided source code."
+msgstr "డెవలపర్ సోర్స్ కోడ్ను అందుబాటులోవుంచాడు."
+
+msgid "Weight:"
+msgstr "బరువు:"
+
+msgid "Flagged by automated scanners"
+msgstr ""
+
+msgid "Download"
+msgstr "దింపుకోలు"
+
+msgid "Not Auto Approved Because"
+msgstr ""
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr ""
+
+msgid "This version has not been reviewed."
 msgstr ""
 
 msgid "Rejected or Unreviewed"
@@ -5764,11 +6084,76 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "కాలంచెల్లిన సమాచార అభ్యర్థన ({0})"
 msgstr[1] "కాలంచెల్లిన సమాచార అభ్యర్థనలు ({0})"
 
-msgid "matches"
+msgid "presence of matched rules"
 msgstr ""
+
+#, fuzzy
+msgid "result state"
+msgstr "మొదలుపెట్టండి"
+
+msgid "all but this rule"
+msgstr ""
+
+msgid "presence of a version"
+msgstr ""
+
+#, fuzzy
+msgid "version channel"
+msgstr "వెర్షన్ సంతకం చేయబడింది"
+
+#, fuzzy
+msgid "add-on status"
+msgstr "పొడిగింత స్థితి"
+
+#, fuzzy
+msgid "add-on listing visibility"
+msgstr "ప్రత్యక్షత జాబితా"
+
+#, fuzzy
+msgid "file status"
+msgstr "సైటు స్థితి"
+
+#, fuzzy
+msgid "file signature"
+msgstr "{file} సంతకం చేయబడింది."
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr ""
+
+msgid "Yara rules should have a definition"
+msgstr ""
+
+msgid "The name of the rule in the definition should match the name of the scanner rule"
+msgstr ""
+
+msgid "Only one Yara rule is allowed in the definition"
+msgstr ""
+
+#, python-format
+msgid "The definition is not valid: %(error)s"
+msgstr ""
+
+msgid "An error occurred when compiling the definition"
+msgstr ""
+
+msgid "Run this rule on add-ons that have been force-disabled as well."
+msgstr ""
+
+msgid "Abort"
+msgstr ""
+
+msgid "Run"
+msgstr ""
+
+msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
+msgstr ""
+
+#, fuzzy
+msgid "Revert report"
+msgstr "సమీక్షకుల ప్రత్యుత్తరం"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5794,8 +6179,9 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Could not find add-on with guid \"{}\"."
-msgstr ""
+#, fuzzy
+msgid "Could not find Add-on with ID \"{}\"."
+msgstr "పొడిగింత ఐడిని కనుగొనలేకపోయాము."
 
 msgid "You do not own this addon."
 msgstr "ఈ పొడిగింత స్వంతం కాదు."
@@ -5814,14 +6200,18 @@ msgstr ""
 msgid "Version already exists. Latest version is: %s."
 msgstr "వెర్షను ఇప్పటికే ఉంది. సరికొత్త వెర్షను: %s."
 
-msgid "Only WebExtensions are allowed to omit the GUID"
+msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr ""
 
-msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
+msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
 
-msgid "Invalid GUID in URL"
+#, fuzzy
+msgid "Invalid Add-on ID in URL or package"
 msgstr "URL లో చెల్లని GUID"
+
+msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
+msgstr ""
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
@@ -5861,9 +6251,6 @@ msgstr "నుంచి"
 
 msgid "To"
 msgstr "గ్రహీత"
-
-msgid "Update"
-msgstr "తాజాకరించు"
 
 msgid "Export"
 msgstr "ఎగుమతించు"
@@ -5994,11 +6381,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -6156,6 +6543,14 @@ msgid "Ban selected users"
 msgstr "ఎంచుకున్న వాడుకరులను నిషేధించు"
 
 #, fuzzy, python-format
+msgid "The users \"%(users)s\" had their session(s) reset."
+msgstr "ఈ వాడుకరులు \"%(users)s\" నిషేధించబడ్డారు."
+
+#, fuzzy
+msgid "Reset session"
+msgstr "వెర్షన్ను తొలగించండి"
+
+#, fuzzy, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr "ఈ వాడుకరులు \"%(users)s\" నిషేధించబడ్డారు."
 
@@ -6213,8 +6608,11 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
+msgstr ""
+
+msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 
 msgid "an add-on developer replies to my review"
@@ -6247,8 +6645,54 @@ msgstr "వాడుకరి గమనింపులు"
 msgid "Ban"
 msgstr "నిషేధించు"
 
+#, fuzzy
+msgid "Reset session(s)"
+msgstr "వెర్షన్ను తొలగించండి"
+
 msgid "Delete picture"
 msgstr "బొమ్మను తొలగించు"
+
+#, python-format
+msgid ""
+"\n"
+"The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Greetings %(author_name)s,\n"
+"\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
+"\n"
+"Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"If you didn't expect to receive this invitation, please send an email to amo-admins@mozilla.com.\n"
+"\n"
+"Kind regards,\n"
+"The Mozilla Add-ons Team\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )\n"
+msgstr ""
 
 msgctxt "user_list_others"
 msgid "others"

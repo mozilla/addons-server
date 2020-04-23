@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.8.0\n"
 
 #: static/js/common/ratingwidget.js:31
 msgid "{0} star"
@@ -156,9 +156,9 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:474
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known"
-" libraries) need to have their sources submitted separately for review. Make "
-"sure that you use the source code upload field to avoid having your "
+"Minified, concatenated or otherwise machine-generated scripts (excluding "
+"known libraries) need to have their sources submitted separately for review. "
+"Make sure that you use the source code upload field to avoid having your "
 "submission rejected."
 msgstr ""
 
@@ -794,7 +794,7 @@ msgid "Other"
 msgstr ""
 
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1167
-#: static/js/zamboni/reviewers.js:430
+#: static/js/zamboni/reviewers.js:437
 msgid "Select an application first"
 msgstr ""
 
@@ -923,39 +923,39 @@ msgstr ""
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:358
+#: static/js/zamboni/reviewers.js:365
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:369 static/js/zamboni/reviewers.js:391
+#: static/js/zamboni/reviewers.js:376 static/js/zamboni/reviewers.js:398
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:374
+#: static/js/zamboni/reviewers.js:381
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:379
+#: static/js/zamboni/reviewers.js:386
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:384
+#: static/js/zamboni/reviewers.js:391
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:396
+#: static/js/zamboni/reviewers.js:403
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:401
+#: static/js/zamboni/reviewers.js:408
 msgid "Review notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:465
+#: static/js/zamboni/reviewers.js:472
 msgid "Average Reviews"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:520
+#: static/js/zamboni/reviewers.js:527
 msgid "Number of Reviews"
 msgstr ""
 

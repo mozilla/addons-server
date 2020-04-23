@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2020-01-19 17:33+0000\n"
 "Last-Translator: Ігор <igor.ck.ua@pm.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,8 +123,9 @@ msgstr "Контрольний перелік при представленні 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Перевірте наступні пункти перед завершенням вашого представлення. Це зменшить затримку чи нерозуміння під час процесу розгляду:"
 
+#, fuzzy
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 "Програмні коди скомпільованих бінарних файлів, а також мініфікованих чи обфускованих сценаріїв (окрім відомих бібліотек), необхідно представляти для перевірки окремо. Переконайтеся, що ви "

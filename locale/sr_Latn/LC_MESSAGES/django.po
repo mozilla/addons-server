@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -135,8 +135,17 @@ msgstr ""
 msgid "Ratings"
 msgstr "Ocene"
 
-msgid "Status"
-msgstr "Status"
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "Recenzenti"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "Recenzenti"
+
+#, fuzzy
+msgid "Reviewer links"
+msgstr "Recenzenti"
 
 msgid "- Add-on not on AMO -"
 msgstr ""
@@ -348,9 +357,11 @@ msgstr "Ups"
 
 #, fuzzy, python-format
 msgid ""
-"<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> "
+"<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> "
 "You can try refreshing the page, or head back to the <a href=\"%(home)s"
-"\">Add-ons homepage</a>. </p>"
+"\">Add-ons homepage</a>. You can also help us fix this by <a href=\"https://"
+"github.com/mozilla/addons/issues/new\">filing an issue</a> with the details "
+"of how you got to this page. </p>"
 msgstr ""
 "<h1>Ups! Došlo je do greške.</h1> <p>Uskoro ćemo to ispraviti.</p> <p> "
 "Možete probati da ponovo učitate stranicu, ili se vratite na <a href="
@@ -408,24 +419,6 @@ msgstr ""
 "možete <a href=\"#\" id=\"recaptcha_different\">isprobati različite reči</a> "
 "ili <a href=\"#\" id=\"recaptcha_audio\">pokušajte različite vrste izazova</"
 "a> umesto. </p>"
-
-msgid "Most Popular"
-msgstr "Najpopularnije"
-
-msgid "Top Rated"
-msgstr "Najbolje ocenjeno"
-
-msgid "Newest"
-msgstr "Najnovije"
-
-msgid "Featured"
-msgstr "Izdvojeno"
-
-msgid "Explore"
-msgstr "Istraži"
-
-msgid "Categories"
-msgstr "Kategorije"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -577,6 +570,118 @@ msgstr "Ovo korisničko ime ne može da se koristi."
 #, fuzzy
 msgid "This add-on already belongs to the collection"
 msgstr "Ovaj url je u upotrebi od strane druge kolekcije"
+
+#, python-format
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "GUID %(guid)s is in a pending Submission"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr ""
+
+#, python-format
+msgid "GUID %(guid)s is already in a pending Submission"
+msgstr ""
+
+msgid ""
+"Blocks to be updated are different because Min or Max version has changed."
+msgstr ""
+
+#, fuzzy
+msgid "Invalid version"
+msgstr "Neispravan opseg verzije."
+
+msgid "Min version can not be greater than Max version"
+msgstr ""
+
+#, fuzzy
+msgid "Review Listed"
+msgstr "Zahtevana recenzija"
+
+#, fuzzy
+msgid "Review Unlisted"
+msgstr "Datum recenzije"
+
+msgid "This block was imported from a regex based legacy kinto Block."
+msgstr ""
+
+msgid ""
+"Any change made will NOT be updated in the legacy blocklist - you must make "
+"a manual change via kinto admin webui."
+msgstr ""
+
+#, fuzzy, python-format
+msgid "Delete Multiple %(name)s"
+msgstr "Verzija za štampanje"
+
+#, fuzzy
+msgid "Home"
+msgstr "Početna"
+
+#, python-format
+msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
+msgstr ""
+
+#, python-format
+msgid "%(count)s Add-on GUIDs were not found"
+msgstr ""
+
+msgid ""
+"The following block(s) were imported from a regex based legacy kinto Block."
+msgstr ""
+
+msgid "Save"
+msgstr "Sačuvaj"
+
+msgid "Save and add more"
+msgstr ""
+
+msgid "Delete"
+msgstr "Izbriši"
+
+msgid "Update"
+msgstr "Ažuriraj"
+
+#, fuzzy
+msgid "Reject Submission"
+msgstr "Moje dostave"
+
+#, fuzzy
+msgid "Approve Submission"
+msgstr "Moje dostave"
+
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+msgid "Add-on GUIDs (one per line)"
+msgstr ""
+
+#, fuzzy
+msgid "Submit"
+msgstr "Podnesi novi dodatak"
+
+#, python-format
+msgid "%(count)s Add-on GUIDs"
+msgstr ""
+
+#, fuzzy
+msgid "users"
+msgstr "Korisničko ime"
+
+msgid "Edit Block"
+msgstr ""
+
+#, fuzzy
+msgid "versions"
+msgstr "Verzije"
+
+msgid "Included in legacy blocklist."
+msgstr ""
 
 msgid "{addon} was created."
 msgstr "{addon} je kreiran."
@@ -937,6 +1042,47 @@ msgstr "Data je preliminarna recenzija za {addon} {version}."
 msgid "User {user} api key reset."
 msgstr "Korisnik {user} je ograničen."
 
+msgid "Block for {0} added to Blocklist."
+msgstr ""
+
+msgid "Block added"
+msgstr ""
+
+msgid "Block for {0} edited in Blocklist."
+msgstr ""
+
+msgid "Block edited"
+msgstr ""
+
+#, fuzzy
+msgid "Block for {0} deleted from Blocklist."
+msgstr "Verzija {0} izbrisana iz {addon}."
+
+#, fuzzy
+msgid "Block deleted"
+msgstr "Dodatak obrisan."
+
+msgid "GUID for {addon} added to DeniedGuid."
+msgstr ""
+
+#, fuzzy
+msgid "GUID for {addon} removed from DeniedGuid."
+msgstr "{addon} uklonjeno iz {collection}."
+
+msgid "Block {1} action for {0} signed off."
+msgstr ""
+
+msgid "Block action signoff"
+msgstr ""
+
+#, fuzzy
+msgid "User {user} session(s) reset."
+msgstr "Korisnik {user} je ograničen."
+
+#, fuzzy
+msgid "User {user} throttled for scope \"{0}\""
+msgstr "Korisnik {user} izmenjen, razlog: {1}"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -976,6 +1122,9 @@ msgstr "Obrisano"
 msgid "Unlisted"
 msgstr ""
 
+msgid "API"
+msgstr ""
+
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
 msgstr "Vlasnik"
@@ -986,8 +1135,9 @@ msgstr "Autor"
 msgid "Extension"
 msgstr "Proširenje"
 
-msgid "Complete Theme"
-msgstr "Potpuna tema"
+#, fuzzy
+msgid "Deprecated Complete Theme"
+msgstr "Ažurirana recenzija potpune teme"
 
 msgid "Dictionary"
 msgstr "Rečnik"
@@ -1015,7 +1165,8 @@ msgstr "Detalji teme"
 msgid "Extensions"
 msgstr "Ekstenzije"
 
-msgid "Complete Themes"
+#, fuzzy
+msgid "Deprecated Complete Themes"
 msgstr "Kompletne teme"
 
 # Plural in this context means many of the add-on type
@@ -1676,10 +1827,46 @@ msgid "Header image alignment problem"
 msgstr "Problem ravnanja slike zaglavlja"
 
 #, fuzzy
-msgid "no action"
+msgid "No action"
 msgstr "Još opcija:"
 
-msgid "flag for human review"
+msgid "Flag for human review"
+msgstr ""
+
+#, fuzzy
+msgid "Delay auto-approval"
+msgstr "Status dozvole"
+
+msgid "Delay auto-approval indefinitely"
+msgstr ""
+
+msgid "True positive"
+msgstr ""
+
+msgid "False positive"
+msgstr ""
+
+msgid "Inconclusive"
+msgstr ""
+
+#, fuzzy
+msgid "New"
+msgstr "Novije"
+
+msgid "Running"
+msgstr ""
+
+msgid "Aborted"
+msgstr ""
+
+msgid "Aborting"
+msgstr ""
+
+#, fuzzy
+msgid "Completed"
+msgstr "Nedovršeno"
+
+msgid "Scheduled"
 msgstr ""
 
 msgid "Core"
@@ -1702,9 +1889,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"We allow and encourage an upgrade but you cannot reverse this process. Once "
-"your users have the WebExtension installed, they will not be able to install "
-"a legacy add-on."
+"Open Search add-ons are {blog_link_open}no longer supported on "
+"AMO{blog_link_close}. You can create a {doc_link_open}search extension "
+"instead{doc_link_close}."
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
@@ -1742,12 +1929,6 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Sve oznake moraju sadržati najmanje {0} karakter."
 msgstr[1] "Sve oznake moraju sadržati najmanje {0} karaktera."
-
-msgid ""
-"Categories cannot be changed while your add-on is featured for this "
-"application."
-msgstr ""
-"Kategorije se ne mogu izmeniti dok je Vaš dodatak izdvojen za ovu aplikaciju."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1898,11 +2079,6 @@ msgid "Display Name"
 msgstr ""
 
 #, fuzzy
-msgid "Categories cannot be changed while your add-on is featured."
-msgstr ""
-"Kategorije se ne mogu izmeniti dok je Vaš dodatak izdvojen za ovu aplikaciju."
-
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
 msgstr "Nevažeća arhiva."
 
@@ -2029,8 +2205,9 @@ msgid "There was an error uploading your preview."
 msgstr "Došlo je do greške prilikom otpremanja Vašeg pregleda."
 
 msgid ""
-"The latest approved version of a Recommended extension cannot be deleted or "
-"disabled. Please contact AMO Admins if you need help with this."
+"The latest approved version of this Recommended extension cannot be deleted "
+"or disabled because the previous version was not approved for "
+"recommendation. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2540,30 +2717,13 @@ msgid ""
 "software, or additional hardware."
 msgstr ""
 
+msgid "Categories"
+msgstr "Kategorije"
+
 msgid ""
 "Categories are the primary way users browse through add-ons. Choose any that "
 "fit your add-on's functionality for the most exposure."
 msgstr ""
-
-#, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this "
-"application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if "
-"there is a reason you need to modify your categories."
-msgstr ""
-"Kategorije se ne mogu promeniti dok je Vaš dodatak istaknut za ovu "
-"aplikaciju. Molimo pošaljite e-poštu <a href=\"mailto:%(email)s\">%(email)s</"
-"a> ako postoji razlog za izmenjivanje Vaših kategorija."
-
-#, fuzzy, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured. Please email <a "
-"href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to "
-"modify your categories."
-msgstr ""
-"Kategorije se ne mogu promeniti dok je Vaš dodatak istaknut za ovu "
-"aplikaciju. Molimo pošaljite e-poštu <a href=\"mailto:%(email)s\">%(email)s</"
-"a> ako postoji razlog za izmenjivanje Vaših kategorija."
 
 msgid "Email"
 msgstr "E-pošta"
@@ -2666,7 +2826,8 @@ msgstr "Izaberite ikonicu za Vaš dodatak:"
 msgid "32x32px"
 msgstr "32x32 piksela"
 
-msgid "Used in listings of add-ons, like search results and featured add-ons."
+#, fuzzy
+msgid "Used in listings of add-ons, like search results."
 msgstr ""
 "Koristi se u spiskovima dodataka, kao što su rezultati pretrage i istaknuti "
 "dodaci."
@@ -2722,7 +2883,7 @@ msgstr ""
 
 msgid ""
 "Having screenshots in your product page greatly increases its chances of "
-"being installed and being featured in the homepage."
+"being installed."
 msgstr ""
 
 msgid "Continue"
@@ -2758,6 +2919,14 @@ msgstr "Izaberite drugačiju licencu."
 #, fuzzy
 msgid "More information on Creative Commons licenses"
 msgstr "Zahtevane dodatne informacije"
+
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr ""
+
+msgid ""
+"While in this state, \"On your own\" is the only distribution method "
+"available."
+msgstr ""
 
 msgid "General Tests"
 msgstr "Opšti testovi"
@@ -2811,9 +2980,6 @@ msgstr "Nastavak"
 
 msgid "Delete this add-on."
 msgstr "Izbrišite ovaj dodatak."
-
-msgid "Delete"
-msgstr "Izbriši"
 
 #, fuzzy
 msgid "Edit details on this add-on's product page"
@@ -3034,7 +3200,8 @@ msgstr "Pogledaj listing"
 
 msgid ""
 "You can also edit this version to add version notes, or source code if your "
-"submission includes minified, obfuscated or compiled code."
+"submission includes minified, concatenated or otherwise machine-generated "
+"code."
 msgstr ""
 
 #, fuzzy
@@ -3042,16 +3209,13 @@ msgid "Edit version {0}"
 msgstr "Beta verzija {0}"
 
 #, fuzzy
-msgid "Version Signed"
+msgid "Version Signature Pending"
 msgstr "Beleške o verziji"
 
 msgid ""
-"You’re done! This version is signed and ready to for self-distribution. You "
-"can download it by clicking the button below."
+"You’re done! This version will be signed for self-distribution shortly. You "
+"will be notified by email when the signed file is ready for download."
 msgstr ""
-
-msgid "Download {0}"
-msgstr "Preuzmi {0}"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3076,7 +3240,7 @@ msgstr ""
 msgid "Do you use any of the following?"
 msgstr ""
 
-msgid "Code minifiers or obfuscators"
+msgid "Code generators or minifiers"
 msgstr ""
 
 msgid ""
@@ -3123,7 +3287,7 @@ msgstr ""
 
 msgid ""
 "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from "
-"open-source third party libraries) cannot be transpiled, obfuscated, "
+"open-source third party libraries) cannot be transpiled, concatenated, "
 "minified or otherwise machine-generated."
 msgstr ""
 
@@ -3300,6 +3464,65 @@ msgstr ""
 msgid "Generate new credentials"
 msgstr ""
 
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested new developer API keys "
+"for\n"
+"%(domain)s. To finish this process, please click on the link below:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"The following API Key was added to your account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"If you believe this key was created in error, you can remove the key and\n"
+"disable access at the following location:\n"
+"\n"
+"%(url)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"The API Key was revoked from your account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"If you believe this key was revoked in error, you can create a new one\n"
+"at the following location:\n"
+"\n"
+"%(url)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"Dear add-on developer,\n"
+"\n"
+"We noticed that your secret AMO API credentials were included in an add-on "
+"submitted to addons.mozilla.org. In order to protect your account and your "
+"add-on(s), we revoked the leaked credentials.\n"
+"You can generate new API credentials at %(api_keys_url)s\n"
+"\n"
+"Please make sure you never share your credentials with anyone. Never include "
+"them in a public repository, add-on or any other public place. We encourage "
+"you to review your code repositories and your extensions to remove any "
+"references to your AMO credentials.\n"
+"\n"
+"Thank you,\n"
+"The Mozilla Add-ons team\n"
+msgstr ""
+
 msgid "Invisible"
 msgstr ""
 
@@ -3471,9 +3694,10 @@ msgid ""
 "relevant for listed add-ons."
 msgstr ""
 
+#, fuzzy
 msgid ""
-"If your add-on contains binary or obfuscated code other than known "
-"libraries, upload its sources for review."
+"If your add-on contains minified, concatenated or otherwise machine-"
+"generated code other than known libraries, upload its sources for review."
 msgstr ""
 "Ako Vaš dodatak sadrži binarni ili bagovit kod osim već poznatih biblioteka, "
 "otpremite svoje izvore na pregled."
@@ -3499,6 +3723,57 @@ msgstr ""
 #, fuzzy
 msgid "Visit the Extension Workshop"
 msgstr "Ekstenzije"
+
+msgid "Connect with us"
+msgstr ""
+
+msgid "Twitter"
+msgstr ""
+
+#, fuzzy
+msgid "For developers"
+msgstr "Autor"
+
+msgid "For end users"
+msgstr ""
+
+msgid "Matrix"
+msgstr ""
+
+# The title for a user if they are a developer
+#, fuzzy
+msgid "Add-on Developers Mailing List"
+msgstr "Programer dodataka"
+
+#, fuzzy
+msgid "Extensions Developers Newsletter"
+msgstr "Razvoj ekstenzija"
+
+msgid "Stay up-to-date on news and events for Firefox extension developers."
+msgstr ""
+
+#, fuzzy
+msgid "Email Address"
+msgstr "Adresa e-pošte"
+
+#, python-format
+msgid ""
+"I’m okay with Mozilla handling my info as explained in this "
+"%(link_open)sPrivacy Notice%(link_close)s."
+msgstr ""
+
+#, fuzzy
+msgid "Sign Up"
+msgstr "Pošalji dodatak"
+
+msgid "Thanks!"
+msgstr ""
+
+msgid ""
+"If you haven’t previously confirmed a subscription to a Mozilla-related "
+"newsletter you may have to do so. Please check your inbox or your spam "
+"filter for an email from us."
+msgstr ""
 
 #, fuzzy
 msgid "Resources"
@@ -3599,9 +3874,6 @@ msgstr "Podnesi temu"
 msgid "Add-on Developer Hub"
 msgstr "Programer dodataka"
 
-msgid "Docs"
-msgstr ""
-
 msgid "Support"
 msgstr "Podrška"
 
@@ -3620,9 +3892,13 @@ msgstr "Nema slike"
 msgid "User Photo"
 msgstr "Obriši korisničku sliku"
 
-#, python-format
-msgid "<a class=\"Button\" href=\"%(login)s\">Submit or Manage Extensions</a>"
-msgstr ""
+#, fuzzy
+msgid "Profile"
+msgstr "Moj profil"
+
+#, fuzzy
+msgid "Submit or Manage Extensions"
+msgstr "Podnesi novi dodatak"
 
 #, fuzzy
 msgid "Customize Firefox"
@@ -3681,9 +3957,10 @@ msgstr ""
 msgid "Source code"
 msgstr "Izvorni kod"
 
+#, fuzzy
 msgid ""
-"If your add-on contain binary or obfuscated code, make the source available "
-"here for reviewers."
+"If your add-on contains minified, concatenated or otherwise machine-"
+"generated code, make the source available here for reviewers."
 msgstr ""
 "Ako Vaš dodatak sadrži binarni ili bagovit kod, uverite se da je izvorni kod "
 "dostupan za recezente."
@@ -3769,6 +4046,9 @@ msgstr "Pogledajte druge verzije"
 
 msgid "Currently on AMO"
 msgstr "Trenutno na AMO"
+
+msgid "Status"
+msgstr "Status"
 
 msgid "Validation"
 msgstr "Provera ispravnosti"
@@ -4139,8 +4419,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid ""
-"Customize mouse gestures. Discover a new way to navigate with 50+ helpful "
-"mouse gestures."
+"Customize mouse gestures. Discover a new way to navigate with 50+ "
+"configurations."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4234,14 +4514,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid ""
-"Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
-"Save text for later. Stop writing the same thing over and over again. If you "
-"frequently re-use the same phrases in your work or other communications, "
-"save them in Clippings and easily paste them when needed."
+"No need to write the same thing over and over. Save frequently-entered text "
+"to paste anytime."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4475,7 +4749,7 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
+msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5583,6 +5857,52 @@ msgid ""
 "extension provides a fix."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Select, sort, and run your downloads faster."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get weather updates right in the browser."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Delete cookies, browsing history, and cached files with just a single click."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Remove tracking elements from web links."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Get auto-populated RSS feed bookmark folders."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Easily organize tons of open tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Create and customize tab groups."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Save an entire web page—including images and styling—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Automatically replace derogatory words across the web."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Block all ads—video, pop-ups, banners & more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Watch streaming media with friends and family anywhere."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5599,7 +5919,7 @@ msgid "See all extensions"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the secondary hero shelves.
-msgid "Sync extensions across devices"
+msgid "Tab organizers and tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5610,15 +5930,15 @@ msgstr ""
 msgid "Media enhancers for Firefox"
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Saznajte više"
-
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Explore extensions"
 msgstr "Ekstenzije"
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn More"
+msgstr "Saznajte više"
 
 #, python-format
 msgid ""
@@ -5656,7 +5976,7 @@ msgstr ""
 msgid "Could not parse the manifest file."
 msgstr ""
 
-msgid "GUID is required for Firefox 47 and below."
+msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
@@ -5729,7 +6049,7 @@ msgid "You cannot submit this type of add-on"
 msgstr ""
 
 #, python-format
-msgid "You cannot submit an add-on with a guid ending %s"
+msgid "You cannot submit an add-on using an ID ending with %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -5757,6 +6077,9 @@ msgstr "Nazad na recenzije"
 #, fuzzy
 msgid "Back to add-on"
 msgstr "Nazad na dodatke"
+
+msgid "Download {0}"
+msgstr "Preuzmi {0}"
 
 #, fuzzy, python-format
 msgid ""
@@ -5842,161 +6165,6 @@ msgstr "Nema datoteka iz otpremljene datoteke."
 
 msgid "Fetching file."
 msgstr "Preuzimanje datoteke."
-
-msgid "About Mozilla Add-ons"
-msgstr "O Mozilla dodacima"
-
-msgid "What is this website?"
-msgstr "Koji je sajt?"
-
-msgid ""
-"addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site "
-"for add-ons to Mozilla software, such as Firefox, Thunderbird, and "
-"SeaMonkey. Add-ons let you add new features and change the way your browser "
-"or application works. Take a look around and explore the thousands of ways "
-"to customize the way you do things online."
-msgstr ""
-"addons.mozilla.org, poznatiji kao \"AMO\", je zvanični Mozilla sajt za "
-"dodatke za Mozilla softvere, kao što su Firefox, Thunderbird, i SeaMonkey. "
-"Dodaci Vam dozvoljavaju da dodate nove funkcije i promenite način "
-"funcionisanja vašeg internet pregledača ili aplikacija. Pogledajte i "
-"istražite hiljade načina kako da prilagodite način na koji radite stvari na "
-"mreži."
-
-msgid "Who creates these add-ons?"
-msgstr "Ko pravi ove dodatke?"
-
-#, fuzzy
-msgid ""
-"The add-ons listed here have been created by thousands of developers from "
-"our community, ranging from individual hobbyists to large corporations. All "
-"publicly listed add-ons are reviewed by a team of reviewers before being "
-"released. Add-ons marked as Experimental have not been reviewed and should "
-"only be installed with caution."
-msgstr ""
-"Prikazani dodaci su napravljeni od strane hiljada programera iz naše "
-"zajednice, od individualaca do velikih korporacija. Svi dodaci koji su "
-"dostupni javnosti su pregledali tim urednika pre puštanja dodatka. Dodaci "
-"koji su naznačeni kao eksperimentalni još uvek nisu pregledani i trebali bi "
-"da se instaliraju sa oprezom."
-
-msgid "How do I keep up with what's happening at AMO?"
-msgstr "Kako da održim korak sa dešavanjima na AMO?"
-
-msgid ""
-"There are several ways to find out the latest news from the world of add-ons:"
-msgstr "Postoji nekoliko načina da saznate najnovije vesti u svetu dodataka:"
-
-#, python-format
-msgid ""
-"Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with "
-"information for both add-on enthusiasts and developers."
-msgstr ""
-"Naš <a href=\"%(url)s\">blog za dodatke</a> se redovno ažurira sa "
-"informacijama o dodacima za entuzijaste i preograme."
-
-#, python-format
-msgid ""
-"We often post news, tips, and tricks to our Twitter account, <a href="
-"\"%(url)s\">mozamo</a>"
-msgstr ""
-"Mi često postavljamo novosti, savete, i trikove na naš Twitter nalog <a href="
-"\"%(url)s\">mozamo</a>"
-
-#, python-format
-msgid ""
-"Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-"
-"ons community and discuss upcoming changes to AMO."
-msgstr ""
-"Naš <a href=\"%(url)s\">forum</a> je dobro mesto za komunikaciju sa "
-"zajednicom za dodatke i za diskusiju o predstojećim promenama u AMO."
-
-msgid "This sounds great! How can I get involved?"
-msgstr "Ovo zvuči odlično! Kako ja mogu da se priključim?"
-
-msgid ""
-"There are plenty of ways to get involved. If you're on the technical side:"
-msgstr "Postoji mnogo načina da se priključite. Ako ste na tehničkoj strani:"
-
-#, python-format
-msgid ""
-"<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and "
-"update services and can help you reach a large audience of users."
-msgstr ""
-"<a href=\"%(url)s\">Napravite Vaš dodatak</a>. Mi pružamo besplatan hosting "
-"i servise za ažuriranje i možemo Vam pomoći da steknete veliku publiku "
-"korisnika."
-
-#, fuzzy, python-format
-msgid ""
-"If you have add-on development experience, <a href=\"%(url)s\"> become an "
-"Add-on Reviewer</a>! Our reviewers are add-on fans with a technical "
-"background who review add-ons for code quality and stability."
-msgstr ""
-"Ako imate iskustva u razvoju dodataka, <a href=\"%(url)s\"> postanite "
-"urednik</a>! Naši urednici su obožavaoci dodataka sa tehničkom pozadinom "
-"koji ocenjuju dodatke za kvalitet koda i stabilnost."
-
-#, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and "
-"submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current "
-"bugs, legacy bugs can still be found in Bugzilla."
-msgstr ""
-
-msgid ""
-"If you're interested in add-ons but not quite as technical, there are still "
-"ways to help:"
-msgstr ""
-"Ukoliko ste zainteresovani za dodatake, ali se ne bavite tehnikom, još uvek "
-"postoje načini da se pomognete:"
-
-msgid "Tell your friends! Let people know which add-ons you use."
-msgstr "Recite Vašim prijateljma. Recite im koje dodatke Vi koristite."
-
-#, python-format
-msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr "Učestvujte u našim <a href=\"%(url)s\">forumima</a>."
-
-msgid ""
-"Review add-ons on the site. Add-on authors are more likely to improve their "
-"add-ons and write new ones when they know people appreciate their work."
-msgstr ""
-"Pregldajte dodatke na sajtu. Autori dodataka će verovatno da poboljšaju "
-"svoje dodatke i da prave nove kad znaju da ljudi cene njihov rad."
-
-msgid "I have a question"
-msgstr "Imam pitanje"
-
-#, fuzzy, python-format
-msgid ""
-"A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If "
-"you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on "
-"our forums</a>."
-msgstr ""
-"Dobro mesto za početak je naš <a href=\"%(faq_url)s\"><abbr title="
-"\"Frequently Asked Questions\">ČPP</abbr></a>. Ako ne pronađete odgovor "
-"tamo, možete <a href=\"%(forum_url)s\"> pitati na forumu</a>."
-
-#, python-format
-msgid ""
-"If you really need to contact someone from the Mozilla team, please see our "
-"<a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
-"Ako stvarno morate da kontaktirate nekog iz Mozilla tima, molimo Vas "
-"pogledajte našu stranicu za <a href=\"%(url)s\"> kontakt informacije</a>."
-
-msgid "Who works on this website?"
-msgstr "Ko radi na internet stranici?"
-
-#, fuzzy
-msgid ""
-"Over the years, many people have contributed to this website, including both "
-"volunteers from the community and a dedicated AMO team."
-msgstr ""
-"Tokom godina, mnogi ljudi su doprineli ovoj internet stranici, uključujući i "
-"volontere iz zajednice i posvećeni AMO tim. Listu naših značajnih saradnika "
-"možete pronaći na <a href=\"%(url)s\"> Zasluge</a> stranici."
 
 msgid "Review Guidelines"
 msgstr "Smernice za recenziranje"
@@ -6312,14 +6480,17 @@ msgstr "Pruženi izvori"
 msgid "WebExtension"
 msgstr ""
 
-msgid "Risk breakdown not available."
+msgid "Auto-approval delayed temporarily"
+msgstr ""
+
+msgid "Auto-approval delayed indefinitely"
 msgstr ""
 
 #, fuzzy
 msgid "Is locked by a reviewer"
 msgstr "moj dodatak je pregledan od strane urednika"
 
-msgid "Has auto-approval disabled flag set"
+msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
 msgid "Is recommendable"
@@ -6328,7 +6499,16 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "Risk breakdown not available."
+msgstr ""
+
 msgid "You can't submit a comment if `canned_response` is defined."
+msgstr ""
+
+msgid "You can't submit an empty comment."
+msgstr ""
+
+msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
 msgid "Type"
@@ -6361,13 +6541,11 @@ msgid_plural "{0} days"
 msgstr[0] "{0} dan"
 msgstr[1] "{0} dana"
 
+#, fuzzy
+msgid "ID"
+msgstr "GUID"
+
 msgid "Last Review"
-msgstr ""
-
-msgid "Last Update"
-msgstr ""
-
-msgid "No Reviews"
 msgstr ""
 
 msgid "Weight"
@@ -6380,6 +6558,14 @@ msgstr "Zahtevane dodatne informacije"
 #, fuzzy
 msgid "Last Updated"
 msgstr "Poslednje ažuriranje:"
+
+#, fuzzy
+msgid "Listed versions needing human review ({0})"
+msgstr "Kontorlisan pregled ({0})"
+
+#, fuzzy
+msgid "Unlisted versions needing human review ({0})"
+msgstr "Kontorlisan pregled ({0})"
 
 msgid ""
 "This will approve, sign, and publish this version. The comments will be sent "
@@ -6419,6 +6605,25 @@ msgstr "Verzija za štampanje"
 msgid ""
 "This will reject the selected public versions. The comments will be sent to "
 "the developer."
+msgstr "Ovo će odbiti dodatak i ukloniti ga sa liste čekanja."
+
+#, fuzzy
+msgid "Block Multiple Versions"
+msgstr "Verzija za štampanje"
+
+msgid ""
+"This will disable the selected approved versions silently, and open up the "
+"block creation admin page."
+msgstr ""
+
+#, fuzzy
+msgid "Confirm Multiple Versions"
+msgstr "Verzija za štampanje"
+
+#, fuzzy
+msgid ""
+"This will confirm approval of the selected versions without notifying the "
+"developer."
 msgstr "Ovo će odbiti dodatak i ukloniti ga sa liste čekanja."
 
 #, fuzzy
@@ -6473,6 +6678,14 @@ msgstr "Datum recenzije"
 #, fuzzy
 msgid "Add-on Review Guide"
 msgstr "Puna recenzija dodatka"
+
+msgid "Flagged By Scanners"
+msgstr ""
+
+msgid "Flagged By Scanners ({0})"
+msgid_plural "Flagged By Scanners ({0})"
+msgstr[0] ""
+msgstr[1] ""
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6642,6 +6855,10 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Tu nema ništa za videti! Programer nije obuhvatio nikakve detalje."
 
 #, fuzzy
+msgid "Add-on name translations"
+msgstr "po verziji dodatka"
+
+#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Vrati se na početnu stranicu Alatke urednika"
 
@@ -6695,9 +6912,6 @@ msgstr "Recenzija je označena pre brisanja."
 
 msgid "Undelete"
 msgstr "Poništi brisanje"
-
-msgid "Save"
-msgstr "Sačuvaj"
 
 #, fuzzy
 msgid "Add-on Reviewer Performance"
@@ -6805,44 +7019,12 @@ msgstr "Istorijat dodatka"
 msgid "Previously deleted entries"
 msgstr "Prethodna napomena"
 
-#, python-format
-msgid ""
-"Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
-"%(version_status)s</span>"
+msgid "This is a recommended extension."
 msgstr ""
-"Verzija %(version)s &middot; %(created)s <span class=\"light\">&middot; "
-"%(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr ""
-
-msgid "Compatibility:"
-msgstr "Kompatibilnost:"
-
-msgid "Additional sources:"
-msgstr "Dodatni izvori:"
-
-msgid "Download files"
-msgstr "Preuzmi datoteke"
-
-msgid "The developer has provided source code."
-msgstr "Programer je pružio izvorni kod."
-
-msgid "Weight:"
-msgstr ""
-
-msgid "Download"
-msgstr "Preuzmi"
 
 #, fuzzy
-msgid "Not Auto Approved Because"
-msgstr "Dodaci za Android"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-msgid "This version has not been reviewed."
-msgstr "Ova verzija nije pregledana."
+msgid "You don't have permission to review it."
+msgstr "Nemam nalog."
 
 msgid "Please select one or more versions in the list above."
 msgstr ""
@@ -6893,6 +7075,14 @@ msgstr "Još opcija:"
 msgid "Notify me about new listed versions"
 msgstr ""
 
+#, fuzzy
+msgid "Allow resubmission"
+msgstr "Pogledaj sve verzije"
+
+#, fuzzy
+msgid "Deny resubmission"
+msgstr "Upravljaj mojim dostavama"
+
 msgid "Force-disable add-on"
 msgstr ""
 
@@ -6900,11 +7090,30 @@ msgstr ""
 msgid "Force-enable add-on"
 msgstr "Verzija za štampanje"
 
-msgid "Disable Auto-Approval"
+#, fuzzy
+msgid "View Blocklist Submission"
+msgstr "Pogledaj sve verzije"
+
+#, fuzzy
+msgid "Block add-on"
+msgstr "Nazad na dodatke"
+
+msgid "Update add-on block"
 msgstr ""
 
 #, fuzzy
-msgid "Enable Auto-Approval"
+msgid "Disable Listed Auto-Approval"
+msgstr "Status dozvole"
+
+#, fuzzy
+msgid "Enable Listed Auto-Approval"
+msgstr "Status dozvole"
+
+msgid "Auto-Approval currently disabled until {date}"
+msgstr ""
+
+#, fuzzy
+msgid "Clear Auto-Approval Extra Delay"
 msgstr "Status dozvole"
 
 #, fuzzy
@@ -6953,11 +7162,18 @@ msgstr "Sakrij komentare"
 msgid "No reviews found for this period."
 msgstr "Nije pronađena ni jedna recenzija za ovaj period."
 
+msgid "Origin:"
+msgstr ""
+
 msgid "Method:"
 msgstr ""
 
 #, fuzzy
 msgid "Source:"
+msgstr "po izvoru"
+
+#, fuzzy
+msgid "Source URL:"
 msgstr "po izvoru"
 
 msgid "Dismiss this announcement"
@@ -6986,6 +7202,9 @@ msgstr "Starije"
 msgid "Newer"
 msgstr "Novije"
 
+msgid "{num} versions flagged by scanners on other pages."
+msgstr ""
+
 msgid "Recent Points"
 msgstr "Nedavno dodeljeni poeni"
 
@@ -7011,6 +7230,48 @@ msgstr "Tema"
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s dana %(date)s [%(ip_address)s]"
+
+#, python-format
+msgid ""
+"Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
+"%(version_status)s</span>"
+msgstr ""
+"Verzija %(version)s &middot; %(created)s <span class=\"light\">&middot; "
+"%(version_status)s</span>"
+
+msgid "(Confirmed)"
+msgstr ""
+
+msgid "Compatibility:"
+msgstr "Kompatibilnost:"
+
+msgid "Additional sources:"
+msgstr "Dodatni izvori:"
+
+msgid "Download files"
+msgstr "Preuzmi datoteke"
+
+msgid "The developer has provided source code."
+msgstr "Programer je pružio izvorni kod."
+
+msgid "Weight:"
+msgstr ""
+
+msgid "Flagged by automated scanners"
+msgstr ""
+
+msgid "Download"
+msgstr "Preuzmi"
+
+#, fuzzy
+msgid "Not Auto Approved Because"
+msgstr "Dodaci za Android"
+
+msgid "Auto-Approval script has not run yet on this version."
+msgstr ""
+
+msgid "This version has not been reviewed."
+msgstr "Ova verzija nije pregledana."
 
 msgid "Rejected or Unreviewed"
 msgstr "Odbijeno ili nepregledano"
@@ -7043,11 +7304,81 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Više traženih informacija: {0}"
 msgstr[1] "Više traženih informacija: {0}"
 
-msgid "matches"
+msgid "presence of matched rules"
+msgstr ""
+
+#, fuzzy
+msgid "result state"
+msgstr "Kako početi"
+
+msgid "all but this rule"
+msgstr ""
+
+#, fuzzy
+msgid "presence of a version"
+msgstr "Pogledajte druge verzije"
+
+#, fuzzy
+msgid "version channel"
+msgstr "Beleške o verziji"
+
+#, fuzzy
+msgid "add-on status"
+msgstr "Status dodatka"
+
+#, fuzzy
+msgid "add-on listing visibility"
+msgstr "Istorijat dodatka"
+
+msgid "file status"
+msgstr ""
+
+msgid "file signature"
 msgstr ""
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
+
+msgid ""
+"When unchecked, the scanner results will not be bound to this rule and the "
+"action will not be executed."
+msgstr ""
+
+msgid "Yara rules should have a definition"
+msgstr ""
+
+msgid ""
+"The name of the rule in the definition should match the name of the scanner "
+"rule"
+msgstr ""
+
+msgid "Only one Yara rule is allowed in the definition"
+msgstr ""
+
+#, python-format
+msgid "The definition is not valid: %(error)s"
+msgstr ""
+
+msgid "An error occurred when compiling the definition"
+msgstr ""
+
+msgid "Run this rule on add-ons that have been force-disabled as well."
+msgstr ""
+
+msgid "Abort"
+msgstr ""
+
+msgid "Run"
+msgstr ""
+
+msgid ""
+"Useful when the scanner result is a true positive but the add-on is not "
+"malicious"
+msgstr ""
+
+#, fuzzy
+msgid "Revert report"
+msgstr "Programerske vesti"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7073,7 +7404,7 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "Could not find add-on with guid \"{}\"."
+msgid "Could not find Add-on with ID \"{}\"."
 msgstr ""
 
 msgid "You do not own this addon."
@@ -7093,15 +7424,18 @@ msgstr ""
 msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
-msgid "Only WebExtensions are allowed to omit the GUID"
+msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr ""
 
 msgid ""
-"Please specify your Add-on GUID in the manifest if it's longer than 64 "
+"Please specify your Add-on ID in the manifest if it's longer than 64 "
 "characters."
 msgstr ""
 
-msgid "Invalid GUID in URL"
+msgid "Invalid Add-on ID in URL or package"
+msgstr ""
+
+msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
 msgstr ""
 
 msgid ""
@@ -7144,9 +7478,6 @@ msgstr "Od"
 
 msgid "To"
 msgstr "Za"
-
-msgid "Update"
-msgstr "Ažuriraj"
 
 msgid "Export"
 msgstr "Izvoz"
@@ -7485,6 +7816,14 @@ msgid "Ban selected users"
 msgstr ""
 
 #, python-format
+msgid "The users \"%(users)s\" had their session(s) reset."
+msgstr ""
+
+#, fuzzy
+msgid "Reset session"
+msgstr "Obriši verziju"
+
+#, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr ""
 
@@ -7557,6 +7896,11 @@ msgid ""
 "we handle your information."
 msgstr ""
 
+msgid ""
+"Please read and accept our Firefox on Distribution Agreement as well as our "
+"Review Policies and Rules by visiting {url}"
+msgstr ""
+
 msgid "an add-on developer replies to my review"
 msgstr "programer dodatka mi odgovorio na kritiku"
 
@@ -7592,8 +7936,60 @@ msgid "Ban"
 msgstr "i"
 
 #, fuzzy
+msgid "Reset session(s)"
+msgstr "Obriši verziju"
+
+#, fuzzy
 msgid "Delete picture"
 msgstr "Obriši moju korisničku sliku"
+
+#, python-format
+msgid ""
+"\n"
+"The following author has been added to your addon %(addon_name)s "
+"( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Greetings %(author_name)s,\n"
+"\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. "
+"Accepting the invitation will give you access to edit the add-on, and may "
+"show your name in the authors list on the website.\n"
+"\n"
+"Click on the link below to respond if you want to be added as an author for "
+"%(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"If you didn't expect to receive this invitation, please send an email to amo-"
+"admins@mozilla.com.\n"
+"\n"
+"Kind regards,\n"
+"The Mozilla Add-ons Team\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"The following author has been changed on your addon %(addon_name)s "
+"( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"The following author has been removed from addon %(addon_name)s "
+"( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )\n"
+msgstr ""
 
 msgctxt "user_list_others"
 msgid "others"

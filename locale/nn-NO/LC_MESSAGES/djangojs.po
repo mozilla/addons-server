@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-10-22 12:35+0000\n"
+"POT-Creation-Date: 2020-04-23 14:53+0000\n"
 "PO-Revision-Date: 2019-12-17 21:22+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,8 +120,9 @@ msgstr "Sjekkliste for å senda inn utvidingar"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Gjer vel og kontroller følgjande punkt før du fullfører bidraget ditt. Dette vil minimera forseinkingar eller misforståingar under vurderingsprosessen:"
 
+#, fuzzy
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 "Kompilerte binærfiler, så vel som forminska eller forvrengde skript (unnateke kjende bibliotek) må senda inn kjeldene sine separat for vurdering. Sjå til at du brukar opplastingsfeltet for "
