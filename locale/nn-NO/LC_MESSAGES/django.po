@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 17:01+0000\n"
+"PO-Revision-Date: 2020-04-23 17:10+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5101,7 +5101,7 @@ msgstr "Utvidingar er som appar for Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Dei legg til funksjonar i Firefox for å gjere surfinga raskare, tryggare eller berre artigare."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
