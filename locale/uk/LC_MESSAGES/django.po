@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 23:18+0000\n"
+"PO-Revision-Date: 2020-04-23 23:32+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3180,14 +3180,14 @@ msgid "Extensions Developers Newsletter"
 msgstr "Розробка розширення"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Будьте в курсі новин та подій для розробників розширень Firefox."
 
 msgid "Email Address"
 msgstr "Адреса електронної пошти"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Я погоджуюсь з тим, як Mozilla поводиться з моїми даними згідно з цим %(link_open)sповідомленням про приватність%(link_close)s."
 
 #, fuzzy
 msgid "Sign Up"
