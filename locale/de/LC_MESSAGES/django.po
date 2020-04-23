@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 18:41+0000\n"
+"PO-Revision-Date: 2020-04-23 18:51+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -2954,6 +2954,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team\n"
 msgstr ""
+"Hallo,\n"
+"\n"
+"Sie erhalten diese Nachricht, weil Sie neue Entwickler-API-Schlüssel für %(domain)s angefordert haben. Um diesen Vorgang abzuschließen, klicken Sie bitte auf den folgenden Link:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"\n"
+"Wenn Sie dies nicht angefordert haben, benachrichtigen Sie bitte amo-admins@mozilla.com.\n"
+"\n"
+"Grüße\n"
+"\n"
+"Das Mozilla-Add-ons-Team"
 
 #, python-format
 msgid ""
@@ -2966,6 +2978,14 @@ msgid ""
 "\n"
 "%(url)s\n"
 msgstr ""
+"Der folgende API-Schlüssel wurde Ihrem Konto hinzugefügt:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"\n"
+"Wenn Sie glauben, dass dieser Schlüssel irrtümlich erstellt wurde, können Sie den Schlüssel entfernen und den Zugriff an folgendem Ort deaktivieren:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2978,6 +2998,14 @@ msgid ""
 "\n"
 "%(url)s\n"
 msgstr ""
+"Der API-Schlüssel wurde von Ihrem Konto widerrufen:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"\n"
+"Wenn Sie glauben, dass dieser Schlüssel fälschlicherweise widerrufen wurde, können Sie einen an folgendem Ort einen neuen erstellen:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2991,6 +3019,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team\n"
 msgstr ""
+"Sehr geehrter Add-on-Entwickler,\n"
+"\n"
+"wir haben festgestellt, dass Ihre geheimen AMO-API-Anmeldeinformationen in einem Add-on enthalten sind, das an addons.mozilla.org gesendet wurde. Um Ihr Konto und Ihre Add-ons zu schützen, haben wir die durchgesickerten Anmeldeinformationen widerrufen.\n"
+"Sie können unter %(api_keys_url)s neue API-Anmeldeinformationen generieren\n"
+"\n"
+"Bitte stellen Sie sicher, dass Sie Ihre Anmeldeinformationen niemals an Dritte weitergeben. Fügen Sie sie niemals in ein öffentliches Repository, Add-on oder einen anderen öffentlichen Ort ein. Wir empfehlen Ihnen, Ihre Code-Repositorys und Ihre Erweiterungen zu überprüfen, um Verweise auf Ihre AMO-Anmeldeinformationen zu entfernen.\n"
+"\n"
+"Vielen Dank\n"
+"Das Mozilla-Add-ons-Team"
 
 msgid "Invisible"
 msgstr "Unsichtbar"
@@ -3140,29 +3177,31 @@ msgid "Read more about the source code review policy."
 msgstr "Lesen Sie mehr über unsere Überprüfungsregeln für Quelltext."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Erstellen Sie erstklassige Erweiterungen und Themes"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Egal, ob Sie neu in der Erweiterungsentwicklung sind, eine vorhandene Erweiterung oder ein vorhandenes Theme aufpolieren oder portieren oder eine benutzerdefinierte Unternehmenslösung erstellen, wir"
+" haben die Ressourcen, die Sie unterstützen."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
 msgstr "Besuchen Sie den Erweiterungsworkshop"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Mit uns in Verbindung treten"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "Für Entwickler"
 
 msgid "For end users"
-msgstr ""
+msgstr "Für Endbenutzer"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
@@ -3172,23 +3211,24 @@ msgid "Extensions Developers Newsletter"
 msgstr "Newsletter für Erweiterungsentwickler"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Bleiben Sie über Neuigkeiten und Ereignisse für Entwickler von Firefox-Erweiterungen auf dem Laufenden."
 
 msgid "Email Address"
 msgstr "E-Mail-Adresse"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Ich bin einverstanden, dass Mozilla meine Daten wie in diesem %(link_open)sDatenschutzhinweis%(link_close)s beschrieben verwendet."
 
 msgid "Sign Up"
 msgstr "Registrieren"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Vielen Dank!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Falls Sie bislang kein Abonnement eines Mozilla-Newsletters bestätigen mussten, so ist das eventuell jetzt notwendig. Bitte prüfen Sie den Posteingang und den Spamordner auf eine E-Mail von uns."
 
 msgid "Resources"
 msgstr "Quellen"
@@ -3206,7 +3246,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Button „Add-on herunterladen“"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Programm für empfohlene Erweiterungen"
 
 msgid "Contribute"
 msgstr "Einen Betrag spenden"
@@ -3239,10 +3279,10 @@ msgid "See how"
 msgstr "Sehen Sie, wie es geht"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Mitmachen"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Verbinden Sie sich mit Tausenden von Entwicklern und entdecken Sie weitere Möglichkeiten, wie Sie zum Erweiterungs-Ökosystem beitragen können."
 
 msgid "Learn more about the developer community"
 msgstr "Erfahren Sie mehr über die Entwicklergemeinschaft"
@@ -3296,13 +3336,13 @@ msgid "Learn how to make an extension"
 msgstr "Erfahren Sie, wie man eine Erweiterung entwickelt"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Bereit, Ihre Erweiterung einzureichen oder zu verwalten?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Melden Sie sich bei der Entwicklerecke an, um Erweiterungen und Themes einzureichen oder zu verwalten."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Registrieren Sie sich für ein Entwicklerkonto oder melden Sie sich bei der Entwicklerecke an"
 
 msgid "Manage Version {0}"
 msgstr "Version {0} verwalten"
@@ -3788,7 +3828,7 @@ msgstr "Hinterlassen Sie eine saubere, digitale Spur. Sorgen Sie dafür, dass Fi
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Sie müssen nicht immer und immer wieder dasselbe schreiben. Speichern Sie häufig eingegebenen Text, um ihn jederzeit einzufügen."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4894,7 +4934,7 @@ msgstr "Einige Websites haben Probleme beim Abspielen von Videos in Firefox für
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Wählen Sie Ihre Downloads aus, sortieren Sie sie und führen Sie sie schneller aus."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4902,23 +4942,23 @@ msgstr "Holen Sie sich Wetter-Updates direkt im Browser."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Löschen Sie Cookies, Surf-Chronik und zwischengespeicherte Dateien mit nur einem Klick."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Entfernen Sie Tracking-Elemente aus Weblinks."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Holen Sie sich automatisch ausgefüllte RSS-Feed-Lesezeichenordner."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organisieren Sie einfach Tonnen von offenen Tabs."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Erstellen und verwalten Sie Tab-Gruppen."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4930,11 +4970,11 @@ msgstr "Ersetzen Sie abfällige Wörter im Web automatisch."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blockieren Sie alle Anzeigen – Videos, Popups, Banner und mehr."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Sehen Sie sich Streaming-Medien mit Freunden und Familie überall an."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4950,7 +4990,7 @@ msgstr "Alle Erweiterungen anzeigen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Tab-Organisation und Werkzeuge"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5453,10 +5493,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Die automatische Freischaltung wurde vorübergehend verzögert"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Die automatische Freischaltung wurde dauerhaft verzögert"
 
 msgid "Is locked by a reviewer"
 msgstr "Wurde von einem Überprüfer gesperrt"
@@ -5480,7 +5520,7 @@ msgid "You can't submit an empty comment."
 msgstr "Sie können keinen leeren Kommentar abgeben."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Sie können eine Zeilennummer nicht senden, ohne sie einem Dateinamen zuzuordnen."
 
 msgid "Type"
 msgstr "Typ"
@@ -5561,7 +5601,7 @@ msgid "Block Multiple Versions"
 msgstr "Mehrere Versionen sperren"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Dadurch werden die ausgewählten freigeschalteten Versionen stillschweigend deaktiviert und die Administrationsseite für die Erstellung einer Sperre wird geöffnet."
 
 msgid "Confirm Multiple Versions"
 msgstr "Mehrere Versionen bestätigen"
@@ -5603,12 +5643,12 @@ msgid "Add-on Review Guide"
 msgstr "Leitfaden zur Add-on-Überprüfung"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Von Scannern markiert"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Von Scannern markiert ({0})"
+msgstr[1] "Von Scannern markiert ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatisch freigeschaltete Add-ons"
@@ -5908,7 +5948,7 @@ msgid "Previously deleted entries"
 msgstr "Zuvor gelöschte Einträge"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Dies ist eine empfohlene Erweiterung."
 
 msgid "You don't have permission to review it."
 msgstr "Sie haben keine Berechtigung, dies zu überprüfen."
@@ -5962,7 +6002,7 @@ msgid "Block add-on"
 msgstr "Add-on sperren"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Add-on-Sperre aktualisieren"
 
 msgid "Disable Listed Auto-Approval"
 msgstr "Automatische Freischaltung gelisteter Add-ons deaktivieren"
@@ -6019,7 +6059,7 @@ msgid "No reviews found for this period."
 msgstr "Keine Überprüfungen für diesen Zeitraum gefunden."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Quelle:"
 
 msgid "Method:"
 msgstr "Methode:"
@@ -6056,7 +6096,7 @@ msgid "Newer"
 msgstr "Neuer"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} Versionen wurden von Scannern auf anderen Seiten markiert."
 
 msgid "Recent Points"
 msgstr "Neue Punkte"
@@ -6107,7 +6147,7 @@ msgid "Weight:"
 msgstr "Gewicht:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Von automatisierten Scannern markiert"
 
 msgid "Download"
 msgstr "Herunterladen"
@@ -6149,13 +6189,13 @@ msgstr[0] "Abgelaufene Infoanforderung ({0})"
 msgstr[1] "Abgelaufene Infoanforderungen ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "Vorhandensein übereinstimmender Regeln"
 
 msgid "result state"
 msgstr "Ergebniszustand"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "Alle außer dieser Regel"
 
 msgid "presence of a version"
 msgstr "Vorhandensein einer Version"
@@ -6176,38 +6216,38 @@ msgid "file signature"
 msgstr "Dateisignatur"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Dies ist der genaue Name der Regel, die von einem Scanner verwendet wird."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Wenn diese Option deaktiviert ist, sind die Ergebnisse des Scanners nicht an diese Regel gebunden und die Aktion wird nicht ausgeführt."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara-Regeln sollten eine Definition haben"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Der Name der Regel in der Definition sollte mit dem Namen der Regel des Scanners übereinstimmen"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "In der Definition ist nur eine Yara-Regel zulässig"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Die Definition ist ungültig: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Beim Kompilieren der Definition ist ein Fehler aufgetreten"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Führen Sie diese Regel für Add-ons aus, die ebenfalls zwangsweise deaktiviert wurden."
 
 msgid "Abort"
-msgstr ""
+msgstr "Abbrechen"
 
 msgid "Run"
-msgstr ""
+msgstr "Ausführen"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Nützlich, wenn das Ergebnis des Scanners wirklich positiv ist, das Add-on jedoch nicht schädlich ist"
 
 msgid "Revert report"
 msgstr "Bericht zurücksetzen"
