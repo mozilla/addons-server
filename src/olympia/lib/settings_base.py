@@ -541,15 +541,27 @@ PUENTE = {
             # it's not in templates/ with a .html extension.
             (EDITORIAL_CONTENT_FILENAME, 'jinja2'),
 
-            # Make sure we're parsing django-admin templates with the django
-            # template extractor
+            # Make sure we're parsing django-admin & email templates with the
+            # django template extractor. This should match the behavior of
+            # JINJA_EXCLUDE_TEMPLATE_PATHS
+            (
+                'src/olympia/**/templates/**/emails/**.*',
+                'django_babel.extract.extract_django'
+            ),
             (
                 '**/templates/admin/**.html',
                 'django_babel.extract.extract_django'
             ),
+            (
+                '**/templates/addons/admin/**.html',
+                'django_babel.extract.extract_django'
+            ),
+            (
+                '**/templates/blocklist/**.html',
+                'django_babel.extract.extract_django'
+            ),
 
             ('src/olympia/**/templates/**.html', 'jinja2'),
-            ('**/templates/**.lhtml', 'jinja2'),
         ],
         'djangojs': [
             # We can't say **.js because that would dive into mochikit
