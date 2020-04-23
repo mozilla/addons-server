@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 20:03+0000\n"
+"PO-Revision-Date: 2020-04-23 20:11+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6129,11 +6129,9 @@ msgstr ""
 msgid "presence of a version"
 msgstr "Yella lqem"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Lqem yettwazmel"
+msgstr "abadu n lqem"
 
-#, fuzzy
 msgid "add-on status"
 msgstr "Addad n uzegrir"
 
@@ -6141,13 +6139,11 @@ msgstr "Addad n uzegrir"
 msgid "add-on listing visibility"
 msgstr "Tuman n uzegrir"
 
-#, fuzzy
 msgid "file status"
-msgstr "Addad n usmel"
+msgstr "Addad n ufaylu"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} yettwazmel."
+msgstr "Azmul n ufaylu"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
