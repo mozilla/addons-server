@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 20:11+0000\n"
+"PO-Revision-Date: 2020-04-23 20:53+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6179,9 +6179,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Tiririt n umcegger"
+msgstr "Err-d aneqqis"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6207,7 +6206,6 @@ msgstr "Yir asdukel n yiɣewwaren \"%s\", \"%s\" d \"%s\"."
 msgid "Maximum query length exceeded."
 msgstr "Teɣzi tafellayt n usuter iɛeddan."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Ur izmir ara ad d-yaf azegrir s usulay \"{}\"."
 
@@ -6228,13 +6226,11 @@ msgstr "Lqem ur imenṭaḍ ara akked ufaylu n umeskan."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Lqem-a yella yakan. Lqem aneggaru d: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Ala WebExtensions i yettwasirgen ad yezgel GUID"
+msgstr "Ala WebExtensions i yettwasirgen ad yezgel asulay n uzegrir"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Ma ulac aɣilif, efk-d GUID n uzegrir-ik deg umeskan ma yella iɛedda 64 n yisekkilen."
+msgstr "Ma ulac aɣilif, efk-d asulay n uzegrir-inek deg umeskan ma yella iɛedda 64 yisekkilen."
 
 #, fuzzy
 msgid "Invalid Add-on ID in URL or package"
