@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 16:46+0000\n"
+"PO-Revision-Date: 2020-04-23 17:05+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -910,16 +910,14 @@ msgstr ""
 msgid "Block for {0} deleted from Blocklist."
 msgstr "החסימה עבור {0} נמחקה מרשימת החסימה."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "התוספת נמחקה."
+msgstr "החסימה נמחקה"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "התוספת {addon} הוסרה מהאוסף {collection}."
+msgstr "ה־GUID עבור {addon} הוסר מ־DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -1545,16 +1543,14 @@ msgstr "תמונה באיכות נמוכה, מתוחה או ריקה"
 msgid "Header image alignment problem"
 msgstr "בעיית יישור תמונת כותרת"
 
-#, fuzzy
 msgid "No action"
-msgstr "פעולות נוספות"
+msgstr "שום פעולה"
 
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "השבתת אישור אוטומטי"
+msgstr "השהיית אישור אוטומטי"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -1568,9 +1564,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "חדש יותר"
+msgstr "חדש"
 
 msgid "Running"
 msgstr ""
@@ -1581,9 +1576,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "לא שלם"
+msgstr "הושלם"
 
 msgid "Scheduled"
 msgstr ""
