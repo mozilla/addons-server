@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 19:34+0000\n"
+"PO-Revision-Date: 2020-04-23 19:42+0000\n"
 "Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -567,7 +567,7 @@ msgid "users"
 msgstr "Iseqdacen"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Ẓreg asewḥel"
 
 msgid "versions"
 msgstr "Ileqman"
@@ -969,7 +969,7 @@ msgid "Unlisted"
 msgstr "Ur d-yettwabder ara"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "Bab"
@@ -1551,13 +1551,13 @@ msgid "New"
 msgstr "Amaynut"
 
 msgid "Running"
-msgstr ""
+msgstr "Aselkem"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Yettwaseḥbes"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Aseḥbes"
 
 msgid "Completed"
 msgstr "Immed"
@@ -3108,10 +3108,10 @@ msgid "Visit the Extension Workshop"
 msgstr "Isiɣzaf"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Qqen yid-neɣ"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
