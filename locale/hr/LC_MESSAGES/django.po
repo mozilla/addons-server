@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 23:05+0000\n"
+"PO-Revision-Date: 2020-04-24 23:07+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1542,7 +1542,7 @@ msgid "No action"
 msgstr "Bez radnje"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Označi za ljudski pregled"
 
 msgid "Delay auto-approval"
 msgstr "Odgodi automatsko odobravanje"
@@ -1557,7 +1557,7 @@ msgid "False positive"
 msgstr "Lažno pozitivno"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Nije jednoznačno"
 
 msgid "New"
 msgstr "Novo"
@@ -1569,13 +1569,13 @@ msgid "Aborted"
 msgstr "Prekinuto"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Prekida se"
 
 msgid "Completed"
 msgstr "Dovršeno"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Planirano"
 
 msgid "Core"
 msgstr "Osnovni"
