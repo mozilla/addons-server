@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 22:21+0000\n"
+"PO-Revision-Date: 2020-04-24 22:30+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5932,21 +5932,17 @@ msgstr "Blokiraj dodatak"
 msgid "Update add-on block"
 msgstr ""
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Deaktiviraj automatsko odobravanje"
+msgstr "Deaktiviraj automatsko odobravanje navedenih"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Aktiviraj automatsko odobravanje"
+msgstr "Aktiviraj automatsko odobravanje navedenih"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Postavljena je oznaka za deativirano automatsko odobravanje"
+msgstr "Automatsko odobravanje je trenutačno deaktivirano do {date}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Aktiviraj automatsko odobravanje"
+msgstr "Ukloni dodatno odgađanje automatskog odobravanja"
 
 msgid "Clear information request"
 msgstr "Izbriši zahtjev za informacijama"
@@ -6000,9 +5996,8 @@ msgstr "Metoda:"
 msgid "Source:"
 msgstr "Izvor:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Izvor:"
+msgstr "URL izvora:"
 
 msgid "Dismiss this announcement"
 msgstr "Odbaci ovu najavu"
@@ -6130,36 +6125,29 @@ msgstr[2] "Isteklih zahtjeva za informacijama ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Započni"
+msgstr "stanje rezultata"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Pregled navedene verzije"
+msgstr "prisutnost verzije"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Verzija potpisana"
+msgstr "kanal verzije"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Status dodataka"
+msgstr "stanje dodatka"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Vidljivost popisa"
+msgstr "vidljivost dodatka na popisu"
 
-#, fuzzy
 msgid "file status"
-msgstr "Stanje stranice"
+msgstr "stanje datoteke"
 
-#, fuzzy
 msgid "file signature"
-msgstr "Datoteka {file} je potpisana."
+msgstr "potpis datoteke"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6196,9 +6184,8 @@ msgid "Useful when the scanner result is a true positive but the add-on is not m
 msgstr ""
 
 # 100%
-#, fuzzy
 msgid "Revert report"
-msgstr "Odgovor recenzenta"
+msgstr "Poništi izvještaj"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6224,9 +6211,8 @@ msgstr "Neispravna kombinacija parametara „%s” , „%s” i „%s”."
 msgid "Maximum query length exceeded."
 msgstr "Prekoračena je maksimalna duljina upita."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Nije bilo moguće pronaći dodatak s guid oznakom „{}”."
+msgstr "Nije bilo moguće pronaći dodatak s ID oznakom „{}”."
 
 msgid "You do not own this addon."
 msgstr "Nisi vlasnik/vlasnica ovog dodatka."
@@ -6245,21 +6231,18 @@ msgstr "Verzija ne odgovara datoteci manifesta."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Verzija već postoji. Najnovija verzija je: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "GUID smiju ispustiti samo web-proširenja"
+msgstr "ID oznaku dodatka smiju ispustiti samo web-proširenja"
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Navedi GUID oznaku svog dodatka u manifestu, ako je duži od 64 znaka."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Neispravna GUID oznaka u URL-u"
+msgstr "Neispravna ID oznaka dodatka u URL-u ili paket"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Ne možeš dodati verzije dodatku, čije je stanje: %s."
+msgstr "Ne možeš dodati navedene verzije dodatku, čije je stanje postavljeno na „Nevidljivo”."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Ne možeš dodati navedenu verziju ovom dodatku putem sučelja, jer nedostaju metapodaci. Pošalji putem web stranice"
@@ -6598,13 +6581,12 @@ msgstr "Korisnici „%(users)s” su isključeni."
 msgid "Ban selected users"
 msgstr "Isključi odabrane korisnike"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Korisnici \"%(users)s\" su resetirali svoje API ključeve."
+msgstr "Korisnici „%(users)s” su resetirali svoje sesije."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Izbriši verziju"
+msgstr "Resetiraj sesiju"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6700,9 +6682,8 @@ msgstr "Obavijesti korisnika"
 msgid "Ban"
 msgstr "Isključi"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Izbriši verziju"
+msgstr "Resetiraj sesije"
 
 msgid "Delete picture"
 msgstr "Ukloni sliku"
