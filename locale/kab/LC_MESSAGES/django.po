@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 02:14+0000\n"
+"PO-Revision-Date: 2020-04-24 02:20+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -524,10 +524,10 @@ msgstr "%(count)s Izegrar GUIDs ttusweḥlen yakan i %(v_min)s ɣer %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s Izegrar GUIDs ur ttwafen ara"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Iḥedren-agi i d-iteddun ttwaktaren-d seg yiḥder Kinto aqdim yebnan ɣef regex."
 
 msgid "Save"
 msgstr "Sekles"
@@ -553,14 +553,14 @@ msgid "Add %(name)s"
 msgstr "Rnu %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "IzegrarGUIDs (yiwen i yizirig)"
 
 msgid "Submit"
 msgstr "Azen"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s Izegrar GUIDs"
 
 msgid "users"
 msgstr "Iseqdacen"
