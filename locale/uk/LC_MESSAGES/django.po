@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 23:50+0000\n"
+"PO-Revision-Date: 2020-04-24 00:12+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6649,9 +6649,8 @@ msgstr "Заблокувати вибраних користувачів"
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr "Для користувачів \"%(users)s\" скинуто їхні API ключі."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Видалити версію"
+msgstr "Скидання сеансу"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
