@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 01:17+0000\n"
+"PO-Revision-Date: 2020-04-24 01:27+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -482,11 +482,11 @@ msgstr "Guid %(guid)s ha-t-an deg tuzzna yettraǧu"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Ulac azegrir s GUID %(guid)s"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s yella yakan deg tuzzna yettraǧu"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
