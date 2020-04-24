@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 23:08+0000\n"
+"PO-Revision-Date: 2020-04-24 23:20+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4912,7 +4912,7 @@ msgstr "Деякі сайти мають труднощі з відтворен�
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Вибирайте, сортуйте та пришвидшуйте ваші завантаження."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
