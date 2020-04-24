@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 17:04+0000\n"
+"PO-Revision-Date: 2020-04-24 17:11+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3378,9 +3378,8 @@ msgstr "Opcionalmente, insira qualquer informação que possa ser útil para o r
 msgid "Source code"
 msgstr "Código-fonte"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Se sua extensão contém o código binário ou ofuscado, disponibilize a fonte para os revisores."
+msgstr "Caso sua extensão contenha código que foi reduzido, concatenado ou gerado automaticamente, disponibilize o código fonte aqui para ser revisado."
 
 msgid "File {file_id} ({platform})"
 msgstr "Arquivo {file_id} ({platform})"
@@ -3762,9 +3761,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Personalize gestos do mouse {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Personalize gestos do mouse. Descubra uma nova maneira de navegar com mais de 50 gestos de mouse úteis."
+msgstr "Personalize gestos do mouse. Descubra uma nova forma de navegar, com mais de 50 configurações."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4030,9 +4028,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navegação dinâmica {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Use gestos do mouse para fechar abas, retornar uma página, recarregar e mais."
+msgstr "Use gestos do mouse para fechar abas, navegar em páginas e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4971,9 +4968,8 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Salve páginas completas—ou apenas partes—como um único arquivo HTML."
+msgstr "Salve uma página inteira — incluindo imagens e estilo — como um único arquivo HTML."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
