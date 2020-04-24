@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 12:29+0000\n"
+"PO-Revision-Date: 2020-04-24 12:40+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6261,9 +6261,8 @@ msgstr "Версія не відповідає файлу маніфесту."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Версія вже існує. Останньою версією є: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Тільки веб-додатки можуть пройти перевірку"
+msgstr "Лише додаткам типу WebExtensions дозволено не вказувати ID"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Будь ласка, вкажіть ID вашого Додатку в маніфесті, якщо він довший 64 символів."
@@ -6271,9 +6270,8 @@ msgstr "Будь ласка, вкажіть ID вашого Додатку в м
 msgid "Invalid Add-on ID in URL or package"
 msgstr "Хибний ID додатка в URL-адресі чи пакунку"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Ви не можете додавати версії для додатку зі статусом: %s."
+msgstr "Ви не можете додавати оприлюднені версії для додатка зі статусом \"Невидимий\"."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Ви не можете додавати опубліковану версію для цього додатку через API, у зв'язку з відсутніми метаданими. Будь ласка, відправте через вебсайт"
@@ -6690,11 +6688,8 @@ msgstr ""
 "Перш ніж почати, будь ласка прочитайте і прийміть нашу Угоду про розповсюдження додатків Firefox, а також наші Політики і Правила перевірки. Угода про розповсюдження додатків Firefox також "
 "посилається на Повідомлення про приватність, яке пояснює, як ми обробляємо вашу інформацію."
 
-#, fuzzy
 msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Перш ніж почати, будь ласка прочитайте і прийміть нашу Угоду про розповсюдження додатків Firefox, а також наші Політики і Правила перевірки. Угода про розповсюдження додатків Firefox також "
-"посилається на Повідомлення про приватність, яке пояснює, як ми обробляємо вашу інформацію."
+msgstr "Будь ласка, прочитайте і прийміть нашу Угоду про розповсюдження додатків Firefox, а також наші Політики і Правила перевірки, відвідавши {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "розробник додатку відповідає на мій відгук"
