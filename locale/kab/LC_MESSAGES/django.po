@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 17:35+0000\n"
+"PO-Revision-Date: 2020-04-24 19:04+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3288,9 +3288,8 @@ msgstr "Aru ma tebɣiḍ talɣut izemren ad telhu i umsekyed n uzegrir, am imi�
 msgid "Source code"
 msgstr "Tangalt aɣbalu"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Ma yella  azegrir-ik yegber tangalt timsint neɣ tussiḍt, sers dagi iɣbula i wid ara yeceggren."
+msgstr "Ma yella  azegrir-inek yegber asewzel, asenteḍ neɣ ma ulac tangalt i d-yettwasurwen s tmacint, sers dagi iɣbula i yimceggren."
 
 msgid "File {file_id} ({platform})"
 msgstr "Afaylu {file_id} ({platform})"
@@ -3663,9 +3662,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Mudd udem i uḥerrek n tɣerdayt {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Mudd udem i uḥerrek n tɣerdayt. Wali tarrayt tamaynut n tunigin s wugar n 50 n talɣiwin n uḥerrek n tɣerdayt."
+msgstr "Mudd udem i uḥerrek n tɣerdayt. Wali tarrayt tamaynut n tunigin s wugar n 50 twila."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
