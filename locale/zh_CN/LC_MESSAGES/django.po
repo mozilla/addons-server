@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 12:53+0000\n"
+"PO-Revision-Date: 2020-04-24 13:15+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5529,11 +5529,11 @@ msgid "Add-on Review Guide"
 msgstr "附加组件审核指南"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "由扫描器标记"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
+msgstr[0] "由扫描器标记（{0}）"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自动批准的附加组件"
@@ -5991,7 +5991,7 @@ msgid "Newer"
 msgstr "较新"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} 版本由扫描器标记于其他页面。"
 
 msgid "Recent Points"
 msgstr "最近所得点数"
@@ -6042,7 +6042,7 @@ msgid "Weight:"
 msgstr "加权："
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "由自动扫描器标记"
 
 msgid "Download"
 msgstr "下载"
@@ -6080,7 +6080,7 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "过期的信息请求 ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "存在命中规则"
 
 #, fuzzy
 msgid "result state"
@@ -6114,26 +6114,26 @@ msgid "file signature"
 msgstr "{file} 已签名。"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "这是扫描器所用规则的确切名称。"
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "若不选中，扫描器结果将不受此规则约束，也不会执行操作。"
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara 规则应包含定义"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "定义中的规则名称应与扫描器规则的名称相匹配"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "定义中仅允许使用一条 Yara 规则"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "定义无效：%(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "编译定义时出错"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "在已被强制禁用的附加组件上也执行此规则。"
@@ -6145,7 +6145,7 @@ msgid "Run"
 msgstr "执行"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "当扫描器结果为真阳性但附加组件非恶意时很有用"
 
 #, fuzzy
 msgid "Revert report"
