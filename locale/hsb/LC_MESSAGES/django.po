@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 11:20+0000\n"
+"PO-Revision-Date: 2020-04-24 11:29+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5646,14 +5646,14 @@ msgid "Add-on Review Guide"
 msgstr "Nawod za přepruwowanje přidatkow"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Přez skenery markěrowane"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Přez skenery markěrowany ({0})"
+msgstr[1] "Přez skenery markěrowane ({0})"
+msgstr[2] "Přez skenery markěrowane ({0})"
+msgstr[3] "Přez skenery markěrowane ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatisce schwalene přidatki"
@@ -5956,7 +5956,7 @@ msgid "Previously deleted entries"
 msgstr "Do toho zhašane zapiski"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "To je doporučene rozšěrjenje."
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -6077,7 +6077,7 @@ msgid "No reviews found for this period."
 msgstr "Žane pohódnoćenja za tutón čas namakane."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Pochad:"
 
 msgid "Method:"
 msgstr "Metoda:"
@@ -6166,7 +6166,7 @@ msgid "Weight:"
 msgstr "Wažnosć:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Přez awtomatizowane skenery markěrowany"
 
 msgid "Download"
 msgstr "Sćahnyć"
@@ -6223,7 +6223,7 @@ msgid "result state"
 msgstr "Prěnje kroki"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "wšě nimo tutoho prawidła"
 
 #, fuzzy
 msgid "presence of a version"
@@ -6250,35 +6250,35 @@ msgid "file signature"
 msgstr "Dataja {file} je so signowała."
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "To je eksaktne mjeno prawidła, kotrež so přez skener wužiwa."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Prawidła Yara měli definiciju měć."
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
 msgstr ""
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "W definiciji je jenož jedne prawidło Yara dowolene."
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definicija płaćiwa njeje: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Při kompilowanju definicije je so zmylk stał."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Přetorhnyć"
 
 msgid "Run"
-msgstr ""
+msgstr "Wuwjesć"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
