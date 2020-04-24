@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 03:52+0000\n"
+"PO-Revision-Date: 2020-04-24 04:04+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -483,20 +483,17 @@ msgstr "GUID %(guid)s 已在準備送出中"
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "由於最小或最大版本變動，要更新的封鎖資訊不同。"
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "無效的版本號碼範圍。"
+msgstr "版本無效"
 
 msgid "Min version can not be greater than Max version"
 msgstr "最小版本不應超過最大版本"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "已要求審核"
+msgstr "審核上架項目"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "審核註記"
+msgstr "審核未上架項目"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "此封鎖項目是從傳統的 regex kinto Block 匯入的。"
@@ -504,11 +501,10 @@ msgstr "此封鎖項目是從傳統的 regex kinto Block 匯入的。"
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "任何變更不會套用到傳統封鎖清單，您必須回到 kinto 的管理介面手動更新。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "退回多個版本"
+msgstr "刪除多個 %(name)s"
 
-#, fuzzy
 msgid "Home"
 msgstr "首頁"
 
@@ -535,13 +531,11 @@ msgstr "刪除"
 msgid "Update"
 msgstr "更新"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "前往我上架的項目"
+msgstr "拒絕上架"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "前往我上架的項目"
+msgstr "通過上架"
 
 #, python-format
 msgid "Add %(name)s"
@@ -550,22 +544,19 @@ msgstr "新增 %(name)s"
 msgid "Add-on GUIDs (one per line)"
 msgstr "附加元件 GUID（一行一項）"
 
-#, fuzzy
 msgid "Submit"
-msgstr "送出版本"
+msgstr "送出"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr "%(count)s 組附加元件 GUID"
 
-#, fuzzy
 msgid "users"
 msgstr "使用者"
 
 msgid "Edit Block"
 msgstr "編輯 Block"
 
-#, fuzzy
 msgid "versions"
 msgstr "版本"
 
@@ -990,9 +981,8 @@ msgstr "開發者"
 msgid "Extension"
 msgstr "擴充套件"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "已更新的完整佈景主題審核"
+msgstr "過時的完整佈景主題"
 
 msgid "Dictionary"
 msgstr "字典檔"
@@ -1019,9 +1009,8 @@ msgstr "主題（靜態）"
 msgid "Extensions"
 msgstr "擴充套件"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "完整佈景主題"
+msgstr "過時的完整佈景主題"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1545,48 +1534,44 @@ msgstr "低品質、草稿或者空白圖片"
 msgid "Header image alignment problem"
 msgstr "標題圖片對齊問題"
 
-#, fuzzy
 msgid "No action"
-msgstr "更多操作"
+msgstr "沒有操作"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "標示為人工審查"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "關閉自動通過審核"
+msgstr "延後自動通過審核"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "無限期延後自動通過審查"
 
 msgid "True positive"
-msgstr ""
+msgstr "真陽性"
 
 msgid "False positive"
-msgstr ""
+msgstr "偽陽性"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "沒有定論"
 
-#, fuzzy
 msgid "New"
-msgstr "較新的"
+msgstr "新"
 
 msgid "Running"
-msgstr ""
+msgstr "執行中"
 
 msgid "Aborted"
-msgstr ""
+msgstr "已中斷"
 
 msgid "Aborting"
-msgstr ""
+msgstr "正在中斷"
 
-#, fuzzy
 msgid "Completed"
-msgstr "尚未完成"
+msgstr "已完成"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "已排程"
 
 msgid "Core"
 msgstr "核心"
@@ -1605,7 +1590,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "現在起，Thunderbird 與 SeaMonkey 的附加元件將上架於 addons.thunderbird.net。您可以在該網站上使用相同帳號登入更新您的附加元件。"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "{blog_link_open}AMO 已不再支援{blog_link_close} Open Search 附加元件。請改成建立{doc_link_open}搜尋引擎擴充套件{doc_link_close}。"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "這個 slug 已經有人使用。請嘗試另一個。"
@@ -2457,10 +2442,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "關於創用 CC 的更多資訊"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "您的附加元件目前設定為「隱藏」。"
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "此狀態下，僅能「由您自行處理」附加元件的發布。"
 
 msgid "General Tests"
 msgstr "一般測試"
@@ -2685,9 +2670,8 @@ msgstr "您也可以編輯剛送出的版本，加入版本註記，或若包含
 msgid "Edit version {0}"
 msgstr "編輯版本 {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "已簽署版本"
+msgstr "等待版本簽名"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
@@ -2713,7 +2697,7 @@ msgid "Do you use any of the following?"
 msgstr "您使用了下列任何工具嗎？"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "程式碼產生器或 minifier"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "將多個檔案合併為一的工具，例如 <span class=\"tech-emphasis\">webpack</span>"
@@ -2944,7 +2928,7 @@ msgid ""
 msgstr ""
 
 msgid "Invisible"
-msgstr "不可見"
+msgstr "隱藏"
 
 msgid "Approved and recommended"
 msgstr "已通過審核並推薦"
@@ -3092,52 +3076,46 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "擴充套件工作坊"
+msgstr "前往擴充套件工作坊"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "聯絡我們"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "開發者"
+msgstr "針對開發者"
 
 msgid "For end users"
-msgstr ""
+msgstr "針對終端使用者"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "附加元件開發者交流中心"
+msgstr "附加元件開發者郵件清單"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "擴充套件開發"
+msgstr "擴充套件開發者電子報"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP 地址"
+msgstr "電子郵件信箱"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "登出"
+msgstr "註冊"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "感謝您！"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3145,9 +3123,8 @@ msgstr ""
 msgid "Resources"
 msgstr "資源"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: 打造並測試擴充套件"
@@ -3159,7 +3136,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "「取得附加元件」按鈕"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "擴充套件推薦計畫"
 
 msgid "Contribute"
 msgstr "捐款"
@@ -3192,7 +3169,7 @@ msgid "See how"
 msgstr "看看怎麼做"
 
 msgid "Get involved"
-msgstr ""
+msgstr "參與我們"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -4905,7 +4882,7 @@ msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "分頁管理器與工具"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5860,7 +5837,7 @@ msgid "Previously deleted entries"
 msgstr "先前刪除的項目"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "這是推薦的擴充套件。"
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -5982,7 +5959,7 @@ msgid "No reviews found for this period."
 msgstr "此時間內，尚無審核。"
 
 msgid "Origin:"
-msgstr ""
+msgstr "來源:"
 
 msgid "Method:"
 msgstr "方法:"
@@ -6168,10 +6145,10 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "中斷"
 
 msgid "Run"
-msgstr ""
+msgstr "執行"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
