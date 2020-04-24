@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 12:53+0000\n"
+"PO-Revision-Date: 2020-04-24 12:58+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -927,9 +927,8 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr "Користувач {user} скидання сеансу(-ів)."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Відредаговано користувачем {user} по причині: {1}"
+msgstr "Користувача {user} заглушено на область \"{0}\""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -3273,9 +3272,8 @@ msgstr "Фото користувача"
 msgid "Profile"
 msgstr "Профіль"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Відправити нову версію"
+msgstr "Подання чи керування розширеннями"
 
 msgid "Customize Firefox"
 msgstr "Пристосуйте Firefox"
@@ -5942,9 +5940,8 @@ msgstr "Примусово вимкнути додаток"
 msgid "Force-enable add-on"
 msgstr "Примусово увімкнути додаток"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Переглянути всі подання"
+msgstr "Переглянути подання списку блокування"
 
 msgid "Block add-on"
 msgstr "Блокувати додаток"
@@ -5952,21 +5949,17 @@ msgstr "Блокувати додаток"
 msgid "Update add-on block"
 msgstr ""
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Вимкнути автоматичне схвалення"
+msgstr "Вимкнути автоматичне схвалення оприлюднених"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Увімкнути автоматичне схвалення"
+msgstr "Увімкнути автоматичне схвалення оприлюднених"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Встановлений прапорець вимкнення автосхвалення"
+msgstr "Автоматичне схвалення наразі вимкнено до {date}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Увімкнути автоматичне схвалення"
+msgstr "Очистити додаткову затримку автоматичного схвалення"
 
 msgid "Clear information request"
 msgstr "Очистити запит інформації"
@@ -6147,9 +6140,8 @@ msgstr[2] "Протермінованих запитів інформації ({
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Почати"
+msgstr "результат"
 
 msgid "all but this rule"
 msgstr ""
@@ -6163,9 +6155,8 @@ msgstr "канал версії"
 msgid "add-on status"
 msgstr "статус додатка"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Видимість додатка"
+msgstr "видимість додатка серед оприлюднених"
 
 msgid "file status"
 msgstr "статус файлу"
