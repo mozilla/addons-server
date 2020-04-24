@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -6730,9 +6730,10 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
-"Ameska-a yettwakkes seg uzegrir  %(addon_name)s ( %(addon_url)s ):¶\n"
-"¶\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s¶"
+"\n"
+"Ameska-a yettwakkes seg uzegrir  %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 
 #, python-format
 msgid ""
@@ -6741,9 +6742,10 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )\n"
 msgstr ""
+"\n"
 "Ameska-a yettwakkes seg uzegrir %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s )"
+"%(author_name)s ( %(author_url)s )\n"
 
 msgctxt "user_list_others"
 msgid "others"
