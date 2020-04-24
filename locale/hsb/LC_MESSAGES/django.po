@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 12:48+0000\n"
+"PO-Revision-Date: 2020-04-24 13:54+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -556,7 +556,7 @@ msgid "Add %(name)s"
 msgstr "%(name)s přidać"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID přidatkow (jedyn na linku)"
 
 #, fuzzy
 msgid "Submit"
@@ -900,13 +900,13 @@ msgid "User {user} api key reset."
 msgstr "API-kluč wužiwarja {user} je so wróćo stajił."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blokowanje za {0} je so lisćinje blokowanjow přidało."
 
 msgid "Block added"
 msgstr "Blok je so přidał"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blokowanje za {0} je so w lisćinje blokowanjow wobdźěłało."
 
 msgid "Block edited"
 msgstr "Blok je so wobdźěłał"
@@ -920,17 +920,17 @@ msgid "Block deleted"
 msgstr "Přidatk je so zhašał."
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID za {addon} je so DeniedGuid přidał."
 
 #, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "Přidatk {addon} je so ze zběrki {collection} wotstronił."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Blokowanje akcije {1} za {0} zběhnjene."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Blokowanje akcije zběhnyć"
 
 #, fuzzy
 msgid "User {user} session(s) reset."
@@ -1549,7 +1549,7 @@ msgid "No action"
 msgstr "Dalše akcije"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Za čłowjeske přepruwowanje markěrować"
 
 #, fuzzy
 msgid "Delay auto-approval"
