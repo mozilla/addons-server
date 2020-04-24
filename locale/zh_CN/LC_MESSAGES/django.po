@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 15:23+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2020-04-24 12:40+0000\n"
+"Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -467,29 +467,29 @@ msgstr "此附加组件已在收藏集中"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "找不到对应 GUID %(guid)s 的屏蔽记录"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s 仍在准备提交中"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "GUID 为 %(guid)s 的附加组件不存在"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s 已在准备提交中"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "由于最低或最高版本变动，要更新的屏蔽内容不同。"
 
 #, fuzzy
 msgid "Invalid version"
 msgstr "版本范围无效。"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "最低版本不应超过最高版本"
 
 #, fuzzy
 msgid "Review Listed"
@@ -500,10 +500,10 @@ msgid "Review Unlisted"
 msgstr "审核说明"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "此屏蔽项目导入自基于正则的旧有 kinto 屏蔽列表。"
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "任何变更不会应用到旧有屏蔽列表，您必须回到 kinto 的管理界面手动更新。"
 
 #, fuzzy, python-format
 msgid "Delete Multiple %(name)s"
@@ -514,20 +514,20 @@ msgstr "主页"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "有 %(count)s 个附加组件 GUID 已针对 %(v_min)s~%(v_max)s 版本屏蔽"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "未找到 %(count)s 个附加组件 GUID"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "下列屏蔽项目导入自基于正则的旧有 kinto 屏蔽列表。"
 
 msgid "Save"
 msgstr "保存"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "保存并添加更多项目"
 
 msgid "Delete"
 msgstr "删除"
@@ -545,10 +545,10 @@ msgstr "转至我的提交"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "添加 %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "附加组件 GUID（每行一项）"
 
 #, fuzzy
 msgid "Submit"
@@ -556,20 +556,20 @@ msgstr "提交新版本"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s 个附加组件 GUID"
 
 #, fuzzy
 msgid "users"
 msgstr "用户"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "编辑屏蔽项"
 
 msgid "versions"
 msgstr "版本"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "包含于旧有屏蔽列表中。"
 
 msgid "{addon} was created."
 msgstr "{addon} 已创建。"
@@ -889,16 +889,16 @@ msgid "User {user} api key reset."
 msgstr "已重置用户 {user} 的密钥。"
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "已将对 {0} 的屏蔽添加至屏蔽列表。"
 
 msgid "Block added"
-msgstr ""
+msgstr "已新建屏蔽项"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "已编辑屏蔽列表中对 {0} 的屏蔽。"
 
 msgid "Block edited"
-msgstr ""
+msgstr "已编辑屏蔽项"
 
 #, fuzzy
 msgid "Block for {0} deleted from Blocklist."
@@ -909,17 +909,17 @@ msgid "Block deleted"
 msgstr "附加组件已删除。"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "已将 {addon} 的 GUID 添加至 DeniedGuid。"
 
 #, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "{addon} 已从 {collection} 中移除。"
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "确认对 {0} 的 {1} 操作。"
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "确认屏蔽操作"
 
 #, fuzzy
 msgid "User {user} session(s) reset."
@@ -969,7 +969,7 @@ msgid "Unlisted"
 msgstr "未上架"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1535,14 +1535,14 @@ msgid "No action"
 msgstr "更多操作"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "标为需要人工审查"
 
 #, fuzzy
 msgid "Delay auto-approval"
 msgstr "禁用自动批准"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "无限期推迟自动批准"
 
 msgid "True positive"
 msgstr ""
@@ -1551,27 +1551,27 @@ msgid "False positive"
 msgstr ""
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "没有定论"
 
 #, fuzzy
 msgid "New"
 msgstr "较新"
 
 msgid "Running"
-msgstr ""
+msgstr "正在处理"
 
 msgid "Aborted"
-msgstr ""
+msgstr "已中止"
 
 msgid "Aborting"
-msgstr ""
+msgstr "正在中止"
 
 #, fuzzy
 msgid "Completed"
 msgstr "未完成"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "已计划"
 
 msgid "Core"
 msgstr "核心"
@@ -1590,7 +1590,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "即日起，Thunderbird 与 SeaMonkey 的附加组件将上架于 addons.thunderbird.net 。您可以在该网站上使用相同账号登录更新您的附加组件。"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "{blog_link_open}AMO 已不再支持{blog_link_close} Open Search 附加组件。您可以改为创建{doc_link_open}搜索引擎扩展{doc_link_close}。"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "这个短网址已经被使用，请另选一个。"
@@ -2436,10 +2436,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "更多有关“知识共享”许可证的信息"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "您的附加组件当前设为“不可见”。"
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "此状态下，仅能“由您自行托管”附加组件的发布。"
 
 msgid "General Tests"
 msgstr "常规测试"
@@ -2692,7 +2692,7 @@ msgid "Do you use any of the following?"
 msgstr "您使用了下列任何一种工具吗？"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "代码生成或压缩工具"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "将多个文件合并为一的工具，例如 <span class=\"tech-emphasis\">webpack</span>"
@@ -3064,7 +3064,7 @@ msgid "Read more about the source code review policy."
 msgstr "详细了解源代码审查政策。"
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "构建一流的扩展和主题"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -3075,20 +3075,20 @@ msgid "Visit the Extension Workshop"
 msgstr "扩展工坊"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "联系我们"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
 msgstr "开发者"
 
 msgid "For end users"
-msgstr ""
+msgstr "对于最终用户"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 #, fuzzy
@@ -3108,14 +3108,14 @@ msgstr "IP 地址"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "我同意 Mozilla 按照%(link_open)s隐私声明%(link_close)s中所述方式处理我的信息。"
 
 #, fuzzy
 msgid "Sign Up"
 msgstr "退出"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "十分感谢！"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3137,7 +3137,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "“获取附加组件”按钮"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "扩展推荐计划"
 
 msgid "Contribute"
 msgstr "捐助"
@@ -3170,7 +3170,7 @@ msgid "See how"
 msgstr "怎么做"
 
 msgid "Get involved"
-msgstr ""
+msgstr "参与进来"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
