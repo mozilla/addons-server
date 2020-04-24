@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 13:15+0000\n"
+"PO-Revision-Date: 2020-04-24 13:46+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -125,17 +125,14 @@ msgstr "仅最新版的 addons 可添加说明。"
 msgid "Ratings"
 msgstr "评分量"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "审核员工具"
+msgstr ""
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "审核员工具"
+msgstr ""
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "审核员工具"
+msgstr ""
 
 msgid "- Add-on not on AMO -"
 msgstr "- 附加组件不在 AMO -"
@@ -294,11 +291,11 @@ msgstr ""
 msgid "Oops"
 msgstr "哎呀"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>喔喔！发生问题了。</h1> <p>我们会尽快修复。</p> <p>您可以尝试刷新页面，或者返回<a href=\"%(home)s\">附加组件首页</a>。</p>"
+msgstr ""
 
 msgid "No results found"
 msgstr "找不到结果"
@@ -484,20 +481,17 @@ msgstr "GUID %(guid)s 已在准备提交中"
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "由于最低或最高版本变动，要更新的屏蔽内容不同。"
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "版本范围无效。"
+msgstr ""
 
 msgid "Min version can not be greater than Max version"
 msgstr "最低版本不应超过最高版本"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "已申请审核"
+msgstr ""
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "审核说明"
+msgstr ""
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "此屏蔽项目导入自基于正则的旧有 kinto 屏蔽列表。"
@@ -505,9 +499,9 @@ msgstr "此屏蔽项目导入自基于正则的旧有 kinto 屏蔽列表。"
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "任何变更不会应用到旧有屏蔽列表，您必须回到 kinto 的管理界面手动更新。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "拒绝多个版本"
+msgstr ""
 
 msgid "Home"
 msgstr "主页"
@@ -535,13 +529,11 @@ msgstr "删除"
 msgid "Update"
 msgstr "更新"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "转至我的提交"
+msgstr ""
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "转至我的提交"
+msgstr ""
 
 #, python-format
 msgid "Add %(name)s"
@@ -550,17 +542,15 @@ msgstr "添加 %(name)s"
 msgid "Add-on GUIDs (one per line)"
 msgstr "附加组件 GUID（每行一项）"
 
-#, fuzzy
 msgid "Submit"
-msgstr "提交新版本"
+msgstr ""
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr "%(count)s 个附加组件 GUID"
 
-#, fuzzy
 msgid "users"
-msgstr "用户"
+msgstr ""
 
 msgid "Edit Block"
 msgstr "编辑屏蔽项"
@@ -900,20 +890,17 @@ msgstr "已编辑屏蔽列表中对 {0} 的屏蔽。"
 msgid "Block edited"
 msgstr "已编辑屏蔽项"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "{addon} 已删除版本 {0}。"
+msgstr ""
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "附加组件已删除。"
+msgstr ""
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "已将 {addon} 的 GUID 添加至 DeniedGuid。"
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} 已从 {collection} 中移除。"
+msgstr ""
 
 msgid "Block {1} action for {0} signed off."
 msgstr "确认对 {0} 的 {1} 操作。"
@@ -921,13 +908,11 @@ msgstr "确认对 {0} 的 {1} 操作。"
 msgid "Block action signoff"
 msgstr "确认屏蔽操作"
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "已重置用户 {user} 的密钥。"
+msgstr ""
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "用户 {user} 已编辑，原因：{1}"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -981,9 +966,8 @@ msgstr "开发者"
 msgid "Extension"
 msgstr "扩展"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "完整主题更新审核"
+msgstr ""
 
 msgid "Dictionary"
 msgstr "字典"
@@ -1010,9 +994,8 @@ msgstr "主题 (静态)"
 msgid "Extensions"
 msgstr "扩展"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "完整主题"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1530,16 +1513,14 @@ msgstr "低质量的、拉伸的、或者是空白图片"
 msgid "Header image alignment problem"
 msgstr "页眉图像对齐问题"
 
-#, fuzzy
 msgid "No action"
-msgstr "更多操作"
+msgstr ""
 
 msgid "Flag for human review"
 msgstr "标为需要人工审查"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "禁用自动批准"
+msgstr ""
 
 msgid "Delay auto-approval indefinitely"
 msgstr "无限期推迟自动批准"
@@ -1553,9 +1534,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr "没有定论"
 
-#, fuzzy
 msgid "New"
-msgstr "较新"
+msgstr ""
 
 msgid "Running"
 msgstr "正在执行"
@@ -1566,9 +1546,8 @@ msgstr "已中止"
 msgid "Aborting"
 msgstr "正在中止"
 
-#, fuzzy
 msgid "Completed"
-msgstr "未完成"
+msgstr ""
 
 msgid "Scheduled"
 msgstr "已计划"
@@ -1856,11 +1835,10 @@ msgstr "图标必须为正方形（宽度和高度相同）。"
 msgid "There was an error uploading your preview."
 msgstr "上传预览图的过程中发生错误。"
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "无法删除或禁用推荐扩展的最新核准版本。若需帮助，请联系 AMO 管理员。"
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
@@ -2356,9 +2334,8 @@ msgstr "为您的附加组件选择一个图标："
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "在展示附加组件时使用，例如在搜索结果和精选附加组件。"
+msgstr ""
 
 #. The size of the icon
 msgid "64x64px"
@@ -2404,9 +2381,8 @@ msgstr "支持 PNG 与 JPG 格式，推荐使用 PNG。最大且推荐的屏幕�
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "最小尺寸为 1000x750，比例必须为 4:3。"
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "在产品页面中放入屏幕截图，可大幅增加安装、被选为精选附加组件，以及在首页为附加组件宣传的机会。"
+msgstr ""
 
 msgid "Continue"
 msgstr "继续"
@@ -2657,20 +2633,17 @@ msgstr "添加详细的描述和截图，您的上架将更加成功。准备要
 msgid "Manage Listing"
 msgstr "管理上架"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "您还可以编辑此版本，为您刚刚的提交添加版本说明、或源代码（如果您提交的版本的代码经过压缩、精简或编译）。"
+msgstr ""
 
 msgid "Edit version {0}"
 msgstr "编辑版本 {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "版本已签名"
+msgstr ""
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "完成！此版本在审核通过后就会在网站上出现。您将在审核完成后收到我们的通知。"
+msgstr ""
 
 msgid "Go to My Submissions"
 msgstr "转至我的提交"
@@ -2727,9 +2700,8 @@ msgid ""
 "emphasis\">npm</span> version used)."
 msgstr "构建过程中会使用到的任何程序的详细信息（包含需要使用的版本与安装步骤，例如：所用的 <span class=\"tech-emphasis\">node</span> 与 <span class=\"tech-emphasis\">npm</span> 的版本）。"
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
-msgstr "<span class=\"instruction-emphasis\">注意：</span>源文件（不含第三方开源库）请勿转译（transpile）、混淆（obfuscate）、压缩（minify）或使用机器生成源代码。"
+msgstr ""
 
 msgid "How to Submit:"
 msgstr "如何提交："
@@ -3053,9 +3025,8 @@ msgstr "隐私政策"
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr "如果您的附加组件会从用户的计算机上传出任何数据，您需要提供一份隐私政策，解释这些数据的发送和将如何使用它。此项仅与公开上架的附加组件相关。"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "如果您的附加组件包含非已知常见程序库的二进制文件或者混淆过的代码，请上传其源代码以供审查。"
+msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "请包含如何生成最终的附加组件文件的操作说明，通过 README 文件或给审核员的此版本说明。"
@@ -3070,9 +3041,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "扩展工坊"
+msgstr ""
 
 msgid "Connect with us"
 msgstr "联系我们"
@@ -3080,9 +3050,8 @@ msgstr "联系我们"
 msgid "Twitter"
 msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "开发者"
+msgstr ""
 
 msgid "For end users"
 msgstr "对于最终用户"
@@ -3091,28 +3060,24 @@ msgid "Matrix"
 msgstr "Matrix"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "附加组件开发者中心"
+msgstr ""
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "扩展开发"
+msgstr ""
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP 地址"
+msgstr ""
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr "我同意 Mozilla 按照%(link_open)s隐私声明%(link_close)s中所述方式处理我的信息。"
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "退出"
+msgstr ""
 
 msgid "Thanks!"
 msgstr "十分感谢！"
@@ -3123,9 +3088,8 @@ msgstr ""
 msgid "Resources"
 msgstr "资源"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr ""
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext：构建和测试扩展"
@@ -3175,9 +3139,8 @@ msgstr "参与进来"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "详细了解源代码审查政策。"
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "在通过代码审查后在此网站上列出。自动更新由此网站处理。"
@@ -3215,20 +3178,17 @@ msgstr "无照片"
 msgid "User Photo"
 msgstr "用户照片"
 
-#, fuzzy
 msgid "Profile"
-msgstr "我的概况"
+msgstr ""
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "提交新版本"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "定制 Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "了解如何制作一个附加组件"
+msgstr ""
 
 msgid "Ready to submit or manage your extension?"
 msgstr "想要提交或管理您的扩展？"
@@ -3270,9 +3230,8 @@ msgstr "选填，请输入任何可能有助于审核员审核此附加组件的
 msgid "Source code"
 msgstr "源代码"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "如果您的附加组件包含二进制文件或者混淆过的代码，请在此上传其源代码以供审查。"
+msgstr ""
 
 msgid "File {file_id} ({platform})"
 msgstr "文件{file_id} ({platform})"
@@ -3644,9 +3603,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "自定义鼠标手势 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "自定义鼠标手势。使用 50 多种实用的鼠标手势，发现上网的新方式。"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3910,9 +3868,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "动态导航 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "使用鼠标手势来关闭标签页、返回上一页、重新加载页面等。"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4824,42 +4781,39 @@ msgstr "某些网站无法在 Android 版 Firefox 上正常播放视频，此扩
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "选择、排序、批量操作，加速您的下载。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "来自世界各地的即时天气更新。"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "点击一下，即可删除 Cookie、浏览历史和缓存文件。"
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "删除网页链接中的跟踪元素。"
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "RSS 收取点“实时书签”功能经典重现。"
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "轻松管理大量标签页。"
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
+msgstr "创建并定制标签页组。"
+
+#. editorial content for the discovery pane.
+msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "将整个页面，或是页面局部，保存为单个 HTML 文件。"
-
-#. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "关闭标签页后自动清除 Cookie。"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -4932,9 +4886,8 @@ msgstr "无法判断一个版本与他自身的差别"
 msgid "Could not parse the manifest file."
 msgstr "未能解析清单文件。"
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Firefox 47 及以下版本需要 GUID。"
+msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "支持的最低 \"strict_min_version\" 为 42.0。"
@@ -4997,9 +4950,9 @@ msgstr "WebExtension 主题的大小限制为 {0}。"
 msgid "You cannot submit this type of add-on"
 msgstr "您不能提交此类型的附加组件"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "您提交的附加组件不能以 %s 作为 GUID 结尾"
+msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能提交一个 Mozilla 签名的扩展"
@@ -5382,9 +5335,8 @@ msgstr "无限期推迟自动批准"
 msgid "Is locked by a reviewer"
 msgstr "已由一名审核员锁定"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "已设置禁用自动批准"
+msgstr ""
 
 msgid "Is recommendable"
 msgstr "可推荐"
@@ -5398,9 +5350,8 @@ msgstr "风险分解不可用。"
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "若定义了“canned_response”，则无法提交评论。"
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "您不能提交语言包"
+msgstr ""
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5432,9 +5383,8 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 天"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr ""
 
 msgid "Last Review"
 msgstr "上次审核"
@@ -5448,13 +5398,11 @@ msgstr "信息请求截止时间"
 msgid "Last Updated"
 msgstr "最近更新于"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "其他待审核（{0}）"
+msgstr ""
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "其他待审核（{0}）"
+msgstr ""
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "这将批准、签名并发布此版本。该评论将发送给其开发者。"
@@ -5480,20 +5428,17 @@ msgstr "拒绝多个版本"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "这将拒绝选定的公开版本。该评论将发送给其开发者。"
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "拒绝多个版本"
+msgstr ""
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "拒绝多个版本"
+msgstr ""
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "这将记录您为何认可最新公开版本的内容（不会通知开发者）。"
+msgstr ""
 
 msgid "Reviewer reply"
 msgstr "审核员回复"
@@ -5678,9 +5623,8 @@ msgstr "图片集"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "这里什么都没有！开发者没有写下任何详细信息。"
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "依照附加组件版本"
+msgstr ""
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "返回审核员工具首页"
@@ -5835,9 +5779,8 @@ msgstr "先前删除的项目"
 msgid "This is a recommended extension."
 msgstr "这是推荐的扩展。"
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "您没有任何 API 凭据。"
+msgstr ""
 
 msgid "Please select one or more versions in the list above."
 msgstr "请选择上述列表中的一个或多个版本。"
@@ -5869,13 +5812,11 @@ msgstr "更多操作"
 msgid "Notify me about new listed versions"
 msgstr "有新上架版本时通知我"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "查看所有提交"
+msgstr ""
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "管理我的提交"
+msgstr ""
 
 msgid "Force-disable add-on"
 msgstr "强制禁用附加组件"
@@ -5883,32 +5824,26 @@ msgstr "强制禁用附加组件"
 msgid "Force-enable add-on"
 msgstr "强制启用附加组件"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "查看所有提交"
+msgstr ""
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "返回附加组件"
+msgstr ""
 
 msgid "Update add-on block"
 msgstr "更新附加组件屏蔽列表"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "禁用自动批准"
+msgstr ""
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "启用自动批准"
+msgstr ""
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "已设置禁用自动批准"
+msgstr ""
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "启用自动批准"
+msgstr ""
 
 msgid "Clear information request"
 msgstr "清除信息请求"
@@ -5961,9 +5896,8 @@ msgstr "方法："
 msgid "Source:"
 msgstr "来源："
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "来源："
+msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr "忽略此公告"
@@ -6082,36 +6016,29 @@ msgstr[0] "过期的信息请求 ({0})"
 msgid "presence of matched rules"
 msgstr "存在命中规则"
 
-#, fuzzy
 msgid "result state"
-msgstr "入门指南"
+msgstr ""
 
 msgid "all but this rule"
 msgstr "此规则除外"
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "上架版本预览"
+msgstr ""
 
-#, fuzzy
 msgid "version channel"
-msgstr "版本已签名"
+msgstr ""
 
-#, fuzzy
 msgid "add-on status"
-msgstr "附加组件状态"
+msgstr ""
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "公开程度"
+msgstr ""
 
-#, fuzzy
 msgid "file status"
-msgstr "网站状态"
+msgstr ""
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} 已签名。"
+msgstr ""
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "这是扫描器所用规则的确切名称。"
@@ -6147,9 +6074,8 @@ msgstr "执行"
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr "当扫描器结果为真阳性但附加组件非恶意时很有用"
 
-#, fuzzy
 msgid "Revert report"
-msgstr "审核员回复"
+msgstr ""
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6175,9 +6101,8 @@ msgstr "“%s”，“%s”和“%s”参数的组合无效。"
 msgid "Maximum query length exceeded."
 msgstr "超出最大查询长度。"
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "未能找到 GUID 为“{}”的附加组件。"
+msgstr ""
 
 msgid "You do not own this addon."
 msgstr "您不拥有此附加组件。"
@@ -6196,21 +6121,17 @@ msgstr "版本与清单文件不匹配。"
 msgid "Version already exists. Latest version is: %s."
 msgstr "版本已存在，最新版本为：%s。"
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "仅 WebExtension 允许省略 GUID"
+msgstr ""
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "如果其超出 64 个字符，请在 manifest 中指定您的附加组件 GUID。"
+msgstr ""
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "URL 中的 GUID 无效"
+msgstr ""
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "您不能添加新版本，该附加组件处于状态：%s。"
+msgstr ""
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "由于缺少元数据，您不能通过该 API 添加一个上架版本到该附加组件。请通过网站提交"
@@ -6546,13 +6467,12 @@ msgstr "用户“%(users)s”已被封禁。"
 msgid "Ban selected users"
 msgstr "封禁所选用户"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "已重置用户“%(users)s”的 API 密钥。"
+msgstr ""
 
-#, fuzzy
 msgid "Reset session"
-msgstr "删除版本"
+msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6617,9 +6537,8 @@ msgid ""
 " which explains how we handle your information."
 msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则。Firefox 附加组件分发协议还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
 
-#, fuzzy
 msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则。Firefox 附加组件分发协议还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
+msgstr ""
 
 msgid "an add-on developer replies to my review"
 msgstr "一名附加组件开发者回复了我的评价"
@@ -6651,9 +6570,8 @@ msgstr "用户通知"
 msgid "Ban"
 msgstr "封禁"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "删除版本"
+msgstr ""
 
 msgid "Delete picture"
 msgstr "删除照片"
