@@ -79,28 +79,37 @@ class FileEntriesSerializer(FileSerializer):
             return self.parent.instance.current_file
         return self.instance
 
-    def _get_commit(self, file_obj):
+    @cached_property
+    def commit(self):
         """Return the pygit2 repository instance, preselect correct channel."""
-        if hasattr(self, '_commit'):
-            return self._commit
-
+        # Caching the commit to avoid calling revparse_single many times.
+        # Because of this, a new serializer must be created for each file.
         try:
-            self._commit = self.git_repo.revparse_single(
-                file_obj.version.git_hash)
+            return self.git_repo.revparse_single(
+                self.get_instance().version.git_hash)
         except pygit2.InvalidSpecError:
             raise NotFound(
                 'Couldn\'t find the requested version in git-repository')
 
-        return self._commit
+    @cached_property
+    def tree(self):
+        # Caching the tree to avoid calling get_root_tree many times.
+        return self.repo.get_root_tree(self.commit)
 
-    def _get_tree(self, obj):
-        if hasattr(self, '_tree'):
-            return self._tree
+    def _get_blob_for_selected_file(self, obj):
+        """Returns the blob and filename for the selected file.
 
-        commit = self._get_commit(obj)
-        self._tree = self.repo.get_root_tree(commit)
+        Returns (None, None) if the selected file is not a blob.
+        """
+        tree = self.tree
+        selected_file = self.get_selected_file(obj)
+        if selected_file in tree:
+            blob_or_tree = tree[selected_file]
 
-        return self._tree
+            if blob_or_tree.type == pygit2.GIT_OBJ_BLOB:
+                return (self.git_repo[blob_or_tree.oid], blob_or_tree.name)
+
+        return (None, None)
 
     def get_entries(self, obj):
         # Given that this is a very expensive operation we have a two-fold
@@ -110,11 +119,11 @@ class FileEntriesSerializer(FileSerializer):
         if hasattr(self, '_entries'):
             return self._entries
 
-        commit = self._get_commit(obj)
+        commit = self.commit
         result = OrderedDict()
 
         def _fetch_entries():
-            tree = self._get_tree(obj)
+            tree = self.tree
 
             for entry_wrapper in self.repo.iter_tree(tree):
                 entry = entry_wrapper.tree_entry
@@ -143,25 +152,20 @@ class FileEntriesSerializer(FileSerializer):
         return self._entries
 
     def get_mimetype(self, obj):
-        tree = self._get_tree(obj)
-        selected_file = self.get_selected_file(obj)
-        if selected_file in tree:
-            blob_or_tree = tree[selected_file]
+        blob, name = self._get_blob_for_selected_file(obj)
+        if blob is not None:
+            mimetype, mime_category = get_mime_type_for_blob(
+                tree_or_blob='blob', name=name, blob=blob)
 
-            if blob_or_tree.type == pygit2.GIT_OBJ_BLOB:
-                blob = self.git_repo[blob_or_tree.oid]
-                mimetype, mime_category = get_mime_type_for_blob(
-                    tree_or_blob='blob', name=blob_or_tree.name, blob=blob)
-
-                return mimetype
+            return mimetype
 
         # If we do not have a blob, return 'application/octet-stream'
         return 'application/octet-stream'
 
     def get_sha256(self, obj):
         selected_file = self.get_selected_file(obj)
-        commit = self._get_commit(obj)
-        tree = self._get_tree(obj)
+        commit = self.commit
+        blob, name = self._get_blob_for_selected_file(obj)
 
         # Normalize the key as we want to avoid that we exceed max
         # key lengh because of selected_file.
@@ -172,29 +176,17 @@ class FileEntriesSerializer(FileSerializer):
             normalize=True)
 
         def _calculate_hash():
-            try:
-                blob_or_tree = tree[selected_file]
-            except KeyError:
+            if blob is None:
                 return None
 
-            if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
-                return None
-
-            blob = self.git_repo[blob_or_tree.oid]
             return get_sha256(io.BytesIO(memoryview(blob)))
 
         return cache.get_or_set(cache_key, _calculate_hash, 60 * 60 * 24)
 
     def get_size(self, obj):
-        tree = self._get_tree(obj)
-        selected_file = self.get_selected_file(obj)
-        if selected_file in tree:
-            blob_or_tree = tree[selected_file]
-
-            if blob_or_tree.type == pygit2.GIT_OBJ_BLOB:
-                blob = self.git_repo[blob_or_tree.oid]
-                if blob is not None:
-                    return blob.size
+        blob, name = self._get_blob_for_selected_file(obj)
+        if blob is not None:
+            return blob.size
 
         return None
 
@@ -216,7 +208,7 @@ class FileEntriesSerializer(FileSerializer):
                 parent=parent,
                 pathspec=None)
 
-        tree = self._get_tree(obj)
+        tree = self.tree
 
         if requested_file is None:
             default_files = ('manifest.json', 'install.rdf', 'package.json')
@@ -250,14 +242,10 @@ class FileEntriesSerializer(FileSerializer):
         return requested_file
 
     def get_content(self, obj):
-        tree = self._get_tree(obj)
-        selected_file = self.get_selected_file(obj)
-        blob_or_tree = tree[selected_file]
-
-        if blob_or_tree.type == pygit2.GIT_OBJ_BLOB:
-            blob = self.git_repo[blob_or_tree.oid]
+        blob, name = self._get_blob_for_selected_file(obj)
+        if blob is not None:
             mimetype, mime_category = get_mime_type_for_blob(
-                tree_or_blob='blob', name=blob_or_tree.name, blob=blob)
+                tree_or_blob='blob', name=name, blob=blob)
 
             # Only return the raw data if we detect a file that contains text
             # data that actually can be rendered.
@@ -285,25 +273,18 @@ class FileEntriesSerializer(FileSerializer):
         return self.get_selected_file(obj) in minified_files
 
     def get_download_url(self, obj):
-        tree = self._get_tree(obj)
         selected_file = self.get_selected_file(obj)
+        blob, name = self._get_blob_for_selected_file(obj)
+        if blob is not None:
+            return absolutify(reverse(
+                'reviewers.download_git_file',
+                kwargs={
+                    'version_id': self.get_instance().version.pk,
+                    'filename': selected_file
+                }
+            ))
 
-        try:
-            blob_or_tree = tree[selected_file]
-        except KeyError:
-            # This can happen when the file has been deleted.
-            return None
-
-        if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
-            return None
-
-        return absolutify(reverse(
-            'reviewers.download_git_file',
-            kwargs={
-                'version_id': self.get_instance().version.pk,
-                'filename': selected_file
-            }
-        ))
+        return None
 
 
 class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):

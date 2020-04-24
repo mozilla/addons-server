@@ -174,7 +174,7 @@ class TestFileEntriesSerializer(TestCase):
 
         # start serialization
         data = serializer.data
-        commit = serializer._get_commit(file)
+        commit = serializer.commit
 
         assert serializer._entries == data['entries']
 
