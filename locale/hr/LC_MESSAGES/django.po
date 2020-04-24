@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 11:04+0000\n"
-"Last-Translator: Hmxhmx <hmxhmx.at.wiki@gmail.com>\n"
+"PO-Revision-Date: 2020-04-24 21:57+0000\n"
+"Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -135,19 +135,16 @@ msgid "Ratings"
 msgstr "Ocjene"
 
 # 75%
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Alati za recenzente"
+msgstr "Alati za recenzente (na popisu)"
 
 # 75%
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Alati za recenzente"
+msgstr "Alati za recenzente (nisu na popisu)"
 
 # 75%
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Alati za recenzente"
+msgstr "Poveznice recenzenata"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Dodatak nije na AMO -"
@@ -496,9 +493,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Neispravan raspon verzija."
+msgstr "Neispravna verzija"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -819,7 +815,7 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "Izbrisan je ID dodatka {0} s GUID-om {1}"
 
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} premješten iz preliminarnog."
+msgstr "{addon} preseljen iz preliminarnog."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Odgovor razvijatelja o dodatku {addon} {version}."
@@ -902,7 +898,7 @@ msgid "Admin theme-review requested"
 msgstr "Administratorski pregled motiva zatražen"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} je premješten iz lakih motiva."
+msgstr "{addon} je preseljen iz lakih motiva."
 
 msgid "User {user} api key reset."
 msgstr "Api ključ korisnika {user} resetiran."
