@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 18:34+0000\n"
+"PO-Revision-Date: 2020-04-24 13:21+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6321,10 +6321,10 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "A definição não é válida: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Houve um erro ao compilar a definição"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
