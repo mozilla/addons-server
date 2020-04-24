@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 21:22+0000\n"
+"PO-Revision-Date: 2020-04-24 21:36+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3222,7 +3222,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Кнопка \"Отримати додаток\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Програма рекомендованих розширень"
 
 msgid "Contribute"
 msgstr "Зробити внесок"
@@ -3255,7 +3255,7 @@ msgid "See how"
 msgstr "Подивіться як"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Долучайтеся"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -3310,13 +3310,13 @@ msgid "Learn how to make an extension"
 msgstr "Дізнайтеся, як створити розширення"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Готові надіслати або керувати вашим розширенням?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Увійдіть до Центру розробника, щоб надсилати розширення та теми чи керувати ними."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Створіть свій обліковий запис розробника або увійдіть до Центру розробника"
 
 msgid "Manage Version {0}"
 msgstr "Керування версією {0}"
