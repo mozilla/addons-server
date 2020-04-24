@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 21:57+0000\n"
+"PO-Revision-Date: 2020-04-24 22:12+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -499,14 +499,12 @@ msgstr "Neispravna verzija"
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Zatražena revizija"
+msgstr "Pregled navedenih"
 
 # 75%
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Napomena pregleda"
+msgstr "Pregled nenavedenih"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr ""
@@ -514,9 +512,9 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Odbaci višestruke verzije"
+msgstr "Izbriši višestruko ime %(name)s"
 
 msgid "Home"
 msgstr "Početna"
@@ -544,13 +542,11 @@ msgstr "Ukloni"
 msgid "Update"
 msgstr "Aktualiziraj"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Idi na Moje prijave"
+msgstr "Odbij prijavu"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Idi na Moje prijave"
+msgstr "Odobri prijavu"
 
 #, python-format
 msgid "Add %(name)s"
@@ -559,24 +555,21 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "Pošalji verziju"
+msgstr "Pošalji"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "Korisnici"
+msgstr "korisnici"
 
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
-msgstr "Verzije"
+msgstr "verzije"
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -915,20 +908,17 @@ msgstr ""
 msgid "Block edited"
 msgstr ""
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Inačica {0} izbrisana iz {addon}."
+msgstr "Blokiranje za {0} izbrisano je s popisa blokiranja."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Dodatak izbrisan."
+msgstr "Blokiranje je izbrisano"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "Dodatak {addon} je uklonjen iz zbirke {collection}."
+msgstr "GUID za {addon} uklonjen je s DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -936,9 +926,8 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Api ključ korisnika {user} resetiran."
+msgstr "Resetiranje korisničkih sesija za {user}."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
@@ -995,9 +984,8 @@ msgstr "Razvijatelj"
 msgid "Extension"
 msgstr "Ekstenzija"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Aktualizirani pregled kompletnog motiva"
+msgstr "Zastarjela cjelovita tema"
 
 msgid "Dictionary"
 msgstr "Rječnik"
@@ -1023,9 +1011,8 @@ msgstr "Motiv (statički)"
 msgid "Extensions"
 msgstr "Proširenja"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Kompletni motivi"
+msgstr "Zastarjele cjelovite teme"
 
 msgid "Dictionaries"
 msgstr "Riječnici"
@@ -1555,9 +1542,8 @@ msgstr "Bez radnje"
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Deaktiviraj automatsko odobravanje"
+msgstr "Odgodi automatsko odobravanje"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -2723,9 +2709,8 @@ msgstr "Ovu verziju možeš i urediti, dodavanjem napomena o verziji ili dodavan
 msgid "Edit version {0}"
 msgstr "Uredi verziju {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Verzija potpisana"
+msgstr "Čeka se na potpisivanje verzije"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
@@ -3149,13 +3134,11 @@ msgstr ""
 msgid "Matrix"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Razvojni centar za dodatke"
+msgstr "Mailing lista za programere dodataka"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Razvoj proširenja"
+msgstr "Bilten za programere proširenja"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
