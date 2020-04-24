@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 22:41+0000\n"
+"PO-Revision-Date: 2020-04-24 22:43+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2389,9 +2389,8 @@ msgstr "Odaberi ikonu za tvoj dodatak:"
 msgid "32x32px"
 msgstr "32 × 32 px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Koristi se u popisu dodataka, kao rezultati pretraživanja i posebni dodaci."
+msgstr "Koristi se u popisu dodataka, kao rezultati pretraživanja."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2437,9 +2436,8 @@ msgstr "Podržani su formati PNG i JPG, preporučuje se PNG. Maksimalna i prepor
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Minimalna veličina je 1000 × 750 i potreban je omjer 4 : 3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Snimke zaslona na tvojoj stranici proizvoda uvelike povećavaju šanse da se dodatak instalira i prikazuje na početnoj stranici."
+msgstr "Snimke ekrana na tvojoj stranici proizvoda uvelike povećavaju šanse da se dodatak instalira."
 
 msgid "Continue"
 msgstr "Nastavi"
