@@ -3,6 +3,8 @@ import operator
 import os
 import itertools
 
+import waffle
+
 from django.template import loader
 
 import olympia.core.logger
@@ -14,6 +16,7 @@ from olympia.amo.utils import extract_colors_from_image, pngcrush_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
+from olympia.git.models import GitExtractionEntry
 from olympia.versions.models import Version, VersionPreview
 from olympia.lib.git import AddonGitRepository
 from olympia.users.models import UserProfile
@@ -112,11 +115,21 @@ def delete_preview_files(pk, **kw):
 
 @task
 @use_primary_db
-def extract_version_to_git(version_id, author_id=None, note=None):
+def extract_version_to_git(
+    version_id, author_id=None, note=None, force_extraction=False
+):
     """Extract a `File` into our git storage backend."""
     # We extract deleted or disabled versions as well so we need to make sure
     # we can access them.
     version = Version.unfiltered.get(pk=version_id)
+
+    if not force_extraction and waffle.switch_is_active(
+        'enable-git-extraction-cron'
+    ):
+        log.info('Adding add-on {} to the git extraction '
+                 'queue.'.format(version.addon.id))
+        GitExtractionEntry.objects.create(addon=version.addon)
+        return
 
     if author_id is not None:
         author = UserProfile.objects.get(pk=author_id)
