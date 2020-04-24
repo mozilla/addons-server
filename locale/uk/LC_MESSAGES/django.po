@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 12:40+0000\n"
+"PO-Revision-Date: 2020-04-24 12:53+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -132,17 +132,14 @@ msgstr "Лише останні версії додатків можуть ма�
 msgid "Ratings"
 msgstr "Оцінки"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Інструменти редактора"
+msgstr "Інструменти редактора (оприлюднені)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Інструменти редактора"
+msgstr "Інструменти редактора (не оприлюднені)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Інструменти редактора"
+msgstr "Посилання редактора"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Додаток не на AMO -"
@@ -504,13 +501,11 @@ msgstr "Недійсна версія"
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Запитаний розгляд"
+msgstr "Перевірка оприлюдненого"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Нотатка перевірки"
+msgstr "Перевірка не оприлюдненого"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr ""
@@ -911,13 +906,11 @@ msgstr ""
 msgid "Block edited"
 msgstr ""
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Версію {0} вилучено з {addon}."
+msgstr "Блокування {0} видалено зі списку блокування."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Додаток видалений."
+msgstr "Блокування видалено"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID для {addon} додано до DeniedGuid."
