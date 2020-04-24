@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 02:22+0000\n"
+"PO-Revision-Date: 2020-04-24 02:25+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1882,11 +1882,12 @@ msgstr "Піктограма повинна бути квадратною (од�
 msgid "There was an error uploading your preview."
 msgstr "При вивантаженні вашого попереднього перегляду сталася помилка."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "Остання затверджена версія рекомендованого розширення не може бути видалена чи вимкнена. Зв'яжіться з адміністраторами сайту додатків (AMO), якщо вам необхідна допомога."
+msgstr ""
+"Остання затверджена версія рекомендованого розширення не може бути видалена чи вимкнена, оскільки попередня версія не була затверджена. Будь ласка, зв'яжіться з адміністраторами AMO, якщо вам "
+"необхідна допомога з цим."
 
 #, python-format
 msgid "Version %s disabled."
