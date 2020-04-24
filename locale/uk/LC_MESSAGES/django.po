@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 00:12+0000\n"
+"PO-Revision-Date: 2020-04-24 00:21+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -567,14 +567,14 @@ msgstr "Подати"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s GUID додатка"
 
 #, fuzzy
 msgid "users"
 msgstr "Користувачів"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Керувати блокуванням"
 
 msgid "versions"
 msgstr "версії"
@@ -6755,9 +6755,8 @@ msgstr "Сповіщення користувача"
 msgid "Ban"
 msgstr "Блокувати"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Видалити версію"
+msgstr "Скидання сеансу(-ів)"
 
 msgid "Delete picture"
 msgstr "Вилучити зображення"
