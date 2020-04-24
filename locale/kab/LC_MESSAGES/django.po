@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 02:20+0000\n"
+"PO-Revision-Date: 2020-04-24 02:31+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -572,7 +572,7 @@ msgid "versions"
 msgstr "Ileqman"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Yella deg wumuɣ n yiḥder aqdim."
 
 msgid "{addon} was created."
 msgstr "{addon} yettwarna."
@@ -892,16 +892,16 @@ msgid "User {user} api key reset."
 msgstr "Awennez n tsarut API n useqdac {user}."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Iḥder i {0} yettwarna ɣer wumuɣ n yiḥder."
 
 msgid "Block added"
-msgstr ""
+msgstr "Yettwerna yiḥder"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Iḥder i {0} yettwaẓreg deg wumuɣ n yiḥder."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Yettwaẓreg yiḥder"
 
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Sewḥel i {0} kkes seg wumuɣ n usewḥel."
@@ -910,13 +910,13 @@ msgid "Block deleted"
 msgstr "Yettwakkes usewḥel"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID i {addon} yettwarna si DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID i {addon} yettwakkes si DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Sewḥel {1} tigawt akken {0} ad teffɣeḍ."
 
 msgid "Block action signoff"
 msgstr ""
