@@ -3199,7 +3199,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('title').text() == (
-            '%s – Reviewer Tools – Add-ons for Firefox' % self.addon.name)
+            '%s – Add-ons for Firefox' % self.addon.name)
 
     def test_files_shown(self):
         response = self.client.get(self.url)
