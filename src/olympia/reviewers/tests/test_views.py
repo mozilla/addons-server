@@ -3199,7 +3199,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('title').text() == (
-            '%s :: Reviewer Tools :: Add-ons for Firefox' % self.addon.name)
+            '%s – Reviewer Tools – Add-ons for Firefox' % self.addon.name)
 
     def test_files_shown(self):
         response = self.client.get(self.url)
@@ -5727,7 +5727,7 @@ class TestPolicyView(ReviewerTest):
         assert response.status_code == 200
         self.assertContains(
             response,
-            '{addon} :: EULA'.format(addon=self.addon.name))
+            '{addon} – EULA'.format(addon=self.addon.name))
         self.assertContains(response, u'End-User License Agreement')
         self.assertContains(response, u'Eulá!')
         self.assertContains(response, str(self.review_url))
@@ -5762,7 +5762,7 @@ class TestPolicyView(ReviewerTest):
         assert response.status_code == 200
         self.assertContains(
             response,
-            '{addon} :: Privacy Policy'.format(addon=self.addon.name))
+            '{addon} – Privacy Policy'.format(addon=self.addon.name))
         self.assertContains(response, 'Privacy Policy')
         self.assertContains(response, u'Prívacy Pólicy?')
         self.assertContains(response, str(self.review_url))
