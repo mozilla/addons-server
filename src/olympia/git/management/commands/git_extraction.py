@@ -62,6 +62,9 @@ class Command(BaseCommand):
         addon = entry.addon
         log.info('Starting extraction of add-on "{}".'.format(addon.pk))
 
+        # We cannot use `entry.in_progress` because we have to be sure of the
+        # add-on state and `entry` might not reflect the most up-to-date
+        # database state here.
         if addon.git_extraction_is_in_progress:
             log.info(
                 'Aborting extraction of addon "{}" to git storage '
