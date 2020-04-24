@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 10:32+0000\n"
+"PO-Revision-Date: 2020-04-24 10:42+0000\n"
 "Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5988,7 +5988,7 @@ msgid "No reviews found for this period."
 msgstr "Ulac iceggiren yettwafen di twala-agi."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Aɣbalu:"
 
 msgid "Method:"
 msgstr "Tarrayt:"
@@ -6124,7 +6124,7 @@ msgid "result state"
 msgstr "Addad n ugmuḍ"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "Kullec ɣef ulugen-a"
 
 msgid "presence of a version"
 msgstr "Yella lqem"
@@ -6162,7 +6162,7 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Tabadut mačči d tameɣtut: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr ""
