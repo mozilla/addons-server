@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 12:16+0000\n"
+"PO-Revision-Date: 2020-04-24 12:29+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3177,9 +3177,8 @@ msgstr "Адреса електронної пошти"
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr "Я погоджуюсь з тим, як Mozilla поводиться з моїми даними згідно з цим %(link_open)sповідомленням про приватність%(link_close)s."
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Вийти"
+msgstr "Зареєструватися"
 
 msgid "Thanks!"
 msgstr "Дякуємо!"
@@ -3331,9 +3330,8 @@ msgstr "За бажанням, введіть будь-яку інформаці
 msgid "Source code"
 msgstr "Програмний код"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Якщо ваш додаток містить бінарний або заплутаний код, надайте його тут тим, хто перевіряє."
+msgstr "Якщо ваш додаток містить мінімізований, об'єднаний або інший автоматично згенерований код, надайте до нього доступ тут для редакторів."
 
 msgid "File {file_id} ({platform})"
 msgstr "Файл {file_id} ({platform})"
@@ -5054,9 +5052,9 @@ msgstr "Максимальний розмір для тем WebExtension {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Не можна подавати додаток такого типу"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Ви не можете подати додаток з GUID, що завершується на %s"
+msgstr "Ви не можете подати додаток з ID, що завершується на %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ви не можете надіслати розширення, підписане Mozilla"
@@ -5452,9 +5450,8 @@ msgstr ""
 msgid "Is locked by a reviewer"
 msgstr "Заблоковано рецензентом"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Встановлений прапорець вимкнення автосхвалення"
+msgstr "Має прапорець автосхвалення вимкнено / відкладено"
 
 msgid "Is recommendable"
 msgstr "Рекомендований"
@@ -6164,13 +6161,11 @@ msgstr "Почати"
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Перегляд оприлюдненої версії"
+msgstr "наявність версії"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Версія підписана"
+msgstr "канал версії"
 
 msgid "add-on status"
 msgstr "статус додатка"
@@ -6219,9 +6214,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Відповідь редактора"
+msgstr "Відкликати звіт"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
