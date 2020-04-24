@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 12:41+0000\n"
+"PO-Revision-Date: 2020-04-24 12:49+0000\n"
 "Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -5315,7 +5315,7 @@ msgid "no"
 msgstr "नहीं"
 
 msgid "Add-on Types"
-msgstr ""
+msgstr "ऐड-ऑन प्रकार"
 
 msgid "Search by add-on name / author email / guid"
 msgstr ""
@@ -5327,10 +5327,10 @@ msgid "Select an application first"
 msgstr "पहले एक अनुप्रयोग का चयन करें"
 
 msgid "Comments:"
-msgstr ""
+msgstr "टिप्पणियां:"
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "ऑपरेटिंग सिस्टम:"
 
 msgid "Applications:"
 msgstr ""
@@ -5375,7 +5375,7 @@ msgid "Sources provided"
 msgstr ""
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr ""
@@ -5609,7 +5609,7 @@ msgid "Review lock limit reached"
 msgstr ""
 
 msgid "{addon} :: EULA"
-msgstr ""
+msgstr "{addon} :: EULA"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: गोपनीयता नीति"
@@ -5755,7 +5755,7 @@ msgid "Your Reviews"
 msgstr "आपकी समीक्षा"
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "{user_name} द्वारा"
 
 msgid "Total Reviews"
 msgstr "कुल समीक्षा"
@@ -5814,10 +5814,10 @@ msgid "There are currently no add-ons of this type to review."
 msgstr "वर्तमान में समीक्षा करने के लिए इस प्रकार के कोई ऐड-ऑन नहीं हैं।"
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "मददगार लिंक:"
 
 msgid "Add-on Policy"
-msgstr ""
+msgstr "ऐड-ऑन नीति"
 
 msgid "Reviewer's Guide"
 msgstr "समीक्षक गाइड"
@@ -5828,13 +5828,13 @@ msgstr "सामग्री की समीक्षा {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "{0} की समीक्षा करें"
 
 msgid "Add-on user change history"
 msgstr ""
 
 msgid "Add-on History"
-msgstr ""
+msgstr "ऐड-ऑन इतिहास"
 
 msgid "Previously deleted entries"
 msgstr ""
@@ -6505,7 +6505,7 @@ msgstr ""
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
 msgstr ""
