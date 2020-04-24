@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 17:22+0000\n"
+"PO-Revision-Date: 2020-04-24 17:26+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6037,9 +6037,8 @@ msgstr "Ativar aprovação automática"
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Aprovação automática desativada no momento, até {date}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Ativar aprovação automática"
+msgstr "Limpar atraso extra na aprovação automática"
 
 msgid "Clear information request"
 msgstr "Limpar solicitação de informação"
@@ -6093,9 +6092,8 @@ msgstr "Método:"
 msgid "Source:"
 msgstr "Origem:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Origem:"
+msgstr "URL de origem:"
 
 msgid "Dismiss this announcement"
 msgstr "Descartar esse anúncio"
@@ -6219,36 +6217,30 @@ msgstr[1] "Solicitação de informações expiradas ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Começar"
+msgstr "estado do resultado"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Pré-visualização da versão listada"
+msgstr "presença de uma versão"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Versão assinada"
+msgstr "canal da versão"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Status da extensão"
+msgstr "status da extensão"
 
 #, fuzzy
 msgid "add-on listing visibility"
 msgstr "Visibilidade da extensão"
 
-#, fuzzy
 msgid "file status"
-msgstr "Status do site"
+msgstr "status do arquivo"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} foi assinado."
+msgstr "assinatura do arquivo"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6312,9 +6304,8 @@ msgstr "Combinação inválida de parâmetros \"%s\", \"%s\" e \"%s\"."
 msgid "Maximum query length exceeded."
 msgstr "Excedeu tamanho máximo da consulta."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Não foi possível encontrar uma extensão com GUID \"{}\"."
+msgstr "Não foi possível encontrar uma extensão com ID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Você não possui esta extensão."
@@ -6333,9 +6324,8 @@ msgstr "A versão não corresponde ao arquivo manifest."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Versão já existente. A versão mais recente é: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Apenas WebExtensions tem permissão para omitir o GUID"
+msgstr "Somente WebExtensions têm permissão de omitir o ID da extensão"
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
