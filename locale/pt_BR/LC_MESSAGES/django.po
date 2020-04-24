@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 15:34+0000\n"
+"PO-Revision-Date: 2020-04-24 17:04+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4976,9 +4976,8 @@ msgid "Save an entire web page—including images and styling—as a single HTML
 msgstr "Salve páginas completas—ou apenas partes—como um único arquivo HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Apague cookies automaticamente após fechar uma aba."
+msgstr "Substitua automaticamente palavras depreciativas na web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -5051,9 +5050,8 @@ msgstr "Não é possível comparar a mesma versão"
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID é necessário para o Firefox 47 e versões anteriores."
+msgstr "ID de extensão é obrigatório para o Firefox 47 e anteriores."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "A versão de \"strict_min_version\" mais antiga suportada é 42.0."
@@ -5521,9 +5519,8 @@ msgstr ""
 msgid "Is locked by a reviewer"
 msgstr "Está bloqueado por um revisor"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "O flag de aprovação automática foi desativado."
+msgstr "Tem ligado o flag de aprovação automática desativada/adiada"
 
 msgid "Is recommendable"
 msgstr "É recomendável"
@@ -5589,14 +5586,12 @@ msgid "Last Updated"
 msgstr "Última atualização"
 
 # %1 is the review count
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Outras revisões pendentes ({0})"
+msgstr "Versões listadas que precisam de revisão humana ({0})"
 
 # %1 is the review count
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Outras revisões pendentes ({0})"
+msgstr "Versões não listadas que precisam de revisão humana ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Isto irá aprovar, assinar e publicar esta versão. Comentários serão enviados para o desenvolvedor."
