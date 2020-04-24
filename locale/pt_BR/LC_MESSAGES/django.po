@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 15:22+0000\n"
+"PO-Revision-Date: 2020-04-24 15:33+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -517,11 +517,11 @@ msgid "This block was imported from a regex based legacy kinto Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Qualquer alteração feita NÃO será atualizada na lista de bloqueios legada - você deve fazer uma alteração manual via interface gráfica de administração do kinto."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Rejeitar várias versões"
+msgstr "Excluir vários %(name)s"
 
 msgid "Home"
 msgstr "Página inicial"
@@ -579,7 +579,7 @@ msgid "versions"
 msgstr "versões"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Incluído na lista de bloqueios legada."
 
 msgid "{addon} was created."
 msgstr "{addon} foi criado."
@@ -912,24 +912,22 @@ msgid "User {user} api key reset."
 msgstr "Redefinição de chave de api do usuário {user}."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Bloqueio de {0} adicionado à lista de bloqueios."
 
 msgid "Block added"
 msgstr ""
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Bloqueio de {0} editado na lista de bloqueios."
 
 msgid "Block edited"
 msgstr ""
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Versão {0} excluída de {addon}."
+msgstr "Bloqueio de {0} excluído da lista de bloqueios."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Extensão excluída."
+msgstr "Bloqueio excluído"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -1561,16 +1559,14 @@ msgstr "Imagem de baixa qualidade, esticada ou em branco"
 msgid "Header image alignment problem"
 msgstr "Problema de alinhamento da imagem do cabeçalho"
 
-#, fuzzy
 msgid "No action"
-msgstr "Mais ações"
+msgstr "Nenhuma ação"
 
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Desativar aprovação automática"
+msgstr "Adiar aprovação automática"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -1584,9 +1580,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr "Inconclusivo"
 
-#, fuzzy
 msgid "New"
-msgstr "Recentes"
+msgstr "Novo"
 
 msgid "Running"
 msgstr ""
@@ -1597,9 +1592,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Incompleto"
+msgstr "Concluído"
 
 msgid "Scheduled"
 msgstr "Agendado"
@@ -3199,9 +3193,8 @@ msgstr ""
 msgid "Twitter"
 msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "Desenvolvedor"
+msgstr "Para desenvolvedores"
 
 msgid "For end users"
 msgstr "Para usuários finais"
@@ -3221,17 +3214,15 @@ msgstr "Desenvolvimento de extensões"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Endereço IP"
+msgstr "Endereço de e-mail"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Sair"
+msgstr "Cadastre-se"
 
 msgid "Thanks!"
 msgstr "Obrigado!"
@@ -3242,9 +3233,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Recursos"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: compilar e testar extensões"
@@ -3294,9 +3284,8 @@ msgstr "Envolva-se"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Leia mais sobre a política de revisão de código."
+msgstr "Saiba mais sobre a comunidade de desenvolvedores"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listado neste site após revisão de código. Atualizações serão gerenciadas automaticamente por este site."
@@ -3334,18 +3323,15 @@ msgstr "Sem foto"
 msgid "User Photo"
 msgstr "Foto do usuário"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Meu perfil"
+msgstr "Perfil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Submeter uma nova versão"
+msgstr "Enviar ou gerenciar extensões"
 
 msgid "Customize Firefox"
 msgstr "Personalize o Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
 msgstr "Aprenda a fazer uma extensão"
 
@@ -4961,9 +4947,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Novidades instantâneas do clima do mundo todo."
+msgstr "Receba novidades sobre o clima diretamente no navegador."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -5132,9 +5117,9 @@ msgstr "O tamanho máximo de temas WebExtension é {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Você não pode submeter este tipo de extensão"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Você não pode enviar uma extensão com guid terminando em %s"
+msgstr "Você não pode enviar uma extensão com um ID terminado em %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Você não pode submeter uma extensão assinada pela Mozilla"
@@ -5552,9 +5537,8 @@ msgstr "Estrutura de análise de riscos não disponível."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Você não pode enviar um comentário se `canned_response` estiver definido."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Você não pode enviar um pacote de idioma"
+msgstr "Você não pode enviar um comentário vazio."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5589,9 +5573,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} dia"
 msgstr[1] "{0} dias"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Última avaliação"
@@ -5639,16 +5622,14 @@ msgstr "Rejeitar várias versões"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Isto rejeitará as versões públicas selecionadas. Os comentários serão enviados ao desenvolvedor."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Rejeitar várias versões"
+msgstr "Bloquear várias versões"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Rejeitar várias versões"
+msgstr "Confirmar várias versões"
 
 #, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
@@ -5847,9 +5828,8 @@ msgstr "Galeria de imagens"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nada para ver aqui!  O desenvolvedor não incluiu nenhum detalhe."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "por versão da extensão"
+msgstr "Traduções do nome da extensão"
 
 # %1$s is the application name.  Example:  Firefox
 msgid "Return to the Reviewer Tools dashboard"
@@ -6008,9 +5988,8 @@ msgstr "Itens anteriormente excluídos"
 msgid "This is a recommended extension."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Você não tem nenhuma credencial de API."
+msgstr "Você não tem permissão para revisar."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Selecione uma ou mais versões na lista acima."
@@ -6056,15 +6035,13 @@ msgstr "Forçar desativação da extensão"
 msgid "Force-enable add-on"
 msgstr "Forçar ativação da extensão"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Ver todas as submissões"
+msgstr "Ver envio para lista de bloqueios"
 
 # 80%
 # 100%
-#, fuzzy
 msgid "Block add-on"
-msgstr "Voltar para a extensão"
+msgstr "Bloquear extensão"
 
 msgid "Update add-on block"
 msgstr ""
