@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 13:24+0000\n"
+"PO-Revision-Date: 2020-04-24 15:22+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -523,7 +523,6 @@ msgstr ""
 msgid "Delete Multiple %(name)s"
 msgstr "Rejeitar várias versões"
 
-#, fuzzy
 msgid "Home"
 msgstr "Página inicial"
 
@@ -550,13 +549,11 @@ msgstr "Excluir"
 msgid "Update"
 msgstr "Atualizar"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Ir para minhas submissões"
+msgstr "Rejeitar envio"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Ir para minhas submissões"
+msgstr "Aprovar envio"
 
 #, python-format
 msgid "Add %(name)s"
@@ -565,24 +562,21 @@ msgstr "Adicionar %(name)s"
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "Submeter versão"
+msgstr "Enviar"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "Usuários"
+msgstr "usuários"
 
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
-msgstr "Versões"
+msgstr "versões"
 
 msgid "Included in legacy blocklist."
 msgstr ""
