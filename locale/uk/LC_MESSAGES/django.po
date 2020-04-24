@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 00:21+0000\n"
+"PO-Revision-Date: 2020-04-24 00:32+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -560,7 +560,7 @@ msgid "Add %(name)s"
 msgstr "Додати %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID додатка (по одному на рядок)"
 
 msgid "Submit"
 msgstr "Подати"
@@ -1575,7 +1575,7 @@ msgid "New"
 msgstr "Новіший"
 
 msgid "Running"
-msgstr ""
+msgstr "Виконується"
 
 msgid "Aborted"
 msgstr ""
@@ -6292,13 +6292,11 @@ msgstr "Версія вже існує. Останньою версією є: %s
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr "Тільки веб-додатки можуть пройти перевірку"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Будь ласка, вкажіть GUID вашого Додатку в маніфесті, якщо він довший 64 символів."
+msgstr "Будь ласка, вкажіть ID вашого Додатку в маніфесті, якщо він довший 64 символів."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Хибний GUID у URL"
+msgstr "Хибний ID додатка в URL-адресі чи пакунку"
 
 #, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
@@ -6645,9 +6643,9 @@ msgstr "Користувачів \"%(users)s\" було заблоковано."
 msgid "Ban selected users"
 msgstr "Заблокувати вибраних користувачів"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Для користувачів \"%(users)s\" скинуто їхні API ключі."
+msgstr "Користувачі \"%(users)s\" скинули їхні сеанси."
 
 msgid "Reset session"
 msgstr "Скидання сеансу"
