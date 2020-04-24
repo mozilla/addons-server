@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 13:21+0000\n"
+"PO-Revision-Date: 2020-04-24 13:24+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -128,17 +128,14 @@ msgstr "Apenas as versões mais recentes das extensões podem ter notas adiciona
 msgid "Ratings"
 msgstr "Avaliações"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Ferramentas de revisão"
+msgstr "Ferramentas de revisão (listadas)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Ferramentas de revisão"
+msgstr "Ferramentas de revisão (não listadas)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Ferramentas de revisão"
+msgstr "Links de revisão"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Extensão não está no AMO -"
@@ -502,9 +499,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Intervalo de versões inválido."
+msgstr "Versão inválida"
 
 msgid "Min version can not be greater than Max version"
 msgstr "A versão mínima não pode ser maior que a versão máxima"
