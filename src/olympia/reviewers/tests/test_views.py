@@ -3478,6 +3478,48 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
+    def test_mixed_channels_action_links_as_admin_deleted_addon(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.addon.delete()
+        self.login_as_admin()
+        self.url = reverse(
+            'reviewers.review', args=('listed', self.addon.id))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        expected = [
+            ('Unlisted Review Page', reverse(
+                'reviewers.review', args=('unlisted', self.addon.id))),
+            ('Admin Page', reverse(
+                'admin:addons_addon_change', args=[self.addon.id])),
+        ]
+        check_links(expected, doc('#actions-addon a'), verify=False)
+
+    def test_mixed_channels_action_links_as_admin_unlisted_deleted_addon(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.addon.delete()
+        self.login_as_admin()
+        self.url = reverse(
+            'reviewers.review', args=('unlisted', self.addon.id))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        expected = [
+            ('Listed Review Page',
+                reverse('reviewers.review', args=(self.addon.id,))),
+            ('Admin Page',
+                reverse('admin:addons_addon_change', args=[self.addon.id])),
+        ]
+        check_links(expected, doc('#actions-addon a'), verify=False)
+
     def test_mixed_channels_action_links_as_regular_reviewer(self):
         self.make_addon_unlisted(self.addon)
         version_factory(
