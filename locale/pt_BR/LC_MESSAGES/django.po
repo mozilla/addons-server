@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 17:11+0000\n"
+"PO-Revision-Date: 2020-04-24 17:22+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -505,13 +505,11 @@ msgstr "Versão inválida"
 msgid "Min version can not be greater than Max version"
 msgstr "A versão mínima não pode ser maior que a versão máxima"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Análise solicitada"
+msgstr "Revisão listada"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Nota de revisão"
+msgstr "Revisão não listada"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr ""
@@ -932,9 +930,8 @@ msgstr "Bloqueio excluído"
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} removido de {collection}."
+msgstr "GUID de {addon} removido do DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -942,13 +939,11 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Redefinição de chave de api do usuário {user}."
+msgstr "As sessões do usuário {user} foram reiniciadas."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Usuário {user} editado, motivo: {1}"
+msgstr "Usuário {user} limitado ao escopo \"{0}\""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1002,9 +997,8 @@ msgstr "Desenvolvedor"
 msgid "Extension"
 msgstr "Extensão"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Análise atualizada do Tema Completo"
+msgstr "Tema completo descontinuado"
 
 msgid "Dictionary"
 msgstr "Dicionário"
@@ -1031,9 +1025,8 @@ msgstr "Tema (Estático)"
 msgid "Extensions"
 msgstr "Extensões"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Temas Completos"
+msgstr "Temas completos descontinuados"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -2764,9 +2757,8 @@ msgstr "Você pode editar esta versão para editar notas de versão, ou código-
 msgid "Edit version {0}"
 msgstr "Editar a versão {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Versão assinada"
+msgstr "Assinatura de versão pendente"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
@@ -6011,13 +6003,11 @@ msgstr "Mais ações"
 msgid "Notify me about new listed versions"
 msgstr "Notificar sobre novas versões"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Ver todas as submissões"
+msgstr "Permitir reenvio"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Gerenciar minhas submissões"
+msgstr "Negar reenvio"
 
 msgid "Force-disable add-on"
 msgstr "Forçar desativação da extensão"
@@ -6044,9 +6034,8 @@ msgstr "Desativar aprovação automática"
 msgid "Enable Listed Auto-Approval"
 msgstr "Ativar aprovação automática"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "O flag de aprovação automática foi desativado."
+msgstr "Aprovação automática desativada no momento, até {date}"
 
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
