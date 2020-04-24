@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 11:12+0000\n"
+"PO-Revision-Date: 2020-04-24 11:20+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -571,7 +571,7 @@ msgid "users"
 msgstr "Wužiwarjo"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Blok wobdźěłać"
 
 #, fuzzy
 msgid "versions"
@@ -903,13 +903,13 @@ msgid "Block for {0} added to Blocklist."
 msgstr ""
 
 msgid "Block added"
-msgstr ""
+msgstr "Blok je so přidał"
 
 msgid "Block for {0} edited in Blocklist."
 msgstr ""
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blok je so wobdźěłał"
 
 #, fuzzy
 msgid "Block for {0} deleted from Blocklist."
@@ -980,7 +980,7 @@ msgid "Unlisted"
 msgstr "W lisćinje njepodate"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "Swójstwownik"
@@ -1559,10 +1559,10 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "True positive"
-msgstr ""
+msgstr "Prawje pozitiwny"
 
 msgid "False positive"
-msgstr ""
+msgstr "Wopak pozitiwny"
 
 msgid "Inconclusive"
 msgstr ""
@@ -1572,20 +1572,20 @@ msgid "New"
 msgstr "Nowše"
 
 msgid "Running"
-msgstr ""
+msgstr "Wuwjedźe so"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Přetorhnjeny"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Přetorhuje so"
 
 #, fuzzy
 msgid "Completed"
 msgstr "Njedospołny"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Planowany"
 
 msgid "Core"
 msgstr "Jadro"
@@ -3159,20 +3159,20 @@ msgid "Visit the Extension Workshop"
 msgstr "Dźěłarnička Rozšěrjenja"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Z nami zwjazać"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
 msgstr "Wuwiwar"
 
 msgid "For end users"
-msgstr ""
+msgstr "Za kónčnych wužiwarjow"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matriks"
 
 #, fuzzy
 msgid "Add-on Developers Mailing List"
@@ -3191,17 +3191,17 @@ msgstr "IP-adresa"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Sym přezjedny, zo Mozilla moje daty tak wužiwa, kaž je w tutym %(link_open)s pokazu priwatnosće%(link_close)s wopisane."
 
 #, fuzzy
 msgid "Sign Up"
 msgstr "Wotzjewić"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Wulki dźak!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "Jeli hišće njejsće abonement powěsćoweho lista Mozilla wobkrućił, dyrbiće to nětko činić. Prošu hladajće do dochadneje e-mejle abo papjernika za e-mejlku wot nas."
 
 msgid "Resources"
 msgstr "Resursy"
@@ -3220,7 +3220,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Tłóčatko „Wobstarajće sej přidatk“"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program doporučenych rozšěrjenjow"
 
 msgid "Contribute"
 msgstr "Darić"
@@ -3253,7 +3253,7 @@ msgid "See how"
 msgstr "Hladajće, kak dźe"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Čińće sobu"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
