@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 04:04+0000\n"
+"PO-Revision-Date: 2020-04-24 04:08+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3174,9 +3174,8 @@ msgstr "參與我們"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "了解完整的原始碼審查政策。"
+msgstr "了解開發者社群的更多資訊"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "通過程式碼審查後就會在本網站上架，自動更新機制也交給本網站處理。"
@@ -3214,18 +3213,15 @@ msgstr "無照片"
 msgid "User Photo"
 msgstr "使用者相片"
 
-#, fuzzy
 msgid "Profile"
-msgstr "我的個人檔案"
+msgstr "個人檔案"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "送出新版本"
+msgstr "送出或管理擴充套件"
 
 msgid "Customize Firefox"
 msgstr "自訂 Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
 msgstr "了解如何打造附加元件"
 
@@ -4931,9 +4927,8 @@ msgstr "無法判斷一個版本與其自身的差異"
 msgid "Could not parse the manifest file."
 msgstr "無法剖析安裝資訊檔。"
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Firefox 47 版之前需要 GUID"
+msgstr "Firefox 47 版之前必須填寫附加元件 ID。"
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "最低支援的「strict_min_version」是 42.0。"
@@ -4996,9 +4991,9 @@ msgstr "WebExtension 佈景主題的最大大小為 {0}。"
 msgid "You cannot submit this type of add-on"
 msgstr "您無法送出此類型的附加元件。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "您不得送出 GUID 結尾為「%s」的附加元件"
+msgstr "您不得送出 ID 結尾為「%s」的附加元件"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能上傳已由 Mozilla 簽署過的擴充套件"
@@ -5386,9 +5381,8 @@ msgstr ""
 msgid "Is locked by a reviewer"
 msgstr "已由審核者鎖定"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "設定了「關閉自動通過審核」旗標"
+msgstr "設定了「關閉/延後自動通過審核」旗標"
 
 msgid "Is recommendable"
 msgstr "可推薦"
@@ -5402,9 +5396,8 @@ msgstr "無法取得風險清單。"
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "若定義了「canned_response」就不能送出評論。"
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "您不能上傳語言套件"
+msgstr "您送出的註解不能空白。"
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5436,9 +5429,8 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} 天"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "最後評論"
@@ -5484,16 +5476,14 @@ msgstr "退回多個版本"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "將會退回所選擇的公開版本。留言將會傳送給開發者。"
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "退回多個版本"
+msgstr "封鎖多個版本"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "退回多個版本"
+msgstr "確認多個版本"
 
 #, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
@@ -5839,9 +5829,8 @@ msgstr "先前刪除的項目"
 msgid "This is a recommended extension."
 msgstr "這是推薦的擴充套件。"
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "您並沒有任何 API 存取權限。"
+msgstr "您沒有任何審核權限。"
 
 msgid "Please select one or more versions in the list above."
 msgstr "請選擇上列的一或多個版本。"
@@ -5967,9 +5956,8 @@ msgstr "方法:"
 msgid "Source:"
 msgstr "來源:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "來源:"
+msgstr "來源網址:"
 
 msgid "Dismiss this announcement"
 msgstr "略過這個消息"
@@ -6099,25 +6087,20 @@ msgstr ""
 msgid "presence of a version"
 msgstr "已上架版本預覽"
 
-#, fuzzy
 msgid "version channel"
-msgstr "已簽署版本"
+msgstr "版本頻道"
 
-#, fuzzy
 msgid "add-on status"
 msgstr "附加元件狀態"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "附加元件公開程度"
+msgstr "附加元件清單可見度"
 
-#, fuzzy
 msgid "file status"
-msgstr "網站狀態"
+msgstr "檔案狀態"
 
-#, fuzzy
 msgid "file signature"
-msgstr "已簽署 {file}。"
+msgstr "檔案簽章"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6153,9 +6136,8 @@ msgstr "執行"
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "審核者回覆"
+msgstr "回覆報告"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6181,9 +6163,8 @@ msgstr "「%s」、「%s」和「%s」的參數組合無效。"
 msgid "Maximum query length exceeded."
 msgstr "超過最大查詢長度。"
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "找不到 GUID 為「{}」的附加元件。"
+msgstr "找不到 ID 為「{}」的附加元件。"
 
 msgid "You do not own this addon."
 msgstr "您並未擁有此附加元件。"
@@ -6202,17 +6183,15 @@ msgstr "版本號碼與安裝資訊檔不符。"
 msgid "Version already exists. Latest version is: %s."
 msgstr "版本已存在，最新版本為: %s。"
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "僅 WebExtension 可忽略 GUID"
+msgstr "僅 WebExtension 可忽略附加元件 ID"
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "若附加元件的 GUID 超過 64 字元，請在安裝資訊檔中指定。"
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "網址中有無效的 GUID"
+msgstr "網址或封裝中，有無效的附加元件 ID"
 
 #, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
@@ -6556,9 +6535,8 @@ msgstr "封鎖所選的使用者"
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr "使用者「%(users)s」已重設 API 金鑰。"
 
-#, fuzzy
 msgid "Reset session"
-msgstr "刪除版本"
+msgstr "重設使用階段"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6655,9 +6633,8 @@ msgstr "使用者通知"
 msgid "Ban"
 msgstr "封鎖"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "刪除版本"
+msgstr "重設使用階段"
 
 msgid "Delete picture"
 msgstr "刪除照片"
