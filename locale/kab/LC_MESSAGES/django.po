@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 01:37+0000\n"
+"PO-Revision-Date: 2020-04-24 01:47+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -495,7 +495,7 @@ msgid "Invalid version"
 msgstr "Lqem armeɣtu"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Lqem n Min ur yezmir ara ad yager lqem n Max"
 
 #, fuzzy
 msgid "Review Listed"
