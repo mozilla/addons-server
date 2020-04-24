@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 01:42+0000\n"
+"PO-Revision-Date: 2020-04-24 02:05+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -306,13 +306,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Ой"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Отакої!  У нас виникла помилка.</h1> <p> Ми виправимо її найближчим часом.</p> <p> Ви можете спробувати оновити сторінку або повернутись на <a href=\"%(home)s\"> домашню сторінку додатків</a>. "
-"</p>"
+"<h1>Отакої!  У нас виникла помилка.</h1> <p> Ми виправимо її найближчим часом.</p> <p> Ви можете спробувати оновити сторінку або повернутись на <a href=\"%(home)s\">домашню сторінку додатків</a>. Ви"
+" також можете допомогти нам виправити це, <a href=\"https://github.com/mozilla/addons/issues/new\">поданням звіту проблему</a>, з детальним описом того, як ви потрапили на цю сторінку. </p>"
 
 msgid "No results found"
 msgstr "Результатів не знайдено"
@@ -568,9 +568,8 @@ msgstr "Подати"
 msgid "%(count)s Add-on GUIDs"
 msgstr "%(count)s GUID додатка"
 
-#, fuzzy
 msgid "users"
-msgstr "Користувачів"
+msgstr "користувачів"
 
 msgid "Edit Block"
 msgstr "Керувати блокуванням"
@@ -1550,7 +1549,7 @@ msgid "No action"
 msgstr "Немає дії"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Позначити для перевірки людиною"
 
 #, fuzzy
 msgid "Delay auto-approval"
