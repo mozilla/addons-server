@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 10:42+0000\n"
+"PO-Revision-Date: 2020-04-24 10:49+0000\n"
 "Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4877,7 +4877,7 @@ msgstr "Suddes s tefses iṭunen n yiccaren yeldin."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Rnu tsagneḍ igrawen n yiccaren."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5868,7 +5868,7 @@ msgid "Previously deleted entries"
 msgstr "Inekcam ttwakksen yakan"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Wa d asiɣzef yelhan."
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -6152,7 +6152,7 @@ msgid "When unchecked, the scanner results will not be bound to this rule and th
 msgstr ""
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Ilugan n Yara yessefk ad sɛun tabadut."
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
 msgstr ""
