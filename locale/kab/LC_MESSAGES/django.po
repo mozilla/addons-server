@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 01:47+0000\n"
+"PO-Revision-Date: 2020-04-24 02:14+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -506,10 +506,10 @@ msgid "Review Unlisted"
 msgstr "Tazmilt n uɛawed n tmuɣli"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Iḥder-agi yettwakter-d seg yiḥder Kinto aqdim yebnan ɣef regex."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Asnifel akk ara yettwaxedmen ur yettwaleqqam ara deg wumuɣ n yiḥder aqdim - ilaq ad tgeḍ asnifel s ufus s kinto admin webui."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -520,7 +520,7 @@ msgstr "Asebter agejdan"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s Izegrar GUIDs ttusweḥlen yakan i %(v_min)s ɣer %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
