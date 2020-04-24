@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 20:33+0000\n"
+"PO-Revision-Date: 2020-04-24 20:36+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6330,13 +6330,11 @@ msgstr "Somente WebExtensions têm permissão de omitir o ID da extensão"
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Especifique o ID da sua extensão no manifesto, se for maior que 64 caracteres."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "GUID inválido na URL"
+msgstr "ID de extensão inválido na URL ou pacote"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Não é possível adicionar versões à uma extensão com o estado: %s."
+msgstr "Você não pode adicionar versões listadas a uma extensão definida com o estado \"Invisível\"."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Você não pode adicionar uma versão listada para esta extensão via API devido à falta de metadados. Por favor envie através do site"
@@ -6690,13 +6688,12 @@ msgstr "Os usuários \"%(users)s\" foram banidos."
 msgid "Ban selected users"
 msgstr "Banir usuários selecionados"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Os usuários \"%(users)s\" tiveram suas chaves de API redefinidas."
+msgstr "Os usuários \"%(users)s\" tiveram suas sessões reiniciadas."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Excluir versão"
+msgstr "Reiniciar sessão"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6801,9 +6798,8 @@ msgstr "Notificações do usuário"
 msgid "Ban"
 msgstr "Banir"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Excluir versão"
+msgstr "Reiniciar sessões"
 
 msgid "Delete picture"
 msgstr "Excluir foto"
