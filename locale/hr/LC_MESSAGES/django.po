@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 22:43+0000\n"
+"PO-Revision-Date: 2020-04-24 23:05+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -552,23 +552,23 @@ msgstr "Odobri prijavu"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Dodaj %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID oznake za dodatke (jedan po retku)"
 
 msgid "Submit"
 msgstr "Pošalji"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s GUID oznaka dodatka"
 
 msgid "users"
 msgstr "korisnici"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Uredi blokiranje"
 
 msgid "versions"
 msgstr "verzije"
@@ -975,7 +975,7 @@ msgid "Unlisted"
 msgstr "Nije na popisu"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "Vlasnik"
@@ -1551,10 +1551,10 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "True positive"
-msgstr ""
+msgstr "Točno pozitivno"
 
 msgid "False positive"
-msgstr ""
+msgstr "Lažno pozitivno"
 
 msgid "Inconclusive"
 msgstr ""
@@ -1563,10 +1563,10 @@ msgid "New"
 msgstr "Novo"
 
 msgid "Running"
-msgstr ""
+msgstr "Pokreće se"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Prekinuto"
 
 msgid "Aborting"
 msgstr ""
@@ -2701,9 +2701,8 @@ msgstr ""
 msgid "Manage Listing"
 msgstr "Upravljanje popisom"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Ovu verziju možeš i urediti, dodavanjem napomena o verziji ili dodavanjem izvornog koda, ako tvoja prijava uključuje umanjen, nečitljiv ili kompiliran kod."
+msgstr "Ovu verziju možeš i urediti, dodavanjem napomena uz verziju ili dodavanjem izvornog koda, ako tvoja prijava uključuje umanjen, skraćen ili strojno generirani kod."
 
 # 91%
 msgid "Edit version {0}"
@@ -2712,9 +2711,8 @@ msgstr "Uredi verziju {0}"
 msgid "Version Signature Pending"
 msgstr "Čeka se na potpisivanje verzije"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Gotovo! Ova će verzija biti dostupna, nakon što prođe pregled. Dobit ćeš obavijest nakon što je pregledana."
+msgstr "Sve je gotovo! Ova će verzija uskoro biti potpisana za samostalnu distribuciju. Dobit ćeš poruku e-poštom kad je potpisana datoteka spremna za preuzimanje."
 
 msgid "Go to My Submissions"
 msgstr "Idi na Moje prijave"
@@ -3115,9 +3113,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Radionica za proširenja"
+msgstr "Posjeti radionicu za proširenja"
 
 msgid "Connect with us"
 msgstr ""
@@ -3305,9 +3302,8 @@ msgstr "Ako želiš, navedi sve podatke koji mogu biti korisni recenzentu ovog d
 msgid "Source code"
 msgstr "Izvorni kȏd"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Ako tvoj dodatak sadrži binarni ili skriveni kȏd, ovdje omogući recenzentima pristup izvornom kodu."
+msgstr "Ako tvoj dodatak sadrži smanjeni, skraćeni ili neki drugi strojno generirani kod, ovdje omogući recenzentima pristup izvornom kodu."
 
 msgid "File {file_id} ({platform})"
 msgstr "Datoteka {file_id} ({platform})"
