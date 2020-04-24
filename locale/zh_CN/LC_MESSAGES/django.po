@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 12:48+0000\n"
+"PO-Revision-Date: 2020-04-24 12:53+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3231,13 +3231,13 @@ msgid "Learn how to make an extension"
 msgstr "了解如何制作一个附加组件"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "想要提交或管理您的扩展？"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "登录开发者中心，即可提交或管理扩展和主题。"
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "注册开发者账户，或登录开发者中心"
 
 msgid "Manage Version {0}"
 msgstr "管理版本 {0}"
@@ -4863,11 +4863,11 @@ msgstr "关闭标签页后自动清除 Cookie。"
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "屏蔽所有广告 — 包括但不限于视频、弹窗，横幅等类型。"
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "随时随地与朋友和家人观看流媒体。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4883,7 +4883,7 @@ msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "标签页管理器与工具"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5374,10 +5374,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "暂时推迟自动批准"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "无限期推迟自动批准"
 
 msgid "Is locked by a reviewer"
 msgstr "已由一名审核员锁定"
@@ -5833,7 +5833,7 @@ msgid "Previously deleted entries"
 msgstr "先前删除的项目"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "这是推荐的扩展。"
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -5892,7 +5892,7 @@ msgid "Block add-on"
 msgstr "返回附加组件"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "更新附加组件屏蔽列表"
 
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
@@ -5953,7 +5953,7 @@ msgid "No reviews found for this period."
 msgstr "在此时间段内没有审核。"
 
 msgid "Origin:"
-msgstr ""
+msgstr "来源："
 
 msgid "Method:"
 msgstr "方法："
@@ -6087,7 +6087,7 @@ msgid "result state"
 msgstr "入门指南"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "此规则除外"
 
 #, fuzzy
 msgid "presence of a version"
@@ -6136,10 +6136,10 @@ msgid "An error occurred when compiling the definition"
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "在已被强制禁用的附加组件上也执行此规则。"
 
 msgid "Abort"
-msgstr ""
+msgstr "中止"
 
 msgid "Run"
 msgstr "执行"
