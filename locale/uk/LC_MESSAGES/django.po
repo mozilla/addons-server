@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 01:34+0000\n"
+"PO-Revision-Date: 2020-04-24 01:42+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -498,9 +498,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Невірний діапазон версій."
+msgstr "Недійсна версія"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -933,9 +932,8 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Користувач {user} скидання api ключа."
+msgstr "Користувач {user} скидання сеансу(-ів)."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
@@ -5950,13 +5948,11 @@ msgstr "Додаткові дії"
 msgid "Notify me about new listed versions"
 msgstr "Сповіщати мене про нові опубліковані версії"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Переглянути всі подання"
+msgstr "Дозволити повторне подання"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Керувати моїми поданнями"
+msgstr "Заборонити повторне подання"
 
 msgid "Force-disable add-on"
 msgstr "Примусово вимкнути додаток"
@@ -5968,9 +5964,8 @@ msgstr "Примусово увімкнути додаток"
 msgid "View Blocklist Submission"
 msgstr "Переглянути всі подання"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Назад до додатка"
+msgstr "Блокувати додаток"
 
 msgid "Update add-on block"
 msgstr ""
