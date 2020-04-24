@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 23:40+0000\n"
+"PO-Revision-Date: 2020-04-24 23:49+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4936,7 +4936,7 @@ msgstr "Легко керуйте незліченною кількість ві
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Створюйте та налаштовуйте групи вкладок."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4948,7 +4948,7 @@ msgstr "Автоматично замінюйте образливі слова 
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Блокуйте всі типи оголошень — відео, вікна, які вистрибують нізвідки, банери тощо."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
