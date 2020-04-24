@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 12:33+0000\n"
+"PO-Revision-Date: 2020-04-24 12:41+0000\n"
 "Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -980,7 +980,7 @@ msgid "Unlisted"
 msgstr "असूचीबद्ध"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "मालिक"
@@ -1754,7 +1754,7 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "प्रदर्शित होने वाले नाम"
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -2246,7 +2246,7 @@ msgid "Summary"
 msgstr "सारांश"
 
 msgid "Add-on URL"
-msgstr ""
+msgstr "ऐड-ऑन URL"
 
 msgid "Choose a short, unique URL slug for your add-on."
 msgstr ""
@@ -2379,7 +2379,7 @@ msgstr ""
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
 msgstr ""
@@ -2505,13 +2505,13 @@ msgid "Resume"
 msgstr ""
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "इस ऐड-ऑन को मिटाएं।"
 
 msgid "Edit details on this add-on's product page"
-msgstr ""
+msgstr "इस ऐड-ऑन के उत्पाद पृष्ठ पर विवरण संपादित करें"
 
 msgid "Upload a new version of this add-on"
-msgstr ""
+msgstr "इस ऐड-ऑन का नया संस्करण अपलोड करें"
 
 msgid "New Version"
 msgstr "नया संस्करण"
@@ -2532,7 +2532,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "इस ऐड-ऑन का कोई संस्करण नहीं है।"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2674,7 +2674,7 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "सूची का प्रबंधन करें"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr ""
@@ -3093,7 +3093,7 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
@@ -3129,7 +3129,7 @@ msgid "Sign Up"
 msgstr "साइन आउट करें"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "धन्यवाद!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
