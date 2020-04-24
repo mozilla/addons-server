@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 10:49+0000\n"
-"Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
+"PO-Revision-Date: 2020-04-24 17:34+0000\n"
+"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -3112,9 +3112,8 @@ msgstr "Qqen yid-neɣ"
 msgid "Twitter"
 msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "Aneflay"
+msgstr "I yineflayen"
 
 msgid "For end users"
 msgstr "I yiseqdacen n taggara"
@@ -3122,13 +3121,11 @@ msgstr "I yiseqdacen n taggara"
 msgid "Matrix"
 msgstr "Matrix"
 
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Alemmas n uneflay n uzegrir"
+msgstr "Umuɣ n tuzzna n yineflayen n yizegrar"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Taneflit n isiɣzaf"
+msgstr "Aɣmis n yineflayen n yisiɣzaf"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3152,9 +3149,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Tiγbula"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext : sefruri & sekyed isiɣzaf"
@@ -3244,9 +3240,8 @@ msgstr "Tawlaft n useqdac"
 msgid "Profile"
 msgstr "Amaɣnu"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Azen lqem amaynut"
+msgstr "Azen neɣ sefrek isiɣzaf"
 
 msgid "Customize Firefox"
 msgstr "Sagen Firefox"
