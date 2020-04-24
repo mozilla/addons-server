@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 22:12+0000\n"
+"PO-Revision-Date: 2020-04-24 22:21+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -4863,9 +4863,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Trenutne vremenske prognoze iz cijelog svijeta."
+msgstr "Dobij aktualizirane vremenske prognoze direktno u pregledniku."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -5420,9 +5419,8 @@ msgstr ""
 msgid "Is locked by a reviewer"
 msgstr "Zaključano od strane recenzenta"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Postavljena je oznaka za deativirano automatsko odobravanje"
+msgstr "Ima postavljenu oznaku za deaktivirano/odgođeno automatsko odobravanje"
 
 msgid "Is recommendable"
 msgstr "Preporučljivo je"
@@ -5490,13 +5488,11 @@ msgstr "Rok za zahtjev za informacijama"
 msgid "Last Updated"
 msgstr "Zadnje aktualiziranje"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Ostala recenzija na čekanju ({0})"
+msgstr "Navedene verzije koje trebaju ljudski pregled ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Ostala recenzija na čekanju ({0})"
+msgstr "Nenavedene verzije koje trebaju ljudski pregled ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ovime će se odobriti, potpisati i objaviti ova verzija. Komentari će se poslati programeru."
@@ -5522,9 +5518,8 @@ msgstr "Odbaci višestruke verzije"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Ovime će se odbaciti odabrane javne verzije. Komentari će se poslati programeru."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Odbaci višestruke verzije"
+msgstr "Blokiraj višestruke verzije"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
@@ -5532,9 +5527,8 @@ msgstr ""
 msgid "Confirm Multiple Versions"
 msgstr "Potvrdi višestruke verzije"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Ovime se zapisuje odobrenje sadržaja najnovije javne verzije, bez obavještavanja programera."
+msgstr "Ovime se potvrđuje odobrenje odabranih verzija bez obavještavanja programera."
 
 # 100%
 msgid "Reviewer reply"
@@ -5727,9 +5721,8 @@ msgstr "Galerija slika"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Ovdje nema ničega! Programer nije dodao nikakve detalje."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "prema verziji dodatka"
+msgstr "Prijevodi imena dodatka"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Vrati se na nadzornu ploču s alatima za recenzente"
@@ -5885,9 +5878,8 @@ msgstr "Prethodno izbrisani unosi"
 msgid "This is a recommended extension."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Nemaš API vjerodajnice."
+msgstr "Nemaš dozvolu za pregledavanje."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Odaberi jednu ili više verzija s gornjeg popisa."
@@ -5919,13 +5911,11 @@ msgstr "Daljnje radnje"
 msgid "Notify me about new listed versions"
 msgstr "Obavijesti me o novim navedenim verzijama"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Prikaži sva slanja"
+msgstr "Dozvoli ponovnu prijavu"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Upravljanje mojim prijavama"
+msgstr "Odbij ponovnu prijavu"
 
 msgid "Force-disable add-on"
 msgstr "Prisilno deaktiviraj dodatak"
@@ -5933,13 +5923,11 @@ msgstr "Prisilno deaktiviraj dodatak"
 msgid "Force-enable add-on"
 msgstr "Prisilno aktiviraj dodatak"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Prikaži sva slanja"
+msgstr "Prikaži prijavu iz blokiranog popisa"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Natrag na dodatak"
+msgstr "Blokiraj dodatak"
 
 msgid "Update add-on block"
 msgstr ""
