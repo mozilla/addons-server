@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 00:16+0000\n"
+"PO-Revision-Date: 2020-04-24 00:45+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -474,7 +474,7 @@ msgstr "Azegrir-agi ittekkayakan ar tegrumma"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Ur yettwaf ara yiḥder s GUID %(guid)s"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
