@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 19:04+0000\n"
+"PO-Revision-Date: 2020-04-24 19:12+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3929,9 +3929,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Inig s wudem asmussan {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Seqdec taɣerdayt akken ad tmedleḍ iccaren, ad tuɣaleḍ ɣer defiir deg usebter, ad talseḍ asmiren n usebter, atg."
+msgstr "Seqdec taɣerdayt akken ad tmedleḍ accaren, ad tinigeḍ deg yisebtar, atg."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4847,9 +4846,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr "Fren, smizzwer teslekmeḍ isadaren-ik s wudem arurad."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Ileqman n tegnawt d iskudanen seg umaḍal meṛṛa."
+msgstr "Awi-d ileqman n tegnawt srid seg yiminig."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
