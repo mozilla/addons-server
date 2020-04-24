@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 01:20+0000\n"
+"PO-Revision-Date: 2020-04-24 01:34+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5478,9 +5478,8 @@ msgstr "Розподіл ризиків недоступний."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Ви не можете надіслати коментар, якщо визначено \"canned_response\"."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Ви не можете подати мовний пакунок"
+msgstr "Ви не можете надіслати порожній коментар."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5533,13 +5532,11 @@ msgstr "Кінцевий термін запиту інформації"
 msgid "Last Updated"
 msgstr "Востаннє оновлено"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Інші очікувані перевірки ({0})"
+msgstr "Перелічені версії, які потребують перевірки людиною ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Інші очікувані перевірки ({0})"
+msgstr "Не включені до переліку версії, які потребують перевірки людиною ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ця дія затвердить, підпише і опублікує дану версію. Коментарі будуть надіслані розробнику."
@@ -5565,20 +5562,17 @@ msgstr "Відхилити кілька версій"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Ця дія відхилить обрані публічні версії. Коментарі будуть надіслані розробнику."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Відхилити кілька версій"
+msgstr "Блокувати кілька версій"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Відхилити кілька версій"
+msgstr "Затвердити кілька версій"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Ця дія записує ваше схвалення вмісту останньої публічної версії, без сповіщення розробника."
+msgstr "Ця дія підтвердить схвалення вибраних версій без сповіщення розробника."
 
 msgid "Reviewer reply"
 msgstr "Відповідь редактора"
@@ -5767,9 +5761,8 @@ msgstr "Галерея зображень"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Тут нічого дивитись!  Розробник не включив жодних деталей."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "за версією додатка"
+msgstr "Переклади назви додатка"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Повернутися до панелі інструментів редактора"
@@ -5924,9 +5917,8 @@ msgstr "Попередньо видалені записи"
 msgid "This is a recommended extension."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "У вас немає жодних облікових даних API."
+msgstr "Ви не маєте дозволу перевіряти його."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Будь ласка, оберіть одну або кілька версій з вище наведеного переліку."
