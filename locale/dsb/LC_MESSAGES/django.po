@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 10:52+0000\n"
+"PO-Revision-Date: 2020-04-25 11:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -491,14 +491,14 @@ msgid "GUID %(guid)s is already in a pending Submission"
 msgstr "GUID %(guid)s jo južo w njedocynjonem zapódaśu"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Blokěrowanja, kótarež maju se aktualizěrowaś, su rozdźělne, dokulaž minimalna abo maksimalna wersija jo se změniła."
 
 #, fuzzy
 msgid "Invalid version"
 msgstr "Njepłaśiwy wersijowy wobcerk."
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Minimalna wersija njamóžo wětša ako maksimalna wersija byś"
 
 #, fuzzy
 msgid "Review Listed"
@@ -537,7 +537,7 @@ msgid "Save"
 msgstr "Składowaś"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Składowaś a wěcej pśidaś"
 
 msgid "Delete"
 msgstr "Wulašowaś"
@@ -555,10 +555,10 @@ msgstr "Móje zapódaśa se woglědaś"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "%(name)s pśidaś"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID dodanko (jaden na smužku)"
 
 #, fuzzy
 msgid "Submit"
@@ -573,7 +573,7 @@ msgid "users"
 msgstr "Wužywarje"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Blokěrowanje wobźěłaś"
 
 #, fuzzy
 msgid "versions"
@@ -902,16 +902,16 @@ msgid "User {user} api key reset."
 msgstr "API-kluc wužywarja {user} jo se slědk stajił."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blokěrowanje za {0} jo se pśidało lisćinje blokěrowanjow."
 
 msgid "Block added"
-msgstr ""
+msgstr "Blokěrowanje jo se pśidało"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blokěrowanje za {0} jo se wobźěłało w lisćinje blokěrowanjow."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blokěrowanje jo se wobźěłało"
 
 #, fuzzy
 msgid "Block for {0} deleted from Blocklist."
@@ -922,17 +922,17 @@ msgid "Block deleted"
 msgstr "Dodank jo se wulašował."
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID za {addon} jo se pśidał DeniedGuid."
 
 #, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "Dodank {addon} jo se ze zběrki {collection} wótpórał."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Blokěrowanje akcije {1} za {0} wótpórane."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Blokěrowanje akcije wótpóraś"
 
 #, fuzzy
 msgid "User {user} session(s) reset."
@@ -982,7 +982,7 @@ msgid "Unlisted"
 msgstr "Njenalicone"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "Swójstwownik"
@@ -1551,7 +1551,7 @@ msgid "No action"
 msgstr "Dalšne akcije"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Za cłowjeske pśěglědanje markěrowaś"
 
 #, fuzzy
 msgid "Delay auto-approval"
@@ -1561,13 +1561,13 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "True positive"
-msgstr ""
+msgstr "Pšawje pozitiwny"
 
 msgid "False positive"
-msgstr ""
+msgstr "Wopak pozitiwny"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Njejasny"
 
 #, fuzzy
 msgid "New"
