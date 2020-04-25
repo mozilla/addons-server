@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 13:53+0000\n"
+"PO-Revision-Date: 2020-04-25 14:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1604,7 +1604,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Přidatki za Thunderbird a SeaMonkey so nětko na addons.thunderbird.net nalistuja a wothladuja. Móžeće samsne konto wužiwać, zo byšće swoje přidatki na nowym sydle aktualizował."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Přidatki Open Search so {blog_link_open}na AMO hižo podpěruja{blog_link_close}. Móžeće {doc_link_open}město toho pytanske rozšěrjenje{doc_link_close} wužiwać."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Tute adresowe mjeno so hižo wužiwa. Prošu wubjerće druhe."
@@ -2768,7 +2768,7 @@ msgid "Do you use any of the following?"
 msgstr "Wužiwaće jedyn ze slědowacych nastrojow?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Generatory abo minifikatory žórłoweho koda"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Nastroje, kotrež wjacore dataje k jeničkej dataji zjednoćić, na přikład <span class=\"tech-emphasis\">webpack</span>"
