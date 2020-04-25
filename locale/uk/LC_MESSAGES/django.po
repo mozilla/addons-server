@@ -490,7 +490,7 @@ msgstr "Додатку з GUID %(guid)s не існує"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s вже очікує на затвердження"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
