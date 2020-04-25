@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 15:42+0000\n"
+"PO-Revision-Date: 2020-04-25 15:52+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3046,7 +3046,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "若您的附加元件會從使用者電腦傳出任何資料，將需要提供隱私權保護政策，當中需解釋會傳出哪些資料、這些資料會被如何使用。此欄位僅與公開上架的附加元件有關。"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "若您的附加元件含有非已知常見程式庫的二進位程式`,或混淆過的程式碼，請上傳其原始碼供審查。"
+msgstr "若您的附加元件含有機器自動產生的程式碼、最小化過、串接過的程式碼（已知常見程式庫除外），請在此上傳其原始碼進行審查。"
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "請在 README 檔案或給審核者的留言中加入如何重製此版本最終附加元件檔案的步驟。"
@@ -3250,9 +3250,8 @@ msgstr "可在此輸入任何讓審核者在審核此附加元件時有所幫助
 msgid "Source code"
 msgstr "原始碼"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "若您的附加元件含有二進位程式或混淆過的程式碼，請在此上傳其原始碼供審查。"
+msgstr "若您的附加元件含有機器自動產生的程式碼、最小化過、串接過的程式碼，請在此上傳其原始碼交由人工審查。"
 
 msgid "File {file_id} ({platform})"
 msgstr "檔案 {file_id} ({platform})"
@@ -3624,9 +3623,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "{addon_name} {start_sub_heading}自訂滑鼠手勢{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "自訂滑鼠手勢。嘗試使用超過 50 種好用的滑鼠手勢來瀏覽頁面。"
+msgstr "自訂滑鼠手勢。嘗試使用超過 50 種設定來瀏覽頁面。"
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3890,9 +3888,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{addon_name} {start_sub_heading}動態導航{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "使用滑鼠手勢關閉分頁、返回上一頁、重新載入等功能。"
+msgstr "使用滑鼠手勢關閉分頁、切換頁面與更多功能。"
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4807,9 +4804,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "來自世界各地的即時天氣更新。"
+msgstr "在瀏覽器中直接取得世界各地的最新天氣資訊。"
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4832,14 +4828,12 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "將完整的頁面 — 或是部份內容 — 存成一個 HTML 檔案。"
+msgstr "將完整的頁面（包含圖片與樣式）存成單一 HTML 檔案。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "關閉分頁後自動清除 Cookie。"
+msgstr "自動取代網頁上的貶義詞。"
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -5429,13 +5423,11 @@ msgstr "資訊要求期限"
 msgid "Last Updated"
 msgstr "最近更新於"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "其他尚待審核項目（{0}）"
+msgstr "需要人工審核的公開上架版本（{0}）"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "其他尚待審核項目（{0}）"
+msgstr "需要人工審核的未公開上架版本（{0}）"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "將會通過審核、簽署、並發布此版本。將把留言傳送給開發者。"
@@ -5470,9 +5462,8 @@ msgstr "將安靜地停用選擇的通過審核的版本，並開啟封鎖版本
 msgid "Confirm Multiple Versions"
 msgstr "確認多個版本"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "將紀錄您接受或拒絕最新公開版本內容，而無需通知開發者。"
+msgstr "將確認選擇的版本通過審核，不通知開發者。"
 
 msgid "Reviewer reply"
 msgstr "審核者回覆"
@@ -5657,9 +5648,8 @@ msgstr "圖片集"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "沒別的東西了！開發者並沒有包含任何詳細資訊。"
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "依附加元件版本"
+msgstr "附加元件名稱翻譯"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "回到審核者工具儀錶板"
@@ -5847,13 +5837,11 @@ msgstr "更多操作"
 msgid "Notify me about new listed versions"
 msgstr "有新版本上架時通知我"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "檢視所有上架的項目"
+msgstr "允許重新送審"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "管理我上架的套件"
+msgstr "拒絕重新送審"
 
 msgid "Force-disable add-on"
 msgstr "強制停用附加元件"
@@ -5861,33 +5849,27 @@ msgstr "強制停用附加元件"
 msgid "Force-enable add-on"
 msgstr "強制啟用版本"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "檢視所有上架的項目"
+msgstr "檢視送出的封鎖清單"
 
 # 80%
-#, fuzzy
 msgid "Block add-on"
-msgstr "回到附加元件"
+msgstr "封鎖附加元件"
 
 msgid "Update add-on block"
 msgstr "更新附加元件封鎖資訊"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "關閉自動通過審核"
+msgstr "停用上架項目自動通過審核"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "開啟自動通過審核"
+msgstr "啟用上架項目自動通過審核"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "設定了「關閉自動通過審核」旗標"
+msgstr "「自動通過審核」已關閉到 {date} 為止"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "開啟自動通過審核"
+msgstr "清除額外延後「自動通過審核」"
 
 msgid "Clear information request"
 msgstr "清除資訊要求"
@@ -6061,16 +6043,14 @@ msgstr[0] "過期的資訊要求（{0}）"
 msgid "presence of matched rules"
 msgstr "存在符合的規則"
 
-#, fuzzy
 msgid "result state"
-msgstr "開始使用"
+msgstr "結果狀態"
 
 msgid "all but this rule"
 msgstr "全部，但除了這條規則"
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "已上架版本預覽"
+msgstr "版本存在"
 
 msgid "version channel"
 msgstr "版本頻道"
@@ -6171,16 +6151,14 @@ msgstr "版本已存在，最新版本為: %s。"
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr "僅 WebExtension 可忽略附加元件 ID"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "若附加元件的 GUID 超過 64 字元，請在安裝資訊檔中指定。"
+msgstr "若附加元件 ID 超過 64 字元，請在安裝資訊檔中指定。"
 
 msgid "Invalid Add-on ID in URL or package"
 msgstr "網址或封裝中，有無效的附加元件 ID"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "您無法新增版本到狀態為 %s 的附加元件。"
+msgstr "您無法將公開上架的版本新增到狀態為「隱藏」的附加元件。"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "由於缺少 metadata，您無法透過 API 為此附加元件新增公開上架的版本。請透過網站送出"
@@ -6516,9 +6494,9 @@ msgstr "已封鎖使用者「%(users)s」。"
 msgid "Ban selected users"
 msgstr "封鎖所選的使用者"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "使用者「%(users)s」已重設 API 金鑰。"
+msgstr "使用者「%(users)s」的 session 已重設。"
 
 msgid "Reset session"
 msgstr "重設使用階段"
@@ -6584,9 +6562,8 @@ msgid ""
 " which explains how we handle your information."
 msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。Firefox 附加元件發行同意書當中亦包含我們的隱私權公告，解釋我們會如何處理您的資訊。"
 
-#, fuzzy
 msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。Firefox 附加元件發行同意書當中亦包含我們的隱私權公告，解釋我們會如何處理您的資訊。"
+msgstr "請先到 {url} 閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。"
 
 msgid "an add-on developer replies to my review"
 msgstr "某位附加元件的開發者回覆我的評論"
