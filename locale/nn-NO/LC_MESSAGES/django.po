@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 17:29+0000\n"
+"PO-Revision-Date: 2020-04-25 11:12+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -148,7 +148,7 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr "Søkesti for tillegg og samling må avsluttast med \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Tilleggsnamn kan ikkje innehalde varemerka Mozilla eller Firefox."
 
 msgid "Sort by:"
 msgstr "Sorter etter:"
@@ -206,7 +206,7 @@ msgstr "Positivt heiltal"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Dette feltet kan berre brukast for å lenke til eksterne nettstadar. Nettadresser på %(domain)s er ikkje tillatne."
 
 msgid "Incorrect, please try again."
 msgstr "Feil, prøv på nytt."
