@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 15:05+0000\n"
+"PO-Revision-Date: 2020-04-25 15:12+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5985,7 +5985,7 @@ msgid "Newer"
 msgstr "較新的"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "掃描器在其他頁面標示出 {num} 個版本。"
 
 msgid "Recent Points"
 msgstr "最近的評分"
@@ -6036,7 +6036,7 @@ msgid "Weight:"
 msgstr "權重:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "由自動掃描器標示"
 
 msgid "Download"
 msgstr "下載"
@@ -6074,14 +6074,14 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "過期的資訊要求（{0}）"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "存在符合的規則"
 
 #, fuzzy
 msgid "result state"
 msgstr "開始使用"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "全部，但除了這條規則"
 
 #, fuzzy
 msgid "presence of a version"
@@ -6103,29 +6103,29 @@ msgid "file signature"
 msgstr "檔案簽章"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "這是掃描器使用的規則的完整名稱。"
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "取消勾選時，掃描器將不檢查此規則，也不會執行對應的操作。"
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara 規則應該要有定義"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "定義中的規則名稱，應與掃瞄器規則名稱相同"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "定義中僅能使用一組 Yara 規則"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "定義無效: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "編譯定義時發生錯誤"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "對已強制停用的附加元件也執行此規則。"
 
 msgid "Abort"
 msgstr "中斷"
@@ -6134,7 +6134,7 @@ msgid "Run"
 msgstr "執行"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "通常用於在掃描結果是真陽性，但附加元件本身的確不是惡意元件時"
 
 msgid "Revert report"
 msgstr "回覆報告"
@@ -6646,6 +6646,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"已經下列作者加入到您的附加元件「%(addon_name)s」（%(addon_url)s）：\n"
+"\n"
+"%(author_name)s（%(author_url)s）：%(author_role)s"
 
 #, python-format
 msgid ""
