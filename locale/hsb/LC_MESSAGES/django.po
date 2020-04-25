@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 18:07+0000\n"
+"PO-Revision-Date: 2020-04-25 20:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -491,20 +491,17 @@ msgstr "GUID %(guid)s je hižo we wustejacym zapodaću"
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Blokjowanja, kotrež maja so aktualizować, su rozdźělne, dokelž minimalna abo maksimalna wersija je so změniła."
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Njepłaćiwy wersijowy rozsah."
+msgstr "Njepłaćiwa wersija"
 
 msgid "Min version can not be greater than Max version"
 msgstr "Minimalna wersija njemóže wjetša hač maksimalna wersija być"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Přepruwowanje je so požadało"
+msgstr "Nalistowane přepruwować"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Přepruwowanska přispomnjenka"
+msgstr "Njenalistowane přepruwować"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "Tute blokowanje je so ze zestarjeneho blokěrowanja Kinto importował, kotrež na regularnych wurazach bazuje."
@@ -512,11 +509,10 @@ msgstr "Tute blokowanje je so ze zestarjeneho blokěrowanja Kinto importował, k
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Přewjedźene změny so w zestarjenej lisćinje blokowanjow NJEaktualizuja - dyrbiće manuelnu změnu přez webowy powjerch zarjadowanja Kinto přewjesć."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Wjacore wersije wotpokazać"
+msgstr "Wjacore %(name)s zhašeć"
 
-#, fuzzy
 msgid "Home"
 msgstr "Startowa strona"
 
