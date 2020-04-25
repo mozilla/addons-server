@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 14:04+0000\n"
+"PO-Revision-Date: 2020-04-25 14:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3149,7 +3149,7 @@ msgid "Read more about the source code review policy."
 msgstr "Čitajće wjace wo přepruwowanskich prawidłach za žórłowy tekst."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Wuwiwajće prěnjorjadne rozšěrjenja a drasty"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -3183,7 +3183,7 @@ msgid "Extensions Developers Newsletter"
 msgstr "Wuwiwanje rozšěrjenjow"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Wostańće na běžnym wo nowinkach a podawkach za wuwiwarjow rozšěrjenjow Firefox."
 
 #, fuzzy
 msgid "Email Address"
@@ -3256,7 +3256,7 @@ msgid "Get involved"
 msgstr "Čińće sobu"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Zwjazajće so z tysacami wuwiwarjow a wotkryjće dalše móžnosće, z kotrymiž móžeće k ekosystemje rozšěrjenjow přinošować."
 
 #, fuzzy
 msgid "Learn more about the developer community"
@@ -3312,7 +3312,7 @@ msgid "Learn how to make an extension"
 msgstr "Zhońće, kak móžeće přidatk wuwiwać"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Sće hotowy, swoje rozšěrjenje zapodać abo rjadować?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
@@ -4918,7 +4918,7 @@ msgstr "Někotre sydła maja ćežkosće, wideja na Firefox za Android wothrawa�
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Wubjerće, sortěrujće a wuwjedźće swoje sćehnjenja spěšnišo."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4927,11 +4927,11 @@ msgstr "Hnydomne wjedrowe aktualizacije z cyłeho swěta."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Zhašejće placki, přehladowansku historiju a pufrowane dataje z jenož jednym kliknjenjom."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Wotstrońće slědowace elementy z webwotkazow."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
