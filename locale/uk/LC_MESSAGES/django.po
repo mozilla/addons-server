@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 23:49+0000\n"
+"PO-Revision-Date: 2020-04-25 00:06+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4928,7 +4928,7 @@ msgstr "Вилучайте елементи стеження з вебпосил
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Отримайте автоматично оновлювані теки з закладками стрічок новин RSS."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
@@ -4952,7 +4952,7 @@ msgstr "Блокуйте всі типи оголошень — відео, ві
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Дивіться потоковий медіа-вміст з друзями та родиною будь-де."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5473,7 +5473,7 @@ msgid "Auto-approval delayed temporarily"
 msgstr "Автоматичне затвердження тимчасово відкладено"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Автоматичне затвердження відкладено на невизначений термін"
 
 msgid "Is locked by a reviewer"
 msgstr "Заблоковано рецензентом"
@@ -5497,7 +5497,7 @@ msgid "You can't submit an empty comment."
 msgstr "Ви не можете надіслати порожній коментар."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Ви не можете надіслати номер рядка, без пов’язування його з назвою файлу."
 
 msgid "Type"
 msgstr "Тип"
