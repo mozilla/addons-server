@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 15:12+0000\n"
+"PO-Revision-Date: 2020-04-25 15:32+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -125,15 +125,12 @@ msgstr "僅可針對最新版附加元件加上註記。"
 msgid "Ratings"
 msgstr "分等"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "審核者工具"
+msgstr "審核者工具（公開上架）"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "審核者工具"
+msgstr "審核者工具（未公開）"
 
-#, fuzzy
 msgid "Reviewer links"
 msgstr "審核者工具"
 
@@ -294,11 +291,11 @@ msgstr ""
 msgid "Oops"
 msgstr "糟糕"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>喔喔！發生問題了。</h1><p>我們會盡快修復。</p><p>您可以試試重新整理頁面，或回到 <a href=\"%(home)s\">附加元件站首頁</a>。</p>"
+msgstr "<h1>喔喔！發生問題了。</h1><p>我們會盡快修復。</p><p>您可以試試重新整理頁面，或回到<a href=\"%(home)s\">附加元件站首頁</a>。也可以<a href=\"https://github.com/mozilla/addons/issues/new\">回報問題</a>，提供如何來到此頁面的相關資訊，幫助我們修復此問題。</p>"
 
 msgid "No results found"
 msgstr "搜尋沒有結果"
@@ -555,7 +552,7 @@ msgid "users"
 msgstr "使用者"
 
 msgid "Edit Block"
-msgstr "編輯 Block"
+msgstr "編輯封鎖項目"
 
 msgid "versions"
 msgstr "版本"
@@ -889,10 +886,10 @@ msgid "User {user} api key reset."
 msgstr "已重設使用者 {user} 的 API 金鑰。"
 
 msgid "Block for {0} added to Blocklist."
-msgstr "已將 {0} 的 Block 加入 Blocklist。"
+msgstr "已將對 {0} 的封鎖紀錄加入封鎖清單。"
 
 msgid "Block added"
-msgstr "已新增 Block"
+msgstr "已新增封鎖項目"
 
 msgid "Block for {0} edited in Blocklist."
 msgstr "已在 Blocklist 當中編輯 {0} 的 Block。"
@@ -900,13 +897,11 @@ msgstr "已在 Blocklist 當中編輯 {0} 的 Block。"
 msgid "Block edited"
 msgstr "已編輯 Block"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "已刪除第 {0} 版 {addon}。"
+msgstr "已從封鎖清單刪除對 {0} 的封鎖。"
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "已刪除附加元件。"
+msgstr "已刪除封鎖項目。"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "已將 {addon} 的 GUID 加入 DeniedGuid。"
@@ -916,7 +911,7 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "{addon} 已從 {collection} 移除。"
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "已確認 {0} 的封鎖 {1} 操作。"
 
 msgid "Block action signoff"
 msgstr "確認封鎖動作"
@@ -6646,7 +6641,7 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
-"已經下列作者加入到您的附加元件「%(addon_name)s」（%(addon_url)s）：\n"
+"已將下列作者加入到您的附加元件「%(addon_name)s」（%(addon_url)s）：\n"
 "\n"
 "%(author_name)s（%(author_url)s）：%(author_role)s"
 
@@ -6666,6 +6661,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team\n"
 msgstr ""
+"%(author_name)s 您好，\n"
+"\n"
+"有人邀請您成為 %(domain)s 上「%(addon_name)s」的作者。接受此邀請函後就會提供您權限，並且可能會在網站上將您列為該套件的作者之一。\n"
+"\n"
+"請點擊下方的鏈結以回覆您是否要成為「%(addon_name)s」的作者。\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"若您沒有預期會收到這封信，請通知 amo-admins@mozilla.com。\n"
+"\n"
+"感謝您，\n"
+"Mozilla 附加元件管理團隊"
 
 #, python-format
 msgid ""
@@ -6674,6 +6681,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"已變更您的附加元件「%(addon_name)s」（%(addon_url)s）的下列作者：\n"
+"\n"
+"%(author_name)s（%(author_url)s）：%(author_role)s"
 
 #, python-format
 msgid ""
@@ -6682,6 +6692,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )\n"
 msgstr ""
+"已將下列作者從您的附加元件「%(addon_name)s」（%(addon_url)s）移除：\n"
+"\n"
+"%(author_name)s（%(author_url)s）"
 
 msgctxt "user_list_others"
 msgid "others"
