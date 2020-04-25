@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 04:08+0000\n"
+"PO-Revision-Date: 2020-04-25 15:05+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5373,10 +5373,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "已暫時延後自動審核通過"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "已無限期延後自動審核通過"
 
 msgid "Is locked by a reviewer"
 msgstr "已由審核者鎖定"
@@ -5400,7 +5400,7 @@ msgid "You can't submit an empty comment."
 msgstr "您送出的註解不能空白。"
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "您不能單純送出行號，但不指出檔案名稱。"
 
 msgid "Type"
 msgstr "類型"
@@ -5480,7 +5480,7 @@ msgid "Block Multiple Versions"
 msgstr "封鎖多個版本"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "將安靜地停用選擇的通過審核的版本，並開啟封鎖版本建立管理頁面。"
 
 msgid "Confirm Multiple Versions"
 msgstr "確認多個版本"
@@ -5523,11 +5523,11 @@ msgid "Add-on Review Guide"
 msgstr "附加元件審核指南"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "由掃描器標示"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
+msgstr[0] "由掃描器標示（{0}）"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自動通過審核的附加元件"
@@ -5886,7 +5886,7 @@ msgid "Block add-on"
 msgstr "回到附加元件"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "更新附加元件封鎖資訊"
 
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
