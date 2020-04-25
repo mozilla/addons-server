@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 15:32+0000\n"
+"PO-Revision-Date: 2020-04-25 15:42+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -892,23 +892,22 @@ msgid "Block added"
 msgstr "已新增封鎖項目"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr "已在 Blocklist 當中編輯 {0} 的 Block。"
+msgstr "已編輯封鎖清單中對 {0} 的封鎖紀錄。"
 
 msgid "Block edited"
-msgstr "已編輯 Block"
+msgstr "已編輯封鎖項目"
 
 msgid "Block for {0} deleted from Blocklist."
 msgstr "已從封鎖清單刪除對 {0} 的封鎖。"
 
 msgid "Block deleted"
-msgstr "已刪除封鎖項目。"
+msgstr "已刪除封鎖項目"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "已將 {addon} 的 GUID 加入 DeniedGuid。"
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} 已從 {collection} 移除。"
+msgstr "已從 DeniedGuid 移除 {addon} 的 GUID。"
 
 msgid "Block {1} action for {0} signed off."
 msgstr "已確認 {0} 的封鎖 {1} 操作。"
@@ -916,13 +915,11 @@ msgstr "已確認 {0} 的封鎖 {1} 操作。"
 msgid "Block action signoff"
 msgstr "確認封鎖動作"
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "已重設使用者 {user} 的 API 金鑰。"
+msgstr "已重設使用者 {user} 的使用階段。"
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "使用者 {user} 已編輯，原因： {1}"
+msgstr "已限制使用者 {user} 在 scope「{0}」的使用頻率"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1851,11 +1848,10 @@ msgstr "圖示必須為正方形（寬度高度相同）。"
 msgid "There was an error uploading your preview."
 msgstr "上傳擷圖的過程中發生錯誤。"
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "無法刪除或停用最新通過審核版本的推薦擴充套件。若需要幫助，請聯絡 AMO 管理員。"
+msgstr "因為先前的版本並未通過審核成為推薦項目，無法刪除或停用此推薦擴充套件最新通過審核的版本。若您需要協助，請聯絡 AMO 管理員。"
 
 #, python-format
 msgid "Version %s disabled."
@@ -2353,16 +2349,15 @@ msgstr "為您的附加元件選擇一個圖示："
 msgid "32x32px"
 msgstr "32x32 像素"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "使用在附加元件清單，像是搜尋結果與精選附加元件當中。"
+msgstr "使用在附加元件上架頁面，像是搜尋結果中。"
 
 #. The size of the icon
 msgid "64x64px"
 msgstr "64x64 像素"
 
 msgid "Used in add-on detail pages."
-msgstr "於附加元件詳細資訊頁面中使用。"
+msgstr "使用在附加元件詳細資訊頁面。"
 
 #. The size of the icon
 msgid "128x128px"
@@ -2401,9 +2396,8 @@ msgstr "支援 PNG 與 JPG 格式，推薦使用 PNG。最大且推薦的擷圖�
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "最小尺寸為 1000x750，比例必須為 4:3。"
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "在產品頁面中放入擷圖，可大幅增加安裝，以及被選為精選套件，在首頁為套件宣傳的機會。"
+msgstr "在產品頁面中放入畫面擷圖，可大幅增加安裝機會。"
 
 msgid "Continue"
 msgstr "繼續"
@@ -2658,9 +2652,8 @@ msgstr "加上詳細的描述與畫面擷圖可讓您的附加元件更成功。
 msgid "Manage Listing"
 msgstr "管理上架資訊"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "您也可以編輯剛送出的版本，加入版本註記，或若包含 minified、擾亂過、編譯過的程式碼的話也可放入原始碼。"
+msgstr "您也可以編輯這個版本，加入版本註記，或若包含最小化過、串接過、或其他由機器產生的程式碼的話也可放入原始碼。"
 
 msgid "Edit version {0}"
 msgstr "編輯版本 {0}"
@@ -2668,9 +2661,8 @@ msgstr "編輯版本 {0}"
 msgid "Version Signature Pending"
 msgstr "等待版本簽名"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "搞定！此版本通過審核後就會在網站上出現。您將會在套件接受審核後收到通知。"
+msgstr "搞定！此版本很快就會簽署完成，讓您自行發布。簽署好的檔案可供下載時會發信通知您。"
 
 msgid "Go to My Submissions"
 msgstr "前往我上架的項目"
@@ -2727,9 +2719,8 @@ msgid ""
 "emphasis\">npm</span> version used)."
 msgstr "編譯過程中會使用到的任何程式的詳細資訊（包含需要使用的版本與安裝步驟，舉例來說: <span class=\"tech-emphasis\">node</span> 與 <span class=\"tech-emphasis\">npm</span> 的版本）。"
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
-msgstr "<span class=\"instruction-emphasis\">註:</span> 請勿轉譯（transpile）、混淆（obfuscate）、最小化（minify）或使用機器產生原始碼（不含第三方的開放原始碼程式庫）。"
+msgstr "<span class=\"instruction-emphasis\">註：</span>請勿轉譯（transpile）、串接（concatenate）、最小化（minify）或使用機器產生的原始碼。"
 
 msgid "How to Submit:"
 msgstr "如何上傳:"
@@ -3054,9 +3045,8 @@ msgstr "隱私權保護政策"
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr "若您的附加元件會從使用者電腦傳出任何資料，將需要提供隱私權保護政策，當中需解釋會傳出哪些資料、這些資料會被如何使用。此欄位僅與公開上架的附加元件有關。"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "若您的附加元件含有非已知常見程式庫的二進位程式或混淆過的程式碼，請上傳其原始碼供審查。"
+msgstr "若您的附加元件含有非已知常見程式庫的二進位程式`,或混淆過的程式碼，請上傳其原始碼供審查。"
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "請在 README 檔案或給審核者的留言中加入如何重製此版本最終附加元件檔案的步驟。"
