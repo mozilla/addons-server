@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 07:41+0000\n"
+"PO-Revision-Date: 2020-04-25 07:51+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2983,6 +2983,14 @@ msgid ""
 "\n"
 "%(url)s\n"
 msgstr ""
+"În contul tău a fost adăugată următoarea cheie API:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Dacă tu consideri că a fost creată din greșeală, o poți elimina și poți\n"
+"dezactiva accesul de la următoarea adresă:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2995,6 +3003,14 @@ msgid ""
 "\n"
 "%(url)s\n"
 msgstr ""
+"Următoarea cheie API a fost revocată din contul tău:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Dacă tu crezi că a fost revocată din greșeală, poți crea una nouă\n"
+"la următoarea adresă:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3156,29 +3172,31 @@ msgid "Read more about the source code review policy."
 msgstr "Citește mai multe despre politica de examinare a codului sursă."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Creează extensii și teme cele mai bune din clasa lor"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Fie că ești la început de drum în dezvoltarea de extensii, perfecționezi sau portezi o extensie sau o temă existentă ori creezi o soluție personalizată pentru întreprinderi, avem resursele cu care "
+"să te susținem."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
 msgstr "Intră în atelierul de extensii"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Intră în contact cu noi"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "Pentru dezvoltatori"
 
 msgid "For end users"
-msgstr ""
+msgstr "Pentru utilizatori finali"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrice"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
@@ -3188,23 +3206,24 @@ msgid "Extensions Developers Newsletter"
 msgstr "Buletin de știri pentru dezvoltatorii de extensii"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Fii la curent cu noutățile și evenimentele pentru dezvoltatorii de extensii Firefox."
 
 msgid "Email Address"
 msgstr "Adrese de e-mail"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Sunt de acord ca Mozilla să îmi gestioneze informațiile conform explicațiilor din această %(link_open)sPolitică de confidențialitate%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Înscriere"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Îți mulțumim!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Dacă nu ai confirmat anterior un abonament la buletinul de știri despre Mozilla, este posibil să fie necesar să o faci. Caută un mesaj de la noi pe e-mail în mesaje primite sau în dosarul de spam."
 
 msgid "Resources"
 msgstr "Resurse"
@@ -3222,7 +3241,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Buton „Descarcă suplimentul”"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program de extensii recomandate"
 
 msgid "Contribute"
 msgstr "Contribuie"
@@ -3255,7 +3274,7 @@ msgid "See how"
 msgstr "Vezi cum"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Implică-te"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
