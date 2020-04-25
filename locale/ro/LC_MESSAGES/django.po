@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 07:33+0000\n"
+"PO-Revision-Date: 2020-04-25 07:41+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -918,7 +918,7 @@ msgid "Block deleted"
 msgstr "Blocajul a fost șters"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID pentru {addon} adăugat în DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID pentru {addon} eliminat din DeniedGuid."
@@ -975,7 +975,7 @@ msgid "Unlisted"
 msgstr "Nelistat"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1554,40 +1554,40 @@ msgid "No action"
 msgstr "Nicio acțiune"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Marcat pentru revizuire de către o persoană"
 
 msgid "Delay auto-approval"
 msgstr "Amână aprobarea automată"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Întârzie aprobarea automată pe termen nelimitat"
 
 msgid "True positive"
-msgstr ""
+msgstr "Adevărat pozitiv"
 
 msgid "False positive"
-msgstr ""
+msgstr "Fals pozitiv"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Neconcludent"
 
 msgid "New"
 msgstr "Nou"
 
 msgid "Running"
-msgstr ""
+msgstr "În execuție"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Abandonat"
 
 msgid "Aborting"
-msgstr ""
+msgstr "În curs de abandonare"
 
 msgid "Completed"
 msgstr "Finalizat"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Programat"
 
 msgid "Core"
 msgstr "Nucleu"
@@ -1606,7 +1606,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Suplimentele pentru Thunderbird și SeaMonkey sunt acum listate și întreținute pe addons.thunderbird.net. Poți folosi același cont pentru actualizarea suplimentelor tale pe site-ul nou."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Suplimentele cu căutare deschisă {blog_link_open}nu mai au suport pe AMO{blog_link_close}. Poți crea {doc_link_open}în schimb o extensie de căutare{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Slugul este deja utilizat. Te rugăm să alegi altul."
@@ -2497,10 +2497,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "Informații suplimentare despre licențele Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Suplimentul este setat acum pe „invizibil”."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "Când este în această stare, singura metodă de distribuție disponibilă este „pe cont propriu”."
 
 msgid "General Tests"
 msgstr "Teste generale"
@@ -2763,7 +2763,7 @@ msgid "Do you use any of the following?"
 msgstr "Folosești vreuna dintre uneltele următoare?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Generatoare de cod sau minificatoare"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Unelte care combină mai multe fișiere într-unul singur, precum <span class=\"tech-emphasis\">webpack</span>"
@@ -2959,6 +2959,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team\n"
 msgstr ""
+"Bună,\n"
+"\n"
+"Primești acest mesaj deoarece ai solicitat chei API noi pentru dezvoltatori pentru\n"
+"%(domain)s. Pentru finalizarea procedurii, dă clic pe linkul de mai jos:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Dacă nu tu ai făcut solicitarea, trimite o notificare la amo-admins@mozilla.com.\n"
+"\n"
+"Salutări,\n"
+"\n"
+"Echipa de suplimente Mozilla"
 
 #, python-format
 msgid ""
@@ -6240,9 +6252,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Răspunsul revizorului"
+msgstr "Readu raportul la starea anterioară"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
