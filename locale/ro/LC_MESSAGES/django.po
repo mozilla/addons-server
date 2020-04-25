@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 05:04+0000\n"
+"PO-Revision-Date: 2020-04-25 07:12+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -483,28 +483,28 @@ msgstr "Acest supliment deja face parte din colecție"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Bloc cu GUID %(guid)s negăsit"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s este o propunere în așteptare"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Suplimentul cu GUID %(guid)s nu există"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s este deja într-o propunere în așteptare"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Blocurile de actualizat sunt diferite deoarece versiunea Min sau Max a fost modificată."
 
 msgid "Invalid version"
 msgstr "Versiune nevalidă"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Versiunea Min nu poate fi mai mare decât versiunea Max"
 
 msgid "Review Listed"
 msgstr "Revizuire listată"
@@ -516,7 +516,7 @@ msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "Acest bloc a fost importat dintr-un bloc kinto moștenit pe bază de regex."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "Orice modificare realizată NU se va actualiza în lista de blocuri moștenită - trebuie să faci o modificare manuală în interfața web de administrare kinto."
+msgstr "Orice modificare realizată NU se va actualiza în lista de blocuri moștenite - trebuie să faci o modificare manuală în interfața web de administrare kinto."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -527,20 +527,20 @@ msgstr "Acasă"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s GUID-uri de suplimente sunt deja blocate pentru %(v_min)s până la %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s GUID-uri de suplimente negăsite"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Următoarele blocuri au fost importate dintr-un bloc kinto moștenit pe bază de regex."
 
 msgid "Save"
 msgstr "Salvează"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Salvează și adaugă mai multe"
 
 msgid "Delete"
 msgstr "Șterge"
@@ -556,29 +556,29 @@ msgstr "Aprobă propunerea"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Adaugă %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID-uri de suplimente (unul pe rând)"
 
 msgid "Submit"
 msgstr "Trimite"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s GUID-uri de suplimente"
 
 msgid "users"
 msgstr "utilizatori"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Editează blocul"
 
 msgid "versions"
 msgstr "versiuni"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Incluse în lista de blocuri moștenite."
 
 msgid "{addon} was created."
 msgstr "{addon} a fost creat."
@@ -912,7 +912,7 @@ msgid "Block edited"
 msgstr ""
 
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Blocul pentru {0} a fost șters din lista de blocare."
+msgstr "Blocul pentru {0} a fost șters din lista de blocuri."
 
 msgid "Block deleted"
 msgstr "Bloc șters"
@@ -4930,9 +4930,8 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Salvează pagini complete—sau numai părți din ele—într-un singur fișier HTML."
+msgstr "Salvează o pagină web întreagă — inclusiv imagini și stil — într-un singur fișier HTML."
 
 #. editorial content for the discovery pane.
 #, fuzzy
