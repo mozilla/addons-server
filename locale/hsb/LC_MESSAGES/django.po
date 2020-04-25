@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 14:13+0000\n"
+"PO-Revision-Date: 2020-04-25 14:20+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4939,11 +4939,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organizujće lochko tony wočinjenych rajtarkow."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Wutworće a přiměrće rajtarkowe skupiny."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4957,7 +4957,7 @@ msgstr "Zhašejće placki awtomatisce, po tym zo sće rajtark začinił."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blokujće kóžde wabjenje - wideja, wuskakowace wokna, chorhoje a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
@@ -4977,7 +4977,7 @@ msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Organizowanje rajtarkow a nastroje"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -6016,7 +6016,7 @@ msgid "Block add-on"
 msgstr "Wróćo k přidatkej"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Blokowanje přidatka aktualizować"
 
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
@@ -6839,6 +6839,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"Slědowacy awtor je so we wašim přidatku %(addon_name)s ( %(addon_url)s ) změnił:\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6847,6 +6850,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )\n"
 msgstr ""
+"Slědowacy awtor je so z přidatka %(addon_name)s ( %(addon_url)s ) wotstronił:\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
