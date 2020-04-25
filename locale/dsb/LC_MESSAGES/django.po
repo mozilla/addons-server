@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 11:14+0000\n"
+"PO-Revision-Date: 2020-04-25 11:20+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6017,7 +6017,7 @@ msgid "Block add-on"
 msgstr "Slědk k dodankoju"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Blokěrowanje dodanka aktualizěrowaś"
 
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
@@ -6078,7 +6078,7 @@ msgid "No reviews found for this period."
 msgstr "Žedne pógódnośenja za toś ten cas namakane."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Póchad:"
 
 msgid "Method:"
 msgstr "Metoda:"
@@ -6167,7 +6167,7 @@ msgid "Weight:"
 msgstr "Wažnosć:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Pśez awtomatizěrowane skannery markěrowany"
 
 msgid "Download"
 msgstr "Ześěgnuś"
@@ -6224,7 +6224,7 @@ msgid "result state"
 msgstr "Prědne kšace"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "wšykne mimo toś togo pšawidła"
 
 #, fuzzy
 msgid "presence of a version"
@@ -6251,35 +6251,35 @@ msgid "file signature"
 msgstr "Dataja {file} jo se signěrowała."
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "To jo eksaktne mě pšawidła, kótarež se pśez skanner wužywa."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Pšawidła Yara měli definiciju měś."
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
 msgstr ""
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "W definiciji jo jano jadno pšawidło Yara dowólone."
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definicija njejo płaśiwa: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Pśi kompilěrowanju definicije jo se zmólka nastała."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Pśetergnuś"
 
 msgid "Run"
-msgstr ""
+msgstr "Wuwjasć"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
