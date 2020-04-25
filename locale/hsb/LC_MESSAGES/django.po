@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 17:41+0000\n"
+"PO-Revision-Date: 2020-04-25 18:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6244,7 +6244,7 @@ msgstr[2] "Spadnjene próstwy wo Informacije ({0})"
 msgstr[3] "Spadnjene próstwy wo Informacije ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "eksistenca wotpowědowacych prawidłow"
 
 #, fuzzy
 msgid "result state"
@@ -6287,7 +6287,7 @@ msgid "Yara rules should have a definition"
 msgstr "Prawidła Yara měli definiciju měć."
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Mjeno prawidła w definiciji měło mjenu skeneroweho prawidła wotpowědować"
 
 msgid "Only one Yara rule is allowed in the definition"
 msgstr "W definiciji je jenož jedne prawidło Yara dowolene."
