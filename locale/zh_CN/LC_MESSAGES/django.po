@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 13:46+0000\n"
-"Last-Translator: passionforlife <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2020-04-25 08:09+0000\n"
+"Last-Translator: Xiaoyang Liu <siujoeng.lau@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -163,7 +163,7 @@ msgid "Tools"
 msgstr "工具"
 
 msgid "My Profile"
-msgstr "我的概况"
+msgstr "个人资料"
 
 msgid "Account Settings"
 msgstr "账户设置"
@@ -482,7 +482,7 @@ msgid "Blocks to be updated are different because Min or Max version has changed
 msgstr "由于最低或最高版本变动，要更新的屏蔽内容不同。"
 
 msgid "Invalid version"
-msgstr ""
+msgstr "版本无效"
 
 msgid "Min version can not be greater than Max version"
 msgstr "最低版本不应超过最高版本"
@@ -501,7 +501,7 @@ msgstr "任何变更不会应用到旧有屏蔽列表，您必须回到 kinto �
 
 #, python-format
 msgid "Delete Multiple %(name)s"
-msgstr ""
+msgstr "删除多个 %(name)s"
 
 msgid "Home"
 msgstr "主页"
@@ -1514,7 +1514,7 @@ msgid "Header image alignment problem"
 msgstr "页眉图像对齐问题"
 
 msgid "No action"
-msgstr ""
+msgstr "沒有操作"
 
 msgid "Flag for human review"
 msgstr "标为需要人工审查"
@@ -1547,7 +1547,7 @@ msgid "Aborting"
 msgstr "正在中止"
 
 msgid "Completed"
-msgstr ""
+msgstr "已完成"
 
 msgid "Scheduled"
 msgstr "已计划"
@@ -3042,7 +3042,7 @@ msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
-msgstr ""
+msgstr "访问扩展工坊"
 
 msgid "Connect with us"
 msgstr "联系我们"
@@ -3064,20 +3064,20 @@ msgid "Add-on Developers Mailing List"
 msgstr ""
 
 msgid "Extensions Developers Newsletter"
-msgstr ""
+msgstr "扩展开发者订阅邮件"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "关注与扩展开发者有关的最新消息和事件。"
 
 msgid "Email Address"
-msgstr ""
+msgstr "电子邮件地址"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr "我同意 Mozilla 按照%(link_open)s隐私声明%(link_close)s中所述方式处理我的信息。"
 
 msgid "Sign Up"
-msgstr ""
+msgstr "注册"
 
 msgid "Thanks!"
 msgstr "十分感谢！"
@@ -3089,7 +3089,7 @@ msgid "Resources"
 msgstr "资源"
 
 msgid "WebExtensions API"
-msgstr ""
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext：构建和测试扩展"
@@ -3137,10 +3137,10 @@ msgid "Get involved"
 msgstr "参与进来"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "与成千上万的开发者联动起来，探索为附加组件生态系统做贡献的更多方式。"
 
 msgid "Learn more about the developer community"
-msgstr ""
+msgstr "了解关于开发者社区的更多内容"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "在通过代码审查后在此网站上列出。自动更新由此网站处理。"
@@ -3179,7 +3179,7 @@ msgid "User Photo"
 msgstr "用户照片"
 
 msgid "Profile"
-msgstr ""
+msgstr "个人资料"
 
 msgid "Submit or Manage Extensions"
 msgstr ""
@@ -3604,7 +3604,7 @@ msgstr "自定义鼠标手势 {start_sub_heading}就用 {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr ""
+msgstr "自定义鼠标手势。探索使用 50 多种配置模式浏览网页的全新方法。"
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3677,7 +3677,7 @@ msgstr "不留数字痕迹。让 Firefox 对您选择的域名，忘记 Cookie �
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "无需重复输入同样的内容。保存经常输入的文字供以后随时粘贴。"
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3869,7 +3869,7 @@ msgstr "动态导航 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr ""
+msgstr "使用鼠标手势关闭标签页，浏览页面等。"
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4785,7 +4785,7 @@ msgstr "选择、排序、批量操作，加速您的下载。"
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "在浏览器中查看最新天气。"
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4809,11 +4809,11 @@ msgstr "创建并定制标签页组。"
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "将整个网页—包括图片与样式—保存到单独的 HTML 文件中。"
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
-msgstr ""
+msgstr "自动替换所有网站中的歧视语。"
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -4887,7 +4887,7 @@ msgid "Could not parse the manifest file."
 msgstr "未能解析清单文件。"
 
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Firefox 47 及之前的版本必须填写附加组件 ID。"
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "支持的最低 \"strict_min_version\" 为 42.0。"
@@ -4952,7 +4952,7 @@ msgstr "您不能提交此类型的附加组件"
 
 #, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr ""
+msgstr "您不能提交 ID 以 %s 结尾的附加组件"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能提交一个 Mozilla 签名的扩展"
@@ -5351,10 +5351,10 @@ msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "若定义了“canned_response”，则无法提交评论。"
 
 msgid "You can't submit an empty comment."
-msgstr ""
+msgstr "您不能提交无内容的评论。"
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "您不能提交尚未与文件名关联的行号。"
 
 msgid "Type"
 msgstr "类型"
@@ -5384,7 +5384,7 @@ msgid_plural "{0} days"
 msgstr[0] "{0} 天"
 
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "上次审核"
@@ -5435,7 +5435,7 @@ msgid "This will disable the selected approved versions silently, and open up th
 msgstr ""
 
 msgid "Confirm Multiple Versions"
-msgstr ""
+msgstr "确认多个版本"
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
 msgstr ""
@@ -5624,7 +5624,7 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "这里什么都没有！开发者没有写下任何详细信息。"
 
 msgid "Add-on name translations"
-msgstr ""
+msgstr "附加组件名称翻译"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "返回审核员工具首页"
@@ -5780,7 +5780,7 @@ msgid "This is a recommended extension."
 msgstr "这是推荐的扩展。"
 
 msgid "You don't have permission to review it."
-msgstr ""
+msgstr "你没有权限浏览该内容。"
 
 msgid "Please select one or more versions in the list above."
 msgstr "请选择上述列表中的一个或多个版本。"
@@ -5813,10 +5813,10 @@ msgid "Notify me about new listed versions"
 msgstr "有新上架版本时通知我"
 
 msgid "Allow resubmission"
-msgstr ""
+msgstr "允许重复提交"
 
 msgid "Deny resubmission"
-msgstr ""
+msgstr "禁止重复提交"
 
 msgid "Force-disable add-on"
 msgstr "强制禁用附加组件"
@@ -6026,7 +6026,7 @@ msgid "presence of a version"
 msgstr ""
 
 msgid "version channel"
-msgstr ""
+msgstr "版本通道"
 
 msgid "add-on status"
 msgstr ""
@@ -6102,7 +6102,7 @@ msgid "Maximum query length exceeded."
 msgstr "超出最大查询长度。"
 
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr ""
+msgstr "未能找到 ID 为 \"{}\" 的附加组件。"
 
 msgid "You do not own this addon."
 msgstr "您不拥有此附加组件。"
