@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 13:57+0000\n"
+"PO-Revision-Date: 2020-04-25 13:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -507,10 +507,10 @@ msgid "Review Unlisted"
 msgstr "Přepruwowanska přispomnjenka"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Tute blokowanje je so ze zestarjeneho blokěrowanja Kinto importował, kotrež na regularnych wurazach bazuje."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Přewjedźene změny so w zestarjenej lisćinje blokowanjow NJEaktualizuja - dyrbiće manuelnu změnu přez webowy powjerch zarjadowanja Kinto přewjesć."
 
 #, fuzzy, python-format
 msgid "Delete Multiple %(name)s"
