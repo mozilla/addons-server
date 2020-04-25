@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 07:23+0000\n"
+"PO-Revision-Date: 2020-04-25 07:33+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -534,7 +534,7 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUID-uri de suplimente negăsite"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr "Următoarele blocuri au fost importate dintr-un bloc kinto moștenit pe bază de regex."
+msgstr "Următoarele blocaje au fost importate dintr-un blocaj kinto moștenit pe bază de regex."
 
 msgid "Save"
 msgstr "Salvează"
@@ -572,13 +572,13 @@ msgid "users"
 msgstr "utilizatori"
 
 msgid "Edit Block"
-msgstr "Editează blocul"
+msgstr "Editează blocajul"
 
 msgid "versions"
 msgstr "versiuni"
 
 msgid "Included in legacy blocklist."
-msgstr "Incluse în lista de blocări moștenite."
+msgstr "Inclus în lista de blocări moștenite."
 
 msgid "{addon} was created."
 msgstr "{addon} a fost creat."
@@ -900,22 +900,22 @@ msgid "User {user} api key reset."
 msgstr "Cheia API a utilizatorului {user} a fost resetată."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blocajul pentru {0} a fost adăugat în listă."
 
 msgid "Block added"
-msgstr ""
+msgstr "Blocajul a fost adăugat"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blocajul pentru {0} a fost editat în listă."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blocajul a fost editat"
 
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Blocajul pentru {0} a fost șters din lista de blocări."
+msgstr "Blocajul pentru {0} a fost șters din listă."
 
 msgid "Block deleted"
-msgstr "Bloc șters"
+msgstr "Blocajul a fost șters"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -5997,9 +5997,8 @@ msgstr "Activează aprobarea automată a versiunilor listate"
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Aprobarea automată este în prezent dezactivată până la {date}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Activează aprobarea automată"
+msgstr "Șterge întârzierea suplimentară pentru aprobare automată"
 
 msgid "Clear information request"
 msgstr "Șterge cererea de informații"
@@ -6052,9 +6051,8 @@ msgstr "Metodă:"
 msgid "Source:"
 msgstr "Sursă:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Sursă:"
+msgstr "URL sursă:"
 
 msgid "Dismiss this announcement"
 msgstr "Respinge acest anunț"
@@ -6184,36 +6182,29 @@ msgstr[2] "Solicitări de informații expirate ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Începe"
+msgstr "stare rezultată"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Previzualizare versiuni listate"
+msgstr "prezența unei versiuni"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Versiune semnată"
+msgstr "canalul versiunii"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Starea suplimentului"
+msgstr "starea suplimentului"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Vizibilitate la listare"
+msgstr "vizibilitatea la listare a suplimentului"
 
-#, fuzzy
 msgid "file status"
-msgstr "Starea site-ului"
+msgstr "starea fișierului"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} a fost semnat."
+msgstr "semnătura fișierului"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6277,9 +6268,8 @@ msgstr "Combinație nevalidă a parametrilor „%s\", „%s\" și „%s\"."
 msgid "Maximum query length exceeded."
 msgstr "S-a depășit lungimea maximă de interogare."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Nu am găsit niciun supliment cu guid „{}\"."
+msgstr "Nu am găsit niciun supliment cu ID „{}”."
 
 msgid "You do not own this addon."
 msgstr "Nu deții acest supliment."
@@ -6298,17 +6288,14 @@ msgstr "Versiunea nu corespunde cu fișierul manifest."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Versiunea deja există. Ultima versiune este: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Numai WebExtensions pot omite GUID-ul"
+msgstr "Numai WebExtensions pot omite ID-ul de supliment"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Te rugăm să specifici GUID-ul suplimentului tău în manifest dacă are mai mult de 64 de caractere."
+msgstr "Te rugăm să specifici ID-ul suplimentului în manifest dacă are mai mult de 64 de caractere."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "GUID nevalid în URL"
+msgstr "ID nevalid de supliment în URL sau pachet"
 
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
 msgstr "Nu poți adăuga versiuni listate la un set de suplimente în stare de „invizibile”."
@@ -6656,13 +6643,12 @@ msgstr "Utilizatorilor „%(users)s” li s-a pus interdicție."
 msgid "Ban selected users"
 msgstr "Pune o interdicție utilizatorilor selectați"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Utilizatorilor „%(users)s” li s-a resetat cheia API."
+msgstr "Utilizatorilor „%(users)s” li s-a(u) resetat sesiunea/sesiunile."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Șterge versiunea"
+msgstr "Resetează sesiunea"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6731,11 +6717,8 @@ msgstr ""
 "Înainte de a începe, te rugăm să citești și să accepți Acordul de distribuție pentru suplimente Firefox, precum și Politicile și regulile noastre pentru recenzii. Acordul de distribuție pentru "
 "suplimente Firefox trimite și la Declarația noastră de confidențialitate, care explică modul în care îți gestionăm informațiile."
 
-#, fuzzy
 msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Înainte de a începe, te rugăm să citești și să accepți Acordul de distribuție pentru suplimente Firefox, precum și Politicile și regulile noastre pentru recenzii. Acordul de distribuție pentru "
-"suplimente Firefox trimite și la Declarația noastră de confidențialitate, care explică modul în care îți gestionăm informațiile."
+msgstr "Te rugăm să citești și să accepți Acordul de distribuție Firefox, precum și Politicile și regulile noastre pentru recenzii intrând pe {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "un dezvoltator de suplimente răspunde la recenzia mea"
@@ -6767,9 +6750,8 @@ msgstr "Notificări utilizatori"
 msgid "Ban"
 msgstr "Interdicție"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Șterge versiunea"
+msgstr "Resetează sesiunea/sesiunile"
 
 msgid "Delete picture"
 msgstr "Șterge imaginea"
