@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 11:05+0000\n"
+"PO-Revision-Date: 2020-04-25 11:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1574,20 +1574,20 @@ msgid "New"
 msgstr "Nowše"
 
 msgid "Running"
-msgstr ""
+msgstr "Wuwjedujo se"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Pśetorgnjony"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Pśetergujo se"
 
 #, fuzzy
 msgid "Completed"
 msgstr "Njedopołny"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Planowany"
 
 msgid "Core"
 msgstr "Jědro"
@@ -2500,7 +2500,7 @@ msgid "More information on Creative Commons licenses"
 msgstr "Dalšne informacije wó licencach Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Waš dodank jo tuchylu na „njewidobny“ stajony."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
@@ -3161,20 +3161,20 @@ msgid "Visit the Extension Workshop"
 msgstr "Źěłowa kupka Rozšyrjenja"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Z nami zwězaś"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
 msgstr "Wuwijaŕ"
 
 msgid "For end users"
-msgstr ""
+msgstr "Za kóńcnych wužywarjow"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matriks"
 
 #, fuzzy
 msgid "Add-on Developers Mailing List"
@@ -3193,17 +3193,17 @@ msgstr "IP-adresa"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Som wobjadny, až Mozilla wužywa móje daty tak, ako jo wopisane w toś tom %(link_open)spokazu priwatnosći%(link_close)s."
 
 #, fuzzy
 msgid "Sign Up"
 msgstr "Wótzjawiś"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Wjeliki źěk!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "Jolic hyšći njejsćo abonement powěsćowego lista Mozilla wobkšuśił, musyśo to něnto cyniś. Pšosym glědajśo do dochada posta abo papjernika za mejlku wót nas."
 
 msgid "Resources"
 msgstr "Resurse"
@@ -3222,7 +3222,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Tłocašk „Wobstarajśo se dodank“"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program dopóruconych rozšyrjenjow"
 
 msgid "Contribute"
 msgstr "Pósćiś"
@@ -3255,7 +3255,7 @@ msgid "See how"
 msgstr "Glědajśo, kak źo"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Cyńśo sobu"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -5647,14 +5647,14 @@ msgid "Add-on Review Guide"
 msgstr "Rozpokazanje za pśeglědowanje dodankow"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Pśez scannery markěrowane"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pśez scannery markěrowany ({0})"
+msgstr[1] "Pśez scannery markěrowane ({0})"
+msgstr[2] "Pśez scannery markěrowane ({0})"
+msgstr[3] "Pśez scannery markěrowane ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatiski pśizwólone dodanki"
@@ -5957,7 +5957,7 @@ msgid "Previously deleted entries"
 msgstr "Do togo wulašowane zapiski"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "To jo dopórucone rozšyrjenje."
 
 #, fuzzy
 msgid "You don't have permission to review it."
