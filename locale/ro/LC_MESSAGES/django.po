@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 04:50+0000\n"
+"PO-Revision-Date: 2020-04-25 05:04+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -513,10 +513,10 @@ msgid "Review Unlisted"
 msgstr "Revizuire nelistată"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Acest bloc a fost importat dintr-un bloc kinto moștenit pe bază de regex."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Orice modificare realizată NU se va actualiza în lista de blocuri moștenită - trebuie să faci o modificare manuală în interfața web de administrare kinto."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -912,10 +912,10 @@ msgid "Block edited"
 msgstr ""
 
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Blochează pentru {0} șterse din lista de blocare."
+msgstr "Blocul pentru {0} a fost șters din lista de blocare."
 
 msgid "Block deleted"
-msgstr "Blochează-le pe cele șterse"
+msgstr "Bloc șters"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -987,9 +987,8 @@ msgstr "Dezvoltator"
 msgid "Extension"
 msgstr "Extensie"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Recenzie actualizată la tema completă"
+msgstr "Temă completă perimată"
 
 msgid "Dictionary"
 msgstr "Dicționar"
@@ -1016,9 +1015,8 @@ msgstr "Temă (statică)"
 msgid "Extensions"
 msgstr "Extensii"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Teme complete"
+msgstr "Teme complete perimate"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1552,16 +1550,14 @@ msgstr "Imagine de calitate proastă, deformată sau goală"
 msgid "Header image alignment problem"
 msgstr "Problemă de aliniere a imaginii antetului"
 
-#, fuzzy
 msgid "No action"
-msgstr "Mai multe acțiuni"
+msgstr "Nicio acțiune"
 
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Dezactivează aprobarea automată"
+msgstr "Amână aprobarea automată"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -1575,9 +1571,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Mai noi"
+msgstr "Nou"
 
 msgid "Running"
 msgstr ""
@@ -1588,9 +1583,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Incompletă"
+msgstr "Finalizat"
 
 msgid "Scheduled"
 msgstr ""
@@ -1893,11 +1887,12 @@ msgstr "Pictograma trebuie să fie pătrată (aceeași lățime și înălțime)
 msgid "There was an error uploading your preview."
 msgstr "A apărut o eroare la încărcarea previzualizării tale."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "Ultima versiune aprobată a unei extensii recomandate nu poate fi ștearsă sau dezactivată. Te rugăm să contactezi administratorii AMO dacă ai nevoie de ajutor în acest sens."
+msgstr ""
+"Ultima versiune aprobată a acestei extensii recomandate nu poate fi ștearsă sau dezactivată deoarece versiunea anterioară nu a fost aprobată pentru recomandare. Contactează administratorii AMO dacă "
+"ai nevoie de ajutor."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2424,9 +2419,8 @@ msgstr "Selectează o pictogramă pentru suplimentul tău:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Folosit în listele de suplimente, precum rezultate la căutare și suplimente promovate."
+msgstr "Folosit în listele de suplimente, cum ar fi rezultatele la căutări."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2472,9 +2466,8 @@ msgstr "PNG și JPG suportate, PNG recomandat. Mărimea maximă și recomandată
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Dimensiunea minimă este de 1000x750 și este necesar un raport de 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Capturile de ecran pe pagina de produs îi sporesc considerabil șansele de a fi instalat și promovat pe pagina de start."
+msgstr "Capturile de ecran din pagina produsului îi sporesc șansele de a fi instalat."
 
 msgid "Continue"
 msgstr "Continuă"
@@ -2738,20 +2731,17 @@ msgstr "Listarea ta va avea un succes mai mare dacă adaugi o descriere detaliat
 msgid "Manage Listing"
 msgstr "Gestionează listarea"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Poți edita această versiune și pentru a adăuga note privind versiunea sau codul sursă, dacă propunerea ta include cod minificat, obfuscat sau compilat."
+msgstr "Poți edita această versiune și pentru a adăuga note privind versiunea sau cod-sursă, dacă propunerea ta include cod minificat, legate în lanț sau generat altminteri de mașini."
 
 msgid "Edit version {0}"
 msgstr "Editează versiunea {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Versiune semnată"
+msgstr "În așteptarea semnării versiunii"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Ai terminat! Această versiune va fi disponibilă după ce trece de revizuire. Vei fi anunțat când s-a finalizat revizuirea."
+msgstr "Ai terminat! Această versiune va primi în curând semnătura pentru autodistribuție. Vei fi anunțat(ă) pe e-mail când fișierul semnat este gata pentru descărcare."
 
 msgid "Go to My Submissions"
 msgstr "Mergi la Propunerile mele"
@@ -2810,11 +2800,10 @@ msgstr ""
 "Detaliile (inclusiv versiunea necesară și instrucțiuni de instalare) oricăror programe utilizate în procesul de compilare (de exemplu: <span class=\"tech-emphasis\">nod</span> și versiunea <span "
 "class=\"tech-emphasis\">npm</span> utilizată)."
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">Notă:</span> Fișierele sursă (în afara librăriilor cu sursă deschisă de la terți) nu pot fi transcompilate, obfuscate, minificate sau generate altminteri cu "
-"mașini."
+"<span class=\"instruction-emphasis\">Notă:</span> Fișierele sursă (în afara bibliotecilor de la terți cu sursă deschisă) nu pot fi transcompilate, legate în lanț, minificate sau generate altminteri "
+"de mașini."
 
 msgid "How to Submit:"
 msgstr "Cum se transmit propunerile:"
@@ -3145,9 +3134,8 @@ msgstr ""
 "Dacă suplimentul tău transmite orice date de pe calculatorul utilizatorului, este necesară o politică de confidențialitate care să explice ce date sunt transmise și cum sunt utilizate. Are relevanță"
 " numai pentru suplimentele listate."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Dacă suplimentul tău conține cod binar sau obfuscat, în afară de librăriile cunoscute, încarcă sursele acestuia pentru examinare."
+msgstr "Dacă suplimentul conține cod minificat, legat în lanț sau generat altminteri de mașini, în afară de bibliotecile cunoscute, încarcă-i sursele pentru revizuire."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Te rugăm să incluzi instrucțiuni despre reproducerea fișierului final al suplimentului, fie într-un fișier README, fie în Notele către revizor pentru această versiune."
@@ -3162,9 +3150,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Atelier de lucru pentru extensii"
+msgstr "Intră în atelierul de extensii"
 
 msgid "Connect with us"
 msgstr ""
@@ -3172,9 +3159,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "Dezvoltator"
+msgstr "Pentru dezvoltatori"
 
 msgid "For end users"
 msgstr ""
@@ -3183,28 +3169,24 @@ msgid "Matrix"
 msgstr ""
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Hubul dezvoltatorilor de suplimente"
+msgstr "Listă de corespondență pentru dezvoltatorii de suplimente"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Dezvoltare de extensii"
+msgstr "Buletin de știri pentru dezvoltatorii de extensii"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Adresă IP"
+msgstr "Adrese de e-mail"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Ieșire"
+msgstr "Înscriere"
 
 msgid "Thanks!"
 msgstr ""
@@ -3215,9 +3197,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Resurse"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: creează și testează extensii"
@@ -3267,9 +3248,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Citește mai multe despre politica de revizuire a codului-sursă."
+msgstr "Află mai multe despre comunitatea de dezvoltatori"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listat pe acest site după ce a trecut cu succes revizuirea codului. Actualizările automate sunt gestionate de acest site."
@@ -3307,20 +3287,17 @@ msgstr "Nicio fotografie"
 msgid "User Photo"
 msgstr "Fotografia utilizatorului"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Profilul meu"
+msgstr "Profil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Trimite o versiune nouă"
+msgstr "Trimite sau gestionează extensii"
 
 msgid "Customize Firefox"
 msgstr "Personalizează Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Află cum să creezi un supliment"
+msgstr "Află cum poți crea o extensie"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -3364,9 +3341,8 @@ msgstr "Introdu opțional orice informații care ar putea fi utile revizorului a
 msgid "Source code"
 msgstr "Cod sursă"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Dacă suplimentul conține cod binar sau obfuscat, pune sursa la dispoziția revizorilor aici."
+msgstr "Dacă suplimentul conține cod minificat, legat în lanțuri sau generat altminteri de mașini, fă sursa disponibilă aici pentru revizori."
 
 msgid "File {file_id} ({platform})"
 msgstr "Fișier {file_id} ({platform})"
@@ -3745,9 +3721,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Personalizează gesturile din mouse {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Personalizează gesturile din mouse. Descoperă o nouă modalitate de navigare cu peste 50 de gesturi utile din mouse."
+msgstr "Personalizează gesturile din mouse. Descoperă un mod nou de navigare cu peste 50 de configurații."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4011,9 +3986,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navigare dinamică {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Folosește gesturi din mouse ca să închizi file, să mergi înapoi cu o pagină, să reîncarci pagini și multe altele."
+msgstr "Folosește gesturile din mouse pentru închiderea filelor, navigarea prin pagini și multe altele."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4932,9 +4906,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Actualizări meteo instant de pe tot globul."
+msgstr "Obține actualizări meteo direct în browser."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
