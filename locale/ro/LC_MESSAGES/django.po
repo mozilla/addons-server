@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 04:43+0000\n"
+"PO-Revision-Date: 2020-04-25 04:50+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -126,10 +126,10 @@ msgid "Ratings"
 msgstr "Evaluări"
 
 msgid "Reviewer Tools (listed)"
-msgstr "Unelte pentru revizori (enumerate)"
+msgstr "Unelte pentru revizori (listate)"
 
 msgid "Reviewer Tools (unlisted)"
-msgstr "Unelte pentru revizori (neenumerate)"
+msgstr "Unelte pentru revizori (nelistate)"
 
 msgid "Reviewer links"
 msgstr "Linkuri pentru revizori"
@@ -442,8 +442,8 @@ msgstr "Versiuni valide de aplicație"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
-"Suplimente trimise către Suplimente Mozilla trebuie să aibă un fișier manifest care să suporte cel puțin una dintre aplicațiile de mai jos. Numai versiunile enumerate mai jos sunt permise pentru "
-"aceste aplicații."
+"Suplimente trimise către Suplimente Mozilla trebuie să aibă un fișier manifest care să suporte cel puțin una dintre aplicațiile de mai jos. Numai versiunile de mai jos sunt permise pentru aceste "
+"aplicații."
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -518,13 +518,12 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Respinge multiple versiuni"
+msgstr "Șterge mai multe %(name)s"
 
-#, fuzzy
 msgid "Home"
-msgstr "Pagină de start"
+msgstr "Acasă"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -549,13 +548,11 @@ msgstr "Șterge"
 msgid "Update"
 msgstr "Actualizează"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Mergi la Propunerile mele"
+msgstr "Respinge propunerea"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Mergi la Propunerile mele"
+msgstr "Aprobă propunerea"
 
 #, python-format
 msgid "Add %(name)s"
@@ -564,24 +561,21 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "Trimite versiune"
+msgstr "Trimite"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "Utilizatori"
+msgstr "utilizatori"
 
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
-msgstr "Versiuni"
+msgstr "versiuni"
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -917,20 +911,17 @@ msgstr ""
 msgid "Block edited"
 msgstr ""
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Versiunea {0} a fost ștearsă din {addon}."
+msgstr "Blochează pentru {0} șterse din lista de blocare."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Supliment șters."
+msgstr "Blochează-le pe cele șterse"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} eliminat din {collection}."
+msgstr "GUID pentru {addon} eliminat din DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -938,13 +929,11 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Cheia API a utilizatorului {user} a fost resetată."
+msgstr "Resetare sesiune(i) {user}."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Utilizatorul {user} a editat, motivul: {1}"
+msgstr "Utilizatorul {user} cu trafic limitat pentru domeniul „{0}”"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1049,7 +1038,7 @@ msgid "Plugins"
 msgstr "Pluginuri"
 
 msgid "Deprecated LWTs"
-msgstr "LWT perimatee"
+msgstr "LWT perimate"
 
 msgid "Themes (Static)"
 msgstr "Teme (Statice)"
@@ -5587,9 +5576,8 @@ msgstr "Ultima actualizare"
 msgid "Listed versions needing human review ({0})"
 msgstr "Versiuni listate care necesită o revizuire de către un om ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "O altă recenzie în așteptare ({0})"
+msgstr "Versiuni nelistate care necesită o revizuire de către un om ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Această acțiune va aproba, semna și publica această versiune. Comentariile vor fi trimise dezvoltatorului."
@@ -6042,13 +6030,11 @@ msgstr "Înapoi la supliment"
 msgid "Update add-on block"
 msgstr ""
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Dezactivează aprobarea automată"
+msgstr "Dezactivează aprobarea automată a versiunilor listate"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Activează aprobarea automată"
+msgstr "Activează aprobarea automată a versiunilor listate"
 
 #, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
@@ -6367,9 +6353,8 @@ msgstr "Te rugăm să specifici GUID-ul suplimentului tău în manifest dacă ar
 msgid "Invalid Add-on ID in URL or package"
 msgstr "GUID nevalid în URL"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Nu poți adăuga versiuni la un supliment cu starea: %s."
+msgstr "Nu poți adăuga versiuni listate la un set de suplimente în stare de „invizibile”."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Nu poți adăuga o versiune listată la acest supliment prin API din cauză că lipsesc metadate. Te rugăm să transmiți prin intermediul site-ului."
