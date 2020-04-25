@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 07:51+0000\n"
+"PO-Revision-Date: 2020-04-25 08:03+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -3277,7 +3277,7 @@ msgid "Get involved"
 msgstr "Implică-te"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Conectează-te cu mii de dezvoltatori și descoperă mai multe căi prin care poți contribui la ecosistemul de extensii."
 
 msgid "Learn more about the developer community"
 msgstr "Află mai multe despre comunitatea de dezvoltatori"
@@ -3331,13 +3331,13 @@ msgid "Learn how to make an extension"
 msgstr "Află cum poți crea o extensie"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Ești gata să trimiți sau să îți gestionezi extensia?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Autentifică-te pe centrul dezvoltatorilor ca să trimiți sau să gestionezi extensii și teme."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Creează-ți un cont de dezvoltator sau autentifică-te pe centrul dezvoltatorilor"
 
 msgid "Manage Version {0}"
 msgstr "Gestionează versiunea {0}"
@@ -3826,7 +3826,7 @@ msgstr "Lasă urme digitale curate. Fă Firefox să uite datele site-urilor web,
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Nu este nevoie să scrii același lucru iar și iar. Salvează textele introduse frecvent și lipeștele în orice moment."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4934,7 +4934,7 @@ msgstr "Unele site-uri întâmpină dificultăți la redarea videoclipurilor în
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Selectezi, sortezi și execuți descărcări mai rapid."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4942,23 +4942,23 @@ msgstr "Obține actualizări meteo direct în browser."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Ștergi cookie-uri, istoricul de navigare și fișiere din cache dintr-un singur clic."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Elimini elementele de urmărire din linkurile web."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Obții dosare de marcaje de fluxuri RSS populate automat."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organizezi ușor tone de file deschise."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Creezi și personalizezi grupuri de file."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4990,7 +4990,7 @@ msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Unelte și organizatoare de file"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5494,10 +5494,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Aprobare automată întârziată temporar"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Aprobare automată întârziată pe termen nelimitat"
 
 msgid "Is locked by a reviewer"
 msgstr "Este blocat de un revizor"
@@ -5521,7 +5521,7 @@ msgid "You can't submit an empty comment."
 msgstr "Nu poți trimite un comentariu gol."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Nu poți trimite un număr de linie fără să îl asociezi la o denumire de fișier."
 
 msgid "Type"
 msgstr "Tip"
@@ -5607,7 +5607,7 @@ msgid "Block Multiple Versions"
 msgstr "Blochează mai multe versiuni"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Va dezactiva în mod silențios versiunile aprobate selectate și va deschide pagina de administrare pentru crearea de blocaje."
 
 msgid "Confirm Multiple Versions"
 msgstr "Confirmă mai multe versiuni"
@@ -5963,7 +5963,7 @@ msgid "Previously deleted entries"
 msgstr "Intrări șterse anterior"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Este o extensie recomandată."
 
 msgid "You don't have permission to review it."
 msgstr "Nu ai permisiune de revizuire."
@@ -6017,7 +6017,7 @@ msgid "Block add-on"
 msgstr "Blochează suplimentul"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Actualizează blocarea suplimentului"
 
 msgid "Disable Listed Auto-Approval"
 msgstr "Dezactivează aprobarea automată a versiunilor listate"
@@ -6074,7 +6074,7 @@ msgid "No reviews found for this period."
 msgstr "Nu s-a găsit nicio recenzie pentru această perioadă."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Origine:"
 
 msgid "Method:"
 msgstr "Metodă:"
@@ -6111,7 +6111,7 @@ msgid "Newer"
 msgstr "Mai noi"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} (de) versiuni marcate de scanere pe alte pagini."
 
 msgid "Recent Points"
 msgstr "Puncte recente"
@@ -6162,7 +6162,7 @@ msgid "Weight:"
 msgstr "Greutate:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Marcat de scanere automate"
 
 msgid "Download"
 msgstr "Descarcă"
@@ -6211,13 +6211,13 @@ msgstr[1] "Solicitări de informații expirate ({0})"
 msgstr[2] "Solicitări de informații expirate ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "există reguli corelate"
 
 msgid "result state"
 msgstr "stare rezultată"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "tot în afară de această regulă"
 
 msgid "presence of a version"
 msgstr "prezența unei versiuni"
@@ -6238,38 +6238,38 @@ msgid "file signature"
 msgstr "semnătura fișierului"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Aceasta este denumirea exactă a regulii folosite de un scaner."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Când nu este bifat, rezultatele scanerului nu vor fi restricționate de această regulă și acțiunea nu va fi executată."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Regulile Yara trebuie să aibă o definiție"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Denumirea regulii din definiție trebuie corelată la denumirea regulii de scaner"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "În definiție este permisă numai o singură regulă Yara"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definiția este nevalidă: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "A apărut o eroare la compilarea definiției"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Execută această regulă și pe suplimentele care au fost dezactivate forțat."
 
 msgid "Abort"
-msgstr ""
+msgstr "Abandonează"
 
 msgid "Run"
-msgstr ""
+msgstr "Execută"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Util când rezultatul scanerului este adevărat pozitiv dar suplimentul nu este rău intenționat"
 
 msgid "Revert report"
 msgstr "Readu raportul la starea anterioară"
@@ -6793,6 +6793,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"La suplimentul tău a fost adăugat următorul autor %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6818,6 +6821,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"În suplimentul tău a fost modificat următorul autor %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6826,6 +6832,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )\n"
 msgstr ""
+"Următorul autor a fost eliminat din supliment %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
