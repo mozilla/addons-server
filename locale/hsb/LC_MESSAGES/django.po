@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 20:44+0000\n"
+"PO-Revision-Date: 2020-04-25 20:48+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -539,13 +539,11 @@ msgstr "Zhašeć"
 msgid "Update"
 msgstr "Aktualizować"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Moje zapodaća sej wobhladać"
+msgstr "Zapodaće wotpokazać"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Moje zapodaća sej wobhladać"
+msgstr "Zapodaće schwalić"
 
 #, python-format
 msgid "Add %(name)s"
@@ -554,24 +552,21 @@ msgstr "%(name)s přidać"
 msgid "Add-on GUIDs (one per line)"
 msgstr "GUID přidatkow (jedyn na linku)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "Wersiju zapodać"
+msgstr "Zapodać"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "Wužiwarjo"
+msgstr "wužiwarjo"
 
 msgid "Edit Block"
 msgstr "Blok wobdźěłać"
 
-#, fuzzy
 msgid "versions"
-msgstr "Wersije"
+msgstr "wersije"
 
 msgid "Included in legacy blocklist."
 msgstr "W zestarjenej lisćinje blokowanjow wobsahowane."
@@ -907,20 +902,17 @@ msgstr "Blokowanje za {0} je so w lisćinje blokowanjow wobdźěłało."
 msgid "Block edited"
 msgstr "Blok je so wobdźěłał"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Wersija {0} přidatka {addon} je so zhašała."
+msgstr "Blokowanje {0} je so z lisćiny blokowanjow zhašało."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Přidatk je so zhašał."
+msgstr "Blokowanje je so zhašało"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID za {addon} je so DeniedGuid přidał."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "Přidatk {addon} je so ze zběrki {collection} wotstronił."
+msgstr "GUID {addon} je so ze DeniedGuid wotstronił."
 
 msgid "Block {1} action for {0} signed off."
 msgstr "Blokowanje akcije {1} za {0} zběhnjene."
@@ -928,9 +920,8 @@ msgstr "Blokowanje akcije {1} za {0} zběhnjene."
 msgid "Block action signoff"
 msgstr "Blokowanje akcije zběhnyć"
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "API-kluč wužiwarja {user} je so wróćo stajił."
+msgstr "Posedźenja wužiwarja  {user} su so wróćo stajili."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
