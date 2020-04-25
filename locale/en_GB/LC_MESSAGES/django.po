@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 14:05+0000\n"
+"PO-Revision-Date: 2020-04-25 14:14+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -125,17 +125,14 @@ msgstr "Only latest versions of addons can have notes added."
 msgid "Ratings"
 msgstr "Ratings"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Reviewer Tools"
+msgstr "Reviewer Tools (listed)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Reviewer Tools"
+msgstr "Reviewer Tools (unlisted)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Reviewer Tools"
+msgstr "Reviewer links"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Add-on not on AMO -"
@@ -299,11 +296,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Oops"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
+msgstr ""
+"<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
+"this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 
 msgid "No results found"
 msgstr "No results found"
@@ -490,20 +489,17 @@ msgstr "GUID %(guid)s is already in a pending Submission"
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Blocks to be updated are different because Min or Max version has changed."
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Invalid version range."
+msgstr "Invalid version"
 
 msgid "Min version can not be greater than Max version"
 msgstr "Min version can not be greater than Max version"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Review requested"
+msgstr "Review Listed"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Review note"
+msgstr "Review Unlisted"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "This block was imported from a regex based legacy kinto Block."
@@ -511,13 +507,12 @@ msgstr "This block was imported from a regex based legacy kinto Block."
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Reject Multiple Versions"
+msgstr "Delete Multiple %(name)s"
 
-#, fuzzy
 msgid "Home"
-msgstr "Homepage"
+msgstr "Home"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -542,13 +537,11 @@ msgstr "Delete"
 msgid "Update"
 msgstr "Update"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Go to My Submissions"
+msgstr "Reject Submission"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Go to My Submissions"
+msgstr "Approve Submission"
 
 #, python-format
 msgid "Add %(name)s"
@@ -557,24 +550,21 @@ msgstr "Add %(name)s"
 msgid "Add-on GUIDs (one per line)"
 msgstr "Add-on GUIDs (one per line)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "Submit Version"
+msgstr "Submit"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr "%(count)s Add-on GUIDs"
 
-#, fuzzy
 msgid "users"
-msgstr "Users"
+msgstr "users"
 
 msgid "Edit Block"
 msgstr "Edit Block"
 
-#, fuzzy
 msgid "versions"
-msgstr "Versions"
+msgstr "versions"
 
 msgid "Included in legacy blocklist."
 msgstr "Included in legacy blocklist."
@@ -908,20 +898,17 @@ msgstr "Block for {0} edited in Blocklist."
 msgid "Block edited"
 msgstr "Block edited"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Version {0} deleted from {addon}."
+msgstr "Block for {0} deleted from Blocklist."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Add-on deleted."
+msgstr "Block deleted"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID for {addon} added to DeniedGuid."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} removed from {collection}."
+msgstr "GUID for {addon} removed from DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr "Block {1} action for {0} signed off."
@@ -929,13 +916,11 @@ msgstr "Block {1} action for {0} signed off."
 msgid "Block action signoff"
 msgstr "Block action signoff"
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "User {user} api key reset."
+msgstr "User {user} session(s) reset."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "User {user} edited, reason: {1}"
+msgstr "User {user} throttled for scope \"{0}\""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -988,9 +973,8 @@ msgstr "Developer"
 msgid "Extension"
 msgstr "Extension"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Updated Complete Theme Review"
+msgstr "Deprecated Complete Theme"
 
 msgid "Dictionary"
 msgstr "Dictionary"
@@ -1016,9 +1000,8 @@ msgstr "Theme (Static)"
 msgid "Extensions"
 msgstr "Extensions"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Complete Themes"
+msgstr "Deprecated Complete Themes"
 
 msgid "Dictionaries"
 msgstr "Dictionaries"
@@ -1534,16 +1517,14 @@ msgstr "Low-quality, stretched, or blank image"
 msgid "Header image alignment problem"
 msgstr "Header image alignment problem"
 
-#, fuzzy
 msgid "No action"
-msgstr "More Actions"
+msgstr "No action"
 
 msgid "Flag for human review"
 msgstr "Flag for human review"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Disable Auto-Approval"
+msgstr "Delay auto-approval"
 
 msgid "Delay auto-approval indefinitely"
 msgstr "Delay auto-approval indefinitely"
@@ -1557,9 +1538,8 @@ msgstr "False positive"
 msgid "Inconclusive"
 msgstr "Inconclusive"
 
-#, fuzzy
 msgid "New"
-msgstr "Newer"
+msgstr "New"
 
 msgid "Running"
 msgstr "Running"
@@ -1570,9 +1550,8 @@ msgstr "Aborted"
 msgid "Aborting"
 msgstr "Aborting"
 
-#, fuzzy
 msgid "Completed"
-msgstr "Incomplete"
+msgstr "Completed"
 
 msgid "Scheduled"
 msgstr "Scheduled"
@@ -1867,11 +1846,12 @@ msgstr "Icon must be square (same width and height)."
 msgid "There was an error uploading your preview."
 msgstr "There was an error uploading your preview."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "The latest approved version of a Recommended extension cannot be deleted or disabled. Please contact AMO Admins if you need help with this."
+msgstr ""
+"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
+"with this."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2404,11 +2384,8 @@ msgstr "Select an icon for your add-on:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
-"Used in listings of add-ons, like search results\n"
-"                            and featured add-ons."
+msgstr "Used in listings of add-ons, like search results."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2454,9 +2431,8 @@ msgstr "PNG and JPG supported, PNG recommended. The maximum and recommended size
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Minimum size is 1000x750, and a ratio of 4:3 is required."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr "Having screenshots in your product page greatly increases its chances of being installed."
 
 msgid "Continue"
 msgstr "Continue"
@@ -2715,20 +2691,17 @@ msgstr "Your listing will be more successful by adding a detailed description an
 msgid "Manage Listing"
 msgstr "Manage Listing"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
+msgstr "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 
 msgid "Edit version {0}"
 msgstr "Edit version {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Version Signed"
+msgstr "Version Signature Pending"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
+msgstr "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
 
 msgid "Go to My Submissions"
 msgstr "Go to My Submissions"
@@ -3825,7 +3798,7 @@ msgstr "Leave a clean digital trail. Make Firefox forget web site data like cook
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
+msgstr "No need to write the same thing over and over. Save frequently-entered text to paste any time."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4930,7 +4903,7 @@ msgstr "Some sites have difficulty playing videos on Firefox for Android. This e
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Select, sort, and run your downloads faster."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4939,23 +4912,23 @@ msgstr "Instant weather updates from around the world."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Delete cookies, browsing history, and cached files with just a single click."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Remove tracking elements from web links."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Get auto-populated RSS feed bookmark folders."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Easily organise tons of open tabs."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Create and customise tab groups."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4969,11 +4942,11 @@ msgstr "Automatically erase cookies after you close a tab."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Block all ads—video, pop-ups, banners & more."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Watch streaming media with friends and family anywhere."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4989,7 +4962,7 @@ msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Tab organisers and tools"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5490,10 +5463,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Auto-approval delayed temporarily"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Auto-approval delayed indefinitely"
 
 msgid "Is locked by a reviewer"
 msgstr "Is locked by a reviewer"
@@ -5519,7 +5492,7 @@ msgid "You can't submit an empty comment."
 msgstr "You cannot submit a language pack"
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "You can't submit a line number without associating it to a filename."
 
 msgid "Type"
 msgstr "Type"
@@ -5604,7 +5577,7 @@ msgid "Block Multiple Versions"
 msgstr "Reject Multiple Versions"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "This will disable the selected approved versions silently, and open up the block creation admin page."
 
 #, fuzzy
 msgid "Confirm Multiple Versions"
@@ -5648,12 +5621,12 @@ msgid "Add-on Review Guide"
 msgstr "Add-on Review Guide"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Flagged By Scanners"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Flagged By Scanners ({0})"
+msgstr[1] "Flagged By Scanners ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Auto-Approved Add-ons"
@@ -5954,7 +5927,7 @@ msgid "Previously deleted entries"
 msgstr "Previously deleted entries"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "This is a recommended extension."
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -6013,7 +5986,7 @@ msgid "Block add-on"
 msgstr "Back to add-on"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Update add-on block"
 
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
@@ -6074,7 +6047,7 @@ msgid "No reviews found for this period."
 msgstr "No reviews found for this period."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Origin:"
 
 msgid "Method:"
 msgstr "Method:"
@@ -6112,7 +6085,7 @@ msgid "Newer"
 msgstr "Newer"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} versions flagged by scanners on other pages."
 
 msgid "Recent Points"
 msgstr "Recent Points"
@@ -6163,7 +6136,7 @@ msgid "Weight:"
 msgstr "Weight:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Flagged by automated scanners"
 
 msgid "Download"
 msgstr "Download"
@@ -6205,14 +6178,14 @@ msgstr[0] "Expired Info Request ({0})"
 msgstr[1] "Expired Info Requests ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "presence of matched rules"
 
 #, fuzzy
 msgid "result state"
 msgstr "Get started"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "all but this rule"
 
 #, fuzzy
 msgid "presence of a version"
@@ -6239,38 +6212,38 @@ msgid "file signature"
 msgstr "{file} was signed."
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "This is the exact name of the rule used by a scanner."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "When unticked, the scanner results will not be bound to this rule and the action will not be executed."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara rules should have a definition"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "The name of the rule in the definition should match the name of the scanner rule"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Only one Yara rule is allowed in the definition"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "The definition is not valid: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "An error occurred when compiling the definition"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Run this rule on add-ons that have been force-disabled as well."
 
 msgid "Abort"
-msgstr ""
+msgstr "Abort"
 
 msgid "Run"
-msgstr ""
+msgstr "Run"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Useful when the scanner result is a true positive but the add-on is not malicious"
 
 #, fuzzy
 msgid "Revert report"
@@ -6802,6 +6775,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6819,6 +6795,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team\n"
 msgstr ""
+"Greetings %(author_name)s,\n"
+"\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the web site.\n"
+"\n"
+"Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"If you didn't expect to receive this invitation, please send an email to amo-admins@mozilla.com.\n"
+"\n"
+"Kind regards,\n"
+"The Mozilla Add-ons Team"
 
 #, python-format
 msgid ""
@@ -6827,6 +6815,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6835,6 +6826,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )\n"
 msgstr ""
+"The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
