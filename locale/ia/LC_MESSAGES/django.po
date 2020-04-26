@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 08:35+0000\n"
+"PO-Revision-Date: 2020-04-26 20:23+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -134,9 +134,8 @@ msgstr "Applicationes de revisores"
 msgid "Reviewer Tools (unlisted)"
 msgstr "Applicationes de revisores"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Applicationes de revisores"
+msgstr "Ligamines de revisores"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Additivos externe -"
@@ -496,20 +495,17 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Intervallo de version non valide."
+msgstr "Version non valide."
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Revision demandate"
+msgstr "Revision listate"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Nota de revision"
+msgstr "Revision non listate"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr ""
