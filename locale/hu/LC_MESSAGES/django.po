@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 15:28+0000\n"
+"PO-Revision-Date: 2020-04-26 16:53+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3019,6 +3019,14 @@ msgid ""
 "\n"
 "%(url)s\n"
 msgstr ""
+"Az API kulcs vissza lett vonva a fiókjában:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Ha úgy véli, hogy ez hiba, akkor eltávolíthatja kézzel, és\n"
+"létrehozhat egy újat a következő helyen:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3193,20 +3201,20 @@ msgid "Visit the Extension Workshop"
 msgstr "Kiegészítő-műhely"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Lépjen kapcsolatba velünk"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
 msgstr "Fejlesztő"
 
 msgid "For end users"
-msgstr ""
+msgstr "Végfelhasználók számára"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 #, fuzzy
