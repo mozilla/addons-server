@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 23:48+0000\n"
+"PO-Revision-Date: 2020-04-26 08:30+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3164,7 +3164,7 @@ msgid "Extensions Developers Newsletter"
 msgstr "Disveloppamento de extensiones"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Sta informate re novas e eventos pro disveloppatores de extensiones de Firefox."
 
 #, fuzzy
 msgid "Email Address"
@@ -3172,7 +3172,7 @@ msgstr "Adresse IP"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Io es de accordo con le tractamento de mi informationes personal per Mozilla como explicate in iste %(link_open)Nota de confidentialitate%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Inscriber se"
@@ -3181,7 +3181,7 @@ msgid "Thanks!"
 msgstr "Gratias!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "Si tu non habeva antea confirmate un subscription a un newsletter re Mozilla tu pote facer lo. Per favor controla tu cassa de entrata o tu filtro del spam pro un e-posta ab nos."
 
 msgid "Resources"
 msgstr "Ressources"
