@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 14:24+0000\n"
+"PO-Revision-Date: 2020-04-26 14:42+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -534,13 +534,13 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s kiegészítő GUID-ja nem található"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "A következő blokkolások egy regex-alapú örökölt kinto blokkolásból lett importálva."
 
 msgid "Save"
 msgstr "Mentés"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Mentés és továbbiak hozzáadása"
 
 msgid "Delete"
 msgstr "Törlés"
@@ -558,10 +558,10 @@ msgstr "Ugrás a beküldésekhez"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "%(name)s hozzáadása"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "Kiegészítő GUID-ok (soronként egy)"
 
 #, fuzzy
 msgid "Submit"
@@ -569,21 +569,21 @@ msgstr "Új verzió beküldése"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s kiegészítő GUID"
 
 #, fuzzy
 msgid "users"
 msgstr "Felhasználók"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Blokkolás szerkesztése"
 
 #, fuzzy
 msgid "versions"
 msgstr "Verziók"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Szerepel az örökölt blokkolási listában."
 
 msgid "{addon} was created."
 msgstr "{addon} létrehozva."
