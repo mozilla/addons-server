@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 16:59+0000\n"
+"PO-Revision-Date: 2020-04-26 17:14+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -302,11 +302,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Hoppá"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Hoppá! Valami hiba történt.</h1> <p>Hamarosan javítani fogjuk.</p> <p> Megpróbálhatja újratölteni az oldalt, vagy visszaléphet a <a href=\"%(home)s\">Kiegészítők kezdőlapjára</a>. </p>"
+msgstr ""
+"<h1>Hoppá! Valami hiba történt.</h1> <p>Hamarosan javítani fogjuk.</p> <p>Megpróbálhatja újratölteni az oldalt, vagy visszaléphet a <a href=\"%(home)s\">Kiegészítők kezdőlapjára</a>. Segíthet a "
+"javításban is <a href=\"https://github.com/mozilla/addons/issues/new\">egy hibajelentéssel</a>, amelyben leírja a részleteket, hogy hogyan jutott erre az oldalra.</p>"
 
 msgid "No results found"
 msgstr "Nincs találat"
@@ -496,20 +498,17 @@ msgstr "A(z) %(guid)s GUID már szerepel egy függőben lévő beküldésben"
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "A frissítendő blokkolások különböznek, mert a Min vagy Max verzió megváltozott."
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Érvénytelen verziótartomány."
+msgstr "Érvénytelen verzió"
 
 msgid "Min version can not be greater than Max version"
 msgstr "A Min verzió nem lehet nagyobb, mint a Max verzió"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Értékelést kér"
+msgstr "Listázottak értékelése"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Értékelési megjegyzés"
+msgstr "Nem listázottak értékelése"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "Ez a blokkolás egy regex-alapú örökölt kinto blokkolásból lett importálva."
@@ -517,13 +516,12 @@ msgstr "Ez a blokkolás egy regex-alapú örökölt kinto blokkolásból lett im
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Semmilyen módosítás NEM lesz frissítve az örökölt blokkolási listában – kézi módosítást kell végeznie a kint adminisztrációs webes felületén."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Több verzió elutasítása"
+msgstr "Több %(name)s törlése"
 
-#, fuzzy
 msgid "Home"
-msgstr "Honlap"
+msgstr "Kezdőlap"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -548,13 +546,11 @@ msgstr "Törlés"
 msgid "Update"
 msgstr "Frissítés"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Ugrás a beküldésekhez"
+msgstr "Beküldés elutasítása"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Ugrás a beküldésekhez"
+msgstr "Beküldés jóváhagyása"
 
 #, python-format
 msgid "Add %(name)s"
@@ -563,24 +559,21 @@ msgstr "%(name)s hozzáadása"
 msgid "Add-on GUIDs (one per line)"
 msgstr "Kiegészítő GUID-ok (soronként egy)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "Új verzió beküldése"
+msgstr "Beküldés"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr "%(count)s kiegészítő GUID"
 
-#, fuzzy
 msgid "users"
-msgstr "Felhasználók"
+msgstr "felhasználó"
 
 msgid "Edit Block"
 msgstr "Blokkolás szerkesztése"
 
-#, fuzzy
 msgid "versions"
-msgstr "Verziók"
+msgstr "verzió"
 
 msgid "Included in legacy blocklist."
 msgstr "Szerepel az örökölt blokkolási listában."
@@ -920,16 +913,14 @@ msgstr "Blokkolás szerkesztve"
 msgid "Block for {0} deleted from Blocklist."
 msgstr "{0} verzió törlése a(z) {addon} kiegészítőtől."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "A kiegészítő letörölve."
+msgstr "Blokkolás törölve"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "A(z) {addon} GUID-ja hozzáadva ehhez: DeniedGuid."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "A(z) {addon} kiegészítő eltávolításra került a(z) {collection} gyűjteményből."
+msgstr "A(z) {addon} GUID-ja eltávolításra került innen: DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr "A(z) {1} művelet blokkolása aláírva ennél: {0}."
@@ -937,9 +928,8 @@ msgstr "A(z) {1} művelet blokkolása aláírva ennél: {0}."
 msgid "Block action signoff"
 msgstr "Blokkolási művelet aláírása"
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "{user} felhasználó API-kulcsa helyreállítva. "
+msgstr "{user} felhasználó munkamenetei helyreállítva."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
@@ -997,9 +987,8 @@ msgstr "Fejlesztő"
 msgid "Extension"
 msgstr "Kiegészítő"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Frissített teljes témaértékelés"
+msgstr "Elavult teljes témák"
 
 msgid "Dictionary"
 msgstr "Szótár"
@@ -1026,9 +1015,8 @@ msgstr "Téma (statikus)"
 msgid "Extensions"
 msgstr "Kiegészítők"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Teljes témák"
+msgstr "Elavult teljes témák"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1567,16 +1555,14 @@ msgstr "Alacsony minőségű, nyújtott vagy üres kép"
 msgid "Header image alignment problem"
 msgstr "Fejléckép-igazítási probléma"
 
-#, fuzzy
 msgid "No action"
-msgstr "További műveletek"
+msgstr "Nincs művelet"
 
 msgid "Flag for human review"
 msgstr "Emberi felülvizsgálatra jelölés"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Automatikus jóváhagyás letiltása"
+msgstr "Automatikus jóváhagyás késleltetése"
 
 msgid "Delay auto-approval indefinitely"
 msgstr "Automatikus elfogadás késleltetése határozatlan ideig"
@@ -1590,9 +1576,8 @@ msgstr "Hamis pozitív"
 msgid "Inconclusive"
 msgstr "Nem egyértelmű"
 
-#, fuzzy
 msgid "New"
-msgstr "Újabb"
+msgstr "Új"
 
 msgid "Running"
 msgstr "Fut"
