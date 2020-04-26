@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 08:30+0000\n"
+"PO-Revision-Date: 2020-04-26 08:35+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5912,7 +5912,7 @@ msgid "Previously deleted entries"
 msgstr "Entratas previemente delite"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Isto es un extension recommendate."
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -6216,7 +6216,7 @@ msgid "The definition is not valid: %(error)s"
 msgstr ""
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Un error occurreva durante le implementation del definition"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
