@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 14:42+0000\n"
+"PO-Revision-Date: 2020-04-26 14:46+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -905,16 +905,16 @@ msgid "User {user} api key reset."
 msgstr "{user} felhasználó API-kulcsa helyreállítva. "
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "{0} blokkolásának hozzáadása a blokkolási listához"
 
 msgid "Block added"
-msgstr ""
+msgstr "Blokkolás hozzáadva"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "{0} blokkolása szerkesztve a blokkolási listában"
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blokkolás szerkesztve"
 
 #, fuzzy
 msgid "Block for {0} deleted from Blocklist."
@@ -925,7 +925,7 @@ msgid "Block deleted"
 msgstr "A kiegészítő letörölve."
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "A(z) {addon} GUID-ja hozzáadva ehhez: DeniedGuid."
 
 #, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
