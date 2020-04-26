@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 13:50+0000\n"
+"PO-Revision-Date: 2020-04-26 14:03+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -479,7 +479,7 @@ msgstr "Ez a kiegészítő már egy másik gyűjtemény része"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "A(z) %(guid)s GUID azonosítójú blokkolása nem található"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
