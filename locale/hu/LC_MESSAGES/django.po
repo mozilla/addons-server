@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 16:53+0000\n"
+"PO-Revision-Date: 2020-04-26 16:59+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3226,7 +3226,7 @@ msgid "Extensions Developers Newsletter"
 msgstr "Kiegészítőfejlesztés"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Legyen naprakész a Firefox kiegészítőfejlesztőknek szóló hírekkel és eseményekkel."
 
 #, fuzzy
 msgid "Email Address"
@@ -3241,10 +3241,11 @@ msgid "Sign Up"
 msgstr "Kijelentkezés"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Köszönjük!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Ha korábban nem erősítette meg a Mozillához kapcsolódó hírlevél feliratkozását, akkor lehet hogy meg kell tennie. Ellenőrizze a Beérkezett üzenetek mappáját vagy a spam-szűrőjét az e-mailünk után."
 
 msgid "Resources"
 msgstr "Erőforrások"
@@ -3263,7 +3264,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "„Kiegészítő beszerzése” gomb"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Ajánlott kiegészítők program"
 
 msgid "Contribute"
 msgstr "Adományozás"
@@ -3296,7 +3297,7 @@ msgid "See how"
 msgstr "Tudja meg hogyan"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Csatlakozzon"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -4995,7 +4996,7 @@ msgstr "Automatikusan törölje a sütiket a lapok bezárása után."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Az összes hirdetés blokkolása – videók, felugró ablakok, reklámcsíkok és egyebek."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
@@ -5015,7 +5016,7 @@ msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Lapszervezők és eszközök"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5521,10 +5522,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Automatikus jóváhagyás ideiglenes késleltetése"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Automatikus jóváhagyás határozatlan idejű késleltetése"
 
 msgid "Is locked by a reviewer"
 msgstr "Egy szerkesztő zárolta"
@@ -5550,7 +5551,7 @@ msgid "You can't submit an empty comment."
 msgstr "Nem küldhet be nyelvi csomagot"
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Nem küldhet be sorszámot anélkül, hogy fájlnévhez rendelné azt."
 
 msgid "Type"
 msgstr "Típus"
@@ -6113,7 +6114,7 @@ msgid "No reviews found for this period."
 msgstr "Nincsenek értékelések ebben az időszakban."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Eredet:"
 
 msgid "Method:"
 msgstr "Módszer:"
@@ -6303,10 +6304,10 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Megszakítás"
 
 msgid "Run"
-msgstr ""
+msgstr "Futtatás"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
