@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 17:14+0000\n"
+"PO-Revision-Date: 2020-04-26 17:19+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1588,9 +1588,8 @@ msgstr "Megszakított"
 msgid "Aborting"
 msgstr "Megszakítás"
 
-#, fuzzy
 msgid "Completed"
-msgstr "Nem teljes"
+msgstr "Kész"
 
 msgid "Scheduled"
 msgstr "Ütemezett"
@@ -2735,9 +2734,8 @@ msgstr "Ezt a verziót is szerkesztheti: adhat hozzá verziómegjegyzéseket vag
 msgid "Edit version {0}"
 msgstr "{0} verzió szerkesztése"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Verzió aláírva"
+msgstr "Verzió aláírása függőben"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
@@ -3181,9 +3179,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Kiegészítő-műhely"
+msgstr "A kiegészítő-műhely felkeresése"
 
 msgid "Connect with us"
 msgstr "Lépjen kapcsolatba velünk"
@@ -3191,9 +3188,8 @@ msgstr "Lépjen kapcsolatba velünk"
 msgid "Twitter"
 msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "Fejlesztő"
+msgstr "Fejlesztőknek"
 
 msgid "For end users"
 msgstr "Végfelhasználók számára"
@@ -3202,28 +3198,24 @@ msgid "Matrix"
 msgstr "Matrix"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Kiegészítőfejlesztő központ"
+msgstr "Kiegészítőfejlesztői levelezőlista"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Kiegészítőfejlesztés"
+msgstr "Mozilla fejlesztői hírlevél"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Legyen naprakész a Firefox kiegészítőfejlesztőknek szóló hírekkel és eseményekkel."
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP-cím"
+msgstr "E-mail cím"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Kijelentkezés"
+msgstr "Regisztráció"
 
 msgid "Thanks!"
 msgstr "Köszönjük!"
@@ -3235,9 +3227,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Erőforrások"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: kiegészítők összeállítása és tesztelése"
@@ -3327,18 +3318,15 @@ msgstr "Nincs fénykép"
 msgid "User Photo"
 msgstr "Felhasználó fényképe"
 
-#, fuzzy
 msgid "Profile"
 msgstr "Saját profil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Új verzió beküldése"
+msgstr "Kiegészítők beküldése vagy kezelése"
 
 msgid "Customize Firefox"
 msgstr "Firefox testreszabása"
 
-#, fuzzy
 msgid "Learn how to make an extension"
 msgstr "Tudja meg hogy készítsen el egy kiegészítőt"
 
@@ -5568,9 +5556,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} nap"
 msgstr[1] "{0} nap"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "Azonosító"
 
 msgid "Last Review"
 msgstr "Legutóbbi értékelés"
@@ -5616,16 +5603,14 @@ msgstr "Több verzió elutasítása"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Ez elutasítja a kiválasztott nyilvános verziókat. A megjegyzések elküldésre kerülnek a fejlesztőnek."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Több verzió elutasítása"
+msgstr "Több verzió blokkolása"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Több verzió elutasítása"
+msgstr "Több verzió megerősítése"
 
 #, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
@@ -5820,9 +5805,8 @@ msgstr "Képgaléria"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nincs itt semmi látnivaló! A fejlesztő nem adott meg részleteket."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "kiegészítő verziója szerint"
+msgstr "Kiegészítőnév-fordítások"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Visszatérés a Szerkesztői eszközök vezérlőpultra"
@@ -5979,9 +5963,8 @@ msgstr "Korábban törölt bejegyzések"
 msgid "This is a recommended extension."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Nem rendelkezik API hitelesítő adatokkal."
+msgstr "Nincs engedélye az értékeléshez."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Válasszon ki egy vagy több verziót a fenti listából."
@@ -6033,16 +6016,14 @@ msgstr "Összes beküldés megtekintése"
 
 # 80%
 # 100%
-#, fuzzy
 msgid "Block add-on"
-msgstr "Vissza a kiegészítőhöz"
+msgstr "Kiegészítő blokkolása"
 
 msgid "Update add-on block"
 msgstr ""
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Automatikus jóváhagyás letiltása"
+msgstr "Listázottak automatikus jóváhagyásának letiltása"
 
 #, fuzzy
 msgid "Enable Listed Auto-Approval"
@@ -6107,9 +6088,8 @@ msgstr "Módszer:"
 msgid "Source:"
 msgstr "Forrás:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Forrás:"
+msgstr "Forrás URL:"
 
 msgid "Dismiss this announcement"
 msgstr "Bejelentés elvetése"
@@ -6247,17 +6227,15 @@ msgstr "Listázott verziók előnézete"
 msgid "version channel"
 msgstr "Verzió aláírva"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Kiegészítő állapota"
+msgstr "kiegészítő állapota"
 
 #, fuzzy
 msgid "add-on listing visibility"
 msgstr "Listázás láthatósága"
 
-#, fuzzy
 msgid "file status"
-msgstr "Oldal állapota"
+msgstr "fájl állapota"
 
 #, fuzzy
 msgid "file signature"
