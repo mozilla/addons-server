@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 01:43+0000\n"
+"PO-Revision-Date: 2020-04-26 01:53+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -622,10 +622,10 @@ msgid "Preliminarily approved"
 msgstr "已通过初步审核"
 
 msgid "{addon} {version} rejected."
-msgstr "{addon} {version} 已被退回。"
+msgstr "{addon} {version} 已被驳回。"
 
 msgid "Rejected"
-msgstr "被退回"
+msgstr "被驳回"
 
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} 已被保留。"
@@ -837,10 +837,10 @@ msgid "Content approved"
 msgstr "内容已批准"
 
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} 内容被退回。"
+msgstr "{addon} {version} 内容被驳回。"
 
 msgid "Content rejected"
-msgstr "内容被退回"
+msgstr "内容被驳回"
 
 msgid "{addon} information request altered or removed by admin."
 msgstr "管理员已更改或移除要求 {addon} 提供更多信息的请求。"
@@ -1481,7 +1481,7 @@ msgid "Duplicate"
 msgstr "重复"
 
 msgid "Reject"
-msgstr "退回"
+msgstr "驳回"
 
 msgid "Approve"
 msgstr "核准"
@@ -5408,7 +5408,7 @@ msgid "This will approve, sign, and publish this version. The comments will be s
 msgstr "这将批准、签名并发布此版本。该评论将发送给其开发者。"
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "这将拒绝此版本并将其从队列中移除。此评论将发送给其开发者。"
+msgstr "这将驳回此版本并将其从队列中移除。此评论将发送给其开发者。"
 
 msgid "Approve Content"
 msgstr "核准内容"
@@ -5423,10 +5423,10 @@ msgid "The latest public version of this add-on was automatically approved. This
 msgstr "此附加组件的最新公开版本已自动批准。这将记录您对此批准的确认（不会通知开发人员）。"
 
 msgid "Reject Multiple Versions"
-msgstr "拒绝多个版本"
+msgstr "驳回多个版本"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "这将拒绝选定的公开版本。该评论将发送给其开发者。"
+msgstr "这将驳回选定的公开版本。该评论将发送给其开发者。"
 
 msgid "Block Multiple Versions"
 msgstr ""
@@ -5991,7 +5991,7 @@ msgid "This version has not been reviewed."
 msgstr "此版本尚未审核。"
 
 msgid "Rejected or Unreviewed"
-msgstr "被退回或未审核"
+msgstr "被驳回或未审核"
 
 #, python-format
 msgid "[status:%s]"
@@ -6029,7 +6029,7 @@ msgid "version channel"
 msgstr "版本通道"
 
 msgid "add-on status"
-msgstr ""
+msgstr "附加组件状态"
 
 msgid "add-on listing visibility"
 msgstr ""
