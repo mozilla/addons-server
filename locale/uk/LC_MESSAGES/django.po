@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 18:38+0000\n"
+"PO-Revision-Date: 2020-04-26 18:52+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -508,10 +508,10 @@ msgid "Review Unlisted"
 msgstr "Перевірка не оприлюдненого"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Це блокування було імпортоване зі старого списку блокування, створеного на платформі Kinto, робота якої побудована на регулярних виразах."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Будь-які внесені зміни НЕ будуть оновлені у старому списку блокування - ви повинні внести зміни вручну через панель адміністрування Kinto."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -529,7 +529,7 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUID додатків не знайдено"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Ці блокування було імпортовані зі старого списку блокування, створеного на платформі Kinto, робота якої побудована на регулярних виразах."
 
 msgid "Save"
 msgstr "Зберегти"
