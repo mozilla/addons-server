@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 17:59+0000\n"
+"PO-Revision-Date: 2020-04-25 18:21+0000\n"
 "Last-Translator: Enrico Belleri <idesmi@protonmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -491,33 +491,30 @@ msgstr "Blocco con GUID %(guid)s non trovato"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "Il GUID %(guid)s è in un progetto in attesa"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Il componente aggiuntivo con GUID %(guid)s non esiste"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "Il GUID %(guid)s è già in un progetto in attesa"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "I blocchi da aggiornare sono diversi perché è cambiata la versione minima o massima."
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Intervallo di versioni non valido."
+msgstr "Versione non valida."
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Richiesta revisione"
+msgstr "Revisione elencati"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Nota di revisione"
+msgstr "Revisione non elencati"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr ""
