@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 02:12+0000\n"
+"PO-Revision-Date: 2020-04-26 02:14+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -126,13 +126,13 @@ msgid "Ratings"
 msgstr "评分量"
 
 msgid "Reviewer Tools (listed)"
-msgstr ""
+msgstr "审核员工具（已上架）"
 
 msgid "Reviewer Tools (unlisted)"
-msgstr ""
+msgstr "审核员工具（未上架）"
 
 msgid "Reviewer links"
-msgstr ""
+msgstr "审核员链接"
 
 msgid "- Add-on not on AMO -"
 msgstr "- 附加组件不在 AMO -"
@@ -488,10 +488,10 @@ msgid "Min version can not be greater than Max version"
 msgstr "最低版本不应超过最高版本"
 
 msgid "Review Listed"
-msgstr ""
+msgstr "审核上架项目"
 
 msgid "Review Unlisted"
-msgstr ""
+msgstr "审核未上架项目"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "此屏蔽项目导入自基于正则的旧有 kinto 屏蔽列表。"
@@ -530,10 +530,10 @@ msgid "Update"
 msgstr "更新"
 
 msgid "Reject Submission"
-msgstr ""
+msgstr "驳回提交"
 
 msgid "Approve Submission"
-msgstr ""
+msgstr "批准提交"
 
 #, python-format
 msgid "Add %(name)s"
@@ -543,7 +543,7 @@ msgid "Add-on GUIDs (one per line)"
 msgstr "附加组件 GUID（每行一项）"
 
 msgid "Submit"
-msgstr ""
+msgstr "提交"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
@@ -891,16 +891,16 @@ msgid "Block edited"
 msgstr "已编辑屏蔽项"
 
 msgid "Block for {0} deleted from Blocklist."
-msgstr ""
+msgstr "已删除屏蔽列表中对 {0} 的屏蔽。"
 
 msgid "Block deleted"
-msgstr ""
+msgstr "已删除屏蔽项目"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "已将 {addon} 的 GUID 添加至 DeniedGuid。"
 
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr ""
+msgstr "已将 {addon} 的 GUID 从 DeniedGuid 移除。"
 
 msgid "Block {1} action for {0} signed off."
 msgstr "确认对 {0} 的 {1} 操作。"
@@ -909,7 +909,7 @@ msgid "Block action signoff"
 msgstr "确认屏蔽操作"
 
 msgid "User {user} session(s) reset."
-msgstr ""
+msgstr "已重置用户 {user} 的会话。"
 
 msgid "User {user} throttled for scope \"{0}\""
 msgstr ""
@@ -967,7 +967,7 @@ msgid "Extension"
 msgstr "扩展"
 
 msgid "Deprecated Complete Theme"
-msgstr ""
+msgstr "已不推荐使用的完整主题"
 
 msgid "Dictionary"
 msgstr "字典"
@@ -995,7 +995,7 @@ msgid "Extensions"
 msgstr "扩展"
 
 msgid "Deprecated Complete Themes"
-msgstr ""
+msgstr "已不推荐使用的完整主题"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1520,22 +1520,22 @@ msgid "Flag for human review"
 msgstr "标为需要人工审查"
 
 msgid "Delay auto-approval"
-msgstr ""
+msgstr "推迟自动批准"
 
 msgid "Delay auto-approval indefinitely"
 msgstr "无限期推迟自动批准"
 
 msgid "True positive"
-msgstr ""
+msgstr "真阳性"
 
 msgid "False positive"
-msgstr ""
+msgstr "假阳性"
 
 msgid "Inconclusive"
 msgstr "没有定论"
 
 msgid "New"
-msgstr ""
+msgstr "新"
 
 msgid "Running"
 msgstr "正在执行"
@@ -3026,7 +3026,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "如果您的附加组件会从用户的计算机上传出任何数据，您需要提供一份隐私政策，解释这些数据的发送和将如何使用它。此项仅与公开上架的附加组件相关。"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "如果您的附加组件包含非已知常见程序库的压缩、混淆或机器生成的代码，请上传其源代码以供审查。"
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "请包含如何生成最终的附加组件文件的操作说明，通过 README 文件或给审核员的此版本说明。"
@@ -3051,7 +3051,7 @@ msgid "Twitter"
 msgstr "Twitter"
 
 msgid "For developers"
-msgstr ""
+msgstr "面向开发者"
 
 msgid "For end users"
 msgstr "面向最终用户"
@@ -3061,7 +3061,7 @@ msgstr "Matrix"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
-msgstr ""
+msgstr "附加组件开发者邮件列表"
 
 msgid "Extensions Developers Newsletter"
 msgstr "扩展开发者订阅邮件"
@@ -5825,22 +5825,22 @@ msgid "Force-enable add-on"
 msgstr "强制启用附加组件"
 
 msgid "View Blocklist Submission"
-msgstr ""
+msgstr "查看提交的屏蔽列表"
 
 msgid "Block add-on"
-msgstr ""
+msgstr "屏蔽附加组件"
 
 msgid "Update add-on block"
 msgstr "更新附加组件屏蔽列表"
 
 msgid "Disable Listed Auto-Approval"
-msgstr ""
+msgstr "禁用上架项目自动批准"
 
 msgid "Enable Listed Auto-Approval"
-msgstr ""
+msgstr "启用上架项目自动批准"
 
 msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
+msgstr "已禁用“自动批准”到 {date} 为止"
 
 msgid "Clear Auto-Approval Extra Delay"
 msgstr ""
@@ -6017,13 +6017,13 @@ msgid "presence of matched rules"
 msgstr "存在命中规则"
 
 msgid "result state"
-msgstr ""
+msgstr "结果状态"
 
 msgid "all but this rule"
 msgstr "此规则除外"
 
 msgid "presence of a version"
-msgstr ""
+msgstr "版本存在"
 
 msgid "version channel"
 msgstr "版本通道"
@@ -6035,10 +6035,10 @@ msgid "add-on listing visibility"
 msgstr ""
 
 msgid "file status"
-msgstr ""
+msgstr "文件状态"
 
 msgid "file signature"
-msgstr ""
+msgstr "文件签名"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "这是扫描器所用规则的确切名称。"
@@ -6122,16 +6122,16 @@ msgid "Version already exists. Latest version is: %s."
 msgstr "版本已存在，最新版本为：%s。"
 
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr ""
+msgstr "仅 WebExtension 允许省略附加组件 ID"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "如果其超出 64 个字符，请在 manifest 中指定您的附加组件 ID。"
 
 msgid "Invalid Add-on ID in URL or package"
-msgstr ""
+msgstr "URL 或包中的附加组件 ID 无效"
 
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr ""
+msgstr "您不能将已上架的版本添加到状态设为“不可见”的附加组件。"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "由于缺少元数据，您不能通过该 API 添加一个上架版本到该附加组件。请通过网站提交"
@@ -6469,10 +6469,10 @@ msgstr "封禁所选用户"
 
 #, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
+msgstr "已重置用户“%(users)s”的会话。"
 
 msgid "Reset session"
-msgstr ""
+msgstr "重置会话"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6538,7 +6538,7 @@ msgid ""
 msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则。Firefox 附加组件分发协议还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
 
 msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
+msgstr "在开始之前，请访问 {url} 阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则"
 
 msgid "an add-on developer replies to my review"
 msgstr "一名附加组件开发者回复了我的评价"
