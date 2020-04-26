@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 19:39+0000\n"
+"PO-Revision-Date: 2020-04-26 19:59+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6078,7 +6078,7 @@ msgid "Newer"
 msgstr "Новіший"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} версій, позначених сканерами на цій сторінці."
 
 msgid "Recent Points"
 msgstr "Недавні бали"
@@ -6175,13 +6175,13 @@ msgstr[1] "Протерміновані запити інформації ({0})"
 msgstr[2] "Протермінованих запитів інформації ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "наявність відповідних правил"
 
 msgid "result state"
 msgstr "результат"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "все, крім цього правила"
 
 msgid "presence of a version"
 msgstr "наявність версії"
@@ -6208,17 +6208,17 @@ msgid "When unchecked, the scanner results will not be bound to this rule and th
 msgstr ""
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Правила Yara повинні мати визначення"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
 msgstr ""
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Лише одне правило Yara дозволене у цьому визначенні"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Визначення недійсне: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr ""
