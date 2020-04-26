@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 00:50+0000\n"
+"PO-Revision-Date: 2020-04-26 11:04+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -284,7 +284,7 @@ msgstr "Naslovnica dodataka"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "Ako si pratio/la neku poveznicu, %(open_bug_link)sprijavi problem%(close_bug_link)s. Reci nam odakle dolaziš i što tražiš, a mi ćemo se potrudit ispraviti problem."
+msgstr "Ako slijediš poveznicu s druge lokacije, %(open_bug_link)sprijavi problem%(close_bug_link)s. Reci nam odakle dolaziš i što tražiš, a mi ćemo se potrudit ispraviti problem."
 
 msgid "Not Found"
 msgstr "Nije pronađeno"
@@ -298,10 +298,10 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Na žalost ne možemo pronaći to što tražiš.</h1> <p> Stranica ili datoteka koju tražiš nismo našli na našim stranicama. Moguće je da se radi o zastarjeloj poveznici ili o krivo utipkanoj adresi. "
-"</p> <ul> <li>Ako si utipkao/la adresu, provjeri unos.</li> <li> Ako slijediš poveznicu s druge lokacije, %(open_bug_link)sjavi nam problem%(close_bug_link)s. Reci nam s koje adrese dolaziš, što "
-"tražiš i mi ćemo se potruditi to ispraviti. </li> </ul> <p>Ili jednostavno pogledaj neku drugu našu popularnu stranicu.</p> <ul> <li>Zanima te <a href=\"%(rec)s\">popis preporučenih "
-"dodataka</a>?</li> <li> Želiš <a href=\"%(search)s\">tražiti dodatke</a>? Posjeti <a href=\"%(search)s\">stranicu za traženje</a> ili koristi gornje polje za pretragu. </li> <li> Ako pak želiš "
-"krenuti ispočetka, posjeti <a href=\"%(home)s\">početnu stranicu dodataka</a>. </li> </ul>"
+"</p> <ul> <li>Provjeri adresu.</li> <li> Ako slijediš poveznicu s druge lokacije, %(open_bug_link)sjavi nam problem%(close_bug_link)s. Reci nam s koje adrese dolaziš, što tražiš i mi ćemo se "
+"potruditi to ispraviti. </li> </ul> <p>Ili jednostavno pogledaj neku drugu našu popularnu stranicu.</p> <ul> <li>Zanima te <a href=\"%(rec)s\">popis preporučenih dodataka</a>?</li> <li> Želiš <a "
+"href=\"%(search)s\">tražiti dodatke</a>? Posjeti <a href=\"%(search)s\">stranicu za traženje</a> ili koristi gornje polje za pretragu. </li> <li> Ako pak želiš krenuti ispočetka, posjeti <a "
+"href=\"%(home)s\">početnu stranicu dodataka</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ups"
@@ -3542,7 +3542,7 @@ msgstr "Obrnuto pretraživanje slika {start_sub_heading}pomoću {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr "Našao/la si zanimljivu sliku na webu i želi saznati više o njoj? Isprobaj ovaj alat za pretraživanje slika."
+msgstr "Našao/la si zanimljivu sliku na webu i želiš saznati više o njoj? Isprobaj ovaj alat za pretraživanje slika."
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
