@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 02:14+0000\n"
+"PO-Revision-Date: 2020-04-26 02:28+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -912,7 +912,7 @@ msgid "User {user} session(s) reset."
 msgstr "已重置用户 {user} 的会话。"
 
 msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
+msgstr "用户 {user} 在 \"{0}\" 范围内受限"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1838,7 +1838,7 @@ msgstr "上传预览图的过程中发生错误。"
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr ""
+msgstr "因为先前的版本未批准成为推荐扩展，无法删除或禁用此推荐扩展最新批准的版本。若您需要协助，请联系 AMO 管理员。"
 
 #, python-format
 msgid "Version %s disabled."
@@ -2382,7 +2382,7 @@ msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "最小尺寸为 1000x750，比例必须为 4:3。"
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "在产品页面中放入屏幕截图，可大幅增加安装机会。"
 
 msgid "Continue"
 msgstr "继续"
@@ -2634,16 +2634,16 @@ msgid "Manage Listing"
 msgstr "管理上架"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr ""
+msgstr "您还可以编辑此版本，为您刚刚的提交添加版本说明、或源代码（如果您提交的版本包含压缩、混淆或机器生成的代码）。"
 
 msgid "Edit version {0}"
 msgstr "编辑版本 {0}"
 
 msgid "Version Signature Pending"
-msgstr ""
+msgstr "等待版本签名"
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr ""
+msgstr "大功告成！此版本很快就会完成签名，让您自行发布。签名好的文件可供下载会发邮件通知您。"
 
 msgid "Go to My Submissions"
 msgstr "转至我的提交"
@@ -2701,7 +2701,7 @@ msgid ""
 msgstr "构建过程中会使用到的任何程序的详细信息（包含需要使用的版本与安装步骤，例如：所用的 <span class=\"tech-emphasis\">node</span> 与 <span class=\"tech-emphasis\">npm</span> 的版本）。"
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
-msgstr ""
+msgstr "<span class=\"instruction-emphasis\">注意：</span>源文件（不含第三方开源库）请勿转译（transpile）、拼接（concatenate）、压缩（minify）或使用机器生成源代码。"
 
 msgid "How to Submit:"
 msgstr "如何提交："
@@ -3026,7 +3026,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "如果您的附加组件会从用户的计算机上传出任何数据，您需要提供一份隐私政策，解释这些数据的发送和将如何使用它。此项仅与公开上架的附加组件相关。"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "如果您的附加组件包含非已知常见程序库的压缩、混淆或机器生成的代码，请上传其源代码以供审查。"
+msgstr "如果您的附加组件包含非已知常见程序库的压缩、拼接或机器生成的代码，请上传其源代码以供审查。"
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "请包含如何生成最终的附加组件文件的操作说明，通过 README 文件或给审核员的此版本说明。"
