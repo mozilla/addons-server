@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 02:28+0000\n"
+"PO-Revision-Date: 2020-04-26 02:42+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5399,10 +5399,10 @@ msgid "Last Updated"
 msgstr "最近更新于"
 
 msgid "Listed versions needing human review ({0})"
-msgstr ""
+msgstr "需要人工审核的上架版本（{0}）"
 
 msgid "Unlisted versions needing human review ({0})"
-msgstr ""
+msgstr "需要人工审核的未上架版本（{0}）"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "这将批准、签名并发布此版本。该评论将发送给其开发者。"
@@ -5429,16 +5429,16 @@ msgid "This will reject the selected public versions. The comments will be sent 
 msgstr "这将驳回选定的公开版本。该评论将发送给其开发者。"
 
 msgid "Block Multiple Versions"
-msgstr ""
+msgstr "屏蔽多个版本"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "将静默禁用已选择的批准版本，并打开“新建屏蔽版本”管理页面。"
 
 msgid "Confirm Multiple Versions"
 msgstr "确认多个版本"
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr ""
+msgstr "将确认批准已选择的版本，不通知开发者。"
 
 msgid "Reviewer reply"
 msgstr "审核员回复"
