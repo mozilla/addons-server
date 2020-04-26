@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 20:23+0000\n"
+"PO-Revision-Date: 2020-04-26 20:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -517,9 +517,8 @@ msgstr ""
 msgid "Delete Multiple %(name)s"
 msgstr "Rejectar plure versiones"
 
-#, fuzzy
 msgid "Home"
-msgstr "Pagina principal"
+msgstr "Initio"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -544,13 +543,11 @@ msgstr "Deler"
 msgid "Update"
 msgstr "Actualisar"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Ir a mi submissiones"
+msgstr "Rejectar invio"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Ir a mi submissiones"
+msgstr "Approbar invio"
 
 #, python-format
 msgid "Add %(name)s"
@@ -559,9 +556,8 @@ msgstr "Adder %(name)s"
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "Inviar version"
+msgstr "Inviar"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
@@ -1549,9 +1545,8 @@ msgstr "Nulle action"
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Disactivar auto-approbation"
+msgstr "Retardar auto-approbation"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -3132,9 +3127,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Laboratorio de extensiones"
+msgstr "Visitar le laboratorio de extensiones"
 
 msgid "Connect with us"
 msgstr ""
@@ -3162,9 +3156,8 @@ msgstr "Disveloppamento de extensiones"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Sta informate re novas e eventos pro disveloppatores de extensiones de Firefox."
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Adresse IP"
+msgstr "Adresse email"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -3182,9 +3175,8 @@ msgstr "Si tu non habeva antea confirmate un subscription a un newsletter re Moz
 msgid "Resources"
 msgstr "Ressources"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API de WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: compilar & testar extensiones"
@@ -3282,9 +3274,8 @@ msgstr "Inviar un nove version"
 msgid "Customize Firefox"
 msgstr "Personalisar Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Apprende como crear un additivo"
+msgstr "Apprende como crear un extension"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -5944,9 +5935,8 @@ msgstr "Altere actiones"
 msgid "Notify me about new listed versions"
 msgstr "Notifica me circa nove versiones in le lista de presentation"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Vide tote le submissiones"
+msgstr "Consentir reinvio"
 
 #, fuzzy
 msgid "Deny resubmission"
@@ -5962,9 +5952,8 @@ msgstr "Fortiar activation de additivo"
 msgid "View Blocklist Submission"
 msgstr "Vide tote le submissiones"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Tornar al additivo"
+msgstr "Blocar additivo"
 
 msgid "Update add-on block"
 msgstr ""
@@ -6161,9 +6150,8 @@ msgstr[1] "Requestas de informationes expirate ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Que nos va"
+msgstr "stato de resultato"
 
 msgid "all but this rule"
 msgstr ""
@@ -6184,9 +6172,8 @@ msgstr "Stato del additivo"
 msgid "add-on listing visibility"
 msgstr "Visibilitate del lista de presentation"
 
-#, fuzzy
 msgid "file status"
-msgstr "Stato del sito"
+msgstr "stato del file"
 
 #, fuzzy
 msgid "file signature"
