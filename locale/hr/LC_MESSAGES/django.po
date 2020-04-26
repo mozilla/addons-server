@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 11:04+0000\n"
+"PO-Revision-Date: 2020-04-26 12:05+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -153,7 +153,7 @@ msgid "Listed"
 msgstr "Na popisu"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr "Staze dodataka i zbirki moraju završiti s „/”"
+msgstr "Staze dodataka i zbirki moraju završiti s kosom crtom"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nazivi dodataka ne smiju sadržati zaštitne znakove Mozilla ili Firefox."
@@ -254,7 +254,7 @@ msgid ""
 msgstr ""
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr "Ako je tvoj preglednik konfiguriran na način, da deaktivira zaglavlja \"Referer\", reaktiviraj ih barem za ovu stranicu ili za HTTPS veze ili za zahtjeve istog podrijetla ('same-origin')."
+msgstr "Ako je tvoj preglednik konfiguriran na način, da deaktivira zaglavlja „Referer”, reaktiviraj ih barem za ovu stranicu ili za HTTPS veze ili za zahtjeve istog podrijetla (same-origin)."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -444,7 +444,7 @@ msgstr ""
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "Misli na to da Web-proširenja neće prihvatiti „*” u %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID (globalno jedinstveni ID)"
@@ -1964,7 +1964,7 @@ msgid "Accept"
 msgstr "Prihvati"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "ili <a href=\"{0}\">Otkaži</a>"
+msgstr "ili <a href=\"{0}\">Odustani</a>"
 
 msgid "More information on Developer Accounts"
 msgstr "Više informacija o razvijateljskim računima"
@@ -3160,7 +3160,7 @@ msgid "Resources"
 msgstr "Resursi"
 
 msgid "WebExtensions API"
-msgstr "WebExtensions API"
+msgstr "API Web-proširenja"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: izgradnje i proširenja za testiranje"
@@ -6227,7 +6227,7 @@ msgid "Version already exists. Latest version is: %s."
 msgstr "Verzija već postoji. Najnovija verzija je: %s."
 
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "ID oznaku dodatka smiju ispustiti samo web-proširenja"
+msgstr "ID oznaku dodatka smiju ispustiti samo Web-proširenja"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Navedi ID oznaku svog dodatka u manifestu, ako je duži od 64 znaka."
