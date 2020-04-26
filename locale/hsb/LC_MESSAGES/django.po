@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 19:02+0000\n"
+"PO-Revision-Date: 2020-04-26 19:12+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -298,11 +298,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Hopla"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Hopla! Zmylk je wustupił.</h1> <p>Budźemy problem bórze rozrisować.</p><p> Móžeće spytać, stronu aktualizować abo wróćće so k <a href=\"%(home)s\">startowej stronje přidatkow</a>.</p>"
+msgstr ""
+"<h1>Hopla! Zmylk je wustupił.</h1> <p>Budźemy problem bórze rozrisować.</p><p> Móžeće spytać, stronu aktualizować abo wróćće so k <a href=\"%(home)s\">startowej stronje přidatkow</a>. Móžeće nam tež"
+" pomhać to rozrisać, hdyž <a href=\"https://github.com/mozilla/addons/issues/new\">zmylkowu rozprawu pisaće</a>, z podrobnosćemi. kak sće so k tutej stronje dóstał.</p>"
 
 msgid "No results found"
 msgstr "Žane wuslědki namakane"
@@ -920,9 +922,8 @@ msgstr "Blokowanje akcije zběhnyć"
 msgid "User {user} session(s) reset."
 msgstr "Posedźenja wužiwarja  {user} su so wróćo stajili."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Wužiwar {user} je so wobdźěłał, přičina: {1}"
+msgstr "Wužiwar {user} je so za wobłuk „{0}“ dajił"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -975,9 +976,8 @@ msgstr "Wuwiwar"
 msgid "Extension"
 msgstr "Rozšěrjenje"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Přepruwowanje zaktualizowaneje dospołneje drasty"
+msgstr "Zestarjena dospołna drasta"
 
 msgid "Dictionary"
 msgstr "Słownik"
@@ -1003,9 +1003,8 @@ msgstr "Drasta (statiska)"
 msgid "Extensions"
 msgstr "Rozšěrjenja"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Dospołne drasty"
+msgstr "Zestarjene dospołne drasty"
 
 msgid "Dictionaries"
 msgstr "Słowniki"
@@ -1528,16 +1527,14 @@ msgstr "Wobraz niskeje kwality, rozćehnjeny abo prózdny wobraz"
 msgid "Header image alignment problem"
 msgstr "Problem z wusměrjenjom hłowoweho wobraza"
 
-#, fuzzy
 msgid "No action"
-msgstr "Dalše akcije"
+msgstr "Žana akcija"
 
 msgid "Flag for human review"
 msgstr "Za čłowjeske přepruwowanje markěrować"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Awtomatiske schwalenje znjemóžnić"
+msgstr "Awtomatiske schwalenje komdźić"
 
 msgid "Delay auto-approval indefinitely"
 msgstr "Awtomatiske schwalenje na njewěsty čas wotstorčić"
@@ -1551,9 +1548,8 @@ msgstr "Wopak pozitiwny"
 msgid "Inconclusive"
 msgstr "Njejednozmyslny"
 
-#, fuzzy
 msgid "New"
-msgstr "Nowše"
+msgstr "Nowy"
 
 msgid "Running"
 msgstr "Wuwjedźe so"
@@ -1564,9 +1560,8 @@ msgstr "Přetorhnjeny"
 msgid "Aborting"
 msgstr "Přetorhuje so"
 
-#, fuzzy
 msgid "Completed"
-msgstr "Njedospołny"
+msgstr "Dospołny"
 
 msgid "Scheduled"
 msgstr "Planowany"
