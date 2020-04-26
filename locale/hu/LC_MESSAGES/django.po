@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 14:14+0000\n"
+"PO-Revision-Date: 2020-04-26 14:23+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -494,14 +494,14 @@ msgid "GUID %(guid)s is already in a pending Submission"
 msgstr "A(z) %(guid)s GUID már szerepel egy függőben lévő beküldésben"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "A frissítendő blokkolások különböznek, mert a Min vagy Max verzió megváltozott."
 
 #, fuzzy
 msgid "Invalid version"
 msgstr "Érvénytelen verziótartomány."
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "A Min verzió nem lehet nagyobb, mint a Max verzió"
 
 #, fuzzy
 msgid "Review Listed"
@@ -512,10 +512,10 @@ msgid "Review Unlisted"
 msgstr "Értékelési megjegyzés"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Ez a blokkolás egy regex-alapú örökölt kinto blokkolásból lett importálva."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Semmilyen módosítás NEM lesz frissítve az örökölt blokkolási listában – kézi módosítást kell végeznie a kint adminisztrációs webes felületén."
 
 #, fuzzy, python-format
 msgid "Delete Multiple %(name)s"
