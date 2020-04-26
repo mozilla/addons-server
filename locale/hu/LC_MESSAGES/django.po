@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 14:46+0000\n"
+"PO-Revision-Date: 2020-04-26 15:03+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -932,10 +932,10 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "A(z) {addon} kiegészítő eltávolításra került a(z) {collection} gyűjteményből."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "A(z) {1} művelet blokkolása aláírva ennél: {0}."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Blokkolási művelet aláírása"
 
 #, fuzzy
 msgid "User {user} session(s) reset."
@@ -985,7 +985,7 @@ msgid "Unlisted"
 msgstr "Titkos"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1572,43 +1572,43 @@ msgid "No action"
 msgstr "További műveletek"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Emberi felülvizsgálatra jelölés"
 
 #, fuzzy
 msgid "Delay auto-approval"
 msgstr "Automatikus jóváhagyás letiltása"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Automatikus elfogadás késleltetése határozatlan ideig"
 
 msgid "True positive"
-msgstr ""
+msgstr "Valódi pozitív"
 
 msgid "False positive"
-msgstr ""
+msgstr "Hamis pozitív"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Nem egyértelmű"
 
 #, fuzzy
 msgid "New"
 msgstr "Újabb"
 
 msgid "Running"
-msgstr ""
+msgstr "Fut"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Megszakított"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Megszakítás"
 
 #, fuzzy
 msgid "Completed"
 msgstr "Nem teljes"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Ütemezett"
 
 msgid "Core"
 msgstr "Mag"
