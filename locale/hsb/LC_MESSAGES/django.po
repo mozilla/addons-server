@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 19:12+0000\n"
+"PO-Revision-Date: 2020-04-26 19:15+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1866,11 +1866,12 @@ msgstr "Symbol dyrbi kwadratiski być (jenaka šěrokosć a wysokosć)."
 msgid "There was an error uploading your preview."
 msgstr "Při nahrawanju wašeho přehlada je zmylk wustupił."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "Najnowša schwalena wersija doporučeneho rozšěrjenja njeda so zhašeć abo znjemóžnić. Prošu stajće so z administratorami AMO do zwiska, jeli pomoc wo tym trjebaće."
+msgstr ""
+"Najnowša schwalena wersija tutoho doporučeneho rozšěrjenja njeda so zhašeć abo znjemóžnić, dokelž předchadna wersija neje so za doporučenje schwaliła. Prošu stajće so z administratorami AMO do "
+"zwiska, jeli pomoc wo tym trjebaće."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2397,9 +2398,8 @@ msgstr "Wubjerće symbol za swój přidatk:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Wužiwa so w zapiskach lisćinow přidatkow, kaž na přikład w pytanskich wuslědkach a předstajenych přidatkach."
+msgstr "Wužiwa so w zapiskach lisćinow přidatkow, kaž na přikład w pytanskich wuslědkach."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2445,9 +2445,8 @@ msgstr "PNG a JPG so podpěrujetej, PNG so poruča. Maksimalna a doporučena wul
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Minimalna wulkosć je 1000x750, a poměr 4:3 je trěbny."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Fota wobrazowki na wašej produktowej stronje powyšeja šansy wašeho přidatka, zo so na startowej stronje instaluje a předstaja."
+msgstr "Fota wobrazowki na wašej produktowej stronje šansy wašeho přidatka powyšeja, zo so instaluje."
 
 msgid "Continue"
 msgstr "Dale"
