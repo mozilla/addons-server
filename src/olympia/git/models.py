@@ -16,3 +16,4 @@ class GitExtractionEntry(ModelBase):
 
     class Meta(ModelBase.Meta):
         unique_together = ('addon', 'in_progress')
+        verbose_name_plural = "Git extraction entries"
