@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 12:19+0000\n"
+"PO-Revision-Date: 2020-04-27 12:41+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5475,9 +5475,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} ass"
 msgstr[1] "{0} ussan"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Acegger aneggaru"
@@ -5527,9 +5526,8 @@ msgstr "Sewḥel aṭas n ilqman"
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Aggwi aṭas n ilqman"
+msgstr "Sentem aṭas n ilqman"
 
 #, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
@@ -5720,9 +5718,8 @@ msgstr "Timidelt n tugniwin"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Ulac ayen ara twalid dagi!  Aneflay ur d-imudd ara talqayt."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "s lqem n uzegrir"
+msgstr "Tisuqilin n yisem n uzegrir"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Uɣal ar tfelwit n usenqed n yifecka n yimcegger"
