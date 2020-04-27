@@ -1,5 +1,19 @@
 {% extends "reviewers/base.html" %}
 
+{% block title %}
+  {% if tab == "content_review" %}
+    {{ _('Content Review – Add-ons for Firefox') }}
+  {% elif tab == "auto_approved" %}
+    {{ _('Auto-approved Add-ons – Add-ons for Firefox') }}
+  {% elif tab == "moderated" %}
+    {{ _('Review Moderation – Add-ons for Firefox') }}
+  {% elif tab == "expired_info_requests" %}
+    {{ _('Expired Information Requests – Add-ons for Firefox') }}
+  {% elif unlisted %}
+    {{ _('Unlisted Add-ons – Add-ons for Firefox') }}
+  {% endif %}
+{% endblock %}
+
 {% block bodyclass %}{{ super() }} {{ " content-review" if tab == "content_review" else "" }}{% endblock %}
 
 {% block content %}

@@ -2,7 +2,7 @@ import datetime
 
 from django.conf import settings
 from django.utils.encoding import force_text
-from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
+from django.utils.translation import ugettext, ungettext
 
 import jinja2
 
@@ -11,7 +11,6 @@ from django_jinja import library
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.templatetags.jinja_helpers import new_context
-from olympia.amo.templatetags.jinja_helpers import page_title
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import ReviewerScore
 from olympia.versions.models import Version
@@ -49,18 +48,6 @@ def version_status(addon, version):
     if version.deleted:
         return ugettext(u'Deleted')
     return ','.join(str(s) for s in version.status)
-
-
-@library.global_function
-@jinja2.contextfunction
-def reviewer_page_title(context, title=None, addon=None):
-    """Wrapper for reviewer page titles.  Eerily similar to dev_page_title."""
-    if addon:
-        title = u'%s :: %s' % (title, addon.name)
-    else:
-        section = _('Reviewer Tools')
-        title = u'%s :: %s' % (title, section) if title else section
-    return page_title(context, title)
 
 
 @library.global_function

@@ -1,7 +1,7 @@
 {% extends "reviewers/base.html" %}
 
 {% block title %}
-  {{ reviewer_page_title(_('{addon} :: Abuse Reports')|format_html(addon=addon.name)) }}
+  {{ _(' Abuse Reports – {addon} – Add-ons for Firefox')|format_html(addon=addon.name) }}
 {% endblock %}
 
 {% block content %}

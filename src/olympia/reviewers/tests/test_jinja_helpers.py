@@ -2,25 +2,16 @@
 import pytest
 
 from django.test.utils import override_settings
-from unittest.mock import Mock
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.files.models import File
 from olympia.reviewers.templatetags import jinja_helpers
-from olympia.translations.models import Translation
 from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
-
-
-def test_page_title_unicode():
-    t = Translation(localized_string=u'\u30de\u30eb\u30c1\u30d712\u30eb')
-    request = Mock()
-    request.APP = amo.FIREFOX
-    jinja_helpers.reviewer_page_title({'request': request}, title=t)
 
 
 class TestCompareLink(TestCase):

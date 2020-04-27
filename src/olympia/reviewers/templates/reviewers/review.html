@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block title %}
-  {{ reviewer_page_title(title=addon.name) }}
+  {{ _('{addon} – Add-ons for Firefox')|format_html(addon=addon.name) }}
 {% endblock %}
 
 {% block bodyclass %}{{ super() }} inverse{{ " content-review" if content_review else ""}}{% endblock %}

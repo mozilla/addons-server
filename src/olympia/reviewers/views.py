@@ -1113,7 +1113,7 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
 @reviewer_addon_view_factory
 def eula(request, addon):
     return policy_viewer(request, addon, addon.eula,
-                         page_title=ugettext('{addon} :: EULA'),
+                         page_title=ugettext('{addon} – EULA'),
                          long_title=ugettext('End-User License Agreement'))
 
 
@@ -1121,7 +1121,7 @@ def eula(request, addon):
 @reviewer_addon_view_factory
 def privacy(request, addon):
     return policy_viewer(request, addon, addon.privacy_policy,
-                         page_title=ugettext('{addon} :: Privacy Policy'),
+                         page_title=ugettext('{addon} – Privacy Policy'),
                          long_title=ugettext('Privacy Policy'))
 
 
