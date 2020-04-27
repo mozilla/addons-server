@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 08:48+0000\n"
+"PO-Revision-Date: 2020-04-27 09:02+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3281,10 +3281,10 @@ msgid "Ready to submit or manage your extension?"
 msgstr "Twejdeḍ ad tazneḍ neɣ ad tesferkeḍ isiɣzaf-ik?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Kcem deg tarbaɛt n ineflayen akken ad tazneḍ neɣ ad tesferked isiɣzaf akked isental."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Jerred deg umiḍan n uneflay neɣ kcem deg tarbaɛt n ineflayen"
 
 msgid "Manage Version {0}"
 msgstr "Sefrek lqem {0}"
@@ -3764,7 +3764,7 @@ msgstr "Ur ttaǧǧa ara lǧeṛṛa tumḍint. Suter i Firefox ad yettu isefka n
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Ur tesriḍ ara ad tettɛawaḍed tira n yiwet n tɣawsa aṭas n iberdan. Sekles iḍris id-yettuɣalen s waṭas akken ad t-tsenṭḍeḍ melmi tebɣiḍ."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4883,7 +4883,7 @@ msgstr "Less inagan n tuqqna, amazray n tunigin, d yifulya yettwaffren s yiwen k
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Kkes iferdisen iṭafaṛen seg iseɣwan web."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
