@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -3161,7 +3161,7 @@ msgstr "Adresse email"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr "Io es de accordo con le tractamento de mi informationes personal per Mozilla como explicate in iste %(link_open)Nota de confidentialitate%(link_close)s."
+msgstr "Io es de accordo con le tractamento de mi informationes personal per Mozilla como explicate in iste %(link_open)sNota de confidentialitate%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Inscriber se"

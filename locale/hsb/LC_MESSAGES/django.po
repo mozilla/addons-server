@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -2954,7 +2954,7 @@ msgstr ""
 "\n"
 "Postrowy,\n"
 "\n"
-"Team přidatkow Mozilla"
+"Team přidatkow Mozilla\n"
 
 #, python-format
 msgid ""
@@ -2974,7 +2974,7 @@ msgstr ""
 "Jeli sej mysliće, zo tutón kluč je so zmylnje wutworił, móžeće kluč wotstronić a\n"
 "přistup na tutym městnje znjemóžnić:\n"
 "\n"
-"%(url)s"
+"%(url)s\n"
 
 #, python-format
 msgid ""
@@ -2994,7 +2994,7 @@ msgstr ""
 "Jeli sej mysliće, zo tutón kluč je so zmylnje wotwołał, móžeće nowy\n"
 "na slědowacym městnje wutworić:\n"
 "\n"
-"%(url)s"
+"%(url)s\n"
 
 #, python-format
 msgid ""
@@ -6845,9 +6845,10 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"\n"
 "Slědowacy awtor je so we wašim přidatku %(addon_name)s ( %(addon_url)s ) změnił:\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 
 #, python-format
 msgid ""
@@ -6856,9 +6857,10 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )\n"
 msgstr ""
+"\n"
 "Slědowacy awtor je so z přidatka %(addon_name)s ( %(addon_url)s ) wotstronił:\n"
 "\n"
-"%(author_name)s ( %(author_url)s )"
+"%(author_name)s ( %(author_url)s )\n"
 
 msgctxt "user_list_others"
 msgid "others"
