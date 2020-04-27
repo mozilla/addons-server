@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 12:01+0000\n"
+"PO-Revision-Date: 2020-04-27 12:09+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -539,9 +539,8 @@ msgstr "Kkes"
 msgid "Update"
 msgstr "Leqqem"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Ddu ar isumar inu"
+msgstr "Agwi tuzna"
 
 msgid "Approve Submission"
 msgstr "Qbel tuzna"
@@ -2371,9 +2370,8 @@ msgstr "Fren tignit i uzegrir inek:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Yettwaseqdec di tebdarin n izegrar am igmaḍ n unadi akked izegrar itran."
+msgstr "Yettwaseqdec di tebdarin n izegrar, am igmaḍ n unadi."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2419,9 +2417,8 @@ msgstr "Talɣiwin PNG akked JPG ttwasefraken, PNG yelha. Teɣzi tafellayt yelhan
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Tiddi taddayt d 1000x750, tafult n 4:3 t-ttusutred."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Askan n tuṭṭfiwin n ugdil des usebter n ufaris-ik ad yesnerni s waṭas tignatin-is akken ad yettwasebedd daɣen ad yers deg usebter agejdan."
+msgstr "Askan n tuṭṭfiwin n ugdil des usebter n ufaris-ik ad yesnerni s waṭas tignatin-is akken ad yettwasebedd."
 
 msgid "Continue"
 msgstr "Kemmel"
