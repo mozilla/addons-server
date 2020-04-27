@@ -2969,7 +2969,7 @@ msgstr ""
 "\n"
 "Üdvözlettel,\n"
 "\n"
-"A Mozilla Kiegészítők csapata"
+"A Mozilla Kiegészítők csapata\n"
 
 #, python-format
 msgid ""
@@ -2989,7 +2989,7 @@ msgstr ""
 "Ha úgy véli, hogy ez hiba, akkor eltávolíthatja kézzel, és\n"
 "letilthatja a hozzáférést a következő helyen:\n"
 "\n"
-"%(url)s"
+"%(url)s\n"
 
 #, python-format
 msgid ""
@@ -3009,7 +3009,7 @@ msgstr ""
 "Ha úgy véli, hogy ez hiba, akkor eltávolíthatja kézzel, és\n"
 "létrehozhat egy újat a következő helyen:\n"
 "\n"
-"%(url)s"
+"%(url)s\n"
 
 #, python-format
 msgid ""

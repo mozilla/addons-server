@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
@@ -2970,7 +2970,7 @@ msgstr ""
 "\n"
 "Salutări,\n"
 "\n"
-"Echipa de suplimente Mozilla"
+"Echipa de suplimente Mozilla\n"
 
 #, python-format
 msgid ""
@@ -2990,7 +2990,7 @@ msgstr ""
 "Dacă tu consideri că a fost creată din greșeală, o poți elimina și poți\n"
 "dezactiva accesul de la următoarea adresă:\n"
 "\n"
-"%(url)s"
+"%(url)s\n"
 
 #, python-format
 msgid ""
@@ -3010,7 +3010,7 @@ msgstr ""
 "Dacă tu crezi că a fost revocată din greșeală, poți crea una nouă\n"
 "la următoarea adresă:\n"
 "\n"
-"%(url)s"
+"%(url)s\n"
 
 #, python-format
 msgid ""
@@ -6793,9 +6793,10 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"\n"
 "La suplimentul tău a fost adăugat următorul autor %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 
 #, python-format
 msgid ""
@@ -6821,9 +6822,10 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"\n"
 "În suplimentul tău a fost modificat următorul autor %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 
 #, python-format
 msgid ""
@@ -6832,9 +6834,10 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )\n"
 msgstr ""
+"\n"
 "Următorul autor a fost eliminat din supliment %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s )"
+"%(author_name)s ( %(author_url)s )\n"
 
 msgctxt "user_list_others"
 msgid "others"

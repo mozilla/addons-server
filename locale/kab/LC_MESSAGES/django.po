@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -2924,7 +2924,7 @@ msgstr ""
 "\n"
 "S tegmat,\n"
 "\n"
-"Tarbaɛt n Mozilla n izegrar"
+"Tarbaɛt n Mozilla n izegrar\n"
 
 #, python-format
 msgid ""
@@ -2944,7 +2944,7 @@ msgstr ""
 "Ma tumneḍ timerni n tsarut-agi d tuccḍa, tzemreḍ ad tekkseḍ tasarut u\n"
 "ad tsenseḍ anekcum deg usmel-a:\n"
 "\n"
-"%(url)s"
+"%(url)s\n"
 
 #, python-format
 msgid ""
@@ -2965,7 +2965,7 @@ msgstr ""
 "Ma tumneḍ d tuccḍa imi tettwaḥwi tsarut-a, tzemreḍ ad ternuḍ yiwet d tamaynut\n"
 "deg usmel-a:\n"
 "\n"
-"%(url)s"
+"%(url)s\n"
 
 #, python-format
 msgid ""
