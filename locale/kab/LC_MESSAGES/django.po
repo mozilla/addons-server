@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 09:08+0000\n"
+"PO-Revision-Date: 2020-04-27 09:23+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5451,7 +5451,7 @@ msgid "You can't submit an empty comment."
 msgstr "Ur tezmireḍ ara ad tazneḍ akemmus n tutlayt"
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad teskecmeḍ uṭṭun n izirig mebla ma tcuddeḍ-t ɣer yisem n ufaylu."
 
 msgid "Type"
 msgstr "Anaw"
