@@ -1,3 +1,4 @@
+import datetime
 import re
 
 import olympia.core.logger
@@ -187,3 +188,34 @@ def split_regex_to_list(guid_re):
         return
     trimmed = REGEX_REMOVAL_REGEX.sub('', guid_re)
     return GUID_SPLIT.split(trimmed)
+
+
+def save_guids_to_blocks(guids, submission):
+    from .models import Block
+
+    common_args = {
+        'min_version': submission.min_version,
+        'max_version': submission.max_version,
+        'url': submission.url,
+        'reason': submission.reason,
+        'updated_by': submission.updated_by,
+        'include_in_legacy': submission.include_in_legacy,
+    }
+    modified_datetime = datetime.datetime.now()
+
+    blocks = Block.get_blocks_from_guids(guids)
+    Block.preload_addon_versions(blocks)
+    for block in blocks:
+        change = bool(block.id)
+        for field, val in common_args.items():
+            setattr(block, field, val)
+        if change:
+            setattr(block, 'modified', modified_datetime)
+        block.save()
+        if submission.id:
+            block.submission.add(submission)
+        block_activity_log_save(
+            block,
+            change=change,
+            submission_obj=submission if submission.id else None)
+    return blocks

@@ -1,4 +1,3 @@
-import datetime
 from collections import defaultdict, namedtuple, OrderedDict
 
 from django.conf import settings
@@ -9,6 +8,7 @@ from django.utils.functional import cached_property
 
 import waffle
 from django_extensions.db.fields.json import JSONField
+from multidb import get_replica
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -22,8 +22,8 @@ from olympia.versions.compare import addon_version_int
 from olympia.versions.models import Version
 
 from .utils import (
-    block_activity_log_save, block_activity_log_delete, legacy_delete_blocks,
-    legacy_publish_blocks, splitlines)
+    block_activity_log_delete, legacy_delete_blocks,
+    legacy_publish_blocks, save_guids_to_blocks, splitlines)
 
 
 class Block(ModelBase):
@@ -149,6 +149,37 @@ class Block(ModelBase):
     @cached_property
     def active_submissions(self):
         return BlocklistSubmission.get_submissions_from_guid(self.guid)
+
+    @classmethod
+    def get_blocks_from_guids(cls, guids):
+        """Given a list of guids, return a list of Blocks - either existing
+        instances if the guid exists in a Block, or new instances otherwise.
+        """
+        # load all the Addon instances together
+        using_db = get_replica()
+        addons = list(Addon.unfiltered.using(using_db).filter(
+            guid__in=guids).no_transforms())
+
+        # And then any existing block instances
+        existing_blocks = {
+            block.guid: block
+            for block in cls.objects.using(using_db).filter(guid__in=guids)}
+
+        blocks = []
+        for addon in addons:
+            # get the existing block object or create a new instance
+            block = existing_blocks.get(addon.guid, None)
+            if block:
+                # if it exists hook up the addon instance
+                block.addon = addon
+            else:
+                # otherwise create a new Block
+                block = cls(addon=addon)
+            blocks.append(block)
+        blocks.extend(
+            block for guid, block in existing_blocks.items()
+            if block not in blocks)
+        return blocks
 
 
 class BlocklistSubmission(ModelBase):
@@ -447,63 +478,15 @@ class BlocklistSubmission(ModelBase):
             'blocks': blocks,
         }
 
-    @classmethod
-    def _get_block_instances_to_save(cls, guids_to_block):
-        """Cut down version of `process_input_guids` for saving - we've already
-        filtered the guids so we know they all need to be either created or
-        updated.
-        """
-        # load all the Addon instances together
-        addons = list(Addon.unfiltered.filter(
-            guid__in=guids_to_block).no_transforms())
-
-        # And then any existing block instances
-        existing_blocks = {
-            block.guid: block
-            for block in Block.objects.filter(guid__in=guids_to_block)}
-
-        blocks = []
-        for addon in addons:
-            # get the existing block object or create a new instance
-            block = existing_blocks.get(addon.guid, None)
-            if block:
-                # if it exists hook up the addon instance
-                block.addon = addon
-            else:
-                # otherwise create a new Block
-                block = Block(addon=addon)
-            blocks.append(block)
-        return blocks
-
     def save_to_block_objects(self):
         assert self.is_submission_ready
         assert self.action == self.ACTION_ADDCHANGE
-        common_args = {
-            'min_version': self.min_version,
-            'max_version': self.max_version,
-            'url': self.url,
-            'reason': self.reason,
-            'updated_by': self.updated_by,
-            'include_in_legacy': self.include_in_legacy,
-        }
 
-        modified_datetime = datetime.datetime.now()
         all_guids_to_block = [block['guid'] for block in self.to_block]
         kinto_submit_legacy_switch = waffle.switch_is_active(
             'blocklist_legacy_submit')
         for guids_chunk in chunked(all_guids_to_block, 100):
-            blocks = self._get_block_instances_to_save(guids_chunk)
-            Block.preload_addon_versions(blocks)
-            for block in blocks:
-                change = bool(block.id)
-                for field, val in common_args.items():
-                    setattr(block, field, val)
-                if change:
-                    setattr(block, 'modified', modified_datetime)
-                block.save()
-                block.submission.add(self)
-                block_activity_log_save(
-                    block, change=change, submission_obj=self)
+            blocks = save_guids_to_blocks(guids_chunk, self)
             if kinto_submit_legacy_switch:
                 legacy_publish_blocks(blocks)
             self.save()

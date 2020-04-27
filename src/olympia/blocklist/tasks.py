@@ -2,9 +2,10 @@ import re
 import time
 from datetime import datetime
 
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
+
+from multidb import get_replica
 
 import olympia.core.logger
 from olympia import amo
@@ -52,7 +53,7 @@ def process_blocklistsubmission(multi_block_submit_id, **kw):
 @transaction.atomic
 def import_block_from_blocklist(record):
     kinto_id = record.get('id')
-    using_db = 'replica' if 'replica' in settings.DATABASES else 'default'
+    using_db = get_replica()
     log.debug('Processing block id: [%s]', kinto_id)
     kinto_import = KintoImport(kinto_id=kinto_id, record=record)
 
