@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 12:09+0000\n"
+"PO-Revision-Date: 2020-04-27 12:19+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3124,9 +3124,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Isiɣzaf"
+msgstr "Rzu ɣer tnemselt n isiɣzaf"
 
 msgid "Connect with us"
 msgstr "Qqen yid-neɣ"
@@ -4892,9 +4891,8 @@ msgid "Create and customize tab groups."
 msgstr "Rnu tsagneḍ igrawen n yiccaren."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Sekles isebtar ummiden — neɣ iḥricen seg-sen — seg yiwen n ufaylu HTML."
+msgstr "Sekles asebtar web i meṛṛa— ula d tugniwin akked ufeṣṣel— deg yiwen ufaylu HTML."
 
 #. editorial content for the discovery pane.
 #, fuzzy
