@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-24 12:20+0000\n"
-"Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>\n"
+"PO-Revision-Date: 2020-04-27 18:21+0000\n"
+"Last-Translator: Carlos (SUMO @silva.ac.carlos) <carlos.a.silva@pm.me>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -302,11 +302,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Ups"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Ups!  Tivemos um erro.</h1> <p>Iremos começar a resolver isto brevemente.</p> <p> Pode tentar atualizar a página ou voltar para a <a href=\"%(home)s\">página inicial dos Extras</a>. </p>"
+msgstr ""
+"<h1>Ups! Encontrámos um erro.</h1> <p>Iremos corrigi-lo brevemente.</p> <p> Pode tentar recarregar a página ou voltar para a <a href=\"%(home)s\">página inicial dos Extras</a>. Também pode ajudar-"
+"nos a corrigir isto, <a href=\"https://github.com/mozilla/addons/issues/new\">preenchendo um erro</a> com os detalhes de como chegou a esta página. </p>"
 
 msgid "No results found"
 msgstr "Não foram encontrados resultados"
@@ -498,20 +500,17 @@ msgstr "GUID %(guid)s já está numa Submissão pendente"
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Os bloqueios para serem atualizados são diferentes porque as versões Mín ou Máx foram alteradas."
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Intervalo da versão inválido."
+msgstr "Versão inválida"
 
 msgid "Min version can not be greater than Max version"
 msgstr "A versão Mín não pode ser maior que a versão Máx"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Revisão solicitada"
+msgstr "Revisão Listada"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Nota da revisão"
+msgstr "Revisão Não Listada"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "Este bloqueio foi importado de um Bloqueio kinto legado baseado em regex."
@@ -519,11 +518,10 @@ msgstr "Este bloqueio foi importado de um Bloqueio kinto legado baseado em regex
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Qualquer alteração efetuadas NÃO será atualizada na lista de bloqueio legada - deve efetuar uma alteração manual através de kinto admin webui."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Rejeitar múltiplas versões"
+msgstr "Eliminar Múltiplas %(name)s"
 
-#, fuzzy
 msgid "Home"
 msgstr "Página inicial"
 
@@ -536,13 +534,13 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr "Não foram encontrados %(count)s GUIDs de Extra"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "O(s) bloqueio(s) seguinte(s) foi/foram importados de um Bloqueio kinto legado baseado em regex."
 
 msgid "Save"
 msgstr "Guardar"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Guardar e adicionar mais"
 
 msgid "Delete"
 msgstr "Apagar"
@@ -550,42 +548,37 @@ msgstr "Apagar"
 msgid "Update"
 msgstr "Atualizar"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Ir para as minhas submissões"
+msgstr "Rejeitar submissão"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Ir para as minhas submissões"
+msgstr "Aprovar submissão"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Adicionar %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUIDs de extra (um por linha)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "Submeter versão"
+msgstr "Submeter"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s GUIDs de Extra"
 
-#, fuzzy
 msgid "users"
-msgstr "Utilizadores"
+msgstr "utilizadores"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Editar bloqueio"
 
-#, fuzzy
 msgid "versions"
-msgstr "Versões"
+msgstr "versões"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Incluído na lista de bloqueios legada."
 
 msgid "{addon} was created."
 msgstr "{addon} foi criado."
@@ -908,31 +901,28 @@ msgid "User {user} api key reset."
 msgstr "O utilizador {user} repôs a chave da api."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Bloqueio para {0} adicionado à Lista de Bloqueios."
 
 msgid "Block added"
-msgstr ""
+msgstr "Bloco adicionado"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Bloqueio para {0} editado na Lista de Bloqueios."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Bloqueio editado"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Versão {0} eliminada de {addon}."
+msgstr "Bloqueio para {0} eliminado da Lista de Bloqueios"
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Extra eliminado."
+msgstr "Bloqueio eliminado"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID para {addon} adicionado ao GUID Negado."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} removido de {collection}."
+msgstr "GUID para {addon} removido de GUID Negado."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
