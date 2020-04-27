@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 16:31+0000\n"
+"PO-Revision-Date: 2020-04-27 18:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5619,7 +5619,7 @@ msgid "Block Multiple Versions"
 msgstr "Wjacore wersije wotpokazać"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "To wubrane schwalene wersije skradźu znjemóžni a administracisku stronu za wutworjenje blokowanja wočini."
 
 #, fuzzy
 msgid "Confirm Multiple Versions"
