@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 12:41+0000\n"
+"PO-Revision-Date: 2020-04-27 12:58+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2686,9 +2686,8 @@ msgstr "Ad tizmireḍ daɣen ad tbeddleḍ lqem i d-sumreḍ yakan s tmerna n ti
 msgid "Edit version {0}"
 msgstr "Ẓreg lqem {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Lqem yettwazmel"
+msgstr "Azmul n lqem yettraǧu"
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
 msgstr "Dayen tfukeḍ! Lqem-agi ur yettɛeṭṭil ara ad yettwazmel i uzuzer udmawan. Ad tizmireḍ ad tremseḍ alɣu ticki afaylu yettwazemlen ihegga i usider."
@@ -4969,9 +4968,8 @@ msgstr "Ur izmir ara ad isiḍen amgired gar sin ileqman yettemcabin"
 msgid "Could not parse the manifest file."
 msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID yettwasra i Firefox 47 neɣ daw."
+msgstr "Asulay n uzegrir yettwasra i Firefox 47 neɣ daw."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Azal adday yettusefraken i \"strict_min_version\" d 42.0."
@@ -5874,9 +5872,8 @@ msgstr "Inekcam ttwakksen yakan"
 msgid "This is a recommended extension."
 msgstr "Wa d asiɣzef yelhan."
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Ur ɣur-k ara talɣut n usesteb API."
+msgstr "Ur ɣur-k ara tisurag n ucegger."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Ma ulac aɣilif, fren yiwen neɣ ugar n yileqman deg  tabdart ddaw-a."
@@ -5922,9 +5919,8 @@ msgstr "Ḥettem asensi n uzegrir"
 msgid "Force-enable add-on"
 msgstr "Ḥettem armad n uzegrir"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Wali akk tuzniwin"
+msgstr "Wali tabdart n usewḥel n tuzniwin"
 
 msgid "Block add-on"
 msgstr "Sewḥel azegrir"
@@ -5940,9 +5936,8 @@ msgstr "RmeSens aqbal awurman"
 msgid "Enable Listed Auto-Approval"
 msgstr "Rmed aqbal awurman"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Tacreḍt tawurmant n uqbal tensa"
+msgstr "Aqbal awurman yensa akka tura arma d {date"
 
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
@@ -6583,13 +6578,12 @@ msgstr "Iseqdacen \"%(users)s\" ttwagedlen."
 msgid "Ban selected users"
 msgstr "Gdel aseqdac-a"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Iseqdacen \"%(users)s\" wennzen tasarut-nsen n API."
+msgstr "Iseqdacen \"%(users)s\" wennzen tiɣimiyin-nsen."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Kkes lqem"
+msgstr "Wennez tikkelt-nniḍen tiɣimit"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6691,9 +6685,8 @@ msgstr "Alɣu n useqdac"
 msgid "Ban"
 msgstr "Kkes"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Kkes lqem"
+msgstr "Wennez tikkelt-nniḍen tiɣimiyin"
 
 msgid "Delete picture"
 msgstr "Kkes tawlaft"
