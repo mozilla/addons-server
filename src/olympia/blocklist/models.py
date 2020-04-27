@@ -8,6 +8,7 @@ from django.utils.functional import cached_property
 
 import waffle
 from django_extensions.db.fields.json import JSONField
+from multidb import get_replica
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -154,8 +155,8 @@ class Block(ModelBase):
         """Given a list of guids, return a list of Blocks - either existing
         instances if the guid exists in a Block, or new instances otherwise.
         """
-        using_db = 'replica' if 'replica' in settings.DATABASES else 'default'
         # load all the Addon instances together
+        using_db = get_replica()
         addons = list(Addon.unfiltered.using(using_db).filter(
             guid__in=guids).no_transforms())
 
