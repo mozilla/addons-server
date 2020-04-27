@@ -6,6 +6,7 @@ import itertools
 import waffle
 
 from django.template import loader
+from django_statsd.clients import statsd
 
 import olympia.core.logger
 
@@ -139,8 +140,14 @@ def extract_version_to_git(
     log.info('Extracting {version_id} into git backend'.format(
         version_id=version_id))
 
-    repo = AddonGitRepository.extract_and_commit_from_version(
-        version=version, author=author, note=note)
+    try:
+        with statsd.timer('git.extraction.version'):
+            repo = AddonGitRepository.extract_and_commit_from_version(
+                version=version, author=author, note=note)
+        statsd.incr('git.extraction.version.success')
+    except Exception as exc:
+        statsd.incr('git.extraction.version.failure')
+        raise exc
 
     log.info('Extracted {version} into {git_path}'.format(
         version=version_id, git_path=repo.git_repository_path))
@@ -165,8 +172,14 @@ def extract_version_source_to_git(version_id, author_id=None):
     log.info('Extracting {version_id} source into git backend'.format(
         version_id=version_id))
 
-    repo = AddonGitRepository.extract_and_commit_source_from_version(
-        version=version, author=author)
+    try:
+        with statsd.timer('git.extraction.version_source'):
+            repo = AddonGitRepository.extract_and_commit_source_from_version(
+                version=version, author=author)
+        statsd.incr('git.extraction.version_source.success')
+    except Exception as exc:
+        statsd.incr('git.extraction.version_source.failure')
+        raise exc
 
     log.info(
         'Extracted source files from {version} into {git_path}'.format(
