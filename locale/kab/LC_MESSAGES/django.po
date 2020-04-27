@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 09:23+0000\n"
+"PO-Revision-Date: 2020-04-27 09:30+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -497,13 +497,11 @@ msgstr "Lqem armeɣtu"
 msgid "Min version can not be greater than Max version"
 msgstr "Lqem n Min ur yezmir ara ad yager lqem n Max"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Aceggir yettwasuter"
+msgstr "Aceggir yettwabder"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Tazmilt n uɛawed n tmuɣli"
+msgstr "Aceggir ur yettwabder ara"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "Iḥder-agi yettwakter-d seg yiḥder Kinto aqdim yebnan ɣef regex."
@@ -5499,13 +5497,11 @@ msgstr "Tagara n usuter n telɣut"
 msgid "Last Updated"
 msgstr "Aleqqem aneggaru"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Izegrar-nniḍen deg umecwaṛ n ucegger ({0})"
+msgstr "Ileqman ittwabedren yesran acegger ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Izegrar-nniḍen deg umecwaṛ n ucegger ({0})"
+msgstr "Ieqman ur nettwabder ara yesran acegger ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad ttwaznen i uneflay."
@@ -5531,9 +5527,8 @@ msgstr "Aggwi aṭas n ilqman"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Tigawt-agi ad tagi ileqman izuyaz yettwafernen. Iwenniten ad ttwaznen i uneflay."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Aggwi aṭas n ilqman"
+msgstr "Sewḥel aṭas n ilqman"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
