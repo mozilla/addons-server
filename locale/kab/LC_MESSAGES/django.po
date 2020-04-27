@@ -5937,7 +5937,7 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Rmed aqbal awurman"
 
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Aqbal awurman yensa akka tura arma d {date"
+msgstr "Aqbal awurman yensa akka tura arma d {date}"
 
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
