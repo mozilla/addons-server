@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 18:29+0000\n"
+"PO-Revision-Date: 2020-04-27 18:41+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6289,7 +6289,7 @@ msgid "An error occurred when compiling the definition"
 msgstr "Při kompilowanju definicije je so zmylk stał."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Nałožće tute prawidło na přidatki, kotrež su so tež pod nućenjom znjemóžnili."
 
 msgid "Abort"
 msgstr "Přetorhnyć"
@@ -6298,7 +6298,7 @@ msgid "Run"
 msgstr "Wuwjesć"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Wužitny, hdyž skenerowy wuslědk je prawje pozitiwny, ale přidatk škódny njeje"
 
 #, fuzzy
 msgid "Revert report"
@@ -6831,6 +6831,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"Slědowacy awtor je so swojemu přidatkej %(addon_name)s ( %(addon_url)s ) přidał:\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
