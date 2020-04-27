@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 12:33+0000\n"
+"PO-Revision-Date: 2020-04-27 12:42+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3168,6 +3168,8 @@ msgstr "Wuwiwajće prěnjorjadne rozšěrjenja a drasty"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Wšojedne, hač sće nowy we wuwiwanju rozšěrjenjow, eksistowace rozšěrjenje abo drastu wupolěrujeće abo portujeće abo swójsku předewzaćelske rozrisanje wutworjeće, my mamy resursy, zo bychmy was "
+"podpěrowali."
 
 #, fuzzy
 msgid "Visit the Extension Workshop"
@@ -3330,10 +3332,10 @@ msgid "Ready to submit or manage your extension?"
 msgstr "Sće hotowy, swoje rozšěrjenje zapodać abo rjadować?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Přizjewće so pola wuwiwarskeho róžka, zo byšće rozšěrjenja a drasty zapodał abo rjadował."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Registrujće so za wuwiwarske konto abo přizjewće so pola wuwiwarskeho róžka"
 
 msgid "Manage Version {0}"
 msgstr "Wersiju {0} rjadować"
