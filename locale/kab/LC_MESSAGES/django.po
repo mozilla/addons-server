@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 09:30+0000\n"
+"PO-Revision-Date: 2020-04-27 11:41+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5935,12 +5935,11 @@ msgstr "Ḥettem armad n uzegrir"
 msgid "View Blocklist Submission"
 msgstr "Wali akk tuzniwin"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Uɣal ar uzegrir"
+msgstr "Sewḥel azegrir"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Leqqem asewḥel n izegrar"
 
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
@@ -6715,6 +6714,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"Ameskar-agi yettwerna ɣer uzegrir-ik %(addon_name)s (%(addon_url)s):\n"
+"\n"
+"%(author_name)s (%(author_url)s):%(author_role)s"
 
 #, python-format
 msgid ""
