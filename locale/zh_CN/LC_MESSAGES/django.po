@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 03:34+0000\n"
+"PO-Revision-Date: 2020-04-27 11:35+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -6068,7 +6068,7 @@ msgid "add-on status"
 msgstr "附加组件状态"
 
 msgid "add-on listing visibility"
-msgstr ""
+msgstr "附加组件上架可见性"
 
 msgid "file status"
 msgstr "文件状态"
@@ -6111,7 +6111,7 @@ msgid "Useful when the scanner result is a true positive but the add-on is not m
 msgstr "当扫描器结果为真阳性但附加组件非恶意时很有用"
 
 msgid "Revert report"
-msgstr ""
+msgstr "回复报告"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
