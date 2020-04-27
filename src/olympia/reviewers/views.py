@@ -1160,8 +1160,7 @@ def download_git_stored_file(request, version_id, filename):
         }
     )
 
-    commit = serializer._get_commit(file)
-    tree = serializer.repo.get_root_tree(commit)
+    tree = serializer.tree
 
     try:
         blob_or_tree = tree[serializer.get_selected_file(file)]
@@ -1176,7 +1175,7 @@ def download_git_stored_file(request, version_id, filename):
 
     response = http.HttpResponse(
         content=actual_blob.data,
-        content_type=selected_file['mimetype'])
+        content_type=serializer.get_mimetype(file))
 
     # Backported from Django 2.1 to handle unicode filenames properly
     selected_filename = selected_file['filename']

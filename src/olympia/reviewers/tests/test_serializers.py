@@ -207,14 +207,14 @@ class TestFileEntriesSerializer(TestCase):
     def test_sha256_only_calculated_or_fetched_for_selected_file(self):
         file = self.addon.current_version.current_file
         serializer = self.get_serializer(file, file='icons/LICENSE')
-        data = serializer.data
+        serializer.data
 
         assert serializer._entries['manifest.json']['sha256'] is None
         assert serializer._entries['icons/LICENSE']['sha256'] == (
             'b48e66c02fe62dd47521def7c5ea11b86af91b94c23cfdf67592e1053952ed55')
 
         serializer = self.get_serializer(file, file='manifest.json')
-        data = serializer.data
+        serializer.data
         assert serializer._entries['manifest.json']['sha256'] == (
             '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0')
         assert serializer._entries['icons/LICENSE']['sha256'] is None
