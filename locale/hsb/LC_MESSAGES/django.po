@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 12:50+0000\n"
+"PO-Revision-Date: 2020-04-27 16:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4952,7 +4952,7 @@ msgstr "Wotstrońće slědowace elementy z webwotkazow."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Wobstarajće sej awtomatisce wupjelnjene rjadowaki zapołožkow RSS-kanalow."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
@@ -4978,7 +4978,7 @@ msgstr "Blokujće kóžde wabjenje - wideja, wuskakowace wokna, chorhoje a wjace
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Wobhladajće sej prudźace medije z přećelemi a swójbu wšudźe."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5499,10 +5499,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Awtomatiske schwalenje je so nachwilu zadźeržało."
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Awtomatiske schwalenje je so na njewěsty čas zadźeržało."
 
 msgid "Is locked by a reviewer"
 msgstr "Je wot přepruwowarja zawrjeny"
@@ -5528,7 +5528,7 @@ msgid "You can't submit an empty comment."
 msgstr "Njemóžeće rěčny pakćik zapodać"
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Njemóžeće linkowe čisło zapodać, bjeztoho zo byšće je datajowemu mjenu připokazał."
 
 msgid "Type"
 msgstr "Typ"
