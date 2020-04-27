@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -6705,9 +6705,10 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"\n"
 "Ameskar-agi yettwerna ɣer uzegrir-ik %(addon_name)s (%(addon_url)s):\n"
 "\n"
-"%(author_name)s (%(author_url)s):%(author_role)s"
+"%(author_name)s (%(author_url)s):%(author_role)s\n"
 
 #, python-format
 msgid ""
@@ -6725,6 +6726,7 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team\n"
 msgstr ""
+"\n"
 "Azul %(author_name)s,\n"
 "\n"
 "Tettwanecdeḍ ad tuɣaleḍ d ameskar n %(addon_name)s di %(domain)s. Ma tqebleḍ tinubga ad tizmireḍ ad tbeddleḍ azegrir, u daɣen ad tsekneḍ isem-ik deg tebdert n yimeskaren n usmel web.\n"
@@ -6736,7 +6738,7 @@ msgstr ""
 "Ma ur terǧiḍ ara ad tremseḍ tinubga-agi, ttxil-k azen imayl i amo-admins@mozilla.com.\n"
 "\n"
 "S tegmat,\n"
-"Tarbaɛt n Mozilla n izegrar"
+"Tarbaɛt n Mozilla n izegrar\n"
 
 #, python-format
 msgid ""
