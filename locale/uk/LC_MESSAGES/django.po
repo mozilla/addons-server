@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 05:27+0000\n"
+"PO-Revision-Date: 2020-04-27 05:37+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6078,7 +6078,7 @@ msgid "Newer"
 msgstr "Новіший"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr "{num} версій, позначених сканерами на цій сторінці."
+msgstr "{num} версій позначено сканерами на інших сторінках."
 
 msgid "Recent Points"
 msgstr "Недавні бали"
@@ -6224,13 +6224,13 @@ msgid "An error occurred when compiling the definition"
 msgstr "Сталась помилка під час компілювання визначення"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr "Застосувати це правило щодо додатків, які були відключені."
+msgstr "Також виконати це правило для додатків, які були примусово вимкнені."
 
 msgid "Abort"
 msgstr "Скасувати"
 
 msgid "Run"
-msgstr "Застосувати"
+msgstr "Виконати"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr "Корисно, коли результат сканування є дійсно позитивним, але додаток не є зловмисним"
