@@ -93,6 +93,9 @@ ADMIN_SCANNERS_QUERY_EDIT = AclPermission('Admin', 'ScannersQueryEdit')
 # Can view things the scanners query admin (code search).
 ADMIN_SCANNERS_QUERY_VIEW = AclPermission('Admin', 'ScannersQueryView')
 
+# Can access and edit the git extraction admin.
+ADMIN_GIT_EXTRACTION_EDIT = AclPermission('Admin', 'GitExtractionEdit')
+
 # Can create/edit a Block in the blocklist - the change may require signoff
 BLOCKLIST_CREATE = AclPermission('Blocklist', 'Create')
 # Can signoff a Block creation/edit submission
@@ -147,6 +150,10 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'discovery.delete_secondaryheroshelf': DISCOVERY_EDIT,
 
     'files.change_file': ADMIN_ADVANCED,
+
+    'git.change_gitextractionentry': ADMIN_GIT_EXTRACTION_EDIT,
+    'git.delete_gitextractionentry': ADMIN_GIT_EXTRACTION_EDIT,
+    'git.view_gitextractionentry': ADMIN_GIT_EXTRACTION_EDIT,
 
     'hero.add_primaryhero': DISCOVERY_EDIT,
     'hero.change_primaryhero': DISCOVERY_EDIT,
