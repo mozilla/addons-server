@@ -47,6 +47,8 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
         )
 
 
+# NOTE: Because of caching, this serializer cannot be reused and must be
+# created for each file. It cannot be used with DRF's many=True option.
 class FileEntriesSerializer(FileSerializer):
     content = serializers.SerializerMethodField()
     uses_unknown_minified_code = serializers.SerializerMethodField()
@@ -83,7 +85,6 @@ class FileEntriesSerializer(FileSerializer):
     def commit(self):
         """Return the pygit2 repository instance, preselect correct channel."""
         # Caching the commit to avoid calling revparse_single many times.
-        # Because of this, a new serializer must be created for each file.
         try:
             return self.git_repo.revparse_single(
                 self.get_instance().version.git_hash)
