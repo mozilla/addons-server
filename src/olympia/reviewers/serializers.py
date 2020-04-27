@@ -112,7 +112,36 @@ class FileEntriesSerializer(FileSerializer):
 
         return (None, None)
 
-    def get_entries(self, obj):
+    def _get_hash_for_selected_file(self, obj):
+        selected_file = self.get_selected_file(obj)
+
+        # Return the hash if we already saved it to the locally cached
+        # `self._entries` dictionary.
+        _entries = getattr(self, '_entries', {})
+
+        if _entries and _entries[selected_file]['sha256']:
+            return _entries[selected_file]['sha256']
+
+        commit = self.commit
+        blob, name = self._get_blob_for_selected_file(obj)
+
+        # Normalize the key as we want to avoid that we exceed max
+        # key lengh because of selected_file.
+        cache_key = make_key(
+            f'reviewers:fileentriesserializer:hashes'
+            f':{commit.hex}:{selected_file}',
+            with_locale=False,
+            normalize=True)
+
+        def _calculate_hash():
+            if blob is None:
+                return None
+
+            return get_sha256(io.BytesIO(memoryview(blob)))
+
+        return cache.get_or_set(cache_key, _calculate_hash, 60 * 60 * 24)
+
+    def _get_entries(self, obj):
         # Given that this is a very expensive operation we have a two-fold
         # cache, one that is stored on this instance for very-fast retrieval
         # to support other method calls on this serializer
@@ -137,8 +166,11 @@ class FileEntriesSerializer(FileSerializer):
                 result[path] = {
                     'depth': path.count(os.sep),
                     'filename': force_text(entry.name),
+                    'sha256': None,
                     'mime_category': entry_mime_category,
+                    'mimetype': mimetype,
                     'path': path,
+                    'size': blob.size if blob is not None else None,
                 }
             return result
 
@@ -150,95 +182,55 @@ class FileEntriesSerializer(FileSerializer):
             # cache
             60 * 60 * 24)
 
+        # Fetch and set the sha hash for the currently selected file.
+        sha256 = self._get_hash_for_selected_file(obj)
+        self._entries[self.get_selected_file(obj)]['sha256'] = sha256
+
         return self._entries
 
+    def get_entries(self, obj):
+        entries = self._get_entries(obj)
+        return self._trim_entries(entries)
+
+    def _trim_entries(self, entries):
+        result = OrderedDict()
+        for value in entries.values():
+            result[value['path']] = self._trim_entry(value)
+        return result
+
+    def _trim_entry(self, entry):
+        return {key: entry[key] for key in (
+                'depth', 'filename', 'mime_category', 'path', 'status'
+                ) if key in entry}
+
     def get_mimetype(self, obj):
-        blob, name = self._get_blob_for_selected_file(obj)
-        if blob is not None:
-            mimetype, mime_category = get_mime_type_for_blob(
-                tree_or_blob='blob', name=name, blob=blob)
-
-            return mimetype
-
-        # If we do not have a blob, return 'application/octet-stream'
-        return 'application/octet-stream'
+        entries = self._get_entries(obj)
+        return entries[self.get_selected_file(obj)]['mimetype']
 
     def get_sha256(self, obj):
-        selected_file = self.get_selected_file(obj)
-        commit = self.commit
-        blob, name = self._get_blob_for_selected_file(obj)
-
-        # Normalize the key as we want to avoid that we exceed max
-        # key lengh because of selected_file.
-        cache_key = make_key(
-            f'reviewers:fileentriesserializer:hashes'
-            f':{commit.hex}:{selected_file}',
-            with_locale=False,
-            normalize=True)
-
-        def _calculate_hash():
-            if blob is None:
-                return None
-
-            return get_sha256(io.BytesIO(memoryview(blob)))
-
-        return cache.get_or_set(cache_key, _calculate_hash, 60 * 60 * 24)
+        return self._get_hash_for_selected_file(obj)
 
     def get_size(self, obj):
-        blob, name = self._get_blob_for_selected_file(obj)
-        if blob is not None:
-            return blob.size
-
-        return None
+        entries = self._get_entries(obj)
+        return entries[self.get_selected_file(obj)]['size']
 
     def get_selected_file(self, obj):
         requested_file = self.context.get('file', None)
-        parent_version = self.context.get('parent_version', None)
-        deltas = None
-
-        if parent_version is not None:
-
-            commit = obj.version.git_hash
-            parent = self.context['parent_version'].git_hash
-
-            # Initial commits have both set to the same version
-            parent = parent if parent != commit else None
-
-            deltas = self.repo.get_deltas(
-                commit=commit,
-                parent=parent,
-                pathspec=None)
-
-        tree = self.tree
+        files = self._get_entries(obj)
 
         if requested_file is None:
             default_files = ('manifest.json', 'install.rdf', 'package.json')
 
             for manifest in default_files:
-                if manifest in tree:
+                if manifest in files:
                     requested_file = manifest
                     break
-
-                # In case the default file has been deleted.
-                if deltas is not None:
-                    for delta in deltas:
-                        if delta['path'] == manifest:
-                            requested_file = manifest
-                            break
-
-            if requested_file is None:
-                # This could be a search engine
-                requested_file = next(tree.__iter__()).name
-
-        if requested_file not in tree:
-            # In case the requested file has been deleted.
-            if deltas is not None:
-                for delta in deltas:
-                    if delta['path'] == requested_file:
-                        break
-                    raise NotFound('File not found')
             else:
-                raise NotFound('File not found')
+                # This could be a search engine
+                requested_file = list(files.keys())[0]
+
+        if requested_file not in files:
+            raise NotFound('File not found')
 
         return requested_file
 
@@ -372,8 +364,8 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         # See: https://github.com/mozilla/addons-server/issues/11392
         return next(iter(diff), None)
 
-    def get_entries(self, obj):
-        """Overwrite `FileEntriesSerializer.get_entries to inject
+    def _get_entries(self, obj):
+        """Overwrite `FileEntriesSerializer._get_entries to inject
 
         added/removed/changed information.
         """
@@ -388,7 +380,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             parent=parent,
             pathspec=None)
 
-        entries = super().get_entries(obj)
+        entries = super()._get_entries(obj)
 
         # All files have a "unmodified" status by default
         for path, value in entries.items():
@@ -411,8 +403,11 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                 entries[path] = {
                     'depth': path_depth,
                     'filename': filename,
+                    'sha256': None,
                     'mime_category': None,
+                    'mimetype': mime,
                     'path': path,
+                    'size': None,
                 }
 
             # Now we can set the git-status.
@@ -432,8 +427,11 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                     entries[parent] = {
                         'depth': path_depth - 1 - index,
                         'filename': os.path.basename(parent),
+                        'sha256': None,
                         'mime_category': 'directory',
+                        'mimetype': 'application/octet-stream',
                         'path': parent,
+                        'size': None,
                     }
 
         return entries

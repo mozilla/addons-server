@@ -176,7 +176,7 @@ class TestFileEntriesSerializer(TestCase):
         data = serializer.data
         commit = serializer.commit
 
-        assert serializer._entries == data['entries']
+        assert serializer._trim_entries(serializer._entries) == data['entries']
 
         key = 'reviewers:fileentriesserializer:entries:{}'.format(commit.hex)
         cached_data = cache.get(key)
@@ -196,12 +196,28 @@ class TestFileEntriesSerializer(TestCase):
             'content-script.js', 'icons', 'icons/LICENSE', 'icons/link-48.png'}
 
         for key in expected_keys:
-            assert cached_data[key] == data['entries'][key]
+            assert serializer._trim_entry(
+                cached_data[key]) == data['entries'][key]
 
     def test_dont_render_content_binary_file(self):
         file = self.addon.current_version.current_file
         data = self.serialize(file, file='icons/link-48.png')
         assert data['content'] == ''
+
+    def test_sha256_only_calculated_or_fetched_for_selected_file(self):
+        file = self.addon.current_version.current_file
+        serializer = self.get_serializer(file, file='icons/LICENSE')
+        data = serializer.data
+
+        assert serializer._entries['manifest.json']['sha256'] is None
+        assert serializer._entries['icons/LICENSE']['sha256'] == (
+            'b48e66c02fe62dd47521def7c5ea11b86af91b94c23cfdf67592e1053952ed55')
+
+        serializer = self.get_serializer(file, file='manifest.json')
+        data = serializer.data
+        assert serializer._entries['manifest.json']['sha256'] == (
+            '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0')
+        assert serializer._entries['icons/LICENSE']['sha256'] is None
 
     def test_uses_unknown_minified_code(self):
         validation_data = {
@@ -372,8 +388,7 @@ class TestFileEntriesDiffSerializer(TestCase):
         # We deleted the selected file, so there should be a diff.
         assert data['diff'] is not None
         assert data['diff']['mode'] == 'D'
-        # No file exists, so mimetype uses the default.
-        assert data['mimetype'] == 'application/octet-stream'
+        assert data['mimetype'] == 'application/json'
         assert data['sha256'] is None
         assert data['size'] is None
 
