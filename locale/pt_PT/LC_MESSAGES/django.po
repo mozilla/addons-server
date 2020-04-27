@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 18:21+0000\n"
+"PO-Revision-Date: 2020-04-27 18:33+0000\n"
 "Last-Translator: Carlos (SUMO @silva.ac.carlos) <carlos.a.silva@pm.me>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -925,14 +925,13 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID para {addon} removido de GUID Negado."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Bloqueie a ação {1} para {0} desligada."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Bloquear ação de desligar"
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "O utilizador {user} repôs a chave da api."
+msgstr "Sessões do utilizador {user} repostas."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
@@ -979,7 +978,7 @@ msgid "Unlisted"
 msgstr "Não listada"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -991,9 +990,8 @@ msgstr "Programador"
 msgid "Extension"
 msgstr "Extensão"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Análise de tema completo atualizada"
+msgstr "Tema Completo Desaprovado"
 
 msgid "Dictionary"
 msgstr "Dicionário"
@@ -1020,9 +1018,8 @@ msgstr "Tema (estático)"
 msgid "Extensions"
 msgstr "Extensões"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Temas completos"
+msgstr "Temas Completos Desaprovados"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1554,48 +1551,44 @@ msgstr "Imagem de baixa qualidade, esticada ou em branco"
 msgid "Header image alignment problem"
 msgstr "Problema de alinhamento da imagem do cabeçalho"
 
-#, fuzzy
 msgid "No action"
-msgstr "Mais ações"
+msgstr "Sem ação"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Sinalizar para revisão humana"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Desativar auto-aprovação"
+msgstr "Atrasar a aprovação automática"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Atrasar a aprovação automática indefinidamente"
 
 msgid "True positive"
-msgstr ""
+msgstr "Positivo verdadeiro"
 
 msgid "False positive"
-msgstr ""
+msgstr "Falso positivo"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Inconclusivo"
 
-#, fuzzy
 msgid "New"
-msgstr "Mais recente"
+msgstr "Novo"
 
 msgid "Running"
-msgstr ""
+msgstr "Em execução"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Cancelado"
 
 msgid "Aborting"
-msgstr ""
+msgstr "A cancelar"
 
-#, fuzzy
 msgid "Completed"
-msgstr "Incompleto"
+msgstr "Concluído"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Agendado"
 
 msgid "Core"
 msgstr "Núcleo"
@@ -1889,11 +1882,12 @@ msgstr "O ícone deve ser quadrado (mesma largura e altura)."
 msgid "There was an error uploading your preview."
 msgstr "Ocorreu um erro ao enviar a sua pré-visualização."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "A última versão aprovada de uma extensão recomendada não pode ser eliminada ou desativada. Entre em contacto com os administradores da AMO se precisar de ajuda com isto."
+msgstr ""
+"A última versão aprovada desta extensão Recomendada não pode ser eliminada ou desativada porque a versão anterior não foi aprovada para recomendação. Por favor, contate os Administradores de AMO se "
+"precisar de ajuda com isto."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2415,9 +2409,8 @@ msgstr "Selecione um ícone para o seu extra:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Usado nas listagens dos extras, como resultados de pesquisas e funcionalidades dos extras."
+msgstr "Utilizado nas listagens de extras, tal como os resultados de pesquisas."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2463,9 +2456,8 @@ msgstr "PNG e JPG suportados, PNG recomendado. O tamanho máximo e recomendado p
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "O tamanho mínimo é de 1000x750, e é requerido um rácio de 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Ter capturas de ecrã na sua página de produto aumenta em muito as suas chances de ser instalado e destacado na página inicial."
+msgstr "Ter capturas de ecrã na sua página do produto aumenta a possibilidade de serem instalados."
 
 msgid "Continue"
 msgstr "Continuar"
@@ -2499,10 +2491,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "Mais informação sobre as licenças Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "O seu extra está atualmente definido como \"Invisível\"."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "Enquanto estiver neste estado, \"Por sua conta\" é o único método de distribuição disponível."
 
 msgid "General Tests"
 msgstr "Testes gerais"
@@ -2729,20 +2721,17 @@ msgstr "A sua entrada será mais bem sucedida adicionando uma descrição detalh
 msgid "Manage Listing"
 msgstr "Gerir listagem"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Pode também editar esta versão para adicionar notas da versão, ou código fonte, se a sua submissão inclui código minificado, ofuscado ou compilado."
+msgstr "Pode também editar esta versão para adicionar notas da versão ou código fonte, se a sua submissão incluir código minificado, concatenado ou de outro modo código gerado por máquina."
 
 msgid "Edit version {0}"
 msgstr "Editar versão {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Versão assinada"
+msgstr "Assinatura de Versão Pendente"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Está pronto! Esta versão irá estar disponível após passar a revisão. Irá ser notificado(a) quando estiver revista."
+msgstr "Terminou! Esta versão irá ser assinada para ser distribuída automaticamente brevemente. Irá receber um e-mail quando o ficheiro assinado estiver pronto para transferência."
 
 msgid "Go to My Submissions"
 msgstr "Ir para as minhas submissões"
@@ -2764,7 +2753,7 @@ msgid "Do you use any of the following?"
 msgstr "Utiliza algum dos seguintes?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Geradores de código ou minificadores"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Ferramentas que combinam múltiplos ficheiros para um único ficheiro como, por exemplo, o <span class=\"tech-emphasis\">webpack</span>"
@@ -2801,10 +2790,10 @@ msgstr ""
 "Detalhes (incluindo versões necessárias e instruções de instalação), ou quaisquer programas utilizados no processo de construção (por exemplo: versões de <span class=\"tech-emphasis\">node</span> e "
 "<span class=\"tech-emphasis\">npm</span> utilizadas)."
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">Nota:</span> Ficheiros fonte (à parte de bibliotecas de código aberto de terceiros) não podem ser transformadas, ofuscadas, minificadas ou geradas por máquina."
+"<span class=\"instruction-emphasis\">Nota:</span> Os ficheiros fonte (à parte das bibliotecas de código aberto de terceiros) não podem ser transformados, concatenados, minificados ou de outro modo, "
+"gerados por máquina."
 
 msgid "How to Submit:"
 msgstr "Como submeter:"
@@ -2962,6 +2951,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team\n"
 msgstr ""
+"Olá,\n"
+"\n"
+"Está a receber esta mensagem porque solicitou novas chaves da API de programador\n"
+"para %(domínio)s. Para finalizar este processo, clique na ligação abaixo:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Se não solicitou isto, por favor, notifique amo-admins@mozilla.com\n"
+"¶\n"
+"Atentamente,\n"
+"¶\n"
+"A Equipa de Extras da Mozilla"
 
 #, python-format
 msgid ""
