@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 02:48+0000\n"
-"Last-Translator: Xiaoyang Liu <siujoeng.lau@gmail.com>\n"
+"PO-Revision-Date: 2020-04-27 02:46+0000\n"
+"Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -2335,7 +2335,7 @@ msgid "32x32px"
 msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
+msgstr "用于附加组件上架页面，像是搜索结果中。"
 
 #. The size of the icon
 msgid "64x64px"
@@ -3083,7 +3083,7 @@ msgid "Thanks!"
 msgstr "十分感谢！"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "如果您以前没有成功订阅过 Mozilla 相关的新闻通讯，您可能需要检查收件箱乃至垃圾邮件箱来找到我们发给您的确认邮件。"
 
 msgid "Resources"
 msgstr "资源"
@@ -3231,7 +3231,7 @@ msgid "Source code"
 msgstr "源代码"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr ""
+msgstr "如果您的附加组件包含压缩、拼接或机器生成代码，请在此上传其源代码以供审查。"
 
 msgid "File {file_id} ({platform})"
 msgstr "文件{file_id} ({platform})"
@@ -5336,7 +5336,7 @@ msgid "Is locked by a reviewer"
 msgstr "已由一名审核员锁定"
 
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr ""
+msgstr "已设置禁用/推迟自动批准"
 
 msgid "Is recommendable"
 msgstr "可推荐"
@@ -5843,7 +5843,7 @@ msgid "Auto-Approval currently disabled until {date}"
 msgstr "已禁用“自动批准”到 {date} 为止"
 
 msgid "Clear Auto-Approval Extra Delay"
-msgstr ""
+msgstr "清除额外推迟的自动批准"
 
 msgid "Clear information request"
 msgstr "清除信息请求"
@@ -5897,7 +5897,7 @@ msgid "Source:"
 msgstr "来源："
 
 msgid "Source URL:"
-msgstr ""
+msgstr "来源网址："
 
 msgid "Dismiss this announcement"
 msgstr "忽略此公告"
