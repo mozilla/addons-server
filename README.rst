@@ -5,17 +5,6 @@
 .. image:: https://travis-ci.org/mozilla/addons-server.svg?branch=master
     :target: https://travis-ci.org/mozilla/addons-server
 
-.. image:: https://pyup.io/repos/github/mozilla/addons-server/shield.svg
-    :target: https://pyup.io/repos/github/mozilla/addons-server/
-    :alt: Updates
-
-.. image:: https://codecov.io/gh/mozilla/addons-server/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/mozilla/addons-server
-
-.. image:: https://pyup.io/repos/github/mozilla/addons-server/python-3-shield.svg
-    :target: https://pyup.io/repos/github/mozilla/addons-server/
-    :alt: Python 3
-
 
 Addons-Server
 =============
