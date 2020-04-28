@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 12:58+0000\n"
+"PO-Revision-Date: 2020-04-28 10:50+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5436,9 +5436,8 @@ msgstr "Afraq n umihi ulac-it."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Tzemreḍ ad tazneḍ awennit ma yella `canned_response` yettusbadu."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Ur tezmireḍ ara ad tazneḍ akemmus n tutlayt"
+msgstr "Ur tezmireḍ ara ad tazneḍ awennit d ilem."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Ur tezmireḍ ara ad teskecmeḍ uṭṭun n izirig mebla ma tcuddeḍ-t ɣer yisem n ufaylu."
@@ -5527,9 +5526,8 @@ msgstr ""
 msgid "Confirm Multiple Versions"
 msgstr "Sentem aṭas n ilqman"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Aya ad isekles aqbayl-ik n ugbur n lqem azayaz aneggaru, wa ma tneremseḍ aneflay."
+msgstr "Aya ad isentem aqbal n ileqman yettwafernen war ma inermes aneflay."
 
 msgid "Reviewer reply"
 msgstr "Tiririt n umcegger"
