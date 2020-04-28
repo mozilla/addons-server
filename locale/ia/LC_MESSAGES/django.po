@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 17:53+0000\n"
+"PO-Revision-Date: 2020-04-28 18:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -300,11 +300,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Ups"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Ups!  Nos habeva un error.</h1> <p>Nos lo remediara tosto.</p> <p> Tu pote provar a refrescar le pagina, o receder al <a href=\"%(home)s\">Pagina principal del additivos</a>. </p>"
+msgstr ""
+"<h1>Ups!  Nos habeva un error.</h1> <p>Nos lo remediara tosto.</p> <p> Tu pote provar a refrescar le pagina, o receder al <a href=\"%(home)s\">Pagina principal del additivos</a>. </p> Tu pote alsi "
+"adjutar nos a remediar isto per <a href=\"https://github.com/mozilla/additivos/problemas/nove\">signalante un problema</a> con le detalios de como tu recipeva iste pagina."
 
 msgid "No results found"
 msgstr "Nulle resultatos trovate"
@@ -476,7 +478,7 @@ msgstr "Iste additivo pertine ja al collection"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr "Bloco con GUID %(guid)s non trovato"
+msgstr "Bloco con GUID %(guid)s non trovate"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -925,9 +927,8 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr "Le session(es) de usator {user} ha essite reinitialisate."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Usator {user} modificate, ration: {1}"
+msgstr "Le usator {user} ha essite limitate pro le ambito \"{0}\""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -980,9 +981,8 @@ msgstr "Disveloppator"
 msgid "Extension"
 msgstr "Extension"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Revision actualisate de thema complete"
+msgstr "Thema complete obsolete"
 
 msgid "Dictionary"
 msgstr "Dictionario"
@@ -1008,9 +1008,8 @@ msgstr "Thema (Static)"
 msgid "Extensions"
 msgstr "Extensiones"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Themas complete"
+msgstr "Themas complete obsolete"
 
 msgid "Dictionaries"
 msgstr "Dictionarios"
