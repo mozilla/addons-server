@@ -54,11 +54,11 @@ class TestBlocklistSubmission(TestCase):
         assert not block.signoff_by
         assert not block.is_submission_ready
 
-        # Except when the state is NOTNEEDED.
+        # Except when the state is SIGNOFF_AUTOAPPROVED.
         block.update(signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED)
         assert block.is_submission_ready
 
-        # But if the state is APPROVED we need to know the signoff user
+        # But if the state is SIGNOFF_APPROVED we need to know the signoff user
         block.update(signoff_state=BlocklistSubmission.SIGNOFF_APPROVED)
         assert not block.is_submission_ready
 
