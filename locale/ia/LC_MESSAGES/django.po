@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 11:41+0000\n"
+"PO-Revision-Date: 2020-04-28 11:44+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -922,9 +922,8 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Le clave API del usator {user} ha essite reinitialisate."
+msgstr "Le session(es) de usator {user} ha essite reinitialisate."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
