@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-25 11:20+0000\n"
+"PO-Revision-Date: 2020-04-28 11:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -509,10 +509,10 @@ msgid "Review Unlisted"
 msgstr "Pśeglědański pśipisk"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Toś to blokěrowanje jo se importěrował ze zestarjonego blokěrowanja Kinto, kótarež na regularnych wurazach bazěrujo."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Pśewjeźone změny se w zestarjonej lisćinje blokěrowanjow NJEaktualizěruju - musyśo manuelnu změnu pśez webowy pówjerch zarědowanja Kinto pśewjasć."
 
 #, fuzzy, python-format
 msgid "Delete Multiple %(name)s"
@@ -531,7 +531,7 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Slědujuce blokěrowanja su se importěrowali ze zestarjonego blokěrowanja Kinto, kótarež na regularnych wurazach bazěrujo."
 
 msgid "Save"
 msgstr "Składowaś"
@@ -580,7 +580,7 @@ msgid "versions"
 msgstr "Wersije"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "W zestarjonej lisćinje blokěrowanjow wopśimjete."
 
 msgid "{addon} was created."
 msgstr "{addon} jo se napórał."
@@ -1558,7 +1558,7 @@ msgid "Delay auto-approval"
 msgstr "Awtomatiske pśizwólenje znjemóžniś"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Awtomatiske pśizwólenje na njewěsty cas wótstarcyś"
 
 msgid "True positive"
 msgstr "Pšawje pozitiwny"
