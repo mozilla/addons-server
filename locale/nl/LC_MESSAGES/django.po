@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 11:42+0000\n"
+"PO-Revision-Date: 2020-04-23 15:24+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -132,13 +132,11 @@ msgstr "Waarderingen"
 msgid "Reviewer Tools (listed)"
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Hulpmiddelen voor beoordelaars"
+msgstr ""
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Hulpmiddelen voor beoordelaars"
+msgstr ""
 
 msgid "- Add-on not on AMO -"
 msgstr "- Add-on niet op AMO -"
@@ -308,12 +306,11 @@ msgstr ""
 msgid "Oops"
 msgstr "Oeps"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Oeps! Er is een fout opgetreden.</h1> <p>Dat zullen we snel repareren</p> <p>U kunt proberen de pagina te vernieuwen, of teruggaan naar de <a href=\"%(home)s\">startpagina van Add-ons</a>.</p>"
 
 msgid "No results found"
 msgstr "Geen resultaten gevonden"
@@ -505,20 +502,17 @@ msgstr "GUID %(guid)s is al in behandeling"
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Bij te werken blokkeringen zijn verschillend, omdat de minimum- of maximumversie is gewijzigd."
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Ongeldig versiebereik."
+msgstr ""
 
 msgid "Min version can not be greater than Max version"
 msgstr "Minimumversie kan niet groter zijn dan de maximumversie"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Beoordeling aangevraagd"
+msgstr ""
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Opmerking bij beoordeling"
+msgstr ""
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "Deze blokkering is geïmporteerd uit een verouderde, op een regulier expressie gebaseerde kinto-blokkering."
@@ -526,11 +520,10 @@ msgstr "Deze blokkering is geïmporteerd uit een verouderde, op een regulier exp
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Elke wijziging wordt NIET bijgewerkt in de lijst met verouderde blokkeringen – u dient een handmatige wijziging aan te brengen via de online kinto-beheerdersinterface."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Meerdere versies afwijzen"
+msgstr ""
 
-#, fuzzy
 msgid "Home"
 msgstr "Startpagina"
 
@@ -557,13 +550,11 @@ msgstr "Verwijderen"
 msgid "Update"
 msgstr "Bijwerken"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Naar mijn bijdragen"
+msgstr ""
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Naar mijn bijdragen"
+msgstr ""
 
 #, python-format
 msgid "Add %(name)s"
@@ -572,24 +563,21 @@ msgstr "%(name)s toevoegen"
 msgid "Add-on GUIDs (one per line)"
 msgstr "Add-on-GUID’s (een per regel)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "Versie indienen"
+msgstr ""
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr "%(count)s add-on-GUID’s"
 
-#, fuzzy
 msgid "users"
-msgstr "Gebruikers"
+msgstr ""
 
 msgid "Edit Block"
 msgstr "Blokkering bewerken"
 
-#, fuzzy
 msgid "versions"
-msgstr "Versies"
+msgstr ""
 
 msgid "Included in legacy blocklist."
 msgstr "Opgenomen in de lijst met verouderde blokkeringen."
@@ -927,20 +915,17 @@ msgstr "Blokkering voor {0} in de blokkeringslijst bewerkt."
 msgid "Block edited"
 msgstr "Blokkering bewerkt"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Versie {0} uit {addon} verwijderd."
+msgstr ""
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Add-on verwijderd."
+msgstr ""
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID voor {addon} aan DeniedGuid toegevoegd."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} uit {collection} verwijderd."
+msgstr ""
 
 msgid "Block {1} action for {0} signed off."
 msgstr "Blokkeren van {1} actie voor {0} afgemeld."
@@ -948,13 +933,11 @@ msgstr "Blokkeren van {1} actie voor {0} afgemeld."
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Api-sleutel voor gebruiker {user} geherinitialiseerd."
+msgstr ""
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Gebruiker {user} bewerkt, reden: {1}"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1008,9 +991,8 @@ msgstr "Ontwikkelaar"
 msgid "Extension"
 msgstr "Extensie"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Beoordeling van bijgewerkt volledig thema"
+msgstr ""
 
 msgid "Dictionary"
 msgstr "Woordenboek"
@@ -1037,9 +1019,8 @@ msgstr "Thema (statisch)"
 msgid "Extensions"
 msgstr "Extensies"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Volledige thema’s"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1561,16 +1542,14 @@ msgstr "Afbeelding van lage kwaliteit, opgerekt of leeg"
 msgid "Header image alignment problem"
 msgstr "Probleem met uitlijning headerafbeelding"
 
-#, fuzzy
 msgid "No action"
-msgstr "Meer acties"
+msgstr ""
 
 msgid "Flag for human review"
 msgstr "Markeren voor persoonlijke beoordeling"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Automatische goedkeuring uitschakelen"
+msgstr ""
 
 msgid "Delay auto-approval indefinitely"
 msgstr "Automatische goedkeuring voor onbepaalde tijd uitstellen"
