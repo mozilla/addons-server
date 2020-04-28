@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 18:59+0000\n"
+"PO-Revision-Date: 2020-04-27 19:03+0000\n"
 "Last-Translator: Enrico Belleri <idesmi@protonmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -547,7 +547,7 @@ msgid "Save"
 msgstr "Salva"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Salva e aggiungi altro"
 
 msgid "Delete"
 msgstr "Elimina"
@@ -556,14 +556,14 @@ msgid "Update"
 msgstr "Aggiorna"
 
 msgid "Reject Submission"
-msgstr ""
+msgstr "Rifiuta invio"
 
 msgid "Approve Submission"
-msgstr ""
+msgstr "Approva invio"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Aggiungi %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
