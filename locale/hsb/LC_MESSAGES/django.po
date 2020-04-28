@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -3016,7 +3016,7 @@ msgstr ""
 "Prošu njedźělće swoje přizjewjenske daty z nikim. Njepodajće je ženje w zjawnym repozitoriju, přidatku abo na někajkim druhim městnje.  Poručamy wam, swoje kodowe repozitorije a swoje rozšěrjenja přepruwować, zo byšće referency na waše přizjewjenske daty AMO wotstronił.\n"
 "\n"
 "Wulki dźak,\n"
-"Team přidatkow Mozilla"
+"Team přidatkow Mozilla\n"
 
 msgid "Invisible"
 msgstr "Njewidźomny"
@@ -6852,6 +6852,7 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team\n"
 msgstr ""
+"\n"
 "Witajće %(author_name)s,\n"
 "\n"
 "přeprosychu was so z awtorom přidatka  %(addon_name)s na %(domain)s stać. Hdyž přeprošenje přiwozmjeće, dóstanjeće přistup, zo byšće přidatk wobdźěłował a waše mjeno so w lisćinje awtorow na websydle pokaza.\n"
@@ -6864,7 +6865,7 @@ msgstr ""
 "\n"
 "Z přećelnymi postrowami,\n"
 "\n"
-"Team přidatkow Mozilla"
+"Team přidatkow Mozilla\n"
 
 #, python-format
 msgid ""
