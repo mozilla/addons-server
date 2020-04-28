@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 20:53+0000\n"
+"PO-Revision-Date: 2020-04-28 21:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3212,9 +3212,8 @@ msgstr "Jeli hišće njejsće abonement powěsćoweho lista Mozilla wobkrućił,
 msgid "Resources"
 msgstr "Resursy"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: Rozěrjenja wuwiwać a testować"
@@ -3264,9 +3263,8 @@ msgstr "Čińće sobu"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr "Zwjazajće so z tysacami wuwiwarjow a wotkryjće dalše móžnosće, z kotrymiž móžeće k ekosystemej rozšěrjenjow přinošować."
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Čitajće wjace wo přepruwowanskich prawidłach za žórłowy tekst."
+msgstr "Zhońće wjace wo wuwiwarskim zhromadźenstwu"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Nalistuje so po wobstatym přepruwowanju žórłoweho koda na sydle. Awtomatiske aktualizacije so přez tute sydło rjaduja."
@@ -3302,20 +3300,17 @@ msgstr "Žane foto"
 msgid "User Photo"
 msgstr "Wužiwarske foto"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Mój profil"
+msgstr "Profil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Nowu wersiju zapodać"
+msgstr "Rozšěrjenja zapodać abo rjadować"
 
 msgid "Customize Firefox"
 msgstr "Firefox přiměrić"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Zhońće, kak móžeće přidatk wuwiwać"
+msgstr "Zhońće, kak móžeće rozšěrjenje wuwiwać"
 
 msgid "Ready to submit or manage your extension?"
 msgstr "Sće hotowy, swoje rozšěrjenje zapodać abo rjadować?"
@@ -5512,9 +5507,8 @@ msgstr "Rizikowa analyza k dispoziciji njeje."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "NJemóžeće komentar wotpósłać, jeli ‚canned_response‘ je definowany."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Njemóžeće rěčny pakćik zapodać"
+msgstr "Njemóžeće prózdny komentar zapodać"
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Njemóžeće linkowe čisło zapodać, bjeztoho zo byšće je datajowemu mjenu připokazał."
@@ -5555,9 +5549,8 @@ msgstr[1] "{0} dnjej"
 msgstr[2] "{0} dny"
 msgstr[3] "{0} dnjow"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Poslednje přepruwowanje"
@@ -5603,16 +5596,14 @@ msgstr "Wjacore wersije wotpokazać"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "To wubrane zjawne wersije wotpokaza. Komentary so na wuwiwarja pósćelu."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Wjacore wersije wotpokazać"
+msgstr "Wjacore wersije blokować"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr "To wubrane schwalene wersije skradźu znjemóžni a administracisku stronu za wutworjenje blokowanja wočini."
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Wjacore wersije wotpokazać"
+msgstr "Wjacore wersije wobkrućić"
 
 #, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
@@ -5807,9 +5798,8 @@ msgstr "Wobrazowa galerija"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Tu njeje ničo widźeć! Wuwiwar njeje žane podrobnosće integrował."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "po přidatkej wersiji"
+msgstr "Přełožki přidatkoweho mjena"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Wróćo k přehladej nastrojow za přepruwowarjow"
@@ -5964,9 +5954,8 @@ msgstr "Do toho zhašane zapiski"
 msgid "This is a recommended extension."
 msgstr "To je doporučene rozšěrjenje."
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Nimaće přizjewjenske daty API."
+msgstr "Nimaće prawo to přepruwować."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Prošu wubjerće jednu wersiju abo wjacore wersije z hornjeje lisćiny."
@@ -5999,13 +5988,11 @@ msgstr "Dalše akcije"
 msgid "Notify me about new listed versions"
 msgstr "Wo nowych nalistowanych wersijach informować"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Wšě zapodaća pokazać"
+msgstr "Zasozapodaće dowolić"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Moje zapodaća rjadować"
+msgstr "Zasozapodaće wotpokazać"
 
 msgid "Force-disable add-on"
 msgstr "Znjemóžnjenje přidatka wunuzować"
@@ -6017,9 +6004,8 @@ msgstr "Zmóžnjenje přidatka wunuzować"
 msgid "View Blocklist Submission"
 msgstr "Wšě zapodaća pokazać"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Wróćo k přidatkej"
+msgstr "Přidatk blokować"
 
 msgid "Update add-on block"
 msgstr "Blokowanje přidatka aktualizować"
@@ -6091,9 +6077,8 @@ msgstr "Metoda:"
 msgid "Source:"
 msgstr "Žórło:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Žórło:"
+msgstr "Žórłowy URL:"
 
 msgid "Dismiss this announcement"
 msgstr "Tute připowědźenje zaćisnyć"
@@ -6224,36 +6209,30 @@ msgstr[3] "Spadnjene próstwy wo Informacije ({0})"
 msgid "presence of matched rules"
 msgstr "eksistenca wotpowědowacych prawidłow"
 
-#, fuzzy
 msgid "result state"
-msgstr "Prěnje kroki"
+msgstr "Wuslědkowy staw"
 
 msgid "all but this rule"
 msgstr "wšě nimo tutoho prawidła"
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Přehlad nalistowaneje wersije"
+msgstr "eksistenca wersije"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Wersija je so signowała"
+msgstr "wersijowy kanal"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Status přidatka"
+msgstr "status přidatka"
 
 #, fuzzy
 msgid "add-on listing visibility"
 msgstr "Widźomnosć lisćinoweho přidatka"
 
-#, fuzzy
 msgid "file status"
-msgstr "Sydłowy status"
+msgstr "datajowy status"
 
-#, fuzzy
 msgid "file signature"
-msgstr "Dataja {file} je so signowała."
+msgstr "datajowa signatura"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "To je eksaktne mjeno prawidła, kotrež so přez skener wužiwa."
@@ -6346,9 +6325,8 @@ msgstr "Jenož WebExtensions smědźa so GUID wzdać"
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Prošu podajće GUID swojeho přidatka w manifesće, jeli je dlěši hač 64 znamješkow."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Njepłaćiwy GUID w URL"
+msgstr "Njepłaćiwy přidatkowy ID w URL abo pakeće"
 
 #, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
@@ -6699,9 +6677,8 @@ msgstr "Wubranych wužiwarjow zahnać"
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr "Wužiwarjo „%(users)s“ su so swój API-kluč wróćo stajili."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Wersiju zhašeć"
+msgstr "Posedźenje wróćo stajić"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6806,9 +6783,8 @@ msgstr "Wužiwarske zdźělenja"
 msgid "Ban"
 msgstr "Zahnać"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Wersiju zhašeć"
+msgstr "Posedźenja wróćo stajić"
 
 msgid "Delete picture"
 msgstr "Wobraz zhašeć"
