@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 12:03+0000\n"
+"PO-Revision-Date: 2020-04-28 12:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3192,6 +3192,8 @@ msgstr "Wuwijajśo wuběrne rozšyrjenja a drastwy"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Wšojadno, lěc sćo nowy we wuwijanju rozšyrjenjow, eksistěrujuce rozšyrjenje abo drastwu wupólěrujośo abo portěrujośo abo swójsku pśedewześaŕske rozwězanje napórajośo, my mamy resurse, aby was "
+"pódpěrali."
 
 #, fuzzy
 msgid "Visit the Extension Workshop"
@@ -3222,7 +3224,7 @@ msgid "Extensions Developers Newsletter"
 msgstr "Wuwijanje rozšyrjenjow"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Wóstańśo na běžnem wó nowosćach a tšojenjach za wuwijarje rozšyrjenjow Firefox."
 
 #, fuzzy
 msgid "Email Address"
@@ -3295,7 +3297,7 @@ msgid "Get involved"
 msgstr "Cyńśo sobu"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Zwězajśo se z tysacami wuwijarjow a wótkryjśo dalšne móžnosći, z kótarymiž móžośo k ekosystemoju rozšyrjenjow pśinosowaś."
 
 #, fuzzy
 msgid "Learn more about the developer community"
@@ -3351,13 +3353,13 @@ msgid "Learn how to make an extension"
 msgstr "Zgóńśo, kak móžośo dodank wuwjaś"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Sćo gótowy, swóje rozšyrjenje zapódaś abo zastojaś?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Pśizjawśo se pla wuwijaŕskego rožka, aby rozšyrjenja a drastwy zapódał abo zastojał."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Registrěrujśo se za wuwijaŕske konto abo pśizjawśo se pla wuwijaŕskego rožka"
 
 msgid "Manage Version {0}"
 msgstr "Wersiju {0} zastojaś"
@@ -3847,7 +3849,7 @@ msgstr "Zawóstajśo cysty digitalny slěd. Dajśo Firefox daty websydła ako na
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Njetrjebaśo pśecej zasej to samske pisaś. Składujśo cesto zapódany tekst, aby jen kuždy cas zasajźił."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4957,7 +4959,7 @@ msgstr "Někotare sedła maju śěžkosći, wideo na Firefox za Android wótgraw
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Wubjeŕśo, sortěrujśo a wuwjeźćo swóje ześěgnjenja malsnjej."
 
 #. editorial content for the discovery pane.
 #, fuzzy
