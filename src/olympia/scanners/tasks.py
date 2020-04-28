@@ -431,6 +431,16 @@ def call_mad_api(all_results, upload_pk):
             upload_id=upload_pk, scanner=CUSTOMS
         )
 
+        scanMapKeys = customs_results.results.get('scanMap', {}).keys()
+        if len(scanMapKeys) < 2:
+            log.info(
+                'Not calling scanner "mad" for FileUpload %s, scanMap is too '
+                'small.',
+                upload_pk
+            )
+            statsd.incr('devhub.mad.skip')
+            return results
+
         with statsd.timer('devhub.mad'):
             json_payload = {'scanners': {'customs': customs_results.results}}
             response = requests.post(
