@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 11:16+0000\n"
+"PO-Revision-Date: 2020-04-28 11:41+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -907,16 +907,14 @@ msgstr ""
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Blocada pro {0} delite ex lista del blocadas."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Additivo delite."
+msgstr "Blocada delite"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} removite de {collection}."
+msgstr "GUID pro {addon} removite de DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
