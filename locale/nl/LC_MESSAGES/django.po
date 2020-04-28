@@ -3260,20 +3260,17 @@ msgstr "Geen foto"
 msgid "User Photo"
 msgstr "Gebruikersfoto"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Mijn profiel"
+msgstr ""
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Een nieuwe versie indienen"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Firefox aanpassen"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Informatie over het maken van een add-on"
+msgstr ""
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -3317,9 +3314,8 @@ msgstr "Voer optioneel informatie in die nuttig zou kunnen zijn voor de beoordel
 msgid "Source code"
 msgstr "Broncode"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Als uw add-on binaire of verborgen code bevat, stel dan de bron hier beschikbaar aan beoordelaars."
+msgstr ""
 
 msgid "File {file_id} ({platform})"
 msgstr "Bestand {file_id} ({platform})"
