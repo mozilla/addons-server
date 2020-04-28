@@ -416,7 +416,9 @@ def test_generate_preview_with_additional_backgrounds(
 
 
 @pytest.mark.django_db
-def test_extract_version_to_git():
+@mock.patch('olympia.versions.tasks.statsd.timer')
+@mock.patch('olympia.versions.tasks.statsd.incr')
+def test_extract_version_to_git(incr_mock, timer_mock):
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
     extract_version_to_git(addon.current_version.pk)
@@ -426,6 +428,8 @@ def test_extract_version_to_git():
     assert repo.git_repository_path == os.path.join(
         settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
     assert os.listdir(repo.git_repository_path) == ['.git']
+    timer_mock.assert_any_call('git.extraction.version')
+    incr_mock.assert_called_with('git.extraction.version.success')
 
 
 @pytest.mark.django_db
@@ -447,7 +451,9 @@ def test_extract_version_to_git_deleted_version():
 
 
 @pytest.mark.django_db
-def test_extract_version_source_to_git():
+@mock.patch('olympia.versions.tasks.statsd.timer')
+@mock.patch('olympia.versions.tasks.statsd.incr')
+def test_extract_version_source_to_git(incr_mock, timer_mock):
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
     # Generate source file
@@ -465,6 +471,8 @@ def test_extract_version_source_to_git():
     assert repo.git_repository_path == os.path.join(
         settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
     assert os.listdir(repo.git_repository_path) == ['.git']
+    timer_mock.assert_any_call('git.extraction.version_source')
+    incr_mock.assert_called_with('git.extraction.version_source.success')
 
 
 @pytest.mark.django_db
