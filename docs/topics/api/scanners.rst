@@ -17,6 +17,8 @@ This endpoint returns a list of labelled scanner results.
 
 .. http:get:: /api/v4/scanner/results/
 
+    :query string label: Filter by label.
+    :query string scanner: Filter by scanner name.
     :>json int id: The scanner result ID.
     :>json string scanner: The scanner name.
     :>json string label: Either ``good`` or ``bad``.
