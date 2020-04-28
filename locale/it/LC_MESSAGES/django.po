@@ -525,9 +525,9 @@ msgstr "Questo blocco è stato importato da un blocco Kinto legacy basato su esp
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Rifiuta più versioni"
+msgstr ""
 
 #, fuzzy
 msgid "Home"
@@ -556,13 +556,11 @@ msgstr "Elimina"
 msgid "Update"
 msgstr "Aggiorna"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Vai ai miei progetti"
+msgstr ""
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Vai ai miei progetti"
+msgstr ""
 
 #, python-format
 msgid "Add %(name)s"
