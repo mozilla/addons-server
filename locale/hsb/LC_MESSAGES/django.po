@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 12:00+0000\n"
+"PO-Revision-Date: 2020-04-28 12:17+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3273,7 +3273,7 @@ msgid "Get involved"
 msgstr "Čińće sobu"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr "Zwjazajće so z tysacami wuwiwarjow a wotkryjće dalše móžnosće, z kotrymiž móžeće k ekosystemje rozšěrjenjow přinošować."
+msgstr "Zwjazajće so z tysacami wuwiwarjow a wotkryjće dalše móžnosće, z kotrymiž móžeće k ekosystemej rozšěrjenjow přinošować."
 
 #, fuzzy
 msgid "Learn more about the developer community"
