@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 11:44+0000\n"
+"PO-Revision-Date: 2020-04-28 17:43+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1561,7 +1561,7 @@ msgid "Running"
 msgstr ""
 
 msgid "Aborted"
-msgstr ""
+msgstr "Abortate"
 
 msgid "Aborting"
 msgstr ""
@@ -3137,7 +3137,7 @@ msgid "For end users"
 msgstr ""
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrice"
 
 #, fuzzy
 msgid "Add-on Developers Mailing List"
@@ -6148,7 +6148,7 @@ msgid "result state"
 msgstr "stato de resultato"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "toto salvo iste regula"
 
 #, fuzzy
 msgid "presence of a version"
