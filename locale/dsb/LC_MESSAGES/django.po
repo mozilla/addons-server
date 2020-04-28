@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -2978,7 +2978,7 @@ msgstr ""
 "\n"
 "Póstrowy,\n"
 "\n"
-"Team dodankow Mozilla"
+"Team dodankow Mozilla\n"
 
 #, python-format
 msgid ""
@@ -2998,7 +2998,7 @@ msgstr ""
 "Jolic se mysliśo, až toś ten kluc jo se womólnje napórał, móžośo kluc wótwónoźeś a\n"
 "pśistup na toś tom městnje znjemóžniś:\n"
 "\n"
-"%(url)s"
+"%(url)s\n"
 
 #, python-format
 msgid ""
@@ -3018,7 +3018,7 @@ msgstr ""
 "Joli se mysliśo, až toś ten kluć jo se womólnje wótwołał, móžośo nowy\n"
 "na slědujucem městnje napóraś:\n"
 "\n"
-"%(url)s"
+"%(url)s\n"
 
 #, python-format
 msgid ""
