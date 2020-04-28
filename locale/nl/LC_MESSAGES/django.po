@@ -923,10 +923,10 @@ msgid "Block added"
 msgstr "Blokkering toegevoegd"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blokkering voor {0} in de blokkeringslijst bewerkt."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blokkering bewerkt"
 
 #, fuzzy
 msgid "Block for {0} deleted from Blocklist."
@@ -937,14 +937,14 @@ msgid "Block deleted"
 msgstr "Add-on verwijderd."
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID voor {addon} aan DeniedGuid toegevoegd."
 
 #, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "{addon} uit {collection} verwijderd."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Blokkeren van {1} actie voor {0} afgemeld."
 
 msgid "Block action signoff"
 msgstr ""
@@ -997,7 +997,7 @@ msgid "Unlisted"
 msgstr "Niet vermeld"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1567,43 +1567,43 @@ msgid "No action"
 msgstr "Meer acties"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Markeren voor persoonlijke beoordeling"
 
 #, fuzzy
 msgid "Delay auto-approval"
 msgstr "Automatische goedkeuring uitschakelen"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Automatische goedkeuring voor onbepaalde tijd uitstellen"
 
 msgid "True positive"
-msgstr ""
+msgstr "Werkelijk positief"
 
 msgid "False positive"
-msgstr ""
+msgstr "Valspositief"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Niet eenduidig"
 
 #, fuzzy
 msgid "New"
 msgstr "Nieuwer"
 
 msgid "Running"
-msgstr ""
+msgstr "Actief"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Afgebroken"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Afbreken"
 
 #, fuzzy
 msgid "Completed"
 msgstr "Onvolledig"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Gepland"
 
 msgid "Core"
 msgstr "Kern"
@@ -2502,10 +2502,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "Meer informatie over Creative Commons-licenties"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Uw add-on is momenteel ingesteld als ‘Onzichtbaar’."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "In deze staat is de enig beschikbare distributiemethode ‘Zelf’."
 
 msgid "General Tests"
 msgstr "Algemene tests"
@@ -2768,7 +2768,7 @@ msgid "Do you use any of the following?"
 msgstr "Gebruikt u een van de volgende zaken?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Codegeneratoren of -verkleiners"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Hulpmiddelen die meerdere bestanden in een enkel bestand combineren, zoals <span class=\"tech-emphasis\">webpack</span>"
