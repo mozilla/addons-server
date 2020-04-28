@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from datetime import datetime
-
 from django.core.cache import cache
 
 from rest_framework.exceptions import NotFound
@@ -49,6 +47,8 @@ class TestFileEntriesSerializer(TestCase):
         return self.get_serializer(obj, **extra_context).data
 
     def test_basic(self):
+        expected_file_type = 'text'
+        expected_filename = 'manifest.json'
         expected_mimetype = 'application/json'
         expected_sha256 = (
             '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0'
@@ -81,6 +81,8 @@ class TestFileEntriesSerializer(TestCase):
         assert data['mimetype'] == expected_mimetype
         assert data['sha256'] == expected_sha256
         assert data['size'] == expected_size
+        assert data['mime_category'] == expected_file_type
+        assert data['filename'] == expected_filename
 
         assert set(data['entries'].keys()) == {
             'README.md',
@@ -95,25 +97,16 @@ class TestFileEntriesSerializer(TestCase):
 
         manifest_data = data['entries']['manifest.json']
         assert manifest_data['depth'] == 0
-        assert manifest_data['filename'] == u'manifest.json'
-        assert manifest_data['sha256'] == expected_sha256
-        assert manifest_data['mimetype'] == expected_mimetype
-        assert manifest_data['mime_category'] == 'text'
+        assert manifest_data['filename'] == expected_filename
+        assert manifest_data['mime_category'] == expected_file_type
         assert manifest_data['path'] == u'manifest.json'
-        assert manifest_data['size'] == expected_size
-
-        assert isinstance(manifest_data['modified'], datetime)
 
         ja_locale_data = data['entries']['_locales/ja']
 
         assert ja_locale_data['depth'] == 1
         assert ja_locale_data['mime_category'] == 'directory'
         assert ja_locale_data['filename'] == 'ja'
-        assert ja_locale_data['sha256'] is None
-        assert ja_locale_data['mimetype'] == 'application/octet-stream'
         assert ja_locale_data['path'] == u'_locales/ja'
-        assert ja_locale_data['size'] is None
-        assert isinstance(ja_locale_data['modified'], datetime)
 
         assert '"manifest_version": 2' in data['content']
         assert 'id": "notify-link-clicks-i18n@notzilla.org' in data['content']
@@ -152,6 +145,8 @@ class TestFileEntriesSerializer(TestCase):
             'b48e66c02fe62dd47521def7c5ea11b86af91b94c23cfdf67592e1053952ed55'
         )
         assert data['size'] == 136
+        assert data['mime_category'] == 'text'
+        assert data['filename'] == 'LICENSE'
 
     def test_requested_file_with_non_existent_file(self):
         file = self.addon.current_version.current_file
@@ -185,9 +180,9 @@ class TestFileEntriesSerializer(TestCase):
 
         # start serialization
         data = serializer.data
-        commit = serializer._get_commit(file)
+        commit = serializer.commit
 
-        assert serializer._entries == data['entries']
+        assert serializer._trim_entries(serializer._entries) == data['entries']
 
         key = 'reviewers:fileentriesserializer:entries:{}'.format(commit.hex)
         cached_data = cache.get(key)
@@ -207,7 +202,8 @@ class TestFileEntriesSerializer(TestCase):
             'content-script.js', 'icons', 'icons/LICENSE', 'icons/link-48.png'}
 
         for key in expected_keys:
-            assert cached_data[key] == data['entries'][key]
+            assert serializer._trim_entry(
+                cached_data[key]) == data['entries'][key]
 
     def test_dont_render_content_binary_file(self):
         file = self.addon.current_version.current_file
@@ -216,17 +212,18 @@ class TestFileEntriesSerializer(TestCase):
 
     def test_sha256_only_calculated_or_fetched_for_selected_file(self):
         file = self.addon.current_version.current_file
+        serializer = self.get_serializer(file, file='icons/LICENSE')
+        serializer.data
 
-        data = self.serialize(file, file='icons/LICENSE')
-
-        assert data['entries']['manifest.json']['sha256'] is None
-        assert data['entries']['icons/LICENSE']['sha256'] == (
+        assert serializer._entries['manifest.json']['sha256'] is None
+        assert serializer._entries['icons/LICENSE']['sha256'] == (
             'b48e66c02fe62dd47521def7c5ea11b86af91b94c23cfdf67592e1053952ed55')
 
-        data = self.serialize(file, file='manifest.json')
-        assert data['entries']['manifest.json']['sha256'] == (
+        serializer = self.get_serializer(file, file='manifest.json')
+        serializer.data
+        assert serializer._entries['manifest.json']['sha256'] == (
             '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0')
-        assert data['entries']['icons/LICENSE']['sha256'] is None
+        assert serializer._entries['icons/LICENSE']['sha256'] is None
 
     def test_uses_unknown_minified_code(self):
         validation_data = {
@@ -293,6 +290,8 @@ class TestFileEntriesDiffSerializer(TestCase):
         return self.get_serializer(obj, **extra_context).data
 
     def test_basic(self):
+        expected_file_type = 'text'
+        expected_filename = 'manifest.json'
         expected_mimetype = 'application/json'
         expected_sha256 = (
             'bf9b0744c0011cad5caa55236951eda523f17676e91353a64a32353eac798631'
@@ -342,6 +341,8 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert data['mimetype'] == expected_mimetype
         assert data['sha256'] == expected_sha256
         assert data['size'] == expected_size
+        assert data['mime_category'] == expected_file_type
+        assert data['filename'] == expected_filename
 
         assert set(data['entries'].keys()) == {
             'manifest.json', 'README.md', 'test.txt'}
@@ -354,24 +355,17 @@ class TestFileEntriesDiffSerializer(TestCase):
         # Unmodified file
         manifest_data = data['entries']['manifest.json']
         assert manifest_data['depth'] == 0
-        assert manifest_data['filename'] == u'manifest.json'
-        assert manifest_data['sha256'] == expected_sha256
-        assert manifest_data['mimetype'] == expected_mimetype
-        assert manifest_data['mime_category'] == 'text'
+        assert manifest_data['filename'] == expected_filename
+        assert manifest_data['mime_category'] == expected_file_type
         assert manifest_data['path'] == u'manifest.json'
-        assert manifest_data['size'] == expected_size
         assert manifest_data['status'] == ''
-        assert isinstance(manifest_data['modified'], datetime)
 
         # Added a new file
         test_txt_data = data['entries']['test.txt']
         assert test_txt_data['depth'] == 0
         assert test_txt_data['filename'] == u'test.txt'
-        assert test_txt_data['sha256'] is None
-        assert test_txt_data['mimetype'] == 'text/plain'
         assert test_txt_data['mime_category'] == 'text'
         assert test_txt_data['path'] == u'test.txt'
-        assert test_txt_data['size'] == 18
         assert test_txt_data['status'] == 'A'
 
         # Deleted file
@@ -379,16 +373,14 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert readme_data['status'] == 'D'
         assert readme_data['depth'] == 0
         assert readme_data['filename'] == 'README.md'
-        assert readme_data['sha256'] is None
         # Not testing mimetype as text/markdown is missing in travis mimetypes
         # database. But it doesn't matter much here since we're primarily
         # after the git status.
         assert readme_data['mime_category'] is None
         assert readme_data['path'] == u'README.md'
-        assert readme_data['size'] is None
-        assert readme_data['modified'] is None
 
     def test_serialize_deleted_file(self):
+        expected_filename = 'manifest.json'
         parent_version = self.addon.current_version
         new_version = version_factory(
             addon=self.addon, file_kw={
@@ -398,7 +390,7 @@ class TestFileEntriesDiffSerializer(TestCase):
         )
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
-        apply_changes(repo, new_version, '', 'manifest.json', delete=True)
+        apply_changes(repo, new_version, '', expected_filename, delete=True)
 
         file = self.addon.current_version.current_file
         data = self.serialize(file, parent_version=parent_version)
@@ -410,6 +402,8 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert data['mimetype'] == 'application/json'
         assert data['sha256'] is None
         assert data['size'] is None
+        assert data['mime_category'] is None
+        assert data['filename'] == expected_filename
 
     def test_recreate_parent_dir_of_deleted_file(self):
         addon, repo, parent_version, new_version = \
@@ -431,12 +425,8 @@ class TestFileEntriesDiffSerializer(TestCase):
         parent = entries_by_file[parent_dir]
         assert parent['depth'] == 0
         assert parent['filename'] == parent_dir
-        assert parent['sha256'] is None
         assert parent['mime_category'] == 'directory'
-        assert parent['mimetype'] == 'application/octet-stream'
         assert parent['path'] == parent_dir
-        assert parent['size'] is None
-        assert parent['modified'] is None
 
     def test_recreate_nested_parent_dir_of_deleted_file(self):
         addon, repo, parent_version, new_version = \
@@ -517,11 +507,7 @@ class TestFileEntriesDiffSerializer(TestCase):
 
         parent = entries_by_file[parent_dir]
         assert parent['mime_category'] == 'directory'
-        assert parent['mimetype'] == 'application/octet-stream'
         assert parent['path'] == parent_dir
-        # Since the directory is returned from git, it will have a real
-        # modified timestamp.
-        assert parent['modified'] is not None
 
     def test_expose_grandparent_dir_deleted_subfolders(self):
         addon, repo, parent_version, new_version = \
@@ -547,7 +533,6 @@ class TestFileEntriesDiffSerializer(TestCase):
 
         parent = entries_by_file[grandparent_dir]
         assert parent['mime_category'] == 'directory'
-        assert parent['mimetype'] == 'application/octet-stream'
         assert parent['path'] == grandparent_dir
         assert parent['depth'] == 0
 
@@ -572,14 +557,9 @@ class TestFileEntriesDiffSerializer(TestCase):
         manifest_data = data['entries']['manifest.json']
         assert manifest_data['depth'] == 0
         assert manifest_data['filename'] == u'manifest.json'
-        assert manifest_data['sha256'] == (
-            'bf9b0744c0011cad5caa55236951eda523f17676e91353a64a32353eac798631')
-        assert manifest_data['mimetype'] == 'application/json'
         assert manifest_data['mime_category'] == 'text'
         assert manifest_data['path'] == u'manifest.json'
-        assert manifest_data['size'] == 621
         assert manifest_data['status'] == ''
-        assert isinstance(manifest_data['modified'], datetime)
 
         assert data['diff'] is not None
 

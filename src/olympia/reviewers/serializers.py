@@ -4,7 +4,6 @@ import mimetypes
 import pathlib
 import json
 from collections import OrderedDict
-from datetime import datetime, timezone, timedelta
 
 import pygit2
 
@@ -48,6 +47,8 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
         )
 
 
+# NOTE: Because of caching, this serializer cannot be reused and must be
+# created for each file. It cannot be used with DRF's many=True option.
 class FileEntriesSerializer(FileSerializer):
     content = serializers.SerializerMethodField()
     uses_unknown_minified_code = serializers.SerializerMethodField()
@@ -57,11 +58,14 @@ class FileEntriesSerializer(FileSerializer):
     mimetype = serializers.SerializerMethodField()
     sha256 = serializers.SerializerMethodField()
     size = serializers.SerializerMethodField()
+    mime_category = serializers.SerializerMethodField()
+    filename = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
             'content', 'entries', 'selected_file', 'download_url',
-            'uses_unknown_minified_code', 'mimetype', 'sha256', 'size'
+            'uses_unknown_minified_code', 'mimetype', 'sha256', 'size',
+            'mime_category', 'filename'
         )
         model = File
 
@@ -80,13 +84,36 @@ class FileEntriesSerializer(FileSerializer):
             return self.parent.instance.current_file
         return self.instance
 
-    def _get_commit(self, file_obj):
+    @cached_property
+    def commit(self):
         """Return the pygit2 repository instance, preselect correct channel."""
+        # Caching the commit to avoid calling revparse_single many times.
         try:
-            return self.git_repo.revparse_single(file_obj.version.git_hash)
+            return self.git_repo.revparse_single(
+                self.get_instance().version.git_hash)
         except pygit2.InvalidSpecError:
             raise NotFound(
                 'Couldn\'t find the requested version in git-repository')
+
+    @cached_property
+    def tree(self):
+        # Caching the tree to avoid calling get_root_tree many times.
+        return self.repo.get_root_tree(self.commit)
+
+    def _get_blob_for_selected_file(self, obj):
+        """Returns the blob and filename for the selected file.
+
+        Returns (None, None) if the selected file is not a blob.
+        """
+        tree = self.tree
+        selected_file = self.get_selected_file(obj)
+        if selected_file in tree:
+            blob_or_tree = tree[selected_file]
+
+            if blob_or_tree.type == pygit2.GIT_OBJ_BLOB:
+                return (self.git_repo[blob_or_tree.oid], blob_or_tree.name)
+
+        return (None, None)
 
     def _get_hash_for_selected_file(self, obj):
         selected_file = self.get_selected_file(obj)
@@ -98,8 +125,8 @@ class FileEntriesSerializer(FileSerializer):
         if _entries and _entries[selected_file]['sha256']:
             return _entries[selected_file]['sha256']
 
-        commit = self._get_commit(obj)
-        tree = self.repo.get_root_tree(commit)
+        commit = self.commit
+        blob, name = self._get_blob_for_selected_file(obj)
 
         # Normalize the key as we want to avoid that we exceed max
         # key lengh because of selected_file.
@@ -110,20 +137,14 @@ class FileEntriesSerializer(FileSerializer):
             normalize=True)
 
         def _calculate_hash():
-            try:
-                blob_or_tree = tree[selected_file]
-            except KeyError:
+            if blob is None:
                 return None
 
-            if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
-                return None
-
-            blob = self.git_repo[blob_or_tree.oid]
             return get_sha256(io.BytesIO(memoryview(blob)))
 
         return cache.get_or_set(cache_key, _calculate_hash, 60 * 60 * 24)
 
-    def get_entries(self, obj):
+    def _get_entries(self, obj):
         # Given that this is a very expensive operation we have a two-fold
         # cache, one that is stored on this instance for very-fast retrieval
         # to support other method calls on this serializer
@@ -131,22 +152,16 @@ class FileEntriesSerializer(FileSerializer):
         if hasattr(self, '_entries'):
             return self._entries
 
-        commit = self._get_commit(obj)
+        commit = self.commit
         result = OrderedDict()
 
         def _fetch_entries():
-            tree = self.repo.get_root_tree(commit)
+            tree = self.tree
 
             for entry_wrapper in self.repo.iter_tree(tree):
                 entry = entry_wrapper.tree_entry
                 path = force_text(entry_wrapper.path)
                 blob = entry_wrapper.blob
-
-                commit_tzinfo = timezone(timedelta(
-                    minutes=commit.commit_time_offset))
-                commit_time = datetime.fromtimestamp(
-                    float(commit.commit_time),
-                    commit_tzinfo)
 
                 mimetype, entry_mime_category = get_mime_type_for_blob(
                     tree_or_blob=entry.type, name=entry.name, blob=blob)
@@ -159,7 +174,6 @@ class FileEntriesSerializer(FileSerializer):
                     'mimetype': mimetype,
                     'path': path,
                     'size': blob.size if blob is not None else None,
-                    'modified': commit_time,
                 }
             return result
 
@@ -177,20 +191,43 @@ class FileEntriesSerializer(FileSerializer):
 
         return self._entries
 
+    def get_entries(self, obj):
+        entries = self._get_entries(obj)
+        return self._trim_entries(entries)
+
+    def _trim_entries(self, entries):
+        result = OrderedDict()
+        for value in entries.values():
+            result[value['path']] = self._trim_entry(value)
+        return result
+
+    def _trim_entry(self, entry):
+        return {key: entry[key] for key in (
+                'depth', 'filename', 'mime_category', 'path', 'status'
+                ) if key in entry}
+
     def get_mimetype(self, obj):
-        entries = self.get_entries(obj)
+        entries = self._get_entries(obj)
         return entries[self.get_selected_file(obj)]['mimetype']
 
     def get_sha256(self, obj):
         return self._get_hash_for_selected_file(obj)
 
     def get_size(self, obj):
-        entries = self.get_entries(obj)
+        entries = self._get_entries(obj)
         return entries[self.get_selected_file(obj)]['size']
+
+    def get_filename(self, obj):
+        entries = self._get_entries(obj)
+        return entries[self.get_selected_file(obj)]['filename']
+
+    def get_mime_category(self, obj):
+        entries = self._get_entries(obj)
+        return entries[self.get_selected_file(obj)]['mime_category']
 
     def get_selected_file(self, obj):
         requested_file = self.context.get('file', None)
-        files = self.get_entries(obj)
+        files = self._get_entries(obj)
 
         if requested_file is None:
             default_files = ('manifest.json', 'install.rdf', 'package.json')
@@ -209,15 +246,10 @@ class FileEntriesSerializer(FileSerializer):
         return requested_file
 
     def get_content(self, obj):
-        commit = self._get_commit(obj)
-        tree = self.repo.get_root_tree(commit)
-        selected_file = self.get_selected_file(obj)
-        blob_or_tree = tree[selected_file]
-
-        if blob_or_tree.type == pygit2.GIT_OBJ_BLOB:
-            blob = self.git_repo[blob_or_tree.oid]
+        blob, name = self._get_blob_for_selected_file(obj)
+        if blob is not None:
             mimetype, mime_category = get_mime_type_for_blob(
-                tree_or_blob='blob', name=blob_or_tree.name, blob=blob)
+                tree_or_blob='blob', name=name, blob=blob)
 
             # Only return the raw data if we detect a file that contains text
             # data that actually can be rendered.
@@ -245,26 +277,18 @@ class FileEntriesSerializer(FileSerializer):
         return self.get_selected_file(obj) in minified_files
 
     def get_download_url(self, obj):
-        commit = self._get_commit(obj)
-        tree = self.repo.get_root_tree(commit)
         selected_file = self.get_selected_file(obj)
+        blob, name = self._get_blob_for_selected_file(obj)
+        if blob is not None:
+            return absolutify(reverse(
+                'reviewers.download_git_file',
+                kwargs={
+                    'version_id': self.get_instance().version.pk,
+                    'filename': selected_file
+                }
+            ))
 
-        try:
-            blob_or_tree = tree[selected_file]
-        except KeyError:
-            # This can happen when the file has been deleted.
-            return None
-
-        if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
-            return None
-
-        return absolutify(reverse(
-            'reviewers.download_git_file',
-            kwargs={
-                'version_id': self.get_instance().version.pk,
-                'filename': selected_file
-            }
-        ))
+        return None
 
 
 class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):
@@ -329,7 +353,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         fields = FileSerializer.Meta.fields + (
             'diff', 'entries', 'selected_file', 'download_url',
             'uses_unknown_minified_code', 'base_file',
-            'sha256', 'size', 'mimetype'
+            'sha256', 'size', 'mimetype', 'mime_category', 'filename'
         )
         model = File
 
@@ -351,8 +375,8 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         # See: https://github.com/mozilla/addons-server/issues/11392
         return next(iter(diff), None)
 
-    def get_entries(self, obj):
-        """Overwrite `FileEntriesSerializer.get_entries to inject
+    def _get_entries(self, obj):
+        """Overwrite `FileEntriesSerializer._get_entries to inject
 
         added/removed/changed information.
         """
@@ -367,7 +391,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             parent=parent,
             pathspec=None)
 
-        entries = super().get_entries(obj)
+        entries = super()._get_entries(obj)
 
         # All files have a "unmodified" status by default
         for path, value in entries.items():
@@ -395,7 +419,6 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                     'mimetype': mime,
                     'path': path,
                     'size': None,
-                    'modified': None,
                 }
 
             # Now we can set the git-status.
@@ -420,7 +443,6 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
                         'mimetype': 'application/octet-stream',
                         'path': parent,
                         'size': None,
-                        'modified': None,
                     }
 
         return entries

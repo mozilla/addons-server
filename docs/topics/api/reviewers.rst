@@ -172,16 +172,14 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string file.mimetype: The determined mimetype of the selected file or ``application/octet-stream`` if none could be determined.
     :>json string file.sha256: SHA256 hash of the selected file.
     :>json int file.size: The size of the selected file in bytes.
+    :>json string file.filename: The filename of the file.
+    :>json string file.mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json boolean uses_unknown_minified_code: Indicates that the selected file could be using minified code.
     :>json array file.entries[]: The complete file-tree of the extracted XPI.
     :>json int file.entries[].depth: Level of folder-tree depth, starting with 0.
     :>json string file.entries[].filename: The filename of the file.
     :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
-    :>json string|null file.entries[].sha256: SHA256 hash. This is only set for the currently selected file.
-    :>json string file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined.
     :>json string file.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
-    :>json int file.entries[].size: The size in bytes.
-    :>json string file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.
 
 
 -------
@@ -212,11 +210,7 @@ This endpoint allows you to compare two Add-on versions with each other.
     :>json int|null file.entries[].depth: Level of folder-tree depth, starting with 0.
     :>json string file.entries[].filename: The filename of the file.
     :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
-    :>json string|null file.entries[].sha256: SHA256 hash. This is only set for the currently selected file. It may also be `null` for deleted files.
-    :>json string|null file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined. Can be ``null`` in case of a deleted file.
     :>json string|null file.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
-    :>json int|null file.entries[].size: The size in bytes.
-    :>json string|null file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.
     :>json object|null diff: See the following output with inline comments for a complete description.
     :>json object base_file: The file attached to the base version you're comparing against.
     :>json object base_file.id: The id of the base file.
