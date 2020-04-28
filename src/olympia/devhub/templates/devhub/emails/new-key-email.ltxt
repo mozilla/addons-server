@@ -1,4 +1,4 @@
-{% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}The following API Key was added to your account:
+{# L10n: This is an email. Whitespace matters #}{% trans %}The following API Key was added to your account:
 
 {{ key }}
 
@@ -6,4 +6,4 @@ If you believe this key was created in error, you can remove the key and
 disable access at the following location:
 
 {{ url }}
-{% endblocktrans %}
+{% endtrans %}

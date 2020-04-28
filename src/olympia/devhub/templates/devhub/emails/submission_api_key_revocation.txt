@@ -1,4 +1,4 @@
-{% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}Dear add-on developer,
+{# L10n: This is an email. Whitespace matters #}{% trans %}Dear add-on developer,
 
 We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.
 You can generate new API credentials at {{ api_keys_url }}
@@ -7,4 +7,4 @@ Please make sure you never share your credentials with anyone. Never include the
 
 Thank you,
 The Mozilla Add-ons team
-{% endblocktrans %}
+{% endtrans %}

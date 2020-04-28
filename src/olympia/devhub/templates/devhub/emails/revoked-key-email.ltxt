@@ -1,4 +1,4 @@
-{% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}The API Key was revoked from your account:
+{# L10n: This is an email. Whitespace matters #}{% trans %}The API Key was revoked from your account:
 
 {{ key }}
 
@@ -6,4 +6,4 @@ If you believe this key was revoked in error, you can create a new one
 at the following location:
 
 {{ url }}
-{% endblocktrans %}
+{% endtrans %}

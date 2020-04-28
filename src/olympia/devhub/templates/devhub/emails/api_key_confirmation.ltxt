@@ -1,4 +1,4 @@
-{% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}Hello,
+{# L10n: This is an email. Whitespace matters #}{% trans %}Hello,
 
 You're receiving this message because you requested new developer API keys for
 {{ domain }}. To finish this process, please click on the link below:
@@ -10,4 +10,4 @@ If you didn't request this, please notify amo-admins@mozilla.com.
 Regards,
 
 The Mozilla Add-ons Team
-{% endblocktrans %}
+{% endtrans %}

@@ -274,9 +274,6 @@ SECRET_KEY = env(
 # Templates configuration.
 # List of path patterns for which we should be using Django Template Language.
 JINJA_EXCLUDE_TEMPLATE_PATHS = (
-    # All emails should be processed with Django for consistency.
-    r'^.*\/emails\/',
-
     # ^admin\/ covers most django admin templates, since their path should
     # follow /admin/<app>/<model>/*
     r'^admin\/',
@@ -541,13 +538,9 @@ PUENTE = {
             # it's not in templates/ with a .html extension.
             (EDITORIAL_CONTENT_FILENAME, 'jinja2'),
 
-            # Make sure we're parsing django-admin & email templates with the
+            # Make sure we're parsing django-admin templates with the
             # django template extractor. This should match the behavior of
             # JINJA_EXCLUDE_TEMPLATE_PATHS
-            (
-                'src/olympia/**/templates/**/emails/**.*',
-                'django_babel.extract.extract_django'
-            ),
             (
                 '**/templates/admin/**.html',
                 'django_babel.extract.extract_django'
