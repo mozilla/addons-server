@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 12:22+0000\n"
+"PO-Revision-Date: 2020-04-28 12:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4968,23 +4968,23 @@ msgstr "Wjedrowe aktualizacije ned z cełego swěta."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Wulašujśo cookieje, pśeglědowańsku historiju a pufrowane dataje z jano jadnym kliknjenim."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Wótwónoźćo slědujuce elementy z webwótkazow."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Wobstarajśo se awtomatiski wupołnjone zarědniki cytańskich znamjenjow RSS-kanalow."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organizěrujśo lažko tony wócynjonych rejtarkow."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Napórajśo a pśiměrśo rejtarkowe kupki."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4998,11 +4998,11 @@ msgstr "Wulašujśo cookieje awtomatiski, za tym až sćo zacynił rejtark."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blokěrujśo kužde wabjenje - wideo, wuskokujuce wokna, chórgoje a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Woglědajśo se tšugajuce medije z pśijaśelami a familiju wšuźi."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5018,7 +5018,7 @@ msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Organizěrowanje rejtarkow a rědy"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5522,10 +5522,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Awtomatiske pśizwólenje jo se nachylu zaźaržało."
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Awtomatiske pśizwólenje jo se na njewěsty cas zaźaržało."
 
 msgid "Is locked by a reviewer"
 msgstr "Jo wót pśeglědowarja zastajony"
@@ -5551,7 +5551,7 @@ msgid "You can't submit an empty comment."
 msgstr "Njamóžośo rěcny pakśik zapódaś"
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Njamóžośo smužkowy numer zapódaś, bźez togo aby jen datajowemu mjenoju pśipokazał."
 
 msgid "Type"
 msgstr "Typ"
@@ -5642,7 +5642,7 @@ msgid "Block Multiple Versions"
 msgstr "Někotare wersije wótpokazaś"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "To wubrane pśizwólone wersije kšajźu znjemóžnijo a administraciski bok za napóranje blokěrowanja wócynijo."
 
 #, fuzzy
 msgid "Confirm Multiple Versions"
