@@ -284,9 +284,10 @@ class TestEditAuthor(TestOwnership):
         assert ActivityLog.objects.all().count() == original_activity_log_count
 
     def test_success_add_user(self):
+        new_author = UserProfile.objects.get(email='regular@mozilla.com')
         additional_data = formset(
             {
-                'user': 'regular@mozilla.com',
+                'user': new_author.email,
                 'role': amo.AUTHOR_ROLE_DEV,
                 'listed': True
             },
@@ -306,7 +307,7 @@ class TestEditAuthor(TestOwnership):
         expected_authors = ['del@icio.us']
         assert list(AddonUser.objects.filter(addon=self.addon).values_list(
             'user__email', flat=True).order_by('position')) == expected_authors
-        expected_pending = ['regular@mozilla.com']
+        expected_pending = [new_author.email]
         assert list(AddonUserPendingConfirmation.objects.filter(
             addon=self.addon).values_list(
             'user__email', flat=True)) == expected_pending
@@ -323,10 +324,15 @@ class TestEditAuthor(TestOwnership):
         assert author_added_email.subject == (
             'An author has been added to your add-on')
         assert 'del@icio.us' in author_added_email.to  # The original author.
+        assert self.addon.get_absolute_url() in author_added_email.body
+        assert (
+            new_author.get_absolute_url() in
+            author_added_email.body
+        )
         author_confirmation_email = mail.outbox[1]
         assert author_confirmation_email.subject == (
             'Author invitation for Delicious Bookmarks')
-        assert 'regular@mozilla.com' in author_confirmation_email.to
+        assert new_author.email in author_confirmation_email.to
         assert invitation_url in author_confirmation_email.body
         assert settings.DOMAIN in author_confirmation_email.body
 
@@ -500,6 +506,12 @@ class TestEditAuthor(TestOwnership):
         assert 'del@icio.us' in author_edit.to  # The original author.
         assert 'regular@mozilla.com' in author_edit.to  # The edited one.
 
+        assert self.addon.get_absolute_url() in author_edit.body
+        assert (
+            second_author.user.get_absolute_url() in
+            author_edit.body
+        )
+
     def test_add_user_twice_in_same_post(self):
         additional_data = formset(
             {
@@ -598,8 +610,14 @@ class TestEditAuthor(TestOwnership):
         assert 'del@icio.us' in author_edit.to  # The original author.
         assert 'regular@mozilla.com' in author_edit.to  # The edited one.
 
+        assert self.addon.get_absolute_url() in author_edit.body
+        assert (
+            non_confirmed_author.user.get_absolute_url() in
+            author_edit.body
+        )
+
     def test_delete_user_pending_confirmation(self):
-        AddonUserPendingConfirmation.objects.create(
+        pending = AddonUserPendingConfirmation.objects.create(
             addon=self.addon,
             user=UserProfile.objects.get(email='regular@mozilla.com'),
             role=amo.AUTHOR_ROLE_DEV,
@@ -622,8 +640,14 @@ class TestEditAuthor(TestOwnership):
         assert 'del@icio.us' in author_delete.to  # The original author.
         assert 'regular@mozilla.com' in author_delete.to  # The removed one.
 
+        assert self.addon.get_absolute_url() in author_delete.body
+        assert (
+            pending.user.get_absolute_url() in
+            author_delete.body
+        )
+
     def test_delete_user(self):
-        AddonUser.objects.create(
+        second_author = AddonUser.objects.create(
             addon=self.addon,
             user=UserProfile.objects.get(email='regular@mozilla.com'),
             role=amo.AUTHOR_ROLE_DEV,
@@ -646,6 +670,12 @@ class TestEditAuthor(TestOwnership):
         # Make sure all the authors are aware of the addition.
         assert 'del@icio.us' in author_delete.to  # The original author.
         assert 'regular@mozilla.com' in author_delete.to  # The removed one.
+
+        assert self.addon.get_absolute_url() in author_delete.body
+        assert (
+            second_author.user.get_absolute_url() in
+            author_delete.body
+        )
 
     def test_only_owner_can_edit(self):
         AddonUser.objects.create(

@@ -1,4 +1,4 @@
-{# L10n: This is an email. Whitespace matters! #}{% trans with addon_name=addon.name author_name=author.user.name domain=DOMAIN %}
+{# L10n: This is an email. Whitespace matters! #}{% trans addon_name=addon.name, author_name=author.user.name, domain=DOMAIN %}
 Greetings {{ author_name }},
 
 You have been invited to become an author of {{ addon_name }} on {{ domain }}. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.
