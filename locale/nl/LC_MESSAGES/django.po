@@ -3691,9 +3691,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Pas muisbewegingen aan {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Pas uw muisbewegingen aan. Ontdek een nieuwe manier van navigeren met meer dan 50 nuttige muisbewegingen."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3957,9 +3956,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dynamische navigatie {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Gebruik muisbewegingen om tabbladen te sluiten, een pagina terug te gaan of te vernieuwen, en meer."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4877,9 +4875,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Onmiddellijke weersupdates van over de hele wereld."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4902,14 +4899,12 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Sla volledige pagina’s – of slechts delen – op als één HTML-bestand."
+msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Wis automatisch cookies nadat u een tabblad sluit."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -4982,9 +4977,8 @@ msgstr "Kan geen diff van een versie tegen zichzelf maken"
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Voor Firefox 47 en lager is een GUID vereist."
+msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Laagste ondersteunde ‘strict_min_version’ is 42.0."
@@ -5047,9 +5041,9 @@ msgstr "De maximale grootte voor WebExtension-thema’s is {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "U kunt dit type add-on niet indienen"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "U kunt geen add-on indienen met een GUID die op %s eindigt"
+msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "U kunt geen door Mozilla ondertekende extensie indienen"
@@ -5443,9 +5437,8 @@ msgstr ""
 msgid "Is locked by a reviewer"
 msgstr "Is vergrendeld door een beoordelaar"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Heeft markering ‘automatische goedkeuring uitgeschakeld’"
+msgstr ""
 
 msgid "Is recommendable"
 msgstr "Is aan te bevelen"
@@ -5459,9 +5452,8 @@ msgstr "Risico-uitwerking niet beschikbaar."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "U kunt geen commentaar indienen als ‘canned_response’ is gedefinieerd."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "U kunt geen taalpakket indienen"
+msgstr ""
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5497,9 +5489,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} dag"
 msgstr[1] "{0} dagen"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr ""
 
 msgid "Last Review"
 msgstr "Laatste beoordeling"
@@ -5513,13 +5504,11 @@ msgstr "Deadline voor verzoek om informatie"
 msgid "Last Updated"
 msgstr "Laatst bijgewerkt"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Overige wachtend op beoordeling ({0})"
+msgstr ""
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Overige wachtend op beoordeling ({0})"
+msgstr ""
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Hierdoor wordt deze versie goedgekeurd, ondertekend en gepubliceerd. De opmerkingen worden naar de ontwikkelaar gestuurd."
@@ -5545,20 +5534,17 @@ msgstr "Meerdere versies afwijzen"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Hierdoor worden de geselecteerde openbare versies afgewezen. De opmerkingen worden naar de ontwikkelaar gestuurd."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Meerdere versies afwijzen"
+msgstr ""
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Meerdere versies afwijzen"
+msgstr ""
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Dit legt uw goedkeuring van de inhoud van de laatste publieke versie vast, zonder de ontwikkelaar te informeren."
+msgstr ""
 
 msgid "Reviewer reply"
 msgstr "Antwoord van beoordelaar"
@@ -5745,9 +5731,8 @@ msgstr "Afbeeldingengalerij"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Niets te zien hier!  De ontwikkelaar heeft geen details gegeven."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "op add-onversie"
+msgstr ""
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Terug naar het dashboard van Beoordelaarshulpmiddelen"
@@ -5902,9 +5887,8 @@ msgstr "Eerder verwijderde ingaven"
 msgid "This is a recommended extension."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "U hebt geen API-referenties."
+msgstr ""
 
 msgid "Please select one or more versions in the list above."
 msgstr "Selecteer een of meer versies in de bovenstaande lijst."
@@ -5938,13 +5922,11 @@ msgstr "Meer acties"
 msgid "Notify me about new listed versions"
 msgstr "Mij berichten over nieuwe versies in de lijst"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Alle inzendingen bekijken"
+msgstr ""
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Mijn bijdragen beheren"
+msgstr ""
 
 msgid "Force-disable add-on"
 msgstr "Add-on geforceerd uitschakelen"
@@ -5952,9 +5934,8 @@ msgstr "Add-on geforceerd uitschakelen"
 msgid "Force-enable add-on"
 msgstr "Add-on geforceerd inschakelen"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Alle inzendingen bekijken"
+msgstr ""
 
 #, fuzzy
 msgid "Block add-on"
