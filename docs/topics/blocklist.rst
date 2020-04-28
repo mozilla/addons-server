@@ -17,7 +17,7 @@ Firefox determines which add-ons are unsafe to allow to continue to be enabled b
 With v1 and v2 blocklist this is literally a list of addon guids, plus other metadata, that should be blocked from executing (v1 is XML format, v2 is JSON format);
 with v3 blocklist this is a bloomfilter that is queried - if the addon guid and xpi version is present then it's in the blocklist so should be blocked by Firefox.
 
-The blocklists are all served via Firefox Remote Settings (the current implmentation is Kinto):
+The blocklists are all served via Firefox Remote Settings (the current implementation is Kinto):
  - the v3 blocklist bloomfilter files are attachments in the records of https://firefox.settings.services.mozilla.com/v1/buckets/blocklists/collections/addons-bloomfilters/records
  - the v2 blocklist is the full output of https://firefox.settings.services.mozilla.com/v1/buckets/blocklists/collections/addons/records
  - the v1 blocklist is a (server-side) wrapper around the v2 blocklist that rewrites the JSON into XML
@@ -36,10 +36,10 @@ Admin Tool
 .. _blocklist-doc-admin:
 
 `Block` records aren't created and changed directly via the admin tool; instead `BlockSubmission` records are created that hold details of the submission of (potentially many) blocks that will be created, updated, or deleted.
-If the addons that the Block affects are used by a significant number of users (see `DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD` setting - currently 100k) then the BlockSubmission must be signed off (approved) by another admin user first.
+If the add-ons that the Block affects are used by a significant number of users (see `DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD` setting - currently 100k) then the BlockSubmission must be signed off (approved) by another admin user first.
 
-Once a the submission is approved - or immediately after saving if the average daily user counts are under the threshold - a task is started to asynchronously create, update, or delete, Block records.
-If the Block records are marked as legacy then they will be up uploaded to the legacy blocklist collection too in this task.
+Once the submission is approved - or immediately after saving if the average daily user counts are under the threshold - a task is started to asynchronously create, update, or delete, Block records.
+If the Block records are marked as legacy then they will be uploaded to the legacy blocklist collection too in this task.
 
 
 ======================
@@ -48,7 +48,7 @@ Bloomfilter Generation
 
 .. _blocklist-doc-bloomfilter:
 
-Generating a bloomfilter can be quite slow so a new one is only generated every 6 hours - or less frequently if no Block records have been changed/added/deleted in that time - via a cron job.
+Generating a bloomfilter can be quite slow, so a new one is only generated every 6 hours - or less frequently if no Block records have been changed/added/deleted in that time - via a cron job.
 
 An ad-hoc bloomfilter can be created with the `export_blocklist` command but it isn't considered for the cron job (or :ref:`stashing <blocklist-doc-stashing>`)
 
@@ -92,7 +92,7 @@ Stashing
 
 Because the bloomfilter files can be quite large "stash" files are also generated, which represent the changes since the previous bloomfilter generation and can be used by Firefox instead to save on bandwidth.
 
-Multiple stashes can be applied by Firefox (in cronological order) to match the state of an up-to-date bloomfilter.
+Multiple stashes can be applied by Firefox (in chronological order) to match the state of an up-to-date bloomfilter.
 
 
 Stash record example
@@ -138,7 +138,7 @@ The collection on Remote Settings at any given point will consist of a single re
 Stashing support disabled in Firefox
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If stashing support is disabled in a Firefox version the stash records can be ignored and all bloomfilters considered instead.  (Records with a bloomfilter attachement always have a `generation_time` field).  Firefox would just download the latest attachment and use that as it's bloomfilter.
+If stashing support is disabled in a Firefox version the stash records can be ignored and all bloomfilters considered instead.  (Records with a bloomfilter attachment always have a `generation_time` field).  Firefox would just download the latest attachment and use that as it's bloomfilter.
 
 
 -------
@@ -156,11 +156,11 @@ The server process is:
  * Compare list of blocked guids from this execution to the base bloomfilter file. If there have been few changes then write those changes to a stash JSON blob
 
    #. Upload the stash as JSON data in record
-   #. Upload the filter as an attachment to a seperate record with the type `bloomfilter-full`
+   #. Upload the filter as an attachment to a separate record with the type `bloomfilter-full`
  * If there have been many changes then:
 
    #. clear the collection on Remote Settings
-   #. Upload the filter as an attachment to a seperate record with the type `bloomfilter-base`
+   #. Upload the filter as an attachment to a separate record with the type `bloomfilter-base`
 
 
 ================
@@ -171,7 +171,7 @@ Legacy Blocklist
 
 To populate the blocklist on AMO the legacy blocklist on Remote Settings was imported; all guids that matched addons on AMO (and that had at least one webextension version) were added; any guids that were :ref:`regular expressions<blocklist-doc-regex>` were "expanded" to individual records for each addon present in the AMO database.
 
-If the `include_in_legacy` is selected in AMO's admin tool the block will also be saved to the legacy blocklist.  Edits to Blocks will propogate to the legacy blocklist too (apart from :ref:`regular expression based blocks<blocklist-doc-regex>`). An existing Block can be edited to deselect `include_in_legacy` which would delete it from the legacy blocklist; or edited to add select which would add it the the legacy blocklist.
+If the `include_in_legacy` is selected in AMO's admin tool the block will also be saved to the legacy blocklist.  Edits to Blocks will propagate to the legacy blocklist too (apart from :ref:`regular expression based blocks<blocklist-doc-regex>`). An existing Block can be edited to deselect `include_in_legacy` which would delete it from the legacy blocklist; or edited to add select which would add it to the legacy blocklist.
 
 
 ------------------
@@ -180,10 +180,10 @@ Regex-based Blocks
 
 .. _blocklist-doc-regex:
 
-The legacy blocklist records can contain regular expressions in the `guid` field, which are interpretted by Firefox to match addon guids.
+The legacy blocklist records can contain regular expressions in the `guid` field, which are interpreted by Firefox to match addon guids.
 
 AMO's blocklist implementation, by design, does not generate or change regular expressions in legacy blocklist records.
-So Blocks imported from a regular expression in the legacy blocklist can be viewed and updated on AMO, and are included in the v3 bloomfilter blocklist, but changes to those records cannot be propapated back to the legacy blocklist because the regular expression would need to be amended.
+So Blocks imported from a regular expression in the legacy blocklist can be viewed and updated on AMO, and are included in the v3 bloomfilter blocklist, but changes to those records cannot be propagated back to the legacy blocklist because the regular expression would need to be amended.
 
 A warning message is displayed and the user must manually make the changes to the legacy blocklist via the kinto admin tool.
 
