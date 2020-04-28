@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -6831,9 +6831,10 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"\n"
 "Slědowacy awtor je so swojemu přidatkej %(addon_name)s ( %(addon_url)s ) přidał:\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 
 #, python-format
 msgid ""
@@ -6851,6 +6852,7 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team\n"
 msgstr ""
+"\n"
 "Witajće %(author_name)s,\n"
 "\n"
 "přeprosychu was so z awtorom přidatka  %(addon_name)s na %(domain)s stać. Hdyž přeprošenje přijimaće, dóstanjeće přistup, zo byšće přidatk wobdźěłował a waše mjeno so w lisćinje awtorowa na websydle pokaza.\n"
@@ -6863,7 +6865,7 @@ msgstr ""
 "\n"
 "Z přećelnymi postrowami,\n"
 "\n"
-"The Mozilla Add-ons Team"
+"The Mozilla Add-ons Team\n"
 
 #, python-format
 msgid ""

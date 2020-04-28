@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
@@ -2954,7 +2954,7 @@ msgstr ""
 "Olá,\n"
 "\n"
 "Está a receber esta mensagem porque solicitou novas chaves da API de programador\n"
-"para %(domínio)s. Para finalizar este processo, clique na ligação abaixo:\n"
+"para %(domain)s. Para finalizar este processo, clique na ligação abaixo:\n"
 "\n"
 "%(api_key_confirmation_link)s\n"
 "\n"
@@ -2962,7 +2962,7 @@ msgstr ""
 "\n"
 "Atentamente,\n"
 "\n"
-"A Equipa de Extras da Mozilla"
+"A Equipa de Extras da Mozilla\n"
 
 #, python-format
 msgid ""
