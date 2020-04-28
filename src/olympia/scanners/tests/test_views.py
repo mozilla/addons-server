@@ -14,7 +14,7 @@ from olympia.scanners.serializers import ScannerResultSerializer
 from django.test.utils import override_settings
 
 
-class TestScannerResultViewSet(TestCase):
+class TestScannerResultView(TestCase):
     client_class = APITestClient
 
     def setUp(self):
@@ -24,6 +24,13 @@ class TestScannerResultViewSet(TestCase):
         self.grant_permission(self.user, 'Admin:ScannersResultsView')
         self.client.login_api(self.user)
         self.url = reverse_ns('scanner-results', api_version='v5')
+
+    def assert_json_results(self, response, expected_results):
+        json = response.json()
+        assert 'results' in json
+        results = json['results']
+        assert len(results) == expected_results
+        return results
 
     def test_endpoint_requires_authentication(self):
         self.client.logout_api()
@@ -116,10 +123,7 @@ class TestScannerResultViewSet(TestCase):
             response = self.client.get(self.url)
 
         assert response.status_code == 200
-        json = response.json()
-        assert 'results' in json
-        results = json['results']
-        assert len(results) == 3
+        results = self.assert_json_results(response, expected_results=3)
         # Force a `label` value so that the serialized (expected) data is
         # accurate. This is needed because `label` is an annotated field
         # created in the QuerySet.
@@ -139,3 +143,127 @@ class TestScannerResultViewSet(TestCase):
         # created in the QuerySet.
         bad_result.label = 'bad'
         assert results[2] == ScannerResultSerializer(instance=bad_result).data
+
+    def test_get_by_scanner(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        # result labelled as "bad" because its state is TRUE_POSITIVE
+        bad_version = version_factory(addon=addon_factory())
+        ScannerResult.objects.create(
+            scanner=YARA, version=bad_version, state=TRUE_POSITIVE
+        )
+        ScannerResult.objects.create(
+            scanner=CUSTOMS, version=bad_version, state=TRUE_POSITIVE
+        )
+
+        response = self.client.get(self.url)
+        self.assert_json_results(response, expected_results=2)
+
+        response = self.client.get('{}?scanner=yara'.format(self.url))
+        results = self.assert_json_results(response, expected_results=1)
+        assert results[0].get('scanner') == 'yara'
+
+        response = self.client.get('{}?scanner=customs'.format(self.url))
+        results = self.assert_json_results(response, expected_results=1)
+        assert results[0].get('scanner') == 'customs'
+
+    def test_get_by_scanner_with_empty_value(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        invalid_scanner = ""
+        response = self.client.get(
+            '{}?scanner={}'.format(self.url, invalid_scanner)
+        )
+        assert response.status_code == 400
+
+    def test_get_by_scanner_with_unknown_scanner(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        invalid_scanner = "yaraaaa"
+        response = self.client.get(
+            '{}?scanner={}'.format(self.url, invalid_scanner)
+        )
+        assert response.status_code == 400
+
+    def test_get_by_label(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        # result labelled as "bad" because its state is TRUE_POSITIVE
+        bad_version = version_factory(addon=addon_factory())
+        ScannerResult.objects.create(
+            scanner=YARA, version=bad_version, state=TRUE_POSITIVE
+        )
+        # result labelled as "good" because it has been approved
+        good_version = version_factory(addon=addon_factory())
+        ScannerResult.objects.create(scanner=WAT, version=good_version)
+        VersionLog.objects.create(
+            activity_log=ActivityLog.create(
+                action=amo.LOG.APPROVE_VERSION,
+                version=good_version,
+                user=self.user,
+            ),
+            version=good_version,
+        )
+
+        response = self.client.get(self.url)
+        self.assert_json_results(response, expected_results=2)
+
+        response = self.client.get('{}?label=good'.format(self.url))
+        results = self.assert_json_results(response, expected_results=1)
+        assert results[0].get('label') == 'good'
+
+        response = self.client.get('{}?label=bad'.format(self.url))
+        results = self.assert_json_results(response, expected_results=1)
+        assert results[0].get('label') == 'bad'
+
+    def test_get_by_label_with_empty_value(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        invalid_label = ""
+        response = self.client.get(
+            '{}?label={}'.format(self.url, invalid_label)
+        )
+        assert response.status_code == 400
+
+    def test_get_by_label_with_unknown_label(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        invalid_label = "gooda"
+        response = self.client.get(
+            '{}?label={}'.format(self.url, invalid_label)
+        )
+        assert response.status_code == 400
+
+    def test_get_by_label_and_scanner(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        # result labelled as "bad" because its state is TRUE_POSITIVE
+        bad_version = version_factory(addon=addon_factory())
+        ScannerResult.objects.create(
+            scanner=YARA, version=bad_version, state=TRUE_POSITIVE
+        )
+        # result labelled as "good" because it has been approved
+        good_version = version_factory(addon=addon_factory())
+        ScannerResult.objects.create(scanner=WAT, version=good_version)
+        VersionLog.objects.create(
+            activity_log=ActivityLog.create(
+                action=amo.LOG.APPROVE_VERSION,
+                version=good_version,
+                user=self.user,
+            ),
+            version=good_version,
+        )
+
+        response = self.client.get(self.url)
+        self.assert_json_results(response, expected_results=2)
+
+        response = self.client.get(
+            '{}'.format('{}?scanner=yara&label=good'.format(self.url))
+        )
+        self.assert_json_results(response, expected_results=0)
+        response = self.client.get(
+            '{}'.format('{}?scanner=yara&label=bad'.format(self.url))
+        )
+        self.assert_json_results(response, expected_results=1)
+
+        response = self.client.get(
+            '{}'.format('{}?scanner=wat&label=bad'.format(self.url))
+        )
+        self.assert_json_results(response, expected_results=0)
+        response = self.client.get(
+            '{}'.format('{}?scanner=wat&label=good'.format(self.url))
+        )
+        self.assert_json_results(response, expected_results=1)

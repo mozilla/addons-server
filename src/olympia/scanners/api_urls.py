@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from .views import ScannerResultViewSet
+from .views import ScannerResultView
 
 urlpatterns = [
-    url(r'^results/$', ScannerResultViewSet.as_view(), name='scanner-results'),
+    url(r'^results/$', ScannerResultView.as_view(), name='scanner-results')
 ]
