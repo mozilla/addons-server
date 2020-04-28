@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 13:00+0000\n"
+"PO-Revision-Date: 2020-04-28 20:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2711,20 +2711,17 @@ msgstr "Waš lisćinowy zapisk budźe wuspěšniši, hdyž nadrobne wopisanje a 
 msgid "Manage Listing"
 msgstr "Lisćinowy zapisk rjadować"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Móžeće tež tutu wersiju wobdźěłać, zo byšće wersijowe informacije abo žórłowy tekst přidał, jeli waše zapodaće zniženy, zamazany abo kompilowany žórłowy kod wobsahuje."
+msgstr "Móžeće tež tutu wersiju wobdźěłać, zo byšće wersijowe informacije abo žórłowy tekst přidał, jeli waše zapodaće minifikowany, zwjazany abo hinak mašinelnje wutworjeny kod wobsahuje."
 
 msgid "Edit version {0}"
 msgstr "Wersiju wobdźěłać {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Wersija je so signowała"
+msgstr "Wersijowe signowanje hišće faluje"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Sće hotowy! Tuta wersija budźe k dispoziciji, po tym zo je so wuspěšnje přepruwowała. Dóstańće zdźělenku, hdyž je přepruwowana."
+msgstr "Sće hotowy! Tuta wersija budźe so bórze za samorozdźělenje signować. Dóstańće mejlku, hdyž signowana dataja je hotowa za sćehnjenje."
 
 msgid "Go to My Submissions"
 msgstr "Moje zapodaća sej wobhladać"
