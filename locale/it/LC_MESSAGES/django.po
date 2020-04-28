@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 10:18+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2020-04-27 18:59+0000\n"
+"Last-Translator: Enrico Belleri <idesmi@protonmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -527,9 +527,8 @@ msgstr ""
 
 #, python-format
 msgid "Delete Multiple %(name)s"
-msgstr ""
+msgstr "Elimina più %(name)s simultaneamente"
 
-#, fuzzy
 msgid "Home"
 msgstr "Pagina principale"
 
@@ -542,7 +541,7 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "I seguenti blocchi sono stati importati da un blocco Kinto legacy basato su espressioni regolari."
 
 msgid "Save"
 msgstr "Salva"
