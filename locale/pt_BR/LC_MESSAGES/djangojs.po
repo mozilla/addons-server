@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2019-09-30 20:47+0000\n"
+"PO-Revision-Date: 2020-04-28 01:32+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -105,7 +105,7 @@ msgstr ""
 "Nós permitimos e encorajamos a atualização, mas você não poderá reverter este processo. Uma vez que seus usuários tenham a WebExtension instalada, não conseguirão instalar uma extensão legada."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portando uma extensão obsoleta do Firefox no MDN"
+msgstr "Portando uma extensão legada do Firefox na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Incluir notas detalhadas da versão (isto pode ser feito no próximo passo)."
