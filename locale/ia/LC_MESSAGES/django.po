@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-26 20:31+0000\n"
+"PO-Revision-Date: 2020-04-28 07:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -478,7 +478,7 @@ msgstr "Iste additivo pertine ja al collection"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Bloco con GUID %(guid)s non trovato"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -486,7 +486,7 @@ msgstr ""
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Le additivo con GUID %(guid)s non existe"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
@@ -499,7 +499,7 @@ msgid "Invalid version"
 msgstr "Version non valide."
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Le version Minime non pote haber un numero major del version Maxime"
 
 msgid "Review Listed"
 msgstr "Revision listate"
@@ -535,7 +535,7 @@ msgid "Save"
 msgstr "Salvar"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Salvar e adder altero"
 
 msgid "Delete"
 msgstr "Deler"
@@ -554,26 +554,26 @@ msgid "Add %(name)s"
 msgstr "Adder %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "Additivo GUIDs (un pro linea)"
 
 msgid "Submit"
 msgstr "Inviar"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s Additivo GUIDs"
 
 msgid "users"
 msgstr "usatores"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Rediger bloco"
 
 msgid "versions"
 msgstr "versiones"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Includite in le lista del blocos legate."
 
 msgid "{addon} was created."
 msgstr "{addon} esseva create."
