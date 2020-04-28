@@ -129,9 +129,8 @@ msgstr "Alleen bij de nieuwste versies van add-ons kunnen opmerkingen worden toe
 msgid "Ratings"
 msgstr "Waarderingen"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Hulpmiddelen voor beoordelaars"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer Tools (unlisted)"
