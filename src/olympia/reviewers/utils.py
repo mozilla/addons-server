@@ -687,7 +687,7 @@ class ReviewBase(object):
                 args=[self.addon.id])
         else:
             dev_ver_url = self.addon.get_dev_url('versions')
-        return {'name': addon.name,
+        return {'name': str(addon.name),
                 'number': self.version.version if self.version else '',
                 'reviewer': self.user.reviewer_name or self.user.name,
                 'addon_url': absolutify(addon_url),
