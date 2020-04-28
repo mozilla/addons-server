@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 12:34+0000\n"
+"PO-Revision-Date: 2020-04-28 12:38+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6256,7 +6256,7 @@ msgstr[2] "Spadnjone pšosby wó informacije ({0})"
 msgstr[3] "Spadnjone pšosby wó informacije ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "eksistenca wótpowědujucych pšawidłow"
 
 #, fuzzy
 msgid "result state"
@@ -6293,13 +6293,13 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "To jo eksaktne mě pšawidła, kótarež se pśez skanner wužywa."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Gaž to jo znjemóžnjone, skannerowe wuslědki z toś tym pšawidłom zwězane njejsu a akcija so njewuwjeźo."
 
 msgid "Yara rules should have a definition"
 msgstr "Pšawidła Yara měli definiciju měś."
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Mě pšawidła w definiciji měło mjenoju skannerowego pšawidła wótpowědowaś"
 
 msgid "Only one Yara rule is allowed in the definition"
 msgstr "W definiciji jo jano jadno pšawidło Yara dowólone."
@@ -6312,7 +6312,7 @@ msgid "An error occurred when compiling the definition"
 msgstr "Pśi kompilěrowanju definicije jo se zmólka nastała."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Nałožćo toś to pšawidło na dodanki, kótarež su se znjemóžnili teke pód nuźenim."
 
 msgid "Abort"
 msgstr "Pśetergnuś"
@@ -6321,7 +6321,7 @@ msgid "Run"
 msgstr "Wuwjasć"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Wužytny, gaž skannerowy wuslědk jo pšawje pozitiwny, ale dodank njejo škódny"
 
 #, fuzzy
 msgid "Revert report"
@@ -6854,6 +6854,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 msgstr ""
+"Slědujucy awtor jo se pśidał swójemu dodankojuj %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
