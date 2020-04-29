@@ -6427,6 +6427,188 @@ class TestReviewAddonVersionViewSetDetail(
         assert response.status_code == 404
 
 
+class TestReviewVersionFileViewSetDetail(
+        TestCase, AddonReviewerViewSetPermissionMixin):
+    client_class = APITestClient
+    __test__ = True
+
+    def setUp(self):
+        super(TestReviewVersionFileViewSetDetail, self).setUp()
+
+        # TODO: Most of the initial setup could be moved to
+        # setUpTestData but unfortunately paths are setup in pytest via a
+        # regular autouse fixture that has function-scope so functions in
+        # setUpTestData doesn't use proper paths (cgrebs)
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'webextension_no_id.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        self._set_tested_url()
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.version.current_file.pk
+
+        # part of manifest.json
+        assert '"name": "Beastify"' in result['content']
+
+    def _set_tested_url(self):
+        self.url = reverse_ns('reviewers-files-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+    def test_anonymous(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_requested_file(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        with self.assertNumQueries(10):
+            # - 2 savepoints because tests
+            # - 2 user and groups
+            # - 2 add-on and translations
+            # - 1 add-on author check
+            # - 1 version
+            # - 2 file and file validation
+            response = self.client.get(self.url + '?file=README.md&lang=en-US')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['content'] == '# beastify\n'
+        assert result['entries'] is None
+
+        # make sure the correct download url is correctly generated
+        assert result['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': self.version.pk,
+                'filename': 'README.md'
+            }
+        ))
+
+    def test_non_existent_requested_file_returns_404(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(self.url + '?file=UNKNOWN_FILE')
+        assert response.status_code == 404
+
+    def test_requested_file_contains_whitespace(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(
+            repo, new_version, '(function() {})\n', 'content script.js')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        url = reverse_ns('reviewers-files-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(url + '?file=content script.js')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['content'] == '(function() {})\n'
+
+        # make sure the correct download url is correctly generated
+        assert result['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': new_version.pk,
+                'filename': 'content script.js'
+            }
+        ))
+
+    def test_supports_search_plugins(self):
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'search.xml'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        self._set_tested_url()
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['content'].startswith(
+            '<?xml version="1.0" encoding="utf-8"?>')
+
+        # make sure the correct download url is correctly generated
+        assert result['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': self.version.pk,
+                'filename': 'search.xml'
+            }
+        ))
+
+    def test_version_get_not_found(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.url = reverse_ns('reviewers-files-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.current_file.pk + 42})
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_mixed_channel_only_listed_without_unlisted_perm(self):
+        user = UserProfile.objects.create(username='admin')
+
+        # User doesn't have ReviewUnlisted permission
+        self.grant_permission(user, 'Addons:Review')
+
+        self.client.login_api(user)
+
+        # Add an unlisted version to the mix
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        # Now the add-on has both, listed and unlisted versions
+        # but only reviewers with Addons:ReviewUnlisted are able
+        # to see them
+        url = reverse_ns('reviewers-files-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk})
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        url = reverse_ns('reviewers-files-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': unlisted_version.pk})
+
+        response = self.client.get(url)
+        assert response.status_code == 404
+
+
 class TestReviewAddonVersionViewSetList(TestCase):
     client_class = APITestClient
 
@@ -7352,6 +7534,282 @@ class TestReviewAddonVersionCompareViewSet(
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['file']['download_url']
+
+
+class TestReviewVersionFileCompareViewSet(
+        TestCase, AddonReviewerViewSetPermissionMixin):
+    client_class = APITestClient
+    __test__ = True
+
+    def setUp(self):
+        super(TestReviewVersionFileCompareViewSet, self).setUp()
+
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'webextension_no_id.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        # Default to initial commit for simplicity
+        self.compare_to_version = self.version
+
+        self._set_tested_url()
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['id'] == self.version.current_file.pk
+        assert result['diff']['path'] == 'manifest.json'
+
+        change = result['diff']['hunks'][0]['changes'][3]
+
+        assert '"name": "Beastify"' in change['content']
+        assert change['type'] == 'insert'
+
+    def _set_tested_url(self):
+        self.url = reverse_ns('reviewers-compare-file-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': self.compare_to_version.pk})
+
+    def test_anonymous(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_requested_file(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(self.url + '?file=README.md')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['diff']['path'] == 'README.md'
+
+        change = result['diff']['hunks'][0]['changes'][0]
+
+        assert change['content'] == '# beastify'
+        assert change['type'] == 'insert'
+
+    def test_requested_file_contains_whitespace(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(
+            repo, new_version, '(function() {})\n', 'content script.js')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        url = reverse_ns('reviewers-compare-file-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(url + '?file=content script.js')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        change = result['diff']['hunks'][0]['changes'][0]
+
+        assert result['diff']['path'] == 'content script.js'
+        assert change['content'] == '(function() {})'
+        assert change['type'] == 'insert'
+
+    def test_supports_search_plugins(self):
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'search.xml'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'search.xml'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(repo, new_version, '<xml></xml>\n', 'search.xml')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-compare-file-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        changes = result['diff']['hunks'][0]['changes']
+
+        assert result['diff']['path'] == 'search.xml'
+        assert changes[-1] == {
+            'content': '<xml></xml>',
+            'new_line_number': 1,
+            'old_line_number': -1,
+            'type': 'insert'
+        }
+
+        assert all(x['type'] == 'delete' for x in changes[:-1])
+
+    def test_version_get_not_found(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.url = reverse_ns('reviewers-compare-file-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk + 42,
+            'pk': self.compare_to_version.pk})
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_compare_basic(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(repo, new_version, '{"id": "random"}\n', 'manifest.json')
+        apply_changes(repo, new_version, 'Updated readme\n', 'README.md')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-compare-file-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        with self.assertNumQueries(10):
+            # - 2 savepoints because of tests
+            # - 2 user and groups
+            # - 2 add-on and translations
+            # - 1 add-on author check
+            # - 1 all versions
+            # - 1 all files
+            # - 1 all file validation
+            response = self.client.get(self.url + '?file=README.md&lang=en-US')
+        assert response.status_code == 200
+
+        result = json.loads(response.content)
+
+        assert result['diff']['path'] == 'README.md'
+        assert result['diff']['hunks'][0]['changes'] == [
+            {
+                'content': '# beastify',
+                'new_line_number': -1,
+                'old_line_number': 1,
+                'type': 'delete'
+            },
+            {
+                'content': 'Updated readme',
+                'new_line_number': 1,
+                'old_line_number': -1,
+                'type': 'insert'
+            }
+        ]
+
+    def test_compare_with_deleted_file(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        deleted_file = 'README.md'
+        apply_changes(repo, new_version, '', deleted_file, delete=True)
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-compare-file-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(self.url + '?file=' + deleted_file)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['download_url'] is None
+
+    def test_dont_servererror_on_binary_file(self):
+        """Regression test for
+        https://github.com/mozilla/addons-server/issues/11712"""
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+        apply_changes(repo, new_version, EMPTY_PNG, 'foo.png')
+
+        next_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+
+        repo = AddonGitRepository.extract_and_commit_from_version(next_version)
+        apply_changes(repo, next_version, EMPTY_PNG, 'foo.png')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-compare-file-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': new_version.pk,
+            'pk': next_version.pk})
+
+        response = self.client.get(self.url + '?file=foo.png')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['download_url']
+
+    def test_compare_with_deleted_version(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        # We need to run extraction first and delete afterwards, otherwise
+        # we'll end up with errors because files don't exist anymore.
+        AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        new_version.delete()
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+
+        # A reviewer needs the `Addons:ViewDeleted` permission to view and
+        # compare deleted versions
+        self.grant_permission(user, 'Addons:ViewDeleted')
+
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-compare-file-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['download_url']
 
 
 class TestDownloadGitFileView(TestCase):

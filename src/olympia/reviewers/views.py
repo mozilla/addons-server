@@ -64,7 +64,8 @@ from olympia.reviewers.models import (
 from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer, AddonCompareVersionSerializer,
     AddonReviewerFlagsSerializer, CannedResponseSerializer,
-    DiffableVersionSerializer, DraftCommentSerializer, FileEntriesSerializer)
+    DiffableVersionSerializer, DraftCommentSerializer, FileEntriesSerializer,
+    FileEntriesDiffSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     NeedsHumanReviewTable, ReviewHelper, ViewUnlistedAllListTable,
@@ -1273,6 +1274,7 @@ class AddonReviewerViewSet(GenericViewSet):
         return Response(status=status_code)
 
 
+# TODO Some helpers for the APIs via mixins
 class ReviewAddonVersionMixin(object):
     permission_classes = [AnyOf(
         AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
@@ -1365,6 +1367,22 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
         serializer = AddonBrowseVersionSerializer(
             instance=self.get_object(),
             context={
+                'file': self.request.GET.get('file', None),
+                'request': self.request
+            }
+        )
+        return Response(serializer.data)
+
+
+class ReviewVersionFileViewSet(ReviewAddonVersionMixin, ListModelMixin,
+                               RetrieveModelMixin, GenericViewSet):
+
+    def retrieve(self, request, *args, **kwargs):
+        version = self.get_object()
+        serializer = FileEntriesSerializer(
+            instance=version.current_file,
+            context={
+                'exclude_entries': True,
                 'file': self.request.GET.get('file', None),
                 'request': self.request
             }
@@ -1500,6 +1518,23 @@ class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
         serializer = AddonCompareVersionSerializer(
             instance=objs['instance'],
             context={
+                'file': self.request.GET.get('file', None),
+                'request': self.request,
+                'parent_version': objs['parent_version'],
+            })
+
+        return Response(serializer.data)
+
+
+class ReviewVersionFileCompareViewSet(ReviewAddonVersionCompareViewSet,
+                                      RetrieveModelMixin, GenericViewSet):
+
+    def retrieve(self, request, *args, **kwargs):
+        objs = self.get_objects()
+        serializer = FileEntriesDiffSerializer(
+            instance=objs['instance'].current_file,
+            context={
+                'exclude_entries': True,
                 'file': self.request.GET.get('file', None),
                 'request': self.request,
                 'parent_version': objs['parent_version'],
