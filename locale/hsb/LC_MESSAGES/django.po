@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-29 11:36+0000\n"
+"PO-Revision-Date: 2020-04-29 11:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4947,9 +4947,8 @@ msgid "Save an entire web page—including images and styling—as a single HTML
 msgstr "Składujće cyłu webstronu - mjez nimi wobrazy a stile - jako jeničku HTML-dataju."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Zhašejće placki awtomatisce, po tym zo sće rajtark začinił."
+msgstr "Wuměńće awtomatisce wothódnoćace słowo we webje."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -5021,9 +5020,8 @@ msgstr "Wersija njeda so ze sobu přirunać"
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njeda so analyzować."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID je trěbny za Firefox 47 a starše."
+msgstr "ID přidatka je trěbny za Firefox 47 a starše."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Najniša podpěrana wersija \"strict_min_version\" je 42.0."
@@ -5086,9 +5084,9 @@ msgstr "Maksimalna wulkosć za drasty Webextension je {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Njemóžeće tutón přidatkowy typ zapodać"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Njemóžeće žadyn přidatk z GUID zapodać, kotryž so na %s kónči"
+msgstr "Njemóžeće žadyn přidatk z ID zapodać, kotryž so na %s kónči"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Njemóžeće signowane rozšěrjenje Mozilla zapodać"
@@ -5486,9 +5484,8 @@ msgstr "Awtomatiske schwalenje je so na njewěsty čas zadźeržało."
 msgid "Is locked by a reviewer"
 msgstr "Je wot přepruwowarja zawrjeny"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Je marku „awtomatiske schwalenje znjemóžnjene“ stajił"
+msgstr "Je marku „awtomatiske schwalenje znjemóžnjene/zadźeržane“ stajił"
 
 msgid "Is recommendable"
 msgstr "Je doporučujomne"
@@ -5559,13 +5556,11 @@ msgstr "Termin za próstwu wo informacije"
 msgid "Last Updated"
 msgstr "Poslednja aktualizacija"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Druhe wustejace přepruwowanje ({0})"
+msgstr "Nalistowane wersije, kotrež sej čłowjeske přepruwowanje wužaduja ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Druhe wustejace přepruwowanje ({0})"
+msgstr "Njenalistowane wersije, kotrež sej čłowjeske přepruwowanje wužaduja ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej pósćelu."
