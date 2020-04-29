@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 19:33+0000\n"
+"PO-Revision-Date: 2020-04-29 19:43+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1876,11 +1876,12 @@ msgstr "Piktogram moat fjouwerkant wêze (deselde breedte en hichte)."
 msgid "There was an error uploading your preview."
 msgstr "Der is in flater bard by it opladen fan jo foarbyld."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "De lêste goedkarre ferzje fan in oanrekommandearre útwreiding kin net fuortsmiten of útskeakele wurde. Nim kontakt op mei AMO-behearders as jo hjir help by nedich hawwe."
+msgstr ""
+"De nijste goedkarre ferzje fan dizze Oanrekommandearre útwreiding kin net fuortsmiten of útskeakele wurde, omdat de foarige ferzje net goedkarre is foar oanrekommandaasje. Nim kontakt op mei AMO-"
+"behearders as jo hjir help by nedich hawwe."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2400,9 +2401,8 @@ msgstr "Selektearje in piktogram foar jo add-on:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Brûkt yn fermeldingen fan add-ons, lykas sykresultaten en oanrekommandearre add-ons."
+msgstr "Brûkt yn fermeldingen fan add-ons, lykas sykresultaten."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2448,9 +2448,8 @@ msgstr "PNG en JPG wurde stipe, PNG wurdt oanrekommandearre. De maksimale en oan
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "De minimale grutte is 1000x750, en in ferhâlding fan 4:3 is fereaske."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "It opnimmen fan skermôfbyldingen op jo produktside fergruttet de kâns dat jo add-on ynstallearre en op de startside oanrekommandearre wurdt."
+msgstr "It opnimmen fan skermôfbyldingen op jo produktside fergruttet de kâns dat jo add-on ynstallearre wurdt."
 
 msgid "Continue"
 msgstr "Trochgean"
@@ -2711,20 +2710,17 @@ msgstr "Jo fermelding hat mear sukses as jo in detaillearre beskriuwing en skerm
 msgid "Manage Listing"
 msgstr "Fermelding beheare"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Jo kinne dizze ferzje ek bewurkje om ferzje-opmerkingen ta te foegjen, of boarnekoade as jo ynstjoering ferlytse, ferwale of kompilearre koade befettet."
+msgstr "Jo kinne dizze ferzje ek bewurkje om ferzje-opmerkingen ta te foegjen, of boarnekoade as jo ynstjoering ferlytse, keppele of oars automatysk oanmakke koade befettet."
 
 msgid "Edit version {0}"
 msgstr "Ferzje {0} bewurkje"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Ferzje ûndetekene"
+msgstr "Ferzjeûndetekening yn behanneling"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Jo binne klear! Dizze ferzje wurdt beskikber nei suksesfolle beoardieling. Jo ûntfange berjocht nei de beoardieling."
+msgstr "Jo binne klear! Dizze ferzje wurdt ynkoarten ûndertekene foar eigen distribúsje. Jo ûntfange berjocht as it ûndertekene bestân ree is foar downloaden."
 
 msgid "Go to My Submissions"
 msgstr "Nei myn bydragen"
@@ -2783,11 +2779,10 @@ msgstr ""
 "Details (wêrûnder fereaske ferzje en ynstallaasje-ynstruksjes) fan alle programma’s dy't yn it buildproses brûkt wurde (foarbyld: brûkte ferzje fan <span class=\"tech-emphasis\">node</span> en <span"
 " class=\"tech-emphasis\">npm</span>)."
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">Noat:</span> boarnebestannen (útsein fan iepenboarne-biblioteken fan tredden) meie net transpilearre wurde, ferstoppe, ferlytse of oars wat troch in masine "
-"bewurke wurde."
+"<span class=\"instruction-emphasis\">Noat:</span> boarnebestannen (útsein fan iepenboarne-biblioteken fan tredden) meie net transpilearre wurde, keppele, ferlytse of oars wat troch in masine bewurke"
+" wurde."
 
 msgid "How to Submit:"
 msgstr "Yntsjinje:"
@@ -3118,9 +3113,8 @@ msgstr ""
 "As jo add-on gegevens ferstjoert fan de kompjûter fan de brûker ôf is in privacybelied dat útleit hokker gegevens ferstjoerd wurde en hoe't dizze brûkt wurde ferplicht. Allinnich relevant foar "
 "fermelde add-ons."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "As jo add-on binêre of ferburgen koade bûten bekende biblioteken befettet, laad dan de boarnen foar beoardieling op."
+msgstr "As jo add-on ferlytse, keppele of oars automatysk oanmakke koade bûten bekende biblioteken befettet, laad dan de boarnen foar beoardieling op."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Nim ynstruksjes op oer hoe't it úteinlike add-onbestân reprodusearre wurde kinne, yn in README-bestân of yn de Opmerkingen foar de beoardieler foar dizze ferzje."
@@ -3135,9 +3129,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Utwreidingsworkshop"
+msgstr "De útwreidingsworkshop besykje"
 
 msgid "Connect with us"
 msgstr ""
@@ -3154,13 +3147,11 @@ msgstr ""
 msgid "Matrix"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Add-on-ûntwikkelershub"
+msgstr "E-maillist foar add-on-ûntwikkelers"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Utwreidingsûntwikling"
+msgstr "Nijsbrief foar útwreidingsûntwikkelers"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3235,9 +3226,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Lês mear oer it belied oangeande boarnekoadebeoardieling."
+msgstr "Mear ynfo oer de ûntwikkelersmienskip"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Fermeld op dizze website nei suksesfolle koadebeoardieling. Automatyske fernijingen wurde troch dizze website fersoarge."
@@ -3277,9 +3267,8 @@ msgstr "Brûkersfoto"
 msgid "Profile"
 msgstr "Profyl"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "In nije ferzje yntsjinje"
+msgstr "Utwreidingen yntsjinje of beheare"
 
 msgid "Customize Firefox"
 msgstr "Firefox oanpasse"
