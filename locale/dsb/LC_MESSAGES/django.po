@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 19:23+0000\n"
+"PO-Revision-Date: 2020-04-29 19:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3179,9 +3179,8 @@ msgstr ""
 "Wšojadno, lěc sćo nowy we wuwijanju rozšyrjenjow, eksistěrujuce rozšyrjenje abo drastwu wupólěrujośo abo portěrujośo abo swójsku pśedewześaŕske rozwězanje napórajośo, my mamy resurse, aby was "
 "pódpěrali."
 
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Źěłowa kupka Rozšyrjenja"
+msgstr "K źěłowej kupce rozšyrjenjow se woglědaś"
 
 msgid "Connect with us"
 msgstr "Z nami zwězaś"
@@ -3279,9 +3278,8 @@ msgstr "Cyńśo sobu"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr "Zwězajśo se z tysacami wuwijarjow a wótkryjśo dalšne móžnosći, z kótarymiž móžośo k ekosystemoju rozšyrjenjow pśinosowaś."
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Cytajśo wěcej wó pśeglědowańskich pšawidłach za žrědłowy kod."
+msgstr "Zgóńśo wěcej wó wuwijaŕskem zgromaźeństwu"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Nalicyjo se pó wobstatem pśeglědowanju žrědłowego koda na sedle. Awtomatiske aktualizacije zastoje se pśez toś to sedło."
@@ -5506,9 +5504,8 @@ msgstr "Awtomatiske pśizwólenje jo se na njewěsty cas zaźaržało."
 msgid "Is locked by a reviewer"
 msgstr "Jo wót pśeglědowarja zastajony"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Jo marku „awotmatiske pśizwólenje znjemóžnjone“ stajił"
+msgstr "Jo stajił marku „awotmatiske pśizwólenje znjemóžnjone/zaźaržone“"
 
 msgid "Is recommendable"
 msgstr "Jo dopórucujobne"
@@ -5738,13 +5735,11 @@ msgstr "Pśeglědanje jo se wuspěšnje pśeźěłało."
 msgid "Review lock limit reached"
 msgstr "Limit za pógódnośeńske zawěry dostany"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Pšawidła priwatnosći"
+msgstr "{addon} – Pšawidła priwatnosći"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr "Rozpšawy wó znjewužywanju – {addon} – Dodanki za Firefox"
@@ -5816,9 +5811,8 @@ msgstr "Wobrazowa galerija"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "How njejo nic wiźeś! Wuwijaŕ njejo žedne drobnostki integrěrował."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "pó dodankowej wersiji"
+msgstr "Pśełožki dodankowego mjenja"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr "Rědy za pśeglědowarjow – Dodanki za Firefox"
@@ -6040,13 +6034,11 @@ msgstr "Dalšne akcije"
 msgid "Notify me about new listed versions"
 msgstr "Wó nowych naliconych wersijach informěrowaś"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Wšykne zapódaśa pokazaś"
+msgstr "Zasejzapódaśe dowóliś"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Móje zapódaśa zastojaś"
+msgstr "Zasejzapódaśe wótpokazaś"
 
 msgid "Force-disable add-on"
 msgstr "Znjemóžnjanje dodanka wunuźiś"
@@ -6058,9 +6050,8 @@ msgstr "Zmóžnjanje dodanka wunuźiś"
 msgid "View Blocklist Submission"
 msgstr "Wšykne zapódaśa pokazaś"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Slědk k dodankoju"
+msgstr "Dodank blokěrowaś"
 
 msgid "Update add-on block"
 msgstr "Blokěrowanje dodanka aktualizěrowaś"
@@ -6135,9 +6126,8 @@ msgstr "Metoda:"
 msgid "Source:"
 msgstr "Žrědło:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Žrědło:"
+msgstr "Žrědłowy URL:"
 
 msgid "Dismiss this announcement"
 msgstr "Toś to pśipowěźenje zachyśiś"
@@ -6268,9 +6258,8 @@ msgstr[3] "Spadnjone pšosby wó informacije ({0})"
 msgid "presence of matched rules"
 msgstr "eksistenca wótpowědujucych pšawidłow"
 
-#, fuzzy
 msgid "result state"
-msgstr "Prědne kšace"
+msgstr "wuslědkowy status"
 
 msgid "all but this rule"
 msgstr "wšykne mimo toś togo pšawidła"
@@ -6743,9 +6732,8 @@ msgstr "Wubrane wužywarje wugnaś"
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr "Wužywarje „%(users)s“ su se slědk stajili swój API-kluc."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Wersiju lašowaś"
+msgstr "Pósejźenje slědk stajiś"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
