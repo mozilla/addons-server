@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 12:34+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2020-04-29 13:49+0000\n"
+"Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -2962,6 +2962,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"De volgende API-sleutel is toegevoegd aan uw account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Als u denkt dat deze sleutel ten onrechte is gemaakt, dan kunt u de sleutel verwijderen\n"
+"en de toegang hier uitschakelen:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2974,6 +2982,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"De API-sleutel is ingetrokken voor uw account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Als u denkt dat deze sleutel ten onrechte is ingetrokken, dan kunt u hier\n"
+"een nieuwe maken:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2987,6 +3003,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Beste add-on-ontwikkelaar,\n"
+"\n"
+"We hebben gemerkt dat uw geheime AMO API-aanmeldgegevens zijn opgenomen in een add-on die is ingediend bij addons.mozilla.org. Om uw account en uw add-on(s) te beschermen, hebben we de gelekte inloggegevens ingetrokken.\n"
+"U kunt nieuwe API-aanmeldgegevens aanmaken op %(api_keys_url)s\n"
+"\n"
+"Zorg ervoor dat u uw aanmeldgegevens nooit met iemand deelt. Neem ze nooit op in een openbare repository, add-on of een andere openbare plaats. We raden u aan uw code-repositories en uw extensies te controleren om verwijzingen naar uw AMO-aanmeldgegevens te verwijderen.\n"
+"\n"
+"Bedankt,\n"
+"Het Mozilla Add-ons-team"
 
 msgid "Invisible"
 msgstr "Onzichtbaar"
@@ -3135,17 +3160,17 @@ msgid "Read more about the source code review policy."
 msgstr "Lees meer over het beleid aangaande broncodebeoordeling."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Bouw de allerbeste extensies en thema’s"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "Of u nu pas begint met de ontwikkeling van extensies, een bestaande extensie of thema bijwerkt of overzet, of een bedrijfsoplossing op maat maakt, wij hebben de middelen om u te ondersteunen."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
 msgstr "De extensieworkshop bezoeken"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Kom in contact met ons"
 
 msgid "Twitter"
 msgstr "Twitter"
@@ -3167,14 +3192,14 @@ msgid "Extensions Developers Newsletter"
 msgstr "Nieuwsbrief voor extensieontwikkelaars"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Blijf op de hoogte van nieuws en evenementen voor ontwikkelaars van Firefox-extensies."
 
 msgid "Email Address"
 msgstr "E-mailadres"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Ik ben het eens met hoe Mozilla met mijn gegevens omgaat, zoals uitgelegd in deze %(link_open)sPrivacyverklaring%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Registreren"
@@ -3184,6 +3209,8 @@ msgstr "Bedankt!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Als u nog niet eerder een inschrijving voor een Mozilla-gerelateerde nieuwsbrief hebt bevestigd, dient u dit mogelijk nog te doen. Controleer uw Postvak IN of uw spamfilter voor een e-mailbericht "
+"van ons."
 
 msgid "Resources"
 msgstr "Hulpbronnen"
@@ -3201,7 +3228,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Knop ‘Add-on downloaden’"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Programma Aanbevolen extensies"
 
 msgid "Contribute"
 msgstr "Bijdragen"
@@ -3237,7 +3264,7 @@ msgid "Get involved"
 msgstr "Meewerken"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Kom in contact met duizenden ontwikkelaars en ontdek meer manieren waarop u kunt bijdragen aan het extensie-ecosysteem."
 
 msgid "Learn more about the developer community"
 msgstr "Meer info over de ontwikkelaarsgemeenschap"
@@ -3291,13 +3318,13 @@ msgid "Learn how to make an extension"
 msgstr "Leer hoe u een extensie kunt maken"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Klaar om uw extensie in te dienen of te beheren?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Meld u aan bij de Ontwikkelaarshub om extensies en thema’s in te dienen of te beheren."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Schrijf u in voor een ontwikkelaarsaccount of meld u aan bij de Ontwikkelaarshub"
 
 msgid "Manage Version {0}"
 msgstr "Versie {0} beheren"
@@ -3783,7 +3810,7 @@ msgstr "Laat een schoon digitaal spoor achter. Laat Firefox websitegegevens zoal
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Het is niet nodig om steeds hetzelfde te schrijven. Sla vaak ingevoerde tekst op om op elk gewenst moment te plakken."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4890,7 +4917,7 @@ msgstr "Sommige websites hebben moeite met het afspelen van video’s op Firefox
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Selecteer, orden en voer uw downloads sneller uit."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4898,23 +4925,23 @@ msgstr "Ontvang weersupdates rechtstreeks in de browser."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Verwijder cookies, browsergeschiedenis en gebufferde bestanden met slechts één klik."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Verwijder trackingelementen uit webkoppelingen."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Krijg automatisch gevulde bladwijzermappen met RSS-feeds."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organiseer eenvoudig enorme hoeveelheden open tabbladen."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Maak tabbladgroepen en pas ze aan."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4926,11 +4953,11 @@ msgstr "Vervang automatisch denigrerende woorden op internet."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blokkeer alle advertenties – video, pop-ups, banners en meer."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Bekijk overal streaming media met vrienden en familie."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4946,7 +4973,7 @@ msgstr "Alle extensies bekijken"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Tabbladorganizers en hulpmiddelen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5447,10 +5474,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Automatische goedkeuring is tijdelijk uitgesteld"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Automatische goedkeuring is voor onbepaalde tijd uitgesteld"
 
 msgid "Is locked by a reviewer"
 msgstr "Is vergrendeld door een beoordelaar"
@@ -5474,7 +5501,7 @@ msgid "You can't submit an empty comment."
 msgstr "U kunt geen lege opmerking indienen."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "U kunt geen regelnummer indienen zonder het aan een bestandsnaam te koppelen."
 
 msgid "Type"
 msgstr "Type"
@@ -5556,7 +5583,7 @@ msgid "Block Multiple Versions"
 msgstr "Meerdere versies blokkeren"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Hierdoor worden de geselecteerde goedgekeurde versies stilletjes uitgeschakeld en wordt de beheerpagina voor het maken van blokkeringen geopend."
 
 msgid "Confirm Multiple Versions"
 msgstr "Meerdere versies bevestigen"
@@ -5598,12 +5625,12 @@ msgid "Add-on Review Guide"
 msgstr "Add-on-beoordelingsgids"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Gemarkeerd door scanners"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gemarkeerd door scanner ({0})"
+msgstr[1] "Gemarkeerd door scanners ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatisch goedgekeurde add-ons"
@@ -5680,7 +5707,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Privacybeleid"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Misbruikrapporten – {addon} – Add-ons voor Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Misbruikmeldingen voor {addon} en de ontwikkelaars ervan ({num})"
@@ -5753,7 +5780,7 @@ msgid "Add-on name translations"
 msgstr "Vertalingen van add-on-naam"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Beoordelaarshulpmiddelen – Add-ons voor Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Terug naar het dashboard van Beoordelaarshulpmiddelen"
@@ -5771,7 +5798,7 @@ msgid "Score"
 msgstr "Score"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderatielogboek voor beoordelaars – Add-ons voor Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5812,7 +5839,7 @@ msgid "Undelete"
 msgstr "Verwijdering ongedaan maken"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Beoordelaarsprestaties – Add-ons voor Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Prestaties van add-on-beoordelaar"
@@ -5860,22 +5887,22 @@ msgid "All-Time"
 msgstr "Alles"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Hulpmiddelen voor beoordelaars – Add-ons voor Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Inhoudsbeoordeling – Add-ons voor Firefox"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Automatisch goedgekeurde add-ons – Add-ons voor Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Beoordelingsmoderatie – Add-ons voor Firefox"
 
 msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Verlopen verzoeken om informatie – Add-ons voor Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Niet-vermelde add-ons – Add-ons voor Firefox"
 
 msgid "Advanced Search"
 msgstr "Geavanceerd zoeken"
@@ -5913,7 +5940,7 @@ msgid "Reviewer's Guide"
 msgstr "Gids voor beoordelaars"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Add-ons voor Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5933,7 +5960,7 @@ msgid "Previously deleted entries"
 msgstr "Eerder verwijderde ingaven"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Dit is een aanbevolen extensie."
 
 msgid "You don't have permission to review it."
 msgstr "U hebt geen rechten om dit te beoordelen."
@@ -5983,13 +6010,13 @@ msgid "Force-enable add-on"
 msgstr "Add-on geforceerd inschakelen"
 
 msgid "View Blocklist Submission"
-msgstr ""
+msgstr "Inzending voor blokkeringslijst bekijken"
 
 msgid "Block add-on"
 msgstr "Add-on blokkeren"
 
 msgid "Update add-on block"
-msgstr "Add-on-blokkade bijwerken"
+msgstr "Add-on-blokkering bijwerken"
 
 msgid "Disable Listed Auto-Approval"
 msgstr "Automatische goedkeuring van vermeldingen uitschakelen"
@@ -6031,7 +6058,7 @@ msgid "Resolution"
 msgstr "Resolutie"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Add-on-beoordelingslogboek – Add-ons voor Firefox"
 
 msgid "Reviewer"
 msgstr "Beoordelaar"
@@ -6086,7 +6113,7 @@ msgid "Newer"
 msgstr "Nieuwer"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} versies door scanners op andere pagina’s gemarkeerd."
 
 msgid "Recent Points"
 msgstr "Recente punten"
@@ -6137,7 +6164,7 @@ msgid "Weight:"
 msgstr "Gewicht:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Door automatische scanners gemarkeerd"
 
 msgid "Download"
 msgstr "Downloaden"
@@ -6179,13 +6206,13 @@ msgstr[0] "Verlopen verzoek om informatie ({0})"
 msgstr[1] "Verlopen verzoeken om informatie ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "aanwezigheid van overeenkomende regels"
 
 msgid "result state"
 msgstr "resulterende status"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "alles behalve deze regel"
 
 msgid "presence of a version"
 msgstr "aanwezigheid van een versie"
@@ -6206,29 +6233,29 @@ msgid "file signature"
 msgstr "bestandsondertekening"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Dit is de exacte naam van de regel die door een scanner is gebruikt."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Indien niet aangevinkt, zijn de scannerresultaten niet gebonden aan deze regel en wordt de actie niet uitgevoerd."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara-regels moeten een definitie hebben"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "De naam van de regel in de definitie moet overeenkomen met de naam van de scannerregel"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "In de definitie is slechts één Yara-regel toegestaan"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "De definitie is ongeldig: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Er is een fout opgetreden bij het compileren van de definitie"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Deze regel ook uitvoeren op add-ons die geforceerd zijn uitgeschakeld."
 
 msgid "Abort"
 msgstr "Afbreken"
@@ -6237,7 +6264,7 @@ msgid "Run"
 msgstr "Uitvoeren"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Nuttig wanneer het scannerresultaat een echt positief resultaat is, maar de add-on geen kwaad kan"
 
 msgid "Revert report"
 msgstr "Rapport terugdraaien"
@@ -6763,6 +6790,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"De volgende auteur is toegevoegd aan uw addon %(addon_name)s (%(addon_url)s):\n"
+"\n"
+"%(author_name)s (%(author_url)s):%(author_role)s"
 
 #, python-format
 msgid ""
@@ -6779,6 +6809,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo %(author_name)s,\n"
+"\n"
+"U bent uitgenodigd om auteur te worden van %(addon_name)s op %(domain)s. Als u de uitnodiging accepteert, krijgt u toegang om de add-on te bewerken en wordt uw naam mogelijk weergegeven in de lijst met auteurs op de website.\n"
+"\n"
+"Klik op onderstaande koppeling om aan te geven of u toegevoegd wilt worden als auteur voor %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Als u deze uitnodiging niet had verwacht, stuur dan een e-mail naar amo-admins@mozilla.com.\n"
+"\n"
+"Met vriendelijke groet,\n"
+"Het Mozilla Add-ons-team"
 
 #, python-format
 msgid ""
@@ -6786,6 +6828,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"De volgende auteur is gewijzigd bij uw add-on %(addon_name)s%(addon_name)s (%(addon_url)s):\n"
+"\n"
+"%(author_name)s (%(author_url)s): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6793,6 +6838,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"De volgende auteur is verwijderd uit add-on %(addon_name)s (%(addon_url)s):\n"
+"\n"
+"%(author_name)s (%(author_url)s)"
 
 msgctxt "user_list_others"
 msgid "others"
