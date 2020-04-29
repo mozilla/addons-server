@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-29 11:32+0000\n"
+"PO-Revision-Date: 2020-04-29 11:36+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3733,9 +3733,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Přiměrće gesty myški {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Přiměrće gesty myški. Wotkryjće nowu móžnosć, zo byšće z přez 50 wužitnymi gestami myški nawigował."
+msgstr "Přiměrće gesty myški. Wotkryjće nowu móžnosć, zo byšće z přez 50 konfiguracijemi nawigował."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4001,9 +4000,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dynamiska nawigacija {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Wužiwajće gesty myški, zo byšće rajtarki začinił, jednu stronu wróćo šoł, znowa začitał a wjace."
+msgstr "Wužiwajće gesty myški, zo byšće rajtarki začinił, přez strony nawigował a wjace."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4921,9 +4919,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr "Wubjerće, sortěrujće a wuwjedźće swoje sćehnjenja spěšnišo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Hnydomne wjedrowe aktualizacije z cyłeho swěta."
+msgstr "Wobstarajće sej wjedrowe aktualizacije direktnje we wobhladowaku."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4946,9 +4943,8 @@ msgid "Create and customize tab groups."
 msgstr "Wutworće a přiměrće rajtarkowe skupiny."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Dospołne strony - abo jenož dźele z nich - jako jeničku HTML-dataju składować."
+msgstr "Składujće cyłu webstronu - mjez nimi wobrazy a stile - jako jeničku HTML-dataju."
 
 #. editorial content for the discovery pane.
 #, fuzzy
