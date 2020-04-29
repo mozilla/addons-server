@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-27 13:33+0000\n"
+"PO-Revision-Date: 2020-04-29 09:01+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3176,9 +3176,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "Razvijalec"
+msgstr "Za razvijalce"
 
 msgid "For end users"
 msgstr ""
@@ -3198,17 +3197,15 @@ msgstr "Razvoj dodatkov"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Naslov IP"
+msgstr "E-poštni naslov"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Odjava"
+msgstr "Registracija"
 
 msgid "Thanks!"
 msgstr ""
@@ -3219,9 +3216,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Viri"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: ustvarite in preskušajte razširitve"
@@ -3310,9 +3306,8 @@ msgstr "Ni fotografije"
 msgid "User Photo"
 msgstr "Slika uporabnika"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Moj profil"
+msgstr "Profil"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
@@ -6738,9 +6733,8 @@ msgstr "Izobči izbrane uporabnike"
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr "Uporabnikom \"%(users)s\" je bil ključ API ponastavljen."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Izbriši različico"
+msgstr "Ponastavi sejo"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
