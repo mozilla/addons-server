@@ -35,7 +35,7 @@ def on_extraction_error(request, exc, traceback, addon_pk):
         # Retrieve the repo for the add-on and delete it.
         addon_repo = AddonGitRepository(addon_pk, package_type='addon')
         addon_repo.delete()
-        log.warn(
+        log.warning(
             'Deleted the git addon repository for add-on "{}" because we '
             'detected a broken ref.'.format(addon_pk)
         )
