@@ -19,5 +19,10 @@
       ],
       "rangeStrategy": "replace"
     }
-  ]
+  ],
+  "pip_requirements": {
+    "fileMatch": [
+      "^requirements/.*\\.txt$"
+    ]
+  }
 }
