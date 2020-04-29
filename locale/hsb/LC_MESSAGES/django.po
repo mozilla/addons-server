@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 13:14+0000\n"
+"PO-Revision-Date: 2020-04-29 21:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5711,16 +5711,14 @@ msgstr "Přepruwowanje je so wuspěšnje předźěłało."
 msgid "Review lock limit reached"
 msgstr "Limit za pohódnoćenske zawěry docpěty"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Prawidła priwatnosće"
+msgstr "{addon} – Prawidła priwatnosće"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Rozprawy wo znjewužiwanju – {addon} – Přidatki za Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Znjewužiwanske rozprawy za {addon} a jeho wuwiwarjow ({num})"
@@ -5903,7 +5901,7 @@ msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Přepruwowanje wobsaha – Přidatki za Firefox"
 
 #, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
