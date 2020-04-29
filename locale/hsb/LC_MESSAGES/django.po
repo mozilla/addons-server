@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 21:05+0000\n"
+"PO-Revision-Date: 2020-04-29 21:08+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5903,9 +5903,8 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr "Přepruwowanje wobsaha – Přidatki za Firefox"
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Awtomatisce schwalene přidatki"
+msgstr "Awtomatisce schwalene přidatki – Přidatki za Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
@@ -6247,9 +6246,8 @@ msgstr "wersijowy kanal"
 msgid "add-on status"
 msgstr "status přidatka"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Widźomnosć lisćinoweho přidatka"
+msgstr "Widźomnosć lisćinoweho zapiska přidatka"
 
 msgid "file status"
 msgstr "datajowy status"
@@ -6804,16 +6802,15 @@ msgstr "Posedźenja wróćo stajić"
 msgid "Delete picture"
 msgstr "Wobraz zhašeć"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
-"\n"
 "Slědowacy awtor je so swojemu přidatkej %(addon_name)s ( %(addon_url)s ) přidał:\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, fuzzy, python-format
 msgid ""
@@ -6845,27 +6842,25 @@ msgstr ""
 "\n"
 "Team přidatkow Mozilla\n"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
-"\n"
 "Slědowacy awtor je so we wašim přidatku %(addon_name)s ( %(addon_url)s ) změnił:\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
-"\n"
 "Slědowacy awtor je so z přidatka %(addon_name)s ( %(addon_url)s ) wotstronił:\n"
 "\n"
-"%(author_name)s ( %(author_url)s )\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
