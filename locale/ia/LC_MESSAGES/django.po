@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 14:17+0000\n"
+"PO-Revision-Date: 2020-04-29 14:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2387,9 +2387,8 @@ msgstr "Elige un icone pro tu additivo:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Usate in listas de additivos, como resultatos de recerca e additivos promovite."
+msgstr "Usate in listas de additivos, como resultatos de recerca."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2435,9 +2434,8 @@ msgstr "Le formatos PNG e JPG es supportate, PNG recommendate. Le formato maxime
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Le dimensiones minime es 1000x750, e un ration es necesse un ration de 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Haber capturas de schermo in le pagina de tu producto augmenta multo su chance de esser installate e promovite sur le pagina initial."
+msgstr "Le instantaneos de schermo in tu pagina de presentation del producto incrementa grandemente su chances de esser installate."
 
 msgid "Continue"
 msgstr "Continuar"
@@ -2697,9 +2695,8 @@ msgstr "Tu entrata habera plus successo si tu adde un description detaliate e al
 msgid "Manage Listing"
 msgstr "Gerer le lista de presentation"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Tu pote alsi rediger iste version pro adder notas de version, o codice fonte si tu submission include codice minimisate, offuscate o compilate."
+msgstr "Tu pote alsi modificar iste version pro adder notas de version o codification fonte, si tu invio include codification minimisate, concatenate o alteremente generate automaticamente."
 
 msgid "Edit version {0}"
 msgstr "Rediger version {0}"
@@ -3303,9 +3300,8 @@ msgstr "Optionalmente, insere tote le informationes que pote ser utile al reviso
 msgid "Source code"
 msgstr "Codice fonte"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Si tu additivo contine codice binari o offuscate, rende ci disponibile le codice fonte pro le revisores."
+msgstr "Si tu additivo contine codification minimisate, concatenate o altere generate automaticamente, rende le fonte disponibile hic pro revisores."
 
 msgid "File {file_id} ({platform})"
 msgstr "File {file_id} ({platform})"
