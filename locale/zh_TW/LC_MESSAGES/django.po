@@ -6682,16 +6682,15 @@ msgstr ""
 "\n"
 "%(author_name)s（%(author_url)s）：%(author_role)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
-"\n"
 "已將下列作者從您的附加元件「%(addon_name)s」（%(addon_url)s）移除：\n"
 "\n"
-"%(author_name)s（%(author_url)s）\n"
+"%(author_name)s（%(author_url)s）"
 
 msgctxt "user_list_others"
 msgid "others"
