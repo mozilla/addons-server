@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 19:33+0000\n"
+"PO-Revision-Date: 2020-04-29 19:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -126,17 +126,14 @@ msgstr "Pśipiski daju se jano nejnowšym wersijam dodankow pśidaś."
 msgid "Ratings"
 msgstr "Pógódnośenja"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Rědy za pśeglědowarje"
+msgstr "Rědy za pśeglědowarje (nalicone)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Rědy za pśeglědowarje"
+msgstr "Rědy za pśeglědowarje (njenalicone)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Rědy za pśeglědowarje"
+msgstr "Wótkaze za pśeglědowarje"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Dodank njejo na AMO -"
@@ -3201,9 +3198,8 @@ msgstr "Matriks"
 msgid "Add-on Developers Mailing List"
 msgstr "Rožk dodankowych wuwijarjow"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Wuwijanje rozšyrjenjow"
+msgstr "Powěsćowy list za wuwijarje rozšyrjenjow"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Wóstańśo na běžnem wó nowosćach a tšojenjach za wuwijarje rozšyrjenjow Firefox."
@@ -5614,9 +5610,8 @@ msgstr "Někotare wersije blokěrowaś"
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr "To wubrane pśizwólone wersije kšajźu znjemóžnijo a administraciski bok za napóranje blokěrowanja wócynijo."
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Někotare wersije wótpokazaś"
+msgstr "Někotare wersije wobkšuśiś"
 
 #, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
@@ -6264,29 +6259,23 @@ msgstr "wuslědkowy status"
 msgid "all but this rule"
 msgstr "wšykne mimo toś togo pšawidła"
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Pśeglěd naliconeje wersije"
+msgstr "eksistenca wersije"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Wersija jo se signěrowała"
+msgstr "wersijowy kanal"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Status dodanka"
+msgstr "status dodanka"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Widobnosć lisćinowego zapiska"
+msgstr "Widobnosć lisćinowego zapiska dodanka"
 
-#, fuzzy
 msgid "file status"
-msgstr "Sedłowy status"
+msgstr "datajowy status"
 
-#, fuzzy
 msgid "file signature"
-msgstr "Dataja {file} jo se signěrowała."
+msgstr "datajowa signatura"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "To jo eksaktne mě pšawidła, kótarež se pśez skanner wužywa."
@@ -6322,9 +6311,8 @@ msgstr "Wuwjasć"
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr "Wužytny, gaž skannerowy wuslědk jo pšawje pozitiwny, ale dodank njejo škódny"
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Wótegrono pśeglědarja"
+msgstr "Rozpšawu slědk stajiś"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6350,9 +6338,8 @@ msgstr "Njepłaśiwa kombinacija parametrow \"%s\", \"%s\" a \"%s\"."
 msgid "Maximum query length exceeded."
 msgstr "Maksimalna dłujkosć napšašowanjow jo pśekšocona."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Dodank z GUID „{}“ njedajo se namakaś."
+msgstr "Dodank z ID „{}“ njedajo se namakaś."
 
 msgid "You do not own this addon."
 msgstr "Toś ten dodank wam njesłuša."
@@ -6371,17 +6358,15 @@ msgstr "Wersija njewótpowědujo manifestowej dataji."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Wersija južo eksistěrujo. Nejnowša wersija jo: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Jano WebExtensions směju GUID wuwóstajiś"
+msgstr "Jano WebExtensions směju ID dodanka wuwóstajiś"
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Pšosym pódajśo GUID swójogo dodanka w manifesće, jolic jo dlešy ako 64 znamuškow."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Njepłaśiwy GUID w URL"
+msgstr "Njepłaśiwy dodankowy ID w URL abo pakeśe"
 
 #, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
@@ -6728,9 +6713,9 @@ msgstr "Wužywarje „%(users)s“ su se wugnali."
 msgid "Ban selected users"
 msgstr "Wubrane wužywarje wugnaś"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Wužywarje „%(users)s“ su se slědk stajili swój API-kluc."
+msgstr "Wužywarje „%(users)s“ su slědk stajili swóje pósejźenja."
 
 msgid "Reset session"
 msgstr "Pósejźenje slědk stajiś"
@@ -6838,9 +6823,8 @@ msgstr "Wužywarske powěźeńki"
 msgid "Ban"
 msgstr "Wugnaś"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Wersiju lašowaś"
+msgstr "Pósejźenja slědk stajiś"
 
 msgid "Delete picture"
 msgstr "Wobraz wulašowaś"
@@ -6886,27 +6870,25 @@ msgstr ""
 "\n"
 "Team dodankow Mozilla\n"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
-"\n"
 "Slědujucy awtor jo se změnił we wašom dodanku %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
-"\n"
 "Slědujucy awtor jo se wótwónoźeł z dodanka %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s )\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
