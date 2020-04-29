@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:59+0000\n"
-"PO-Revision-Date: 2019-10-02 14:10+0000\n"
+"PO-Revision-Date: 2020-04-29 19:24+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -122,13 +122,12 @@ msgstr "Checklist foar add-on-yntsjinning"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Controleer de folgjende punten voordat u uw inzending afrondt. Dit minimaliseert vertragingen of misvattingen tijdens het beoordelingsproces:"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Boarnen fan kompilearre binêre bestannen moatte, krekt as ferlytse of ferstoppe skripts (eksklusyf bekende biblioteken), apart ta beoardieling te yntsjinne wurde. Soargje derfoar dat jo it "
-"oplaadfjld foar boarnekoade brûke om foar te kommen dat jo ynstjoering ôfwêzen wurdt."
+"Boarnen fan ferlytse, skeakele of oars automatysk generearre scripts (eksklusyf bekende biblioteken), moatte apart ta beoardieling te yntsjinne wurde. Soargje derfoar dat jo it oplaadfjld foar "
+"boarnekoade brûke om foar te kommen dat jo ynstjoering ôfwêzen wurdt."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Het validatieproces heeft de folgjende problemen gevonden die tot afwijzing zouden kunnen leiden:"
