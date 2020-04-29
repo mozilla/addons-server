@@ -2949,7 +2949,7 @@ msgstr ""
 "\n"
 "Met vriendelijke groet,\n"
 "\n"
-"Het Mozilla Add-ons-team"
+"Het Mozilla Add-ons-team\n"
 
 #, python-format
 msgid ""
