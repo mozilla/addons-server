@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 12:06+0000\n"
+"PO-Revision-Date: 2020-04-29 12:09+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6293,9 +6293,8 @@ msgstr "Wuwjesć"
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr "Wužitny, hdyž skenerowy wuslědk je prawje pozitiwny, ale přidatk škódny njeje"
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Wotmołwa přepruwowarja"
+msgstr "Rozprawu wróćo stajić"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
