@@ -6,5 +6,4 @@ You can generate new API credentials at {{ api_keys_url }}
 Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.
 
 Thank you,
-The Mozilla Add-ons team
-{% endblocktrans %}
+The Mozilla Add-ons team{% endblocktrans %}
