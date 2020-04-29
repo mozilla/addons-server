@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 19:43+0000\n"
+"PO-Revision-Date: 2020-04-29 19:53+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4933,9 +4933,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr "Wubjeŕśo, sortěrujśo a wuwjeźćo swóje ześěgnjenja malsnjej."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Wjedrowe aktualizacije ned z cełego swěta."
+msgstr "Wobstarajśo se wjedrowe aktualizacije direktnje we wobglědowaku."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
