@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 12:33+0000\n"
+"PO-Revision-Date: 2020-04-29 12:34+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -5677,7 +5677,7 @@ msgid "{addon} – EULA"
 msgstr "{addon} – EULA"
 
 msgid "{addon} – Privacy Policy"
-msgstr ""
+msgstr "{addon} – Privacybeleid"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5865,16 +5865,14 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Automatisch goedgekeurde add-ons"
+msgstr "Automatisch goedgekeurde add-ons – Add-ons voor Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Verlopen verzoek om informatie"
+msgstr "Verlopen verzoeken om informatie – Add-ons voor Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
