@@ -165,7 +165,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string validation_url: The absolute url to the addons-linter validation report, rendered as HTML.
     :>json boolean has_been_validated: ``True`` if the version has been validated through addons-linter.
     :>json object addon: A simplified :ref:`add-on <addon-detail-object>` object that contains only a few properties: ``id``, ``name``, ``icon_url`` and ``slug``.
-    :>json object file: The file attached to this version. See :ref:`version detail -> files[] <version-detail-object>` for more details.
+    :>json object file: The file attached to this version. Only includes ``id`` from :ref:`version detail -> files[] <version-detail-object>`.
     :>json string file.content: Raw content of the requested file.
     :>json string file.selected_file: The selected file, either from the ``file`` parameter or the default (manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines).
     :>json string|null file.download_url: The download url of the selected file or ``null`` in case of a directory.

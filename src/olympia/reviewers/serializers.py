@@ -62,11 +62,10 @@ class FileEntriesSerializer(FileSerializer):
     filename = serializers.SerializerMethodField()
 
     class Meta:
-        fields = FileSerializer.Meta.fields + (
-            'content', 'entries', 'selected_file', 'download_url',
-            'uses_unknown_minified_code', 'mimetype', 'sha256', 'size',
-            'mime_category', 'filename'
-        )
+        fields = ('id', 'content', 'entries', 'selected_file', 'download_url',
+                  'uses_unknown_minified_code', 'mimetype', 'sha256', 'size',
+                  'mime_category', 'filename'
+                  )
         model = File
 
     @cached_property
@@ -350,11 +349,10 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
     base_file = serializers.SerializerMethodField()
 
     class Meta:
-        fields = FileSerializer.Meta.fields + (
-            'diff', 'entries', 'selected_file', 'download_url',
-            'uses_unknown_minified_code', 'base_file',
-            'sha256', 'size', 'mimetype', 'mime_category', 'filename'
-        )
+        fields = ('id', 'diff', 'entries', 'selected_file', 'download_url',
+                  'uses_unknown_minified_code', 'base_file',
+                  'sha256', 'size', 'mimetype', 'mime_category', 'filename'
+                  )
         model = File
 
     def get_diff(self, obj):
