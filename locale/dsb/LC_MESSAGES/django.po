@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 19:04+0000\n"
+"PO-Revision-Date: 2020-04-29 19:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -493,9 +493,8 @@ msgstr "GUID %(guid)s jo južo w njedocynjonem zapódaśu"
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Blokěrowanja, kótarež maju se aktualizěrowaś, su rozdźělne, dokulaž minimalna abo maksimalna wersija jo se změniła."
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Njepłaśiwy wersijowy wobcerk."
+msgstr "Njepłaśiwa wersija"
 
 msgid "Min version can not be greater than Max version"
 msgstr "Minimalna wersija njamóžo wětša ako maksimalna wersija byś"
@@ -518,7 +517,6 @@ msgstr "Pśewjeźone změny se w zestarjonej lisćinje blokěrowanjow NJEaktuali
 msgid "Delete Multiple %(name)s"
 msgstr "Někotare wersije wótpokazaś"
 
-#, fuzzy
 msgid "Home"
 msgstr "Startowy bok"
 
@@ -545,13 +543,11 @@ msgstr "Wulašowaś"
 msgid "Update"
 msgstr "Aktualizěrowaś"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Móje zapódaśa se woglědaś"
+msgstr "Zapódaśe wótpokazaś"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Móje zapódaśa se woglědaś"
+msgstr "Zapódaśe pśizwóliś"
 
 #, python-format
 msgid "Add %(name)s"
@@ -560,24 +556,21 @@ msgstr "%(name)s pśidaś"
 msgid "Add-on GUIDs (one per line)"
 msgstr "GUID dodanko (jaden na smužku)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "Wersiju zapódaś"
+msgstr "Zapódaś"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "Wužywarje"
+msgstr "wužywarje"
 
 msgid "Edit Block"
 msgstr "Blokěrowanje wobźěłaś"
 
-#, fuzzy
 msgid "versions"
-msgstr "Wersije"
+msgstr "wersije"
 
 msgid "Included in legacy blocklist."
 msgstr "W zestarjonej lisćinje blokěrowanjow wopśimjete."
@@ -917,9 +910,8 @@ msgstr "Blokěrowanje jo se wobźěłało"
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Wersija {0} dodanka {addon} jo se wulašowała."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Dodank jo se wulašował."
+msgstr "Blokěrowanje jo se wulašowało"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID za {addon} jo se pśidał DeniedGuid."
@@ -5866,7 +5858,7 @@ msgid "Score"
 msgstr "Staw pó dypkach"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Protokol moderacije za pśeglědowarjow – Dodanki za Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5907,7 +5899,7 @@ msgid "Undelete"
 msgstr "Wótpóranje anulěrowaś"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Wugbaśe pśeglědowarja – Dodanki za Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Wugbaśe dodankowych pśeglědowarjow"
@@ -5955,17 +5947,17 @@ msgid "All-Time"
 msgstr "Ceły cas"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Rědy za pśeglědowarjow – Dodanki za Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Pśeglědowanje wopśimjeśa – Dodanki za Firefox"
 
 #, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Awtomatiski pśizwólone dodanki"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderacija pśeglědowanjow - Dodanki za Firefox"
 
 #, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
@@ -6136,7 +6128,7 @@ msgid "Resolution"
 msgstr "Rozsud"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Protokol za pśeglědowanje dodankow – Dodanki za Firefox"
 
 msgid "Reviewer"
 msgstr "Pśepytowaŕ"
