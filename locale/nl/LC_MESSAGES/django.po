@@ -5937,16 +5937,14 @@ msgstr "Add-on geforceerd inschakelen"
 msgid "View Blocklist Submission"
 msgstr ""
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Terug naar add-on"
+msgstr ""
 
 msgid "Update add-on block"
 msgstr ""
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Automatische goedkeuring uitschakelen"
+msgstr ""
 
 #, fuzzy
 msgid "Enable Listed Auto-Approval"
