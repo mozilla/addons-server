@@ -770,7 +770,7 @@ class TestCallMadApi(UploadTest, TestCase):
         self.customs_result = ScannerResult.objects.create(
             upload=self.upload,
             scanner=CUSTOMS,
-            results={'some': 'customs results'},
+            results={'scanMap': {'a': 1, 'b': 2}},
         )
         self.yara_result = ScannerResult.objects.create(
             upload=self.upload, scanner=YARA, results=[{'rule': 'fake'}]
@@ -805,7 +805,7 @@ class TestCallMadApi(UploadTest, TestCase):
         }
         requests_mock.return_value = self.create_response(data=ml_results)
         assert len(ScannerResult.objects.all()) == self.default_results_count
-        assert self.customs_result.score == -1.
+        assert self.customs_result.score == -1.0
 
         returned_results = call_mad_api(self.results, self.upload.pk)
 
@@ -878,6 +878,26 @@ class TestCallMadApi(UploadTest, TestCase):
     def test_does_not_run_when_results_contain_errors(self, requests_mock):
         self.create_switch('enable-mad', active=True)
         self.results[0].update({'errors': 1})
+
+        returned_results = call_mad_api(self.results, self.upload.pk)
+
+        assert not requests_mock.called
+        assert returned_results == self.results[0]
+
+    @mock.patch('olympia.scanners.tasks.requests.post')
+    def test_does_not_run_when_scan_map_is_empty(self, requests_mock):
+        self.create_switch('enable-mad', active=True)
+        self.customs_result.update(results={'scanMap': {}})
+
+        returned_results = call_mad_api(self.results, self.upload.pk)
+
+        assert not requests_mock.called
+        assert returned_results == self.results[0]
+
+    @mock.patch('olympia.scanners.tasks.requests.post')
+    def test_does_not_run_when_scan_map_is_small(self, requests_mock):
+        self.create_switch('enable-mad', active=True)
+        self.customs_result.update(results={'scanMap': {'a': 1}})
 
         returned_results = call_mad_api(self.results, self.upload.pk)
 
