@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 14:03+0000\n"
+"PO-Revision-Date: 2020-04-29 14:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2767,11 +2767,10 @@ msgstr ""
 "Detalios (includite le version requirite e instructiones de installation), de omne programmas usate in le processo de compilation (per exemplo: le versiones usate de <span class=\"tech-"
 "emphasis\">node</span> e <span class=\"tech-emphasis\">npm</span>)."
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">Nota:</span> Le files de codice fonte (con le exception del bibliothecas open-source de tertios) non pote esser transcompilate, offuscate, minificate o "
-"alteremente generate per machina."
+"<span class=\"instruction-emphasis\">Nota:</span> Files fonte (a exception del bibliothecas open-source de tertie parte) non pote esser trans-compilate, concatenate, minimisate o alteremente "
+"generate automaticamente."
 
 msgid "How to Submit:"
 msgstr "Como submitter:"
@@ -3102,9 +3101,8 @@ msgstr ""
 "Si tu additivo transmitte datos ab le computator del usator, un politica de confidentialitate es necessari que explica que datos es inviate e como illos es usate. Isto es relevante solmente pro le "
 "additivos listate publicamente."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Si tu additivo contine codice binari o offuscate (excepte bibliothecas cognoscite), incarga su codice fonte pro revision."
+msgstr "Si tu additivo contine codification minimisate, concatenate o alteremente generate automaticamente altere que note bibliothecas, carga su fontes pro revision."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Per favor include instructiones sur como reproducer le file final del additivo, o in un file README o le Notas pro le revisor de iste version."
@@ -3136,9 +3134,8 @@ msgstr ""
 msgid "Matrix"
 msgstr "Matrice"
 
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Centro de disveloppamento de additivos"
+msgstr "Lista de diffusion del disveloppatores de additivos"
 
 #, fuzzy
 msgid "Extensions Developers Newsletter"
