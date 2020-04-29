@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 14:12+0000\n"
+"PO-Revision-Date: 2020-04-29 14:17+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3137,9 +3137,8 @@ msgstr "Matrice"
 msgid "Add-on Developers Mailing List"
 msgstr "Lista de diffusion del disveloppatores de additivos"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Disveloppamento de extensiones"
+msgstr "Lista de diffusion del disveloppatores de extensiones"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Sta informate re novas e eventos pro disveloppatores de extensiones de Firefox."
@@ -3214,9 +3213,8 @@ msgstr "Collabora"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Leger plus sur le politica de revision del codice fonte."
+msgstr "Saper plus re le communitate de disveloppatores"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listate sur iste sito post passate le revision del codice. Le actualisationes automatic es tractate per iste sito."
@@ -3255,9 +3253,8 @@ msgstr "Photo del usator"
 msgid "Profile"
 msgstr "Profilo"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Inviar un nove version"
+msgstr "Inviar o gerer extensiones"
 
 msgid "Customize Firefox"
 msgstr "Personalisar Firefox"
