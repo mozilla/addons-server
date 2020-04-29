@@ -526,6 +526,21 @@ def test_extract_and_commit_from_version_commits_files(
 
 
 @pytest.mark.django_db
+def test_extract_and_commit_without_files():
+    addon = addon_factory()
+    # Simulate no files for the current version. We cannot delete the file
+    # because of the ON_DELETE constraint.
+    addon.current_version.all_files = []
+
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        addon.current_version)
+
+    output = _run_process('git rev-list --count listed', repo)
+    # 1 initial commit + 1 for the commit created above.
+    assert output == '2\n'
+
+
+@pytest.mark.django_db
 def test_extract_and_commit_from_version_reverts_active_locale():
     from django.utils.translation import get_language
 

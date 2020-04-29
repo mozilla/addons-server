@@ -345,12 +345,12 @@ class AddonGitRepository(object):
             translation.activate('en-US')
 
             repo = cls(version.addon.id, package_type='addon')
-            file_obj = version.all_files[0]
+            file_obj = version.all_files[0] if version.all_files else None
             branch = repo.find_or_create_branch(BRANCHES[version.channel])
             note = ' ({})'.format(note) if note else ''
 
             commit = repo._commit_through_worktree(
-                path=file_obj.current_file_path,
+                path=file_obj.current_file_path if file_obj else None,
                 message=(
                     'Create new version {version} ({version_id}) for '
                     '{addon} from {file_obj}{note}'.format(
@@ -431,11 +431,12 @@ class AddonGitRepository(object):
         temporary directory where we extract to.
         """
         with TemporaryWorktree(self.git_repository) as worktree:
-            # Now extract the extension to the workdir
-            extract_extension_to_dest(
-                source=path,
-                dest=worktree.extraction_target_path,
-                force_fsync=True)
+            if path:
+                # Now extract the extension to the workdir
+                extract_extension_to_dest(
+                    source=path,
+                    dest=worktree.extraction_target_path,
+                    force_fsync=True)
 
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct
