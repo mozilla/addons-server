@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-23 15:24+0000\n"
+"PO-Revision-Date: 2020-04-29 07:19+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -130,13 +130,13 @@ msgid "Ratings"
 msgstr "Waarderingen"
 
 msgid "Reviewer Tools (listed)"
-msgstr ""
+msgstr "Hulpmiddelen voor beoordelaars (vermeld)"
 
 msgid "Reviewer Tools (unlisted)"
-msgstr ""
+msgstr "Hulpmiddelen voor beoordelaars (niet vermeld)"
 
 msgid "Reviewer links"
-msgstr ""
+msgstr "Koppelingen voor beoordelaars"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Add-on niet op AMO -"
@@ -311,6 +311,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
+"<h1>Oeps! Er is een fout opgetreden.</h1> <p>Dat zullen we snel repareren</p> <p>U kunt proberen de pagina te vernieuwen, of teruggaan naar de <a href=\"%(home)s\">startpagina van Add-ons</a>. U "
+"kunt ons ook helpen dit op te lossen door <a href=\"https://github.com/mozilla/addons/issues/new\">een issue te melden</a> met de details van hoe u op deze pagina belandde. </p>"
 
 msgid "No results found"
 msgstr "Geen resultaten gevonden"
@@ -503,16 +505,16 @@ msgid "Blocks to be updated are different because Min or Max version has changed
 msgstr "Bij te werken blokkeringen zijn verschillend, omdat de minimum- of maximumversie is gewijzigd."
 
 msgid "Invalid version"
-msgstr ""
+msgstr "Ongeldige versie"
 
 msgid "Min version can not be greater than Max version"
 msgstr "Minimumversie kan niet groter zijn dan de maximumversie"
 
 msgid "Review Listed"
-msgstr ""
+msgstr "Vermeldingen beoordelen"
 
 msgid "Review Unlisted"
-msgstr ""
+msgstr "Niet-vermelde items beoordelen"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "Deze blokkering is geïmporteerd uit een verouderde, op een regulier expressie gebaseerde kinto-blokkering."
@@ -522,7 +524,7 @@ msgstr "Elke wijziging wordt NIET bijgewerkt in de lijst met verouderde blokkeri
 
 #, python-format
 msgid "Delete Multiple %(name)s"
-msgstr ""
+msgstr "Meerdere %(name)s verwijderen"
 
 msgid "Home"
 msgstr "Startpagina"
@@ -551,10 +553,10 @@ msgid "Update"
 msgstr "Bijwerken"
 
 msgid "Reject Submission"
-msgstr ""
+msgstr "Bijdrage afwijzen"
 
 msgid "Approve Submission"
-msgstr ""
+msgstr "Bijdrage goedkeuren"
 
 #, python-format
 msgid "Add %(name)s"
@@ -564,20 +566,20 @@ msgid "Add-on GUIDs (one per line)"
 msgstr "Add-on-GUID’s (een per regel)"
 
 msgid "Submit"
-msgstr ""
+msgstr "Indienen"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr "%(count)s add-on-GUID’s"
 
 msgid "users"
-msgstr ""
+msgstr "gebruikers"
 
 msgid "Edit Block"
 msgstr "Blokkering bewerken"
 
 msgid "versions"
-msgstr ""
+msgstr "versies"
 
 msgid "Included in legacy blocklist."
 msgstr "Opgenomen in de lijst met verouderde blokkeringen."
@@ -916,28 +918,28 @@ msgid "Block edited"
 msgstr "Blokkering bewerkt"
 
 msgid "Block for {0} deleted from Blocklist."
-msgstr ""
+msgstr "Blokkering voor {0} uit blokkeringslijst verwijderd."
 
 msgid "Block deleted"
-msgstr ""
+msgstr "Blokkering verwijderd"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID voor {addon} aan DeniedGuid toegevoegd."
 
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr ""
+msgstr "GUID voor {addon} uit DeniedGuid verwijderd."
 
 msgid "Block {1} action for {0} signed off."
 msgstr "Blokkeren van {1} actie voor {0} afgemeld."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Aftekenen blokkeringsactie"
 
 msgid "User {user} session(s) reset."
-msgstr ""
+msgstr "Sessie(s) van gebruiker {user} geherinitialiseerd."
 
 msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
+msgstr "Gebruiker {user} beperkt voor bereik ‘{0}’"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -992,7 +994,7 @@ msgid "Extension"
 msgstr "Extensie"
 
 msgid "Deprecated Complete Theme"
-msgstr ""
+msgstr "Verouderd volledig thema"
 
 msgid "Dictionary"
 msgstr "Woordenboek"
@@ -1020,7 +1022,7 @@ msgid "Extensions"
 msgstr "Extensies"
 
 msgid "Deprecated Complete Themes"
-msgstr ""
+msgstr "Verouderde volledige thema’s"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1543,13 +1545,13 @@ msgid "Header image alignment problem"
 msgstr "Probleem met uitlijning headerafbeelding"
 
 msgid "No action"
-msgstr ""
+msgstr "Geen actie"
 
 msgid "Flag for human review"
 msgstr "Markeren voor persoonlijke beoordeling"
 
 msgid "Delay auto-approval"
-msgstr ""
+msgstr "Automatische goedkeuring uitstellen"
 
 msgid "Delay auto-approval indefinitely"
 msgstr "Automatische goedkeuring voor onbepaalde tijd uitstellen"
@@ -1564,7 +1566,7 @@ msgid "Inconclusive"
 msgstr "Niet eenduidig"
 
 msgid "New"
-msgstr ""
+msgstr "Nieuw"
 
 msgid "Running"
 msgstr "Actief"
@@ -1576,7 +1578,7 @@ msgid "Aborting"
 msgstr "Afbreken"
 
 msgid "Completed"
-msgstr ""
+msgstr "Voltooid"
 
 msgid "Scheduled"
 msgstr "Gepland"
@@ -1598,7 +1600,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Add-ons voor Thunderbird en SeaMonkey worden nu vermeld en onderhouden op addons.thunderbird.net. Voor het bijwerken van uw add-ons op de nieuwe website kunt u dezelfde account gebruiken."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open Search-add-ons worden {blog_link_open}niet meer ondersteund op AMO{blog_link_close}. U kunt in plaats daarvan een {doc_link_open}zoekextensie maken{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Deze identificator wordt al gebruikt. Kies een andere."
@@ -1878,6 +1880,8 @@ msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
 msgstr ""
+"De nieuwste goedgekeurde versie van deze Aanbevolen extensie kan niet worden verwijderd of uitgeschakeld, omdat de vorige versie niet is goedgekeurd voor aanbeveling. Neem contact op met AMO-"
+"beheerders als u hier hulp bij nodig hebt."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2398,7 +2402,7 @@ msgid "32x32px"
 msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
+msgstr "Gebruikt in vermeldingen van add-ons, zoals zoekresultaten."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2445,7 +2449,7 @@ msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "De minimale grootte is 1000x750, en een verhouding van 4:3 is vereist."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Het opnemen van schermafbeeldingen op uw productpagina vergroot de kans dat uw add-on wordt geïnstalleerd aanzienlijk."
 
 msgid "Continue"
 msgstr "Doorgaan"
@@ -2707,16 +2711,16 @@ msgid "Manage Listing"
 msgstr "Vermelding beheren"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr ""
+msgstr "U kunt deze versie ook bewerken om versieopmerkingen toe te voegen, of broncode als uw inzending verkleinde, gekoppelde of anderszins automatisch aangemaakte code bevat."
 
 msgid "Edit version {0}"
 msgstr "Versie {0} bewerken"
 
 msgid "Version Signature Pending"
-msgstr ""
+msgstr "Versieondertekening in behandeling"
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr ""
+msgstr "U bent klaar! Deze versie wordt binnenkort ondertekend voor eigen distributie. U ontvangt bericht als het ondertekende bestand klaar is voor downloaden."
 
 msgid "Go to My Submissions"
 msgstr "Naar mijn bijdragen"
@@ -2777,6 +2781,8 @@ msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
+"<span class=\"instruction-emphasis\">Noot:</span> bronbestanden (afgezien van opensource-bibliotheken van derden) mogen niet worden getranspileerd, gekoppeld, verkleind of anderszins door een "
+"machine worden bewerkt."
 
 msgid "How to Submit:"
 msgstr "Indienen:"
