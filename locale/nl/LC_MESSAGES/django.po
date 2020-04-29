@@ -5946,17 +5946,14 @@ msgstr ""
 msgid "Disable Listed Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Automatische goedkeuring inschakelen"
+msgstr ""
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Heeft markering ‘automatische goedkeuring uitgeschakeld’"
+msgstr ""
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Automatische goedkeuring inschakelen"
+msgstr ""
 
 msgid "Clear information request"
 msgstr "Verzoek om informatie wissen"
@@ -6009,9 +6006,8 @@ msgstr "Methode:"
 msgid "Source:"
 msgstr "Bron:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Bron:"
+msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr "Deze aankondiging verwijderen"
@@ -6134,36 +6130,29 @@ msgstr[1] "Verlopen verzoeken om informatie ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Beginnen"
+msgstr ""
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Voorbeeld van vermelde versie"
+msgstr ""
 
-#, fuzzy
 msgid "version channel"
-msgstr "Versie ondertekend"
+msgstr ""
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Add-on-status"
+msgstr ""
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Zichtbaarheid van vermelding"
+msgstr ""
 
-#, fuzzy
 msgid "file status"
-msgstr "Websitestatus"
+msgstr ""
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} is ondertekend."
+msgstr ""
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6199,9 +6188,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Antwoord van beoordelaar"
+msgstr ""
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6227,9 +6215,8 @@ msgstr "Ongeldige combinatie van parameters ‘%s’, ‘%s’ en ‘%s’."
 msgid "Maximum query length exceeded."
 msgstr "Maximale lengte van zoekopdracht overschreden."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Kon geen add-on met GUID ‘{}’ vinden."
+msgstr ""
 
 msgid "You do not own this addon."
 msgstr "Deze add-on is niet van u."
@@ -6248,21 +6235,17 @@ msgstr "Versie komt niet overeen met het manifest-bestand."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Versie bestaat al. De nieuwste versie is %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Alleen WebExtensions mogen de GUID weglaten"
+msgstr ""
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Geef de GUID van uw add-on op in het manifest als deze langer is dan 64 tekens."
+msgstr ""
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Ongeldige GUID in URL"
+msgstr ""
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "U kunt geen versies aan een add-on met de status %s toevoegen."
+msgstr ""
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "U kunt geen vermelde versie aan deze add-on toevoegen via de API vanwege ontbrekende metagegevens. Dien hem in via de website"
@@ -6610,13 +6593,12 @@ msgstr "De gebruikers ‘%(users)s’ zijn verbannen."
 msgid "Ban selected users"
 msgstr "Geselecteerde gebruikers verbannen"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "De API-sleutels van de gebruikers ‘%(users)s’ zijn geherinitialiseerd."
+msgstr ""
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Versie verwijderen"
+msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6685,11 +6667,8 @@ msgstr ""
 "Lees en accepteer voordat u begint onze Firefox-add-on-distributieovereenkomst, evenals onze Beoordelingsregels en -beleid. De Firefox-add-on-distributieovereenkomst verwijst tevens naar onze "
 "Privacyverklaring, die uitlegt hoe we met uw gegevens omgaan."
 
-#, fuzzy
 msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
-"Lees en accepteer voordat u begint onze Firefox-add-on-distributieovereenkomst, evenals onze Beoordelingsregels en -beleid. De Firefox-add-on-distributieovereenkomst verwijst tevens naar onze "
-"Privacyverklaring, die uitlegt hoe we met uw gegevens omgaan."
 
 msgid "an add-on developer replies to my review"
 msgstr "een add-on-ontwikkelaar beantwoordt mijn beoordeling"
@@ -6721,9 +6700,8 @@ msgstr "Gebruikersnotificaties"
 msgid "Ban"
 msgstr "Verbannen"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Versie verwijderen"
+msgstr ""
 
 msgid "Delete picture"
 msgstr "Afbeelding verwijderen"
