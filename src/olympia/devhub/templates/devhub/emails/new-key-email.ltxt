@@ -5,5 +5,4 @@
 If you believe this key was created in error, you can remove the key and
 disable access at the following location:
 
-{{ url }}
-{% endblocktrans %}
+{{ url }}{% endblocktrans %}
