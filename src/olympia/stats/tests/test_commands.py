@@ -14,6 +14,7 @@ from django.test.utils import override_settings
 from unittest import mock
 
 from olympia import amo
+from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.tests import addon_factory
 from olympia.stats.management.commands import get_stats_data
 from olympia.stats.management.commands.download_counts_from_file import \
@@ -26,23 +27,24 @@ hive_folder = os.path.join(settings.ROOT, 'src/olympia/stats/fixtures/files')
 
 
 class FixturesFolderMixin(object):
-    # You have to define these two values in your subclasses.
+    # You have to define these values in your subclasses.
     date = 'YYYY-MM-DD'
     source_folder = 'dummy'
     stats_source = 'dummy'
 
+    def get_tmp_hive_folder(self):
+        return os.path.join(hive_folder, self.id())
+
     def clean_up_files(self):
-        dirpath = os.path.join(hive_folder, self.date)
-        if os.path.isdir(dirpath):
-            for name in os.listdir(dirpath):
-                os.unlink(os.path.join(dirpath, name))
-            os.rmdir(dirpath)
+        tmp_hive_folder = self.get_tmp_hive_folder()
+        if os.path.isdir(tmp_hive_folder):
+            rm_stored_dir(tmp_hive_folder)
 
     def setUp(self):
         super(FixturesFolderMixin, self).setUp()
         self.clean_up_files()
         shutil.copytree(os.path.join(hive_folder, self.source_folder),
-                        os.path.join(hive_folder, self.date))
+                        os.path.join(self.get_tmp_hive_folder(), self.date))
 
     def tearDown(self):
         self.clean_up_files()
@@ -60,8 +62,9 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         self.command = Command()
 
     def test_update_counts_from_file(self):
-        management.call_command('update_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command('update_counts_from_file',
+                                self.get_tmp_hive_folder(), date=self.date,
+                                stats_source=self.stats_source)
         assert UpdateCount.objects.all().count() == 1
         update_count = UpdateCount.objects.last()
         # should be identical to `statuses.userEnabled`
@@ -83,8 +86,9 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
             guid='9c444b87-1124-4fd2-b97f-8fb7e9be1820',
             slug='incomplete-addon', status=amo.STATUS_NULL)
 
-        management.call_command('update_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command('update_counts_from_file',
+                                self.get_tmp_hive_folder(), date=self.date,
+                                stats_source=self.stats_source)
         assert UpdateCount.objects.all().count() == 2
 
         update_count = UpdateCount.objects.get(addon_id=3615)
@@ -202,8 +206,9 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert len(json.dumps(uc.versions)) == (2 ** 16) - 1
 
     def test_download_counts_from_file(self):
-        management.call_command('download_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command('download_counts_from_file',
+                                self.get_tmp_hive_folder(), date=self.date,
+                                stats_source=self.stats_source)
         assert DownloadCount.objects.all().count() == 2
         download_count = DownloadCount.objects.get(addon_id=3615)
         assert download_count.count == 3
@@ -215,8 +220,9 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         addon_factory(slug='disabled-addon', status=amo.STATUS_DISABLED)
         addon_factory(slug='incomplete-addon', status=amo.STATUS_NULL)
 
-        management.call_command('download_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command('download_counts_from_file',
+                                self.get_tmp_hive_folder(), date=self.date,
+                                stats_source=self.stats_source)
 
         assert DownloadCount.objects.all().count() == 3
         download_count = DownloadCount.objects.get(addon_id=3615)
@@ -239,8 +245,9 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         'close_old_connections')
     def test_download_counts_from_file_closes_old_connections(
             self, close_old_connections_mock):
-        management.call_command('download_counts_from_file', hive_folder,
-                                date=self.date, stats_source=self.stats_source)
+        management.call_command('download_counts_from_file',
+                                self.get_tmp_hive_folder(), date=self.date,
+                                stats_source=self.stats_source)
         assert DownloadCount.objects.all().count() == 2
         close_old_connections_mock.assert_called_once()
 
