@@ -3219,7 +3219,7 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
@@ -3256,7 +3256,7 @@ msgid "Sign Up"
 msgstr "Disconnetti"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Grazie!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3311,7 +3311,7 @@ msgid "See how"
 msgstr "Scopri come"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Collabora con noi"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -6171,7 +6171,7 @@ msgid "No reviews found for this period."
 msgstr "Nessuna revisione disponibile per questo periodo."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Origine:"
 
 msgid "Method:"
 msgstr "Metodo:"
