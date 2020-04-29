@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-23 14:53+0000\n"
+"POT-Creation-Date: 2020-04-29 11:58+0000\n"
 "PO-Revision-Date: 2020-04-20 06:29+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -2963,7 +2963,7 @@ msgid ""
 "\n"
 "Regards,\n"
 "\n"
-"The Mozilla Add-ons Team\n"
+"The Mozilla Add-ons Team"
 msgstr ""
 
 #, python-format
@@ -2975,7 +2975,7 @@ msgid ""
 "If you believe this key was created in error, you can remove the key and\n"
 "disable access at the following location:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 msgstr ""
 
 #, python-format
@@ -2987,7 +2987,7 @@ msgid ""
 "If you believe this key was revoked in error, you can create a new one\n"
 "at the following location:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 msgstr ""
 
 #, python-format
@@ -3001,7 +3001,7 @@ msgid ""
 "your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
-"The Mozilla Add-ons team\n"
+"The Mozilla Add-ons team"
 msgstr ""
 
 msgid "Invisible"
@@ -5719,14 +5719,16 @@ msgstr "Kontrola úspěšně provedena."
 msgid "Review lock limit reached"
 msgstr "Dosažen limit recenzí"
 
-msgid "{addon} :: EULA"
+#, fuzzy
+msgid "{addon} – EULA"
 msgstr "{addon} :: EULA"
 
-msgid "{addon} :: Privacy Policy"
+#, fuzzy
+msgid "{addon} – Privacy Policy"
 msgstr "{addon} :: Zásady ochrany osobních údajů"
 
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: Nahlášená zneužití"
+msgid " Abuse Reports – {addon} – Add-ons for Firefox"
+msgstr ""
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Nahlášená zneužití doplňku {addon} ({num})"
@@ -5799,6 +5801,9 @@ msgstr "Není tady nic k vidění! Vývojář neposkytl žádné detaily."
 msgid "Add-on name translations"
 msgstr "dle verze doplňku"
 
+msgid "Reviewer Tools – Add-ons for Firefox"
+msgstr ""
+
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Zpět na nástěnku s nástroji redaktora"
 
@@ -5815,6 +5820,9 @@ msgstr "Hodnocení"
 
 msgid "Score"
 msgstr "Skóre"
+
+msgid "Reviewer Moderation Log – Add-ons for Firefox"
+msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5853,6 +5861,9 @@ msgstr "Recenze byla označena k odstranění."
 
 msgid "Undelete"
 msgstr "Vrátit zpět odstranění"
+
+msgid "Reviewer Performance – Add-ons for Firefox"
+msgstr ""
 
 msgid "Add-on Reviewer Performance"
 msgstr "Aktivita redaktora"
@@ -5899,6 +5910,26 @@ msgstr "Rok"
 msgid "All-Time"
 msgstr "Po celou dobu"
 
+msgid " – Reviewer Tools – Add-ons for Firefox"
+msgstr ""
+
+msgid "Content Review – Add-ons for Firefox"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-approved Add-ons – Add-ons for Firefox"
+msgstr "Automaticky schválené doplňky"
+
+msgid "Review Moderation – Add-ons for Firefox"
+msgstr ""
+
+#, fuzzy
+msgid "Expired Information Requests – Add-ons for Firefox"
+msgstr "Požadavek po lhůtě na doplnění informací"
+
+msgid "Unlisted Add-ons – Add-ons for Firefox"
+msgstr ""
+
 msgid "Advanced Search"
 msgstr "Rozšířené vyhledávání"
 
@@ -5933,6 +5964,9 @@ msgstr "Zásady pro doplňky"
 
 msgid "Reviewer's Guide"
 msgstr "Příručka recenzenta"
+
+msgid "{addon} – Add-ons for Firefox"
+msgstr ""
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6055,6 +6089,9 @@ msgstr "Více informací"
 
 msgid "Resolution"
 msgstr "Řešení"
+
+msgid "Add-on Review Log – Add-ons for Firefox"
+msgstr ""
 
 msgid "Reviewer"
 msgstr "Redaktor"
@@ -6800,15 +6837,13 @@ msgstr "Smazat obrázek"
 
 #, python-format
 msgid ""
-"\n"
 "The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
 
 #, python-format
 msgid ""
-"\n"
 "Greetings %(author_name)s,\n"
 "\n"
 "You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
@@ -6821,23 +6856,21 @@ msgid ""
 "If you didn't expect to receive this invitation, please send an email to amo-admins@mozilla.com.\n"
 "\n"
 "Kind regards,\n"
-"The Mozilla Add-ons Team\n"
+"The Mozilla Add-ons Team"
 msgstr ""
 
 #, python-format
 msgid ""
-"\n"
 "The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
 
 #, python-format
 msgid ""
-"\n"
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s )\n"
+"%(author_name)s ( %(author_url)s )"
 msgstr ""
 
 msgctxt "user_list_others"

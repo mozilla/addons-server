@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-23 14:53+0000\n"
+"POT-Creation-Date: 2020-04-29 11:58+0000\n"
 "PO-Revision-Date: 2020-01-04 16:07+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -2931,7 +2931,7 @@ msgid ""
 "\n"
 "Regards,\n"
 "\n"
-"The Mozilla Add-ons Team\n"
+"The Mozilla Add-ons Team"
 msgstr ""
 
 #, python-format
@@ -2943,7 +2943,7 @@ msgid ""
 "If you believe this key was created in error, you can remove the key and\n"
 "disable access at the following location:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 msgstr ""
 
 #, python-format
@@ -2955,7 +2955,7 @@ msgid ""
 "If you believe this key was revoked in error, you can create a new one\n"
 "at the following location:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 msgstr ""
 
 #, python-format
@@ -2969,7 +2969,7 @@ msgid ""
 "your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
-"The Mozilla Add-ons team\n"
+"The Mozilla Add-ons team"
 msgstr ""
 
 msgid "Invisible"
@@ -5725,14 +5725,16 @@ msgstr "審査処理が完了しました。"
 msgid "Review lock limit reached"
 msgstr "審査ロックの限度に達しました"
 
-msgid "{addon} :: EULA"
+#, fuzzy
+msgid "{addon} – EULA"
 msgstr "{addon} :: EULA"
 
-msgid "{addon} :: Privacy Policy"
+#, fuzzy
+msgid "{addon} – Privacy Policy"
 msgstr "{addon} :: プライバシーポリシー"
 
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: 不正報告"
+msgid " Abuse Reports – {addon} – Add-ons for Firefox"
+msgstr ""
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "{addon} とその開発者に関する不正報告 ({num})"
@@ -5805,6 +5807,9 @@ msgstr "表示できる情報が何もありません。開発者が詳細情報
 msgid "Add-on name translations"
 msgstr "アドオンのバージョン別"
 
+msgid "Reviewer Tools – Add-ons for Firefox"
+msgstr ""
+
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "審査担当者用ツールダッシュボードへ戻る"
 
@@ -5819,6 +5824,9 @@ msgstr "ランク"
 
 msgid "Score"
 msgstr "スコア"
+
+msgid "Reviewer Moderation Log – Add-ons for Firefox"
+msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5857,6 +5865,9 @@ msgstr "レビューは削除前にフラグが立てられました。"
 
 msgid "Undelete"
 msgstr "削除を取り消し"
+
+msgid "Reviewer Performance – Add-ons for Firefox"
+msgstr ""
 
 msgid "Add-on Reviewer Performance"
 msgstr "アドオン審査担当者の成績"
@@ -5903,6 +5914,26 @@ msgstr "年別"
 msgid "All-Time"
 msgstr "全期間"
 
+msgid " – Reviewer Tools – Add-ons for Firefox"
+msgstr ""
+
+msgid "Content Review – Add-ons for Firefox"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-approved Add-ons – Add-ons for Firefox"
+msgstr "自動承認されたアドオン"
+
+msgid "Review Moderation – Add-ons for Firefox"
+msgstr ""
+
+#, fuzzy
+msgid "Expired Information Requests – Add-ons for Firefox"
+msgstr "期限切れとなった情報請求"
+
+msgid "Unlisted Add-ons – Add-ons for Firefox"
+msgstr ""
+
 msgid "Advanced Search"
 msgstr "高度な検索"
 
@@ -5937,6 +5968,9 @@ msgstr "アドオンポリシー"
 
 msgid "Reviewer's Guide"
 msgstr "審査担当者用ガイド"
+
+msgid "{addon} – Add-ons for Firefox"
+msgstr ""
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6059,6 +6093,9 @@ msgstr "詳しい情報"
 
 msgid "Resolution"
 msgstr "審査結果"
+
+msgid "Add-on Review Log – Add-ons for Firefox"
+msgstr ""
 
 msgid "Reviewer"
 msgstr "審査担当者"
@@ -6791,15 +6828,13 @@ msgstr "写真を削除"
 
 #, python-format
 msgid ""
-"\n"
 "The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
 
 #, python-format
 msgid ""
-"\n"
 "Greetings %(author_name)s,\n"
 "\n"
 "You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
@@ -6812,23 +6847,21 @@ msgid ""
 "If you didn't expect to receive this invitation, please send an email to amo-admins@mozilla.com.\n"
 "\n"
 "Kind regards,\n"
-"The Mozilla Add-ons Team\n"
+"The Mozilla Add-ons Team"
 msgstr ""
 
 #, python-format
 msgid ""
-"\n"
 "The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
 
 #, python-format
 msgid ""
-"\n"
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s )\n"
+"%(author_name)s ( %(author_url)s )"
 msgstr ""
 
 msgctxt "user_list_others"

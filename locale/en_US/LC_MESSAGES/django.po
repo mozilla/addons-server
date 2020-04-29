@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-23 14:53+0000\n"
+"POT-Creation-Date: 2020-04-29 11:58+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3151,7 +3151,7 @@ msgstr "Generate new credentials"
 msgid "Generate new credentials"
 msgstr "Generate new credentials"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -3164,7 +3164,7 @@ msgid ""
 "\n"
 "Regards,\n"
 "\n"
-"The Mozilla Add-ons Team\n"
+"The Mozilla Add-ons Team"
 msgstr ""
 "Hello,\n"
 "\n"
@@ -3179,7 +3179,7 @@ msgstr ""
 "\n"
 "The Mozilla Add-ons Team\n"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The following API Key was added to your account:\n"
 "\n"
@@ -3188,7 +3188,7 @@ msgid ""
 "If you believe this key was created in error, you can remove the key and\n"
 "disable access at the following location:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 msgstr ""
 "The following API Key was added to your account:\n"
 "\n"
@@ -3199,7 +3199,7 @@ msgstr ""
 "\n"
 "%(url)s\n"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The API Key was revoked from your account:\n"
 "\n"
@@ -3208,7 +3208,7 @@ msgid ""
 "If you believe this key was revoked in error, you can create a new one\n"
 "at the following location:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 msgstr ""
 "The API Key was revoked from your account:\n"
 "\n"
@@ -3219,7 +3219,7 @@ msgstr ""
 "\n"
 "%(url)s\n"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Dear add-on developer,\n"
 "\n"
@@ -3230,7 +3230,7 @@ msgid ""
 "your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
-"The Mozilla Add-ons team\n"
+"The Mozilla Add-ons team"
 msgstr ""
 "Dear add-on developer,\n"
 "\n"
@@ -6282,15 +6282,15 @@ msgid "Review lock limit reached"
 msgstr "Review lock limit reached"
 
 #, fuzzy
-msgid "{addon} :: EULA"
+msgid "{addon} – EULA"
 msgstr "{addon} :: Abuse Reports"
 
 #, fuzzy
-msgid "{addon} :: Privacy Policy"
+msgid "{addon} – Privacy Policy"
 msgstr "This add-on has a Privacy Policy"
 
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: Abuse Reports"
+msgid " Abuse Reports – {addon} – Add-ons for Firefox"
+msgstr " Abuse Reports – {addon} – Add-ons for Firefox"
 
 #, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
@@ -6372,6 +6372,9 @@ msgstr "Nothing to see here!  The developer did not include any details."
 msgid "Add-on name translations"
 msgstr "by Add-on Version"
 
+msgid "Reviewer Tools – Add-ons for Firefox"
+msgstr "Reviewer Tools – Add-ons for Firefox"
+
 #, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Return to the Editor Tools homepage"
@@ -6387,6 +6390,9 @@ msgstr "Rank"
 
 msgid "Score"
 msgstr "Score"
+
+msgid "Reviewer Moderation Log – Add-ons for Firefox"
+msgstr "Reviewer Moderation Log – Add-ons for Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6426,6 +6432,9 @@ msgstr "Review was flagged prior to deletion."
 
 msgid "Undelete"
 msgstr "Undelete"
+
+msgid "Reviewer Performance – Add-ons for Firefox"
+msgstr "Reviewer Performance – Add-ons for Firefox"
 
 #, fuzzy
 msgid "Add-on Reviewer Performance"
@@ -6473,6 +6482,26 @@ msgstr "Year"
 msgid "All-Time"
 msgstr "All-Time"
 
+msgid " – Reviewer Tools – Add-ons for Firefox"
+msgstr " – Reviewer Tools – Add-ons for Firefox"
+
+msgid "Content Review – Add-ons for Firefox"
+msgstr "Content Review – Add-ons for Firefox"
+
+#, fuzzy
+msgid "Auto-approved Add-ons – Add-ons for Firefox"
+msgstr "Android Add-ons"
+
+msgid "Review Moderation – Add-ons for Firefox"
+msgstr "Review Moderation – Add-ons for Firefox"
+
+#, fuzzy
+msgid "Expired Information Requests – Add-ons for Firefox"
+msgstr "More Information Requested"
+
+msgid "Unlisted Add-ons – Add-ons for Firefox"
+msgstr "Unlisted Add-ons – Add-ons for Firefox"
+
 msgid "Advanced Search"
 msgstr "Advanced Search"
 
@@ -6508,6 +6537,9 @@ msgstr "Add-on Policy"
 #, fuzzy
 msgid "Reviewer's Guide"
 msgstr "Reviewers' Guide"
+
+msgid "{addon} – Add-ons for Firefox"
+msgstr "{addon} – Add-ons for Firefox"
 
 #. "Content Review [add-on name]"
 #, fuzzy
@@ -6641,6 +6673,9 @@ msgstr "More Information"
 
 msgid "Resolution"
 msgstr "Resolution"
+
+msgid "Add-on Review Log – Add-ons for Firefox"
+msgstr "Add-on Review Log – Add-ons for Firefox"
 
 msgid "Reviewer"
 msgstr "Reviewer"
@@ -7401,20 +7436,33 @@ msgstr "Delete Version"
 msgid "Delete picture"
 msgstr "Delete my user picture now"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"\n"
 "The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
 "\n"
 "The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
+"Greetings %(author_name)s,\n"
+"\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
+"\n"
+"Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"If you didn't expect to receive this invitation, please send an email to amo-admins@mozilla.com.\n"
+"\n"
+"Kind regards,\n"
+"The Mozilla Add-ons Team"
+msgstr ""
 "\n"
 "Greetings %(author_name)s,\n"
 "\n"
@@ -7429,40 +7477,23 @@ msgid ""
 "\n"
 "Kind regards,\n"
 "The Mozilla Add-ons Team\n"
-msgstr ""
-"\n"
-"Greetings %(author_name)s,\n"
-"\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
-"\n"
-"Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
-"\n"
-"%(author_confirmation_link)s\n"
-"\n"
-"If you didn't expect to receive this invitation, please send an email to amo-admins@mozilla.com.\n"
-"\n"
-"Kind regards,\n"
-"The Mozilla Add-ons Team\n"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"\n"
 "The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
 "\n"
 "The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s\n"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"\n"
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s )\n"
+"%(author_name)s ( %(author_url)s )"
 msgstr ""
 "\n"
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
