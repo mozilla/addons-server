@@ -1,7 +1,7 @@
 version: 1
 update_configs:
   - package_manager: "python"
-    directory: ""/requirements""
+    directory: "/requirements"
     update_schedule: "daily"
     ignored_updates:
       - match:
