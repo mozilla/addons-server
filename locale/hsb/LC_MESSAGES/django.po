@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-23 14:53+0000\n"
-"PO-Revision-Date: 2020-04-28 21:04+0000\n"
+"PO-Revision-Date: 2020-04-29 11:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3353,9 +3353,8 @@ msgstr "Opcionalnje móžeće informacije zapodać, kotrež su wužitne za redak
 msgid "Source code"
 msgstr "Žórłowy kod"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Jeli waš přidatk binarny abo zamazany kod wobsahuje, stajće tu přepruwowarjam žórłowy tekst k dispoziciji."
+msgstr "Jeli waš přidatk minifikowany, zwjazany abo hinak mašinelnje wtoworjeny kod wobsahuje, stajće tu přepruwowarjam žórłowy tekst k dispoziciji."
 
 msgid "File {file_id} ({platform})"
 msgstr "Dataja {file_id} ({platform})"
