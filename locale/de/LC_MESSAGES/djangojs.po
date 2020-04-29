@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-23 14:53+0000\n"
+"POT-Creation-Date: 2020-04-29 11:59+0000\n"
 "PO-Revision-Date: 2015-10-19 21:09+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,8 +126,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Von minifizierten, verkürzten oder anderweitig maschinengenerierten Skripten (außer bekannten Bibliotheken) müssen die Quelltexte getrennt zur Überprüfung eingereicht werden. Verwenden Sie unbedingt"
-" das Feld zum Hochladen von Quelltext, damit Ihre Einreichung nicht abgelehnt wird."
+"Von minifizierten, verkürzten oder anderweitig maschinengenerierten Skripten (außer bekannten Bibliotheken) müssen die Quelltexte getrennt zur Überprüfung eingereicht werden. Verwenden Sie "
+"unbedingt das Feld zum Hochladen von Quelltext, damit Ihre Einreichung nicht abgelehnt wird."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Der Validierungsprozess stellte folgende Probleme fest, die zur Ablehnung führen könnten:"

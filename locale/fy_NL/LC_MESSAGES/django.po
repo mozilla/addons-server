@@ -2,12 +2,12 @@
 # Copyright (C) 2006 Mozilla Corporation
 # This file is distributed under the same license as the REMORA package.
 # Wil Clouser <clouserw@mozilla.com>, 2006.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-23 14:53+0000\n"
+"POT-Creation-Date: 2020-04-29 11:58+0000\n"
 "PO-Revision-Date: 2020-04-27 09:40+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -246,13 +246,13 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"Jo sjogge dit berjocht omdat dizze HTTPS-website it ferstjoeren fan in ‘Referer header’ troch jo webbrowser fereasket, mar dizze net ferstjoerd is. Dizze header is om befeiligingsredenen fereaske om"
-" wis te wêzen dat jo browser net troch tredden hackt wurdt."
+"Jo sjogge dit berjocht omdat dizze HTTPS-website it ferstjoeren fan in ‘Referer header’ troch jo webbrowser fereasket, mar dizze net ferstjoerd is. Dizze header is om befeiligingsredenen fereaske "
+"om wis te wêzen dat jo browser net troch tredden hackt wurdt."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
-"As jo jo browser sa konfigurearre hawwe dat ‘Referer’-headers útskeakele binne, skeakelje dizze dan wer yn, op syn minst foar dizze website, of foar HTTPS-ferbiningen, of foar ‘same-"
-"origin’-oanfragen."
+"As jo jo browser sa konfigurearre hawwe dat ‘Referer’-headers útskeakele binne, skeakelje dizze dan wer yn, op syn minst foar dizze website, of foar HTTPS-ferbiningen, of foar ‘same-origin’-"
+"oanfragen."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -294,16 +294,16 @@ msgstr "Net fûn"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>It spyt ús, mar wy kinne net fine wêr't jo nei sykje.</h1> <p>De troch jo oanfrege side of bestân is net op ús website oantroffen. Mooglik hawwe jo op in ferâldere keppeling klikt, of it adres "
-"ferkeard yntypt.</p> <ul> <li>As jo it adres yntypt hawwe, kontrolearje dan de stavering nochris.</li> <li>As jo in keppeling earne fan folge hawwe, %(open_bug_link)smeld dan it "
-"probleem%(close_bug_link)s. Fertel ús wêr't jo fan kamen en wat jo sochten, en wy sille probearje it probleem op te lossen.</li> </ul> <p>Jo kinne ek gewoanwei nei inkelde populêre siden op ús "
-"website springe.</p> <ul> <li>Binne jo ynteressearre yn in <a href=\"%(rec)s\">list mei oanrekommandearre add-ons</a>?</li> <li>Wolle jo nei <a href=\"%(search)s\">add-ons sykje</a>? Jo kinne nei de"
-" <a href=\"%(search)s\">sykside</a> gean of gewoanwei boppesteand sykfjild brûke.</li> <li>As jo leaver opnij begjinne, gean dan nei de <a href=\"%(home)s\">startside foar add-ons</a>.</li> </ul>"
+"ferkeard yntypt.</p> <ul> <li>As jo it adres yntypt hawwe, kontrolearje dan de stavering nochris.</li> <li>As jo in keppeling earne fan folge hawwe, %(open_bug_link)smeld dan it probleem"
+"%(close_bug_link)s. Fertel ús wêr't jo fan kamen en wat jo sochten, en wy sille probearje it probleem op te lossen.</li> </ul> <p>Jo kinne ek gewoanwei nei inkelde populêre siden op ús website "
+"springe.</p> <ul> <li>Binne jo ynteressearre yn in <a href=\"%(rec)s\">list mei oanrekommandearre add-ons</a>?</li> <li>Wolle jo nei <a href=\"%(search)s\">add-ons sykje</a>? Jo kinne nei de <a "
+"href=\"%(search)s\">sykside</a> gean of gewoanwei boppesteand sykfjild brûke.</li> <li>As jo leaver opnij begjinne, gean dan nei de <a href=\"%(home)s\">startside foar add-ons</a>.</li> </ul>"
 
 msgid "Oops"
 msgstr "Oeps"
@@ -460,11 +460,11 @@ msgstr "Ferzjes"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"As jo stipe tapassing gjin manifest-bestân fereasket, dan moatte jo der noch hieltyd ien tafoegje mei de fereaske eigenskippen lykas "
-"%(amo_manifests_mdn_link_open)shjir%(amo_manifests_mdn_link_close)s spesifisearre."
+"As jo stipe tapassing gjin manifest-bestân fereasket, dan moatte jo der noch hieltyd ien tafoegje mei de fereaske eigenskippen lykas %(amo_manifests_mdn_link_open)shjir"
+"%(amo_manifests_mdn_link_close)s spesifisearre."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Dizze oanpaste URL wurdt al troch ien fan jo oare kolleksje brûkt."
@@ -1765,10 +1765,11 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 "Op dizze website. <span class=\"helptext\">Nei suksesfolle beoardieling fan de koade wurdt jo ynstjoering foar miljoenen brûkers op dizze website en yn de Add-onbehearder fan Firefox fermeld. "
-"Automatyske fernijingen wurde troch dizze website fersoarge. Dizze add-on komt ek yn oanmerking foar Mozilla-promoasjes en -wedstriden. Eigen distribúsje fan de beoardiele bestannen is ek "
-"mooglik.</span>"
+"Automatyske fernijingen wurde troch dizze website fersoarge. Dizze add-on komt ek yn oanmerking foar Mozilla-promoasjes en -wedstriden. Eigen distribúsje fan de beoardiele bestannen is ek mooglik.</"
+"span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Op dy fan josels. <span class=\"helptext\">Jo ynstjoering wurdt daliks ûndertekene foar eigen distribúsje. Fernijingen moatte troch josels fersoarge wurde fia in fernijings-URL of eksterne "
 "tapassingsfernijingen.</span>"
@@ -2089,7 +2090,9 @@ msgstr ""
 "fan dizze add-on op te laden."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibiliteit bywurkje</a> <a href=\"%(version_url)s\" class=\"button\">Nije ferzje oplade</a> of <a href=\"#\" "
 "class=\"close\">Negearje</a>"
@@ -2325,8 +2328,8 @@ msgid "Email"
 msgstr "E-mailadres"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "As jo in e-mailadres foar stipefragen werjaan wolle, fier it hjir dan yn. As jo ferskate adressen foar elke taal hawwe kinne mear oersettingen fan dit fjild tafoege wurde. Allinnich relevant foar "
 "fermelde add-ons."
@@ -2389,8 +2392,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist oare"
-" behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
+"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist "
+"oare behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
 
 msgid "Add-on Media for {0}"
 msgstr "Add-onmedia foar {0}"
@@ -2528,8 +2531,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
-"Troch jo add-on fuort te smiten wurde alle ferzjes en bestannen dy't jo foar dizze add-on yntsjinne hawwe foar altyd fuortsmiten, fermeld of net. De add-on-ID bliuwt noch wol oan jo account keppele,"
-" sadat oaren gjin ferzjes fia deselde ID yntsjinje kinne."
+"Troch jo add-on fuort te smiten wurde alle ferzjes en bestannen dy't jo foar dizze add-on yntsjinne hawwe foar altyd fuortsmiten, fermeld of net. De add-on-ID bliuwt noch wol oan jo account "
+"keppele, sadat oaren gjin ferzjes fia deselde ID yntsjinje kinne."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Fier de folgjende tekst yn om jo beslissing te befêstigjen: {slug}"
@@ -2789,11 +2792,11 @@ msgid "Operating system and build environment requirements."
 msgstr "Easken foar it bestjoeringssysteem en de buildomjouwing."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
-"Details (wêrûnder fereaske ferzje en ynstallaasje-ynstruksjes) fan alle programma’s dy't yn it buildproses brûkt wurde (foarbyld: brûkte ferzje fan <span class=\"tech-emphasis\">node</span> en <span"
-" class=\"tech-emphasis\">npm</span>)."
+"Details (wêrûnder fereaske ferzje en ynstallaasje-ynstruksjes) fan alle programma’s dy't yn it buildproses brûkt wurde (foarbyld: brûkte ferzje fan <span class=\"tech-emphasis\">node</span> en "
+"<span class=\"tech-emphasis\">npm</span>)."
 
 #, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
@@ -2912,11 +2915,11 @@ msgstr "JWT-geheim"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"Stjoer in <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as de autorisaasjeheader om API-oanfragen te dwaan. Jo  moatte foar elke oanfraach in JWT generearje, lykas útlein yn de <a "
-"href=\"%(docs_url)s\">API-dokumintaasje</a>."
+"Stjoer in <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as de autorisaasjeheader om API-oanfragen te dwaan. Jo  moatte foar elke oanfraach in JWT generearje, lykas útlein yn de <a href="
+"\"%(docs_url)s\">API-dokumintaasje</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -2953,7 +2956,7 @@ msgid ""
 "\n"
 "Regards,\n"
 "\n"
-"The Mozilla Add-ons Team\n"
+"The Mozilla Add-ons Team"
 msgstr ""
 
 #, python-format
@@ -2965,7 +2968,7 @@ msgid ""
 "If you believe this key was created in error, you can remove the key and\n"
 "disable access at the following location:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 msgstr ""
 
 #, python-format
@@ -2977,7 +2980,7 @@ msgid ""
 "If you believe this key was revoked in error, you can create a new one\n"
 "at the following location:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 msgstr ""
 
 #, python-format
@@ -2987,10 +2990,11 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
-"The Mozilla Add-ons team\n"
+"The Mozilla Add-ons team"
 msgstr ""
 
 msgid "Invisible"
@@ -3312,8 +3316,8 @@ msgstr ""
 msgid "Manage Version {0}"
 msgstr "Ferzje {0} beheare"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "{0} beheare"
 
@@ -3408,8 +3412,8 @@ msgstr "{label_open}Sichtber:{label_close} Sichtber foar elkenien op {site_url} 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Unsichtber:{label_close} Wurdt net yn sykresultaten opnommen, en de produktside derfan jout oan dat jo de add-on útskeakele hawwe. Ynstjoeringen fan nije ferzjes foar it produkt wurde yn"
-" dizze tastân net akseptearre."
+"{label_open}Unsichtber:{label_close} Wurdt net yn sykresultaten opnommen, en de produktside derfan jout oan dat jo de add-on útskeakele hawwe. Ynstjoeringen fan nije ferzjes foar it produkt wurde "
+"yn dizze tastân net akseptearre."
 
 msgid "Listed versions"
 msgstr "Fermelde ferzjes"
@@ -3448,8 +3452,8 @@ msgstr "Ferzje {version} fuortsmite"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Jo stean op it punt om de aktuele ferzje fan jo add-on fuort te smiten. Hjirtroch kin de steat fan jo add-on wizigje of, as dit de iennichste publike ferzje fan jo add-on is, de sichtberheid foar it"
-" publyk ferdwine kin."
+"Jo stean op it punt om de aktuele ferzje fan jo add-on fuort te smiten. Hjirtroch kin de steat fan jo add-on wizigje of, as dit de iennichste publike ferzje fan jo add-on is, de sichtberheid foar "
+"it publyk ferdwine kin."
 
 msgid "Deleting this version will permanently delete:"
 msgstr "Troch fuortsmiten fan dizze ferzje wurdt fuortsmiten:"
@@ -3487,15 +3491,15 @@ msgstr "Bine jo wis dat jo jo beoardielingsfersyk annulearje wolle?"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Add-ondokumintaasje :: Untwikkelershub"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} flater"
 msgstr[1] "{0} flaters"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} warskôging"
@@ -4973,8 +4977,8 @@ msgstr "Privacy foarby browserútwreidingen"
 msgid "Media enhancers for Firefox"
 msgstr "Mediaferbetteraars foar Firefox"
 
-#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
 msgstr "Utwreidingen ferkenne"
 
@@ -5196,8 +5200,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Faakstelde fragen oer beoardielingen"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Add-on-beoardielingen binne in manier om jo mieningen oer de troch jo ynstallearre en brûkte add-ons te jaan. Us evaluaasjeteam behâldt harren it rjocht foar om elke beoardieling dy't net konfoarm "
 "dizze rjochtlinen te wegerjen of fuort te smiten is."
@@ -5266,8 +5270,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"In add-on bekritisearje foar op wat foar it bedoeld is. Bygelyks in negative beoardieling fan in add-on jaan foar it werjaan fan advertinsjes of ferplichte gegevenssamling, wannear't dat it doel fan"
-" de add-on is, of as de add-on gegevens sammelje moat om te wurkjen."
+"In add-on bekritisearje foar op wat foar it bedoeld is. Bygelyks in negative beoardieling fan in add-on jaan foar it werjaan fan advertinsjes of ferplichte gegevenssamling, wannear't dat it doel "
+"fan de add-on is, of as de add-on gegevens sammelje moat om te wurkjen."
 
 msgid "How can I report a problematic review?"
 msgstr "Hoe kin ik in problematyske beoardieling rapportearje?"
@@ -5698,14 +5702,16 @@ msgstr "Beoardieling mei sukses ferwurke."
 msgid "Review lock limit reached"
 msgstr "Limyt foar beoardielingsbeskoattelingen berikke"
 
-msgid "{addon} :: EULA"
+#, fuzzy
+msgid "{addon} – EULA"
 msgstr "{addon} :: EULA"
 
-msgid "{addon} :: Privacy Policy"
+#, fuzzy
+msgid "{addon} – Privacy Policy"
 msgstr "{addon} :: Privacybelied"
 
-msgid "{addon} :: Abuse Reports"
-msgstr "{addon}:: Misbrûkmeldingen"
+msgid " Abuse Reports – {addon} – Add-ons for Firefox"
+msgstr ""
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Misbrûkmeldingen foar {addon} en de ûntwikkelers derfan ({num})"
@@ -5778,6 +5784,9 @@ msgstr "Neat te sjen hjirre! De ûntwikkeler hat gjin details jûn."
 msgid "Add-on name translations"
 msgstr "op add-onferzje"
 
+msgid "Reviewer Tools – Add-ons for Firefox"
+msgstr ""
+
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Tebek nei it dashboerd fan it Beoardielersark"
 
@@ -5792,6 +5801,9 @@ msgstr "Rang"
 
 msgid "Score"
 msgstr "Skoare"
+
+msgid "Reviewer Moderation Log – Add-ons for Firefox"
+msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5830,6 +5842,9 @@ msgstr "Beoardieling is foar fuortsmiten labele."
 
 msgid "Undelete"
 msgstr "Fuortsmiten ûngedien meitsje"
+
+msgid "Reviewer Performance – Add-ons for Firefox"
+msgstr ""
 
 msgid "Add-on Reviewer Performance"
 msgstr "Prestaasjes fan add-on-beoardieler"
@@ -5876,6 +5891,26 @@ msgstr "Jier"
 msgid "All-Time"
 msgstr "Alles"
 
+msgid " – Reviewer Tools – Add-ons for Firefox"
+msgstr ""
+
+msgid "Content Review – Add-ons for Firefox"
+msgstr ""
+
+#, fuzzy
+msgid "Auto-approved Add-ons – Add-ons for Firefox"
+msgstr "Automatysk goedkarre add-ons"
+
+msgid "Review Moderation – Add-ons for Firefox"
+msgstr ""
+
+#, fuzzy
+msgid "Expired Information Requests – Add-ons for Firefox"
+msgstr "Ferrûn fersyk om ynformaasje"
+
+msgid "Unlisted Add-ons – Add-ons for Firefox"
+msgstr ""
+
 msgid "Advanced Search"
 msgstr "Avansearre sykje"
 
@@ -5910,6 +5945,9 @@ msgstr "Add-onbelied"
 
 msgid "Reviewer's Guide"
 msgstr "Beoardielingsrjochtlinen"
+
+msgid "{addon} – Add-ons for Firefox"
+msgstr ""
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5952,8 +5990,8 @@ msgstr "<strong>Warskôging!</strong> In oare brûker hat dizze side earder as j
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
-"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist oare"
-" behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
+"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist "
+"oare behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "It priveenotysjeboerd wurdt brûkt foar de útwikseling fan ferzjeûnôfhinklike ynformaasje tusken beoardielers. Hâld it taalgebrûk objektyf. Dit is allinnich sichtber foar beoardielers."
@@ -6033,6 +6071,9 @@ msgstr "Mear ynformaasje"
 
 msgid "Resolution"
 msgstr "Resolúsje"
+
+msgid "Add-on Review Log – Add-ons for Firefox"
+msgstr ""
 
 msgid "Reviewer"
 msgstr "Beoardieler"
@@ -6484,18 +6525,17 @@ msgstr "Oer folgjen fan eksterne boarnen…"
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Folgjen fan eksterne boarnen</h2> <p> As jo fan in eksterne website ôf in keppeling jouwe nei de detailside fan jo add-on of streekrjocht nei it bestân, lykas jo blog of website, kinne jo dêroan"
-" in parameter tafoegje dy folge wurde kin as oanfoljende downloadboarne op dizze side. Sa wurde bygelyks de folgjende keppelingen werjûn as kommend fan jo blog: <dl> <dt>Add-on-detailside</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Streekrjochte bestânskeppeling</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Allinnich src-parameters dy't mei ‘external-’ begjinne wurde folge, oant 61 "
-"oanfoljende tekens. Jo kinne in tekst nei ‘external-’ brûke om de boarne te beskriuwen, lykas ‘external-blog’, ‘external-sidebalke’, ‘external-campagne225’, ensfh. De folgjende URL-feilige tekens "
-"binne tastien: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Folgjen fan eksterne boarnen</h2> <p> As jo fan in eksterne website ôf in keppeling jouwe nei de detailside fan jo add-on of streekrjocht nei it bestân, lykas jo blog of website, kinne jo "
+"dêroan in parameter tafoegje dy folge wurde kin as oanfoljende downloadboarne op dizze side. Sa wurde bygelyks de folgjende keppelingen werjûn as kommend fan jo blog: <dl> <dt>Add-on-detailside</"
+"dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Streekrjochte bestânskeppeling</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest."
+"xpi?src=<b>external-blog</b></dd> </dl> <p> Allinnich src-parameters dy't mei ‘external-’ begjinne wurde folge, oant 61 oanfoljende tekens. Jo kinne in tekst nei ‘external-’ brûke om de boarne te "
+"beskriuwen, lykas ‘external-blog’, ‘external-sidebalke’, ‘external-campagne225’, ensfh. De folgjende URL-feilige tekens binne tastien: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Add-onsteat op datum"
@@ -6725,8 +6765,8 @@ msgstr ""
 "allinnich it domeinpart, brûk dan ‘Beheiningen e-mailbrûker’."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Lês en akseptearje eardat jo begjinne ús Firefox-add-on-distribúsje-oerienkomst en ús Beoardielingsrigels en belied. Dizze ferwiist ek nei ús Privacyferklearring, dy't útleit hoe't wy mei jo "
 "gegevens omgean."
@@ -6776,18 +6816,17 @@ msgstr "Brûkersôfbylding fuortsmite"
 
 #, python-format
 msgid ""
-"\n"
 "The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
 
 #, python-format
 msgid ""
-"\n"
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6796,23 +6835,21 @@ msgid ""
 "If you didn't expect to receive this invitation, please send an email to amo-admins@mozilla.com.\n"
 "\n"
 "Kind regards,\n"
-"The Mozilla Add-ons Team\n"
+"The Mozilla Add-ons Team"
 msgstr ""
 
 #, python-format
 msgid ""
-"\n"
 "The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
 
 #, python-format
 msgid ""
-"\n"
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s )\n"
+"%(author_name)s ( %(author_url)s )"
 msgstr ""
 
 msgctxt "user_list_others"

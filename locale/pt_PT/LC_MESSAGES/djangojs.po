@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-23 14:53+0000\n"
+"POT-Creation-Date: 2020-04-29 11:59+0000\n"
 "PO-Revision-Date: 2020-04-27 18:11+0000\n"
 "Last-Translator: Carlos (SUMO @silva.ac.carlos) <carlos.a.silva@pm.me>\n"
 "Language-Team: \n"
@@ -123,8 +123,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Os binários compilados, bem como os \"scripts\" reduzidos ou ofuscados (excluindo as bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente para revisão. Certifique-se que utiliza"
-" o campo de envio do código fonte para evitar que a sua submissão seja rejeitada."
+"Os binários compilados, bem como os \"scripts\" reduzidos ou ofuscados (excluindo as bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente para revisão. Certifique-se que "
+"utiliza o campo de envio do código fonte para evitar que a sua submissão seja rejeitada."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "O processo de validação encontrou estes problemas que podem levar a rejeições:"
