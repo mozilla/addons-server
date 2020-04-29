@@ -97,7 +97,7 @@ class UserTaskSet(BaseUserTaskSet):
             allow_redirects=False, catch_response=True)
 
         if (self.is_legacy_page(app) or force_legacy) and not legacy_selector:
-            log.warn(
+            log.warning(
                 'Received legacy url without legacy selector. {} :: {}'
                 .format(listing_url, detail_selector))
             return
@@ -111,7 +111,7 @@ class UserTaskSet(BaseUserTaskSet):
             collection_links = html.cssselect(selector)
 
             if not collection_links:
-                log.warn(
+                log.warning(
                     'No selectable links on page. {} :: {}'
                     .format(listing_url, selector))
 
