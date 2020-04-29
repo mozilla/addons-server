@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 13:40+0000\n"
+"PO-Revision-Date: 2020-04-29 13:48+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2995,7 +2995,7 @@ msgstr ""
 "\n"
 "%(url)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Dear add-on developer,\n"
 "\n"
@@ -3009,13 +3009,13 @@ msgid ""
 msgstr ""
 "Шановний розробнику додатків,\n"
 "\n"
-"Ми помітили, що ваші секретні облікові дані API AMO, були включені у додаток, надісланий на addons.mozilla.org. Щоб захистити ваш обліковий запис та додатки, ми відкликали викриті облікові дані.\n"
+"Ми помітили, що ваші секретні облікові дані API AMO, було включено у додаток, надісланий на addons.mozilla.org. Щоб захистити ваш обліковий запис та додатки, ми відкликали викриті облікові дані.\n"
 "Ви можете згенерувати нові облікові дані API на %(api_keys_url)s\n"
 "\n"
 "Будь ласка, переконайтеся, що ви ніколи не надаєте нікому своїх облікових даних. Ніколи не включайте їх до загальнодоступних репозиторіїв, додатків чи будь-якого іншого публічного місця. Ми радимо переглянути код у ваших репозиторіях та ваші розширення, щоб видалити будь-яку інформацію, пов'язану з вашими обліковими даними AMO.\n"
 "\n"
 "Дякуємо,\n"
-"Команда підтримки додатків Mozilla\n"
+"Команда підтримки додатків Mozilla"
 
 msgid "Invisible"
 msgstr "Невидимий"
@@ -5700,13 +5700,11 @@ msgstr "Перевірка успішно оброблена."
 msgid "Review lock limit reached"
 msgstr "Досягнуто межі блокування перевірки"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: Ліцензійна угода кінцевого користувача"
+msgstr "{addon} – Ліцензійна угода кінцевого користувача"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Політика приватності"
+msgstr "{addon} – Політика приватності"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5894,16 +5892,14 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Автоматично схвалені додатки"
+msgstr "Автоматично схвалені додатки – Додатки для Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Протермінований запит інформації"
+msgstr "Протермінований запит інформації – Додатки для Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6785,18 +6781,17 @@ msgstr "Скидання сеансу(-ів)"
 msgid "Delete picture"
 msgstr "Вилучити зображення"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
-"\n"
 "Цього автора було додано до вашого додатка %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
@@ -6811,10 +6806,9 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Вітаємо, %(author_name)s,\n"
 "\n"
-"Поздоровляємо, %(author_name)s,\n"
-"\n"
-"Вас запрошено стати автором %(addon_name)s у %(domain)s. Приймаючи запрошення, ви отримаєте доступ до редагування додатка, а також, ваше ім’я з'явиться у переліку авторів на вебсайті.\n"
+"Вас запрошено стати автором %(addon_name)s у %(domain)s. Прийнявши запрошення, ви отримаєте доступ до редагування додатка, а також, ваше ім’я з'явиться у переліку авторів на вебсайті.\n"
 "\n"
 "Натисніть на посилання далі, щоб відповісти, якщо ви хочете бути доданим як автор для %(addon_name)s.\n"
 "\n"
@@ -6823,29 +6817,27 @@ msgstr ""
 "Якщо ви не очікували на це запрошення, будь ласка, надішліть електронного листа на адресу amo-admins@mozilla.com.\n"
 "\n"
 "З повагою,\n"
-"Команда підтримки додатків\n"
+"Команда підтримки додатків"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
-"\n"
 "Цього автора було змінено у вашому додатку %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
-"\n"
 "Цього автора було вилучено з вашого додатка %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s )\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
