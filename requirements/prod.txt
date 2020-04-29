@@ -207,9 +207,9 @@ drf-nested-routers==0.91 \
 easy-thumbnails==2.7 \
     --hash=sha256:e4e7a0dd4001f56bfd4058428f2c91eafe27d33ef3b8b33ac4e013b159b9ff91
 # elasticsearch is required by elasticsearch-dsl
-elasticsearch==5.5.3 \
-    --hash=sha256:658380fd60bdaf746fef12958f0abc49063218ce93ee1ae4ca1fe6291c896433 \
-    --hash=sha256:ae91b089f2f2b5b3daa04297949e5f805ab12d187218cb587273f472656fd250 # pyup: <6
+elasticsearch==7.6.0 \
+    --hash=sha256:f4bb05cfe55cf369bdcb4d86d0129d39d66a91fd9517b13cd4e4231fbfcf5c81 \
+    --hash=sha256:d228b2d37ac0865f7631335268172dbdaa426adec1da3ed006dddf05134f89c8 # pyup: <6
 elasticsearch-dsl==5.4.0 \
     --hash=sha256:197246ddd556b4b7d2738dfa9e4831068c9b5cb21706f6aca035136d42849109 \
     --hash=sha256:cbef6467085d7debc870bc450d996c7ba5b8822eb86a6033bba09134ffb01ba8 # pyup: <6
