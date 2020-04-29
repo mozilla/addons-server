@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 13:22+0000\n"
+"PO-Revision-Date: 2020-04-29 13:28+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2907,7 +2907,7 @@ msgstr ""
 "\n"
 "%(url)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Dear add-on developer,\n"
 "\n"
@@ -2927,7 +2927,7 @@ msgstr ""
 "请确保不要与他人共用您的凭据。切勿将其存放于公有仓库、附加组件或其他任何可公开访问的地方。我们建议您立即检查代码仓库和扩展，并移除任何与 AMO 凭据有关的内容。\n"
 "\n"
 "感谢您的支持，\n"
-"Mozilla 附加组件团队\n"
+"Mozilla 附加组件团队"
 
 msgid "Invisible"
 msgstr "隐藏"
@@ -5583,16 +5583,14 @@ msgstr "审核处理成功。"
 msgid "Review lock limit reached"
 msgstr "审核锁已达限额"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: 最终用户许可协议（EULA）"
+msgstr "{addon} – 最终用户许可协议（EULA）"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: 隐私政策"
+msgstr "{addon} – 隐私政策"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "滥用报告 – {addon} – Firefox 附加组件库"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "对 {addon} 及其开发者的滥用报告 ({num} 项)"
@@ -5665,7 +5663,7 @@ msgid "Add-on name translations"
 msgstr "附加组件名称翻译"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "审阅者工具 – Firefox 附加组件库"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "返回审核员工具首页"
@@ -5683,7 +5681,7 @@ msgid "Score"
 msgstr "积分"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "审核者管理记录 – Firefox 附加组件库"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5724,7 +5722,7 @@ msgid "Undelete"
 msgstr "取消删除"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "审阅者效率 – Firefox 附加组件库"
 
 msgid "Add-on Reviewer Performance"
 msgstr "附加组件审核员效绩"
@@ -5772,24 +5770,22 @@ msgid "All-Time"
 msgstr "全部时间"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "- 审核者工具 – Firefox 附加组件库"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "内容审核 – Firefox 附加组件库"
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "自动批准的附加组件"
+msgstr "自动批准的附加组件 – Firefox 附加组件库"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "审核管理 – Firefox 附加组件库"
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "过期的信息请求"
+msgstr "过期的信息请求 – Firefox 附加组件库"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "未上架的附加组件 – Firefox 附加组件库"
 
 msgid "Advanced Search"
 msgstr "高级搜索"
@@ -5827,7 +5823,7 @@ msgid "Reviewer's Guide"
 msgstr "审核员指南"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} - Firefox 附加组件库"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5943,7 +5939,7 @@ msgid "Resolution"
 msgstr "决定"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "附加组件审核记录 - Firefox 附加组件库"
 
 msgid "Reviewer"
 msgstr "评价者"
