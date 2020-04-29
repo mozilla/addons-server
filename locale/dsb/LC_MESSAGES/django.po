@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 19:13+0000\n"
+"PO-Revision-Date: 2020-04-29 19:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -513,9 +513,9 @@ msgstr "Toś to blokěrowanje jo se importěrował ze zestarjonego blokěrowanja
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Pśewjeźone změny se w zestarjonej lisćinje blokěrowanjow NJEaktualizěruju - musyśo manuelnu změnu pśez webowy pówjerch zarědowanja Kinto pśewjasć."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Někotare wersije wótpokazaś"
+msgstr "Někotare %(name)s wulašowaś"
 
 msgid "Home"
 msgstr "Startowy bok"
@@ -906,9 +906,8 @@ msgstr "Blokěrowanje za {0} jo se wobźěłało w lisćinje blokěrowanjow."
 msgid "Block edited"
 msgstr "Blokěrowanje jo se wobźěłało"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Wersija {0} dodanka {addon} jo se wulašowała."
+msgstr "Blokěrowanje za {0} jo se wulašowało z lisćiny blokěrowanjow."
 
 msgid "Block deleted"
 msgstr "Blokěrowanje jo se wulašowało"
@@ -916,9 +915,8 @@ msgstr "Blokěrowanje jo se wulašowało"
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID za {addon} jo se pśidał DeniedGuid."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "Dodank {addon} jo se ze zběrki {collection} wótpórał."
+msgstr "GUID za {addon} jo se wótwónoźeł z DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr "Blokěrowanje akcije {1} za {0} wótpórane."
@@ -926,9 +924,8 @@ msgstr "Blokěrowanje akcije {1} za {0} wótpórane."
 msgid "Block action signoff"
 msgstr "Blokěrowanje akcije wótpóraś"
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "API-kluc wužywarja {user} jo se slědk stajił."
+msgstr "Pósejźenja wužywarja  {user} su se slědk stajili."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
@@ -985,9 +982,8 @@ msgstr "Wuwijaŕ"
 msgid "Extension"
 msgstr "Rozšyrjenje"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Pśeglědanje aktualizěrowaneje dopołneje drastwy"
+msgstr "Zestarjona dopołna drastwa"
 
 msgid "Dictionary"
 msgstr "Słownik"
@@ -1013,9 +1009,8 @@ msgstr "Drastwa (statiska)"
 msgid "Extensions"
 msgstr "Rozšyrjenja"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Dopołne drastwy"
+msgstr "Zestarjone dopołne drastwy"
 
 msgid "Dictionaries"
 msgstr "Słowniki"
@@ -1538,9 +1533,8 @@ msgstr "Wobraz niskeje kwality, rozćěgnjony abo prozny wobraz"
 msgid "Header image alignment problem"
 msgstr "Problem z wusměrjenim głowowego wobraza"
 
-#, fuzzy
 msgid "No action"
-msgstr "Dalšne akcije"
+msgstr "Žedna akcija"
 
 msgid "Flag for human review"
 msgstr "Za cłowjeske pśěglědanje markěrowaś"
@@ -1561,9 +1555,8 @@ msgstr "Wopak pozitiwny"
 msgid "Inconclusive"
 msgstr "Njejasny"
 
-#, fuzzy
 msgid "New"
-msgstr "Nowše"
+msgstr "Nowy"
 
 msgid "Running"
 msgstr "Wuwjedujo se"
@@ -1574,9 +1567,8 @@ msgstr "Pśetorgnjony"
 msgid "Aborting"
 msgstr "Pśetergujo se"
 
-#, fuzzy
 msgid "Completed"
-msgstr "Njedopołny"
+msgstr "Dopołny"
 
 msgid "Scheduled"
 msgstr "Planowany"
@@ -3197,9 +3189,8 @@ msgstr "Z nami zwězaś"
 msgid "Twitter"
 msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "Wuwijaŕ"
+msgstr "Za wuwijarjow"
 
 msgid "For end users"
 msgstr "Za kóńcnych wužywarjow"
@@ -3218,17 +3209,15 @@ msgstr "Wuwijanje rozšyrjenjow"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Wóstańśo na běžnem wó nowosćach a tšojenjach za wuwijarje rozšyrjenjow Firefox."
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP-adresa"
+msgstr "E-mailowa adresa"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr "Som wobjadny, až Mozilla wužywa móje daty tak, ako jo wopisane w toś tom %(link_open)spokazu priwatnosći%(link_close)s."
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Wótzjawiś"
+msgstr "Registrěrowaś"
 
 msgid "Thanks!"
 msgstr "Wjeliki źěk!"
@@ -3239,9 +3228,8 @@ msgstr "Jolic hyšći njejsćo abonement powěsćowego lista Mozilla wobkšuśi�
 msgid "Resources"
 msgstr "Resurse"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: Rozěrjenja wuwijaś a testowaś"
@@ -3329,20 +3317,17 @@ msgstr "Žedno foto"
 msgid "User Photo"
 msgstr "Wužywarske foto"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Mój profil"
+msgstr "Profil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Nowu wersiju zapódaś"
+msgstr "Rozšyrjenja zapódaś abo zastojaś"
 
 msgid "Customize Firefox"
 msgstr "Firefox pśiměriś"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Zgóńśo, kak móžośo dodank wuwjaś"
+msgstr "Zgóńśo, kak móžośo rozšyrjenje wuwijaś"
 
 msgid "Ready to submit or manage your extension?"
 msgstr "Sćo gótowy, swóje rozšyrjenje zapódaś abo zastojaś?"
@@ -5058,9 +5043,8 @@ msgstr "Wersija njedajo se ze sobu pśirownaś"
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njedajo se analyzěrowaś."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID jo trěbny za Firefox 47 a starše."
+msgstr "ID dodanka jo trěbny za Firefox 47 a starše."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Nejniša pódpěrana wersija \"strict_min_version\" jo 42.0."
@@ -5123,9 +5107,9 @@ msgstr "Maksimalna wjelikosć za drastwy Webextension jo {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Njamóžośo toś ten dodankowy typ zapódaś"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Njamóžośo žeden dodank z GUID zapódaś, kótaryž kóńcy se na %s"
+msgstr "Njamóžośo dodank z ID zapódaś, kótaryž kóńcy se na %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Njamóžośo signěrowane rozšyrjenje Mozilla zapódaś"
@@ -5538,9 +5522,8 @@ msgstr "Rizikowa analyza njejo k dispoziciji."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Njamóžośo komentar wótpósłaś, jolic ‚canned_response‘ jo definěrowany."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Njamóžośo rěcny pakśik zapódaś"
+msgstr "Njamóžośo prozny komentar zapódaś."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Njamóžośo smužkowy numer zapódaś, bźez togo aby jen datajowemu mjenoju pśipokazał."
@@ -5581,9 +5564,8 @@ msgstr[1] "{0} dnja"
 msgstr[2] "{0} dny"
 msgstr[3] "{0} dnjow"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Slědne pśeglědanje"
@@ -5629,9 +5611,8 @@ msgstr "Někotare wersije wótpokazaś"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "To wubrane zjawne wersije wótpokazajo. Komentary se na wuwijarja pósćelu."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Někotare wersije wótpokazaś"
+msgstr "Někotare wersije blokěrowaś"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr "To wubrane pśizwólone wersije kšajźu znjemóžnijo a administraciski bok za napóranje blokěrowanja wócynijo."
