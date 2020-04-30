@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 00:49+0000\n"
+"PO-Revision-Date: 2020-04-30 01:05+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5890,19 +5890,19 @@ msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr "– Інструменти редактора – Додатки для Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Огляд вмісту – Додатки для Firefox"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Автоматично схвалені додатки – Додатки для Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Огляд перевірок – Додатки для Firefox"
 
 msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Протермінований запит інформації – Додатки для Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Неопубліковані додатки – Додатки для Firefox"
 
 msgid "Advanced Search"
 msgstr "Розширений пошук"
