@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 12:11+0000\n"
+"PO-Revision-Date: 2020-04-30 12:19+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -922,7 +922,7 @@ msgid "Block {1} action for {0} signed off."
 msgstr "Blocar {1} action pro {0} signate inactive."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Blocar action de disconnexion"
 
 msgid "User {user} session(s) reset."
 msgstr "Le session(es) de usator {user} ha essite reinitialisate."
@@ -1536,34 +1536,34 @@ msgid "No action"
 msgstr "Nulle action"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Signalar pro revision human"
 
 msgid "Delay auto-approval"
 msgstr "Retardar auto-approbation"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Retardar auto-approbation indefinitemente"
 
 msgid "True positive"
-msgstr ""
+msgstr "Ver positive"
 
 msgid "False positive"
-msgstr ""
+msgstr "False positive"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Inconclusive"
 
 msgid "New"
 msgstr "Nove"
 
 msgid "Running"
-msgstr ""
+msgstr "In execution"
 
 msgid "Aborted"
 msgstr "Abortate"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Aborto in curso…"
 
 msgid "Completed"
 msgstr "Completate"
