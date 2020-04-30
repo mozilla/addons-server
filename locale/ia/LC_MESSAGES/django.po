@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 11:01+0000\n"
+"PO-Revision-Date: 2020-04-30 11:19+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -511,7 +511,7 @@ msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "Iste blocada ha essite importate de un blocada Kinto obsolete, basate sur expression regular."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Ulle cambio facite non sera actualisate in le lista del blocadas obsolete - tu debe face un manual cambio via le interfacie web de administrator de Kinto."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
