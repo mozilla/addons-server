@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
 from django.urls import path
 from django.utils.html import format_html
+from django.utils.translation import ugettext
 
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
@@ -41,6 +42,37 @@ def _get_version_choices(block, field_name):
         # - the version was hard-deleted from the addon afterwards (unlikely)
         choices = [(block_version, '(invalid)')] + choices
     return choices
+
+
+class BlocklistSubmissionStateFilter(admin.SimpleListFilter):
+    title = ugettext('Signoff State')
+    parameter_name = 'signoff_state'
+    default_value = BlocklistSubmission.SIGNOFF_PENDING
+    field_choices = BlocklistSubmission.SIGNOFF_STATES.items()
+
+    def lookups(self, request, model_admin):
+        return (('all', 'All'), *self.field_choices)
+
+    def choices(self, cl):
+        value = self.value()
+        for lookup, title in self.lookup_choices:
+            selected = (
+                lookup == self.default_value if value is None
+                else value == str(lookup))
+            yield {
+                'selected': selected,
+                'query_string': cl.get_query_string(
+                    {self.parameter_name: lookup}, []
+                ),
+                'display': title,
+            }
+
+    def queryset(self, request, queryset):
+        value = self.value()
+        if value == 'all':
+            return queryset
+        real_value = self.default_value if value is None else value
+        return queryset.filter(**{self.parameter_name: real_value})
 
 
 class BlockAdminAddMixin():
@@ -130,7 +162,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
         'modified',
     )
     list_filter = (
-        'signoff_state',
+        BlocklistSubmissionStateFilter,
     )
     ordering = ['-created']
     view_on_site = False
