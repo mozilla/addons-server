@@ -76,7 +76,7 @@ class MLBF():
 
     @classmethod
     def generate_mlbf(cls, stats, blocked, not_blocked):
-        log.info('Generating filter')
+        log.info('Starting to generating bloomfilter')
 
         cascade = FilterCascade(
             defaultHashAlg=HashAlgorithm.SHA256,
