@@ -60,15 +60,6 @@ class TestFileEntriesSerializer(TestCase):
         data = self.serialize(file)
 
         assert data['id'] == file.pk
-        assert data['status'] == 'public'
-        assert data['hash'] == ''
-        assert data['is_webextension'] is True
-        assert data['created'] == (
-            file.created.replace(microsecond=0).isoformat() + 'Z')
-        assert data['url'] == (
-            'http://testserver/firefox/downloads/file/{}'
-            '/notify-link-clicks-i18n.xpi?src=').format(file.pk)
-
         assert data['selected_file'] == 'manifest.json'
         assert data['download_url'] == absolutify(reverse(
             'reviewers.download_git_file',
@@ -110,8 +101,6 @@ class TestFileEntriesSerializer(TestCase):
 
         assert '"manifest_version": 2' in data['content']
         assert 'id": "notify-link-clicks-i18n@notzilla.org' in data['content']
-        assert data['platform'] == 'all'
-        assert data['is_mozilla_signed_extension'] is False
 
     def test_requested_file(self):
         file = self.addon.current_version.current_file
@@ -320,15 +309,6 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert data['base_file'] == {
             'id': parent_version.current_file.pk
         }
-        assert data['status'] == 'public'
-        assert data['hash'] == ''
-        assert data['is_webextension'] is True
-        assert data['created'] == (
-            file.created.replace(microsecond=0).isoformat() + 'Z')
-        assert data['url'] == (
-            'http://testserver/firefox/downloads/file/{}'
-            '/webextension_no_id.xpi?src=').format(file.pk)
-
         assert data['selected_file'] == 'manifest.json'
         assert data['download_url'] == absolutify(reverse(
             'reviewers.download_git_file',

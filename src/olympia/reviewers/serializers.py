@@ -49,7 +49,7 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
 
 # NOTE: Because of caching, this serializer cannot be reused and must be
 # created for each file. It cannot be used with DRF's many=True option.
-class FileEntriesSerializer(FileSerializer):
+class FileEntriesSerializer(serializers.ModelSerializer):
     content = serializers.SerializerMethodField()
     uses_unknown_minified_code = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
@@ -62,11 +62,10 @@ class FileEntriesSerializer(FileSerializer):
     filename = serializers.SerializerMethodField()
 
     class Meta:
-        fields = FileSerializer.Meta.fields + (
-            'content', 'entries', 'selected_file', 'download_url',
-            'uses_unknown_minified_code', 'mimetype', 'sha256', 'size',
-            'mime_category', 'filename'
-        )
+        fields = ('id', 'content', 'entries', 'selected_file', 'download_url',
+                  'uses_unknown_minified_code', 'mimetype', 'sha256', 'size',
+                  'mime_category', 'filename'
+                  )
         model = File
 
     @cached_property
@@ -350,11 +349,10 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
     base_file = serializers.SerializerMethodField()
 
     class Meta:
-        fields = FileSerializer.Meta.fields + (
-            'diff', 'entries', 'selected_file', 'download_url',
-            'uses_unknown_minified_code', 'base_file',
-            'sha256', 'size', 'mimetype', 'mime_category', 'filename'
-        )
+        fields = ('id', 'diff', 'entries', 'selected_file', 'download_url',
+                  'uses_unknown_minified_code', 'base_file',
+                  'sha256', 'size', 'mimetype', 'mime_category', 'filename'
+                  )
         model = File
 
     def get_diff(self, obj):
