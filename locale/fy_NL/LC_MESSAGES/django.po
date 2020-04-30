@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 07:17+0000\n"
+"PO-Revision-Date: 2020-04-30 14:31+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -558,7 +558,7 @@ msgstr "Bydrage goedkarre"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "%(name)s tafoegje"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
