@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 11:33+0000\n"
+"PO-Revision-Date: 2020-04-30 12:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -526,10 +526,10 @@ msgstr "%(count)s GUIDs de additivos es jam blocate pro le versiones de %(v_min)
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s GUIDs de additivos non ha essite trovate"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Le sequente blocada(s) ha essite importate de un blocada Kinto obsolete, basate sur expression regular."
 
 msgid "Save"
 msgstr "Salvar"
@@ -895,16 +895,16 @@ msgid "User {user} api key reset."
 msgstr "Le clave API del usator {user} ha essite reinitialisate."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blocada pro {0} addite a lista del blocadas."
 
 msgid "Block added"
-msgstr ""
+msgstr "Blocada addite"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blocada pro {0} modificate in lista del blocadas."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blocada modificate"
 
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Blocada pro {0} delite ex lista del blocadas."
@@ -913,13 +913,13 @@ msgid "Block deleted"
 msgstr "Blocada delite"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID pro {addon} removite de DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID pro {addon} removite de DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Blocar {1} action pro {0} signate inactive."
 
 msgid "Block action signoff"
 msgstr ""
