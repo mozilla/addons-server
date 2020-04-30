@@ -162,6 +162,21 @@ class TestMLBF(TestCase):
             bfilter.tofile(out)
             assert os.stat(out.name).st_size == 300
 
+    def test_generate_mlbf_with_more_blocked_than_not_blocked(self):
+        key_format = MLBF.KEY_FORMAT
+        blocked = [('guid1@', '1.0'), ('@guid2', '1.0')]
+        not_blocked = [('guid10@', '1.0')]
+        bfilter = MLBF.generate_mlbf(
+            {},
+            blocked=MLBF.hash_filter_inputs(blocked),
+            not_blocked=MLBF.hash_filter_inputs(not_blocked))
+        for entry in blocked:
+            key = key_format.format(guid=entry[0], version=entry[1])
+            assert key in bfilter
+        for entry in not_blocked:
+            key = key_format.format(guid=entry[0], version=entry[1])
+            assert key not in bfilter
+
     def test_generate_and_write_mlbf(self):
         mlbf = MLBF(123456)
         mlbf.generate_and_write_mlbf()

@@ -1,5 +1,4 @@
 import json
-import math
 import os
 import secrets
 from collections import defaultdict
@@ -77,32 +76,28 @@ class MLBF():
 
     @classmethod
     def generate_mlbf(cls, stats, blocked, not_blocked):
-        """Originally based on:
-        https://github.com/mozilla/crlite/blob/master/create_filter_cascade/certs_to_crlite.py
-        (not so much any longer, apart from the fprs calculation)
-        """
-        salt = secrets.token_bytes(16)
+        log.info('Starting to generating bloomfilter')
+
+        cascade = FilterCascade(
+            defaultHashAlg=HashAlgorithm.SHA256,
+            salt=secrets.token_bytes(16),
+        )
+
+        error_rates = sorted((len(blocked), len(not_blocked)))
+        cascade.set_crlite_error_rates(
+            include_len=error_rates[0], exclude_len=error_rates[1])
+
+        cascade.initialize(include=blocked, exclude=not_blocked)
 
         stats['mlbf_blocked_count'] = len(blocked)
         stats['mlbf_notblocked_count'] = len(not_blocked)
-
-        fprs = [len(blocked) / (math.sqrt(2) * len(not_blocked)), 0.5]
-
-        log.info("Generating filter")
-        cascade = FilterCascade(
-            error_rates=fprs,
-            defaultHashAlg=HashAlgorithm.SHA256,
-            salt=salt,
-        )
-        cascade.initialize(include=blocked, exclude=not_blocked)
-
-        stats['mlbf_fprs'] = fprs
         stats['mlbf_version'] = cascade.version
         stats['mlbf_layers'] = cascade.layerCount()
         stats['mlbf_bits'] = cascade.bitCount()
 
-        log.debug("Filter cascade layers: {layers}, bit: {bits}".format(
-            layers=cascade.layerCount(), bits=cascade.bitCount()))
+        log.debug(
+            f'Filter cascade layers: {cascade.layerCount()}, '
+            f'bit: {cascade.bitCount()}')
 
         cascade.verify(include=blocked, exclude=not_blocked)
         return cascade
