@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 00:41+0000\n"
+"PO-Revision-Date: 2020-04-30 00:49+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5798,7 +5798,7 @@ msgid "Score"
 msgstr "Оцінка"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Журнал перевірок редактора – Додатки для Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5839,7 +5839,7 @@ msgid "Undelete"
 msgstr "Відновити"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Продуктивність редактора – Додатки для Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Продуктивність редактора додатків"
@@ -5887,7 +5887,7 @@ msgid "All-Time"
 msgstr "Весь час"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Інструменти редактора – Додатки для Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
