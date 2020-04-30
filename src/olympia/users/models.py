@@ -885,7 +885,7 @@ class DeveloperAgreementRestriction(GetErrorMessageMixin):
         if is_api:
             from olympia.amo.templatetags.jinja_helpers import absolutify
             url = absolutify(reverse('devhub.api_key'))
-            return _('Please read and accept our Firefox on Distribution '
+            return _('Please read and accept our Firefox Add-on Distribution '
                      'Agreement as well as our Review Policies and Rules '
                      'by visiting {url}'.format(url=url))
         else:
