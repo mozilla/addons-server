@@ -49,7 +49,7 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
 
 # NOTE: Because of caching, this serializer cannot be reused and must be
 # created for each file. It cannot be used with DRF's many=True option.
-class FileEntriesSerializer(FileSerializer):
+class FileEntriesSerializer(serializers.ModelSerializer):
     content = serializers.SerializerMethodField()
     uses_unknown_minified_code = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
