@@ -105,6 +105,10 @@ class BrokenRefError(RuntimeError):
     pass
 
 
+class MissingMasterBranchError(RuntimeError):
+    pass
+
+
 def get_mime_type_for_blob(tree_or_blob, name, blob):
     """Returns the mimetype and type category for a git blob.
 
@@ -250,7 +254,7 @@ class AddonGitRepository(object):
                 path=self.git_repository_path,
                 bare=False)
             # Write first commit to 'master' to act as HEAD
-            tree = self.git_repository.TreeBuilder().write()
+            tree = git_repository.TreeBuilder().write()
             git_repository.create_commit(
                 'HEAD',  # ref
                 self.get_author(),  # author, using addons-robot
@@ -263,6 +267,17 @@ class AddonGitRepository(object):
                 path=self.git_repository_path))
         else:
             git_repository = pygit2.Repository(self.git_repository_path)
+
+            # We have to verify that the 'master' branch exists because we
+            # might have mis-initialized repositories in the past.
+            # See: https://github.com/mozilla/addons-server/issues/14127
+            try:
+                master_ref = 'refs/heads/master'
+                git_repository.lookup_reference(master_ref)
+            except KeyError:
+                message = 'Reference "{}" not found'.format(master_ref)
+                log.exception(message)
+                raise MissingMasterBranchError(message)
 
         return git_repository
 

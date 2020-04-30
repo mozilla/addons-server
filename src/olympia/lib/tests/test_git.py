@@ -17,8 +17,8 @@ from olympia import amo
 from olympia.amo.tests import (
     addon_factory, version_factory, user_factory, activate_locale)
 from olympia.lib.git import (
-    AddonGitRepository, BrokenRefError, TemporaryWorktree, BRANCHES,
-    EXTRACTED_PREFIX, get_mime_type_for_blob)
+    AddonGitRepository, BrokenRefError, MissingMasterBranchError,
+    TemporaryWorktree, BRANCHES, EXTRACTED_PREFIX, get_mime_type_for_blob)
 from olympia.files.utils import id_to_path
 
 
@@ -124,6 +124,16 @@ def test_git_repo_init(settings):
     assert sorted(os.listdir(repo.git_repository.path)) == sorted([
         'objects', 'refs', 'hooks', 'info', 'description', 'config',
         'HEAD', 'logs'])
+    assert repo.git_repository.lookup_reference('refs/heads/master')
+
+
+def test_git_repo_init_with_missing_master_branch_raises_error(settings):
+    repo = AddonGitRepository(1)
+    # Create the git repo manually to avoid the creation of the master branch.
+    pygit2.init_repository(path=repo.git_repository_path, bare=False)
+
+    with pytest.raises(MissingMasterBranchError):
+        repo.git_repository
 
 
 def test_git_repo_init_opens_existing_repo(settings):
