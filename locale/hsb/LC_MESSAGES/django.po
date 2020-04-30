@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 15:23+0000\n"
+"PO-Revision-Date: 2020-04-30 15:26+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6034,13 +6034,11 @@ msgstr "Awtomatiske schwalenje nalistowanych přidatkow znjemóžnić"
 msgid "Enable Listed Auto-Approval"
 msgstr "Awtomatiske schwalenje nalistowanych přidatkow zmóžnić"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Je marku „awtomatiske schwalenje znjemóžnjene“ stajił"
+msgstr "Awtomatiske schwalenje je tuchwilu hač do {date} znjemóžnjene"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Awtomatiske schwalenje zmóžnić"
+msgstr "Přidatne zadźerženje awtomatiskeho schwalenja wotstronić"
 
 msgid "Clear information request"
 msgstr "Próstwu wo informacije zhašeć"
@@ -6809,7 +6807,7 @@ msgstr ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
@@ -6824,7 +6822,6 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
-"\n"
 "Witajće %(author_name)s,\n"
 "\n"
 "přeprosychu was so z awtorom přidatka  %(addon_name)s na %(domain)s stać. Hdyž přeprošenje přiwozmjeće, dóstanjeće přistup, zo byšće přidatk wobdźěłował a waše mjeno so w lisćinje awtorow na websydle pokaza.\n"
@@ -6837,7 +6834,7 @@ msgstr ""
 "\n"
 "Z přećelnymi postrowami,\n"
 "\n"
-"Team přidatkow Mozilla\n"
+"Team přidatkow Mozilla"
 
 #, python-format
 msgid ""
