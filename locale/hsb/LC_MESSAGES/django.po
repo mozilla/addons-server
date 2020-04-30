@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 21:08+0000\n"
+"PO-Revision-Date: 2020-04-30 15:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5791,7 +5791,7 @@ msgid "Add-on name translations"
 msgstr "Přełožki přidatkoweho mjena"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Nastroje za přepruwowarjow – Přidatki za Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Wróćo k přehladej nastrojow za přepruwowarjow"
@@ -5809,7 +5809,7 @@ msgid "Score"
 msgstr "Staw po dypkach"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Protokol moderacije za přepruwowarjow – Přidatki za Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5850,7 +5850,7 @@ msgid "Undelete"
 msgstr "Wotstronjenje cofnyć"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Wukon přepruwowarja – Přidatki za Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Wukon přidatkowych přepruwowarjow"
@@ -5898,7 +5898,7 @@ msgid "All-Time"
 msgstr "Cyły čas"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Nastroje za přepruwowarjow – Přidatki za Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
 msgstr "Přepruwowanje wobsaha – Přidatki za Firefox"
@@ -5907,7 +5907,7 @@ msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Awtomatisce schwalene přidatki – Přidatki za Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderacija přepruwowarjow - Přidatki za Firefox"
 
 #, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
@@ -6073,7 +6073,7 @@ msgid "Resolution"
 msgstr "Rozsud"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Protokol za přepruwowanje přidatkow – Přidatki za Firefox"
 
 msgid "Reviewer"
 msgstr "Přepruwowar"
