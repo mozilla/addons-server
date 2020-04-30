@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 14:30+0000\n"
+"PO-Revision-Date: 2020-04-30 18:27+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5731,9 +5731,8 @@ msgstr "Avaliação processada com sucesso."
 msgid "Review lock limit reached"
 msgstr "Limite de bloqueio de análise atingido"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: Política de uso"
+msgstr "{addon} – Contrato de licença de usuário final (EULA)"
 
 msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Política de privacidade"
@@ -5930,9 +5929,8 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Extensões aprovadas automaticamente"
+msgstr "Extensões aprovadas automaticamente – Extensões para o Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
