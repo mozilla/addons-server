@@ -60,7 +60,7 @@ class Command(BaseCommand):
         It does not run if the add-on is locked for git extraction.
         """
         addon = entry.addon
-        log.info('Starting extraction of add-on "{}".'.format(addon.pk))
+        log.info('Starting git extraction of add-on "{}".'.format(addon.pk))
 
         # We cannot use `entry.in_progress` because we have to be sure of the
         # add-on state and `entry` might not reflect the most up-to-date
@@ -85,7 +85,7 @@ class Command(BaseCommand):
 
         if len(versions_to_extract) == 0:
             log.info(
-                'No version to extract for add-on "{}", '
+                'No version to git-extract for add-on "{}", '
                 'exiting.'.format(addon.pk)
             )
             # We can safely delete the entry because there is no version to
@@ -104,7 +104,7 @@ class Command(BaseCommand):
         tasks.append(remove_git_extraction_entry.si(addon.pk))
 
         log.info(
-            'Submitted {} tasks to extract {} versions for add-on '
+            'Submitted {} tasks to git-extract {} versions for add-on '
             '"{}".'.format(len(tasks), len(versions_to_extract), addon.pk)
         )
         # Attach an error handler on the chain and run it. The error
