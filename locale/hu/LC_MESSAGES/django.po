@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 09:04+0000\n"
+"PO-Revision-Date: 2020-04-30 09:14+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1891,7 +1891,7 @@ msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
 msgstr ""
-"Ezen ajánlott kiegészítő legutóbbi jóváhagyott verzióját nem lehet törölni vagy letiltani, mert az előző verzió nem lett ajánlottként elfogadva. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha "
+"Ezen ajánlott kiegészítő legutóbbi jóváhagyott értékelt nem lehet törölni vagy letiltani, mert az előző verzió nem lett ajánlottként elfogadva. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha "
 "segítségre van szüksége."
 
 #, python-format
@@ -2725,9 +2725,8 @@ msgstr "A listázása sikeresebb lehet, ha ad meg részletes leírást és képe
 msgid "Manage Listing"
 msgstr "Listázás kezelése"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Ezt a verziót is szerkesztheti: adhat hozzá verziómegjegyzéseket vagy forráskódot is, ha a beküldése tartalmaz minimalizált, obfuszkált vagy lefordított kódot."
+msgstr "Ezt a verziót is szerkesztheti, hogy verziómegjegyzéseket adjon hozzá, vagy forráskódot, ha a beküldése tartalmaz minimalizált, összefűzött vagy más módon géppel előállított kódot."
 
 msgid "Edit version {0}"
 msgstr "{0} verzió szerkesztése"
@@ -4961,9 +4960,8 @@ msgid "Save an entire web page—including images and styling—as a single HTML
 msgstr "Teljes oldal – vagy csak egy részének – letöltése egyetlen HTML fájlként."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Automatikusan törölje a sütiket a lapok bezárása után."
+msgstr "Automatikusan cserélje le a sértő szavakat a weben."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -5036,9 +5034,8 @@ msgstr "Nem hasonlítható össze egy verzió saját magával"
 msgid "Could not parse the manifest file."
 msgstr "Nem sikerült feldolgozni a jegyzékfájlt."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Firefox 47 és korábbi verziókhoz GUID szükséges."
+msgstr "Firefox 47 és korábbi verziók esetén kiegészítő-azonosító szükséges."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "A legkisebb támogatott „strict_min_version” érték: 42.0."
@@ -5101,9 +5098,9 @@ msgstr "A WebExtension témák maximális mérete {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Ilyen típusú kiegészítőt nem küldhet be"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Nem nyújthat be %s GUID-dal végződő kiegészítőt"
+msgstr "Nem küldhet be %s szöveggel végződő azonosítójú kiegészítőt"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nem küldhet be Mozilla által aláírt kiegészítőt"
@@ -5501,9 +5498,8 @@ msgstr "Automatikus jóváhagyás határozatlan idejű késleltetése"
 msgid "Is locked by a reviewer"
 msgstr "Egy szerkesztő zárolta"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Az automatikus jóváhagyás letiltottnak van jelölve"
+msgstr "Az automatikus értékelés letiltottnak/késleltetettnek van jelölve"
 
 msgid "Is recommendable"
 msgstr "Ajánlott"
@@ -5517,9 +5513,8 @@ msgstr "A kockázati bontás nem érhető el."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Nem küldhet megjegyzést, ha a „canned_response” be van állítva."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Nem küldhet be nyelvi csomagot"
+msgstr "Nem küldhet be üres hozzászólást."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Nem küldhet be sorszámot anélkül, hogy fájlnévhez rendelné azt."
@@ -5569,13 +5564,11 @@ msgstr "Információkérés határideje"
 msgid "Last Updated"
 msgstr "Utoljára frissítve"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Egyéb értékelésre várók ({0})"
+msgstr "Emberi értékelést igénylő listázott verziók ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Egyéb értékelésre várók ({0})"
+msgstr "Emberi értékelést igénylő nem listázott verziók ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ez jóváhagyja, aláírja és közzéteszi ezt a verziót. A megjegyzések elküldésre kerülnek a fejlesztőnek."
@@ -5610,9 +5603,8 @@ msgstr ""
 msgid "Confirm Multiple Versions"
 msgstr "Több verzió megerősítése"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Ez rögzíti, hogy jóváhagyta a legutóbbi nyilvános verzió tartalmát, anélkül hogy értesítené a fejlesztőt."
+msgstr "Ez megerősíti a kiválasztott verziók jóváhagyását, a fejlesztő értesítése nélkül."
 
 msgid "Reviewer reply"
 msgstr "Értékelői válasz"
@@ -5725,13 +5717,11 @@ msgstr "Az értékelés sikeresen megtörtént."
 msgid "Review lock limit reached"
 msgstr "Értékelések zárolási korlátja elérve"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: Végfelhasználói licencszerződés"
+msgstr "{addon} – Végfelhasználói licencszerződés"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Adatvédelmi irányelvek"
+msgstr "{addon} – Adatvédelmi irányelvek"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5923,16 +5913,14 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Automatikusan jóváhagyott kiegészítők"
+msgstr "Automatikusan jóváhagyott kiegészítők – Firefox kiegészítők"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Lejárt információkérés"
+msgstr "Lejárt információkérések – Firefox kiegészítők"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6028,13 +6016,11 @@ msgstr "További műveletek"
 msgid "Notify me about new listed versions"
 msgstr "Értesítsen az új listázott verziókról"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Összes beküldés megtekintése"
+msgstr "Ismételt beküldés engedélyezése"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Beküldéseim kezelése"
+msgstr "Ismételt beküldés megtagadása"
 
 msgid "Force-disable add-on"
 msgstr "Kiegészítő erőltetett letiltása"
@@ -6057,17 +6043,14 @@ msgstr ""
 msgid "Disable Listed Auto-Approval"
 msgstr "Listázottak automatikus jóváhagyásának letiltása"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Automatikus jóváhagyás engedélyezése"
+msgstr "Listázottak automatikus jóváhagyásának engedélyezése"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Az automatikus jóváhagyás letiltottnak van jelölve"
+msgstr "Az automatikus jóváhagyás eddig tiltott: {date}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Automatikus jóváhagyás engedélyezése"
+msgstr "Automatikus jóváhagyás további késleltetésének eltörlése"
 
 msgid "Clear information request"
 msgstr "Információkérés teljesítése"
@@ -6310,9 +6293,8 @@ msgstr "Futtatás"
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Értékelői válasz"
+msgstr "Jelentés visszaállítása"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6338,9 +6320,8 @@ msgstr "A(z) „%s”, „%s” és „%s” paraméterek érvénytelen kombiná
 msgid "Maximum query length exceeded."
 msgstr "Túllépte a maximális lekérdezés hosszt."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "A(z) „{}” guid értékkel kiegészítő nem található."
+msgstr "A(z) „{}” azonosítójú kiegészítő nem található."
 
 msgid "You do not own this addon."
 msgstr "Nem Ön a kiegészítő tulajdonosa."
@@ -6359,17 +6340,15 @@ msgstr "A verzió nem egyezik meg a jegyzékfájllal."
 msgid "Version already exists. Latest version is: %s."
 msgstr "A verzió már létezik. A legfrissebb verzió: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Csak a WebExtension-ök számára megengedett a GUID kihagyása"
+msgstr "Csak WebExtensionök számára megengedett a kiegészítőazonosító elhagyása"
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "A leírófájlban adja meg a kiegészítő GUID-ját, ha 64 karakternél hosszabb."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Érvénytelen GUID az URL-ben"
+msgstr "Érvénytelen kiegészítőazonosító az URL-ben vagy csomagban"
 
 #, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
@@ -6717,13 +6696,12 @@ msgstr "„%(users)s” felhasználók ki lettek tiltva."
 msgid "Ban selected users"
 msgstr "Kiválasztott felhasználók kitiltása"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "„%(users)s” felhasználók API-kulcsa helyreállítva."
+msgstr "„%(users)s” felhasználók munkamenete visszaállítva."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Verzió törlése"
+msgstr "Munkamenet visszaállítása"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6828,9 +6806,8 @@ msgstr "Felhasználói értesítések"
 msgid "Ban"
 msgstr "Kitiltás"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Verzió törlése"
+msgstr "Munkamenetek visszaállítása"
 
 msgid "Delete picture"
 msgstr "Kép törlése"
