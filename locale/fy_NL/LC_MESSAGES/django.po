@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 19:44+0000\n"
+"PO-Revision-Date: 2020-04-30 07:17+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -485,28 +485,28 @@ msgstr "Dizze add-on heart al by de kolleksje"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Blokkearring mei GUID %(guid)s net fûn"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s is yn behanneling"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Add-on mei GUID %(guid)s bestiet net"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s is al yn behanneling"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "By te wurkjen blokkearringen binne ferskillend, omdat de minimum- of maksimumferzje wizige is."
 
 msgid "Invalid version"
 msgstr "Unjildige ferzje"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Minimumferzje kin net grutter wêze as de maksimumferzje"
 
 msgid "Review Listed"
 msgstr "Fermeldingen beoardiele"
@@ -515,10 +515,10 @@ msgid "Review Unlisted"
 msgstr "Net-fermelde items beoardiele"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Dizze blokkearring is ymportearre út in ferâldere, op in reguliere ekspresje basearre kinto-blokkearring."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Elke wiziging wurdt NET bywurke yn de list mei ferâldere blokkearringen – jo moatte in hânmjittige wiziging oanbringe fia de online kinto-beheardersynterface."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -529,7 +529,7 @@ msgstr "Startside"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s add-on-GUID’s binne al blokkearre foar %(v_min)s oant %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
