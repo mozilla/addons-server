@@ -38,7 +38,7 @@ class TestIsSubmissionAllowedFor(TestCase):
         self.request.user.update(read_dev_agreement=None)
         assert not self.permission.has_permission(self.request, self.view)
         assert self.permission.message == (
-            'Please read and accept our Firefox on Distribution Agreement '
+            'Please read and accept our Firefox Add-on Distribution Agreement '
             'as well as our Review Policies and Rules by visiting '
             'http://testserver/en-US/developers/addon/api/key/'
         )
