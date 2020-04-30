@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 06:20+0000\n"
+"PO-Revision-Date: 2020-04-30 06:42+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4446,7 +4446,7 @@ msgstr "Gestionează în siguranță parolele {start_sub_heading}cu {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr "Stochează parolele în siguranță și autentifică-te automat pe site-urile cunoscute."
+msgstr "Stochează parolele în siguranță și te autentifici automat pe site-urile cunoscute."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4596,7 +4596,7 @@ msgstr "Ține parolele în siguranță {start_sub_heading}cu {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr "Stochează parolele în siguranță și autentifică-te automat pe site-urile cunoscute."
+msgstr "Stochează parolele în siguranță și te autentifici automat pe site-urile cunoscute."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -5235,7 +5235,7 @@ msgid "Write like you are telling a friend about your experience with the add-on
 msgstr "Scrie ca și când i-ai povesti unui prieten experiența ta cu suplimentul respectiv."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr "Fii concis(ă) și redactează recenzii ușor de înțeles."
+msgstr "Fii concis(ă) și scrie recenzii ușor de înțeles."
 
 msgid "Give specific and helpful details. For example:"
 msgstr "Dă detalii specifice și utile. De exemplu:"
