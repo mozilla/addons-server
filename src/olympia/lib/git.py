@@ -489,7 +489,11 @@ class AddonGitRepository(object):
                 tree,
                 # Set the current branch HEAD as the parent of this commit
                 # so that it'll go straight into the branches commit log
-                [branch.target]
+                #
+                # We use `lookup_reference` to fetch the most up-to-date
+                # reference to the branch in order to avoid an error described
+                # in: https://github.com/mozilla/addons-server/issues/13932
+                [self.git_repository.lookup_reference(branch.name).target]
             )
 
             # Fetch the commit object
@@ -498,7 +502,13 @@ class AddonGitRepository(object):
             # And set the commit we just created as HEAD of the relevant
             # branch, and updates the reflog. This does not require any
             # merges.
-            branch.set_target(commit.hex)
+            #
+            # We use `lookup_reference` to fetch the most up-to-date reference
+            # to the branch in order to avoid an error described in:
+            # https://github.com/mozilla/addons-server/issues/13932
+            self.git_repository.lookup_reference(branch.name).set_target(
+                commit.hex
+            )
 
         return commit
 
