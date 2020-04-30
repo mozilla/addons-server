@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 14:32+0000\n"
+"PO-Revision-Date: 2020-04-30 10:54+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -482,7 +482,7 @@ msgstr "Bloco con GUID %(guid)s non trovate"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "Le GUID %(guid)s es in un invio pendente"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
@@ -490,10 +490,10 @@ msgstr "Le additivo con GUID %(guid)s non existe"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "Le GUID %(guid)s es jam in un invio pendente"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Le blocadas a actualisar es differente perque le version minime o maxime ha cambiate."
 
 msgid "Invalid version"
 msgstr "Version non valide."
