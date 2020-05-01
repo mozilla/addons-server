@@ -1,6 +1,7 @@
 import datetime
 import json
 import os
+import pytest
 from unittest import mock
 
 from django.conf import settings
@@ -10,7 +11,7 @@ from freezegun import freeze_time
 from waffle.testutils import override_switch
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.blocklist.cron import upload_mlbf_to_kinto
+from olympia.blocklist.cron import auto_import_blocklist, upload_mlbf_to_kinto
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block
 from olympia.blocklist.tasks import (
@@ -208,3 +209,15 @@ class TestUploadToKinto(TestCase):
         assert (
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
             int(datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000))
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.blocklist.cron.call_command')
+def test_auto_import_blocklist_waffle(call_command_mock):
+    with override_switch('blocklist_auto_import', active=False):
+        auto_import_blocklist()
+        call_command_mock.assert_not_called()
+
+    with override_switch('blocklist_auto_import', active=True):
+        auto_import_blocklist()
+        call_command_mock.assert_called()

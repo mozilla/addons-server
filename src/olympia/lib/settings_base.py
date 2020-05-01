@@ -1115,6 +1115,9 @@ CELERY_TASK_ROUTES = {
     'olympia.blocklist.tasks.import_block_from_blocklist': {
         'queue': 'priority'
     },
+    'olympia.blocklist.tasks.delete_imported_block_from_blocklist': {
+        'queue': 'priority'
+    },
     'olympia.blocklist.tasks.upload_filter_to_kinto': {
         'queue': 'priority'
     },
@@ -1875,6 +1878,7 @@ CRON_JOBS = {
     'category_totals': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',
 
+    'auto_import_blocklist': 'olympia.blocklist.cron',
     'upload_mlbf_to_kinto': 'olympia.blocklist.cron',
 
     'update_blog_posts': 'olympia.devhub.cron',

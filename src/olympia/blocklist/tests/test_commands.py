@@ -30,7 +30,8 @@ class TestImportBlocklist(TestCase):
             responses.GET,
             import_blocklist.Command.KINTO_JSON_BLOCKLIST_URL,
             json=blocklist_json)
-        self.task_user = user_factory(id=settings.TASK_USER_ID)
+        self.task_user = user_factory(
+            id=settings.TASK_USER_ID, username='mozilla')
         assert KintoImport.objects.count() == 0
 
     def test_empty(self):
@@ -249,8 +250,12 @@ class TestImportBlocklist(TestCase):
     def test_blocks_are_not_imported_twice(self, import_task_mock):
         addon_factory(guid='{99454877-975a-443e-a0c7-03ab910a8461}')
         addon_factory()
-        imported = KintoImport.objects.create(
-            kinto_id='5d2778e3-cbaa-5192-89f0-5abf3ea10656')
+        imported_not_changed = KintoImport.objects.create(
+            kinto_id='5d2778e3-cbaa-5192-89f0-5abf3ea10656',
+            timestamp=1574441398416)
+        imported_and_changed = KintoImport.objects.create(
+            kinto_id='9085fdba-8598-46a9-b9fd-4e7343a15c62',
+            timestamp=0)
         assert len(blocklist_json['data']) == 8
 
         call_command('import_blocklist')
@@ -260,13 +265,82 @@ class TestImportBlocklist(TestCase):
         assert import_task_mock.call_args_list[1][0] == (
             blocklist_json['data'][1],)
         # blocklist_json['data'][2] is the already imported block
-        assert imported.kinto_id == blocklist_json['data'][2]['id']
+        assert imported_not_changed.kinto_id == blocklist_json['data'][2]['id']
         assert import_task_mock.call_args_list[2][0] == (
             blocklist_json['data'][3],)
         assert import_task_mock.call_args_list[3][0] == (
             blocklist_json['data'][4],)
+        # we skip over blocklist_json['data'][5] because its done at the end
         assert import_task_mock.call_args_list[4][0] == (
+            blocklist_json['data'][6],)
+        assert import_task_mock.call_args_list[5][0] == (
+            blocklist_json['data'][7],)
+
+        # blocklist_json['data'][5] was already imported but has a different
+        # last_modified timestamp so we're processing it again
+        assert import_task_mock.call_args_list[6][0] == (
             blocklist_json['data'][5],)
+        assert imported_and_changed.kinto_id == blocklist_json['data'][5]['id']
+
+    def test_existing_kinto_import_updates_changes(self):
+        # this is the KintoImport from the last time
+        existing_import = KintoImport.objects.create(
+            kinto_id='029fa6f9-2341-40b7-5443-9a66a057f199',
+            timestamp=0)
+        # A Block created last time
+        existing_block = Block.objects.create(
+            addon=addon_factory(
+                guid='{bf8194c2-b86d-4ebc-9b53-1c07b6ff779e}',
+                file_kw={'is_webextension': True}),
+            kinto_id='*029fa6f9-2341-40b7-5443-9a66a057f199',
+            min_version='123',
+            max_version='456',
+            reason='old reason',
+            updated_by=self.task_user)
+        # Another Block created last time, but not in the current guid regex.
+        block_to_be_deleted_id = Block.objects.create(
+            addon=addon_factory(file_kw={'is_webextension': True}),
+            kinto_id='*029fa6f9-2341-40b7-5443-9a66a057f199',
+            min_version='123',
+            max_version='456',
+            reason='old reason',
+            updated_by=self.task_user).id
+        # Addon that would match the block guid regex but isn't already a Block
+        new_addon = addon_factory(
+            guid='{f0af364e-5167-45ca-9cf0-66b396d1918c}',
+            file_kw={'is_webextension': True})
+        # And this is a KintoImport from last time but has been deleted from v2
+        KintoImport.objects.create(
+            kinto_id='1234567890', timestamp=0)
+        # And a block that was created last time from that import
+        Block.objects.create(
+            guid='something@',
+            kinto_id='1234567890', updated_by=self.task_user)
+        assert Block.objects.all().count() == 3
+        assert KintoImport.objects.filter(
+            kinto_id='029fa6f9-2341-40b7-5443-9a66a057f199').exists()
+        assert KintoImport.objects.filter(
+            kinto_id='1234567890').exists()
+
+        call_command('import_blocklist')
+
+        assert Block.objects.all().count() == 2
+        # existing block is still there, but updated
+        existing_block.reload()
+        assert Block.objects.all()[0] == existing_block
+        assert existing_block.min_version == '0'
+        assert existing_block.max_version == '*'
+        assert existing_block.reason.startswith('The installer that includes ')
+        # Obsolete block is gone
+        assert not Block.objects.filter(id=block_to_be_deleted_id).exists()
+        # And new block has been added
+        assert Block.objects.all()[1].guid == new_addon.guid
+
+        existing_import.reload()
+        assert existing_import.timestamp != 0
+
+        assert not KintoImport.objects.filter(kinto_id='1234567890').exists()
+        assert not Block.objects.filter(kinto_id='1234567890').exists()
 
 
 class TestExportBlocklist(TestCase):

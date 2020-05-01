@@ -56,7 +56,8 @@ def block_activity_log_save(obj, change, submission_obj=None):
     add_version_log_for_blocked_versions(obj, al)
 
 
-def block_activity_log_delete(obj, submission_obj):
+def block_activity_log_delete(obj, *, submission_obj=None, delete_user=None):
+    assert submission_obj or delete_user
     details = {
         'guid': obj.guid,
         'min_version': obj.min_version,
@@ -76,10 +77,12 @@ def block_activity_log_delete(obj, submission_obj):
         ([obj.addon] if obj.addon else []) +
         [obj.guid, obj])
     al = log_create(
-        *args, details=details, user=submission_obj.updated_by)
+        *args,
+        details=details,
+        user=submission_obj.updated_by if submission_obj else delete_user)
     if obj.addon:
         add_version_log_for_blocked_versions(obj, al)
-    if submission_obj.signoff_by:
+    if submission_obj and submission_obj.signoff_by:
         args = (
             [amo.LOG.BLOCKLIST_SIGNOFF] +
             ([obj.addon] if obj.addon else []) +
