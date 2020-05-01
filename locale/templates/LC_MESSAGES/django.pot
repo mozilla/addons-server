@@ -728,100 +728,100 @@ msgstr ""
 msgid "Review Unlisted"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/block_change_form.html:7
+#: src/olympia/blocklist/templates/admin/blocklist/block_change_form.html:7
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/block_change_form.html:8
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:75
+#: src/olympia/blocklist/templates/admin/blocklist/block_change_form.html:8
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:75
 msgid ""
 "Any change made will NOT be updated in the legacy blocklist - you must make a"
 " manual change via kinto admin webui."
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/block_change_list.html:9
+#: src/olympia/blocklist/templates/admin/blocklist/block_change_list.html:9
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:20
-#: src/olympia/blocklist/templates/blocklist/multi_guid_input.html:17
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:20
+#: src/olympia/blocklist/templates/admin/blocklist/multi_guid_input.html:17
 msgid "Home"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:36
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:36
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:44
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:44
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:74
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:74
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:115
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:115
 #: src/olympia/reviewers/templates/reviewers/motd.html:11
 #: src/olympia/reviewers/templates/reviewers/review.html:182
 msgid "Save"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:116
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:116
 msgid "Save and add more"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_change_form.html:8
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_change_form.html:8
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:20
 msgid "Delete"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_change_form.html:11
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_change_form.html:11
 #: src/olympia/stats/templates/stats/popup.html:27
 msgid "Update"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_change_form.html:14
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_change_form.html:14
 msgid "Reject Submission"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_change_form.html:17
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_change_form.html:17
 msgid "Approve Submission"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/multi_guid_input.html:20
+#: src/olympia/blocklist/templates/admin/blocklist/multi_guid_input.html:20
 #, python-format
 msgid "Add %(name)s"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/multi_guid_input.html:29
+#: src/olympia/blocklist/templates/admin/blocklist/multi_guid_input.html:29
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/multi_guid_input.html:41
+#: src/olympia/blocklist/templates/admin/blocklist/multi_guid_input.html:41
 msgid "Submit"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/includes/enhanced_blocks.html:3
+#: src/olympia/blocklist/templates/admin/blocklist/includes/enhanced_blocks.html:3
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/includes/enhanced_blocks.html:10
+#: src/olympia/blocklist/templates/admin/blocklist/includes/enhanced_blocks.html:10
 msgid "users"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/includes/enhanced_blocks.html:15
+#: src/olympia/blocklist/templates/admin/blocklist/includes/enhanced_blocks.html:15
 msgid "Edit Block"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/includes/logs.html:13
+#: src/olympia/blocklist/templates/admin/blocklist/includes/logs.html:13
 msgid "versions"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/includes/logs.html:17
+#: src/olympia/blocklist/templates/admin/blocklist/includes/logs.html:17
 msgid "Included in legacy blocklist."
 msgstr ""
 

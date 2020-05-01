@@ -130,7 +130,7 @@ class BlockAdminAddMixin():
             'save_as': False,
         }
         return TemplateResponse(
-            request, 'blocklist/multi_guid_input.html', context)
+            request, 'admin/blocklist/multi_guid_input.html', context)
 
     def add_from_addon_pk_view(self, request, pk, **kwargs):
         addon = get_object_or_404(Addon.unfiltered, pk=pk or kwargs.get('pk'))
@@ -167,7 +167,8 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
     ordering = ['-created']
     view_on_site = False
     list_select_related = ('updated_by', 'signoff_by')
-    change_form_template = 'blocklist/blocklistsubmission_change_form.html'
+    change_form_template = (
+        'admin/blocklist/blocklistsubmission_change_form.html')
     form = BlocklistSubmissionForm
 
     class Media:
@@ -405,7 +406,9 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
         }
         context.update(**self._get_enhanced_guid_context(request, guids_data))
         return TemplateResponse(
-            request, 'blocklist/blocklistsubmission_add_form.html', context)
+            request,
+            'admin/blocklist/blocklistsubmission_add_form.html',
+            context)
 
     def _get_enhanced_guid_context(self, request, guids_data, obj=None):
         load_full_objects = len(splitlines(guids_data)) <= GUID_FULL_LOAD_LIMIT
@@ -523,7 +526,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
         # Annoyingly, we don't have the full context, but we stashed blocks
         # earlier in render_change_form().
         return render_to_string(
-            'blocklist/includes/enhanced_blocks.html',
+            'admin/blocklist/includes/enhanced_blocks.html',
             {
                 'blocks': obj._blocks
             },
@@ -539,7 +542,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
         logs = ActivityLog.objects.for_guidblock(guids[0]).filter(
             action__in=Block.ACTIVITY_IDS).order_by('created')
         return render_to_string(
-            'blocklist/includes/logs.html', {'logs': logs})
+            'admin/blocklist/includes/logs.html', {'logs': logs})
 
 
 @admin.register(Block)
@@ -563,8 +566,8 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     ordering = ['-modified']
     view_on_site = False
     list_select_related = ('updated_by',)
-    change_list_template = 'blocklist/block_change_list.html'
-    change_form_template = 'blocklist/block_change_form.html'
+    change_list_template = 'admin/blocklist/block_change_list.html'
+    change_form_template = 'admin/blocklist/block_change_form.html'
 
     class Media:
         css = {
@@ -593,7 +596,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
             action__in=Block.ACTIVITY_IDS).order_by('created')
         submission = obj.active_submissions.last()
         return render_to_string(
-            'blocklist/includes/logs.html', {
+            'admin/blocklist/includes/logs.html', {
                 'logs': logs,
                 'blocklistsubmission': submission,
                 'blocklistsubmission_changes':
