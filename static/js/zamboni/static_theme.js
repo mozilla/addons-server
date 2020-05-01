@@ -229,12 +229,13 @@ $(document).ready(function() {
                        if (headerImageError) {
                         $('.header-image-error').append($('<li>', {'html': message.message}));
                        } else {
-                        $('.theme-name-error').append($('<li>', {'html': message.message}));
+                        $('.general-validation-error').append($('<li>', {'html': message.message}));
                        }
-                       console.error(data);
+                       console.error(message);
                     });
                     $('button.upload').removeClass('uploading').removeClass('disabled')
                                       .text($('button.upload').data('upload-text'));
+                    headerImageError = false;
                 }
             }
         }

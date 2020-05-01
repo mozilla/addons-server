@@ -3202,14 +3202,6 @@ input.ui-autocomplete-loading {
     cursor: help;
 }
 
-.theme-name-error {
-    display: inline-block;
-}
-
-.header-image-error {
-    display: inline-block;
-}
-
 .errorlist .l10n {
     cursor: pointer;
 }
