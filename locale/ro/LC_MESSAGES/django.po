@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-05-01 03:23+0000\n"
+"PO-Revision-Date: 2020-05-01 03:32+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -671,12 +671,12 @@ msgid "More information requested"
 msgstr "S-au cerut mai multe informații"
 
 msgid "{addon} {version} super review requested."
-msgstr "Suprarevizuire pentru {addon}{version} solicitată."
+msgstr "S-a solicitat o suprarecenzie pentru {addon}{version}."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"Suplimentul a fost semnalat pentru revizuire de către un administrator.   Încă se află în coada de așteptare pentru revizuire, dar va trebui verificat de unul dintre revizorii noștri cu drepturi de "
-"administrare. Revizuirea poate dura mai mult decât de obicei."
+"Suplimentul a fost marcat pentru recenzie de către un administrator.   Încă se află în coada de așteptare pentru recenzare, dar va trebui verificat de unul dintre recenzenții noștri cu drepturi de "
+"administrare. Recenzia poate dura mai mult decât de obicei."
 
 msgid "Comment on {addon} {version}."
 msgstr "Comentariu la {addon} {version}."
@@ -737,7 +737,7 @@ msgid "{user} approved {rating} for {addon}."
 msgstr "{user} a aprobat {rating} pentru {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr "Recenzie {rating} pentru {addon} ștearsă."
+msgstr "Recenzia {rating} pentru {addon} a fost ștearsă."
 
 msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} a șters {rating} pentru {addon}."
@@ -788,7 +788,7 @@ msgid "{rating} for {addon} updated."
 msgstr "{rating} pentru {addon} actualizată."
 
 msgid "{addon} reviewed."
-msgstr "{addon} revizuit."
+msgstr "{addon} a fost recenzat."
 
 msgid "User {user} banned."
 msgstr "Utilizatorul {user} exclus."
@@ -822,10 +822,10 @@ msgid "Developer Reply"
 msgstr "Răspunsul dezvoltatorului"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Răspunsul revizorului pentru {addon} {version}."
+msgstr "Răspunsul recenzentului pentru {addon} {version}."
 
 msgid "Reviewer Reply"
-msgstr "Răspunsul revizorului"
+msgstr "Răspunsul recenzentului"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr "Note de aprobare modificate pentru {addon} {version}."
@@ -864,34 +864,34 @@ msgid "Content rejected"
 msgstr "Conținut respins"
 
 msgid "{addon} information request altered or removed by admin."
-msgstr "Solicitare de informații despre {addon} modificată sau eliminată de administrator."
+msgstr "Cerere de informații despre {addon} modificată sau eliminată de administrator."
 
 msgid "Information request altered"
-msgstr "Solicitare de informații modificată"
+msgstr "Cerere de informații modificată"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Solicitare de informații eliminată de dezvoltator pentru {addon} {version}."
 
 msgid "Information request removed"
-msgstr "Solicitare de informații eliminată"
+msgstr "Cerere de informații eliminată"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "Revizuire a suplimentului de către administrator pentru {addon}{version} solicitată."
+msgstr "S-a solicitat o recenzare a suplimentului de către administrator pentru {addon}{version}."
 
 msgid "Admin add-on-review requested"
-msgstr "Revizuire a suplimentului de către administrator solicitată"
+msgstr "Recenzarea suplimentului de către administrator a fost solicitată"
 
 msgid "{addon} {version} admin content-review requested."
-msgstr "Revizuire a conținutului de către administrator pentru {addon}{version} solicitată."
+msgstr "Recenzarea conținutului de către administrator pentru {addon}{version} a fost solicitată."
 
 msgid "Admin content-review requested"
-msgstr "Revizuire a conținutului de către administrator solicitată"
+msgstr "Recenzarea conținutului de către administrator a fost solicitată"
 
 msgid "{addon} {version} admin theme-review requested."
-msgstr "Revizuirea temei de către administrator pentru {addon} {version} solicitată."
+msgstr "Recenzarea temei de către administrator pentru {addon} {version} a fost solicitată."
 
 msgid "Admin theme-review requested"
-msgstr "Revizuire a temei de către administrator solicitată"
+msgstr "Recenzarea temei de către administrator a fost solicitată"
 
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} a migrat de la o temă ușoară."
@@ -963,7 +963,7 @@ msgid "Incomplete"
 msgstr "Incompletă"
 
 msgid "Awaiting Review"
-msgstr "În așteptarea revizuirii"
+msgstr "În așteptarea recenziei"
 
 msgid "Disabled by Mozilla"
 msgstr "Dezactivat de Mozilla"
@@ -1406,7 +1406,7 @@ msgid "Excellent (3)"
 msgstr "Excelent (3)"
 
 msgid "Manual Reviewer Points"
-msgstr "Puncte manuale revizori"
+msgstr "Puncte manuale recenzenți"
 
 msgid "New Legacy Add-on Review"
 msgstr "Recenzie nouă la un supliment perimat"
@@ -1419,16 +1419,16 @@ msgstr "Recenzie actualizată la un supliment perimat"
 
 # Plural in this context means many of the add-on type
 msgid "New Dictionary Review"
-msgstr "Recenzie de dicționar nouă"
+msgstr "Recenzie nouă la dicționar"
 
 msgid "Preliminary Dictionary Review"
-msgstr "Recenzie suplimentară la dicționar"
+msgstr "Recenzie preliminară la dicționar"
 
 msgid "Updated Dictionary Review"
 msgstr "Recenzie actualizată la dicționar"
 
 msgid "New Language Pack Review"
-msgstr "Recenzie de pachet lingvistic nouă"
+msgstr "Recenzie nouă la pachetul lingvistic"
 
 msgid "Preliminary Language Pack Review"
 msgstr "Recenzie preliminară la pachetul lingvistic"
@@ -1461,19 +1461,19 @@ msgid "Updated Complete Theme Review"
 msgstr "Recenzie actualizată la tema completă"
 
 msgid "Moderated Add-on Review"
-msgstr "Recenzie de supliment moderată"
+msgstr "Recenzie la supliment moderată"
 
 msgid "Add-on Review Moderation Reverted"
-msgstr "Moderare recenzii suplimente inversată"
+msgstr "Moderarea recenziei la supliment a fost adusă la starea anterioară"
 
 msgid "Add-on Content Review"
 msgstr "Recenzie la conținutul suplimentului"
 
 msgid "Add-on Review (Highest Risk)"
-msgstr "Recenzie la supliment (risc de nivelul cel mai ridicat)"
+msgstr "Recenzie la supliment (risc de cel mai înalt nivel)"
 
 msgid "Add-on Review (High Risk)"
-msgstr "Recenzie la supliment (risc de nivel ridicat)"
+msgstr "Recenzie la supliment (risc de nivel înalt)"
 
 msgid "Add-on Review (Medium Risk)"
 msgstr "Recenzie la supliment (risc de nivel mediu)"
