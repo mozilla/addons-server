@@ -232,6 +232,26 @@ class TestFileEntriesSerializer(TestCase):
         data = self.serialize(fobj, file='background-script.js')
         assert not data['uses_unknown_minified_code']
 
+    def test_can_exclude_entries(self):
+        file = self.addon.current_version.current_file
+
+        data = self.serialize(file, exclude_entries=True)
+
+        assert data['id'] == file.pk
+        assert data['selected_file'] == 'manifest.json'
+        assert data['mimetype'] == 'application/json'
+        assert data['entries'] is None
+
+    def test_can_exclude_entries_and_specify_a_file(self):
+        file = self.addon.current_version.current_file
+
+        data = self.serialize(file, file='icons/LICENSE', exclude_entries=True)
+
+        assert data['id'] == file.pk
+        assert data['selected_file'] == 'icons/LICENSE'
+        assert data['mimetype'] == 'text/plain'
+        assert data['entries'] is None
+
 
 class TestFileEntriesDiffSerializer(TestCase):
     def setUp(self):
@@ -590,6 +610,50 @@ class TestFileEntriesDiffSerializer(TestCase):
         data = self.serialize(
             file, parent_version=parent_version, file='manifest.json')
         assert not data['uses_unknown_minified_code']
+
+    def test_can_exclude_entries(self):
+        parent_version = self.addon.current_version
+
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+        AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        file = self.addon.current_version.current_file
+
+        data = self.serialize(file, exclude_entries=True,
+                              parent_version=parent_version)
+
+        assert data['id'] == file.pk
+        assert data['selected_file'] == 'manifest.json'
+        assert data['mimetype'] == 'application/json'
+        assert data['entries'] is None
+        assert data['diff'] is not None
+
+    def test_can_exclude_entries_and_specify_a_file(self):
+        parent_version = self.addon.current_version
+
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+        AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        file = self.addon.current_version.current_file
+
+        data = self.serialize(file, file='README.md', exclude_entries=True,
+                              parent_version=parent_version)
+
+        assert data['id'] == file.pk
+        assert data['selected_file'] == 'README.md'
+        assert data['mimetype'] == 'text/markdown'
+        assert data['entries'] is None
+        assert data['diff'] is not None
 
 
 class TestAddonBrowseVersionSerializer(TestCase):
