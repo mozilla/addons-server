@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-05-01 03:32+0000\n"
+"PO-Revision-Date: 2020-05-01 03:38+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1554,7 +1554,7 @@ msgid "No action"
 msgstr "Nicio acțiune"
 
 msgid "Flag for human review"
-msgstr "Marcat pentru revizuire de către o persoană"
+msgstr "Marcat pentru recenzare de către o persoană"
 
 msgid "Delay auto-approval"
 msgstr "Amână aprobarea automată"
@@ -1763,9 +1763,9 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"Pe acest site. <span class=\"helptext\">Propunerea ta va fi listată pe acest site și în Managerul de suplimente Firefox pentru milioane de utilizatori, după ce trece examinarea codului. "
-"Actualizările automate sunt gestionate de acest site. Acest supliment va fi, de asemenea, luat în considerare pentru promoțiile și concursurile Mozilla. Este posibilă și distribuirea automată a "
-"fișierelor examinate.</span>"
+"Pe acest site. <span class=\"helptext\">Propunerea ta va fi listată pe acest site și în Managerul de Suplimente Firefox pentru milioane de utilizatori, după ce trece recenzia codului. Actualizările "
+"automate sunt tratate de acest site. Acest supliment va fi, de asemenea, luat în considerare pentru promoțiile și concursurile Mozilla. Este posibilă și distribuirea automată a fișierelor "
+"examinate.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
@@ -1822,7 +1822,7 @@ msgid "User Collections"
 msgstr "Colecțiile utilizatorului"
 
 msgid "User Reviews"
-msgstr "Recenziile utilizatorilor"
+msgstr "Recenzii de la utilizatori"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Suplimentul nu poate fi șters. Dezactivează acest supliment."
@@ -1967,7 +1967,7 @@ msgid "Firefox Add-on Distribution Agreement"
 msgstr "Acord de distribuție pentru suplimente Firefox"
 
 msgid "Review Policies and Rules"
-msgstr "Politici și norme a recenziilor"
+msgstr "Politici și norme de recenzare"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Am citit și accept acest Acord și Regulile și politicile"
@@ -2166,7 +2166,7 @@ msgid "Preview"
 msgstr "Previzualizare"
 
 msgid "Preview of listed version"
-msgstr "Previzualizare versiuni listate"
+msgstr "Previzualizarea versiunii listate"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Previzualizarea este încă în curs de generare - revino mai târziu sau reîmprospătează pagina."
@@ -2293,7 +2293,7 @@ msgid "View Product Page"
 msgstr "Afișează pagina produsului"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Rezumatul trebuie să explice clar ce face suplimentul. Va fi afișat în listări și căutări și va fi utilizat de revizori la testarea suplimentului."
+msgstr "Rezumatul trebuie să explice clar ce face suplimentul. Va fi afișat în listări și căutări și va fi utilizat de recenzenți la testarea suplimentului."
 
 msgid "Description"
 msgstr "Descriere"
@@ -2396,8 +2396,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Tabla albă este pentru furnizat revizorilor informații relevate despre supliment, indiferent de versiune. Folosește-o ca să indici modalități de testare a suplimentului și orice informații "
-"adiționale utile. Poate fi editată și de revizori."
+"Tabla albă este locul în care li se oferă recenzenților informații relevate despre supliment, indiferent de versiune. Folosește-o ca să indici modalități de testare a suplimentului și orice "
+"informații adiționale utile. Poate fi editată și de recenzenți."
 
 msgid "Add-on Media for {0}"
 msgstr "Multimedia supliment pentru {0}"
@@ -2657,10 +2657,10 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "Dacă suplimentul tău transmite orice date de pe calculatorul utilizatorului, este necesară o politică de confidențialitate care să explice ce date sunt transmise și cum sunt utilizate."
 
 msgid "Notes to Reviewer:"
-msgstr "Note către revizor:"
+msgstr "Note către recenzent:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "E ceva de care revizorii noștri ar trebui să țină cont la analizarea acestui supliment?"
+msgstr "E ceva de care recenzenții noștri ar trebui să țină cont la analizarea acestui supliment?"
 
 msgid "Remember"
 msgstr "Reține"
@@ -2674,7 +2674,7 @@ msgstr ""
 "conform %(policy_requirements_open)scerințelor politicii%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Notele vor fi vizibile numai pentru tine și revizorii noștri."
+msgstr "Notele vor fi vizibile numai pentru tine și recenzenții noștri."
 
 msgid "Submit Version"
 msgstr "Trimite versiune"
@@ -2704,13 +2704,13 @@ msgid "Submission Complete"
 msgstr "Trimitere finalizată"
 
 msgid "Version Submitted for Review"
-msgstr "Versiune trimisă pentru revizuire"
+msgstr "Versiune trimisă pentru recenzie"
 
 msgid "Preview of the version submitted"
-msgstr "Previzualizare versiune trimisă"
+msgstr "Previzualizarea versiunii trimise"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "Ai terminat! Această versiune va fi disponibilă după ce trece de revizuire. Vei fi anunțat când s-a finalizat revizuirea."
+msgstr "Ai terminat! Această versiune va fi disponibilă după ce trece de recenzie. Vei fi anunțat când s-a finalizat recenzia."
 
 msgid "Version Submitted"
 msgstr "Versiune trimisă"
@@ -2720,7 +2720,7 @@ msgstr "Ai terminat! Această versiune va fi în scurt timp disponibilă pe site
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
-"Ai terminat! Această versiune a fost trimisă spre revizuire. Vei fi notificat(ă) la finalizarea revizuirii sau dacă revizorii noștri au să-ți adreseze orice întrebări legate de propunerea depusă."
+"Ai terminat! Această versiune a fost trimisă pentru recenzare. Vei fi notificat(ă) la finalizarea recenziei sau dacă recenzenții noștri au să-ți adreseze orice întrebări legate de propunerea depusă."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Listarea ta va avea un succes mai mare dacă adaugi o descriere detaliată. Pregătește-ți listarea pentru publicare:"
@@ -2812,7 +2812,7 @@ msgid "Include instructions in a README file in the source code,"
 msgstr "Include instrucțiuni într-un fișier README la interiorul codului sursă,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "sau în notele revizorului de pe pagina următoare (dacă este cazul)."
+msgstr "sau în notele recenzentului de pe pagina următoare (dacă este cazul)."
 
 msgid "Upload source code:"
 msgstr "Încarcă codul sursă:"
