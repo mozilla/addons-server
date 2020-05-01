@@ -1501,3 +1501,33 @@ def test_get_deltas_unmodified_file_by_default_not_rendered():
         parent=original_version.git_hash)
 
     assert not changes
+
+# See: https://github.com/mozilla/addons-server/issues/13932
+@pytest.mark.django_db
+def test_commit_with_old_reference(settings):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    repo = AddonGitRepository(addon.pk)
+    branch_1 = repo.find_or_create_branch('branch-1')
+    # Save the reference to 'branch-2' for later.
+    branch_2 = repo.find_or_create_branch('branch-2')
+
+    # We create an empyy commit on the 'branch-1'.
+    commit = repo._commit_through_worktree(
+        path=None, message='commit on branch 1', author=None, branch=branch_1
+    )
+    # We set the target of the most up-to-date reference to 'branch 2'. This
+    # means both branches point to the same commit created above.
+    repo.find_or_create_branch('branch-2').set_target(commit.hex)
+    # We create a second commit on the second branch and we pass the old
+    # reference to 'branch-2'.
+    repo._commit_through_worktree(
+        path=None, message='commit on branch 2', author=None, branch=branch_2
+    )
+
+    # `git log` but with messages only
+    output = _run_process('git log --format=format:%s branch-2', repo)
+    assert output == '\n'.join([
+        'commit on branch 2',
+        'commit on branch 1',
+        'Initializing repository',  # created by default
+    ])
