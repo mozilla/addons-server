@@ -24,4 +24,21 @@
 <section class="addon-submission-process" role="main">
   {% block primary %}{% endblock %}
 </section>
+
+<div id="modals">
+  <div id="modal-confirm-submission-cancel" class="modal modal-confirm-submission-cancel">
+      <form method="POST" action="#">
+          <h3>{{ _("Cancel and Disable Version") }}</h3>
+          <p>
+              {% trans %}
+                Are you sure you wish to cancel and disable version?
+              {% endtrans %}
+          </p>
+          <div class="modal-actions">
+              <button class="delete-button" type="submit">{{ _("Yes, Cancel") }}</button>
+              <a href="#" class="close">{{ _("No, don't cancel") }}</a>
+          </div>
+      </form>
+  </div>
+</div>
 {% endblock content %}
