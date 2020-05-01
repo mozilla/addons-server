@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-05-01 03:38+0000\n"
+"PO-Revision-Date: 2020-05-01 03:52+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -3024,6 +3024,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Dragă dezvoltator de suplimente,\n"
+"\n"
+"Am observat că datele tale secrete de autentificare AMO API sunt incluse într0un supliment trimis la addons.mozilla.org. Pentru a-ți proteja contul și suplimentul/suplimentele, am revocat datele de autentificare divulgate.\n"
+"Poți genera noi date de autentificare API la %(api_keys_url)s\n"
+"\n"
+"Ai grijă să nu îți mai dezvălui niciodată datele de autentificare nimănui. Nu le include niciodată în depozitare publice, în suplimente sau orice locuri publice. Te încurajăm să îți analizezi depozitarele de cod și extensiile și să ștergi orice trimiteri la datele tale de autentificare AMO.\n"
+"\n"
+"Îți mulțumim!\n"
+"Echipa de suplimente Mozilla"
 
 msgid "Invisible"
 msgstr "Invizibil"
@@ -3057,7 +3066,7 @@ msgstr "Ultima actualizare:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Listat pe acest site după ce a trecut cu succes revizuirea codului. Actualizările automate sunt gestionate de acest site"
+msgstr "Listat pe acest site după ce a trecut cu succes recenzia codului. Actualizările automate sunt gestionate de acest site"
 
 msgid "Status:"
 msgstr "Stare:"
@@ -3075,7 +3084,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr "Aceasta este cea mai recentă versiune încărcată, dar încă nu este live pe site"
 
 msgid "Queues are not reviewed strictly in order"
-msgstr "Cozile de așteptare nu sunt neapărat revizuite în ordine"
+msgstr "Cozile de așteptare nu sunt neapărat recenzate în ordine"
 
 msgid "Queue Position:"
 msgstr "Poziție în coada de așteptare:"
@@ -3100,10 +3109,10 @@ msgid "View All"
 msgstr "Vezi toate"
 
 msgid "Listed Review Page"
-msgstr "Pagină de revizuiri listată"
+msgstr "Pagină de recenzii listate"
 
 msgid "Unlisted Review Page"
-msgstr "Pagină de revizuiri nelistată"
+msgstr "Pagină de recenzii nelistate"
 
 msgid "Admin Manage"
 msgstr "Setări admin"
@@ -3163,13 +3172,13 @@ msgstr ""
 " numai pentru suplimentele listate."
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Dacă suplimentul conține cod minificat, legat în lanț sau generat altminteri de mașini, în afară de bibliotecile cunoscute, încarcă-i sursele pentru revizuire."
+msgstr "Dacă suplimentul conține cod minificat, legat în lanț sau generat altminteri de mașini, în afară de bibliotecile cunoscute, încarcă-i sursele pentru recenzare."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Te rugăm să incluzi instrucțiuni despre reproducerea fișierului final al suplimentului, fie într-un fișier README, fie în Notele către revizor pentru această versiune."
+msgstr "Te rugăm să incluzi instrucțiuni despre reproducerea fișierului final al suplimentului, fie într-un fișier README, fie în Notele către recenzor pentru această versiune."
 
 msgid "Read more about the source code review policy."
-msgstr "Citește mai multe despre politica de examinare a codului sursă."
+msgstr "Citește mai multe despre politica de recenzare a codurilor-sursă."
 
 msgid "Build best-in-class extensions and themes"
 msgstr "Creează extensii și teme cele mai bune din clasa lor"
@@ -3247,10 +3256,10 @@ msgid "Contribute"
 msgstr "Contribuie"
 
 msgid "Review Add-ons"
-msgstr "Examinează suplimente"
+msgstr "Recenzează suplimente"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Examinatorii voluntari ajută la păstrarea suplimentelor sigure și fiabile la utilizare. Aceștia se bucură și de beneficii grozave!"
+msgstr "Recenzorii voluntari ajută la păstrarea suplimentelor sigure și fiabile la utilizare. Aceștia se bucură și de beneficii grozave!"
 
 msgid "Join us!"
 msgstr "Alătură-te!"
@@ -3283,7 +3292,7 @@ msgid "Learn more about the developer community"
 msgstr "Află mai multe despre comunitatea de dezvoltatori"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr "Listat pe acest site după ce a trecut cu succes revizuirea codului. Actualizările automate sunt gestionate de acest site."
+msgstr "Listat pe acest site după ce a trecut cu succes recenzia codului. Actualizările automate sunt gestionate de acest site."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -3364,16 +3373,16 @@ msgid "Approval Status"
 msgstr "Starea aprobării"
 
 msgid "Notes for Reviewers"
-msgstr "Note pentru revizori"
+msgstr "Note pentru recenzenți"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "Introdu opțional orice informații care ar putea fi utile revizorului acestui supliment, cum ar fi datele contului de testare."
+msgstr "Introdu opțional orice informații care ar putea fi utile recenzorului pentru acestui supliment, cum ar fi datele contului de testare."
 
 msgid "Source code"
 msgstr "Cod sursă"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Dacă suplimentul conține cod minificat, legat în lanțuri sau generat altminteri de mașini, fă sursa disponibilă aici pentru revizori."
+msgstr "Dacă suplimentul conține cod minificat, legat în lanțuri sau generat altminteri de mașini, fă sursa disponibilă aici pentru recenzori."
 
 msgid "File {file_id} ({platform})"
 msgstr "Fișier {file_id} ({platform})"
@@ -3405,16 +3414,16 @@ msgid "Close Review History"
 msgstr "Închide istoricul examinărilor"
 
 msgid "Request Review"
-msgstr "Solicită recenzie"
+msgstr "Solicită o recenzie"
 
 msgid "Cancel Review Request"
-msgstr "Anulează cererea de revizuire"
+msgstr "Anulează cererea de recenzie"
 
 msgid "Loading Review History..."
-msgstr "Se încarcă istoricul examinărilor..."
+msgstr "Se încarcă istoricul de recenzii..."
 
 msgid "We had a problem retrieving review notes"
-msgstr "Am întâmpinat o problemă la recuperarea notelor de revizuire"
+msgstr "Am întâmpinat o problemă la recuperarea notelor de recenzare"
 
 msgid "Load older..."
 msgstr "Încarcă mai vechi..."
@@ -3501,16 +3510,16 @@ msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery
 msgstr "Ascunderea suplimentului va împiedica apariția acestuia oriunde în galeria noastră și va opri primirea de actualizări automate de către utilizatori."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr "Fișierele în așteptarea revizuirii vor fi dezactivate și va trebui să încarci versiuni noi."
+msgstr "Fișierele în așteptarea recenzării vor fi dezactivate și va trebui să încarci versiuni noi."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Sigur vrei să-ți ascunzi suplimentul?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "Anularea cererii de revizuire îți va marca suplimentul ca incomplet și vor fi dezactivate orice versiuni aflate în așteptarea revizuirii."
+msgstr "Anularea cererii de recenzie îți va marca suplimentul ca incomplet și vor fi dezactivate orice versiuni aflate în așteptarea recenzării."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr "Sigur vrei să anulezi cererea ta de revizuire?"
+msgstr "Sigur vrei să anulezi cererea de recenzie?"
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Documentație privind suplimentele :: Hubul dezvoltatorilor"
@@ -5137,10 +5146,10 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s
 msgstr "Versiune: %(version)s &bull; Mărime: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Tip Mime: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
-msgstr "Comparare fișiere: Unelte pentru revizori"
+msgstr "Comparare fișiere: Unelte pentru recenzenți"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr "Vizualizator de fișiere:: Unelte pentru revizori"
+msgstr "Vizualizator de fișiere:: Unelte pentru recenzenți"
 
 msgid "Validation failed:"
 msgstr "Validarea a eșuat:"
@@ -5210,7 +5219,7 @@ msgid "Fetching file."
 msgstr "Se obține fișierul."
 
 msgid "Review Guidelines"
-msgstr "Ghid de revizuire"
+msgstr "Ghid de recenzare"
 
 msgid "Sections"
 msgstr "Secțiuni"
@@ -5219,7 +5228,7 @@ msgid "Some tips for writing a great review"
 msgstr "Câteva sfaturi pentru recenzii bune"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr "Întrebări adresate frecvent despre recenzii"
+msgstr "Întrebări frecvente despre recenzii"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
@@ -5416,7 +5425,7 @@ msgstr "sfârșit"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
-msgstr "supliment, revizor sau comentariu"
+msgstr "supliment, recenzent sau comentariu"
 
 msgid "Search by add-on name / author email"
 msgstr "Caută după denumirea suplimentului / e-mailul autorului"
@@ -5500,7 +5509,7 @@ msgid "Auto-approval delayed indefinitely"
 msgstr "Aprobare automată întârziată pe termen nelimitat"
 
 msgid "Is locked by a reviewer"
-msgstr "Este blocat de un revizor"
+msgstr "Este blocat de un recenzent"
 
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Are setat(ă) dezactivarea aprobării automate/semnal de întârziere"
@@ -5572,10 +5581,10 @@ msgid "Last Updated"
 msgstr "Ultima actualizare"
 
 msgid "Listed versions needing human review ({0})"
-msgstr "Versiuni listate care necesită o revizuire de către un om ({0})"
+msgstr "Versiuni listate care necesită o recenzie de către un om ({0})"
 
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Versiuni nelistate care necesită o revizuire de către un om ({0})"
+msgstr "Versiuni nelistate care necesită o recenzie de către un om ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Această acțiune va aproba, semna și publica această versiune. Comentariile vor fi trimise dezvoltatorului."
@@ -5616,7 +5625,7 @@ msgid "This will confirm approval of the selected versions without notifying the
 msgstr "Aceasta va confirma aprobarea pentru versiunile selectate fără notificarea dezvoltatorului."
 
 msgid "Reviewer reply"
-msgstr "Răspunsul revizorului"
+msgstr "Răspunsul recenzentului"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr "Această acțiune va trimite un mesaj dezvoltatorului. Vei primi o notificare când îți va răspunde."
@@ -5646,7 +5655,7 @@ msgid "Review Log"
 msgstr "Jurnal de recenzii"
 
 msgid "Add-on Review Guide"
-msgstr "Ghid de revizuire pentru suplimente"
+msgstr "Ghid de recenzare pentru suplimente"
 
 msgid "Flagged By Scanners"
 msgstr ""
@@ -5667,10 +5676,10 @@ msgid "Auto Approved Add-ons ({0})"
 msgstr "Suplimente aprobate automat ({0})"
 
 msgid "Add-on Review Log"
-msgstr "Jurnal de revizuire a suplimentelor"
+msgstr "Jurnal de recenzii la suplimente"
 
 msgid "Review Guide"
-msgstr "Ghid de revizuire"
+msgstr "Ghid pentru recenzenți"
 
 msgid "Content Review"
 msgstr "Recenzie de conţinut"
@@ -5691,7 +5700,7 @@ msgid "Updates ({0})"
 msgstr "Actualizări ({0})"
 
 msgid "Theme Review Guide"
-msgstr "Ghid de revizuire pentru teme"
+msgstr "Ghid de recenzare pentru teme"
 
 msgid "User Ratings Moderation"
 msgstr "Moderarea evaluărilor de la utilizatori"
@@ -5816,10 +5825,10 @@ msgstr ""
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Înapoi la tabloul de bord cu unelte pentru revizori"
+msgstr "Înapoi la tabloul de bord cu unelte pentru recenzenți"
 
 msgid "Reviewer Leaderboard"
-msgstr "Clasament revizori de top"
+msgstr "Clasament recenzenți de top"
 
 msgid "No review points awarded yet."
 msgstr "Nu s-au acordat încă puncte pentru recenzie."
@@ -5875,7 +5884,7 @@ msgid "Reviewer Performance – Add-ons for Firefox"
 msgstr ""
 
 msgid "Add-on Reviewer Performance"
-msgstr "Performanța revizorilor de suplimente"
+msgstr "Performanța recenzorilor de suplimente"
 
 msgid "View statistics for user"
 msgstr "Vezi statisticile utilizatorului"
@@ -5970,7 +5979,7 @@ msgid "Add-on Policy"
 msgstr "Politica suplimentului"
 
 msgid "Reviewer's Guide"
-msgstr "Ghidul revizorului"
+msgstr "Ghidul recenzentului"
 
 msgid "{addon} – Add-ons for Firefox"
 msgstr ""
@@ -5996,7 +6005,7 @@ msgid "This is a recommended extension."
 msgstr "Este o extensie recomandată."
 
 msgid "You don't have permission to review it."
-msgstr "Nu ai permisiune de revizuire."
+msgstr "Nu ai permisiune de recenzare."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Te rugăm să selectezi una sau mai multe versiuni din lista de mai sus."
@@ -6065,7 +6074,7 @@ msgid "Clear information request"
 msgstr "Șterge cererea de informații"
 
 msgid "Clear Admin Code Review Flag"
-msgstr "Șterge semnalarea de revizuire a codului de către un administrator"
+msgstr "Șterge marcajul de recenzie a codului de către un administrator"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Șterge semnalarea de recenzie a conținutului de către un administrator"
@@ -6092,7 +6101,7 @@ msgid "Add-on Review Log – Add-ons for Firefox"
 msgstr ""
 
 msgid "Reviewer"
-msgstr "Revizor"
+msgstr "Recenzent"
 
 msgid "Add-on has been deleted."
 msgstr "Suplimentul a fost șters."
@@ -6153,10 +6162,10 @@ msgid "No points awarded yet."
 msgstr "Nu s-au acordat puncte încă."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr "Revizori de top (ultimele 7 zile)"
+msgstr "Recenzenți de top (ultimele 7 zile)"
 
 msgid "No top reviewers yet."
-msgstr "Nu sunt încă revizori de top."
+msgstr "Nu sunt încă recenzenți de top."
 
 msgid "All Time"
 msgstr "Dintotdeauna"
