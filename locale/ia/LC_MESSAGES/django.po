@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 12:24+0000\n"
+"PO-Revision-Date: 2020-05-01 20:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3676,9 +3676,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Personalisa le gestos del mus {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Gestos del mus personalisate. Discoperi un nove maniera pro navigar con plus de 50 utile gestos del mus."
+msgstr "Personalisa le gestos del mus. Discoperi un nove maniera pro navigar con plus de 50 configurationes."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5649,13 +5648,11 @@ msgstr "Revision elaborate con successo."
 msgid "Review lock limit reached"
 msgstr "Limite de serraturas pro recensiones attingite"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Politica de confidentialitate"
+msgstr "{addon} – Politica de confidentialitate"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5953,9 +5950,8 @@ msgstr "Notifica me circa nove versiones in le lista de presentation"
 msgid "Allow resubmission"
 msgstr "Consentir reinvio"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Gerer mi submissiones"
+msgstr "Denegar reinvio"
 
 msgid "Force-disable add-on"
 msgstr "Fortiar disactivation de additivo"
@@ -6043,9 +6039,8 @@ msgstr "Methodo:"
 msgid "Source:"
 msgstr "Fonte:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Fonte:"
+msgstr "URL fonte:"
 
 msgid "Dismiss this announcement"
 msgstr "Dimitte iste annuncio"
