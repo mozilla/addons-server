@@ -235,7 +235,7 @@ class TestFileEntriesSerializer(TestCase):
     def test_can_exclude_entries(self):
         file = self.addon.current_version.current_file
 
-        data = self.serialize(file, file_only=True)
+        data = self.serialize(file, exclude_entries=True)
 
         assert data['id'] == file.pk
         assert data['selected_file'] == 'manifest.json'
@@ -245,7 +245,7 @@ class TestFileEntriesSerializer(TestCase):
     def test_can_exclude_entries_and_specify_a_file(self):
         file = self.addon.current_version.current_file
 
-        data = self.serialize(file, file='icons/LICENSE', file_only=True)
+        data = self.serialize(file, file='icons/LICENSE', exclude_entries=True)
 
         assert data['id'] == file.pk
         assert data['selected_file'] == 'icons/LICENSE'
@@ -624,7 +624,7 @@ class TestFileEntriesDiffSerializer(TestCase):
 
         file = self.addon.current_version.current_file
 
-        data = self.serialize(file, file_only=True,
+        data = self.serialize(file, exclude_entries=True,
                               parent_version=parent_version)
 
         assert data['id'] == file.pk
@@ -646,7 +646,7 @@ class TestFileEntriesDiffSerializer(TestCase):
 
         file = self.addon.current_version.current_file
 
-        data = self.serialize(file, file='README.md', file_only=True,
+        data = self.serialize(file, file='README.md', exclude_entries=True,
                               parent_version=parent_version)
 
         assert data['id'] == file.pk

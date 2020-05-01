@@ -191,8 +191,7 @@ class FileEntriesSerializer(serializers.ModelSerializer):
         return self._entries
 
     def get_entries(self, obj):
-        file_only = self.context.get('file_only', False)
-        if file_only:
+        if self.context.get('exclude_entries', False):
             return None
         entries = self._get_entries(obj)
         return self._trim_entries(entries)
