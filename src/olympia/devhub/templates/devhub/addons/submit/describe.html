@@ -239,7 +239,9 @@
         {{ _('Submit Version') }}
       </button>
       &nbsp;
-      <button class="delete-button" formnovalidate  type="submit"
+      <button class="button delete-button confirm-submission-cancel"
+              formnovalidate
+              type="button"
               formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
           {{ _('Cancel and Disable Version') }}
       </button>

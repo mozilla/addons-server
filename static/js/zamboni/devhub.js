@@ -707,6 +707,7 @@ function initSubmit() {
     $('#id_slug').each(slugify);
     showNameSummaryCroppingWarnings();
     reorderPreviews();
+    initSubmitModals();
     $('.invisible-upload [disabled]').prop("disabled", false);
     $('.invisible-upload .disabled').removeClass("disabled");
 }
@@ -1286,4 +1287,38 @@ function initSourceSubmitOutcomes() {
             }
         });
     })
+}
+
+function initSubmitModals() {
+    // Called during the submit addon step
+
+    // Hide the primary container of all modals
+    $("#modals").hide();
+
+    // Used by "Cancel and disable version" button during submission process
+    if ($("#modal-confirm-submission-cancel").length > 0) {
+        var $modalForm = $("#modal-confirm-submission-cancel"),
+            $modalDelete = $modalForm.modal(
+                '.confirm-submission-cancel', {
+                    width: 400
+                });
+
+        // Submitting the form in the modal is not useful. Instead, after
+        // receiving user confirmation, form that contains the
+        // "confirm-submission-cancel" button should POST to an alternate URL
+        $modalForm.find('form').on('submit', function onSubmit(e) {
+            e.preventDefault();
+
+            // this alternate URL is stored in this modal's submit button
+            // so change the form action attribute and submit it
+            var $confirmButton = $('.confirm-submission-cancel'),
+                $mainForm = $confirmButton.closest('form'),
+                cancelUrl = $confirmButton.attr('formaction');
+
+            $mainForm.attr('action', cancelUrl);
+            $mainForm.trigger('submit');
+
+            return false; // don't follow the a.href link
+        });
+    }
 }
