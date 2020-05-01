@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-05-01 03:13+0000\n"
+"PO-Revision-Date: 2020-05-01 03:23+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -126,13 +126,13 @@ msgid "Ratings"
 msgstr "Evaluări"
 
 msgid "Reviewer Tools (listed)"
-msgstr "Unelte pentru revizori (listate)"
+msgstr "Unelte pentru recenzenți (listate)"
 
 msgid "Reviewer Tools (unlisted)"
-msgstr "Unelte pentru revizori (nelistate)"
+msgstr "Unelte pentru recenzenți (nelistate)"
 
 msgid "Reviewer links"
-msgstr "Linkuri pentru revizori"
+msgstr "Linkuri pentru recenzenți"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Supliment inexistent în AMO -"
@@ -192,7 +192,7 @@ msgid "Manage API Keys"
 msgstr "Gestionează cheile API"
 
 msgid "Reviewer Tools"
-msgstr "Unelte pentru revizori"
+msgstr "Unelte pentru recenzenți"
 
 msgid "Admin Tools"
 msgstr "Unelte admin"
@@ -507,10 +507,10 @@ msgid "Min version can not be greater than Max version"
 msgstr "Versiunea Min nu poate fi mai mare decât versiunea Max"
 
 msgid "Review Listed"
-msgstr "Revizuire listată"
+msgstr "Recenzie listată"
 
 msgid "Review Unlisted"
-msgstr "Revizuire nelistată"
+msgstr "Recenzie nelistată"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "Acest blocaj a fost importat dintr-un blocaj kinto moștenit pe bază de regex."
@@ -635,7 +635,7 @@ msgid "Approved"
 msgstr "Aprobată"
 
 msgid "{addon} {version} given preliminary review."
-msgstr "{addon} {version} are revizuire preliminară."
+msgstr "{addon} {version} a primit o recenzie preliminară."
 
 msgid "Preliminarily approved"
 msgstr "Aprobat preliminar"
@@ -656,13 +656,13 @@ msgid "{addon} {version} escalated."
 msgstr "{addon} {version} escaladat."
 
 msgid "Super review requested"
-msgstr "S-a solicitat o suprarevizuire"
+msgstr "S-a solicitat o suprarecenzie"
 
 msgid "{addon} {version} review requested."
-msgstr "Revizuire pentru {addon} {version} solicitată."
+msgstr "S-a solicitat o recenzie pentru {addon} {version}."
 
 msgid "Review requested"
-msgstr "Revizuire solicitată"
+msgstr "Recenzie solicitată"
 
 msgid "{addon} {version} more information requested."
 msgstr "Informații suplimentare pentru {addon} {version} solicitate."
@@ -2944,7 +2944,7 @@ msgstr "Confirmă și generează date de autentificare noi"
 msgid "Generate new credentials"
 msgstr "Generează date de autentificare noi"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -2970,9 +2970,9 @@ msgstr ""
 "\n"
 "Salutări,\n"
 "\n"
-"Echipa de suplimente Mozilla\n"
+"Echipa de suplimente Mozilla"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following API Key was added to your account:\n"
 "\n"
@@ -2990,9 +2990,9 @@ msgstr ""
 "Dacă tu consideri că a fost creată din greșeală, o poți elimina și poți\n"
 "dezactiva accesul de la următoarea adresă:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The API Key was revoked from your account:\n"
 "\n"
@@ -3010,7 +3010,7 @@ msgstr ""
 "Dacă tu crezi că a fost revocată din greșeală, poți crea una nouă\n"
 "la următoarea adresă:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 
 #, python-format
 msgid ""
