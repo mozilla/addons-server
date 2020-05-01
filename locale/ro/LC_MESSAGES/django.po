@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-05-01 03:52+0000\n"
+"PO-Revision-Date: 2020-05-01 04:04+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -924,7 +924,7 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID pentru {addon} eliminat din DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Blochează {1} acțiune pentru {0} aprobate."
 
 msgid "Block action signoff"
 msgstr ""
@@ -1023,7 +1023,7 @@ msgid "Dictionaries"
 msgstr "Dicționare"
 
 msgid "Search Tools"
-msgstr "Instrumente pentru căutare"
+msgstr "Unelte de căutare"
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
@@ -4979,11 +4979,11 @@ msgstr "Înlocuiește automat cuvintele licențioase de pe web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blochează toate reclamele — video, pop-up, bannere și multe altele."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Urmărești fluxuri media cu prietenii și familia oriunde."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5748,7 +5748,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Politică de confidențialitate"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Rapoarte de abuz – {addon} – Suplimente pentru Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Rapoarte de abuzuri pentru {addon} și dezvoltatorii acestuia ({num})"
@@ -5821,7 +5821,7 @@ msgid "Add-on name translations"
 msgstr "Traduceri ale denumirii suplimentului"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Unelte pentru recenzenți – Suplimente pentru Firefox"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the Reviewer Tools dashboard"
@@ -5840,7 +5840,7 @@ msgid "Score"
 msgstr "Scor"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Jurnal de moderare al recenzenților – Suplimente pentru Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5881,7 +5881,7 @@ msgid "Undelete"
 msgstr "Anulează ștergerea"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Performanța recenzenților – Suplimente pentru Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Performanța recenzorilor de suplimente"
@@ -5929,22 +5929,22 @@ msgid "All-Time"
 msgstr "Dintotdeauna"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Unelte pentru recenzenți – Suplimente pentru Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Recenzie la conținut – Suplimente pentru Firefox"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Suplimente aprobate automat – Suplimente pentru Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderarea recenziilor – Suplimente pentru Firefox"
 
 msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Cereri expirate de informații - Suplimente pentru Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Suplimente nelistate – Suplimente pentru Firefox"
 
 msgid "Advanced Search"
 msgstr "Căutare avansată"
@@ -5982,7 +5982,7 @@ msgid "Reviewer's Guide"
 msgstr "Ghidul recenzentului"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Suplimente pentru Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6098,7 +6098,7 @@ msgid "Resolution"
 msgstr "Rezoluție"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Jurnal de recenzii la suplimente – Suplimente pentru Firefox"
 
 msgid "Reviewer"
 msgstr "Recenzent"
@@ -6811,7 +6811,7 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr "compatibilitatea suplimentului meu nu poate fi actualizată"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr "suplimentul meu este verificat de un revizor"
+msgstr "suplimentul meu este analizat de un recenzent"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla trebuie să mă contacteze cu privire la suplimentul meu individual"
@@ -6853,6 +6853,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Salut, %(author_name)s, \n"
+"\n"
+"Ai fost invitat(ă) să devii autor %(addon_name)s pe %(domain)s. Dacă accepți invitația, vei primi acces pentru editarea suplimentului și este posibil ca numele tău să apară în lista de autori pe site-ul web.\n"
+"\n"
+"Dă clic pe linkul de mai jos ca să răspunzi dacă vrei să fii adăugat(ă) ca autor pentru %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Dacă nu te așteptai să primești această invitație, trimite un mesaj pe e-mail la amo-admins@mozilla.com.\n"
+"\n"
+"Salutări,\n"
+"Echipa de suplimente Mozilla"
 
 #, python-format
 msgid ""
