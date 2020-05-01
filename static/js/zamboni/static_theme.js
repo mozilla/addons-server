@@ -7,6 +7,7 @@ $(document).ready(function() {
     function initThemeWizard() {
         var $wizard = $(this);
         var preLoadBlob = null;
+        var headerImageError = false;
 
         function getFile() {
             file_selector = $wizard.find('#header-img')[0];
@@ -171,6 +172,7 @@ $(document).ready(function() {
 
             zip.generateAsync({type: 'blob'}).then(function (blob) {
                 if (blob.size > MAX_STATICTHEME_SIZE) {
+                    headerImageError = true;
                     throw format(gettext("Maximum upload size is {0} - choose a smaller background image."), fileSizeFormat(MAX_STATICTHEME_SIZE));
                 }
                 return blob;
@@ -224,11 +226,16 @@ $(document).ready(function() {
                     $wizard.find('#submit-describe').submit();
                 } else {
                     data.validation.messages.forEach(function(message) {
-                       $('.errorlist.validator').append($('<li>', {'html': message.message}));
+                       if (headerImageError) {
+                        $('.header-image-error').append($('<li>', {'html': message.message}));
+                       } else {
+                        $('.general-validation-error').append($('<li>', {'html': message.message}));
+                       }
                        console.error(message);
                     });
                     $('button.upload').removeClass('uploading').removeClass('disabled')
                                       .text($('button.upload').data('upload-text'));
+                    headerImageError = false;
                 }
             }
         }
