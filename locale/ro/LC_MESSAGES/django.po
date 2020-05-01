@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 06:44+0000\n"
+"PO-Revision-Date: 2020-05-01 03:13+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -5732,13 +5732,11 @@ msgstr "Recenzie prelucrată cu succes."
 msgid "Review lock limit reached"
 msgstr "S-a atins limita de blocare pentru recenzie"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Politică de confidențialitate"
+msgstr "{addon} – Politică de confidențialitate"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5927,16 +5925,14 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Suplimente aprobate automat"
+msgstr "Suplimente aprobate automat – Suplimente pentru Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Solicitare de informații expirată"
+msgstr "Cereri expirate de informații - Suplimente pentru Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6823,16 +6819,15 @@ msgstr "Resetează sesiunea/sesiunile"
 msgid "Delete picture"
 msgstr "Șterge imaginea"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
-"\n"
 "La suplimentul tău a fost adăugat următorul autor %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6850,27 +6845,25 @@ msgid ""
 "The Mozilla Add-ons Team"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
-"\n"
 "În suplimentul tău a fost modificat următorul autor %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
-"\n"
 "Următorul autor a fost eliminat din supliment %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s )\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
