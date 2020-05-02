@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-05-02 20:20+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2020-05-02 17:56+0000\n"
+"Last-Translator: Mélanie Chauvel <perso@hack-libre.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -6264,10 +6264,10 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "La définition n’est pas valide : %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Une erreur est survenue pendant la compilation de la définition"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
@@ -6329,13 +6329,13 @@ msgid "Version already exists. Latest version is: %s."
 msgstr "Cette version existe déjà. La dernière version est : %s."
 
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr ""
+msgstr "Seules les WebExtensions sont autorisées à omettre l’identifiant de module"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
 
 msgid "Invalid Add-on ID in URL or package"
-msgstr ""
+msgstr "Identifiant de module invalide dans l’URL ou le paquet"
 
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
 msgstr ""
@@ -6686,10 +6686,10 @@ msgstr "Bannir les utilisateurs sélectionnés"
 
 #, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
+msgstr "Les sessions des utilisateurs « %(users)s » ont été réinitialisées."
 
 msgid "Reset session"
-msgstr ""
+msgstr "Réinitialiser la session"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6793,7 +6793,7 @@ msgid "Ban"
 msgstr "Exclure"
 
 msgid "Reset session(s)"
-msgstr ""
+msgstr "Réinitialiser les sessions"
 
 msgid "Delete picture"
 msgstr "Supprimer l’image"
