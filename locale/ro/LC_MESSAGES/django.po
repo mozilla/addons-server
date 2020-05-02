@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-05-02 06:53+0000\n"
+"PO-Revision-Date: 2020-05-02 07:02+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -3345,7 +3345,7 @@ msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr "Autentifică-te pe centrul dezvoltatorilor ca să trimiți sau să gestionezi extensii și teme."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr "Creează-ți un cont de dezvoltator sau autentifică-te pe centrul dezvoltatorilor"
+msgstr "Creează un cont de dezvoltator sau conectează-te pe centrul dezvoltatorilor"
 
 msgid "Manage Version {0}"
 msgstr "Gestionează versiunea {0}"
@@ -3365,7 +3365,7 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Informații despre schimbările din versiunea curentă, funcționalități noi, defecte cunoscute și alte informații utile specifice acestei versiuni. Aceste informații vin afișate și în Managerul de "
+"Informații despre schimbările din versiunea actuală, funcționalități noi, defecte cunoscute și alte informații utile specifice acestei versiuni. Aceste informații vin afișate și în Managerul de "
 "suplimente la actualizare."
 
 msgid "Approval Status"
@@ -4218,7 +4218,7 @@ msgstr "Îmbunătățește filele noi {start_sub_heading}cu {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr "Deschizi o filă nouă în dreapta celei curente, dar nu la sfârșitul șirului de file."
+msgstr "Deschizi o filă nouă în dreapta celei actuale, dar nu la sfârșitul șirului de file."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4478,7 +4478,7 @@ msgstr "Împiedică deturnarea filelor {start_sub_heading}cu {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Pune capăt deturnării filelor. Nu lăsa linkurile pe care dai clic să preia controlul asupra filei curente și să încarce conținut nedorit."
+msgstr "Pune capăt deturnării filelor. Nu lăsa linkurile pe care dai clic să preia controlul asupra filei actuale și să încarce conținut nedorit."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4846,7 +4846,7 @@ msgstr "Salvează imagini ușor {start_sub_heading}cu {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Salvezi ușor imagini —pur și simplu le iei din fila curentă."
+msgstr "Salvezi ușor imagini —pur și simplu le iei din fila actuală."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6656,7 +6656,7 @@ msgstr "Bine ai venit, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Înregistrează-te</a> sau <a href=\"%(login)s\">Autentifică-te</a>"
+msgstr "<a href=\"%(reg)s\">Înregistrare</a> sau <a href=\"%(login)s\">Conectare</a>"
 
 msgid "Android Add-ons"
 msgstr "Suplimente pentru Android"
@@ -6804,7 +6804,7 @@ msgid "someone writes a review of my add-on"
 msgstr "cineva scrie o recenzie a suplimentului meu"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr "stai la curent cu știrile și evenimentele relevante pentru dezvoltatorii de suplimente (inclusiv buletinul informativ about:addons)"
+msgstr "rămâi la curent cu știrile și evenimentele relevante pentru dezvoltatorii de suplimente (inclusiv buletinul informativ about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "compatibilitatea suplimentului meu nu poate fi actualizată"
