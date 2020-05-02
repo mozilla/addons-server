@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 12:09+0000\n"
+"PO-Revision-Date: 2020-05-02 20:20+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -508,7 +508,7 @@ msgid "Blocks to be updated are different because Min or Max version has changed
 msgstr ""
 
 msgid "Invalid version"
-msgstr ""
+msgstr "Version invalide"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -530,7 +530,7 @@ msgid "Delete Multiple %(name)s"
 msgstr ""
 
 msgid "Home"
-msgstr ""
+msgstr "Accueil"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -556,14 +556,14 @@ msgid "Update"
 msgstr "Actualiser"
 
 msgid "Reject Submission"
-msgstr ""
+msgstr "Rejeter la soumission"
 
 msgid "Approve Submission"
-msgstr ""
+msgstr "Approuver la soumission"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Ajouter %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
@@ -582,7 +582,7 @@ msgid "Edit Block"
 msgstr ""
 
 msgid "versions"
-msgstr ""
+msgstr "versions"
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -3313,7 +3313,7 @@ msgid "User Photo"
 msgstr "Photo de l’utilisateur"
 
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 msgid "Submit or Manage Extensions"
 msgstr ""
@@ -4931,31 +4931,31 @@ msgstr "Certains sites rencontrent des difficultés à lire des vidéos dans Fir
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Sélectionnez, triez et exécutez vos téléchargements plus rapidement."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "Obtenez les dernières prévisions météo directement dans le navigateur."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Supprimez les cookies, l’historique de navigation, et les fichiers en cache en un seul clic."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Supprimez des liens web les éléments qui servent à vous surveiller."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Remplissez automatiquement des dossiers de marque-pages avec vos flux RSS."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organisez facilement un grand nombre d’onglets ouverts."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Créez et personnalisez des groupes d’onglets."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4963,15 +4963,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
-msgstr ""
+msgstr "Remplacez automatiquement les termes insultants sur le Web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Bloquez toutes les pubs — vidéos, popups, bannières, etc."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Regardez des médias en streaming avec vos amis et votre famille où que vous soyez."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4987,7 +4987,7 @@ msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Organiser et gérer ses onglets"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -4995,7 +4995,7 @@ msgstr "La vie privée au-delà des extensions de navigateur"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr "Une meilleure expérience avec les éléments multimédia dans Firefox"
+msgstr "Améliorer la lecture de médias dans Firefox"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
@@ -5037,7 +5037,7 @@ msgid "Could not parse the manifest file."
 msgstr "Impossible d’analyser le fichier manifeste."
 
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Un identifiant de module est nécessaire pour Firefox 47 et les versions antérieures."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "La plus basse valeur prise en charge pour « strict_min_version » est 42.0."
@@ -5102,7 +5102,7 @@ msgstr "Vous ne pouvez pas envoyer ce type de module"
 
 #, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr ""
+msgstr "Vous ne pouvez pas soumettre un module utilisant un identifiant qui se termine par %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Vous ne pouvez pas soumettre une extension signée par Mozilla"
@@ -5550,7 +5550,7 @@ msgstr[0] "{0} jour"
 msgstr[1] "{0} jours"
 
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 msgid "Last Review"
 msgstr "Dernière revue"
@@ -5595,13 +5595,13 @@ msgid "This will reject the selected public versions. The comments will be sent 
 msgstr "Cette action rejettera les versions publiques sélectionnées. Les commentaires seront envoyés au développeur."
 
 msgid "Block Multiple Versions"
-msgstr ""
+msgstr "Bloquer plusieurs versions"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
 msgid "Confirm Multiple Versions"
-msgstr ""
+msgstr "Confirmer plusieurs versions"
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
 msgstr ""
@@ -6013,10 +6013,10 @@ msgid "Notify me about new listed versions"
 msgstr "M’informer des nouvelles versions listées"
 
 msgid "Allow resubmission"
-msgstr ""
+msgstr "Autoriser une nouvelle soumission"
 
 msgid "Deny resubmission"
-msgstr ""
+msgstr "Interdire une nouvelle soumission"
 
 msgid "Force-disable add-on"
 msgstr "Forcer la désactivation du module"
@@ -6028,7 +6028,7 @@ msgid "View Blocklist Submission"
 msgstr ""
 
 msgid "Block add-on"
-msgstr ""
+msgstr "Bloquer le module"
 
 msgid "Update add-on block"
 msgstr ""
