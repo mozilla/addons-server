@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-05-03 20:09+0000\n"
+"PO-Revision-Date: 2020-05-03 20:16+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6164,7 +6164,6 @@ msgstr "abadu n lqem"
 msgid "add-on status"
 msgstr "Addad n uzegrir"
 
-#, fuzzy
 msgid "add-on listing visibility"
 msgstr "Tuman n uzegrir"
 
@@ -6264,9 +6263,8 @@ msgstr "Ma ulac aɣilif, efk-d asulay n uzegrir-inek deg umeskan ma yella iɛedd
 msgid "Invalid Add-on ID in URL or package"
 msgstr "Asulay n uzegrir d armeɣtu deg URL neɣ deg ukemmus"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Ur temirzḍ ar ad ternuḍ ileqman i uzegrir yelllan deg addad: %s."
+msgstr "Ur tezmireḍ ar ad ternuḍ ileqman  yettwabedren i uzegrir yelllan deg addad: \"uffir\"."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Ur tezmireḍ ara ad tbedreḍ lqem-a n uzegrir s API imi tettuḍ iɣef isefka. Ma ulac aɣilif, azen-d deg usmel web"
