@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-05-03 01:09+0000\n"
+"PO-Revision-Date: 2020-05-03 01:10+0000\n"
 "Last-Translator: Mélanie Chauvel <perso@hack-libre.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3188,10 +3188,10 @@ msgid "For developers"
 msgstr "Pour les développeurs"
 
 msgid "For end users"
-msgstr ""
+msgstr "Pour les utilisateurs finaux"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
@@ -3211,10 +3211,10 @@ msgid "I’m okay with Mozilla handling my info as explained in this %(link_open
 msgstr ""
 
 msgid "Sign Up"
-msgstr ""
+msgstr "S’inscrire"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Merci !"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3223,7 +3223,7 @@ msgid "Resources"
 msgstr "Ressources"
 
 msgid "WebExtensions API"
-msgstr ""
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext : compiler et tester des extensions"
@@ -3235,7 +3235,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Badge « Get The Add-on »"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Programme d’extensions recommandées"
 
 msgid "Contribute"
 msgstr "Contribuer"
@@ -5955,7 +5955,7 @@ msgid "Reviewer's Guide"
 msgstr "Guide de revue"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – modules complémentaires pour Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
