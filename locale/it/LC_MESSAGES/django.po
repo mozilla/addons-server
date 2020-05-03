@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 14:15+0000\n"
-"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
+"PO-Revision-Date: 2020-05-02 17:11+0000\n"
+"Last-Translator: Enrico Belleri <idesmi@protonmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -523,7 +523,7 @@ msgid "This block was imported from a regex based legacy kinto Block."
 msgstr "Questo blocco è stato importato da un blocco Kinto legacy basato su espressioni regolari."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Eventuali modifiche NON verranno aggiornate automaticamente nella blocklist legacy. È necessario effettuare una modifica manuale tramite la WebUI kinto di amministrazione."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -534,11 +534,11 @@ msgstr "Pagina principale"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s GUID di componenti aggiuntivi sono già bloccati per le versioni da %(v_min)s a %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s GUID di componenti aggiuntivi non sono stati trovati"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
 msgstr "I seguenti blocchi sono stati importati da un blocco Kinto legacy basato su espressioni regolari."
@@ -568,27 +568,24 @@ msgstr "Aggiungi %(name)s"
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "Carica una versione"
+msgstr "Invia"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s GUID di componenti aggiuntivi"
 
-#, fuzzy
 msgid "users"
-msgstr "Utenti"
+msgstr "utenti"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Modifica blocco"
 
-#, fuzzy
 msgid "versions"
-msgstr "Versioni"
+msgstr "versioni"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Incluso nella blocklist legacy."
 
 msgid "{addon} was created."
 msgstr "{addon} è stato creato."
@@ -910,20 +907,19 @@ msgid "User {user} api key reset."
 msgstr "La chiave API dell’utente {user} è stata ripristinata."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blocco per {0} aggiunto alla blocklist."
 
 msgid "Block added"
-msgstr ""
+msgstr "Blocco aggiunto"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blocco per {0} modificato nella blocklist."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blocco modificato"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Eliminata versione {0} di {addon}."
+msgstr ""
 
 #, fuzzy
 msgid "Block deleted"
