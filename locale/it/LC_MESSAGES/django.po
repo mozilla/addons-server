@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-05-02 17:11+0000\n"
-"Last-Translator: Enrico Belleri <idesmi@protonmail.com>\n"
+"PO-Revision-Date: 2020-05-03 13:56+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -508,7 +508,7 @@ msgid "Blocks to be updated are different because Min or Max version has changed
 msgstr "I blocchi da aggiornare sono diversi perché è cambiata la versione minima o massima."
 
 msgid "Invalid version"
-msgstr "Versione non valida."
+msgstr "Versione non valida"
 
 msgid "Min version can not be greater than Max version"
 msgstr "La versione minima non può avere un numero maggiore della versione massima."
@@ -566,7 +566,7 @@ msgid "Add %(name)s"
 msgstr "Aggiungi %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID di componenti aggiuntivi (uno per riga)"
 
 msgid "Submit"
 msgstr "Invia"
@@ -921,16 +921,14 @@ msgstr "Blocco modificato"
 msgid "Block for {0} deleted from Blocklist."
 msgstr ""
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Componente aggiuntivo eliminato."
+msgstr "Blocco eliminato"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} rimosso da {collection}."
+msgstr "GUID per {addon} rimosso da DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
