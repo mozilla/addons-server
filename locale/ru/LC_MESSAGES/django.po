@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 21:31+0000\n"
+"PO-Revision-Date: 2020-05-04 21:42+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -485,19 +485,19 @@ msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Блок с GUID %(guid)s не найден"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s находится в ожидании Представления"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Дополнение с GUID %(guid)s не существует"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s уже находится в ожидании Представления"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
@@ -507,7 +507,7 @@ msgid "Invalid version"
 msgstr "Неверный диапазон версий."
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Мин. версия не может быть больше Макс. версии"
 
 #, fuzzy
 msgid "Review Listed"
@@ -533,11 +533,11 @@ msgstr "Домашняя страница"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s GUID дополнения уже заблокированы для версий с %(v_min)s по %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s GUID дополнения не найдены"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
 msgstr ""
@@ -546,7 +546,7 @@ msgid "Save"
 msgstr "Сохранить"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Сохранить и добавить больше"
 
 msgid "Delete"
 msgstr "Удалить"
@@ -564,10 +564,10 @@ msgstr "Перейти в мои представления"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Добавить %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID дополнения (по одному на строку)"
 
 #, fuzzy
 msgid "Submit"
@@ -575,14 +575,14 @@ msgstr "Представить версию"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s GUIDs дополнения"
 
 #, fuzzy
 msgid "users"
 msgstr "Пользователей"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Редактировать блок"
 
 #, fuzzy
 msgid "versions"
@@ -909,16 +909,16 @@ msgid "User {user} api key reset."
 msgstr "API-ключ пользователя {user} сброшен."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Блок для {0} добавлен в чёрный список."
 
 msgid "Block added"
-msgstr ""
+msgstr "Блок добавлен"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Блок для {0} отредактирован в Чёрном списке."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Блок отредактирован"
 
 #, fuzzy
 msgid "Block for {0} deleted from Blocklist."
@@ -929,7 +929,7 @@ msgid "Block deleted"
 msgstr "Дополнение удалено."
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID для {addon} добавлен в DeniedGuid."
 
 #, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
