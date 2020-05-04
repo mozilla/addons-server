@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 11:44+0000\n"
+"PO-Revision-Date: 2020-05-04 14:36+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -463,7 +463,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "此附加组件已在收藏集中"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "确认状态"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
