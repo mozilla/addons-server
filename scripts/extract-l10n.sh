@@ -1,14 +1,14 @@
 #! /bin/bash
 #
 # This script will do the following:
-#   - prepare git credentials for pull request push
-#   - create a new branch (l10n-extract-2017-08-24-0b3bcaf2ca)
-#   - Update your code
-#   - Extract new strings and push to the .po files
+#   - checkout and update git master branch
+#   - create a new branch (name should look like l10n-extract-<date>-<rev>)
+#   - Extract new strings and update the .po/.pot files
+#   - Commit that extraction to the branch
 #
 # If you provide a GITHUB_TOKEN variable to the environment then this script
-# can also automatically create a branch and a pull request for you through
-# addons-robot. Ask @diox or @muffinresearch for this token.
+# can also automatically push to a remote branch and create a pull request for
+# you through addons-robot. Ask @diox or @muffinresearch for this token.
 
 # Exit immediately when a command fails.
 set -e
