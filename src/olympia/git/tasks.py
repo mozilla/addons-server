@@ -1,3 +1,5 @@
+from django_statsd.clients import statsd
+
 import olympia.core.logger
 
 from olympia.amo.celery import task
@@ -44,6 +46,7 @@ def on_extraction_error(request, exc, traceback, addon_pk):
             'Deleting the git repository for add-on "{}" because we detected '
             'a broken reference.'.format(addon_pk)
         )
+        statsd.incr('git.extraction.error.broken_ref')
     # See: https://github.com/mozilla/addons-server/issues/14127
     if isinstance(exc, MissingMasterBranchError):
         delete_repo = True
@@ -51,6 +54,7 @@ def on_extraction_error(request, exc, traceback, addon_pk):
             'Deleting the git repository for add-on "{}" because the "master" '
             'branch is missing.'.format(addon_pk)
         )
+        statsd.incr('git.extraction.error.missing_master_branch')
 
     if delete_repo:
         # Retrieve the repo for the add-on and delete it.
