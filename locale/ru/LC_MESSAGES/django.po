@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 21:42+0000\n"
+"PO-Revision-Date: 2020-05-04 21:51+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -485,7 +485,7 @@ msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr "Блок с GUID %(guid)s не найден"
+msgstr "Блокировка с GUID %(guid)s не найдена"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -582,14 +582,14 @@ msgid "users"
 msgstr "Пользователей"
 
 msgid "Edit Block"
-msgstr "Редактировать блок"
+msgstr "Редактировать блокировку"
 
 #, fuzzy
 msgid "versions"
 msgstr "Версии"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Включено в устаревший блок-лист."
 
 msgid "{addon} was created."
 msgstr "Был создан {addon}."
@@ -909,24 +909,22 @@ msgid "User {user} api key reset."
 msgstr "API-ключ пользователя {user} сброшен."
 
 msgid "Block for {0} added to Blocklist."
-msgstr "Блок для {0} добавлен в чёрный список."
+msgstr "Блокировка для {0} добавлена в Чёрный список."
 
 msgid "Block added"
-msgstr "Блок добавлен"
+msgstr "Блокировка добавлена"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr "Блок для {0} отредактирован в Чёрном списке."
+msgstr "Блокировка для {0} отредактирована в Чёрном списке."
 
 msgid "Block edited"
-msgstr "Блок отредактирован"
+msgstr "Блокировка отредактирована"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Версия {0} удалена из {addon}."
+msgstr "Блокировка для {0} удалена из Чёрного списка."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Дополнение удалено."
+msgstr "Блокировка удалена"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID для {addon} добавлен в DeniedGuid."
@@ -989,7 +987,7 @@ msgid "Unlisted"
 msgstr "Скрытое"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1566,43 +1564,43 @@ msgid "No action"
 msgstr "Другие действия"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Отметить для проверки человеком"
 
 #, fuzzy
 msgid "Delay auto-approval"
 msgstr "Отключить автоодобрение"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Отложить автоодобрение на неопределенный срок"
 
 msgid "True positive"
-msgstr ""
+msgstr "Истинный позитив"
 
 msgid "False positive"
-msgstr ""
+msgstr "Ложный позитив"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Неопределенно"
 
 #, fuzzy
 msgid "New"
 msgstr "Новее"
 
 msgid "Running"
-msgstr ""
+msgstr "Выполняется"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Прервано"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Прерывание"
 
 #, fuzzy
 msgid "Completed"
 msgstr "Неполный"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Запланировано"
 
 msgid "Core"
 msgstr "Ядро"
@@ -2791,7 +2789,7 @@ msgid "Do you use any of the following?"
 msgstr "Используете ли вы что-либо из следующего?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Генераторы или минификаторы кода"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Инструменты, которые объединяют несколько файлов в один, например, <span class=\"tech-emphasis\">webpack</span>"
@@ -3186,20 +3184,20 @@ msgid "Visit the Extension Workshop"
 msgstr "Мастерская расширений"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Связаться с нами"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Твиттер"
 
 #, fuzzy
 msgid "For developers"
 msgstr "Разработчик"
 
 msgid "For end users"
-msgstr ""
+msgstr "Для конечных пользователей"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 #, fuzzy
@@ -3219,17 +3217,17 @@ msgstr "IP-адрес"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Я соглашаюсь с тем, как Mozilla обращается с моей информацией, согласно этому %(link_open)sУведомлению о конфиденциальности%(link_close)s."
 
 #, fuzzy
 msgid "Sign Up"
 msgstr "Выйти"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Спасибо!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "Если вы ранее не подтверждали подписку на новостные рассылки Mozilla, то вам может понадобится сделать это. Пожалуйста, проверьте вашу папку \"Входящие\" или \"Спам\" на наличие письма от нас."
 
 msgid "Resources"
 msgstr "Ресурсы"
@@ -3248,7 +3246,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Кнопка \"Получить дополнение\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Программа рекомендуемых расширений"
 
 msgid "Contribute"
 msgstr "Сделайте взнос"
@@ -3281,7 +3279,7 @@ msgid "See how"
 msgstr "Посмотреть как"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Примите участие"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -3344,13 +3342,13 @@ msgid "Learn how to make an extension"
 msgstr "Узнайте как создать дополнение"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Готовы представить или управлять своим расширением?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Войдите в Центр разработчика, чтобы представить или управлять расширениями и темами."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Зарегистрируйте аккаунт разработчика или войдите в Центр разработчика"
 
 msgid "Manage Version {0}"
 msgstr "Управление версией {0}"
