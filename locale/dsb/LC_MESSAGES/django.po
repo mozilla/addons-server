@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 12:08+0000\n"
+"PO-Revision-Date: 2020-05-04 12:42+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1038,13 +1038,13 @@ msgstr "Pokaze a aktualizacije"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
-"Ześěgniśo ozšyrjenja Firefox, kótarež wam pomagaju, na běžnem wóstaś, nadawkam slědowaś, eficiencu pólěpšyś. Pytajśo rozšyrjenja, kótarež rejtarki znowego zacytaju, produktiwitu zastoje a wěcej."
+"Ześěgniśo ozšyrjenja Firefox, kótarež wam pomagaju, na běžnem wóstaś, nadawkam slědowaś, eficiencu pólěpšyś. Pytajśo rozšyrjenja, kótarež rejtariki znowego zacytaju, produktiwitu zastoje a wěcej."
 
 msgid "Appearance"
 msgstr "Naglěd"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Ześěgniśo rozšyrjenja, kótarež naglěd websedłow a wobglědowak Firefox změnjaju. Toś ta kategorija rozšyrjenja za śamne drastwy, zastojanje rejtarkow a wěcej wopśimujo."
+msgstr "Ześěgniśo rozšyrjenja, kótarež naglěd websedłow a wobglědowak Firefox změnjaju. Toś ta kategorija rozšyrjenja za śamne drastwy, zastojanje rejtarikow a wěcej wopśimujo."
 
 msgid "Bookmarks"
 msgstr "Cytańske znamjenja"
@@ -1102,13 +1102,13 @@ msgid "Social & Communication"
 msgstr "Socialne a komunikacija"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Ześěgniśo rozšyrjenja Firefox, aby socialne medije a wuměnu naměstnych powěsćow pólěpšył. Toś ta kategorija pólěpšone rejtarkowe powěźeńki, ześěgnjenja wideo a wěcej wopśimujo."
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby socialne medije a wuměnu naměstnych powěsćow pólěpšył. Toś ta kategorija pólěpšone rejtarikowe powěźeńki, ześěgnjenja wideo a wěcej wopśimujo."
 
 msgid "Tabs"
-msgstr "Rejtarki"
+msgstr "Rejtariki"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr "Ześěgniśo rozšyrjenje Firefox, aby bok nowego rejtarka pśiměrił. Wuslěźćo rozšyrjenja, kótarež rejtarki woźe, wašnju změniś, na kótaruž z nimi interagěrujośo a wěcej."
+msgstr "Ześěgniśo rozšyrjenje Firefox, aby bok nowego rejtarika pśiměrił. Wuslěźćo rozšyrjenja, kótarež rejtariki woźe, wašnju změniś, na kótaruž z nimi interagěrujośo a wěcej."
 
 msgid "Web Development"
 msgstr "Webwuwiśe"
@@ -1910,13 +1910,13 @@ msgid "Toolbar area background"
 msgstr "Slězyna wobceŕka symboloweje rědki"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Slězynowa barwa za nawigacisku rědku, rědku cytańskich znamjenjopw a wubrany rejtark. Pólo manifesta: toolbar."
+msgstr "Slězynowa barwa za nawigacisku rědku, rědku cytańskich znamjenjopw a wubrany rejtarik. Pólo manifesta: toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Tekst a symbole wobceŕka symboloweje rědki"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Tekstowa barwa a symbole w symbolowej rědce a w aktiwnem rejtarku. Pólo manifesta: bookmark_text."
+msgstr "Tekstowa barwa a symbole w symbolowej rědce a w aktiwnem rejtariku. Pólo manifesta: bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Slězyna pólnego wobceŕka symboloweje rědki"
@@ -2202,7 +2202,7 @@ msgid "Tags"
 msgstr "Wobznamjenja"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Wobznamjenja pomagaju wužywarjam, waš dodank namakaś a by dejali krotke pomjenjenja ako „rejtarki“, „symbolowa rědka“ abo „Twitter“ byś. Móžośo maksimalnje {0} wobznamjenjow měś."
+msgstr "Wobznamjenja pomagaju wužywarjam, waš dodank namakaś a by dejali krotke pomjenjenja ako „rejtariki“, „symbolowa rědka“ abo „Twitter“ byś. Móžośo maksimalnje {0} wobznamjenjow měś."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -3537,7 +3537,7 @@ msgstr "Blokěrujśo njewidobne pśeslědowaki a wabjenje, kótarež was w inter
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pśiměŕśo nowe rejtarkowe boki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Pśiměŕśo nowe rejtarikowe boki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
@@ -3569,11 +3569,11 @@ msgstr "Blokěrowanje wabjenja a šćit priwatnosći. Kontrolěrujśo cele jadno
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pśedstajśo se rejtarki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Pśedstajśo se rejtariki nowo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Maśo wjelgin wjele wócynjonych rejtarkow? Organizěrujśo je w praktiskej bocnicy."
+msgstr "Maśo wjelgin wjele wócynjonych rejtarikow? Organizěrujśo je w praktiskej bocnicy."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3601,11 +3601,11 @@ msgstr "Wjedrowe aktualizacije ned z cełego swěta."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pśiměrjenje rejtarkow {start_sub_heading}z {addon_name} {end_sub_heading}"
+msgstr "Pśiměrjenje rejtarikow {start_sub_heading}z {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr "Wubjeŕśo bok, kótaryž kuždy raz wiźiśo, gaž nowy rejtark wócynjaśo."
+msgstr "Wubjeŕśo bok, kótaryž kuždy raz wiźiśo, gaž nowy rejtarik wócynjaśo."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3697,11 +3697,11 @@ msgstr "Sćelśo nowe nastawki, tšojenja, blogowe pśinoski a wěcej na swój K
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zabarwśo swóje rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zabarwśo swóje rejtariki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr "Organizěrujśo swóje rejtarki na zakłaźe URL-mustrow a zrědujśo je pó barwach."
+msgstr "Organizěrujśo swóje rejtariki na zakłaźe URL-mustrow a zrědujśo je pó barwach."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
