@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-07 14:40+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-27 06:45+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -132,6 +132,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Tote le tags debe ser al minus de {0} character."
 msgstr[1] "Tote le tags debe ser al minus de {0} characteres."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Le texto inserite esseva signalate como spam."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -691,6 +694,9 @@ msgstr "Applicationes de revisores"
 msgid "Admin Tools"
 msgstr "Applicationes de administratores"
 
+msgid "Positive integer"
+msgstr "Integre positive"
+
 msgid "Incorrect, please try again."
 msgstr "Error, per favor reproba."
 
@@ -911,7 +917,7 @@ msgid "Error decoding signature."
 msgstr "Error al decodification del signatura."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Type errate pro un o plus claves in payload"
 
 msgid "Invalid JWT Token."
 msgstr "Jeton JWT non valide."
@@ -2463,11 +2469,8 @@ msgstr "Il ha habite un error con tu cargamento. Per favor prova de novo."
 msgid "Override failed validation"
 msgstr "Supplantar validation mancate"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Tu non pote cargar ulle altere files pro iste version."
-
-msgid "Version doesn't match"
-msgstr "Le version non concorda"
+msgid "Need to select at least one application."
+msgstr "Il es necesse al minus eliger un application compatibile."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Le version {version} esseva jam cargate e delite."
@@ -2483,12 +2486,6 @@ msgstr "Tu non ha cargate un file fonte."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "File fonte cargate, ma tu indicava que nulle fonte era necessari."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Le systema operative \"Totos\" non pote ser combinate con specific systemas operative."
-
-msgid "A platform can only be chosen once."
-msgstr "Un systema operative pote ser eligite solo un vice."
 
 msgid "Application"
 msgstr "Application"
@@ -3325,9 +3322,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> usator active"
 msgstr[1] "<strong>{0}</strong> usatores active"
 
-msgid "Submit a New File"
-msgstr "Inviar un nove file"
-
 msgid "Submit a New Version"
 msgstr "Inviar un nove version"
 
@@ -3421,9 +3415,6 @@ msgstr "Altere informationes sur le distribution e le signatura del additivo"
 msgid "Submission Complete"
 msgstr "Submission complete"
 
-msgid "You’re done!"
-msgstr "Tu ha finite!"
-
 msgid "Version Submitted for Review"
 msgstr "Version inviate pro le revision"
 
@@ -3457,12 +3448,6 @@ msgstr "Tu pote alsi rediger iste version pro adder notas de version, o codice f
 msgid "Edit version {0}"
 msgstr "Rediger version {0}"
 
-msgid "File Signed"
-msgstr "File signate"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Tu ha finite! Iste file es signate e preste pro le auto-distribution. Tu pote lo discargar cliccante le button infra."
-
 msgid "Version Signed"
 msgstr "Version signate"
 
@@ -3471,12 +3456,6 @@ msgstr "Tu ha finite! Iste version es signate e preste pro auto-distribution. Tu
 
 msgid "Download {0}"
 msgstr "Discargamento de {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Tu seligeva solmente alcun del systemas operative disponibile pro iste submission. Tu pote cargar altere files destinate a altere systemas operative:"
-
-msgid "Upload File"
-msgstr "Cargar file"
 
 msgid "Go to My Submissions"
 msgstr "Ir a mi submissiones"
@@ -3558,9 +3537,6 @@ msgstr "Accordo de distribution del additivo"
 msgid "Upload Add-on"
 msgstr "Cargar le additivo"
 
-msgid "Where to Host File"
-msgstr "Le servitor hospite del file"
-
 msgid "Where to Host Version"
 msgstr "Le servitor hospite del version"
 
@@ -3570,8 +3546,8 @@ msgstr "Cargar version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Usa le campos infra pro cargar le pacchetto de tu additivo. Post le cargamento, un serie de tests de validation automatisate fluera sur tu file."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "Con qual systema operative iste file es compatibile?"
+msgid "Which applications is this version compatible with?"
+msgstr "Con qual applicationes iste version es compatibile?"
 
 msgid "Administrative overrides"
 msgstr "Substitutiones administrative"
@@ -3581,9 +3557,6 @@ msgstr "Crear un version del thema"
 
 msgid "Create a Theme"
 msgstr "Crear un thema"
-
-msgid "Submit File"
-msgstr "Inviar file"
 
 msgid "Sign Add-on"
 msgstr "Signar additivo"
@@ -4053,12 +4026,11 @@ msgstr "Test de compatibilitate"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Verifica si tu extension es compatibile con Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Vide le lista"
+msgstr "Test al vivo"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Installa temporarimente tu extension in Firefox pro test vive e depuration."
 
 msgid "Transfer ownership"
 msgstr "Transfere le proprietate"
@@ -4214,9 +4186,6 @@ msgstr "Gere {0}"
 
 msgid "Files"
 msgstr "Files"
-
-msgid "Upload Another File"
-msgstr "Cargar un altere file"
 
 msgid "Version Notes"
 msgstr "Notas de version"
@@ -5333,8 +5302,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Gaude te le musica de tote le mundo {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Accede a 20,000+ stationes radio de tote le globo."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Accede a plus de 30.000 stationes radio de tote le globo."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5797,9 +5766,6 @@ msgstr "Le numeros de version debe haber minus que 32 characteres."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Le numeros de version debe continer solo litteras, numeros, e iste characteres de punctuation: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Le cargamento de themas de WebExtension non es actualmente supportate."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Le dimension maxime pro le themas de WebExtension es {0}."

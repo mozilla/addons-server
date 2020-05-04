@@ -53,7 +53,10 @@ def generate_static_theme_preview(theme_manifest, header_root, version_pk):
     tmpl = loader.get_template(
         'devhub/addons/includes/static_theme_preview_svg.xml')
     context = _build_static_theme_preview_context(theme_manifest, header_root)
-    for size in sorted(amo.THEME_PREVIEW_SIZES.values()):
+    sizes = sorted(
+        amo.THEME_PREVIEW_SIZES.values(),
+        lambda x, y: x['position'] - y['position'])
+    for size in sizes:
         # Create a Preview for this size.
         preview = VersionPreview.objects.create(
             version_id=version_pk, position=size['position'])

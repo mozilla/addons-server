@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-16 08:56+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-17 10:58+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -129,9 +129,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "सत्यापन प्रक्रिया को ये मुद्दे मिले जो अस्वीकृति का कारण बन सकते हैं:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "क्षमा करें, कोई समर्थित प्लेटफ़ॉर्म नहीं पाया गया है."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "आपने जो फाइलटाइप अपलोड किया वह मान्य नहीं है."
 
@@ -214,21 +211,18 @@ msgstr "मूल का प्रयोग करें"
 msgid "Week of {0}"
 msgstr "{0} का सप्ताह"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " डाउनलोड्स"
-msgstr[1] " डाउनलोड्स"
+msgstr[0] "{0} डाउनलोड"
+msgstr[1] "{0} डाउनलोड"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} उपयोगकर्ता"
 msgstr[1] "{0} उपयोगकर्ता"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} ऐड-ऑन"
 msgstr[1] "{0} ऐड-ऑन"
 
@@ -238,13 +232,11 @@ msgid_plural "{0} collections"
 msgstr[0] "{0} संग्रहित"
 msgstr[1] "{0} संग्रहित"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} समीक्षा"
 msgstr[1] "{0} समीक्षा"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} बिक्री"

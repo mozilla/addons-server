@@ -30,7 +30,6 @@ import pytest
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
-from rest_framework.views import APIView
 from rest_framework.test import APIClient
 from waffle.models import Flag, Sample, Switch
 
@@ -750,9 +749,7 @@ def file_factory(**kw):
         filename)
 
     if os.path.exists(fixture_path):
-        copy_stored_file(
-            fixture_path,
-            os.path.join(version.path_prefix, file_.filename))
+        copy_stored_file(fixture_path, file_.current_file_path)
 
     return file_
 
@@ -788,6 +785,18 @@ def user_factory(**kw):
     if 'username' not in kw:
         user_factory_counter = user.id + 1
     return user
+
+
+def create_default_webext_appversion():
+    AppVersion.objects.get_or_create(
+        application=amo.ANDROID.id, version='48.0')
+    AppVersion.objects.get_or_create(
+        application=amo.ANDROID.id, version='*')
+
+    AppVersion.objects.get_or_create(
+        application=amo.FIREFOX.id, version='48.0')
+    AppVersion.objects.get_or_create(
+        application=amo.FIREFOX.id, version='*')
 
 
 def version_factory(file_kw=None, **kw):
@@ -959,32 +968,42 @@ def copy_file_to_temp(source):
         yield temp_filename
 
 
-# This sets up a module that we can patch dynamically with URLs.
-@override_settings(ROOT_URLCONF='olympia.amo.tests.dynamic_urls')
-class WithDynamicEndpoints(TestCase):
+class WithDynamicEndpointsMixin(object):
     """
-    Mixin to allow registration of ad-hoc views.
+    Mixin to allow registration of ad-hoc views. The class using it *must* be
+    decorated with:
+    @override_settings(ROOT_URLCONF='olympia.amo.tests.dynamic_urls')
     """
 
     def endpoint(self, view, url_regex=None):
         """
-        Register a view function or view class temporarily
-        as the handler for requests to /dynamic-endpoint
+        Register a view function or view class temporarily as the handler for
+        requests to /api/v4/dynamic-endpoint (We use /api/v4/ to make sure not
+        to be affected by the locale & app redirection middleware.)
         """
-        url_regex = url_regex or r'^dynamic-endpoint$'
-        try:
-            is_class = issubclass(view, APIView)
-        except TypeError:
-            is_class = False
-        if is_class:
+        url_regex = url_regex or r'^api/v4/dynamic-endpoint$'
+        if hasattr(view, 'as_view'):
             view = view.as_view()
 
-        dynamic_urls.urlpatterns = [django_urls.url(url_regex, view)]
+        dynamic_urls.urlpatterns = [django_urls.url(
+            url_regex, view, name='test-dynamic-endpoint')
+        ]
 
         self.addCleanup(self._clean_up_dynamic_urls)
 
     def _clean_up_dynamic_urls(self):
         dynamic_urls.urlpatterns = []
+
+
+@override_settings(ROOT_URLCONF='olympia.amo.tests.dynamic_urls')
+class WithDynamicEndpoints(WithDynamicEndpointsMixin, TestCase):
+    pass
+
+
+@override_settings(ROOT_URLCONF='olympia.amo.tests.dynamic_urls')
+class WithDynamicEndpointsAndTransactions(
+        WithDynamicEndpointsMixin, test.TransactionTestCase):
+    pass
 
 
 def get_temp_filename():

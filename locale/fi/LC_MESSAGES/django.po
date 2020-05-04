@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-07-21 17:44+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -138,6 +138,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Kaikkien tagien tulee olla vähintään {0} merkki pitkä."
 msgstr[1] "Kaikkien tagien tulee olla vähintään {0} merkkiä pitkiä."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -704,6 +707,9 @@ msgstr "Tarkastajan työkalut"
 
 msgid "Admin Tools"
 msgstr "Ylläpitotyökalut"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Väärin. Yritä uudelleen."
@@ -2560,10 +2566,7 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
+msgid "Need to select at least one application."
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -2579,12 +2582,6 @@ msgid "You have not uploaded a source file."
 msgstr ""
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 # 84%
@@ -3416,9 +3413,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiivinen käyttäjä"
 msgstr[1] "<strong>{0}</strong> aktiivista käyttäjää"
 
-msgid "Submit a New File"
-msgstr "Lisää uusi tiedosto"
-
 msgid "Submit a New Version"
 msgstr "Lisää uusi versio"
 
@@ -3516,9 +3510,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-msgid "You’re done!"
-msgstr "Olet valmis!"
-
 msgid "Version Submitted for Review"
 msgstr ""
 
@@ -3556,13 +3547,6 @@ msgid "Edit version {0}"
 msgstr "Muokkaa versiota {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Versiokommentit"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Versiokommentit"
 
@@ -3573,12 +3557,6 @@ msgstr ""
 # 100%
 msgid "Download {0}"
 msgstr "Lataa {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "Lähetä tiedosto"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3659,9 +3637,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Kaikki lisäosat"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3675,7 +3650,7 @@ msgstr "Lisää versio"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Siirtämisen jälkeen tiedostollesi tehdään automaattisesti joukko kelvollisuustestejä."
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3687,10 +3662,6 @@ msgstr "Suositellut teemat"
 
 msgid "Create a Theme"
 msgstr "Luo teema"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Lisää uusi lisäosa"
 
 # 81%
 #, fuzzy
@@ -4353,9 +4324,6 @@ msgstr ""
 # 100%
 msgid "Files"
 msgstr "Tiedostot"
-
-msgid "Upload Another File"
-msgstr "Lähetä toinen tiedosto"
 
 msgid "Version Notes"
 msgstr "Versiokommentit"
@@ -5472,7 +5440,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5934,9 +5902,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

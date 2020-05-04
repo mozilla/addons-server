@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 13:09+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-17 17:48+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -132,9 +132,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Der Validierungsprozess stellte folgende Probleme fest, die zur Ablehnung führen könnten:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Es tut uns leid, es wurde keine unterstützte Plattform gefunden."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Der Dateityp, den Sie hochgeladen haben, wurde nicht erkannt."
 
@@ -217,52 +214,44 @@ msgstr "Original verwenden"
 msgid "Week of {0}"
 msgstr "Woche von {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " Downloads"
-msgstr[1] " Downloads"
+msgstr[0] "{0} Download"
+msgstr[1] "{0} Downloads"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} Benutzer"
 msgstr[1] "{0} Benutzer"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} Add-ons"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} Add-on"
 msgstr[1] "{0} Add-ons"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} Sammlungen"
+msgstr[0] "{0} Sammlung"
 msgstr[1] "{0} Sammlungen"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} Bewertungen"
+msgstr[0] "{0} Bewertung"
 msgstr[1] "{0} Bewertungen"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} Verkäufe"
+msgstr[0] "{0} Verkauf"
 msgstr[1] "{0} Verkäufe"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} Erstattungen"
+msgstr[0] "{0} Erstattung"
 msgstr[1] "{0} Erstattungen"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} Installationen"
+msgstr[0] "{0} Installation"
 msgstr[1] "{0} Installationen"
 
 msgid "Downloads"

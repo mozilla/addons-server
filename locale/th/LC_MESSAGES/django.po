@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-05-26 06:45+0000\n"
-"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-25 15:01+0000\n"
+"Last-Translator: nuttapong2539 <nuttapong2539@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -34,13 +34,13 @@ msgid "This username cannot be used."
 msgstr ""
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "ชื่อผู้ใช้นี้ถูกใช้แล้ว"
 
 msgid "Images must be either PNG or JPG."
 msgstr "รูปภาพจะต้องเป็น PNG หรือ JPG"
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "รูปภาพไม่สามารถเคลื่อนไหวได้"
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -57,7 +57,7 @@ msgid "Your Firefox Account could not be found. Please try again."
 msgstr "ไม่พบบัญชี Firefox ของคุณ โปรดลองอีกครั้ง"
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "คุณไม่สามารถเข้าสู่ระบบได้ โปรดลองใหม่อีกครั้ง"
 
 msgid "Need help?"
 msgstr "ต้องการความช่วยเหลือ?"
@@ -132,6 +132,9 @@ msgstr "ป้ายกำกับทั้งหมดต้องมี %s �
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "ป้ายกำกับทั้งหมดต้องมีอย่างน้อย {0} อักขระ"
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -622,7 +625,7 @@ msgid "Approve / Reject"
 msgstr "อนุมัติ / ปฏิเสธ"
 
 msgid "Review History"
-msgstr ""
+msgstr "ตรวจทานประวัติ"
 
 msgid "Sorry, this theme is pending. Please come back later."
 msgstr ""
@@ -660,7 +663,7 @@ msgid "Log out"
 msgstr "ออกจากระบบ"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "จัดการรายการที่ส่งของฉัน"
 
 msgid "Submit a New Add-on"
 msgstr "ส่งส่วนเสริมใหม่"
@@ -680,6 +683,9 @@ msgstr "นักพัฒนา"
 
 msgid "Admin Tools"
 msgstr "เครื่องมือผู้ดูแล"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "ไม่ถูกต้อง โปรดลองอีกครั้ง"
@@ -727,7 +733,7 @@ msgid "Sorry, but we can't find anything at the address you entered. If you foll
 msgstr ""
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "หน้าที่แนะนำ"
 
 msgid "Browse all extensions"
 msgstr "เรียกดูส่วนขยายทั้งหมด"
@@ -766,7 +772,7 @@ msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p
 msgstr ""
 
 msgid "Some rights reserved"
-msgstr ""
+msgstr "สงวนลิขสิทธิ์บางส่วน"
 
 msgid "No results found"
 msgstr "ไม่พบ"
@@ -888,7 +894,7 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr ""
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "ลายเซ็นหมดอายุแล้ว"
 
 msgid "Error decoding signature."
 msgstr ""
@@ -897,7 +903,7 @@ msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "โทเค็น JWT ไม่ถูกต้อง"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -974,14 +980,14 @@ msgid "Icons must be either PNG or JPG."
 msgstr "ไอคอนต้องเป็น PNG หรือ JPG"
 
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "ไอคอนไม่สามารถเคลื่อนไหวได้"
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "url นี้ถูกใช้งานกับชุดสะสมอื่นอยู่แล้ว"
 
 msgid "Name cannot be empty."
-msgstr ""
+msgstr "ชื่อไม่สามารถเว้นว่างได้"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -1495,11 +1501,11 @@ msgstr "รายงานความเข้ากันได้ของ {a
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
+msgstr[0] "{0} รายงานที่สำเร็จ"
 
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
+msgstr[0] "{0} รายงานที่มีปัญหา"
 
 msgid "View all"
 msgstr "ดูทั้งหมด"
@@ -1753,7 +1759,7 @@ msgid "User {user} banned."
 msgstr ""
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "ภาพของผู้ใช้ {user} ถูกลบแล้ว"
 
 msgid "User {0.name} added to {group}."
 msgstr "ผู้ใช้ {0.name} ถูกเพิ่มเข้าสู่ {group}"
@@ -2253,13 +2259,13 @@ msgid "No Reputation"
 msgstr "ชื่อเสียง"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "ดี (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "ดีมาก (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "ดีเยี่ยม (3)"
 
 msgid "Manual Reviewer Points"
 msgstr ""
@@ -2383,7 +2389,7 @@ msgid "Flag"
 msgstr ""
 
 msgid "Duplicate"
-msgstr ""
+msgstr "ทำซ้ำ"
 
 msgid "Reject"
 msgstr "ปฏิเสธ"
@@ -2392,25 +2398,25 @@ msgid "Approve"
 msgstr "อนุมัติ"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "เนื้อหาด้านเพศหรือลามกอนาจาร"
 
 msgid "Inappropriate or offensive content"
 msgstr ""
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "เนื้อหาความรุนแรง, สงคราม หรืออาวุธ"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "นาซีหรือเนื้อหาด้านความเกลียดชังอื่น ๆ"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "เนื้อหาใส่ร้าย"
 
 msgid "Online gambling"
-msgstr ""
+msgstr "การพนันออนไลน์"
 
 msgid "Spam content"
-msgstr ""
+msgstr "เนื้อหาสแปม"
 
 msgid "Low-quality, stretched, or blank image"
 msgstr ""
@@ -2429,7 +2435,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "การเปลี่ยนแปลงล่าสุดของส่วนเสริมของฉัน"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "ต้องมีเจ้าของอย่างน้อยหนึ่งคน"
 
 msgid "At least one author must be listed."
 msgstr ""
@@ -2482,11 +2488,8 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr "คุณไม่สามารถอัปโหลดไฟล์สำหรับรุ่นนี้เพิ่มเติมได้อีกแล้ว"
-
-msgid "Version doesn't match"
-msgstr "รุ่นไม่ตรงกัน"
+msgid "Need to select at least one application."
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2503,12 +2506,6 @@ msgstr "คุณไม่สามารถอัปโหลดไฟล์ส
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
-msgstr "แพลตฟอร์มถูกเลือกได้เพียงครั้งเดียวเท่านั้น"
 
 msgid "Application"
 msgstr "แอปพลิเคชัน"
@@ -2593,7 +2590,7 @@ msgid "User Collections"
 msgstr ""
 
 msgid "User Reviews"
-msgstr ""
+msgstr "บทวิจารณ์ของผู้ใช้"
 
 msgid "Changes successfully saved."
 msgstr "การเปลี่ยนแปลงถูกบันทึกเรียบร้อย"
@@ -3085,7 +3082,7 @@ msgid "Universally unique identifier"
 msgstr ""
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
 msgstr ""
@@ -3275,7 +3272,7 @@ msgid "Edit details about this theme's listing."
 msgstr ""
 
 msgid "Edit Listing"
-msgstr ""
+msgstr "แก้ไขรายการ"
 
 msgid "View the popularity of this theme over time."
 msgstr ""
@@ -3313,9 +3310,6 @@ msgstr ""
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] ""
-
-msgid "Submit a New File"
-msgstr "ส่งไฟล์ใหม่"
 
 msgid "Submit a New Version"
 msgstr "ส่งรุ่นใหม่"
@@ -3415,10 +3409,6 @@ msgid "Submission Complete"
 msgstr ""
 
 #, fuzzy
-msgid "You’re done!"
-msgstr "เสร็จแล้ว!"
-
-#, fuzzy
 msgid "Version Submitted for Review"
 msgstr "ส่งบทวิจารณ์"
 
@@ -3456,13 +3446,6 @@ msgid "Edit version {0}"
 msgstr "แก้ไขรุ่น {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "รุ่น"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "รุ่น"
 
@@ -3472,12 +3455,6 @@ msgstr ""
 # 75%
 msgid "Download {0}"
 msgstr "ดาวน์โหลด {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "อัปโหลดไฟล์"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3559,10 +3536,6 @@ msgid "Upload Add-on"
 msgstr "อัปโหลดส่วนเสริม"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "รุ่นล่าสุด:"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "รุ่นล่าสุด:"
 
@@ -3573,7 +3546,7 @@ msgstr "อัปโหลดรุ่นใหม่"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3584,9 +3557,6 @@ msgstr "สร้างรุ่นชุดตกแต่ง"
 
 msgid "Create a Theme"
 msgstr "สร้างชุดตกแต่ง"
-
-msgid "Submit File"
-msgstr "ส่งไฟล์"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -3927,7 +3897,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "มาร่วมกับเรา!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -4224,9 +4194,6 @@ msgstr "จัดการ {0}"
 
 msgid "Files"
 msgstr "ไฟล์"
-
-msgid "Upload Another File"
-msgstr "อัปโหลดไฟล์อื่น"
 
 msgid "Version Notes"
 msgstr "บันทึกประจำรุ่น"
@@ -4789,7 +4756,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "เพิ่มความปลอดภัยโดยการเข้ารหัสกับเว็บไซต์ใด ๆ ที่รองรับ HTTPS"
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4805,7 +4772,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "แปลข้อความที่เน้นหรือทั้งหน้าเว็บ"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4821,7 +4788,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "ถ่ายภาพหน้าจอหน้าเว็บ, ทำการแก้ไข และแบ่งปัน"
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -5281,7 +5248,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
-msgstr ""
+msgstr "ดาวน์โหลดวิดีโอและ/หรือเสียง"
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5336,7 +5303,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5361,7 +5328,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "นำทางไปยังรุ่นที่ปลอดภัยของเว็บไซต์ถ้ามีให้ใช้งาน"
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5377,7 +5344,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "หยุดการปรากฏของโฆษณาในผลการค้นหาของคุณ"
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5385,7 +5352,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "เก็บรหัสผ่านอย่างปลอดภัยและเข้าสู่ระบบเว็บไซต์ที่รู้จักโดยอัตโนมัติ"
 
 #. editorial content for the discovery pane.
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5401,7 +5368,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "บันทึกข้อมูลที่ป้อนเข้ามาครั้งเดียวและจะเติมให้อัตโนมัติในครั้งหน้า"
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5409,7 +5376,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "กระโดดไปยังการเรียกดูแบบเป็นส่วนตัวเพียงคลิกเดียว"
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5533,7 +5500,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "เพิ่มความสามารถในการแสดง/ซ่อนกับช่องใส่รหัสผ่านทุกช่อง"
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5621,7 +5588,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "ปกป้องที่คั่นหน้าส่วนตัวของคุณด้วยรหัสผ่าน"
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5798,9 +5765,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

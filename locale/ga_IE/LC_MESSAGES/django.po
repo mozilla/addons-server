@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -148,6 +148,9 @@ msgstr[1] "Ní mór {0} charachtar ar a laghad a bheith i gclib."
 msgstr[2] "Ní mór {0} charachtar ar a laghad a bheith i gclib."
 msgstr[3] "Ní mór {0} gcarachtar ar a laghad a bheith i gclib."
 msgstr[4] "Ní mór {0} carachtar ar a laghad a bheith i gclib."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -758,6 +761,9 @@ msgstr "Eagarthóir"
 
 msgid "Admin Tools"
 msgstr "Uirlisí Riaracháin"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Mícheart, bain triail eile as."
@@ -2602,11 +2608,9 @@ msgstr "Bhí earráid leis an uaslódáil. Bain triail eile as."
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr "Ní féidir leat tuilleadh comhad a uaslódáil le haghaidh an leagain seo."
-
-msgid "Version doesn't match"
-msgstr "Níl an leagan comhoiriúnach"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Feidhmchlár comhoiriúnach amháin de dhíth ar a laghad."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2624,12 +2628,6 @@ msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
-msgstr "Ní féidir ardán a roghnú ach uair amháin."
 
 msgid "Application"
 msgstr "Feidhmchlár"
@@ -3452,9 +3450,6 @@ msgstr[2] "<strong>{0}</strong> úsáideoir gníomhacha"
 msgstr[3] "<strong>{0}</strong> n-úsáideoir gníomhach"
 msgstr[4] "<strong>{0}</strong> úsáideoir gníomhach"
 
-msgid "Submit a New File"
-msgstr "Seol Comhad Nua Chugainn"
-
 msgid "Submit a New Version"
 msgstr "Seol Leagan Nua"
 
@@ -3550,9 +3545,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr "Seolta"
 
-msgid "You’re done!"
-msgstr "Tá tú críochnaithe!"
-
 #, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Seol an léirmheas"
@@ -3590,12 +3582,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Cuir leagan {0} in eagar"
 
-msgid "File Signed"
-msgstr "Síníodh an Comhad"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "Síníodh an Leagan"
 
@@ -3604,12 +3590,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "Íoslódáil {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "Uaslódáil Comhad"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3692,10 +3672,6 @@ msgid "Upload Add-on"
 msgstr "Uaslódáil Breiseán"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "Spriocleagan"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "Spriocleagan"
 
@@ -3705,7 +3681,7 @@ msgstr "Uaslódáil Leagan"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3718,9 +3694,6 @@ msgstr "Cruthaigh Do Théama Féin"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Cruthaigh Do Théama Féin"
-
-msgid "Submit File"
-msgstr "Seol Comhad"
 
 msgid "Sign Add-on"
 msgstr "Sínigh Breiseán"
@@ -4375,9 +4348,6 @@ msgstr "Bainistigh {0}"
 
 msgid "Files"
 msgstr "Comhaid:"
-
-msgid "Upload Another File"
-msgstr "Uaslódáil Comhad Eile"
 
 msgid "Version Notes"
 msgstr "Nótaí Eisiúna"
@@ -5502,7 +5472,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5964,9 +5934,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

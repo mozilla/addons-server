@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-09-12 21:57+0000\n"
 "Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -140,6 +140,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Todas las etiquetas deben tener al menos {0} carácter."
 msgstr[1] "Todas las etiquetas deben tener al menos {0} caracteres."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -705,6 +708,9 @@ msgstr "Herramientas de revisión"
 
 msgid "Admin Tools"
 msgstr "Herramientas de administrador"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Incorrecto, inténtelo de nuevo."
@@ -2491,11 +2497,9 @@ msgstr "Hay un error con tu envío. Vuelve a intentarlo."
 msgid "Override failed validation"
 msgstr "Ignorar error en la validación"
 
-msgid "You cannot upload any more files for this version."
-msgstr "No puedes subir más archivos para esta versión."
-
-msgid "Version doesn't match"
-msgstr "La versión no coincide"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Es necesaria al menos una aplicación compatible."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La versión {version} fue cargada anteriormente y eliminada."
@@ -2506,18 +2510,11 @@ msgstr "La versión {version} ya existe."
 msgid "Continue with existing upload instead?"
 msgstr "¿Continuar con la carga ya existente?"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "No se ha podido interpretar el archivo subido."
+msgstr "No has enviado un archivo de código fuente."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "La plataforma Todas no puede combinarse con plataformas específicas."
-
-msgid "A platform can only be chosen once."
-msgstr "Una plataforma sólo puede ser elegida una vez."
 
 msgid "Application"
 msgstr "Aplicación"
@@ -3390,9 +3387,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> usuario activo"
 msgstr[1] "<strong>{0}</strong> usuarios activos"
 
-msgid "Submit a New File"
-msgstr "Enviar un nuevo archivo"
-
 msgid "Submit a New Version"
 msgstr "Envía una nueva versión"
 
@@ -3483,9 +3477,6 @@ msgstr "Más información sobre la firma y distribución de complementos"
 msgid "Submission Complete"
 msgstr "Envío completo"
 
-msgid "You’re done!"
-msgstr "¡Ya está!"
-
 msgid "Version Submitted for Review"
 msgstr "Versión enviada para revisión"
 
@@ -3519,12 +3510,6 @@ msgstr "También puedes editar la versión que acabas de enviar agregando notas 
 msgid "Edit version {0}"
 msgstr "Editar versión {0}"
 
-msgid "File Signed"
-msgstr "Archivo firmado"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "¡Ya está! Este archivo está firmado y listo para su distribución propia. Puedes descargarlo haciendo clic en el botón de abajo."
-
 msgid "Version Signed"
 msgstr "Versión firmada"
 
@@ -3534,18 +3519,11 @@ msgstr "¡Ya está! Esta versión está firmada y lista para su distribución pr
 msgid "Download {0}"
 msgstr "Descargar {0}"
 
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Has seleccionado solo algunas de las plataformas disponibles para este envío. Puedes subir más archivos destinados a otras plataformas:"
-
-msgid "Upload File"
-msgstr "Subir archivo"
-
 msgid "Go to My Submissions"
 msgstr "Ir a Mis envíos"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Se ha actualizado el código fuente"
+msgstr "Envío de código fuente"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
@@ -3561,7 +3539,7 @@ msgid "Do you use any of the following?"
 msgstr "¿Usas alguno de los siguientes?"
 
 msgid "Code minifiers or obfuscators"
-msgstr ""
+msgstr "Compactadores u ofuscadores de código"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr ""
@@ -3606,20 +3584,16 @@ msgid "Include instructions in a README file in the source code,"
 msgstr "Incluye las instrucciones en un archivo README en el código fuente,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "o en las notas del revisor en la página siguiente (si se aplica)."
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Código fuente"
+msgstr "Enviar código fuente:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Acuerdo de distribución de complementos"
 
 msgid "Upload Add-on"
 msgstr "Subir complemento"
-
-msgid "Where to Host File"
-msgstr "Dónde alojar el archivo"
 
 msgid "Where to Host Version"
 msgstr "Dónde alojar la versión"
@@ -3630,7 +3604,8 @@ msgstr "Subir versión"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Usa los siguientes campos para subir el complemento. Una vez subido, se ejecutará una serie de pruebas de validación automática en tu fichero."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "¿Con qué plataformas es compatible este archivo?"
 
 msgid "Administrative overrides"
@@ -3641,9 +3616,6 @@ msgstr "Crear una versión del tema"
 
 msgid "Create a Theme"
 msgstr "Crear un tema"
-
-msgid "Submit File"
-msgstr "Enviar archivo"
 
 msgid "Sign Add-on"
 msgstr "Firmar complemento"
@@ -4308,9 +4280,6 @@ msgstr "Administrar {0}"
 
 msgid "Files"
 msgstr "Archivos"
-
-msgid "Upload Another File"
-msgstr "Subir otro archivo"
 
 msgid "Version Notes"
 msgstr "Notas de la versión"
@@ -5428,7 +5397,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Disfruta de música de diferentes partes del mundo {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "Accede a más de 20.000 estaciones de radio de todo el mundo."
 
 #. editorial content for the discovery pane.
@@ -5891,9 +5861,6 @@ msgstr "Los números de las versiones deben tener menos de 32 caracteres."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Los números de las versiones deben contener únicamente letras, números y los siguientes caracteres: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Por ahora no se admitem las subidas del tema WebExtension."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

@@ -23,6 +23,7 @@ import olympia.core.logger
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
@@ -595,6 +596,7 @@ class DeniedName(ModelBase):
 
 
 class UserHistory(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     email = models.EmailField(max_length=75)
     user = models.ForeignKey(UserProfile, related_name='history')
 

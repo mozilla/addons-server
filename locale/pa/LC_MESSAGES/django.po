@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,6 +130,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 msgstr[1] "ਸਾਰੇ ਟੈਗ ਘੱਟੋ-ਘੱਟ {0} ਅੱਖਰਾਂ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -698,6 +701,9 @@ msgstr "ਸਮੀਖਿਅਕ"
 
 msgid "Admin Tools"
 msgstr "ਐਡਮਿਨ ਟੂਲ"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr ""
@@ -2556,11 +2562,9 @@ msgstr "ਤੁਹਾਡੇ ਅੱਪਲੋਡ ਵਿੱਚ ਇੱਕ ਖਾਮ�
 msgid "Override failed validation"
 msgstr "ਓਵਰਰਾਈਡ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ"
 
-msgid "You cannot upload any more files for this version."
-msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
-
-msgid "Version doesn't match"
-msgstr "ਵਰਜਨ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ।"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਅਨੁਕੂਲ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਲੋੜ।"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2578,12 +2582,6 @@ msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕ�
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "ਪਲੇਟਫ਼ਾਰਮ ਆਲ ਨੂੰ ਖਾਸ ਪਲੇਟਫ਼ਾਰਮਾਂ ਦੇ ਨਾਲ ਜੋੜਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
-
-msgid "A platform can only be chosen once."
-msgstr "ਇੱਕ ਪਲੇਟਫ਼ਾਰਮ ਨੂੰ ਇੱਕ ਵਾਰ ਹੀ ਚੁਣਿਆ ਜਾ ਸਕਦਾ।"
 
 msgid "Application"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ"
@@ -3414,10 +3412,6 @@ msgstr[0] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
 msgstr[1] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 
@@ -3525,10 +3519,6 @@ msgid "Submission Complete"
 msgstr "ਦਾਖਲ ਕਰਨਾ ਮੁੰਕਮਲ"
 
 #, fuzzy
-msgid "You’re done!"
-msgstr "ਤੁਸੀਂ ਕਾਰਜ ਪੂਰਾ ਕੀਤਾ!"
-
-#, fuzzy
 msgid "Version Submitted for Review"
 msgstr "ਵਰਜਨ ਨੋਟ / ਸਮੀਖਿਅਕ ਲਈ ਨੋਟ"
 
@@ -3567,14 +3557,6 @@ msgid "Edit version {0}"
 msgstr "ਬੀਟਾ ਵਰਜਨ {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "ਵਰਜਨ ਨੋਟ"
-
-#, fuzzy
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹਸਤਾਖਰਿਤ ਹੋ ਚੁੱਕਿਆ ਅਤੇ ਇਹ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਹੈ। ਤੁਸੀਂ ਇਸ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦੇ ਹੋ ਇੱਥੋਂ:"
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "ਵਰਜਨ ਨੋਟ"
 
@@ -3584,13 +3566,6 @@ msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹਸਤਾਖਰਿਤ ਹੋ ਚੁ�
 
 msgid "Download {0}"
 msgstr "ਡਾਊਨਲੋਡ {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-#, fuzzy
-msgid "Upload File"
-msgstr "ਹੋਰ ਫ਼ਾਈਲ ਅੱਪਲੋਡ ਕਰੋ"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3674,10 +3649,6 @@ msgid "Upload Add-on"
 msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਅੱਪਲੋਡ ਕਰੋ"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "ਟੀਚਾ ਵਰਜਨ"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "ਟੀਚਾ ਵਰਜਨ"
 
@@ -3689,7 +3660,8 @@ msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੈਕੇਜ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠ ਦਿੱਤੇ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰੋ ਅਤੇ ਕੋਈ ਵੀ ਪਲੇਟਫ਼ਾਰਮ ਪਾਬੰਦੀਆਂ ਚੁਣੋ। ਅੱਪਲੋਡ ਤੋਂ ਬਾਅਦ, ਸਵੈ ਪ੍ਰਮਾਣਿਕਤਾ ਜਾਂਚਾਂ ਦੀ ਇੱਕ ਲੜੀ ਤੁਹਾਡੀ ਫ਼ਾਈਲ ਉੱਤੇ ਚਲਾਈ ਜਾਏਗੀ।"
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "ਇਹ ਫ਼ਾਈਲ ਕਿਸ ਪਲੇਟਫ਼ਾਰਮ ਦੇ ਨਾਲ ਅਨੁਕੂਲ ਹੈ?"
 
 msgid "Administrative overrides"
@@ -3702,10 +3674,6 @@ msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -4375,9 +4343,6 @@ msgstr "ਸੰਭਾਲ੍ਹੋ {0}"
 
 msgid "Files"
 msgstr "ਫ਼ਾਈਲਾਂ"
-
-msgid "Upload Another File"
-msgstr "ਹੋਰ ਫ਼ਾਈਲ ਅੱਪਲੋਡ ਕਰੋ"
 
 msgid "Version Notes"
 msgstr "ਵਰਜਨ ਨੋਟ"
@@ -5501,7 +5466,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5964,9 +5929,6 @@ msgstr "ਵਰਜਨ ਨੰਬਰ 32 ਅੱਖਰਾਂ ਤੋਂ ਘੱਟ ਦ�
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "ਵਰਜਨ ਨੰਬਰਾਂ ਵਿੱਚ ਕੇਵਲ ਅੱਖਰ,ਨੰਬਰ ਅਤੇ ਇਹ ਵਿਰਾਮ ਚਿੰਨ੍ਹ ਸ਼ਾਮਲ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ: +*.-_।"
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

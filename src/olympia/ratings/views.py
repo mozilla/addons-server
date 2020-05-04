@@ -336,6 +336,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             addon_identifier = self.request.GET.get('addon')
             user_identifier = self.request.GET.get('user')
             version_identifier = self.request.GET.get('version')
+            exclude_ratings = self.request.GET.get('exclude_ratings')
             if addon_identifier:
                 qs = qs.filter(addon=self.get_addon_object())
             if user_identifier:
@@ -366,6 +367,16 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                 # because the frontend wants to call this before and after
                 # having posted a new rating, and needs accurate results.
                 self.pagination_class = OneOrZeroPageNumberPagination
+            if exclude_ratings:
+                try:
+                    exclude_ratings = [
+                        int(rating) for rating in exclude_ratings.split(',')
+                    ]
+                except ValueError:
+                    raise ParseError('exclude_ratings parameter should be an '
+                                     'integer or a list of integers '
+                                     '(separated by a comma).')
+                qs = qs.exclude(pk__in=exclude_ratings)
         return super(RatingViewSet, self).filter_queryset(qs)
 
     def get_paginated_response(self, data):

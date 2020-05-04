@@ -1,8 +1,8 @@
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
+from django.urls import reverse
 
 from mock import Mock
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from olympia import amo
 from olympia.access.models import GroupUser
 from olympia.amo.tests import (
-    TestCase, WithDynamicEndpoints, addon_factory, user_factory)
+    APITestClient, TestCase, WithDynamicEndpoints, addon_factory, user_factory)
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowAnyKindOfReviewer, AllowIfPublic, AllowNone,
     AllowOwner, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
@@ -19,9 +19,6 @@ from olympia.api.permissions import (
 
 
 class ProtectedView(APIView):
-    # Use session auth for this test view because it's easy, and the goal is
-    # to test the permission, not the authentication.
-    authentication_classes = [SessionAuthentication]
     permission_classes = [GroupPermission(
         amo.permissions.NONE)]
 
@@ -34,16 +31,18 @@ def myview(*args, **kwargs):
 
 
 class TestGroupPermissionOnView(WithDynamicEndpoints):
+    client_class = APITestClient
+
     # Note: be careful when testing, under the hood we're using a method that
     # relies on UserProfile.groups_list, which is cached on the UserProfile
     # instance.
     def setUp(self):
         super(TestGroupPermissionOnView, self).setUp()
         self.endpoint(ProtectedView)
-        self.url = '/en-US/firefox/dynamic-endpoint'
+        self.url = reverse('test-dynamic-endpoint')
         self.user = user_factory(email='regular@mozilla.com')
         self.grant_permission(self.user, 'None:None')
-        self.login(self.user)
+        self.client.login_api(self.user)
 
     def test_user_must_be_in_required_group(self):
         GroupUser.objects.filter(user=self.user).delete()

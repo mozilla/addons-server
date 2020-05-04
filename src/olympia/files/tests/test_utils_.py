@@ -22,7 +22,7 @@ from defusedxml.common import EntitiesForbidden, NotSupportedError
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.amo.tests import TestCase, create_switch
+from olympia.amo.tests import TestCase
 from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.files import utils
@@ -84,7 +84,6 @@ class TestExtractor(TestCase):
         assert manifest_json_extractor.called
 
     @mock.patch('olympia.files.utils.os.path.getsize')
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_max_size(self, getsize_mock):
         getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE
         manifest = utils.ManifestJSONExtractor(
@@ -278,20 +277,7 @@ class TestManifestJSONExtractor(TestCase):
     def test_is_webextension(self):
         assert self.parse({})['is_webextension']
 
-    def test_disallow_static_theme(self):
-        manifest = utils.ManifestJSONExtractor(
-            '/fake_path', '{"theme": {}}').parse()
-
-        with pytest.raises(forms.ValidationError) as exc:
-            utils.check_xpi_info(manifest)
-
-        assert (
-            exc.value.message ==
-            'WebExtension theme uploads are currently not supported.')
-
     def test_allow_static_theme_waffle(self):
-        create_switch('allow-static-theme-uploads')
-
         manifest = utils.ManifestJSONExtractor(
             '/fake_path', '{"theme": {}}').parse()
 
@@ -965,7 +951,6 @@ class TestXMLVulnerabilities(TestCase):
         zip_file = utils.SafeZip(os.path.join(
             os.path.dirname(__file__), '..', 'fixtures', 'files',
             'xxe-example-install.zip'))
-        zip_file.is_valid()
 
         # This asserts that the malicious install.rdf blows up with
         # a parse error. If it gets as far as this specific parse error

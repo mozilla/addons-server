@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,6 +135,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Alle labels moatte út op syn minst {0} teken bestean."
 msgstr[1] "Alle labels moatte út op syn minst {0} tekens bestean."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -699,6 +702,9 @@ msgstr "Ark foar beoardieler"
 
 msgid "Admin Tools"
 msgstr "Behearark"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Net krekt, probearje it opnij."
@@ -2476,11 +2482,9 @@ msgstr "Der is in flater bard wylst jo oplaad. Probearje it nochris."
 msgid "Override failed validation"
 msgstr "Mislearre falidaasje negearje"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Jo kinne gjin bestannen mear oplade foar dizze ferzje."
-
-msgid "Version doesn't match"
-msgstr "Ferzje komt net oerien"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Der moat op syn minst ien kompatibele tapassing wêze."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Ferzje {version} is earder al opladen fuortsmiten."
@@ -2496,12 +2500,6 @@ msgstr "Jo hawwe gjin boarnebestân opladen."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "It platfoarm Alle kin net mei spesifike platfoarms kombinearre wurde."
-
-msgid "A platform can only be chosen once."
-msgstr "In platfoarm kin mar ien kear keazen wurde."
 
 msgid "Application"
 msgstr "Tapassing"
@@ -3336,9 +3334,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktive brûker"
 msgstr[1] "<strong>{0}</strong> aktive brûkers"
 
-msgid "Submit a New File"
-msgstr "In nij bestân yntsjinje"
-
 msgid "Submit a New Version"
 msgstr "In nije ferzje yntsjinje"
 
@@ -3431,9 +3426,6 @@ msgstr "Mear ynformaasje oer add-onfersprieding en ûndertekening"
 msgid "Submission Complete"
 msgstr "Yntsjinning foltôge"
 
-msgid "You’re done!"
-msgstr "Jo binne klear!"
-
 msgid "Version Submitted for Review"
 msgstr "Ferzje yntsjinne foar beoardieling"
 
@@ -3467,12 +3459,6 @@ msgstr "Jo kinne dizze ferzje ek bewurkje om ferzje-opmerkingen ta te foegjen, o
 msgid "Edit version {0}"
 msgstr "Ferzje {0} bewurkje"
 
-msgid "File Signed"
-msgstr "Bestân ûndetekene"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Jo binne klear! Dit bestân is ûndertekene en klear foar eigen fersprieding. Jo kinne it downloade troch op ûndersteande knop te klikken."
-
 msgid "Version Signed"
 msgstr "Ferzje ûndetekene"
 
@@ -3481,12 +3467,6 @@ msgstr "Jo binne klear! Dizze ferzje is ûndertekene en klear foar eigen ferspri
 
 msgid "Download {0}"
 msgstr "{0} downloade"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Jo hawwe mar inkelde fan de beskikbere platfoarms foar dizze ynstjoering selektearre. Jo kinne mear bestannen oplade dy't op oare platfoarms rjochte binne:"
-
-msgid "Upload File"
-msgstr "Bestân oplade"
 
 msgid "Go to My Submissions"
 msgstr "Nei myn bydragen"
@@ -3564,9 +3544,6 @@ msgstr "Add-on-distribúsjeoerienkomst"
 msgid "Upload Add-on"
 msgstr "Add-on oplade"
 
-msgid "Where to Host File"
-msgstr "Wêr't it bestân host wurdt"
-
 msgid "Where to Host Version"
 msgstr "Wêr't de ferzje host wurdt"
 
@@ -3576,7 +3553,8 @@ msgstr "Ferzje oplade"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Brûk ûndersteande fjilden om jo add-onpakket op te laden. Nei de oplaad wurdt in oantal automatisearre falidaasjetests op jo bestân útfierd."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Mei hokker platfoarms is dit bestân kompatibel?"
 
 msgid "Administrative overrides"
@@ -3587,9 +3565,6 @@ msgstr "In temaferzje meitsje"
 
 msgid "Create a Theme"
 msgstr "In tema meitsje"
-
-msgid "Submit File"
-msgstr "Bestân yntsjinje"
 
 msgid "Sign Add-on"
 msgstr "Add-on ûndertekenje"
@@ -4224,9 +4199,6 @@ msgstr "{0} beheare"
 
 msgid "Files"
 msgstr "Bestannen"
-
-msgid "Upload Another File"
-msgstr "Noch in bestân oplade"
 
 msgid "Version Notes"
 msgstr "Ferzjeopmerkingen"
@@ -5344,7 +5316,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Genietsje fan wrâldmuzyk {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5807,9 +5779,6 @@ msgstr "Ferzjenûmers meie út net mear as 32 tekens befetsje."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Ferzjenûmers meie allinnich letters, sifers en dizze ynterpunksjetekens befetsje: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Oplaads fan WebExtension-tema’s wurde op dit stuit net stipe."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

@@ -5,6 +5,7 @@ from django.db.models import signals
 import olympia.core.logger
 
 from olympia import activity, amo
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 
 
@@ -12,7 +13,8 @@ log = olympia.core.logger.getLogger('z.users')
 
 
 class Group(ModelBase):
-
+    # If `id` is changed from PositiveAutoField, update TestPositiveAutoField.
+    id = PositiveAutoField(primary_key=True)
     name = models.CharField(max_length=255, default='')
     rules = models.TextField()
     users = models.ManyToManyField('users.UserProfile', through='GroupUser',
@@ -27,7 +29,7 @@ class Group(ModelBase):
 
 
 class GroupUser(models.Model):
-
+    id = PositiveAutoField(primary_key=True)
     group = models.ForeignKey(Group)
     user = models.ForeignKey('users.UserProfile')
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import urllib
 import json
 import os
@@ -14,6 +15,7 @@ import mock
 import responses
 
 from pyquery import PyQuery as pq
+from six import text_type
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -21,15 +23,16 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonCategory, AddonReviewerFlags, Category)
 from olympia.amo.tests import (
-    TestCase, addon_factory, formset, initial, version_factory)
+    TestCase, addon_factory, formset, initial, version_factory,
+    create_default_webext_appversion)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views
-from olympia.files.models import FileValidation
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
+from olympia.lib.akismet.models import AkismetReport
 from olympia.users.models import UserProfile
 from olympia.versions.models import License, VersionPreview
 from olympia.zadmin.models import Config, set_config
@@ -306,21 +309,23 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
 
     def setUp(self):
         super(TestAddonSubmitUpload, self).setUp()
-        self.upload = self.get_upload('extension.xpi')
+        create_default_webext_appversion()
+        self.upload = self.get_upload('webextension_no_id.xpi')
         assert self.client.login(email='regular@mozilla.com')
         self.client.post(reverse('devhub.submit.agreement'))
 
-    def post(self, supported_platforms=None, expect_errors=False,
-             listed=True, status_code=200, url=None):
-        if supported_platforms is None:
-            supported_platforms = [amo.PLATFORM_ALL]
+    def post(self, compatible_apps=None, expect_errors=False,
+             listed=True, status_code=200, url=None, extra_kwargs=None):
+        if compatible_apps is None:
+            compatible_apps = [amo.FIREFOX, amo.ANDROID]
         data = {
             'upload': self.upload.uuid.hex,
-            'supported_platforms': [p.id for p in supported_platforms]
+            'compatible_apps': [p.id for p in compatible_apps]
         }
         url = url or reverse('devhub.submit.upload',
                              args=['listed' if listed else 'unlisted'])
-        response = self.client.post(url, data, follow=True)
+        response = self.client.post(
+            url, data, follow=True, **(extra_kwargs or {}))
         assert response.status_code == status_code
         if not expect_errors:
             # Show any unexpected form errors.
@@ -330,14 +335,14 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         return response
 
     def test_unique_name(self):
-        addon_factory(name='xpi name')
+        addon_factory(name='Beastify')
         self.post(expect_errors=False)
 
     def test_unlisted_name_not_unique(self):
         """We don't enforce name uniqueness for unlisted add-ons."""
-        addon_factory(name='xpi name',
+        addon_factory(name='Beastify',
                       version_kw={'channel': amo.RELEASE_CHANNEL_LISTED})
-        assert get_addon_count('xpi name') == 1
+        assert get_addon_count('Beastify') == 1
         # We're not passing `expected_errors=True`, so if there was any errors
         # like "This name is already in use. Please choose another one", the
         # test would fail.
@@ -346,12 +351,12 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         # really sure there's no errors raised by posting an add-on with a name
         # that is already used by an unlisted add-on.
         assert 'new_addon_form' not in response.context
-        assert get_addon_count('xpi name') == 2
+        assert get_addon_count('Beastify') == 2
 
     def test_name_not_unique_between_types(self):
         """We don't enforce name uniqueness between add-ons types."""
-        addon_factory(name='xpi name', type=amo.ADDON_THEME)
-        assert get_addon_count('xpi name') == 1
+        addon_factory(name='Beastify', type=amo.ADDON_THEME)
+        assert get_addon_count('Beastify') == 1
         # We're not passing `expected_errors=True`, so if there was any errors
         # like "This name is already in use. Please choose another one", the
         # test would fail.
@@ -360,7 +365,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         # really sure there's no errors raised by posting an add-on with a name
         # that is already used by an unlisted add-on.
         assert 'new_addon_form' not in response.context
-        assert get_addon_count('xpi name') == 2
+        assert get_addon_count('Beastify') == 2
 
     def test_success_listed(self):
         assert Addon.objects.count() == 0
@@ -400,45 +405,58 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert mock_sign_file.called
         assert not addon.tags.filter(tag_text='dynamic theme').exists()
 
-    def test_missing_platforms(self):
+    def test_missing_compatible_apps(self):
         url = reverse('devhub.submit.upload', args=['listed'])
         response = self.client.post(url, {'upload': self.upload.uuid.hex})
         assert response.status_code == 200
         assert response.context['new_addon_form'].errors.as_text() == (
-            '* supported_platforms\n  * Need at least one platform.')
+            '* compatible_apps\n  * Need to select at least one application.')
         doc = pq(response.content)
         assert doc('ul.errorlist').text() == (
-            'Need at least one platform.')
+            'Need to select at least one application.')
 
-    def test_one_xpi_for_multiple_platforms(self):
-        assert Addon.objects.count() == 0
-        response = self.post(
-            supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX])
+    def test_default_supported_platforms(self):
+        """Test that we default to PLATFORM_ALL during submission.
+
+        This is temporarily while we're in process of getting rid
+        of supported platforms.
+
+        https://github.com/mozilla/addons-server/issues/8752
+        """
+        response = self.post()
         addon = Addon.objects.get()
+        # Success, redirecting to source submission step.
         self.assert3xx(
             response, reverse('devhub.submit.source', args=[addon.slug]))
+
+        # Check that `all_files` is correct
         all_ = sorted([f.filename for f in addon.current_version.all_files])
-        assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
+        assert all_ == [u'beastify-1.0-an+fx.xpi']
+
+        # Default to PLATFORM_ALL
+        assert addon.current_version.supported_platforms == [amo.PLATFORM_ALL]
+
+        # And check that compatible apps have a sensible default too
+        apps = addon.current_version.compatible_apps.keys()
+        assert sorted(apps) == sorted([amo.FIREFOX, amo.ANDROID])
 
     @mock.patch('olympia.devhub.views.auto_sign_file')
-    def test_one_xpi_for_multiple_platforms_unlisted_addon(
+    def test_one_xpi_for_multiple_apps_unlisted_addon(
             self, mock_auto_sign_file):
         assert Addon.objects.count() == 0
         response = self.post(
-            supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX],
-            listed=False)
+            compatible_apps=[amo.FIREFOX, amo.ANDROID], listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.assert3xx(
             response, reverse('devhub.submit.source', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
-        assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
+        assert all_ == [u'beastify-1.0-an+fx.xpi']
         mock_auto_sign_file.assert_has_calls([
             mock.call(f)
             for f in latest_version.all_files])
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_shown(self):
         response = self.client.get(reverse(
             'devhub.submit.upload', args=['listed']), follow=True)
@@ -456,29 +474,12 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['unlisted']))
 
-    @override_switch('allow-static-theme-uploads', active=False)
-    def test_static_theme_wizard_button_not_shown(self):
-        response = self.client.get(reverse(
-            'devhub.submit.upload', args=['listed']), follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
-        response = self.client.get(reverse(
-            'devhub.submit.upload', args=['unlisted']), follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_listed(self):
         assert Addon.objects.count() == 0
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(
-            # Throw in platforms for the lols - they will be ignored
-            supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX])
+        response = self.post()
         addon = Addon.objects.get()
         self.assert3xx(
             response, reverse('devhub.submit.details', args=[addon.slug]))
@@ -486,20 +487,17 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
-        assert len(previews) == 2
+        assert len(previews) == 3
         assert storage.exists(previews[0].image_path)
         assert storage.exists(previews[1].image_path)
+        assert storage.exists(previews[2].image_path)
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_unlisted(self):
         assert Addon.unfiltered.count() == 0
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(
-            # Throw in platforms for the lols - they will be ignored
-            supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX],
-            listed=False)
+        response = self.post(listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -511,7 +509,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_listed(self):
         # Check we get the correct template.
         url = reverse('devhub.submit.wizard', args=['listed'])
@@ -528,10 +525,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(
-            url=url,
-            # Throw in platforms for the lols - they will be ignored
-            supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX])
+        response = self.post(url=url)
         addon = Addon.objects.get()
         # Next step is same as non-wizard flow too.
         self.assert3xx(
@@ -540,11 +534,11 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
-        assert len(previews) == 2
+        assert len(previews) == 3
         assert storage.exists(previews[0].image_path)
         assert storage.exists(previews[1].image_path)
+        assert storage.exists(previews[2].image_path)
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_unlisted(self):
         # Check we get the correct template.
         url = reverse('devhub.submit.wizard', args=['unlisted'])
@@ -561,11 +555,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(
-            url=url,
-            # Throw in platforms for the lols - they will be ignored
-            supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX],
-            listed=False)
+        response = self.post(url=url, listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -812,6 +802,61 @@ class DetailsPageMixin(object):
         del version.all_files
         assert version.statuses == [
             (version.all_files[0].id, amo.STATUS_DISABLED)]
+
+    @override_switch('akismet-spam-check', active=False)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_waffle_off(self, comment_check_mock):
+        data = self.get_dict(name=u'spám')
+        self.is_success(data)
+        comment_check_mock.assert_not_called()
+        assert AkismetReport.objects.count() == 0
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_spam(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        data = self.get_dict(name=u'spám', summary=self.addon.summary)
+        response = self.client.post(self.url, data)
+
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'name',
+            'The text entered has been flagged as spam.')
+
+        # the summary won't be comment_check'd because it didn't change.
+        self.addon = self.addon.reload()
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == u'spám'
+        assert text_type(self.addon.name) != u'spám'
+
+        comment_check_mock.assert_called_once()
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_ham(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        data = self.get_dict(name=u'spám', summary=self.addon.summary)
+
+        response = self.is_success(data)
+
+        # the summary won't be comment_check'd because it didn't change.
+        assert comment_check_mock.call_count == 1
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == u'spám'
+        assert 'spam' not in response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_no_changes(self, comment_check_mock):
+        # Don't change either name or summary from the upload.
+        data = self.get_dict(name=self.addon.name, summary=self.addon.summary)
+        self.is_success(data)
+        comment_check_mock.assert_not_called()
+        assert AkismetReport.objects.count() == 0
 
 
 class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
@@ -1258,62 +1303,6 @@ class TestAddonSubmitFinish(TestSubmitBase):
         # Second back to my submissions.
         assert links[1].attrib['href'] == reverse('devhub.addons')
 
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
-    def test_finish_submitting_platform_specific_listed_addon(self):
-        latest_version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
-        latest_version.all_files[0].update(
-            status=amo.STATUS_AWAITING_REVIEW, platform=amo.PLATFORM_MAC.id)
-        latest_version.save()
-        assert latest_version.is_allowed_upload()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-
-        content = doc('.addon-submission-process')
-        links = content('a')
-        assert len(links) == 4
-        # First link is to edit listing
-        assert links[0].attrib['href'] == self.addon.get_dev_url()
-        # Second link is to edit the version
-        assert links[1].attrib['href'] == reverse(
-            'devhub.versions.edit',
-            args=[self.addon.slug, latest_version.id])
-        assert links[1].text == (
-            'Edit version %s' % latest_version.version)
-        # Third link is to add a new file.
-        assert links[2].attrib['href'] == reverse(
-            'devhub.submit.file', args=[self.addon.slug, latest_version.id])
-        # Fourth back to my submissions.
-        assert links[3].attrib['href'] == reverse('devhub.addons')
-
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
-    def test_finish_submitting_platform_specific_unlisted_addon(self):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        latest_version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        latest_version.all_files[0].update(
-            status=amo.STATUS_AWAITING_REVIEW, platform=amo.PLATFORM_MAC.id)
-        latest_version.save()
-        assert latest_version.is_allowed_upload()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-
-        content = doc('.addon-submission-process')
-        links = content('a')
-        assert len(links) == 3
-        # First link is to the file download.
-        file_ = latest_version.all_files[-1]
-        assert links[0].attrib['href'] == file_.get_url_path('devhub')
-        assert links[0].text == (
-            'Download %s' % file_.filename)
-        # Second link is to add a new file.
-        assert links[1].attrib['href'] == reverse(
-            'devhub.submit.file', args=[self.addon.slug, latest_version.id])
-        # Third back to my submissions.
-        assert links[2].attrib['href'] == reverse('devhub.addons')
-
     def test_addon_no_versions_redirects_to_versions(self):
         self.addon.update(status=amo.STATUS_NULL)
         self.addon.versions.all().delete()
@@ -1495,17 +1484,18 @@ class VersionSubmitUploadMixin(object):
         assert self.addon.has_complete_metadata()
         self.version.save()
 
-    def post(self, supported_platforms=None,
-             override_validation=False, expected_status=302, source=None):
-        if supported_platforms is None:
-            supported_platforms = [amo.PLATFORM_MAC]
+    def post(self, compatible_apps=None,
+             override_validation=False, expected_status=302, source=None,
+             extra_kwargs=None):
+        if compatible_apps is None:
+            compatible_apps = [amo.FIREFOX]
         data = {
             'upload': self.upload.uuid.hex,
             'source': source,
-            'supported_platforms': [p.id for p in supported_platforms],
+            'compatible_apps': [p.id for p in compatible_apps],
             'admin_override_validation': override_validation
         }
-        response = self.client.post(self.url, data)
+        response = self.client.post(self.url, data, **(extra_kwargs or {}))
         assert response.status_code == expected_status
         return response
 
@@ -1513,20 +1503,11 @@ class VersionSubmitUploadMixin(object):
         return reverse('devhub.submit.version.source', args=[
             self.addon.slug, version.pk])
 
-    def test_missing_platforms(self):
+    def test_missing_compatibility_apps(self):
         response = self.client.post(self.url, {'upload': self.upload.uuid.hex})
         assert response.status_code == 200
         assert response.context['new_addon_form'].errors.as_text() == (
-            '* supported_platforms\n  * Need at least one platform.')
-
-    def test_one_xpi_for_multiple_platforms(self):
-        response = self.post(supported_platforms=[amo.PLATFORM_MAC,
-                                                  amo.PLATFORM_LINUX])
-        version = self.addon.find_latest_version(channel=self.channel)
-        self.assert3xx(response, self.get_next_url(version))
-        all_ = sorted([f.filename for f in version.all_files])
-        assert all_ == [u'delicious_bookmarks-0.1-linux.xpi',
-                        u'delicious_bookmarks-0.1-mac.xpi']
+            '* compatible_apps\n  * Need to select at least one application.')
 
     def test_unique_version_num(self):
         self.version.update(version='0.1')
@@ -1586,15 +1567,6 @@ class VersionSubmitUploadMixin(object):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
-    @override_switch('allow-static-theme-uploads', active=False)
-    def test_static_theme_wizard_button_not_shown(self):
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_not_shown_for_extensions(self):
         assert self.addon.type != amo.ADDON_STATICTHEME
         response = self.client.get(self.url)
@@ -1602,7 +1574,6 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert not doc('#wizardlink')
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_shown(self):
         channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
                    'unlisted')
@@ -1615,7 +1586,6 @@ class VersionSubmitUploadMixin(object):
             reverse('devhub.submit.version.wizard',
                     args=[self.addon.slug, channel]))
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard(self):
         channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
                    'unlisted')
@@ -1649,8 +1619,9 @@ class VersionSubmitUploadMixin(object):
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
         if self.channel == amo.RELEASE_CHANNEL_LISTED:
             previews = list(version.previews.all())
-            assert len(previews) == 2
+            assert len(previews) == 3
             assert storage.exists(previews[0].image_path)
+            assert storage.exists(previews[1].image_path)
             assert storage.exists(previews[1].image_path)
         else:
             assert version.previews.all().count() == 0
@@ -1805,16 +1776,6 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         assert version.all_files[0].status == amo.STATUS_PUBLIC
         self.assert3xx(response, self.get_next_url(version))
         assert mock_sign_file.called
-
-    @mock.patch('olympia.devhub.views.auto_sign_file')
-    def test_one_xpi_for_multiple_platforms(self, mock_auto_sign_file):
-        super(TestVersionSubmitUploadUnlisted,
-              self).test_one_xpi_for_multiple_platforms()
-        version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        mock_auto_sign_file.assert_has_calls([
-            mock.call(f)
-            for f in version.all_files])
 
 
 class TestVersionSubmitSource(TestAddonSubmitSource):
@@ -2020,6 +1981,73 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
         self.next_step = reverse('devhub.submit.version.finish',
                                  args=['a3615', self.version.pk])
 
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_spam(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        data = self.get_dict(name=u'spám', summary=self.addon.summary)
+        response = self.client.post(self.url, data)
+
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'name',
+            'The text entered has been flagged as spam.')
+        self.assertFormError(
+            response, 'form', 'summary',
+            'The text entered has been flagged as spam.')
+
+        # The summary WILL be comment_check'd, even though it didn't change,
+        # because we don't trust existing metadata when the previous versions
+        # were unlisted.
+        self.addon = self.addon.reload()
+        assert AkismetReport.objects.count() == 2
+        report = AkismetReport.objects.first()
+        assert report.comment_type == 'product-name'
+        assert report.comment == u'spám'
+        assert text_type(self.addon.name) != u'spám'
+        report = AkismetReport.objects.last()
+        assert report.comment_type == 'product-summary'
+        assert report.comment == u'Delicious Bookmarks is the official'
+
+        assert comment_check_mock.call_count == 2
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_ham(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        data = self.get_dict(name=u'spám', summary=self.addon.summary)
+
+        response = self.is_success(data)
+
+        # The summary WILL be comment_check'd, even though it didn't change,
+        # because we don't trust existing metadata when the previous versions
+        # were unlisted.
+        self.addon = self.addon.reload()
+        assert AkismetReport.objects.count() == 2
+        report = AkismetReport.objects.first()
+        assert report.comment_type == 'product-name'
+        assert report.comment == u'spám'
+        assert text_type(self.addon.name) == u'spám'  # It changed
+        report = AkismetReport.objects.last()
+        assert report.comment_type == 'product-summary'
+        assert report.comment == u'Delicious Bookmarks is the official'
+        assert 'spam' not in response.content
+
+        assert comment_check_mock.call_count == 2
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_no_changes(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        # Don't change either name or summary from the upload.
+        data = self.get_dict(name=self.addon.name, summary=self.addon.summary)
+        response = self.is_success(data)
+
+        # No changes but both values were spam checked.
+        assert AkismetReport.objects.count() == 2
+        assert 'spam' not in response.content
+        assert comment_check_mock.call_count == 2
+
 
 class TestVersionSubmitFinish(TestAddonSubmitFinish):
 
@@ -2056,119 +2084,3 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
 
     def test_no_welcome_email_if_unlisted(self):
         pass
-
-
-class TestFileSubmitUpload(UploadTest):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestFileSubmitUpload, self).setUp()
-        self.upload = self.get_upload('extension.xpi')
-        self.addon = Addon.objects.get(id=3615)
-        self.version = version_factory(
-            addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            license_id=self.addon.versions.latest().license_id,
-            version='0.1',
-            file_kw={
-                'status': amo.STATUS_AWAITING_REVIEW,
-                'platform': amo.PLATFORM_WIN.id})
-        self.addon.update(guid='guid@xpi')
-        assert self.client.login(email='del@icio.us')
-        self.url = reverse('devhub.submit.file',
-                           args=[self.addon.slug, self.version.pk])
-        assert self.addon.has_complete_metadata()
-
-    def post(self, supported_platforms=None,
-             override_validation=False, expected_status=302, source=None):
-        if supported_platforms is None:
-            supported_platforms = [amo.PLATFORM_MAC]
-        data = {
-            'upload': self.upload.uuid.hex,
-            'source': source,
-            'supported_platforms': [p.id for p in supported_platforms],
-            'admin_override_validation': override_validation
-        }
-        response = self.client.post(self.url, data)
-        assert response.status_code == expected_status, response.content
-        return response
-
-    def test_success_listed(self):
-        files_pre = self.version.all_files
-        response = self.post()
-        assert self.version == self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
-        del self.version.all_files
-        files_post = self.version.all_files
-        assert files_pre != files_post
-        assert files_pre == files_post[:-1]
-        new_file = self.version.all_files[-1]
-        assert new_file.status == amo.STATUS_AWAITING_REVIEW
-        assert new_file.platform == amo.PLATFORM_MAC.id
-        next_url = reverse('devhub.submit.file.finish',
-                           args=[self.addon.slug, self.version.pk])
-        self.assert3xx(response, next_url)
-        log_items = ActivityLog.objects.for_addons(self.addon)
-        assert not log_items.filter(action=amo.LOG.ADD_VERSION.id).exists()
-
-    def test_success_unlisted(self):
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        files_pre = self.version.all_files
-        result = {
-            'errors': 0,
-            'warnings': 0,
-            'notices': 2,
-            'metadata': {},
-            'messages': [],
-        }
-        FileValidation.from_json(files_pre[0], json.dumps(result))
-        response = self.post()
-        assert self.version == self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        del self.version.all_files
-        files_post = self.version.all_files
-        assert files_pre != files_post
-        assert files_pre == files_post[:-1]
-        new_file = self.version.all_files[-1]
-        assert new_file.status == amo.STATUS_PUBLIC
-        assert new_file.platform == amo.PLATFORM_MAC.id
-        next_url = reverse('devhub.submit.file.finish',
-                           args=[self.addon.slug, self.version.pk])
-        self.assert3xx(response, next_url)
-        log_items = ActivityLog.objects.for_addons(self.addon)
-        assert not log_items.filter(action=amo.LOG.ADD_VERSION.id).exists()
-
-    def test_failure_when_cant_upload_more(self):
-        """e.g. when the version is already reviewed.  The button shouldn't be
-        shown but upload should fail anyways."""
-        self.version.all_files[0].update(status=amo.STATUS_PUBLIC)
-        assert not self.version.is_allowed_upload()
-
-        response = self.post(expected_status=200)
-        assert pq(response.content)('ul.errorlist').text() == (
-            'You cannot upload any more files for this version.')
-
-    def test_failure_when_version_number_doesnt_match(self):
-        self.version.update(version='99')
-        response = self.post(expected_status=200)
-        assert pq(response.content)('ul.errorlist').text() == (
-            "Version doesn't match")
-
-    def test_with_source_ignored(self):
-        # Source submit shouldn't be on the page
-        response = self.client.get(self.url)
-        assert not pq(response.content)('#id_source')
-
-        # And even if submitted, should be ignored.
-        tdir = temp.gettempdir()
-        source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
-        source.write('a' * (2 ** 21))
-        source.seek(0)
-        # source should be ignored
-        response = self.post(source=source)
-        version = self.addon.find_latest_version(channel=self.version.channel)
-        assert not version.source
-        next_url = reverse('devhub.submit.file.finish',
-                           args=[self.addon.slug, self.version.pk])
-        self.assert3xx(response, next_url)
-        assert not self.addon.reload().needs_admin_code_review

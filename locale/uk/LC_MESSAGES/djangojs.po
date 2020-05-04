@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-06 10:55+0000\n"
-"Last-Translator: Liudmyla <forworkfest@gmail.com>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-10-04 05:43+0000\n"
+"Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -133,9 +133,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Під час процесу перевірки було знайдено наступні проблеми, які можуть призвести до відхилення:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "На жаль, не знайдено підтримуваних платформ."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Тип вивантаженого вами файлу нерозпізнаний."
 
@@ -218,60 +215,52 @@ msgstr "Використовувати оригінальний"
 msgid "Week of {0}"
 msgstr "Тиждень {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " завантажень"
-msgstr[1] " завантажень"
-msgstr[2] " завантажень"
+msgstr[0] "{0} завантаження"
+msgstr[1] "{0} завантаження"
+msgstr[2] "{0} завантажень"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} користувачів"
-msgstr[1] "{0} користувачів"
+msgstr[0] "{0} користувач"
+msgstr[1] "{0} користувача"
 msgstr[2] "{0} користувачів"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} додатків"
-msgstr[1] "{0} додатків"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} додаток"
+msgstr[1] "{0} додатка"
 msgstr[2] "{0} додатків"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} збірок"
-msgstr[1] "{0} збірок"
+msgstr[0] "{0} збірка"
+msgstr[1] "{0} збірки"
 msgstr[2] "{0} збірок"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} оглядів"
-msgstr[1] "{0} оглядів"
-msgstr[2] "{0} оглядів"
+msgstr[0] "{0} відгук"
+msgstr[1] "{0} відгуки"
+msgstr[2] "{0} відгуків"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} продаж"
-msgstr[1] "{0} продаж"
-msgstr[2] "{0} продаж"
+msgstr[1] "{0} продажі"
+msgstr[2] "{0} продажів"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} повернень"
-msgstr[1] "{0} повернень"
-msgstr[2] "{0} повернень"
+msgstr[0] "{0} відшкодування"
+msgstr[1] "{0} відшкодування"
+msgstr[2] "{0} відшкодувань"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} встановлень"
-msgstr[1] "{0} встановлень"
+msgstr[0] "{0} встановлення"
+msgstr[1] "{0} встановлення"
 msgstr[2] "{0} встановлень"
 
 msgid "Downloads"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-06-14 02:08+0000\n"
 "Last-Translator: Cát Thành <catthanh192@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -127,6 +127,9 @@ msgstr "Tất cả nhãn phải có %s kí tự hoặc ít hơn sau khi kí tự
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Tất cả nhãn phải có ít nhất {0} kí tự."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -679,6 +682,9 @@ msgstr ""
 
 msgid "Admin Tools"
 msgstr "Công cụ Quản trị"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr ""
@@ -2502,11 +2508,9 @@ msgstr "Có một lỗi với việc tải lên của bạn. Vui lòng thử l�
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr "Bạn không thể tải lên thêm tập tin cho phiên bản này."
-
-msgid "Version doesn't match"
-msgstr "Phiên bản không khớp"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Cần ít nhất một ứng dụng tương thích."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2524,12 +2528,6 @@ msgstr "Không có tập tin nào trong tập tin được tải lên."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
-msgstr "Một nền tảng chỉ có thể được chọn một lần."
 
 msgid "Application"
 msgstr "Ứng dụng"
@@ -3343,10 +3341,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> người dùng hoạt động"
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "Gửi lên một Giao diện Mới"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "Gửi lên một Tiện ích Mới"
 
@@ -3450,10 +3444,6 @@ msgid "Submission Complete"
 msgstr "Việc gửi lên Hoàn tất"
 
 #, fuzzy
-msgid "You’re done!"
-msgstr "Bạn đã xong rồi!"
-
-#, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Gửi đánh giá"
 
@@ -3492,13 +3482,6 @@ msgid "Edit version {0}"
 msgstr "Phiên bản Beta {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Ghi chú Phiên bản"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Ghi chú Phiên bản"
 
@@ -3507,12 +3490,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr ""
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "Tải lên tập tin"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3596,10 +3573,6 @@ msgid "Upload Add-on"
 msgstr "Tải lên tiện ích của bạn"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "Xóa phiên bản"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "Xóa phiên bản"
 
@@ -3611,7 +3584,7 @@ msgstr "Tải lên một Phiên bản Mới"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Dùng các trường bên dưới để tải lên gói tiện ích của bạn và chọn giới hạn nền tảng. Sau khi tải lên, một loạt bài kiểm định tự động sẽ được chạy trên tập tin của bạn."
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3626,10 +3599,6 @@ msgstr "Tạo bởi Tôi"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Tạo bởi Tôi"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Gửi lên một Giao diện Mới"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -4282,9 +4251,6 @@ msgstr "Quản lí {0}"
 
 msgid "Files"
 msgstr "Tập tin"
-
-msgid "Upload Another File"
-msgstr "Tải lên Tập tin Khác"
 
 msgid "Version Notes"
 msgstr "Ghi chú Phiên bản"
@@ -5404,7 +5370,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5867,9 +5833,6 @@ msgstr "Số phiên bản phải ít hơn 32 kí tự."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Số phiên bản chỉ được chứa chữ cái, chữ số, và các kí tự chấm câu sau: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

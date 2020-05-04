@@ -164,7 +164,8 @@ class Command(BaseCommand):
 
     def _cachebust(self, css_file, bundle_name):
         """Cache bust images.  Return a new bundle hash."""
-        print('Cache busting images in %s' % re.sub('.tmp$', '', css_file))
+        self.stdout.write(
+            'Cache busting images in %s\n' % re.sub('.tmp$', '', css_file))
 
         if not os.path.exists(css_file):
             return
@@ -186,7 +187,8 @@ class Command(BaseCommand):
         self.checked_hash[css_file] = file_hash
 
         if self.missing_files:
-            print(' - Error finding %s images' % (self.missing_files,))
+            self.stdout.write(
+                ' - Error finding %s images\n' % (self.missing_files,))
             self.missing_files = 0
 
         return file_hash
@@ -206,7 +208,8 @@ class Command(BaseCommand):
                 target=file_out,
                 source=file_in))
 
-        print('Minifying %s (using %s)' % (file_in, opts['method']))
+        self.stdout.write(
+            'Minifying %s (using %s)\n' % (file_in, opts['method']))
 
     def _file_hash(self, url):
         """Open the file and get a hash of it."""
@@ -219,7 +222,7 @@ class Command(BaseCommand):
                 file_hash = hashlib.md5(f.read()).hexdigest()[0:7]
         except IOError:
             self.missing_files += 1
-            print(' - Could not find file %s' % url)
+            self.stdout.write(' - Could not find file %s\n' % url)
 
         self.checked_hash[url] = file_hash
         return file_hash

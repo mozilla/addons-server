@@ -226,16 +226,23 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f.version.addon = Addon(name=u' フォクすけ  といっしょ')
         assert f.generate_filename() == 'addon-0.1.7-fx.xpi'
 
-    def clean_files(self, f):
-        if not storage.exists(f.file_path):
-            with storage.open(f.file_path, 'w') as fp:
-                fp.write('sample data\n')
-
     def test_generate_hash(self):
-        f = File()
-        f.version = Version.objects.get(pk=81551)
-        fn = self.xpi_path('delicious_bookmarks-2.1.106-fx')
-        assert f.generate_hash(fn).startswith('sha256:fd277d45ab44f6240e')
+        file_ = File()
+        file_.version = Version.objects.get(pk=81551)
+        filename = self.xpi_path('delicious_bookmarks-2.1.106-fx')
+        assert file_.generate_hash(
+            filename).startswith('sha256:fd277d45ab44f6240e')
+
+        file_ = File.objects.get(pk=67442)
+        with storage.open(file_.file_path, 'wb') as fp:
+            fp.write('some data\n')
+        with storage.open(file_.guarded_file_path, 'wb') as fp:
+            fp.write('some data guarded\n')
+        assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
+        file_.status = amo.STATUS_DISABLED
+        assert file_.generate_hash().startswith('sha256:6524f7791a35ef4dd4c6f')
+        file_.status = amo.STATUS_PUBLIC
+        assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
 
     def test_addon(self):
         f = File.objects.get(pk=67442)
@@ -464,6 +471,8 @@ class TestParseXpi(TestCase):
             'version': '0.1',
             'type': amo.ADDON_EXTENSION,
             'is_webextension': False,
+            'name': 'xpi name',
+            'summary': 'xpi description',
         }
         parsed = self.parse(minimal=True)
         assert parsed == expected
@@ -480,6 +489,8 @@ class TestParseXpi(TestCase):
             'version': '0.1',
             'type': amo.ADDON_EXTENSION,
             'is_webextension': False,
+            'name': 'xpi name',
+            'summary': 'xpi description',
         }
         parsed = self.parse(minimal=True, user=None)
         assert parsed == expected
@@ -516,6 +527,10 @@ class TestParseXpi(TestCase):
             'type': amo.ADDON_EXTENSION,
             'version': '1.0',
             'is_webextension': True,
+            'name': 'Beastify',
+            'summary': None,
+            'default_locale': None,
+            'homepage': None,
         }
         parsed = self.parse(
             filename='webextension_with_apps_targets.xpi',
@@ -874,7 +889,7 @@ class TestFileUpload(UploadTest):
         addon.update(guid='guid@xpi')
         parsed_data = parse_addon(upload, addon=addon, user=user_factory())
         file_ = File.from_upload(
-            upload, addon.current_version, amo.PLATFORM_LINUX.id,
+            upload, addon.current_version, amo.PLATFORM_ALL.id,
             parsed_data=parsed_data)
         assert file_.binary
 
@@ -899,7 +914,7 @@ class TestFileUpload(UploadTest):
         addon.update(guid='guid@xpi')
         parsed_data = parse_addon(upload, addon=addon, user=user_factory())
         file_ = File.from_upload(
-            upload, addon.current_version, amo.PLATFORM_LINUX.id,
+            upload, addon.current_version, amo.PLATFORM_ALL.id,
             parsed_data=parsed_data)
         assert file_.binary
 
@@ -924,7 +939,7 @@ class TestFileUpload(UploadTest):
         addon.update(guid='guid@xpi')
         parsed_data = parse_addon(upload, addon=addon, user=user_factory())
         file_ = File.from_upload(
-            upload, addon.current_version, amo.PLATFORM_LINUX.id,
+            upload, addon.current_version, amo.PLATFORM_ALL.id,
             parsed_data=parsed_data)
         assert file_.requires_chrome
 
@@ -1086,7 +1101,7 @@ class TestFileFromUpload(UploadTest):
         super(TestFileFromUpload, self).setUp()
         for version in ('3.0', '3.6', '3.6.*', '4.0b6'):
             AppVersion(application=amo.FIREFOX.id, version=version).save()
-        self.platform = amo.PLATFORM_MAC.id
+        self.platform = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(guid='guid@xpi',
                                           type=amo.ADDON_EXTENSION,
                                           name='xxx')
@@ -1133,7 +1148,7 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('jetpack')
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
-        assert file_.filename == 'xxx-0.1-mac.xpi'
+        assert file_.filename == 'xxx-0.1.xpi'
 
     def test_filename_no_extension(self):
         upload = self.upload('jetpack')
@@ -1141,7 +1156,7 @@ class TestFileFromUpload(UploadTest):
         upload.name = upload.name.rsplit('.', 1)[0]
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
-        assert file_.filename == 'xxx-0.1-mac.xpi'
+        assert file_.filename == 'xxx-0.1.xpi'
 
     def test_file_validation(self):
         upload = self.upload('jetpack')
@@ -1180,7 +1195,7 @@ class TestFileFromUpload(UploadTest):
         self.version.addon.name = u'jéts!'
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
-        assert file_.filename == u'jets-0.1-mac.xpi'
+        assert file_.filename == u'jets-0.1.xpi'
 
     def test_size(self):
         upload = self.upload('extension')
@@ -1364,6 +1379,25 @@ class TestFileFromUpload(UploadTest):
         assert permissions_list[0:5] == parsed_data['permissions']
         assert permissions_list[5:8] == [x for y in [
             cs['matches'] for cs in parsed_data['content_scripts']] for x in y]
+
+    def test_file_is_copied_to_current_path_at_upload(self):
+        upload = self.upload('webextension')
+        file_ = File.from_upload(
+            upload, self.version, self.platform,
+            parsed_data={'is_webextension': True})
+        assert os.path.exists(file_.file_path)
+        assert not os.path.exists(file_.guarded_file_path)
+        assert os.path.exists(file_.current_file_path)
+
+    def test_file_is_copied_to_current_path_at_upload_if_disabled(self):
+        self.addon.update(disabled_by_user=True)
+        upload = self.upload('webextension')
+        file_ = File.from_upload(
+            upload, self.version, self.platform,
+            parsed_data={'is_webextension': True})
+        assert not os.path.exists(file_.file_path)
+        assert os.path.exists(file_.guarded_file_path)
+        assert os.path.exists(file_.current_file_path)
 
 
 class TestZip(TestCase, amo.tests.AMOPaths):

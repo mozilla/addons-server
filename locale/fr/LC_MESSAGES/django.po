@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 15:59+0000\n"
-"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-26 13:01+0000\n"
+"Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -138,6 +138,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Toutes les étiquettes doivent avoir au moins {0} caractère."
 msgstr[1] "Toutes les étiquettes doivent avoir au moins {0} caractères."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Le texte saisi a été marqué comme spam."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -706,6 +709,9 @@ msgstr "Outils des testeurs"
 msgid "Admin Tools"
 msgstr "Outils d’administration"
 
+msgid "Positive integer"
+msgstr "Entier positif"
+
 msgid "Incorrect, please try again."
 msgstr "Incorrect, veuillez réessayer."
 
@@ -934,7 +940,7 @@ msgid "Error decoding signature."
 msgstr "Erreur de décodage de la signature."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Type incorrect pour une ou plusieurs clés dans la charge utile"
 
 msgid "Invalid JWT Token."
 msgstr "Jeton JWT non valide."
@@ -2490,11 +2496,8 @@ msgstr "Il y a eu une erreur avec votre envoi. Merci de réessayer."
 msgid "Override failed validation"
 msgstr "Passer outre la validation échouée"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Vous ne pouvez plus envoyer de fichier pour cette version."
-
-msgid "Version doesn't match"
-msgstr "Version ne correspondant pas"
+msgid "Need to select at least one application."
+msgstr "Choisissez au moins une application."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La version {version} a déjà été envoyée et supprimée."
@@ -2510,12 +2513,6 @@ msgstr "Vous n’avez pas envoyé de fichier source."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Vous avez indiqué que le fichier source n’était pas nécessaire, cependant un fichier source a été soumis."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "La plateforme « Toutes » ne peut être combinée avec des plateformes spécifiques."
-
-msgid "A platform can only be chosen once."
-msgstr "Une plateforme ne peut être choisie qu’une fois."
 
 msgid "Application"
 msgstr "Application"
@@ -3365,9 +3362,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> utilisateur actif"
 msgstr[1] "<strong>{0}</strong> utilisateurs actifs"
 
-msgid "Submit a New File"
-msgstr "Envoyer un nouveau fichier"
-
 msgid "Submit a New Version"
 msgstr "Envoyer une nouvelle version"
 
@@ -3464,9 +3458,6 @@ msgstr "Informations supplémentaires sur la distribution et la signature des mo
 msgid "Submission Complete"
 msgstr "Envoi terminé"
 
-msgid "You’re done!"
-msgstr "C’est fait !"
-
 msgid "Version Submitted for Review"
 msgstr "Revue demandée pour cette version"
 
@@ -3500,12 +3491,6 @@ msgstr "Vous pouvez également modifier la version que vous venez de proposer en
 msgid "Edit version {0}"
 msgstr "Modifier la version {0}"
 
-msgid "File Signed"
-msgstr "Fichier signé"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "C’est fait ! Cette version a été signée et peut maintenant être distribuée personnellement. Vous pouvez la télécharger en cliquant sur le bouton ci-dessous."
-
 msgid "Version Signed"
 msgstr "Version signée"
 
@@ -3514,12 +3499,6 @@ msgstr "C’est fait ! Cette version a été signée et peut maintenant être d
 
 msgid "Download {0}"
 msgstr "Télécharger {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Vous n’avez sélectionné que certaines des plateformes disponibles pour cet envoi. Vous pouvez soumettre d’autres fichiers ciblant les autres plateformes :"
-
-msgid "Upload File"
-msgstr "Envoyer un fichier"
 
 msgid "Go to My Submissions"
 msgstr "Accéder à mes propositions"
@@ -3601,9 +3580,6 @@ msgstr "Accord de distribution des modules complémentaires"
 msgid "Upload Add-on"
 msgstr "Envoyer votre module"
 
-msgid "Where to Host File"
-msgstr "Hébergement de ce fichier"
-
 msgid "Where to Host Version"
 msgstr "Hébergement de cette version"
 
@@ -3613,8 +3589,8 @@ msgstr "Envoyer cette version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilisez les champs ci-dessous pour envoyer le paquet de votre module. Après envoi, une série de tests de validation automatisés seront exécutés sur votre fichier."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "Quelles sont les plateformes avec lesquelles le fichier est compatible ?"
+msgid "Which applications is this version compatible with?"
+msgstr "Avec quelles applications cette version est-elle compatible ?"
 
 msgid "Administrative overrides"
 msgstr "Dérogations administratives"
@@ -3624,9 +3600,6 @@ msgstr "Créer une version de thème"
 
 msgid "Create a Theme"
 msgstr "Créer un thème"
-
-msgid "Submit File"
-msgstr "Envoyer un fichier"
 
 msgid "Sign Add-on"
 msgstr "Signer le module"
@@ -4100,12 +4073,11 @@ msgstr "Test de compatibilité"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Vérifiez que votre extension est compatible avec Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Page de l’application"
+msgstr "Tests en direct"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Installez temporairement votre extension dans Firefox pour tester en conditions réelles et déboguer."
 
 msgid "Transfer ownership"
 msgstr "Transférer la propriété"
@@ -4263,9 +4235,6 @@ msgstr "Gérer {0}"
 
 msgid "Files"
 msgstr "Fichiers"
-
-msgid "Upload Another File"
-msgstr "Envoyer un autre fichier"
 
 msgid "Version Notes"
 msgstr "Notes de version"
@@ -5378,15 +5347,15 @@ msgstr "Surlignez du texte {start_sub_heading}avec {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr "Utilisez un surligneur de texte hautement personnalisable avec différentes couleurs et options d'enregistrement."
+msgstr "Utilisez un surligneur de texte hautement personnalisable avec différentes couleurs et options d’enregistrement."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Profitez de musiques provenant du monde entier {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Écoutez plus de 20 000 stations de radio du monde entier."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Écoutez plus de 30 000 stations de radio du monde entier."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5850,9 +5819,6 @@ msgstr "Les numéros de versions doivent comprendre moins de 32 caractères."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Les numéros de versions doivent uniquement contenir des lettres, des chiffres, et les caractères suivants : +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "L’envoi de thèmes sous forme de WebExtension n’est pas pris en charge pour l’instant."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "La taille maximale pour les thèmes WebExtension est de {0}."

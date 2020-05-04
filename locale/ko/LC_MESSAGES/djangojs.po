@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-08-23 01:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,9 +123,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "유효성 검사 과정에서 거부 원인이 될 수 있는 문제들 발견:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "죄송합니다, 지원되는 플랫폼을 찾지 못하였습니다."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "업로드한 파일 형식을 인식할 수 없습니다."
 
@@ -220,7 +217,7 @@ msgstr[0] "사용자 {0}명"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "부가 기능 {0}개"
 
 #, fuzzy

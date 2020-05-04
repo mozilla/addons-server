@@ -134,7 +134,7 @@ def rezip_file(response, pk):
     new_path = os.path.join(loc, new_filename)
 
     old_zip = SafeZip(old_path)
-    if not old_zip.is_valid():
+    if not old_zip.is_valid:
         raise
 
     with storage.open(new_path, 'w') as new:

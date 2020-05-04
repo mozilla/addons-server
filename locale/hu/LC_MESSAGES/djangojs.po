@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 12:48+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-17 10:58+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -131,9 +131,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Az ellenőrzési folyamat ezeket a problémákat találta, amik elutasításhoz vezethetnek:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Elnézést, nem található támogatott platform."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "A feltöltött fájl típusa nem ismerhető fel."
 
@@ -216,49 +213,41 @@ msgstr "Eredeti használata"
 msgid "Week of {0}"
 msgstr "{0}. hét"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " letöltés"
-msgstr[1] " letöltés"
+msgstr[0] "{0} letöltés"
+msgstr[1] "{0} letöltés"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} felhasználó"
 msgstr[1] "{0} felhasználó"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} kiegészítő"
 msgstr[1] "{0} kiegészítő"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} gyűjtemény"
 msgstr[1] "{0} gyűjtemény"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} értékelés"
 msgstr[1] "{0} értékelés"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} eladás"
 msgstr[1] "{0} eladás"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} visszatérítés"
 msgstr[1] "{0} visszatérítés"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} telepítés"

@@ -268,7 +268,7 @@
             function monthFormatter(d) { return Highcharts.dateFormat('%B %Y', new Date(d)); }
             function downloadFormatter(n) { return format(ngettext('{0} download', '{0} downloads', n), Highcharts.numberFormat(n, 0)); }
             function userFormatter(n) { return format(ngettext('{0} user', '{0} users', n), Highcharts.numberFormat(n, 0)); }
-            function addonsFormatter(n) { return format(ngettext('{0} add-on', '{0} add-ons, n'), Highcharts.numberFormat(n, 0)); }
+            function addonsFormatter(n) { return format(ngettext('{0} add-on', '{0} add-ons', n), Highcharts.numberFormat(n, 0)); }
             function collectionsFormatter(n) { return format(ngettext('{0} collection', '{0} collections', n), Highcharts.numberFormat(n, 0)); }
             function reviewsFormatter(n) { return format(ngettext('{0} review', '{0} reviews', n), Highcharts.numberFormat(n, 0)); }
             function currencyFormatter(n) { return '$' + Highcharts.numberFormat(n, 2); }

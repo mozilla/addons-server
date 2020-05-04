@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-06-20 17:05+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -144,6 +144,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Totes les etiquetes han de tenir com a mínim {0} caràcter."
 msgstr[1] "Totes les etiquetes han de tenir com a mínim {0} caràcters."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -729,6 +732,9 @@ msgstr "Respost pel desenvolupador {0}"
 
 msgid "Admin Tools"
 msgstr "Eines de l'administrador"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr ""
@@ -2568,11 +2574,9 @@ msgstr "S'ha produït un error quan es pujava el fitxer. Torneu-ho a provar."
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr "No podeu pujar més fitxers per a aquesta versió."
-
-msgid "Version doesn't match"
-msgstr "La versió no és correcta"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Es necessita com a mínim una aplicació compatible."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2590,12 +2594,6 @@ msgstr "No s'ha trobat cap fitxer per pujar"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "La plataforma Totes no es pot combinar amb plataformes específiques."
-
-msgid "A platform can only be chosen once."
-msgstr "Només es pot seleccionar la plataforma una vegada."
 
 msgid "Application"
 msgstr "Aplicació"
@@ -3420,10 +3418,6 @@ msgstr[0] "<strong>{0}</strong> usuari actiu"
 msgstr[1] "<strong>{0}</strong> usuaris actius"
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "Envia un complement nou"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "Envia un complement nou"
 
@@ -3528,10 +3522,6 @@ msgid "Submission Complete"
 msgstr "Procés finalitzat"
 
 #, fuzzy
-msgid "You’re done!"
-msgstr "Ja heu acabat."
-
-#, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Envia la valoració"
 
@@ -3570,13 +3560,6 @@ msgid "Edit version {0}"
 msgstr "Versió Beta {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Notes de la versió"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Notes de la versió"
 
@@ -3592,13 +3575,6 @@ msgstr ""
 #, fuzzy
 msgid "Download {0}"
 msgstr "Baixa'l ara"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-#, fuzzy
-msgid "Upload File"
-msgstr "Puja un altre fitxer"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3681,10 +3657,6 @@ msgid "Upload Add-on"
 msgstr "Pugeu el vostre complement"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "Suprimeix la versió"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "Suprimeix la versió"
 
@@ -3695,7 +3667,7 @@ msgstr "Puja una versió nova"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Utilitzeu els camps següents per pujar el vostre paquet de complement. Després de pujar-lo, es realitzaran una sèrie de validacions i proves automàtiques."
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3708,10 +3680,6 @@ msgstr "Temes destacats"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Temes destacats"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Envia un complement nou"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -4376,9 +4344,6 @@ msgstr "Gestiona {0}"
 
 msgid "Files"
 msgstr "Fitxers"
-
-msgid "Upload Another File"
-msgstr "Puja un altre fitxer"
 
 msgid "Version Notes"
 msgstr "Notes de la versió"
@@ -5500,7 +5465,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5963,9 +5928,6 @@ msgstr "Els números de versió haurien de tenir menys de 32 caràcters."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "El número de versió només permet lletres, números i els següents signes de puntuació: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

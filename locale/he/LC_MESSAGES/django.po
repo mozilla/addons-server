@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 12:16+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-10-07 08:38+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -137,6 +137,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "כל התגים חייבים להכיל לפחות תו אחד."
 msgstr[1] "כל התגים חייבים להכיל לפחות {0} תווים."
+
+msgid "The text entered has been flagged as spam."
+msgstr "הטקסט שהוזן סומן בדגל כספאם."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -708,6 +711,9 @@ msgstr "כלי הסוקרים"
 
 msgid "Admin Tools"
 msgstr "כלי מנהל"
+
+msgid "Positive integer"
+msgstr "מספר שלם חיובי"
 
 msgid "Incorrect, please try again."
 msgstr "שגוי, נא לנסות שוב."
@@ -2523,11 +2529,8 @@ msgstr "אירעה שגיאה עם ההעלאה שלך. נא לנסות שוב."
 msgid "Override failed validation"
 msgstr "בדיקת האימות על המעקף נכשלה"
 
-msgid "You cannot upload any more files for this version."
-msgstr "לא ניתן להעלות קבצים נוספים לגרסה זו."
-
-msgid "Version doesn't match"
-msgstr "הגרסה אינה תואמת"
+msgid "Need to select at least one application."
+msgstr "יש לבחור יישום אחד לפחות."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "הגרסה {version} הועלתה בעבר ונמחקה."
@@ -2543,12 +2546,6 @@ msgstr "לא העלית קובץ מקור."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "אי אפשר לשלב את הפלטפורמה הכול עם פלטפורמה מסוימת."
-
-msgid "A platform can only be chosen once."
-msgstr "ניתן לבחור פלטפורמה רק פעם אחת."
 
 msgid "Application"
 msgstr "יישום"
@@ -3361,9 +3358,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "משתמש פעיל <strong>אחד</strong>"
 msgstr[1] "<strong>{0}</strong> משתמשים פעילים"
 
-msgid "Submit a New File"
-msgstr "הגשת קובץ חדש"
-
 msgid "Submit a New Version"
 msgstr "הגשת גרסה חדשה"
 
@@ -3458,9 +3452,6 @@ msgstr "מידע נוסף על הפצת תוספות וחתימה"
 msgid "Submission Complete"
 msgstr "ההגשה הושלמה"
 
-msgid "You’re done!"
-msgstr "סיימת!"
-
 msgid "Version Submitted for Review"
 msgstr "הגרסה הוגשה לסקירה"
 
@@ -3494,12 +3485,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "עריכת גרסה {0}"
 
-msgid "File Signed"
-msgstr "קובץ חתום"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "סיימת! קובץ זה חתום ומוכן להפצה עצמית. ניתן להוריד אותו על ידי לחיצה על הכפתור שלהלן."
-
 msgid "Version Signed"
 msgstr "הגרסה נחתמה"
 
@@ -3509,18 +3494,11 @@ msgstr "סיימת! גרסה זו חתומה ומוכנה להפצה עצמית.
 msgid "Download {0}"
 msgstr "הורדת {0}"
 
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "בחרת רק חלק מהפלטפורמות הזמינות להגשה זו. ניתן להעלות קבצים נוספים שמיועדים לפלטפורמות אחרות:"
-
-msgid "Upload File"
-msgstr "העלאת קובץ"
-
 msgid "Go to My Submissions"
 msgstr "מעבר להגשות שלי"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "קוד מקור הועלה"
+msgstr "העלאת קוד מקור"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr "האם עליך להגיש קוד מקור?"
@@ -3596,9 +3574,6 @@ msgstr "הסכם הפצת תוספת"
 msgid "Upload Add-on"
 msgstr "העלאת תוספת"
 
-msgid "Where to Host File"
-msgstr "איפה לארח את הקובץ"
-
 msgid "Where to Host Version"
 msgstr "איפה לארח את הגרסה"
 
@@ -3610,8 +3585,8 @@ msgstr "העלאת גרסה"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "יש להשתמש בשדות שלהלן כדי להעלות את חבילת התוספת. לאחר ההעלאה, תורץ סדרה של בדיקות אימות אוטומטיות על הקובץ שלך."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "אילו פלטפורמות נתמכות ע״י קובץ זה?"
+msgid "Which applications is this version compatible with?"
+msgstr "אילו יישומים נתמכים על־ידי גרסה זו?"
 
 msgid "Administrative overrides"
 msgstr "מעקפים מנהליים"
@@ -3621,9 +3596,6 @@ msgstr "יצירת גרסת ערכת נושא"
 
 msgid "Create a Theme"
 msgstr "יצירת ערכת נושא"
-
-msgid "Submit File"
-msgstr "הגשת קובץ"
 
 msgid "Sign Add-on"
 msgstr "חתימת תוספת"
@@ -4264,9 +4236,6 @@ msgstr "ניהול {0}"
 
 msgid "Files"
 msgstr "קבצים"
-
-msgid "Upload Another File"
-msgstr "העלאת קובץ אחר"
 
 msgid "Version Notes"
 msgstr "הערות גרסה"
@@ -5110,7 +5079,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "לקנות חכם יותר {start_sub_heading}עם {addon_name}{end_sub_heading}"
+msgstr "קנייה חכמה יותר {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
@@ -5430,7 +5399,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "להנות ממוזיקה מרחבי העולם {start_sub_heading}עם {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "קבלת גישה ללמעלה מ־20,000 תחנות רדיו מכל רחבי העולם."
 
 #. editorial content for the discovery pane.
@@ -5918,9 +5888,6 @@ msgstr "מספרי הגרסאות חייבים להיות באורך של פחו
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "מספרי גרסאות אמורים להכיל אך ורק תווים, מספרים ואת הסימנים הבאים: +*.-_."
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "בשלב זה אין תמיכה בהעלאת ערכות נושא בתבנית WebExtension."
-
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "הגודל המירב עבור ערכות נושא WebExtension הוא {0}."
 
@@ -5932,7 +5899,7 @@ msgid "You cannot submit an add-on with a guid ending %s"
 msgstr "לא ניתן להגיש תוספת עם guid שמסתיים ב־%s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr "לא ניתן להגיש הרחבות שנחתמו על ידי Mozilla"
+msgstr "לא ניתן להגיש הרחבות החתומות על ידי Mozilla"
 
 msgid "Unexpected error."
 msgstr "שגיאה בלתי צפויה."
@@ -6196,13 +6163,11 @@ msgstr "דיווח על תקלה"
 msgid "Not Reported"
 msgstr "טרם דורג"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "הגרסה הוגשה"
+msgstr "התוכן הוגש"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "הצגת האתר החדש"
+msgstr "הצגת הדירוג באתר"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, fuzzy
@@ -8098,7 +8063,7 @@ msgstr ""
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "התמונה השייכת למשתמש \"%(user)s\" נמחקה."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."

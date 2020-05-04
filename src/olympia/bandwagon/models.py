@@ -13,6 +13,7 @@ from olympia import activity, amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.addons.utils import clear_get_featured_ids_cache
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, BaseQuerySet
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, user_media_path, user_media_url)
@@ -84,6 +85,7 @@ class CollectionManager(ManagerBase):
 
 
 class Collection(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
 
     # TODO: Use models.UUIDField but it uses max_length=32 hex (no hyphen)
@@ -356,6 +358,7 @@ models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
 
 
 class CollectionAddon(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon)
     collection = models.ForeignKey(Collection)
     # category (deprecated: for "Fashion Your Firefox")
@@ -404,6 +407,7 @@ models.signals.post_delete.connect(CollectionAddon.post_delete,
 
 
 class FeaturedCollection(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
     collection = models.ForeignKey(Collection)

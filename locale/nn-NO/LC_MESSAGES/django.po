@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-08-27 14:15+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,6 +132,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Alle taggar må minst ha {0} teikn."
 msgstr[1] "Alle tagger må minst ha {0} teikn."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -690,6 +693,9 @@ msgstr "Vurderingsverktøy"
 
 msgid "Admin Tools"
 msgstr "Admin-verktøy"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Feil, prøv på nytt."
@@ -2461,11 +2467,9 @@ msgstr "Det oppstod ein feil med opplastinga di. Prøv på nytt."
 msgid "Override failed validation"
 msgstr "Overkøyr mislykka validering"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Du kan ikkje late opp fleire filer for denne versjonen."
-
-msgid "Version doesn't match"
-msgstr "Verjon stemmer ikkje"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Treng minst eitt kompatibelt program."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versjon {version} er lasta opp tidlegare og sletta."
@@ -2482,12 +2486,6 @@ msgstr "Klarte ikkje å tolke opplasta fil."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Plattforma Alle kan ikkje kombinerast med spesifikke plattformer."
-
-msgid "A platform can only be chosen once."
-msgstr "Ei plattform kan berre veljast éin gong."
 
 msgid "Application"
 msgstr "Program"
@@ -3292,9 +3290,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiv brukar"
 msgstr[1] "<strong>{0}</strong> aktive brukarar"
 
-msgid "Submit a New File"
-msgstr "Send inn ei ny fil"
-
 msgid "Submit a New Version"
 msgstr "Send inn ein ny versjon"
 
@@ -3385,9 +3380,6 @@ msgstr "Meir informasjon om distribusjon og signering av utvidingar"
 msgid "Submission Complete"
 msgstr "Innsendinga fullført"
 
-msgid "You’re done!"
-msgstr "Du er klar!"
-
 msgid "Version Submitted for Review"
 msgstr "Versjon sendt inn for vurdering"
 
@@ -3422,12 +3414,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Rediger versjon {0}"
 
-msgid "File Signed"
-msgstr "Fil signert"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "Versjon signert"
 
@@ -3436,12 +3422,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "Last ned {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "Last opp fil"
 
 msgid "Go to My Submissions"
 msgstr "Gå til bidraga mine"
@@ -3520,9 +3500,6 @@ msgstr "Distribusjonsavtale for utvidingar"
 msgid "Upload Add-on"
 msgstr "Last opp utviding"
 
-msgid "Where to Host File"
-msgstr "Kvar filer skal husast"
-
 msgid "Where to Host Version"
 msgstr "Kvar skal versjonar husast"
 
@@ -3532,7 +3509,8 @@ msgstr "Last opp versjon"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Bruk feltet nedanfor for å laste opp utvidingspakken din. Etter opplasting, vil ei rad automatiserte valideringstestar køyrast på fila di."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Kva for plattformer er denne fila kompatibel med?"
 
 msgid "Administrative overrides"
@@ -3543,9 +3521,6 @@ msgstr "Lag ein temaversjon"
 
 msgid "Create a Theme"
 msgstr "Lag eit tema"
-
-msgid "Submit File"
-msgstr "Send inn fil"
 
 msgid "Sign Add-on"
 msgstr "SIgner utviding"
@@ -4177,9 +4152,6 @@ msgstr "Handsam {0}"
 
 msgid "Files"
 msgstr "Filer"
-
-msgid "Upload Another File"
-msgstr "Last opp ei anna fil"
 
 msgid "Version Notes"
 msgstr "Versjonsmerknad"
@@ -5407,7 +5379,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5914,9 +5886,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr "Versjonsnummer skal ha færre enn 32 teikn."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-04 13:04+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-27 20:43+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -135,6 +135,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Alle labels dienen uit minstens {0} teken te bestaan."
 msgstr[1] "Alle labels dienen uit minstens {0} tekens te bestaan."
+
+msgid "The text entered has been flagged as spam."
+msgstr "De ingevoerde tekst is gemarkeerd als spam."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -700,6 +703,9 @@ msgstr "Hulpmiddelen voor beoordelaars"
 msgid "Admin Tools"
 msgstr "Beheerhulpmiddelen"
 
+msgid "Positive integer"
+msgstr "Positief geheel getal"
+
 msgid "Incorrect, please try again."
 msgstr "Onjuist, probeer het opnieuw."
 
@@ -925,7 +931,7 @@ msgid "Error decoding signature."
 msgstr "Fout bij decoderen van ondertekening."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Een of meer sleutels in de payload zijn van het verkeerde type"
 
 msgid "Invalid JWT Token."
 msgstr "Ongeldig JWT-token."
@@ -2485,11 +2491,8 @@ msgstr "Er is een fout opgetreden tijdens uw upload. Probeer het opnieuw."
 msgid "Override failed validation"
 msgstr "Mislukte validatie negeren"
 
-msgid "You cannot upload any more files for this version."
-msgstr "U kunt geen bestanden meer uploaden voor deze versie."
-
-msgid "Version doesn't match"
-msgstr "Versie komt niet overeen"
+msgid "Need to select at least one application."
+msgstr "U dient ten minste één toepassing te selecteren."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versie {version} is eerder geüpload en verwijderd."
@@ -2505,12 +2508,6 @@ msgstr "U hebt geen bronbestand geüpload."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Bronbestand geüpload, maar u hebt aangegeven dat er geen bron nodig was."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Het platform Alle kan niet met specifieke platformen worden gecombineerd."
-
-msgid "A platform can only be chosen once."
-msgstr "Een platform kan slechts één keer worden gekozen."
 
 msgid "Application"
 msgstr "Toepassing"
@@ -3347,9 +3344,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> actieve gebruiker"
 msgstr[1] "<strong>{0}</strong> actieve gebruikers"
 
-msgid "Submit a New File"
-msgstr "Een nieuw bestand indienen"
-
 msgid "Submit a New Version"
 msgstr "Een nieuwe versie indienen"
 
@@ -3444,9 +3438,6 @@ msgstr "Meer informatie over distributie en ondertekening van add-ons"
 msgid "Submission Complete"
 msgstr "Indiening voltooid"
 
-msgid "You’re done!"
-msgstr "U bent klaar!"
-
 msgid "Version Submitted for Review"
 msgstr "Versie ingediend voor beoordeling"
 
@@ -3480,12 +3471,6 @@ msgstr "U kunt deze versie ook bewerken om versieopmerkingen toe te voegen, of b
 msgid "Edit version {0}"
 msgstr "Versie {0} bewerken"
 
-msgid "File Signed"
-msgstr "Bestand ondertekend"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "U bent klaar! Dit bestand is ondertekend en gereed voor eigen distributie. U kunt het downloaden door op de onderstaande knop te klikken."
-
 msgid "Version Signed"
 msgstr "Versie ondertekend"
 
@@ -3494,12 +3479,6 @@ msgstr "U bent klaar! Deze versie is ondertekend en gereed voor eigen distributi
 
 msgid "Download {0}"
 msgstr "{0} downloaden"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "U hebt slechts enkele van de beschikbare platformen voor deze inzending geselecteerd. U kunt meerdere bestanden uploaden die op andere platformen zijn gericht:"
-
-msgid "Upload File"
-msgstr "Bestand uploaden"
 
 msgid "Go to My Submissions"
 msgstr "Naar mijn bijdragen"
@@ -3581,9 +3560,6 @@ msgstr "Add-on-distributieovereenkomst"
 msgid "Upload Add-on"
 msgstr "Add-on uploaden"
 
-msgid "Where to Host File"
-msgstr "Waar het bestand wordt gehost"
-
 msgid "Where to Host Version"
 msgstr "Waar de versie wordt gehost"
 
@@ -3593,8 +3569,8 @@ msgstr "Versie uploaden"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Gebruik onderstaande velden om uw add-onpakket te uploaden. Na de upload wordt een aantal geautomatiseerde validatietests op uw bestand uitgevoerd."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "Met welke platformen is dit bestand compatibel?"
+msgid "Which applications is this version compatible with?"
+msgstr "Met welke toepassingen is deze versie compatibel?"
 
 msgid "Administrative overrides"
 msgstr "Negeerhandelingen van beheer"
@@ -3604,9 +3580,6 @@ msgstr "Een themaversie maken"
 
 msgid "Create a Theme"
 msgstr "Een thema maken"
-
-msgid "Submit File"
-msgstr "Bestand indienen"
 
 msgid "Sign Add-on"
 msgstr "Add-on ondertekenen"
@@ -4079,12 +4052,11 @@ msgstr "Compatibiliteitstest"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Controleren of uw extensie compatibel is met Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Lijst bekijken"
+msgstr "Live testen"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Installeer uw extensie in Firefox tijdelijk voor live testen en debuggen."
 
 msgid "Transfer ownership"
 msgstr "Eigendom overdragen"
@@ -4241,9 +4213,6 @@ msgstr "{0} beheren"
 
 msgid "Files"
 msgstr "Bestanden"
-
-msgid "Upload Another File"
-msgstr "Nog een bestand uploaden"
 
 msgid "Version Notes"
 msgstr "Versieopmerkingen"
@@ -5361,8 +5330,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Geniet van muziek uit de hele wereld {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Benader meer dan 20.000 radiostations van over de hele wereld."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Benader meer dan 30.000 radiostations van over de hele wereld."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5824,9 +5793,6 @@ msgstr "Versienummers mogen uit niet meer dan 32 tekens bestaan."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Versienummers mogen alleen letters, cijfers en deze interpunctietekens bevatten: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Uploads van WebExtension-thema’s worden momenteel niet ondersteund."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "De maximale grootte voor WebExtension-thema’s is {0}."

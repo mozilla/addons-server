@@ -82,18 +82,18 @@ ndg-httpsclient==0.5.1 \
     --hash=sha256:dd174c11d971b6244a891f7be2b32ca9853d3797a72edb34fa5d7b07d8fff7d4 \
     --hash=sha256:d72faed0376ab039736c2ba12e30695e2788c4aa569c9c3e3d72131de2592210
 # packaging is required by setuptools
-packaging==17.1 \
-    --hash=sha256:e9215d2d2535d3ae866c3d6efc77d5b24a0192cce0ff20e42896cc0664f889c0 \
-    --hash=sha256:f019b770dd64e585a99714f1fd5e01c7a8f11b45635aa953fd41c689a657375b
-pip==18.0 \
-    --hash=sha256:070e4bf493c7c2c9f6a08dd797dd3c066d64074c38e9e8a0fb4e6541f266d96c \
-    --hash=sha256:a0e11645ee37c90b40c46d607070c4fd583e2cd46231b1c06e389c5e814eed76
+packaging==18.0 \
+    --hash=sha256:f95a1e147590f204328170981833854229bb2912ac3d5f89e2a8ccd2834800c9 \
+    --hash=sha256:0886227f54515e592aaa2e5a553332c73962917f2831f1b0f9b9f4380a4b9807
+pip==18.1 \
+    --hash=sha256:7909d0a0932e88ea53a7014dfd14522ffef91a464daaaf5c573343852ef98550 \
+    --hash=sha256:c0a292bd977ef590379a3f05d7b7f65135487b67470f6281289a94e015650ea1
 pyOpenSSL==18.0.0 \
     --hash=sha256:26ff56a6b5ecaf3a2a59f132681e2a80afcc76b4f902f612f518f92c2a1bf854 \
     --hash=sha256:6488f1423b00f73b7ad5167885312bb0ce410d3312eb212393795b53c8caa580
 # pycparser is required by cffi
-pycparser==2.18 \
-    --hash=sha256:99a8ca03e29851d96616ad0404b4aad7d9ee16f25c9f9708a11faf2810f7b226
+pycparser==2.19 \
+    --hash=sha256:a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3
 pyasn1==0.4.4 \
     --hash=sha256:dea873d6c907c1cf1341fd88742a61efce33227d7743cb37564ab7d7e77dd9fd \
     --hash=sha256:13794d835643ee970b2c059dbfe4eb5d751e16c693c8baee61c526abd209e5c7 \
@@ -109,17 +109,13 @@ pyasn1==0.4.4 \
     --hash=sha256:8f291e0338d519a1a0d07f0b9d03c9265f6be26eb32fdd21af6d3259d14ea49c \
     --hash=sha256:f58f2a3d12fd754aa123e9fa74fb7345333000a035f3921dbdaa08597aa53137
 # pyparsing is required by packaging
-pyparsing==2.2.0 \
-    --hash=sha256:fee43f17a9c4087e7ed1605bd6df994c6173c1e977d7ade7b651292fab2bd010 \
-    --hash=sha256:0832bcf47acd283788593e7a0f542407bd9550a55a8a8435214a1960e04bcb04 \
-    --hash=sha256:281683241b25fe9b80ec9d66017485f6deff1af5cde372469134b56ca8447a07 \
-    --hash=sha256:b8b3117ed9bdf45e14dcc89345ce638ec7e0e29b2b579fa1ecf32ce45ebac8a5 \
-    --hash=sha256:8f1e18d3fd36c6795bb7e02a39fd05c611ffc2596c1e0d995d34d67630426c18 \
-    --hash=sha256:e4d45427c6e20a59bf4f88c639dcc03ce30d193112047f94012102f235853a58
+pyparsing==2.2.2 \
+    --hash=sha256:d29593d8ebe7b57d6967b62494f8c72b03ac0262b1eed63826c6f788b3606401 \
+    --hash=sha256:bc6c7146b91af3f567cf6daeaec360bc07d45ffec4cf5353f4d7a208ce7ca30a
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
-setuptools==40.3.0 \
-    --hash=sha256:a61433987d64d2966d4fc246ec405cb84a75118521116082cb12f30a4f13d46a \
-    --hash=sha256:d7051b952509a24623469193935162daeb500b8a00a9efef88080fa242f6d7fc
+setuptools==40.4.3 \
+    --hash=sha256:ce4137d58b444bac11a31d4e0c1805c69d89e8ed4e91fde1999674ecc2f6f9ff \
+    --hash=sha256:acbc5740dd63f243f46c2b4b8e2c7fd92259c2ddb55a4115b16418a2ed371b15
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, websocket-client
 six==1.11.0 \
     --hash=sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb \

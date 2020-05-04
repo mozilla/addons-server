@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2015-12-01 12:24+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2017-09-29 15:46+0000\n"
 "Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -51,7 +51,6 @@ msgstr "Molimo koristite slike manje od %dMB."
 msgid "You are already logged in."
 msgstr "Već ste prijavljeni."
 
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Nije vas bilo moguće prijaviti. Molimo pokušajte ponovo."
 
@@ -98,7 +97,6 @@ msgstr "Preuzimanje"
 msgid "Featured"
 msgstr "Istaknuto"
 
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "Nije pregledano"
@@ -146,6 +144,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -208,9 +209,8 @@ msgstr "Pogledajte policu zaštite privatnosti"
 msgid "View End-User License Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Ovaj dodatak nije pregledan od strane Mozille. <a href=\"%(url)s\">Saznajte više</a>"
+msgstr "Ovaj dodatak nije pregledan od strane Mozille."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr ""
@@ -381,12 +381,11 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> korisnika"
 
 #. {0} is the number of users.
-#, fuzzy
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
-msgstr[0] "Dnevni korisnici"
-msgstr[1] "Dnevni korisnici"
-msgstr[2] "Dnevni korisnici"
+msgstr[0] "{0} dnevni korisnik"
+msgstr[1] "{0} dnevnih korisnika"
+msgstr[2] "{0} dnevnih korisnika"
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
@@ -474,11 +473,10 @@ msgid "Download Anyway"
 msgstr ""
 
 msgid "[Warning]"
-msgstr ""
+msgstr "[Upozorenje]"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Inačica"
+msgstr "Dozvole"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr ""
@@ -573,7 +571,7 @@ msgid "Developer’s Comments"
 msgstr ""
 
 msgid "Version Information"
-msgstr ""
+msgstr "Informacije o inačici"
 
 msgid "See complete version history"
 msgstr ""
@@ -725,6 +723,9 @@ msgstr "Recenzent"
 msgid "Admin Tools"
 msgstr "Administratorski alati"
 
+msgid "Positive integer"
+msgstr ""
+
 msgid "Incorrect, please try again."
 msgstr "Netočno, molimo pokušajte ponovno."
 
@@ -759,13 +760,11 @@ msgid ""
 "parties."
 msgstr ""
 
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Nije pronađeno"
+msgstr "Stranica nije pronađena"
 
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Istaknuti dodaci"
+msgstr "Firefox dodaci"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr ""
@@ -861,7 +860,7 @@ msgid "Explore"
 msgstr "Istraži"
 
 msgid "Extensions"
-msgstr ""
+msgstr "Proširenja"
 
 #. {0} is a category name. Ex: "Sports"
 msgid "Themes"
@@ -981,7 +980,7 @@ msgid "GUID"
 msgstr "GUID"
 
 msgid "Versions"
-msgstr ""
+msgstr "Inačica"
 
 #, python-format
 msgid ""
@@ -1230,9 +1229,9 @@ msgstr "Nema pronađenih zbirki."
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "od %(users)s"
+msgstr "od %(author_link)s"
 
 msgid "Create a Collection"
 msgstr "Stvori zbirku"
@@ -1582,9 +1581,8 @@ msgid "Version"
 msgstr "Inačica"
 
 # 84%
-#, fuzzy
 msgid "Application Version"
-msgstr "Aplikacije:"
+msgstr "Verzija aplikacije"
 
 msgid "Application Build"
 msgstr ""
@@ -1592,13 +1590,11 @@ msgstr ""
 msgid "Platform"
 msgstr "Platforma"
 
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "Onemogućeno"
+msgstr "e10s omogućeno"
 
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "Nedovršeno"
+msgstr "e10s kompatibilno"
 
 msgid "Submitted"
 msgstr "Poslano"
@@ -2559,11 +2555,9 @@ msgstr "Dogodila se greška prilikom Vašeg učitavanja. Molimo, pokušajte pono
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
-msgstr "Inačica se ne podudara"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Potrebna je barem jedna kompatibilna aplikacija."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2580,12 +2574,6 @@ msgid "You have not uploaded a source file."
 msgstr "Nema datoteka u učitanoj datoteci."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Platforma Sve ne može se kombinirati s određenim platformama."
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -2989,9 +2977,8 @@ msgstr "Sažetak"
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
-#, fuzzy
 msgid "Experimental?"
-msgstr "Eksperimentalno"
+msgstr "Eksperimentalno?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
@@ -3405,10 +3392,6 @@ msgstr[1] "<strong>{0}</strong> aktivni korisnici"
 msgstr[2] "<strong>{0}</strong> aktivnih korisnika"
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "Dodaj novu inačicu"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "Dodaj novu inačicu"
 
@@ -3426,9 +3409,8 @@ msgstr "Dodaci"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
-#, fuzzy
 msgid "Summary:"
-msgstr "Sažetak"
+msgstr "Sažetak:"
 
 msgid "required"
 msgstr "potreban"
@@ -3451,9 +3433,8 @@ msgstr "Informacije podrške"
 msgid "Support website:"
 msgstr "Podržane inačice"
 
-#, fuzzy
 msgid "License:"
-msgstr "Licenca"
+msgstr "Licenca:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
@@ -3510,10 +3491,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-#, fuzzy
-msgid "You’re done!"
-msgstr "Gotov si!"
-
 msgid "Version Submitted for Review"
 msgstr ""
 
@@ -3552,13 +3529,6 @@ msgid "Edit version {0}"
 msgstr "Inačica {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Inačica"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Inačica"
 
@@ -3568,13 +3538,6 @@ msgstr ""
 # 75%
 msgid "Download {0}"
 msgstr "Preuzimanje {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-#, fuzzy
-msgid "Upload File"
-msgstr "Dodaj novu datoteku"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3655,9 +3618,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Dodaj svoj dodatak"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3668,7 +3628,7 @@ msgstr "Dodaj inačicu"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3681,10 +3641,6 @@ msgstr "Kompletna tema"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Kompletna tema"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Dodaj novu inačicu"
 
 # 80%
 #, fuzzy
@@ -3972,9 +3928,8 @@ msgstr ""
 msgid "Porting"
 msgstr "Ocjena"
 
-#, fuzzy
 msgid "Community"
-msgstr "Komentar"
+msgstr "Zajednica"
 
 msgid "About"
 msgstr "O nama"
@@ -3985,9 +3940,8 @@ msgstr "Forum"
 msgid "Blog"
 msgstr "Blog"
 
-#, fuzzy
 msgid "Contact Us"
-msgstr "Kontakti"
+msgstr "Kontaktirajte nas"
 
 msgid "Support"
 msgstr "Podrška"
@@ -4115,16 +4069,14 @@ msgid "Docs"
 msgstr ""
 
 # 80%
-#, fuzzy
 msgid "Sign Out"
-msgstr "Moji Add-ons"
+msgstr "Odjavi se"
 
 msgid "No Photo"
 msgstr "Nema fotografije"
 
-#, fuzzy
 msgid "User Photo"
-msgstr "Nema fotografije"
+msgstr "Fotografija korisnika"
 
 #, fuzzy, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -4337,9 +4289,6 @@ msgstr "Upravljaj {0}"
 msgid "Files"
 msgstr ""
 
-msgid "Upload Another File"
-msgstr ""
-
 msgid "Version Notes"
 msgstr "Biljesške verzije"
 
@@ -4453,7 +4402,7 @@ msgid "All versions"
 msgstr "Dodaj inačicu"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Dodaj novu inačicu"
 
 msgid "Delete Version {version}"
 msgstr ""
@@ -5454,7 +5403,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5917,9 +5866,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
@@ -6815,7 +6761,7 @@ msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "Type"
-msgstr ""
+msgstr "Vrsta"
 
 msgid "Waiting Time"
 msgstr "Vrijeme čekanja"
@@ -7189,10 +7135,10 @@ msgid "Active Contributors"
 msgstr ""
 
 msgid "This Month"
-msgstr ""
+msgstr "Ovaj mjesec"
 
 msgid "This Year"
-msgstr ""
+msgstr "Ove godine"
 
 msgid "Monthly Performance"
 msgstr ""
@@ -7403,9 +7349,8 @@ msgstr ""
 msgid "Compare"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Inačica"
+msgstr "Dopuštenja:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7555,9 +7500,9 @@ msgstr ""
 msgid "Rejected or Unreviewed"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Status:"
+msgstr "[status:%s]"
 
 #, fuzzy
 msgid "Update ({0})"
@@ -8013,13 +7958,11 @@ msgstr ""
 msgid "get to know <b>add-ons</b>"
 msgstr "upoznajte <b>dodatke</b>"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Preuzmite sada"
+msgstr "Preuzmite Firefox"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "Android"
+msgstr "Android preglednik"
 
 msgid "iOS Browser"
 msgstr ""

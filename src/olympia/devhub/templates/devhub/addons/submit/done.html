@@ -7,47 +7,41 @@
 {% block primary %}
 {% set version_edit_url = url('devhub.versions.edit', addon.slug, uploaded_version.id) %}
 {% if uploaded_version.channel == amo.RELEASE_CHANNEL_LISTED %}
-  {% if submit_page == 'file' %}
+  {% if addon.type == amo.ADDON_STATICTHEME %}
+    <h3>{{ _("Version Submitted for Review") }}</h3>
     <p>
-      {{ _("You’re done!") }}
+      {% if preview %}
+        <img src="{{ preview.image_url }}" title="{{ _('Preview of the version submitted') }}"
+          alt="[{{ _('Preview still being generated - come back later or refresh the page.') }}]">
+      {% endif %}
+    </p>
+    <p>
+      {{ _("You’re done! This version will be available after it passes review. "
+           "You will be notified when it is reviewed.") }}
+    </p>
+  {% elif uploaded_version.is_webextension and not addon.auto_approval_disabled %}
+    <h3>{{ _("Version Submitted") }}</h3>
+    <p>
+      {{ _("You’re done! This version will be available on our site shortly.") }}
     </p>
   {% else %}
-    {% if addon.type == amo.ADDON_STATICTHEME %}
-      <h3>{{ _("Version Submitted for Review") }}</h3>
-      <p>
-        {% if preview %}
-          <img src="{{ preview.image_url }}" title="{{ _('Preview of the version submitted') }}"
-            alt="[{{ _('Preview still being generated - come back later or refresh the page.') }}]">
-        {% endif %}
-      </p>
-      <p>
-        {{ _("You’re done! This version will be available after it passes review. "
-             "You will be notified when it is reviewed.") }}
-      </p>
-    {% elif uploaded_version.is_webextension and not addon.auto_approval_disabled %}
-      <h3>{{ _("Version Submitted") }}</h3>
-      <p>
-        {{ _("You’re done! This version will be available on our site shortly.") }}
-      </p>
-    {% else %}
-      <h3>{{ _("Version Submitted for Review") }}</h3>
-      <p>
-        {{ _("You’re done! This version has been submitted for review. You will be "
-             "notified when the review has been completed, or if our reviewers have "
-             "any questions about your submission.") }}
-      </p>
-    {% endif %}
-    {% if submit_page == 'addon' and addon.type == amo.ADDON_STATICTHEME %}
-      <p>
-        {{ _("Your listing will be more successful by adding a detailed description. "
-             "Get your listing ready for publication:") }}
-      </p>
-    {% elif submit_page == 'addon'  %}
-      <p>
-        {{ _("Your listing will be more successful by adding a detailed description "
-             "and screenshots. Get your listing ready for publication:") }}
-      </p>
-    {% endif %}
+    <h3>{{ _("Version Submitted for Review") }}</h3>
+    <p>
+      {{ _("You’re done! This version has been submitted for review. You will be "
+           "notified when the review has been completed, or if our reviewers have "
+           "any questions about your submission.") }}
+    </p>
+  {% endif %}
+  {% if submit_page == 'addon' and addon.type == amo.ADDON_STATICTHEME %}
+    <p>
+      {{ _("Your listing will be more successful by adding a detailed description. "
+           "Get your listing ready for publication:") }}
+    </p>
+  {% elif submit_page == 'addon'  %}
+    <p>
+      {{ _("Your listing will be more successful by adding a detailed description "
+           "and screenshots. Get your listing ready for publication:") }}
+    </p>
   {% endif %}
   <p>
     <a class="button" href="{{ addon.get_dev_url() }}">
@@ -64,19 +58,11 @@
     </p>
   {% endif %}
 {% else %}
-  {% if submit_page == 'file' %}
-    <h3>{{ _("File Signed") }}</h3>
-    <p>
-      {{ _("You’re done! This file is signed and ready to for self-distribution. "
-           "You can download it by clicking the button below.") }}
-    </p>
-  {% else %}
-    <h3>{{ _("Version Signed") }}</h3>
-    <p>
-      {{ _("You’re done! This version is signed and ready to for self-distribution. "
-           "You can download it by clicking the button below.") }}
-    </p>
-  {% endif %}
+  <h3>{{ _("Version Signed") }}</h3>
+  <p>
+    {{ _("You’re done! This version is signed and ready to for self-distribution. "
+         "You can download it by clicking the button below.") }}
+  </p>
   <p>
     {% set file = uploaded_version.all_files[-1] %}
     <a class="button" id="download-addon-url" download href="{{ file.get_url_path('devhub') }}">{{
@@ -84,16 +70,6 @@
   </p>
 {% endif %}
 
-{% if uploaded_version.is_allowed_upload() %}
-  <p>
-    {{ _("You selected only some of the available platforms for this submission. "
-         "You can upload more files that target other platforms:") }}
-  </p>
-  <p>
-    {% set version_upload_url = url('devhub.submit.file', addon.slug, uploaded_version.id) %}
-    <a class="button" href="{{ version_upload_url }}">{{ _("Upload File") }}</a>
-  </p>
-{% endif %}
 <p>
   {% if addon.type == amo.ADDON_STATICTHEME %}
     <a class="button" href="{{ url('devhub.themes') }}">

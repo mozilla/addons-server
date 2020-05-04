@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-02 15:01+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-10-03 05:24+0000\n"
+"Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -141,6 +141,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Длина любой метки должна быть не менее {0} символа."
 msgstr[1] "Длина любой метки должна быть не менее {0} символов."
 msgstr[2] "Длина любой метки должна быть не менее {0} символов."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Введённый текст был отмечен как спам."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -719,6 +722,9 @@ msgstr "Инструменты проверяющего"
 msgid "Admin Tools"
 msgstr "Инструменты админа"
 
+msgid "Positive integer"
+msgstr "Положительное целое число"
+
 msgid "Incorrect, please try again."
 msgstr "Некорректно, пожалуйста, попробуйте снова."
 
@@ -938,7 +944,7 @@ msgid "Error decoding signature."
 msgstr "Ошибка декодирования подписи."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Неверный тип для одного или нескольких ключей в полезной нагрузке"
 
 msgid "Invalid JWT Token."
 msgstr "Некорректный JWT токен."
@@ -2500,11 +2506,8 @@ msgstr "В процессе вашей загрузки произошла ош�
 msgid "Override failed validation"
 msgstr "Игнорировать неудавшуюся валидацию"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Вы не можете загрузить больше файлов для этой версии."
-
-msgid "Version doesn't match"
-msgstr "Версия не подходит"
+msgid "Need to select at least one application."
+msgstr "Нужно выбрать хотя бы одно приложение."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Версия {version} была загружена раньше и удалена."
@@ -2520,12 +2523,6 @@ msgstr "Вы не выгрузили файл с исходным кодом."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Загружен файл с исходным кодом, но вы сообщили, что этого не требуется."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Платформа Все не может быть скомбинирована со специфичными платформами."
-
-msgid "A platform can only be chosen once."
-msgstr "Платформа может быть выбрана только один раз."
 
 msgid "Application"
 msgstr "Приложение"
@@ -2556,7 +2553,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Дополнения для Thunderbird и SeaMonkey теперь размещены на сайте addons.thunderbird.net. Для обновления своих дополнений на новом сайте вы можете использовать эту же учетную запись."
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Устаревшие расширения более не поддерживаются в Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Начиная с Firefox 53, новыми дополнениями на этом сайте могут быть только WebExtensions."
@@ -3378,9 +3375,6 @@ msgstr[0] "<strong>{0}</strong> активный пользователь"
 msgstr[1] "<strong>{0}</strong> активных пользователя"
 msgstr[2] "<strong>{0}</strong> активных пользователей"
 
-msgid "Submit a New File"
-msgstr "Отправить новый файл"
-
 msgid "Submit a New Version"
 msgstr "Отправить новую версию"
 
@@ -3475,9 +3469,6 @@ msgstr "Больше информации о дистрибуции и подп�
 msgid "Submission Complete"
 msgstr "Отправка завершена"
 
-msgid "You’re done!"
-msgstr "Вы сделали это!"
-
 msgid "Version Submitted for Review"
 msgstr "Версия, отправленная на проверку"
 
@@ -3511,12 +3502,6 @@ msgstr "Также вы можете изменить эту версию, чт�
 msgid "Edit version {0}"
 msgstr "Изменить версию {0}"
 
-msgid "File Signed"
-msgstr "Файл подписан"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Вы сделали это! Этот файл подписан и готов к самостоятельному распространению. Вы можете загрузить его, щёлкнув по кнопке ниже."
-
 msgid "Version Signed"
 msgstr "Версия подписана"
 
@@ -3525,12 +3510,6 @@ msgstr "Вы сделали это! Эта версия подписана и г
 
 msgid "Download {0}"
 msgstr "Загрузить {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Вы выбрали лишь некоторые из доступных платформ для этого представления. Вы можете загрузить больше файлов для других платформ:"
-
-msgid "Upload File"
-msgstr "Загрузить файл"
 
 msgid "Go to My Submissions"
 msgstr "Перейти в мои представления"
@@ -3612,9 +3591,6 @@ msgstr "Соглашение распространения дополнения
 msgid "Upload Add-on"
 msgstr "Загрузить дополнение"
 
-msgid "Where to Host File"
-msgstr "Где разместить файл"
-
 msgid "Where to Host Version"
 msgstr "Где разместить версию"
 
@@ -3624,8 +3600,8 @@ msgstr "Загрузить версию"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Для загрузки своего пакета дополнения используйте расположенные ниже поля. После загрузки ваш файл будет проверен с использованием серии автоматических тестов валидации."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "С какими платформами совместим этот файл?"
+msgid "Which applications is this version compatible with?"
+msgstr "С какими приложениями совместима эта версия?"
 
 msgid "Administrative overrides"
 msgstr "Административные действия"
@@ -3635,9 +3611,6 @@ msgstr "Создать версию темы"
 
 msgid "Create a Theme"
 msgstr "Создать тему"
-
-msgid "Submit File"
-msgstr "Отправить файл"
 
 msgid "Sign Add-on"
 msgstr "Подписать дополнение"
@@ -3654,12 +3627,11 @@ msgstr "Имя темы"
 msgid "Select a header image for your theme"
 msgstr "Выберите верхнее изображение для вашей темы"
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "Высота изображения должна быть 200 пикселей"
+msgstr "Рекомендуемая высота: 200 пикселей"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "Максимум 6,9 МБ"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG или GIF (не анимированный)"
@@ -4118,12 +4090,11 @@ msgstr "Тест совместимости"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Проверьте, совместимо ли ваше расширение с Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Просмотреть его страницу"
+msgstr "Живое тестирование"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Временно установите свое расширение в Firefox для живого тестирования и отладки."
 
 msgid "Transfer ownership"
 msgstr "Передача владения"
@@ -4280,9 +4251,6 @@ msgstr "Управлять {0}"
 
 msgid "Files"
 msgstr "Файлы"
-
-msgid "Upload Another File"
-msgstr "Загрузить другой файл"
 
 msgid "Version Notes"
 msgstr "Примечания к версии"
@@ -5404,8 +5372,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Наслаждайтесь музыкой со всего мира {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Слушайте более 20 000 радиостанций со всего мира."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Получите доступ к более чем 30000 радиостанций со всего мира."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5868,11 +5836,8 @@ msgstr "Номера версий должны иметь менее 32-х си�
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Номера версий могут состоять только из букв, цифр и следующих знаков препинания: +*.-_."
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Загрузка тем WebExtension в настоящее время не поддерживается."
-
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Максимальный размер для WebExtension тем — {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Вы не можете загрузить этот тип дополнения"
@@ -6129,49 +6094,41 @@ msgstr "Разблокируйте ранний доступ к эксперим
 msgid "Get Started"
 msgstr "Начать"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Статус сайта "
+msgstr "Статус отчёта"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Тип отчёта"
+msgstr "Отчёт о спаме отправлен"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Сообщить об ошибке"
+msgstr "Отчёт о «не спаме» отправлен"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Пока не оценено"
+msgstr "Не сообщено"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Версия представлена"
+msgstr "Содержимое отправлено"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Посетить новый сайт"
+msgstr "Посмотреть рейтинг на сайте"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Отправить новый файл"
+msgstr "Сообщить о «не спаме» в Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Отправить новый файл"
+msgstr "Сообщить о спаме в Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s отчётов о «не спаме», отправленных как спам"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s отчётов о спаме, отправленных как «не спам»"
 
 msgid "About Mozilla Add-ons"
 msgstr "О дополнениях Mozilla"

@@ -156,7 +156,10 @@ def persona_detail(request, addon):
     if not (addon.is_public() or addon.is_pending()):
         raise http.Http404
 
-    persona = addon.persona
+    try:
+        persona = addon.persona
+    except Persona.DoesNotExist:
+        raise http.Http404
 
     # This persona's categories.
     categories = addon.categories.all()

@@ -197,7 +197,9 @@ def get_outgoing_url(url):
 
 def linkify_bounce_url_callback(attrs, new=False):
     """Linkify callback that uses get_outgoing_url."""
-    attrs['href'] = get_outgoing_url(attrs['href'])
+    HREF_KEY = (None, 'href')
+    if HREF_KEY in attrs.keys():
+        attrs[HREF_KEY] = get_outgoing_url(attrs[HREF_KEY])
     return attrs
 
 
@@ -219,7 +221,7 @@ def linkify_only_full_urls(attrs, new=False):
 # they're followed by a space, or the end of the string.
 URL_RE = re.compile(r'\bhttps?://([a-z0-9-]+\.)+({0})/'
                     r'([^\s<>()"\x27.,]|[.,](?!\s|$))*'
-                    .format('|'.join(bleach.TLDS)))
+                    .format('|'.join(bleach.linkifier.TLDS)))
 
 
 def linkify_escape(text):
@@ -238,12 +240,9 @@ def linkify_escape(text):
     return URL_RE.sub(linkify, unicode(jinja2.escape(text)))
 
 
-def linkify_with_outgoing(text, nofollow=True, only_full=False):
+def linkify_with_outgoing(text):
     """Wrapper around bleach.linkify: uses get_outgoing_url."""
-    callbacks = [linkify_only_full_urls] if only_full else []
-    callbacks.append(linkify_bounce_url_callback)
-    if nofollow:
-        callbacks.append(bleach.callbacks.nofollow)
+    callbacks = [linkify_bounce_url_callback, bleach.callbacks.nofollow]
     return bleach.linkify(unicode(text), callbacks=callbacks)
 
 

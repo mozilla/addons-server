@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-06-25 10:07+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,9 +129,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Valideringsprosessen fann desse problema som kan føra til avslag:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Beklagar, fann ingen plattormer som er støtta."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen du lasta opp er ukjend."
 
@@ -228,7 +225,7 @@ msgstr[1] "{0} brukarar"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} tillegg"
 msgstr[1] "{0} tillegg"
 

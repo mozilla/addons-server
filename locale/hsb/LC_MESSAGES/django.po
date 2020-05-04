@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 13:25+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-25 17:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -140,6 +140,9 @@ msgstr[0] "Wšě znački dyrbja znajmjeńša {0} znamješko měć."
 msgstr[1] "Wšě znački dyrbja znajmjeńša {0} znamješce měć."
 msgstr[2] "Wšě znački dyrbja znajmjeńša {0} znamješka měć."
 msgstr[3] "Wšě znački dyrbja znajmjeńša {0} znamješkow měć."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Tekst, kotryž sće zapodał, je so jako spam markěrował."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -723,6 +726,9 @@ msgstr "Nastroje za přepruwowarjow"
 msgid "Admin Tools"
 msgstr "Administratorowe nastroje"
 
+msgid "Positive integer"
+msgstr "Pozitiwna cyła ličba"
+
 msgid "Incorrect, please try again."
 msgstr "Wopak, prošu spytajće hišće raz."
 
@@ -942,7 +948,7 @@ msgid "Error decoding signature."
 msgstr "Zmylk při dekodowanju signatury."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Wopačny typ za jedyn kluč abo wjacore kluče we wužitnej ćěži"
 
 msgid "Invalid JWT Token."
 msgstr "Njepłaćiwy JWT-token."
@@ -2506,11 +2512,8 @@ msgstr "Při nahrawanju je zmylk wustupił. Prošu spytajće hišće raz."
 msgid "Override failed validation"
 msgstr "Njeporadźene přepruwowanje přepisać"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Njemóžeće hižo dataje za tutu wersiju nahrać."
-
-msgid "Version doesn't match"
-msgstr "Wersija so njehodźi"
+msgid "Need to select at least one application."
+msgstr "Dyrbiće znajmjeńša jedne nałoženje wubrać."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Wersija {version} je so prjedy nahrała a zhašała."
@@ -2526,12 +2529,6 @@ msgstr "Njejsće žórłowu dataju nahrał."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Žórłowa dataja je so nahrała, ale sće podał, zo žórło trěbne njeje."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Platforma Wšě njeda so z wěstymi platformami kombinować."
-
-msgid "A platform can only be chosen once."
-msgstr "Platforma da so jenož jedyn raz wubrać."
 
 msgid "Application"
 msgstr "Nałoženje"
@@ -3370,9 +3367,6 @@ msgstr[1] "<strong>{0}</strong> aktiwnej wužiwarjej"
 msgstr[2] "<strong>{0}</strong> aktiwni wužiwarjo"
 msgstr[3] "<strong>{0}</strong> aktiwnych wužiwarjow"
 
-msgid "Submit a New File"
-msgstr "Nowu dataju zapodać"
-
 msgid "Submit a New Version"
 msgstr "Nowu wersiju zapodać"
 
@@ -3467,9 +3461,6 @@ msgstr "Dalše informacije wo rozdźělowanju a signowanju přidatkow"
 msgid "Submission Complete"
 msgstr "Zapodaće dokónčene"
 
-msgid "You’re done!"
-msgstr "Sće hotowy!"
-
 msgid "Version Submitted for Review"
 msgstr "Wersija, kotraž je so za přepruwowanje zapodała"
 
@@ -3503,12 +3494,6 @@ msgstr "Móžeće tež tutu wersiju wobdźěłać, zo byšće wersijowe informac
 msgid "Edit version {0}"
 msgstr "Wersiju wobdźěłać {0}"
 
-msgid "File Signed"
-msgstr "Dataja je so signowała"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Sće hotowy! Tuta dataja je so signowała a je hotowa za samorozdźělenje. Móžeće ju z kliknjenjom na slědowace tłóčatko sćahnyć."
-
 msgid "Version Signed"
 msgstr "Wersija je so signowała"
 
@@ -3517,12 +3502,6 @@ msgstr "Sće hotowy! Tuta wersija je so signowała a je hotowa za samorozdźěle
 
 msgid "Download {0}"
 msgstr "{0} sćahnyć"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Sće jenož někotre z k dispoziciji stejacych platformow za zapodaće wubrał. Móžeće dalše dataje nahrać, kotrež su za druhe platformy:"
-
-msgid "Upload File"
-msgstr "Dataju nahrać"
 
 msgid "Go to My Submissions"
 msgstr "Moje zapodaća sej wobhladać"
@@ -3604,9 +3583,6 @@ msgstr "Dojednanje za rozdźělowanje přidatkow"
 msgid "Upload Add-on"
 msgstr "Přidatk nahrać"
 
-msgid "Where to Host File"
-msgstr "Hdźež so dataja hospoduje"
-
 msgid "Where to Host Version"
 msgstr "Hdźež so wersija hospoduje"
 
@@ -3616,8 +3592,8 @@ msgstr "Wersiju nahrać"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Wužiwajće slědowace pola, zo byšće swój přidatkowy pakćik nahrał. Po nahraću so rjad awtomatiskich přepruwowanjow na wašej dataji přewjedźe."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "Z kotrymiž platformami je tuta dataja kompatibelna?"
+msgid "Which applications is this version compatible with?"
+msgstr "Z kotrymiž nałoženjemi je tuta wersija kompatibelna?"
 
 msgid "Administrative overrides"
 msgstr "Přepisanja wot administratorow"
@@ -3627,9 +3603,6 @@ msgstr "Wersiju drasty wutworić"
 
 msgid "Create a Theme"
 msgstr "Drastu wutworić"
-
-msgid "Submit File"
-msgstr "Dataju zapodać"
 
 msgid "Sign Add-on"
 msgstr "Přidatk signować"
@@ -4098,12 +4071,11 @@ msgstr "Test kompatibelnosće"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Přepruwujće, hač waše rozšěrjenje je kompatibelne z Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Lisćinowy zapisk pokazać"
+msgstr "Testowanje live"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Instalujće swoje rozšěrjenje nachwilu w Firefox, zo by jo live testował a za zmylkami přepruwował."
 
 msgid "Transfer ownership"
 msgstr "Wobsedźenstwo přenošować"
@@ -4259,9 +4231,6 @@ msgstr "Přidatk {0} rjadować"
 
 msgid "Files"
 msgstr "Dataje"
-
-msgid "Upload Another File"
-msgstr "Druhu dataju nahrać"
 
 msgid "Version Notes"
 msgstr "Wersijowe pokazy"
@@ -5380,8 +5349,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Wužiwajće hudźbu z cyłeho swěta {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Poskajće 20.000 radijowych stacijow z cyłeho swěta."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Poskajće 30.000+ radijowych stacijow z cyłeho swěta."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5843,9 +5812,6 @@ msgstr "Wersijowe čisła dyrbjeli mjenje hač 32 znamješkow měć."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Wersijowe čisła měli jenož pismiki, ličby a slědowace interpunkciske znamješka wobsahować: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Nahraća drastow WebExtension so tuchwilu njepodpěruja."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Maksimalna wulkosć za drasty Webextension je {0}."

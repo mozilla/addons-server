@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-08-23 11:34+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-20 11:28+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -134,6 +134,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Всички етикети трябва да са поне {0} знак."
 msgstr[1] "Всички етикети трябва да са поне {0} знака."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -698,6 +701,9 @@ msgstr "Инструменти за рецензенти"
 
 msgid "Admin Tools"
 msgstr "Администраторски инструменти"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Грешка, опитайте отново."
@@ -2495,11 +2501,9 @@ msgstr "Имаше грешка при качването ви. Моля, опи
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr "Не можете да качвате повече файлове за това издание."
-
-msgid "Version doesn't match"
-msgstr "Версията не съвпада"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Трябва да има поне едно съвместимо приложение."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Версия {version} е била качена и изтрита."
@@ -2516,12 +2520,6 @@ msgstr "Няма файлове в качения файл."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Платформата всички не може да бъде комбинирана със специфични платформи."
-
-msgid "A platform can only be chosen once."
-msgstr "Платформа може да се избира само веднъж."
 
 msgid "Application"
 msgstr "Приложение"
@@ -3349,9 +3347,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> активен потребител"
 msgstr[1] "<strong>{0}</strong> активни потребителя"
 
-msgid "Submit a New File"
-msgstr ""
-
 msgid "Submit a New Version"
 msgstr "Качване на ново издание"
 
@@ -3443,9 +3438,6 @@ msgstr "Повече информация за подписване и разп�
 msgid "Submission Complete"
 msgstr "Пращането завърши"
 
-msgid "You’re done!"
-msgstr ""
-
 msgid "Version Submitted for Review"
 msgstr "Изданието е изпратено за рецензия"
 
@@ -3479,12 +3471,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Редактиране на издание {0}"
 
-msgid "File Signed"
-msgstr "Файлът е подписан"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "Версията е подписана"
 
@@ -3493,12 +3479,6 @@ msgstr "Готово! Тази версия е подписана и готов�
 
 msgid "Download {0}"
 msgstr "Изтегляне {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr ""
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3578,9 +3558,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Качване"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3593,7 +3570,8 @@ msgstr "Качване на версия"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Използвайте полетата, за да качите своята добавка и да изберете ограничения на платформите ако има. След качване, върху нея ще бъдат извършени серия от валидации."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "С кои платформи е съвместима?"
 
 msgid "Administrative overrides"
@@ -3606,9 +3584,6 @@ msgstr "Създаване на тема"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Създаване на тема"
-
-msgid "Submit File"
-msgstr ""
 
 msgid "Sign Add-on"
 msgstr "Подписване на добавката"
@@ -3779,7 +3754,7 @@ msgid "Next Listed Version:"
 msgstr "Следваща версия:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr "Това е последната качена версия, която обаче все още не се вижда на сайта."
+msgstr "Това е последното качено издание, което обаче все още не се вижда на сайта."
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Опашката се не обработва подред"
@@ -3798,7 +3773,7 @@ msgid "Latest Version:"
 msgstr "Последно издание:"
 
 msgid "This is the newest uploaded unlisted version."
-msgstr "Това е последната непоказано издание."
+msgstr "Това е последното непоказано издание."
 
 # 90%
 # 100%
@@ -4242,9 +4217,6 @@ msgstr "Управление на {0}"
 
 msgid "Files"
 msgstr "Файлове"
-
-msgid "Upload Another File"
-msgstr ""
 
 msgid "Version Notes"
 msgstr "Бележки по изданието"
@@ -5357,7 +5329,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5819,9 +5791,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

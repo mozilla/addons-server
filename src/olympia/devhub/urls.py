@@ -84,14 +84,6 @@ detail_patterns = [
  #       views.submit_version_theme_wizard,
  #       name='devhub.submit.version.wizard'),
 
-    # New file submission
-    url('^versions/(?P<version_id>\d+)/submit-file/$',
-        views.submit_file,
-        name='devhub.submit.file'),
-    url('^versions/submit/(?P<version_id>\d+)/finish-file$',
-        views.submit_file_finish,
-        name='devhub.submit.file.finish'),
-
     url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
         name='devhub.file_validation'),
     url('^file/(?P<file_id>[^/]+)/validation\.json$',

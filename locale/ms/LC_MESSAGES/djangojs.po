@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 11:21+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-17 11:00+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -126,9 +126,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proses pengesahan menemukan isu berikut yang boleh menyebabkan penghantaran ditolak:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Maaf, tidak menemukan platform yang menyokong."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Jenis fail yang anda muat naik tidak dikenali."
 
@@ -211,42 +208,34 @@ msgstr "Guna asal"
 msgid "Week of {0}"
 msgstr "Minggu {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " muat turun"
+msgstr[0] "{0} muat turun"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} pengguna"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} add-on"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} koleksi"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} semakan"
+msgstr[0] "{0} ulasan"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} jualan"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} bayaran balik"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} pemasangan"

@@ -10,66 +10,40 @@ from django.test.utils import override_settings
 import mock
 import pytest
 import responses
+from freezegun import freeze_time
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
+from olympia.files.models import FileUpload
 from olympia.ratings.models import Rating
 
 from .admin import AkismetAdmin
 from .models import AkismetReport
-from .tasks import submit_to_akismet
+from .tasks import comment_check, submit_to_akismet
 
 
-class TestAkismetReportsModel(TestCase):
+class BaseAkismetReportsModelTest(object):
 
-    def test_create_for_rating(self):
-        user = user_factory(homepage='https://spam.spam/')
-        addon = addon_factory()
-        rating = Rating.objects.create(
-            addon=addon, user=user, rating=4, body='spám?',
-            ip_address='1.23.45.67')
-        ua = 'foo/baa'
-        referrer = 'https://mozilla.org/'
-        report = AkismetReport.create_for_rating(rating, ua, referrer)
-
-        assert report.rating_instance == rating
-        data = report._get_data()
-        assert data == {
-            'blog': settings.SITE_URL,
-            'user_ip': rating.ip_address,
-            'user_agent': ua,
-            'referrer': referrer,
-            'permalink': addon.get_url_path(),
-            'comment_type': 'user-review',
-            'comment_author': user.username,
-            'comment_author_email': user.email,
-            'comment_author_url': user.homepage,
-            'comment_content': rating.body,
-            'comment_date_gmt': rating.modified,
-            'comment_post_modified_gmt': addon.last_updated,
-            'blog_charset': 'utf-8',
-            'is_test': not settings.AKISMET_REAL_SUBMIT,
-        }
+    def test_create(self):
+        raise NotImplementedError()
 
     def _create_report(self, kws=None):
-        defaults = dict(
-            comment_type='user-review',
-            user_ip='9.8.7.6.5',
-            user_agent='Agent Bond',
-            referrer='á4565',
-            user_name='steve',
-            user_email='steve@steve.com',
-            user_homepage='http://spam.spam',
-            content_link='https://addons.mozilla.org',
-            content_modified=datetime.now(),
-            comment='spammy McSpam?',
-            comment_modified=datetime.now(),
-        )
-        if kws:
-            defaults.update(**kws)
-        instance = AkismetReport.objects.create(**defaults)
-        return instance
+        raise NotImplementedError()
+
+    @mock.patch.object(AkismetReport, 'comment_check',
+                       return_value=AkismetReport.MAYBE_SPAM)
+    def test_is_spam(self, comment_check_mock):
+        report = self._create_report()
+        assert report.is_spam is True
+        comment_check_mock.assert_called_once()
+        # once self.result is set though, no further calls should be made
+        report.update(result=AkismetReport.DEFINITE_SPAM)
+        assert report.is_spam is True
+        report.update(result=AkismetReport.HAM)
+        assert report.is_spam is False
+        # check still one call.
+        comment_check_mock.assert_called_once()
 
     @responses.activate
     @override_settings(AKISMET_API_KEY=None)
@@ -90,29 +64,27 @@ class TestAkismetReportsModel(TestCase):
         responses.add(
             responses.POST, url, body='foo')
 
+        statsd_str = 'services.akismet.comment_check.%s' % report.comment_type
+
         with mock.patch('olympia.lib.akismet.models.statsd.incr') as incr_mock:
             result = report.comment_check()
             assert result == report.result == AkismetReport.MAYBE_SPAM
-            incr_mock.assert_called_with(
-                'services.akismet.comment_check.user-review.maybespam')
+            incr_mock.assert_called_with(statsd_str + '.maybespam')
 
         with mock.patch('olympia.lib.akismet.models.statsd.incr') as incr_mock:
             result = report.comment_check()
             assert result == report.result == AkismetReport.DEFINITE_SPAM
-            incr_mock.assert_called_with(
-                'services.akismet.comment_check.user-review.definitespam')
+            incr_mock.assert_called_with(statsd_str + '.definitespam')
 
         with mock.patch('olympia.lib.akismet.models.statsd.incr') as incr_mock:
             result = report.comment_check()
             assert result == report.result == AkismetReport.HAM
-            incr_mock.assert_called_with(
-                'services.akismet.comment_check.user-review.ham')
+            incr_mock.assert_called_with(statsd_str + '.ham')
 
         with mock.patch('olympia.lib.akismet.models.statsd.incr') as incr_mock:
             result = report.comment_check()
             assert result == report.result == AkismetReport.UNKNOWN
-            incr_mock.assert_called_with(
-                'services.akismet.comment_check.user-review.fail')
+            incr_mock.assert_called_with(statsd_str + '.fail')
 
     @responses.activate
     @override_settings(AKISMET_API_KEY=None)
@@ -173,6 +145,108 @@ class TestAkismetReportsModel(TestCase):
 
         report.update(reported=False)
         assert not report.submit_ham()
+
+
+class TestAkismetReportsRating(BaseAkismetReportsModelTest, TestCase):
+
+    def test_create(self):
+        user = user_factory(homepage='https://spam.spam/')
+        addon = addon_factory()
+        rating = Rating.objects.create(
+            addon=addon, user=user, rating=4, body='spám?',
+            ip_address='1.23.45.67')
+        ua = 'foo/baa'
+        referrer = 'https://mozilla.org/'
+        report = AkismetReport.create_for_rating(rating, ua, referrer)
+
+        assert report.rating_instance == rating
+        assert report.user == user
+        data = report._get_data()
+        assert data == {
+            'blog': settings.SITE_URL,
+            'user_ip': rating.ip_address,
+            'user_agent': ua,
+            'referrer': referrer,
+            'permalink': addon.get_url_path(),
+            'comment_type': 'user-review',
+            'comment_author': user.username,
+            'comment_author_email': user.email,
+            'comment_author_url': user.homepage,
+            'comment_content': rating.body,
+            'comment_date_gmt': rating.modified,
+            'comment_post_modified_gmt': addon.last_updated,
+            'blog_charset': 'utf-8',
+            'is_test': not settings.AKISMET_REAL_SUBMIT,
+        }
+
+    def _create_report(self, kws=None):
+        defaults = dict(
+            comment_type='user-review',
+            user_ip='9.8.7.6.5',
+            user_agent='Agent Bond',
+            referrer='á4565',
+            user_name='steve',
+            user_email='steve@steve.com',
+            user_homepage='http://spam.spam',
+            content_link='https://addons.mozilla.org',
+            content_modified=datetime.now(),
+            comment='spammy McSpam?',
+            comment_modified=datetime.now(),
+        )
+        if kws:
+            defaults.update(**kws)
+        instance = AkismetReport.objects.create(**defaults)
+        return instance
+
+
+class TestAkismetReportsAddon(BaseAkismetReportsModelTest, TestCase):
+
+    def test_create(self):
+        user = user_factory(homepage='https://spam.spam/')
+        addon = addon_factory(name=u'100% génuine spamm')
+        upload = FileUpload.objects.create(addon=addon)
+        ua = 'foo/baa'
+        referrer = 'https://mozilla.org/'
+        with freeze_time('2017-07-27 07:00'):
+            time_now = datetime.now()
+            report = AkismetReport.create_for_addon(
+                upload, addon, user, 'name', addon.name, ua, referrer)
+
+        assert report.upload_instance == upload
+        assert report.addon_instance == addon
+        assert report.user == user
+        data = report._get_data()
+        assert data == {
+            'blog': settings.SITE_URL,
+            'user_ip': user.last_login_ip,
+            'user_agent': ua,
+            'referrer': referrer,
+            'comment_type': 'product-name',
+            'comment_author': user.username,
+            'comment_author_email': user.email,
+            'comment_author_url': user.homepage,
+            'comment_content': unicode(addon.name),
+            'comment_date_gmt': time_now,
+            'blog_charset': 'utf-8',
+            'is_test': not settings.AKISMET_REAL_SUBMIT,
+        }
+
+    def _create_report(self, kws=None):
+        defaults = dict(
+            comment_type='product-summary',
+            user_ip='9.8.7.6.5',
+            user_agent='Agent Bond',
+            referrer='á4565',
+            user_name='steve',
+            user_email='steve@steve.com',
+            user_homepage='http://spam.spam',
+            comment='spammy McSpam?',
+            comment_modified=datetime.now(),
+        )
+        if kws:
+            defaults.update(**kws)
+        instance = AkismetReport.objects.create(**defaults)
+        return instance
 
 
 class TestAkismetAdmin(TestCase):
@@ -376,3 +450,15 @@ def test_submit_to_akismet_task(submit_spam_mock, submit_ham_mock):
 
     submit_to_akismet([report_a.id, report_b.id], False)
     assert submit_ham_mock.call_count == 2
+
+
+@mock.patch('olympia.lib.akismet.models.AkismetReport._post')
+@pytest.mark.django_db
+def test_comment_check_task(_post_mock):
+    upload = FileUpload.objects.create(addon=addon_factory())
+    user = user_factory()
+    report = AkismetReport.create_for_addon(
+        upload, None, user, 'foo', 'baa', '', '')
+    comment_check([report.id])
+    _post_mock.assert_called_once()
+    _post_mock.assert_called_with('comment-check')

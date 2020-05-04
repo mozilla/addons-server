@@ -9,6 +9,7 @@ from olympia.amo.cron import gc
 from olympia.amo.tests import TestCase
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.files.models import FileUpload
+from olympia.lib.akismet.models import AkismetReport
 
 
 fake_task_func = mock.Mock()
@@ -99,3 +100,17 @@ class TestGC(TestCase):
         assert storage_mock.delete.call_count == 2
         assert storage_mock.delete.call_args_list[0][0][0] == fu_older.path
         assert storage_mock.delete.call_args_list[1][0][0] == fu_old.path
+
+    def test_akismet_reports_deletion(self, storage_mock):
+        rep_new = AkismetReport.objects.create(
+            comment_modified=datetime.datetime.now(),
+            content_modified=datetime.datetime.now(),
+            created=self.days_ago(89))
+        AkismetReport.objects.create(
+            comment_modified=datetime.datetime.now(),
+            content_modified=datetime.datetime.now(),
+            created=self.days_ago(90))
+
+        gc()
+        assert AkismetReport.objects.count() == 1
+        assert AkismetReport.objects.get() == rep_new

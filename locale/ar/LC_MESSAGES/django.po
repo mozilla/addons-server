@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-09-05 22:32+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -157,6 +157,9 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -778,6 +781,9 @@ msgid "Reviewer Tools"
 msgstr "أخبار المطور"
 
 msgid "Admin Tools"
+msgstr ""
+
+msgid "Positive integer"
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -2623,10 +2629,7 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
+msgid "Need to select at least one application."
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -2642,12 +2645,6 @@ msgid "You have not uploaded a source file."
 msgstr ""
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -3481,10 +3478,6 @@ msgstr[4] ""
 msgstr[5] ""
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "تقديم إضافة جديدة"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "تقديم إضافة جديدة"
 
@@ -3587,9 +3580,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-msgid "You’re done!"
-msgstr ""
-
 #, fuzzy
 msgid "Version Submitted for Review"
 msgstr "ملاحظات الإصدارة / ملاحظات للمعلّق"
@@ -3629,13 +3619,6 @@ msgid "Edit version {0}"
 msgstr "إصدارة تجريبية {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "ملاحظات الإصدارة"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "ملاحظات الإصدارة"
 
@@ -3643,12 +3626,6 @@ msgid "You’re done! This version is signed and ready to for self-distribution.
 msgstr ""
 
 msgid "Download {0}"
-msgstr ""
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
 msgstr ""
 
 msgid "Go to My Submissions"
@@ -3732,10 +3709,6 @@ msgid "Upload Add-on"
 msgstr "ارفع إضافتك"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "الإصدارة الهدف"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "الإصدارة الهدف"
 
@@ -3746,7 +3719,7 @@ msgstr "رفع إصدارة جديدة"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3759,10 +3732,6 @@ msgstr "أنشئ سمتك الخاصة بنفسك"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "أنشئ سمتك الخاصة بنفسك"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "تقديم إضافة جديدة"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -4431,9 +4400,6 @@ msgid "Manage {0}"
 msgstr "Manage {0}"
 
 msgid "Files"
-msgstr ""
-
-msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"
@@ -5563,7 +5529,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -6025,9 +5991,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

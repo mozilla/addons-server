@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-08 19:17+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-28 11:08+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -133,9 +133,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Procesi i vleftësimit gjeti këto probleme që mund të sjellin hedhje poshtë të parashtrimit:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Na ndjeni, nuk u gjet platformë e mbuluar."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Lloji i kartelës që ngarkuat nuk është i pranueshëm."
 
@@ -218,52 +215,44 @@ msgstr "Përdor origjinalen"
 msgid "Week of {0}"
 msgstr "Java e {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " shkarkime"
-msgstr[1] " shkarkime"
+msgstr[0] "{0} shkarkim"
+msgstr[1] "{0} shkarkime"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} përdorues"
 msgstr[1] "{0} përdorues"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} shtesa"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} shtesë"
 msgstr[1] "{0} shtesa"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} koleksione"
+msgstr[0] "{0} koleksion"
 msgstr[1] "{0} koleksione"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} shqyrtime"
+msgstr[0] "{0} shqyrtim"
 msgstr[1] "{0} shqyrtime"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} shitje"
 msgstr[1] "{0} shitje"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} rimbursime"
+msgstr[0] "{0} rimbursim"
 msgstr[1] "{0} rimbursime"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} instalime"
+msgstr[0] "{0} instalim"
 msgstr[1] "{0} instalime"
 
 msgid "Downloads"

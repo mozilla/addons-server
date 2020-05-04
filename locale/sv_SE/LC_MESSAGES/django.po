@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-06 16:16+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-25 15:41+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -131,6 +131,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Alla taggar måste minst vara {0} tecken."
 msgstr[1] "Alla taggar måste minst vara {0} tecken."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Texten som angivits har flaggats som skräppost."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -690,6 +693,9 @@ msgstr "Granskningsverktyg"
 msgid "Admin Tools"
 msgstr "Adminverktyg"
 
+msgid "Positive integer"
+msgstr "Positivt heltal"
+
 msgid "Incorrect, please try again."
 msgstr "Felaktig, försök igen."
 
@@ -911,7 +917,7 @@ msgid "Error decoding signature."
 msgstr "Fel vid avkodning av signaturen."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Fel typ för en eller flera nycklar i nyttolast"
 
 msgid "Invalid JWT Token."
 msgstr "Ogiltig JWT-token."
@@ -2460,11 +2466,8 @@ msgstr "Det uppstod ett fel med din uppladdning. Försök igen."
 msgid "Override failed validation"
 msgstr "Åsidosätt misslyckad validering"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Du kan inte ladda upp några fler filer för denna version."
-
-msgid "Version doesn't match"
-msgstr "Version matchar inte"
+msgid "Need to select at least one application."
+msgstr "Välj åtminstone ett program."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} har laddats upp innan och tas bort."
@@ -2480,12 +2483,6 @@ msgstr "Du har inte laddat upp en källfil."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Källfilen laddades upp men du angav att ingen källa behövdes."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Plattformen Alla kan inte kombineras med specifika plattformar."
-
-msgid "A platform can only be chosen once."
-msgstr "En plattform kan endast väljas en gång."
 
 msgid "Application"
 msgstr "Applikation"
@@ -3347,9 +3344,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiv användare"
 msgstr[1] "<strong>{0}</strong> aktiva användare"
 
-msgid "Submit a New File"
-msgstr "Skicka in en ny fil"
-
 msgid "Submit a New Version"
 msgstr "Skicka in en ny version"
 
@@ -3444,9 +3438,6 @@ msgstr "Mer information om distribution och signering av tillägg"
 msgid "Submission Complete"
 msgstr "Inskickning komplett"
 
-msgid "You’re done!"
-msgstr "Du är klar!"
-
 msgid "Version Submitted for Review"
 msgstr "Version som skickats in för granskning"
 
@@ -3480,12 +3471,6 @@ msgstr "Du kan också redigera den här versionen för att lägga till versionsa
 msgid "Edit version {0}"
 msgstr "Redigera version {0}"
 
-msgid "File Signed"
-msgstr "Fil som har signerats"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Du är klar! Denna fil är signerad och klar för egen distribution. Du kan hämta den genom att klicka på knappen nedan."
-
 msgid "Version Signed"
 msgstr "Version som signerats"
 
@@ -3494,12 +3479,6 @@ msgstr "Du är klar! Denna version är signerad och klar för egen distribution.
 
 msgid "Download {0}"
 msgstr "Hämta {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Du har valt ut några av de tillgängliga plattformar för detta bidrag. Du kan ladda upp flera filer som riktar sig mot andra plattformar:"
-
-msgid "Upload File"
-msgstr "Ladda upp fil"
 
 msgid "Go to My Submissions"
 msgstr "Gå till mina bidrag"
@@ -3580,9 +3559,6 @@ msgstr "Distributionsavtal för tillägg"
 msgid "Upload Add-on"
 msgstr "Ladda upp tillägg"
 
-msgid "Where to Host File"
-msgstr "Var filen ska hysas"
-
 msgid "Where to Host Version"
 msgstr "Var ska versionen hysas"
 
@@ -3592,8 +3568,8 @@ msgstr "Ladda upp version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Använd fälten nedan för att ladda upp ditt tilläggspaket. Efter uppladdning, kommer en rad automatiserade valideringsprov köras på din fil."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "Vilka plattformar är denna fil kompatibel med?"
+msgid "Which applications is this version compatible with?"
+msgstr "Vilka program är den här versionen kompatibel med?"
 
 msgid "Administrative overrides"
 msgstr "Administrativa åsidosättningar"
@@ -3603,9 +3579,6 @@ msgstr "Skapa ett temaversion"
 
 msgid "Create a Theme"
 msgstr "Skapa ett tema"
-
-msgid "Submit File"
-msgstr "Skicka in fil"
 
 msgid "Sign Add-on"
 msgstr "Signera tillägg"
@@ -4082,12 +4055,11 @@ msgstr "Kompatibilitetstest"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Kontrollera om din utökning är kompatibel med Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Visa listning"
+msgstr "Live Testing"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Installera tillfälligt ditt tillägg i Firefox för live testning och felsökning."
 
 msgid "Transfer ownership"
 msgstr "Överför ägarskapet"
@@ -4247,9 +4219,6 @@ msgstr "Hantera {0}"
 
 msgid "Files"
 msgstr "Filer"
-
-msgid "Upload Another File"
-msgstr "Ladda upp en annan fil"
 
 msgid "Version Notes"
 msgstr "Versionsanteckningar"
@@ -5366,8 +5335,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Njut av musik från hela världen {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Få tillgång till över 20 tusen radiostationer från hela världen."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Få tillgång till över 30 000 radiostationer från hela världen."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5829,9 +5798,6 @@ msgstr "Versionsnummer ska ha färre än 32 tecken."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Versionsnummer bör endast innehålla bokstäver, siffror och dessa skiljetecken: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Uppladdning av WebExtension teman stöds för närvarande inte."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Maximal storlek för WebExtension-teman är {0}."

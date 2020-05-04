@@ -19,7 +19,6 @@ from elasticsearch import Elasticsearch
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
-from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
@@ -378,6 +377,12 @@ class TestDetailPage(TestCase):
         response = self.client.get(reverse('addons.detail', args=['a15663']))
         assert response.status_code == 200
         assert response.context['addon'].id == 15663
+
+    def test_broken_persona(self):
+        persona = Persona.objects.get(addon_id=15663)
+        persona.delete()
+        response = self.client.get(reverse('addons.detail', args=['a15663']))
+        assert response.status_code == 404
 
     def test_review_microdata_personas(self):
         a = Addon.objects.get(id=15663)
@@ -1716,7 +1721,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         return result
 
     def _set_tested_url(self, param):
-        self.url = reverse_ns('addon-detail', kwargs={'pk': param})
+        self.url = reverse_ns(
+            'addon-detail', api_version='v4dev', kwargs={'pk': param})
 
     def test_detail_url_with_reviewers_in_the_url(self):
         self.addon.update(slug='something-reviewers')
@@ -1791,7 +1797,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['name'] == {'en-US': u'My Addôn, mine'}
 
         overridden_api_gates = {
-            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}
+            'v4dev': ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=overridden_api_gates):
             response = self.client.get(self.url, {'lang': 'en-US'})
             assert response.status_code == 200
@@ -3040,7 +3046,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def setUp(self):
         super(TestAddonAutoCompleteSearchView, self).setUp()
-        self.url = reverse_ns('addon-autocomplete')
+        self.url = reverse_ns('addon-autocomplete', api_version='v4dev')
 
     def tearDown(self):
         super(TestAddonAutoCompleteSearchView, self).tearDown()
@@ -3112,7 +3118,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         # And repeat with v3-style flat output when lang is specified:
         overridden_api_gates = {
-            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}
+            'v4dev': ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=overridden_api_gates):
             data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
             assert data['results'][0]['name'] == 'foobar'

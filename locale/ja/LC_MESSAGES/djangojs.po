@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2017-11-20 13:55+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -123,9 +123,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "申し訳ありませんが、対応プラットフォームがひとつも見つかりませんでした。"
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "アップロードされたファイルの種類を認識できません。"
 
@@ -220,7 +217,7 @@ msgstr[0] "{0} 人のユーザー"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} 個のアドオン"
 
 #, fuzzy

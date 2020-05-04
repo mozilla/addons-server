@@ -2,6 +2,7 @@ from django.urls import NoReverseMatch
 from django.db import models
 
 from olympia import activity, amo
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.urlresolvers import reverse
 
@@ -14,6 +15,7 @@ class TagManager(ManagerBase):
 
 
 class Tag(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     tag_text = models.CharField(max_length=128)
     denied = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
@@ -64,6 +66,7 @@ class Tag(ModelBase):
 
 
 class AddonTag(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey('addons.Addon', related_name='addon_tags')
     tag = models.ForeignKey(Tag, related_name='addon_tags')
 

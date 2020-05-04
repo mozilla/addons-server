@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -126,9 +126,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Sentitzen dugu, ez da onarturiko plataformarik aurkitu."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Igo duzun fitxategi mota ez da ezagutzen."
 
@@ -223,7 +220,7 @@ msgstr[0] "Errore bat"
 msgstr[1] "{0} errore"
 
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] ""
 msgstr[1] ""
 

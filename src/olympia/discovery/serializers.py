@@ -20,7 +20,7 @@ class DiscoveryEditorialContentSerializer(serializers.ModelSerializer):
 
 class DiscoveryVersionSerializer(VersionSerializer):
     class Meta:
-        fields = ('compatibility', 'files',)
+        fields = ('compatibility', 'is_strict_compatibility_enabled', 'files',)
         model = Version
 
 

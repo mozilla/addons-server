@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 12:15+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-17 15:47+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -126,9 +126,6 @@ msgstr "יש לשלוח את קובצי המקור של קבצים בינריי�
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "תהליך בדיקת האימות מצא את התקלות הבאות שעלולות להוביל לסירובים:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "מצטערים, לא נמצאה פלטפורמה נתמכת."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "סוג הקובץ שהעלית אינו מזוהה."
 
@@ -211,52 +208,44 @@ msgstr "שימוש במקור"
 msgid "Week of {0}"
 msgstr "שבוע {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " הורדות"
-msgstr[1] " הורדות"
+msgstr[0] "הורדה אחת"
+msgstr[1] "{0} הורדות"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} משתמשים"
+msgstr[0] "משתמש אחד"
 msgstr[1] "{0} משתמשים"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} תוספות"
+msgid_plural "{0} add-ons"
+msgstr[0] "תוספת אחת"
 msgstr[1] "{0} תוספות"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} אוספים"
+msgstr[0] "אוסף אחד"
 msgstr[1] "{0} אוספים"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} סקירות"
+msgstr[0] "סקירה אחת"
 msgstr[1] "{0} סקירות"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} מכירות"
+msgstr[0] "מכירה אחת"
 msgstr[1] "{0} מכירות"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} החזרים כספיים"
+msgstr[0] "החזר כספי אחד"
 msgstr[1] "{0} החזרים כספיים"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} התקנות"
+msgstr[0] "התקנה אחת"
 msgstr[1] "{0} התקנות"
 
 msgid "Downloads"

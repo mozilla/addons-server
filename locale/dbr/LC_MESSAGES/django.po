@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,6 +130,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ".ɹǝʇɔɐɹɐɥɔ {0} ʇsɐǝʅ ʇɐ ǝq ʇsnɯ sƃɐʇ ʅʅ∀"
 msgstr[1] ".sɹǝʇɔɐɹɐɥɔ {0} ʇsɐǝʅ ʇɐ ǝq ʇsnɯ sƃɐʇ ʅʅ∀"
+
+msgid "The text entered has been flagged as spam."
+msgstr ".ɯɐds sɐ pǝƃƃɐʅɟ uǝǝq sɐɥ pǝɹǝʇuǝ ʇxǝʇ ǝɥ⊥"
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -688,6 +691,9 @@ msgstr "sʅoo⊥ ɹǝʍǝıʌǝᴚ"
 
 msgid "Admin Tools"
 msgstr "sʅoo⊥ uıɯp∀"
+
+msgid "Positive integer"
+msgstr "ɹǝƃǝʇuı ǝʌıʇısoԀ"
 
 msgid "Incorrect, please try again."
 msgstr ".uıɐƃɐ ʎɹʇ ǝsɐǝʅd ´ʇɔǝɹɹoɔuI"
@@ -2455,11 +2461,8 @@ msgstr ".uıɐƃɐ ʎɹʇ ǝsɐǝʅԀ .pɐoʅdn ɹnoʎ ɥʇıʍ ɹoɹɹǝ uɐ s�
 msgid "Override failed validation"
 msgstr "uoıʇɐpıʅɐʌ pǝʅıɐɟ ǝpıɹɹǝʌO"
 
-msgid "You cannot upload any more files for this version."
-msgstr ".uoısɹǝʌ sıɥʇ ɹoɟ sǝʅıɟ ǝɹoɯ ʎuɐ pɐoʅdn ʇouuɐɔ no⅄"
-
-msgid "Version doesn't match"
-msgstr "ɥɔʇɐɯ ʇ,usǝop uoısɹǝɅ"
+msgid "Need to select at least one application."
+msgstr ".uoıʇɐɔıʅddɐ ǝuo ʇsɐǝʅ ʇɐ ʇɔǝʅǝs oʇ pǝǝN"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ".pǝʇǝʅǝp puɐ ǝɹoɟǝq pǝpɐoʅdn sɐʍ {version} uoısɹǝɅ"
@@ -2475,12 +2478,6 @@ msgstr ".ǝʅıɟ ǝɔɹnos ɐ pǝpɐoʅdn ʇou ǝʌɐɥ no⅄"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ".pǝpǝǝu sɐʍ ǝɔɹnos ou pǝʇɐɔıpuı noʎ ʇnq pǝpɐoʅdn ǝʅıɟ ǝɔɹnoS"
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ".sɯɹoɟʇɐʅd ɔıɟıɔǝds ɥʇıʍ pǝuıqɯoɔ ǝq ʇouuɐɔ ʅʅ∀ ɯɹoɟʇɐʅd ǝɥ⊥"
-
-msgid "A platform can only be chosen once."
-msgstr ".ǝɔuo uǝsoɥɔ ǝq ʎʅuo uɐɔ ɯɹoɟʇɐʅd ∀"
 
 msgid "Application"
 msgstr "uoıʇɐɔıʅdd∀"
@@ -3309,9 +3306,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "ɹǝsn ǝʌıʇɔɐ <strong>{0}</strong>"
 msgstr[1] "sɹǝsn ǝʌıʇɔɐ <strong>{0}</strong>"
 
-msgid "Submit a New File"
-msgstr "ǝʅıℲ ʍǝN ɐ ʇıɯqnS"
-
 msgid "Submit a New Version"
 msgstr "uoısɹǝɅ ʍǝN ɐ ʇıɯqnS"
 
@@ -3404,9 +3398,6 @@ msgstr "ƃuıuƃıS puɐ uoıʇnqıɹʇsıᗡ uo-pp∀ uo uoıʇɐɯɹoɟuı ǝ�
 msgid "Submission Complete"
 msgstr "ǝʇǝʅdɯoↃ uoıssıɯqnS"
 
-msgid "You’re done!"
-msgstr "¡ǝuop ǝɹ’no⅄"
-
 msgid "Version Submitted for Review"
 msgstr "ʍǝıʌǝᴚ ɹoɟ pǝʇʇıɯqnS uoısɹǝɅ"
 
@@ -3440,12 +3431,6 @@ msgstr ".ǝpoɔ pǝʅıdɯoɔ ɹo pǝʇɐɔsnɟqo ´pǝıɟıuıɯ sǝpnʅɔuı 
 msgid "Edit version {0}"
 msgstr "{0} uoısɹǝʌ ʇıpƎ"
 
-msgid "File Signed"
-msgstr "pǝuƃıS ǝʅıℲ"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ".ʍoʅǝq uoʇʇnq ǝɥʇ ƃuıʞɔıʅɔ ʎq ʇı pɐoʅuʍop uɐɔ no⅄ .uoıʇnqıɹʇsıp-ɟʅǝs ɹoɟ oʇ ʎpɐǝɹ puɐ pǝuƃıs sı ǝʅıɟ sıɥ⊥ ¡ǝuop ǝɹ’no⅄"
-
 msgid "Version Signed"
 msgstr "pǝuƃıS uoısɹǝɅ"
 
@@ -3454,12 +3439,6 @@ msgstr ".ʍoʅǝq uoʇʇnq ǝɥʇ ƃuıʞɔıʅɔ ʎq ʇı pɐoʅuʍop uɐɔ no�
 
 msgid "Download {0}"
 msgstr "{0} pɐoʅuʍoᗡ"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ":sɯɹoɟʇɐʅd ɹǝɥʇo ʇǝƃɹɐʇ ʇɐɥʇ sǝʅıɟ ǝɹoɯ pɐoʅdn uɐɔ no⅄ .uoıssıɯqns sıɥʇ ɹoɟ sɯɹoɟʇɐʅd ǝʅqɐʅıɐʌɐ ǝɥʇ ɟo ǝɯos ʎʅuo pǝʇɔǝʅǝs no⅄"
-
-msgid "Upload File"
-msgstr "ǝʅıℲ pɐoʅd∩"
 
 msgid "Go to My Submissions"
 msgstr "suoıssıɯqnS ʎW oʇ o⅁"
@@ -3539,9 +3518,6 @@ msgstr "ʇuǝɯǝǝɹƃ∀ uoıʇnqıɹʇsıᗡ uo-pp∀"
 msgid "Upload Add-on"
 msgstr "uo-pp∀ pɐoʅd∩"
 
-msgid "Where to Host File"
-msgstr "ǝʅıℲ ʇsoH oʇ ǝɹǝɥＭ"
-
 msgid "Where to Host Version"
 msgstr "uoısɹǝɅ ʇsoH oʇ ǝɹǝɥＭ"
 
@@ -3551,8 +3527,8 @@ msgstr "uoısɹǝɅ pɐoʅd∩"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ".ǝʅıɟ ɹnoʎ uo unɹ ǝq ʅʅıʍ sʇsǝʇ uoıʇɐpıʅɐʌ pǝʇɐɯoʇnɐ ɟo sǝıɹǝs ɐ ´pɐoʅdn ɹǝʇɟ∀ .ǝƃɐʞɔɐd uo-ppɐ ɹnoʎ pɐoʅdn oʇ ʍoʅǝq spʅǝıɟ ǝɥʇ ǝs∩"
 
-msgid "Which platforms is this file compatible with?"
-msgstr "¿ɥʇıʍ ǝʅqıʇɐdɯoɔ ǝʅıɟ sıɥʇ sı sɯɹoɟʇɐʅd ɥɔıɥＭ"
+msgid "Which applications is this version compatible with?"
+msgstr "¿ɥʇıʍ ǝʅqıʇɐdɯoɔ uoısɹǝʌ sıɥʇ sı suoıʇɐɔıʅddɐ ɥɔıɥＭ"
 
 msgid "Administrative overrides"
 msgstr "sǝpıɹɹǝʌo ǝʌıʇɐɹʇsıuıɯp∀"
@@ -3562,9 +3538,6 @@ msgstr "uoısɹǝɅ ǝɯǝɥ⊥ ɐ ǝʇɐǝɹↃ"
 
 msgid "Create a Theme"
 msgstr "ǝɯǝɥ⊥ ɐ ǝʇɐǝɹↃ"
-
-msgid "Submit File"
-msgstr "ǝʅıℲ ʇıɯqnS"
 
 msgid "Sign Add-on"
 msgstr "uo-pp∀ uƃıS"
@@ -4189,9 +4162,6 @@ msgstr "{0} ǝƃɐuɐW"
 
 msgid "Files"
 msgstr "sǝʅıℲ"
-
-msgid "Upload Another File"
-msgstr "ǝʅıℲ ɹǝɥʇou∀ pɐoʅd∩"
 
 msgid "Version Notes"
 msgstr "sǝʇoN uoısɹǝɅ"
@@ -5304,8 +5274,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} pʅɹoʍ ǝɥʇ punoɹɐ ɯoɹɟ ɔısnɯ ʎoɾuƎ"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr ".ǝqoʅƃ ǝɥʇ ɹǝʌo ʅʅɐ ɯoɹɟ suoıʇɐʇs oıpɐɹ +000´02 ssǝɔɔ∀"
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr ".ǝqoʅƃ ǝɥʇ ɹǝʌo ʅʅɐ ɯoɹɟ suoıʇɐʇs oıpɐɹ +000´03 ssǝɔɔ∀"
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5767,9 +5737,6 @@ msgstr ".sɹǝʇɔɐɹɐɥɔ 23 uɐɥʇ ɹǝʍǝɟ ǝʌɐɥ pʅnoɥs sɹǝqɯnu 
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "._-.⁎+ :sɹǝʇɔɐɹɐɥɔ uoıʇɐnʇɔund ǝsǝɥʇ puɐ ´sɹǝqɯnu ´sɹǝʇʇǝʅ uıɐʇuoɔ ʎʅuo pʅnoɥs sɹǝqɯnu uoısɹǝɅ"
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ".pǝʇɹoddns ʇou ʎʅʇuǝɹɹnɔ ǝɹɐ spɐoʅdn ǝɯǝɥʇ uoısuǝʇxƎqǝＭ"
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ".{0} sı sǝɯǝɥʇ uoısuǝʇxƎqǝＭ ɹoɟ ǝzıs ɯnɯıxɐW"

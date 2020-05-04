@@ -86,8 +86,9 @@ FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
 ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 
-DRF_API_VERSIONS = ['v3', 'v4']
-DRF_API_REGEX = r'^/?api/(?:v3|v4)/'
+# prod conf overrides these settings to only have 'v3' and 'v4'.
+DRF_API_VERSIONS = ['v3', 'v4', 'v4dev']
+DRF_API_REGEX = r'^/?api/(?:v3|v4|v4dev)/'
 
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
@@ -110,16 +111,19 @@ def cors_endpoint_overrides(whitelist_endpoints):
 CORS_ENDPOINT_OVERRIDES = []
 
 
-def get_db_config(environ_var):
+def get_db_config(environ_var, atomic_requests=True):
     values = env.db(
         var=environ_var,
         default='mysql://root:@localhost/olympia')
 
     values.update({
         # Run all views in a transaction unless they are decorated not to.
-        'ATOMIC_REQUESTS': True,
+        # `atomic_requests` should be `False` for database replicas where no
+        # write operations will ever happen.
+        'ATOMIC_REQUESTS': atomic_requests,
         # Pool our database connections up for 300 seconds
         'CONN_MAX_AGE': 300,
+        'ENGINE': 'olympia.core.db.mysql',
         'OPTIONS': {
             'sql_mode': 'STRICT_ALL_TABLES',
             'isolation_level': 'read committed'
@@ -458,6 +462,8 @@ SECURE_HSTS_SECONDS = 31536000
 USE_X_FORWARDED_PORT = True
 
 MIDDLEWARE = (
+    # Our middleware to make safe requests non-atomic needs to be at the top.
+    'olympia.amo.middleware.NonAtomicRequestsForSafeHttpMethodsMiddleware',
     # Test if it's an API request first so later middlewares don't need to.
     'olympia.api.middleware.IdentifyAPIRequestMiddleware',
     # Gzip (for API only) middleware needs to be executed after every
@@ -1205,6 +1211,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
+    'olympia.lib.akismet.tasks.comment_check': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1753,8 +1760,9 @@ STATICFILES_DIRS = (
 )
 
 NETAPP_STORAGE = TMP_PATH
-GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
+GUARDED_ADDONS_PATH = os.path.join(ROOT, 'guarded-addons')
 
+GIT_FILE_STORAGE_PATH = os.path.join(MEDIA_ROOT, 'git-storage')
 
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
@@ -1786,12 +1794,18 @@ DRF_API_GATES = {
         'ratings-rating-shim',
         'ratings-title-shim',
         'l10n_flat_input_output',
-        'collections-downloads-shim'
+        'collections-downloads-shim',
     ),
     'v4': (
-        'l10n_flat_input_output'
+        'l10n_flat_input_output',
     ),
+    'v4dev': (
+    )
 }
+
+# Change this to deactivate API throttling for views using a throttling class
+# depending on the one defined in olympia.api.throttling.
+API_THROTTLING = True
 
 REST_FRAMEWORK = {
     # Set this because the default is to also include:
@@ -1948,5 +1962,5 @@ BASKET_TIMEOUT = 5
 
 AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
 AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
-AKISMET_API_TIMEOUT = 100
+AKISMET_API_TIMEOUT = 5
 AKISMET_REAL_SUBMIT = False

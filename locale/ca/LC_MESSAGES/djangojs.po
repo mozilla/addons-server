@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-06-20 16:59+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-10-02 15:44+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -26,9 +26,8 @@ msgstr "S'ha produït un problema en contactar amb el servidor."
 msgid "Select a file..."
 msgstr "Seleccioneu un fitxer..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "El vostre complement ha d'acabar amb .xpi, .jar o .xml"
+msgstr "El vostre complement ha d'acabar amb .zip, .xpi, .crx, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -127,9 +126,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-msgid "Sorry, no supported platform has been found."
-msgstr ""
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "El tipus de fitxer que heu pujat no es pot reconèixer."
 
@@ -206,59 +202,50 @@ msgstr "Cerca aplicacions que contenen <b>{0}</b>"
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Cerca complements que contenen <b>{0}</b>"
 
-#, fuzzy
 msgid "Use original"
-msgstr "utilitza l'original"
+msgstr "Utilitza l'original"
 
 msgid "Week of {0}"
 msgstr "Setmana de {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] "Baixades"
-msgstr[1] "Baixades"
+msgstr[0] "{0} baixada"
+msgstr[1] "{0} baixades"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} usuaris"
+msgstr[0] "{0} usuari"
 msgstr[1] "{0} usuaris"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} complements"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} complement"
 msgstr[1] "{0} complements"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} col·leccions"
+msgstr[0] "{0} col·lecció"
 msgstr[1] "{0} col·leccions"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} valoracions"
+msgstr[0] "{0} valoració"
 msgstr[1] "{0} valoracions"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} vendes"
+msgstr[0] "{0} venda"
 msgstr[1] "{0} vendes"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} reemborsaments"
+msgstr[0] "{0} reemborsament"
 msgstr[1] "{0} reemborsaments"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} instal·lacions"
+msgstr[0] "{0} instal·lació"
 msgstr[1] "{0} instal·lacions"
 
 msgid "Downloads"
@@ -687,9 +674,8 @@ msgid "Not available for your platform"
 msgstr "No està disponible per a la vostra plataforma"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Aquest tema és incompatible amb la vostra versió de {0}"
+msgstr "Aquest tema és incompatible amb la vostra versió de {0}."
 
 msgid "View other versions"
 msgstr "Vegeu altres versions"
@@ -697,9 +683,8 @@ msgstr "Vegeu altres versions"
 msgid "Works with {app} {min} - {max}"
 msgstr "Funciona amb {app} {min} - {max}"
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Funciona amb {app} {min} - {max}"
+msgstr "Funciona amb {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,6 +130,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Aŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř."
 msgstr[1] "Aŀŀ ŧȧɠş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Ŧħḗ ŧḗẋŧ ḗƞŧḗřḗḓ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ȧş şƥȧḿ."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -688,6 +691,9 @@ msgstr "Řḗṽīḗẇḗř Ŧǿǿŀş"
 
 msgid "Admin Tools"
 msgstr "Aḓḿīƞ Ŧǿǿŀş"
+
+msgid "Positive integer"
+msgstr "Ƥǿşīŧīṽḗ īƞŧḗɠḗř"
 
 msgid "Incorrect, please try again."
 msgstr "Īƞƈǿřřḗƈŧ, ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ."
@@ -2454,11 +2460,8 @@ msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ẏǿŭř ŭƥŀǿȧḓ.
 msgid "Override failed validation"
 msgstr "Ǿṽḗřřīḓḗ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Ẏǿŭ ƈȧƞƞǿŧ ŭƥŀǿȧḓ ȧƞẏ ḿǿřḗ ƒīŀḗş ƒǿř ŧħīş ṽḗřşīǿƞ."
-
-msgid "Version doesn't match"
-msgstr "Ṽḗřşīǿƞ ḓǿḗşƞ'ŧ ḿȧŧƈħ"
+msgid "Need to select at least one application."
+msgstr "Ƞḗḗḓ ŧǿ şḗŀḗƈŧ ȧŧ ŀḗȧşŧ ǿƞḗ ȧƥƥŀīƈȧŧīǿƞ."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Ṽḗřşīǿƞ {version} ẇȧş ŭƥŀǿȧḓḗḓ ƀḗƒǿřḗ ȧƞḓ ḓḗŀḗŧḗḓ."
@@ -2474,12 +2477,6 @@ msgstr "Ẏǿŭ ħȧṽḗ ƞǿŧ ŭƥŀǿȧḓḗḓ ȧ şǿŭřƈḗ ƒīŀḗ
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Şǿŭřƈḗ ƒīŀḗ ŭƥŀǿȧḓḗḓ ƀŭŧ ẏǿŭ īƞḓīƈȧŧḗḓ ƞǿ şǿŭřƈḗ ẇȧş ƞḗḗḓḗḓ."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Ŧħḗ ƥŀȧŧƒǿřḿ Aŀŀ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ ẇīŧħ şƥḗƈīƒīƈ ƥŀȧŧƒǿřḿş."
-
-msgid "A platform can only be chosen once."
-msgstr "A ƥŀȧŧƒǿřḿ ƈȧƞ ǿƞŀẏ ƀḗ ƈħǿşḗƞ ǿƞƈḗ."
 
 msgid "Application"
 msgstr "Aƥƥŀīƈȧŧīǿƞ"
@@ -3308,9 +3305,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> ȧƈŧīṽḗ ŭşḗř"
 msgstr[1] "<strong>{0}</strong> ȧƈŧīṽḗ ŭşḗřş"
 
-msgid "Submit a New File"
-msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ƒīŀḗ"
-
 msgid "Submit a New Version"
 msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ṽḗřşīǿƞ"
 
@@ -3403,9 +3397,6 @@ msgstr "Ḿǿřḗ īƞƒǿřḿȧŧīǿƞ ǿƞ Aḓḓ-ǿƞ Ḓīşŧřīƀŭŧ
 msgid "Submission Complete"
 msgstr "Şŭƀḿīşşīǿƞ Ƈǿḿƥŀḗŧḗ"
 
-msgid "You’re done!"
-msgstr "Ẏǿŭ’řḗ ḓǿƞḗ!"
-
 msgid "Version Submitted for Review"
 msgstr "Ṽḗřşīǿƞ Şŭƀḿīŧŧḗḓ ƒǿř Řḗṽīḗẇ"
 
@@ -3439,12 +3430,6 @@ msgstr "Ẏǿŭ ƈȧƞ ȧŀşǿ ḗḓīŧ ŧħīş ṽḗřşīǿƞ ŧǿ ȧḓ�
 msgid "Edit version {0}"
 msgstr "Ḗḓīŧ ṽḗřşīǿƞ {0}"
 
-msgid "File Signed"
-msgstr "Ƒīŀḗ Şīɠƞḗḓ"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Ẏǿŭ’řḗ ḓǿƞḗ! Ŧħīş ƒīŀḗ īş şīɠƞḗḓ ȧƞḓ řḗȧḓẏ ŧǿ ƒǿř şḗŀƒ-ḓīşŧřīƀŭŧīǿƞ. Ẏǿŭ ƈȧƞ ḓǿẇƞŀǿȧḓ īŧ ƀẏ ƈŀīƈķīƞɠ ŧħḗ ƀŭŧŧǿƞ ƀḗŀǿẇ."
-
 msgid "Version Signed"
 msgstr "Ṽḗřşīǿƞ Şīɠƞḗḓ"
 
@@ -3453,12 +3438,6 @@ msgstr "Ẏǿŭ’řḗ ḓǿƞḗ! Ŧħīş ṽḗřşīǿƞ īş şīɠƞḗ�
 
 msgid "Download {0}"
 msgstr "Ḓǿẇƞŀǿȧḓ {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Ẏǿŭ şḗŀḗƈŧḗḓ ǿƞŀẏ şǿḿḗ ǿƒ ŧħḗ ȧṽȧīŀȧƀŀḗ ƥŀȧŧƒǿřḿş ƒǿř ŧħīş şŭƀḿīşşīǿƞ. Ẏǿŭ ƈȧƞ ŭƥŀǿȧḓ ḿǿřḗ ƒīŀḗş ŧħȧŧ ŧȧřɠḗŧ ǿŧħḗř ƥŀȧŧƒǿřḿş:"
-
-msgid "Upload File"
-msgstr "Ŭƥŀǿȧḓ Ƒīŀḗ"
 
 msgid "Go to My Submissions"
 msgstr "Ɠǿ ŧǿ Ḿẏ Şŭƀḿīşşīǿƞş"
@@ -3538,9 +3517,6 @@ msgstr "Aḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ Aɠřḗḗḿḗƞŧ"
 msgid "Upload Add-on"
 msgstr "Ŭƥŀǿȧḓ Aḓḓ-ǿƞ"
 
-msgid "Where to Host File"
-msgstr "Ẇħḗřḗ ŧǿ Ħǿşŧ Ƒīŀḗ"
-
 msgid "Where to Host Version"
 msgstr "Ẇħḗřḗ ŧǿ Ħǿşŧ Ṽḗřşīǿƞ"
 
@@ -3550,8 +3526,8 @@ msgstr "Ŭƥŀǿȧḓ Ṽḗřşīǿƞ"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Ŭşḗ ŧħḗ ƒīḗŀḓş ƀḗŀǿẇ ŧǿ ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ ƥȧƈķȧɠḗ. Aƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ ṽȧŀīḓȧŧīǿƞ ŧḗşŧş ẇīŀŀ ƀḗ řŭƞ ǿƞ ẏǿŭř ƒīŀḗ."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "Ẇħīƈħ ƥŀȧŧƒǿřḿş īş ŧħīş ƒīŀḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ?"
+msgid "Which applications is this version compatible with?"
+msgstr "Ẇħīƈħ ȧƥƥŀīƈȧŧīǿƞş īş ŧħīş ṽḗřşīǿƞ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ?"
 
 msgid "Administrative overrides"
 msgstr "Aḓḿīƞīşŧřȧŧīṽḗ ǿṽḗřřīḓḗş"
@@ -3561,9 +3537,6 @@ msgstr "Ƈřḗȧŧḗ ȧ Ŧħḗḿḗ Ṽḗřşīǿƞ"
 
 msgid "Create a Theme"
 msgstr "Ƈřḗȧŧḗ ȧ Ŧħḗḿḗ"
-
-msgid "Submit File"
-msgstr "Şŭƀḿīŧ Ƒīŀḗ"
 
 msgid "Sign Add-on"
 msgstr "Şīɠƞ Aḓḓ-ǿƞ"
@@ -4188,9 +4161,6 @@ msgstr "Ḿȧƞȧɠḗ {0}"
 
 msgid "Files"
 msgstr "Ƒīŀḗş"
-
-msgid "Upload Another File"
-msgstr "Ŭƥŀǿȧḓ Aƞǿŧħḗř Ƒīŀḗ"
 
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
@@ -5303,8 +5273,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Ḗƞĵǿẏ ḿŭşīƈ ƒřǿḿ ȧřǿŭƞḓ ŧħḗ ẇǿřŀḓ {start_sub_heading}ẇīŧħ {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Aƈƈḗşş 20,000+ řȧḓīǿ şŧȧŧīǿƞş ƒřǿḿ ȧŀŀ ǿṽḗř ŧħḗ ɠŀǿƀḗ."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Aƈƈḗşş 30,000+ řȧḓīǿ şŧȧŧīǿƞş ƒřǿḿ ȧŀŀ ǿṽḗř ŧħḗ ɠŀǿƀḗ."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5766,9 +5736,6 @@ msgstr "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ħȧṽḗ ƒḗẇḗř
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ǿƞŀẏ ƈǿƞŧȧīƞ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ȧƞḓ ŧħḗşḗ ƥŭƞƈŧŭȧŧīǿƞ ƈħȧřȧƈŧḗřş: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "ẆḗƀḖẋŧḗƞşīǿƞ ŧħḗḿḗ ŭƥŀǿȧḓş ȧřḗ ƈŭřřḗƞŧŀẏ ƞǿŧ şŭƥƥǿřŧḗḓ."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Ḿȧẋīḿŭḿ şīẑḗ ƒǿř ẆḗƀḖẋŧḗƞşīǿƞ ŧħḗḿḗş īş {0}."

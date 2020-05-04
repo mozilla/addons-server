@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-06 08:15+0000\n"
-"Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-19 12:16+0000\n"
+"Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -132,9 +132,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Η διαδικασία επικύρωσης βρήκε προβλήματα που μπορούν να οδηγήσουν σε απόρριψη."
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Συγνώμη, δεν βρέθηκε υποστηριζόμενη πλατφόρμα."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Δεν αναγνωρίζεται η μορφή αρχείου που αποστείλατε."
 
@@ -217,52 +214,45 @@ msgstr "Χρήση αρχικού"
 msgid "Week of {0}"
 msgstr "Εβδομάδα {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " λήψεις"
-msgstr[1] " λήψεις"
+msgstr[0] "{0} λήψη"
+msgstr[1] "{0} λήψεις"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} χρήστες"
+msgstr[0] "{0} χρήστης"
 msgstr[1] "{0} χρήστες"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} πρόσθετα"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} πρόσθετο"
 msgstr[1] "{0} πρόσθετα"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} συλλογές"
+msgstr[0] "{0} συλλογή"
 msgstr[1] "{0} συλλογές"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} αξιολογήσεις"
-msgstr[1] "{0} αξιολογήσεις"
+msgstr[0] "{0} κριτική"
+msgstr[1] "{0} κριτικές"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} πωλήσεις"
+msgstr[0] "{0} πώληση"
 msgstr[1] "{0} πωλήσεις"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} επιστροφές"
+msgstr[0] "{0} επιστροφή"
 msgstr[1] "{0} επιστροφές"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} εγκαταστάσεις"
+msgstr[0] "{0} εγκατάσταση"
 msgstr[1] "{0} εγκαταστάσεις"
 
 msgid "Downloads"

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-04 16:14+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-10-05 06:55+0000\n"
 "Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -127,6 +127,9 @@ msgstr "移除无效字符后，所有标签都必须少于或等于 %s 字符�
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有标签至少要包含 {0} 个字符。"
+
+msgid "The text entered has been flagged as spam."
+msgstr "输入的文本已被标记为垃圾留言。"
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -675,6 +678,9 @@ msgstr "审核员工具"
 msgid "Admin Tools"
 msgstr "管理工具"
 
+msgid "Positive integer"
+msgstr "正整数"
+
 msgid "Incorrect, please try again."
 msgstr "不正确，请重试。"
 
@@ -889,7 +895,7 @@ msgid "Error decoding signature."
 msgstr "解码签名出错。"
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "有效载荷（payload）中的一个或多个密钥类型错误"
 
 msgid "Invalid JWT Token."
 msgstr "无效的 JWT 令牌。"
@@ -2422,11 +2428,8 @@ msgstr "您的上传过程中发生错误，请重试。"
 msgid "Override failed validation"
 msgstr "无视验证失败"
 
-msgid "You cannot upload any more files for this version."
-msgstr "您不能再为此版本上传文件。"
-
-msgid "Version doesn't match"
-msgstr "版本不匹配"
+msgid "Need to select at least one application."
+msgstr "需要选择至少一个应用程序。"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 此前已上传并已删除。"
@@ -2442,12 +2445,6 @@ msgstr "您尚未上传源文件。"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "源文件已上传，但您标明无需源文件。"
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "不能既选择所有平台又指定特定平台。"
-
-msgid "A platform can only be chosen once."
-msgstr "一个平台只能被选择一次。"
 
 msgid "Application"
 msgstr "应用程序"
@@ -3249,9 +3246,6 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> 位活跃用户"
 
-msgid "Submit a New File"
-msgstr "提交新文件"
-
 msgid "Submit a New Version"
 msgstr "提交新版本"
 
@@ -3342,9 +3336,6 @@ msgstr "附加组件分发和签名的更多信息"
 msgid "Submission Complete"
 msgstr "提交完成"
 
-msgid "You’re done!"
-msgstr "完成了！"
-
 msgid "Version Submitted for Review"
 msgstr "版本已提交供审核"
 
@@ -3378,12 +3369,6 @@ msgstr "您还可以编辑此版本，为您刚刚的提交添加版本说明、
 msgid "Edit version {0}"
 msgstr "编辑版本 {0}"
 
-msgid "File Signed"
-msgstr "文件已签名"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "完成了！此文件已经签名并准备好自行分发。您可以点击下面的按钮下载它。"
-
 msgid "Version Signed"
 msgstr "版本已签名"
 
@@ -3392,12 +3377,6 @@ msgstr "完成了！此版本已经签名并准备好自行分发。您可以点
 
 msgid "Download {0}"
 msgstr "下载 {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "您的此次提交仅选择了部分可用的平台。您可以上传更多适用于其他平台的文件："
-
-msgid "Upload File"
-msgstr "上传文件"
 
 msgid "Go to My Submissions"
 msgstr "转至我的提交"
@@ -3475,9 +3454,6 @@ msgstr "附加组件分发协议"
 msgid "Upload Add-on"
 msgstr "上传附加组件"
 
-msgid "Where to Host File"
-msgstr "文件托管位置"
-
 msgid "Where to Host Version"
 msgstr "版本托管位置"
 
@@ -3487,8 +3463,8 @@ msgstr "上传版本"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "使用下面的按钮上传您的附加组件包。在上传完成后，将会对您的文件执行一系列自动化验证测试。"
 
-msgid "Which platforms is this file compatible with?"
-msgstr "此文件与哪个平台兼容？"
+msgid "Which applications is this version compatible with?"
+msgstr "此版本与哪个（些）应用程序兼容？"
 
 msgid "Administrative overrides"
 msgstr "管理覆盖"
@@ -3498,9 +3474,6 @@ msgstr "创建新版主题"
 
 msgid "Create a Theme"
 msgstr "创建一个主题"
-
-msgid "Submit File"
-msgstr "提交文件"
 
 msgid "Sign Add-on"
 msgstr "签名附加组件"
@@ -3961,12 +3934,11 @@ msgstr "兼容性测试"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "检查您的扩展是否兼容 Firefox。"
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "查看公开页面"
+msgstr "实时测试"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "在 Firefox 中临时安装您的扩展以进行实时测试和调试。"
 
 msgid "Transfer ownership"
 msgstr "变更所有权"
@@ -4121,9 +4093,6 @@ msgstr "管理 {0}"
 
 msgid "Files"
 msgstr "文件"
-
-msgid "Upload Another File"
-msgstr "上传其他文件"
 
 msgid "Version Notes"
 msgstr "版本说明"
@@ -4590,7 +4559,7 @@ msgstr "保存文本备稍后使用 {start_sub_heading}就用 {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr "不再重复写相同的东西！如果您经常在工作或其他通信中使用相同的短语，将它们保存到一个高级剪切板，在需要时轻松粘贴。"
+msgstr "不再重复写相同的东西！如果您经常在工作或其他通信中使用相同的短语，将它们保存到一个高级剪贴板，在需要时轻松粘贴。"
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5233,8 +5202,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "享受全球各地音乐 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "收听全球各地超过 20000 个广播电台。"
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "收听全球各地超过 30000 个广播电台。"
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5696,9 +5665,6 @@ msgstr "版本号应少于 32 个字符。"
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "版本号只能包含英文字母、数字以及这些标点符号：+*.-_。"
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "目前暂不支持 WebExtension 主题的上传。"
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "WebExtension 主题的大小限制为 {0}。"

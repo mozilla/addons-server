@@ -175,6 +175,12 @@ APP_IDS = {app.id: app for app in APP_USAGE}
 APP_GUIDS = {app.guid: app for app in APP_USAGE}
 APPS_CHOICES = tuple((app.id, app.pretty) for app in APP_USAGE)
 
+# Also temporary, can be removed and replaced by `APPS_CHOICES` together with
+# `APP_USAGE_FIREFOXES_ONLY`
+APPS_FIREFOXES_ONLY_CHOICES = sorted(tuple(
+    (app.id, app.pretty) for app in APP_USAGE_FIREFOXES_ONLY
+))
+
 APP_TYPE_SUPPORT = {}
 for _app in APP_USAGE:
     for _type in _app.types:

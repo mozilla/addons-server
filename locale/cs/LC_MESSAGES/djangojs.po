@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-04-28 12:30+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -135,9 +135,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces kontroly zjistil tyto možné nedostatky, které mohou vést k zamítnutí kontroly:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Omlouváme se, ale nebyla nalezena podporovaná platforma."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Typ souboru, který jste nahráli, nebyl rozpoznán."
 
@@ -236,7 +233,7 @@ msgstr[2] "{0} uživatelů"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} doplňků"
 msgstr[1] "{0} doplňků"
 msgstr[2] "{0} doplňků"

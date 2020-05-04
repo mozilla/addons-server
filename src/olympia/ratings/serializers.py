@@ -28,6 +28,7 @@ class RatingAddonSerializer(SimpleAddonSerializer):
 class BaseRatingSerializer(serializers.ModelSerializer):
     addon = RatingAddonSerializer(read_only=True)
     body = serializers.CharField(allow_null=True, required=False)
+    is_deleted = serializers.BooleanField(read_only=True, source='deleted')
     is_developer_reply = serializers.SerializerMethodField()
     is_latest = serializers.BooleanField(read_only=True)
     previous_count = serializers.IntegerField(read_only=True)
@@ -35,8 +36,8 @@ class BaseRatingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Rating
-        fields = ('id', 'addon', 'body', 'created', 'is_developer_reply',
-                  'is_latest', 'previous_count', 'user')
+        fields = ('id', 'addon', 'body', 'created', 'is_deleted',
+                  'is_developer_reply', 'is_latest', 'previous_count', 'user')
 
     def __init__(self, *args, **kwargs):
         super(BaseRatingSerializer, self).__init__(*args, **kwargs)

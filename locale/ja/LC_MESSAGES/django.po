@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-08-24 17:09+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -131,6 +131,9 @@ msgstr "すべてのタグは無効な文字を除き %s文字以下でなけれ
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "すべてのタグは {0}文字以上でなければなりません。"
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -685,6 +688,9 @@ msgstr "審査担当者用ツール"
 
 msgid "Admin Tools"
 msgstr "管理者用ツール"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "間違っています。再度お試しください。"
@@ -2454,11 +2460,9 @@ msgstr "アップロードした内容にエラーがあります。もう一度
 msgid "Override failed validation"
 msgstr "失敗した検証を上書き"
 
-msgid "You cannot upload any more files for this version."
-msgstr "このバージョンにはこれ以上ファイルをアップロードできません。"
-
-msgid "Version doesn't match"
-msgstr "バージョンが一致しません"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "対応アプリケーションが少なくともひとつは必要です。"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "バージョン {version} は以前アップロードされ、削除されています。"
@@ -2474,12 +2478,6 @@ msgstr "ソースファイルをアップロードしていません。"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "ソースファイルがアップロードされましたが、あなたはソースが必要ないと示しています。"
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "「すべて」の OS は、特定の OS と組み合わせることができません。"
-
-msgid "A platform can only be chosen once."
-msgstr "OS は一度だけ選択することができます。"
 
 msgid "Application"
 msgstr "アプリケーション"
@@ -3301,9 +3299,6 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "アクティブユーザー <strong>{0}</strong> 名"
 
-msgid "Submit a New File"
-msgstr "新しいファイルを登録"
-
 msgid "Submit a New Version"
 msgstr "新しいバージョンを登録"
 
@@ -3397,9 +3392,6 @@ msgstr "アドオンの配布と署名に関する詳しい情報"
 msgid "Submission Complete"
 msgstr "登録完了"
 
-msgid "You’re done!"
-msgstr "完了！"
-
 msgid "Version Submitted for Review"
 msgstr "審査が申請されているバージョン"
 
@@ -3433,12 +3425,6 @@ msgstr "このバージョンを編集して、バージョンノートを追加
 msgid "Edit version {0}"
 msgstr "バージョン {0}を編集"
 
-msgid "File Signed"
-msgstr "ファイルが署名されました"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "完了！ このファイルは署名され、自主配布可能となりました。ダウンロードするには下のボタンをクリックしてください。"
-
 msgid "Version Signed"
 msgstr "署名済みバージョン"
 
@@ -3447,12 +3433,6 @@ msgstr "完了！ このバージョンは署名され、自主配布可能と�
 
 msgid "Download {0}"
 msgstr "{0}をダウンロード"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "このアドオンでは提供可能なプラットフォームの一部しか選択されていません。他のプラットフォームを対象としたファイルを追加でアップロードすることもできます。"
-
-msgid "Upload File"
-msgstr "ファイルをアップロード"
 
 msgid "Go to My Submissions"
 msgstr "自分の登録アイテムを見る"
@@ -3532,9 +3512,6 @@ msgstr "アドオン配布規約"
 msgid "Upload Add-on"
 msgstr "アドオンをアップロード"
 
-msgid "Where to Host File"
-msgstr "ファイルの配布場所"
-
 msgid "Where to Host Version"
 msgstr "バージョンの配布場所"
 
@@ -3544,7 +3521,8 @@ msgstr "バージョンをアップロード"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "下のフォームを使ってアドオンのパッケージをアップロードしてください。アップロードが完了すると、そのファイルに対して一連の自動検証テストが実施されます。"
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "このファイルの対応プラットフォーム"
 
 msgid "Administrative overrides"
@@ -3555,9 +3533,6 @@ msgstr "テーマのバージョンを作成"
 
 msgid "Create a Theme"
 msgstr "テーマを作成"
-
-msgid "Submit File"
-msgstr "ファイルを登録"
 
 msgid "Sign Add-on"
 msgstr "アドオンを署名"
@@ -4188,9 +4163,6 @@ msgstr "{0}を管理"
 
 msgid "Files"
 msgstr "ファイル"
-
-msgid "Upload Another File"
-msgstr "他のファイルをアップロード"
 
 msgid "Version Notes"
 msgstr "バージョンノート"
@@ -5302,7 +5274,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}世界中の音楽を楽しむ"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "世界中の 20,000 局以上のラジオ局にアクセスできます。"
 
 #. editorial content for the discovery pane.
@@ -5765,9 +5738,6 @@ msgstr "バージョン番号は 32 文字以内でなければなりません�
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "バージョン番号に英数字もしくは記号「+*.-_.」以外の文字を含めることはできません。"
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "WebExtension テーマのアップロードには現時点では対応していません。"
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

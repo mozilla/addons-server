@@ -5,6 +5,7 @@ from django.db import models
 
 from aesfield.field import AESField
 
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 from olympia.users.models import UserProfile
 
@@ -22,6 +23,7 @@ class APIKey(ModelBase):
     """
     A developer's key/secret pair to access the API.
     """
+    id = PositiveAutoField(primary_key=True)
     user = models.ForeignKey(UserProfile, related_name='api_keys')
 
     # A user can only have one active key at the same time, it's enforced by

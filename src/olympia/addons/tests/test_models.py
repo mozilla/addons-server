@@ -35,7 +35,7 @@ from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
-from olympia.files.utils import parse_addon
+from olympia.files.utils import parse_addon, Extractor
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.translations.models import (
     Translation, TranslationSequence, delete_translation)
@@ -2242,13 +2242,23 @@ class TestAddonFromUpload(UploadTest):
         super(TestAddonFromUpload, self).setUp()
         u = UserProfile.objects.get(pk=999)
         core.set_user(u)
-        self.platform = amo.PLATFORM_MAC.id
+        self.selected_app = amo.FIREFOX.id
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application=1, version=version)
         self.addCleanup(translation.deactivate)
+
+        def _app(application):
+            return Extractor.App(
+                appdata=application, id=application.id,
+                min=AppVersion.objects.get_or_create(
+                    application=application.id, version='3.0')[0],
+                max=AppVersion.objects.get_or_create(
+                    application=application.id, version='3.6.*')[0])
+
         self.dummy_parsed_data = {
             'guid': 'guid@xpi',
-            'version': '0.1'
+            'version': '0.1',
+            'apps': [_app(amo.FIREFOX)]
         }
 
     def manifest(self, basename):
@@ -2268,7 +2278,7 @@ class TestAddonFromUpload(UploadTest):
         # Upload addon so we can delete it.
         self.upload = self.get_upload('extension.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
-        deleted = Addon.from_upload(self.upload, [self.platform],
+        deleted = Addon.from_upload(self.upload, [self.selected_app],
                                     parsed_data=parsed_data)
         deleted.update(status=amo.STATUS_PUBLIC)
         deleted.delete()
@@ -2284,7 +2294,7 @@ class TestAddonFromUpload(UploadTest):
         # Upload addon so we can delete it.
         self.upload = self.get_upload('extension.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
-        deleted = Addon.from_upload(self.upload, [self.platform],
+        deleted = Addon.from_upload(self.upload, [self.selected_app],
                                     parsed_data=parsed_data)
         # Claim the add-on.
         AddonUser(addon=deleted, user=UserProfile.objects.get(pk=999)).save()
@@ -2296,7 +2306,7 @@ class TestAddonFromUpload(UploadTest):
         # validationError is raised this time.
         self.upload = self.get_upload('extension.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
-        addon = Addon.from_upload(self.upload, [self.platform],
+        addon = Addon.from_upload(self.upload, [self.selected_app],
                                   parsed_data=parsed_data)
         deleted.reload()
         assert addon.guid == 'guid@xpi'
@@ -2309,10 +2319,10 @@ class TestAddonFromUpload(UploadTest):
         See https://github.com/mozilla/addons-server/issues/1659."""
         # Upload a couple of addons so we can pretend they were soft deleted.
         deleted1 = Addon.from_upload(
-            self.get_upload('extension.xpi'), [self.platform],
+            self.get_upload('extension.xpi'), [self.selected_app],
             parsed_data=self.dummy_parsed_data)
         deleted2 = Addon.from_upload(
-            self.get_upload('alt-rdf.xpi'), [self.platform],
+            self.get_upload('alt-rdf.xpi'), [self.selected_app],
             parsed_data=self.dummy_parsed_data)
         AddonUser(addon=deleted1, user=UserProfile.objects.get(pk=999)).save()
         AddonUser(addon=deleted2, user=UserProfile.objects.get(pk=999)).save()
@@ -2329,12 +2339,12 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('search.xml')
         parsed_data = parse_addon(self.upload, user=Mock())
         Addon.from_upload(
-            self.upload, [self.platform], parsed_data=parsed_data)
+            self.upload, [self.selected_app], parsed_data=parsed_data)
 
     def test_xpi_attributes(self):
         self.upload = self.get_upload('extension.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
-        addon = Addon.from_upload(self.upload, [self.platform],
+        addon = Addon.from_upload(self.upload, [self.selected_app],
                                   parsed_data=parsed_data)
         assert addon.name == 'xpi name'
         assert addon.guid == 'guid@xpi'
@@ -2347,26 +2357,31 @@ class TestAddonFromUpload(UploadTest):
 
     def test_xpi_version(self):
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  [self.platform],
+                                  [self.selected_app],
                                   parsed_data=self.dummy_parsed_data)
         version = addon.versions.get()
         assert version.version == '0.1'
-        assert version.files.get().platform == self.platform
+        assert len(version.compatible_apps.keys()) == 1
+        assert version.compatible_apps.keys()[0].id == self.selected_app
+        assert version.files.get().platform == amo.PLATFORM_ALL.id
         assert version.files.get().status == amo.STATUS_AWAITING_REVIEW
 
-    def test_xpi_for_multiple_platforms(self):
-        platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]
-        addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  platforms,
-                                  parsed_data=self.dummy_parsed_data)
+    def test_platforms(self):
+        # We are defaulting to PLATFORM_ALL for all uploads as part of
+        # removing platforms in favour of ApplicationsVersions
+        # See #8572 for more details.
+        addon = Addon.from_upload(
+            self.get_upload('extension.xpi'),
+            [amo.FIREFOX.id, amo.ANDROID.id],
+            parsed_data=self.dummy_parsed_data)
         version = addon.versions.get()
         assert sorted([file_.platform for file_ in version.all_files]) == (
-            sorted(platforms))
+            [amo.PLATFORM_ALL.id])
 
     def test_search_attributes(self):
         self.upload = self.get_upload('search.xml')
         parsed_data = parse_addon(self.upload, user=Mock())
-        addon = Addon.from_upload(self.upload, [self.platform],
+        addon = Addon.from_upload(self.upload, [self.selected_app],
                                   parsed_data=parsed_data)
         assert addon.name == 'search tool'
         assert addon.guid is None
@@ -2380,39 +2395,40 @@ class TestAddonFromUpload(UploadTest):
     def test_search_version(self):
         self.upload = self.get_upload('search.xml')
         parsed_data = parse_addon(self.upload, user=Mock())
-        addon = Addon.from_upload(self.upload,
-                                  [self.platform],
-                                  parsed_data=parsed_data)
+        addon = Addon.from_upload(
+            self.upload, [self.selected_app], parsed_data=parsed_data)
         version = addon.versions.get()
         assert version.version == datetime.now().strftime('%Y%m%d')
         assert version.files.get().platform == amo.PLATFORM_ALL.id
         assert version.files.get().status == amo.STATUS_AWAITING_REVIEW
 
     def test_no_homepage(self):
-        addon = Addon.from_upload(self.get_upload('extension-no-homepage.xpi'),
-                                  [self.platform],
-                                  parsed_data=self.dummy_parsed_data)
+        addon = Addon.from_upload(
+            self.get_upload('extension-no-homepage.xpi'),
+            [self.selected_app],
+            parsed_data=self.dummy_parsed_data)
         assert addon.homepage is None
 
     def test_default_locale(self):
         # Make sure default_locale follows the active translation.
-        addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform],
-                                  parsed_data=self.dummy_parsed_data)
+        addon = Addon.from_upload(
+            self.get_upload('search.xml'),
+            [self.selected_app], parsed_data=self.dummy_parsed_data)
         assert addon.default_locale == 'en-US'
 
         translation.activate('es')
-        addon = Addon.from_upload(self.get_upload('search.xml'),
-                                  [self.platform],
-                                  parsed_data=self.dummy_parsed_data)
+        addon = Addon.from_upload(
+            self.get_upload('search.xml'),
+            [self.selected_app], parsed_data=self.dummy_parsed_data)
         assert addon.default_locale == 'es'
 
     def test_validation_completes(self):
         upload = self.get_upload('extension.xpi')
         assert not upload.validation_timeout
         addon = Addon.from_upload(
-            upload, [self.platform], parsed_data=self.dummy_parsed_data)
+            upload, [self.selected_app], parsed_data=self.dummy_parsed_data)
         assert not addon.needs_admin_code_review
+        assert not addon.auto_approval_disabled
 
     def test_validation_timeout(self):
         upload = self.get_upload('extension.xpi')
@@ -2424,14 +2440,34 @@ class TestAddonFromUpload(UploadTest):
         upload.validation = json.dumps(validation)
         assert upload.validation_timeout
         addon = Addon.from_upload(
-            upload, [self.platform], parsed_data=self.dummy_parsed_data)
+            upload, [self.selected_app], parsed_data=self.dummy_parsed_data)
         assert addon.needs_admin_code_review
+        assert not addon.auto_approval_disabled
+
+    def test_mozilla_signed(self):
+        upload = self.get_upload('extension.xpi')
+        assert not upload.validation_timeout
+        self.dummy_parsed_data['is_mozilla_signed_extension'] = True
+        addon = Addon.from_upload(
+            upload, [self.selected_app], parsed_data=self.dummy_parsed_data)
+        assert addon.needs_admin_code_review
+        assert addon.auto_approval_disabled
+
+    def test_mozilla_signed_langpack(self):
+        upload = self.get_upload('extension.xpi')
+        assert not upload.validation_timeout
+        self.dummy_parsed_data['is_mozilla_signed_extension'] = True
+        self.dummy_parsed_data['type'] = amo.ADDON_LPAPP
+        addon = Addon.from_upload(
+            upload, [self.selected_app], parsed_data=self.dummy_parsed_data)
+        assert not addon.needs_admin_code_review
+        assert not addon.auto_approval_disabled
 
     def test_webextension_generate_guid(self):
         self.upload = self.get_upload('webextension_no_id.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.upload, [self.platform], parsed_data=parsed_data)
+            self.upload, [self.selected_app], parsed_data=parsed_data)
 
         assert addon.guid is not None
         assert addon.guid.startswith('{')
@@ -2441,7 +2477,7 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('webextension_no_id.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
         new_addon = Addon.from_upload(
-            self.upload, [self.platform], parsed_data=parsed_data)
+            self.upload, [self.selected_app], parsed_data=parsed_data)
         assert new_addon.guid is not None
         assert new_addon.guid != addon.guid
         assert addon.guid.startswith('{')
@@ -2451,7 +2487,7 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.upload, [self.platform], parsed_data=parsed_data)
+            self.upload, [self.selected_app], parsed_data=parsed_data)
 
         assert addon.guid == '@webextension-guid'
 
@@ -2459,7 +2495,7 @@ class TestAddonFromUpload(UploadTest):
         with self.assertRaises(forms.ValidationError) as e:
             self.upload = self.get_upload('webextension.xpi')
             parsed_data = parse_addon(self.upload, user=Mock())
-            Addon.from_upload(self.upload, [self.platform],
+            Addon.from_upload(self.upload, [self.selected_app],
                               parsed_data=parsed_data)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
@@ -2469,7 +2505,7 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('extension.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.upload, [self.platform], parsed_data=parsed_data)
+            self.upload, [self.selected_app], parsed_data=parsed_data)
 
         assert addon.guid
         feature_compatibility = addon.feature_compatibility
@@ -2481,7 +2517,7 @@ class TestAddonFromUpload(UploadTest):
             'multiprocess_incompatible_extension.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.upload, [self.platform], parsed_data=parsed_data)
+            self.upload, [self.selected_app], parsed_data=parsed_data)
 
         assert addon.guid
         feature_compatibility = addon.feature_compatibility
@@ -2493,7 +2529,7 @@ class TestAddonFromUpload(UploadTest):
             'multiprocess_compatible_extension.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.upload, [self.platform], parsed_data=parsed_data)
+            self.upload, [self.selected_app], parsed_data=parsed_data)
 
         assert addon.guid
         feature_compatibility = addon.feature_compatibility
@@ -2504,7 +2540,7 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.upload, [self.platform], parsed_data=parsed_data)
+            self.upload, [self.selected_app], parsed_data=parsed_data)
 
         assert addon.guid
         feature_compatibility = addon.feature_compatibility
@@ -2515,7 +2551,7 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
         addon = Addon.from_upload(
-            self.upload, [self.platform], parsed_data=parsed_data)
+            self.upload, [self.selected_app], parsed_data=parsed_data)
 
         # Normalized from `en` to `en-US`
         assert addon.default_locale == 'en-US'
@@ -2548,7 +2584,7 @@ class TestAddonFromUpload(UploadTest):
 
         addon = Addon.from_upload(
             self.get_upload('notify-link-clicks-i18n.xpi'),
-            [self.platform], parsed_data=parsed_data)
+            [self.selected_app], parsed_data=parsed_data)
 
         # Normalized from `sv` to `sv-SE`
         assert addon.default_locale == 'sv-SE'
@@ -2572,7 +2608,7 @@ class TestAddonFromUpload(UploadTest):
 
         addon = Addon.from_upload(
             self.get_upload('notify-link-clicks-i18n.xpi'),
-            [self.platform], parsed_data=parsed_data)
+            [self.selected_app], parsed_data=parsed_data)
 
         # Normalized from `en` to `en-US`
         assert addon.default_locale == 'en-US'

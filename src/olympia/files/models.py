@@ -28,6 +28,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.lib.cache import memoize
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase, OnChangeMixin, ManagerBase
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
@@ -45,6 +46,7 @@ EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
 
 
 class File(OnChangeMixin, ModelBase):
+    id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
     version = models.ForeignKey(
@@ -196,10 +198,9 @@ class File(OnChangeMixin, ModelBase):
                                                 file=file_)
 
         log.debug('New file: %r from %r' % (file_, upload))
+
         # Move the uploaded file from the temp location.
-        copy_stored_file(
-            upload.path,
-            os.path.join(version.path_prefix, nfd_str(file_.filename)))
+        copy_stored_file(upload.path, file_.current_file_path)
 
         if upload.validation:
             FileValidation.from_json(file_, validation)
@@ -231,7 +232,7 @@ class File(OnChangeMixin, ModelBase):
     def generate_hash(self, filename=None):
         """Generate a hash for a file."""
         hash = hashlib.sha256()
-        with open(filename or self.file_path, 'rb') as obj:
+        with open(filename or self.current_file_path, 'rb') as obj:
             for chunk in iter(lambda: obj.read(1024), ''):
                 hash.update(chunk)
         return 'sha256:%s' % hash.hexdigest()
@@ -360,14 +361,10 @@ class File(OnChangeMixin, ModelBase):
         a string.
         """
         start = time.time()
-        zip = SafeZip(self.file_path, validate=False)
 
         try:
-            is_valid = zip.is_valid()
+            zip = SafeZip(self.file_path)
         except (zipfile.BadZipfile, IOError):
-            is_valid = False
-
-        if not is_valid:
             return ''
 
         try:
@@ -716,6 +713,7 @@ class FileUpload(ModelBase):
 
 
 class FileValidation(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     file = models.OneToOneField(File, related_name='validation')
     valid = models.BooleanField(default=False)
     errors = models.IntegerField(default=0)

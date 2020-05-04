@@ -7,6 +7,7 @@ from django.db import models
 import olympia.core.logger
 
 from olympia.addons.models import Addon
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 from olympia.users.models import UserProfile
 
@@ -15,6 +16,7 @@ log = olympia.core.logger.getLogger('devhub')
 
 
 class RssKey(models.Model):
+    id = PositiveAutoField(primary_key=True)
     # TODO: Convert to `models.UUIDField` but apparently we have a max_length
     # of 36 defined in the database and maybe store things with a hyphen
     # or maybe not...
@@ -30,6 +32,7 @@ class RssKey(models.Model):
 
 
 class BlogPost(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     title = models.CharField(max_length=255)
     date_posted = models.DateField(default=datetime.now)
     permalink = models.CharField(max_length=255)

@@ -1,8 +1,6 @@
 {% extends "devhub/base.html" %}
 
-{% if submit_page == 'file' %}
-  {% set title = _('Submit a New File') %}
-{% elif submit_page == 'version' %}
+{% if submit_page == 'version' %}
   {% set title = _('Submit a New Version') %}
 {% else %}
   {% set title = _('Submit a New Add-on') %}

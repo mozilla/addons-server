@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2017-10-19 19:03+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -126,9 +126,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "ভ্যালিডেশন প্রক্রিয়া তে পাওয়া গেছে এই ইসুস জেটা খারিজ হতে পারে:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "দুঃখিত, কোন সাহায্যকারী প্লাটফরম খুঁজে পাওয়া যাইনি।"
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "আপনার আপলোড করা ফাইলটির ফাইলটাইপটি স্বীকৃত নয়।"
 
@@ -225,7 +222,7 @@ msgstr[1] "{0} ব্যবহারকারী"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} অ্যাড-অন"
 msgstr[1] "{0} অ্যাড-অন"
 

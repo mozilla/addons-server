@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 12:09+0000\n"
-"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-18 13:00+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -136,9 +136,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Le processus de validation a détecté ces problèmes qui peuvent entraîner des rejets :"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Désolé, aucune plateforme prise en charge n’a été trouvée."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Le type de fichier que vous avez envoyé n’est pas reconnu."
 
@@ -221,52 +218,44 @@ msgstr "Utiliser l’original"
 msgid "Week of {0}"
 msgstr "Semaine de {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " téléchargements"
-msgstr[1] " téléchargements"
+msgstr[0] "{0} téléchargement"
+msgstr[1] "{0} téléchargements"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} utilisateurs"
-msgstr[1] "{0} utilisateurs"
+msgstr[1] "{0} utilisateurs ou utilisatrices"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} modules"
-msgstr[1] "{0} modules"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} module complémentaire"
+msgstr[1] "{0} modules complémentaires"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} collections"
+msgstr[0] "{0} collection"
 msgstr[1] "{0} collections"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} critiques"
+msgstr[0] "{0} critique"
 msgstr[1] "{0} critiques"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} ventes"
 msgstr[1] "{0} ventes"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} remboursements"
 msgstr[1] "{0} remboursements"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} installations"
+msgstr[0] "{0} installation"
 msgstr[1] "{0} installations"
 
 msgid "Downloads"

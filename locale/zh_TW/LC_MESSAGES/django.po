@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-15 13:56+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-25 14:38+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -127,6 +127,9 @@ msgstr "移除無效的字元之後所有的標籤都必須少於或等於 %s �
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "所有的標籤至少為 {0} 字元。"
+
+msgid "The text entered has been flagged as spam."
+msgstr "輸入的文字已被標示為垃圾留言。"
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -676,6 +679,9 @@ msgstr "審核者工具"
 msgid "Admin Tools"
 msgstr "管理員工具"
 
+msgid "Positive integer"
+msgstr "正整數"
+
 msgid "Incorrect, please try again."
 msgstr "不正確，請再試一次。"
 
@@ -890,7 +896,7 @@ msgid "Error decoding signature."
 msgstr "解碼簽章時發生錯誤。"
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Payload 中的一或多組金鑰類型錯誤"
 
 msgid "Invalid JWT Token."
 msgstr "JWT Token 無效。"
@@ -2439,11 +2445,8 @@ msgstr "您的上傳過程發生錯誤，請再試一次。"
 msgid "Override failed validation"
 msgstr "無視驗證失敗"
 
-msgid "You cannot upload any more files for this version."
-msgstr "您不行再對這個版本上傳檔案。"
-
-msgid "Version doesn't match"
-msgstr "版本不相符"
+msgid "Need to select at least one application."
+msgstr "至少需要一套相容的應用程式。"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 之前已上傳過，且已刪除。"
@@ -2459,12 +2462,6 @@ msgstr "尚未上傳原始碼檔案。"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "上傳了原始碼檔案，但您標明無須原始碼。"
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "所有平台不能與某特定平台結合。"
-
-msgid "A platform can only be chosen once."
-msgstr "只能選擇一個平台。"
 
 msgid "Application"
 msgstr "應用程式"
@@ -3272,9 +3269,6 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> 位活躍的使用者"
 
-msgid "Submit a New File"
-msgstr "送出新檔案"
-
 msgid "Submit a New Version"
 msgstr "送出新版本"
 
@@ -3365,9 +3359,6 @@ msgstr "關於附加元件發行與簽署的更多資訊"
 msgid "Submission Complete"
 msgstr "送出完成"
 
-msgid "You’re done!"
-msgstr "完成了！"
-
 msgid "Version Submitted for Review"
 msgstr "已送出進行審查的版本"
 
@@ -3401,12 +3392,6 @@ msgstr "您也可以編輯剛送出的版本，加入版本註記，或若包含
 msgid "Edit version {0}"
 msgstr "編輯版本 {0}"
 
-msgid "File Signed"
-msgstr "已簽署檔案"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "搞定了！已簽署此檔案讓您自行發布。您可點擊下方按鈕下載。"
-
 msgid "Version Signed"
 msgstr "已簽署版本"
 
@@ -3417,12 +3402,6 @@ msgstr "搞定了！已簽署此版本以讓您自行發布。您可點擊下方
 # 100%
 msgid "Download {0}"
 msgstr "立刻下載 {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "您選擇此次只要在某些平台上發布，您還可以上傳給其他平台使用的檔案: "
-
-msgid "Upload File"
-msgstr "上傳檔案"
 
 msgid "Go to My Submissions"
 msgstr "前往我上架的項目"
@@ -3500,9 +3479,6 @@ msgstr "附加元件發行同意書"
 msgid "Upload Add-on"
 msgstr "上傳附加元件"
 
-msgid "Where to Host File"
-msgstr "於何處代管此檔案？"
-
 msgid "Where to Host Version"
 msgstr "於何處代管此版本？"
 
@@ -3512,8 +3488,8 @@ msgstr "上傳版本"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "使用下方欄位上傳您的附加元件封包。上傳完成後，將會對您的檔案進行一系列自動化的驗證測試。"
 
-msgid "Which platforms is this file compatible with?"
-msgstr "這個檔案與哪些平台相容？"
+msgid "Which applications is this version compatible with?"
+msgstr "此版本與哪些應用程式相容？"
 
 msgid "Administrative overrides"
 msgstr "管理員覆寫"
@@ -3523,9 +3499,6 @@ msgstr "建立佈景主題版本"
 
 msgid "Create a Theme"
 msgstr "建立新的佈景主題"
-
-msgid "Submit File"
-msgstr "送出檔案"
 
 msgid "Sign Add-on"
 msgstr "簽署附加元件"
@@ -3991,12 +3964,11 @@ msgstr "相容性測試"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "看看您的擴充套件是否與 Firefox 相容。"
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "檢視附加元件頁面"
+msgstr "測試中"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "在 Firefox 暫時安裝您的擴充套件，進行測試與除錯。"
 
 msgid "Transfer ownership"
 msgstr "移轉擁有權"
@@ -4157,9 +4129,6 @@ msgstr "管理 {0}"
 
 msgid "Files"
 msgstr "檔案"
-
-msgid "Upload Another File"
-msgstr "上傳其他檔案"
 
 msgid "Version Notes"
 msgstr "版本紀錄"
@@ -5308,7 +5277,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5784,9 +5753,6 @@ msgstr "版本號碼應該少於 32 個字元。"
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "版本號碼只能含有英文字母、數字，以及這些標點符號: +*.-_。"
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "目前暫時不支援上傳 WebExtension 佈景主題。"
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "WebExtension 佈景主題的最大大小為 {0}。"

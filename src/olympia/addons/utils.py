@@ -222,7 +222,7 @@ def build_webext_dictionary_from_legacy(addon, destination):
     from olympia.files.utils import SafeZip  # Avoid circular import.
     old_path = addon.current_version.all_files[0].file_path
     old_zip = SafeZip(old_path)
-    if not old_zip.is_valid():
+    if not old_zip.is_valid:
         raise ValidationError('Current dictionary xpi is not valid')
 
     dictionary_path = ''

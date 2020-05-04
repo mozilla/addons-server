@@ -9,10 +9,12 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.test import RequestFactory
+from django.test.utils import override_settings
 from django.utils.translation import trim_whitespace
 
 import mock
 import pytest
+import responses
 import waffle
 
 from pyquery import PyQuery as pq
@@ -35,6 +37,7 @@ from olympia.devhub.models import BlogPost
 from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
+from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import UserProfile
@@ -959,12 +962,12 @@ class TestUploadDetail(BaseUploadTest):
             'rejected': False,
             'metadata': {}}
 
-    def upload_file(self, file):
+    def upload_file(self, file, url='devhub.upload'):
         addon = os.path.join(
             settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons', file)
         with open(addon, 'rb') as f:
             response = self.client.post(
-                reverse('devhub.upload'), {'upload': f})
+                reverse(url), {'upload': f})
         assert response.status_code == 302
 
     def test_detail_json(self):
@@ -1060,69 +1063,6 @@ class TestUploadDetail(BaseUploadTest):
         url = reverse('devhub.standalone_upload_detail', args=['garbage'])
         response = self.client.get(url)
         assert response.status_code == 404
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def check_excluded_platforms(self, xpi, platforms, v):
-        v.return_value = json.dumps(self.validation_ok())
-        self.upload_file(xpi)
-        upload = FileUpload.objects.get()
-        response = self.client.get(
-            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        assert sorted(data['platforms_to_exclude']) == sorted(platforms)
-
-    def test_multi_app_addon_can_have_all_platforms(self):
-        self.check_excluded_platforms('mobile-2.9.10-fx+fn.xpi', [])
-
-    def test_android_excludes_desktop_platforms(self):
-        self.check_excluded_platforms('android-phone.xpi', [
-            str(p) for p in amo.DESKTOP_PLATFORMS])
-
-    def test_search_tool_excludes_all_platforms(self):
-        self.check_excluded_platforms('searchgeek-20090701.xml', [
-            str(p) for p in amo.SUPPORTED_PLATFORMS])
-
-    def test_desktop_excludes_mobile(self):
-        self.check_excluded_platforms('desktop.xpi', [
-            str(p) for p in amo.MOBILE_PLATFORMS])
-
-    def test_webextension_supports_all_platforms(self):
-        self.create_appversion('firefox', '42.0')
-
-        # Android is only supported 48+
-        self.create_appversion('android', '48.0')
-        self.create_appversion('android', '*')
-
-        self.check_excluded_platforms('valid_webextension.xpi', [])
-
-    def test_webextension_android_excluded_if_no_48_support(self):
-        self.create_appversion('firefox', '42.*')
-        self.create_appversion('firefox', '47.*')
-        self.create_appversion('firefox', '48.*')
-        self.create_appversion('android', '42.*')
-        self.create_appversion('android', '47.*')
-        self.create_appversion('android', '48.*')
-        self.create_appversion('android', '*')
-
-        self.check_excluded_platforms('valid_webextension_max_47.xpi', [
-            str(amo.PLATFORM_ANDROID.id)
-        ])
-
-    @override_switch('allow-static-theme-uploads', active=True)
-    def test_static_theme_supports_all_desktop_platforms(self):
-        # Support was added in 53
-        self.create_appversion('firefox', '53.0')
-
-        # No Android support yet, but make sure.
-        self.create_appversion('android', '53.0')
-        self.create_appversion('android', '42.*')
-        self.create_appversion('android', '47.*')
-        self.create_appversion('android', '48.*')
-        self.create_appversion('android', '*')
-
-        self.check_excluded_platforms('static_theme.zip', [
-            str(amo.PLATFORM_ANDROID.id)])
 
     def test_no_servererror_on_missing_version(self):
         """https://github.com/mozilla/addons-server/issues/3779
@@ -1314,6 +1254,94 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(reverse('devhub.upload_detail_for_version',
                                            args=[addon.slug, upload.uuid.hex]))
         assert response.status_code == 200
+
+    @override_switch('akismet-spam-check', active=False)
+    def test_akismet_waffle_off(self):
+        self.upload_file('valid_webextension.xpi')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 0
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_reports_created_ham_outcome(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        self.upload_file('valid_webextension.xpi')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        comment_check_mock.assert_called_once()
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get(upload_instance=upload)
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Beastify'  # the addon's name
+        assert 'spam' not in response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    @responses.activate
+    @override_settings(AKISMET_API_KEY=None)
+    def test_akismet_reports_created_spam_outcome(self):
+        akismet_url = settings.AKISMET_API_URL.format(
+            api_key='none', action='comment-check')
+        responses.add(responses.POST, akismet_url, json=True)
+        self.upload_file('valid_webextension.xpi')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get(upload_instance=upload)
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Beastify'  # the addon's name
+        assert 'spam' in response.content
+        assert report.result == AkismetReport.MAYBE_SPAM
+        data = json.loads(response.content)
+        assert data['validation']['messages'][0]['id'] == [
+            u'validation', u'messages', u'akismet_is_spam'
+        ]
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_reports_created_l10n(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        self.upload_file('notify-link-clicks-i18n-edited.xpi')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        # there are 8 because 4 locales and name and summary in each.
+        assert comment_check_mock.call_count == 8
+        assert AkismetReport.objects.count() == 8
+        assert AkismetReport.objects.filter(
+            upload_instance=upload).count() == 8
+        report = AkismetReport.objects.filter(upload_instance=upload).first()
+        # Just check the first one
+        assert report.comment_type == 'product-name'
+        names = [
+            u'Meine Beispielerweiterung',  # de
+            u'Notify link clicks i18n',  # en
+            u'リンクを通知する',  # ja
+            u'Varsling ved trykk på lenke i18n',  # nb_NO
+        ]
+        assert report.comment in names
+        assert 'spam' not in response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    def test_akismet_reports_not_created_for_unlisted(self):
+        self.upload_file('valid_webextension.xpi', 'devhub.upload_unlisted')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 0
 
 
 def assert_json_error(request, field, msg):

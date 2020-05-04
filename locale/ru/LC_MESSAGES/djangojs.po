@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-02-18 14:30+0000\n"
-"Last-Translator: SagePtr <sageptr@gmail.com>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-28 14:49+0000\n"
+"Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -134,9 +134,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процесс валидации нашёл следующие проблемы, которые могут привести к отклонению:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "К сожалению поддерживаемых платформ не найдено."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Тип загруженного вами файла не распознан."
 
@@ -219,60 +216,52 @@ msgstr "Использовать оригинал"
 msgid "Week of {0}"
 msgstr "{0} неделя"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " загрузок"
-msgstr[1] " загрузок"
-msgstr[2] " загрузок"
+msgstr[0] "{0} загрузка"
+msgstr[1] "{0} загрузки"
+msgstr[2] "{0} загрузок"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} пользователей"
-msgstr[1] "{0} пользователей"
+msgstr[0] "{0} пользователь"
+msgstr[1] "{0} пользователя"
 msgstr[2] "{0} пользователей"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} дополнений"
-msgstr[1] "{0} дополнений"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} дополнение"
+msgstr[1] "{0} дополнения"
 msgstr[2] "{0} дополнений"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} подборок"
-msgstr[1] "{0} подборок"
+msgstr[0] "{0} подборка"
+msgstr[1] "{0} подборки"
 msgstr[2] "{0} подборок"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} отзывов"
-msgstr[1] "{0} отзывов"
+msgstr[0] "{0} отзыв"
+msgstr[1] "{0} отзыва"
 msgstr[2] "{0} отзывов"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} продаж"
-msgstr[1] "{0} продаж"
+msgstr[0] "{0} продажа"
+msgstr[1] "{0} продажи"
 msgstr[2] "{0} продаж"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} возмещений"
-msgstr[1] "{0} возмещений"
+msgstr[0] "{0} возмещение"
+msgstr[1] "{0} возмещения"
 msgstr[2] "{0} возмещений"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} установок"
-msgstr[1] "{0} установок"
+msgstr[0] "{0} установка"
+msgstr[1] "{0} установки"
 msgstr[2] "{0} установок"
 
 msgid "Downloads"
@@ -840,7 +829,7 @@ msgid "Number of Reviews"
 msgstr "Количество отзывов"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Максимальный размер загружаемого файла {0} - выберите фоновое изображение поменьше."
 
 msgid "Requested Info"
 msgstr "Требуемая информация"

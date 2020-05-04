@@ -1,3 +1,5 @@
+from functools import partial
+
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
 
@@ -5,8 +7,9 @@ import bleach
 
 import olympia.core.logger
 
-from olympia.amo import urlresolvers
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.urlresolvers import linkify_bounce_url_callback
 
 from . import utils
 
@@ -32,8 +35,8 @@ class Translation(ModelBase):
     key to this model.
     """
 
-    autoid = models.AutoField(primary_key=True)
-    id = models.IntegerField()
+    autoid = PositiveAutoField(primary_key=True)
+    id = models.PositiveIntegerField()
     locale = models.CharField(max_length=10)
     localized_string = models.TextField(null=True)
     localized_string_clean = models.TextField(null=True)
@@ -193,10 +196,15 @@ class PurifiedTranslation(Translation):
 
     def clean_localized_string(self):
         # All links (text and markup) are normalized.
-        linkified = urlresolvers.linkify_with_outgoing(self.localized_string)
+        linkify_filter = partial(
+            bleach.linkifier.LinkifyFilter,
+            callbacks=[linkify_bounce_url_callback, bleach.callbacks.nofollow])
         # Keep only the allowed tags and attributes, escape the rest.
-        return bleach.clean(linkified, tags=self.allowed_tags,
-                            attributes=self.allowed_attributes)
+        cleaner = bleach.Cleaner(
+            tags=self.allowed_tags, attributes=self.allowed_attributes,
+            filters=[linkify_filter])
+
+        return cleaner.clean(unicode(self.localized_string))
 
 
 class LinkifiedTranslation(PurifiedTranslation):
@@ -207,12 +215,15 @@ class LinkifiedTranslation(PurifiedTranslation):
         proxy = True
 
 
-class NoLinksMixin(object):
-    """Mixin used to remove links (URLs and text) from localized_string."""
+class NoLinksNoMarkupTranslation(LinkifiedTranslation):
+    """Run the string through bleach, escape markup and strip all the links."""
+
+    class Meta:
+        proxy = True
 
     def clean_localized_string(self):
         # First pass: bleach everything, but leave links untouched.
-        cleaned = super(NoLinksMixin, self).clean_localized_string()
+        cleaned = super(LinkifiedTranslation, self).clean_localized_string()
 
         # Second pass: call linkify to empty the inner text of all links.
         emptied_links = bleach.linkify(
@@ -223,20 +234,6 @@ class NoLinksMixin(object):
         allowed_tags = self.allowed_tags[:]  # Make a copy.
         allowed_tags.remove('a')
         return bleach.clean(emptied_links, tags=allowed_tags, strip=True)
-
-
-class NoLinksTranslation(NoLinksMixin, PurifiedTranslation):
-    """Run the string through bleach, escape markup and strip all the links."""
-
-    class Meta:
-        proxy = True
-
-
-class NoLinksNoMarkupTranslation(NoLinksMixin, LinkifiedTranslation):
-    """Run the string through bleach, escape markup and strip all the links."""
-
-    class Meta:
-        proxy = True
 
 
 class TranslationSequence(models.Model):

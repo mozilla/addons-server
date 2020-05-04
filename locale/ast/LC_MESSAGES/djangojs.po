@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2016-11-23 15:22+0000\n"
-"Last-Translator: malditoastur <malditoastur@gmail.com>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-18 00:42+0000\n"
+"Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
 "MIME-Version: 1.0\n"
@@ -25,10 +25,10 @@ msgid "There was a problem contacting the server."
 msgstr "Hebo un problema contautando col sirvidor."
 
 msgid "Select a file..."
-msgstr "Esbilla un ficheru..."
+msgstr "Esbillar un ficheru..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "El to add-on debería finar en .zip, .xpi, .crx, .jar o .xml"
+msgstr "El complementu debería terminar per .zip, .xpi, .crx, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -53,8 +53,8 @@ msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "El to add-on falló la validación col fallu {0}."
-msgstr[1] "El to add-on falló la validación colos fallos {0}."
+msgstr[0] "El complementu falló la validación con {0} fallu."
+msgstr[1] "El complementu falló la validación con {0} fallos."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -62,41 +62,41 @@ msgstr[0] "&hellip;y {0} más"
 msgstr[1] "&hellip;y {0} más"
 
 msgid "See full validation report"
-msgstr "Ver informe de validación completu"
+msgstr ""
 
 msgid "Validating {0}"
 msgstr "Validando {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "El complementu perpasa'l tamañu máximu de {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Recibióse una rempuesta balera del sirividor; estáu: {0}"
+msgstr "Recibióse una rempuesta balera del sirvidor. Estáu: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "Fallu inesperáu del sirvidor entrín se validaba."
+msgstr "Nun s'esperaba'l fallu del sirvidor mentanto la validación."
 
 msgid "Finished validating {0}"
-msgstr "Finóse la validación de {0}"
+msgstr ""
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Escosó'l tiempu d'espera de la validación del complementu, va revisase a mano."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El complementu validóse ensin fallos y con {0} alvertencia."
+msgstr[1] "El complementu validóse ensin fallos y con {0} alvertencies."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El complementu validóse ensin fallos y con {0} mensaxe."
+msgstr[1] "El complementu validóse ensin fallos y con {0} mensaxes."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "El complementu validóse ensin fallos o alvertencies."
 
 msgid "Your submission will be automatically signed."
-msgstr "Los tos unvios validaránse automáticamente."
+msgstr "La xuba va roblase automáticamente."
 
 msgid "WebExtension upgrade"
 msgstr ""
@@ -108,16 +108,16 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Incluyir notes detallaes de versión (esto pue facese nel pasu siguiente)."
+msgstr ""
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Llista de comprobaciones del unviu del complementu"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Verifica los puntos de darréu enantes de finar el to unviu, por favor. Esto minimizará retrasos o confusiones nel procesu de revisión:"
+msgstr ""
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -125,71 +125,68 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "El procesu de validación alcontró estes torgues que puen llevar a refugos:"
-
-msgid "Sorry, no supported platform has been found."
-msgstr "Perdón, nun s'alcontró denguna plataforma sofitada."
+msgstr "El procesu de validación alcontró estos problemes que puen orixinar refugos:"
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Nun se reconoz la triba de ficheru que xubiesti."
+msgstr "Nun se reconoz la triba del ficheru que xubiesti."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "El ficheru perpasa'l tamañu máximu de {0}."
 
 msgid "You cancelled the upload."
 msgstr "Encaboxesti la xuba."
 
 msgid "Images must be either PNG or JPG."
-msgstr "Les imáxenes tienen de ser PNG o JPG."
+msgstr "Les imáxenes han ser PNG o JPG."
 
 msgid "Videos must be in WebM."
-msgstr "Los videos tienen de tar en WebM."
+msgstr "Los vídeos han tar en WebM."
 
 msgid "Follow this Collection"
-msgstr "Siguir esta coleición"
+msgstr ""
 
 msgid "Stop Following"
-msgstr "Dexar de siguir"
+msgstr ""
 
 msgid "Following"
 msgstr "Siguiendo"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Esti tema nun ye compatible cola to versión de {0}"
+msgstr "Esti tema ye incompatible cola to versión de {0}"
 
 msgid "All Rights Reserved"
 msgstr "Tolos drechos reservaos"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr "Creative Commons Attribution 3.0"
+msgstr "Creative Commons Reconocencia 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Creative Commons Attribution-NonCommercial 3.0"
+msgstr "Creative Commons Reconocencia-NonComercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
+msgstr "Creative Commons Reconocencia-NonComercial-EnsinObresDerivaes 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
+msgstr "Creative Commons Reconocencia-NonComercial-CompartirIgual 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Creative Commons Attribution-NoDerivs 3.0"
+msgstr "Creative Commons Reconocencia-EnsinObresDerivaes 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Attribution-ShareAlike 3.0"
+msgstr "Creative Commons Reconocencia-CompartirIgual 3.0"
 
 msgid "Your Theme's Name"
-msgstr "El nome del to tema"
+msgstr "El nome del tema"
 
 msgid "Flagged for review"
-msgstr "Conseñóse pa revisión"
+msgstr ""
 
 msgid "Your input is required"
 msgstr ""
 
 msgid "Marked for deletion"
-msgstr "Conseñóse pa desaniciar"
+msgstr ""
 
 msgid "Updating results&hellip;"
 msgstr "Anovando resultaos&hellip;"
@@ -198,10 +195,10 @@ msgid "Category"
 msgstr "Estaya"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr "Guetar temes pa <b>{0}</b>"
+msgstr ""
 
 msgid "Search apps for <b>{0}</b>"
-msgstr "Guetar aplicaciones pa <b>{0}</b>"
+msgstr ""
 
 msgid "Search add-ons for <b>{0}</b>"
 msgstr ""
@@ -210,54 +207,46 @@ msgid "Use original"
 msgstr ""
 
 msgid "Week of {0}"
-msgstr "Selmana de {0}"
+msgstr ""
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " descargues"
-msgstr[1] " descargues"
+msgstr[0] "{0} descarga"
+msgstr[1] "{0} descargues"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} usuarios"
+msgstr[0] "{0} usuariu"
 msgstr[1] "{0} usuarios"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} add-ons"
-msgstr[1] "{0} add-ons"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} complementu"
+msgstr[1] "{0} complementos"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} coleiciones"
+msgstr[0] "{0} coleición"
 msgstr[1] "{0} coleiciones"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} reseñes"
+msgstr[0] "{0} reseña"
 msgstr[1] "{0} reseñes"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} ventes"
+msgstr[0] "{0} venta"
 msgstr[1] "{0} ventes"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} reembolsos"
+msgstr[0] "{0} reembolsu"
 msgstr[1] "{0} reembolsos"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} instalaciones"
+msgstr[0] "{0} instalación"
 msgstr[1] "{0} instalaciones"
 
 msgid "Downloads"
@@ -270,35 +259,35 @@ msgid "Amount, in USD"
 msgstr "Cantidá, n'USD"
 
 msgid "Number of Contributions"
-msgstr "Númberu de contribuciones"
+msgstr "Númberu de collaboraciones"
 
 msgid "More Info..."
 msgstr "Más información..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr "Detalles pa {0}"
+msgstr ""
 
 msgid "Collections Created"
 msgstr "Coleiciones creaes"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Complementos n'usu"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Complementos creaos"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Complementos baxaos"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Complementos anovaos"
 
 msgid "Reviews Written"
 msgstr "Reseñes escrites"
 
 msgid "User Signups"
-msgstr "Rexistros d'usuariu"
+msgstr ""
 
 msgid "Subscribers"
 msgstr "Soscriptores"
@@ -313,10 +302,10 @@ msgid "Installs"
 msgstr "Instalaciones"
 
 msgid "Unknown"
-msgstr "Desconocíu"
+msgstr "Desconozse"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Xestor de complementos"
 
 msgid "Add-ons Manager Promo"
 msgstr ""
@@ -328,25 +317,25 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr "Suxerencies de gueta"
+msgstr ""
 
 msgid "Search Results"
-msgstr "Resultaos de gueta"
+msgstr ""
 
 msgid "Homepage Promo"
-msgstr "Promocionao na páxina d'aniciu"
+msgstr ""
 
 msgid "Homepage Featured"
-msgstr "Destacao de la páxina d'aniciu"
+msgstr ""
 
 msgid "Homepage Up and Coming"
-msgstr "Lo que vien na páxina d'aniciu"
+msgstr ""
 
 msgid "Homepage Most Popular"
-msgstr "Lo más popular na páxina d'aniciu"
+msgstr ""
 
 msgid "Detail Page"
-msgstr "Páxina de detalles"
+msgstr ""
 
 msgid "Detail Page (bottom)"
 msgstr ""
@@ -358,7 +347,7 @@ msgid "Often Used With"
 msgstr ""
 
 msgid "Others By Author"
-msgstr "Otros pol autor"
+msgstr ""
 
 msgid "Dependencies"
 msgstr "Dependencies"
@@ -370,16 +359,16 @@ msgid "Meet the Developer"
 msgstr "Conoz al desendolcador"
 
 msgid "User Profile"
-msgstr "Perfil d'usuariu"
-
-msgid "Version History"
-msgstr "Historia de versiones"
-
-msgid "Sharing"
 msgstr ""
 
+msgid "Version History"
+msgstr "Historial de versiones"
+
+msgid "Sharing"
+msgstr "Compartición"
+
 msgid "Category Pages"
-msgstr "Páxines d'estayes"
+msgstr ""
 
 msgid "Collections"
 msgstr "Coleiciones"
@@ -452,199 +441,199 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Descargues y usuarios diarios nos caberos {0} díes"
+msgstr "Descargues y usuarios diarios nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Descargues y usuarios diarios dende'l {0} fasta'l {1}"
+msgstr "Descargues y usuarios diarios dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr "Instalaciones y usuarios diarios nos caberos {0} díes"
+msgstr "Instalaciones y usuarios diarios nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Instalaciones y usuarios diarios dende'l {0} fasta'l {1}"
+msgstr "Instalaciones y usuarios diarios dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "Descargues nos caberos {0} díes"
+msgstr "Descargues nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "Descargues dende'l {0} fasta'l {1}"
+msgstr "Descargues dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr "Usuarios diarios nos caberos {0} díes"
+msgstr "Usuarios diarios nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr "Usuarios diarios dende'l {0} fasta'l {1}"
+msgstr "Usuarios diarios dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr "Aplicaciones nos caberos {0} díes"
+msgstr "Aplicaciones nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr "Aplicaciones dende'l {0} fasta'l {1}"
+msgstr "Aplicaciones dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr "Plataformes nos caberos {0} díes"
+msgstr "Plataformes nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr "Plataformes dende'l {0} fasta'l {1}"
+msgstr "Plataformes dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr "Llingües nos caberos {0} díes"
+msgstr "Llingües nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr "Llingües dende'l {0} fasta'l {1}"
+msgstr "Llingües dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Versiones del complementu nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Versiones del complementu dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Estáu del complementu nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Estáu del complementu dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Descarga de les fontes nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Fontes baxaes dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "Contribuciones nos caberos {0} díes"
+msgstr "Collaboraciones nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr "Contribuciones dende'l {0} fasta'l {1}"
+msgstr "Collaboraciones dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "Midimientos del sitiu nos caberos {0} díes"
+msgstr "Métriques del sitiu nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "Midimientos del sitiu dende'l {0} fasta'l {1}"
+msgstr "Métriques del sitiu dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Complementos n'usu nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Complementos n'usu dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Complementos baxaos nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Complementos baxaos dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Complementos creaos nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Complementos creaos dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Complementos anovaos nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Complementos anovaos dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "Reseñes escrites nos caberos {0} díes"
+msgstr "Reseñes escrites nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "Reseñes escrites dende'l {0} fasta'l {1}"
+msgstr "Reseñes escrites dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "Rexistros d'usuariu nos caberos {0} díes"
+msgstr "Rexistros d'usuarios nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "Rexistros d'usuariu dende'l {0} fasta'l {1}"
+msgstr "Rexistros d'usuarios dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr "Coleiciones creaes nos caberos {0} díes"
+msgstr "Coleiciones creaes nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr "Coleiciones dende'l {0} fasta'l {1}"
+msgstr "Coleiciones creaes dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr "Soscriptores nos caberos {0} díes"
+msgstr "Sosciptores nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr "Soscriptores dende'l {0} fasta'l {1}"
+msgstr "Soscriptores dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr "Valoraciones nos caberos {0}"
+msgstr "Valoraciones nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr "Valoraciones dende'l {0} fasta'l {1}"
+msgstr "Valoraciones dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr "Merques nos caberos {0} díes"
+msgstr "Ventes nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr "Merques dende'l {0} fasta'l {1}"
+msgstr "Ventes dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr "Instalaciones no caberos {0} díes"
+msgstr "Instalaciones nos últimos {0} díes"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr "Instalaciones dende'l {0} fasta'l {1}"
+msgstr "Instalaciones dende'l {0} hasta'l {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr "<b>{0}</b> nos caberos {1} díes"
+msgstr "<b>{0}</b> nos últimos {1} díes"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr "<b>{0}</b> dende {1} fasta {2}"
+msgstr "<b>{0}</b> dende'l {1} hasta'l {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr "<b>{0}</b> de promediu nos caberos {1} díes"
+msgstr "<b>{0}</b> de media nos últimos {1} díes"
 
 msgid "No data available."
 msgstr "Nun hai datos disponibles."
@@ -653,10 +642,10 @@ msgid "Date"
 msgstr "Data"
 
 msgid "Other"
-msgstr "Otros"
+msgstr ""
 
 msgid "Select an application first"
-msgstr "Esbilla primero una aplicación"
+msgstr ""
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -670,14 +659,14 @@ msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr "Aceutar ya instalar"
+msgstr ""
 
 msgid "Add to {0}"
-msgstr "Amestar a {0}"
+msgstr ""
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr "Instalar pa {0} de toes toes"
+msgstr ""
 
 msgid "Download for {0} anyway"
 msgstr "Baxar pa {0} de toes toes"
@@ -687,83 +676,83 @@ msgstr "Nun ta disponible pa la to plataforma"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "Esti complementu nun ye compatible cola to versión de {0}."
 
 msgid "View other versions"
 msgstr "Ver otres versiones"
 
 msgid "Works with {app} {min} - {max}"
-msgstr "Furrula con {app} {min} - {max}"
+msgstr "Funciona con {app} {min} - {max}"
 
 msgid "Works with {app}"
-msgstr "Furrula con {app}"
+msgstr "Funciona con {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Namái con Firefox — ¡Consíguilu agora!"
+msgstr "Namái con Firefox - ¡Consigui Firefox agora!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Perdón, precises tener un restolador basáu en Mozilla (como Firefox) pa instalar un complementu de gueta."
+msgstr ""
 
 msgid "Adding to Favorites&hellip;"
 msgstr "Amestando a favoritos&hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr "Desaniciando favoritu&hellip;"
+msgstr ""
 
 msgid "Add to Favorites"
-msgstr "Amestar a favoritos"
+msgstr ""
 
 msgid "Remove from Favorites"
-msgstr "Desaniciar de favoritos"
+msgstr ""
 
 msgid "Pending"
 msgstr "Pendiente"
 
 msgid "Add a comment"
-msgstr "Amestar un comentariu"
+msgstr ""
 
 msgid "Comment"
-msgstr "Comentariu"
+msgstr ""
 
 msgid "Remove this add-on from the collection"
-msgstr "Desaniciar esti add-on de la coleición"
+msgstr ""
 
 msgid "Remove"
-msgstr "Desanciar"
+msgstr ""
 
 msgid "Add to favorites"
-msgstr "Amestar a favoritos"
+msgstr ""
 
 msgid "Remove from favorites"
-msgstr "Desaniciar de favoritos"
+msgstr ""
 
 msgid "Stop following"
-msgstr "Dexar de siguir"
+msgstr ""
 
 msgid "Your browser does not support the video tag"
-msgstr "El to restolador nun sofita la etiqueta de videu"
+msgstr "El to restolador nun sofita la etiqueta video"
 
 msgid "Changes Saved"
-msgstr "Guardáronse les camudancies"
+msgstr ""
 
 msgid "Enter a new author's email address"
-msgstr "Introduz una direición de corréu nueva d'autor"
+msgstr ""
 
 msgid "There was an error uploading your file."
-msgstr "Hebo un fallu xubiendo'l to ficheru."
+msgstr "Hebo un fallu xubiendo'l ficheru."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] "{files} ficheru"
-msgstr[1] "{files} ficheros"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] "{reviews} reseña d'usuariu"
-msgstr[1] "{reviews} reseñes d'usuariu"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Image changes being processed"
-msgstr "Tán procesándose les camudancies de la imaxe"
+msgstr ""
 
 msgid "No results found."
 msgstr "Nun s'alcontraron resultaos."
@@ -774,38 +763,38 @@ msgstr "Cargando..."
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "Falta <b>{0}</b> caráuter."
-msgstr[1] "Falten <b>{0}</b> caráuteres."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Esta carauterística ta temporalmente deshabilitada entrín facemos el caltenimientu del sitiu. Volvi más sero, por favor."
+msgstr "Esta carauterística ta desactivada temporalmente mentanto facemos el caltenimientu del sitiu web. Volvi nun momentín, por favor."
 
 msgid "Remove this localization"
-msgstr "Desaniciar esti allugamientu"
+msgstr ""
 
 msgid "{name} was viewing this page first."
 msgstr "{name} tuvo viendo esta páxina primero."
 
 msgid "Receipt checked by app."
-msgstr "Recibu comprobáu pola aplicación."
+msgstr ""
 
 msgid "Receipt was not checked by app."
-msgstr "L'aplicación nun comprobó'l recibu."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
-msgstr "{name} tuvo viendo primero esti add-on."
+msgstr "{name} tuvo viendo esti complementu primero."
 
 msgid "Loading&hellip;"
 msgstr "Cargando&hellip;"
 
 msgid "Version Notes"
-msgstr "Notes de versión"
+msgstr "Notes de la versión"
 
 msgid "Notes for Reviewers"
-msgstr "Notes pa revisores"
+msgstr ""
 
 msgid "No version notes found"
-msgstr "Nun s'alcontraron notes de versión"
+msgstr "Nun s'alcontraron les notes de la versión"
 
 msgid "Review Text"
 msgstr ""
@@ -814,10 +803,10 @@ msgid "Review notes found"
 msgstr ""
 
 msgid "Average Reviews"
-msgstr "Reseñes promediu"
+msgstr ""
 
 msgid "Number of Reviews"
-msgstr "Númberu de revisores"
+msgstr "Númberu de reseñes"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
@@ -826,16 +815,16 @@ msgid "Requested Info"
 msgstr "Información solicitada"
 
 msgid "Flagged"
-msgstr "Conseñóse"
+msgstr ""
 
 msgid "Duplicate"
-msgstr "Duplicáu"
+msgstr ""
 
 msgid "Rejected"
-msgstr "Refugáu"
+msgstr "Refugóse"
 
 msgid "Approved"
-msgstr "Aprobáu"
+msgstr "Aprobóse"
 
 msgid "No results found"
 msgstr "Nun s'alcontraron resultaos"
@@ -844,13 +833,13 @@ msgid "Theme"
 msgstr "Tema"
 
 msgid "Reviewer"
-msgstr "Revisor"
+msgstr "Reseñador"
 
 msgid "Status"
 msgstr "Estáu"
 
 msgid "All tests passed successfully."
-msgstr "Toles pruebes foron esitoses."
+msgstr ""
 
 msgid "These tests were not run."
 msgstr "Nun s'executaron estes pruebes."
@@ -874,10 +863,10 @@ msgid "Compatibility Tests"
 msgstr "Pruebes de compatibilidá"
 
 msgid "Add-on failed validation."
-msgstr "L'add-on falló la validación."
+msgstr "El complementu falló la validación."
 
 msgid "Add-on passed validation."
-msgstr "L'add-on pasó la validación."
+msgstr "El complementu pasó la validación."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -895,7 +884,7 @@ msgstr[0] "{0} avisu"
 msgstr[1] "{0} avisos"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr "Nun pudo completase la xera de validación o completóse con fallos"
+msgstr "La xera de validación nun se completó o fízolo con fallos"
 
 msgid "Internal server error"
 msgstr "Fallu internu del sirvidor"

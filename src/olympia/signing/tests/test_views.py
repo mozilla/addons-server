@@ -6,11 +6,13 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.forms import ValidationError
+from django.test.utils import override_settings
 from django.utils import translation
 
 import mock
-
+import responses
 from rest_framework.response import Response
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -21,6 +23,7 @@ from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks
 from olympia.files.models import File, FileUpload
+from olympia.lib.akismet.models import AkismetReport
 from olympia.signing.views import VersionView
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -70,7 +73,8 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
             '{addon}-{version}.xpi'.format(addon=addon, version=version))
 
     def request(self, method='PUT', url=None, version='3.0',
-                addon='@upload-version', filename=None, channel=None):
+                addon='@upload-version', filename=None, channel=None,
+                extra_kwargs=None):
         if filename is None:
             filename = self.xpi_filepath(addon, version)
         if url is None:
@@ -85,7 +89,7 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
             return getattr(self.client, method.lower())(
                 url, data,
                 HTTP_AUTHORIZATION=self.authorization(),
-                format='multipart')
+                format='multipart', **(extra_kwargs or {}))
 
     def make_admin(self, user):
         admin_group = Group.objects.create(name='Admin', rules='*:*')
@@ -156,7 +160,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'PUT', self.url(self.guid, '2.1.072'), version='2.1.072')
         assert response.status_code == 409
-        assert response.data['error'] == 'Version already exists.'
+        assert response.data['error'] == ('Version already exists. '
+                                          'Latest version is: 2.1.072.')
 
     @mock.patch('olympia.devhub.views.Version.from_upload')
     def test_no_version_yet(self, from_upload):
@@ -197,7 +202,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
-        assert response.data['error'] == 'Version already exists.'
+        assert response.data['error'] == ('Version already exists. '
+                                          'Latest version is: 3.0.')
 
     def test_version_failed_review(self):
         self.create_version('3.0')
@@ -208,7 +214,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
-        assert response.data['error'] == 'Version already exists.'
+        assert response.data['error'] == ('Version already exists. '
+                                          'Latest version is: 3.0.')
 
         # Verify that you can check the status after upload (#953).
         response = self.get(self.url(self.guid, '3.0'))
@@ -356,7 +363,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_raises_response_code(self):
         # A check that any bare error in handle_upload will return a 400.
-        with mock.patch('olympia.signing.views.handle_upload') as patch:
+        with mock.patch('olympia.signing.views.devhub_handle_upload') as patch:
             patch.side_effect = ValidationError(message='some error')
             response = self.request('PUT', self.url(self.guid, '1.0'))
             assert response.status_code == 400
@@ -442,6 +449,63 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         error_msg = (
             'You cannot add a listed version to this addon via the API')
         assert error_msg in response.data['error']
+
+    @override_switch('akismet-spam-check', active=False)
+    def test_akismet_waffle_off(self):
+        addon = Addon.objects.get(guid=self.guid)
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='listed')
+
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert AkismetReport.objects.count() == 0
+        assert response.status_code == 202
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_reports_created_ham_outcome(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.HAM
+        addon = Addon.objects.get(guid=self.guid)
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='listed')
+
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert response.status_code == 202
+        comment_check_mock.assert_called_once()
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Upload Version Test XPI'  # the addon's name
+
+        validation_response = self.get(self.url(self.guid, '3.0'))
+        assert validation_response.status_code == 200
+        assert 'spam' not in validation_response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    @responses.activate
+    @override_settings(AKISMET_API_KEY=None)
+    def test_akismet_reports_created_spam_outcome(self):
+        akismet_url = settings.AKISMET_API_URL.format(
+            api_key='none', action='comment-check')
+        responses.add(responses.POST, akismet_url, json=True)
+        addon = Addon.objects.get(guid=self.guid)
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='listed')
+
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert response.status_code == 202
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Upload Version Test XPI'  # the addon's name
+        assert report.result == AkismetReport.MAYBE_SPAM
+
+        validation_response = self.get(self.url(self.guid, '3.0'))
+        assert validation_response.status_code == 200
+        assert 'spam' in validation_response.content
+        data = json.loads(validation_response.content)
+        assert data['validation_results']['messages'][0]['id'] == [
+            u'validation', u'messages', u'akismet_is_spam'
+        ]
 
 
 class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):

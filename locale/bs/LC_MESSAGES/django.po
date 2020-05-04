@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,6 +136,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -699,6 +702,9 @@ msgid "Reviewer Tools"
 msgstr ""
 
 msgid "Admin Tools"
+msgstr ""
+
+msgid "Positive integer"
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -2465,11 +2471,9 @@ msgstr "Nastao je problem s vašim učitavanjem. Molimo pokušajte ponovo."
 msgid "Override failed validation"
 msgstr "Preuredite neuspjelu validaciju"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Ne možete učitati više datoteka za ovu verziju."
-
-msgid "Version doesn't match"
-msgstr ""
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Treba barem jednu kompatibilnu aplikaciju."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzija {version} je učitana ranije i izbrisana je."
@@ -2485,12 +2489,6 @@ msgid "You have not uploaded a source file."
 msgstr "Ne možete učitati više datoteka za ovu verziju."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Platforma Sve ne može se kombinovati sa specifičnim platformama."
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -3319,9 +3317,6 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-msgid "Submit a New File"
-msgstr "Pošaljite novu datoteku"
-
 msgid "Submit a New Version"
 msgstr "Pošaljite novu verziju"
 
@@ -3413,9 +3408,6 @@ msgstr "Više informacija o distribuciji i potpisivanju dodataka"
 msgid "Submission Complete"
 msgstr "Slanje završeno"
 
-msgid "You’re done!"
-msgstr ""
-
 msgid "Version Submitted for Review"
 msgstr "Verzija poslana za pregled"
 
@@ -3449,12 +3441,6 @@ msgstr "Također možete urediti ovu verziju da dodate napomene o verziji ili iz
 msgid "Edit version {0}"
 msgstr "Uredi verziju {0}"
 
-msgid "File Signed"
-msgstr ""
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Završili ste! Ova datoteka je potpisana i spremna je za samodistribuciju. Možete je preuzeti klikom na dugme ispod."
-
 msgid "Version Signed"
 msgstr "Verzija potpisana"
 
@@ -3463,12 +3449,6 @@ msgstr "Završili ste! Ova verzija je potpisana i spremna je za samodistribuciju
 
 msgid "Download {0}"
 msgstr ""
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Odabrali ste samo neke od dostupnih platformi za ovo podnošenje. Možete učitati više datoteka koje su usmjerene na druge platforme:"
-
-msgid "Upload File"
-msgstr "Učitaj datoteku"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3548,9 +3528,6 @@ msgstr "Sporazum o distribuciji dodatka"
 msgid "Upload Add-on"
 msgstr "Učitaj dodatak"
 
-msgid "Where to Host File"
-msgstr "Gdje hostati datoteku"
-
 msgid "Where to Host Version"
 msgstr "Gdje hostati verziju"
 
@@ -3560,7 +3537,8 @@ msgstr "Učitaj verziju"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Koristite polja ispod da učitate vaš paket dodatka. Nakon učitavanja, niz automatskih testova validacije će biti pokrenuti za vašu datoteku."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "S kojim platformama je ova datoteka kompatibilna?"
 
 msgid "Administrative overrides"
@@ -3571,9 +3549,6 @@ msgstr "Kreirajte verziju teme"
 
 msgid "Create a Theme"
 msgstr "Kreirajte temu"
-
-msgid "Submit File"
-msgstr "Pošalji datoteku"
 
 msgid "Sign Add-on"
 msgstr "Potpiši dodatak"
@@ -4197,9 +4172,6 @@ msgstr "Upravljanje {0}"
 
 msgid "Files"
 msgstr "Datoteke"
-
-msgid "Upload Another File"
-msgstr "Učitajte novu datoteku"
 
 msgid "Version Notes"
 msgstr "Napomene o verziji"
@@ -5427,7 +5399,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Blokiranje reklama i zaštita privatnosti {start_sub_heading}sa {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5934,9 +5906,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

@@ -68,25 +68,15 @@ class TestFileViewer(TestCase):
         self.viewer.src = get_file('recurse.xpi')
         self.viewer.extract()
         files = self.viewer.get_files()
-        file_list = [
-            'recurse/recurse.xpi/chrome/test-root.txt',
-            'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar',
-            'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar/test'
-        ]
-        for name in file_list:
-            assert name in files
-
-    def test_recurse_contents_of_zip(self):
-        self.viewer.src = get_file('recurse.zip')
-        self.viewer.extract()
-        files = self.viewer.get_files()
-        file_list = [
-            'recurse/recurse.xpi/chrome/test-root.txt',
-            'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar',
-            'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar/test'
-        ]
-        for name in file_list:
-            assert name in files
+        # We do not extract nested .zip or .xpi files anymore
+        assert files.keys() == [
+            u'recurse',
+            u'recurse/chrome',
+            u'recurse/chrome/test-root.txt',
+            u'recurse/chrome/test.jar',
+            u'recurse/notazip.jar',
+            u'recurse/recurse.xpi',
+            u'recurse/somejar.jar']
 
     def test_locked(self):
         self.viewer.src = get_file('dictionary-test.xpi')
@@ -486,7 +476,7 @@ class TestSafeZipFile(TestCase, amo.tests.AMOPaths):
 
     def test_read(self):
         zip_file = SafeZip(self.xpi_path('langpack-localepicker'))
-        assert zip_file.is_valid()
+        assert zip_file.is_valid
         assert 'locale browser de' in zip_file.read('chrome.manifest')
 
     def test_invalid_zip_encoding(self):
@@ -499,16 +489,13 @@ class TestSafeZipFile(TestCase, amo.tests.AMOPaths):
 
     def test_not_secure(self):
         zip_file = SafeZip(self.xpi_path('extension'))
-        zip_file.is_valid()
         assert not zip_file.is_signed()
 
     def test_is_secure(self):
         zip_file = SafeZip(self.xpi_path('signed'))
-        zip_file.is_valid()
         assert zip_file.is_signed()
 
     def test_is_broken(self):
         zip_file = SafeZip(self.xpi_path('signed'))
-        zip_file.is_valid()
         zip_file.info_list[2].filename = 'META-INF/foo.sf'
         assert not zip_file.is_signed()

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,6 +130,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Todas as etiquetas têm de ter pelo menos {0} caracter."
 msgstr[1] "Todas as etiquetas têm de ter pelo menos {0} caracteres."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -700,6 +703,9 @@ msgstr "Revisores"
 
 msgid "Admin Tools"
 msgstr "Ferramentas do administrador"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr ""
@@ -2560,11 +2566,9 @@ msgstr "Ocorreu um erro com o seu envio. Por favor, tente novamente."
 msgid "Override failed validation"
 msgstr "Sobrepor validação falhada"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Não pode carregar mais ficheiros para esta versão."
-
-msgid "Version doesn't match"
-msgstr "A versão não corresponde."
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Necessita de pelo menos uma aplicação compatível."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2582,12 +2586,6 @@ msgstr "Não foi possível interpretar o ficheiro enviado."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "A plataforma Todos não pode ser combinada com plataformas específicas."
-
-msgid "A platform can only be chosen once."
-msgstr "Uma plataforma só pode ser escolhida uma vez."
 
 msgid "Application"
 msgstr "Aplicação"
@@ -3437,10 +3435,6 @@ msgstr[0] "<strong>{0}</strong> utilizador ativo"
 msgstr[1] "<strong>{0}</strong> utilizadores ativos"
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "Enviar um tema novo"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "Submeter um novo extra"
 
@@ -3551,10 +3545,6 @@ msgid "Submission Complete"
 msgstr "Submissão concluída"
 
 #, fuzzy
-msgid "You’re done!"
-msgstr "Está feito!"
-
-#, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Notas da versão / Notas para o editor"
 
@@ -3593,14 +3583,6 @@ msgid "Edit version {0}"
 msgstr "Versão Beta {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Notas da versão"
-
-#, fuzzy
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "O seu extra foi assinado e está pronto a ser utilizado. Pode descarregá-lo aqui:"
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Notas da versão"
 
@@ -3610,13 +3592,6 @@ msgstr "O seu extra foi assinado e está pronto a ser utilizado. Pode descarreg�
 
 msgid "Download {0}"
 msgstr "Descarregar {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-#, fuzzy
-msgid "Upload File"
-msgstr "Carregar outro ficheiro"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3701,10 +3676,6 @@ msgid "Upload Add-on"
 msgstr "Enviar o seu extra"
 
 #, fuzzy
-msgid "Where to Host File"
-msgstr "Versão alvo"
-
-#, fuzzy
 msgid "Where to Host Version"
 msgstr "Versão alvo"
 
@@ -3717,7 +3688,8 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr ""
 "Utilize os campos abaixo para submeter o pacote do seu extra e selecionar quaisquer restrições de plataforma. Depois do envio, uma série de testes automáticos irão ser executados no seu ficheiro."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Com que plataformas é este ficheiro compatível?"
 
 msgid "Administrative overrides"
@@ -3730,10 +3702,6 @@ msgstr "Criar um novo tema"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Criar um novo tema"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Enviar um tema novo"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -4407,9 +4375,6 @@ msgstr "Gerir {0}"
 
 msgid "Files"
 msgstr "Ficheiros"
-
-msgid "Upload Another File"
-msgstr "Carregar outro ficheiro"
 
 msgid "Version Notes"
 msgstr "Notas da versão"
@@ -5536,7 +5501,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5999,9 +5964,6 @@ msgstr "Os números de versão devem ter menos de 32 caracteres."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Os números de versão devem conter apenas letras, números e estes caracteres de pontuação: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

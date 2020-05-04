@@ -19,6 +19,7 @@ import olympia.core.logger
 from olympia import amo, constants
 from olympia.access.models import Group
 from olympia.addons.models import Addon
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
@@ -36,6 +37,7 @@ MAX_TOKEN_USE_COUNT = 100
 
 
 class ActivityLogToken(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     version = models.ForeignKey(Version, related_name='token')
     user = models.ForeignKey('users.UserProfile',
                              related_name='activity_log_tokens')
@@ -147,6 +149,7 @@ class GroupLog(ModelBase):
     """
     This table is for indexing the activity log by access group.
     """
+    id = PositiveAutoField(primary_key=True)
     activity_log = models.ForeignKey('ActivityLog')
     group = models.ForeignKey(Group)
 

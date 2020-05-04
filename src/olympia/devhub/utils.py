@@ -5,15 +5,20 @@ from django.db.models import Q
 from django.forms import ValidationError
 from django.utils.translation import ugettext
 
+import waffle
 from celery import chain
+from six import text_type
 
 import olympia.core.logger
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
+from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import Tag
+from olympia.translations.models import Translation
 from olympia.versions.compare import version_int
 
 from . import tasks
@@ -307,3 +312,48 @@ def add_dynamic_theme_tag(version):
     files = version.all_files
     if any('theme' in file_.webext_permissions_list for file_ in files):
         Tag(tag_text='dynamic theme').save_tag(version.addon)
+
+
+def fetch_existing_translations_from_addon(addon, properties):
+    translation_ids_gen = (
+        getattr(addon, prop + '_id', None) for prop in properties)
+    translation_ids = [id_ for id_ in translation_ids_gen if id_]
+    # Just get all the values together to make it simplier
+    return {
+        text_type(value)
+        for value in Translation.objects.filter(id__in=translation_ids)}
+
+
+def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
+                              addon=None, data=None, existing_data=()):
+    if not waffle.switch_is_active('akismet-spam-check'):
+        return []
+    assert addon or upload
+    properties = ('name', 'summary', 'description')
+
+    if upload:
+        addon = addon or upload.addon
+        data = data or Addon.resolve_webext_translations(
+            parse_addon(upload, addon, user, minimal=True), upload)
+
+    reports = []
+    for prop in properties:
+        locales = data.get(prop)
+        if not locales:
+            continue
+        if isinstance(locales, dict):
+            # Avoid spam checking the same value more than once by using a set.
+            locale_values = set(locales.values())
+        else:
+            # It's not a localized dict, it's a flat string; wrap it anyway.
+            locale_values = {locales}
+        for comment in locale_values:
+            if not comment or comment in existing_data:
+                # We don't want to submit empty or unchanged content
+                continue
+            report = AkismetReport.create_for_addon(
+                upload=upload, addon=addon, user=user, property_name=prop,
+                property_value=comment, user_agent=user_agent,
+                referrer=referrer)
+            reports.append((prop, report))
+    return reports

@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db import models
 
 from olympia import amo
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
@@ -44,6 +45,7 @@ def set_config(conf, value):
 
 
 class ValidationJob(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
     curr_max_version = models.ForeignKey(AppVersion,
@@ -109,6 +111,7 @@ class ValidationResult(ModelBase):
     This is different than FileValidation because it allows multiple
     validation results per file.
     """
+    id = PositiveAutoField(primary_key=True)
     validation_job = models.ForeignKey(ValidationJob,
                                        related_name='result_set')
     file = models.ForeignKey(File, related_name='validation_results')

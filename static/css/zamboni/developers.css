@@ -17,7 +17,6 @@ form .char-count:after,
     width: 100%;
     overflow: hidden;
     word-wrap: break-word;
-    word-break: break-all;
 }
 
 #edit-addon h3 a {
@@ -852,6 +851,21 @@ pre.email_comment {
 
 #upload-file .admin-settings {
     margin-top: 1em;
+}
+
+#upload-file .compatible-apps ul {
+    margin-top: 0.5em;
+}
+
+#upload-file .compatible-apps li {
+    float: none;
+}
+
+#upload-file .compatible-apps label.app {
+    padding-left: 25px;
+
+    background-repeat: no-repeat;
+    background-size: 20px;
 }
 
 #upload-status-bar {

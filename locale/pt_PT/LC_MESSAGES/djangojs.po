@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 14:20+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-17 14:20+0000\n"
+"Last-Translator: Fabio M Caldas <fabiomcaldas@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -130,9 +130,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "O processo de validação encontrou estes problemas que podem levar a rejeições:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Lamentamos, mas não foi encontrada nenhuma plataforma suportada."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "O tipo de ficheiro que carregou não é reconhecido."
 
@@ -215,52 +212,44 @@ msgstr "Usar original"
 msgid "Week of {0}"
 msgstr "Semana de {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " transferências"
-msgstr[1] " transferências"
+msgstr[0] "{0} transferência"
+msgstr[1] "{0} transferências"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} utilizadores"
+msgstr[0] "{0} utilizador"
 msgstr[1] "{0} utilizadores"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} extras"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} extra"
 msgstr[1] "{0} extras"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} coleções"
+msgstr[0] "{0} coleção"
 msgstr[1] "{0} coleções"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} revisões"
-msgstr[1] "{0} revisões"
+msgstr[0] "{0} análise"
+msgstr[1] "{0} análises"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} vendas"
+msgstr[0] "{0} venda"
 msgstr[1] "{0} vendas"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} devoluções"
+msgstr[0] "{0} devolução"
 msgstr[1] "{0} devoluções"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} instalações"
+msgstr[0] "{0} instalação"
 msgstr[1] "{0} instalações"
 
 msgid "Downloads"

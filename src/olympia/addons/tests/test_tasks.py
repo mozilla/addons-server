@@ -8,7 +8,6 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 from freezegun import freeze_time
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -122,7 +121,6 @@ def test_migrate_lwts_to_static_themes(add_static_theme_from_lwt_mock):
     assert addon_b.slug == 'theme_b'
 
 
-@override_switch('allow-static-theme-uploads', active=True)
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestAddStaticThemeFromLwt(TestCase):
     create_date = datetime(2000, 1, 1, 1, 1, 1)

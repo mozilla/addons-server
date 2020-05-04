@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 17:12+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-17 11:03+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -128,9 +128,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Valideringsprocessen hittade dessa problem som kan leda till avslag:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Tyvärr har ingen plattform som stöds hittats."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen du laddade upp är okänd."
 
@@ -213,52 +210,44 @@ msgstr "Använd original"
 msgid "Week of {0}"
 msgstr "Vecka för {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " nedladdningar"
-msgstr[1] " nedladdningar"
+msgstr[0] "{0} nedladdning"
+msgstr[1] "{0} nedladdningar"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} användare"
 msgstr[1] "{0} användare"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} tillägg"
 msgstr[1] "{0} tillägg"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} samlingar"
+msgstr[0] "{0} samling"
 msgstr[1] "{0} samlingar"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} recensioner"
+msgstr[0] "{0} recension"
 msgstr[1] "{0} recensioner"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} försäljningar"
-msgstr[1] "{0} försäljningar"
+msgstr[0] "{0} rea"
+msgstr[1] "{0} reor"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} återbetalningar"
+msgstr[0] "{0} återbetalning"
 msgstr[1] "{0} återbetalningar"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} installationer"
+msgstr[0] "{0} installation"
 msgstr[1] "{0} installationer"
 
 msgid "Downloads"

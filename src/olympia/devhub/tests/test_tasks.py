@@ -511,7 +511,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_success(self):
         result = tasks.validate_file_path(
-            get_addon_file('valid_firefox_addon.xpi'),
+            None, get_addon_file('valid_firefox_addon.xpi'),
             hash_=None, listed=True)
         assert result['success']
         assert not result['errors']
@@ -519,7 +519,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_fail_warning(self):
         result = tasks.validate_file_path(
-            get_addon_file('invalid_firefox_addon_warning.xpi'),
+            None, get_addon_file('invalid_firefox_addon_warning.xpi'),
             hash_=None, listed=True)
         assert not result['success']
         assert not result['errors']
@@ -527,7 +527,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_fail_error(self):
         result = tasks.validate_file_path(
-            get_addon_file('invalid_firefox_addon_error.xpi'),
+            None, get_addon_file('invalid_firefox_addon_error.xpi'),
             hash_=None, listed=True)
         assert not result['success']
         assert result['errors']
@@ -535,7 +535,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_addons_linter_success(self):
         result = tasks.validate_file_path(
-            get_addon_file('valid_webextension.xpi'),
+            None, get_addon_file('valid_webextension.xpi'),
             hash_=None, listed=True, is_webextension=True)
         assert result['success']
         assert not result['errors']
@@ -545,7 +545,7 @@ class TestValidateFilePath(ValidatorTestCase):
         # This test assumes that `amo-validator` doesn't correctly
         # validate a invalid id in manifest.json
         result = tasks.validate_file_path(
-            get_addon_file('invalid_webextension_invalid_id.xpi'),
+            None, get_addon_file('invalid_webextension_invalid_id.xpi'),
             hash_=None, listed=True, is_webextension=True)
         assert not result['success']
         assert result['errors']
@@ -1196,7 +1196,7 @@ class TestCreateVersionForUpload(TestCase):
         self.create_version_for_upload(self.addon, newer_upload,
                                        amo.RELEASE_CHANNEL_LISTED)
         self.mocks['Version.from_upload'].assert_called_with(
-            newer_upload, self.addon, [amo.PLATFORM_ALL.id],
+            newer_upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
@@ -1232,7 +1232,7 @@ class TestCreateVersionForUpload(TestCase):
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
+            upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
@@ -1243,7 +1243,7 @@ class TestCreateVersionForUpload(TestCase):
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
+            upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 
@@ -1254,7 +1254,7 @@ class TestCreateVersionForUpload(TestCase):
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
-            upload, self.addon, [amo.PLATFORM_ALL.id],
+            upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=self.mocks['parse_addon'].return_value)
 

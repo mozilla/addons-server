@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-09-03 16:07+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -131,6 +131,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "అన్ని ట్యాగ్లు కనీసం {0} అక్షరం కలిగి ఉండాలి."
 msgstr[1] "అన్ని ట్యాగ్లు కనీసం {0} అక్షరాలు కలిగి ఉండాలి."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -683,6 +686,9 @@ msgstr "సమీక్షకుని పనిముట్లు"
 
 msgid "Admin Tools"
 msgstr "అడ్మిన్ ఉపకరణాలు"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "సరికాదు, దయచేసి మళ్లీ ప్రయత్నించండి."
@@ -2434,11 +2440,9 @@ msgstr "మీ ఎక్కింపుతో ఏదో పొరపాటు �
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr "ఈ వెర్షనుకి ఇంకేమీ ఫైళ్ళను ఎక్కించలేరు."
-
-msgid "Version doesn't match"
-msgstr "వెర్షను సరిపోలలేదు"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "కనీసం ఒక అనుగుణ్య అనువర్తనం కావాలి."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2454,12 +2458,6 @@ msgstr "మీరు మూల ఫైలును ఎక్కించలేద
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
-msgstr "వేదికను ఒక్కసారి మాత్రమే ఎంపిక చేయవచ్చు."
 
 msgid "Application"
 msgstr "అనువర్తనము"
@@ -3260,9 +3258,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> క్రియాశీల వాడుకరి"
 msgstr[1] "<strong>{0}</strong> క్రియాశీల వాడుకరులు"
 
-msgid "Submit a New File"
-msgstr "క్రొత్త ఫైల్ను సమర్పించండి"
-
 msgid "Submit a New Version"
 msgstr "కొత్త వెర్షనును సమర్పించండి"
 
@@ -3353,9 +3348,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr "సమర్పణ పూర్తయింది"
 
-msgid "You’re done!"
-msgstr "మీరు పూర్తి చేశారు!"
-
 msgid "Version Submitted for Review"
 msgstr "సమీక్ష కోసం సమర్పించిన వెర్షను"
 
@@ -3389,12 +3381,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "వెర్షన్ను సవరించండి {0}"
 
-msgid "File Signed"
-msgstr "ఫైలుపై సంతకం చేయబడింది"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "వెర్షన్ సంతకం చేయబడింది"
 
@@ -3403,12 +3389,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "{0} దించుకోండి"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "ఫైలును ఎక్కించు"
 
 msgid "Go to My Submissions"
 msgstr "నా సమర్పణలకు వెళ్ళండి"
@@ -3486,9 +3466,6 @@ msgstr "పొడిగింత డిస్ట్రిబ్యూషన్ �
 msgid "Upload Add-on"
 msgstr "పొడిగింత ఎక్కించు"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr "వెర్షనును ఎక్కడ హోస్ట్ చేయాలి"
 
@@ -3498,7 +3475,8 @@ msgstr "వెర్షనును ఎక్కించండి"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "ఈ ఫైల్కు అనుకూలంగా ఉండే వేదిక?"
 
 msgid "Administrative overrides"
@@ -3509,9 +3487,6 @@ msgstr ""
 
 msgid "Create a Theme"
 msgstr "అలంకారం సృష్టించు"
-
-msgid "Submit File"
-msgstr "ఫైల్ను సమర్పించండి"
 
 msgid "Sign Add-on"
 msgstr ""
@@ -3967,9 +3942,8 @@ msgstr "అనుగుణ్యతా పరీక్ష"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr ""
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "జాబితాను చూడండి"
+msgstr ""
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
@@ -4126,9 +4100,6 @@ msgstr "{0} ను నిర్వహించు"
 
 msgid "Files"
 msgstr "ఫైళ్లు"
-
-msgid "Upload Another File"
-msgstr "మరొక ఫైలుని ఎక్కించండి"
 
 msgid "Version Notes"
 msgstr "వెర్షన్ గమనికలు"
@@ -5237,7 +5208,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5699,9 +5670,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

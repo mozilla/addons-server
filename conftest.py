@@ -122,6 +122,7 @@ def test_pre_setup(request, tmpdir, settings):
     settings.TMP_PATH = str(tmpdir.mkdir('tmp'))
     settings.STATIC_ROOT = str(tmpdir.mkdir('site-static'))
     settings.NETAPP_STORAGE = settings.TMP_PATH
+    settings.GIT_FILE_STORAGE_PATH = str(tmpdir.mkdir('git-storage'))
 
     # Reset the prefixer and urlconf after updating media root
     default_prefixer(settings)

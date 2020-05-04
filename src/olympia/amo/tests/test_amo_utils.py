@@ -260,13 +260,10 @@ def test_escape_all(test_input, expected):
 def test_escape_all_linkify_only_full(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'https://outgoing.firefox.com'
 
-    assert escape_all('http://firefox.com', linkify_only_full=True) == (
-        '<a href="https://outgoing.firefox.com">http://firefox.com</a>')
-    assert escape_all('http://firefox.com', linkify_only_full=False) == (
+    assert escape_all('http://firefox.com') == (
         '<a href="https://outgoing.firefox.com">http://firefox.com</a>')
 
-    assert escape_all('firefox.com', linkify_only_full=True) == 'firefox.com'
-    assert escape_all('firefox.com', linkify_only_full=False) == (
+    assert escape_all('firefox.com') == (
         '<a href="https://outgoing.firefox.com">firefox.com</a>')
 
 

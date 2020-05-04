@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -143,6 +143,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Każda etykieta musi mieć przynajmniej {0} znak."
 msgstr[1] "Każda etykieta musi mieć przynajmniej {0} znaki."
 msgstr[2] "Każda etykieta musi mieć przynajmniej {0} znaków."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -719,6 +722,9 @@ msgstr "Strefa recenzenta"
 
 msgid "Admin Tools"
 msgstr "Strefa administratora"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Niepoprawnie, spróbuj ponownie."
@@ -2506,11 +2512,9 @@ msgstr "Podczas przesyłania wystąpił błąd. Ponów próbę."
 msgid "Override failed validation"
 msgstr "Zastąp nieudane sprawdzenie"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Nie możesz przesłać więcej plików dla tej wersji."
-
-msgid "Version doesn't match"
-msgstr "Wersja nie pasuje"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Musi być określony przynajmniej jeden kompatybilny program."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Wersja {version} została wcześniej przesłana i usunięta."
@@ -2527,12 +2531,6 @@ msgstr "Nie można przetworzyć przesłanego pliku."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Oznaczenie „Wszystkie” nie może być połączone z konkretnymi systemami."
-
-msgid "A platform can only be chosen once."
-msgstr "System może zostać wybrany tylko raz."
 
 msgid "Application"
 msgstr "Program"
@@ -3368,9 +3366,6 @@ msgstr[0] "<strong>{0}</strong> aktywny użytkownik"
 msgstr[1] "<strong>{0}</strong> aktywnych użytkowników"
 msgstr[2] "<strong>{0}</strong> aktywnych użytkowników"
 
-msgid "Submit a New File"
-msgstr "Prześlij nowy plik"
-
 msgid "Submit a New Version"
 msgstr "Prześlij nową wersję"
 
@@ -3463,9 +3458,6 @@ msgstr "Więcej informacji na temat dystrybucji i podpisywania dodatku"
 msgid "Submission Complete"
 msgstr "Przesyłanie zakończone"
 
-msgid "You’re done!"
-msgstr "Gotowe!"
-
 msgid "Version Submitted for Review"
 msgstr "Przesłano wersję do sprawdzenia"
 
@@ -3499,12 +3491,6 @@ msgstr "Możesz również edytować tę wersję, aby dodać informacje o wersji 
 msgid "Edit version {0}"
 msgstr "Edytuj wersję {0}"
 
-msgid "File Signed"
-msgstr "Podpisano plik"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Gotowe! Ten plik został podpisany i jest gotowy do samodzielnej dystrybucji. Możesz go pobrać, klikając poniższy przycisk."
-
 msgid "Version Signed"
 msgstr "Podpisano wersję"
 
@@ -3513,12 +3499,6 @@ msgstr "Gotowe! Ta wersja została podpisana i jest gotowa do samodzielnej dystr
 
 msgid "Download {0}"
 msgstr "Pobierz {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Wybrano tylko niektóre dostępne platformy dla tego zgłoszenia. Możesz przesłać więcej plików przeznaczonych na inne platformy:"
-
-msgid "Upload File"
-msgstr "Prześlij plik"
 
 msgid "Go to My Submissions"
 msgstr "Przejdź do sekcji Moje zgłoszenia"
@@ -3599,9 +3579,6 @@ msgstr "Umowa dotycząca dystrybucji dodatków"
 msgid "Upload Add-on"
 msgstr "Prześlij dodatek"
 
-msgid "Where to Host File"
-msgstr "Docelowa wersja"
-
 msgid "Where to Host Version"
 msgstr "Docelowa wersja"
 
@@ -3611,7 +3588,8 @@ msgstr "Prześlij wersję"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Użyj poniższych pól, aby przesłać pakiet dodatku. Po przesłaniu pliku zostanie uruchomiona seria automatycznych testów sprawdzających."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Z którymi systemami ten plik jest kompatybilny?"
 
 msgid "Administrative overrides"
@@ -3622,9 +3600,6 @@ msgstr "Utwórz wersję motywu"
 
 msgid "Create a Theme"
 msgstr "Utwórz motyw"
-
-msgid "Submit File"
-msgstr "Prześlij plik"
 
 msgid "Sign Add-on"
 msgstr "Podpisz dodatek"
@@ -4261,9 +4236,6 @@ msgstr "Zarządzanie {0}"
 
 msgid "Files"
 msgstr "Pliki"
-
-msgid "Upload Another File"
-msgstr "Prześlij kolejny plik"
 
 msgid "Version Notes"
 msgstr "Informacje o wersji"
@@ -5379,7 +5351,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Słuchaj muzyki z całego świata {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+#, fuzzy
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr "Uzyskaj dostęp do ponad 20 000 stacji radiowych na całym świecie."
 
 #. editorial content for the discovery pane.
@@ -5842,9 +5815,6 @@ msgstr "Numer wersji powinien zawierać mniej niż 32 znaki."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Numer wersji powinien zawierać tylko litery, cyfry i następujące znaki interpunkcyjne: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Przesyłanie motywów WebExtension nie jest obecnie obsługiwane."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

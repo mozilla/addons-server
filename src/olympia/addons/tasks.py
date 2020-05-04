@@ -556,9 +556,11 @@ def add_static_theme_from_lwt(lwt):
     addon = Addon.initialize_addon_from_upload(
         parsed_data, upload, amo.RELEASE_CHANNEL_LISTED, author)
     addon_updates = {}
-    # Version.from_upload sorts out platforms for us.
+    # static themes are only compatible with Firefox at the moment,
+    # not Android
     version = Version.from_upload(
-        upload, addon, platforms=None, channel=amo.RELEASE_CHANNEL_LISTED,
+        upload, addon, selected_apps=[amo.FIREFOX.id],
+        channel=amo.RELEASE_CHANNEL_LISTED,
         parsed_data=parsed_data)
 
     # Set category
@@ -733,8 +735,10 @@ def migrate_legacy_dictionary_to_webextension(addon):
 
     parsed_data = parse_addon(upload, addon=addon, user=user)
     # Create version.
+    # WebExtension dictionaries are only compatible with Firefox Desktop
+    # Firefox for Android uses the OS spellchecking.
     version = Version.from_upload(
-        upload, addon, platforms=[amo.PLATFORM_ALL.id],
+        upload, addon, selected_apps=[amo.FIREFOX.id],
         channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data)
     activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=user)
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-03-04 16:16+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,6 +132,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "সকল ট্যাগ কমপক্ষে {0} অক্ষরের হতে হবে।"
 msgstr[1] "সকল ট্যাগ কমপক্ষে {0} অক্ষরের হতে হবে।"
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -689,6 +692,9 @@ msgstr "পর্যালোচনাকারীদের টুলস"
 
 msgid "Admin Tools"
 msgstr "অ্যাডমিন টুলস"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "ভূল, অনুগ্রহ করে পুনরায় চেষ্টা করুন।"
@@ -2488,11 +2494,9 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr "আপনি এই সংস্করণের জন্য আর কোন ফাইল আপলোড করতে পারবেন না।"
-
-msgid "Version doesn't match"
-msgstr "সংস্করণ মেলেনি"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "অন্তত একটি উপযুক্ত অ্যাপ্লিকেশন দরকার।"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2509,12 +2513,6 @@ msgid "You have not uploaded a source file."
 msgstr "আপনি এই সংস্করণের জন্য আর কোন ফাইল আপলোড করতে পারবেন না।"
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -3320,9 +3318,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Submit a New File"
-msgstr "নতুন ফাইল জমা দিন"
-
 msgid "Submit a New Version"
 msgstr "নতুন সংস্করণ জমা দিন"
 
@@ -3416,9 +3411,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-msgid "You’re done!"
-msgstr "আপনি সম্পূর্ণ করেছেন!"
-
 msgid "Version Submitted for Review"
 msgstr "সংস্করণ জমা দেওয়া হয়েছে পর্যালোচনার জন্য"
 
@@ -3454,12 +3446,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "সংস্করণ সম্পাদনা করুন {0}"
 
-msgid "File Signed"
-msgstr "ফাইল সাইন করা হয়েছে"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "সংস্করণের সাইনড"
 
@@ -3468,12 +3454,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "{0} ডাউনলোড করুন"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "ফাইল আপলোড করুন"
 
 msgid "Go to My Submissions"
 msgstr "আমার জমার দিকে যান"
@@ -3554,9 +3534,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "অ্যাড-অন আপলোড করুন"
 
-msgid "Where to Host File"
-msgstr "হোস্ট ফাইল কোথায়"
-
 msgid "Where to Host Version"
 msgstr "হোস্ট সংস্করণ কোথায়"
 
@@ -3566,7 +3543,7 @@ msgstr "সংস্করণ আপলোড করুন"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3578,9 +3555,6 @@ msgstr "একটি নতুন থিম তৈরী করুন"
 
 msgid "Create a Theme"
 msgstr "একটি থিম তৈরি করুন"
-
-msgid "Submit File"
-msgstr "ফাইল জমা দিন"
 
 msgid "Sign Add-on"
 msgstr "সাইন অ্যাড-অন"
@@ -4228,9 +4202,6 @@ msgstr ""
 
 msgid "Files"
 msgstr "ফাইলগুলো"
-
-msgid "Upload Another File"
-msgstr ""
 
 msgid "Version Notes"
 msgstr "সংস্করণ নোটসমূহ"
@@ -5344,7 +5315,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5806,9 +5777,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

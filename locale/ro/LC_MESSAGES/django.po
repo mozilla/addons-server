@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-08-31 19:18+0000\n"
-"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-10-01 00:42+0000\n"
+"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -135,6 +135,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -704,6 +707,9 @@ msgid "Reviewer Tools"
 msgstr "Instrumente pentru recenzori"
 
 msgid "Admin Tools"
+msgstr ""
+
+msgid "Positive integer"
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -2480,10 +2486,7 @@ msgstr ""
 msgid "Override failed validation"
 msgstr ""
 
-msgid "You cannot upload any more files for this version."
-msgstr ""
-
-msgid "Version doesn't match"
+msgid "Need to select at least one application."
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -2499,12 +2502,6 @@ msgid "You have not uploaded a source file."
 msgstr ""
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
-
-msgid "A platform can only be chosen once."
 msgstr ""
 
 msgid "Application"
@@ -2561,7 +2558,7 @@ msgstr ""
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Conexiunea cu „%s” a expirat."
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
@@ -3311,9 +3308,6 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-msgid "Submit a New File"
-msgstr "Trimite un fișier nou"
-
 msgid "Submit a New Version"
 msgstr "Trimite o versiune nouă"
 
@@ -3404,9 +3398,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-msgid "You’re done!"
-msgstr ""
-
 msgid "Version Submitted for Review"
 msgstr ""
 
@@ -3441,12 +3432,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr ""
 
-msgid "File Signed"
-msgstr "Fişier autentificat"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
 msgid "Version Signed"
 msgstr "Versiune autentificată"
 
@@ -3455,12 +3440,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr "Descarcă {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr ""
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3538,9 +3517,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Încarcă supliment"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3550,7 +3526,8 @@ msgstr "Încarcă versiune"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Cu ce platforme este acest fișier compatibil?"
 
 msgid "Administrative overrides"
@@ -3563,9 +3540,6 @@ msgstr "Creează-ți propria temă"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Creează-ți propria temă"
-
-msgid "Submit File"
-msgstr "Trimite fişier"
 
 msgid "Sign Add-on"
 msgstr "Autentifică supliment"
@@ -4185,9 +4159,6 @@ msgid "Manage {0}"
 msgstr "Gestionează {0}"
 
 msgid "Files"
-msgstr ""
-
-msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"
@@ -5417,7 +5388,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5924,9 +5895,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

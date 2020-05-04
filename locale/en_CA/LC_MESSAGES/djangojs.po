@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 15:47+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-17 12:40+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -129,9 +129,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "The validation process found these issues that can lead to rejections:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Sorry, no supported platform has been found."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "The file type you uploaded isn’t recognized."
 
@@ -214,52 +211,44 @@ msgstr "Use original"
 msgid "Week of {0}"
 msgstr "Week of {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " downloads"
-msgstr[1] " downloads"
+msgstr[0] "{0} download"
+msgstr[1] "{0} downloads"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} users"
+msgstr[0] "{0} user"
 msgstr[1] "{0} users"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} add-ons"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} add-on"
 msgstr[1] "{0} add-ons"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} collections"
+msgstr[0] "{0} collection"
 msgstr[1] "{0} collections"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} reviews"
+msgstr[0] "{0} review"
 msgstr[1] "{0} reviews"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} sales"
+msgstr[0] "{0} sale"
 msgstr[1] "{0} sales"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} refunds"
+msgstr[0] "{0} refund"
 msgstr[1] "{0} refunds"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} installs"
+msgstr[0] "{0} install"
 msgstr[1] "{0} installs"
 
 msgid "Downloads"

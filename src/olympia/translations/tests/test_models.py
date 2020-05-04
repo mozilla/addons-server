@@ -19,7 +19,7 @@ from pyquery import PyQuery as pq
 from olympia.amo.models import use_primary_db
 from olympia.amo.tests import BaseTestCase
 from olympia.translations.models import (
-    LinkifiedTranslation, NoLinksNoMarkupTranslation, NoLinksTranslation,
+    LinkifiedTranslation, NoLinksNoMarkupTranslation,
     PurifiedTranslation, Translation, TranslationSequence)
 from olympia.translations.query import order_by_translation
 from olympia.translations.tests.testapp.models import (
@@ -595,40 +595,6 @@ class LinkifiedTranslationTest(BaseTestCase):
         assert x.__html__() == (
             '&lt;script&gt;some naughty xss&lt;/script&gt; '
             '&lt;b&gt;bold&lt;/b&gt;')
-
-
-class NoLinksTranslationTest(BaseTestCase):
-
-    def test_allowed_tags(self):
-        s = u'<b>bold text</b> or <code>code</code>'
-        x = NoLinksTranslation(localized_string=s)
-        assert x.__html__() == u'<b>bold text</b> or <code>code</code>'
-
-    def test_forbidden_tags(self):
-        s = u'<script>some naughty xss</script>'
-        x = NoLinksTranslation(localized_string=s)
-        assert x.__html__() == '&lt;script&gt;some naughty xss&lt;/script&gt;'
-
-    def test_links_stripped(self):
-        # Link with markup.
-        s = u'a <a href="http://example.com">link</a> with markup'
-        x = NoLinksTranslation(localized_string=s)
-        assert x.__html__() == u'a  with markup'
-
-        # Text link.
-        s = u'a text http://example.com link'
-        x = NoLinksTranslation(localized_string=s)
-        assert x.__html__() == u'a text  link'
-
-        # Text link, markup link, allowed tags, forbidden tags and bad markup.
-        s = (u'a <a href="http://example.com">link</a> with markup, a text '
-             u'http://example.com link, <b>with allowed tags</b>, '
-             u'<script>forbidden tags</script> and <http://bad.markup.com')
-        x = NoLinksTranslation(localized_string=s)
-        assert x.__html__() == (
-            u'a  with markup, a text  link, '
-            u'<b>with allowed tags</b>, '
-            u'&lt;script&gt;forbidden tags&lt;/script&gt; and')
 
 
 class NoLinksNoMarkupTranslationTest(BaseTestCase):

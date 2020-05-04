@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-09-02 17:18+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -140,6 +140,9 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Všechny štítky musí mít alespoň {0} znak."
 msgstr[1] "Všechny štítky musí mít alespoň {0} znaky."
 msgstr[2] "Všechny štítky musí mít alespoň {0} znaků."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -717,6 +720,9 @@ msgstr "Nástroje pro redaktory"
 
 msgid "Admin Tools"
 msgstr "Nástroje administrátora"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Neplatné, zkuste to prosím znovu."
@@ -2499,11 +2505,9 @@ msgstr "Při nahrávání se vyskytla chyba. Zkuste to prosím znovu."
 msgid "Override failed validation"
 msgstr "Přepsat nezdařenou validaci"
 
-msgid "You cannot upload any more files for this version."
-msgstr "K této verzi nemůžete nahrát více souborů."
-
-msgid "Version doesn't match"
-msgstr "Verze neodpovídá"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Je vyžadována alespoň jedna kompatibilní aplikace."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verze {version} už byla dříve nahrána a smazána."
@@ -2519,12 +2523,6 @@ msgstr "Nenahráli jste soubor se zdrojovými kódy."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Volba pro všechny platformy nemůže být kombinována s konkrétními platformami."
-
-msgid "A platform can only be chosen once."
-msgstr "Platforma může být zvolena pouze jednou."
 
 msgid "Application"
 msgstr "Aplikace"
@@ -3363,9 +3361,6 @@ msgstr[0] "<strong>{0}</strong> aktivní uživatel"
 msgstr[1] "<strong>{0}</strong> aktivní uživatelé"
 msgstr[2] "<strong>{0}</strong> aktivních uživatelů"
 
-msgid "Submit a New File"
-msgstr "Odeslat nový soubor"
-
 msgid "Submit a New Version"
 msgstr "Odeslat novou verzi"
 
@@ -3457,9 +3452,6 @@ msgstr "Více informací o distribuci a podepisování doplňků"
 msgid "Submission Complete"
 msgstr "Odeslání dokončeno"
 
-msgid "You’re done!"
-msgstr "A je to hotovo!"
-
 msgid "Version Submitted for Review"
 msgstr "Verze odeslaná ke kontrole"
 
@@ -3493,12 +3485,6 @@ msgstr "Toto verzi můžete také upravit přidáním poznámek nebo zdrojového
 msgid "Edit version {0}"
 msgstr "Upravit verzi {0}"
 
-msgid "File Signed"
-msgstr "Soubor podepsán"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "A je to! Soubor je podepsaný, a můžete jej začít distribuovat. Stáhněte si ho klepnutím na tlačítko níže."
-
 msgid "Version Signed"
 msgstr "Verze podepsána"
 
@@ -3507,12 +3493,6 @@ msgstr "A je to! Verze byla podepsána, a můžete ji tak začít distribuovat. 
 
 msgid "Download {0}"
 msgstr "Stáhnout {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Vybrali jste jen některé z dostupných platforem pro toto nahrání. Můžete nahrát více souborů, které jsou určeny pro jiné platformy:"
-
-msgid "Upload File"
-msgstr "Nahrát soubor"
 
 msgid "Go to My Submissions"
 msgstr "Přejít k mým příspěvkům"
@@ -3590,9 +3570,6 @@ msgstr "Dohoda o distribuci doplňků"
 msgid "Upload Add-on"
 msgstr "Nahrát doplněk"
 
-msgid "Where to Host File"
-msgstr "Kde bude soubor hostován"
-
 msgid "Where to Host Version"
 msgstr "Kde bude verze hostována"
 
@@ -3602,7 +3579,8 @@ msgstr "Nahrát verzi"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Pro nahrání balíčku se svým doplňkem použijte pole níže. Po nahrání bude spuštěna skupina automatizovaných testů, které váš balíček zkontrolují."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "S kterými platformami je tento soubor kompatibilní?"
 
 msgid "Administrative overrides"
@@ -3613,9 +3591,6 @@ msgstr "Vytvořit verzi motivu vzhledu"
 
 msgid "Create a Theme"
 msgstr "Vytvořit nový motiv vzhledu"
-
-msgid "Submit File"
-msgstr "Odeslat soubor"
 
 msgid "Sign Add-on"
 msgstr "Podepsat doplněk"
@@ -4247,9 +4222,6 @@ msgstr "Správa {0}"
 
 msgid "Files"
 msgstr "Soubory"
-
-msgid "Upload Another File"
-msgstr "Nahrát další soubor"
 
 msgid "Version Notes"
 msgstr "Poznámky k verzi"
@@ -5366,7 +5338,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5829,9 +5801,6 @@ msgstr "Čísla verzí by měly mít méně než 32 znaků."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Čísla verzí by měla obsahovat pouze základní znaky, čísla a následující speciální znaky: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Nahrávání vhledů WebExtension momentálně není podporováno."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

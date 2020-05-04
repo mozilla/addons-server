@@ -35,7 +35,6 @@ class TestPackaged(TestCase):
         self.addon.update(guid='xxxxx')
         self.version = self.addon.current_version
         self.file_ = self.version.all_files[0]
-        self.file_.update(filename='addon-a.xpi')
 
         # Add actual file to addons
         if not os.path.exists(os.path.dirname(self.file_.file_path)):
@@ -66,13 +65,15 @@ class TestPackaged(TestCase):
     def tearDown(self):
         if os.path.exists(self.file_.file_path):
             os.unlink(self.file_.file_path)
+        if os.path.exists(self.file_.guarded_file_path):
+            os.unlink(self.file_.guarded_file_path)
         super(TestPackaged, self).tearDown()
 
     def _sign_file(self, file_):
         packaged.sign_file(file_)
 
     def _get_signature_details(self):
-        with zipfile.ZipFile(self.file_.file_path, mode='r') as zobj:
+        with zipfile.ZipFile(self.file_.current_file_path, mode='r') as zobj:
             info = SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
             manifest = zobj.read('META-INF/manifest.mf')
             return info, manifest
@@ -223,7 +224,7 @@ class TestPackaged(TestCase):
                 amo.utils.rm_local_tmp_dir(folder)
 
     def test_call_signing(self):
-        packaged.sign_file(self.file_)
+        assert packaged.sign_file(self.file_)
 
         signature_info, manifest = self._get_signature_details()
 
@@ -237,6 +238,20 @@ class TestPackaged(TestCase):
             'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
             'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
         )
+
+    def test_call_signing_on_file_in_guarded_file_path(self):
+        # We should be able to sign files even if the associated File instance
+        # or the add-on is disabled.
+        # First let's disable the file and prove that we're only dealing with
+        # the file in guarded add-ons storage.
+        assert not os.path.exists(self.file_.guarded_file_path)
+        assert os.path.exists(self.file_.file_path)
+        self.file_.update(status=amo.STATUS_DISABLED)
+        assert os.path.exists(self.file_.guarded_file_path)
+        assert not os.path.exists(self.file_.file_path)
+
+        # Then call the signing test as normal.
+        self.test_call_signing()
 
     def test_call_signing_too_long_guid_bug_1203365(self):
         long_guid = 'x' * 65

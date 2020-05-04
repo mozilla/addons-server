@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-15 20:17+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-25 16:56+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -139,6 +139,9 @@ msgstr[0] "Vse oznake morajo biti najmanj {0} znak."
 msgstr[1] "Vse oznake morajo imeti najmanj {0} znaka."
 msgstr[2] "Vse oznake morajo imeti najmanj {0} znake."
 msgstr[3] "Vse oznake morajo imeti najmanj {0} znakov."
+
+msgid "The text entered has been flagged as spam."
+msgstr "Vneseno besedilo je bilo označeno kot neželena vsebina."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -728,6 +731,9 @@ msgstr "Orodja za pregledovalce"
 
 msgid "Admin Tools"
 msgstr "Skrbniška orodja"
+
+msgid "Positive integer"
+msgstr "Pozitivno celo število"
 
 msgid "Incorrect, please try again."
 msgstr "Nepravilno, poskusite znova."
@@ -2519,11 +2525,8 @@ msgstr "Prišlo je do napake med nalaganjem. Prosimo, poskusite znova."
 msgid "Override failed validation"
 msgstr "Preglasi neuspešno preverjanje veljavnosti"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Za to različico ne morete naložiti še več datotek."
-
-msgid "Version doesn't match"
-msgstr "Različica se ne ujema"
+msgid "Need to select at least one application."
+msgstr "Izbrati je treba vsaj en program."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Različica {version} je bila v preteklosti že naložena in izbrisana."
@@ -2539,12 +2542,6 @@ msgstr "Niste naložili izvorne datoteke."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Izvorna datoteka naložena, vendar ste označili, da vir ni potreben."
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Platforme Vse ni mogoče kombinirati s posebnimi platformami."
-
-msgid "A platform can only be chosen once."
-msgstr "Platformo se lahko izbere samo enkrat."
 
 msgid "Application"
 msgstr "Program"
@@ -3387,9 +3384,6 @@ msgstr[1] "<strong>{0}</strong> aktivna uporabnika"
 msgstr[2] "<strong>{0}</strong> aktivni uporabniki"
 msgstr[3] "<strong>{0}</strong> aktivnih uporabnikov"
 
-msgid "Submit a New File"
-msgstr "Pošlji novo datoteko"
-
 msgid "Submit a New Version"
 msgstr "Pošlji novo različico"
 
@@ -3483,9 +3477,6 @@ msgstr "Več podatkov o razširjanju in podpisovanju dodatkov"
 msgid "Submission Complete"
 msgstr "Predložitev je končana"
 
-msgid "You’re done!"
-msgstr "Končali ste!"
-
 msgid "Version Submitted for Review"
 msgstr "Različica poslana za pregled"
 
@@ -3519,12 +3510,6 @@ msgstr "Različici, ki ste jo poslali, lahko tudi dodate opombe ob izdaji ali iz
 msgid "Edit version {0}"
 msgstr "Uredi različico {0}"
 
-msgid "File Signed"
-msgstr "Datoteka podpisana"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Končali ste! Ta datoteka je bila podpisana in je pripravljena za razpošiljanje. Lahko jo prenesete s klikom na spodnji gumb."
-
 msgid "Version Signed"
 msgstr "Različica podpisana"
 
@@ -3535,12 +3520,6 @@ msgstr "Končali ste! Ta različica je bila podpisana in je pripravljena za raz�
 # 100%
 msgid "Download {0}"
 msgstr "Prenesi {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Za ta prispevek ste izbrali samo nekatere od možnih platform. Naložite lahko več datotek za različne platforme:"
-
-msgid "Upload File"
-msgstr "Naloži datoteko"
 
 msgid "Go to My Submissions"
 msgstr "Moji prispevki"
@@ -3622,9 +3601,6 @@ msgstr "Sporazum o razširjanju dodatkov"
 msgid "Upload Add-on"
 msgstr "Naloži dodatek"
 
-msgid "Where to Host File"
-msgstr "Kje gostiti datoteko"
-
 msgid "Where to Host Version"
 msgstr "Kje bo različica objavljena"
 
@@ -3635,8 +3611,8 @@ msgstr "Naloži različico"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Uporabite spodnja polja, da naložite paket dodatka. Po zaključenem prenosu bo veljavnost vaše datoteke preverjena z nizom samodejnih preskusov."
 
-msgid "Which platforms is this file compatible with?"
-msgstr "S katerimi okolji je združljiva ta datoteka?"
+msgid "Which applications is this version compatible with?"
+msgstr "S katerimi programi je združljiva ta različica?"
 
 msgid "Administrative overrides"
 msgstr "Razveljavitve administratorja"
@@ -3646,9 +3622,6 @@ msgstr "Ustvarite različico teme"
 
 msgid "Create a Theme"
 msgstr "Ustvarite temo"
-
-msgid "Submit File"
-msgstr "Pošlji datoteko"
 
 msgid "Sign Add-on"
 msgstr "Podpiši dodatek"
@@ -4126,12 +4099,11 @@ msgstr "Preizkus združljivosti"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Preverite, ali je vaša razširitev združljiva s Firefoxom."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Prikaži stran"
+msgstr "Preskušanje v živo"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Začasno namestite razširitev v Firefox za preizkušanje v živo in odpravljanje napak."
 
 msgid "Transfer ownership"
 msgstr "Prenos lastništva"
@@ -4299,9 +4271,6 @@ msgstr "Upravljanje {0}"
 
 msgid "Files"
 msgstr "Datoteke"
-
-msgid "Upload Another File"
-msgstr "Naloži še eno datoteko"
 
 msgid "Version Notes"
 msgstr "Opombe o različici"
@@ -5069,13 +5038,12 @@ msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
 msgstr "Znova odprite nedavno zaprte zavihke z desnim klikom ikone v orodni vrstici."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Navdihnite produktivnost {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Polepšajte svojo stran novega zavihka s slikovitim ozadjem, nastavite si dnevni cilj in več."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5115,7 +5083,7 @@ msgstr "Zmanjšajte stres {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Organizirajte se z uporabnim seznamom opravkov, ki se sinhronizira med napravami."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5131,7 +5099,7 @@ msgstr "Naredite YouTube povsem svoj {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Predvajajte videoposnetke v ločenem okencu, skrijte oglase povsod razen v naročenih kanalih, zajemajte sličice videov in veliko več."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5139,7 +5107,7 @@ msgstr "Raziščite promet spletnega mesta {start_sub_heading}z {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Pridobite poglobljene informacije o povezavah in prometu podatkov za katerokoli spletno mesto."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5235,7 +5203,7 @@ msgstr "Prilagodite si nove zavihke {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "Bodite ustvarjalni in prilagodite svojo stran novega zavihka s priljubljenimi stranmi in temo."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5275,7 +5243,7 @@ msgstr "Delajte pametneje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Bodite produktivnejši in delajte v določenih časovnih intervalih."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5299,7 +5267,7 @@ msgstr "Iščite slike {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Obrnjeno slikovno iskanje z uporabo več iskalnikov."
 
 #. editorial content for the discovery pane.
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5383,7 +5351,7 @@ msgstr "Ustvarite si zapiske {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Ustvarite zapiske, splošne ali za določena spletna mesta, za kasnejši pregled."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5402,13 +5370,12 @@ msgid "Clear your browser cache with a click or keystroke."
 msgstr "Počistite predpomnilnik brskalnika s klikom ali pritiskom tipke."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Ne pozabite ničesar več {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Ustvarite in upravljajte seznam opravkov v brskalniku."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5423,8 +5390,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Uživajte v glasbi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
-msgstr "Dostopajte do preko 20&thinsp;000 radijskih postaj širom sveta."
+msgid "Access 30,000+ radio stations from all over the globe."
+msgstr "Dostopajte do preko 30&thinsp;000 radijskih postaj širom sveta."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5531,9 +5498,8 @@ msgid "Highlight text from any website and right-click to search YouTube for rel
 msgstr "Označite besedilo na katerikoli spletni strani in z desnim klikom poiščite povezano predstavnost na YouTubu."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Razširite svoj nabor smeškov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zagotovite si ugodnosti na Amazonu {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -5736,13 +5702,12 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Ste na spletu našli zanimivo sliko? Uporabite TinEye in raziščite njen izvor."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Poenostavite stvari {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Preprosto povlecite besedilo, slike ali povezave za dejanja, kot so kopiranje, odpiranje ali iskanje."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
@@ -5889,11 +5854,8 @@ msgstr "Številke različice morajo imeti manj kot 32 znakov."
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Številke različice smejo vsebovati le črke, številke in naslednja ločila: +*.-_."
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Nalaganje tem WebExtension trenutno ni podprto."
-
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Največja možna velikost za teme WebExtension je {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Te vrste dodatka ne morete oddati"
@@ -6152,48 +6114,41 @@ msgstr "Odklenite zgodnji dostop do preskusnih lastnosti brskalnika."
 msgid "Get Started"
 msgstr "Začnite"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Stanje strani "
+msgstr "Sporočeno stanje"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Vrsta poročila"
+msgstr "Prijavljeno kot neželena vsebina"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Prijavi hrošča"
+msgstr "Prijavljeno kot ne-neželena vsebina"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Še ni ocenjeno"
+msgstr "Ni prijavljeno"
 
 msgid "Content Submitted"
 msgstr "Vsebina potrjena"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Obišči novo stran"
+msgstr "Ogled ocene na strani"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Pošlji novo datoteko"
+msgstr "Pošlji ne-neželeno vsebino Akismetu"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Pošlji novo datoteko"
+msgstr "Pošlji neželeno vsebino Akismetu"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s poročil o ne-neželeni vsebini poslanih kot neželena vsebina"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s poročil o neželeni vsebini poslanih kot ne-neželena vsebina"
 
 msgid "About Mozilla Add-ons"
 msgstr "O Mozillinih dodatkih"

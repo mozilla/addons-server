@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2017-04-19 19:31+0000\n"
-"Last-Translator: Mikeyy <mihovil@miho.im>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-22 22:59+0000\n"
+"Last-Translator: Karlo Prikratki <me@karloprikratki.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -136,9 +136,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces validacije pronašao je slijedeće pogreške koje mogu dovesti do odbijanja:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Isprika, nije pronađena podržana platforma."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Tip datoteke koji ste učitali nije prepoznat."
 
@@ -221,59 +218,51 @@ msgstr "Koristi original"
 msgid "Week of {0}"
 msgstr "Tjedan {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " preuzimanja"
-msgstr[1] " preuzimanja"
-msgstr[2] " preuzimanja"
+msgstr[0] "{0} preuzimanje"
+msgstr[1] "{0} preuzimanja"
+msgstr[2] "{0} preuzimanja"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} korisnika"
+msgstr[0] "{0} korisnik"
 msgstr[1] "{0} korisnika"
 msgstr[2] "{0} korisnika"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} dodataka"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} dodatak"
 msgstr[1] "{0} dodataka"
 msgstr[2] "{0} dodataka"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} kolekcija"
 msgstr[1] "{0} kolekcija"
 msgstr[2] "{0} kolekcija"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} ocjena"
 msgstr[1] "{0} ocjena"
 msgstr[2] "{0} ocjena"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} prodaja"
 msgstr[1] "{0} prodaja"
 msgstr[2] "{0} prodaja"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} povratka novca"
+msgstr[0] "{0} povratak novca"
 msgstr[1] "{0} povratka novca"
 msgstr[2] "{0} povratka novca"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} instaliranja"
+msgstr[0] "{0} instaliranje"
 msgstr[1] "{0} instaliranja"
 msgstr[2] "{0} instaliranja"
 
@@ -705,9 +694,8 @@ msgid "Not available for your platform"
 msgstr "Nije dostupno za vašu platformu"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Tema nije kompatibilna sa vašom verzijom {0}"
+msgstr "Tema nije kompatibilna sa vašom verzijom {0}."
 
 msgid "View other versions"
 msgstr "Pogledaj ostale verzije"

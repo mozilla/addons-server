@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-11 13:38+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-10-04 03:51+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -121,9 +121,6 @@ msgstr "若有編譯過的二元碼，以及最小化過或擾亂過的指令碼
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "驗證過程找到下列可能會造成您的送出被退回的問題:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "抱歉，找不到支援的平台。"
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "無法辨識您上傳的檔案格式。"
 
@@ -206,45 +203,37 @@ msgstr "使用原始的"
 msgid "Week of {0}"
 msgstr "第 {0} 週"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " 次下載"
+msgstr[0] "{0} 次下載"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} 位使用者"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} 個附加元件"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} 套附加元件"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} 個收藏集"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} 個評論"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} 筆銷售"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} 筆退費"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} 個安裝數"
+msgstr[0] "{0} 次安裝"
 
 msgid "Downloads"
 msgstr "下載數"

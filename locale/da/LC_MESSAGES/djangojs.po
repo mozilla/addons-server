@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-06-10 04:40+0000\n"
-"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-10-07 13:38+0000\n"
+"Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgid "Your submission will be automatically signed."
 msgstr ""
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "WebExtension-opgradering"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -124,9 +124,6 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-
-msgid "Sorry, no supported platform has been found."
 msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
@@ -225,7 +222,7 @@ msgstr[1] "{0} brugere"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} tilføjelser"
 msgstr[1] "{0} tilføjelser"
 
@@ -375,7 +372,7 @@ msgid "Version History"
 msgstr "Versionshistorik"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Deling"
 
 msgid "Category Pages"
 msgstr ""
@@ -807,7 +804,7 @@ msgid "No version notes found"
 msgstr "Ingen versionsbemærkninger fundet"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Anmeldelsestekst"
 
 msgid "Review notes found"
 msgstr ""
@@ -822,10 +819,10 @@ msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"
-msgstr ""
+msgstr "Ønskede info"
 
 msgid "Flagged"
-msgstr ""
+msgstr "Anmeldt"
 
 msgid "Duplicate"
 msgstr ""
@@ -843,7 +840,7 @@ msgid "Theme"
 msgstr "Tema"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Anmelder"
 
 msgid "Status"
 msgstr "Status"

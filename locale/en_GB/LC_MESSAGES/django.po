@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-03-25 14:57+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,6 +131,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "All tags must be at least {0} character."
 msgstr[1] "All tags must be at least {0} characters."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -690,6 +693,9 @@ msgstr "Reviewer Tools"
 
 msgid "Admin Tools"
 msgstr "Admin Tools"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Incorrect, please try again."
@@ -2475,11 +2481,9 @@ msgstr "There was an error with your upload. Please try again."
 msgid "Override failed validation"
 msgstr "Override failed validation"
 
-msgid "You cannot upload any more files for this version."
-msgstr "You cannot upload any more files for this version."
-
-msgid "Version doesn't match"
-msgstr "Version doesn't match"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Need at least one compatible application."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} was uploaded before and deleted."
@@ -2496,12 +2500,6 @@ msgstr "Could not parse uploaded file."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "The platform All cannot be combined with specific platforms."
-
-msgid "A platform can only be chosen once."
-msgstr "A platform can only be chosen once."
 
 msgid "Application"
 msgstr "Application"
@@ -3360,9 +3358,6 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> active user"
 msgstr[1] "<strong>{0}</strong> active users"
 
-msgid "Submit a New File"
-msgstr "Submit a New File"
-
 msgid "Submit a New Version"
 msgstr "Submit a New Version"
 
@@ -3453,9 +3448,6 @@ msgstr "More information on Add-on Distribution and Signing"
 msgid "Submission Complete"
 msgstr "Submission Complete"
 
-msgid "You’re done!"
-msgstr "You’re done!"
-
 msgid "Version Submitted for Review"
 msgstr "Version Submitted for Review"
 
@@ -3490,12 +3482,6 @@ msgstr "You can also edit this version to add version notes, or source code if y
 msgid "Edit version {0}"
 msgstr "Edit version {0}"
 
-msgid "File Signed"
-msgstr "File Signed"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-
 msgid "Version Signed"
 msgstr "Version Signed"
 
@@ -3504,12 +3490,6 @@ msgstr "You’re done! This version is signed and ready to for self-distribution
 
 msgid "Download {0}"
 msgstr "Download {0}"
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-
-msgid "Upload File"
-msgstr "Upload File"
 
 msgid "Go to My Submissions"
 msgstr "Go to My Submissions"
@@ -3590,9 +3570,6 @@ msgstr "Add-on Distribution Agreement"
 msgid "Upload Add-on"
 msgstr "Upload Add-on"
 
-msgid "Where to Host File"
-msgstr "Where to Host File"
-
 msgid "Where to Host Version"
 msgstr "Where to Host Version"
 
@@ -3602,7 +3579,8 @@ msgstr "Upload Version"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 
-msgid "Which platforms is this file compatible with?"
+#, fuzzy
+msgid "Which applications is this version compatible with?"
 msgstr "Which platforms is this file compatible with?"
 
 msgid "Administrative overrides"
@@ -3613,9 +3591,6 @@ msgstr "Create a Theme Version"
 
 msgid "Create a Theme"
 msgstr "Create a Theme"
-
-msgid "Submit File"
-msgstr "Submit File"
 
 msgid "Sign Add-on"
 msgstr "Sign Add-on"
@@ -4258,9 +4233,6 @@ msgstr "Manage {0}"
 
 msgid "Files"
 msgstr "Files"
-
-msgid "Upload Another File"
-msgstr "Upload Another File"
 
 msgid "Version Notes"
 msgstr "Version Notes"
@@ -5492,7 +5464,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -6001,9 +5973,6 @@ msgstr "Version numbers should have fewer than 32 characters."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "WebExtension theme uploads are currently not supported."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""

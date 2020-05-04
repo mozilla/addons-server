@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-08-21 11:20+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -133,6 +133,9 @@ msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Alle tagger må være minst {0} tegn."
 msgstr[1] "Alle tagger må være minst {0} tegn."
+
+msgid "The text entered has been flagged as spam."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
@@ -700,6 +703,9 @@ msgstr "Utvikler"
 
 msgid "Admin Tools"
 msgstr "Adminverktøy"
+
+msgid "Positive integer"
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Feil, vennligst prøv igjen."
@@ -2535,11 +2541,9 @@ msgstr "Det oppstod en feil med opplastingen. Prøv igjen."
 msgid "Override failed validation"
 msgstr "Overstyringen feilet validering"
 
-msgid "You cannot upload any more files for this version."
-msgstr "Du kan ikke laste opp flere filer for denne versjonen."
-
-msgid "Version doesn't match"
-msgstr "Versjon stemmer ikke"
+#, fuzzy
+msgid "Need to select at least one application."
+msgstr "Trenger minst ett kompatibelt program."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2557,12 +2561,6 @@ msgstr "Du kan ikke laste opp flere filer for denne versjonen."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
-
-msgid "The platform All cannot be combined with specific platforms."
-msgstr "Plattformen \"Alle\" kan ikke kombineres med spesifikke plattformer."
-
-msgid "A platform can only be chosen once."
-msgstr "En plattform kan bare velges én gang."
 
 msgid "Application"
 msgstr "Program"
@@ -3375,10 +3373,6 @@ msgstr[0] "<strong>{0}</strong> aktiv bruker"
 msgstr[1] "<strong>{0}</strong> aktive brukere"
 
 #, fuzzy
-msgid "Submit a New File"
-msgstr "Send inn nytt tema"
-
-#, fuzzy
 msgid "Submit a New Version"
 msgstr "Send inn ny utvidelse"
 
@@ -3480,9 +3474,6 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-msgid "You’re done!"
-msgstr ""
-
 #, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Send anmeldelse"
@@ -3522,13 +3513,6 @@ msgid "Edit version {0}"
 msgstr "Versjon {0}"
 
 #, fuzzy
-msgid "File Signed"
-msgstr "Versjon"
-
-msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr ""
-
-#, fuzzy
 msgid "Version Signed"
 msgstr "Versjon"
 
@@ -3537,12 +3521,6 @@ msgstr ""
 
 msgid "Download {0}"
 msgstr ""
-
-msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
-
-msgid "Upload File"
-msgstr "Last opp fil"
 
 #, fuzzy
 msgid "Go to My Submissions"
@@ -3623,9 +3601,6 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Blokkerte utvidelser"
 
-msgid "Where to Host File"
-msgstr ""
-
 msgid "Where to Host Version"
 msgstr ""
 
@@ -3636,7 +3611,7 @@ msgstr "Programversjoner"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-msgid "Which platforms is this file compatible with?"
+msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
@@ -3649,10 +3624,6 @@ msgstr "Lag ditt eget tema"
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Lag ditt eget tema"
-
-#, fuzzy
-msgid "Submit File"
-msgstr "Send inn nytt tema"
 
 #, fuzzy
 msgid "Sign Add-on"
@@ -4298,9 +4269,6 @@ msgid "Manage {0}"
 msgstr ""
 
 msgid "Files"
-msgstr ""
-
-msgid "Upload Another File"
 msgstr ""
 
 msgid "Version Notes"
@@ -5417,7 +5385,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Access 20,000+ radio stations from all over the globe."
+msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5879,9 +5847,6 @@ msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
-
-msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."

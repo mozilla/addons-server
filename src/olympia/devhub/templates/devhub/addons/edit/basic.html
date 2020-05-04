@@ -12,6 +12,7 @@
   </h3>
   <div class="item">
     <div class="item_wrapper">
+      {% if editable %}{{ form.non_field_errors() }}{% endif %}
       <table>
         {# L10n: {0} is the addon name #}
         <caption>{{ _('Basic Information for {0}')|format_html(addon.name) }}</caption>
@@ -207,6 +208,7 @@
       </table>
     </div>
     {% if editable %}
+    {{ form.non_field_errors() }}
     <div class="listing-footer">
       <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
       <a href="{{ url('devhub.addons.section', addon.slug, 'basic') }}"

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-07-26 08:54+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-17 16:00+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -126,9 +126,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-msgid "Sorry, no supported platform has been found."
-msgstr "క్షమించండి, మద్దతు గల వేదిక కనుగొనబడలేదు."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr ""
 
@@ -211,34 +208,30 @@ msgstr "అసలుది వాడు"
 msgid "Week of {0}"
 msgstr "వారం {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " దింపుకోళ్ళు"
-msgstr[1] " దింపుకోళ్ళు"
+msgstr[0] "{0} దింపుకోలు"
+msgstr[1] "{0} దింపుకోళ్ళు"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} వాడుకరులు"
+msgstr[0] "{0} వాడుకరి"
 msgstr[1] "{0} వాడుకరులు"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} పొడిగింతలు"
 msgstr[1] "{0} పొడిగింతలు"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} సేకరణలు"
+msgstr[0] "{0} సేకరణ"
 msgstr[1] "{0} సేకరణలు"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} సమీక్షలు"
+msgstr[0] "{0} సమీక్ష"
 msgstr[1] "{0} సమీక్షలు"
 
 #, fuzzy
@@ -253,10 +246,9 @@ msgid_plural "{0} refunds"
 msgstr[0] "{0} వాపసులు"
 msgstr[1] "{0} వాపసులు"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} స్థాపనలు"
+msgstr[0] "{0} స్థాపన"
 msgstr[1] "{0} స్థాపనలు"
 
 msgid "Downloads"

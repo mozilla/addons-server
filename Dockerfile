@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
+ADD docker/debian-stretch-backports-repo /etc/apt/sources.list.d/backports.list
 
-# Upgrade git
 RUN apt-get update && apt-get install -y \
         # General (dev-) dependencies
         bash-completion \
@@ -45,6 +45,11 @@ RUN apt-get update && apt-get install -y \
         pngcrush \
         # our makefile and ui-tests require uuid to be installed
         uuid \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get -t stretch-backports install -y \
+        # For git-based files storage backend
+        libgit2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Compile required locale

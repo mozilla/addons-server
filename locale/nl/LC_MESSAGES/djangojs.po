@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
-"PO-Revision-Date: 2018-09-03 12:41+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
+"PO-Revision-Date: 2018-09-17 11:00+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -132,9 +132,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Het validatieproces heeft de volgende problemen gevonden die tot afwijzing zouden kunnen leiden:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Sorry, geen ondersteund platform gevonden."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Het door u geüploade bestandstype wordt niet herkend."
 
@@ -217,52 +214,44 @@ msgstr "Oorspronkelijke gebruiken"
 msgid "Week of {0}"
 msgstr "Week van {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " downloads"
-msgstr[1] " downloads"
+msgstr[0] "{0} download"
+msgstr[1] "{0} downloads"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} gebruikers"
+msgstr[0] "{0} gebruiker"
 msgstr[1] "{0} gebruikers"
 
-#, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
-msgstr[0] "{0} add-ons"
+msgid_plural "{0} add-ons"
+msgstr[0] "{0} add-on"
 msgstr[1] "{0} add-ons"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} collecties"
+msgstr[0] "{0} collectie"
 msgstr[1] "{0} collecties"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} beoordelingen"
+msgstr[0] "{0} beoordeling"
 msgstr[1] "{0} beoordelingen"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} verkopen"
+msgstr[0] "{0} verkoop"
 msgstr[1] "{0} verkopen"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} restituties"
+msgstr[0] "{0} restitutie"
 msgstr[1] "{0} restituties"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} installaties"
+msgstr[0] "{0} installatie"
 msgstr[1] "{0} installaties"
 
 msgid "Downloads"

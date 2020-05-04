@@ -799,8 +799,6 @@ class TestRatingViewSetGet(TestCase):
         assert review1.reload().is_latest is True
         assert older_review.reload().is_latest is False
 
-        assert Rating.unfiltered.count() == 6
-
         params = {'addon': self.addon.pk}
         params.update(kwargs)
         response = self.client.get(self.url, params)
@@ -836,12 +834,12 @@ class TestRatingViewSetGet(TestCase):
         cache.clear()
         with self.assertNumQueries(5):
             # 5 queries:
+            # - Two for opening and releasing a savepoint. Those only happen in
+            #   tests, because TransactionTestCase wraps things in atomic().
             # - One for the ratings count (pagination)
             # - One for the ratings themselves
             # - One for the replies (there aren't any, but we don't know
             #   that without making a query)
-            # - Two for opening and closing a transaction/savepoint
-            #   (https://github.com/mozilla/addons-server/issues/3610)
             #
             # We patch get_addon_object() to avoid the add-on related queries,
             # which would pollute the result.
@@ -888,11 +886,11 @@ class TestRatingViewSetGet(TestCase):
         cache.clear()
         with self.assertNumQueries(5):
             # 5 queries:
+            # - Two for opening and releasing a savepoint. Those only happen in
+            #   tests, because TransactionTestCase wraps things in atomic().
             # - One for the ratings count
             # - One for the ratings
             # - One for the replies (using prefetch_related())
-            # - Two for opening and closing a transaction/savepoint
-            #   (https://github.com/mozilla/addons-server/issues/3610)
             #
             # We patch get_addon_object() to avoid the add-on related queries,
             # which would pollute the result. In the real world those queries
@@ -1188,6 +1186,37 @@ class TestRatingViewSetGet(TestCase):
         assert data['results']
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == old_review.pk
+
+    def test_list_addon_exclude_ratings(self):
+        excluded_review1 = Rating.objects.create(
+            addon=self.addon, body='review excluded 1', user=user_factory(),
+            rating=5)
+        excluded_review2 = Rating.objects.create(
+            addon=self.addon, body='review excluded 2', user=user_factory(),
+            rating=4)
+        excluded_param = ','.join(
+            map(str, (excluded_review1.pk, excluded_review2.pk)))
+        self.test_list_addon(exclude_ratings=excluded_param)
+
+    def test_list_addon_exclude_ratings_single(self):
+        excluded_review1 = Rating.objects.create(
+            addon=self.addon, body='review excluded 1', user=user_factory(),
+            rating=5)
+        excluded_param = str(excluded_review1.pk)
+        self.test_list_addon(exclude_ratings=excluded_param)
+
+    def test_list_addon_exclude_ratings_invalid(self):
+        params = {
+            'addon': self.addon.pk,
+            'exclude_ratings': 'garbage,1'
+        }
+        response = self.client.get(self.url, params)
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data['detail'] == (
+            'exclude_ratings parameter should be an '
+            'integer or a list of integers (separated by a comma).'
+        )
 
     def test_list_user_grouped_ratings_not_present(self):
         return

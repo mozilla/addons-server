@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-05-14 11:59+0000\n"
 "Last-Translator: pratikmdabhi <pratikmdabhi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,9 +129,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "માન્યતા પ્રક્રિયાએ આ મુદ્દાઓ શોધી કાઢ્યાં છે જે અસ્વીકાર તરફ દોરી શકે છે:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "માફ કરશો, કોઈ સમર્થિત પ્લેટફોર્મ મળ્યું નથી."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr ""
 
@@ -228,7 +225,7 @@ msgstr[1] "{0} વપરાશકર્તાઓ"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} એડ-ઑન્સ"
 msgstr[1] "{0} એડ-ઑન્સ"
 

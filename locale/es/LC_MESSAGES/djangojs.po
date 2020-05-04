@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"POT-Creation-Date: 2018-10-08 05:07+0000\n"
 "PO-Revision-Date: 2018-09-11 17:39+0000\n"
 "Last-Translator: RickieES <rpmdisguise-nave@yahoo.es>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,9 +129,6 @@ msgstr ""
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
 
-msgid "Sorry, no supported platform has been found."
-msgstr "Lo sentimos, no se ha encontrado ninguna plataforma compatible."
-
 msgid "The filetype you uploaded isn't recognized."
 msgstr "No se reconoce el tipo de archivo que has subido."
 
@@ -228,7 +225,7 @@ msgstr[1] "{0} usuarios"
 
 #, fuzzy
 msgid "{0} add-on"
-msgid_plural "{0} add-ons, n"
+msgid_plural "{0} add-ons"
 msgstr[0] "{0} complementos"
 msgstr[1] "{0} complementos"
 

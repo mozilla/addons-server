@@ -455,10 +455,9 @@ class AddonSerializer(serializers.ModelSerializer):
         something on the Persona instance, explicitly or not, to avoid 500
         errors and/or SQL queries in ESAddonSerializer."""
         try:
-            # Sadly, https://code.djangoproject.com/ticket/14368 prevents us
-            # from setting obj.persona = None in ESAddonSerializer.fake_object
-            # below. This is fixed in Django 1.9, but in the meantime we work
-            # around it by creating a Persona instance with a custom '_broken'
+            # Setting obj.persona = None in ESAddonSerializer.fake_object()
+            # below sadly isn't enough, so we work around it in that method by
+            # creating a Persona instance with a custom '_broken'
             # attribute indicating that it should not be used.
             if obj.type == amo.ADDON_PERSONA and (
                     obj.persona is None or hasattr(obj.persona, '_broken')):
@@ -646,11 +645,10 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                     popularity=data.get('average_daily_users'),
                 )
             else:
-                # Sadly, https://code.djangoproject.com/ticket/14368 prevents
-                # us from setting obj.persona = None. This is fixed in
-                # Django 1.9, but in the meantime, work around it by creating
-                # a Persona instance with a custom attribute indicating that
-                # it should not be used.
+                # Sadly, although we can set obj.persona = None, this does not
+                # seem to prevent the query later on. So instead, work around
+                # it by creating a Persona instance with a custom attribute
+                # indicating that it should not be used.
                 obj.persona = Persona()
                 obj.persona._broken = True
 
