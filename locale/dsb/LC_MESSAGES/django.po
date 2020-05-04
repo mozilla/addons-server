@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 13:00+0000\n"
+"PO-Revision-Date: 2020-05-04 13:29+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3851,7 +3851,7 @@ msgstr "Wobiniśo zakśebjatnych pśeslědowakow a wobgranicowanjow. Schowajśo 
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Aktualizěrujśo rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Aktualizěrujśo rejtariki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
@@ -3981,7 +3981,7 @@ msgstr "Póstajśo swójski startowy bok za swóje nowe rejtariki."
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Nalicćo swóje rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Nalicćo swóje rejtariki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
@@ -4210,7 +4210,7 @@ msgstr "Pólěpšćo nowe rejtariki {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr "Wócyńśo nowy rejtark napšawo wót swójogo aktualnego rejtarika, nic na kóńcu rědki."
+msgstr "Wócyńśo nowy rejtarik napšawo wót swójogo aktualnego rejtarika, nic na kóńcu rědki."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4524,7 +4524,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Změńśo swój nowy rejtark {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Změńśo swój nowy rejtarik {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
