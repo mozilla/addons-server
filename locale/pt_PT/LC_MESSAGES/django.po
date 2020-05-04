@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
 "PO-Revision-Date: 2020-04-27 18:34+0000\n"
 "Last-Translator: Carlos (SUMO @silva.ac.carlos) <carlos.a.silva@pm.me>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -480,6 +480,9 @@ msgstr "Este URL personalizado não pode ser utilizado."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Este extra já pertence à coleção"
+
+msgid "Signoff State"
+msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6789,7 +6792,7 @@ msgstr ""
 "também tem uma ligação para o nosso Aviso de privacidade que explica como gerimos a sua informação."
 
 #, fuzzy
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 "Antes de começar, por favor leia e aceite o nosso Acordo de distribuição de extras do Firefox e também as nossas Políticas e Regras de revisão. O nosso Acordo de distribuição de extras do Firefox "
 "também tem uma ligação para o nosso Aviso de privacidade que explica como gerimos a sua informação."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -463,6 +463,9 @@ msgid "This custom URL cannot be used."
 msgstr "Ovaj prilagođeni URL se ne može koristiti."
 
 msgid "This add-on already belongs to the collection"
+msgstr ""
+
+msgid "Signoff State"
 msgstr ""
 
 #, python-format
@@ -6897,7 +6900,7 @@ msgstr ""
 "našim napomenama o privatnosti koje objašnjavaju kako mi čuvamo vaše informacije."
 
 #, fuzzy
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 "Prije nego počnete, molimo pročitajte i prihvatite naš Firefox sporazum o distribuciji dodataka kao i naše politike i pravila pregledanja. Firefox sporazum o distribuciji dodataka je povezan sa "
 "našim napomenama o privatnosti koje objašnjavaju kako mi čuvamo vaše informacije."
