@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 12:05+0000\n"
+"PO-Revision-Date: 2020-05-04 12:08+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1904,28 +1904,28 @@ msgid "Header area text and icons"
 msgstr "Tekst a symbole głowowego wobceŕka"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Barwa teksta a symbole w głowowem wobcerku, mimo aktiwnego rejtarka. Pólo manifesta: tab_background_text."
+msgstr "Barwa teksta a symbole w głowowem wobceŕku, mimo aktiwnego rejtarika. Pólo manifesta: tab_background_text."
 
 msgid "Toolbar area background"
-msgstr "Slězyna wobcerka symboloweje rědki"
+msgstr "Slězyna wobceŕka symboloweje rědki"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr "Slězynowa barwa za nawigacisku rědku, rědku cytańskich znamjenjopw a wubrany rejtark. Pólo manifesta: toolbar."
 
 msgid "Toolbar area text and icons"
-msgstr "Tekst a symbole wobcerka symboloweje rědki"
+msgstr "Tekst a symbole wobceŕka symboloweje rědki"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Tekstowa barwa a symbole w symbolowej rědce a w aktiwnem rejtarku. Pólo manifesta: bookmark_text."
 
 msgid "Toolbar field area background"
-msgstr "Slězyna pólnego wobcerka symboloweje rědki"
+msgstr "Slězyna pólnego wobceŕka symboloweje rědki"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Slězynowa barwa za póla w symbolowej rědce, kaž na pś. adresowe pólo. Pólo manifesta: toolbar_field."
 
 msgid "Toolbar field area text"
-msgstr "Tekst pólnego wobcerka symboloweje rědki"
+msgstr "Tekst pólnego wobceŕka symboloweje rědki"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Tekstowa barwa w pólach w symbolowej rědce, na pś. w adresowem pólu Pólo manifesta: toolbar_field_text."
@@ -2079,7 +2079,7 @@ msgstr ""
 "href=\"#\" class=\"close\">Ignorěrowaś</a>"
 
 msgid "View and update application compatibility ranges"
-msgstr "Wobcerki kompatibelnosći z nałoženjami pokazaś a aktualizěrowaś"
+msgstr "Wobceŕki kompatibelnosći z nałoženjami pokazaś a aktualizěrowaś"
 
 msgid "Compatibility"
 msgstr "Kompatibelnosć"
@@ -6405,7 +6405,7 @@ msgid "by Add-on Status"
 msgstr "pó statusu dodanka"
 
 msgid "Custom Date Range"
-msgstr "Swójski datumowy wobcerk"
+msgstr "Swójski datumowy wobceŕk"
 
 msgid "From"
 msgstr "Wót"
@@ -6757,7 +6757,7 @@ msgid "My Favorite Add-ons"
 msgstr "Móje nejlubše dodanki"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Zapódajśo płaśiwy IPv6 abo seśowy wobcerk CIDR IPv6, na pś. 127.0.0.1/28"
+msgstr "Zapódajśo płaśiwy IPv6 abo seśowy wobceŕk CIDR IPv6, na pś. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "Wót wašogo stojnišća su se zapódali někotare dodanki, kótarež se pśeśiwo našym pšawidłam pśejdu. IP-adresa jo se zablokěrowała."
