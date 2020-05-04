@@ -25,6 +25,10 @@ class MLBF():
         # simplify later code by assuming always a string
         self.id = str(id_)
 
+    @cached_property
+    def blocked_versions(self):
+        return self.get_blocked_versions()
+
     @classmethod
     def get_blocked_versions(cls):
         from olympia.files.models import File
@@ -141,7 +145,7 @@ class MLBF():
         stats = {}
 
         if not blocked:
-            blocked_versions = self.get_blocked_versions()
+            blocked_versions = self.blocked_versions
             blocked = blocked_versions.values()
             version_excludes = blocked_versions.keys()
         else:

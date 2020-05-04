@@ -8,12 +8,13 @@ from olympia.zadmin.models import get_config
 from .mlbf import MLBF
 from .models import Block
 from .tasks import (
-    MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY, upload_filter_to_kinto)
+    MLBF_BASE_ID_CONFIG_KEY, MLBF_COUNT_CONFIG_KEY, MLBF_TIME_CONFIG_KEY,
+    upload_filter_to_kinto)
 
 log = olympia.core.logger.getLogger('z.cron')
 
 
-def _get_blocklist_last_modified_time():
+def get_blocklist_last_modified_time():
     latest_block = Block.objects.order_by('-modified').first()
     return int(latest_block.modified.timestamp() * 1000) if latest_block else 0
 
@@ -23,10 +24,7 @@ def upload_mlbf_to_kinto():
         log.info('Upload MLBF to kinto cron job disabled.')
         return
     last_generation_time = get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
-    if last_generation_time > _get_blocklist_last_modified_time():
-        log.info(
-            'No new/modified Blocks in database; skipping MLBF generation')
-        return
+    last_blocked_count = get_config(MLBF_COUNT_CONFIG_KEY, 0, json_value=True)
 
     log.info('Starting Upload MLBF to kinto cron job.')
 
@@ -39,6 +37,16 @@ def upload_mlbf_to_kinto():
     # https://github.com/mozilla/addons-server/issues/13695
     generation_time = int(time.time() * 1000)
     mlbf = MLBF(generation_time)
+
+    need_mlbf = (
+        last_generation_time < get_blocklist_last_modified_time() or
+        last_blocked_count != len(mlbf.blocked_versions))
+    if not need_mlbf:
+        log.info(
+            'No new/modified/deleted Blocks in database; '
+            'skipping MLBF generation')
+        return
+
     mlbf.generate_and_write_mlbf()
 
     base_filter_id = get_config(MLBF_BASE_ID_CONFIG_KEY, 0, json_value=True)

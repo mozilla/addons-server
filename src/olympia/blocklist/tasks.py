@@ -31,6 +31,7 @@ bracket_close_regex = re.compile(r'(?<!\\)}')
 
 MLBF_TIME_CONFIG_KEY = 'blocklist_mlbf_generation_time'
 MLBF_BASE_ID_CONFIG_KEY = 'blocklist_mlbf_base_id'
+MLBF_COUNT_CONFIG_KEY = 'blocklist_mlbf_blocked_count'
 
 BLOCKLIST_RECORD_MLBF_BASE = 'bloomfilter-base'
 BLOCKLIST_RECORD_MLBF_UPDATE = 'bloomfilter-full'
@@ -178,5 +179,6 @@ def upload_filter_to_kinto(generation_time, is_base=True, upload_stash=False):
         server.publish_attachment(data, attachment)
     server.complete_session()
     set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
+    set_config(MLBF_COUNT_CONFIG_KEY, len(mlbf.blocked_json), json_value=True)
     if is_base:
         set_config(MLBF_BASE_ID_CONFIG_KEY, generation_time, json_value=True)
