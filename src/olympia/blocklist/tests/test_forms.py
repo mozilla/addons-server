@@ -2,13 +2,39 @@ from django.contrib import admin as admin_site
 from django.core.exceptions import ValidationError
 from django.test import RequestFactory
 
+from waffle.testutils import override_switch
+
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.blocklist.admin import BlocklistSubmissionAdmin
-from olympia.blocklist.forms import MultiDeleteForm
+from olympia.blocklist.forms import MultiAddForm, MultiDeleteForm
 from olympia.blocklist.models import Block, BlocklistSubmission
 
 
-class TestBlocklistSubmissionForm(TestCase):
+class LegacySyncCheckMixin():
+    def test_v2_blocks_cant_be_edited(self):
+        data = {
+            'guids': 'any@thing\nsecond@thing',
+        }
+        anyblock = Block.objects.create(
+            guid='any@thing', updated_by=user_factory())
+        Block.objects.create(guid='second@thing', updated_by=user_factory())
+
+        form = MultiDeleteForm(data=data)
+        form.is_valid()
+        form.clean()  # would raise
+
+        # Give any@thing a .kinto_id so its sync'd with legacy blocklist
+        anyblock.update(kinto_id='123456')
+        form.is_valid()
+        with self.assertRaises(ValidationError):
+            form.clean()
+
+        # except if the legacy submit waffle is enabled
+        with override_switch('blocklist_legacy_submit', active=True):
+            form.clean  # would raise
+
+
+class TestBlocklistSubmissionForm(LegacySyncCheckMixin, TestCase):
     def setUp(self):
         self.new_addon = addon_factory(
             guid='any@new', average_daily_users=100,
@@ -20,7 +46,6 @@ class TestBlocklistSubmissionForm(TestCase):
             addon=addon_factory(guid='partial@existing'),
             min_version='1',
             max_version='10',
-            include_in_legacy=True,
             updated_by=user_factory())
         self.existing_zero_to_max = Block.objects.create(
             addon=addon_factory(
@@ -28,7 +53,6 @@ class TestBlocklistSubmissionForm(TestCase):
                 version_kw={'version': '10'}),
             min_version='0',
             max_version='*',
-            include_in_legacy=True,
             updated_by=user_factory())
 
     def test_existing_blocks_no_existing(self):
@@ -115,7 +139,7 @@ class TestBlocklistSubmissionForm(TestCase):
         form.clean()  # would raise
 
 
-class TestMultiDeleteForm(TestCase):
+class TestMultiDeleteForm(LegacySyncCheckMixin, TestCase):
     def test_guids_must_exist_for_block_deletion(self):
         data = {
             'guids': 'any@thing\nsecond@thing',
@@ -136,6 +160,41 @@ class TestMultiDeleteForm(TestCase):
         bls = BlocklistSubmission.objects.create(
             input_guids=data['guids'],
             action=BlocklistSubmission.ACTION_DELETE)
+        bls.save()
+        form.is_valid()
+        with self.assertRaises(ValidationError):
+            form.clean()
+
+
+class TestMultiAddForm(LegacySyncCheckMixin, TestCase):
+    def test_guid_must_exist_in_database(self):
+        data = {
+            'guids': 'any@thing',
+        }
+
+        form = MultiAddForm(data=data)
+        form.is_valid()
+        with self.assertRaises(ValidationError):
+            # any@thing doesn't exist
+            form.clean()
+
+        # but that check is bypassed for multiple guids
+        # (which are highlighted on the following page instead)
+        data = {
+            'guids': 'any@thing\nsecond@thing',
+        }
+
+        form = MultiAddForm(data=data)
+        addon_factory(guid='any@thing')
+        Block.objects.create(guid='any@thing', updated_by=user_factory())
+        addon_factory(guid='second@thing')
+        form.is_valid()
+        form.clean()  # would raise
+
+        # except if one of the Blocks is already being changed/deleted
+        bls = BlocklistSubmission.objects.create(
+            input_guids=data['guids'],
+            action=BlocklistSubmission.ACTION_ADDCHANGE)
         bls.save()
         form.is_valid()
         with self.assertRaises(ValidationError):
