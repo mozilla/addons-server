@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 17:29+0000\n"
+"PO-Revision-Date: 2020-05-04 12:55+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4105,7 +4105,7 @@ msgstr "Inspirěrujśo produktiwnosć {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Inspirěrujśo produktiwnosć. Změńśo swój bok nowego rejtarika, aby rědnu slězynu zwobraznił, swój fokus za źeń póstajił a wěcej."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4519,7 +4519,7 @@ msgstr "Wužywajśo źiwne kubłanje {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Kubłanje hynac. Zacytajśo pśipadny nastawk Wikipedije kuždy raz, gaž nowy rejtarik wócynjaśo."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
