@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 12:42+0000\n"
+"PO-Revision-Date: 2020-05-04 12:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3795,7 +3795,7 @@ msgstr "Dajśo se cookiejam zgubiś {start_sub_heading}z {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr "Wulašujśo cookieje awtomatiski, za tym až sćo zacynił rejtark."
+msgstr "Wulašujśo cookieje awtomatiski, za tym až sćo zacynił rejtarik."
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3835,11 +3835,11 @@ msgstr "Wótwónoźćo wabjenje ze swójogo postowego kašćika na zakłaźe web
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Namakajśo swóje rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Namakajśo swóje rejtariki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr "Zastojśo swóje wócynjone rejtarki w pśeglědnej bocnicy."
+msgstr "Zastojśo swóje wócynjone rejtariki w pśeglědnej bocnicy."
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3855,7 +3855,7 @@ msgstr "Aktualizěrujśo rejtarki {start_sub_heading}z {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr "Zacytajśo rejtarki awtomatiski pó nastajonych casowych interwalach znowego."
+msgstr "Zacytajśo rejtariki awtomatiski pó nastajonych casowych interwalach znowego."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3864,7 +3864,7 @@ msgstr "Wótźělśo swóje žywjenja online{start_sub_heading}z {addon_name}{en
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
 msgstr ""
-"Źělśo swójo žywjenje online. Rozeznajśo za šćit priwatnosći mjazy swójimi rozdźělnymi identitami online - źěło, priwatne atd. - z pśez barwu koděrowanymi rejtarkami, kótarež wašu digitalnu "
+"Źělśo swójo žywjenje online. Rozeznajśo za šćit priwatnosći mjazy swójimi rozdźělnymi identitami online - źěło, priwatne atd. - z pśez barwu koděrowanymi rejtarikami, kótarež wašu digitalnu "
 "cookiejowy slěd rozdźěluju."
 
 #. editorial content for the discovery pane.
@@ -3969,7 +3969,7 @@ msgstr "Pśeglědujśo anonymnje. Pśeglědujśo web ze skryteju identitu - samo
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Wužywajśo wizuelne cytańske znamjenja. Mějśo pśistup k swójim nejlubšym sedłam, njedawno zacynjonym rejtarkam a wěcej - wšykno z wjelicnego kachlickego naglěda."
+msgstr "Wužywajśo wizuelne cytańske znamjenja. Mějśo pśistup k swójim nejlubšym sedłam, njedawno zacynjonym rejtarikam a wěcej - wšykno z wjelicnego kachlickego naglěda."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3977,7 +3977,7 @@ msgstr "Nastajśo swój startowy bok {start_sub_heading}z {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr "Póstajśo swójski startowy bok za swóje nowe rejtarki."
+msgstr "Póstajśo swójski startowy bok za swóje nowe rejtariki."
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3985,7 +3985,7 @@ msgstr "Nalicćo swóje rejtarki {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr "Konwertěrujśo wšykne waše wócynjone rejtarki do lisćiny, aby je lažko zastojał a Firefox póspěšył."
+msgstr "Konwertěrujśo wšykne waše wócynjone rejtariki do lisćiny, aby je lažko zastojał a Firefox póspěšył."
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4054,11 +4054,11 @@ msgstr "Pśiměŕśo naglěd websedłow. Změńśo barwy, slězyny bokow a wěce
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pśiměŕśo swój nowy rejtark {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Pśiměŕśo swój nowy rejtarik {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Pśiměŕśo swój bok nowego rejtarka, aby nejlubšu licbu kachlickow, slězynowy wobraz a wěcej zwobraznił."
+msgstr "Pśiměŕśo swój bok nowego rejtarika, aby nejlubšu licbu kachlickow, slězynowy wobraz a wěcej zwobraznił."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4090,15 +4090,15 @@ msgstr "Wócyńśo někotare wótkaze {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag links you want open in new tabs."
-msgstr "Klikniśo z pšaweju tastu a śěgniśo wótkaze, kótarež cośo w nowych rejtarkach wócyniś."
+msgstr "Klikniśo z pšaweju tastu a śěgniśo wótkaze, kótarež cośo w nowych rejtarikach wócyniś."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Wótwołajśo rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Wótwołajśo rejtariki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr "Klikniśo z pšaweju tastu na symbol w swójej symbolowej rědce, aby pśistup k njedawno zacynjonym rejtarkam měł."
+msgstr "Klikniśo z pšaweju tastu na symbol w swójej symbolowej rědce, aby pśistup k njedawno zacynjonym rejtarikam měł."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4106,7 +4106,7 @@ msgstr "Inspirěrujśo produktiwnosć {start_sub_heading}z {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Inspirěrujśo produktiwnosć. Změńśo swój bok nowego rejtarka, aby rědnu slězynu zwobraznił, swój fokus za źeń póstajił a wěcej."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4118,11 +4118,11 @@ msgstr "Blokěrujśo cas rubjece sedła, aby mógał se na aktualny nadawk konce
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Aktualizěrujśo rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Aktualizěrujśo rejtariki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr "Zacytajśo rejtarki awtomatiski pó casowych interwalach znowego."
+msgstr "Zacytajśo rejtariki awtomatiski pó casowych interwalach znowego."
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4206,11 +4206,11 @@ msgstr "Wobgranicujśo pśistup k njepśisłušnemu abo njewitanemu wopśimjeśe
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pólěpšćo nowe rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Pólěpšćo nowe rejtariki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr "Wócyńśo nowy rejtark napšawo wót swójogo aktualnego rejtarka, nic na kóńcu rědki."
+msgstr "Wócyńśo nowy rejtark napšawo wót swójogo aktualnego rejtarika, nic na kóńcu rědki."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4326,7 +4326,7 @@ msgstr "Ekstrahěrujśo wótkaze {start_sub_heading}z {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr "Pokažćo wšykne wótkaze z webboka direktnje w nowych rejtarkach."
+msgstr "Pokažćo wšykne wótkaze z webboka direktnje w nowych rejtarikach."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
