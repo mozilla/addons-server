@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 21:51+0000\n"
+"PO-Revision-Date: 2020-05-04 21:56+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -502,9 +502,8 @@ msgstr "GUID %(guid)s уже находится в ожидании Предст
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Неверный диапазон версий."
+msgstr "Неверная версия"
 
 msgid "Min version can not be greater than Max version"
 msgstr "Мин. версия не может быть больше Макс. версии"
@@ -523,13 +522,12 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Отклонить несколько версий"
+msgstr "Удалить несколько %(name)s"
 
-#, fuzzy
 msgid "Home"
-msgstr "Домашняя страница"
+msgstr "Домой"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -569,24 +567,21 @@ msgstr "Добавить %(name)s"
 msgid "Add-on GUIDs (one per line)"
 msgstr "GUID дополнения (по одному на строку)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "Представить версию"
+msgstr "Представить"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr "%(count)s GUIDs дополнения"
 
-#, fuzzy
 msgid "users"
-msgstr "Пользователей"
+msgstr "пользователи"
 
 msgid "Edit Block"
 msgstr "Редактировать блокировку"
 
-#, fuzzy
 msgid "versions"
-msgstr "Версии"
+msgstr "версии"
 
 msgid "Included in legacy blocklist."
 msgstr "Включено в устаревший блок-лист."
@@ -929,9 +924,8 @@ msgstr "Блокировка удалена"
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID для {addon} добавлен в DeniedGuid."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} удалено из {collection}."
+msgstr "GUID для {addon} удалён из DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -999,9 +993,8 @@ msgstr "Разработчик"
 msgid "Extension"
 msgstr "Расширение"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Обновлённая проверка полной темы"
+msgstr "Устаревшая полная тема"
 
 msgid "Dictionary"
 msgstr "Словарь"
@@ -1028,9 +1021,8 @@ msgstr "Тема (статическая)"
 msgid "Extensions"
 msgstr "Расширения"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Полные темы"
+msgstr "Устаревшие полные темы"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1559,16 +1551,14 @@ msgstr "Низкокачественное, вытянутое или пусто
 msgid "Header image alignment problem"
 msgstr "Проблема выравнивания верхнего изображения"
 
-#, fuzzy
 msgid "No action"
-msgstr "Другие действия"
+msgstr "Нет действий"
 
 msgid "Flag for human review"
 msgstr "Отметить для проверки человеком"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Отключить автоодобрение"
+msgstr "Задержка авто-одобрения"
 
 msgid "Delay auto-approval indefinitely"
 msgstr "Отложить автоодобрение на неопределенный срок"
@@ -5512,10 +5502,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Авто-одобрение временно отложено"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Авто-одобрение задержано на неопределенный срок"
 
 msgid "Is locked by a reviewer"
 msgstr "Заблокировано редактором"
@@ -6138,7 +6128,7 @@ msgid "No reviews found for this period."
 msgstr "Отзывы за этот период не найдены."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Источник:"
 
 msgid "Method:"
 msgstr "Метод:"
@@ -6280,7 +6270,7 @@ msgid "result state"
 msgstr "Начало работы"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "все кроме этого правила"
 
 #, fuzzy
 msgid "presence of a version"
@@ -6313,7 +6303,7 @@ msgid "When unchecked, the scanner results will not be bound to this rule and th
 msgstr ""
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Правила Yara должны иметь определение"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
 msgstr ""
@@ -6332,10 +6322,10 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Прервать"
 
 msgid "Run"
-msgstr ""
+msgstr "Запустить"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
@@ -6901,6 +6891,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Следующий автор был удалён из дополнения %(addon_name)s ( %(addon_url)s ):¶\n"
+"¶\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
