@@ -160,8 +160,8 @@ This endpoint allows you to browse through the contents of an Add-on version.
 
     .. _reviewers-versions-browse-detail:
 
-    :param file: The specific file in the XPI to retrieve. Defaults to manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines.
-    :param file_only: Indicates that the API should only return data for the requested file, and not version data. If this is ``true`` then the only property returned of those listed below is the ``file`` property.
+    :param string file: The specific file in the XPI to retrieve. Defaults to manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines.
+    :param boolean file_only: Indicates that the API should only return data for the requested file, and not version data. If this is ``true`` then the only property returned of those listed below is the ``file`` property.
     :>json string validation_url_json: The absolute url to the addons-linter validation report, rendered as JSON.
     :>json string validation_url: The absolute url to the addons-linter validation report, rendered as HTML.
     :>json boolean has_been_validated: ``True`` if the version has been validated through addons-linter.
