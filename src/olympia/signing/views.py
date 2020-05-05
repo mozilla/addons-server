@@ -137,13 +137,11 @@ class VersionView(APIView):
         """
         If request is not permitted, determine what kind of exception to raise.
 
-         (Lifted from DRF, but also passing the optional code argument to
-          the PermissionDenied exception)
+        (Lifted from DRF, but also passing the optional code argument to
+        the PermissionDenied exception)
         """
         if request.authenticators and not request.successful_authenticator:
             raise exceptions.NotAuthenticated()
-        # If I can't figure out how to properly get the code without breaking
-        # stuff, maybe I can cheat and return an entirely different class here
         raise exceptions.PermissionDenied(
             detail=message, code=code)
 
