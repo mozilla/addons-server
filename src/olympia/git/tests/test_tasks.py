@@ -1,3 +1,5 @@
+import datetime
+
 from unittest import mock
 
 from olympia.amo.tests import TestCase, addon_factory
@@ -13,6 +15,8 @@ from olympia.lib.git import (
     BrokenRefError,
     MissingMasterBranchError,
 )
+
+from olympia.lib.tests.test_git import update_git_repo_creation_time
 
 
 class TestRemoveGitExtractionEntry(TestCase):
@@ -50,7 +54,11 @@ class TestOnExtractionError(TestCase):
         addon_repo = AddonGitRepository(addon)
         # Create the git repo
         addon_repo.git_repository
+        update_git_repo_creation_time(
+            addon_repo, time=datetime.datetime(2019, 1, 1)
+        )
         assert addon_repo.is_extracted
+        assert not addon_repo.is_recent
         # Simulate a git extraction in progress.
         GitExtractionEntry.objects.create(addon_id=addon.pk, in_progress=True)
         # This is the error raised by the task that extracts a version.
@@ -72,7 +80,11 @@ class TestOnExtractionError(TestCase):
         addon_repo = AddonGitRepository(addon)
         # Create the git repo
         addon_repo.git_repository
+        update_git_repo_creation_time(
+            addon_repo, time=datetime.datetime(2019, 1, 1)
+        )
         assert addon_repo.is_extracted
+        assert not addon_repo.is_recent
         # Simulate a git extraction in progress.
         GitExtractionEntry.objects.create(addon_id=addon.pk, in_progress=True)
         # This is the error raised by the task that extracts a version.
@@ -106,6 +118,34 @@ class TestOnExtractionError(TestCase):
 
         assert addon_repo.is_extracted
         assert GitExtractionEntry.objects.count() == 0
+
+    def test_checks_creation_time_before_deleting_repo(self):
+        addon = addon_factory()
+        addon_repo = AddonGitRepository(addon)
+        # Create the git repo
+        addon_repo.git_repository
+        # We do not update the creation time of the git repository here so that
+        # it is less than 1 hour (because the git repository was created in
+        # this test case).
+        assert addon_repo.is_extracted
+        assert addon_repo.is_recent
+        # Simulate a git extraction in progress.
+        GitExtractionEntry.objects.create(addon_id=addon.pk, in_progress=True)
+        # This is the error raised by the task that extracts a version.
+        exc = MissingMasterBranchError('cannot find master branch')
+
+        on_extraction_error(
+            request=None, exc=exc, traceback=None, addon_pk=addon.pk
+        )
+
+        # When the creation time of an add-on git repository is too recent (< 1
+        # hour ago), then we do not delete the repository because it might be
+        # an "extraction loop" problem.
+        assert addon_repo.is_extracted
+        # The task should remove the existing git extraction entry.
+        assert GitExtractionEntry.objects.filter(in_progress=None).count() == 0
+        # The task should NOT re-add the add-on to the git extraction queue.
+        assert GitExtractionEntry.objects.filter(in_progress=True).count() == 0
 
 
 class TestExtractVersionsToGit(TestCase):

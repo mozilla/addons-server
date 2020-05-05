@@ -1,3 +1,5 @@
+import datetime
+
 from pathlib import Path
 from unittest import mock
 
@@ -22,6 +24,8 @@ from olympia.git.management.commands.git_extraction import (
     SWITCH_NAME,
     Command as GitExtractionCommand,
 )
+
+from olympia.lib.tests.test_git import update_git_repo_creation_time
 
 
 class TestGitExtraction(TestCase):
@@ -167,6 +171,9 @@ class TestGitExtraction(TestCase):
         # Force the creation of the git repository.
         repo.git_repository
         assert repo.is_extracted
+        # Set the "creation time" of the git repository to something older than
+        # 1 hour.
+        update_git_repo_creation_time(repo, time=datetime.datetime(2020, 1, 1))
         # Create a broken ref, see:
         # https://github.com/mozilla/addons-server/issues/13590
         Path(f'{repo.git_repository_path}/.git/refs/heads/listed').touch()

@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-import uuid
-import os
 import io
-import shutil
-import tempfile
-import sys
 import mimetypes
+import os
 import posixpath
+import shutil
+import sys
+import tempfile
+import uuid
 
+from datetime import datetime, timedelta
 from collections import namedtuple
 
 import pygit2
@@ -203,6 +204,8 @@ class TemporaryWorktree(object):
 
 class AddonGitRepository(object):
 
+    GIT_DESCRIPTION = '.git/description'
+
     def __init__(self, addon_or_id, package_type='addon'):
         from olympia.addons.models import Addon
         assert package_type in ('addon', 'source')
@@ -245,6 +248,23 @@ class AddonGitRepository(object):
     @property
     def is_extracted(self):
         return os.path.exists(self.git_repository_path)
+
+    @property
+    def is_recent(self):
+        if not self.is_extracted:
+            return False
+        # A git repository is recent when it was created less than 1 hour ago.
+        an_hour_ago = datetime.utcnow() - timedelta(hours=1)
+        mtime = datetime.utcfromtimestamp(
+            os.path.getmtime(
+                # There is no way to get the creation time of a file/folder on
+                # most UNIX systems, so we use a file that is created by
+                # default but never modified (GIT_DESCRIPTION) to determine
+                # whether a git repository is recent or not.
+                os.path.join(self.git_repository_path, self.GIT_DESCRIPTION)
+            )
+        )
+        return mtime > an_hour_ago
 
     @cached_property
     def git_repository(self):
