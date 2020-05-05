@@ -24,6 +24,7 @@ from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL_INDEFINITELY,
     FLAG_FOR_HUMAN_REVIEW,
     QUERY_RULE_STATES,
+    MAD,
     NEW,
     NO_ACTION,
     RESULT_STATES,
@@ -36,8 +37,11 @@ from olympia.constants.scanners import (
 )
 from olympia.files.models import FileUpload
 from olympia.scanners.actions import (
-    _delay_auto_approval, _delay_auto_approval_indefinitely,
-    _flag_for_human_review, _no_action,
+    _delay_auto_approval,
+    _delay_auto_approval_indefinitely,
+    _flag_for_human_review,
+    _flag_for_human_review_by_scanner,
+    _no_action,
 )
 
 
@@ -142,14 +146,35 @@ class AbstractScannerResult(ModelBase):
         """
         log.info('Checking rules and actions for version %s.', version.pk)
 
+        try:
+            mad_result = cls.objects.filter(version=version, scanner=MAD).get()
+            customs = mad_result.results.get('scanners', {}).get('customs', {})
+            customs_score = customs.get('score', 0.5)
+            customs_models_agree = customs.get('result_details', {}).get(
+                'models_agree', True
+            )
+
+            if (
+                customs_score <= 0.01 or
+                customs_score >= 0.99 or
+                not customs_models_agree
+            ):
+                log.info('Flagging version %s for human review by MAD.',
+                         version.pk)
+                _flag_for_human_review_by_scanner(version, MAD)
+        except cls.DoesNotExist:
+            log.debug('No MAD scanner result for version %s.', version.pk)
+            pass
+
         rule_model = cls.matched_rules.rel.model
         result_query_name = cls._meta.get_field(
-            'matched_rules').related_query_name()
+            'matched_rules'
+        ).related_query_name()
 
         rule = (
-            rule_model.objects.filter(**{
-                f'{result_query_name}__version': version, 'is_active': True,
-            })
+            rule_model.objects.filter(
+                **{f'{result_query_name}__version': version, 'is_active': True}
+            )
             .order_by(
                 # The `-` sign means descending order.
                 '-action'
@@ -172,7 +197,8 @@ class AbstractScannerResult(ModelBase):
             FLAG_FOR_HUMAN_REVIEW: _flag_for_human_review,
             DELAY_AUTO_APPROVAL: _delay_auto_approval,
             DELAY_AUTO_APPROVAL_INDEFINITELY: (
-                _delay_auto_approval_indefinitely),
+                _delay_auto_approval_indefinitely
+            ),
         }
 
         action_function = ACTION_FUNCTIONS.get(action_id, None)
@@ -182,7 +208,8 @@ class AbstractScannerResult(ModelBase):
 
         # We have a valid action to execute, so let's do it!
         log.info(
-            'Starting action "%s" for version %s.', action_name, version.pk)
+            'Starting action "%s" for version %s.', action_name, version.pk
+        )
         action_function(version)
         log.info('Ending action "%s" for version %s.', action_name, version.pk)
 
@@ -201,7 +228,7 @@ class AbstractScannerRule(ModelBase):
         help_text=_(
             'When unchecked, the scanner results will not be bound to this '
             'rule and the action will not be executed.'
-        )
+        ),
     )
     definition = models.TextField(null=True, blank=True)
 
@@ -255,13 +282,15 @@ class AbstractScannerRule(ModelBase):
 
         try:
             yara.compile(
-                source=self.definition, externals=self.get_yara_externals())
+                source=self.definition, externals=self.get_yara_externals()
+            )
         except yara.SyntaxError as syntaxError:
-            raise ValidationError({
-                'definition': _('The definition is not valid: %(error)s') % {
-                    'error': syntaxError,
+            raise ValidationError(
+                {
+                    'definition': _('The definition is not valid: %(error)s')
+                    % {'error': syntaxError}
                 }
-            })
+            )
         except Exception:
             raise ValidationError(
                 {
@@ -285,8 +314,7 @@ class ScannerResult(AbstractScannerResult):
         null=True,
     )
     matched_rules = models.ManyToManyField(
-        'ScannerRule', through='ScannerMatch',
-        related_name='results',
+        'ScannerRule', through='ScannerMatch', related_name='results'
     )
     # The value is a decimal between 0 and 1. `-1` is a special value to
     # indicate an error or no score available.
@@ -315,15 +343,20 @@ class ImproperScannerQueryRuleStateError(ValueError):
 
 
 class ScannerQueryRule(AbstractScannerRule):
-    scanner = models.PositiveSmallIntegerField(choices=(
-        (YARA, 'yara'),  # For now code search only allows yara.
-    ), default=YARA)
+    scanner = models.PositiveSmallIntegerField(
+        choices=((YARA, 'yara'),),  # For now code search only allows yara.
+        default=YARA,
+    )
     state = models.PositiveSmallIntegerField(
         choices=QUERY_RULE_STATES.items(), default=NEW
     )
     run_on_disabled_addons = models.BooleanField(
-        default=False, help_text=_('Run this rule on add-ons that have been '
-                                   'force-disabled as well.'))
+        default=False,
+        help_text=_(
+            'Run this rule on add-ons that have been '
+            'force-disabled as well.'
+        ),
+    )
     celery_group_result_id = models.UUIDField(default=None, null=True)
     task_count = models.PositiveIntegerField(default=0)
 
@@ -343,7 +376,7 @@ class ScannerQueryRule(AbstractScannerRule):
             # through the admin to schedule the query.
             RUNNING: (SCHEDULED,),
             # Aborting can happen from various states.
-            ABORTING: (NEW, SCHEDULED, RUNNING,),
+            ABORTING: (NEW, SCHEDULED, RUNNING),
             # Aborted should only happen after aborting.
             ABORTED: (ABORTING,),
             # Completed should only happen through the task
@@ -357,8 +390,10 @@ class ScannerQueryRule(AbstractScannerRule):
     def _get_completed_tasks_count(self):
         if self.celery_group_result_id is not None:
             from olympia.amo.celery import app as celery_app
+
             result = celery_app.GroupResult.restore(
-                str(self.celery_group_result_id))
+                str(self.celery_group_result_id)
+            )
             if result:
                 return result.completed_count()
         return None
@@ -375,8 +410,7 @@ class ScannerQueryRule(AbstractScannerRule):
 class ScannerQueryResult(AbstractScannerResult):
     # Has to be overridden, because the parent refers to ScannerMatch.
     matched_rules = models.ManyToManyField(
-        'ScannerQueryRule', through='ScannerQueryMatch',
-        related_name='results',
+        'ScannerQueryRule', through='ScannerQueryMatch', related_name='results'
     )
 
     class Meta(AbstractScannerResult.Meta):
@@ -387,3 +421,14 @@ class ScannerQueryResult(AbstractScannerResult):
 class ScannerQueryMatch(ModelBase):
     result = models.ForeignKey(ScannerQueryResult, on_delete=models.CASCADE)
     rule = models.ForeignKey(ScannerQueryRule, on_delete=models.CASCADE)
+
+
+class VersionScannerFlags(ModelBase):
+    version = models.OneToOneField(
+        'versions.Version', primary_key=True, on_delete=models.CASCADE
+    )
+    needs_human_review_by_mad = models.BooleanField(default=False)
+
+    @property
+    def needs_human_review(self):
+        return self.needs_human_review_by_mad

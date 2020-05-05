@@ -5,17 +5,24 @@ import pytest
 
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.scanners import (
+    CUSTOMS,
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
     FLAG_FOR_HUMAN_REVIEW,
+    MAD,
     NO_ACTION,
     YARA,
 )
-from olympia.scanners.models import ScannerResult, ScannerRule
+from olympia.scanners.models import (
+    ScannerResult,
+    ScannerRule,
+    VersionScannerFlags,
+)
 from olympia.scanners.actions import (
     _delay_auto_approval,
     _delay_auto_approval_indefinitely,
     _flag_for_human_review,
+    _flag_for_human_review_by_scanner,
     _no_action,
 )
 
@@ -53,6 +60,32 @@ class TestActions(TestCase):
         _delay_auto_approval_indefinitely(version)
         assert addon.auto_approval_delayed_until == datetime.max
         assert version.needs_human_review
+
+    def test_flag_for_human_review_by_scanner(self):
+        version = version_factory(addon=addon_factory())
+        with self.assertRaises(VersionScannerFlags.DoesNotExist):
+            version.versionscannerflags
+
+        _flag_for_human_review_by_scanner(version, MAD)
+
+        assert version.versionscannerflags.needs_human_review_by_mad
+
+    def test_flag_for_human_review_by_scanner_with_existing_flags(self):
+        version = version_factory(addon=addon_factory())
+        VersionScannerFlags.objects.create(version=version)
+
+        assert not version.versionscannerflags.needs_human_review_by_mad
+
+        _flag_for_human_review_by_scanner(version, MAD)
+        version.refresh_from_db()
+
+        assert version.versionscannerflags.needs_human_review_by_mad
+
+    def test_flag_for_human_review_by_scanner_raises_if_not_mad(self):
+        version = version_factory(addon=addon_factory())
+
+        with self.assertRaises(ValueError):
+            assert _flag_for_human_review_by_scanner(version, CUSTOMS)
 
 
 class TestRunAction(TestCase):
@@ -161,3 +194,52 @@ class TestRunAction(TestCase):
 
         assert no_action_mock.called
         assert not flag_for_human_review_mock.called
+
+    def test_flags_for_human_review_by_mad_when_score_is_too_low(self):
+        version = version_factory(addon=addon_factory())
+        results = {'scanners': {'customs': {'score': 0.001}}}
+        ScannerResult.objects.create(
+            version=version, scanner=MAD, results=results
+        )
+
+        ScannerResult.run_action(version)
+
+        assert version.versionscannerflags.needs_human_review_by_mad
+
+    def test_flags_for_human_review_by_mad_when_score_is_too_high(self):
+        version = version_factory(addon=addon_factory())
+        results = {'scanners': {'customs': {'score': 0.99}}}
+        ScannerResult.objects.create(
+            version=version, scanner=MAD, results=results
+        )
+
+        ScannerResult.run_action(version)
+
+        assert version.versionscannerflags.needs_human_review_by_mad
+
+    def test_flags_for_human_review_by_mad_when_models_disagree(self):
+        version = version_factory(addon=addon_factory())
+        results = {
+            'scanners': {
+                'customs': {'result_details': {'models_agree': False}}
+            }
+        }
+        ScannerResult.objects.create(
+            version=version, scanner=MAD, results=results
+        )
+
+        ScannerResult.run_action(version)
+
+        assert version.versionscannerflags.needs_human_review_by_mad
+
+    def test_does_not_flag_for_human_review_by_mad_when_score_is_okay(self):
+        version = version_factory(addon=addon_factory())
+        results = {'scanners': {'customs': {'score': 0.2}}}
+        ScannerResult.objects.create(
+            version=version, scanner=MAD, results=results
+        )
+
+        ScannerResult.run_action(version)
+
+        with self.assertRaises(VersionScannerFlags.DoesNotExist):
+            version.versionscannerflags
