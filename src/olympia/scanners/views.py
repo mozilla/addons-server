@@ -1,7 +1,7 @@
 import waffle
 
 from django.conf import settings
-from django.db.models import CharField, Value
+from django.db.models import CharField, Value, Q
 from django.db.transaction import non_atomic_requests
 from django.http import Http404
 from rest_framework.exceptions import ParseError
@@ -47,13 +47,14 @@ class ScannerResultView(ListAPIView):
             good_results = good_results.filter(scanner=scanner)
 
         good_results = (
-            good_results.exclude(
-                version__versionlog__activity_log__user_id=settings.TASK_USER_ID  # noqa
-            )
-            .filter(
-                version__versionlog__activity_log__action__in=(
-                    amo.LOG.CONFIRM_AUTO_APPROVED.id,
-                    amo.LOG.APPROVE_VERSION.id,
+            good_results.filter(
+                Q(
+                    version__versionlog__activity_log__action__in=(
+                        amo.LOG.CONFIRM_AUTO_APPROVED.id,
+                        amo.LOG.APPROVE_VERSION.id,
+                    )
+                ) & ~Q(
+                    version__versionlog__activity_log__user_id=settings.TASK_USER_ID  # noqa
                 )
             )
             .annotate(label=Value(LABEL_GOOD, output_field=CharField()))

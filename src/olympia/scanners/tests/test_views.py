@@ -50,6 +50,7 @@ class TestScannerResultView(TestCase):
 
     def test_get(self):
         self.create_switch('enable-scanner-results-api', active=True)
+        task_user = user_factory()
         # result labelled as "bad" because its state is TRUE_POSITIVE
         bad_version = version_factory(addon=addon_factory())
         bad_result = ScannerResult.objects.create(
@@ -76,6 +77,14 @@ class TestScannerResultView(TestCase):
         good_version_2 = version_factory(addon=addon_factory())
         good_result_2 = ScannerResult.objects.create(
             scanner=CUSTOMS, version=good_version_2
+        )
+        VersionLog.objects.create(
+            activity_log=ActivityLog.create(
+                action=amo.LOG.APPROVE_VERSION,
+                version=good_version_2,
+                user=task_user,
+            ),
+            version=good_version_2,
         )
         VersionLog.objects.create(
             activity_log=ActivityLog.create(
@@ -107,7 +116,6 @@ class TestScannerResultView(TestCase):
             version=version_3,
         )
         # result NOT labelled as "good" because user is TASK_USER_ID
-        task_user = user_factory()
         version_4 = version_factory(addon=addon_factory())
         ScannerResult.objects.create(scanner=YARA, version=version_4)
         VersionLog.objects.create(
