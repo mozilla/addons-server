@@ -2,6 +2,7 @@ import re
 import time
 from datetime import datetime
 
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 
@@ -20,8 +21,8 @@ from olympia.zadmin.models import set_config
 from .mlbf import MLBF
 from .models import Block, BlocklistSubmission, KintoImport
 from .utils import (
-    block_activity_log_save, KINTO_BUCKET, KINTO_COLLECTION_MLBF,
-    split_regex_to_list)
+    block_activity_log_delete, block_activity_log_save,
+    KINTO_COLLECTION_MLBF, split_regex_to_list)
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -55,7 +56,14 @@ def import_block_from_blocklist(record):
     kinto_id = record.get('id')
     using_db = get_replica()
     log.debug('Processing block id: [%s]', kinto_id)
-    kinto_import = KintoImport(kinto_id=kinto_id, record=record)
+    kinto_import, import_created = KintoImport.objects.update_or_create(
+        kinto_id=kinto_id,
+        defaults={'record': record, 'timestamp': record.get('last_modified')})
+    if not import_created:
+        log.debug('Kinto %s: updating existing KintoImport object', kinto_id)
+        existing_block_ids = (
+            Block.objects.filter(kinto_id__in=(kinto_id, f'*{kinto_id}'))
+                         .values_list('id', flat=True))
 
     guid = record.get('guid')
     if not guid:
@@ -144,13 +152,39 @@ def import_block_from_blocklist(record):
     else:
         kinto_import.outcome = KintoImport.OUTCOME_NOMATCH
         log.debug('Kinto %s: No addon found', kinto_id)
+    if not import_created:
+        # now reconcile the blocks that were connected to the import last time
+        # but weren't changed this time - i.e. blocks we need to delete
+        delete_qs = (
+            Block.objects.filter(id__in=existing_block_ids)
+                         .exclude(id__in=(block.id for block in new_blocks)))
+        for block in delete_qs:
+            block_activity_log_delete(
+                block, delete_user=block_kw['updated_by'])
+            block.delete()
+
     kinto_import.save()
 
 
 @task
+@use_primary_db
+@transaction.atomic
+def delete_imported_block_from_blocklist(kinto_id):
+    existing_blocks = (
+        Block.objects.filter(kinto_id__in=(kinto_id, f'*{kinto_id}')))
+    task_user = get_task_user()
+    for block in existing_blocks:
+        block_activity_log_delete(
+            block, delete_user=task_user)
+        block.delete()
+    KintoImport.objects.get(kinto_id=kinto_id).delete()
+
+
+@task
 def upload_filter_to_kinto(generation_time, is_base=True, upload_stash=False):
+    bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = KintoServer(
-        KINTO_BUCKET, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
+        bucket, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
     mlbf = MLBF(generation_time)
     if is_base:
         # clear the collection for the base - we want to be the only filter

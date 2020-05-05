@@ -1101,6 +1101,9 @@ CELERY_TASK_ROUTES = {
     'olympia.blocklist.tasks.import_block_from_blocklist': {
         'queue': 'priority'
     },
+    'olympia.blocklist.tasks.delete_imported_block_from_blocklist': {
+        'queue': 'priority'
+    },
     'olympia.blocklist.tasks.upload_filter_to_kinto': {
         'queue': 'priority'
     },
@@ -1861,6 +1864,7 @@ CRON_JOBS = {
     'category_totals': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',
 
+    'auto_import_blocklist': 'olympia.blocklist.cron',
     'upload_mlbf_to_kinto': 'olympia.blocklist.cron',
 
     'update_blog_posts': 'olympia.devhub.cron',
@@ -1930,7 +1934,10 @@ YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
-KINTO_API_URL = 'https://kinto.dev.mozaws.net/v1/'
+REMOTE_SETTINGS_API_URL = 'https://kinto.dev.mozaws.net/v1/'
+REMOTE_SETTINGS_WRITER_URL = 'https://kinto.dev.mozaws.net/v1/'
+REMOTE_SETTINGS_WRITER_BUCKET = 'blocklists'
+
 # The kinto test server needs accounts and setting up before using.
 KINTO_API_IS_TEST_SERVER = False
 BLOCKLIST_KINTO_USERNAME = env(

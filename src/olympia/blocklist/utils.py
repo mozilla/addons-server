@@ -1,6 +1,8 @@
 import datetime
 import re
 
+from django.conf import settings
+
 import olympia.core.logger
 from olympia import amo
 from olympia.activity import log_create
@@ -9,7 +11,6 @@ from olympia.lib.kinto import KintoServer
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
 
-KINTO_BUCKET = 'staging'
 KINTO_COLLECTION_LEGACY = 'addons'
 KINTO_COLLECTION_MLBF = 'addons-bloomfilters'
 
@@ -56,7 +57,8 @@ def block_activity_log_save(obj, change, submission_obj=None):
     add_version_log_for_blocked_versions(obj, al)
 
 
-def block_activity_log_delete(obj, submission_obj):
+def block_activity_log_delete(obj, *, submission_obj=None, delete_user=None):
+    assert submission_obj or delete_user
     details = {
         'guid': obj.guid,
         'min_version': obj.min_version,
@@ -76,10 +78,12 @@ def block_activity_log_delete(obj, submission_obj):
         ([obj.addon] if obj.addon else []) +
         [obj.guid, obj])
     al = log_create(
-        *args, details=details, user=submission_obj.updated_by)
+        *args,
+        details=details,
+        user=submission_obj.updated_by if submission_obj else delete_user)
     if obj.addon:
         add_version_log_for_blocked_versions(obj, al)
-    if submission_obj.signoff_by:
+    if submission_obj and submission_obj.signoff_by:
         args = (
             [amo.LOG.BLOCKLIST_SIGNOFF] +
             ([obj.addon] if obj.addon else []) +
@@ -92,7 +96,8 @@ def splitlines(text):
 
 
 def legacy_publish_blocks(blocks):
-    server = KintoServer(KINTO_BUCKET, KINTO_COLLECTION_LEGACY)
+    bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
+    server = KintoServer(bucket, KINTO_COLLECTION_LEGACY)
     for block in blocks:
         needs_updating = block.include_in_legacy and block.kinto_id
         needs_creating = block.include_in_legacy and not block.kinto_id
@@ -136,7 +141,8 @@ def legacy_publish_blocks(blocks):
 
 
 def legacy_delete_blocks(blocks):
-    server = KintoServer(KINTO_BUCKET, KINTO_COLLECTION_LEGACY)
+    bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
+    server = KintoServer(bucket, KINTO_COLLECTION_LEGACY)
     for block in blocks:
         if block.kinto_id and block.include_in_legacy:
             if block.is_imported_from_kinto_regex:

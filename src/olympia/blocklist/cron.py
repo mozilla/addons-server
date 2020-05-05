@@ -1,5 +1,7 @@
 import time
 
+from django.core.management import call_command
+
 import waffle
 
 import olympia.core.logger
@@ -70,3 +72,10 @@ def upload_mlbf_to_kinto():
         generation_time,
         is_base=make_base_filter,
         upload_stash=not make_base_filter)
+
+
+def auto_import_blocklist():
+    if not waffle.switch_is_active('blocklist_auto_import'):
+        log.info('Automatic import_blocklist cron job disabled.')
+        return
+    call_command('import_blocklist')

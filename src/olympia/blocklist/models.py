@@ -554,3 +554,4 @@ class KintoImport(ModelBase):
     record = JSONField(default={})
     outcome = models.SmallIntegerField(
         default=OUTCOME_INCOMPLETE, choices=OUTCOMES.items())
+    timestamp = models.BigIntegerField()

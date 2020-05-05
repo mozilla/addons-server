@@ -1,6 +1,7 @@
 import datetime
 import json
 import os
+import pytest
 from datetime import timedelta
 from unittest import mock
 
@@ -12,7 +13,8 @@ from waffle.testutils import override_switch
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.blocklist.cron import (
-    get_blocklist_last_modified_time, upload_mlbf_to_kinto)
+    auto_import_blocklist, get_blocklist_last_modified_time,
+    upload_mlbf_to_kinto)
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block
 from olympia.blocklist.tasks import (
@@ -226,3 +228,15 @@ class TestUploadToKinto(TestCase):
         assert last_modified == get_blocklist_last_modified_time()
         upload_mlbf_to_kinto()
         assert self.publish_attachment_mock.call_count == 2  # called again
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.blocklist.cron.call_command')
+def test_auto_import_blocklist_waffle(call_command_mock):
+    with override_switch('blocklist_auto_import', active=False):
+        auto_import_blocklist()
+        call_command_mock.assert_not_called()
+
+    with override_switch('blocklist_auto_import', active=True):
+        auto_import_blocklist()
+        call_command_mock.assert_called()

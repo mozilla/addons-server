@@ -46,7 +46,7 @@ class KintoServer(object):
 
     def setup_test_server_auth(self):
         # check if the user already exists in kinto's accounts
-        host = settings.KINTO_API_URL
+        host = settings.REMOTE_SETTINGS_WRITER_URL
         response = requests.get(host, headers=self.headers)
         user_id = response.json().get('user', {}).get('id')
         if user_id != f'account:{self.username}':
@@ -65,7 +65,8 @@ class KintoServer(object):
 
     def setup_test_server_collection(self):
         # check if the bucket exists
-        bucket_url = f'{settings.KINTO_API_URL}buckets/{self.bucket}'
+        bucket_url = (
+            f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}')
         headers = self.headers
         response = requests.get(bucket_url, headers=headers)
         data = {'permissions': {'read': ["system.Everyone"]}}
@@ -94,7 +95,7 @@ class KintoServer(object):
         self.setup()
 
         add_url = (
-            f'{settings.KINTO_API_URL}buckets/{self.bucket}/'
+            f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records')
         json_data = {'data': data}
         if not kinto_id:
@@ -134,7 +135,7 @@ class KintoServer(object):
         json_data = {'data': json.dumps(data)}
         kinto_id = kinto_id or uuid.uuid4()
         attach_url = (
-            f'{settings.KINTO_API_URL}buckets/{self.bucket}/'
+            f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records/{kinto_id}/attachment')
         files = [('attachment', attachment)]
         response = requests.post(
@@ -154,7 +155,7 @@ class KintoServer(object):
     def delete_record(self, kinto_id):
         self.setup()
         url = (
-            f'{settings.KINTO_API_URL}buckets/{self.bucket}/'
+            f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records/{kinto_id}')
         requests.delete(
             url, headers=self.headers)
@@ -163,7 +164,7 @@ class KintoServer(object):
     def delete_all_records(self):
         self.setup()
         url = (
-            f'{settings.KINTO_API_URL}buckets/{self.bucket}/'
+            f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records')
         requests.delete(url, headers=self.headers)
         self._changes = True
@@ -173,7 +174,7 @@ class KintoServer(object):
             return
         self.setup()
         url = (
-            f'{settings.KINTO_API_URL}buckets/{self.bucket}/'
+            f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}')
         status = 'to-review' if self.kinto_sign_off_needed else 'to-sign'
         requests.patch(

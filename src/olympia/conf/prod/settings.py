@@ -109,4 +109,6 @@ FXA_SQS_AWS_QUEUE_URL = (
 EXTENSION_WORKSHOP_URL = env(
     'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.com')
 
-KINTO_API_URL = 'https://settings-writer.prod.mozaws.net/v1/'
+REMOTE_SETTINGS_API_URL = 'https://firefox.settings.services.mozilla.com/v1/'
+REMOTE_SETTINGS_WRITER_URL = 'https://settings-writer.prod.mozaws.net/v1/'
+REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
