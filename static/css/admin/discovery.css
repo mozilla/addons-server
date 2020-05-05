@@ -53,7 +53,7 @@
 
 .dynamic-primaryhero .field-gradient_color li,
 .dynamic-primaryhero .field-image li {
-    display: inline-block;
+    display: inline-flex;
 }
 
 .dynamic-primaryhero .field-gradient_color li div,
