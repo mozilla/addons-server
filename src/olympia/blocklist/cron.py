@@ -8,8 +8,7 @@ from olympia.zadmin.models import get_config
 from .mlbf import MLBF
 from .models import Block
 from .tasks import (
-    MLBF_BASE_ID_CONFIG_KEY, MLBF_COUNT_CONFIG_KEY, MLBF_TIME_CONFIG_KEY,
-    upload_filter_to_kinto)
+    MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY, upload_filter_to_kinto)
 
 log = olympia.core.logger.getLogger('z.cron')
 
@@ -24,7 +23,6 @@ def upload_mlbf_to_kinto():
         log.info('Upload MLBF to kinto cron job disabled.')
         return
     last_generation_time = get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
-    last_blocked_count = get_config(MLBF_COUNT_CONFIG_KEY, 0, json_value=True)
 
     log.info('Starting Upload MLBF to kinto cron job.')
 
@@ -37,10 +35,11 @@ def upload_mlbf_to_kinto():
     # https://github.com/mozilla/addons-server/issues/13695
     generation_time = int(time.time() * 1000)
     mlbf = MLBF(generation_time)
+    previous_filter = MLBF(last_generation_time)
 
     need_mlbf = (
         last_generation_time < get_blocklist_last_modified_time() or
-        last_blocked_count != len(mlbf.blocked_versions))
+        mlbf.blocks_changed_since_previous(previous_filter))
     if not need_mlbf:
         log.info(
             'No new/modified/deleted Blocks in database; '
@@ -50,18 +49,18 @@ def upload_mlbf_to_kinto():
     mlbf.generate_and_write_mlbf()
 
     base_filter_id = get_config(MLBF_BASE_ID_CONFIG_KEY, 0, json_value=True)
-    base_filter = MLBF(base_filter_id) if base_filter_id else None
+    # optimize for when the base_filter was the previous generation so
+    # we don't have to load the blocked JSON file twice.
+    base_filter = (
+        MLBF(base_filter_id)
+        if last_generation_time != base_filter_id else
+        previous_filter)
+
     make_base_filter = (
         not base_filter or mlbf.should_reset_base_filter(base_filter))
     if last_generation_time and not make_base_filter:
         try:
-            # optimize for when the base_filter was the previous generation so
-            # we don't have to load the blocked JSON file twice.
-            previous_mlbf = (
-                MLBF(last_generation_time)
-                if last_generation_time != base_filter_id else
-                base_filter)
-            mlbf.write_stash(previous_mlbf)
+            mlbf.write_stash(previous_filter)
         except FileNotFoundError:
             log.info('No previous blocked.json so we can\'t create a stash.')
             # fallback to creating a new base if stash fails

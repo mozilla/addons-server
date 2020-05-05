@@ -15,7 +15,7 @@ from olympia.blocklist.cron import (
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block
 from olympia.blocklist.tasks import (
-    MLBF_COUNT_CONFIG_KEY, MLBF_TIME_CONFIG_KEY, MLBF_BASE_ID_CONFIG_KEY)
+    MLBF_TIME_CONFIG_KEY, MLBF_BASE_ID_CONFIG_KEY)
 from olympia.lib.kinto import KintoServer
 from olympia.zadmin.models import get_config, set_config
 
@@ -27,6 +27,7 @@ class TestUploadToKinto(TestCase):
         addon_factory()
         self.block = Block.objects.create(
             addon=addon_factory(
+                version_kw={'version': '1.2b3'},
                 file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
         delete_patcher = mock.patch.object(KintoServer, 'delete_all_records')
@@ -52,8 +53,6 @@ class TestUploadToKinto(TestCase):
         assert (
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
             generation_time)
-        assert (
-            get_config(MLBF_COUNT_CONFIG_KEY, json_value=True) == 1)
         assert (
             get_config(MLBF_BASE_ID_CONFIG_KEY, json_value=True) ==
             generation_time)
@@ -100,8 +99,6 @@ class TestUploadToKinto(TestCase):
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
             generation_time)
         assert (
-            get_config(MLBF_COUNT_CONFIG_KEY, json_value=True) == 1)
-        assert (
             get_config(MLBF_BASE_ID_CONFIG_KEY, json_value=True) ==
             123456)
 
@@ -141,8 +138,6 @@ class TestUploadToKinto(TestCase):
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
             generation_time)
         assert (
-            get_config(MLBF_COUNT_CONFIG_KEY, json_value=True) == 1)
-        assert (
             get_config(MLBF_BASE_ID_CONFIG_KEY, json_value=True) ==
             987654)
 
@@ -176,8 +171,6 @@ class TestUploadToKinto(TestCase):
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
             generation_time)
         assert (
-            get_config(MLBF_COUNT_CONFIG_KEY, json_value=True) == 1)
-        assert (
             get_config(MLBF_BASE_ID_CONFIG_KEY, json_value=True) ==
             generation_time)
 
@@ -193,16 +186,20 @@ class TestUploadToKinto(TestCase):
         self.publish_attachment_mock.assert_not_called()
         self.publish_record_mock.assert_not_called()
         assert not get_config(MLBF_TIME_CONFIG_KEY)
-        assert not get_config(MLBF_COUNT_CONFIG_KEY)
 
-    def test_no_block_changes(self):
+    @freeze_time('2020-01-01 12:34:56', as_arg=True)
+    def test_no_block_changes(frozen_time, self):
         # This was the last time the mlbf was generated
         last_time = int(
             datetime.datetime(2020, 1, 1, 12, 34, 1).timestamp() * 1000)
         # And the Block was modified just before so would be included
         self.block.update(modified=datetime.datetime(2020, 1, 1, 12, 34, 0))
         set_config(MLBF_TIME_CONFIG_KEY, last_time, json_value=True)
-        set_config(MLBF_COUNT_CONFIG_KEY, 1, json_value=True)
+        prev_blocked_path = os.path.join(
+            settings.MLBF_STORAGE_PATH, str(last_time), 'blocked.json')
+        with storage.open(prev_blocked_path, 'w') as blocked_file:
+            json.dump([f'{self.block.guid}:1.2b3'], blocked_file)
+
         upload_mlbf_to_kinto()
         # So no need for a new bloomfilter
         self.publish_attachment_mock.assert_not_called()
@@ -219,9 +216,8 @@ class TestUploadToKinto(TestCase):
         assert (
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
             int(datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000))
-        assert (
-            get_config(MLBF_COUNT_CONFIG_KEY, json_value=True) == 2)
 
+        frozen_time.tick()
         # If the first block is deleted the last_modified date won't have
         # changed, but the number of blocks will, so trigger a new filter.
         last_modified = get_blocklist_last_modified_time()
@@ -229,5 +225,3 @@ class TestUploadToKinto(TestCase):
         assert last_modified == get_blocklist_last_modified_time()
         upload_mlbf_to_kinto()
         assert self.publish_attachment_mock.call_count == 2  # called again
-        assert (
-            get_config(MLBF_COUNT_CONFIG_KEY, json_value=True) == 1)
