@@ -5,8 +5,7 @@ from django.conf import settings
 from django.utils.encoding import force_text
 
 from olympia import amo
-from olympia.amo.tests import (
-    APITestClient, ESTestCase, reverse_ns, create_switch)
+from olympia.amo.tests import APITestClient, ESTestCase, reverse_ns
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
 
@@ -82,12 +81,6 @@ class TestRankingScenarios(ESTestCase):
 
     @classmethod
     def setUpTestData(cls):
-        # For simplicity reasons, let's simply use the new algorithm
-        # we're most certainly going to put live anyway
-        # Also, this needs to be created before `setUpTestData`
-        # since we need that setting on index-creation time.
-        create_switch('es-use-classic-similarity')
-
         super().setUpTestData()
 
         # Shouldn't be necessary, but just in case.
@@ -524,51 +517,51 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_tabby_cat(self):
         self._check_scenario('Tabby cat', (
-            ['Tabby Cat', 245.98746],
+            ['Tabby Cat', 41283.527],
         ))
 
     def test_scenario_tabbycat(self):
         self._check_scenario('tabbycat', (
-            ['Tabby Cat', 4.7722564],
-            ['OneTab', 0.88809050],
-            ['FoxyTab', 0.76142323],
-            ['Authenticator', 0.68661183],
-            ['Tab Mix Plus', 0.517044070],
-            ['Open Bookmarks in New Tab', 0.40527225],
-            ['Tab Center Redux', 0.39011657],
-            ['Open image in a new tab', 0.3115263],
-            ['Open Image in New Tab', 0.24481377],
+            ['Tabby Cat', 6080.5405],
+            ['OneTab', 598.97020],
+            ['FoxyTab', 513.5398],
+            ['Tab Mix Plus', 467.46380],
+            ['Authenticator', 463.08344],
+            ['Open Bookmarks in New Tab', 366.40997],
+            ['Tab Center Redux', 352.70758],
+            ['Open image in a new tab', 281.65347],
+            ['Open Image in New Tab', 221.33815],
         ))
 
     def test_scenario_tabbbycat(self):
         self._check_scenario('tabbbycat', (
-            ['Tabby Cat', 4.364307],
-            ['OneTab', 0.887392040],
-            ['FoxyTab', 0.7608244],
-            ['Authenticator', 0.6860718],
-            ['Tab Mix Plus', 0.51663744],
-            ['Open Bookmarks in New Tab', 0.4049535],
-            ['Tab Center Redux', 0.38980976],
-            ['Open image in a new tab', 0.3112813],
-            ['Open Image in New Tab', 0.24462123],
+            ['Tabby Cat', 6080.5405],
+            ['OneTab', 598.97020],
+            ['FoxyTab', 513.5398],
+            ['Tab Mix Plus', 467.4638],
+            ['Authenticator', 463.08344],
+            ['Open Bookmarks in New Tab', 366.40997],
+            ['Tab Center Redux', 352.70758],
+            ['Open image in a new tab', 281.65347],
+            ['Open Image in New Tab', 221.33815],
         ))
 
     def test_scenario_tabbicat(self):
         self._check_scenario('tabbicat', (
-            ['Tabby Cat', 3.4082708],
-            ['OneTab', 0.8880905],
-            ['FoxyTab', 0.76142323],
-            ['Authenticator', 0.68661183],
-            ['Tab Mix Plus', 0.51704407],
-            ['Open Bookmarks in New Tab', 0.40527225],
-            ['Tab Center Redux', 0.39011657],
-            ['Open image in a new tab', 0.3115263],
-            ['Open Image in New Tab', 0.24481377],
+            ['Tabby Cat', 4737.7275],
+            ['OneTab', 598.9702],
+            ['FoxyTab', 513.5398],
+            ['Tab Mix Plus', 467.4638],
+            ['Authenticator', 463.08344],
+            ['Open Bookmarks in New Tab', 366.40997],
+            ['Tab Center Redux', 352.70758],
+            ['Open image in a new tab', 281.65347],
+            ['Open Image in New Tab', 221.33815],
         ))
 
     def test_scenario_tab_center_redux(self):
         self._check_scenario('tab center redux', (
-            ['Tab Center Redux', 55.912884],
+            ['Tab Center Redux', 10081.273],
             # Those used to be found but we now require all terms to be present
             # through minimum_should_match on the fuzzy name query (and they
             # have nothing else to match).
@@ -580,54 +573,54 @@ class TestRankingScenarios(ESTestCase):
         # Should *not* find add-ons that simply mention 'Source', 'Persona',
         # or other words with just 'so' in their name.
         self._check_scenario('websocket', (
-            ['Simple WebSocket Client', 4.808697],
+            ['Simple WebSocket Client', 1786.8812],
         ))
 
     def test_scenario_open_image_new_tab(self):
         self._check_scenario('Open Image in New Tab', (
-            ['Open Image in New Tab', 34.222008],
-            ['Open image in a new tab', 9.426583],
+            ['Open Image in New Tab', 5444.547],
+            ['Open image in a new tab', 1691.5334],
         ))
 
     def test_scenario_coinhive(self):
         # TODO, should match "CoinBlock". Check word delimiting analysis maybe?
         self._check_scenario('CoinHive', (
-            ['Coinhive Blocker', 6.411338],
-            ['NoMiners', 0.33537132],  # via description
+            ['Coinhive Blocker', 1660.5348],
+            ['NoMiners', 69.14771],  # via description
             # ['CoinBlock', 0],  # via prefix search
         ))
 
     def test_scenario_privacy(self):
         self._check_scenario('Privacy', (
-            ['Privacy Badger', 7.620047],
-            ['Google Privacy', 5.577676],  # More users, summary
-            ['Privacy Settings', 5.4482646],
-            ['Privacy Pass', 4.3441887],
-            ['Blur', 0.63106227],
-            ['Ghostery', 0.460052],
+            ['Privacy Badger', 2420.1191],
+            ['Google Privacy', 1758.5703],  # More users, summary
+            ['Privacy Pass', 1702.2438],
+            ['Privacy Settings', 1657.0659],
+            ['Ghostery', 171.25455],
+            ['Blur', 166.41034],
         ))
 
     def test_scenario_firebu(self):
         self._check_scenario('firebu', (
             # The first 3 get a higher score than for 'fireb' in the test below
             # thanks to trigram match.
-            ['Firebug', 3.1661143],
-            ['Firefinder for Firebug', 1.4222624],
-            ['Firebug Autocompleter', 1.2943614],
-            ['Fire Drag', 0.657816],
+            ['Firebug', 1941.4032],
+            ['Firefinder for Firebug', 1052.6279],
+            ['Firebug Autocompleter', 923.6418],
+            ['Fire Drag', 747.00446],
         ))
 
     def test_scenario_fireb(self):
         self._check_scenario('fireb', (
-            ['Firebug', 2.76695],
-            ['Firefinder for Firebug', 1.2667481],
-            ['Firebug Autocompleter', 1.1405021],
-            ['Fire Drag', 0.67270964],
+            ['Firebug', 1624.8761],
+            ['Firefinder for Firebug', 914.9537],
+            ['Firebug Autocompleter', 787.47345],
+            ['Fire Drag', 747.00446],
         ))
 
     def test_scenario_menu_wizzard(self):
         self._check_scenario('Menu Wizzard', (
-            ['Menu Wizard', 0.42687622],  # (fuzzy, typo)
+            ['Menu Wizard', 1426.4114],  # (fuzzy, typo)
             # 'Add-ons Manager Context Menu'  used to be found but we now
             # require all terms to be present through minimum_should_match on
             # the fuzzy name query (and it has nothing else to match).
@@ -635,119 +628,119 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_frame_demolition(self):
         self._check_scenario('Frame Demolition', (
-            ['Frame Demolition', 22.324621],
+            ['Frame Demolition', 4272.2134],
         ))
 
     def test_scenario_demolition(self):
         # Find "Frame Demolition" via a typo
         self._check_scenario('Demolation', (
-            ['Frame Demolition', 0.093964115],
+            ['Frame Demolition', 371.34253],
         ))
 
     def test_scenario_restyle(self):
         self._check_scenario('reStyle', (
-            ['reStyle', 28.525782],
+            ['reStyle', 4339.47],
         ))
 
     def test_scenario_megaupload_downloadhelper(self):
         # Doesn't find "RapidShare DownloadHelper" anymore
         # since we now query by "MegaUpload AND DownloadHelper"
         self._check_scenario('MegaUpload DownloadHelper', (
-            ['MegaUpload DownloadHelper', 38.75448],
+            ['MegaUpload DownloadHelper', 4901.1694],
         ))
 
     def test_scenario_downloadhelper(self):
         # No direct match, "Download Flash and Video" has
         # huge amount of users that puts it first here
         self._check_scenario('DownloadHelper', (
-            ['RapidShare DownloadHelper', 4.9815345],
-            ['MegaUpload DownloadHelper', 3.227568],
-            ['Download Flash and Video', 0.97371477],
-            ['1-Click YouTube Video Download', 0.73211724],
-            ['All Downloader Professional', 0.0809558],
+            ['RapidShare DownloadHelper', 1999.5833],
+            ['MegaUpload DownloadHelper', 1319.8618],
+            ['Download Flash and Video', 820.1136],
+            ['1-Click YouTube Video Download', 663.599],
+            ['All Downloader Professional', 68.18522],
         ))
 
     def test_scenario_megaupload(self):
         self._check_scenario('MegaUpload', (
-            ['MegaUpload DownloadHelper', 5.5333242],
+            ['MegaUpload DownloadHelper', 1515.341],
         ))
 
     def test_scenario_no_flash(self):
         self._check_scenario('No Flash', (
-            ['No Flash', 40.736015],
-            ['Download Flash and Video', 3.120618],
-            ['YouTube Flash Video Player', 2.8127284],
-            ['YouTube Flash Player', 2.7136805],
+            ['No Flash', 7036.971],
+            ['Download Flash and Video', 1378.2156],
+            ['YouTube Flash Player', 1219.1309],
+            ['YouTube Flash Video Player', 1208.8528],
         ))
 
         # Case should not matter.
         self._check_scenario('no flash', (
-            ['No Flash', 40.736015],
-            ['Download Flash and Video', 3.120618],
-            ['YouTube Flash Video Player', 2.8127284],
-            ['YouTube Flash Player', 2.7136805],
+            ['No Flash', 7036.971],
+            ['Download Flash and Video', 1378.2156],
+            ['YouTube Flash Player', 1219.1309],
+            ['YouTube Flash Video Player', 1208.8528],
         ))
 
     def test_scenario_youtube_html5_player(self):
         # Both are found thanks to their descriptions (matches each individual
         # term, then get rescored with a match_phrase w/ slop.
         self._check_scenario('Youtube html5 Player', (
-            ['YouTube Flash Player', 0.36856353],
-            ['No Flash', 0.06741212],
+            ['YouTube Flash Player', 421.6572],
+            ['No Flash', 202.23454],
         ))
 
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario('Disable Hello, Pocket & Reader+', (
-            ['Disable Hello, Pocket & Reader+', 51.88581],  # yeay!
+            ['Disable Hello, Pocket & Reader+', 8470.23],  # yeay!
         ))
 
     def test_scenario_grapple(self):
         """Making sure this scenario works via the API"""
         self._check_scenario('grapple', (
-            ['GrApple Yummy', 0.69091946],
+            ['GrApple Yummy', 249.39111],
         ))
 
     def test_scenario_delicious(self):
         """Making sure this scenario works via the API"""
         self._check_scenario('delicious', (
-            ['Delicious Bookmarks', 0.8113203],
+            ['Delicious Bookmarks', 288.18304],
         ))
 
     def test_scenario_name_fuzzy(self):
         # Fuzzy + minimum_should_match combination means we find these 3 (only
         # 2 terms are required out of the 3)
         self._check_scenario('opeb boocmarks tab', (
-            ['Open Bookmarks in New Tab', 0.35965905],
-            ['Open image in a new tab', 0.07612316],
-            ['Open Image in New Tab', 0.059821595],
+            ['Open Bookmarks in New Tab', 925.5806],
+            ['Open image in a new tab', 198.79366],
+            ['Open Image in New Tab', 156.22253],
         ))
 
     def test_score_boost_name_match(self):
         # Tests that we match directly "Merge Windows" and also find
         # "Merge All Windows" because of slop=1
         self._check_scenario('merge windows', (
-            ['Merge Windows', 6.633535],
-            ['Merge All Windows', 1.27586],
+            ['Merge Windows', 1136.6117],
+            ['Merge All Windows', 364.03912],
         ))
 
         self._check_scenario('merge all windows', (
-            ['Merge All Windows', 7.3235965],
-            ['Merge Windows', 0.056586303],
+            ['Merge All Windows', 1210.4218],
+            ['Merge Windows', 169.08272],
         ))
 
     def test_score_boost_exact_match(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('test addon test21', (
-            ['test addon test21', 7.419672],
-            ['test addon test31', 0.22147967],
-            ['test addon test11', 0.04683423],
+            ['test addon test21', 1237.2482],
+            ['test addon test31', 172.43643],
+            ['test addon test11', 163.7987],
         ))
 
     def test_score_boost_exact_match_description_hijack(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('Amazon 1-Click Lock', (
-            ['Amazon 1-Click Lock', 28.076418],
-            ['1-Click YouTube Video Download', 0.20881501],
+            ['Amazon 1-Click Lock', 4703.019],
+            ['1-Click YouTube Video Download', 126.04798],
         ))
 
     def test_score_boost_exact_match_in_right_language(self):
@@ -755,12 +748,12 @@ class TestRankingScenarios(ESTestCase):
         # First in english. Straightforward: it should be an exact match, the
         # translation exists.
         self._check_scenario('foobar unique english', (
-            ['Foobar unique english', 2.0474255],
+            ['Foobar unique english', 755.6157],
         ), lang='en-US')
 
         # Then in canadian english. Should get the same score.
         self._check_scenario('foobar unique english', (
-            ['Foobar unique english', 2.0474255],
+            ['Foobar unique english', 755.6157],
         ), lang='en-CA')
 
         # Then in british english. This is a bit of an edge case, because the
@@ -775,13 +768,13 @@ class TestRankingScenarios(ESTestCase):
         # contain the lang we requested, instead it will return an object with
         # the default_locale for this addon (fr).
         self._check_scenario('foobar unique english', (
-            ['Foobar unique francais', 2.0474255],
+            ['Foobar unique francais', 755.6157],
         ), lang='en-GB', expected_lang='fr')
 
         # Then check in french. Also straightforward: it should be an exact
         # match, the translation exists, it's even the default locale.
         self._check_scenario('foobar unique francais', (
-            ['Foobar unique francais', 7.6185403],
+            ['Foobar unique francais', 1004.8061],
         ), lang='fr')
 
         # Check with a language that we don't have a translation for (mn), and
@@ -792,7 +785,7 @@ class TestRankingScenarios(ESTestCase):
         assert 'mn' not in SEARCH_LANGUAGE_TO_ANALYZER
         assert 'mn' in settings.LANGUAGES
         self._check_scenario('foobar unique francais', (
-            ['Foobar unique francais', 6.648044],
+            ['Foobar unique francais', 997.5587],
         ), lang='mn', expected_lang='fr')
 
         # Check with a language that we don't have a translation for (ca), and
@@ -803,24 +796,24 @@ class TestRankingScenarios(ESTestCase):
         assert 'ca' in SEARCH_LANGUAGE_TO_ANALYZER
         assert 'ca' in settings.LANGUAGES
         self._check_scenario('foobar unique francais', (
-            ['Foobar unique francais', 4.9706616],
+            ['Foobar unique francais', 997.5587],
         ), lang='ca', expected_lang='fr')
 
         # Check with a language that we do have a translation for (en-US), but
         # we're requesting the string that matches the default locale (fr).
         # Note that the name returned follows the language requested.
         self._check_scenario(u'foobar unique francais', (
-            ['Foobar unique english', 4.957241],
+            ['Foobar unique english', 997.5587],
         ), lang='en-US')
 
     def test_scenario_tab(self):
         self._check_scenario('tab', (
-            ['Tabby Cat', 9.2712755],
-            ['OneTab', 4.11413670],
-            ['Tab Mix Plus', 3.9676570],
-            ['FoxyTab', 3.1683707],
-            ['Tab Center Redux', 3.084665],
-            ['Open Bookmarks in New Tab', 2.9872396],
-            ['Open image in a new tab', 2.5463212],
-            ['Open Image in New Tab', 2.08934],
+            ['Tabby Cat', 3434.2395],
+            ['Tab Mix Plus', 1193.63650],
+            ['OneTab', 1101.7360],
+            ['FoxyTab', 868.19995],
+            ['Open Bookmarks in New Tab', 843.17],
+            ['Tab Center Redux', 840.4496],
+            ['Open image in a new tab', 686.7458],
+            ['Open Image in New Tab', 540.9576],
         ))

@@ -1,7 +1,5 @@
 import copy
 
-import waffle
-
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.indexers import BaseSearchIndexer
@@ -460,14 +458,6 @@ def create_new_index(index_name=None):
         index_name = AddonIndexer.get_index_alias()
 
     index_settings = copy.deepcopy(INDEX_SETTINGS)
-
-    if waffle.switch_is_active('es-use-classic-similarity'):
-        # http://bit.ly/es5-similarity-module-docs
-        index_settings['similarity'] = {
-            'default': {
-                'type': 'classic'
-            }
-        }
 
     config = {
         'mappings': get_mappings(),
