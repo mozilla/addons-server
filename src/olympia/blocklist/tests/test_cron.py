@@ -1,6 +1,7 @@
 import datetime
 import json
 import os
+from datetime import timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -191,9 +192,9 @@ class TestUploadToKinto(TestCase):
     def test_no_block_changes(frozen_time, self):
         # This was the last time the mlbf was generated
         last_time = int(
-            datetime.datetime(2020, 1, 1, 12, 34, 1).timestamp() * 1000)
-        # And the Block was modified just before so would be included
-        self.block.update(modified=datetime.datetime(2020, 1, 1, 12, 34, 0))
+            (frozen_time() - timedelta(seconds=1)).timestamp() * 1000)
+        # And the Block was modified just that before so would be included
+        self.block.update(modified=(frozen_time() - timedelta(seconds=2)))
         set_config(MLBF_TIME_CONFIG_KEY, last_time, json_value=True)
         prev_blocked_path = os.path.join(
             settings.MLBF_STORAGE_PATH, str(last_time), 'blocked.json')

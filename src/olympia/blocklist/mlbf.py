@@ -61,7 +61,7 @@ class MLBF():
         return all_versions
 
     @classmethod
-    def fetch_all_addons_from_db(cls, excluding_version_ids=None):
+    def fetch_all_versions_from_db(cls, excluding_version_ids=None):
         from olympia.versions.models import Version
 
         return (
@@ -154,7 +154,7 @@ class MLBF():
         version_excludes = getattr(
             self, '_version_excludes', self.fetch_blocked_from_db().keys())
         self.not_blocked_json = self.hash_filter_inputs(
-            self.fetch_all_addons_from_db(version_excludes))
+            self.fetch_all_versions_from_db(version_excludes))
         return self.not_blocked_json
 
     @property

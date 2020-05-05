@@ -68,34 +68,34 @@ class TestMLBF(TestCase):
             updated_by=user_factory(),
             min_version='9999')
 
-    def test_all_guids(self):
-        all_guids = MLBF.fetch_all_addons_from_db()
-        assert len(all_guids) == File.objects.count() == 10 + 10
-        assert (self.five_ver.guid, '123.40') in all_guids
-        assert (self.five_ver.guid, '123.5') in all_guids
-        assert (self.five_ver.guid, '123.45.1') in all_guids
-        assert (self.five_ver.guid, '123.5.1') in all_guids
-        assert (self.five_ver.guid, '123.5.2') in all_guids
+    def test_fetch_all_versions_from_db(self):
+        all_versions = MLBF.fetch_all_versions_from_db()
+        assert len(all_versions) == File.objects.count() == 10 + 10
+        assert (self.five_ver.guid, '123.40') in all_versions
+        assert (self.five_ver.guid, '123.5') in all_versions
+        assert (self.five_ver.guid, '123.45.1') in all_versions
+        assert (self.five_ver.guid, '123.5.1') in all_versions
+        assert (self.five_ver.guid, '123.5.2') in all_versions
         over_tuple = (self.over.guid, self.over.addon.current_version.version)
         under_tuple = (
             self.under.guid, self.under.addon.current_version.version)
-        assert over_tuple in all_guids
-        assert under_tuple in all_guids
+        assert over_tuple in all_versions
+        assert under_tuple in all_versions
 
         # repeat, but with excluded version ids
         excludes = [self.five_ver_123_45.id, self.five_ver_123_5.id]
-        all_guids = MLBF.fetch_all_addons_from_db(excludes)
-        assert len(all_guids) == 18
-        assert (self.five_ver.guid, '123.40') not in all_guids
-        assert (self.five_ver.guid, '123.5') not in all_guids
-        assert (self.five_ver.guid, '123.45.1') in all_guids
-        assert (self.five_ver.guid, '123.5.1') in all_guids
-        assert (self.five_ver.guid, '123.5.2') in all_guids
+        all_versions = MLBF.fetch_all_versions_from_db(excludes)
+        assert len(all_versions) == 18
+        assert (self.five_ver.guid, '123.40') not in all_versions
+        assert (self.five_ver.guid, '123.5') not in all_versions
+        assert (self.five_ver.guid, '123.45.1') in all_versions
+        assert (self.five_ver.guid, '123.5.1') in all_versions
+        assert (self.five_ver.guid, '123.5.2') in all_versions
         over_tuple = (self.over.guid, self.over.addon.current_version.version)
         under_tuple = (
             self.under.guid, self.under.addon.current_version.version)
-        assert over_tuple in all_guids
-        assert under_tuple in all_guids
+        assert over_tuple in all_versions
+        assert under_tuple in all_versions
 
     def test_fetch_blocked_from_db(self):
         blocked_versions = MLBF.fetch_blocked_from_db()
@@ -191,7 +191,7 @@ class TestMLBF(TestCase):
             key = mlbf.KEY_FORMAT.format(guid=guid, version=version_str)
             assert key in bfilter
 
-        all_addons = mlbf.fetch_all_addons_from_db(blocked_versions.keys())
+        all_addons = mlbf.fetch_all_versions_from_db(blocked_versions.keys())
         for guid, version_str in all_addons:
             key = mlbf.KEY_FORMAT.format(guid=guid, version=version_str)
             assert key not in bfilter
@@ -236,7 +236,7 @@ class TestMLBF(TestCase):
             assert json.load(stash_file) == full_stash
         assert newer_mlbf.stash_json == full_stash
 
-    def test_should_reset_base_filter(self):
+    def test_should_reset_base_filter_and_blocks_changed_since_previous(self):
         base_mlbf = MLBF('base')
         # should handle the files not existing
         assert MLBF('no_files').should_reset_base_filter(base_mlbf)
