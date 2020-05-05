@@ -10,7 +10,7 @@
     "clean-css": "4.2.3",
     "clean-css-cli": "4.3.0",
     "jqmodal": "1.4.2",
-    "jquery": "3.5.0",
+    "jquery": "3.5.1",
     "jquery.browser": "0.1.0",
     "jquery.cookie": "1.4.1",
     "@claviska/jquery-minicolors": "2.3.4",
