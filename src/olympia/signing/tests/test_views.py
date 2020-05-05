@@ -7,11 +7,13 @@ from unittest import mock
 import responses
 from django.conf import settings
 from django.forms import ValidationError
+from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
 from django.utils import translation
 from freezegun import freeze_time
 from olympia import amo
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
@@ -21,7 +23,8 @@ from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.files.models import File, FileUpload
 from olympia.signing.views import VersionView
 from olympia.users.models import (
-    EmailUserRestriction, IPNetworkUserRestriction, UserProfile)
+    EmailUserRestriction, IPNetworkUserRestriction, UserProfile,
+    UserRestrictionHistory)
 from olympia.versions.models import Version
 from rest_framework.response import Response
 
@@ -1009,6 +1012,52 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
                 addon='@create-webextension', channel='listed')
             assert response.status_code == 202, response.data['error']
             assert addon.tags.filter(tag_text='dynamic theme').exists()
+
+
+class TestTestUploadVersionWebextensionTransactions(
+        BaseUploadVersionTestMixin, TransactionTestCase):
+    # Tests to make sure transactions don't prevent
+    # ActivityLog/UserRestrictionHistory objects to be saved.
+
+    def test_activity_log_saved_on_throttling(self):
+        url = reverse_ns('signing.version')
+        with freeze_time('2019-04-08 15:16:23.42'):
+            for x in range(0, 3):
+                self._add_fake_throttling_action(
+                    view_class=self.view_class,
+                    url=url,
+                    user=self.user,
+                    remote_addr='1.2.3.4',
+                )
+
+            # At this point we should be throttled since we're using the same
+            # user. (we're still inside the frozen time context).
+            response = self.request(
+                'POST',
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': '1.2.3.4'})
+            assert response.status_code == 429, response.content
+        # We should have recorded an ActivityLog.
+        assert ActivityLog.objects.for_user(self.user).filter(
+            action=amo.LOG.THROTTLED.id).exists()
+
+    def test_user_restriction_history_saved_on_permission_denied(self):
+        EmailUserRestriction.objects.create(email_pattern=self.user.email)
+        url = reverse_ns('signing.version')
+        response = self.request(
+            'POST',
+            url=url,
+            addon='@create-webextension',
+            version='1.0',
+            extra_kwargs={'REMOTE_ADDR': '1.2.3.4'})
+        assert response.status_code == 403, response.content
+        assert UserRestrictionHistory.objects.filter(user=self.user).exists()
+        restriction = UserRestrictionHistory.objects.get(user=self.user)
+        assert restriction.ip_address == '1.2.3.4'
+        assert restriction.last_login_ip == '1.2.3.4'
+        assert restriction.get_restriction_display() == 'EmailUserRestriction'
 
 
 class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):

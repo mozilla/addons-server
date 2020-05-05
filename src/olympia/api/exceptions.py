@@ -1,11 +1,14 @@
 import traceback
 
 from django.conf import settings
+from django.core.exceptions import PermissionDenied
 from django.core.signals import got_request_exception
+from django.http import Http404
 
+from rest_framework import exceptions
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.views import exception_handler
+from rest_framework.views import set_rollback
 
 
 def custom_exception_handler(exc, context=None):
@@ -14,20 +17,51 @@ def custom_exception_handler(exc, context=None):
     is caught, returned as a nice DRF Response, while still going to sentry
     etc.
 
-    The default DRF exception handler does some of this work already, but it
-    lets non-api exceptions through, and we don't want that.
+    This is mostly copied from DRF exception handler, with the following
+    changes/additions:
+    - A condition preventing set_rollback() from being called in some cases
+      where we know there might be something to record in the database
+    - Handling of non-API exceptions, returning an 500 error that looks like an
+      API response, while still logging things to Sentry.
     """
     # If propagate is true, bail early.
     if settings.DEBUG_PROPAGATE_EXCEPTIONS:
         raise
 
-    # Call REST framework's default exception handler first,
-    # to get the standard error response.
-    response = exception_handler(exc, context)
+    if isinstance(exc, Http404):
+        exc = exceptions.NotFound()
+    elif isinstance(exc, PermissionDenied):
+        exc = exceptions.PermissionDenied()
 
-    # If the response is None, then DRF didn't handle the exception and we
-    # should do it ourselves.
-    if response is None:
+    if isinstance(exc, exceptions.APIException):
+        headers = {}
+        if getattr(exc, 'auth_header', None):
+            headers['WWW-Authenticate'] = exc.auth_header
+        if getattr(exc, 'wait', None):
+            headers['Retry-After'] = '%d' % exc.wait
+
+        if isinstance(exc.detail, (list, dict)):
+            data = exc.detail
+            code_or_codes = exc.get_codes()
+        else:
+            data = {'detail': exc.detail}
+            code_or_codes = exc.get_codes()
+
+        # If it's not a throttled/permission denied coming from a restriction,
+        # we can roll the current transaction back. Otherwise don't, we may
+        # need to record something in the database.
+        # Note: `code_or_codes` can be a string, or a list of strings, or even
+        # a dict of strings here, depending on what happened. Fortunately the
+        # only thing we care about is the most basic case, a string, we don't
+        # need to test for the rest.
+        if (not isinstance(exc, exceptions.Throttled) and
+            not (isinstance(exc, exceptions.PermissionDenied) and
+                 code_or_codes == 'permission_denied_restriction')):
+            set_rollback()
+        return Response(data, status=exc.status_code, headers=headers)
+    else:
+        # Not a DRF exception, we want to return an APIfied 500 error while
+        # still logging it to Sentry.
         # Start with a generic default error message.
         data = {'detail': 'Internal Server Error'}
 
