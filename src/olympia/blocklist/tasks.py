@@ -2,6 +2,7 @@ import re
 import time
 from datetime import datetime
 
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 
@@ -20,7 +21,7 @@ from olympia.zadmin.models import set_config
 from .mlbf import MLBF
 from .models import Block, BlocklistSubmission, KintoImport
 from .utils import (
-    block_activity_log_delete, block_activity_log_save, KINTO_BUCKET,
+    block_activity_log_delete, block_activity_log_save,
     KINTO_COLLECTION_MLBF, split_regex_to_list)
 
 
@@ -181,8 +182,9 @@ def delete_imported_block_from_blocklist(kinto_id):
 
 @task
 def upload_filter_to_kinto(generation_time, is_base=True, upload_stash=False):
+    bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = KintoServer(
-        KINTO_BUCKET, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
+        bucket, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
     mlbf = MLBF(generation_time)
     if is_base:
         # clear the collection for the base - we want to be the only filter

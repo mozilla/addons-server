@@ -1,6 +1,8 @@
 import datetime
 import re
 
+from django.conf import settings
+
 import olympia.core.logger
 from olympia import amo
 from olympia.activity import log_create
@@ -9,7 +11,6 @@ from olympia.lib.kinto import KintoServer
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
 
-KINTO_BUCKET = 'staging'
 KINTO_COLLECTION_LEGACY = 'addons'
 KINTO_COLLECTION_MLBF = 'addons-bloomfilters'
 
@@ -95,7 +96,8 @@ def splitlines(text):
 
 
 def legacy_publish_blocks(blocks):
-    server = KintoServer(KINTO_BUCKET, KINTO_COLLECTION_LEGACY)
+    bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
+    server = KintoServer(bucket, KINTO_COLLECTION_LEGACY)
     for block in blocks:
         needs_updating = block.include_in_legacy and block.kinto_id
         needs_creating = block.include_in_legacy and not block.kinto_id
@@ -139,7 +141,8 @@ def legacy_publish_blocks(blocks):
 
 
 def legacy_delete_blocks(blocks):
-    server = KintoServer(KINTO_BUCKET, KINTO_COLLECTION_LEGACY)
+    bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
+    server = KintoServer(bucket, KINTO_COLLECTION_LEGACY)
     for block in blocks:
         if block.kinto_id and block.include_in_legacy:
             if block.is_imported_from_kinto_regex:
