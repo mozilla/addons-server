@@ -11,8 +11,7 @@ from django.test.testcases import TransactionTestCase
 from celery import group, task
 from celery.canvas import _chain
 
-from olympia.amo.tests import (
-    addon_factory, create_switch, ESTestCase, reverse_ns)
+from olympia.amo.tests import addon_factory, ESTestCase, reverse_ns
 from olympia.amo.utils import urlparams
 from olympia.lib.es.management.commands import reindex
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
@@ -238,27 +237,3 @@ class TestIndexCommand(ESTestCase):
         for stats.
         """
         self._test_workflow('stats')
-
-
-class TestIndexCommandClassicAlgorithm(TestIndexCommand):
-    """Tests that we correctly set the 'classic' similarity algorithm.
-
-    Refs https://github.com/mozilla/addons-server/issues/8867
-    """
-    def setUp(self):
-        super(TestIndexCommandClassicAlgorithm, self).setUp()
-        create_switch('es-use-classic-similarity')
-
-    def check_settings(self, new_indices):
-        super(TestIndexCommandClassicAlgorithm, self).check_settings(
-            new_indices)
-
-        # We don't want to guess the index name. We are putting this here
-        # explicitly to ensure that we actually run the test for the index
-        # setting instead of using an `if` and failing silently
-        amo_addons_settings = self.es.indices.get_settings('test_amo_addons')
-        settings = amo_addons_settings[list(amo_addons_settings.keys())[0]]
-
-        assert settings['settings']['index']['similarity']['default'] == {
-            'type': 'classic'
-        }
