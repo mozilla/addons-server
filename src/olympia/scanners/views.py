@@ -53,8 +53,7 @@ class ScannerResultView(ListAPIView):
                         amo.LOG.CONFIRM_AUTO_APPROVED.id,
                         amo.LOG.APPROVE_VERSION.id,
                     )
-                )
-                & ~Q(
+                ) & ~Q(
                     version__versionlog__activity_log__user_id=settings.TASK_USER_ID  # noqa
                 )
             )
