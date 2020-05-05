@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
 "PO-Revision-Date: 2019-04-08 09:20+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -484,6 +484,9 @@ msgstr "Bu özel URL kullanılamaz."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Bu eklenti zaten bir koleksiyona ait"
+
+msgid "Signoff State"
+msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6886,7 +6889,7 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 
 #, fuzzy

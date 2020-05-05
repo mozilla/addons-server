@@ -1,10 +1,10 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:59+0000\n"
-"PO-Revision-Date: 2020-05-01 03:49+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"PO-Revision-Date: 2018-10-19 07:21+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -112,7 +112,7 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Se portează pe MDN un supliment Firefox perimat"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Include note privind versiunea (se poate face la pasul următor)."
+msgstr "Include note detaliate despre versiune (se poate face la pasul următor)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Dacă suplimentul necesită un cont pe un site web ca să fie testat pe deplin, include un nume de utilizator de testare și o parolă în Notele către recenzent (se poate face în etapa următoare)."

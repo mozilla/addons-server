@@ -281,12 +281,6 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     # follow /admin/<app>/<model>/*
     r'^admin\/',
 
-    # Exception for admin stuff that doesn't follow admin/<app> convention.
-    r'^addons\/admin\/',
-
-    # Blocklist is also admin-only, but with custom paths & templates.
-    r'^blocklist\/',
-
     # Third-party apps + django.
     r'debug_toolbar',
     r'^rangefilter\/',
@@ -550,14 +544,6 @@ PUENTE = {
             ),
             (
                 '**/templates/admin/**.html',
-                'django_babel.extract.extract_django'
-            ),
-            (
-                '**/templates/addons/admin/**.html',
-                'django_babel.extract.extract_django'
-            ),
-            (
-                '**/templates/blocklist/**.html',
                 'django_babel.extract.extract_django'
             ),
 

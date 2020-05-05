@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 13:49+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"PO-Revision-Date: 2020-05-04 11:44+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -484,6 +484,9 @@ msgstr "Deze aangepaste URL kan niet worden gebruikt."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Deze add-on behoort al tot de collectie"
+
+msgid "Signoff State"
+msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6745,7 +6748,7 @@ msgstr ""
 "Lees en accepteer voordat u begint onze Firefox-add-on-distributieovereenkomst, evenals onze Beoordelingsregels en -beleid. De Firefox-add-on-distributieovereenkomst verwijst tevens naar onze "
 "Privacyverklaring, die uitlegt hoe we met uw gegevens omgaan."
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Lees en accepteer onze Firefox-add-on-distributieovereenkomst, evenals onze Beoordelingsregels en -beleid op {url}"
 
 msgid "an add-on developer replies to my review"

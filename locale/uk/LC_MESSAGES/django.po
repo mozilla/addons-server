@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 01:07+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"PO-Revision-Date: 2020-05-04 13:33+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -475,6 +475,9 @@ msgstr "Цю URL-адресу не можна використати."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Цей додаток вже належить до цієї збірки"
+
+msgid "Signoff State"
+msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6742,8 +6745,8 @@ msgstr ""
 "Перш ніж почати, будь ласка прочитайте і прийміть нашу Угоду про розповсюдження додатків Firefox, а також наші Політики і Правила перевірки. Угода про розповсюдження додатків Firefox також "
 "посилається на Повідомлення про приватність, яке пояснює, як ми обробляємо вашу інформацію."
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "Будь ласка, прочитайте і прийміть нашу Угоду про розповсюдження додатків Firefox, а також наші Політики і Правила перевірки, відвідавши {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgstr "Будь ласка, прочитайте і прийміть нашу Угоду про розповсюдження додатків Firefox, а також наші Політики та Правила перевірки, відвідавши {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "розробник додатку відповідає на мій відгук"

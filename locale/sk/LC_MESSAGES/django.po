@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
 "PO-Revision-Date: 2020-01-07 21:13+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -474,6 +474,9 @@ msgstr "Túto vlastnú URL adresu nie je možné použiť."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Tento doplnok už v kolekcii je"
+
+msgid "Signoff State"
+msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6712,7 +6715,7 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 
 msgid "an add-on developer replies to my review"

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-25 11:17+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"PO-Revision-Date: 2020-05-01 12:47+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -465,6 +465,9 @@ msgstr "Denne tilpassa URL-en kan ikkje brukast."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Denne utvidinga høyrer allereie til samlinga"
+
+msgid "Signoff State"
+msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -3175,9 +3178,8 @@ msgstr "IP-adresse"
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Logg ut"
+msgstr "Registrer deg"
 
 msgid "Thanks!"
 msgstr ""
@@ -6902,7 +6904,7 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr ""
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 
 msgid "an add-on developer replies to my review"

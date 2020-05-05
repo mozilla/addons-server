@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 12:23+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"PO-Revision-Date: 2020-05-04 12:50+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -460,6 +460,9 @@ msgstr "無法使用此自訂網址。"
 
 msgid "This add-on already belongs to the collection"
 msgstr "此附加元件屬於收藏集"
+
+msgid "Signoff State"
+msgstr "確認狀態"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6595,7 +6598,7 @@ msgid ""
 " which explains how we handle your information."
 msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。Firefox 附加元件發行同意書當中亦包含我們的隱私權公告，解釋我們會如何處理您的資訊。"
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "請先到 {url} 閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。"
 
 msgid "an add-on developer replies to my review"

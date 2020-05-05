@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 12:09+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"PO-Revision-Date: 2020-05-03 01:10+0000\n"
+"Last-Translator: Mélanie Chauvel <perso@hack-libre.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -488,6 +488,9 @@ msgstr "Cette adresse personnalisée ne peut pas être utilisée."
 msgid "This add-on already belongs to the collection"
 msgstr "Ce module appartient déjà à la collection"
 
+msgid "Signoff State"
+msgstr ""
+
 #, python-format
 msgid "Block with GUID %(guid)s not found"
 msgstr ""
@@ -508,7 +511,7 @@ msgid "Blocks to be updated are different because Min or Max version has changed
 msgstr ""
 
 msgid "Invalid version"
-msgstr ""
+msgstr "Version invalide"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -530,7 +533,7 @@ msgid "Delete Multiple %(name)s"
 msgstr ""
 
 msgid "Home"
-msgstr ""
+msgstr "Accueil"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -556,14 +559,14 @@ msgid "Update"
 msgstr "Actualiser"
 
 msgid "Reject Submission"
-msgstr ""
+msgstr "Rejeter la soumission"
 
 msgid "Approve Submission"
-msgstr ""
+msgstr "Approuver la soumission"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Ajouter %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
@@ -582,7 +585,7 @@ msgid "Edit Block"
 msgstr ""
 
 msgid "versions"
-msgstr ""
+msgstr "versions"
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -1586,7 +1589,7 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "True positive"
-msgstr ""
+msgstr "Vrai positif"
 
 msgid "False positive"
 msgstr ""
@@ -2778,7 +2781,7 @@ msgid "Do you use any of the following?"
 msgstr "Utilisez-vous l’un des outils suivants ?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Générateurs de code ou minifieurs"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Outils de concaténation de fichiers tel <span class=\"tech-emphasis\">webpack</span>"
@@ -2974,7 +2977,8 @@ msgid ""
 msgstr ""
 "Bonjour,\n"
 "\n"
-"Vous recevez ce message car vous avez demandé de nouvelles clés d’API pour %(domain)s. Afin de recevoir ces clés, veuillez cliquer sur le lien ci-dessous :\n"
+"Vous recevez ce message car vous avez demandé de nouvelles clés d’API pour \n"
+"%(domain)s. Afin de recevoir ces clés, veuillez cliquer sur le lien ci-dessous :\n"
 "\n"
 "%(api_key_confirmation_link)s\n"
 "\n"
@@ -3182,16 +3186,16 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
-msgstr ""
+msgstr "Pour les développeurs"
 
 msgid "For end users"
-msgstr ""
+msgstr "Pour les utilisateurs finaux"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
@@ -3211,10 +3215,10 @@ msgid "I’m okay with Mozilla handling my info as explained in this %(link_open
 msgstr ""
 
 msgid "Sign Up"
-msgstr ""
+msgstr "S’inscrire"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Merci !"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3223,7 +3227,7 @@ msgid "Resources"
 msgstr "Ressources"
 
 msgid "WebExtensions API"
-msgstr ""
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext : compiler et tester des extensions"
@@ -3235,7 +3239,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Badge « Get The Add-on »"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Programme d’extensions recommandées"
 
 msgid "Contribute"
 msgstr "Contribuer"
@@ -3313,7 +3317,7 @@ msgid "User Photo"
 msgstr "Photo de l’utilisateur"
 
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 msgid "Submit or Manage Extensions"
 msgstr ""
@@ -4931,31 +4935,31 @@ msgstr "Certains sites rencontrent des difficultés à lire des vidéos dans Fir
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Sélectionnez, triez et exécutez vos téléchargements plus rapidement."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "Obtenez les dernières prévisions météo directement dans le navigateur."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Supprimez les cookies, l’historique de navigation, et les fichiers en cache en un seul clic."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Supprimez des liens web les éléments qui servent à vous surveiller."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Remplissez automatiquement des dossiers de marque-pages avec vos flux RSS."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organisez facilement un grand nombre d’onglets ouverts."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Créez et personnalisez des groupes d’onglets."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4963,15 +4967,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
-msgstr ""
+msgstr "Remplacez automatiquement les termes insultants sur le Web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Bloquez toutes les pubs — vidéos, popups, bannières, etc."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Regardez des médias en streaming avec vos amis et votre famille où que vous soyez."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4987,7 +4991,7 @@ msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Organiser et gérer ses onglets"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -4995,7 +4999,7 @@ msgstr "La vie privée au-delà des extensions de navigateur"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr "Une meilleure expérience avec les éléments multimédia dans Firefox"
+msgstr "Améliorer la lecture de médias dans Firefox"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
@@ -5037,7 +5041,7 @@ msgid "Could not parse the manifest file."
 msgstr "Impossible d’analyser le fichier manifeste."
 
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Un identifiant de module est nécessaire pour Firefox 47 et les versions antérieures."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "La plus basse valeur prise en charge pour « strict_min_version » est 42.0."
@@ -5102,7 +5106,7 @@ msgstr "Vous ne pouvez pas envoyer ce type de module"
 
 #, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr ""
+msgstr "Vous ne pouvez pas soumettre un module utilisant un identifiant qui se termine par %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Vous ne pouvez pas soumettre une extension signée par Mozilla"
@@ -5550,7 +5554,7 @@ msgstr[0] "{0} jour"
 msgstr[1] "{0} jours"
 
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 msgid "Last Review"
 msgstr "Dernière revue"
@@ -5595,13 +5599,13 @@ msgid "This will reject the selected public versions. The comments will be sent 
 msgstr "Cette action rejettera les versions publiques sélectionnées. Les commentaires seront envoyés au développeur."
 
 msgid "Block Multiple Versions"
-msgstr ""
+msgstr "Bloquer plusieurs versions"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
 msgid "Confirm Multiple Versions"
-msgstr ""
+msgstr "Confirmer plusieurs versions"
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
 msgstr ""
@@ -5955,7 +5959,7 @@ msgid "Reviewer's Guide"
 msgstr "Guide de revue"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – modules complémentaires pour Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6013,10 +6017,10 @@ msgid "Notify me about new listed versions"
 msgstr "M’informer des nouvelles versions listées"
 
 msgid "Allow resubmission"
-msgstr ""
+msgstr "Autoriser une nouvelle soumission"
 
 msgid "Deny resubmission"
-msgstr ""
+msgstr "Interdire une nouvelle soumission"
 
 msgid "Force-disable add-on"
 msgstr "Forcer la désactivation du module"
@@ -6028,7 +6032,7 @@ msgid "View Blocklist Submission"
 msgstr ""
 
 msgid "Block add-on"
-msgstr ""
+msgstr "Bloquer le module"
 
 msgid "Update add-on block"
 msgstr ""
@@ -6264,10 +6268,10 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "La définition n’est pas valide : %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Une erreur est survenue pendant la compilation de la définition"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
@@ -6329,13 +6333,13 @@ msgid "Version already exists. Latest version is: %s."
 msgstr "Cette version existe déjà. La dernière version est : %s."
 
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr ""
+msgstr "Seules les WebExtensions sont autorisées à omettre l’identifiant de module"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
 
 msgid "Invalid Add-on ID in URL or package"
-msgstr ""
+msgstr "Identifiant de module invalide dans l’URL ou le paquet"
 
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
 msgstr ""
@@ -6686,10 +6690,10 @@ msgstr "Bannir les utilisateurs sélectionnés"
 
 #, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
+msgstr "Les sessions des utilisateurs « %(users)s » ont été réinitialisées."
 
 msgid "Reset session"
-msgstr ""
+msgstr "Réinitialiser la session"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6758,7 +6762,7 @@ msgstr ""
 "Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox ainsi que notre politique et nos règles de révision. L’accord de distribution pour les"
 " modules complémentaires Firefox possède un lien vers notre politique de confidentialité qui explique comment nous gérons les informations vous concernant."
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 
 msgid "an add-on developer replies to my review"
@@ -6793,7 +6797,7 @@ msgid "Ban"
 msgstr "Exclure"
 
 msgid "Reset session(s)"
-msgstr ""
+msgstr "Réinitialiser les sessions"
 
 msgid "Delete picture"
 msgstr "Supprimer l’image"

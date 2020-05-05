@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
 "PO-Revision-Date: 2020-04-22 22:47+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
@@ -480,6 +480,9 @@ msgstr "이 URL은 사용할 수 없습니다."
 
 msgid "This add-on already belongs to the collection"
 msgstr "이 부가 기능은 이미 컬렉션에 속해 있습니다"
+
+msgid "Signoff State"
+msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6831,7 +6834,7 @@ msgstr ""
 "니다."
 
 #, fuzzy
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 "시작하기 전에 Firefox 부가 기능 배포 계약과 검토 정책과 규칙에 대해서 읽고 동의해주세요. Firefox 부가 기능 배포 계약은 사용자의 정보를 다루는 기준이 명시된 우리의 개인정보 보호 고지와 연결되어 있습"
 "니다."

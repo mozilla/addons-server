@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -688,6 +688,10 @@ msgstr ""
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
+#: src/olympia/blocklist/admin.py:48
+msgid "Signoff State"
+msgstr ""
+
 #: src/olympia/blocklist/forms.py:32
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -728,100 +732,100 @@ msgstr ""
 msgid "Review Unlisted"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/block_change_form.html:7
+#: src/olympia/blocklist/templates/admin/blocklist/block_change_form.html:7
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/block_change_form.html:8
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:75
+#: src/olympia/blocklist/templates/admin/blocklist/block_change_form.html:8
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:75
 msgid ""
 "Any change made will NOT be updated in the legacy blocklist - you must make a"
 " manual change via kinto admin webui."
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/block_change_list.html:9
+#: src/olympia/blocklist/templates/admin/blocklist/block_change_list.html:9
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:20
-#: src/olympia/blocklist/templates/blocklist/multi_guid_input.html:17
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:20
+#: src/olympia/blocklist/templates/admin/blocklist/multi_guid_input.html:17
 msgid "Home"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:36
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:36
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:44
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:44
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:74
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:74
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:115
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:115
 #: src/olympia/reviewers/templates/reviewers/motd.html:11
 #: src/olympia/reviewers/templates/reviewers/review.html:182
 msgid "Save"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_add_form.html:116
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_add_form.html:116
 msgid "Save and add more"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_change_form.html:8
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_change_form.html:8
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:20
 msgid "Delete"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_change_form.html:11
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_change_form.html:11
 #: src/olympia/stats/templates/stats/popup.html:27
 msgid "Update"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_change_form.html:14
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_change_form.html:14
 msgid "Reject Submission"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/blocklistsubmission_change_form.html:17
+#: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_change_form.html:17
 msgid "Approve Submission"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/multi_guid_input.html:20
+#: src/olympia/blocklist/templates/admin/blocklist/multi_guid_input.html:20
 #, python-format
 msgid "Add %(name)s"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/multi_guid_input.html:29
+#: src/olympia/blocklist/templates/admin/blocklist/multi_guid_input.html:29
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/multi_guid_input.html:41
+#: src/olympia/blocklist/templates/admin/blocklist/multi_guid_input.html:41
 msgid "Submit"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/includes/enhanced_blocks.html:3
+#: src/olympia/blocklist/templates/admin/blocklist/includes/enhanced_blocks.html:3
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/includes/enhanced_blocks.html:10
+#: src/olympia/blocklist/templates/admin/blocklist/includes/enhanced_blocks.html:10
 msgid "users"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/includes/enhanced_blocks.html:15
+#: src/olympia/blocklist/templates/admin/blocklist/includes/enhanced_blocks.html:15
 msgid "Edit Block"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/includes/logs.html:13
+#: src/olympia/blocklist/templates/admin/blocklist/includes/logs.html:13
 msgid "versions"
 msgstr ""
 
-#: src/olympia/blocklist/templates/blocklist/includes/logs.html:17
+#: src/olympia/blocklist/templates/admin/blocklist/includes/logs.html:17
 msgid "Included in legacy blocklist."
 msgstr ""
 
@@ -3759,8 +3763,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:153
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:173
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:25
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:36
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:66
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:38
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:70
 #: src/olympia/templates/includes/forms.html:2
 #: src/olympia/templates/includes/forms.html:6
 msgid "required"
@@ -4150,51 +4154,51 @@ msgstr ""
 msgid "Theme name"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:36
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:38
 msgid "Select a header image for your theme"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:41
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:43
 msgid "Recommended height: 200 pixels"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:42
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:44
 msgid "6.9MB max"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:43
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:45
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:44
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:46
 msgid "Aligned to top-right"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:49
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:53
 msgid "Select a different header image"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:52
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:56
 msgid "Select colors for your theme"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:68
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:72
 msgid "optional"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:82
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:86
 msgid "Browser preview"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:110
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:112
 msgid "Uploading Theme"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:110
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:112
 msgid "Finish Theme"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:118
+#: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:120
 msgid "Back"
 msgstr ""
 
@@ -7082,45 +7086,45 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:965
+#: src/olympia/discovery/strings.jinja2:968
 msgid "Extensions are like apps for Firefox."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:967
+#: src/olympia/discovery/strings.jinja2:970
 msgid ""
 "They add features to Firefox to make browsing faster, safer, or just plain "
 "fun."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:969
+#: src/olympia/discovery/strings.jinja2:972
 msgid "See all extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:971
+#: src/olympia/discovery/strings.jinja2:974
 msgid "Tab organizers and tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:973
+#: src/olympia/discovery/strings.jinja2:976
 msgid "Privacy beyond browser extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:975
+#: src/olympia/discovery/strings.jinja2:978
 msgid "Media enhancers for Firefox"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:977
-#: src/olympia/discovery/strings.jinja2:981
+#: src/olympia/discovery/strings.jinja2:980
+#: src/olympia/discovery/strings.jinja2:984
 msgid "Explore extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:979
+#: src/olympia/discovery/strings.jinja2:982
 msgid "Learn More"
 msgstr ""
 
@@ -9553,8 +9557,8 @@ msgstr ""
 
 #: src/olympia/users/models.py:890
 msgid ""
-"Please read and accept our Firefox on Distribution Agreement as well as our "
-"Review Policies and Rules by visiting {url}"
+"Please read and accept our Firefox Add-on Distribution Agreement as well as "
+"our Review Policies and Rules by visiting {url}"
 msgstr ""
 
 #: src/olympia/users/notifications.py:23

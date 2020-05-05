@@ -39,12 +39,13 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         log.debug('Exporting blocklist to file')
-        generate_kw = {}
+        mlbf = MLBF(options.get('id'))
+
         if options.get('block_guids_input'):
-            generate_kw['blocked'] = (
+            mlbf.blocked_json = MLBF.hash_filter_inputs(
                 self.load_json(options.get('block_guids_input')))
         if options.get('addon_guids_input'):
-            generate_kw['not_blocked'] = (
+            mlbf.not_blocked_json = MLBF.hash_filter_inputs(
                 self.load_json(options.get('addon_guids_input')))
 
-        MLBF(options.get('id')).generate_and_write_mlbf(**generate_kw)
+        mlbf.generate_and_write_mlbf()

@@ -1303,26 +1303,43 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
 
-        expected = [
-            ('All', '?'),
-            ('Pending', '?signoff_state__exact=0'),
-            ('Approved', '?signoff_state__exact=1'),
-            ('Rejected', '?signoff_state__exact=2'),
-            ('No Sign-off', '?signoff_state__exact=3'),
-            ('Published to Blocks', '?signoff_state__exact=4'),
+        # default is to only show Pending (signoff_state=0)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-blocks_count').text() == '2 add-ons'
+
+        expected_filters = [
+            ('All', '?signoff_state=all'),
+            ('Pending', '?signoff_state=0'),
+            ('Approved', '?signoff_state=1'),
+            ('Rejected', '?signoff_state=2'),
+            ('No Sign-off', '?signoff_state=3'),
+            ('Published to Blocks', '?signoff_state=4'),
         ]
         filters = [
             (x.text, x.attrib['href']) for x in doc('#changelist-filter a')
         ]
-        assert filters == expected
+        assert filters == expected_filters
+        # Should be shown as selected too
+        assert doc('#changelist-filter li.selected a').text() == 'Pending'
 
+        # Repeat with the Pending filter explictly selected
         response = self.client.get(self.submission_list_url, {
-            'signoff_state__exact': 0,
+            'signoff_state': 0,
         })
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
         assert doc('.field-blocks_count').text() == '2 add-ons'
+        assert doc('#changelist-filter li.selected a').text() == 'Pending'
+
+        # And then lastly with all submissions showing
+        response = self.client.get(self.submission_list_url, {
+            'signoff_state': 'all'
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 3
+        assert doc('#changelist-filter li.selected a').text() == 'All'
 
 
 class TestBlockAdminEdit(TestCase):

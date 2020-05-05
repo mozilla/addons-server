@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -501,6 +501,9 @@ msgstr "This username cannot be used."
 #, fuzzy
 msgid "This add-on already belongs to the collection"
 msgstr "This url is already in use by another collection"
+
+msgid "Signoff State"
+msgstr "Signoff State"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -7392,7 +7395,7 @@ msgid ""
 msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 
 #, fuzzy
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 
 msgid "an add-on developer replies to my review"

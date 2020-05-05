@@ -12,6 +12,7 @@ from olympia.constants.scanners import (
     COMPLETED,
     CUSTOMS,
     FALSE_POSITIVE,
+    MAD,
     NEW,
     RUNNING,
     SCANNERS,
@@ -42,6 +43,9 @@ class TestScannerResultMixin:
 
     def create_wat_result(self):
         return self.model.objects.create(scanner=WAT)
+
+    def create_mad_result(self):
+        return self.model.objects.create(scanner=MAD)
 
     def create_fake_yara_match(
         self, rule='some-yara-rule', tags=None, description='some description',
@@ -176,35 +180,30 @@ class TestScannerResultMixin:
         result = self.create_wat_result()
         assert result.get_git_repository() is None
 
-    def test_can_report_feedback_is_false_when_there_is_no_match(self):
-        result = self.create_customs_result()
-        assert not result.can_report_feedback()
-
     def test_can_report_feedback(self):
         result = self.create_customs_result()
-        result.has_matches = True
         assert result.can_report_feedback()
 
     def test_can_report_feedback_is_false_when_state_is_not_unknown(self):
         result = self.create_customs_result()
-        result.has_matches = True
         result.state = FALSE_POSITIVE
         assert not result.can_report_feedback()
 
     def test_can_report_feedback_is_false_when_scanner_is_wat(self):
         result = self.create_wat_result()
-        result.has_matches = True
+        assert not result.can_report_feedback()
+
+    def test_can_report_feedback_is_false_when_scanner_is_mad(self):
+        result = self.create_mad_result()
         assert not result.can_report_feedback()
 
     def test_can_revert_feedback_for_triaged_result(self):
         result = self.create_yara_result()
-        result.has_matches = True
         result.state = FALSE_POSITIVE
         assert result.can_revert_feedback()
 
     def test_cannot_revert_feedback_for_untriaged_result(self):
         result = self.create_yara_result()
-        result.has_matches = True
         assert result.state == UNKNOWN
         assert not result.can_revert_feedback()
 

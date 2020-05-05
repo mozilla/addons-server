@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 13:28+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"PO-Revision-Date: 2020-05-04 14:36+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -461,6 +461,9 @@ msgstr "不能使用此自定义网址。"
 
 msgid "This add-on already belongs to the collection"
 msgstr "此附加组件已在收藏集中"
+
+msgid "Signoff State"
+msgstr "确认状态"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6606,7 +6609,7 @@ msgid ""
 " which explains how we handle your information."
 msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则。Firefox 附加组件分发协议还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "在开始之前，请访问 {url} 阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则"
 
 msgid "an add-on developer replies to my review"

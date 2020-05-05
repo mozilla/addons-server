@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
 "PO-Revision-Date: 2020-03-19 00:02+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -480,6 +480,9 @@ msgstr "Man tikirel ta nokisäx re ichinan URL re'."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Re tz'aqat re' k'o chi pa ri mol"
+
+msgid "Signoff State"
+msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6852,7 +6855,7 @@ msgstr ""
 "yaruk'waj pa ri Qatzijol richin Ichinanem, chi ri' nitzijöx rub'eyal xtiqanuk'samajij ri awetamab'al."
 
 #, fuzzy
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 "Chuwäch natikirisaj, tasik'ij chuqa' tak'ulu' ri Qajunamil richin Kitaluxik Kitz'aqat Firefox chuqa' ri taq Qab'eyal chuqa' taq Qana'ojil richin Nik'oxïk. Pa ri Junamil chuqa' xtawïl jun ximonel "
 "yaruk'waj pa ri Qatzijol richin Ichinanem, chi ri' nitzijöx rub'eyal xtiqanuk'samajij ri awetamab'al."

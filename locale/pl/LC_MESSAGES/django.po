@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -493,6 +493,9 @@ msgstr "Nie można użyć tego niestandardowego adresu URL."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ten dodatek już należy do kolekcji"
+
+msgid "Signoff State"
+msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6938,7 +6941,7 @@ msgstr ""
 "łącze do Powiadomienia o prywatności, które wyjaśnia, jak postępujemy z Twoimi informacjami."
 
 #, fuzzy
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 "Przed rozpoczęciem przeczytaj i zaakceptuj Umowę dotyczącą dystrybucji dodatków Firefoksa, a także nasze Zasady i reguły sprawdzania. Umowa dotycząca dystrybucji dodatków Firefoksa zawiera również "
 "łącze do Powiadomienia o prywatności, które wyjaśnia, jak postępujemy z Twoimi informacjami."

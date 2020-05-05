@@ -26,7 +26,7 @@ class MLBF():
         self.id = str(id_)
 
     @classmethod
-    def get_blocked_versions(cls):
+    def fetch_blocked_from_db(cls):
         from olympia.files.models import File
         from olympia.blocklist.models import Block
 
@@ -61,7 +61,7 @@ class MLBF():
         return all_versions
 
     @classmethod
-    def get_all_guids(cls, excluding_version_ids=None):
+    def fetch_all_versions_from_db(cls, excluding_version_ids=None):
         from olympia.versions.models import Version
 
         return (
@@ -117,6 +117,21 @@ class MLBF():
         with storage.open(self._blocked_path, 'r') as json_file:
             return json.load(json_file)
 
+    def fetch_blocked_json(self):
+        """A safer version of .blocked_json that will generate from the db
+        if the cached_property isn't set."""
+        try:
+            return self.blocked_json
+        except FileNotFoundError:
+            # when self._blocked_path doesn't exist
+            pass
+        blocked_versions = self.fetch_blocked_from_db()
+        blocked = blocked_versions.values()
+        # cache version ids so query in fetch_not_blocked_json is efficient
+        self._version_excludes = blocked_versions.keys()
+        self.blocked_json = self.hash_filter_inputs(blocked)
+        return self.blocked_json
+
     @property
     def _not_blocked_path(self):
         return os.path.join(
@@ -127,34 +142,38 @@ class MLBF():
         with storage.open(self._not_blocked_path, 'r') as json_file:
             return json.load(json_file)
 
+    def fetch_not_blocked_json(self):
+        """A safer version of .not_blocked_json that will generate from the db
+        if the cached_property isn't set."""
+        try:
+            return self.not_blocked_json
+        except FileNotFoundError:
+            # when self._not_blocked_path doesn't exist
+            pass
+        # see fetch_blocked_json
+        version_excludes = getattr(
+            self, '_version_excludes', self.fetch_blocked_from_db().keys())
+        self.not_blocked_json = self.hash_filter_inputs(
+            self.fetch_all_versions_from_db(version_excludes))
+        return self.not_blocked_json
+
     @property
-    def stash_path(self):
+    def _stash_path(self):
         return os.path.join(
             settings.MLBF_STORAGE_PATH, self.id, 'stash.json')
 
     @cached_property
     def stash_json(self):
-        with storage.open(self.stash_path, 'r') as json_file:
+        with storage.open(self._stash_path, 'r') as json_file:
             return json.load(json_file)
 
-    def generate_and_write_mlbf(self, *, blocked=None, not_blocked=None):
+    def generate_and_write_mlbf(self):
         stats = {}
-
-        if not blocked:
-            blocked_versions = self.get_blocked_versions()
-            blocked = blocked_versions.values()
-            version_excludes = blocked_versions.keys()
-        else:
-            version_excludes = ()
-
-        self.blocked_json = self.hash_filter_inputs(blocked)
-        self.not_blocked_json = self.hash_filter_inputs(
-            not_blocked or self.get_all_guids(version_excludes))
 
         bloomfilter = self.generate_mlbf(
             stats=stats,
-            blocked=self.blocked_json,
-            not_blocked=self.not_blocked_json)
+            blocked=self.fetch_blocked_json(),
+            not_blocked=self.fetch_not_blocked_json())
         # write bloomfilter
         mlbf_path = self.filter_path
         with storage.open(mlbf_path, 'wb') as filter_file:
@@ -191,7 +210,7 @@ class MLBF():
             'unblocked': list(deletes),
         }
         # write stash
-        stash_path = self.stash_path
+        stash_path = self._stash_path
         with storage.open(stash_path, 'w') as json_file:
             log.info("Writing to file {}".format(stash_path))
             json.dump(self.stash_json, json_file)
@@ -200,8 +219,18 @@ class MLBF():
         try:
             # compare base with current blocks
             extras, deletes = self.generate_diffs(
-                previous_base_mlbf.blocked_json, self.blocked_json)
+                previous_base_mlbf.blocked_json, self.fetch_blocked_json())
             return (len(extras) + len(deletes)) > self.BASE_REPLACE_THRESHOLD
+        except FileNotFoundError:
+            # when previous_base_mlfb._blocked_path doesn't exist
+            return True
+
+    def blocks_changed_since_previous(self, previous_base_mlbf):
+        try:
+            # compare base with current blocks
+            extras, deletes = self.generate_diffs(
+                previous_base_mlbf.blocked_json, self.fetch_blocked_json())
+            return bool(extras) or bool(deletes)
         except FileNotFoundError:
             # when previous_base_mlfb._blocked_path doesn't exist
             return True

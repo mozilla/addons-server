@@ -29,6 +29,8 @@
       </ul>
         {% else %}
           <input type="text" id="theme-name"/>
+          <ul class="general-validation-error errorlist validator">
+          </ul>
         {% endif %}
     </div>
     <div id="theme-header" class="row" data-existing-header="{{ existing_properties.get('images', {}).get('theme_frame','') }}">
@@ -45,6 +47,8 @@
       </ul>
       <ul class="errorlist"></ul>
       <img class="preview" alt="">
+      <ul class="header-image-error errorlist validator">
+      </ul>
       <a href="#" class="reset">
         {{ _('Select a different header image') }}</a>
     </div>
@@ -96,8 +100,6 @@
       {{ new_addon_form.compatible_apps.errors }}
       {{ new_addon_form.upload.errors }}
       {{ new_addon_form.non_field_errors() }}
-      <ul class="errorlist validator">
-      </ul>
       <div class="submission-buttons addon-submission-field">
         <button class="button upload"
             {% if addon %}

@@ -14,6 +14,7 @@ class IsSubmissionAllowedFor(BasePermission):
         checker = UploadRestrictionChecker(request)
         if not checker.is_submission_allowed():
             self.message = checker.get_error_message()
+            self.code = 'permission_denied_restriction'
             return False
         return True
 

@@ -8,7 +8,11 @@ from olympia.git.tasks import (
     on_extraction_error,
     extract_versions_to_git,
 )
-from olympia.lib.git import AddonGitRepository, BrokenRefError
+from olympia.lib.git import (
+    AddonGitRepository,
+    BrokenRefError,
+    MissingMasterBranchError,
+)
 
 
 class TestRemoveGitExtractionEntry(TestCase):
@@ -57,6 +61,29 @@ class TestOnExtractionError(TestCase):
         )
 
         # The task should remove the git repository on BrokenRefError.
+        assert not addon_repo.is_extracted
+        # The task should remove the existing git extraction entry.
+        assert GitExtractionEntry.objects.filter(in_progress=True).count() == 0
+        # The task should re-add the add-on to the git extraction queue.
+        assert GitExtractionEntry.objects.filter(in_progress=None).count() == 1
+
+    def test_handles_missing_master_branch(self):
+        addon = addon_factory()
+        addon_repo = AddonGitRepository(addon)
+        # Create the git repo
+        addon_repo.git_repository
+        assert addon_repo.is_extracted
+        # Simulate a git extraction in progress.
+        GitExtractionEntry.objects.create(addon_id=addon.pk, in_progress=True)
+        # This is the error raised by the task that extracts a version.
+        exc = MissingMasterBranchError('cannot find master branch')
+
+        on_extraction_error(
+            request=None, exc=exc, traceback=None, addon_pk=addon.pk
+        )
+
+        # The task should remove the git repository on
+        # MissingMasterBranchError.
         assert not addon_repo.is_extracted
         # The task should remove the existing git extraction entry.
         assert GitExtractionEntry.objects.filter(in_progress=True).count() == 0

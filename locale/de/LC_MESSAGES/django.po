@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 16:54+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"PO-Revision-Date: 2020-05-04 18:16+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -483,6 +483,9 @@ msgstr "Diese benutzerdefinierte Adresse kann nicht verwendet werden."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Dieses Add-on gehört dieser Sammlung bereits an"
+
+msgid "Signoff State"
+msgstr "Status der Freischaltung"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6757,8 +6760,8 @@ msgstr ""
 "Bevor Sie beginnen, lesen und akzeptieren Sie bitte unsere Einverständniserklärung zur Verteilung von Firefox-Add-ons sowie unsere Regeln und Richtlinien zu Überprüfungen. Die "
 "Einverständniserklärung verweist auch auf unseren Datenschutzhinweis, der erklärt, wie wir mit Ihren Daten umgehen."
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "Bitte lesen und akzeptieren Sie unsere Firefox-Vertriebsvereinbarung sowie unsere Überprüfungsrichtlinien und -regeln unter {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgstr "Bitte lesen und akzeptieren Sie unsere Firefox-Add-on-Vertriebsvereinbarung sowie unsere Überprüfungsrichtlinien und -regeln unter {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "Ein Add-on-Entwickler antwortet auf meine Bewertung"

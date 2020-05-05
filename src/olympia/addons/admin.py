@@ -63,7 +63,7 @@ class FileInline(admin.TabularInline):
     readonly_fields = tuple(set(fields) - set(editable_fields))
     can_delete = False
     view_on_site = False
-    template = 'addons/admin/file_inline.html'
+    template = 'admin/addons/file_inline.html'
     checks_class = FileInlineChecks
 
     def version__version(self, obj):

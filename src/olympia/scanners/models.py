@@ -24,6 +24,7 @@ from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL_INDEFINITELY,
     FLAG_FOR_HUMAN_REVIEW,
     QUERY_RULE_STATES,
+    MAD,
     NEW,
     NO_ACTION,
     RESULT_STATES,
@@ -117,14 +118,10 @@ class AbstractScannerResult(ModelBase):
         return res
 
     def can_report_feedback(self):
-        return (
-            self.has_matches and self.state == UNKNOWN and self.scanner != WAT
-        )
+        return self.state == UNKNOWN and self.scanner not in [WAT, MAD]
 
     def can_revert_feedback(self):
-        return (
-            self.has_matches and self.state != UNKNOWN and self.scanner != WAT
-        )
+        return self.state != UNKNOWN and self.scanner not in [WAT, MAD]
 
     def get_git_repository(self):
         return {

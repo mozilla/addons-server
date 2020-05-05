@@ -3,9 +3,9 @@ pyinotify==0.9.6 \
 # ipython / ipdb for easier debugging, supervisor to run services
 ipdb==0.13.2 \
     --hash=sha256:77fb1c2a6fccdfee0136078c9ed6fe547ab00db00bebff181f1e8c9e13418d49
-ipython==7.13.0 \
-    --hash=sha256:ca478e52ae1f88da0102360e57e528b92f3ae4316aabac80a2cd7f7ab2efb48a \
-    --hash=sha256:eb8d075de37f678424527b5ef6ea23f7b80240ca031c2dd6de5879d687a65333
+ipython==7.14.0 \
+    --hash=sha256:5b241b84bbf0eb085d43ae9d46adf38a13b45929ca7774a740990c2c242534bb \
+    --hash=sha256:f0126781d0f959da852fb3089e170ed807388e986a8dd4e6ac44855845b0fb1c
 watchdog[watchmedo]==0.10.2 \
     --hash=sha256:c560efb643faed5ef28784b2245cf8874f939569717a4a12826a173ac644456b
 # Dependencies for IPython
@@ -50,6 +50,6 @@ simplegeneric==0.8.1 \
 isort==4.3.21 \
     --hash=sha256:54da7e92468955c4fceacd0c86bd0ec997b0e1ee80d97f67c35a78b719dccab1 \
     --hash=sha256:6e811fcb295968434526407adb8796944f1988c5b65e8139058f2014cbe100fd
-supervisor==4.1.0 \
-    --hash=sha256:2dc86fe0476e945e61483d614ceb2cf4f93b95282eb243bdf792621994360383 \
-    --hash=sha256:a76b2f77a560f2dc411c0254a4eb15f555e99faac48621b0f1fc9ab013944f47
+supervisor==4.2.0 \
+    --hash=sha256:7720750ebb83ac16204ff7037c3d828ba2e0502fa0b29e6de40bc6482b08a55c \
+    --hash=sha256:64082ebedf6d36ff409ab2878f1aad5c9035f916c5f15a9a1ec7dffc6dfbbed8

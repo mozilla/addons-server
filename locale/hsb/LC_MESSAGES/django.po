@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-30 15:26+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"PO-Revision-Date: 2020-05-04 14:42+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -470,6 +470,9 @@ msgstr "Tutón swójski URL njeda so wužiwać."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Tutón přidatk hižo k zběrce słuša"
+
+msgid "Signoff State"
+msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6758,8 +6761,8 @@ msgstr ""
 "Prjedy hač započnjeće, čitajće a akceptujće prošu naše dojednanje wo rozdźělowanju a naše přepruwowanske zasady a prawidła. Dojednanje wo rozdźělowanju Firefox tež na naš pokazku priwatnosće "
 "wotkazuje, kotryž wujasnja, kak z wašimi informacijemi wobchadźamy."
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "Wopytajće {url} a čitajće a akceptujće prošu naše dojednanje wo rozdźělowanju Firefox a naše přepruwowanske směrnicy a prawidła."
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgstr "Wopytajće {url} a čitajće a akceptujće prošu naše dojednanje wo rozdźělowanju přidatkow Firefox a naše přepruwowanske směrnicy a prawidła."
 
 msgid "an add-on developer replies to my review"
 msgstr "wuwiwar přidatka na moje pohódnoćenje wotmołwja"

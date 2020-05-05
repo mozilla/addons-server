@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 11:58+0000\n"
-"PO-Revision-Date: 2020-04-29 19:32+0000\n"
+"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"PO-Revision-Date: 2020-05-04 12:01+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -471,6 +471,9 @@ msgstr "Denna anpassade URL kan inte användas."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Denna tillägg hör redan till samlingen"
+
+msgid "Signoff State"
+msgstr "Signoff-tillstånd"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -6719,8 +6722,8 @@ msgstr ""
 "Innan du börjar, läs och acceptera vårt distributionsavtal för Firefox-tillägg samt våra granskningsprinciper och regler. Distributionsavtalet för Firefox-tillägg länkar också till vår "
 "sekretesspolicy som förklarar hur vi hanterar din information."
 
-msgid "Please read and accept our Firefox on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "Läs och acceptera vårt distributionsavtal samt våra granskningsregler och regler genom att besöka {url}"
+msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgstr "Läs och acceptera vårt distributionsavtal för Firefox-tillägg samt våra granskningsregler och regler genom att besöka {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "en tilläggsutvecklare svarar på min recension"

@@ -202,14 +202,21 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         Check if the request should be permitted for a given object.
         Raises an appropriate exception if the request is not permitted.
 
-        Calls DRF implementation, but adds `is_disabled_by_developer` to the
-        exception being thrown so that clients can tell the difference between
-        a 401/403 returned because an add-on has been disabled by their
-        developer or something else.
+        Calls DRF implementation, but adds `is_disabled_by_developer` and
+        `is_disabled_by_mozilla` to the exception being thrown so that clients
+        can tell the difference between a 401/403 returned because an add-on
+        has been disabled by their developer or something else.
         """
         try:
             super(AddonViewSet, self).check_object_permissions(request, obj)
         except exceptions.APIException as exc:
+            # Override exc.detail with a dict so that it's returned as-is in
+            # the response. The base implementation for exc.get_codes() does
+            # not expect dicts in that format, so override it as well with a
+            # lambda that returns what would have been returned before our
+            # changes.
+            codes = exc.get_codes()
+            exc.get_codes = lambda: codes
             exc.detail = {
                 'detail': exc.detail,
                 'is_disabled_by_developer': obj.disabled_by_user,

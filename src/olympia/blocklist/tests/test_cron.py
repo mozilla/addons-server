@@ -2,6 +2,7 @@ import datetime
 import json
 import os
 import pytest
+from datetime import timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -11,7 +12,8 @@ from freezegun import freeze_time
 from waffle.testutils import override_switch
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.blocklist.cron import auto_import_blocklist, upload_mlbf_to_kinto
+from olympia.blocklist.cron import (
+    auto_import_blocklist, get_blocklist_last_modified_time, upload_mlbf_to_kinto)
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block
 from olympia.blocklist.tasks import (
@@ -27,6 +29,7 @@ class TestUploadToKinto(TestCase):
         addon_factory()
         self.block = Block.objects.create(
             addon=addon_factory(
+                version_kw={'version': '1.2b3'},
                 file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
         delete_patcher = mock.patch.object(KintoServer, 'delete_all_records')
@@ -186,13 +189,19 @@ class TestUploadToKinto(TestCase):
         self.publish_record_mock.assert_not_called()
         assert not get_config(MLBF_TIME_CONFIG_KEY)
 
-    def test_no_block_changes(self):
+    @freeze_time('2020-01-01 12:34:56', as_arg=True)
+    def test_no_block_changes(frozen_time, self):
         # This was the last time the mlbf was generated
         last_time = int(
-            datetime.datetime(2020, 1, 1, 12, 34, 1).timestamp() * 1000)
-        # And the Block was modified just before so would be included
-        self.block.update(modified=datetime.datetime(2020, 1, 1, 12, 34, 0))
+            (frozen_time() - timedelta(seconds=1)).timestamp() * 1000)
+        # And the Block was modified just that before so would be included
+        self.block.update(modified=(frozen_time() - timedelta(seconds=2)))
         set_config(MLBF_TIME_CONFIG_KEY, last_time, json_value=True)
+        prev_blocked_path = os.path.join(
+            settings.MLBF_STORAGE_PATH, str(last_time), 'blocked.json')
+        with storage.open(prev_blocked_path, 'w') as blocked_file:
+            json.dump([f'{self.block.guid}:1.2b3'], blocked_file)
+
         upload_mlbf_to_kinto()
         # So no need for a new bloomfilter
         self.publish_attachment_mock.assert_not_called()
@@ -210,6 +219,15 @@ class TestUploadToKinto(TestCase):
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
             int(datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000))
 
+        frozen_time.tick()
+        # If the first block is deleted the last_modified date won't have
+        # changed, but the number of blocks will, so trigger a new filter.
+        last_modified = get_blocklist_last_modified_time()
+        self.block.delete()
+        assert last_modified == get_blocklist_last_modified_time()
+        upload_mlbf_to_kinto()
+        assert self.publish_attachment_mock.call_count == 2  # called again
+        
 
 @pytest.mark.django_db
 @mock.patch('olympia.blocklist.cron.call_command')
