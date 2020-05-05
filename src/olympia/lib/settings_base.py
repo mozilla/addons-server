@@ -1948,7 +1948,8 @@ YARA_GIT_REPOSITORY = env('YARA_GIT_REPOSITORY', default=None)
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
-KINTO_API_URL = 'https://kinto.dev.mozaws.net/v1/'
+REMOTE_SETTINGS_API_URL = 'https://kinto.dev.mozaws.net/v1/'
+RS_WRITER_API_URL = 'https://kinto.dev.mozaws.net/v1/'
 # The kinto test server needs accounts and setting up before using.
 KINTO_API_IS_TEST_SERVER = False
 BLOCKLIST_KINTO_USERNAME = env(

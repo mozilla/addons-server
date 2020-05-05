@@ -20,12 +20,12 @@ class TestKintoServer(TestCase):
         server = KintoServer('foo', 'baa')
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL,
+            settings.RS_WRITER_API_URL,
             content_type='application/json',
             json={'user': {'id': ''}})
         responses.add(
             responses.PUT,
-            settings.KINTO_API_URL + 'accounts/test_username',
+            settings.RS_WRITER_API_URL + 'accounts/test_username',
             content_type='application/json',
             json={'data': {'password': 'test_password'}},
             status=201)
@@ -34,7 +34,7 @@ class TestKintoServer(TestCase):
         # If repeated then the account should exist the 2nd time
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL,
+            settings.RS_WRITER_API_URL,
             content_type='application/json',
             json={'user': {'id': 'account:test_username'}})
         server.setup_test_server_auth()
@@ -44,22 +44,22 @@ class TestKintoServer(TestCase):
         # if the server 403s on the bucket it's because it doesn't exist
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL + 'buckets/foo',
+            settings.RS_WRITER_API_URL + 'buckets/foo',
             content_type='application/json',
             status=403)
         responses.add(
             responses.PUT,
-            settings.KINTO_API_URL + 'buckets/foo',
+            settings.RS_WRITER_API_URL + 'buckets/foo',
             content_type='application/json')
         # if the server 404s on the collection it's because it doesn't exist
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
+            settings.RS_WRITER_API_URL + 'buckets/foo/collections/baa',
             content_type='application/json',
             status=404)
         responses.add(
             responses.PUT,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
+            settings.RS_WRITER_API_URL + 'buckets/foo/collections/baa',
             content_type='application/json',
             status=201)
         server.setup_test_server_collection()
@@ -69,16 +69,16 @@ class TestKintoServer(TestCase):
         # But if the bucket exists then the collection should still be created
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL + 'buckets/foo',
+            settings.RS_WRITER_API_URL + 'buckets/foo',
             content_type='application/json')
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
+            settings.RS_WRITER_API_URL + 'buckets/foo/collections/baa',
             content_type='application/json',
             status=404)
         responses.add(
             responses.PUT,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa',
+            settings.RS_WRITER_API_URL + 'buckets/foo/collections/baa',
             content_type='application/json',
             status=201)
         server.setup_test_server_collection()
@@ -96,11 +96,11 @@ class TestKintoServer(TestCase):
         server = KintoServer('foo', 'baa')
         responses.add(
             responses.GET,
-            settings.KINTO_API_URL,
+            settings.RS_WRITER_API_URL,
             content_type='application/json',
             json={'user': {'id': 'account:test_username'}})
         bucket_url = (
-            settings.KINTO_API_URL +
+            settings.RS_WRITER_API_URL +
             'buckets/foo_test_username')
         responses.add(
             responses.GET,
@@ -123,7 +123,7 @@ class TestKintoServer(TestCase):
         assert not server._changes
         responses.add(
             responses.POST,
-            settings.KINTO_API_URL + 'buckets/foo/collections/baa/records',
+            settings.RS_WRITER_API_URL + 'buckets/foo/collections/baa/records',
             content_type='application/json',
             json={'data': {'id': 'new!'}})
 
@@ -132,7 +132,7 @@ class TestKintoServer(TestCase):
         assert record == {'id': 'new!'}
 
         url = (
-            settings.KINTO_API_URL +
+            settings.RS_WRITER_API_URL +
             'buckets/foo/collections/baa/records/an-id')
         responses.add(
             responses.PUT,
@@ -150,7 +150,7 @@ class TestKintoServer(TestCase):
         server._setup_done = True
         assert not server._changes
         url = (
-            settings.KINTO_API_URL +
+            settings.RS_WRITER_API_URL +
             'buckets/foo/collections/baa/records/1234567890/attachment')
         responses.add(
             responses.POST,
@@ -164,7 +164,7 @@ class TestKintoServer(TestCase):
         assert record == {'id': '1234567890'}
 
         url = (
-            settings.KINTO_API_URL +
+            settings.RS_WRITER_API_URL +
             'buckets/foo/collections/baa/records/an-id/attachment')
         responses.add(
             responses.POST,
@@ -181,7 +181,7 @@ class TestKintoServer(TestCase):
         server._setup_done = True
         assert not server._changes
         url = (
-            settings.KINTO_API_URL +
+            settings.RS_WRITER_API_URL +
             'buckets/foo/collections/baa/records/an-id')
         responses.add(
             responses.DELETE,
@@ -196,7 +196,7 @@ class TestKintoServer(TestCase):
         server._setup_done = True
         assert not server._changes
         url = (
-            settings.KINTO_API_URL +
+            settings.RS_WRITER_API_URL +
             'buckets/foo/collections/baa/records')
         responses.add(
             responses.DELETE,
@@ -214,7 +214,7 @@ class TestKintoServer(TestCase):
 
         server._changes = True
         url = (
-            settings.KINTO_API_URL +
+            settings.RS_WRITER_API_URL +
             'buckets/foo/collections/baa')
         responses.add(
             responses.PATCH,
@@ -233,7 +233,7 @@ class TestKintoServer(TestCase):
 
         server._changes = True
         url = (
-            settings.KINTO_API_URL +
+            settings.RS_WRITER_API_URL +
             'buckets/foo/collections/baa')
         responses.add(
             responses.PATCH,

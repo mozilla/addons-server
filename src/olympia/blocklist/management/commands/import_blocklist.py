@@ -1,5 +1,6 @@
 import requests
 
+from django.conf import settings
 from django.core.management.base import BaseCommand
 
 import olympia.core.logger
@@ -15,12 +16,12 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 class Command(BaseCommand):
     help = ('Populate AMO blocklist by importing v2 JSON blocklist from kinto')
 
-    KINTO_JSON_BLOCKLIST_URL = 'https://firefox.settings.services.mozilla.com/v1/buckets/blocklists/collections/addons/records'  # noqa
-
     def handle(self, *args, **options):
-        log.debug(
-            'Downloading blocklist from %s', self.KINTO_JSON_BLOCKLIST_URL)
-        response = requests.get(self.KINTO_JSON_BLOCKLIST_URL)
+        LEGACY_BLOCKLIST_URL = (
+            settings.REMOTE_SETTINGS_API_URL +
+            'buckets/blocklists/collections/addons/records')
+        log.debug('Downloading blocklist from %s', LEGACY_BLOCKLIST_URL)
+        response = requests.get(LEGACY_BLOCKLIST_URL)
 
         data = response.json()['data']
         kinto_ids = [record['id'] for record in data]

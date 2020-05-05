@@ -11,7 +11,6 @@ import responses
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.blocklist.management.commands import import_blocklist
 
 from ..models import Block, KintoImport
 
@@ -28,7 +27,8 @@ class TestImportBlocklist(TestCase):
     def setUp(self):
         responses.add(
             responses.GET,
-            import_blocklist.Command.KINTO_JSON_BLOCKLIST_URL,
+            settings.REMOTE_SETTINGS_API_URL +
+            'buckets/blocklists/collections/addons/records',
             json=blocklist_json)
         self.task_user = user_factory(
             id=settings.TASK_USER_ID, username='mozilla')
