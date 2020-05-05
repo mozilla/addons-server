@@ -307,6 +307,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'average_daily_users',
             'categories',
             'contributions_url',
+            'created',
             'current_version',
             'default_locale',
             'description',
@@ -344,6 +345,8 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def to_representation(self, obj):
         data = super(AddonSerializer, self).to_representation(obj)
+        request = self.context.get('request', None)
+
         if 'theme_data' in data and data['theme_data'] is None:
             data.pop('theme_data')
         if ('request' in self.context and
@@ -361,6 +364,8 @@ class AddonSerializer(serializers.ModelSerializer):
                 # In addition, their average_daily_users number must come from
                 # the popularity field of the attached Persona.
                 data['average_daily_users'] = obj.persona.popularity
+        if request and is_gate_active(request, 'del-addons-created-field'):
+            data.pop('created', None)
         return data
 
     def outgoingify(self, data):
