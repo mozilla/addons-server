@@ -39,8 +39,8 @@ MarkupSafe==1.1.1 \
     --hash=sha256:cd5df75523866410809ca100dc9681e301e3c27567cf498077e8551b6d20e42f \
     --hash=sha256:e249096428b3ae81b08327a63a485ad0878de3fb939049038579ac0ef61e17e7
 # maxminddb is required by geoip2
-maxminddb==1.5.2 \
-    --hash=sha256:d0ce131d901eb11669996b49a59f410efd3da2c6dbe2c0094fe2fef8d85b6336
+maxminddb==1.5.3 \
+    --hash=sha256:ba276f8232bcfe530f460168447c21b4ebe02aa2304edc11e683acec856f7541
 mysqlclient==1.4.6 \
     --hash=sha256:4c82187dd6ab3607150fbb1fa5ef4643118f3da122b8ba31c3149ddd9cf0cb39 \
     --hash=sha256:9e6080a7aee4cc6a06b58b59239f20f1d259c1d2fddf68ddeed242d2311c7087 \
