@@ -59,13 +59,26 @@ def on_extraction_error(request, exc, traceback, addon_pk):
     if delete_repo:
         # Retrieve the repo for the add-on and delete it.
         addon_repo = AddonGitRepository(addon_pk, package_type='addon')
-        addon_repo.delete()
-        log.info('Deleted git repository for add-on "{}".'.format(addon_pk))
-        # Create a new git extraction entry.
-        GitExtractionEntry.objects.create(addon_id=addon_pk)
-        log.info(
-            'Added add-on "{}" to the git extraction queue.'.format(addon_pk)
-        )
+        # If the repository is too recent, it might be because of a
+        # git-extraction (infinite) loop.
+        if addon_repo.is_recent:
+            # Log an error so that we can investigate later.
+            log.error(
+                'Not deleting git repository for add-on "{}" because it '
+                'was created less than 1 hour ago'.format(addon_pk)
+            )
+            statsd.incr('git.extraction.error.extraction_loop')
+        else:
+            addon_repo.delete()
+            log.info(
+                'Deleted git repository for add-on "{}".'.format(addon_pk)
+            )
+            # Create a new git extraction entry.
+            GitExtractionEntry.objects.create(addon_id=addon_pk)
+            log.info(
+                'Added add-on "{}" to the git extraction '
+                'queue.'.format(addon_pk)
+            )
 
     remove_git_extraction_entry(addon_pk)
 

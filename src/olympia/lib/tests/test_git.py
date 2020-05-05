@@ -1,3 +1,4 @@
+import datetime
 import os
 import subprocess
 import zipfile
@@ -34,6 +35,17 @@ def _run_process(cmd, repo):
         shell=True,
         env={'GIT_DIR': repo.git_repository.path},
         universal_newlines=True)
+
+
+def update_git_repo_creation_time(addon_repo, time):
+    os.utime(
+        # See also: `AddonGitRepository.is_recent`.
+        os.path.join(
+            addon_repo.git_repository_path, AddonGitRepository.GIT_DESCRIPTION
+        ),
+        # (access time, modification time)
+        (time.timestamp(), time.timestamp()),
+    )
 
 
 def apply_changes(repo, version, contents, path, delete=False):
@@ -1541,3 +1553,51 @@ def test_commit_with_old_reference(settings):
         'commit on branch 1',
         'Initializing repository',  # created by default
     ])
+
+
+def test_is_recent_is_false_when_not_extracted(settings):
+    addon_pk = 123
+    repo = AddonGitRepository(addon_pk)
+
+    assert not repo.is_recent
+
+
+def test_is_recent(settings):
+    addon_pk = 123
+    repo = AddonGitRepository(addon_pk)
+    # Force the creation of the git repository.
+    repo.git_repository
+
+    assert repo.is_recent
+
+
+def test_is_recent_with_relatively_recent_repo(settings):
+    addon_pk = 123
+    repo = AddonGitRepository(addon_pk)
+    # Force the creation of the git repository.
+    repo.git_repository
+    fifteen_min_ago = datetime.datetime.now() - datetime.timedelta(minutes=15)
+    update_git_repo_creation_time(repo, time=fifteen_min_ago)
+
+    assert repo.is_recent
+
+
+def test_is_recent_with_very_old_repo(settings):
+    addon_pk = 123
+    repo = AddonGitRepository(addon_pk)
+    # Force the creation of the git repository.
+    repo.git_repository
+    update_git_repo_creation_time(repo, time=datetime.datetime(2020, 1, 1))
+
+    assert not repo.is_recent
+
+
+def test_is_recent_with_oldish_repo(settings):
+    addon_pk = 123
+    repo = AddonGitRepository(addon_pk)
+    # Force the creation of the git repository.
+    repo.git_repository
+    time = datetime.datetime.now() - datetime.timedelta(minutes=60)
+    update_git_repo_creation_time(repo, time=time)
+
+    assert not repo.is_recent
