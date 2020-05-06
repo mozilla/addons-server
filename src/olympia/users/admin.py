@@ -59,7 +59,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     show_full_result_count = False  # Turn off to avoid the query.
 
     readonly_fields = ('id', 'created', 'picture_img',
-                       'banned', 'deleted','is_public',
+                       'banned', 'deleted', 'is_public',
                        'last_login', 'last_login_ip', 'known_ip_adresses',
                        'last_known_activity_time', 'ratings_created',
                        'collections_created', 'addons_created', 'activity',
