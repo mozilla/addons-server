@@ -6426,6 +6426,38 @@ class TestReviewAddonVersionViewSetDetail(
         response = self.client.get(url)
         assert response.status_code == 404
 
+    def test_file_only_requested_file(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        with self.assertNumQueries(10):
+            # - 2 savepoints because tests
+            # - 2 user and groups
+            # - 2 add-on and translations
+            # - 1 add-on author check
+            # - 1 version
+            # - 2 file and file validation
+            response = self.client.get(
+                self.url + '?file=README.md&lang=en-US&file_only=true')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['file']['content'] == '# beastify\n'
+        assert result['file']['entries'] is None
+
+        # make sure the correct download url is correctly generated
+        assert result['file']['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': self.version.pk,
+                'filename': 'README.md'
+            }
+        ))
+
+        # make sure we did not return any version properties
+        assert len(result.keys()) == 1
+
 
 class TestReviewAddonVersionViewSetList(TestCase):
     client_class = APITestClient
@@ -7352,6 +7384,25 @@ class TestReviewAddonVersionCompareViewSet(
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['file']['download_url']
+
+    def test_file_only_requested_file(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(self.url + '?file=README.md&file_only=true')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['file']['entries'] is None
+        assert result['file']['diff']['path'] == 'README.md'
+        change = result['file']['diff']['hunks'][0]['changes'][0]
+
+        assert change['content'] == '# beastify'
+        assert change['type'] == 'insert'
+
+        # make sure we did not return any version properties
+        assert len(result.keys()) == 1
 
 
 class TestDownloadGitFileView(TestCase):

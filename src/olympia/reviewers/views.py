@@ -64,7 +64,8 @@ from olympia.reviewers.models import (
 from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer, AddonCompareVersionSerializer,
     AddonReviewerFlagsSerializer, CannedResponseSerializer,
-    DiffableVersionSerializer, DraftCommentSerializer, FileEntriesSerializer)
+    DiffableVersionSerializer, DraftCommentSerializer, FileEntriesSerializer,
+    FileEntriesDiffSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     NeedsHumanReviewTable, ReviewHelper, ViewUnlistedAllListTable,
@@ -1362,8 +1363,21 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
+        version = self.get_object()
+
+        if self.request.GET.get('file_only', False):
+            serializer = FileEntriesSerializer(
+                instance=version.current_file,
+                context={
+                    'exclude_entries': True,
+                    'file': self.request.GET.get('file', None),
+                    'request': self.request
+                }
+            )
+            return Response({'file': serializer.data})
+
         serializer = AddonBrowseVersionSerializer(
-            instance=self.get_object(),
+            instance=version,
             context={
                 'file': self.request.GET.get('file', None),
                 'request': self.request
@@ -1497,6 +1511,18 @@ class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
 
     def retrieve(self, request, *args, **kwargs):
         objs = self.get_objects()
+
+        if self.request.GET.get('file_only', False):
+            serializer = FileEntriesDiffSerializer(
+                instance=objs['instance'].current_file,
+                context={
+                    'exclude_entries': True,
+                    'file': self.request.GET.get('file', None),
+                    'request': self.request,
+                    'parent_version': objs['parent_version'],
+                })
+            return Response({'file': serializer.data})
+
         serializer = AddonCompareVersionSerializer(
             instance=objs['instance'],
             context={
