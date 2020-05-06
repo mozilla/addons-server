@@ -6443,6 +6443,7 @@ class TestReviewAddonVersionViewSetDetail(
         assert response.status_code == 200
         result = json.loads(response.content)
 
+        assert result['id'] == self.version.pk
         assert result['file']['content'] == '# beastify\n'
         assert result['file']['entries'] is None
 
@@ -6455,8 +6456,8 @@ class TestReviewAddonVersionViewSetDetail(
             }
         ))
 
-        # make sure we did not return any version properties
-        assert len(result.keys()) == 1
+        # make sure we only returned `id` and `file` properties
+        assert len(result.keys()) == 2
 
 
 class TestReviewAddonVersionViewSetList(TestCase):
@@ -7394,6 +7395,7 @@ class TestReviewAddonVersionCompareViewSet(
         assert response.status_code == 200
         result = json.loads(response.content)
 
+        assert result['id'] == self.version.pk
         assert result['file']['entries'] is None
         assert result['file']['diff']['path'] == 'README.md'
         change = result['file']['diff']['hunks'][0]['changes'][0]
@@ -7401,8 +7403,8 @@ class TestReviewAddonVersionCompareViewSet(
         assert change['content'] == '# beastify'
         assert change['type'] == 'insert'
 
-        # make sure we did not return any version properties
-        assert len(result.keys()) == 1
+        # make sure we only returned `id` and `file` properties
+        assert len(result.keys()) == 2
 
 
 class TestDownloadGitFileView(TestCase):

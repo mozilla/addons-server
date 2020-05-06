@@ -1374,7 +1374,7 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
                     'request': self.request
                 }
             )
-            return Response({'file': serializer.data})
+            return Response({'id': version.id, 'file': serializer.data})
 
         serializer = AddonBrowseVersionSerializer(
             instance=version,
@@ -1511,20 +1511,21 @@ class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
 
     def retrieve(self, request, *args, **kwargs):
         objs = self.get_objects()
+        version = objs['instance']
 
         if self.request.GET.get('file_only', False):
             serializer = FileEntriesDiffSerializer(
-                instance=objs['instance'].current_file,
+                instance=version.current_file,
                 context={
                     'exclude_entries': True,
                     'file': self.request.GET.get('file', None),
                     'request': self.request,
                     'parent_version': objs['parent_version'],
                 })
-            return Response({'file': serializer.data})
+            return Response({'id': version.id, 'file': serializer.data})
 
         serializer = AddonCompareVersionSerializer(
-            instance=objs['instance'],
+            instance=version,
             context={
                 'file': self.request.GET.get('file', None),
                 'request': self.request,
