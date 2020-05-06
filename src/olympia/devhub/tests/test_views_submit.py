@@ -944,18 +944,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         repo = AddonGitRepository(self.addon.pk, package_type='source')
         assert os.path.exists(repo.git_repository_path)
 
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    @mock.patch('olympia.devhub.views.extract_version_source_to_git.delay')
-    def test_submit_source_commits_to_git_asnychronously(self, extract_mock):
-        response = self.post(
-            has_source=True, source=self.generate_source_zip())
-        self.assert3xx(response, self.next_url)
-        self.addon = self.addon.reload()
-        assert self.get_version().source
-        extract_mock.assert_called_once_with(
-            version_id=self.addon.current_version.pk,
-            author_id=self.user.pk)
-
 
 class DetailsPageMixin(object):
     """ Some common methods between TestAddonSubmitDetails and
