@@ -17,15 +17,16 @@ class VersionAdmin(admin.ModelAdmin):
         js = ('js/admin/l10n.js',)
 
     view_on_site = False
-    readonly_fields = ('version', 'channel', 'recommendation_approved')
+    readonly_fields = ('id', 'created', 'version', 'channel',
+                       'recommendation_approved')
 
     raw_id_fields = ('addon', 'license')
 
     fieldsets = (
         (None, {
             'fields': (
-                'addon', 'version', 'channel', 'release_notes',
-                'approval_notes', 'license', 'source')
+                'id', 'created', 'addon', 'version', 'channel',
+                'release_notes', 'approval_notes', 'license', 'source')
         }),
         ('Flags', {
             'fields': ('deleted', 'recommendation_approved')

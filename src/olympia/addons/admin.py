@@ -126,7 +126,7 @@ class AddonAdmin(admin.ModelAdmin):
     list_filter = ('type', 'status')
     search_fields = ('id', '^guid', '^slug')
     inlines = (AddonUserInline, FileInline)
-    readonly_fields = ('id', 'status_with_admin_manage_link',
+    readonly_fields = ('id', 'created', 'status_with_admin_manage_link',
                        'average_rating', 'bayesian_rating',
                        'total_ratings_link', 'text_ratings_count',
                        'weekly_downloads', 'total_downloads',
@@ -134,7 +134,8 @@ class AddonAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('id', 'name', 'slug', 'guid', 'default_locale', 'type',
+            'fields': ('id', 'created', 'name', 'slug', 'guid',
+                       'default_locale', 'type',
                        'status', 'status_with_admin_manage_link'),
         }),
         ('Details', {
