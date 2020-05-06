@@ -1363,8 +1363,9 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
+        version = self.get_object()
+
         if self.request.GET.get('file_only', False):
-            version = self.get_object()
             serializer = FileEntriesSerializer(
                 instance=version.current_file,
                 context={
@@ -1376,7 +1377,7 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
             return Response({'file': serializer.data})
 
         serializer = AddonBrowseVersionSerializer(
-            instance=self.get_object(),
+            instance=version,
             context={
                 'file': self.request.GET.get('file', None),
                 'request': self.request
