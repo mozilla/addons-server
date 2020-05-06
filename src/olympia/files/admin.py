@@ -24,12 +24,12 @@ class FileAdmin(admin.ModelAdmin):
     list_select_related = (
         'version__addon',)
 
-    readonly_fields = ('file_download_url',)
+    readonly_fields = ('id', 'created', 'file_download_url',)
 
     fieldsets = (
         (None, {
             'fields': (
-                'version', 'platform', 'filename',
+                'id', 'created', 'version', 'platform', 'filename',
                 'size', 'hash', 'original_hash',
                 'status', 'file_download_url')
         }),
