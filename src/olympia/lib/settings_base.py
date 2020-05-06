@@ -1179,6 +1179,7 @@ CELERY_TASK_ROUTES = {
     'olympia.files.tasks.hide_disabled_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.versions.tasks.extract_version_to_git': {'queue': 'addons'},
+    'olympia.git.tasks.delete_source_git_repository': {'queue': 'addons'},
     'olympia.git.tasks.extract_versions_to_git': {'queue': 'addons'},
     'olympia.git.tasks.on_extraction_error': {'queue': 'addons'},
     'olympia.git.tasks.remove_git_extraction_entry': {'queue': 'addons'},

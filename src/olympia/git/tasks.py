@@ -93,3 +93,22 @@ def extract_versions_to_git(addon_pk, version_pks):
     )
     for version_pk in version_pks:
         extract_version_to_git(version_id=version_pk, force_extraction=True)
+
+
+# Rate limiting to 1 per minute to not overload our networking filesystem and
+# block our celery workers. Deletion doesn't have to be fast. Each instance
+# processes 100 add-ons so we'll process 6000 add-ons per hour which is fine.
+@task(rate_limit='1/m')
+@use_primary_db
+def delete_source_git_repositories(ids, **kw):
+    log.info(
+        'Deleting "source" git repositories for add-ons %d-%d [%d].',
+        ids[0],
+        ids[-1],
+        len(ids),
+    )
+
+    # We do not need to retrieve the add-on objects here because the git
+    # repositories are based on the add-on IDs.
+    for addon_id in ids:
+        AddonGitRepository(addon_id, 'source').delete()
