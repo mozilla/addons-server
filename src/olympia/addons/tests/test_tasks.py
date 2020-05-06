@@ -11,7 +11,7 @@ from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
     addon_factory, TestCase, version_factory)
 from olympia.files.utils import id_to_path
-from olympia.versions.models import VersionPreview, source_upload_path
+from olympia.versions.models import VersionPreview
 from olympia.lib.git import AddonGitRepository
 
 
@@ -68,26 +68,6 @@ class TestMigrateWebextensionsToGitStorage(TestCase):
         assert extract_mock.call_args_list[0][0][0] == oldest_version.pk
         assert extract_mock.call_args_list[1][0][0] == older_version.pk
         assert extract_mock.call_args_list[2][0][0] == most_recent.pk
-
-    @mock.patch('olympia.versions.tasks.extract_version_to_git')
-    @mock.patch('olympia.versions.tasks.extract_version_source_to_git')
-    def test_migrate_versions_extracts_source(
-            self, extract_source_mock, extract_mock):
-        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-        version_to_migrate = addon.current_version
-        version_to_migrate.update(
-            source=source_upload_path(version_to_migrate, 'foo.tar.gz'))
-
-        version_without_source = version_factory(
-            addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
-
-        migrate_webextensions_to_git_storage([addon.pk])
-
-        extract_source_mock.assert_called_once_with(version_to_migrate.pk)
-        extract_mock.assert_has_calls([
-            mock.call(version_to_migrate.pk),
-            mock.call(version_without_source.pk)
-        ])
 
 
 @pytest.mark.django_db

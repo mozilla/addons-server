@@ -6,6 +6,7 @@ from olympia.amo.tests import TestCase, addon_factory
 
 from olympia.git.models import GitExtractionEntry
 from olympia.git.tasks import (
+    delete_source_git_repositories,
     remove_git_extraction_entry,
     on_extraction_error,
     extract_versions_to_git,
@@ -162,3 +163,20 @@ class TestExtractVersionsToGit(TestCase):
                 mock.call(version_id=3, force_extraction=True),
             ]
         )
+
+
+class TestDeleteSourceGitRepositories(TestCase):
+    def test_deletes_source_repositories(self):
+        addon_ids = [1, 2, 3]
+
+        for addon_id in addon_ids:
+            repo = AddonGitRepository(addon_id, 'source')
+            # Create the git repo
+            repo.git_repository
+            assert repo.is_extracted
+
+        delete_source_git_repositories(ids=addon_ids)
+
+        for addon_id in addon_ids:
+            repo = AddonGitRepository(addon_id, 'source')
+            assert not repo.is_extracted

@@ -280,6 +280,73 @@ def test_delete_non_extracted_repo(settings):
 
 
 @pytest.mark.django_db
+def test_delete_source_repo(settings):
+    addon = addon_factory(
+        version_kw={'git_hash': 'hash', 'source_git_hash': 'source hash'},
+        file_kw={'filename': 'webextension_no_id.xpi'},
+    )
+    # Generate source file
+    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
+    with zipfile.ZipFile(source, 'w') as zip_file:
+        zip_file.writestr('manifest.json', '{}')
+    source.seek(0)
+    addon.current_version.update(source=DjangoFile(source))
+    # Declare two git repositories, one for the add-on (xpi) and the other for
+    # its sources.
+    repo = AddonGitRepository(addon)
+    repo.git_repository
+    assert repo.is_extracted
+    source_repo = AddonGitRepository(addon, 'source')
+    source_repo.git_repository
+    assert source_repo.is_extracted
+    # Current version is extracted in each repo.
+    assert addon.current_version.git_hash
+    assert addon.current_version.source_git_hash
+
+    source_repo.delete()
+    addon.refresh_from_db()
+
+    assert not source_repo.is_extracted
+    assert not addon.current_version.source_git_hash
+    # Deleting the source repository should not affect the other repository.
+    assert repo.is_extracted
+    # Deleting the source repository should not affect the git hash.
+    assert addon.current_version.git_hash
+
+
+@pytest.mark.django_db
+def test_delete_source_repo_with_deleted_version(settings):
+    addon = addon_factory(version_kw={'source_git_hash': 'some hash'},
+                          file_kw={'filename': 'webextension_no_id.xpi'})
+    version = addon.current_version
+    version.delete()
+    repo = AddonGitRepository(addon, 'source')
+    # Create the git repo
+    repo.git_repository
+    assert repo.is_extracted
+    assert version.source_git_hash
+
+    repo.delete()
+    version.refresh_from_db()
+
+    assert not repo.is_extracted
+    assert not version.source_git_hash
+
+
+@pytest.mark.django_db
+def test_delete_non_extracted_source_repo(settings):
+    repo = AddonGitRepository(
+        addon_factory(file_kw={'filename': 'webextension_no_id.xpi'}),
+        'source'
+    )
+    assert not repo.is_extracted
+
+    repo.delete()
+
+    assert not repo.is_extracted
+
+
+@pytest.mark.django_db
 def test_extract_and_commit_from_version_multiple_versions(settings):
     addon = addon_factory(
         file_kw={'filename': 'webextension_no_id.xpi'},

@@ -33,7 +33,6 @@ from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
-from olympia.lib.git import AddonGitRepository
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
 from olympia.versions.models import License, VersionPreview
 from olympia.zadmin.models import Config, set_config
@@ -920,41 +919,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon.update(type=amo.ADDON_DICT)
         response = self.client.get(self.url)
         self.assert3xx(response, self.next_url)
-
-    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)
-    @override_switch('enable-uploads-commit-to-git-storage', active=False)
-    def test_submit_source_doesnt_commit_to_git_by_default(self):
-        response = self.post(
-            has_source=True, source=self.generate_source_zip())
-        self.assert3xx(response, self.next_url)
-        self.addon = self.addon.reload()
-        assert self.get_version().source
-
-        repo = AddonGitRepository(self.addon.pk, package_type='source')
-        assert not os.path.exists(repo.git_repository_path)
-
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_submit_source_commits_to_git(self):
-        response = self.post(
-            has_source=True, source=self.generate_source_zip())
-        self.assert3xx(response, self.next_url)
-        self.addon = self.addon.reload()
-        assert self.get_version().source
-
-        repo = AddonGitRepository(self.addon.pk, package_type='source')
-        assert os.path.exists(repo.git_repository_path)
-
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    @mock.patch('olympia.devhub.views.extract_version_source_to_git.delay')
-    def test_submit_source_commits_to_git_asnychronously(self, extract_mock):
-        response = self.post(
-            has_source=True, source=self.generate_source_zip())
-        self.assert3xx(response, self.next_url)
-        self.addon = self.addon.reload()
-        assert self.get_version().source
-        extract_mock.assert_called_once_with(
-            version_id=self.addon.current_version.pk,
-            author_id=self.user.pk)
 
 
 class DetailsPageMixin(object):

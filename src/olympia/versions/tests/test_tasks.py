@@ -1,10 +1,8 @@
 import os
-import zipfile
 from base64 import b64encode
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.core.files import temp
 from django.utils.encoding import force_text
 
 from unittest import mock
@@ -18,8 +16,9 @@ from olympia.files.utils import id_to_path
 from olympia.git.models import GitExtractionEntry
 from olympia.versions.models import VersionPreview
 from olympia.versions.tasks import (
-    generate_static_theme_preview, extract_version_to_git,
-    extract_version_source_to_git)
+    generate_static_theme_preview,
+    extract_version_to_git,
+)
 from olympia.lib.git import AddonGitRepository
 
 
@@ -447,56 +446,6 @@ def test_extract_version_to_git_deleted_version():
 
     assert repo.git_repository_path == os.path.join(
         settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
-    assert os.listdir(repo.git_repository_path) == ['.git']
-
-
-@pytest.mark.django_db
-@mock.patch('olympia.versions.tasks.statsd.timer')
-@mock.patch('olympia.versions.tasks.statsd.incr')
-def test_extract_version_source_to_git(incr_mock, timer_mock):
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-
-    # Generate source file
-    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
-    with zipfile.ZipFile(source, 'w') as zip_file:
-        zip_file.writestr('manifest.json', '{}')
-    source.seek(0)
-
-    addon.current_version.update(source=source)
-
-    extract_version_source_to_git(addon.current_version.pk)
-
-    repo = AddonGitRepository(addon.pk, package_type='source')
-
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
-    assert os.listdir(repo.git_repository_path) == ['.git']
-    timer_mock.assert_any_call('git.extraction.version_source')
-    incr_mock.assert_called_with('git.extraction.version_source.success')
-
-
-@pytest.mark.django_db
-def test_extract_version_source_to_git_deleted_version():
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-
-    version = addon.current_version
-    version.delete()
-
-    hide_disabled_files()
-
-    # Generate source file
-    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
-    with zipfile.ZipFile(source, 'w') as zip_file:
-        zip_file.writestr('manifest.json', '{}')
-    source.seek(0)
-    version.update(source=source)
-
-    extract_version_source_to_git(version.pk)
-
-    repo = AddonGitRepository(addon.pk, package_type='source')
-
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
     assert os.listdir(repo.git_repository_path) == ['.git']
 
 
