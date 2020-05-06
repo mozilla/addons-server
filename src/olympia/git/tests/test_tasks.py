@@ -167,8 +167,7 @@ class TestExtractVersionsToGit(TestCase):
 
 class TestDeleteSourceGitRepositories(TestCase):
     def test_deletes_source_repositories(self):
-        deleted_addon = addon_factory()
-        addon_ids = [1, 2, 3, deleted_addon.pk]
+        addon_ids = [1, 2, 3]
 
         for addon_id in addon_ids:
             repo = AddonGitRepository(addon_id, 'source')
