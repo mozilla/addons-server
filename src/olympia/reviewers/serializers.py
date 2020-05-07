@@ -301,19 +301,25 @@ class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):
         fields = ('id', 'channel', 'version')
 
 
-class AddonBrowseVersionSerializer(MinimalVersionSerializerWithChannel):
+class AddonBrowseVersionSerializerFileOnly(
+        MinimalVersionSerializerWithChannel):
+    file = FileEntriesSerializer(source='current_file')
+
+    class Meta:
+        model = Version
+        fields = ('id', 'file')
+
+
+class AddonBrowseVersionSerializer(AddonBrowseVersionSerializerFileOnly):
     validation_url_json = serializers.SerializerMethodField()
     validation_url = serializers.SerializerMethodField()
     has_been_validated = serializers.SerializerMethodField()
-    file = FileEntriesSerializer(source='current_file')
     addon = SimpleAddonSerializer()
 
     class Meta:
         model = Version
         fields = (
-            # Bare minimum fields we need from parent...
             'id', 'channel', 'reviewed', 'version',
-            # Plus our custom ones.
             'addon', 'file', 'has_been_validated', 'validation_url',
             'validation_url_json'
         )
@@ -470,8 +476,16 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
         return MinimalBaseFileSerializer(instance=base_file).data
 
 
-class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
+class AddonCompareVersionSerializerFileOnly(
+        AddonBrowseVersionSerializer):
     file = FileEntriesDiffSerializer(source='current_file')
+
+    class Meta:
+        model = Version
+        fields = ('id', 'file')
+
+
+class AddonCompareVersionSerializer(AddonCompareVersionSerializerFileOnly):
 
     class Meta(AddonBrowseVersionSerializer.Meta):
         pass
