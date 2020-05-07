@@ -240,7 +240,7 @@ class ContentReviewTable(AutoApprovedTable):
         return reverse('reviewers.review', args=['content', record.slug])
 
 
-class NeedsHumanReviewTable(AutoApprovedTable):
+class ScannersReviewTable(AutoApprovedTable):
     def render_addon_name(self, record):
         rval = [jinja2.escape(record.name)]
         versions_flagged_by_scanners = record.versions.filter(

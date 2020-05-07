@@ -75,13 +75,15 @@ def queue_tabnav(context):
                 ('extension', 'queue_extension',
                  '🛠️ ' + new_text.format(counts['extension'])),
             ))
-            tabnav.append(
-                ('needs_human_review', 'queue_needs_human_review',
-                 (ungettext('Flagged By Scanners ({0})',
-                            'Flagged By Scanners ({0})',
-                            counts['needs_human_review'])
-                  .format(counts['needs_human_review']))),
-            )
+            tabnav.append((
+                'scanners',
+                'queue_scanners',
+                (ungettext(
+                    'Flagged By Scanners ({0})',
+                    'Flagged By Scanners ({0})',
+                    counts['scanners']
+                ) .format(counts['scanners'])),
+            ))
             tabnav.append((
                 'mad',
                 'queue_mad',

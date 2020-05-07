@@ -234,12 +234,10 @@ class AddonManager(ManagerBase):
         """
         return self.get_queryset().listed(app, *status)
 
-    def get_auto_approved_queue(self, admin_reviewer=False):
-        """Return a queryset of Addon objects that have been auto-approved but
-        not confirmed by a human yet."""
-        success_verdict = amo.AUTO_APPROVED
+    def get_base_queryset_for_queue(self, admin_reviewer=False,
+                                    admin_content_review=False):
         qs = (
-            self.get_queryset().public()
+            self.get_queryset()
             # We don't want the default transformer, it does too much, and
             # crucially, it prevents the
             # select_related('_current_version__autoapprovalsummary') from
@@ -247,8 +245,7 @@ class AddonManager(ManagerBase):
             # it fetches. We want translations though.
             .only_translations()
             # We need those joins for the queue to work without making extra
-            # queries. `files` are fetched through a prefetch_related() since
-            # those are a many-to-one relation.
+            # queries.
             .select_related(
                 'addonapprovalscounter',
                 'addonreviewerflags',
@@ -257,6 +254,27 @@ class AddonManager(ManagerBase):
             .prefetch_related(
                 '_current_version__files'
             )
+        )
+        if not admin_reviewer:
+            if admin_content_review:
+                qs = qs.exclude(
+                    addonreviewerflags__needs_admin_content_review=True
+                )
+            else:
+                qs = qs.exclude(
+                    addonreviewerflags__needs_admin_code_review=True
+                )
+        return qs
+
+    def get_auto_approved_queue(self, admin_reviewer=False):
+        """Return a queryset of Addon objects that have been auto-approved but
+        not confirmed by a human yet."""
+        success_verdict = amo.AUTO_APPROVED
+        qs = (
+            self.get_base_queryset_for_queue(
+                admin_reviewer=admin_reviewer
+            )
+            .public()
             .filter(
                 _current_version__autoapprovalsummary__verdict=success_verdict
             )
@@ -269,17 +287,16 @@ class AddonManager(ManagerBase):
                 'created',
             )
         )
-        if not admin_reviewer:
-            qs = qs.exclude(addonreviewerflags__needs_admin_code_review=True)
         return qs
 
     def get_content_review_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that need content review."""
         qs = (
-            self.get_queryset().valid()
-            # We don't want the default transformer.
-            # See get_auto_approved_queue()
-            .only_translations()
+            self.get_base_queryset_for_queue(
+                admin_reviewer=admin_reviewer,
+                admin_content_review=True
+            )
+            .valid()
             .filter(
                 addonapprovalscounter__last_content_review=None,
                 # Only content review extensions and dictionaries. See
@@ -287,31 +304,18 @@ class AddonManager(ManagerBase):
                 # https://github.com/mozilla/addons-server/issues/12065
                 type__in=(amo.ADDON_EXTENSION, amo.ADDON_DICT),
             )
-            # We need those joins for the queue to work without making extra
-            # queries. See get_auto_approved_queue()
-            .select_related(
-                'addonapprovalscounter',
-                'addonreviewerflags',
-                '_current_version__autoapprovalsummary',
-            )
-            .prefetch_related(
-                '_current_version__files'
-            )
-            .order_by(
-                'created',
-            )
+            .order_by('created')
         )
-        if not admin_reviewer:
-            qs = qs.exclude(
-                addonreviewerflags__needs_admin_content_review=True)
         return qs
 
-    def get_needs_human_review_queue(self, admin_reviewer=False):
+    def get_scanners_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that have been approved but
         contain versions that were automatically flagged as needing human
         review (regardless of channel)."""
-        qs = (
-            self.get_queryset()
+        return (
+            self.get_base_queryset_for_queue(
+                admin_reviewer=admin_reviewer
+            )
             # All valid statuses, plus incomplete as well because the add-on
             # could be purely unlisted (so we can't use valid_q(), which
             # filters out current_version=None). We know the add-ons are likely
@@ -326,39 +330,22 @@ class AddonManager(ManagerBase):
                 ],
                 versions__needs_human_review=True
             )
-            # We don't want the default transformer.
-            # See get_auto_approved_queue()
-            .only_translations()
-            # We need those joins for the queue to work without making extra
-            # queries. See get_auto_approved_queue()
-            .select_related(
-                'addonapprovalscounter',
-                'addonreviewerflags',
-                '_current_version__autoapprovalsummary',
-            )
-            .prefetch_related(
-                '_current_version__files'
-            )
-            .order_by(
-                'created',
-            )
+            .order_by('created')
             # There could be several versions matching for a single add-on so
             # we need a distinct.
             .distinct()
         )
-        if not admin_reviewer:
-            qs = qs.exclude(
-                addonreviewerflags__needs_admin_code_review=True)
-        return qs
 
-    def get_mad_queue(self):
-        qs = (
-            self.get_queryset()
+    def get_mad_queue(self, admin_reviewer=False):
+        return (
+            self.get_base_queryset_for_queue(
+                admin_reviewer=admin_reviewer
+            )
             # All valid statuses, plus incomplete as well because the add-on
             # could be purely unlisted (so we can't use valid_q(), which
             # filters out current_version=None). We know the add-ons are likely
-            # to have a version since they got the needs_human_review flag, so
-            # returning incomplete ones is acceptable.
+            # to have a version since they got the needs_human_review_by_mad
+            # flag, so returning incomplete ones is acceptable.
             .filter(
                 status__in=[
                     amo.STATUS_APPROVED, amo.STATUS_NOMINATED, amo.STATUS_NULL
@@ -368,27 +355,8 @@ class AddonManager(ManagerBase):
                 ],
                 versions__versionscannerflags__needs_human_review_by_mad=True
             )
-            # We don't want the default transformer.
-            # See get_auto_approved_queue()
-            .only_translations()
-            # We need those joins for the queue to work without making extra
-            # queries. See get_auto_approved_queue()
-            .select_related(
-                'addonapprovalscounter',
-                'addonreviewerflags',
-                '_current_version__autoapprovalsummary',
-            )
-            .prefetch_related(
-                '_current_version__files'
-            )
-            .order_by(
-                'created',
-            )
-            # There could be several versions matching for a single add-on so
-            # we need a distinct.
-            .distinct()
+            .order_by('created')
         )
-        return qs
 
 
 class Addon(OnChangeMixin, ModelBase):
