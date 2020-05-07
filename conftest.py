@@ -23,7 +23,7 @@ def unpin_db(request):
     request.addfinalizer(pinning.unpin_this_thread)
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(autouse=True, scope='class')
 def mock_elasticsearch():
     """Mock ElasticSearch in tests by default.
 

@@ -60,7 +60,7 @@ services:
       - MYSQL_DATABASE=olympia
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.8
     environment:
       # Disable all xpack related features to avoid unrelated logging
       # in docker logs. https://github.com/mozilla/addons-server/issues/8887

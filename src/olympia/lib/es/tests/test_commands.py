@@ -4,6 +4,7 @@ import time
 import io
 from unittest import mock
 
+from django.conf import settings
 from django.core import management
 from django.db import connection
 from django.test.testcases import TransactionTestCase
@@ -162,10 +163,22 @@ class TestIndexCommand(ESTestCase):
         self.check_results(self.expected)
         self._test_reindexation()
 
-    def test_stats(self):
+    def test_stats_update_counts(self):
         old_indices = self.get_indices_aliases()
         stdout = io.StringIO()
-        management.call_command('reindex', data='stats', stdout=stdout)
+        management.call_command(
+            'reindex', key='stats_update_counts', stdout=stdout)
+        stdout.seek(0)
+        buf = stdout.read()
+        new_indices = self.get_indices_aliases()
+        assert len(new_indices)
+        assert old_indices != new_indices, (buf, old_indices, new_indices)
+
+    def test_stats_download_counts(self):
+        old_indices = self.get_indices_aliases()
+        stdout = io.StringIO()
+        management.call_command(
+            'reindex', key='stats_download_counts', stdout=stdout)
         stdout.seek(0)
         buf = stdout.read()
         new_indices = self.get_indices_aliases()
@@ -173,9 +186,9 @@ class TestIndexCommand(ESTestCase):
         assert old_indices != new_indices, (buf, old_indices, new_indices)
 
     @mock.patch.object(reindex, 'gather_index_data_tasks')
-    def _test_workflow(self, index, gather_index_data_tasks_mock):
+    def _test_workflow(self, key, gather_index_data_tasks_mock):
         command = reindex.Command()
-        alias = reindex.get_alias(index)
+        alias = settings.ES_INDEXES[key]
         # Patch reindex.gather_index_data_tasks so that it returns a group of
         # dummy tasks - otherwise the chain would not contain the indexation
         # tasks and that's what we really care about.
@@ -229,11 +242,18 @@ class TestIndexCommand(ESTestCase):
         Test tasks returned by create_workflow() as used by reindex command,
         for addons.
         """
-        self._test_workflow('addons')
+        self._test_workflow('default')
 
-    def test_create_workflow_stats(self):
+    def test_create_workflow_stats_download_counts(self):
         """
         Test tasks returned by create_workflow() as used by reindex command,
-        for stats.
+        for stats_download_counts.
         """
-        self._test_workflow('stats')
+        self._test_workflow('stats_download_counts')
+
+    def test_create_workflow_stats_update_counts(self):
+        """
+        Test tasks returned by create_workflow() as used by reindex command,
+        for stats_update_counts.
+        """
+        self._test_workflow('stats_update_counts')

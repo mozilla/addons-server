@@ -1,5 +1,7 @@
 import copy
 
+from django.conf import settings
+
 import olympia.core.logger
 from olympia import amo
 from olympia.amo.indexers import BaseSearchIndexer
@@ -36,10 +38,99 @@ class AddonIndexer(BaseSearchIndexer):
         'summary_l10n_*',
     )
 
+    index_settings = {
+        'analysis': {
+            'analyzer': {
+                'standard_with_word_split': {
+                    # This analyzer tries to split the text into words by using
+                    # various methods. It also lowercases them and make sure
+                    # each token is only returned once.
+                    # Only use for short things with extremely meaningful
+                    # content like add-on name - it makes too many
+                    # modifications to be useful for things like descriptions,
+                    # for instance.
+                    'tokenizer': 'standard',
+                    'filter': [
+                        'standard', 'custom_word_delimiter', 'lowercase',
+                        'stop', 'custom_dictionary_decompounder', 'unique',
+                    ]
+                },
+                'trigram': {
+                    # Analyzer that splits the text into trigrams.
+                    'tokenizer': 'ngram_tokenizer',
+                    'filter': [
+                        'lowercase',
+                    ]
+                },
+            },
+            'tokenizer': {
+                'ngram_tokenizer': {
+                    'type': 'ngram',
+                    'min_gram': 3,
+                    'max_gram': 3,
+                    'token_chars': ['letter', 'digit']
+                }
+            },
+            'normalizer': {
+                'lowercase_keyword_normalizer': {
+                    # By default keywords are indexed 'as-is', but for exact
+                    # name matches we need to lowercase them before indexing,
+                    # so this normalizer does that for us.
+                    'type': 'custom',
+                    'filter': ['lowercase'],
+                },
+            },
+            'filter': {
+                'custom_word_delimiter': {
+                    # This filter is useful for add-on names that have multiple
+                    # words sticked together in a way that is easy to
+                    # recognize, like FooBar, which should be indexed as FooBar
+                    # and Foo Bar. (preserve_original: True makes us index both
+                    # the original and the split version.)
+                    'type': 'word_delimiter',
+                    'preserve_original': True
+                },
+                'custom_dictionary_decompounder': {
+                    # This filter is also useful for add-on names that have
+                    # multiple words sticked together, but without a pattern
+                    # that we can automatically recognize. To deal with those,
+                    # we use a small dictionary of common words. It allows us
+                    # to index 'awesometabpassword'  as 'awesome tab password',
+                    # helping users looking for 'tab password' find that addon.
+                    'type': 'dictionary_decompounder',
+                    'word_list': [
+                        'all', 'auto', 'ball', 'bar', 'block', 'blog',
+                        'bookmark', 'browser', 'bug', 'button', 'cat', 'chat',
+                        'click', 'clip', 'close', 'color', 'context', 'cookie',
+                        'cool', 'css', 'delete', 'dictionary', 'down',
+                        'download', 'easy', 'edit', 'fill', 'fire', 'firefox',
+                        'fix', 'flag', 'flash', 'fly', 'forecast', 'fox',
+                        'foxy', 'google', 'grab', 'grease', 'html', 'http',
+                        'image', 'input', 'inspect', 'inspector', 'iris', 'js',
+                        'key', 'keys', 'lang', 'link', 'mail', 'manager',
+                        'map', 'mega', 'menu', 'menus', 'monkey', 'name',
+                        'net', 'new', 'open', 'password', 'persona', 'privacy',
+                        'query', 'screen', 'scroll', 'search', 'secure',
+                        'select', 'smart', 'spring', 'status', 'style',
+                        'super', 'sync', 'tab', 'text', 'think', 'this',
+                        'time', 'title', 'translate', 'tree', 'undo', 'upload',
+                        'url', 'user', 'video', 'window', 'with', 'word',
+                        'zilla',
+                    ]
+                },
+            }
+        }
+    }
+
     @classmethod
     def get_model(cls):
         from olympia.addons.models import Addon
         return Addon
+
+    @classmethod
+    def get_index_alias(cls):
+        """Return the index alias name."""
+        return settings.ES_INDEXES.get('default')
 
     @classmethod
     def get_mapping(cls):
@@ -244,7 +335,7 @@ class AddonIndexer(BaseSearchIndexer):
             if version_obj.license:
                 data['license'] = {
                     'id': version_obj.license.id,
-                    'builtin': version_obj.license.builtin,
+                    'builtin': bool(version_obj.license.builtin),
                     'url': version_obj.license.url,
                 }
                 attach_trans_dict(License, [version_obj.license])
@@ -363,129 +454,39 @@ class AddonIndexer(BaseSearchIndexer):
 
         return data
 
+    @classmethod
+    def create_new_index(cls, index_name):
+        """
+        Create a new index for addons in ES.
 
-# addons index settings.
-INDEX_SETTINGS = {
-    'analysis': {
-        'analyzer': {
-            'standard_with_word_split': {
-                # This analyzer tries to split the text into words by using
-                # various methods. It also lowercases them and make sure each
-                # token is only returned once.
-                # Only use for short things with extremely meaningful content
-                # like add-on name - it makes too many modifications to be
-                # useful for things like descriptions, for instance.
-                'tokenizer': 'standard',
-                'filter': [
-                    'standard', 'custom_word_delimiter', 'lowercase', 'stop',
-                    'custom_dictionary_decompounder', 'unique',
-                ]
+        Intended to be used by reindexation (and tests), generally a bad idea
+        to call manually.
+        """
+        index_settings = copy.deepcopy(cls.index_settings)
+
+        config = {
+            'mappings': {
+                cls.get_doctype_name(): cls.get_mapping(),
             },
-            'trigram': {
-                # Analyzer that splits the text into trigrams.
-                'tokenizer': 'ngram_tokenizer',
-                'filter': [
-                    'lowercase',
-                ]
-            },
-        },
-        'tokenizer': {
-            'ngram_tokenizer': {
-                'type': 'ngram',
-                'min_gram': 3,
-                'max_gram': 3,
-                'token_chars': ['letter', 'digit']
-            }
-        },
-        'normalizer': {
-            'lowercase_keyword_normalizer': {
-                # By default keywords are indexed 'as-is', but for exact name
-                # matches we need to lowercase them before indexing, so this
-                # normalizer does that for us.
-                'type': 'custom',
-                'filter': ['lowercase'],
-            },
-        },
-        'filter': {
-            'custom_word_delimiter': {
-                # This filter is useful for add-on names that have multiple
-                # words sticked together in a way that is easy to recognize,
-                # like FooBar, which should be indexed as FooBar and Foo Bar.
-                # (preserve_original: True makes us index both the original
-                # and the split version.)
-                'type': 'word_delimiter',
-                'preserve_original': True
-            },
-            'custom_dictionary_decompounder': {
-                # This filter is also useful for add-on names that have
-                # multiple words sticked together, but without a pattern that
-                # we can automatically recognize. To deal with those, we use
-                # a small dictionary of common words. It allows us to index
-                # 'awesometabpassword'  as 'awesome tab password', helping
-                # users looking for 'tab password' find that add-on.
-                'type': 'dictionary_decompounder',
-                'word_list': [
-                    'all', 'auto', 'ball', 'bar', 'block', 'blog', 'bookmark',
-                    'browser', 'bug', 'button', 'cat', 'chat', 'click', 'clip',
-                    'close', 'color', 'context', 'cookie', 'cool', 'css',
-                    'delete', 'dictionary', 'down', 'download', 'easy', 'edit',
-                    'fill', 'fire', 'firefox', 'fix', 'flag', 'flash', 'fly',
-                    'forecast', 'fox', 'foxy', 'google', 'grab', 'grease',
-                    'html', 'http', 'image', 'input', 'inspect', 'inspector',
-                    'iris', 'js', 'key', 'keys', 'lang', 'link', 'mail',
-                    'manager', 'map', 'mega', 'menu', 'menus', 'monkey',
-                    'name', 'net', 'new', 'open', 'password', 'persona',
-                    'privacy', 'query', 'screen', 'scroll', 'search', 'secure',
-                    'select', 'smart', 'spring', 'status', 'style', 'super',
-                    'sync', 'tab', 'text', 'think', 'this', 'time', 'title',
-                    'translate', 'tree', 'undo', 'upload', 'url', 'user',
-                    'video', 'window', 'with', 'word', 'zilla',
-                ]
+            'settings': {
+                # create_index will add its own index settings like number of
+                # shards and replicas.
+                'index': index_settings
             },
         }
-    }
-}
+        create_index(index_name, config)
 
+    @classmethod
+    def reindex_tasks_group(cls, index_name):
+        """
+        Return the group of tasks to execute for a full reindex of addons on
+        the index called `index_name` (which is not an alias but the real
+        index name).
+        """
+        from olympia.addons.tasks import index_addons
 
-def create_new_index(index_name=None):
-    """
-    Create a new index for addons in ES.
-
-    Intended to be used by reindexation (and tests), generally a bad idea to
-    call manually.
-    """
-    if index_name is None:
-        index_name = AddonIndexer.get_index_alias()
-
-    index_settings = copy.deepcopy(INDEX_SETTINGS)
-
-    config = {
-        'mappings': get_mappings(),
-        'settings': {
-            # create_index will add its own index settings like number of
-            # shards and replicas.
-            'index': index_settings
-        },
-    }
-    create_index(index_name, config)
-
-
-def get_mappings():
-    """
-    Return a dict with all addons-related ES mappings.
-    """
-    indexers = (AddonIndexer,)
-    return {idxr.get_doctype_name(): idxr.get_mapping() for idxr in indexers}
-
-
-def reindex_tasks_group(index_name):
-    """
-    Return the group of tasks to execute for a full reindex of addons on the
-    index called `index_name` (which is not an alias but the real index name).
-    """
-    from olympia.addons.models import Addon
-    from olympia.addons.tasks import index_addons
-
-    ids = Addon.unfiltered.values_list('id', flat=True).order_by('id')
-    chunk_size = 150
-    return create_chunked_tasks_signatures(index_addons, list(ids), chunk_size)
+        ids = cls.get_model().unfiltered.values_list(
+            'id', flat=True).order_by('id')
+        chunk_size = 150
+        return create_chunked_tasks_signatures(
+            index_addons, list(ids), chunk_size)

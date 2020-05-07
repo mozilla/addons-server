@@ -4,14 +4,27 @@ dist: xenial
 python:
   - 3.6
 
+addons:
+  apt:
+    packages: &global_deps
+      - cmake
+      - swig
+      - elasticsearch
+      - gettext
+      - librsvg2-bin
+      - pngcrush
+      - uuid
+      - libgit2-dev
+
 jobs:
   fast_finish: true
   include:
     - { env: TOXENV=codestyle }
     - { env: TOXENV=docs }
     - { env: TOXENV=assets }
-    - { env: TOXENV=es }
     - { env: TOXENV=addons-versions-files-ratings }
+    - { env: TOXENV=es ES_VERSION=5.x }
+    - { env: TOXENV=es ES_VERSION=6.x }
     - { env: TOXENV=devhub }
     - { env: TOXENV=reviewers-and-zadmin }
     - { env: TOXENV=amo-lib-locales-and-signing }
@@ -28,24 +41,9 @@ cache:
     - node_modules
     - $HOME/.gimme
 
-addons:
-  apt:
-    sources:
-      - elasticsearch-5.x
-    packages:
-      - cmake
-      - swig
-      - elasticsearch
-      - gettext
-      - librsvg2-bin
-      - pngcrush
-      - uuid
-      - libgit2-dev
-
 services:
   - mysql
   - memcached
-  - elasticsearch
   - redis
 
 before_install:
@@ -58,6 +56,18 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -t eoan libmagic-dev libmagic1 libmagic-mgc
   - echo "text/markdown                                   md markdown" | sudo tee -a /etc/mime.types
+  - |
+    if [ $TOXENV == "es" ]; then
+        if [ $ES_VERSION == "6.x" ]; then
+            curl -s -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.8.8.deb
+            sudo dpkg -i --force-confnew elasticsearch-6.8.8.deb
+            sudo sed -i.old 's/-Xms1g/-Xms128m/' /etc/elasticsearch/jvm.options
+            sudo sed -i.old 's/-Xmx1g/-Xmx128m/' /etc/elasticsearch/jvm.options
+            echo -e '-XX:+DisableExplicitGC\n-Djdk.io.permissionsUseCanonicalPath=true\n-Dlog4j.skipJansi=true\n-server\n' | sudo tee -a /etc/elasticsearch/jvm.options
+            sudo chown -R elasticsearch:elasticsearch /etc/default/elasticsearch
+        fi
+        sudo systemctl start elasticsearch
+    fi
 
 install:
   - nvm current
@@ -70,7 +80,16 @@ before_script:
   - mysql --version
   - node --version
   - java -version
-  - curl -v http://localhost:9200/
+  - |
+    if [ $TOXENV == "es" ]; then
+        sudo ls -alR /etc/elasticsearch/;
+        sudo cat /etc/elasticsearch/elasticsearch.yml;
+        sudo cat /etc/elasticsearch/jvm.options;
+        sleep 10;
+        sudo ls -alR /var/log/elasticsearch/;
+        sudo cat /var/log/elasticsearch/elasticsearch.log;
+        curl -v http://localhost:9200/;
+    fi
   - sudo touch /addons-server-docker-container
 
 script:
