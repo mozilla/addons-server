@@ -3200,9 +3200,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Laboratorio estensioni"
+msgstr ""
 
 msgid "Connect with us"
 msgstr ""
@@ -3210,9 +3209,8 @@ msgstr ""
 msgid "Twitter"
 msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "Sviluppatore"
+msgstr ""
 
 msgid "For end users"
 msgstr ""
@@ -3221,20 +3219,17 @@ msgid "Matrix"
 msgstr ""
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Centro di sviluppo componenti aggiuntivi"
+msgstr ""
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Sviluppo estensioni"
+msgstr ""
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Indirizzo IP"
+msgstr ""
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
