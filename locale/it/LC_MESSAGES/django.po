@@ -2458,9 +2458,8 @@ msgstr "Scegli un’icona per il tuo componente aggiuntivo:"
 msgid "32x32px"
 msgstr "32×32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Utilizzato nelle pagine elenco di componenti aggiuntivi, come risultati di ricerca o componenti aggiuntivi consigliati."
+msgstr ""
 
 #. The size of the icon
 msgid "64x64px"
@@ -2506,9 +2505,8 @@ msgstr "Sono supportati i formati PNG e JPG, consigliato il PNG. La massima dime
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "La minima dimensione possibile è di 1000x750 pixel e rapporto di 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Avere screenshot nella pagina del prodotto aumenta notevolmente le possibilità di essere installato e di essere visualizzato nella pagina iniziale."
+msgstr ""
 
 msgid "Continue"
 msgstr "Continua"
