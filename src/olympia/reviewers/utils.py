@@ -270,6 +270,10 @@ class NeedsHumanReviewTable(AutoApprovedTable):
         return ''.join(rval)
 
 
+class MadReviewTable(AutoApprovedTable):
+    pass
+
+
 class ReviewHelper(object):
     """
     A class that builds enough to render the form back to the user and

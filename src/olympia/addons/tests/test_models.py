@@ -37,6 +37,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview)
+from olympia.scanners.models import VersionScannerFlags
 
 
 class TestCleanSlug(TestCase):
@@ -2753,3 +2754,18 @@ class TestGitExtractionEntry(TestCase):
         addon = addon_factory()
         GitExtractionEntry.objects.create(addon=addon)
         assert not addon.git_extraction_is_in_progress
+
+
+class TestGetMadQueue(TestCase):
+    def test_returns_addons_with_versions_flagged_by_mad(self):
+        flagged_addon = addon_factory()
+        version = version_factory(addon=flagged_addon)
+        VersionScannerFlags.objects.create(version=version,
+                                           needs_human_review_by_mad=True)
+        other_addon = addon_factory()
+        version = version_factory(addon=other_addon)
+
+        addons = Addon.objects.get_mad_queue().all()
+
+        assert flagged_addon in addons
+        assert other_addon not in addons

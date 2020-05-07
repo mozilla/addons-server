@@ -82,6 +82,15 @@ def queue_tabnav(context):
                             counts['needs_human_review'])
                   .format(counts['needs_human_review']))),
             )
+            tabnav.append((
+                'mad',
+                'queue_mad',
+                (ungettext(
+                    'Flagged for Human Review ({0})',
+                    'Flagged for Human Review ({0})',
+                    counts['mad']
+                ).format(counts['mad'])),
+            ))
         if acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
             new_text = ugettext('New ({0})')
             update_text = ungettext(

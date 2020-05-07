@@ -26,6 +26,7 @@ urlpatterns = (
         name='reviewers.queue_auto_approved'),
     url(r'^queue/content_review', views.queue_content_review,
         name='reviewers.queue_content_review'),
+    url(r'^queue/mad', views.queue_mad, name='reviewers.queue_mad'),
     url(r'^queue/needs_human_review', views.queue_needs_human_review,
         name='reviewers.queue_needs_human_review'),
     url(r'^queue/expired_info_requests', views.queue_expired_info_requests,

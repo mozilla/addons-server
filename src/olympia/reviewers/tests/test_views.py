@@ -56,6 +56,7 @@ from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
 from olympia.reviewers.serializers import (
     CannedResponseSerializer, AddonBrowseVersionSerializer)
+from olympia.scanners.models import VersionScannerFlags
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.versions.tasks import extract_version_to_git
@@ -673,6 +674,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_needs_human_review'),
+            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
@@ -723,6 +725,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_needs_human_review'),
+            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
@@ -788,6 +791,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_needs_human_review'),
+            reverse('reviewers.queue_mad'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -1021,6 +1025,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_needs_human_review'),
+            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
@@ -1332,6 +1337,7 @@ class TestQueueBasics(QueueTest):
         expected = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.queue_needs_human_review'),
+            reverse('reviewers.queue_mad'),
         ]
         assert links == expected
 
@@ -7703,3 +7709,75 @@ class TestThemeBackgroundImages(ReviewBase):
         assert len(data['weta_for_tiling.png']) == 124496  # b64-encoded size
         assert 'transparent.gif' in data
         assert len(data['transparent.gif']) == 56  # base64-encoded size
+
+
+class TestMadQueue(QueueTest):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super().setUp()
+        self.url = reverse('reviewers.queue_mad')
+
+        listed_addon = addon_factory(created=self.days_ago(15))
+        VersionScannerFlags.objects.create(
+            version=version_factory(addon=listed_addon,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=True
+        )
+
+        unlisted_addon = addon_factory(created=self.days_ago(5))
+        VersionScannerFlags.objects.create(
+            version=version_factory(addon=unlisted_addon,
+                                    channel=amo.RELEASE_CHANNEL_UNLISTED),
+            needs_human_review_by_mad=True
+        )
+
+        unflagged_addon = addon_factory()
+        version_factory(addon=unflagged_addon)
+
+        VersionScannerFlags.objects.create(
+            version=version_factory(addon=addon_factory()),
+            needs_human_review_by_mad=False
+        )
+
+        self.expected_addons = [listed_addon, unlisted_addon]
+
+    def test_results(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        # listed
+        expected = []
+        addon = self.expected_addons[0]
+        expected.append((
+            '{} {}'.format(addon.name, addon.current_version.version),
+            reverse('reviewers.review', args=[addon.slug])
+        ))
+        # unlisted
+        addon = self.expected_addons[1]
+        expected.append((
+            '{} {}'.format(addon.name, addon.current_version.version),
+            reverse('reviewers.review', args=[addon.slug])
+        ))
+
+        doc = pq(response.content)
+        links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
+        assert len(links) == len(expected)
+        check_links(expected, links, verify=False)
+
+    def test_only_viewable_with_specific_permission(self):
+        # Post-review reviewer does not have access.
+        self.user.groupuser_set.all().delete()  # Remove all permissions
+        self.grant_permission(self.user, 'Addons:PostReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        # Regular user doesn't have access.
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_queue_layout(self):
+        self._test_queue_layout('Flagged for Human Review', tab_position=2,
+                                total_addons=2, total_queues=3, per_page=1)

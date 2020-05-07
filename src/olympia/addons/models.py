@@ -351,6 +351,45 @@ class AddonManager(ManagerBase):
                 addonreviewerflags__needs_admin_code_review=True)
         return qs
 
+    def get_mad_queue(self):
+        qs = (
+            self.get_queryset()
+            # All valid statuses, plus incomplete as well because the add-on
+            # could be purely unlisted (so we can't use valid_q(), which
+            # filters out current_version=None). We know the add-ons are likely
+            # to have a version since they got the needs_human_review flag, so
+            # returning incomplete ones is acceptable.
+            .filter(
+                status__in=[
+                    amo.STATUS_APPROVED, amo.STATUS_NOMINATED, amo.STATUS_NULL
+                ],
+                versions__files__status__in=[
+                    amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
+                ],
+                versions__versionscannerflags__needs_human_review_by_mad=True
+            )
+            # We don't want the default transformer.
+            # See get_auto_approved_queue()
+            .only_translations()
+            # We need those joins for the queue to work without making extra
+            # queries. See get_auto_approved_queue()
+            .select_related(
+                'addonapprovalscounter',
+                'addonreviewerflags',
+                '_current_version__autoapprovalsummary',
+            )
+            .prefetch_related(
+                '_current_version__files'
+            )
+            .order_by(
+                'created',
+            )
+            # There could be several versions matching for a single add-on so
+            # we need a distinct.
+            .distinct()
+        )
+        return qs
+
 
 class Addon(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
