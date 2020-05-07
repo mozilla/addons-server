@@ -1355,24 +1355,26 @@ class ReviewAddonVersionMixin(object):
 class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
                                 RetrieveModelMixin, GenericViewSet):
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['file'] = self.request.GET.get('file', None)
+
+        if self.request.GET.get('file_only', False):
+            context['exclude_entries'] = True
+
+        return context
+
     def get_serializer(
             self, instance=None, data=None, many=False, partial=False):
         if self.request.GET.get('file_only', False):
             return AddonBrowseVersionSerializerFileOnly(
                 instance=instance,
-                context={
-                    'exclude_entries': True,
-                    'file': self.request.GET.get('file', None),
-                    'request': self.request
-                }
+                context=self.get_serializer_context()
             )
 
         return AddonBrowseVersionSerializer(
             instance=instance,
-            context={
-                'file': self.request.GET.get('file', None),
-                'request': self.request
-            }
+            context=self.get_serializer_context()
         )
 
     def list(self, request, *args, **kwargs):
@@ -1507,29 +1509,37 @@ class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
             'parent_version': objs[parent_version_pk]
         }
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['file'] = self.request.GET.get('file', None)
+
+        if self.request.GET.get('file_only', False):
+            context['exclude_entries'] = True
+
+        return context
+
+    def get_serializer(
+            self, instance=None, data=None, many=False, partial=False):
+        context = self.get_serializer_context()
+        context['parent_version'] = data['parent_version']
+
+        if self.request.GET.get('file_only', False):
+            return AddonCompareVersionSerializerFileOnly(
+                instance=instance,
+                context=context
+            )
+
+        return AddonCompareVersionSerializer(
+            instance=instance,
+            context=context
+        )
+
     def retrieve(self, request, *args, **kwargs):
         objs = self.get_objects()
         version = objs['instance']
 
-        if self.request.GET.get('file_only', False):
-            serializer = AddonCompareVersionSerializerFileOnly(
-                instance=version,
-                context={
-                    'exclude_entries': True,
-                    'file': self.request.GET.get('file', None),
-                    'request': self.request,
-                    'parent_version': objs['parent_version'],
-                })
-            return Response(serializer.data)
-
-        serializer = AddonCompareVersionSerializer(
-            instance=version,
-            context={
-                'file': self.request.GET.get('file', None),
-                'request': self.request,
-                'parent_version': objs['parent_version'],
-            })
-
+        serializer = self.get_serializer(
+            instance=version, data={'parent_version': objs['parent_version']})
         return Response(serializer.data)
 
 
