@@ -136,6 +136,9 @@ tasks = {
                 # with a source git hash (which means source files have been
                 # git-extracted).
                 pk__in=Version.unfiltered.exclude(source_git_hash__exact='')
+                # This is needed to make `.distinct()` work, see:
+                # https://code.djangoproject.com/ticket/16058
+                .order_by()
                 .values_list('addon_id', flat=True)
                 .distinct()
             )
