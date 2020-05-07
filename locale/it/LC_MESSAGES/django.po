@@ -3235,9 +3235,8 @@ msgstr ""
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Disconnetti"
+msgstr ""
 
 msgid "Thanks!"
 msgstr "Grazie!"
@@ -3300,9 +3299,8 @@ msgstr "Collabora con noi"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Ulteriori informazioni riguardo alle norme di revisione del codice sorgente."
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Visibile sul sito dopo il superamento della revisione. Gli aggiornamenti verranno gestiti automaticamente dal sito."
@@ -3342,20 +3340,17 @@ msgstr "Nessuna foto"
 msgid "User Photo"
 msgstr "Immagine utente"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Il mio profilo"
+msgstr ""
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Carica una nuova versione"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Personalizza Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Scopri come realizzare un componente aggiuntivo"
+msgstr ""
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
