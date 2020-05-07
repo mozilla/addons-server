@@ -47,41 +47,31 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
         )
 
 
-# NOTE: Because of caching, this serializer cannot be reused and must be
-# created for each file. It cannot be used with DRF's many=True option.
-class FileEntriesSerializer(serializers.ModelSerializer):
-    content = serializers.SerializerMethodField()
-    uses_unknown_minified_code = serializers.SerializerMethodField()
-    download_url = serializers.SerializerMethodField()
-    entries = serializers.SerializerMethodField()
-    selected_file = serializers.SerializerMethodField()
-    mimetype = serializers.SerializerMethodField()
-    sha256 = serializers.SerializerMethodField()
-    size = serializers.SerializerMethodField()
-    mime_category = serializers.SerializerMethodField()
-    filename = serializers.SerializerMethodField()
+class FileEntriesMixin(object):
+    def _get_version(self):
+        """If neither the current instance nor the parent instance is a Version,
+        check the context for a version, otherwise raise an exception."""
+        if isinstance(self.instance, Version):
+            return self.instance
 
-    class Meta:
-        fields = ('id', 'content', 'entries', 'selected_file', 'download_url',
-                  'uses_unknown_minified_code', 'mimetype', 'sha256', 'size',
-                  'mime_category', 'filename'
-                  )
-        model = File
+        if self.parent is not None and isinstance(
+                self.parent.instance, Version):
+            return self.parent.instance
+
+        version = self.context.get('version', None)
+        if isinstance(version, Version):
+            return version
+
+        raise RuntimeError(
+            'This serialzer should not be created without a Version')
 
     @cached_property
     def repo(self):
-        return AddonGitRepository(self.get_instance().version.addon)
+        return AddonGitRepository(self._get_version().addon)
 
     @property
     def git_repo(self):
         return self.repo.git_repository
-
-    def get_instance(self):
-        """Fetch the correct instance either from this serializer or
-        it's parent"""
-        if self.parent is not None:
-            return self.parent.instance.current_file
-        return self.instance
 
     @cached_property
     def commit(self):
@@ -89,7 +79,7 @@ class FileEntriesSerializer(serializers.ModelSerializer):
         # Caching the commit to avoid calling revparse_single many times.
         try:
             return self.git_repo.revparse_single(
-                self.get_instance().version.git_hash)
+                self._get_version().git_hash)
         except pygit2.InvalidSpecError:
             raise NotFound(
                 'Couldn\'t find the requested version in git-repository')
@@ -99,13 +89,33 @@ class FileEntriesSerializer(serializers.ModelSerializer):
         # Caching the tree to avoid calling get_root_tree many times.
         return self.repo.get_root_tree(self.commit)
 
-    def _get_blob_for_selected_file(self, obj):
+    def _get_selected_file(self):
+        requested_file = self.context.get('file', None)
+        files = self._get_entries()
+
+        if requested_file is None:
+            default_files = ('manifest.json', 'install.rdf', 'package.json')
+
+            for manifest in default_files:
+                if manifest in files:
+                    requested_file = manifest
+                    break
+            else:
+                # This could be a search engine
+                requested_file = list(files.keys())[0]
+
+        if requested_file not in files:
+            raise NotFound('File not found')
+
+        return requested_file
+
+    def _get_blob_for_selected_file(self):
         """Returns the blob and filename for the selected file.
 
         Returns (None, None) if the selected file is not a blob.
         """
         tree = self.tree
-        selected_file = self.get_selected_file(obj)
+        selected_file = self._get_selected_file()
         if selected_file in tree:
             blob_or_tree = tree[selected_file]
 
@@ -114,8 +124,8 @@ class FileEntriesSerializer(serializers.ModelSerializer):
 
         return (None, None)
 
-    def _get_hash_for_selected_file(self, obj):
-        selected_file = self.get_selected_file(obj)
+    def _get_hash_for_selected_file(self):
+        selected_file = self._get_selected_file()
 
         # Return the hash if we already saved it to the locally cached
         # `self._entries` dictionary.
@@ -125,7 +135,7 @@ class FileEntriesSerializer(serializers.ModelSerializer):
             return _entries[selected_file]['sha256']
 
         commit = self.commit
-        blob, name = self._get_blob_for_selected_file(obj)
+        blob, name = self._get_blob_for_selected_file()
 
         # Normalize the key as we want to avoid that we exceed max
         # key lengh because of selected_file.
@@ -143,7 +153,7 @@ class FileEntriesSerializer(serializers.ModelSerializer):
 
         return cache.get_or_set(cache_key, _calculate_hash, 60 * 60 * 24)
 
-    def _get_entries(self, obj):
+    def _get_entries(self):
         # Given that this is a very expensive operation we have a two-fold
         # cache, one that is stored on this instance for very-fast retrieval
         # to support other method calls on this serializer
@@ -185,208 +195,17 @@ class FileEntriesSerializer(serializers.ModelSerializer):
             60 * 60 * 24)
 
         # Fetch and set the sha hash for the currently selected file.
-        sha256 = self._get_hash_for_selected_file(obj)
-        self._entries[self.get_selected_file(obj)]['sha256'] = sha256
+        sha256 = self._get_hash_for_selected_file()
+        self._entries[self._get_selected_file()]['sha256'] = sha256
 
         return self._entries
 
-    def get_entries(self, obj):
-        if self.context.get('exclude_entries', False):
-            return None
-        entries = self._get_entries(obj)
-        return self._trim_entries(entries)
 
-    def _trim_entries(self, entries):
-        result = OrderedDict()
-        for value in entries.values():
-            result[value['path']] = self._trim_entry(value)
-        return result
-
-    def _trim_entry(self, entry):
-        return {key: entry[key] for key in (
-                'depth', 'filename', 'mime_category', 'path', 'status'
-                ) if key in entry}
-
-    def get_mimetype(self, obj):
-        entries = self._get_entries(obj)
-        return entries[self.get_selected_file(obj)]['mimetype']
-
-    def get_sha256(self, obj):
-        return self._get_hash_for_selected_file(obj)
-
-    def get_size(self, obj):
-        entries = self._get_entries(obj)
-        return entries[self.get_selected_file(obj)]['size']
-
-    def get_filename(self, obj):
-        entries = self._get_entries(obj)
-        return entries[self.get_selected_file(obj)]['filename']
-
-    def get_mime_category(self, obj):
-        entries = self._get_entries(obj)
-        return entries[self.get_selected_file(obj)]['mime_category']
-
-    def get_selected_file(self, obj):
-        requested_file = self.context.get('file', None)
-        files = self._get_entries(obj)
-
-        if requested_file is None:
-            default_files = ('manifest.json', 'install.rdf', 'package.json')
-
-            for manifest in default_files:
-                if manifest in files:
-                    requested_file = manifest
-                    break
-            else:
-                # This could be a search engine
-                requested_file = list(files.keys())[0]
-
-        if requested_file not in files:
-            raise NotFound('File not found')
-
-        return requested_file
-
-    def get_content(self, obj):
-        blob, name = self._get_blob_for_selected_file(obj)
-        if blob is not None:
-            mimetype, mime_category = get_mime_type_for_blob(
-                tree_or_blob='blob', name=name)
-
-            # Only return the raw data if we detect a file that contains text
-            # data that actually can be rendered.
-            if mime_category == 'text':
-                # Remove any BOM data if preset.
-                return unicodehelper.decode(blob.read_raw())
-
-        # By default return an empty string.
-        # See https://github.com/mozilla/addons-server/issues/11782 for
-        # more explanation.
-        return ''
-
-    def get_uses_unknown_minified_code(self, obj):
-        try:
-            validation = obj.validation
-        except FileValidation.DoesNotExist:
-            # We don't have any idea about whether it could be minified or not
-            # so let's assume it's not for now.
-            return False
-
-        validation_data = json.loads(validation.validation)
-
-        prop = 'unknownMinifiedFiles'
-        minified_files = validation_data.get('metadata', {}).get(prop, [])
-        return self.get_selected_file(obj) in minified_files
-
-    def get_download_url(self, obj):
-        selected_file = self.get_selected_file(obj)
-        blob, name = self._get_blob_for_selected_file(obj)
-        if blob is not None:
-            return absolutify(reverse(
-                'reviewers.download_git_file',
-                kwargs={
-                    'version_id': self.get_instance().version.pk,
-                    'filename': selected_file
-                }
-            ))
-
-        return None
-
-
-class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):
-    channel = ReverseChoiceField(
-        choices=list(amo.CHANNEL_CHOICES_API.items()))
-
-    class Meta:
-        model = Version
-        fields = ('id', 'channel', 'version')
-
-
-class AddonBrowseVersionSerializerFileOnly(
-        MinimalVersionSerializerWithChannel):
-    file = FileEntriesSerializer(source='current_file')
-
-    class Meta:
-        model = Version
-        fields = ('id', 'file')
-
-
-class AddonBrowseVersionSerializer(AddonBrowseVersionSerializerFileOnly):
-    validation_url_json = serializers.SerializerMethodField()
-    validation_url = serializers.SerializerMethodField()
-    has_been_validated = serializers.SerializerMethodField()
-    addon = SimpleAddonSerializer()
-
-    class Meta:
-        model = Version
-        fields = (
-            'id', 'channel', 'reviewed', 'version',
-            'addon', 'file', 'has_been_validated', 'validation_url',
-            'validation_url_json'
-        )
-
-    def get_validation_url_json(self, obj):
-        return absolutify(reverse('devhub.json_file_validation', args=[
-            obj.addon.slug, obj.current_file.id
-        ]))
-
-    def get_validation_url(self, obj):
-        return absolutify(reverse('devhub.file_validation', args=[
-            obj.addon.slug, obj.current_file.id
-        ]))
-
-    def get_has_been_validated(self, obj):
-        return obj.current_file.has_been_validated
-
-
-class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
-    pass
-
-
-class MinimalBaseFileSerializer(FileSerializer):
-    class Meta:
-        model = File
-        fields = ('id',)
-
-
-class FileEntriesDiffSerializer(FileEntriesSerializer):
-    diff = serializers.SerializerMethodField()
-    entries = serializers.SerializerMethodField()
-    selected_file = serializers.SerializerMethodField()
-    download_url = serializers.SerializerMethodField()
-    uses_unknown_minified_code = serializers.SerializerMethodField()
-    base_file = serializers.SerializerMethodField()
-
-    class Meta:
-        fields = ('id', 'diff', 'entries', 'selected_file', 'download_url',
-                  'uses_unknown_minified_code', 'base_file',
-                  'sha256', 'size', 'mimetype', 'mime_category', 'filename'
-                  )
-        model = File
-
-    def get_diff(self, obj):
-        commit = obj.version.git_hash
-        parent = self.context['parent_version'].git_hash
-
-        # Initial commits have both set to the same version
-        parent = parent if parent != commit else None
-
-        diff = self.repo.get_diff(
-            commit=commit,
-            parent=parent,
-            pathspec=[self.get_selected_file(obj)])
-
-        # Because we're always specifying `pathspec` with the currently
-        # selected file we can inline the diff because there will always be
-        # one.
-        # See: https://github.com/mozilla/addons-server/issues/11392
-        return next(iter(diff), None)
-
-    def _get_entries(self, obj):
-        """Overwrite `FileEntriesSerializer._get_entries to inject
-
-        added/removed/changed information.
-        """
-        commit = obj.version.git_hash
+class FileEntriesDiffMixin(FileEntriesMixin):
+    def _get_entries(self):
+        """Overwrite `FileEntriesMixin._get_entries to inject
+            added/removed/changed information."""
+        commit = self._get_version().git_hash
         parent = self.context['parent_version'].git_hash
 
         # Initial commits have both set to the same version
@@ -397,7 +216,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             parent=parent,
             pathspec=None)
 
-        entries = super()._get_entries(obj)
+        entries = super()._get_entries()
 
         # All files have a "unmodified" status by default
         for path, value in entries.items():
@@ -453,9 +272,203 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
 
         return entries
 
+
+# NOTE: Because of caching, this serializer cannot be reused and must be
+# created for each file. It cannot be used with DRF's many=True option.
+class FileInfoSerializer(serializers.ModelSerializer, FileEntriesMixin):
+    content = serializers.SerializerMethodField()
+    uses_unknown_minified_code = serializers.SerializerMethodField()
+    download_url = serializers.SerializerMethodField()
+    selected_file = serializers.SerializerMethodField()
+    mimetype = serializers.SerializerMethodField()
+    sha256 = serializers.SerializerMethodField()
+    size = serializers.SerializerMethodField()
+    mime_category = serializers.SerializerMethodField()
+    filename = serializers.SerializerMethodField()
+
+    class Meta:
+        fields = ('id', 'content', 'selected_file', 'download_url',
+                  'uses_unknown_minified_code', 'mimetype', 'sha256', 'size',
+                  'mime_category', 'filename'
+                  )
+        model = File
+
+    def get_selected_file(self, obj):
+        return self._get_selected_file()
+
+    def get_mimetype(self, obj):
+        entries = self._get_entries()
+        return entries[self._get_selected_file()]['mimetype']
+
+    def get_sha256(self, obj):
+        return self._get_hash_for_selected_file()
+
+    def get_size(self, obj):
+        entries = self._get_entries()
+        return entries[self._get_selected_file()]['size']
+
+    def get_filename(self, obj):
+        entries = self._get_entries()
+        return entries[self._get_selected_file()]['filename']
+
+    def get_mime_category(self, obj):
+        entries = self._get_entries()
+        return entries[self._get_selected_file()]['mime_category']
+
+    def get_content(self, obj):
+        blob, name = self._get_blob_for_selected_file()
+        if blob is not None:
+            mimetype, mime_category = get_mime_type_for_blob(
+                tree_or_blob='blob', name=name)
+
+            # Only return the raw data if we detect a file that contains text
+            # data that actually can be rendered.
+            if mime_category == 'text':
+                # Remove any BOM data if preset.
+                return unicodehelper.decode(blob.read_raw())
+
+        # By default return an empty string.
+        # See https://github.com/mozilla/addons-server/issues/11782 for
+        # more explanation.
+        return ''
+
+    def get_uses_unknown_minified_code(self, obj):
+        try:
+            validation = obj.validation
+        except FileValidation.DoesNotExist:
+            # We don't have any idea about whether it could be minified or not
+            # so let's assume it's not for now.
+            return False
+
+        validation_data = json.loads(validation.validation)
+
+        prop = 'unknownMinifiedFiles'
+        minified_files = validation_data.get('metadata', {}).get(prop, [])
+        return self._get_selected_file() in minified_files
+
+    def get_download_url(self, obj):
+        selected_file = self._get_selected_file()
+        blob, name = self._get_blob_for_selected_file()
+        if blob is not None:
+            return absolutify(reverse(
+                'reviewers.download_git_file',
+                kwargs={
+                    'version_id': self._get_version().pk,
+                    'filename': selected_file
+                }
+            ))
+
+        return None
+
+
+class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):
+    channel = ReverseChoiceField(
+        choices=list(amo.CHANNEL_CHOICES_API.items()))
+
+    class Meta:
+        model = Version
+        fields = ('id', 'channel', 'version')
+
+
+class AddonBrowseVersionSerializerFileOnly(
+        MinimalVersionSerializerWithChannel):
+    file = FileInfoSerializer(source='current_file')
+
+    class Meta:
+        model = Version
+        fields = ('id', 'file')
+
+
+class AddonBrowseVersionSerializer(
+        AddonBrowseVersionSerializerFileOnly, FileEntriesMixin):
+    validation_url_json = serializers.SerializerMethodField()
+    validation_url = serializers.SerializerMethodField()
+    has_been_validated = serializers.SerializerMethodField()
+    file_entries = serializers.SerializerMethodField()
+    addon = SimpleAddonSerializer()
+
+    class Meta:
+        model = Version
+        fields = (
+            'id', 'channel', 'reviewed', 'version',
+            'addon', 'file', 'has_been_validated', 'validation_url',
+            'validation_url_json', 'file_entries'
+        )
+
+    def get_file_entries(self, obj):
+        entries = self._get_entries()
+        return self._trim_entries(entries)
+
+    def _trim_entries(self, entries):
+        result = OrderedDict()
+        for value in entries.values():
+            result[value['path']] = self._trim_entry(value)
+        return result
+
+    def _trim_entry(self, entry):
+        return {key: entry[key] for key in (
+                'depth', 'filename', 'mime_category', 'path', 'status'
+                ) if key in entry}
+
+    def get_validation_url_json(self, obj):
+        return absolutify(reverse('devhub.json_file_validation', args=[
+            obj.addon.slug, obj.current_file.id
+        ]))
+
+    def get_validation_url(self, obj):
+        return absolutify(reverse('devhub.file_validation', args=[
+            obj.addon.slug, obj.current_file.id
+        ]))
+
+    def get_has_been_validated(self, obj):
+        return obj.current_file.has_been_validated
+
+
+class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
+    pass
+
+
+class MinimalBaseFileSerializer(FileSerializer):
+    class Meta:
+        model = File
+        fields = ('id',)
+
+
+class FileInfoDiffSerializer(FileInfoSerializer, FileEntriesDiffMixin):
+    diff = serializers.SerializerMethodField()
+    selected_file = serializers.SerializerMethodField()
+    download_url = serializers.SerializerMethodField()
+    uses_unknown_minified_code = serializers.SerializerMethodField()
+    base_file = serializers.SerializerMethodField()
+
+    class Meta:
+        fields = ('id', 'diff', 'selected_file', 'download_url',
+                  'uses_unknown_minified_code', 'base_file',
+                  'sha256', 'size', 'mimetype', 'mime_category', 'filename'
+                  )
+        model = File
+
+    def get_diff(self, obj):
+        commit = self._get_version().git_hash
+        parent = self.context['parent_version'].git_hash
+
+        # Initial commits have both set to the same version
+        parent = parent if parent != commit else None
+
+        diff = self.repo.get_diff(
+            commit=commit,
+            parent=parent,
+            pathspec=[self._get_selected_file()])
+
+        # Because we're always specifying `pathspec` with the currently
+        # selected file we can inline the diff because there will always be
+        # one.
+        # See: https://github.com/mozilla/addons-server/issues/11392
+        return next(iter(diff), None)
+
     def get_uses_unknown_minified_code(self, obj):
         parent = self.context['parent_version']
-        selected_file = self.get_selected_file(obj)
+        selected_file = self._get_selected_file()
 
         for file in [parent.current_file, obj]:
             try:
@@ -478,14 +491,15 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
 
 class AddonCompareVersionSerializerFileOnly(
         AddonBrowseVersionSerializer):
-    file = FileEntriesDiffSerializer(source='current_file')
+    file = FileInfoDiffSerializer(source='current_file')
 
     class Meta:
         model = Version
         fields = ('id', 'file')
 
 
-class AddonCompareVersionSerializer(AddonCompareVersionSerializerFileOnly):
+class AddonCompareVersionSerializer(
+        AddonCompareVersionSerializerFileOnly, FileEntriesDiffMixin):
 
     class Meta(AddonBrowseVersionSerializer.Meta):
         pass
