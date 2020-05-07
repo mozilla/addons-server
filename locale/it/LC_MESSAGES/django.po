@@ -1608,9 +1608,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Più recente"
+msgstr ""
 
 msgid "Running"
 msgstr "In esecuzione"
@@ -1621,9 +1620,8 @@ msgstr "Operazione interrotta"
 msgid "Aborting"
 msgstr "Interruzione in corso…"
 
-#, fuzzy
 msgid "Completed"
-msgstr "Incompleto"
+msgstr ""
 
 msgid "Scheduled"
 msgstr "Pianificato"
