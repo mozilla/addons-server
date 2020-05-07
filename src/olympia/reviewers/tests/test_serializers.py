@@ -16,8 +16,8 @@ from olympia.lib.git import AddonGitRepository
 from olympia.lib.tests.test_git import apply_changes
 from olympia.reviewers.models import CannedResponse
 from olympia.reviewers.serializers import (
-    AddonBrowseVersionSerializer, CannedResponseSerializer,
-    FileEntriesDiffSerializer, FileEntriesSerializer)
+    AddonBrowseVersionSerializer, AddonBrowseVersionSerializerFileOnly,
+    CannedResponseSerializer, FileEntriesDiffSerializer, FileEntriesSerializer)
 from olympia.versions.models import License
 from olympia.versions.tasks import extract_version_to_git
 
@@ -656,6 +656,37 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert data['diff'] is not None
 
 
+class TestAddonBrowseVersionSerializerFileOnly(TestCase):
+    def setUp(self):
+        super(TestAddonBrowseVersionSerializerFileOnly, self).setUp()
+
+        self.addon = addon_factory(
+            file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+        self.addon.current_version.reload()
+        self.version = self.addon.current_version
+
+    def get_serializer(self, **extra_context):
+        api_version = api_settings.DEFAULT_VERSION
+        request = APIRequestFactory().get('/api/%s/' % api_version)
+        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+        request.version = api_version
+        extra_context.setdefault('request', request)
+
+        return AddonBrowseVersionSerializerFileOnly(
+            instance=self.version, context=extra_context)
+
+    def serialize(self, **extra_context):
+        return self.get_serializer(**extra_context).data
+
+    def test_basic(self):
+        data = self.serialize()
+        assert data['id'] == self.version.pk
+        assert 'file' in data
+        assert len(data.keys()) == 2
+
+
 class TestAddonBrowseVersionSerializer(TestCase):
     def setUp(self):
         super(TestAddonBrowseVersionSerializer, self).setUp()
@@ -742,6 +773,37 @@ class TestAddonBrowseVersionSerializer(TestCase):
             'name': {'en-US': self.addon.name},
             'icon_url': absolutify(self.addon.get_icon_url(64))
         }
+
+
+class TestAddonCompareVersionSerializerFileOnly(TestCase):
+    def setUp(self):
+        super(TestAddonCompareVersionSerializerFileOnly, self).setUp()
+
+        self.addon = addon_factory(
+            file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+        self.addon.current_version.reload()
+        self.version = self.addon.current_version
+
+    def get_serializer(self, **extra_context):
+        api_version = api_settings.DEFAULT_VERSION
+        request = APIRequestFactory().get('/api/%s/' % api_version)
+        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+        request.version = api_version
+        extra_context.setdefault('request', request)
+
+        return AddonBrowseVersionSerializerFileOnly(
+            instance=self.version, context=extra_context)
+
+    def serialize(self, **extra_context):
+        return self.get_serializer(**extra_context).data
+
+    def test_basic(self):
+        data = self.serialize()
+        assert data['id'] == self.version.pk
+        assert 'file' in data
+        assert len(data.keys()) == 2
 
 
 class TestCannedResponseSerializer(TestCase):

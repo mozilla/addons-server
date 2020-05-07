@@ -62,10 +62,11 @@ from olympia.reviewers.models import (
     clear_reviewing_cache, get_flags, get_reviewing_cache,
     get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.serializers import (
-    AddonBrowseVersionSerializer, AddonCompareVersionSerializer,
+    AddonBrowseVersionSerializer, AddonBrowseVersionSerializerFileOnly,
+    AddonCompareVersionSerializer, AddonCompareVersionSerializerFileOnly,
     AddonReviewerFlagsSerializer, CannedResponseSerializer,
     DiffableVersionSerializer, DraftCommentSerializer, FileEntriesSerializer,
-    FileEntriesDiffSerializer)
+)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     NeedsHumanReviewTable, ReviewHelper, ViewUnlistedAllListTable,
@@ -1354,35 +1355,32 @@ class ReviewAddonVersionMixin(object):
 class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
                                 RetrieveModelMixin, GenericViewSet):
 
-    def list(self, request, *args, **kwargs):
-        """Return all (re)viewable versions for this add-on.
-
-        Full list, no pagination."""
-        qs = self.filter_queryset(self.get_queryset())
-        serializer = DiffableVersionSerializer(qs, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        version = self.get_object()
-
+    def get_serializer(
+            self, instance=None, data=None, many=False, partial=False):
         if self.request.GET.get('file_only', False):
-            serializer = FileEntriesSerializer(
-                instance=version.current_file,
+            return AddonBrowseVersionSerializerFileOnly(
+                instance=instance,
                 context={
                     'exclude_entries': True,
                     'file': self.request.GET.get('file', None),
                     'request': self.request
                 }
             )
-            return Response({'id': version.id, 'file': serializer.data})
 
-        serializer = AddonBrowseVersionSerializer(
-            instance=version,
+        return AddonBrowseVersionSerializer(
+            instance=instance,
             context={
                 'file': self.request.GET.get('file', None),
                 'request': self.request
             }
         )
+
+    def list(self, request, *args, **kwargs):
+        """Return all (re)viewable versions for this add-on.
+
+        Full list, no pagination."""
+        qs = self.filter_queryset(self.get_queryset())
+        serializer = DiffableVersionSerializer(qs, many=True)
         return Response(serializer.data)
 
 
@@ -1514,15 +1512,15 @@ class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
         version = objs['instance']
 
         if self.request.GET.get('file_only', False):
-            serializer = FileEntriesDiffSerializer(
-                instance=version.current_file,
+            serializer = AddonCompareVersionSerializerFileOnly(
+                instance=version,
                 context={
                     'exclude_entries': True,
                     'file': self.request.GET.get('file', None),
                     'request': self.request,
                     'parent_version': objs['parent_version'],
                 })
-            return Response({'id': version.id, 'file': serializer.data})
+            return Response(serializer.data)
 
         serializer = AddonCompareVersionSerializer(
             instance=version,
