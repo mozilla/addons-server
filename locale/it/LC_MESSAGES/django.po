@@ -1923,11 +1923,10 @@ msgstr "L’icona deve essere quadrata (stessa larghezza e altezza)."
 msgid "There was an error uploading your preview."
 msgstr "Si è verificato un errore durante il caricamento dell’anteprima."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "L’ultima versione approvata di un’estensione consigliata non può essere eliminata o disattivata. Per assistenza contatta un amministratore di AMO."
+msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
