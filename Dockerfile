@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
 RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-buster-nodesource-repo /etc/apt/sources.list.d/nodesource.list
 ADD docker/debian-buster-backports-repo /etc/apt/sources.list.d/buster-backports.list
+ADD docker/etc/mime.types /etc/mime.types
 
 # IMPORTANT: When editing this list below, make sure to also update
 # `Dockerfile.deploy`.
@@ -39,7 +40,6 @@ RUN apt-get update && apt-get -t buster install -y \
         zlib1g-dev \
         libffi-dev \
         libssl-dev \
-        libmagic-dev \
         libpcre3-dev \
         nodejs \
         # Git, because we're using git-checkout dependencies
@@ -56,8 +56,6 @@ RUN apt-get update && apt-get -t buster install -y \
         # Use libmaxmind for speedy geoip lookups
         libmaxminddb0                    \
         libmaxminddb-dev                 \
-        file \
-        libmagic-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # IMPORTANT: When editing one of these lists below, make sure to also update

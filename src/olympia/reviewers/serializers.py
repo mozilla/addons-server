@@ -163,7 +163,7 @@ class FileEntriesSerializer(serializers.ModelSerializer):
                 blob = entry_wrapper.blob
 
                 mimetype, entry_mime_category = get_mime_type_for_blob(
-                    tree_or_blob=entry.type, name=entry.name, blob=blob)
+                    tree_or_blob=entry.type, name=entry.name)
 
                 result[path] = {
                     'depth': path.count(os.sep),
@@ -250,7 +250,7 @@ class FileEntriesSerializer(serializers.ModelSerializer):
         blob, name = self._get_blob_for_selected_file(obj)
         if blob is not None:
             mimetype, mime_category = get_mime_type_for_blob(
-                tree_or_blob='blob', name=name, blob=blob)
+                tree_or_blob='blob', name=name)
 
             # Only return the raw data if we detect a file that contains text
             # data that actually can be rendered.
