@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-08 22:03+0000\n"
+"PO-Revision-Date: 2020-05-08 22:37+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4013,9 +4013,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dinamikus navigáció {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Használjon egérgesztusokat a lapok bezárásához, az egy lappal visszalépéshez, az újratöltéshez, és egyebekhez."
+msgstr "Használjon egérgesztusokat a lapok bezárásához, a lapok közti navigációhoz, és egyebekhez."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4930,9 +4929,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Azonnali időjárási információk a világ minden tájáról."
+msgstr "Kapjon időjárási információkat közvetlenül a böngészőben."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
