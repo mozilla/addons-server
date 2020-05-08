@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 12:55+0000\n"
+"PO-Revision-Date: 2020-05-08 11:38+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -472,7 +472,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Toś ten dodank južo k zběrce słuša"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Status pśizwólenja"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
