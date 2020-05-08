@@ -5125,9 +5125,9 @@ msgstr "La dimensione massima consentita per i temi WebExtension è {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Non è possibile caricare questo tipo di componente aggiuntivo."
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Non è consentito caricare un componente aggiuntivo il cui guid termina in %s"
+msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
@@ -5540,9 +5540,8 @@ msgstr "Analisi rischio non disponibile."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Se è definita `canned_response` non puoi inviare un commento."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Impossibile caricare un language pack"
+msgstr ""
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
