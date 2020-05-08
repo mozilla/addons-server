@@ -5576,9 +5576,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} giorno"
 msgstr[1] "{0} giorni"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr ""
 
 msgid "Last Review"
 msgstr "Ultima revisione"
