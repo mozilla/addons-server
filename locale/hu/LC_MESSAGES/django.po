@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-08 22:37+0000\n"
+"PO-Revision-Date: 2020-05-08 23:00+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4953,9 +4953,8 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Teljes oldal – vagy csak egy részének – letöltése egyetlen HTML fájlként."
+msgstr "Teljes oldal – vagy csak a képek és stílusok – letöltése egyetlen HTML-fájlként."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
@@ -6026,9 +6025,8 @@ msgstr "Kiegészítő erőltetett letiltása"
 msgid "Force-enable add-on"
 msgstr "Kiegészítő erőltetett engedélyezése"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Összes beküldés megtekintése"
+msgstr "Összes blokkolási lista beküldése"
 
 # 80%
 # 100%
@@ -6239,23 +6237,20 @@ msgstr ""
 msgid "presence of a version"
 msgstr "Listázott verziók előnézete"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Verzió aláírva"
+msgstr "verzió csatorna"
 
 msgid "add-on status"
 msgstr "kiegészítő állapota"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Listázás láthatósága"
+msgstr "kiegészítő listázásának láthatósága"
 
 msgid "file status"
 msgstr "fájl állapota"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} aláírása megtörtént."
+msgstr "fájl aláírása"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
