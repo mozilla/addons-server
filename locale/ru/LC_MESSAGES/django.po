@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-10 20:22+0000\n"
+"PO-Revision-Date: 2020-05-10 20:32+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -135,7 +135,7 @@ msgid "Reviewer Tools (listed)"
 msgstr "Инструменты проверяющего (в списке)"
 
 msgid "Reviewer Tools (unlisted)"
-msgstr "Инструменты проверяющего (не в списке)"
+msgstr "Инструменты проверяющего (скрытые)"
 
 msgid "Reviewer links"
 msgstr "Ссылки проверяющего"
@@ -3141,9 +3141,8 @@ msgstr ""
 "Если ваше дополнение передаёт какие-либо данные с компьютера пользователя, необходимо иметь политику приватности, которая объясняет, какие данные отправляются и как они используются. Это относится "
 "только к опубликованным дополнениям."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Если ваше дополнение содержит бинарный или обфусцированный код, не считая известных библиотек, загрузите его исходники для проверки."
+msgstr "Если ваше дополнение содержит минифицированный, объединённый или иным образом сгенерированный машиной код, отличный от известных библиотек, загрузите его исходники для проверки."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Пожалуйста, добавьте инструкции о том, как воссоздать финальный файл дополнения, либо в файле README либо в замечаниях для проверяющего эту версию."
@@ -3158,9 +3157,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Мастерская расширений"
+msgstr "Посетите Мастерскую расширений"
 
 msgid "Connect with us"
 msgstr "Связаться с нами"
@@ -3168,9 +3166,8 @@ msgstr "Связаться с нами"
 msgid "Twitter"
 msgstr "Твиттер"
 
-#, fuzzy
 msgid "For developers"
-msgstr "Разработчик"
+msgstr "Для разработчиков"
 
 msgid "For end users"
 msgstr "Для конечных пользователей"
@@ -3179,28 +3176,24 @@ msgid "Matrix"
 msgstr "Matrix"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Разработчикам дополнений"
+msgstr "Список рассылки для разработчиков дополнений"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Разработка расширения"
+msgstr "Информационный бюллетень разработчиков расширений"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP-адрес"
+msgstr "Адрес электронной почты"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr "Я соглашаюсь с тем, как Mozilla обращается с моей информацией, согласно этому %(link_open)sУведомлению о конфиденциальности%(link_close)s."
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Выйти"
+msgstr "Зарегистрироваться"
 
 msgid "Thanks!"
 msgstr "Спасибо!"
@@ -3211,9 +3204,8 @@ msgstr "Если вы ранее не подтверждали подписку 
 msgid "Resources"
 msgstr "Ресурсы"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API Веб-расширений"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: создавайте и тестируйте расширения"
@@ -3263,9 +3255,8 @@ msgstr "Примите участие"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Узнайте больше о политике проверки исходного кода."
+msgstr "Узнайте больше о сообществе разработчиков"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Отобразится на этом сайте после прохождения проверки кода. Автоматические обновления будут выполняться этим сайтом."
@@ -3305,20 +3296,17 @@ msgstr "Нет фото"
 msgid "User Photo"
 msgstr "Фото пользователя"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Мой Профиль"
+msgstr "Профиль"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Отправить новую версию"
+msgstr "Отправить или управлять расширениями"
 
 msgid "Customize Firefox"
 msgstr "Настройте под себя Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Узнайте как создать дополнение"
+msgstr "Узнайте, как создать расширение"
 
 msgid "Ready to submit or manage your extension?"
 msgstr "Готовы представить или управлять своим расширением?"
@@ -3362,9 +3350,8 @@ msgstr "При желании, введите любую информацию, �
 msgid "Source code"
 msgstr "Исходный код"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Если ваше дополнение содержит бинарный или обфусцированный код, дайте здесь проверяющим доступ к исходникам."
+msgstr "Если ваше дополнение содержит минифицированный, объединённый или иным образом сгенерированный машиной код, предоставьте здесь проверяющим доступ к исходникам."
 
 msgid "File {file_id} ({platform})"
 msgstr "Файл {file_id} ({platform})"
@@ -3744,9 +3731,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Настраивайте жесты мышью {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Настройте жесты мыши. Откройте новые возможности навигации с помощью 50 полезных жестов мыши."
+msgstr "Настройте жесты мыши. Откройте для себя новый способ навигации с более чем 50 конфигурациями."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4012,9 +3998,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Динамическая навигация {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Используйте жесты мышью для закрытия вкладок, возврата на одну страницу, перезагрузки и других действий."
+msgstr "Используйте жесты мышью для закрытия вкладок, перемещения по страницам и других действий."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4046,7 +4031,7 @@ msgstr "Переделайте свои любимые веб-сайты {start_
 
 #. editorial content for the discovery pane.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Измените вид любого веб-сайта. Поменяйте цвета, фон страниц и многое другое."
+msgstr "Измените вид любого веб-сайта. Меняйте цвета, фон страниц и многое другое."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4807,7 +4792,7 @@ msgstr "Улучшите чтение {start_sub_heading}с помощью {addo
 
 #. editorial content for the discovery pane.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr "Читайте с большей лёгкостью и ясностью. Удалите лишнее вокруг текста на веб-страницах."
+msgstr "Читайте с лёгкостью и ясностью. Удалите лишнее вокруг текста на веб-страницах."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4859,7 +4844,7 @@ msgstr "Заблокируйте отвлекающие сайты {start_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "Блокируйте отвлекающие сайты. Просто укажите список веб-сайтов, которые вы хотите заблокировать. Моментальная дисциплина!"
+msgstr "Блокируйте отвлекающие сайты. Просто укажите список веб-сайтов, которые хотите заблокировать. Моментальная дисциплина!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4930,9 +4915,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Актуальная информация о погоде во всём мире."
+msgstr "Получайте обновления погоды прямо в браузере."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4955,14 +4939,12 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Сохраняйте целые страницы — или только их части — в один HTML-файл."
+msgstr "Сохраните всю веб-страницу, включая изображения и стили, в виде одного файла HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Автоматическое удаление куки при закрытии вкладки."
+msgstr "Автоматически заменяйте уничижительные слова в Интернете."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -4970,7 +4952,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Смотрите потоковые видео с друзьями и семьёй где угодно."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4986,7 +4968,7 @@ msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Управление вкладками"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5035,9 +5017,8 @@ msgstr "Нельзя сделать diff версии против самой с
 msgid "Could not parse the manifest file."
 msgstr "Не удалось распарсить файл манифеста."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Для Firefox 47 и ниже требуется GUID."
+msgstr "Идентификатор дополнения требуется для Firefox 47 и ниже."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Минимальная поддерживаемая \"strict_min_version\" - 42.0."
@@ -5100,9 +5081,9 @@ msgstr "Максимальный размер для WebExtension тем — {0}
 msgid "You cannot submit this type of add-on"
 msgstr "Вы не можете загрузить этот тип дополнения"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Вы не можете представить дополнение с guid, оканчивающимся на %s"
+msgstr "Вы не можете отправить дополнение, используя идентификатор, заканчивающийся на %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Вы не можете отправить расширение, подписанное Mozilla"
@@ -5499,9 +5480,8 @@ msgstr "Авто-одобрение задержано на неопределе
 msgid "Is locked by a reviewer"
 msgstr "Заблокировано редактором"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Установлен флаг отключения автоодобрения"
+msgstr "Имеет установленный флаг отключения/задержки автоодобрения"
 
 msgid "Is recommendable"
 msgstr "Рекомендуемое"
@@ -5515,9 +5495,8 @@ msgstr "Распределение рисков недоступно."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Вы не можете оставить комментарий, если определено `canned_response`."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Вы не можете представить языковой пакет"
+msgstr "Вы не можете отправить пустой комментарий."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5555,9 +5534,8 @@ msgstr[0] "{0} день"
 msgstr[1] "{0} дня"
 msgstr[2] "{0} дней"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Последняя проверка"
@@ -5571,13 +5549,11 @@ msgstr "Срок запроса информации"
 msgid "Last Updated"
 msgstr "Последнее обновление"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Другие ожидающие проверки ({0})"
+msgstr "Публичные версии, требующие проверки человеком ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Другие ожидающие проверки ({0})"
+msgstr "Скрытые версии, требующие проверки человеком ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Это действие подтвердит, подпишет и опубликует эту версию. Разработчику будут отправлены комментарии."
@@ -5603,20 +5579,17 @@ msgstr "Отклонить несколько версий"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Это действие отклонит выбранные публичные версии. Разработчику будут отправлены комментарии."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Отклонить несколько версий"
+msgstr "Блокировать несколько версий"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Отклонить несколько версий"
+msgstr "Подтвердить несколько версий"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Это действие записывает ваше одобрение содержимого последней публичной версии, без уведомления разработчика."
+msgstr "Это действие подтвердит одобрение выбранных версий без уведомления разработчика."
 
 msgid "Reviewer reply"
 msgstr "Ответ проверяющего"
@@ -5729,13 +5702,11 @@ msgstr "Проверка успешно обработана."
 msgid "Review lock limit reached"
 msgstr "Достигнут лимит блокировки проверок"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: Лицензионное Соглашение Конечного Пользователя"
+msgstr "{addon} - EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Политика приватности"
+msgstr "{addon} - Политика конфиденциальности"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5807,9 +5778,8 @@ msgstr "Галерея скриншотов"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Здесь нечего смотреть!  Разработчик не добавил никаких деталей."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "по версии дополнения"
+msgstr "Перевод имени дополнения"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5924,19 +5894,17 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Автоматически одобренные дополнения"
+msgstr "Автоматически одобренные дополнения - дополнения для Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Истёк срок запроса информации"
+msgstr "Запросы информации с истёкшим сроком действия - дополнения для Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Скрытые дополнения - дополнения для Firefox"
 
 msgid "Advanced Search"
 msgstr "Продвинутый поиск"
