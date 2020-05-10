@@ -3353,7 +3353,7 @@ msgid "Learn how to make an extension"
 msgstr "Scopri come realizzare un’estensione"
 
 msgid "Ready to submit or manage your extension?"
-msgstr "Sei pronto a inviare o gestire la tua estensione?"
+msgstr ""
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
