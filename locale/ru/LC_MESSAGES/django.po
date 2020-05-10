@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-10 20:40+0000\n"
+"PO-Revision-Date: 2020-05-10 20:43+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2300,7 +2300,7 @@ msgid "Experimental?"
 msgstr "Экспериментальное?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "Если ваше дополнение экспериментальное или каким-либо иным образом не готово для использования широкой публикой.  Дополнение будет показано, но его видимость будет ограничена. "
+msgstr "Если ваше дополнение экспериментальное или каким-либо иным образом не готово для использования широкой публикой.  Дополнение будет опубликовано, но его видимость будет ограничена."
 
 msgid "This add-on is experimental."
 msgstr "Это дополнение экспериментальное."
@@ -2640,7 +2640,7 @@ msgstr "Это дополнение экспериментальное"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
-"Установите этот флажок, если ваше дополнение экспериментальное или каким-либо иным образом не готово для использования широкой публикой.  Дополнение будет показано, но его видимость будет "
+"Установите этот флажок, если ваше дополнение экспериментальное или каким-либо иным образом не готово для использования широкой публикой.  Дополнение будет опубликовано, но его видимость будет "
 "ограничена. Вы сможете изменить эту настройку позже."
 
 msgid "Select a category for this add-on:"
@@ -6671,13 +6671,12 @@ msgstr "Пользователи \"%(users)s\" были заблокирован
 msgid "Ban selected users"
 msgstr "Заблокировать выбранных пользователей"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Для пользователей \"%(users)s\" сброшены API-ключи."
+msgstr "Сброшены сессии для пользователей \"%(users)s\"."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Удалить версию"
+msgstr "Сбросить сессию"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6746,11 +6745,8 @@ msgstr ""
 "Перед началом, пожалуйста прочтите и примите наше Соглашение по распространению дополнений Firefox, а также наши Политики и Правила проверки. Соглашение по распространению дополнений Firefox также "
 "ссылается на Уведомление об использовании конфиденциальной информации, которое объясняет, как мы обрабатываем вашу информацию."
 
-#, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Перед началом, пожалуйста прочтите и примите наше Соглашение по распространению дополнений Firefox, а также наши Политики и Правила проверки. Соглашение по распространению дополнений Firefox также "
-"ссылается на Уведомление об использовании конфиденциальной информации, которое объясняет, как мы обрабатываем вашу информацию."
+msgstr "Пожалуйста, прочитайте и примите наше Соглашение по распространению дополнений Firefox, а также наши Политики и правила проверки, посетив {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "разработчик дополнения отвечает на мой отзыв"
@@ -6782,9 +6778,8 @@ msgstr "Уведомления пользователя"
 msgid "Ban"
 msgstr "Заблокировать"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Удалить версию"
+msgstr "Сбросить сессию"
 
 msgid "Delete picture"
 msgstr "Удалить изображение"
