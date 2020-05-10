@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-07 17:05+0000\n"
+"PO-Revision-Date: 2020-05-08 17:32+0000\n"
 "Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3353,7 +3353,7 @@ msgid "Learn how to make an extension"
 msgstr "Scopri come realizzare un’estensione"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Sei pronto a inviare o gestire la tua estensione?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
@@ -3773,7 +3773,7 @@ msgstr "Personalizza le azioni del mouse {start_sub_heading}con {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr ""
+msgstr "Personalizza le azioni del mouse. Scopri un nuovo modo di navigare con oltre 50 configurazioni."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4040,7 +4040,7 @@ msgstr "Navigazione dinamica {start_sub_heading}con {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr ""
+msgstr "Usa le azioni del mouse per chiudere le schede, navigare tra le pagine e molto altro."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4955,19 +4955,19 @@ msgstr "Questa estensione risolve i problemi riscontrati con alcuni siti nel rip
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Seleziona, ordina ed esegui i tuoi download più velocemente."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "Ricevi aggiornamenti meteo direttamente nel browser."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Elimina i cookie, la cronologia di navigazione e i file memorizzati nella cache con un solo clic."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Rimuovi gli elementi traccianti dai link web."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
@@ -4979,7 +4979,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Crea e personalizza gruppi di schede."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4991,7 +4991,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blocca tutti gli annunci pubblicitari (video, pop-up, banner e molto altro)."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
@@ -5541,7 +5541,7 @@ msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Se è definita `canned_response` non puoi inviare un commento."
 
 msgid "You can't submit an empty comment."
-msgstr ""
+msgstr "Non è consentito inviare un commento vuoto."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5577,7 +5577,7 @@ msgstr[0] "{0} giorno"
 msgstr[1] "{0} giorni"
 
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Ultima revisione"
