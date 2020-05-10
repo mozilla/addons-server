@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-08 22:23+0000\n"
+"PO-Revision-Date: 2020-05-10 19:20+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3741,7 +3741,7 @@ msgstr "Оптимізуйте відео {start_sub_heading}за допомог
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr "Затемнюйте сторінку навколо відео-програвачів для зосередженого перегляду."
+msgstr "Затемнюйте сторінку навколо відеопрогравачів для зосередженого перегляду."
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
