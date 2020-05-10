@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-09 10:49+0000\n"
+"PO-Revision-Date: 2020-05-09 12:43+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2840,6 +2840,8 @@ msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
+"<span class=\"instruction-emphasis\">Nota:</span> il codice sorgente, con l’eccezione di librerie open source di terze parti, non può essere transcompilato, concatenato, minimizzato o comunque "
+"generato automaticamente."
 
 msgid "How to Submit:"
 msgstr "Come caricare il componente aggiuntivo:"
@@ -3172,9 +3174,8 @@ msgstr ""
 "In tutti i casi in cui il componente aggiuntivo trasmetta e raccolga dati dal computer dell’utente è necessario esplicitare un’informativa sulla privacy che indichi quali dati vengono inviati e come"
 " verranno utilizzati. Rilevante solo per componenti aggiuntivi pubblici."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Se il componente aggiuntivo contiene file binari o codice offuscato diverso dalle librerie note, caricane il sorgente per la revisione."
+msgstr "Se il componente aggiuntivo contiene, oltre alle librerie note, codice minimizzato, concatenato o comunque generato automaticamente, caricarne i codici sorgente originali per la revisione."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr ""
@@ -3237,9 +3238,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Risorse"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: Sviluppa ed esegui i test delle tue estensioni"
@@ -3384,9 +3384,8 @@ msgstr "(facoltativo) Inserisci informazioni utili per i revisori che dovranno v
 msgid "Source code"
 msgstr "Codice sorgente"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Se il componente aggiuntivo contiene file binari o codice offuscato, utilizza questa pagina per rendere disponibile il sorgente ai revisori."
+msgstr ""
 
 msgid "File {file_id} ({platform})"
 msgstr "File {file_id} ({platform})"
@@ -5050,9 +5049,8 @@ msgstr "Non è possibile comparare una versione con se stessa"
 msgid "Could not parse the manifest file."
 msgstr "Impossibile analizzare il file manifesto."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Per la compatibilità con le versioni di Firefox 47 e precedenti è necessario specificare un GUID."
+msgstr "Per la compatibilità con le versioni di Firefox 47 e precedenti è necessario specificare un ID di componente aggiuntivo."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "La versione meno recente compatibile, “strict_min_version”, è la 42.0."
@@ -5514,9 +5512,8 @@ msgstr ""
 msgid "Is locked by a reviewer"
 msgstr "Bloccato da un revisore"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "È stato contrassegnato per la disattivazione dell’approvazione automatica"
+msgstr "È stato contrassegnato per la disattivazione o il rinvio dell’approvazione automatica"
 
 msgid "Is recommendable"
 msgstr "È idoneo per i consigliati"
@@ -5581,13 +5578,11 @@ msgstr "Scadenza richiesta informazioni"
 msgid "Last Updated"
 msgstr "Ultimo aggiornamento"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Altre revisioni in attesa ({0})"
+msgstr "Versioni pubblicate che richiedono revisione umana ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Altre revisioni in attesa ({0})"
+msgstr "Versioni non pubblicate che richiedono revisione umana ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
@@ -5615,16 +5610,14 @@ msgstr "Rifiuta più versioni"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Questa azione rifiuterà tutte le versioni pubbliche selezionate. Il commento verrà inviato allo sviluppatore."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Rifiuta più versioni"
+msgstr ""
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Rifiuta più versioni"
+msgstr ""
 
 #, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
