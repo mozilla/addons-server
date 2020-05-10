@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-04-21 20:47+0000\n"
-"Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
+"PO-Revision-Date: 2020-05-10 17:08+0000\n"
+"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -285,17 +285,17 @@ msgstr "Không tìm thấy"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Chúng tôi xin lỗi, nhưng chúng tôi không thể tìm thấy những gì bạn đang tìm kiếm.</h1> <p> Trang hoặc tập tin bạn yêu cầu không được tìm thấy trên trang web của chúng tôi. Có thể bạn đã nhấp "
-"vào một liên kết đã lỗi thời hoặc nhập sai địa chỉ. </p> <ul> <li>Nếu bạn gõ địa chỉ, vui lòng kiểm tra lại chính tả.</li> <li> Nếu bạn đã theo một liên kết từ một nơi nào đó, xin vui lòng "
+"<h1>Chúng tôi xin lỗi, nhưng chúng tôi không thể tìm thấy những gì bạn đang tìm kiếm.</h1> <p> Trang hoặc tập tin bạn yêu cầu không được tìm thấy trên trang web của chúng tôi. Có thể bạn đã nhấp vào"
+" một liên kết đã lỗi thời hoặc nhập sai địa chỉ. </p> <ul> <li>Nếu bạn gõ địa chỉ, vui lòng kiểm tra lại chính tả.</li> <li> Nếu bạn đã theo một liên kết từ một nơi nào đó, xin vui lòng "
 "%(open_bug_link)sgửi một vấn đề%(close_bug_link)s. Hãy cho chúng tôi biết bạn đến từ đâu và những gì bạn đang tìm kiếm, và chúng tôi sẽ cố gắng hết sức để khắc phục nó. </li> </ul> <p>Hoặc bạn chỉ "
-"có thể chuyển qua một số trang phổ biến trên trang web của chúng tôi.</p> <ul> <li>Bạn có quan tâm đến <a href=\"%(rec)s\">danh sách các tiện ích nổi bật</a> không?</li> <li> Bạn có muốn <a href="
-"\"%(search)s\">tìm kiếm tiện ích</a> không? Bạn có thể truy cập <a href=\"%(search)s\">trang tìm kiếm</a> hoặc chỉ sử dụng trường tìm kiếm ở trên. </li> <li> Nếu bạn muốn bắt đầu lại, chỉ cần truy "
-"cập <a href=\"%(home)s\">trang trước tiện ích</a>. </li> </ul>"
+"có thể chuyển qua một số trang phổ biến trên trang web của chúng tôi.</p> <ul> <li>Bạn có quan tâm đến <a href=\"%(rec)s\">danh sách các tiện ích nổi bật</a> không?</li> <li> Bạn có muốn <a "
+"href=\"%(search)s\">tìm kiếm tiện ích</a> không? Bạn có thể truy cập <a href=\"%(search)s\">trang tìm kiếm</a> hoặc chỉ sử dụng trường tìm kiếm ở trên. </li> <li> Nếu bạn muốn bắt đầu lại, chỉ cần "
+"truy cập <a href=\"%(home)s\">trang trước tiện ích</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ôi"
@@ -450,8 +450,8 @@ msgstr "Phiên bản"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -485,7 +485,7 @@ msgstr ""
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Tiện ích với GUID %(guid)s không tồn tại"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
@@ -494,9 +494,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Khoảng phiên bản bất hợp lệ."
+msgstr "Phiên bản không hợp lệ"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -515,11 +514,10 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Từ chối nhiều phiên bản"
+msgstr "Xóa nhiều %(name)s"
 
-#, fuzzy
 msgid "Home"
 msgstr "Trang chủ"
 
@@ -556,29 +554,26 @@ msgstr "Chuyển đến đệ trình của tôi"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Thêm %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID tiện ích (một trên mỗi dòng)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "Gửi phiên bản"
+msgstr "Gửi"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "Người dùng"
+msgstr "người dùng"
 
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
-msgstr "Phiên bản"
+msgstr "phiên bản"
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -923,9 +918,8 @@ msgstr "Tiện ích đã được xóa."
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} bị xóa khỏi {collection}."
+msgstr "GUID cho {addon} đã bị xóa khỏi DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -933,9 +927,8 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Người dùng {user} đã bị hạn chế."
+msgstr "Đã đặt lại phiên người dùng {user}."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
@@ -1165,8 +1158,8 @@ msgstr "Hình ảnh & Đa phương tiện"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
-"Tải xuống tiện ích mở rộng Firefox để nâng cao hình ảnh và phương tiện truyền thông. Danh mục này bao gồm các tiện ích mở rộng để đảo ngược hình ảnh tìm kiếm, chụp ảnh màn hình toàn trang và hơn "
-"thế nữa."
+"Tải xuống tiện ích mở rộng Firefox để nâng cao hình ảnh và phương tiện truyền thông. Danh mục này bao gồm các tiện ích mở rộng để đảo ngược hình ảnh tìm kiếm, chụp ảnh màn hình toàn trang và hơn thế"
+" nữa."
 
 msgid "Security & Privacy"
 msgstr "Bảo mật & Riêng tư"
@@ -1552,9 +1545,8 @@ msgstr "Chất lượng thấp, kéo dài hoặc hình ảnh trống"
 msgid "Header image alignment problem"
 msgstr ""
 
-#, fuzzy
 msgid "No action"
-msgstr "Hành động thêm"
+msgstr "Không có hành động"
 
 msgid "Flag for human review"
 msgstr ""
@@ -1575,9 +1567,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Mới nhất"
+msgstr "Mới"
 
 msgid "Running"
 msgstr ""
@@ -1588,9 +1579,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Chưa hoàn tất"
+msgstr "Hoàn tất"
 
 msgid "Scheduled"
 msgstr ""
@@ -1761,8 +1751,7 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Display Name"
@@ -2080,12 +2069,10 @@ msgstr ""
 "lên phiên bản mới cho tiện ích này."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Cập nhật Tính tương thích</a> <a href=\"%(version_url)s\" class=\"button\">Tải lên Phiên bản Mới</a> hoặc <a href=\"#"
-"\" class=\"close\">Bỏ qua</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Cập nhật Tính tương thích</a> <a href=\"%(version_url)s\" class=\"button\">Tải lên Phiên bản Mới</a> hoặc <a href=\"#\""
+" class=\"close\">Bỏ qua</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "Xem và cập nhật khoảng tương thích với ứng dụng"
@@ -2308,8 +2295,8 @@ msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2385,9 +2372,8 @@ msgstr "Chọn một biểu tượng cho tiện ích của bạn:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Được dùng trong trang liệt kê tiện ích, như kết quả tìm kiếm và tiện ích khuyên dùng."
+msgstr "Được sử dụng trong danh sách các tiện ích, như kết quả tìm kiếm."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2433,9 +2419,8 @@ msgstr "Hỗ trợ PNG và JPG, khuyến nghị PNG. Kích thước tối đa v�
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Kích thước tối thiểu là 1000x750 và tỷ lệ bắt buộc là 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Có ảnh chụp màn hình trong trang sản phẩm của bạn làm tăng đáng kể cơ hội được cài đặt và được hiển thị trong trang chủ."
+msgstr "Có ảnh chụp màn hình trong trang sản phẩm của bạn làm tăng đáng kể cơ hội được cài đặt."
 
 msgid "Continue"
 msgstr "Tiếp tục"
@@ -2692,9 +2677,8 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Chỉnh sửa phiên bản {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Đã ký phiên bản"
+msgstr "Phiên bản chữ ký đang chờ xử lý"
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
 msgstr ""
@@ -2750,8 +2734,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
@@ -2870,8 +2854,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2943,8 +2927,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3098,9 +3081,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Extension Workshop"
+msgstr "Đi đến Extension Workshop"
 
 msgid "Connect with us"
 msgstr ""
@@ -3108,9 +3090,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "Nhà phát triển"
+msgstr "Dành cho nhà phát triển"
 
 msgid "For end users"
 msgstr ""
@@ -3123,24 +3104,21 @@ msgstr ""
 msgid "Add-on Developers Mailing List"
 msgstr "Trung tâm nhà phát triển tiện ích"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Phát triển tiện ích mở rộng"
+msgstr "Bản tin tiện ích dành cho nhà phát triển"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Địa chỉ IP"
+msgstr "Địa chỉ email"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Đăng xuất"
+msgstr "Đăng ký"
 
 msgid "Thanks!"
 msgstr ""
@@ -3152,9 +3130,8 @@ msgid "Resources"
 msgstr "Tài nguyên"
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "Tiện ích mở rộng"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: xây dựng và thử nghiệm tiện ích"
@@ -3243,20 +3220,17 @@ msgstr "Không có Ảnh"
 msgid "User Photo"
 msgstr "Ảnh người dùng"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Hồ sơ của Tôi"
+msgstr "Hồ sơ"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Gửi một phiên bản mới"
+msgstr "Gửi hoặc quản lý tiện ích mở rộng"
 
 msgid "Customize Firefox"
 msgstr "Tùy biến Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Tìm hiểu cách tạo một tiện ích"
+msgstr "Tìm hiểu cách tạo tiện ích mở rộng"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -3270,8 +3244,8 @@ msgstr ""
 msgid "Manage Version {0}"
 msgstr "Quản lí Phiên bản {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "Quản lí {0}"
 
@@ -3404,8 +3378,8 @@ msgstr "Xóa phiên bản {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Bạn sắp xóa phiên bản hiện tại của tiện ích mở rộng. Điều này có thể khiến trạng thái tiện ích của bạn thay đổi hoặc danh sách của bạn mất khả năng hiển thị công khai, nếu đây là phiên bản công "
-"khai duy nhất của tiện ích."
+"Bạn sắp xóa phiên bản hiện tại của tiện ích mở rộng. Điều này có thể khiến trạng thái tiện ích của bạn thay đổi hoặc danh sách của bạn mất khả năng hiển thị công khai, nếu đây là phiên bản công khai"
+" duy nhất của tiện ích."
 
 msgid "Deleting this version will permanently delete:"
 msgstr "Xóa phiên bản này sẽ xóa vĩnh viễn:"
@@ -3443,14 +3417,14 @@ msgstr "Bạn có chắc chắn là bạn muốn hủy bỏ yêu cầu xét duy�
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Tài liệu tiện ích :: Trung tâm nhà phát triển"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} lỗi"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} cảnh báo"
@@ -4881,7 +4855,6 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Lưu các trang hoàn chỉnh—hoặc chỉ một phần—trong một tập tin HTML."
 
@@ -4921,8 +4894,8 @@ msgstr ""
 msgid "Media enhancers for Firefox"
 msgstr ""
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
+# Plural in this context means many of the add-on type
 msgid "Explore extensions"
 msgstr "Khám phá tiện ích mở rộng"
 
@@ -4960,9 +4933,8 @@ msgstr ""
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID phải có với Firefox 47 và thấp hơn."
+msgstr "ID tiện ích được yêu cầu cho Firefox 47 trở xuống."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
@@ -5144,8 +5116,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -5458,9 +5430,8 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} ngày"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr ""
@@ -5506,20 +5477,17 @@ msgstr "Từ chối nhiều phiên bản"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Điều này sẽ từ chối các phiên bản công khai được chọn. Các ý kiến sẽ được gửi đến nhà phát triển."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Từ chối nhiều phiên bản"
+msgstr "Chặn nhiều phiên bản"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Từ chối nhiều phiên bản"
+msgstr "Xác nhận nhiều phiên bản"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Điều này sẽ từ chối các phiên bản công khai được chọn. Các ý kiến sẽ được gửi đến nhà phát triển."
+msgstr "Điều này sẽ xác nhận phê duyệt các phiên bản đã chọn mà không thông báo cho nhà phát triển."
 
 msgid "Reviewer reply"
 msgstr "Trả lời của người đánh giá"
@@ -5635,9 +5603,8 @@ msgstr ""
 msgid "{addon} – EULA"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Chính sách riêng tư"
+msgstr "{addon} – Chính sách riêng tư"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5709,9 +5676,8 @@ msgstr "Trưng bày Hình ảnh"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "theo Phiên bản Tiện ích"
+msgstr "Bản dịch tên tiện ích"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5826,9 +5792,8 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Tự động phê duyệt tiện ích"
+msgstr "Tiện ích được phê duyệt tự động - Tiện ích cho Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
@@ -5898,9 +5863,8 @@ msgstr ""
 msgid "This is a recommended extension."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Bạn không có bất kỳ xác thực API nào."
+msgstr "Bạn không được phép đánh giá nó."
 
 msgid "Please select one or more versions in the list above."
 msgstr ""
@@ -5950,9 +5914,8 @@ msgstr "Buộc kích hoạt tiện ích mở rộng"
 msgid "View Blocklist Submission"
 msgstr "Xem tất cả các đệ trình"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Quay lại tiện ích mở rộng"
+msgstr "Chặn tiện ích"
 
 msgid "Update add-on block"
 msgstr ""
@@ -6026,9 +5989,8 @@ msgstr ""
 msgid "Source:"
 msgstr "Nguồn:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Nguồn:"
+msgstr "URL nguồn:"
 
 msgid "Dismiss this announcement"
 msgstr "Bỏ thông báo này"
@@ -6164,21 +6126,18 @@ msgstr "Xem trước phiên bản được liệt kê"
 msgid "version channel"
 msgstr "Đã ký phiên bản"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Trạng thái Tiện ích"
+msgstr "trạng thái tiện ích"
 
 #, fuzzy
 msgid "add-on listing visibility"
 msgstr "Danh sách hiển thị"
 
-#, fuzzy
 msgid "file status"
-msgstr "Trạng thái trang"
+msgstr "trạng thái tập tin"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} đã được ký."
+msgstr "chữ ký tập tin"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6262,9 +6221,8 @@ msgstr ""
 msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Chỉ WebExtensions mới được phép bỏ qua GUID"
+msgstr "Chỉ WebExtensions mới được phép bỏ qua ID tiện ích"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
@@ -6443,11 +6401,11 @@ msgstr "Giới thiệu về theo dõi nguồn bên ngoài…"
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -6609,9 +6567,8 @@ msgstr ""
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr ""
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Xóa phiên bản"
+msgstr "Đặt lại phiên"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6670,8 +6627,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6707,9 +6664,8 @@ msgstr "Thông báo cho Người dùng"
 msgid "Ban"
 msgstr "Cấm"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Xóa phiên bản"
+msgstr "Đặt lại (các) phiên"
 
 msgid "Delete picture"
 msgstr "Xóa ảnh"
@@ -6725,8 +6681,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
