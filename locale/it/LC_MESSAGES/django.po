@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-09 12:43+0000\n"
+"PO-Revision-Date: 2020-05-09 12:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -5619,9 +5619,8 @@ msgstr ""
 msgid "Confirm Multiple Versions"
 msgstr ""
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Con questa azione dai la tua approvazione ai contenuti della versione senza inviare un’esplicita notifica allo sviluppatore."
+msgstr "Con questa azione dai la tua approvazione alle versioni selezionate senza inviare un’esplicita notifica allo sviluppatore."
 
 msgid "Reviewer reply"
 msgstr "Risposta del revisore"
@@ -5734,13 +5733,11 @@ msgstr "Revisione elaborata correttamente."
 msgid "Review lock limit reached"
 msgstr "Raggiunto il limite di recensioni esaminabili"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Informativa sulla privacy"
+msgstr "{addon} – Informativa sulla privacy"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5812,9 +5809,8 @@ msgstr "Galleria delle anteprime"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nessuna informazione disponibile. Lo sviluppatore non ha inserito dati."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "per versione"
+msgstr ""
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5929,16 +5925,14 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Componenti aggiuntivi approvati automaticamente"
+msgstr "Componenti aggiuntivi approvati automaticamente – Componenti aggiuntivi per Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Richiesta informazioni scaduta"
+msgstr ""
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
