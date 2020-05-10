@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-07 16:51+0000\n"
-"Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2020-05-09 10:32+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -939,13 +939,11 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "La chiave API dell’utente {user} è stata ripristinata."
+msgstr ""
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Modificato utente {user}, motivo: {1}"
+msgstr "Utente {user} limitato per ambito \"{0}\""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1592,9 +1590,8 @@ msgstr "Nessuna azione"
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Disattiva l’approvazione automatica"
+msgstr ""
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -4987,7 +4984,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
-msgstr ""
+msgstr "Sostituisci automaticamente le parole dispregiative presenti sul Web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
