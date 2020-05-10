@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-10 09:36+0000\n"
+"PO-Revision-Date: 2020-05-10 09:55+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2505,7 +2505,7 @@ msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "La minima dimensione possibile è di 1000x750 pixel e rapporto di 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "I componenti aggiuntivi che mostrano anteprime delle schermate nella pagina di prodotto hanno possibilità molto maggiori di essere installati."
 
 msgid "Continue"
 msgstr "Continua"
@@ -3197,7 +3197,7 @@ msgid "Visit the Extension Workshop"
 msgstr "Visita il Laboratorio estensioni"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Restiamo in contatto"
 
 msgid "Twitter"
 msgstr "Twitter"
@@ -3235,7 +3235,7 @@ msgid "Thanks!"
 msgstr "Grazie!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "Se non sei già iscritto a una newsletter Mozilla, potremmo chiederti di confermare l’iscrizione. Cerca il messaggio di conferma nella posta in arrivo e nello spam."
 
 msgid "Resources"
 msgstr "Risorse"
@@ -3289,7 +3289,7 @@ msgid "Get involved"
 msgstr "Collabora con noi"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Entra in contatto con migliaia di sviluppatori e scopri nuovi modi per contribuire all’ecosistema delle estensioni."
 
 msgid "Learn more about the developer community"
 msgstr "Ulteriori informazioni sulla comunità degli sviluppatori"
@@ -3336,7 +3336,7 @@ msgid "Profile"
 msgstr "Profilo"
 
 msgid "Submit or Manage Extensions"
-msgstr ""
+msgstr "Carica o gestisci estensioni"
 
 msgid "Customize Firefox"
 msgstr "Personalizza Firefox"
@@ -3345,13 +3345,13 @@ msgid "Learn how to make an extension"
 msgstr "Scopri come realizzare un’estensione"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Sei pronto a caricare o gestire la tua estensione?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Accedi a Developer Hub per caricare o gestire estensioni e temi."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Registra un account sviluppatore o accedi a Developer Hub"
 
 msgid "Manage Version {0}"
 msgstr "Gestisci versione {0}"
@@ -3837,7 +3837,7 @@ msgstr "Fai perdere le tue tracce digitali. Cancella dalla memoria di Firefox i 
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Basta scrivere sempre le stesse cose! Salva i testi che digiti più spesso per incollarli dove e quando servono."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4962,11 +4962,11 @@ msgstr "Rimuovi gli elementi traccianti dai link web."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Crea cartelle di segnalibri per i feed RSS popolate automaticamente."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organizza facilmente tutte le schede aperte che vuoi."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
@@ -4974,7 +4974,7 @@ msgstr "Crea e personalizza gruppi di schede."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "Salva pagine complete, comprese immagini e stili, come un singolo file HTML."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
@@ -4986,7 +4986,7 @@ msgstr "Blocca tutti gli annunci pubblicitari (video, pop-up, banner e molto alt
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Guarda contenuti multimediali in streaming in compagnia di amici e familiari ovunque ti trovi."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5002,7 +5002,7 @@ msgstr "Visualizza tutte le estensioni"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Strumenti di organizzazione e gestione schede"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5117,7 +5117,7 @@ msgstr "Non è possibile caricare questo tipo di componente aggiuntivo."
 
 #, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr ""
+msgstr "Non è consentito caricare un componente aggiuntivo utilizzando un ID che termina con %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
