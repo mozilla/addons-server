@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-07 22:18+0000\n"
+"PO-Revision-Date: 2020-05-10 12:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -6588,7 +6588,7 @@ msgstr "Odbaci promjene"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Zaista želiš ukloniti sve prijevode za <b>{0}</b>? To nije moguće vratiti."
+msgstr "Zaista želiš ukloniti sve prijevode za <b>{0}</b>? To nije moguće poništiti."
 
 msgid "Delete Locale"
 msgstr "Izbriši prijevod"
