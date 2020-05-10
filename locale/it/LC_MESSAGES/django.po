@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-07 16:21+0000\n"
+"PO-Revision-Date: 2020-05-07 17:05+0000\n"
 "Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2459,7 +2459,7 @@ msgid "32x32px"
 msgstr "32×32px"
 
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
+msgstr "Utilizzato nelle pagine elenco dei componenti aggiuntivi, come ad esempio i risultati di ricerca."
 
 #. The size of the icon
 msgid "64x64px"
@@ -3201,7 +3201,7 @@ msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
-msgstr ""
+msgstr "Visita il Laboratorio estensioni"
 
 msgid "Connect with us"
 msgstr ""
@@ -3210,33 +3210,33 @@ msgid "Twitter"
 msgstr "Twitter"
 
 msgid "For developers"
-msgstr ""
+msgstr "Per gli sviluppatori"
 
 msgid "For end users"
-msgstr ""
+msgstr "Per gli utenti finali"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
-msgstr ""
+msgstr "Mailing list per sviluppatori di componenti aggiuntivi"
 
 msgid "Extensions Developers Newsletter"
-msgstr ""
+msgstr "Newsletter per sviluppatori di estensioni"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
 msgid "Email Address"
-msgstr ""
+msgstr "Indirizzo email"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Acconsento al trattamento dei miei dati personali da parte di Mozilla come indicato nell’%(link_open)sinformativa sulla privacy%(link_close)s."
 
 msgid "Sign Up"
-msgstr ""
+msgstr "Iscriviti"
 
 msgid "Thanks!"
 msgstr "Grazie!"
@@ -3261,7 +3261,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Ottieni un pulsante per promuovere il componente aggiuntivo"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Programma estensioni consigliate"
 
 msgid "Contribute"
 msgstr "Fai una donazione"
@@ -3300,7 +3300,7 @@ msgid "Connect with thousands of developers and discover more ways you can contr
 msgstr ""
 
 msgid "Learn more about the developer community"
-msgstr ""
+msgstr "Ulteriori informazioni sulla comunità degli sviluppatori"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Visibile sul sito dopo il superamento della revisione. Gli aggiornamenti verranno gestiti automaticamente dal sito."
@@ -3341,7 +3341,7 @@ msgid "User Photo"
 msgstr "Immagine utente"
 
 msgid "Profile"
-msgstr ""
+msgstr "Profilo"
 
 msgid "Submit or Manage Extensions"
 msgstr ""
@@ -3350,7 +3350,7 @@ msgid "Customize Firefox"
 msgstr "Personalizza Firefox"
 
 msgid "Learn how to make an extension"
-msgstr ""
+msgstr "Scopri come realizzare un’estensione"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
