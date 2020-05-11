@@ -6272,29 +6272,24 @@ msgstr ""
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Anteprima versioni visualizzate"
+msgstr ""
 
-#, fuzzy
 msgid "version channel"
-msgstr "Versione firmata"
+msgstr ""
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Stato del componente aggiuntivo"
+msgstr ""
 
 #, fuzzy
 msgid "add-on listing visibility"
 msgstr "Visibilità del componente aggiuntivo"
 
-#, fuzzy
 msgid "file status"
-msgstr "Stato del sito"
+msgstr ""
 
-#, fuzzy
 msgid "file signature"
-msgstr "Il file {file} è stato firmato digitalmente."
+msgstr ""
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
