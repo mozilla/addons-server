@@ -401,12 +401,14 @@ class ADMIN_USER_EDITED(_LOG):
 class ADMIN_USER_ANONYMIZED(_LOG):
     id = 104
     format = _(u'User {user} anonymized.')
+    keep = True
     admin_event = True
 
 
 class ADMIN_USER_RESTRICTED(_LOG):
     id = 105
     format = _(u'User {user} restricted.')
+    keep = True
     admin_event = True
 
 
@@ -426,11 +428,13 @@ class THEME_REVIEW(_LOG):
     id = 108
     action_class = 'review'
     format = _(u'{addon} reviewed.')
+    keep = True
 
 
 class ADMIN_USER_BANNED(_LOG):
     id = 109
     format = _(u'User {user} banned.')
+    keep = True
     admin_event = True
 
 
