@@ -577,7 +577,7 @@ msgid "users"
 msgstr "brûkers"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Blokkearring bewurkje"
 
 msgid "versions"
 msgstr "ferzjes"
