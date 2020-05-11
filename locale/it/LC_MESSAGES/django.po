@@ -6266,9 +6266,8 @@ msgstr[1] "Richieste informazioni scadute ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Per iniziare"
+msgstr ""
 
 msgid "all but this rule"
 msgstr ""
