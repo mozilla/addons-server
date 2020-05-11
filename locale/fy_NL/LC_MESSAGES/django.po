@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-11 13:04+0000\n"
+"PO-Revision-Date: 2020-05-11 14:37+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -583,7 +583,7 @@ msgid "versions"
 msgstr "ferzjes"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Opnommen yn de list mei ferâldere blokkearringen."
 
 msgid "{addon} was created."
 msgstr "{addon} is makke."
@@ -905,16 +905,16 @@ msgid "User {user} api key reset."
 msgstr "Api-kaai foar brûker {user} opnij inisjalisearre."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blokkearring foar {0} oan de blokkearringslist tafoege."
 
 msgid "Block added"
-msgstr ""
+msgstr "Blokkearring tafoege"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blokkearring foar {0} yn de blokkearringslist bewurke."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blokkearring bewurke"
 
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Blokkearring foar {0} út blokkearringslist fuortsmite."
@@ -923,13 +923,13 @@ msgid "Block deleted"
 msgstr "Blokkearring fuortsmiten"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID foar {addon} oan DeniedGuid tafoege."
 
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID foar {addon} út DeniedGuid fuortsmiten."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Blokkearjen fan {1} aksje foar {0} ôfmeld."
 
 msgid "Block action signoff"
 msgstr ""
