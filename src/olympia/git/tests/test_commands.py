@@ -16,6 +16,7 @@ from olympia.amo.tests import (
 from olympia.lib.git import AddonGitRepository, BrokenRefError
 from olympia.git.models import GitExtractionEntry
 from olympia.git.tasks import (
+    continue_git_extraction,
     extract_versions_to_git,
     remove_git_extraction_entry,
 )
@@ -131,6 +132,23 @@ class TestGitExtraction(TestCase):
         )
 
     @mock.patch('olympia.git.management.commands.git_extraction.chain')
+    def test_extract_addon_continues_git_extraction(self, chain_mock):
+        addon = addon_factory()
+        version1 = addon.current_version
+        version2 = version_factory(addon=addon)
+        version_factory(addon=addon)
+        entry = GitExtractionEntry.objects.create(addon=addon)
+
+        self.command.extract_addon(entry, batch_size=2)
+
+        chain_mock.assert_called_with(
+            extract_versions_to_git.si(
+                addon_pk=addon.pk, version_pks=[version1.pk, version2.pk]
+            ),
+            continue_git_extraction.si(addon.pk),
+        )
+
+    @mock.patch('olympia.git.management.commands.git_extraction.chain')
     def test_extract_addon_remove_extraction_entry_immediately_when_no_version(
         self, chain_mock
     ):
@@ -153,12 +171,47 @@ class TestGitExtraction(TestCase):
         assert not repo.is_extracted
 
         self.command.extract_addon(entry)
-        addon.refresh_from_db()
         version.refresh_from_db()
 
         assert repo.is_extracted
         assert not GitExtractionEntry.objects.filter(pk=entry.pk).exists()
         assert version.git_hash
+
+    def test_extract_addon_with_more_versions_than_batch_size(self):
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+        version_1 = addon.current_version
+        version_2 = version_factory(
+            addon=addon, file_kw={'filename': 'webextension_no_id.xpi'}
+        )
+        repo = AddonGitRepository(addon)
+        entry = GitExtractionEntry.objects.create(addon=addon)
+
+        assert not version_1.git_hash
+        assert not version_2.git_hash
+        assert not repo.is_extracted
+
+        # First execution of the CRON task.
+        self.command.extract_addon(entry, batch_size=1)
+        version_1.refresh_from_db()
+        version_2.refresh_from_db()
+        entry.refresh_from_db()
+
+        assert repo.is_extracted
+        assert version_1.git_hash
+        # We only git-extracted the first version because of batch_size=1.
+        assert not version_2.git_hash
+        # We keep the entry and we set `in_progress` to `False` because we
+        # still need to extract the second version.
+        assert not entry.in_progress
+        assert GitExtractionEntry.objects.filter(pk=entry.pk).exists()
+
+        # Second execution of the CRON task.
+        self.command.extract_addon(entry, batch_size=1)
+        version_2.refresh_from_db()
+
+        assert repo.is_extracted
+        assert version_2.git_hash
+        assert not GitExtractionEntry.objects.filter(pk=entry.pk).exists()
 
     # Overriding this setting is needed to tell Celery to run the error handler
     # (because we run Celery in eager mode in the test env). That being said,
@@ -182,7 +235,6 @@ class TestGitExtraction(TestCase):
         with pytest.raises(BrokenRefError):
             self.command.extract_addon(entry)
 
-        addon.refresh_from_db()
         version.refresh_from_db()
 
         assert not repo.is_extracted
