@@ -21,6 +21,7 @@ log = olympia.core.logger.getLogger('z.git.git_extraction')
 
 # Number of versions to extract in a single task. If you change this value,
 # please adjust the soft time limit of the `extract_versions_to_git` task.
+# See: https://github.com/mozilla/addons-server/issues/14104
 BATCH_SIZE = 10
 # Name of the lock() used.
 LOCK_NAME = 'git-extraction'
