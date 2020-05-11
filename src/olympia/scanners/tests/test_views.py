@@ -9,6 +9,8 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.constants.scanners import YARA, CUSTOMS, WAT, TRUE_POSITIVE
+from olympia.blocklist.models import Block
+from olympia.blocklist.utils import block_activity_log_save
 from olympia.scanners.models import ScannerResult
 from olympia.scanners.serializers import ScannerResultSerializer
 from django.test.utils import override_settings
@@ -275,3 +277,52 @@ class TestScannerResultView(TestCase):
             '{}'.format('{}?scanner=wat&label=good'.format(self.url))
         )
         self.assert_json_results(response, expected_results=1)
+
+    def test_get_results_with_blocked_versions(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        # result labelled as "bad" because its state is TRUE_POSITIVE
+        bad_version = version_factory(addon=addon_factory())
+        ScannerResult.objects.create(
+            scanner=YARA, version=bad_version, state=TRUE_POSITIVE
+        )
+        # result labelled as "bad" because the add-on is blocked.
+        blocked_addon_1 = addon_factory()
+        blocked_version_1 = version_factory(addon=blocked_addon_1)
+        ScannerResult.objects.create(scanner=YARA, version=blocked_version_1)
+        block_1 = Block.objects.create(
+            guid=blocked_addon_1.guid, updated_by=self.user
+        )
+        block_activity_log_save(block_1, change=False)
+        # result labelled as "bad" because the add-on is blocked and the block
+        # has been edited.
+        blocked_addon_2 = addon_factory()
+        blocked_version_2 = version_factory(addon=blocked_addon_2)
+        ScannerResult.objects.create(scanner=YARA, version=blocked_version_2)
+        block_2 = Block.objects.create(
+            guid=blocked_addon_2.guid, updated_by=self.user
+        )
+        block_activity_log_save(block_2, change=True)
+        # result labelled as "bad" because the add-on is blocked and the block
+        # has been added *and* edited. It should only return one result.
+        blocked_addon_3 = addon_factory()
+        blocked_version_3 = version_factory(addon=blocked_addon_3)
+        ScannerResult.objects.create(scanner=YARA, version=blocked_version_3)
+        block_3 = Block.objects.create(
+            guid=blocked_addon_3.guid, updated_by=self.user
+        )
+        block_activity_log_save(block_3, change=False)
+        block_activity_log_save(block_3, change=True)
+        # result labelled as "bad" because its state is TRUE_POSITIVE and the
+        # add-on is blocked. It should only return one result.
+        blocked_addon_4 = addon_factory()
+        blocked_version_4 = version_factory(addon=blocked_addon_4)
+        ScannerResult.objects.create(
+            scanner=YARA, version=blocked_version_4, state=TRUE_POSITIVE
+        )
+        block_4 = Block.objects.create(
+            guid=blocked_addon_4.guid, updated_by=self.user
+        )
+        block_activity_log_save(block_4, change=False)
+
+        response = self.client.get(self.url)
+        self.assert_json_results(response, expected_results=5)

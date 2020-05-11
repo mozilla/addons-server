@@ -61,7 +61,14 @@ class ScannerResultView(ListAPIView):
             .all()
         )
         bad_results = (
-            bad_results.filter(state=TRUE_POSITIVE)
+            bad_results.filter(
+                Q(state=TRUE_POSITIVE) | Q(
+                    version__versionlog__activity_log__action__in=(
+                        amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
+                        amo.LOG.BLOCKLIST_BLOCK_EDITED.id,
+                    )
+                )
+            )
             .annotate(label=Value(LABEL_BAD, output_field=CharField()))
             .all()
         )
