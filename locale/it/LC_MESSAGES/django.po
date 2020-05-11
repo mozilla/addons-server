@@ -6082,9 +6082,8 @@ msgstr "Disattiva l’approvazione automatica"
 msgid "Enable Listed Auto-Approval"
 msgstr "Attiva l’approvazione automatica"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "È stato contrassegnato per la disattivazione dell’approvazione automatica"
+msgstr ""
 
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
