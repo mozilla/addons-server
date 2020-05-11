@@ -56,6 +56,7 @@ from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
 from olympia.reviewers.serializers import (
     CannedResponseSerializer, AddonBrowseVersionSerializer)
+from olympia.scanners.models import VersionScannerFlags
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.versions.tasks import extract_version_to_git
@@ -672,7 +673,8 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_needs_human_review'),
+            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
@@ -698,17 +700,17 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[0].text == 'Recommended (2)'
         assert doc('.dashboard a')[1].text == 'Other Pending Review (3)'
         # auto-approved addons
-        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
+        assert doc('.dashboard a')[7].text == 'Auto Approved Add-ons (4)'
         # content review
-        assert doc('.dashboard a')[10].text == 'Content Review (11)'
+        assert doc('.dashboard a')[11].text == 'Content Review (11)'
         # themes
-        assert doc('.dashboard a')[12].text == 'New (1)'
-        assert doc('.dashboard a')[13].text == 'Updates (1)'
+        assert doc('.dashboard a')[13].text == 'New (1)'
+        assert doc('.dashboard a')[14].text == 'Updates (1)'
         # user ratings moderation
-        assert (doc('.dashboard a')[17].text ==
+        assert (doc('.dashboard a')[18].text ==
                 'Ratings Awaiting Moderation (1)')
         # admin tools
-        assert (doc('.dashboard a')[23].text ==
+        assert (doc('.dashboard a')[24].text ==
                 'Expired Information Requests (2)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
@@ -722,7 +724,8 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_needs_human_review'),
+            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
@@ -787,7 +790,8 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_needs_human_review'),
+            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_mad'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -1020,7 +1024,8 @@ class TestDashboard(TestCase):
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_needs_human_review'),
+            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
@@ -1029,11 +1034,11 @@ class TestDashboard(TestCase):
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Other Pending Review (0)'
         assert 'target' not in doc('.dashboard a')[0].attrib
-        assert doc('.dashboard a')[5].text == 'Ratings Awaiting Moderation (0)'
+        assert doc('.dashboard a')[6].text == 'Ratings Awaiting Moderation (0)'
         assert 'target' not in doc('.dashboard a')[5].attrib
-        assert doc('.dashboard a')[7].text == 'Moderation Guide'
-        assert doc('.dashboard a')[7].attrib['target'] == '_blank'
-        assert doc('.dashboard a')[7].attrib['rel'] == 'noopener noreferrer'
+        assert doc('.dashboard a')[8].text == 'Moderation Guide'
+        assert doc('.dashboard a')[8].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[8].attrib['rel'] == 'noopener noreferrer'
 
     def test_view_mobile_site_link_hidden(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -1331,7 +1336,8 @@ class TestQueueBasics(QueueTest):
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
         expected = [
             reverse('reviewers.queue_extension'),
-            reverse('reviewers.queue_needs_human_review'),
+            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_mad'),
         ]
         assert links == expected
 
@@ -1522,7 +1528,7 @@ class TestExtensionQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout('🛠️ Other Pending Review',
-                                tab_position=0, total_addons=4, total_queues=2)
+                                tab_position=0, total_addons=4, total_queues=3)
 
     def test_webextensions_filtered_out_because_of_post_review(self):
         self.addons['Nominated Two'].find_latest_version(
@@ -1774,7 +1780,7 @@ class TestRecommendedQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout(
-            'Recommended', tab_position=0, total_addons=4, total_queues=3)
+            'Recommended', tab_position=0, total_addons=4, total_queues=4)
 
     def test_nothing_recommended_filtered_out(self):
         version = self.addons['Nominated One'].find_latest_version(
@@ -2126,11 +2132,11 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(25):
-            # 25 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(26):
+            # 26 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 10 for various queue counts, including current one
+            # - 11 for various queue counts, including current one
             #      (unfortunately duplicated because it appears in two
             #       completely different places)
             # - 3 for the addons in the queues and their files (regardless of
@@ -2385,11 +2391,11 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(25):
-            # 25 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(26):
+            # 26 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 10 for various queue counts, including current one
+            # - 11 for various queue counts, including current one
             #      (unfortunately duplicated because it appears in two
             #       completely different places)
             # - 3 for the addons in the queues and their files (regardless of
@@ -2417,12 +2423,12 @@ class TestContentReviewQueue(QueueTest):
             'Content Review', tab_position=0, total_addons=5, total_queues=2)
 
 
-class TestNeedsHumanReviewQueue(QueueTest):
+class TestScannersReviewQueue(QueueTest):
     fixtures = ['base/users']
 
     def setUp(self):
         super().setUp()
-        self.url = reverse('reviewers.queue_needs_human_review')
+        self.url = reverse('reviewers.queue_scanners')
 
     def generate_files(self):
         # Has no versions needing human review.
@@ -2527,7 +2533,7 @@ class TestNeedsHumanReviewQueue(QueueTest):
 
         self._test_queue_layout(
             'Flagged By Scanners',
-            tab_position=1, total_addons=3, total_queues=2, per_page=1)
+            tab_position=1, total_addons=3, total_queues=3, per_page=1)
 
     def test_queue_layout_admin(self):
         # Admins should see the extra add-on that needs admin content review.
@@ -2536,7 +2542,7 @@ class TestNeedsHumanReviewQueue(QueueTest):
 
         self._test_queue_layout(
             'Flagged By Scanners',
-            tab_position=2, total_addons=4, total_queues=9, per_page=1)
+            tab_position=2, total_addons=4, total_queues=10, per_page=1)
 
 
 class TestPerformance(QueueTest):
@@ -7703,3 +7709,93 @@ class TestThemeBackgroundImages(ReviewBase):
         assert len(data['weta_for_tiling.png']) == 124496  # b64-encoded size
         assert 'transparent.gif' in data
         assert len(data['transparent.gif']) == 56  # base64-encoded size
+
+
+class TestMadQueue(QueueTest):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super().setUp()
+        self.url = reverse('reviewers.queue_mad')
+
+        listed_addon = addon_factory(created=self.days_ago(15))
+        VersionScannerFlags.objects.create(
+            version=version_factory(addon=listed_addon,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=True
+        )
+
+        unlisted_addon = addon_factory(created=self.days_ago(5))
+        VersionScannerFlags.objects.create(
+            version=version_factory(addon=unlisted_addon,
+                                    channel=amo.RELEASE_CHANNEL_UNLISTED),
+            needs_human_review_by_mad=True
+        )
+
+        unflagged_addon = addon_factory()
+        version_factory(addon=unflagged_addon)
+
+        VersionScannerFlags.objects.create(
+            version=version_factory(addon=addon_factory()),
+            needs_human_review_by_mad=False
+        )
+
+        # Needs admin code review, so wouldn't show up for regular reviewers.
+        addon_admin_only = addon_factory(created=self.days_ago(1))
+        VersionScannerFlags.objects.create(
+            version=version_factory(addon=addon_admin_only),
+            needs_human_review_by_mad=True
+        )
+        AddonReviewerFlags.objects.create(
+            addon=addon_admin_only,
+            needs_admin_code_review=True,
+        )
+
+        self.expected_addons = [listed_addon, unlisted_addon]
+
+    def test_results(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        # listed
+        expected = []
+        addon = self.expected_addons[0]
+        expected.append((
+            '{} {}'.format(addon.name, addon.current_version.version),
+            reverse('reviewers.review', args=[addon.slug])
+        ))
+        # unlisted
+        addon = self.expected_addons[1]
+        expected.append((
+            '{} {}'.format(addon.name, addon.current_version.version),
+            reverse('reviewers.review', args=[addon.slug])
+        ))
+
+        doc = pq(response.content)
+        links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
+        assert len(links) == len(expected)
+        check_links(expected, links, verify=False)
+
+    def test_only_viewable_with_specific_permission(self):
+        # Post-review reviewer does not have access.
+        self.user.groupuser_set.all().delete()  # Remove all permissions
+        self.grant_permission(self.user, 'Addons:PostReview')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        # Regular user doesn't have access.
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_queue_layout(self):
+        self._test_queue_layout('Flagged for Human Review', tab_position=2,
+                                total_addons=2, total_queues=3, per_page=1)
+
+    def test_queue_layout_admin(self):
+        # Admins should see the extra add-on that needs admin content review.
+        self.grant_permission(self.user, 'Reviews:Admin')
+
+        self._test_queue_layout('Flagged for Human Review', tab_position=2,
+                                total_addons=3, total_queues=4, per_page=1)

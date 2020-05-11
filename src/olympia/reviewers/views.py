@@ -69,8 +69,8 @@ from olympia.reviewers.serializers import (
 )
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
-    NeedsHumanReviewTable, ReviewHelper, ViewUnlistedAllListTable,
-    view_table_factory)
+    MadReviewTable, ScannersReviewTable, ReviewHelper,
+    ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
@@ -183,12 +183,17 @@ def dashboard(request):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         ),
         ))
-        sections[ugettext('Flagged By Scanners')] = [(
+        sections[ugettext('Security Scanners')] = [(
             ugettext('Flagged By Scanners ({0})').format(
-                Addon.objects.get_needs_human_review_queue(
+                Addon.objects.get_scanners_queue(
                     admin_reviewer=admin_reviewer).count()),
-            reverse('reviewers.queue_needs_human_review'))
-        ]
+            reverse('reviewers.queue_scanners'),
+        ), (
+            ugettext('Flagged for Human Review ({0})').format(
+                Addon.objects.get_mad_queue(
+                    admin_reviewer=admin_reviewer).count()),
+            reverse('reviewers.queue_mad'),
+        )]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
@@ -541,8 +546,10 @@ def fetch_queue_counts(admin_reviewer):
         'content_review': (
             Addon.objects.get_content_review_queue(
                 admin_reviewer=admin_reviewer).count),
-        'needs_human_review': (
-            Addon.objects.get_needs_human_review_queue(
+        'mad': (Addon.objects.get_mad_queue(
+                admin_reviewer=admin_reviewer).count),
+        'scanners': (
+            Addon.objects.get_scanners_queue(
                 admin_reviewer=admin_reviewer).count),
         'expired_info_requests': expired.count,
     }
@@ -648,12 +655,18 @@ def queue_expired_info_requests(request):
 
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_needs_human_review(request):
+def queue_scanners(request):
     admin_reviewer = is_admin_reviewer(request)
-    qs = Addon.objects.get_needs_human_review_queue(
-        admin_reviewer=admin_reviewer)
-    return _queue(request, NeedsHumanReviewTable, 'needs_human_review',
-                  qs=qs, SearchForm=None)
+    qs = Addon.objects.get_scanners_queue(admin_reviewer=admin_reviewer)
+    return _queue(request, ScannersReviewTable, 'scanners', qs=qs,
+                  SearchForm=None)
+
+
+@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+def queue_mad(request):
+    admin_reviewer = is_admin_reviewer(request)
+    qs = Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer)
+    return _queue(request, MadReviewTable, 'mad', qs=qs, SearchForm=None)
 
 
 def determine_channel(channel_as_text):
