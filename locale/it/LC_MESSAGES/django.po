@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-10 09:55+0000\n"
+"PO-Revision-Date: 2020-05-10 10:29+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -940,7 +940,7 @@ msgid "Block action signoff"
 msgstr ""
 
 msgid "User {user} session(s) reset."
-msgstr ""
+msgstr "Sessione/i utente {user} ripristinata/e."
 
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Utente {user} limitato per ambito \"{0}\""
@@ -2773,6 +2773,7 @@ msgstr "Gestione visualizzazione"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr ""
+"È possibile modificare questa versione per aggiungere note di versione o il codice sorgente originale se il componente include codice minimizzato, concatenato o comunque generato automaticamente."
 
 msgid "Edit version {0}"
 msgstr "Modifica versione {0}"
@@ -2781,7 +2782,7 @@ msgid "Version Signature Pending"
 msgstr "Firma versione in sospeso"
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr ""
+msgstr "Procedura completata. Questa versione sarà firmata per l’auto-distribuzione tra breve. Riceverai una notifica via email quando il file firmato sarà pronto per essere scaricato."
 
 msgid "Go to My Submissions"
 msgstr "Vai ai miei progetti"
@@ -3387,7 +3388,7 @@ msgid "Source code"
 msgstr "Codice sorgente"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Se il componente aggiuntivo contiene codice minimizzato, concatenato o comunque generato automaticamente, condividi il codice sorgente originale con i revisori su questa pagina."
 
 msgid "File {file_id} ({platform})"
 msgstr "File {file_id} ({platform})"
@@ -5613,13 +5614,13 @@ msgid "This will reject the selected public versions. The comments will be sent 
 msgstr "Questa azione rifiuterà tutte le versioni pubbliche selezionate. Il commento verrà inviato allo sviluppatore."
 
 msgid "Block Multiple Versions"
-msgstr ""
+msgstr "Blocca più versioni"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
 msgid "Confirm Multiple Versions"
-msgstr ""
+msgstr "Conferma più versioni"
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
 msgstr "Con questa azione dai la tua approvazione alle versioni selezionate senza inviare un’esplicita notifica allo sviluppatore."
@@ -5812,7 +5813,7 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nessuna informazione disponibile. Lo sviluppatore non ha inserito dati."
 
 msgid "Add-on name translations"
-msgstr ""
+msgstr "Traduzioni nome del componente aggiuntivo"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5934,7 +5935,7 @@ msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr ""
+msgstr "Richieste informazioni scadute – Componenti aggiuntivi per Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
