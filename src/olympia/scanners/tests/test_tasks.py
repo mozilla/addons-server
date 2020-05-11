@@ -724,7 +724,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         self.rule.reload()
         assert self.rule.state == RUNNING  # Not touched by this task.
 
-    def test_run_on_chunk_fallback_path(self):
+    def test_run_on_chunk_fallback_file_path(self):
         # Make sure it still works when a file has been disabled but the path
         # has not been moved to the guarded location yet (we fall back to the
         # other path).
@@ -735,11 +735,11 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         )
         self.test_run_on_chunk()
 
-    def test_run_on_chunk_fallback_path_guarded(self):
-        # Like test_run_on_chunk_fallback_path() but starting with a public
-        # File instance that somehow still has its file in the guarded path
-        # (Would happen if the whole add-on was disabled then re-enabled and
-        # the files haven't been moved back to the public location yet).
+    def test_run_on_chunk_fallback_file_path_guarded(self):
+        # Like test_run_on_chunk_fallback_file_path() but starting with a
+        # public File instance that somehow still has its file in the guarded
+        # path (Would happen if the whole add-on was disabled then re-enabled
+        # and the files haven't been moved back to the public location yet).
         file_ = self.version.all_files[0]
         if not os.path.exists(os.path.dirname(file_.guarded_file_path)):
             os.makedirs(os.path.dirname(file_.guarded_file_path))

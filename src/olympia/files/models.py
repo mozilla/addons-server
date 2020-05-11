@@ -275,6 +275,17 @@ class File(OnChangeMixin, ModelBase):
             return self.file_path
 
     @property
+    def fallback_file_path(self):
+        """Fallback path in case the file was disabled/re-enabled and not yet
+        moved - sort of the opposite to current_file_path. This should only be
+        used for things like code search or git extraction where we really want
+        the file contents no matter what."""
+        return (
+            self.file_path if self.current_file_path == self.guarded_file_path
+            else self.guarded_file_path
+        )
+
+    @property
     def extension(self):
         return os.path.splitext(self.filename)[-1]
 
