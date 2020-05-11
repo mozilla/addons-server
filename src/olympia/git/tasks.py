@@ -30,6 +30,18 @@ def remove_git_extraction_entry(addon_pk):
 
 @task
 @use_primary_db
+def continue_git_extraction(addon_pk):
+    log.info(
+        'Keeping add-on "{}" in the git extraction queue because there are '
+        'still versions to git-extract.'.format(addon_pk)
+    )
+    GitExtractionEntry.objects.filter(
+        addon_id=addon_pk, in_progress=True
+    ).update(in_progress=False)
+
+
+@task
+@use_primary_db
 def on_extraction_error(request, exc, traceback, addon_pk):
     log.error('Git extraction failed for add-on "{}".'.format(addon_pk))
 

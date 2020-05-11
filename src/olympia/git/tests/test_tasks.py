@@ -6,6 +6,7 @@ from olympia.amo.tests import TestCase, addon_factory
 
 from olympia.git.models import GitExtractionEntry
 from olympia.git.tasks import (
+    continue_git_extraction,
     delete_source_git_repositories,
     remove_git_extraction_entry,
     on_extraction_error,
@@ -35,6 +36,26 @@ class TestRemoveGitExtractionEntry(TestCase):
         remove_git_extraction_entry(addon_pk=addon.pk)
 
         assert GitExtractionEntry.objects.count() == 0
+
+
+class TestContinueGitExtraction(TestCase):
+    def test_updates_in_progress_field(self):
+        addon = addon_factory()
+        entry_in_progress = GitExtractionEntry.objects.create(
+            addon=addon, in_progress=True
+        )
+        assert entry_in_progress.in_progress
+        # The queue can have more than one entry per add-on but only one can be
+        # in progress. This entry shouldn't be changed by the task.
+        another_entry = GitExtractionEntry.objects.create(addon=addon)
+        assert another_entry.in_progress is None
+
+        continue_git_extraction(addon_pk=addon.pk)
+        entry_in_progress.refresh_from_db()
+        another_entry.refresh_from_db()
+
+        assert not entry_in_progress.in_progress
+        assert another_entry.in_progress is None
 
 
 class TestOnExtractionError(TestCase):

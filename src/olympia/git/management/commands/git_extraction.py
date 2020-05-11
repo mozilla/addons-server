@@ -7,10 +7,10 @@ from django.core.management.base import BaseCommand
 import olympia.core.logger
 
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import chunked
 from olympia.files.utils import lock
 from olympia.git.models import GitExtractionEntry
 from olympia.git.tasks import (
+    continue_git_extraction,
     extract_versions_to_git,
     on_extraction_error,
     remove_git_extraction_entry,
@@ -19,9 +19,13 @@ from olympia.git.tasks import (
 
 log = olympia.core.logger.getLogger('z.git.git_extraction')
 
-BATCH_SIZE = 10  # Number of versions to extract in a single task.
-LOCK_NAME = 'git-extraction'  # Name of the lock() used.
-SWITCH_NAME = 'enable-git-extraction-cron'  # Name of the waffle switch.
+# Number of versions to extract in a single task. If you change this value,
+# please adjust the soft time limit of the `extract_versions_to_git` task.
+BATCH_SIZE = 10
+# Name of the lock() used.
+LOCK_NAME = 'git-extraction'
+# Name of the waffle switch.
+SWITCH_NAME = 'enable-git-extraction-cron'
 
 
 class Command(BaseCommand):
@@ -51,7 +55,7 @@ class Command(BaseCommand):
             for entry in entries:
                 self.extract_addon(entry)
 
-    def extract_addon(self, entry):
+    def extract_addon(self, entry, batch_size=BATCH_SIZE):
         """
         This method takes a GitExtractionEntry object and creates a chain of
         Celery tasks to extract each version in a git repository that haven't
@@ -93,15 +97,24 @@ class Command(BaseCommand):
             entry.delete()
             return
 
-        tasks = []
-        for version_pks in chunked(versions_to_extract, BATCH_SIZE):
-            # Create a task to extract a subset of versions.
-            tasks.append(
-                extract_versions_to_git.si(
-                    addon_pk=addon.pk, version_pks=version_pks
-                )
+        version_pks = versions_to_extract[0:batch_size]
+        tasks = [
+            # Create a task to extract the BATCH_SIZE first versions.
+            extract_versions_to_git.si(
+                addon_pk=addon.pk, version_pks=version_pks
             )
-        tasks.append(remove_git_extraction_entry.si(addon.pk))
+        ]
+        if len(version_pks) < len(versions_to_extract):
+            # If there are more versions to git-extract, let's keep the entry
+            # in the queue until we're done with this entry/add-on. The
+            # `continue_git_extraction` task will set the `in_progress` flag to
+            # `False` and this CRON task will pick the remaining versions to
+            # git-extract the next time it runs.
+            tasks.append(continue_git_extraction.si(addon.pk))
+        else:
+            # If we do not have more versions to git-extract here, we can
+            # remove the entry from the queue.
+            tasks.append(remove_git_extraction_entry.si(addon.pk))
 
         log.info(
             'Submitted {} tasks to git-extract {} versions for add-on '
