@@ -6325,9 +6325,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Risposta del revisore"
+msgstr ""
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6353,9 +6352,8 @@ msgstr "Combinazione dei parametri “%s”, “%s” e “%s” non valida."
 msgid "Maximum query length exceeded."
 msgstr "Superata lunghezza massima consentita della query."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Impossibile trovare il componente aggiuntivo con guid “{}”."
+msgstr ""
 
 msgid "You do not own this addon."
 msgstr "Non sei il proprietario di questo componente aggiuntivo."
@@ -6374,9 +6372,8 @@ msgstr "Il numero di versione non corrisponde a quello indicato nel file manifes
 msgid "Version already exists. Latest version is: %s."
 msgstr "Questa versione esiste già. Versione più recente: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Solo ai componenti aggiuntivi che utilizzano WebExtensions è consentito omettere il GUID"
+msgstr ""
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
