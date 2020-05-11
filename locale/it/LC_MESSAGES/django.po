@@ -6085,9 +6085,8 @@ msgstr "Attiva l’approvazione automatica"
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Attiva l’approvazione automatica"
+msgstr ""
 
 msgid "Clear information request"
 msgstr "Elimina richiesta informazioni"
