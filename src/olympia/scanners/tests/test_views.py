@@ -293,7 +293,8 @@ class TestScannerResultView(TestCase):
             guid=blocked_addon_1.guid, updated_by=self.user
         )
         block_activity_log_save(block_1, change=False)
-        # result labelled as "bad" because the add-on is blocked.
+        # result labelled as "bad" because the add-on is blocked and the block
+        # has been edited.
         blocked_addon_2 = addon_factory()
         blocked_version_2 = version_factory(addon=blocked_addon_2)
         ScannerResult.objects.create(scanner=YARA, version=blocked_version_2)
@@ -301,6 +302,27 @@ class TestScannerResultView(TestCase):
             guid=blocked_addon_2.guid, updated_by=self.user
         )
         block_activity_log_save(block_2, change=True)
+        # result labelled as "bad" because the add-on is blocked and the block
+        # has been added *and* edited. It should only return one result.
+        blocked_addon_3 = addon_factory()
+        blocked_version_3 = version_factory(addon=blocked_addon_3)
+        ScannerResult.objects.create(scanner=YARA, version=blocked_version_3)
+        block_3 = Block.objects.create(
+            guid=blocked_addon_3.guid, updated_by=self.user
+        )
+        block_activity_log_save(block_3, change=False)
+        block_activity_log_save(block_3, change=True)
+        # result labelled as "bad" because its state is TRUE_POSITIVE and the
+        # add-on is blocked. It should only return one result.
+        blocked_addon_4 = addon_factory()
+        blocked_version_4 = version_factory(addon=blocked_addon_4)
+        ScannerResult.objects.create(
+            scanner=YARA, version=blocked_version_4, state=TRUE_POSITIVE
+        )
+        block_4 = Block.objects.create(
+            guid=blocked_addon_4.guid, updated_by=self.user
+        )
+        block_activity_log_save(block_4, change=False)
 
         response = self.client.get(self.url)
-        self.assert_json_results(response, expected_results=3)
+        self.assert_json_results(response, expected_results=5)
