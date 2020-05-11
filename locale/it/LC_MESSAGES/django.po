@@ -6015,9 +6015,8 @@ msgstr "Elementi precedentemente eliminati"
 msgid "This is a recommended extension."
 msgstr ""
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Non disponi di alcuna credenziale per accedere alle API."
+msgstr ""
 
 msgid "Please select one or more versions in the list above."
 msgstr "Selezionare almeno una versione dalla lista."
@@ -6053,13 +6052,11 @@ msgstr "Altre azioni"
 msgid "Notify me about new listed versions"
 msgstr "Avvisami riguardo alle nuove versioni elencate"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Visualizza tutti i progetti caricati"
+msgstr ""
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Gestione dei progetti"
+msgstr ""
 
 msgid "Force-disable add-on"
 msgstr "Forza la disattivazione del componente aggiuntivo"
@@ -6071,9 +6068,8 @@ msgstr "Forza l'attivazione del componente aggiuntivo"
 msgid "View Blocklist Submission"
 msgstr "Visualizza tutti i progetti caricati"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Ritorna al componente aggiuntivo"
+msgstr ""
 
 msgid "Update add-on block"
 msgstr ""
