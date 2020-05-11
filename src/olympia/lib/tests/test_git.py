@@ -9,10 +9,8 @@ from unittest import mock
 from unittest.mock import MagicMock
 from pathlib import Path
 
-from django.conf import settings
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -1345,7 +1343,7 @@ def test_get_raw_diff_cache_unmodified_file():
         (MagicMock(type=_blob_type), 'blank.pdf', 'binary', 'application/pdf'),
         (MagicMock(type=_blob_type), 'blank.txt', 'text', 'text/plain'),
         (MagicMock(type=_blob_type), 'empty_bat.exe', 'binary',
-                                     'application/x-dosexec'),
+                                     'application/x-msdos-program'),
         (MagicMock(type=_blob_type), 'fff.gif', 'image', 'image/gif'),
         (MagicMock(type=_blob_type), 'foo.css', 'text', 'text/css'),
         (MagicMock(type=_blob_type), 'foo.html', 'text', 'text/html'),
@@ -1353,73 +1351,27 @@ def test_get_raw_diff_cache_unmodified_file():
         (MagicMock(type=_blob_type), 'foo.py', 'text', 'text/x-python'),
         (MagicMock(type=_blob_type), 'image.jpg', 'image', 'image/jpeg'),
         (MagicMock(type=_blob_type), 'image.png', 'image', 'image/png'),
-        (MagicMock(type=_blob_type), 'search.xml', 'text', 'text/xml'),
+        (MagicMock(type=_blob_type), 'search.xml', 'text', 'application/xml'),
         (MagicMock(type=_blob_type), 'js_containing_png_data.js', 'text',
                                      'text/javascript'),
         (MagicMock(type=_blob_type), 'foo.json', 'text', 'application/json'),
         (MagicMock(type=_tree_type), 'foo', 'directory',
                                      'application/octet-stream'),
         (MagicMock(type=_blob_type), 'image-svg-without-xml.svg', 'image',
+
                                      'image/svg+xml'),
         (MagicMock(type=_blob_type), 'bmp-v3.bmp', 'image', 'image/bmp'),
         (MagicMock(type=_blob_type), 'bmp-v4.bmp', 'image', 'image/bmp'),
         (MagicMock(type=_blob_type), 'bmp-v5.bmp', 'image', 'image/bmp'),
         (MagicMock(type=_blob_type), 'bmp-os2-v1.bmp', 'image', 'image/bmp'),
-        # This is testing that a tag listed at
-        # https://github.com/file/file/blob/master/magic/Magdir/sgml#L57
-        # doesn't lead to the file being detected as HTML, which was fixed
-        # in most recent libmagic versions.
-        (MagicMock(type=_blob_type), 'html-containing.json', 'text',
-                                     'application/json'),
     ]
 )
-def test_get_mime_type_for_blob(
-        entry, filename, expected_category, expected_mimetype):
-    root = os.path.join(
-        settings.ROOT,
-        'src/olympia/files/fixtures/files/file_viewer_filetypes/')
-
-    if entry.type == pygit2.GIT_OBJ_TREE:
-        mime, category = get_mime_type_for_blob(entry.type, filename, None)
-    else:
-        with open(os.path.join(root, filename), 'rb') as fobj:
-            mime, category = get_mime_type_for_blob(
-                entry.type, filename, force_bytes(fobj.read()))
+def test_get_mime_type_for_blob(entry, filename, expected_category,
+                                expected_mimetype):
+    mime, category = get_mime_type_for_blob(entry.type, filename)
 
     assert mime == expected_mimetype
     assert category == expected_category
-
-
-@pytest.mark.parametrize(
-    'entry, filename, expected_mimetype, simplified_detection',
-    [
-        (MagicMock(type=_blob_type), 'foo.css', 'text/css', True),
-        (MagicMock(type=_blob_type), 'foo.html', 'text/html', True),
-        (MagicMock(type=_blob_type), 'foo.js', 'text/javascript', True),
-        (MagicMock(type=_blob_type), 'foo.json', 'application/json', True),
-        (MagicMock(type=_blob_type), 'blank.pdf', 'application/pdf', False),
-        (MagicMock(type=_blob_type), 'blank.txt', 'text/plain', False),
-        (MagicMock(type=_blob_type), 'fff.gif', 'image/gif', False),
-        (MagicMock(type=_blob_type), 'image.jpg', 'image/jpeg', False),
-        (MagicMock(type=_blob_type), 'image.png', 'image/png', False),
-        (MagicMock(type=_blob_type), 'search.xml', 'text/xml', False),
-    ]
-)
-def test_get_mime_type_for_blob_simplified_detection(
-        entry, filename, expected_mimetype, simplified_detection):
-    root = os.path.join(
-        settings.ROOT,
-        'src/olympia/files/fixtures/files/file_viewer_filetypes/')
-
-    with mock.patch('olympia.lib.git.magic.from_buffer') as mocked_from_buffer:
-        with open(os.path.join(root, filename), 'rb') as fobj:
-            mime, category = get_mime_type_for_blob(
-                entry.type, filename, force_bytes(fobj.read()))
-
-        if simplified_detection:
-            mocked_from_buffer.assert_not_called()
-        else:
-            mocked_from_buffer.assert_called_once()
 
 
 @pytest.mark.django_db
