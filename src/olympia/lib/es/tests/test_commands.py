@@ -94,7 +94,7 @@ class TestIndexCommand(ESTestCase):
         items.sort()
         return items
 
-    def _test_reindexation(self):
+    def _test_reindexation(self, wipe=False):
         # Current indices with aliases.
         old_indices = self.get_indices_aliases()
 
@@ -109,7 +109,8 @@ class TestIndexCommand(ESTestCase):
                 # name is going to be different, since we already create an
                 # alias in setUpClass.
                 time.sleep(1)
-                management.call_command('reindex', stdout=self.stdout)
+                management.call_command(
+                    'reindex', wipe=wipe, noinput=True, stdout=self.stdout)
         t = ReindexThread()
         t.start()
 
@@ -162,6 +163,13 @@ class TestIndexCommand(ESTestCase):
         self.refresh()
         self.check_results(self.expected)
         self._test_reindexation()
+
+    def test_reindexation_with_wipe(self):
+        self.addons.append(addon_factory())
+        self.expected = self.addons[:]
+        self.refresh()
+        self.check_results(self.expected)
+        self._test_reindexation(wipe=True)
 
     def test_stats_update_counts(self):
         old_indices = self.get_indices_aliases()

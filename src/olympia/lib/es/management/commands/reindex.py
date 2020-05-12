@@ -160,7 +160,15 @@ class Command(BaseCommand):
 
             if (confirm == 'yes' or skip_confirmation):
                 unflag_database()
-                ES.indices.delete(alias, ignore=404)
+                # Retrieve the actual index and delete it. That way whether or
+                # not this was an alias or an index (which is wrong, but
+                # happens if data was indexed before the first reindex was
+                # done) doesn't matter.
+                try:
+                    index = next(iter(ES.indices.get(alias)))
+                    ES.indices.delete(index)
+                except NotFoundError:
+                    pass
             else:
                 raise CommandError('Aborted.')
         elif force:
