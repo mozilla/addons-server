@@ -22,8 +22,13 @@ def get_blocklist_last_modified_time():
     return int(latest_block.modified.timestamp() * 1000) if latest_block else 0
 
 
-def upload_mlbf_to_kinto():
-    if not waffle.switch_is_active('blocklist_mlbf_submit'):
+def upload_mlbf_to_kinto(*, bypass_switch=False):
+    """Creates a bloomfilter, and possibly a stash json blob, and uploads to
+    remote-settings.
+    bypass_switch=<Truthy value> will bypass the "blocklist_mlbf_submit" switch
+    for manual use/testing."""
+    bypass_switch = bool(bypass_switch)
+    if not (bypass_switch or waffle.switch_is_active('blocklist_mlbf_submit')):
         log.info('Upload MLBF to kinto cron job disabled.')
         return
     last_generation_time = get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
