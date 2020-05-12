@@ -352,7 +352,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f.addon.update(status=amo.STATUS_DISABLED)
         assert f.fallback_file_path.endswith(public_fp)
 
-
     def test_has_been_validated_returns_false_when_no_validation(self):
         file = File()
         assert not file.has_been_validated
