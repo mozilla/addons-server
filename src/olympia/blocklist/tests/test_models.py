@@ -1,5 +1,6 @@
 from django.test.utils import override_settings
 
+from waffle.testutils import override_switch
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.versions.compare import MAX_VERSION_PART
 
@@ -41,6 +42,23 @@ class TestBlock(TestCase):
         # and a normal one
         block.update(kinto_id='1234567890')
         assert not block.is_imported_from_kinto_regex
+
+    def test_is_readonly(self):
+        block = Block.objects.create(guid='foo@baa', updated_by=user_factory())
+        # not read only by default
+        assert not block.is_readonly
+        # but should be if there's an active BlocklistSubmission
+        block.active_submissions = [object()]  # just needs to be non-empty
+        assert block.is_readonly
+
+        # otherwise kinto_id being non-false means it's imported, so readonly
+        del block.active_submissions
+        assert not block.is_readonly
+        block.kinto_id = 'something'
+        assert block.is_readonly
+        # except when legacy submissions are enabled to keep it in-sync.
+        with override_switch('blocklist_legacy_submit', active=True):
+            assert not block.is_readonly
 
 
 class TestBlocklistSubmission(TestCase):

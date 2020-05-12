@@ -632,13 +632,13 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return (details, history, edit)
 
     def has_change_permission(self, request, obj=None):
-        if obj and obj.active_submissions:
+        if obj and obj.is_readonly:
             return False
         else:
             return super().has_change_permission(request, obj=obj)
 
     def has_delete_permission(self, request, obj=None):
-        if obj and obj.active_submissions:
+        if obj and obj.is_readonly:
             return False
         else:
             return super().has_delete_permission(request, obj=obj)

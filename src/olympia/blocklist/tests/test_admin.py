@@ -90,19 +90,7 @@ class TestBlockAdmin(TestCase):
         assert b'Add-on GUIDs (one per line)' in response.content
         assert b'Addon with GUID guid@ does not exist' in response.content
 
-        # If the guid already exists in a pending BlocklistSubmission the guid
-        # is invalid also
         addon = addon_factory(guid='guid@')
-        submission = BlocklistSubmission.objects.create(input_guids='guid@')
-        response = self.client.post(
-            self.add_url, {'guids': 'guid@'}, follow=False)
-        assert b'Add-on GUIDs (one per line)' in response.content
-        assert b'GUID guid@ is already in a pending Submission' in (
-            response.content)
-
-        # It's okay if the submission isn't pending (rejected, etc) though.
-        submission.update(signoff_state=BlocklistSubmission.SIGNOFF_REJECTED)
-
         # But should continue to the django admin add page if it exists
         response = self.client.post(
             self.add_url, {'guids': 'guid@'}, follow=True)
@@ -122,6 +110,54 @@ class TestBlockAdmin(TestCase):
             response,
             reverse('admin:blocklist_block_change', args=(block.pk,))
         )
+
+    def test_add_restrictions(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+
+        post_data = {'guids': 'guid@\nfoo@baa'}
+
+        # If the guid already exists in a pending BlocklistSubmission the guid
+        # is invalid also
+        addon = addon_factory(guid='guid@')
+        submission = BlocklistSubmission.objects.create(input_guids='guid@')
+        response = self.client.post(
+            self.add_url, post_data, follow=True)
+        assert b'Add-on GUIDs (one per line)' in response.content
+        assert b'GUID guid@ is in a pending Submission' in (
+            response.content)
+
+        # It's okay if the submission isn't pending (rejected, etc) though.
+        submission.update(signoff_state=BlocklistSubmission.SIGNOFF_REJECTED)
+
+        # But should continue to the django admin add page if it exists
+        response = self.client.post(
+            self.add_url, post_data, follow=True)
+        self.assertRedirects(response, self.submission_url, status_code=307)
+
+        # same if one of the guids exists as a block
+        block = Block.objects.create(
+            guid=addon.guid, updated_by=user_factory())
+        response = self.client.post(
+            self.add_url, post_data, follow=True)
+        self.assertRedirects(response, self.submission_url, status_code=307)
+
+        # but not if it's imported from a legacy record
+        block.update(include_in_legacy=True, kinto_id='343545')
+        response = self.client.post(
+            self.add_url, post_data, follow=True)
+        assert b'Add-on GUIDs (one per line)' in response.content
+        assert b'The block for GUID guid@ is readonly - it must be edited' in (
+            response.content)
+
+        # unless the `blocklist_legacy_submit` waffle switch is on
+        with override_switch('blocklist_legacy_submit', active=True):
+            response = self.client.post(
+                self.add_url, post_data, follow=True)
+            self.assertRedirects(
+                response, self.submission_url, status_code=307)
 
     def test_add_from_addon_pk_view(self):
         user = user_factory()
@@ -253,7 +289,6 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             min_version='0',
             max_version='*',
-            include_in_legacy=True,
             updated_by=user_factory())
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger',
@@ -262,7 +297,6 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            include_in_legacy=True,
             updated_by=user_factory())
         response = self.client.post(
             self.submission_url,
@@ -368,7 +402,6 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # confirm properties *were not* updated.
         assert existing_and_full.reason != 'some reason'
         assert existing_and_full.url != 'dfd'
-        assert existing_and_full.include_in_legacy is True
         assert not ActivityLog.objects.for_addons(
             existing_and_full.addon).exists()
         assert not ActivityLog.objects.for_version(
@@ -587,6 +620,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             min_version='0',
             max_version='*',
             include_in_legacy=True,
+            kinto_id='34345',
             updated_by=user_factory())
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger')
@@ -595,6 +629,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             min_version='1',
             max_version='99',
             include_in_legacy=True,
+            kinto_id='75456',
             updated_by=user_factory())
         Block.objects.create(
             addon=addon_factory(guid='regex@legacy'),
@@ -643,6 +678,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             min_version='0',
             max_version='*',
             include_in_legacy=True,
+            kinto_id='5656',
             updated_by=user_factory())
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger')
@@ -651,6 +687,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             min_version='1',
             max_version='99',
             include_in_legacy=True,
+            kinto_id='74356',
             updated_by=user_factory())
         Block.objects.create(
             addon=addon_factory(guid='regex@legacy'),
@@ -698,7 +735,6 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=addon_factory(guid='foo@baa'),
             min_version="0",
             max_version="*",
-            include_in_legacy=True,
             updated_by=user_factory())
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
@@ -754,7 +790,6 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            include_in_legacy=True,
             updated_by=user_factory())
         response = self.client.post(
             self.submission_url, {
@@ -785,7 +820,6 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=addon_factory(guid='foo@baa'),
             min_version="1",
             max_version="99",
-            include_in_legacy=True,
             updated_by=user_factory())
         response = self.client.post(
             self.submission_url,
@@ -1632,6 +1666,75 @@ class TestBlockAdminEdit(TestCase):
         assert str(self.addon.average_daily_users) in content
         assert 'Block History' in content
         assert 'imported from a regex based legacy' in content
+
+    @override_switch('blocklist_legacy_submit', active=False)
+    def test_cannot_edit_when_imported_block(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+        self.block.update(kinto_id='123456', include_in_legacy=True)
+
+        response = self.client.get(self.change_url, follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Add-on GUIDs (one per line)' not in content
+        assert 'guid@' in content
+        assert 'Danger Danger' in content
+        assert 'Close' in content
+        assert '_save' not in content
+        assert 'deletelink' not in content
+
+        # Try to edit the block anyway
+        response = self.client.post(
+            self.change_url, {
+                'input_guids': self.block.guid,
+                'action': '0',
+                'min_version': '0',
+                'max_version': self.addon.current_version.version,
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 403
+        assert self.block.max_version == '*'  # not changed
+
+    @override_switch('blocklist_legacy_submit', active=True)
+    @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
+    def test_can_edit_imported_block_if_legacy_submit_waffle_on(self, pb_mock):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+        self.block.update(kinto_id='123456', include_in_legacy=True)
+
+        response = self.client.get(self.change_url, follow=True)
+        content = response.content.decode('utf-8')
+        assert 'Add-on GUIDs (one per line)' not in content
+        assert 'guid@' in content
+        assert 'Danger Danger' in content
+        assert 'Close' not in content
+        assert '_save' in content
+        assert 'deletelink' in content
+
+        # We can edit the block
+        assert not BlocklistSubmission.objects.exists()
+        response = self.client.post(
+            self.change_url, {
+                'input_guids': self.block.guid,
+                'action': '0',
+                'min_version': '0',
+                'max_version': self.addon.current_version.version,
+                'url': 'dfd',
+                'reason': 'some reason',
+                '_save': 'Save',
+            },
+            follow=True)
+        assert response.status_code == 200
+        assert BlocklistSubmission.objects.exists()
+        BlocklistSubmission.objects.get(
+            input_guids=self.block.guid)
+        pb_mock.assert_called_with([self.block])
 
 
 class TestBlockAdminDelete(TestCase):

@@ -151,6 +151,12 @@ class Block(ModelBase):
     def active_submissions(self):
         return BlocklistSubmission.get_submissions_from_guid(self.guid)
 
+    @property
+    def is_readonly(self):
+        legacy_submit_off = not waffle.switch_is_active(
+            'blocklist_legacy_submit')
+        return (legacy_submit_off and self.kinto_id) or self.active_submissions
+
     @classmethod
     def get_blocks_from_guids(cls, guids):
         """Given a list of guids, return a list of Blocks - either existing
