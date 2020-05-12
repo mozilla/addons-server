@@ -19,8 +19,6 @@ from django.test.utils import override_settings
 
 from rest_framework.test import APIRequestFactory
 
-import pytest
-
 from freezegun import freeze_time
 from lxml.html import HTMLParser, fromstring
 from pyquery import PyQuery as pq
@@ -1067,47 +1065,79 @@ class QueueTest(ReviewerTest):
     def generate_files(self, subset=None, files=None):
         if subset is None:
             subset = []
+        channel = (amo.RELEASE_CHANNEL_LISTED if self.listed else
+                   amo.RELEASE_CHANNEL_UNLISTED)
         files = files or OrderedDict([
             ('Nominated One', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(5),
+                    'nomination': self.days_ago(5),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
             }),
             ('Nominated Two', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(4),
+                    'nomination': self.days_ago(4),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
             }),
             ('Pending One', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_APPROVED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(3),
+                    'nomination': self.days_ago(3),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_APPROVED,
             }),
             ('Pending Two', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_APPROVED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(2),
+                    'nomination': self.days_ago(2),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_APPROVED,
             }),
             ('Public', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_APPROVED,
-                'file_status': amo.STATUS_APPROVED,
+                'file_kw': {
+                    'status': amo.STATUS_APPROVED,
+                },
+                'version_kw': {
+                    'created': self.days_ago(1),
+                    'nomination': self.days_ago(1),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_APPROVED,
             }),
         ])
         results = OrderedDict()
-        channel = (amo.RELEASE_CHANNEL_LISTED if self.listed else
-                   amo.RELEASE_CHANNEL_UNLISTED)
         for name, attrs in files.items():
             if not subset or name in subset:
-                version_kw = attrs.get('version_kw', {})
-                version_kw.update(
-                    {'channel': channel, 'version': attrs.pop('version_str')})
-                attrs['version_kw'] = version_kw
-                file_kw = attrs.get('file_kw', {})
-                file_kw.update({'status': attrs.pop('file_status')})
-                attrs['file_kw'] = file_kw
+                version_kw = attrs.pop('version_kw', {})
+                version_kw['channel'] = channel
+                file_kw = attrs.pop('file_kw', {})
                 results[name] = addon_factory(
-                    status=attrs.pop('addon_status'), name=name, **attrs)
+                    name=name, version_kw=version_kw, file_kw=file_kw, **attrs)
+                # status might be wrong because we want to force a particular
+                # status without necessarily having the requirements for it.
+                # So update it if we didn't end up with the one we want.
+                if ('status' in attrs and
+                        results[name].status != attrs['status']):
+                    results[name].update(status=attrs['status'])
         self.addons.update(results)
         return results
 
@@ -1491,18 +1521,16 @@ class TestExtensionQueue(QueueTest):
         version2 = self.addons['Nominated Two'].versions.all()[0]
         file_ = version2.files.get()
 
-        # Versions are ordered by creation date, so make sure they're set.
-        past = self.days_ago(1)
-        version2.update(created=past, nomination=past)
-
-        # Create another version, v0.2, by "cloning" v0.1.
+        # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
+        # Its creation date must be more recent than v0.1 for version ordering
+        # to work. Its nomination date must be coherent with that, but also
+        # not cause the queue order to change with respect to the other
+        # add-ons.
+        version2.created = version2.created + timedelta(minutes=1)
+        version2.nomination = version2.nomination + timedelta(minutes=1)
         version2.pk = None
         version2.version = '0.2'
         version2.save()
-
-        # Reset creation date once it has been saved.
-        future = datetime.now() - timedelta(seconds=1)
-        version2.update(created=future, nomination=future)
 
         # Associate v0.2 it with a file.
         file_.pk = None
@@ -1671,18 +1699,16 @@ class TestThemeNominatedQueue(QueueTest):
         version2 = self.addons['Nominated Two'].versions.all()[0]
         file_ = version2.files.get()
 
-        # Versions are ordered by creation date, so make sure they're set.
-        past = self.days_ago(1)
-        version2.update(created=past, nomination=past)
-
-        # Create another version, v0.2, by "cloning" v0.1.
+        # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
+        # Its creation date must be more recent than v0.1 for version ordering
+        # to work. Its nomination date must be coherent with that, but also
+        # not cause the queue order to change with respect to the other
+        # add-ons.
+        version2.created = version2.created + timedelta(minutes=1)
+        version2.nomination = version2.nomination + timedelta(minutes=1)
         version2.pk = None
         version2.version = '0.2'
         version2.save()
-
-        # Reset creation date once it has been saved.
-        future = datetime.now() - timedelta(seconds=1)
-        version2.update(created=future, nomination=future)
 
         # Associate v0.2 it with a file.
         file_.pk = None
@@ -1737,24 +1763,21 @@ class TestRecommendedQueue(QueueTest):
     def test_results(self):
         self._test_results()
 
-    @pytest.mark.skip(reason='Unexplained failure due to nomination dates')
     def test_results_two_versions(self):
         version1 = self.addons['Nominated One'].versions.all()[0]
         version2 = self.addons['Nominated Two'].versions.all()[0]
         file_ = version2.files.get()
 
-        # Versions are ordered by creation date, so make sure they're set.
-        past = self.days_ago(1)
-        version2.update(created=past, nomination=past)
-
-        # Create another version, v0.2, by "cloning" v0.1.
+        # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
+        # Its creation date must be more recent than v0.1 for version ordering
+        # to work. Its nomination date must be coherent with that, but also
+        # not cause the queue order to change with respect to the other
+        # add-ons.
+        version2.created = version2.created + timedelta(minutes=1)
+        version2.nomination = version2.nomination + timedelta(minutes=1)
         version2.pk = None
         version2.version = '0.2'
         version2.save()
-
-        # Reset creation date once it has been saved.
-        future = datetime.now() - timedelta(seconds=1)
-        version2.update(created=future, nomination=future)
 
         # Associate v0.2 it with a file.
         file_.pk = None
@@ -2667,59 +2690,119 @@ class BaseTestQueueSearch(SearchTest):
             subset = []
         files = OrderedDict([
             ('Not Needing Admin Review', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(10),
+                    'nomination': self.days_ago(10),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
             }),
             ('Another Not Needing Admin Review', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(9),
+                    'nomination': self.days_ago(9),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
             }),
             ('Needs Admin Review', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(8),
+                    'nomination': self.days_ago(8),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
                 'needs_admin_code_review': True,
             }),
             ('Bieber Lang', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(7),
+                    'nomination': self.days_ago(7),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
                 'type': amo.ADDON_LPAPP,
             }),
             ('Justin Bieber Search Bar', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(6),
+                    'nomination': self.days_ago(6),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
                 'type': amo.ADDON_SEARCH,
             }),
             ('Bieber Dictionary', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(5),
+                    'nomination': self.days_ago(5),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
                 'type': amo.ADDON_DICT,
             }),
             ('Bieber For Mobile', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
-                'version_kw': {'application': amo.ANDROID.id},
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'application': amo.ANDROID.id,
+                    'created': self.days_ago(4),
+                    'nomination': self.days_ago(4),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
             }),
             ('Linux Widget', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(3),
+                    'nomination': self.days_ago(3),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
             }),
             ('Mac Widget', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(2),
+                    'nomination': self.days_ago(2),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_NOMINATED,
             }),
             ('Deleted', {
-                'version_str': '0.1',
-                'addon_status': amo.STATUS_DELETED,
-                'file_status': amo.STATUS_AWAITING_REVIEW,
+                'file_kw': {
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                },
+                'version_kw': {
+                    'created': self.days_ago(1),
+                    'nomination': self.days_ago(1),
+                    'version': '0.1',
+                },
+                'status': amo.STATUS_DELETED,
             }),
         ])
         results = {}
@@ -2727,18 +2810,15 @@ class BaseTestQueueSearch(SearchTest):
                    amo.RELEASE_CHANNEL_UNLISTED)
         for name, attrs in files.items():
             if not subset or name in subset:
-                version_kw = attrs.get('version_kw', {})
-                version_kw.update(
-                    {'channel': channel, 'version': attrs.pop('version_str')})
-                attrs['version_kw'] = version_kw
-                file_kw = attrs.get('file_kw', {})
-                file_kw.update({'status': attrs.pop('file_status')})
-                attrs['file_kw'] = file_kw
-                attrs.update({'version_kw': version_kw, 'file_kw': file_kw})
                 needs_admin_code_review = attrs.pop(
                     'needs_admin_code_review', None)
+
+                version_kw = attrs.pop('version_kw', {})
+                version_kw['channel'] = channel
+                file_kw = attrs.pop('file_kw', {})
                 results[name] = addon_factory(
-                    status=attrs.pop('addon_status'), name=name, **attrs)
+                    name=name, version_kw=version_kw, file_kw=file_kw, **attrs)
+
                 if needs_admin_code_review:
                     AddonReviewerFlags.objects.create(
                         addon=results[name], needs_admin_code_review=True)
