@@ -27,20 +27,27 @@ class Command(BaseCommand):
             raise CommandError('These jobs are available:\n%s' % '\n'.join(
                 sorted(settings.CRON_JOBS.keys())))
 
-        name, args = options['name'], options['cron_args']
+        name, args_and_kwargs = options['name'], options['cron_args']
+        args = [arg for arg in args_and_kwargs if '=' not in arg]
+        kwargs = dict(
+            (kwarg.split('=', maxsplit=1) for kwarg in args_and_kwargs
+             if kwarg not in args))
 
         path = settings.CRON_JOBS.get(name)
         if not path:
-            log.error('Cron called with an unknown cron job: %s %s' %
-                      (name, args))
-            raise CommandError(u'Unrecognized job name: %s' % name)
+            log.error(
+                'Cron called with an unknown cron job: '
+                f'{name} {args} {kwargs}')
+            raise CommandError(f'Unrecognized job name: {name}')
 
         module = import_module(path)
 
         current_millis = datetime.now().timestamp() * 1000
 
-        log.info("Beginning job: %s %s (start timestamp: %s)" % (
-            name, args, current_millis))
-        getattr(module, name)(*args)
-        log.info("Ending job: %s %s (start timestamp: %s)" % (
-            name, args, current_millis))
+        log.info(
+            f'Beginning job: {name} {args} {kwargs} '
+            f'(start timestamp: {current_millis})')
+        getattr(module, name)(*args, **kwargs)
+        log.info(
+            f'Ending job: {name} {args} {kwargs} '
+            f'(start timestamp: {current_millis})')
