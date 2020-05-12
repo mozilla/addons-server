@@ -17,7 +17,6 @@ RUN apt-get update && apt-get install -y \
 RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-buster-nodesource-repo /etc/apt/sources.list.d/nodesource.list
 ADD docker/debian-buster-backports-repo /etc/apt/sources.list.d/buster-backports.list
-ADD docker/etc/mime.types /etc/mime.types
 
 # IMPORTANT: When editing this list below, make sure to also update
 # `Dockerfile`.
@@ -55,6 +54,7 @@ RUN apt-get update && apt-get -t buster install -y \
 
 # IMPORTANT: When editing one of these lists below, make sure to also update
 # `Dockerfile`.
+ADD docker/etc/mime.types /etc/mime.types
 
 # Install a recent libgit2-dev version...
 RUN apt-get update && apt-get -t buster-backports install -y \
