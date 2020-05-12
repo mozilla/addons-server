@@ -17,7 +17,7 @@ from olympia.blocklist.cron import (
     upload_mlbf_to_kinto)
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block
-from olympia.blocklist.tasks import (
+from olympia.constants.blocklist import (
     MLBF_TIME_CONFIG_KEY, MLBF_BASE_ID_CONFIG_KEY)
 from olympia.lib.kinto import KintoServer
 from olympia.zadmin.models import get_config, set_config

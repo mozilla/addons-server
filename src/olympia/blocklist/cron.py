@@ -5,12 +5,14 @@ from django.core.management import call_command
 import waffle
 
 import olympia.core.logger
+from olympia.constants.blocklist import (
+    MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY)
 from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
 from .models import Block
-from .tasks import (
-    MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY, upload_filter_to_kinto)
+from .tasks import upload_filter_to_kinto
+
 
 log = olympia.core.logger.getLogger('z.cron')
 
