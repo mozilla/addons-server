@@ -43,7 +43,7 @@ class TestBlock(TestCase):
         block.update(kinto_id='1234567890')
         assert not block.is_imported_from_kinto_regex
 
-    def is_readonly(self):
+    def test_is_readonly(self):
         block = Block.objects.create(guid='foo@baa', updated_by=user_factory())
         # not read only by default
         assert not block.is_readonly
