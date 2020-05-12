@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-12 09:41+0000\n"
+"PO-Revision-Date: 2020-05-12 10:03+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3208,7 +3208,7 @@ msgstr "E-mail cím"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Elfogadom, hogy a Mozilla ennek az %(link_open)sadatvédelmi nyilatkozatnak%(link_close)s megfelelően kezelje az adataimat."
 
 msgid "Sign Up"
 msgstr "Regisztráció"
