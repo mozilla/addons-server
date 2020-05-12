@@ -43,6 +43,7 @@ class TestGitExtractionEntryAdmin(TestCase):
         assert response.status_code == 200
         html = pq(response.content)
         assert html('.column-id').length == 1
+        assert html('.actions option[value="delete_selected"]').length == 1
 
     def test_list_view_is_restricted(self):
         user = user_factory()

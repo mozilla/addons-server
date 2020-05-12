@@ -10,7 +10,7 @@ from .models import GitExtractionEntry
 
 @admin.register(GitExtractionEntry)
 class GitExtractionEntryAdmin(admin.ModelAdmin):
-    actions = None
+    actions = ['delete_selected']
     view_on_site = False
 
     list_display = (
