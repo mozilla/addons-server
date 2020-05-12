@@ -19,7 +19,7 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 class MLBF():
     KEY_FORMAT = '{guid}:{version}'
     # How many guids should there be in the stashs before we make a new base.
-    BASE_REPLACE_THRESHOLD = 500
+    BASE_REPLACE_THRESHOLD = 5_000
 
     def __init__(self, id_):
         # simplify later code by assuming always a string
