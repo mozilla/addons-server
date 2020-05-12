@@ -41,11 +41,11 @@ class MLBF():
             'version__addon__guid',
             'version__version',
             'version_id')
-        addons_versions = defaultdict(dict)
+        addons_versions = defaultdict(list)
         for file_ in file_qs:
             addon_key = file_['version__addon__guid']
-            addons_versions[addon_key][file_['version__version']] = (
-                file_['version_id'])
+            addons_versions[addon_key].append(
+                (file_['version__version'], file_['version_id']))
 
         all_versions = {}
         # collect all the blocked versions
@@ -55,7 +55,7 @@ class MLBF():
                 block.max_version == Block.MAX)
             versions = {
                 version_id: (block.guid, version)
-                for version, version_id in addons_versions[block.guid].items()
+                for version, version_id in addons_versions[block.guid]
                 if is_all_versions or block.is_version_blocked(version)}
             all_versions.update(versions)
         return all_versions
@@ -70,9 +70,9 @@ class MLBF():
 
     @classmethod
     def hash_filter_inputs(cls, input_list):
-        return [
+        return list({
             cls.KEY_FORMAT.format(guid=guid, version=version)
-            for (guid, version) in input_list]
+            for (guid, version) in input_list})
 
     @classmethod
     def generate_mlbf(cls, stats, blocked, not_blocked):
@@ -87,10 +87,11 @@ class MLBF():
         cascade.set_crlite_error_rates(
             include_len=error_rates[0], exclude_len=error_rates[1])
 
-        cascade.initialize(include=blocked, exclude=not_blocked)
-
         stats['mlbf_blocked_count'] = len(blocked)
         stats['mlbf_notblocked_count'] = len(not_blocked)
+
+        cascade.initialize(include=blocked, exclude=not_blocked)
+
         stats['mlbf_version'] = cascade.version
         stats['mlbf_layers'] = cascade.layerCount()
         stats['mlbf_bits'] = cascade.bitCount()
@@ -125,10 +126,10 @@ class MLBF():
         except FileNotFoundError:
             # when self._blocked_path doesn't exist
             pass
-        blocked_versions = self.fetch_blocked_from_db()
-        blocked = blocked_versions.values()
+        blocked_ids_to_versions = self.fetch_blocked_from_db()
+        blocked = blocked_ids_to_versions.values()
         # cache version ids so query in fetch_not_blocked_json is efficient
-        self._version_excludes = blocked_versions.keys()
+        self._version_excludes = blocked_ids_to_versions.keys()
         self.blocked_json = self.hash_filter_inputs(blocked)
         return self.blocked_json
 
@@ -170,26 +171,31 @@ class MLBF():
     def generate_and_write_mlbf(self):
         stats = {}
 
+        blocked_json = self.fetch_blocked_json()
+        not_blocked_json = self.fetch_not_blocked_json()
+
+        # write blocked json
+        blocked_path = self._blocked_path
+        with storage.open(blocked_path, 'w') as json_file:
+            log.info("Writing to file {}".format(blocked_path))
+            json.dump(blocked_json, json_file)
+        # and the not blocked json
+        not_blocked_path = self._not_blocked_path
+        with storage.open(not_blocked_path, 'w') as json_file:
+            log.info("Writing to file {}".format(not_blocked_path))
+            json.dump(not_blocked_json, json_file)
+
         bloomfilter = self.generate_mlbf(
             stats=stats,
-            blocked=self.fetch_blocked_json(),
-            not_blocked=self.fetch_not_blocked_json())
+            blocked=blocked_json,
+            not_blocked=not_blocked_json)
+
         # write bloomfilter
         mlbf_path = self.filter_path
         with storage.open(mlbf_path, 'wb') as filter_file:
             log.info("Writing to file {}".format(mlbf_path))
             bloomfilter.tofile(filter_file)
             stats['mlbf_filesize'] = os.stat(mlbf_path).st_size
-        # write blocked json
-        blocked_path = self._blocked_path
-        with storage.open(blocked_path, 'w') as json_file:
-            log.info("Writing to file {}".format(blocked_path))
-            json.dump(self.blocked_json, json_file)
-        # and the not blocked json
-        not_blocked_path = self._not_blocked_path
-        with storage.open(not_blocked_path, 'w') as json_file:
-            log.info("Writing to file {}".format(not_blocked_path))
-            json.dump(self.not_blocked_json, json_file)
 
         log.info(json.dumps(stats))
 
