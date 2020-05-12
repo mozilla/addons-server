@@ -11,6 +11,8 @@ from olympia.lib.settings_base import *  # noqa
 
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
+INTERNAL_ROUTES_ALLOWED = True
+
 DEBUG = True
 
 # These apps are great during development.

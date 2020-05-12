@@ -23,6 +23,7 @@ from olympia.scanners.serializers import ScannerResultSerializer
 from django.test.utils import override_settings
 
 
+@override_settings(INTERNAL_ROUTES_ALLOWED=True)
 class TestScannerResultView(TestCase):
     client_class = APITestClient
 

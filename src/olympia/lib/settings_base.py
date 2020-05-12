@@ -31,6 +31,10 @@ ALLOWED_HOSTS = [
     '.mozaws.net',
 ]
 
+
+# This variable should only be set to `True` for local env and internal hosts.
+INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
+
 # jingo-minify settings
 CACHEBUST_IMGS = True
 try:
