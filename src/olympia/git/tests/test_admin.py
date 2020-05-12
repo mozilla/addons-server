@@ -62,4 +62,4 @@ class TestGitExtractionEntryAdmin(TestCase):
             reverse('admin:addons_addon_change', args=(addon.pk,))
             in formatted_addon
         )
-        assert str(addon.name) in formatted_addon
+        assert str(addon) in formatted_addon

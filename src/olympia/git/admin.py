@@ -49,7 +49,7 @@ class GitExtractionEntryAdmin(admin.ModelAdmin):
         return format_html(
             '<a href="{}">{}</a>',
             reverse('admin:addons_addon_change', args=(obj.addon.pk,)),
-            obj.addon.name,
+            str(obj.addon),
         )
 
     formatted_addon.short_description = 'Add-on'
