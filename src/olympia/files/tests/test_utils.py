@@ -792,14 +792,27 @@ def test_extract_extension_to_dest_call_fsync(filename):
     assert fsync_mock.called
 
 
-def test_extract_extension_to_dest_invalid_archive():
+def test_extract_extension_to_dest_non_existing_archive():
     extension_file = 'src/olympia/files/fixtures/files/doesntexist.zip'
+
+    with mock.patch('olympia.files.utils.shutil.rmtree') as mock_rmtree:
+        with pytest.raises(FileNotFoundError):
+            utils.extract_extension_to_dest(extension_file)
+
+    # Make sure we are cleaning up our temporary directory if possible
+    assert mock_rmtree.called
+
+
+def test_extract_extension_to_dest_invalid_archive():
+    extension_file = (
+        'src/olympia/files/fixtures/files/invalid-cp437-encoding.xpi'
+    )
 
     with mock.patch('olympia.files.utils.shutil.rmtree') as mock_rmtree:
         with pytest.raises(forms.ValidationError):
             utils.extract_extension_to_dest(extension_file)
 
-    # Make sure we are cleaning up our temprary directory if possible
+    # Make sure we are cleaning up our temporary directory if possible
     assert mock_rmtree.called
 
 

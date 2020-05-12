@@ -13,6 +13,7 @@ from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 
 from olympia import amo
+from olympia.amo.storage_utils import move_stored_file
 from olympia.amo.tests import (
     addon_factory, version_factory, user_factory, activate_locale)
 from olympia.lib.git import (
@@ -192,6 +193,59 @@ def test_extract_and_commit_from_version(settings):
         repr(addon.current_version), addon.current_version.id, repr(addon),
         repr(addon.current_version.all_files[0]))
     assert expected in output
+
+    # Check that the files are there.
+    expected = set(['extracted/README.md', 'extracted/manifest.json'])
+    output = _run_process(
+        'git ls-tree -r --name-only listed', repo)
+    assert set(output.split()) == expected
+
+
+@pytest.mark.django_db
+def test_extract_and_commit_from_version_fallback_file_path(settings):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    # Pretend the add-on file is in fallback_file_path instead of the normal
+    # path, just like it would happen if by misfortune we run the extraction
+    # after the add-on/file status has changed but before the file has been
+    # moved.
+    move_stored_file(
+        addon.current_version.current_file.current_file_path,
+        addon.current_version.current_file.fallback_file_path)
+
+    # Everything should still be processed normally.
+
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        addon.current_version)
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
+    assert os.listdir(repo.git_repository_path) == ['.git']
+
+    # Verify via subprocess to make sure the repositories are properly
+    # read by the regular git client
+    output = _run_process('git branch', repo)
+    assert 'listed' in output
+    assert 'unlisted' not in output
+
+    # Test that a new "unlisted" branch is created only if needed
+    addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        version=addon.current_version)
+    output = _run_process('git branch', repo)
+    assert 'listed' in output
+    assert 'unlisted' in output
+
+    output = _run_process('git log listed', repo)
+    expected = 'Create new version {} ({}) for {} from {}'.format(
+        repr(addon.current_version), addon.current_version.id, repr(addon),
+        repr(addon.current_version.all_files[0]))
+    assert expected in output
+
+    # Check that the files are there.
+    expected = set(['extracted/README.md', 'extracted/manifest.json'])
+    output = _run_process(
+        'git ls-tree -r --name-only listed', repo)
+    assert set(output.split()) == expected
 
 
 @pytest.mark.django_db
@@ -478,110 +532,6 @@ def test_extract_and_commit_from_version_valid_extensions(settings, filename):
         repr(addon.current_version), addon.current_version.id, repr(addon),
         repr(addon.current_version.all_files[0]))
     assert expected in output
-
-
-@pytest.mark.django_db
-def test_extract_and_commit_source_from_version(settings):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi'},
-        version_kw={'version': '0.1'})
-
-    # Generate source file
-    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
-    with zipfile.ZipFile(source, 'w') as zip_file:
-        zip_file.writestr('manifest.json', '{}')
-    source.seek(0)
-    addon.current_version.source = DjangoFile(source)
-    addon.current_version.save()
-
-    repo = AddonGitRepository.extract_and_commit_source_from_version(
-        addon.current_version)
-
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
-    assert os.listdir(repo.git_repository_path) == ['.git']
-
-    # Verify via subprocess to make sure the repositories are properly
-    # read by the regular git client
-    output = _run_process('git branch', repo)
-    assert 'listed' in output
-
-    output = _run_process('git log listed', repo)
-    expected = 'Create new version {} ({}) for {} from source file'.format(
-        repr(addon.current_version), addon.current_version.id, repr(addon))
-    assert expected in output
-
-
-@pytest.mark.django_db
-def test_extract_and_commit_source_from_version_no_dotgit_clash(settings):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi'},
-        version_kw={'version': '0.1'})
-
-    # Generate source file
-    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
-    with zipfile.ZipFile(source, 'w') as zip_file:
-        zip_file.writestr('manifest.json', '{}')
-        zip_file.writestr('.git/config', '')
-    source.seek(0)
-    addon.current_version.source = DjangoFile(source)
-    addon.current_version.save()
-
-    with mock.patch('olympia.lib.git.uuid.uuid4') as uuid4_mock:
-        uuid4_mock.return_value = mock.Mock(
-            hex='b236f5994773477bbcd2d1b75ab1458f')
-        repo = AddonGitRepository.extract_and_commit_source_from_version(
-            addon.current_version)
-
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
-    assert os.listdir(repo.git_repository_path) == ['.git']
-
-    # Verify via subprocess to make sure the repositories are properly
-    # read by the regular git client
-    output = _run_process('git ls-tree -r --name-only listed', repo)
-    assert set(output.split()) == {
-        'extracted/manifest.json', 'extracted/.git.b236f599/config'}
-
-
-@pytest.mark.django_db
-def test_extract_and_commit_source_from_version_rename_dotgit_files(settings):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi'},
-        version_kw={'version': '0.1'})
-
-    # Generate source file
-    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
-    with zipfile.ZipFile(source, 'w') as zip_file:
-        zip_file.writestr('manifest.json', '{}')
-        zip_file.writestr('.gitattributes', '')
-        zip_file.writestr('.gitignore', '')
-        zip_file.writestr('.gitmodules', '')
-        zip_file.writestr('some/directory/.gitattributes', '')
-        zip_file.writestr('some/directory/.gitignore', '')
-        zip_file.writestr('some/directory/.gitmodules', '')
-    source.seek(0)
-    addon.current_version.source = DjangoFile(source)
-    addon.current_version.save()
-
-    with mock.patch('olympia.lib.git.uuid.uuid4') as uuid4_mock:
-        uuid4_mock.return_value = mock.Mock(
-            hex='b236f5994773477bbcd2d1b75ab1458f')
-        repo = AddonGitRepository.extract_and_commit_source_from_version(
-            addon.current_version)
-
-    # Verify via subprocess to make sure the repositories are properly
-    # read by the regular git client
-    output = _run_process('git ls-tree -r --name-only listed', repo)
-    assert set(output.split()) == {
-        'extracted/manifest.json',
-        'extracted/.gitattributes.b236f599',
-        'extracted/.gitignore.b236f599',
-        'extracted/.gitmodules.b236f599',
-        'extracted/some/directory/.gitattributes.b236f599',
-        'extracted/some/directory/.gitignore.b236f599',
-        'extracted/some/directory/.gitmodules.b236f599',
-    }
 
 
 @pytest.mark.django_db
@@ -1543,6 +1493,7 @@ def test_get_deltas_unmodified_file_by_default_not_rendered():
 
     assert not changes
 
+
 # See: https://github.com/mozilla/addons-server/issues/13932
 @pytest.mark.django_db
 def test_commit_with_old_reference(settings):
@@ -1554,7 +1505,8 @@ def test_commit_with_old_reference(settings):
 
     # We create an empyy commit on the 'branch-1'.
     commit = repo._commit_through_worktree(
-        path=None, message='commit on branch 1', author=None, branch=branch_1
+        file_obj=None, message='commit on branch 1',
+        author=None, branch=branch_1
     )
     # We set the target of the most up-to-date reference to 'branch 2'. This
     # means both branches point to the same commit created above.
@@ -1562,7 +1514,8 @@ def test_commit_with_old_reference(settings):
     # We create a second commit on the second branch and we pass the old
     # reference to 'branch-2'.
     repo._commit_through_worktree(
-        path=None, message='commit on branch 2', author=None, branch=branch_2
+        file_obj=None, message='commit on branch 2',
+        author=None, branch=branch_2
     )
 
     # `git log` but with messages only

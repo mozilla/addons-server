@@ -347,7 +347,7 @@ class AddonGitRepository(object):
             note = ' ({})'.format(note) if note else ''
 
             commit = repo._commit_through_worktree(
-                path=file_obj.current_file_path if file_obj else None,
+                file_obj=file_obj,
                 message=(
                     'Create new version {version} ({version_id}) for '
                     '{addon} from {file_obj}{note}'.format(
@@ -363,38 +363,6 @@ class AddonGitRepository(object):
             version.update(git_hash=commit.hex)
         finally:
             translation.activate(current_language)
-        return repo
-
-    @classmethod
-    def extract_and_commit_source_from_version(cls, version, author=None):
-        """Extract the source file from `version` and comit it.
-
-        This is doing the following:
-
-        * Create a temporary `git worktree`_
-        * Remove all files in that worktree
-        * Extract the xpi behind `version` into the worktree
-        * Commit all files
-
-        See `extract_and_commit_from_version` for more details.
-        """
-        repo = cls(version.addon.id, package_type='source')
-        branch = repo.find_or_create_branch(BRANCHES[version.channel])
-
-        commit = repo._commit_through_worktree(
-            path=version.source.path,
-            message=(
-                'Create new version {version} ({version_id}) for '
-                '{addon} from source file'.format(
-                    version=repr(version),
-                    version_id=version.id,
-                    addon=repr(version.addon))),
-            author=author,
-            branch=branch)
-
-        # Set the latest git hash on the related version.
-        version.update(source_git_hash=commit.hex)
-
         return repo
 
     def get_author(self, user=None):
@@ -421,19 +389,25 @@ class AddonGitRepository(object):
 
         return branch
 
-    def _commit_through_worktree(self, path, message, author, branch):
+    def _commit_through_worktree(self, file_obj, message, author, branch):
         """
         Create a temporary worktree that we can use to unpack the extension
         without disturbing the current git workdir since it creates a new
         temporary directory where we extract to.
         """
         with TemporaryWorktree(self.git_repository) as worktree:
-            if path:
+            if file_obj:
                 # Now extract the extension to the workdir
-                extract_extension_to_dest(
-                    source=path,
-                    dest=worktree.extraction_target_path,
-                    force_fsync=True)
+                try:
+                    extract_extension_to_dest(
+                        source=file_obj.current_file_path,
+                        dest=worktree.extraction_target_path,
+                        force_fsync=True)
+                except FileNotFoundError:
+                    extract_extension_to_dest(
+                        source=file_obj.fallback_file_path,
+                        dest=worktree.extraction_target_path,
+                        force_fsync=True)
 
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct

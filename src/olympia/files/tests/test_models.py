@@ -320,6 +320,38 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f.addon.update(status=amo.STATUS_DISABLED)
         assert f.current_file_path.endswith(guarded_fp)
 
+    def test_fallback_file_path(self):
+        public_fp = '/storage/files/3615/delicious_bookmarks-2.1.072-fx.xpi'
+        guarded_fp = '/guarded-addons/3615/delicious_bookmarks-2.1.072-fx.xpi'
+
+        # Add-on enabled, file approved
+        f = File.objects.get(pk=67442)
+        assert f.fallback_file_path.endswith(guarded_fp)
+
+        # Add-on user-disabled, file approved
+        f.addon.update(disabled_by_user=True)
+        assert f.fallback_file_path.endswith(public_fp)
+        f.addon.update(disabled_by_user=False)
+
+        # Add-on mozilla-disabled, file approved
+        f.addon.update(status=amo.STATUS_DISABLED)
+        assert f.fallback_file_path.endswith(public_fp)
+        f.addon.update(status=amo.STATUS_APPROVED)
+
+        # Add-on enabled, file disabled
+        f.update(status=amo.STATUS_DISABLED)
+        f = File.objects.get(pk=67442)
+        assert f.fallback_file_path.endswith(public_fp)
+
+        # Add-on user-disabled, file disabled
+        f.addon.update(disabled_by_user=True)
+        assert f.fallback_file_path.endswith(public_fp)
+        f.addon.update(disabled_by_user=False)
+
+        # Add-on mozilla-disabled, file disabled
+        f.addon.update(status=amo.STATUS_DISABLED)
+        assert f.fallback_file_path.endswith(public_fp)
+
     def test_has_been_validated_returns_false_when_no_validation(self):
         file = File()
         assert not file.has_been_validated
