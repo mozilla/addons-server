@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-12 12:20+0000\n"
+"PO-Revision-Date: 2020-05-12 12:30+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -529,11 +529,11 @@ msgstr "Página inicial"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s GUIDS da extensão já estão bloqueados, de %(v_min)s até %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s GUIDs de extensões não foram encontrados"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
 msgstr "Os bloqueios a seguir foram importados de um bloqueio kinto legado baseado em expressão regular."
@@ -931,7 +931,7 @@ msgid "Block deleted"
 msgstr "Bloqueio excluído"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID de {addon} adicionado ao DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID de {addon} removido do DeniedGuid."
@@ -1559,13 +1559,13 @@ msgid "No action"
 msgstr "Nenhuma ação"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Sinalizar para revisão humana"
 
 msgid "Delay auto-approval"
 msgstr "Adiar aprovação automática"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Adiar aprovação automática indefinidamente"
 
 msgid "True positive"
 msgstr ""
