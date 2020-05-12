@@ -36,24 +36,24 @@ class TestMLBF(TestCase):
                 file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
         # five versions, but only two within block (123.40, 123.5)
-        self.five_ver = Block.objects.create(
+        self.five_ver_block = Block.objects.create(
             addon=addon_factory(
                 version_kw={'version': '123.40'},
                 file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory(), max_version='123.45')
-        self.five_ver_123_45 = self.five_ver.addon.current_version
+        self.five_ver_123_40 = self.five_ver_block.addon.current_version
         self.five_ver_123_5 = version_factory(
-            addon=self.five_ver.addon, version='123.5', deleted=True,
+            addon=self.five_ver_block.addon, version='123.5', deleted=True,
             file_kw={'is_signed': True, 'is_webextension': True})
         self.five_ver_123_45_1 = version_factory(
-            addon=self.five_ver.addon, version='123.45.1',
+            addon=self.five_ver_block.addon, version='123.45.1',
             file_kw={'is_signed': True, 'is_webextension': True})
         # these two would be included if they were signed and webextensions
         self.not_signed_version = version_factory(
-            addon=self.five_ver.addon, version='123.5.1',
+            addon=self.five_ver_block.addon, version='123.5.1',
             file_kw={'is_signed': False, 'is_webextension': True})
         self.not_webext_version = version_factory(
-            addon=self.five_ver.addon, version='123.5.2',
+            addon=self.five_ver_block.addon, version='123.5.2',
             file_kw={'is_signed': True, 'is_webextension': False})
         # no matching versions (edge cases)
         self.over = Block.objects.create(
@@ -71,11 +71,11 @@ class TestMLBF(TestCase):
     def test_fetch_all_versions_from_db(self):
         all_versions = MLBF.fetch_all_versions_from_db()
         assert len(all_versions) == File.objects.count() == 10 + 10
-        assert (self.five_ver.guid, '123.40') in all_versions
-        assert (self.five_ver.guid, '123.5') in all_versions
-        assert (self.five_ver.guid, '123.45.1') in all_versions
-        assert (self.five_ver.guid, '123.5.1') in all_versions
-        assert (self.five_ver.guid, '123.5.2') in all_versions
+        assert (self.five_ver_block.guid, '123.40') in all_versions
+        assert (self.five_ver_block.guid, '123.5') in all_versions
+        assert (self.five_ver_block.guid, '123.45.1') in all_versions
+        assert (self.five_ver_block.guid, '123.5.1') in all_versions
+        assert (self.five_ver_block.guid, '123.5.2') in all_versions
         over_tuple = (self.over.guid, self.over.addon.current_version.version)
         under_tuple = (
             self.under.guid, self.under.addon.current_version.version)
@@ -83,14 +83,14 @@ class TestMLBF(TestCase):
         assert under_tuple in all_versions
 
         # repeat, but with excluded version ids
-        excludes = [self.five_ver_123_45.id, self.five_ver_123_5.id]
+        excludes = [self.five_ver_123_40.id, self.five_ver_123_5.id]
         all_versions = MLBF.fetch_all_versions_from_db(excludes)
         assert len(all_versions) == 18
-        assert (self.five_ver.guid, '123.40') not in all_versions
-        assert (self.five_ver.guid, '123.5') not in all_versions
-        assert (self.five_ver.guid, '123.45.1') in all_versions
-        assert (self.five_ver.guid, '123.5.1') in all_versions
-        assert (self.five_ver.guid, '123.5.2') in all_versions
+        assert (self.five_ver_block.guid, '123.40') not in all_versions
+        assert (self.five_ver_block.guid, '123.5') not in all_versions
+        assert (self.five_ver_block.guid, '123.45.1') in all_versions
+        assert (self.five_ver_block.guid, '123.5.1') in all_versions
+        assert (self.five_ver_block.guid, '123.5.2') in all_versions
         over_tuple = (self.over.guid, self.over.addon.current_version.version)
         under_tuple = (
             self.under.guid, self.under.addon.current_version.version)
@@ -101,18 +101,18 @@ class TestMLBF(TestCase):
         blocked_versions = MLBF.fetch_blocked_from_db()
         blocked_guids = blocked_versions.values()
         assert len(blocked_guids) == 5, blocked_guids
-        assert (self.five_ver.guid, '123.40') in blocked_guids
-        assert (self.five_ver.guid, '123.5') in blocked_guids
-        assert (self.five_ver.guid, '123.45.1') not in blocked_guids
-        assert (self.five_ver.guid, '123.5.1') not in blocked_guids
-        assert (self.five_ver.guid, '123.5.2') not in blocked_guids
+        assert (self.five_ver_block.guid, '123.40') in blocked_guids
+        assert (self.five_ver_block.guid, '123.5') in blocked_guids
+        assert (self.five_ver_block.guid, '123.45.1') not in blocked_guids
+        assert (self.five_ver_block.guid, '123.5.1') not in blocked_guids
+        assert (self.five_ver_block.guid, '123.5.2') not in blocked_guids
         over_tuple = (self.over.guid, self.over.addon.current_version.version)
         under_tuple = (
             self.under.guid, self.under.addon.current_version.version)
         assert over_tuple not in blocked_guids
         assert under_tuple not in blocked_guids
 
-        assert self.five_ver_123_45.id in blocked_versions
+        assert self.five_ver_123_40.id in blocked_versions
         assert self.five_ver_123_5.id in blocked_versions
         assert self.five_ver_123_45_1.id not in blocked_versions
         assert self.not_signed_version.id not in blocked_versions
@@ -125,14 +125,36 @@ class TestMLBF(TestCase):
         self.not_webext_version.all_files[0].update(is_webextension=True)
         assert len(MLBF.fetch_blocked_from_db()) == 7
 
+    def test_fetch_blocked_with_duplicate_version_strings(self):
+        """Handling the edge case where an addon (erroronously) has more than
+        one version with the same version identififer."""
+        blocked_guids = MLBF.fetch_blocked_from_db().values()
+        assert len(MLBF.hash_filter_inputs(blocked_guids)) == 5
+
+        version_factory(
+            addon=self.five_ver_block.addon,
+            version=self.five_ver_123_40.version,  # copying the same identifer
+            file_kw={'is_signed': True, 'is_webextension': True})
+        self.five_ver_block.addon.reload()
+        assert self.five_ver_block.addon.versions.filter(
+            version='123.40').count() == 2
+        blocked_guids = MLBF.fetch_blocked_from_db().values()
+        assert len(MLBF.hash_filter_inputs(blocked_guids)) == 5
+
     def test_hash_filter_inputs(self):
         data = [
             ('guid@', '1.0'),
             ('foo@baa', '999.223a'),
         ]
-        assert MLBF.hash_filter_inputs(data) == [
-            'guid@:1.0',
+        assert sorted(MLBF.hash_filter_inputs(data)) == [
             'foo@baa:999.223a',
+            'guid@:1.0',
+        ]
+        # check dupes are stripped out too
+        data.append(('guid@', '1.0'))
+        assert sorted(MLBF.hash_filter_inputs(data)) == [
+            'foo@baa:999.223a',
+            'guid@:1.0',
         ]
 
     def test_generate_mlbf(self):
@@ -140,6 +162,8 @@ class TestMLBF(TestCase):
         key_format = MLBF.KEY_FORMAT
         blocked = [
             ('guid1@', '1.0'), ('@guid2', '1.0'), ('@guid2', '1.1'),
+            ('guid3@', '0.01b1'),
+            # throw in a dupe at the end - should be removed along the way
             ('guid3@', '0.01b1')]
         not_blocked = [
             ('guid10@', '1.0'), ('@guid20', '1.0'), ('@guid20', '1.1'),
@@ -231,7 +255,7 @@ class TestMLBF(TestCase):
         newer_mlbf.write_stash(new_mlbf)
         full_stash = {
             'blocked': ['fooo@baaaa:999'],
-            'unblocked': [f'{self.five_ver.guid}:123.5']}
+            'unblocked': [f'{self.five_ver_block.guid}:123.5']}
         with open(newer_mlbf._stash_path) as stash_file:
             assert json.load(stash_file) == full_stash
         assert newer_mlbf.stash_json == full_stash
@@ -267,7 +291,8 @@ class TestMLBF(TestCase):
         diffs = MLBF.generate_diffs(
             previous=base_mlbf.blocked_json,
             current=small_change_mlbf.blocked_json)
-        assert diffs == ({'fooo@baaaa:999'}, {f'{self.five_ver.guid}:123.5'})
+        assert diffs == (
+            {'fooo@baaaa:999'}, {f'{self.five_ver_block.guid}:123.5'})
 
         # so lower the threshold
         to_patch = 'olympia.blocklist.mlbf.MLBF.BASE_REPLACE_THRESHOLD'
