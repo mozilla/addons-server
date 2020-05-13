@@ -11,6 +11,7 @@ from filtercascade import FilterCascade
 from filtercascade.fileformats import HashAlgorithm
 
 import olympia.core.logger
+from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -18,8 +19,6 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 class MLBF():
     KEY_FORMAT = '{guid}:{version}'
-    # How many guids should there be in the stashs before we make a new base.
-    BASE_REPLACE_THRESHOLD = 5_000
 
     def __init__(self, id_):
         # simplify later code by assuming always a string
@@ -226,7 +225,7 @@ class MLBF():
             # compare base with current blocks
             extras, deletes = self.generate_diffs(
                 previous_base_mlbf.blocked_json, self.fetch_blocked_json())
-            return (len(extras) + len(deletes)) > self.BASE_REPLACE_THRESHOLD
+            return (len(extras) + len(deletes)) > BASE_REPLACE_THRESHOLD
         except FileNotFoundError:
             # when previous_base_mlfb._blocked_path doesn't exist
             return True

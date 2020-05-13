@@ -26,6 +26,10 @@ def test_cron_command(_mock):
     assert _mock.call_count == 1
     _mock.assert_called_with('arg1', 'arg2')
 
+    call_command('cron', 'sample_cron_job', 'kwarg1=a', 'kwarg2=b')
+    assert _mock.call_count == 2
+    _mock.assert_called_with(kwarg1='a', kwarg2='b')
+
 
 @override_settings(
     CRON_JOBS={'sample_cron_job': 'olympia.amo.tests.test_commands'})

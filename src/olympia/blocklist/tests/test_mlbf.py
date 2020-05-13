@@ -295,7 +295,7 @@ class TestMLBF(TestCase):
             {'fooo@baaaa:999'}, {f'{self.five_ver_block.guid}:123.5'})
 
         # so lower the threshold
-        to_patch = 'olympia.blocklist.mlbf.MLBF.BASE_REPLACE_THRESHOLD'
+        to_patch = 'olympia.blocklist.mlbf.BASE_REPLACE_THRESHOLD'
         with mock.patch(to_patch, 1):
             assert small_change_mlbf.should_reset_base_filter(base_mlbf)
             assert small_change_mlbf.blocks_changed_since_previous(base_mlbf)

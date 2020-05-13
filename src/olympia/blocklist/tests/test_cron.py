@@ -17,7 +17,7 @@ from olympia.blocklist.cron import (
     upload_mlbf_to_kinto)
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block
-from olympia.blocklist.tasks import (
+from olympia.constants.blocklist import (
     MLBF_TIME_CONFIG_KEY, MLBF_BASE_ID_CONFIG_KEY)
 from olympia.lib.kinto import KintoServer
 from olympia.zadmin.models import get_config, set_config
@@ -189,6 +189,11 @@ class TestUploadToKinto(TestCase):
         self.publish_attachment_mock.assert_not_called()
         self.publish_record_mock.assert_not_called()
         assert not get_config(MLBF_TIME_CONFIG_KEY)
+
+        # except when 'bypass_switch' kwarg is passed
+        upload_mlbf_to_kinto(bypass_switch=True)
+        self.publish_attachment_mock.assert_called()
+        assert get_config(MLBF_TIME_CONFIG_KEY)
 
     @freeze_time('2020-01-01 12:34:56', as_arg=True)
     def test_no_block_changes(frozen_time, self):

@@ -8,7 +8,7 @@ import olympia.core.logger
 from olympia.blocklist.models import KintoImport
 from olympia.blocklist.tasks import (
     delete_imported_block_from_blocklist, import_block_from_blocklist)
-from olympia.blocklist.utils import KINTO_COLLECTION_LEGACY
+from olympia.constants.blocklist import REMOTE_SETTINGS_COLLECTION_LEGACY
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -22,7 +22,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         LEGACY_BLOCKLIST_URL = (
             f'{settings.REMOTE_SETTINGS_API_URL}buckets/blocklists/'
-            f'collections/{KINTO_COLLECTION_LEGACY}/records')
+            f'collections/{REMOTE_SETTINGS_COLLECTION_LEGACY}/records')
         log.debug('Downloading blocklist from %s', LEGACY_BLOCKLIST_URL)
         response = requests.get(LEGACY_BLOCKLIST_URL)
 

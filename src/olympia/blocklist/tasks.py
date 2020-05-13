@@ -13,6 +13,10 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
+from olympia.constants.blocklist import (
+    MLBF_TIME_CONFIG_KEY,
+    MLBF_BASE_ID_CONFIG_KEY,
+    REMOTE_SETTINGS_COLLECTION_MLBF)
 from olympia.files.models import File
 from olympia.lib.kinto import KintoServer
 from olympia.users.utils import get_task_user
@@ -21,17 +25,13 @@ from olympia.zadmin.models import set_config
 from .mlbf import MLBF
 from .models import Block, BlocklistSubmission, KintoImport
 from .utils import (
-    block_activity_log_delete, block_activity_log_save,
-    KINTO_COLLECTION_MLBF, split_regex_to_list)
+    block_activity_log_delete, block_activity_log_save, split_regex_to_list)
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 bracket_open_regex = re.compile(r'(?<!\\){')
 bracket_close_regex = re.compile(r'(?<!\\)}')
-
-MLBF_TIME_CONFIG_KEY = 'blocklist_mlbf_generation_time'
-MLBF_BASE_ID_CONFIG_KEY = 'blocklist_mlbf_base_id'
 
 BLOCKLIST_RECORD_MLBF_BASE = 'bloomfilter-base'
 BLOCKLIST_RECORD_MLBF_UPDATE = 'bloomfilter-full'
@@ -184,7 +184,7 @@ def delete_imported_block_from_blocklist(kinto_id):
 def upload_filter_to_kinto(generation_time, is_base=True, upload_stash=False):
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = KintoServer(
-        bucket, KINTO_COLLECTION_MLBF, kinto_sign_off_needed=False)
+        bucket, REMOTE_SETTINGS_COLLECTION_MLBF, kinto_sign_off_needed=False)
     mlbf = MLBF(generation_time)
     if is_base:
         # clear the collection for the base - we want to be the only filter

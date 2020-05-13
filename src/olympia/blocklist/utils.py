@@ -6,13 +6,11 @@ from django.conf import settings
 import olympia.core.logger
 from olympia import amo
 from olympia.activity import log_create
+from olympia.constants.blocklist import REMOTE_SETTINGS_COLLECTION_LEGACY
 from olympia.lib.kinto import KintoServer
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
-
-KINTO_COLLECTION_LEGACY = 'addons'
-KINTO_COLLECTION_MLBF = 'addons-bloomfilters'
 
 
 def add_version_log_for_blocked_versions(obj, al):
@@ -97,7 +95,7 @@ def splitlines(text):
 
 def legacy_publish_blocks(blocks):
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
-    server = KintoServer(bucket, KINTO_COLLECTION_LEGACY)
+    server = KintoServer(bucket, REMOTE_SETTINGS_COLLECTION_LEGACY)
     for block in blocks:
         needs_updating = block.include_in_legacy and block.kinto_id
         needs_creating = block.include_in_legacy and not block.kinto_id
@@ -142,7 +140,7 @@ def legacy_publish_blocks(blocks):
 
 def legacy_delete_blocks(blocks):
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
-    server = KintoServer(bucket, KINTO_COLLECTION_LEGACY)
+    server = KintoServer(bucket, REMOTE_SETTINGS_COLLECTION_LEGACY)
     for block in blocks:
         if block.kinto_id and block.include_in_legacy:
             if block.is_imported_from_kinto_regex:
