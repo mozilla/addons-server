@@ -5296,6 +5296,21 @@ class TestReview(ReviewBase):
         assert span.text() == 'Blocked'
         assert span.length == 1
 
+    def test_redirect_after_review_unlisted(self):
+        self.url = reverse(
+            'reviewers.review', args=('unlisted', self.addon.slug))
+        self.version = version_factory(addon=self.addon, version='3.0')
+        self.make_addon_unlisted(self.addon)
+        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+
+        response = self.client.post(
+            self.url, {
+                'action': 'reply',
+                'comments': 'Reply!',
+            }, follow=True)
+
+        self.assertRedirects(response, self.url)
+
 
 class TestAbuseReportsView(ReviewerTest):
     def setUp(self):

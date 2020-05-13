@@ -797,7 +797,7 @@ def review(request, addon, channel=None):
             queue_type = 'extension'
         redirect_url = reverse('reviewers.queue_%s' % queue_type)
     else:
-        redirect_url = reverse('reviewers.unlisted_queue_all')
+        redirect_url = reverse('reviewers.review', args=['unlisted', addon.pk])
 
     if request.method == 'POST' and form.is_valid():
         # Execute the action (is_valid() ensures the action is available to the
