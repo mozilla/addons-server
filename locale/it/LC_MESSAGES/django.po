@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-10 19:30+0000\n"
-"Last-Translator: Enrico Belleri <idesmi@protonmail.com>\n"
+"PO-Revision-Date: 2020-05-11 10:02+0000\n"
+"Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -6013,7 +6013,7 @@ msgid "Previously deleted entries"
 msgstr "Elementi precedentemente eliminati"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Questa è un’estensione consigliata."
 
 msgid "You don't have permission to review it."
 msgstr ""
@@ -6069,10 +6069,10 @@ msgid "View Blocklist Submission"
 msgstr "Visualizza tutti i progetti caricati"
 
 msgid "Block add-on"
-msgstr ""
+msgstr "Blocca componente aggiuntivo"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Aggiorna blocco componente aggiuntivo"
 
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
@@ -6083,7 +6083,7 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Attiva l’approvazione automatica"
 
 msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
+msgstr "Approvazione automatica attualmente disattivata fino al {date}"
 
 msgid "Clear Auto-Approval Extra Delay"
 msgstr ""
@@ -6264,7 +6264,7 @@ msgstr[0] "Richiesta informazioni scaduta ({0})"
 msgstr[1] "Richieste informazioni scadute ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "presenza di regole corrispondenti"
 
 msgid "result state"
 msgstr ""
@@ -6273,29 +6273,29 @@ msgid "all but this rule"
 msgstr ""
 
 msgid "presence of a version"
-msgstr ""
+msgstr "presenza di una versione"
 
 msgid "version channel"
-msgstr ""
+msgstr "canale della versione"
 
 msgid "add-on status"
-msgstr ""
+msgstr "stato del componente aggiuntivo"
 
 #, fuzzy
 msgid "add-on listing visibility"
 msgstr "Visibilità del componente aggiuntivo"
 
 msgid "file status"
-msgstr ""
+msgstr "stato del file"
 
 msgid "file signature"
-msgstr ""
+msgstr "firma del file"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Questo è il nome esatto della regola utilizzata da uno scanner."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Se deselezionato, i risultati dello scanner non saranno vincolati a questa regola e l’azione non verrà eseguita."
 
 msgid "Yara rules should have a definition"
 msgstr ""
@@ -6304,29 +6304,29 @@ msgid "The name of the rule in the definition should match the name of the scann
 msgstr ""
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Nella definizione è consentita una sola regola Yara"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definizione non valida: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Si è verificato un errore durante la compilazione della definizione"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Esegui questa regola anche su componenti aggiuntivi che sono stati disattivati forzatamente."
 
 msgid "Abort"
-msgstr ""
+msgstr "Interrompi"
 
 msgid "Run"
-msgstr ""
+msgstr "Esegui"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Utile quando il risultato dello scanner è un vero positivo ma il componente aggiuntivo non è malevolo"
 
 msgid "Revert report"
-msgstr ""
+msgstr "Ripristina rapporto"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6353,7 +6353,7 @@ msgid "Maximum query length exceeded."
 msgstr "Superata lunghezza massima consentita della query."
 
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr ""
+msgstr "Impossibile trovare il componente aggiuntivo con ID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Non sei il proprietario di questo componente aggiuntivo."
@@ -6376,10 +6376,10 @@ msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr ""
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Se l’ID del componente aggiuntivo supera i 64 caratteri, specificarlo nel manifesto."
 
 msgid "Invalid Add-on ID in URL or package"
-msgstr ""
+msgstr "ID componente aggiuntivo non valido nell’URL o nel pacchetto"
 
 #, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
