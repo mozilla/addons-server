@@ -7798,14 +7798,26 @@ class TestMadQueue(QueueTest):
         super().setUp()
         self.url = reverse('reviewers.queue_mad')
 
+        # This add-on should be listed once, even with two versions.
         listed_addon = addon_factory(created=self.days_ago(15))
         VersionScannerFlags.objects.create(
             version=version_factory(addon=listed_addon,
                                     channel=amo.RELEASE_CHANNEL_LISTED),
             needs_human_review_by_mad=True
         )
+        VersionScannerFlags.objects.create(
+            version=version_factory(addon=listed_addon,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=True
+        )
 
+        # This add-on should be listed once, even with two versions.
         unlisted_addon = addon_factory(created=self.days_ago(5))
+        VersionScannerFlags.objects.create(
+            version=version_factory(addon=unlisted_addon,
+                                    channel=amo.RELEASE_CHANNEL_UNLISTED),
+            needs_human_review_by_mad=True
+        )
         VersionScannerFlags.objects.create(
             version=version_factory(addon=unlisted_addon,
                                     channel=amo.RELEASE_CHANNEL_UNLISTED),
@@ -7841,14 +7853,14 @@ class TestMadQueue(QueueTest):
         expected = []
         addon = self.expected_addons[0]
         expected.append((
-            '{} {}'.format(addon.name, addon.current_version.version),
+            'Listed versions (2)',
             reverse('reviewers.review', args=[addon.slug])
         ))
         # unlisted
         addon = self.expected_addons[1]
         expected.append((
-            '{} {}'.format(addon.name, addon.current_version.version),
-            reverse('reviewers.review', args=[addon.slug])
+            'Unlisted versions (2)',
+            reverse('reviewers.review', args=['unlisted', addon.slug])
         ))
 
         doc = pq(response.content)
