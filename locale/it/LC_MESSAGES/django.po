@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-11 10:02+0000\n"
-"Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2020-05-11 12:16+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -6064,9 +6064,8 @@ msgstr "Forza la disattivazione del componente aggiuntivo"
 msgid "Force-enable add-on"
 msgstr "Forza l'attivazione del componente aggiuntivo"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Visualizza tutti i progetti caricati"
+msgstr ""
 
 msgid "Block add-on"
 msgstr "Blocca componente aggiuntivo"
@@ -6074,19 +6073,17 @@ msgstr "Blocca componente aggiuntivo"
 msgid "Update add-on block"
 msgstr "Aggiorna blocco componente aggiuntivo"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Disattiva l’approvazione automatica"
+msgstr ""
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Attiva l’approvazione automatica"
+msgstr ""
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Approvazione automatica attualmente disattivata fino al {date}"
 
 msgid "Clear Auto-Approval Extra Delay"
-msgstr ""
+msgstr "Rimuovi il ritardo extra dell’approvazione automatica"
 
 msgid "Clear information request"
 msgstr "Elimina richiesta informazioni"
@@ -6171,7 +6168,7 @@ msgid "Newer"
 msgstr "Più recente"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} versioni contrassegnate dagli scanner su altre pagine."
 
 msgid "Recent Points"
 msgstr "Punti recenti"
@@ -6281,9 +6278,8 @@ msgstr "canale della versione"
 msgid "add-on status"
 msgstr "stato del componente aggiuntivo"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Visibilità del componente aggiuntivo"
+msgstr "visibilità elenco componenti aggiuntivi"
 
 msgid "file status"
 msgstr "stato del file"
@@ -6381,9 +6377,8 @@ msgstr "Se l’ID del componente aggiuntivo supera i 64 caratteri, specificarlo 
 msgid "Invalid Add-on ID in URL or package"
 msgstr "ID componente aggiuntivo non valido nell’URL o nel pacchetto"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Non è possibile aggiungere nuove versioni di un componente aggiuntivo il cui stato è: %s."
+msgstr ""
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Non è possibile utilizzare l’API per caricare una nuova versione del componente aggiuntivo poiché mancano alcuni metadati. Completa l’operazione direttamente dall’interfaccia web."
@@ -6728,13 +6723,12 @@ msgstr "Gli utenti \"%(users)s\" sono stati bloccati."
 msgid "Ban selected users"
 msgstr "Blocca gli utenti selezionati"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "La chiave API degli utenti \"%(users)s\" è stata ripristinata."
+msgstr "Sessione/i degli utenti \"%(users)s\" ripristinata/e."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Elimina versione"
+msgstr "Ripristina sessione"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6836,9 +6830,8 @@ msgstr "Notifiche utente"
 msgid "Ban"
 msgstr "Blocca"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Elimina versione"
+msgstr "Ripristina sessione/i"
 
 msgid "Delete picture"
 msgstr "Elimina immagine"
