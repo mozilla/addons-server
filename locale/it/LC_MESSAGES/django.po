@@ -6892,7 +6892,7 @@ msgid ""
 msgstr ""
 "Dal tuo componente aggiuntivo %(addon_name)s (%(addon_url)s) è stato rimosso il seguente autore:\n"
 "\n"
-"%(author_name)s (%(author_url)s): %(author_role)s"
+"%(author_name)s (%(author_url)s)"
 
 msgctxt "user_list_others"
 msgid "others"
