@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-11 14:37+0000\n"
+"PO-Revision-Date: 2020-05-13 12:30+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -932,7 +932,7 @@ msgid "Block {1} action for {0} signed off."
 msgstr "Blokkearjen fan {1} aksje foar {0} ôfmeld."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Oftekenje blokkearringsaksje"
 
 msgid "User {user} session(s) reset."
 msgstr "Sesje(s) fan brûker {user} opnij inisjalisearre."
@@ -980,7 +980,7 @@ msgid "Unlisted"
 msgstr "Net fermeld"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1551,40 +1551,40 @@ msgid "No action"
 msgstr "Gjin aksje"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Markearje foar persoanlike beoardieling"
 
 msgid "Delay auto-approval"
 msgstr "Automatysk goedkarre útstelle"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Automatyske goedkarring foar ûnbepaalde tiid útstelle"
 
 msgid "True positive"
-msgstr ""
+msgstr "Wier posityf"
 
 msgid "False positive"
-msgstr ""
+msgstr "Falskposityf"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Net iensidigen"
 
 msgid "New"
 msgstr "Nij"
 
 msgid "Running"
-msgstr ""
+msgstr "Aktyf"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Ofbrutsen"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Ofbrekke"
 
 msgid "Completed"
 msgstr "Foltôge"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Pland"
 
 msgid "Core"
 msgstr "Kearn"
@@ -1603,7 +1603,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Add-ons foar Thunderbird en SeaMonkey wurde no fermeld en ûnderhâlden op addons.thunderbird.net. Foar it bywurkjen fan jo add-ons op de nije website kinne jo deselde account brûke."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open Search-add-ons wurde {blog_link_open}net mear stipe op AMO{blog_link_close}. Jo kinne yn stee dêrfan in {doc_link_open}sykútwreiding meitsje{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Dizze identifikator wurdt al brûkt. Kies in oar."
@@ -2482,10 +2482,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "Mear ynformaasje oer Creative Commons-lisinsjes"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Jo add-on is op it stuit ynsteld op ‘Unsichtber’."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "Yn dizze steat is de iennich beskikbere distribúsjemetoade ‘Sels’."
 
 msgid "General Tests"
 msgstr "Algemiene tests"
@@ -2745,7 +2745,7 @@ msgid "Do you use any of the following?"
 msgstr "Brûke jo ien fan de folgjende saken?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Koadegeneratoaren of -ferlytsers"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Helpmiddelen dy't mear bestannen yn ien inkeld bestân kombinearje, lykas <span class=\"tech-emphasis\">webpack</span>"
@@ -3139,16 +3139,16 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "Foar ûntwikkelers"
 
 msgid "For end users"
-msgstr ""
+msgstr "Foar einbrûkers"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 msgid "Add-on Developers Mailing List"
 msgstr "E-maillist foar add-on-ûntwikkelers"
@@ -3170,7 +3170,7 @@ msgid "Sign Up"
 msgstr "Registrearje"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Tank!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3224,7 +3224,7 @@ msgid "See how"
 msgstr "Lês hoe"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Meiwurkje"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -6039,7 +6039,7 @@ msgid "No reviews found for this period."
 msgstr "Gjin beoardielingen yn dizze perioade fûn."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Oarsprong:"
 
 msgid "Method:"
 msgstr "Metoade:"
@@ -6221,10 +6221,10 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Ofbrekke"
 
 msgid "Run"
-msgstr ""
+msgstr "Utfiere"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
