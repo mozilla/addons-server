@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-14 01:40+0000\n"
+"PO-Revision-Date: 2020-05-14 02:04+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4906,9 +4906,8 @@ msgid "Save an entire web page—including images and styling—as a single HTML
 msgstr "Sekles asebtar web i meṛṛa— ula d tugniwin akked ufeṣṣel— deg yiwen ufaylu HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Sfeḍ swudem awurman inagan n tuqqna ticki tmedleḍ iccer."
+msgstr "Beddel s wudem awurman awalen ur nelhi ara deg web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -5044,9 +5043,9 @@ msgstr "Amḍan afellay i yisental WebExtension d {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Ur tezmireḍ ara ad tazneḍ anaw-agi n uzegrir"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Ur tezmireḍ ara ad tazneḍ azegrir yettfakan s %s"
+msgstr "Ur tezmireḍ ara ad tazneḍ azegrir s useqdec n ID yettfakkan s %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
@@ -5432,9 +5431,8 @@ msgstr "Aqbal awurman yuttwaẓ ilebda"
 msgid "Is locked by a reviewer"
 msgstr "Iwḥel sɣur imcegger"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Tacreḍt tawurmant n uqbal tensa"
+msgstr "Tacreḍt tawurmant n uqbal tensa/tɛeṭṭel"
 
 msgid "Is recommendable"
 msgstr "Ilha i uwelleh"
@@ -5945,13 +5943,11 @@ msgstr "Ugar n tigawin"
 msgid "Notify me about new listed versions"
 msgstr "Lɣu-yi-d ɣef yileqman imaynuten i d-yettwabedren"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Wali akk tuzniwin"
+msgstr "Sireg allus n tuzzna"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Sefrek ayen d-uzneɣ"
+msgstr "Gdel allus n tuzzna"
 
 msgid "Force-disable add-on"
 msgstr "Ḥettem asensi n uzegrir"
@@ -5968,9 +5964,8 @@ msgstr "Sewḥel azegrir"
 msgid "Update add-on block"
 msgstr "Leqqem asewḥel n izegrar"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "RmeSens aqbal awurman"
+msgstr "Kkes aqbal awurman"
 
 #, fuzzy
 msgid "Enable Listed Auto-Approval"
