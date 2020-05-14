@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-14 02:04+0000\n"
+"PO-Revision-Date: 2020-05-14 02:08+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5965,11 +5965,10 @@ msgid "Update add-on block"
 msgstr "Leqqem asewḥel n izegrar"
 
 msgid "Disable Listed Auto-Approval"
-msgstr "Kkes aqbal awurman"
+msgstr "Kkes aqbal awurman i d-yettwabedren"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Rmed aqbal awurman"
+msgstr "Rmed aqbal awurman i d-yettwabedren"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Aqbal awurman yensa akka tura arma d {date}"
