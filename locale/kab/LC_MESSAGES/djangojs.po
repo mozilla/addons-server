@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-03-27 17:58+0000\n"
-"Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
+"PO-Revision-Date: 2017-01-22 17:13+0000\n"
+"Last-Translator: azul-farid <azul-farid@hotmail.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -58,8 +58,8 @@ msgstr[1] "Asentem n uzegrir inek ur yeddi ara s tuccḍiwin {0}."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip; akked {0} nniḍen"
-msgstr[1] "&hellip; akked {0} nniḍen"
+msgstr[0] "&hellip; akked {0} ugar"
+msgstr[1] "&hellip; akked {0} ugar"
 
 msgid "See full validation report"
 msgstr "Wali akk aneqqis n usentem"
