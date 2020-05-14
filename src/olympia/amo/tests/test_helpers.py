@@ -60,18 +60,11 @@ def test_slugify_spaces():
 
 def test_page_title():
     request = Mock()
-    request.APP = amo.ANDROID
     title = 'Oh hai!'
     s = render('{{ page_title("%s") }}' % title, {'request': request})
-    assert s == '%s :: Add-ons for Firefox for Android' % title
-
-    # pages without app should show a default
-    request.APP = None
-    s = render('{{ page_title("%s") }}' % title, {'request': request})
-    assert s == '%s :: Add-ons' % title
+    assert s == '%s :: Add-ons for Firefox' % title
 
     # Check the dirty unicodes.
-    request.APP = amo.FIREFOX
     s = render('{{ page_title(x) }}',
                {'request': request,
                 'x': force_bytes(u'\u05d0\u05d5\u05e1\u05e3')})
@@ -81,7 +74,6 @@ def test_page_title_markup():
     """If the title passed to page_title is a jinja2 Markup object, don't cast
     it back to a string or it'll get double escaped. See issue #1062."""
     request = Mock()
-    request.APP = amo.FIREFOX
     # Markup isn't double escaped.
     res = render(
         '{{ page_title("{0}"|format_html("It\'s all text")) }}',

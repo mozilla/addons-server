@@ -15,11 +15,11 @@
 {% block title %}
       {# L10n: {0} is an add-on name, {1} is an app name (like Firefox) #}
       {% if addon %}
-        {{ _('{0} :: Statistics Dashboard :: Add-ons for {1}')|format_html(addon.name, request.APP.pretty) }}
+        {{ _('{0} :: Statistics Dashboard :: Add-ons for {1}')|format_html(addon.name, amo.FIREFOX.pretty) }}
       {% elif c %}
         {{ _('{0} :: Statistics Dashboard')|format_html(c.name) }}
       {% else %}
-        {{ _('Statistics Dashboard :: Add-ons for {0}')|format_html(request.APP.pretty) }}
+        {{ _('Statistics Dashboard :: Add-ons for {0}')|format_html(amo.FIREFOX.pretty) }}
       {% endif %}
 {% endblock %}
 

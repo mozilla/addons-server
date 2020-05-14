@@ -1418,7 +1418,6 @@ class TestQueueBasics(QueueTest):
         self.grant_permission(self.user, 'Addons:ContentReview')
         request = RequestFactory().get('/')
         request.user = self.user
-        request.APP = amo.FIREFOX
 
         self.generate_files()
         qs = Addon.objects.all().no_transforms()
@@ -1445,7 +1444,6 @@ class TestQueueBasics(QueueTest):
 
         request = RequestFactory().get('/', {'per_page': 2})
         request.user = self.user
-        request.APP = amo.FIREFOX
         qs = qs.all()  # Trash queryset caching
         reset_queries()
         response = _queue(
@@ -1459,7 +1457,6 @@ class TestQueueBasics(QueueTest):
 
         request = RequestFactory().get('/', {'per_page': 2, 'page': 2})
         request.user = self.user
-        request.APP = amo.FIREFOX
         qs = qs.all()  # Trash queryset caching
         reset_queries()
         response = _queue(

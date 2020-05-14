@@ -96,7 +96,6 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
         request.path_info = '/' + prefixer.shortened_path
         request.LANG = prefixer.locale or prefixer.get_language()
         activate(request.LANG)
-        request.APP = amo.APPS.get(prefixer.app, amo.FIREFOX)
 
 
 class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
@@ -279,28 +278,6 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
             request.META['REMOTE_ADDR'] = ip
             if ip not in known:
                 break
-
-
-class ScrubRequestOnException(MiddlewareMixin):
-    """
-    Hide sensitive information so they're not recorded in error logging.
-    * passwords in request.POST
-    * sessionid in request.COOKIES
-    """
-
-    def process_exception(self, request, exception):
-        # Get a copy so it's mutable.
-        request.POST = request.POST.copy()
-        for key in request.POST:
-            if 'password' in key.lower():
-                request.POST[key] = '******'
-
-        # Remove session id from cookies
-        if settings.SESSION_COOKIE_NAME in request.COOKIES:
-            request.COOKIES[settings.SESSION_COOKIE_NAME] = '******'
-            # Clearing out all cookies in request.META. They will already
-            # be sent with request.COOKIES.
-            request.META['HTTP_COOKIE'] = '******'
 
 
 class RequestIdMiddleware(MiddlewareMixin):

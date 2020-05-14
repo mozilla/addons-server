@@ -8,10 +8,6 @@ from olympia.access import acl
 from olympia.amo.urlresolvers import reverse
 
 
-def app(request):
-    return {'APP': getattr(request, 'APP', None)}
-
-
 def static_url(request):
     return {'CDN_HOST': settings.CDN_HOST,
             'STATIC_URL': settings.STATIC_URL}

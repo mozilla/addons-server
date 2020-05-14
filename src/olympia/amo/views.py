@@ -17,6 +17,7 @@ from rest_framework.views import APIView
 
 from olympia import amo
 from olympia.amo.utils import render
+from olympia.api.exceptions import base_500_data
 from olympia.api.serializers import SiteStatusSerializer
 
 from . import monitors
@@ -76,7 +77,7 @@ def handler403(request, exception=None, **kwargs):
 
 @non_atomic_requests
 def handler404(request, exception=None, **kwargs):
-    if request.is_api:
+    if getattr(request, 'is_api', False):
         # It's a v3+ api request
         return JsonResponse(
             {'detail': str(NotFound.default_detail)}, status=404)
@@ -90,6 +91,15 @@ def handler404(request, exception=None, **kwargs):
 
 @non_atomic_requests
 def handler500(request, **kwargs):
+    if getattr(request, 'is_api', False):
+        # API exceptions happening in DRF code would be handled with by our
+        # custom_exception_handler function in olympia.api.exceptions, but in
+        # the rare case where the exception is caused by a middleware or django
+        # itself, it might not, so we need to handle it here.
+        return HttpResponse(
+            json.dumps(base_500_data()),
+            content_type='application/json',
+            status=500)
     return render(request, 'amo/500.html', status=500)
 
 

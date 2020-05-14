@@ -18,7 +18,7 @@
     {% block rss_feed %}{% endblock %}
 
     {# L10n: {0} is an application, like Firefox. #}
-    <link title="{{ _('{0} Add-ons')|format_html(APP.pretty) }}"
+    <link title="{{ _('{0} Add-ons')|format_html(amo.FIREFOX.pretty) }}"
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('amo.opensearch') }}" />
 
@@ -43,7 +43,7 @@
   </head>
   {% set user_authenticated = request.user.is_authenticated %}
 
-  <body class="html-{{ DIR }} {{ request.APP.short }} {% if user_authenticated %}user-signedin{% endif %} {% block bodyclass %}{% endblock %}"
+  <body class="html-{{ DIR }} {{ amo.FIREFOX.short }} {% if user_authenticated %}user-signedin{% endif %} {% block bodyclass %}{% endblock %}"
         {% block bodyattrs %}{% endblock %}>
 
 

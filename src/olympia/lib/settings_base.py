@@ -312,7 +312,6 @@ TEMPLATES = [
 
                 'django.contrib.messages.context_processors.messages',
 
-                'olympia.amo.context_processors.app',
                 'olympia.amo.context_processors.i18n',
                 'olympia.amo.context_processors.global_settings',
                 'olympia.amo.context_processors.static_url',
@@ -430,7 +429,6 @@ MIDDLEWARE = (
     # IP).
     'olympia.access.middleware.UserAndAddrMiddleware',
 
-    'olympia.amo.middleware.ScrubRequestOnException',
     'olympia.amo.middleware.RequestIdMiddleware',
 )
 

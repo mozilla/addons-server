@@ -14,7 +14,7 @@
     {% block rss_feed %}{% endblock %}
 
     {# L10n: {0} is an application, like Firefox. #}
-    <link title="{{ _('{0} Add-ons')|format_html(APP.pretty) }}"
+    <link title="{{ _('{0} Add-ons')|format_html(amo.FIREFOX.pretty) }}"
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('amo.opensearch') }}" />
 
@@ -37,17 +37,17 @@
       {{ js('debug') }}
     {% endif %}
 
-    {% if request.user.is_authenticated %}
+    {% if user.is_authenticated %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
 
     {{ js('preload') }}
   </head>
-  <body class="html-{{ DIR }} {{ request.APP.short }} moz-header-slim {% block bodyclass %}{% endblock %} restyle"
-        data-app="{{ request.APP.short }}"
-        data-appname="{{ request.APP.pretty }}"
-        data-appid="{{ request.APP.id }}"
-        data-anonymous="{{ (not request.user.is_authenticated)|json }}"
+  <body class="html-{{ DIR }} {{ amo.FIREFOX.short }} moz-header-slim {% block bodyclass %}{% endblock %} restyle"
+        data-app="{{ amo.FIREFOX.short }}"
+        data-appname="{{ amo.FIREFOX.pretty }}"
+        data-appid="{{ amo.FIREFOX.id }}"
+        data-anonymous="{{ (not user.is_authenticated)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-static-url="{{ STATIC_URL }}"
