@@ -241,37 +241,46 @@ class ContentReviewTable(AutoApprovedTable):
 
 
 class ScannersReviewTable(AutoApprovedTable):
+    listed_text = _('Listed versions needing human review ({0})')
+    unlisted_text = _('Unlisted versions needing human review ({0})')
+    filters = {'needs_human_review': True}
+
     def render_addon_name(self, record):
         rval = [jinja2.escape(record.name)]
-        versions_flagged_by_scanners = record.versions.filter(
+
+        listed_versions = record.versions.filter(
             channel=amo.RELEASE_CHANNEL_LISTED,
-            needs_human_review=True).count()
-        if versions_flagged_by_scanners:
+            **self.filters,
+        ).count()
+        if listed_versions:
             url = reverse('reviewers.review', args=[record.slug])
             rval.append(
                 '<a href="%s">%s</a>' % (
                     url,
-                    _('Listed versions needing human review ({0})').format(
-                        versions_flagged_by_scanners)
+                    self.listed_text.format(listed_versions)
                 )
             )
-        unlisted_versions_flagged_by_scanners = record.versions.filter(
+
+        unlisted_versions = record.versions.filter(
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            needs_human_review=True).count()
-        if unlisted_versions_flagged_by_scanners:
+            **self.filters,
+        ).count()
+        if unlisted_versions:
             url = reverse('reviewers.review', args=['unlisted', record.slug])
             rval.append(
                 '<a href="%s">%s</a>' % (
                     url,
-                    _('Unlisted versions needing human review ({0})').format(
-                        unlisted_versions_flagged_by_scanners)
+                    self.unlisted_text.format(unlisted_versions)
                 )
             )
+
         return ''.join(rval)
 
 
-class MadReviewTable(AutoApprovedTable):
-    pass
+class MadReviewTable(ScannersReviewTable):
+    listed_text = _('Listed versions ({0})')
+    unlisted_text = _('Unlisted versions ({0})')
+    filters = {'versionscannerflags__needs_human_review_by_mad': True}
 
 
 class ReviewHelper(object):

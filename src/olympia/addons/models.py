@@ -356,6 +356,9 @@ class AddonManager(ManagerBase):
                 versions__versionscannerflags__needs_human_review_by_mad=True
             )
             .order_by('created')
+            # There could be several versions matching for a single add-on so
+            # we need a distinct.
+            .distinct()
         )
 
 
