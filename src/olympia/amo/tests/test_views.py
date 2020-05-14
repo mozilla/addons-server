@@ -252,7 +252,6 @@ class TestOtherStuff(TestCase):
             assert text == doc('.site-title').text()
 
         title_eq('/firefox/', 'Firefox', 'Add-ons')
-        title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
     @patch('olympia.accounts.utils.default_fxa_login_url',
            lambda request: 'https://login.com')

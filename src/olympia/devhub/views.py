@@ -1587,7 +1587,7 @@ def _submit_finish(request, addon, version):
         # speaks the same language by the time he/she reads the email.
         context = {
             'addon_name': str(addon.name),
-            'app': str(request.APP.pretty),
+            'app': str(amo.FIREFOX.pretty),
             'detail_url': absolutify(addon.get_url_path()),
             'version_url': absolutify(addon.get_dev_url('versions')),
             'edit_url': absolutify(addon.get_dev_url('edit')),

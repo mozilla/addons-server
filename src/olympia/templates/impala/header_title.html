@@ -1,19 +1,9 @@
 <h1 class="site-title">
 {% macro heading(app, text, icon) -%}
-<a href="{{ url('home') }}" title="{{ _('Return to the {0} Add-ons homepage')|format_html(request.APP.pretty) }}">
-  {% if request.APP == amo.FIREFOX %}
-  <img alt="{{ APP.pretty }}" src="{{ static('img/icons/firefox.png')|safe }}">
-  {% else %}
-  <img alt="{{ APP.pretty }}" src="{{ static('img/app-icons/med/' + icon + '.png')|safe }}">
-  {% endif %}
+<a href="{{ url('home') }}" title="{{ _('Return to the {0} Add-ons homepage')|format_html(amo.FIREFOX.pretty) }}">
+  <img alt="{{ amo.FIREFOX.pretty }}" src="{{ static('img/icons/firefox.png')|safe }}">
   {{ text }}
 </a>
 {%- endmacro %}
-{% if request.APP == amo.FIREFOX %}
-  {{ heading('Firefox', _('Add-ons'), 'firefox') }}
-{% elif request.APP == amo.ANDROID %}
-  {{ heading('Android', _('Android Add-ons'), 'firefox') }}
-{% else %}
-  {{ heading('', _('Add-ons'), 'generic') }}
-{% endif %}
+{{ heading('Firefox', _('Add-ons'), 'firefox') }}
 </h1>

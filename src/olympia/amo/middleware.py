@@ -96,7 +96,6 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
         request.path_info = '/' + prefixer.shortened_path
         request.LANG = prefixer.locale or prefixer.get_language()
         activate(request.LANG)
-        request.APP = amo.APPS.get(prefixer.app, amo.FIREFOX)
 
 
 class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):

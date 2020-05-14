@@ -22,6 +22,7 @@ from django_jinja import library
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
 
+from olympia import amo
 from olympia.amo import urlresolvers, utils
 from olympia.lib.jingo_minify_helpers import (
     _build_html, get_css_urls, get_js_urls)
@@ -167,19 +168,11 @@ def numberfmt(num, format=None):
     return _get_format().decimal(num, format)
 
 
-def page_name(app=None):
-    """Determine the correct page name for the given app (or no app)."""
-    if app:
-        return ugettext(u'Add-ons for {0}').format(app.pretty)
-    else:
-        return ugettext('Add-ons')
-
-
 @library.global_function
 @jinja2.contextfunction
 def page_title(context, title):
     title = smart_text(title)
-    base_title = page_name(context['request'].APP)
+    base_title = ugettext(u'Add-ons for {0}').format(amo.FIREFOX.pretty)
     # The following line doesn't use string formatting because we want to
     # preserve the type of `title` in case it's a jinja2 `Markup` (safe,
     # escaped) object.

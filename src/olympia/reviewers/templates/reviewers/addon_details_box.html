@@ -64,12 +64,6 @@
               </td>
             </tr>
           {% endif %}
-          {% if version and version.compatible_apps[APP] %}
-            <tr class="addon-compatible">
-              <th>{{ _('Works with') }}</th>
-              <td>{{ version.compatible_apps[APP] }}</td>
-            </tr>
-          {% endif %}
           {% if addon.has_listed_versions() %}
           <tr>
             <th>{{ _('Visibility') }}</th>
