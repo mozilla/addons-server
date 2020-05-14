@@ -16,7 +16,7 @@ from olympia import amo
 from olympia.amo.storage_utils import move_stored_file
 from olympia.amo.tests import (
     addon_factory, version_factory, user_factory, activate_locale)
-from olympia.git.tuils import (
+from olympia.git.utils import (
     AddonGitRepository, BrokenRefError, MissingMasterBranchError,
     TemporaryWorktree, BRANCHES, EXTRACTED_PREFIX, get_mime_type_for_blob)
 from olympia.files.utils import id_to_path
