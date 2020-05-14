@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-14 04:11+0000\n"
+"PO-Revision-Date: 2020-05-14 04:17+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6192,7 +6192,7 @@ msgid "The name of the rule in the definition should match the name of the scann
 msgstr "Isen n ulugen deg tbadut ilaq ad yemtawi akked yisem n ulugen n tesleḍt."
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Yiwen kan n ulugen n Yara i yettusirgen di tbadut"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
@@ -6202,7 +6202,7 @@ msgid "An error occurred when compiling the definition"
 msgstr "Tella-d tuccḍa deg usefsu n tbadut"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Seddu alugen-a ɣef yizegrar i yettwasensen s uḥettem."
 
 msgid "Abort"
 msgstr "Sefsex"
