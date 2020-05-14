@@ -8,8 +8,8 @@ from unittest.mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.middleware import (
-    AuthenticationMiddlewareWithoutAPI, RequestIdMiddleware,
-    ScrubRequestOnException)
+    AuthenticationMiddlewareWithoutAPI, RequestIdMiddleware
+)
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config
@@ -110,15 +110,6 @@ class TestNoDjangoDebugToolbar(TestCase):
             res = self.client.get(reverse('devhub.index'), follow=True)
             assert b'djDebug' not in res.content
             assert b'debug_toolbar' not in res.content
-
-
-def test_hide_password_middleware():
-    request = RequestFactory().post('/', dict(x=1, password=2, password2=2))
-    request.POST._mutable = False
-    ScrubRequestOnException().process_exception(request, Exception())
-    assert request.POST['x'] == '1'
-    assert request.POST['password'] == '******'
-    assert request.POST['password2'] == '******'
 
 
 def test_request_id_middleware(client):

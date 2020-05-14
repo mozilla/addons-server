@@ -430,7 +430,6 @@ MIDDLEWARE = (
     # IP).
     'olympia.access.middleware.UserAndAddrMiddleware',
 
-    'olympia.amo.middleware.ScrubRequestOnException',
     'olympia.amo.middleware.RequestIdMiddleware',
 )
 
