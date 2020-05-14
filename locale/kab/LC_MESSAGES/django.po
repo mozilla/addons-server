@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-14 03:37+0000\n"
+"PO-Revision-Date: 2020-05-14 03:45+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1139,7 +1139,7 @@ msgid "Download extensions that give Firefox a performance boost. Find extension
 msgstr "Sider isiɣzaf ara yesnernin timellit n Firefox. Af-d isiɣzaf ara k-d-imudden afus deg tiffursa neɣ deg tmellit s usewḥel n udellel ur nemɛin ara, d wayen-nniḍen."
 
 msgid "Photos & Media"
-msgstr "Tiwlafin & Allalen n teɣwalt"
+msgstr "Tiwlafin & Allalen n teywalt"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr "Sider isiɣzaf ara yesnerni n tewlafin akked imidyaten. Taggayt-a tegber isiɣzaf n unadi deg tewlafin, akken ad tegeḍ tuṭṭfiwin n ugdil n yisebtar ummiden, d wayen-nniḍen."
@@ -4768,7 +4768,7 @@ msgstr "Sewḥel adellel daɣen awi ugar n ummesten yennernan mgal yir iseɣzane
 
 #. editorial content for the discovery pane.
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sader s wudem fessusen imidytane {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Sader s wudem fessusen imidyaten {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
@@ -4916,7 +4916,7 @@ msgstr "Sewḥel akk adellel—tividyutin, isfuyla udhimen, iɣarracen & wayen-n
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Wali amidya yettwazuzren akked yimmeddukal d twacult anida ibɣu tiliḍ."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
