@@ -40,7 +40,8 @@ class Block(ModelBase):
     include_in_legacy = models.BooleanField(
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
-    kinto_id = models.CharField(max_length=255, null=False, default='')
+    kinto_id = models.CharField(
+        max_length=255, null=False, default='', db_index=True)
     submission = models.ManyToManyField('BlocklistSubmission')
 
     ACTIVITY_IDS = (
@@ -556,7 +557,8 @@ class KintoImport(ModelBase):
         OUTCOME_REGEXBLOCKS: 'Added blocks from regex',
         OUTCOME_NOMATCH: 'No matches',
     }
-    kinto_id = models.CharField(max_length=255, null=False, default='')
+    kinto_id = models.CharField(
+        unique=True, max_length=255, null=False, default='')
     record = JSONField(default={})
     outcome = models.SmallIntegerField(
         default=OUTCOME_INCOMPLETE, choices=OUTCOMES.items())
