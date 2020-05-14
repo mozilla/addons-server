@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-13 07:51+0000\n"
+"PO-Revision-Date: 2020-05-13 07:23+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -489,7 +489,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Questo componente aggiuntivo appartiene già alla raccolta"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Stato della firma"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -934,10 +934,10 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID per {addon} rimosso da DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Blocca azione {1} per {0} firmato."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Blocca azione di firma"
 
 msgid "User {user} session(s) reset."
 msgstr "Sessione/i utente {user} ripristinata/e."
@@ -1594,7 +1594,7 @@ msgid "Delay auto-approval"
 msgstr "Ritarda l’approvazione automatica"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Ritarda l’approvazione automatica indefinitamente"
 
 msgid "True positive"
 msgstr "Vero positivo"
@@ -2538,7 +2538,7 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Il componente aggiuntivo è attualmente impostato su “Invisibile”."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "In questo stato, \"Su siti esterni\" è l’unico metodo di distribuzione disponibile."
 
 msgid "General Tests"
 msgstr "Test generali"
@@ -2804,7 +2804,7 @@ msgid "Do you use any of the following?"
 msgstr "Utilizzi almeno uno dei seguenti strumenti?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Generatori o minimizzatori di codice"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Strumenti che combinano più file in uno singolo, come <span class=\"tech-emphasis\">webpack</span>"
@@ -3000,6 +3000,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Ciao,\n"
+"\n"
+"Hai ricevuto questo messaggio perché hai richiesto nuove chiavi API per\n"
+"%(domain)s. Per completare la procedura, fai clic sul link sottostante:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Se non hai fatto tu questa richiesta, invia un messaggio a amo-admins@mozilla.com.\n"
+"\n"
+"Cordiali saluti,\n"
+"\n"
+"Il team di Mozilla Add-ons"
 
 #, python-format
 msgid ""
@@ -3012,6 +3024,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"La seguente chiave API è stata aggiunta al tuo account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Se credi che questa chiave sia stata creata per errore, puoi rimuovere la chiave e\n"
+"disattivare l’accesso al seguente indirizzo:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3209,6 +3229,8 @@ msgstr "Crea estensioni e temi di prima classe"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Sei nuovo allo sviluppo di estensioni? Stai perfezionando o eseguendo il porting di un’estensione o tema esistente? Vuoi creare una soluzione aziendale personalizzata? Abbiamo le risorse necessarie "
+"per offrirti supporto."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
@@ -5527,7 +5549,7 @@ msgid "Auto-approval delayed temporarily"
 msgstr "L'approvazione automatica è stata temporaneamente ritardata"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "L’approvazione automatica è stata indefinitamente ritardata"
 
 msgid "Is locked by a reviewer"
 msgstr "Bloccato da un revisore"
@@ -5551,7 +5573,7 @@ msgid "You can't submit an empty comment."
 msgstr "Non è consentito inviare un commento vuoto."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Non è possibile inviare un numero di riga senza associarlo al nome di un file."
 
 msgid "Type"
 msgstr "Tipologia"
