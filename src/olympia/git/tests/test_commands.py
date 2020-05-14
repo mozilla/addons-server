@@ -13,7 +13,7 @@ from olympia.amo.tests import (
     create_switch,
     version_factory,
 )
-from olympia.lib.git import AddonGitRepository, BrokenRefError
+from olympia.git.utils import AddonGitRepository, BrokenRefError
 from olympia.git.models import GitExtractionEntry
 from olympia.git.tasks import (
     continue_git_extraction,
@@ -26,7 +26,7 @@ from olympia.git.management.commands.git_extraction import (
     Command as GitExtractionCommand,
 )
 
-from olympia.lib.tests.test_git import update_git_repo_creation_time
+from .test_utils import update_git_repo_creation_time
 
 
 class TestGitExtraction(TestCase):

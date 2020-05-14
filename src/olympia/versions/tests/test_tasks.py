@@ -14,12 +14,12 @@ from olympia.amo.tests import addon_factory, create_switch
 from olympia.addons.cron import hide_disabled_files
 from olympia.files.utils import id_to_path
 from olympia.git.models import GitExtractionEntry
+from olympia.git.utils import AddonGitRepository
 from olympia.versions.models import VersionPreview
 from olympia.versions.tasks import (
     generate_static_theme_preview,
     extract_version_to_git,
 )
-from olympia.lib.git import AddonGitRepository
 
 
 HEADER_ROOT = os.path.join(

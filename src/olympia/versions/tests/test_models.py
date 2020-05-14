@@ -28,7 +28,7 @@ from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
-from olympia.lib.git import AddonGitRepository
+from olympia.git.utils import AddonGitRepository
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user

@@ -16,7 +16,7 @@ from olympia import amo
 from olympia.amo.storage_utils import move_stored_file
 from olympia.amo.tests import (
     addon_factory, version_factory, user_factory, activate_locale)
-from olympia.lib.git import (
+from olympia.git.tuils import (
     AddonGitRepository, BrokenRefError, MissingMasterBranchError,
     TemporaryWorktree, BRANCHES, EXTRACTED_PREFIX, get_mime_type_for_blob)
 from olympia.files.utils import id_to_path
@@ -1238,7 +1238,7 @@ def test_get_raw_diff_cache():
 
     apply_changes(repo, version, '', 'manifest.json', delete=True)
 
-    with mock.patch('olympia.lib.git.pygit2.Repository.diff') as mocked_diff:
+    with mock.patch('olympia.git.utils.pygit2.Repository.diff') as mocked_diff:
         repo.get_diff(
             commit=version.git_hash,
             parent=original_version.git_hash)
@@ -1267,7 +1267,7 @@ def test_get_raw_diff_cache_unmodified_file():
 
     repo = AddonGitRepository.extract_and_commit_from_version(version)
 
-    with mock.patch('olympia.lib.git.pygit2.Repository.diff') as mocked_diff:
+    with mock.patch('olympia.git.utils.pygit2.Repository.diff') as mocked_diff:
         repo.get_diff(
             commit=version.git_hash,
             parent=original_version.git_hash)

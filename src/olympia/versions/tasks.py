@@ -18,8 +18,8 @@ from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
 from olympia.git.models import GitExtractionEntry
+from olympia.git.utils import AddonGitRepository
 from olympia.versions.models import Version, VersionPreview
-from olympia.lib.git import AddonGitRepository
 from olympia.users.models import UserProfile
 
 from .utils import (
