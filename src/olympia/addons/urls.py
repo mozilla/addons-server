@@ -26,4 +26,8 @@ urlpatterns = [
 
     url(r'^find-replacement/$', views.find_replacement_addon,
         name='addons.find_replacement'),
+
+    # frontend block view
+    url(r'^blocked-addon/%s/' % ADDON_ID, frontend_view,
+        name='blocklist.block'),
 ]
