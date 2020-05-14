@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-14 03:45+0000\n"
+"PO-Revision-Date: 2020-05-14 04:03+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5532,7 +5532,7 @@ msgid "Block Multiple Versions"
 msgstr "Sewḥel aṭas n ilqman"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Ayagi ad isens ileqman yettwaqeblen s wudem asusam, syen ad yeldi asebter n tnedbalt n tmerna n yiḥder."
 
 msgid "Confirm Multiple Versions"
 msgstr "Sentem aṭas n ilqman"
@@ -5574,7 +5574,7 @@ msgid "Add-on Review Guide"
 msgstr "Amnir n ucegger n uzegrir"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Yettwacegger s yisniram"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
@@ -5747,7 +5747,7 @@ msgid "Score"
 msgstr "Agmuḍ"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Aɣmis n usenqed n yimcegger – Izegrar n Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6586,7 +6586,7 @@ msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save
 msgstr "Ɣur-k ibeddilen ur yettwaskelsen ara yakan deg tutlayt <b>{0}</b>. Tebɣiḍ ad teskelseḍ ibeddilen send ad tbeddleḍ tutlayt?"
 
 msgid "Discard Changes"
-msgstr "Sefsex asinifel"
+msgstr "Sefsex isnifal"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
