@@ -37,7 +37,7 @@
       {{ js('debug') }}
     {% endif %}
 
-    {% if request.user.is_authenticated %}
+    {% if user.is_authenticated %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
 
@@ -47,7 +47,7 @@
         data-app="{{ amo.FIREFOX.short }}"
         data-appname="{{ amo.FIREFOX.pretty }}"
         data-appid="{{ amo.FIREFOX.id }}"
-        data-anonymous="{{ (not request.user.is_authenticated)|json }}"
+        data-anonymous="{{ (not user.is_authenticated)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-static-url="{{ STATIC_URL }}"

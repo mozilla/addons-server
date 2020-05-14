@@ -19,7 +19,7 @@
       </li>
     </ul>
   </li>
-{% else %}
+{% elif request.session %}
   <li class="account anonymous nomenu login legacy">
     {% trans reg=register_link(), login=login_link() %}
         <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
