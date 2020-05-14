@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-14 09:54+0000\n"
+"PO-Revision-Date: 2020-05-14 21:03+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -438,7 +438,7 @@ msgstr "Izegrar yettwaznen deg usmel Mozilla Add-ons yessefk ad gebren afaylu am
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Ma ulac aɣilif ẓeṛ d akken WebExtensions ur qeblen ara \"*\" di %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
+msgstr "Ma ulac aɣilif, ẓer belli WebExtensions ur qebblen ara \"*\" di %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
