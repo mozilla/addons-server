@@ -39,7 +39,8 @@ class Command(BaseCommand):
         submission = BlocklistSubmission(**block_args)
 
         for guids_chunk in chunked(guids, 100):
-            blocks = save_guids_to_blocks(guids_chunk, submission)
+            blocks = save_guids_to_blocks(
+                guids_chunk, submission, fields_to_set=block_args.keys())
             print(
                 f'Added/Updated {len(blocks)} blocks from {len(guids_chunk)} '
                 'guids')

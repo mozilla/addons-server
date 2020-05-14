@@ -506,11 +506,23 @@ class BlocklistSubmission(ModelBase):
         assert self.is_submission_ready
         assert self.action == self.ACTION_ADDCHANGE
 
-        all_guids_to_block = [block['guid'] for block in self.to_block]
         kinto_submit_legacy_switch = waffle.switch_is_active(
             'blocklist_legacy_submit')
+        fields_to_set = [
+            'min_version',
+            'max_version',
+            'url',
+            'reason',
+            'updated_by',
+        ]
+        if kinto_submit_legacy_switch:
+            fields_to_set.append('include_in_legacy')
+
+        all_guids_to_block = [block['guid'] for block in self.to_block]
+
         for guids_chunk in chunked(all_guids_to_block, 100):
-            blocks = save_guids_to_blocks(guids_chunk, self)
+            blocks = save_guids_to_blocks(
+                guids_chunk, self, fields_to_set=fields_to_set)
             if kinto_submit_legacy_switch:
                 legacy_publish_blocks(blocks)
             self.save()

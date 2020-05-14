@@ -9,6 +9,8 @@ from django.urls import path
 from django.utils.html import format_html
 from django.utils.translation import ugettext
 
+import waffle
+
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
@@ -293,35 +295,28 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
                 (input_guids, block_history, delete))
 
     def get_readonly_fields(self, request, obj=None):
+        ro_fields = [
+            'blocks',
+            'updated_by',
+            'signoff_by',
+            'block_history',
+            'submission_logs',
+        ]
+        if not waffle.switch_is_active('blocklist_legacy_submit'):
+            ro_fields.append('include_in_legacy')
         if obj:
-            if not self.has_change_permission(request, obj, strict=True):
-                ro_fields = admin.utils.flatten_fieldsets(
-                    self.get_fieldsets(request, obj))
-            else:
-                ro_fields = [
-                    'blocks',
-                    'updated_by',
-                    'signoff_by',
-                    'submission_logs',
-                    'input_guids',
-                    'action',
-                    'min_version',
-                    'max_version',
-                    'existing_min_version',
-                    'existing_max_version',
-                ]
             ro_fields += [
+                'input_guids',
+                'action',
+                'min_version',
+                'max_version',
                 'existing_min_version',
                 'existing_max_version',
             ]
-        else:
-            ro_fields = (
-                'blocks',
-                'block_history',
-                'updated_by',
-                'signoff_by',
-                'submission_logs',
-            )
+            if not self.has_change_permission(request, obj, strict=True):
+                ro_fields += admin.utils.flatten_fieldsets(
+                    self.get_fieldsets(request, obj))
+
         return ro_fields
 
     def _get_input_guids(self, request):
@@ -553,7 +548,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         'max_version',
         'updated_by',
         'modified')
-    readonly_fields = (
+    _readonly_fields = (
         'addon_guid',
         'addon_name',
         'addon_updated',
@@ -630,6 +625,12 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
             })
 
         return (details, history, edit)
+
+    def get_readonly_fields(self, request, obj=None):
+        fields = list(self._readonly_fields)
+        if not waffle.switch_is_active('blocklist_legacy_submit'):
+            fields.append('include_in_legacy')
+        return fields
 
     def has_change_permission(self, request, obj=None):
         if obj and obj.is_readonly:

@@ -194,17 +194,11 @@ def split_regex_to_list(guid_re):
     return GUID_SPLIT.split(trimmed)
 
 
-def save_guids_to_blocks(guids, submission):
+def save_guids_to_blocks(guids, submission, *, fields_to_set):
     from .models import Block
 
     common_args = {
-        'min_version': submission.min_version,
-        'max_version': submission.max_version,
-        'url': submission.url,
-        'reason': submission.reason,
-        'updated_by': submission.updated_by,
-        'include_in_legacy': submission.include_in_legacy,
-    }
+        field: getattr(submission, field) for field in fields_to_set}
     modified_datetime = datetime.datetime.now()
 
     blocks = Block.get_blocks_from_guids(guids)
