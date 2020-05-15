@@ -242,7 +242,7 @@ class UserNotificationSerializer(serializers.Serializer):
         current_user = request.user
 
         remote_by_id = {
-            l.id: l for l in notifications.REMOTE_NOTIFICATIONS}
+            ntfn.id: ntfn for ntfn in notifications.REMOTE_NOTIFICATIONS}
 
         if instance.notification_id in remote_by_id:
             notification = remote_by_id[instance.notification_id]

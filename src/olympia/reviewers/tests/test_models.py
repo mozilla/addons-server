@@ -765,8 +765,9 @@ class TestReviewerScore(TestCase):
         assert leaders['leader_near'] == []
         assert leaders['leader_top'][0]['user_id'] == self.user.id
         assert len(leaders['leader_top']) == 1  # Only the reviewer is here.
-        assert user2.id not in [l['user_id'] for l in leaders['leader_top']], (
-            'Unexpected non-reviewer user found in leaderboards.')
+        assert user2.id not in [
+            leader['user_id'] for leader in leaders['leader_top']], (
+                'Unexpected non-reviewer user found in leaderboards.')
 
     def test_no_admins_or_staff_in_leaderboards(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
@@ -778,8 +779,9 @@ class TestReviewerScore(TestCase):
         assert leaders['leader_near'] == []
         assert leaders['leader_top'][0]['user_id'] == self.user.id
         assert len(leaders['leader_top']) == 1  # Only the reviewer is here.
-        assert user2.id not in [l['user_id'] for l in leaders['leader_top']], (
-            'Unexpected admin user found in leaderboards.')
+        assert user2.id not in [
+            leader['user_id'] for leader in leaders['leader_top']], (
+                'Unexpected admin user found in leaderboards.')
 
     def test_get_leaderboards_last(self):
         users = []
