@@ -943,7 +943,7 @@ msgid "Block action signoff"
 msgstr "Validation de l’action de blocage"
 
 msgid "User {user} session(s) reset."
-msgstr "Réinitialisation des sessions de l’utilisateur {utilisateur}."
+msgstr "Réinitialisation des sessions de l’utilisateur {user}."
 
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Utilisateur {user} limité pour le scope « {0} »"
