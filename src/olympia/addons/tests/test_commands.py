@@ -650,34 +650,3 @@ class TestDeleteOpenSearchAddons(TestCase):
         assert Addon.unfiltered.count() == 2
         assert Addon.objects.get(id=self.extension.id)
         assert Addon.objects.get(id=self.dictionary.id)
-
-
-class TestDeleteSourceGitRepositories(TestCase):
-    def setUp(self):
-        self.addon = addon_factory()
-        self.version = version_factory(addon=self.addon,
-                                       source_git_hash='something')
-        self.repo = AddonGitRepository(self.version.addon_id, 'source')
-        self.repo.git_repository
-        assert self.repo.is_extracted
-
-    def test_basic(self):
-        call_command('process_addons', task='delete_source_git_repositories')
-
-        assert not self.repo.is_extracted
-
-    def test_with_deleted_addons(self):
-        self.addon.delete()
-
-        call_command('process_addons', task='delete_source_git_repositories')
-        assert self.repo.is_extracted
-
-        call_command('process_addons', task='delete_source_git_repositories',
-                     with_deleted=True)
-        assert not self.repo.is_extracted
-
-    def test_with_deleted_versions(self):
-        self.version.delete()
-
-        call_command('process_addons', task='delete_source_git_repositories')
-        assert not self.repo.is_extracted
