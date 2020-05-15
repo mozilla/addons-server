@@ -170,7 +170,7 @@ class Version(OnChangeMixin, ModelBase):
     deleted = models.BooleanField(default=False)
 
     source = models.FileField(
-        upload_to=source_upload_path, null=True, blank=True)
+        upload_to=source_upload_path, null=True, blank=True, max_length=255)
 
     channel = models.IntegerField(choices=amo.RELEASE_CHANNEL_CHOICES,
                                   default=amo.RELEASE_CHANNEL_LISTED)
