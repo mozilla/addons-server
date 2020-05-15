@@ -12,13 +12,13 @@ from olympia.git.tasks import (
     on_extraction_error,
     extract_versions_to_git,
 )
-from olympia.lib.git import (
+from olympia.git.utils import (
     AddonGitRepository,
     BrokenRefError,
     MissingMasterBranchError,
 )
 
-from olympia.lib.tests.test_git import update_git_repo_creation_time
+from .test_utils import update_git_repo_creation_time
 
 
 class TestRemoveGitExtractionEntry(TestCase):

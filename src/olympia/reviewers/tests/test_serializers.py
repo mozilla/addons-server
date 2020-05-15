@@ -12,8 +12,8 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import FileValidation
-from olympia.lib.git import AddonGitRepository
-from olympia.lib.tests.test_git import apply_changes
+from olympia.git.utils import AddonGitRepository
+from olympia.git.tests.test_utils import apply_changes
 from olympia.reviewers.models import CannedResponse
 from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer, AddonBrowseVersionSerializerFileOnly,

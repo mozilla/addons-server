@@ -29,7 +29,7 @@ from olympia.files.utils import get_sha256
 from olympia.files.models import File, FileValidation
 from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
-from olympia.lib.git import AddonGitRepository, get_mime_type_for_blob
+from olympia.git.utils import AddonGitRepository, get_mime_type_for_blob
 from olympia.lib.cache import make_key
 from olympia.lib import unicodehelper
 

@@ -44,8 +44,8 @@ from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
-from olympia.lib.git import AddonGitRepository
-from olympia.lib.tests.test_git import apply_changes
+from olympia.git.utils import AddonGitRepository
+from olympia.git.tests.test_utils import apply_changes
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary, CannedResponse, ReviewerScore, ReviewerSubscription,

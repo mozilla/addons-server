@@ -4,14 +4,10 @@ import olympia.core.logger
 
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.lib.git import (
-    AddonGitRepository,
-    BrokenRefError,
-    MissingMasterBranchError,
-)
 from olympia.versions.tasks import extract_version_to_git
 
 from .models import GitExtractionEntry
+from .utils import AddonGitRepository, BrokenRefError, MissingMasterBranchError
 
 
 log = olympia.core.logger.getLogger('z.git.task')

@@ -27,9 +27,9 @@ from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
 from olympia.discovery.models import DiscoveryItem
 from olympia.lib.crypto import signing, tasks
-from olympia.lib.git import AddonGitRepository
+from olympia.git.utils import AddonGitRepository
+from olympia.git.tests.test_utils import _run_process
 from olympia.versions.compare import version_int
-from olympia.lib.tests.test_git import _run_process
 
 
 def _get_signature_details(path):
