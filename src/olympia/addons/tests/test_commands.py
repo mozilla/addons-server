@@ -16,7 +16,6 @@ from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.files.models import FileValidation, WebextPermission
-from olympia.git.utils import AddonGitRepository
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import VersionPreview

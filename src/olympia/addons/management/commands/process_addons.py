@@ -22,7 +22,6 @@ from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.compare import version_int
-from olympia.versions.models import Version
 
 
 firefox_56_star = version_int('56.*')
