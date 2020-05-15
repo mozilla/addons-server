@@ -25,39 +25,59 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Addon',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('guid', models.CharField(max_length=255, null=True, unique=True)),
                 ('slug', models.CharField(max_length=30, null=True, unique=True)),
-                ('default_locale', models.CharField(db_column='defaultlocale', default='en-US', max_length=10)),
-                ('type', models.PositiveIntegerField(choices=[(1, 'Extension'), (2, 'Complete Theme'), (3, 'Dictionary'), (4, 'Search Engine'), (5, 'Language Pack (Application)'), (6, 'Language Pack (Add-on)'), (7, 'Plugin'), (9, 'Deprecated LWT'), (10, 'Theme (Static)')], db_column='addontype_id', default=1)),
-                ('status', models.PositiveIntegerField(choices=[(0, 'Incomplete'), (3, 'Awaiting Review'), (4, 'Approved'), (5, 'Disabled by Mozilla'), (11, 'Deleted')], default=0)),
-                ('icon_type', models.CharField(blank=True, db_column='icontype', max_length=25)),
+                ('default_locale', models.CharField(
+                    db_column='defaultlocale', default='en-US', max_length=10)),
+                ('type', models.PositiveIntegerField(choices=[(1, 'Extension'), (2, 'Complete Theme'), (3, 'Dictionary'), (4, 'Search Engine'), (5, 'Language Pack (Application)'), (
+                    6, 'Language Pack (Add-on)'), (7, 'Plugin'), (9, 'Deprecated LWT'), (10, 'Theme (Static)')], db_column='addontype_id', default=1)),
+                ('status', models.PositiveIntegerField(choices=[(0, 'Incomplete'), (3, 'Awaiting Review'), (
+                    4, 'Approved'), (5, 'Disabled by Mozilla'), (11, 'Deleted')], default=0)),
+                ('icon_type', models.CharField(
+                    blank=True, db_column='icontype', max_length=25)),
                 ('icon_hash', models.CharField(blank=True, max_length=8, null=True)),
-                ('average_rating', models.FloatField(db_column='averagerating', default=0, max_length=255, null=True)),
-                ('bayesian_rating', models.FloatField(db_column='bayesianrating', default=0)),
-                ('total_ratings', models.PositiveIntegerField(db_column='totalreviews', default=0)),
-                ('text_ratings_count', models.PositiveIntegerField(db_column='textreviewscount', default=0)),
-                ('weekly_downloads', models.PositiveIntegerField(db_column='weeklydownloads', default=0)),
-                ('total_downloads', models.PositiveIntegerField(db_column='totaldownloads', default=0)),
+                ('average_rating', models.FloatField(
+                    db_column='averagerating', default=0, max_length=255, null=True)),
+                ('bayesian_rating', models.FloatField(
+                    db_column='bayesianrating', default=0)),
+                ('total_ratings', models.PositiveIntegerField(
+                    db_column='totalreviews', default=0)),
+                ('text_ratings_count', models.PositiveIntegerField(
+                    db_column='textreviewscount', default=0)),
+                ('weekly_downloads', models.PositiveIntegerField(
+                    db_column='weeklydownloads', default=0)),
+                ('total_downloads', models.PositiveIntegerField(
+                    db_column='totaldownloads', default=0)),
                 ('hotness', models.FloatField(default=0)),
                 ('average_daily_users', models.PositiveIntegerField(default=0)),
-                ('last_updated', models.DateTimeField(help_text='Last time this add-on had a file/version update', null=True)),
-                ('disabled_by_user', models.BooleanField(db_column='inactive', default=False)),
-                ('view_source', models.BooleanField(db_column='viewsource', default=True)),
-                ('public_stats', models.BooleanField(db_column='publicstats', default=False)),
-                ('target_locale', models.CharField(blank=True, help_text='For dictionaries and language packs. Identifies the language and, optionally, region that this add-on is written for. Examples: en-US, fr, and de-AT', max_length=255, null=True)),
+                ('last_updated', models.DateTimeField(
+                    help_text='Last time this add-on had a file/version update', null=True)),
+                ('disabled_by_user', models.BooleanField(
+                    db_column='inactive', default=False)),
+                ('view_source', models.BooleanField(
+                    db_column='viewsource', default=True)),
+                ('public_stats', models.BooleanField(
+                    db_column='publicstats', default=False)),
+                ('target_locale', models.CharField(
+                    blank=True, help_text='For dictionaries and language packs. Identifies the language and, optionally, region that this add-on is written for. Examples: en-US, fr, and de-AT', max_length=255, null=True)),
                 ('contributions', models.URLField(blank=True, max_length=255)),
-                ('is_experimental', models.BooleanField(db_column='experimental', default=False)),
-                ('reputation', models.SmallIntegerField(choices=[(0, 'No Reputation'), (1, 'Good (1)'), (2, 'Very Good (2)'), (3, 'Excellent (3)')], default=0, help_text='The higher the reputation value, the further down the add-on will be in the auto-approved review queue. A value of 0 has no impact', null=True)),
+                ('is_experimental', models.BooleanField(
+                    db_column='experimental', default=False)),
+                ('reputation', models.SmallIntegerField(choices=[(0, 'No Reputation'), (1, 'Good (1)'), (2, 'Very Good (2)'), (3, 'Excellent (3)')], default=0,
+                                                        help_text='The higher the reputation value, the further down the add-on will be in the auto-approved review queue. A value of 0 has no impact', null=True)),
                 ('requires_payment', models.BooleanField(default=False)),
             ],
             options={
                 'db_table': 'addons',
                 'base_manager_name': 'unfiltered',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
             managers=[
                 ('unfiltered', django.db.models.manager.Manager()),
             ],
@@ -65,10 +85,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AddonCategory',
             fields=[
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('feature', models.BooleanField(default=False)),
-                ('feature_locales', models.CharField(default='', max_length=255, null=True)),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
+                ('feature_locales', models.CharField(
+                    default='', max_length=255, null=True)),
+                ('addon', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
             ],
             options={
                 'db_table': 'addons_categories',
@@ -77,50 +100,62 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='DeniedGuid',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('guid', models.CharField(max_length=255, unique=True)),
                 ('comments', models.TextField(blank=True, default='')),
             ],
             options={
                 'db_table': 'denied_guids',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='DeniedSlug',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('name', models.CharField(default='', max_length=255, unique=True)),
             ],
             options={
                 'db_table': 'addons_denied_slug',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ReplacementAddon',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('guid', models.CharField(max_length=255, null=True, unique=True)),
-                ('path', models.CharField(help_text='Addon and collection paths need to end with "/"', max_length=255, null=True)),
+                ('path', models.CharField(
+                    help_text='Addon and collection paths need to end with "/"', max_length=255, null=True)),
             ],
             options={
                 'db_table': 'replacement_addons',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='AddonApprovalsCounter',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('addon', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='addons.Addon')),
+                ('addon', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                                               primary_key=True, serialize=False, to='addons.Addon')),
                 ('counter', models.PositiveIntegerField(default=0)),
                 ('last_human_review', models.DateTimeField(null=True)),
                 ('last_content_review', models.DateTimeField(null=True)),
@@ -130,81 +165,102 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='AddonReviewerFlags',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('addon', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='addons.Addon')),
+                ('addon', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                                               primary_key=True, serialize=False, to='addons.Addon')),
                 ('needs_admin_code_review', models.BooleanField(default=False)),
                 ('needs_admin_content_review', models.BooleanField(default=False)),
                 ('needs_admin_theme_review', models.BooleanField(default=False)),
                 ('auto_approval_disabled', models.BooleanField(default=False)),
-                ('pending_info_request', models.DateTimeField(default=None, null=True)),
-                ('notified_about_expiring_info_request', models.BooleanField(default=False)),
+                ('pending_info_request', models.DateTimeField(
+                    default=None, null=True)),
+                ('notified_about_expiring_info_request',
+                 models.BooleanField(default=False)),
             ],
             options={
                 'get_latest_by': 'created',
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ReusedGUID',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('guid', models.CharField(max_length=255)),
-                ('addon', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
+                ('addon', models.OneToOneField(
+                    on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
             ],
             options={
                 'get_latest_by': 'created',
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Preview',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('position', models.IntegerField(default=0)),
                 ('sizes', django_extensions.db.fields.json.JSONField(default={})),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='previews', to='addons.Addon')),
-                ('caption', olympia.translations.fields.TranslatedField(blank=True, db_column='caption', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Preview_caption_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True)),
+                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                            related_name='previews', to='addons.Addon')),
+                ('caption', olympia.translations.fields.TranslatedField(blank=True, db_column='caption', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                                        related_name='Preview_caption_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True)),
             ],
             options={
                 'db_table': 'previews',
                 'ordering': ('position', 'created'),
             },
-            bases=(olympia.amo.models.BasePreview, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.BasePreview, olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='MigratedLWT',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('lightweight_theme_id', models.PositiveIntegerField()),
                 ('getpersonas_id', models.PositiveIntegerField()),
-                ('static_theme', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='migrated_from_lwt', to='addons.Addon', unique=True)),
+                ('static_theme', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                                   related_name='migrated_from_lwt', to='addons.Addon', unique=True)),
             ],
             options={
                 'db_table': 'migrated_personas',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='FrozenAddon',
             fields=[
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('addon', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
             ],
             options={
                 'db_table': 'frozen_addons',
@@ -213,47 +269,66 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('slug', olympia.amo.models.SlugField(db_index=False, help_text='Used in Category URLs.')),
-                ('type', models.PositiveIntegerField(choices=[(1, 'Extension'), (2, 'Complete Theme'), (3, 'Dictionary'), (4, 'Search Engine'), (5, 'Language Pack (Application)'), (6, 'Language Pack (Add-on)'), (7, 'Plugin'), (9, 'Deprecated LWT'), (10, 'Theme (Static)')], db_column='addontype_id')),
-                ('application', models.PositiveIntegerField(blank=True, choices=[(1, 'Firefox'), (61, 'Firefox for Android')], db_column='application_id', null=True)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('slug', olympia.amo.models.SlugField(
+                    db_index=False, help_text='Used in Category URLs.')),
+                ('type', models.PositiveIntegerField(choices=[(1, 'Extension'), (2, 'Complete Theme'), (3, 'Dictionary'), (4, 'Search Engine'), (
+                    5, 'Language Pack (Application)'), (6, 'Language Pack (Add-on)'), (7, 'Plugin'), (9, 'Deprecated LWT'), (10, 'Theme (Static)')], db_column='addontype_id')),
+                ('application', models.PositiveIntegerField(blank=True, choices=[
+                 (1, 'Firefox'), (61, 'Firefox for Android')], db_column='application_id', null=True)),
                 ('count', models.IntegerField(default=0, verbose_name='Addon count')),
-                ('weight', models.IntegerField(default=0, help_text='Category weight used in sort ordering')),
+                ('weight', models.IntegerField(default=0,
+                                               help_text='Category weight used in sort ordering')),
                 ('misc', models.BooleanField(default=False)),
-                ('addons', models.ManyToManyField(through='addons.AddonCategory', to='addons.Addon')),
+                ('addons', models.ManyToManyField(
+                    through='addons.AddonCategory', to='addons.Addon')),
             ],
             options={
                 'verbose_name_plural': 'Categories',
                 'db_table': 'categories',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='AppSupport',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('app', models.PositiveIntegerField(choices=[(1, 'Firefox'), (61, 'Firefox for Android')], db_column='app_id')),
-                ('min', models.BigIntegerField(null=True, verbose_name='Minimum app version')),
-                ('max', models.BigIntegerField(null=True, verbose_name='Maximum app version')),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('app', models.PositiveIntegerField(choices=[
+                 (1, 'Firefox'), (61, 'Firefox for Android')], db_column='app_id')),
+                ('min', models.BigIntegerField(
+                    null=True, verbose_name='Minimum app version')),
+                ('max', models.BigIntegerField(
+                    null=True, verbose_name='Maximum app version')),
+                ('addon', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
             ],
             options={
                 'db_table': 'appsupport',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='AddonUserPendingConfirmation',
             fields=[
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('role', models.SmallIntegerField(choices=[(5, 'Owner'), (4, 'Developer')], default=5)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('role', models.SmallIntegerField(choices=[
+                 (5, 'Owner'), (4, 'Developer')], default=5)),
                 ('listed', models.BooleanField(default=True, verbose_name='Listed')),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.UserProfile')),
+                ('addon', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='users.UserProfile')),
             ],
             options={
                 'db_table': 'addons_users_pending_confirmation',
@@ -263,77 +338,94 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AddonUser',
             fields=[
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('role', models.SmallIntegerField(choices=[(5, 'Owner'), (4, 'Developer')], default=5)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('role', models.SmallIntegerField(choices=[
+                 (5, 'Owner'), (4, 'Developer')], default=5)),
                 ('listed', models.BooleanField(default=True, verbose_name='Listed')),
                 ('position', models.IntegerField(default=0)),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.UserProfile')),
+                ('addon', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='users.UserProfile')),
             ],
             options={
                 'db_table': 'addons_users',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddField(
             model_name='addoncategory',
             name='category',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Category'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='addons.Category'),
         ),
         migrations.AddField(
             model_name='addon',
             name='authors',
-            field=models.ManyToManyField(related_name='addons', through='addons.AddonUser', to=settings.AUTH_USER_MODEL),
+            field=models.ManyToManyField(
+                related_name='addons', through='addons.AddonUser', to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='addon',
             name='categories',
-            field=models.ManyToManyField(through='addons.AddonCategory', to='addons.Category'),
+            field=models.ManyToManyField(
+                through='addons.AddonCategory', to='addons.Category'),
         ),
         migrations.AddField(
             model_name='addon',
             name='description',
-            field=olympia.translations.fields.PurifiedField(blank=True, db_column='description', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Addon_description_set+', require_locale=True, short=False, to='translations.PurifiedTranslation', to_field='id', unique=True),
+            field=olympia.translations.fields.PurifiedField(blank=True, db_column='description', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                            related_name='Addon_description_set+', require_locale=True, short=False, to='translations.PurifiedTranslation', to_field='id', unique=True),
         ),
         migrations.AddField(
             model_name='addon',
             name='developer_comments',
-            field=olympia.translations.fields.PurifiedField(blank=True, db_column='developercomments', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Addon_developer_comments_set+', require_locale=True, short=True, to='translations.PurifiedTranslation', to_field='id', unique=True),
+            field=olympia.translations.fields.PurifiedField(blank=True, db_column='developercomments', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                            related_name='Addon_developer_comments_set+', require_locale=True, short=True, to='translations.PurifiedTranslation', to_field='id', unique=True),
         ),
         migrations.AddField(
             model_name='addon',
             name='eula',
-            field=olympia.translations.fields.PurifiedField(blank=True, db_column='eula', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Addon_eula_set+', require_locale=True, short=True, to='translations.PurifiedTranslation', to_field='id', unique=True),
+            field=olympia.translations.fields.PurifiedField(blank=True, db_column='eula', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                            related_name='Addon_eula_set+', require_locale=True, short=True, to='translations.PurifiedTranslation', to_field='id', unique=True),
         ),
         migrations.AddField(
             model_name='addon',
             name='homepage',
-            field=olympia.translations.fields.TranslatedField(blank=True, db_column='homepage', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Addon_homepage_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True),
+            field=olympia.translations.fields.TranslatedField(blank=True, db_column='homepage', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                              related_name='Addon_homepage_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True),
         ),
         migrations.AddField(
             model_name='addon',
             name='name',
-            field=olympia.translations.fields.TranslatedField(blank=True, db_column='name', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Addon_name_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True),
+            field=olympia.translations.fields.TranslatedField(blank=True, db_column='name', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                              related_name='Addon_name_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True),
         ),
         migrations.AddField(
             model_name='addon',
             name='privacy_policy',
-            field=olympia.translations.fields.PurifiedField(blank=True, db_column='privacypolicy', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Addon_privacy_policy_set+', require_locale=True, short=True, to='translations.PurifiedTranslation', to_field='id', unique=True),
+            field=olympia.translations.fields.PurifiedField(blank=True, db_column='privacypolicy', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                            related_name='Addon_privacy_policy_set+', require_locale=True, short=True, to='translations.PurifiedTranslation', to_field='id', unique=True),
         ),
         migrations.AddField(
             model_name='addon',
             name='summary',
-            field=olympia.translations.fields.LinkifiedField(blank=True, db_column='summary', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Addon_summary_set+', require_locale=True, short=True, to='translations.LinkifiedTranslation', to_field='id', unique=True),
+            field=olympia.translations.fields.LinkifiedField(blank=True, db_column='summary', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                             related_name='Addon_summary_set+', require_locale=True, short=True, to='translations.LinkifiedTranslation', to_field='id', unique=True),
         ),
         migrations.AddField(
             model_name='addon',
             name='support_email',
-            field=olympia.translations.fields.TranslatedField(blank=True, db_column='supportemail', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Addon_support_email_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True),
+            field=olympia.translations.fields.TranslatedField(blank=True, db_column='supportemail', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                              related_name='Addon_support_email_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True),
         ),
         migrations.AddField(
             model_name='addon',
             name='support_url',
-            field=olympia.translations.fields.TranslatedField(blank=True, db_column='supporturl', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Addon_support_url_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True),
+            field=olympia.translations.fields.TranslatedField(blank=True, db_column='supporturl', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                              related_name='Addon_support_url_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True),
         ),
         migrations.AddIndex(
             model_name='preview',
@@ -341,15 +433,18 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='preview',
-            index=models.Index(fields=['addon', 'position', 'created'], name='addon_position_created_idx'),
+            index=models.Index(
+                fields=['addon', 'position', 'created'], name='addon_position_created_idx'),
         ),
         migrations.AddIndex(
             model_name='migratedlwt',
-            index=olympia.amo.models.LongNameIndex(fields=['static_theme'], name='migrated_personas_static_theme_id_fk_addons_id'),
+            index=olympia.amo.models.LongNameIndex(
+                fields=['static_theme'], name='migrated_personas_static_theme_id_fk_addons_id'),
         ),
         migrations.AddIndex(
             model_name='migratedlwt',
-            index=olympia.amo.models.LongNameIndex(fields=['getpersonas_id'], name='migrated_personas_getpersonas_id'),
+            index=olympia.amo.models.LongNameIndex(
+                fields=['getpersonas_id'], name='migrated_personas_getpersonas_id'),
         ),
         migrations.AddIndex(
             model_name='category',
@@ -365,7 +460,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='appsupport',
-            index=models.Index(fields=['addon', 'app', 'min', 'max'], name='minmax_idx'),
+            index=models.Index(
+                fields=['addon', 'app', 'min', 'max'], name='minmax_idx'),
         ),
         migrations.AddIndex(
             model_name='appsupport',
@@ -373,11 +469,13 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='appsupport',
-            constraint=models.UniqueConstraint(fields=('addon', 'app'), name='addon_id'),
+            constraint=models.UniqueConstraint(
+                fields=('addon', 'app'), name='addon_id'),
         ),
         migrations.AddConstraint(
             model_name='addonuserpendingconfirmation',
-            constraint=models.UniqueConstraint(fields=('addon', 'user'), name='addons_users_pending_confirmation_addon_id_user_id_38e3bb32_uniq'),
+            constraint=models.UniqueConstraint(fields=(
+                'addon', 'user'), name='addons_users_pending_confirmation_addon_id_user_id_38e3bb32_uniq'),
         ),
         migrations.AddIndex(
             model_name='addonuser',
@@ -385,31 +483,38 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='addonuser',
-            index=models.Index(fields=['addon', 'user', 'listed'], name='addon_user_listed_idx'),
+            index=models.Index(
+                fields=['addon', 'user', 'listed'], name='addon_user_listed_idx'),
         ),
         migrations.AddIndex(
             model_name='addonuser',
-            index=models.Index(fields=['addon', 'listed'], name='addon_listed_idx'),
+            index=models.Index(
+                fields=['addon', 'listed'], name='addon_listed_idx'),
         ),
         migrations.AddConstraint(
             model_name='addonuser',
-            constraint=models.UniqueConstraint(fields=('addon', 'user'), name='addon_id'),
+            constraint=models.UniqueConstraint(
+                fields=('addon', 'user'), name='addon_id'),
         ),
         migrations.AddIndex(
             model_name='addoncategory',
-            index=models.Index(fields=['category', 'addon'], name='category_addon_idx'),
+            index=models.Index(
+                fields=['category', 'addon'], name='category_addon_idx'),
         ),
         migrations.AddIndex(
             model_name='addoncategory',
-            index=models.Index(fields=['feature', 'addon'], name='feature_addon_idx'),
+            index=models.Index(
+                fields=['feature', 'addon'], name='feature_addon_idx'),
         ),
         migrations.AddConstraint(
             model_name='addoncategory',
-            constraint=models.UniqueConstraint(fields=('addon', 'category'), name='addon_id'),
+            constraint=models.UniqueConstraint(
+                fields=('addon', 'category'), name='addon_id'),
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['bayesian_rating'], name='bayesianrating'),
+            index=models.Index(
+                fields=['bayesian_rating'], name='bayesianrating'),
         ),
         migrations.AddIndex(
             model_name='addon',
@@ -445,38 +550,47 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['weekly_downloads'], name='weeklydownloads_idx'),
+            index=models.Index(
+                fields=['weekly_downloads'], name='weeklydownloads_idx'),
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['average_daily_users', 'type'], name='adus_type_idx'),
+            index=models.Index(
+                fields=['average_daily_users', 'type'], name='adus_type_idx'),
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['bayesian_rating', 'type'], name='rating_type_idx'),
+            index=models.Index(
+                fields=['bayesian_rating', 'type'], name='rating_type_idx'),
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['created', 'type'], name='created_type_idx'),
+            index=models.Index(
+                fields=['created', 'type'], name='created_type_idx'),
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['last_updated', 'type'], name='last_updated_type_idx'),
+            index=models.Index(
+                fields=['last_updated', 'type'], name='last_updated_type_idx'),
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['modified', 'type'], name='modified_type_idx'),
+            index=models.Index(
+                fields=['modified', 'type'], name='modified_type_idx'),
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['type', 'status', 'disabled_by_user'], name='type_status_inactive_idx'),
+            index=models.Index(
+                fields=['type', 'status', 'disabled_by_user'], name='type_status_inactive_idx'),
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['weekly_downloads', 'type'], name='downloads_type_idx'),
+            index=models.Index(
+                fields=['weekly_downloads', 'type'], name='downloads_type_idx'),
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['name', 'status', 'type'], name='name_2'),
+            index=models.Index(
+                fields=['name', 'status', 'type'], name='name_2'),
         ),
     ]

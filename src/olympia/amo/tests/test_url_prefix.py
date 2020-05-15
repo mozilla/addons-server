@@ -307,7 +307,7 @@ def test_outgoing_url_javascript_scheme():
     assert fixed == '/'
 
 
-@pytest.mark.parametrize("test_input,expected", [
+@pytest.mark.parametrize('test_input,expected', [
     ('ga-ie', 'ga-IE'),
     # Capitalization is no big deal.
     ('ga-IE', 'ga-IE'),

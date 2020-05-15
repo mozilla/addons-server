@@ -3423,7 +3423,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         risk = doc('.listing-body .file-weight')
-        assert risk.text() == "Weight: 284"
+        assert risk.text() == 'Weight: 284'
         assert risk.attr['title'] == 'bär: 84\nfôo: 200'
 
     def test_item_history_notes(self):
@@ -3949,8 +3949,8 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         validation = doc.find('.files')
-        assert validation.find('a').eq(1).text() == "Validation"
-        assert validation.find('a').eq(2).text() == "Contents"
+        assert validation.find('a').eq(1).text() == 'Validation'
+        assert validation.find('a').eq(2).text() == 'Contents'
 
         assert validation.find('a').length == 3
 
@@ -4262,7 +4262,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         text = doc('.reviewers-install').eq(1).text()
-        assert text == "Mac OS X / Android"
+        assert text == 'Mac OS X / Android'
 
     def test_compare_no_link(self):
         response = self.client.get(self.url)
@@ -5411,7 +5411,7 @@ class TestCodeManagerLinks(ReviewBase):
         links = self.get_links()
 
         contents = links.find('a').eq(0)
-        assert contents.text() == "Contents"
+        assert contents.text() == 'Contents'
         assert contents.attr('href').endswith(
             '/browse/{}/versions/{}/'.format(
                 self.addon.pk, self.version.pk
@@ -5432,7 +5432,7 @@ class TestCodeManagerLinks(ReviewBase):
         links = self.get_links()
 
         compare = links.find('a').eq(2)
-        assert compare.text() == "Compare"
+        assert compare.text() == 'Compare'
         assert compare.attr('href').endswith(
             '/compare/{}/versions/{}...{}/'.format(
                 self.addon.pk,
@@ -7563,13 +7563,13 @@ class TestDownloadGitFileView(TestCase):
         assert "frame-ancestors 'none'" in response['content-security-policy']
 
         # The report-uri should be set.
-        assert "report-uri" in response['content-security-policy']
+        assert 'report-uri' in response['content-security-policy']
 
         # Other properties that we defined by default aren't set
-        assert "style-src" not in response['content-security-policy']
-        assert "font-src" not in response['content-security-policy']
-        assert "frame-src" not in response['content-security-policy']
-        assert "child-src" not in response['content-security-policy']
+        assert 'style-src' not in response['content-security-policy']
+        assert 'font-src' not in response['content-security-policy']
+        assert 'frame-src' not in response['content-security-policy']
+        assert 'child-src' not in response['content-security-policy']
 
     def test_download_emoji_filename(self):
         new_version = version_factory(

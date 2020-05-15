@@ -18,7 +18,7 @@ users_patterns = [
     url(r'^edit$', frontend_view, name='users.edit'),
     url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'
         r'(?P<perm_setting>[\w]+)?$', frontend_view,
-        name="users.unsubscribe"),
+        name='users.unsubscribe'),
 ]
 
 urlpatterns = [

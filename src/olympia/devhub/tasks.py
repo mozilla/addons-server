@@ -371,7 +371,7 @@ def check_for_api_keys_in_file(results, upload_pk):
                 if zipinfo.file_size >= 64:
                     file_ = zipfile.read(zipinfo)
                     for key in keys:
-                        if key.secret in file_.decode(errors="ignore"):
+                        if key.secret in file_.decode(errors='ignore'):
                             log.info('Developer API key for user %s found in '
                                      'submission.' % key.user)
                             if key.user == upload.user:
@@ -565,7 +565,7 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
             'icon_hash': icon_hash
         }
     except Exception as e:
-        log.error("Error saving addon icon (%s): %s" % (dest_file, e))
+        log.error('Error saving addon icon (%s): %s' % (dest_file, e))
 
 
 @task
@@ -589,7 +589,7 @@ def resize_preview(src, preview_pk, **kw):
         preview.save()
         return True
     except Exception as e:
-        log.error("Error saving preview: %s" % e)
+        log.error('Error saving preview: %s' % e)
 
 
 def _recreate_images_for_preview(preview):
@@ -612,7 +612,7 @@ def _recreate_images_for_preview(preview):
         preview.save()
         return True
     except Exception as e:
-        log.exception("Error saving preview: %s" % e)
+        log.exception('Error saving preview: %s' % e)
 
 
 @task

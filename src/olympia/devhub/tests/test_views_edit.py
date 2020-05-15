@@ -375,7 +375,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         Let's try to put xss in our description, and safe html, and verify
         that we are playing safe.
         """
-        self.addon.description = ("This\n<b>IS</b>"
+        self.addon.description = ('This\n<b>IS</b>'
                                   "<script>alert('awesome')</script>")
         self.addon.save()
         response = self.client.get(self.url)
@@ -868,7 +868,7 @@ class TestEditMedia(BaseTestEdit):
         assert log[0].action == amo.LOG.CHANGE_ICON.id
 
     def test_edit_media_uploadedicon_noresize(self):
-        img = "static/img/notifications/error.png"
+        img = 'static/img/notifications/error.png'
         src_image = open(img, 'rb')
 
         data = {'upload_image': src_image}

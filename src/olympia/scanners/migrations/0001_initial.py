@@ -20,21 +20,28 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ScannersResult',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('results', django_extensions.db.fields.json.JSONField(default={})),
-                ('scanner', models.PositiveSmallIntegerField(choices=[(1, 'customs'), (2, 'wat')])),
-                ('upload', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='scanners_results', to='files.FileUpload')),
-                ('version', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='scanners_results', to='versions.Version')),
+                ('scanner', models.PositiveSmallIntegerField(
+                    choices=[(1, 'customs'), (2, 'wat')])),
+                ('upload', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                             related_name='scanners_results', to='files.FileUpload')),
+                ('version', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                                              related_name='scanners_results', to='versions.Version')),
             ],
             options={
                 'db_table': 'scanners_results',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddConstraint(
             model_name='scannersresult',
-            constraint=models.UniqueConstraint(fields=('upload', 'scanner', 'version'), name='scanners_results_upload_id_scanner_version_id_ad9eb8a6_uniq'),
+            constraint=models.UniqueConstraint(fields=(
+                'upload', 'scanner', 'version'), name='scanners_results_upload_id_scanner_version_id_ad9eb8a6_uniq'),
         ),
     ]

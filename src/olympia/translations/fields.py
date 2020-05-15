@@ -18,6 +18,7 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
     """
     Descriptor that handles creating and updating Translations given strings.
     """
+
     def __get__(self, instance, cls=None):
         if instance is None:
             return self

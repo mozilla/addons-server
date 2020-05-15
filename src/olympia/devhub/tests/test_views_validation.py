@@ -248,25 +248,25 @@ class TestFileValidation(TestCase):
 
     def test_linkify_validation_messages(self):
         self.file_validation.update(validation=json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 1,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [{
-                "context": ["<code>", None],
-                "description": [
-                    "Something something, see https://bugzilla.mozilla.org/"],
-                "column": 0,
-                "line": 1,
-                "file": "chrome/content/down.html",
-                "tier": 2,
-                "message": "Some warning",
-                "type": "warning",
-                "id": [],
-                "uid": "bb9948b604b111e09dfdc42c0301fe38"
+            'errors': 0,
+            'success': True,
+            'warnings': 1,
+            'notices': 0,
+            'message_tree': {},
+            'messages': [{
+                'context': ['<code>', None],
+                'description': [
+                    'Something something, see https://bugzilla.mozilla.org/'],
+                'column': 0,
+                'line': 1,
+                'file': 'chrome/content/down.html',
+                'tier': 2,
+                'message': 'Some warning',
+                'type': 'warning',
+                'id': [],
+                'uid': 'bb9948b604b111e09dfdc42c0301fe38'
             }],
-            "metadata": {}
+            'metadata': {}
         }))
         response = self.client.get(self.json_url, follow=False)
         assert response.status_code == 200

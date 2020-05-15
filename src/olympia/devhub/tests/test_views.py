@@ -191,8 +191,8 @@ class TestDashboard(HubTest):
 
         assert doc('.blog-posts').length == 1
         assert doc('.blog-posts li').length == 5
-        assert doc('.blog-posts li a').eq(0).text() == "hi 0"
-        assert doc('.blog-posts li a').eq(4).text() == "hi 4"
+        assert doc('.blog-posts li a').eq(0).text() == 'hi 0'
+        assert doc('.blog-posts li a').eq(4).text() == 'hi 4'
 
     def test_sort_created_filter(self):
         response = self.client.get(self.url + '?sort=created')
@@ -1231,7 +1231,7 @@ class TestUploadDetail(BaseUploadTest):
 
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
-                                   args=[upload.uuid.hex, 'json']))
+                                           args=[upload.uuid.hex, 'json']))
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
 
@@ -1414,7 +1414,7 @@ class TestUploadDetail(BaseUploadTest):
         user_factory(email='redpanda@mozilla.com')
         assert self.client.login(email='redpanda@mozilla.com')
         mock_validator.return_value = json.dumps(self.validation_ok())
-        mock_get_signature.return_value = "Mozilla Extensions"
+        mock_get_signature.return_value = 'Mozilla Extensions'
         self.upload_file(
             '../../../files/fixtures/files/webextension_signed_already.xpi')
         upload = FileUpload.objects.get()
@@ -1586,7 +1586,7 @@ class TestQueuePosition(TestCase):
             span = doc('.queue-position')
 
             assert span.length
-            assert "Queue Position: 1 of 2" in span.text()
+            assert 'Queue Position: 1 of 2' in span.text()
 
     def test_static_themes_in_queue(self):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
@@ -1606,7 +1606,7 @@ class TestQueuePosition(TestCase):
             span = doc('.queue-position')
 
             assert span.length
-            assert "Queue Position: 1 of 3" in span.text()
+            assert 'Queue Position: 1 of 3' in span.text()
 
 
 class TestVersionXSS(TestCase):
@@ -1798,11 +1798,11 @@ class TestDocs(TestCase):
         assert '/en-US/developers/docs/te/st', reverse(
             'devhub.docs', args=['te/st'])
 
-        urls = [(reverse('devhub.docs', args=["getting-started"]), 301),
-                (reverse('devhub.docs', args=["how-to"]), 301),
-                (reverse('devhub.docs', args=["how-to/other-addons"]), 301),
-                (reverse('devhub.docs', args=["fake-page"]), 404),
-                (reverse('devhub.docs', args=["how-to/fake-page"]), 404),
+        urls = [(reverse('devhub.docs', args=['getting-started']), 301),
+                (reverse('devhub.docs', args=['how-to']), 301),
+                (reverse('devhub.docs', args=['how-to/other-addons']), 301),
+                (reverse('devhub.docs', args=['fake-page']), 404),
+                (reverse('devhub.docs', args=['how-to/fake-page']), 404),
                 (reverse('devhub.docs'), 301)]
 
         index = reverse('devhub.index')
@@ -1868,7 +1868,7 @@ class TestXssOnAddonName(amo.tests.TestXss):
 
     def test_devhub_version_edit_page(self):
         url = reverse('devhub.versions.edit', args=[self.addon.slug,
-                      self.addon.current_version.id])
+                                                    self.addon.current_version.id])
         self.assertNameAndNoXSS(url)
 
     def test_devhub_version_list_page(self):

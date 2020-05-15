@@ -21,38 +21,62 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AbuseReport',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('country_code', models.CharField(default=None, max_length=2, null=True)),
+                ('country_code', models.CharField(
+                    default=None, max_length=2, null=True)),
                 ('guid', models.CharField(max_length=255, null=True)),
                 ('message', models.TextField(blank=True)),
-                ('state', models.PositiveSmallIntegerField(choices=[(1, 'Untriaged'), (2, 'Valid'), (3, 'Suspicious'), (4, 'Deleted')], default=1)),
-                ('client_id', models.CharField(blank=True, default=None, max_length=64, null=True)),
-                ('addon_name', models.CharField(blank=True, default=None, max_length=255, null=True)),
-                ('addon_summary', models.CharField(blank=True, default=None, max_length=255, null=True)),
-                ('addon_version', models.CharField(blank=True, default=None, max_length=255, null=True)),
-                ('addon_signature', models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Curated and partner'), (2, 'Curated'), (3, 'Partner'), (4, 'Non-curated'), (5, 'Unsigned'), (6, 'Broken'), (7, 'Unknown'), (8, 'Missing'), (9, 'Preliminary'), (10, 'Signed'), (11, 'System'), (12, 'Privileged')], default=None, null=True)),
-                ('application', models.PositiveSmallIntegerField(blank=True, choices=[(1, 'Firefox'), (61, 'Firefox for Android')], default=1, null=True)),
-                ('application_version', models.CharField(blank=True, default=None, max_length=255, null=True)),
-                ('application_locale', models.CharField(blank=True, default=None, max_length=255, null=True)),
-                ('operating_system', models.CharField(blank=True, default=None, max_length=255, null=True)),
-                ('operating_system_version', models.CharField(blank=True, default=None, max_length=255, null=True)),
-                ('install_date', models.DateTimeField(blank=True, default=None, null=True)),
-                ('reason', models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Damages computer and/or data'), (2, 'Creates spam or advertising'), (3, 'Changes search / homepage / new tab page without informing user'), (5, 'Doesn’t work, breaks websites, or slows Firefox down'), (6, 'Hateful, violent, or illegal content'), (7, 'Pretends to be something it’s not'), (9, "Wasn't wanted / impossible to get rid of"), (127, 'Other')], default=None, null=True)),
-                ('addon_install_origin', models.CharField(blank=True, default=None, max_length=255, null=True)),
-                ('addon_install_method', models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Add-on Manager Web API'), (2, 'Direct link'), (3, 'Install Trigger'), (4, 'From File'), (5, 'Webext management API'), (6, 'Drag & Drop'), (7, 'Sideload'), (8, 'File URL'), (9, 'Enterprise Policy'), (10, 'Included in build'), (11, 'System Add-on'), (12, 'Temporary Add-on'), (13, 'Sync'), (14, 'URL'), (127, 'Other')], default=None, null=True)),
-                ('addon_install_source', models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Add-ons Manager'), (2, 'Add-ons Debugging'), (3, 'Preferences'), (4, 'AMO'), (5, 'App Profile'), (6, 'Disco Pane'), (7, 'Included in build'), (8, 'Extension'), (9, 'Enterprise Policy'), (10, 'File URL'), (11, 'GMP Plugin'), (12, 'Internal'), (13, 'Plugin'), (14, 'Return to AMO'), (15, 'Sync'), (16, 'System Add-on'), (17, 'Temporary Add-on'), (18, 'Unknown'), (127, 'Other')], default=None, null=True)),
-                ('report_entry_point', models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Uninstall'), (2, 'Menu'), (3, 'Toolbar context menu')], default=None, null=True)),
-                ('addon', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='abuse_reports', to='addons.Addon')),
-                ('reporter', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='abuse_reported', to=settings.AUTH_USER_MODEL)),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='abuse_reports', to=settings.AUTH_USER_MODEL)),
+                ('state', models.PositiveSmallIntegerField(choices=[
+                 (1, 'Untriaged'), (2, 'Valid'), (3, 'Suspicious'), (4, 'Deleted')], default=1)),
+                ('client_id', models.CharField(blank=True,
+                                               default=None, max_length=64, null=True)),
+                ('addon_name', models.CharField(blank=True,
+                                                default=None, max_length=255, null=True)),
+                ('addon_summary', models.CharField(
+                    blank=True, default=None, max_length=255, null=True)),
+                ('addon_version', models.CharField(
+                    blank=True, default=None, max_length=255, null=True)),
+                ('addon_signature', models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Curated and partner'), (2, 'Curated'), (3, 'Partner'), (
+                    4, 'Non-curated'), (5, 'Unsigned'), (6, 'Broken'), (7, 'Unknown'), (8, 'Missing'), (9, 'Preliminary'), (10, 'Signed'), (11, 'System'), (12, 'Privileged')], default=None, null=True)),
+                ('application', models.PositiveSmallIntegerField(blank=True, choices=[
+                 (1, 'Firefox'), (61, 'Firefox for Android')], default=1, null=True)),
+                ('application_version', models.CharField(
+                    blank=True, default=None, max_length=255, null=True)),
+                ('application_locale', models.CharField(
+                    blank=True, default=None, max_length=255, null=True)),
+                ('operating_system', models.CharField(
+                    blank=True, default=None, max_length=255, null=True)),
+                ('operating_system_version', models.CharField(
+                    blank=True, default=None, max_length=255, null=True)),
+                ('install_date', models.DateTimeField(
+                    blank=True, default=None, null=True)),
+                ('reason', models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Damages computer and/or data'), (2, 'Creates spam or advertising'), (3, 'Changes search / homepage / new tab page without informing user'), (
+                    5, 'Doesn’t work, breaks websites, or slows Firefox down'), (6, 'Hateful, violent, or illegal content'), (7, 'Pretends to be something it’s not'), (9, "Wasn't wanted / impossible to get rid of"), (127, 'Other')], default=None, null=True)),
+                ('addon_install_origin', models.CharField(
+                    blank=True, default=None, max_length=255, null=True)),
+                ('addon_install_method', models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Add-on Manager Web API'), (2, 'Direct link'), (3, 'Install Trigger'), (4, 'From File'), (5, 'Webext management API'), (
+                    6, 'Drag & Drop'), (7, 'Sideload'), (8, 'File URL'), (9, 'Enterprise Policy'), (10, 'Included in build'), (11, 'System Add-on'), (12, 'Temporary Add-on'), (13, 'Sync'), (14, 'URL'), (127, 'Other')], default=None, null=True)),
+                ('addon_install_source', models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Add-ons Manager'), (2, 'Add-ons Debugging'), (3, 'Preferences'), (4, 'AMO'), (5, 'App Profile'), (6, 'Disco Pane'), (7, 'Included in build'), (8, 'Extension'), (
+                    9, 'Enterprise Policy'), (10, 'File URL'), (11, 'GMP Plugin'), (12, 'Internal'), (13, 'Plugin'), (14, 'Return to AMO'), (15, 'Sync'), (16, 'System Add-on'), (17, 'Temporary Add-on'), (18, 'Unknown'), (127, 'Other')], default=None, null=True)),
+                ('report_entry_point', models.PositiveSmallIntegerField(blank=True, choices=[
+                 (None, 'None'), (1, 'Uninstall'), (2, 'Menu'), (3, 'Toolbar context menu')], default=None, null=True)),
+                ('addon', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                                            related_name='abuse_reports', to='addons.Addon')),
+                ('reporter', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                               related_name='abuse_reported', to=settings.AUTH_USER_MODEL)),
+                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                           related_name='abuse_reports', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'db_table': 'abuse_reports',
                 'base_manager_name': 'unfiltered',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
             managers=[
                 ('unfiltered', django.db.models.manager.Manager()),
             ],

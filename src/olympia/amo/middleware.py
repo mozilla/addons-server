@@ -103,6 +103,7 @@ class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
     Like AuthenticationMiddleware, but disabled for the API, which uses its
     own authentication mechanism.
     """
+
     def process_request(self, request):
         if request.is_api and not auth_path.match(request.path):
             request.user = AnonymousUser()
@@ -122,6 +123,7 @@ class NoVarySessionMiddleware(SessionMiddleware):
     We skip the cache in Zeus if someone has an AMOv3+ cookie, so varying on
     Cookie at this level only hurts us.
     """
+
     def process_response(self, request, response):
         if settings.READ_ONLY:
             return response
@@ -194,6 +196,7 @@ class NonAtomicRequestsForSafeHttpMethodsMiddleware(MiddlewareMixin):
     Middleware to make the view non-atomic if the HTTP method used is safe,
     in order to avoid opening and closing a useless transaction.
     """
+
     def process_view(self, request, view_func, view_args, view_kwargs):
         # This uses undocumented django APIS:
         # - transaction.get_connection() followed by in_atomic_block property,
@@ -250,6 +253,7 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     Our application servers should always be behind a load balancer that sets
     this header correctly.
     """
+
     def is_valid_ip(self, ip):
         for af in (socket.AF_INET, socket.AF_INET6):
             try:

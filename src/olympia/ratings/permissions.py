@@ -34,6 +34,7 @@ def user_can_delete_rating(request, rating):
 
 class CanDeleteRatingPermission(BasePermission):
     """A DRF permission class wrapping user_can_delete_rating()."""
+
     def has_permission(self, request, view):
         return request.user.is_authenticated
 

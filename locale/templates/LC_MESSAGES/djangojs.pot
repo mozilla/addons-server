@@ -1061,4 +1061,3 @@ msgstr ""
 #: static/js/zamboni/validator.js:462
 msgid "Internal server error"
 msgstr ""
-

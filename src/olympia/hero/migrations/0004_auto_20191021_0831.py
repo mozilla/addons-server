@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='primaryhero',
             name='image',
-            field=olympia.hero.models.WidgetCharField(blank=True, choices=[('placeholder_a.jpg', 'placeholder_a.jpg'), ('placeholder_b.jpg', 'placeholder_b.jpg')], max_length=255),
+            field=olympia.hero.models.WidgetCharField(blank=True, choices=[(
+                'placeholder_a.jpg', 'placeholder_a.jpg'), ('placeholder_b.jpg', 'placeholder_b.jpg')], max_length=255),
         ),
     ]

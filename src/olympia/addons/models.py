@@ -530,7 +530,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def deny_resubmission(self):
         if self.is_guid_denied:
-            raise RuntimeError("GUID already denied")
+            raise RuntimeError('GUID already denied')
 
         activity.log_create(amo.LOG.DENIED_GUID_ADDED, self)
         log.info('Deny resubmission for addon "%s"', self.slug)
@@ -538,7 +538,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def allow_resubmission(self):
         if not self.is_guid_denied:
-            raise RuntimeError("GUID already denied")
+            raise RuntimeError('GUID already denied')
 
         activity.log_create(amo.LOG.DENIED_GUID_DELETED, self)
         log.info('Allow resubmission for addon "%s"', self.slug)
@@ -574,8 +574,8 @@ class Addon(OnChangeMixin, ModelBase):
             'total_downloads': self.total_downloads,
             'url': jinja_helpers.absolutify(self.get_url_path()),
             'user_str': (
-                "%s, %s (%s)" % (user.name, user.email, user.id) if user
-                else "Unknown"),
+                '%s, %s (%s)' % (user.name, user.email, user.id) if user
+                else 'Unknown'),
         }
 
         email_msg = u"""
@@ -2013,8 +2013,8 @@ class AppSupport(ModelBase):
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                       db_column='app_id')
-    min = models.BigIntegerField("Minimum app version", null=True)
-    max = models.BigIntegerField("Maximum app version", null=True)
+    min = models.BigIntegerField('Minimum app version', null=True)
+    max = models.BigIntegerField('Maximum app version', null=True)
 
     class Meta:
         db_table = 'appsupport'

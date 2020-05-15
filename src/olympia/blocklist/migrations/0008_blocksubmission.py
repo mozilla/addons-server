@@ -20,11 +20,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='blocksubmission',
             name='signoff_by',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                    related_name='+', to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='blocksubmission',
             name='signoff_state',
-            field=models.SmallIntegerField(choices=[(0, 'Pending'), (1, 'Approved'), (2, 'Rejected'), (3, 'No Sign-off'), (4, 'Published to Blocks')], default=0),
+            field=models.SmallIntegerField(choices=[(0, 'Pending'), (1, 'Approved'), (
+                2, 'Rejected'), (3, 'No Sign-off'), (4, 'Published to Blocks')], default=0),
         ),
     ]

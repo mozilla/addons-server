@@ -21,6 +21,7 @@ from olympia.users.models import UserProfile
 class ReviewNotesViewSetDetailMixin(LogMixin):
     """Tests that play with addon state and permissions. Shared between review
     note viewset detail tests since both need to react the same way."""
+
     def _test_url(self):
         raise NotImplementedError
 

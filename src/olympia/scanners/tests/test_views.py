@@ -178,7 +178,7 @@ class TestScannerResultView(TestCase):
 
     def test_get_by_scanner_with_empty_value(self):
         self.create_switch('enable-scanner-results-api', active=True)
-        invalid_scanner = ""
+        invalid_scanner = ''
         response = self.client.get(
             '{}?scanner={}'.format(self.url, invalid_scanner)
         )
@@ -186,7 +186,7 @@ class TestScannerResultView(TestCase):
 
     def test_get_by_scanner_with_unknown_scanner(self):
         self.create_switch('enable-scanner-results-api', active=True)
-        invalid_scanner = "yaraaaa"
+        invalid_scanner = 'yaraaaa'
         response = self.client.get(
             '{}?scanner={}'.format(self.url, invalid_scanner)
         )
@@ -224,7 +224,7 @@ class TestScannerResultView(TestCase):
 
     def test_get_by_label_with_empty_value(self):
         self.create_switch('enable-scanner-results-api', active=True)
-        invalid_label = ""
+        invalid_label = ''
         response = self.client.get(
             '{}?label={}'.format(self.url, invalid_label)
         )
@@ -232,7 +232,7 @@ class TestScannerResultView(TestCase):
 
     def test_get_by_label_with_unknown_label(self):
         self.create_switch('enable-scanner-results-api', active=True)
-        invalid_label = "gooda"
+        invalid_label = 'gooda'
         response = self.client.get(
             '{}?label={}'.format(self.url, invalid_label)
         )

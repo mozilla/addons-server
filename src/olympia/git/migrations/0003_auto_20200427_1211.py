@@ -12,6 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='gitextractionentry',
-            options={'base_manager_name': 'objects', 'get_latest_by': 'created', 'verbose_name_plural': 'Git extraction entries'},
+            options={'base_manager_name': 'objects', 'get_latest_by': 'created',
+                     'verbose_name_plural': 'Git extraction entries'},
         ),
     ]

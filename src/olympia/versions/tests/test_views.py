@@ -422,13 +422,13 @@ class TestDownloadSource(TestCase):
         self.addon.update(slug=u'crosswarpex-확장')
         self.version = self.addon.current_version
         tdir = temp.gettempdir()
-        self.source_file = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
+        self.source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir)
         self.source_file.write(b'a' * (2 ** 21))
         self.source_file.seek(0)
         self.version.source = DjangoFile(self.source_file)
         self.version.save()
         self.filename = os.path.basename(self.version.source.path)
-        self.user = UserProfile.objects.get(email="del@icio.us")
+        self.user = UserProfile.objects.get(email='del@icio.us')
         self.group = Group.objects.create(
             name='Editors BinarySource',
             rules='Editors:BinarySource'

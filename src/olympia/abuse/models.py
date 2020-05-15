@@ -54,9 +54,9 @@ class AbuseReport(ModelBase):
                         'without informing user'),
         # `4` was previously 'New tab takeover' but has been merged into the
         # previous one. We avoid re-using the value.
-        ('BROKEN', 5, "Doesn’t work, breaks websites, or slows Firefox down"),
+        ('BROKEN', 5, 'Doesn’t work, breaks websites, or slows Firefox down'),
         ('POLICY', 6, 'Hateful, violent, or illegal content'),
-        ('DECEPTIVE', 7, "Pretends to be something it’s not"),
+        ('DECEPTIVE', 7, 'Pretends to be something it’s not'),
         # `8` was previously "Doesn't work" but has been merged into the
         # previous one. We avoid re-using the value.
         ('UNWANTED', 9, "Wasn't wanted / impossible to get rid of"),

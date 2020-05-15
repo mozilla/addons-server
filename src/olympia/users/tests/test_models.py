@@ -317,7 +317,7 @@ class TestUserProfile(TestCase):
     def test_welcome_name(self):
         u1 = UserProfile.objects.create(username='sc')
         u2 = UserProfile.objects.create(
-            username='sc2', display_name="Sarah Connor")
+            username='sc2', display_name='Sarah Connor')
         u3 = UserProfile.objects.create()
         assert u1.welcome_name == 'Firefox user %s' % u1.id
         assert u2.welcome_name == 'Sarah Connor'
@@ -1049,16 +1049,16 @@ class TestUserManager(TestCase):
     fixtures = ('users/test_backends', )
 
     def test_create_user(self):
-        user = UserProfile.objects.create_user("test", "test@test.com", 'xxx')
+        user = UserProfile.objects.create_user('test', 'test@test.com', 'xxx')
         assert user.pk is not None
 
     def test_create_superuser(self):
         user = UserProfile.objects.create_superuser(
-            "test",
-            "test@test.com",
+            'test',
+            'test@test.com',
         )
         assert user.pk is not None
-        Group.objects.get(name="Admins") in user.groups.all()
+        Group.objects.get(name='Admins') in user.groups.all()
         assert user.is_staff
         assert user.is_superuser
 

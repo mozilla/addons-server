@@ -64,7 +64,7 @@ class TestAddonIndexer(TestCase):
         _indexed_translated_fields = ('name', 'description', 'summary')
         analyzer_fields = list(chain.from_iterable(
             [['%s_l10n_%s' % (field, lang) for lang, analyzer
-             in SEARCH_LANGUAGE_TO_ANALYZER.items()]
+              in SEARCH_LANGUAGE_TO_ANALYZER.items()]
              for field in _indexed_translated_fields]))
 
         # It'd be annoying to hardcode `analyzer_fields`, so we generate it,
@@ -243,7 +243,7 @@ class TestAddonIndexer(TestCase):
         }
         assert extracted['current_version']['release_notes_translations'] == [
             {'lang': 'en-US', 'string': u'Fix for an important bug'},
-            {'lang': 'fr', 'string': u"Quelque chose en fran\xe7ais."
+            {'lang': 'fr', 'string': u'Quelque chose en fran\xe7ais.'
                                      u"\n\nQuelque chose d'autre."},
         ]
         assert extracted['current_version']['reviewed'] == version.reviewed

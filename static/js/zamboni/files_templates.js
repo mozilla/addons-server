@@ -38,7 +38,7 @@ function syntaxhighlighter_template(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n    <div class="syntaxhighlighter">\n       <table border="0" cellpadding="0" cellspacing="0">\n           <colgroup><col class="highlighter-column-line-numbers"/>\n                     <col class="highlighter-column-code"/></colgroup>\n           <tbody>\n           ';
- _.each(lines, function(line) { 
+ _.each(lines, function(line) {
 __p+='\n               <tr class="tr-line">\n                   <td class="td-line-number">\n                       <a href="#'+
 ((__t=( line.id ))==null?'':_.escape(__t))+
 '" id="'+
@@ -56,7 +56,7 @@ __p+='\n               <tr class="tr-line">\n                   <td class="td-li
                        line.code
                    ))==null?'':__t)+
 '</span></td>\n               </tr>\n           ';
- }) 
+ })
 __p+='\n           </tbody>\n       </table>\n    </div>\n';
 }
 return __p;

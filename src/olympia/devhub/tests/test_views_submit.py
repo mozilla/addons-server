@@ -884,7 +884,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     def test_with_bad_source_broken_archive_compressed_tar(self):
         source = self.generate_source_tar()
-        with open(source.name, "r+b") as fobj:
+        with open(source.name, 'r+b') as fobj:
             fobj.truncate(512)
         # Still looks like a tar at first glance.
         assert tarfile.is_tarfile(source.name)
@@ -2140,8 +2140,8 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         self.upload = self.get_upload(
             'experiment_inside_webextension.xpi',
             validation=json.dumps({
-                "notices": 2, "errors": 0, "messages": [],
-                "metadata": {}, "warnings": 1,
+                'notices': 2, 'errors': 0, 'messages': [],
+                'metadata': {}, 'warnings': 1,
             }))
         self.addon.update(
             guid='@experiment-inside-webextension-guid',
@@ -2155,8 +2155,8 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         self.upload = self.get_upload(
             'theme_experiment_inside_webextension.xpi',
             validation=json.dumps({
-                "notices": 2, "errors": 0, "messages": [],
-                "metadata": {}, "warnings": 1,
+                'notices': 2, 'errors': 0, 'messages': [],
+                'metadata': {}, 'warnings': 1,
             }))
         self.addon.update(
             guid='@theme–experiment-inside-webextension-guid',
@@ -2181,8 +2181,8 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         self.upload = self.get_upload(
             'webextension_langpack.xpi',
             validation=json.dumps({
-                "notices": 2, "errors": 0, "messages": [],
-                "metadata": {}, "warnings": 1,
+                'notices': 2, 'errors': 0, 'messages': [],
+                'metadata': {}, 'warnings': 1,
             }))
 
         self.addon.update(type=amo.ADDON_LPAPP)
@@ -2446,6 +2446,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
 class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
     """ Testing the case of a listed version being submitted on an add-on that
     previously only had unlisted versions - so is missing metadata."""
+
     def setUp(self):
         super(TestVersionSubmitDetailsFirstListed, self).setUp()
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)

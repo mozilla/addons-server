@@ -18,14 +18,14 @@ class TestDeniedNameAdminAddForm(UserFormBase):
     def test_no_usernames(self):
         self.client.login(email='testo@example.com')
         url = reverse('admin:users_deniedname_add')
-        data = {'names': "\n\n", }
+        data = {'names': '\n\n', }
         r = self.client.post(url, data)
         self.assertFormError(r, 'form', 'names', u'This field is required.')
 
     def test_add(self):
         self.client.login(email='testo@example.com')
         url = reverse('admin:users_deniedname_add')
-        data = {'names': "IE6Fan\nfubar\n\n", }
+        data = {'names': 'IE6Fan\nfubar\n\n', }
         r = self.client.post(url, data)
         msg = '1 new values added to the deny list. '
         msg += '1 duplicates were ignored.'

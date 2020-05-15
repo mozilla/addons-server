@@ -90,11 +90,11 @@ class ScannerResultView(ListAPIView):
 
         label = self.request.query_params.get('label', None)
         if label is not None and label not in [LABEL_BAD, LABEL_GOOD]:
-            raise ParseError("invalid value for label")
+            raise ParseError('invalid value for label')
 
         scanner = self.request.query_params.get('scanner', None)
         if scanner is not None and scanner not in list(SCANNERS.values()):
-            raise ParseError("invalid value for scanner")
+            raise ParseError('invalid value for scanner')
 
         return super().get(request, format)
 

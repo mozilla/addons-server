@@ -13,7 +13,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='scannerrule',
             name='name',
-            field=models.CharField(help_text='This is the exact name of the rule used by a scanner.', max_length=200),
+            field=models.CharField(
+                help_text='This is the exact name of the rule used by a scanner.', max_length=200),
         ),
         migrations.AlterUniqueTogether(
             name='scannerrule',

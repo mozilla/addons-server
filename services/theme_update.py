@@ -69,9 +69,9 @@ class MigratedUpdate(ThemeUpdate):
     def get_json(self):
         if self.get_data():
             response = {
-                "converted_theme": {
-                    "url": get_cdn_url(self.data['stheme_id'], self.data),
-                    "hash": self.data['hash']
+                'converted_theme': {
+                    'url': get_cdn_url(self.data['stheme_id'], self.data),
+                    'hash': self.data['hash']
                 }
             }
             return json.dumps(response)

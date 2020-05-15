@@ -13,16 +13,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='scannerqueryrule',
             name='state',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'New'), (2, 'Running'), (3, 'Aborted'), (4, 'Completed')], default=1),
+            field=models.PositiveSmallIntegerField(
+                choices=[(1, 'New'), (2, 'Running'), (3, 'Aborted'), (4, 'Completed')], default=1),
         ),
         migrations.AlterField(
             model_name='scannerqueryresult',
             name='matched_rules',
-            field=models.ManyToManyField(related_name='results', through='scanners.ScannerQueryMatch', to='scanners.ScannerQueryRule'),
+            field=models.ManyToManyField(
+                related_name='results', through='scanners.ScannerQueryMatch', to='scanners.ScannerQueryRule'),
         ),
         migrations.AlterField(
             model_name='scannerresult',
             name='matched_rules',
-            field=models.ManyToManyField(related_name='results', through='scanners.ScannerMatch', to='scanners.ScannerRule'),
+            field=models.ManyToManyField(
+                related_name='results', through='scanners.ScannerMatch', to='scanners.ScannerRule'),
         ),
     ]

@@ -38,9 +38,9 @@ try:
     # CACHE_KEY_PREFIX. This will let us not have to flush memcache during
     # updates and it will let us preload data into it before a production push.
     from build import BUILD_ID_CSS, BUILD_ID_JS
-    build_id = "%s%s" % (BUILD_ID_CSS[:2], BUILD_ID_JS[:2])
+    build_id = '%s%s' % (BUILD_ID_CSS[:2], BUILD_ID_JS[:2])
 except ImportError:
-    build_id = ""
+    build_id = ''
 
 # jingo-minify: Style sheet media attribute default
 CSS_MEDIA_DEFAULT = 'all'
@@ -992,7 +992,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 2592000  # 30 days
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797
+SESSION_COOKIE_DOMAIN = '.%s' % DOMAIN  # bug 608797
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 # These should have app+locale at the start to avoid redirects
@@ -1005,7 +1005,7 @@ LOGOUT_REDIRECT_URL = '/'
 MAX_GEN_USERNAME_TRIES = 50
 
 # Email settings
-ADDONS_EMAIL = "Mozilla Add-ons <nobody@mozilla.org>"
+ADDONS_EMAIL = 'Mozilla Add-ons <nobody@mozilla.org>'
 DEFAULT_FROM_EMAIL = ADDONS_EMAIL
 
 # Email goes to the console by default.  s/console/smtp/ for regular delivery

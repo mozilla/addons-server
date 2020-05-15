@@ -17,9 +17,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Translation',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('autoid', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('autoid', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('id', models.PositiveIntegerField()),
                 ('locale', models.CharField(max_length=10)),
                 ('localized_string', models.TextField(null=True)),
@@ -28,7 +30,8 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'translations',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='TranslationSequence',
@@ -41,7 +44,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='translation',
-            constraint=models.UniqueConstraint(fields=('id', 'locale'), name='id'),
+            constraint=models.UniqueConstraint(
+                fields=('id', 'locale'), name='id'),
         ),
         migrations.CreateModel(
             name='PurifiedTranslation',

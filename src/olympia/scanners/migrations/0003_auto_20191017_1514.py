@@ -29,10 +29,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='scannerresult',
             name='scanner',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'customs'), (2, 'wat'), (3, 'yara')]),
+            field=models.PositiveSmallIntegerField(
+                choices=[(1, 'customs'), (2, 'wat'), (3, 'yara')]),
         ),
         migrations.AddIndex(
             model_name='scannerresult',
-            index=models.Index(fields=['has_matches'], name='scanners_re_has_mat_d3421d_idx'),
+            index=models.Index(fields=['has_matches'],
+                               name='scanners_re_has_mat_d3421d_idx'),
         ),
     ]

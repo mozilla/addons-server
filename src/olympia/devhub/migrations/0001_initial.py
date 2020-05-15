@@ -23,9 +23,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='BlogPost',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('title', models.CharField(max_length=255)),
                 ('date_posted', models.DateField(default=datetime.datetime.now)),
                 ('permalink', models.CharField(max_length=255)),
@@ -33,16 +35,21 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'blogposts',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='RssKey',
             fields=[
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('key', models.UUIDField(db_column='rsskey', default=uuid.uuid4, null=True, unique=True)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('key', models.UUIDField(db_column='rsskey',
+                                         default=uuid.uuid4, null=True, unique=True)),
                 ('created', models.DateField(default=datetime.datetime.now)),
-                ('addon', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='addons.Addon', unique=True)),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, unique=True)),
+                ('addon', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.CASCADE, to='addons.Addon', unique=True)),
+                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                                           to=settings.AUTH_USER_MODEL, unique=True)),
             ],
             options={
                 'db_table': 'hubrsskeys',

@@ -16,7 +16,7 @@ SELECT IFNULL(u.display_name, CONCAT('Firefox user ', u.id)) AS `Name`,
                          WHERE name = 'No Reviewer Incentives')
                       AND user_id = rs.user_id), '-', SUM(rs.score)), 0) AS `Points`,
        FORMAT(COUNT(*), 0) AS `Add-ons Reviewed`
-FROM reviewer_scores rs 
+FROM reviewer_scores rs
 LEFT JOIN editors_autoapprovalsummary aa ON aa.version_id = rs.version_id
 JOIN users u ON u.id = rs.user_id
 WHERE DATE(rs.created) BETWEEN @WEEK_BEGIN AND @WEEK_END

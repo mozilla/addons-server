@@ -25,43 +25,59 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='License',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('url', models.URLField(null=True)),
                 ('builtin', models.PositiveIntegerField(default=0)),
-                ('on_form', models.BooleanField(default=False, help_text='Is this a license choice in the devhub?')),
-                ('some_rights', models.BooleanField(default=False, help_text='Show "Some Rights Reserved" instead of the license name?')),
-                ('icons', models.CharField(help_text='Space-separated list of icon identifiers.', max_length=255, null=True)),
+                ('on_form', models.BooleanField(default=False,
+                                                help_text='Is this a license choice in the devhub?')),
+                ('some_rights', models.BooleanField(default=False,
+                                                    help_text='Show "Some Rights Reserved" instead of the license name?')),
+                ('icons', models.CharField(
+                    help_text='Space-separated list of icon identifiers.', max_length=255, null=True)),
                 ('creative_commons', models.BooleanField(default=False)),
-                ('name', olympia.translations.fields.TranslatedField(blank=True, db_column='name', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='License_name_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True)),
-                ('text', olympia.translations.fields.LinkifiedField(blank=True, db_column='text', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='License_text_set+', require_locale=True, short=True, to='translations.LinkifiedTranslation', to_field='id', unique=True)),
+                ('name', olympia.translations.fields.TranslatedField(blank=True, db_column='name', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                                     related_name='License_name_set+', require_locale=True, short=True, to='translations.Translation', to_field='id', unique=True)),
+                ('text', olympia.translations.fields.LinkifiedField(blank=True, db_column='text', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                                    related_name='License_text_set+', require_locale=True, short=True, to='translations.LinkifiedTranslation', to_field='id', unique=True)),
             ],
             options={
                 'db_table': 'licenses',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Version',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('approval_notes', models.TextField(blank=True, db_column='approvalnotes', default='', null=True)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('approval_notes', models.TextField(blank=True,
+                                                    db_column='approvalnotes', default='', null=True)),
                 ('version', models.CharField(default='0.1', max_length=255)),
                 ('version_int', models.BigIntegerField(editable=False, null=True)),
                 ('nomination', models.DateTimeField(null=True)),
                 ('reviewed', models.DateTimeField(null=True)),
                 ('deleted', models.BooleanField(default=False)),
-                ('source', models.FileField(blank=True, null=True, upload_to=olympia.versions.models.source_upload_path)),
-                ('channel', models.IntegerField(choices=[(1, 'Unlisted'), (2, 'Listed')], default=2)),
+                ('source', models.FileField(blank=True, null=True,
+                                            upload_to=olympia.versions.models.source_upload_path)),
+                ('channel', models.IntegerField(choices=[
+                 (1, 'Unlisted'), (2, 'Listed')], default=2)),
                 ('git_hash', models.CharField(blank=True, max_length=40)),
                 ('source_git_hash', models.CharField(blank=True, max_length=40)),
                 ('recommendation_approved', models.BooleanField(default=False)),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='versions', to='addons.Addon')),
-                ('license', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='versions.License')),
-                ('release_notes', olympia.translations.fields.PurifiedField(blank=True, db_column='releasenotes', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='Version_release_notes_set+', require_locale=True, short=False, to='translations.PurifiedTranslation', to_field='id', unique=True)),
+                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                            related_name='versions', to='addons.Addon')),
+                ('license', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.CASCADE, to='versions.License')),
+                ('release_notes', olympia.translations.fields.PurifiedField(blank=True, db_column='releasenotes', null=True, on_delete=django.db.models.deletion.SET_NULL,
+                                                                            related_name='Version_release_notes_set+', require_locale=True, short=False, to='translations.PurifiedTranslation', to_field='id', unique=True)),
             ],
             options={
                 'db_table': 'versions',
@@ -70,7 +86,8 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'unfiltered',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
             managers=[
                 ('unfiltered', django.db.models.manager.Manager()),
             ],
@@ -78,28 +95,38 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='VersionPreview',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('position', models.IntegerField(default=0)),
                 ('sizes', django_extensions.db.fields.json.JSONField(default={})),
-                ('colors', django_extensions.db.fields.json.JSONField(default=None, null=True)),
-                ('version', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='previews', to='versions.Version')),
+                ('colors', django_extensions.db.fields.json.JSONField(
+                    default=None, null=True)),
+                ('version', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                              related_name='previews', to='versions.Version')),
             ],
             options={
                 'db_table': 'version_previews',
                 'ordering': ('position', 'created'),
             },
-            bases=(olympia.amo.models.BasePreview, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.BasePreview, olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ApplicationsVersions',
             fields=[
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('application', models.PositiveIntegerField(choices=[(1, 'Firefox'), (61, 'Firefox for Android')], db_column='application_id')),
-                ('max', models.ForeignKey(db_column='max', on_delete=django.db.models.deletion.CASCADE, related_name='max_set', to='applications.AppVersion')),
-                ('min', models.ForeignKey(db_column='min', on_delete=django.db.models.deletion.CASCADE, related_name='min_set', to='applications.AppVersion')),
-                ('version', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='apps', to='versions.Version')),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('application', models.PositiveIntegerField(choices=[
+                 (1, 'Firefox'), (61, 'Firefox for Android')], db_column='application_id')),
+                ('max', models.ForeignKey(db_column='max', on_delete=django.db.models.deletion.CASCADE,
+                                          related_name='max_set', to='applications.AppVersion')),
+                ('min', models.ForeignKey(db_column='min', on_delete=django.db.models.deletion.CASCADE,
+                                          related_name='min_set', to='applications.AppVersion')),
+                ('version', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                              related_name='apps', to='versions.Version')),
             ],
             options={
                 'db_table': 'applications_versions',
@@ -107,11 +134,13 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='versionpreview',
-            index=olympia.amo.models.LongNameIndex(fields=['version'], name='version_previews_version_id_fk_versions_id'),
+            index=olympia.amo.models.LongNameIndex(
+                fields=['version'], name='version_previews_version_id_fk_versions_id'),
         ),
         migrations.AddIndex(
             model_name='versionpreview',
-            index=models.Index(fields=['version', 'position', 'created'], name='version_position_created_idx'),
+            index=models.Index(
+                fields=['version', 'position', 'created'], name='version_position_created_idx'),
         ),
         migrations.AddIndex(
             model_name='version',
@@ -131,6 +160,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='applicationsversions',
-            constraint=models.UniqueConstraint(fields=('application', 'version'), name='application_id'),
+            constraint=models.UniqueConstraint(
+                fields=('application', 'version'), name='application_id'),
         ),
     ]

@@ -17,10 +17,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AppVersion',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('application', models.PositiveIntegerField(choices=[(1, 'Firefox'), (61, 'Firefox for Android')], db_column='application_id')),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('application', models.PositiveIntegerField(choices=[
+                 (1, 'Firefox'), (61, 'Firefox for Android')], db_column='application_id')),
                 ('version', models.CharField(default='', max_length=255)),
                 ('version_int', models.BigIntegerField(editable=False)),
             ],
@@ -28,7 +31,8 @@ class Migration(migrations.Migration):
                 'db_table': 'appversions',
                 'ordering': ['-version_int'],
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='appversion',
@@ -44,6 +48,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='appversion',
-            constraint=models.UniqueConstraint(fields=('application', 'version'), name='application_id_2'),
+            constraint=models.UniqueConstraint(
+                fields=('application', 'version'), name='application_id_2'),
         ),
     ]

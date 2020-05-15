@@ -17,7 +17,7 @@ class Command(BaseCommand):
         """Handle command arguments."""
         parser.add_argument(
             'id',
-            help="CT baseline identifier",
+            help='CT baseline identifier',
             metavar=('ID'))
         parser.add_argument(
             '--addon-guids-input',

@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='autoapprovalsummary',
             name='is_listing_disabled',
-            field=models.NullBooleanField(default=None, help_text='Has incomplete or disabled listing'),
+            field=models.NullBooleanField(
+                default=None, help_text='Has incomplete or disabled listing'),
         ),
     ]

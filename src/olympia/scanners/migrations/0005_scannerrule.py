@@ -15,17 +15,23 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ScannerRule',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(help_text='This is the exact name of the rule used by a scanner.', max_length=200, unique=True)),
-                ('scanner', models.PositiveSmallIntegerField(choices=[(1, 'customs'), (2, 'wat'), (3, 'yara')])),
-                ('action', models.PositiveSmallIntegerField(choices=[(1, 'no action'), (20, 'flag for human review')], default=1)),
+                ('name', models.CharField(
+                    help_text='This is the exact name of the rule used by a scanner.', max_length=200, unique=True)),
+                ('scanner', models.PositiveSmallIntegerField(
+                    choices=[(1, 'customs'), (2, 'wat'), (3, 'yara')])),
+                ('action', models.PositiveSmallIntegerField(choices=[
+                 (1, 'no action'), (20, 'flag for human review')], default=1)),
                 ('is_active', models.BooleanField(default=True)),
             ],
             options={
                 'db_table': 'scanners_rules',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
     ]

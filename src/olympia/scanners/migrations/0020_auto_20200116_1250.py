@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='scannerqueryrule',
             name='state',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'New'), (2, 'Running'), (3, 'Aborted'), (5, 'Aborting'), (4, 'Completed')], default=1),
+            field=models.PositiveSmallIntegerField(choices=[(
+                1, 'New'), (2, 'Running'), (3, 'Aborted'), (5, 'Aborting'), (4, 'Completed')], default=1),
         ),
     ]

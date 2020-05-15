@@ -19,46 +19,57 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AddonTag',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='addon_tags', to='addons.Addon')),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                            related_name='addon_tags', to='addons.Addon')),
             ],
             options={
                 'db_table': 'users_tags_addons',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Tag',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('tag_text', models.CharField(max_length=128)),
                 ('denied', models.BooleanField(default=False)),
                 ('restricted', models.BooleanField(default=False)),
                 ('num_addons', models.IntegerField(default=0)),
-                ('addons', models.ManyToManyField(related_name='tags', through='tags.AddonTag', to='addons.Addon')),
+                ('addons', models.ManyToManyField(related_name='tags',
+                                                  through='tags.AddonTag', to='addons.Addon')),
             ],
             options={
                 'db_table': 'tags',
                 'ordering': ('tag_text',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddField(
             model_name='addontag',
             name='tag',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='addon_tags', to='tags.Tag'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, related_name='addon_tags', to='tags.Tag'),
         ),
         migrations.AddIndex(
             model_name='tag',
-            index=models.Index(fields=['denied', 'num_addons'], name='tag_blacklisted_num_addons_idx'),
+            index=models.Index(
+                fields=['denied', 'num_addons'], name='tag_blacklisted_num_addons_idx'),
         ),
         migrations.AddConstraint(
             model_name='tag',
-            constraint=models.UniqueConstraint(fields=('tag_text',), name='tag_text'),
+            constraint=models.UniqueConstraint(
+                fields=('tag_text',), name='tag_text'),
         ),
         migrations.AddIndex(
             model_name='addontag',
@@ -70,6 +81,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='addontag',
-            constraint=models.UniqueConstraint(fields=('tag', 'addon'), name='tag_id_2'),
+            constraint=models.UniqueConstraint(
+                fields=('tag', 'addon'), name='tag_id_2'),
         ),
     ]

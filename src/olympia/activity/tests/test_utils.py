@@ -714,7 +714,7 @@ class TestLogAndNotify(TestCase):
 
         body = send_mail_mock.call_args_list[1][0][1]
         assert "email's entities should be decoded" in body
-        assert "&" not in body
+        assert '&' not in body
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_notify_about_previous_activity(self, send_mail_mock):

@@ -529,13 +529,13 @@ class TestFileViewer(FilesBase, TestCase):
         assert "frame-ancestors 'none'" in res['content-security-policy']
 
         # The report-uri should be set.
-        assert "report-uri" in res['content-security-policy']
+        assert 'report-uri' in res['content-security-policy']
 
         # Other properties that we defined by default aren't set
-        assert "style-src" not in res['content-security-policy']
-        assert "font-src" not in res['content-security-policy']
-        assert "frame-src" not in res['content-security-policy']
-        assert "child-src" not in res['content-security-policy']
+        assert 'style-src' not in res['content-security-policy']
+        assert 'font-src' not in res['content-security-policy']
+        assert 'frame-src' not in res['content-security-policy']
+        assert 'child-src' not in res['content-security-policy']
 
     def test_serve_obj_not_exist(self):
         self.file_viewer.extract()

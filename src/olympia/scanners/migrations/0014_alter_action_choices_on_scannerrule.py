@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='scannerrule',
             name='action',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'No action'), (20, 'Flag for human review'), (100, 'Delay auto-approval'), (200, 'Delay auto-approval indefinitely')], default=1),
+            field=models.PositiveSmallIntegerField(choices=[(1, 'No action'), (20, 'Flag for human review'), (
+                100, 'Delay auto-approval'), (200, 'Delay auto-approval indefinitely')], default=1),
         ),
     ]

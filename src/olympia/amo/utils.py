@@ -143,7 +143,7 @@ def isotime(t):
     """Date/Time format according to ISO 8601"""
     if not hasattr(t, 'tzinfo'):
         return
-    return _append_tz(t).astimezone(pytz.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    return _append_tz(t).astimezone(pytz.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
 
 def epoch(t):
@@ -1041,7 +1041,7 @@ class StopWatch():
         now = datetime.datetime.utcnow()
         statsd.timing(self.prefix + label, now - self._timestamp)
         log.debug(
-            "%s: %s", self.prefix + label, now - self._timestamp)
+            '%s: %s', self.prefix + label, now - self._timestamp)
         self._timestamp = now
 
 

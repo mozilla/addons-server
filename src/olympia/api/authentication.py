@@ -211,7 +211,7 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
         """
         if 'orig_iat' in payload:
             msg = ("API key based tokens are not refreshable, don't include "
-                   "`orig_iat` in their payload.")
+                   '`orig_iat` in their payload.')
             raise exceptions.AuthenticationFailed(msg)
         try:
             api_key = APIKey.get_jwt_key(key=payload['iss'])

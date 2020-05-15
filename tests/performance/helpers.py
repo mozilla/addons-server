@@ -68,6 +68,7 @@ class EventMarker(object):
     """
     Simple event marker that logs on every call.
     """
+
     def __init__(self, name):
         self.name = name
 

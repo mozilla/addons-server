@@ -105,9 +105,9 @@ class AddonAppVersionQueryParam(AddonQueryParam):
         app_id, low, high = self.get_values()
         return [
             Q('range', **{'current_version.compatible_apps.%d.min' % app_id:
-              {'lte': low}}),
+                          {'lte': low}}),
             Q('range', **{'current_version.compatible_apps.%d.max' % app_id:
-              {'gte': high}}),
+                          {'gte': high}}),
         ]
 
 
@@ -812,6 +812,7 @@ class ReviewedContentFilter(BaseFilterBackend):
     an ES query -- those listed, not deleted, with a reviewed status and not
     disabled.
     """
+
     def filter_queryset(self, request, qs, view):
         return qs.query(query.Bool(filter=[
             Q('terms', status=amo.REVIEWED_STATUSES),

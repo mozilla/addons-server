@@ -25,7 +25,7 @@ def delete_photo(dst, **kw):
     try:
         storage.delete(dst)
     except Exception as e:
-        task_log.error("Error deleting userpic: %s" % e)
+        task_log.error('Error deleting userpic: %s' % e)
 
 
 @task
@@ -38,7 +38,7 @@ def resize_photo(src, dst, locally=False, **kw):
         resize_image(src, dst, (200, 200))
         return True
     except Exception as e:
-        task_log.error("Error saving userpic: %s" % e)
+        task_log.error('Error saving userpic: %s' % e)
 
 
 @task(rate_limit='15/m')

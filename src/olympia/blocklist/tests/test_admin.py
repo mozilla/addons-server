@@ -821,8 +821,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # This is irrelevant because a complete block doesn't have links
         Block.objects.create(
             addon=addon_factory(guid='foo@baa'),
-            min_version="0",
-            max_version="*",
+            min_version='0',
+            max_version='*',
             updated_by=user_factory())
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
@@ -906,8 +906,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         addon_factory(guid='guid@', name='Danger Danger')
         existing = Block.objects.create(
             addon=addon_factory(guid='foo@baa'),
-            min_version="1",
-            max_version="99",
+            min_version='1',
+            max_version='99',
             updated_by=user_factory())
         response = self.client.post(
             self.submission_url,

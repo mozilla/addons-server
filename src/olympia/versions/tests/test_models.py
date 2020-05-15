@@ -192,7 +192,7 @@ class TestVersion(TestCase):
     def test_compatible_apps(self):
         v = Version.objects.get(pk=81551)
 
-        assert amo.FIREFOX in v.compatible_apps, "Missing Firefox >_<"
+        assert amo.FIREFOX in v.compatible_apps, 'Missing Firefox >_<'
 
         # We should be re-using the same Version instance in
         # ApplicationsVersions loaded from <Version>._compat_map().
@@ -643,7 +643,7 @@ class TestVersion(TestCase):
         assert addon.is_recommended
 
 
-@pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
+@pytest.mark.parametrize('addon_status,file_status,is_unreviewed', [
     (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, True),
     (amo.STATUS_NOMINATED, amo.STATUS_NOMINATED, True),
     (amo.STATUS_NOMINATED, amo.STATUS_APPROVED, False),
@@ -918,7 +918,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             amo.RELEASE_CHANNEL_LISTED,
             parsed_data=parsed_data)
         assert not storage.exists(path), (
-            "Expected original upload to move but it still exists.")
+            'Expected original upload to move but it still exists.')
         # set path to empty string (default db value) when deleted
         assert self.upload.path == ''
         files = version.all_files

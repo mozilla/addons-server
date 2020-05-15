@@ -24,7 +24,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='block',
             name='include_in_legacy',
-            field=models.BooleanField(default=False, help_text='Include in legacy xml blocklist too, as well as new v3'),
+            field=models.BooleanField(
+                default=False, help_text='Include in legacy xml blocklist too, as well as new v3'),
         ),
         migrations.RunPython(set_guid_from_addon),
     ]

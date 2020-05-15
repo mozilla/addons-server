@@ -691,7 +691,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
 
     def test_theme_json_extracted(self):
         # Check theme data is extracted from the manifest and returned.
-        data = {'theme': {'colors': {'tab_background_text': "#3deb60"}}}
+        data = {'theme': {'colors': {'tab_background_text': '#3deb60'}}}
         assert self.parse(data)['theme'] == data['theme']
 
     def test_unknown_strict_max_version(self):

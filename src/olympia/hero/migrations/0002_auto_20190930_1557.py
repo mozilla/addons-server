@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='primaryhero',
             name='gradient_color',
-            field=olympia.hero.models.WidgetCharField(blank=True, choices=[('#054096', 'color-blue-70'), ('#008787', 'color-green-70'), ('#C60084', 'color-pink-70'), ('#722291', 'color-purple-70'), ('#592ACB', 'color-violet-70')], max_length=7),
+            field=olympia.hero.models.WidgetCharField(blank=True, choices=[('#054096', 'color-blue-70'), ('#008787', 'color-green-70'), (
+                '#C60084', 'color-pink-70'), ('#722291', 'color-purple-70'), ('#592ACB', 'color-violet-70')], max_length=7),
         ),
     ]

@@ -373,7 +373,7 @@ class TestActivityLogCount(TestCase):
         self.add_approve_logs(5)
         result = ActivityLog.objects.total_ratings_user_position(self.user)
         assert result == 1
-        user = UserProfile.objects.create(email="no@mozil.la")
+        user = UserProfile.objects.create(email='no@mozil.la')
         result = ActivityLog.objects.total_ratings_user_position(user)
         assert result is None
 
@@ -381,13 +381,13 @@ class TestActivityLogCount(TestCase):
         self.add_approve_logs(5)
         result = ActivityLog.objects.monthly_reviews_user_position(self.user)
         assert result == 1
-        user = UserProfile.objects.create(email="no@mozil.la")
+        user = UserProfile.objects.create(email='no@mozil.la')
         result = ActivityLog.objects.monthly_reviews_user_position(user)
         assert result is None
 
     def test_user_approve_reviews(self):
         self.add_approve_logs(3)
-        other = UserProfile.objects.create(email="no@mozil.la", username="o")
+        other = UserProfile.objects.create(email='no@mozil.la', username='o')
         core.set_user(other)
         self.add_approve_logs(2)
         result = ActivityLog.objects.user_approve_reviews(self.user).count()
@@ -395,7 +395,7 @@ class TestActivityLogCount(TestCase):
         result = ActivityLog.objects.user_approve_reviews(other).count()
         assert result == 2
         another = UserProfile.objects.create(
-            email="no@mtrala.la", username="a")
+            email='no@mtrala.la', username='a')
         result = ActivityLog.objects.user_approve_reviews(another).count()
         assert result == 0
 

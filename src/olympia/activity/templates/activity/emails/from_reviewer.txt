@@ -14,6 +14,6 @@ To respond, please reply to this email or visit {{ url }}. {% if is_info_request
 
 Thank you for your attention.
 
--- 
+--
 Mozilla Add-ons
 {{ SITE_URL }}

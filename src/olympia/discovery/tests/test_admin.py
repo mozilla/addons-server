@@ -13,18 +13,18 @@ class TestDiscoveryAdmin(TestCase):
 
     def _get_heroform(self, item_id):
         return {
-            "primaryhero-TOTAL_FORMS": "1",
-            "primaryhero-INITIAL_FORMS": "0",
-            "primaryhero-MIN_NUM_FORMS": "0",
-            "primaryhero-MAX_NUM_FORMS": "1",
-            "primaryhero-0-image": "",
-            "primaryhero-0-gradient_color": "",
-            "primaryhero-0-id": "",
-            "primaryhero-0-disco_addon": item_id,
-            "primaryhero-__prefix__-image": "",
-            "primaryhero-__prefix__-gradient_color": "",
-            "primaryhero-__prefix__-id": "",
-            "primaryhero-__prefix__-disco_addon": item_id,
+            'primaryhero-TOTAL_FORMS': '1',
+            'primaryhero-INITIAL_FORMS': '0',
+            'primaryhero-MIN_NUM_FORMS': '0',
+            'primaryhero-MAX_NUM_FORMS': '1',
+            'primaryhero-0-image': '',
+            'primaryhero-0-gradient_color': '',
+            'primaryhero-0-id': '',
+            'primaryhero-0-disco_addon': item_id,
+            'primaryhero-__prefix__-image': '',
+            'primaryhero-__prefix__-gradient_color': '',
+            'primaryhero-__prefix__-id': '',
+            'primaryhero-__prefix__-disco_addon': item_id,
         }
 
     def test_can_see_discovery_module_in_admin_with_discovery_edit(self):
@@ -555,22 +555,22 @@ class TestSecondaryHeroShelfAdmin(TestCase):
     def _get_moduleform(self, item, module_data, initial=0):
         count = str(len(module_data))
         out = {
-            "modules-TOTAL_FORMS": count,
-            "modules-INITIAL_FORMS": initial,
-            "modules-MIN_NUM_FORMS": count,
-            "modules-MAX_NUM_FORMS": count,
-            "modules-__prefix__-icon": "",
-            "modules-__prefix__-description": "",
-            "modules-__prefix__-id": "",
-            "modules-__prefix__-shelf": str(item),
+            'modules-TOTAL_FORMS': count,
+            'modules-INITIAL_FORMS': initial,
+            'modules-MIN_NUM_FORMS': count,
+            'modules-MAX_NUM_FORMS': count,
+            'modules-__prefix__-icon': '',
+            'modules-__prefix__-description': '',
+            'modules-__prefix__-id': '',
+            'modules-__prefix__-shelf': str(item),
         }
         for index in range(0, len(module_data)):
             out.update(**{
-                f"modules-{index}-icon": str(module_data[index]['icon']),
-                f"modules-{index}-description": str(
+                f'modules-{index}-icon': str(module_data[index]['icon']),
+                f'modules-{index}-description': str(
                     module_data[index]['description']),
-                f"modules-{index}-id": str(module_data[index].get('id', '')),
-                f"modules-{index}-shelf": str(item),
+                f'modules-{index}-id': str(module_data[index].get('id', '')),
+                f'modules-{index}-shelf': str(item),
 
             })
         return out

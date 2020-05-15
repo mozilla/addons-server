@@ -1,7 +1,7 @@
 import os
 import site
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings_local")
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings_local')
 
 wsgidir = os.path.dirname(__file__)
 for path in ['../',

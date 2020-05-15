@@ -47,7 +47,7 @@ class File(OnChangeMixin, ModelBase):
     platform = models.PositiveIntegerField(
         choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         default=amo.PLATFORM_ALL.id,
-        db_column="platform_id"
+        db_column='platform_id'
     )
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # In bytes.
@@ -455,7 +455,7 @@ class FileUpload(ModelBase):
     validation = models.TextField(null=True)
     automated_signing = models.BooleanField(default=False)
     compat_with_app = models.PositiveIntegerField(
-        choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True)
+        choices=amo.APPS_CHOICES, db_column='compat_with_app_id', null=True)
     compat_with_appver = models.ForeignKey(
         AppVersion, null=True, related_name='uploads_compat_for_appver',
         on_delete=models.CASCADE)

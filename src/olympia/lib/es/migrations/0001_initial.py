@@ -15,12 +15,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Reindexing',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('start_date', models.DateTimeField(default=django.utils.timezone.now)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('start_date', models.DateTimeField(
+                    default=django.utils.timezone.now)),
                 ('old_index', models.CharField(max_length=255, null=True)),
                 ('new_index', models.CharField(max_length=255)),
                 ('alias', models.CharField(max_length=255)),
-                ('site', models.CharField(choices=[('amo', 'AMO')], max_length=3)),
+                ('site', models.CharField(
+                    choices=[('amo', 'AMO')], max_length=3)),
             ],
             options={
                 'db_table': 'zadmin_reindexing',

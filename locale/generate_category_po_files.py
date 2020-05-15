@@ -76,7 +76,7 @@ def main():
             print('Skipping locale %s, it has no translations :(' % locale)
             continue
 
-        print("Writing %d translations to %s" % (
+        print('Writing %d translations to %s' % (
             len(translations_for_this_locale), fname))
         write_po(fname, translations_for_this_locale)
 

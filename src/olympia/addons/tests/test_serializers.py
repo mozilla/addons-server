@@ -32,6 +32,7 @@ from olympia.versions.models import (
 class AddonSerializerOutputTestMixin(object):
     """Mixin containing tests to execute on both the regular and the ES Addon
     serializer."""
+
     def setUp(self):
         super(AddonSerializerOutputTestMixin, self).setUp()
         self.request = APIRequestFactory().get('/')

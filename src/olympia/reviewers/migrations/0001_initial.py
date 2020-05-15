@@ -23,101 +23,130 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='AutoApprovalSummary',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('version', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='versions.Version')),
+                ('version', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                                                 primary_key=True, serialize=False, to='versions.Version')),
                 ('is_locked', models.BooleanField(default=False)),
                 ('has_auto_approval_disabled', models.BooleanField(default=False)),
                 ('is_recommendable', models.BooleanField(default=False)),
                 ('should_be_delayed', models.BooleanField(default=False)),
-                ('verdict', models.PositiveSmallIntegerField(choices=[(0, 'Would have been auto-approved (dry-run mode was in effect)'), (1, 'Would *not* have been auto-approved (dry-run mode was in effect)'), (2, 'Was auto-approved'), (3, 'Was *not* auto-approved')], default=3)),
+                ('verdict', models.PositiveSmallIntegerField(choices=[(0, 'Would have been auto-approved (dry-run mode was in effect)'), (
+                    1, 'Would *not* have been auto-approved (dry-run mode was in effect)'), (2, 'Was auto-approved'), (3, 'Was *not* auto-approved')], default=3)),
                 ('weight', models.IntegerField(default=0)),
-                ('weight_info', django_extensions.db.fields.json.JSONField(default={}, null=True)),
+                ('weight_info', django_extensions.db.fields.json.JSONField(
+                    default={}, null=True)),
                 ('confirmed', models.NullBooleanField(default=None)),
             ],
             options={
                 'db_table': 'editors_autoapprovalsummary',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='CannedResponse',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=255)),
                 ('response', models.TextField()),
                 ('sort_group', models.CharField(max_length=255)),
-                ('type', models.PositiveIntegerField(choices=[(1, 'Add-on'), (2, 'Static Theme'), (3, 'Persona')], db_index=True, default=0)),
-                ('category', models.PositiveIntegerField(choices=[(1, 'Other'), (2, 'Security'), (3, 'Privacy'), (4, 'Development Practices')], default=1)),
+                ('type', models.PositiveIntegerField(choices=[
+                 (1, 'Add-on'), (2, 'Static Theme'), (3, 'Persona')], db_index=True, default=0)),
+                ('category', models.PositiveIntegerField(choices=[
+                 (1, 'Other'), (2, 'Security'), (3, 'Privacy'), (4, 'Development Practices')], default=1)),
             ],
             options={
                 'db_table': 'cannedresponses',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Whiteboard',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('addon', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='addons.Addon')),
+                ('addon', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                                               primary_key=True, serialize=False, to='addons.Addon')),
                 ('private', models.TextField(blank=True)),
                 ('public', models.TextField(blank=True)),
             ],
             options={
                 'db_table': 'review_whiteboard',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ReviewerSubscription',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('addon', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'db_table': 'editor_subscriptions',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ReviewerScore',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('score', models.IntegerField()),
-                ('note_key', models.SmallIntegerField(choices=[(0, 'Manual Reviewer Points'), (10, 'New Legacy Add-on Review'), (11, 'Preliminary Add-on Review'), (12, 'Updated Legacy Add-on Review'), (20, 'New Dictionary Review'), (21, 'Preliminary Dictionary Review'), (22, 'Updated Dictionary Review'), (30, 'New Language Pack Review'), (31, 'Preliminary Language Pack Review'), (32, 'Updated Language Pack Review'), (40, 'Theme Review'), (41, 'Theme (Static) Review'), (50, 'New Search Provider Review'), (51, 'Preliminary Search Provider Review'), (52, 'Updated Search Provider Review'), (60, 'New Complete Theme Review'), (61, 'Preliminary Complete Theme Review'), (62, 'Updated Complete Theme Review'), (80, 'Moderated Add-on Review'), (81, 'Add-on Review Moderation Reverted'), (101, 'Add-on Content Review'), (102, 'Add-on Review (Highest Risk)'), (103, 'Add-on Review (High Risk)'), (104, 'Add-on Review (Medium Risk)'), (105, 'Add-on Review (Low Risk)')], default=0)),
+                ('note_key', models.SmallIntegerField(choices=[(0, 'Manual Reviewer Points'), (10, 'New Legacy Add-on Review'), (11, 'Preliminary Add-on Review'), (12, 'Updated Legacy Add-on Review'), (20, 'New Dictionary Review'), (21, 'Preliminary Dictionary Review'), (22, 'Updated Dictionary Review'), (30, 'New Language Pack Review'), (31, 'Preliminary Language Pack Review'), (32, 'Updated Language Pack Review'), (40, 'Theme Review'), (41, 'Theme (Static) Review'), (50, 'New Search Provider Review'), (
+                    51, 'Preliminary Search Provider Review'), (52, 'Updated Search Provider Review'), (60, 'New Complete Theme Review'), (61, 'Preliminary Complete Theme Review'), (62, 'Updated Complete Theme Review'), (80, 'Moderated Add-on Review'), (81, 'Add-on Review Moderation Reverted'), (101, 'Add-on Content Review'), (102, 'Add-on Review (Highest Risk)'), (103, 'Add-on Review (High Risk)'), (104, 'Add-on Review (Medium Risk)'), (105, 'Add-on Review (Low Risk)')], default=0)),
                 ('note', models.CharField(max_length=255)),
-                ('addon', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='addons.Addon')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='_reviewer_scores', to=settings.AUTH_USER_MODEL)),
-                ('version', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='versions.Version')),
+                ('addon', models.ForeignKey(blank=True, null=True,
+                                            on_delete=django.db.models.deletion.CASCADE, related_name='+', to='addons.Addon')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                           related_name='_reviewer_scores', to=settings.AUTH_USER_MODEL)),
+                ('version', models.ForeignKey(blank=True, null=True,
+                                              on_delete=django.db.models.deletion.CASCADE, related_name='+', to='versions.Version')),
             ],
             options={
                 'db_table': 'reviewer_scores',
                 'ordering': ('-created',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='reviewerscore',
-            index=models.Index(fields=['addon'], name='reviewer_scores_addon_id_fk'),
+            index=models.Index(
+                fields=['addon'], name='reviewer_scores_addon_id_fk'),
         ),
         migrations.AddIndex(
             model_name='reviewerscore',
-            index=models.Index(fields=['created'], name='reviewer_scores_created_idx'),
+            index=models.Index(fields=['created'],
+                               name='reviewer_scores_created_idx'),
         ),
         migrations.AddIndex(
             model_name='reviewerscore',
-            index=models.Index(fields=['user'], name='reviewer_scores_user_id_idx'),
+            index=models.Index(
+                fields=['user'], name='reviewer_scores_user_id_idx'),
         ),
         migrations.AddIndex(
             model_name='reviewerscore',
-            index=models.Index(fields=['version'], name='reviewer_scores_version_id'),
+            index=models.Index(fields=['version'],
+                               name='reviewer_scores_version_id'),
         ),
     ]

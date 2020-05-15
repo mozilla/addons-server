@@ -149,7 +149,7 @@ class Update(object):
             d2c_min = applications.D2C_MIN_VERSIONS.get(data['app_id'])
             if d2c_min:
                 data['d2c_min_version'] = version_int(d2c_min)
-                sql.append("AND appmax.version_int >= %(d2c_min_version)s ")
+                sql.append('AND appmax.version_int >= %(d2c_min_version)s ')
 
         else:  # Not defined or 'strict'.
             sql.append('AND appmax.version_int >= %(version_int)s ')

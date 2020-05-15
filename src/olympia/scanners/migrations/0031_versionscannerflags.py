@@ -17,9 +17,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='VersionScannerFlags',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('version', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='versions.Version')),
+                ('version', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                                                 primary_key=True, serialize=False, to='versions.Version')),
                 ('needs_human_review_by_mad', models.BooleanField(default=False)),
             ],
             options={
@@ -27,6 +29,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
     ]

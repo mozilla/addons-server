@@ -127,6 +127,7 @@ class UnfilteredVersionManagerForRelations(VersionManager):
     unfiltered_for_relations = UnfilteredVersionManagerForRelations() is
     defined in Version for this to work.
     """
+
     def __init__(self, include_deleted=True):
         super().__init__(include_deleted=include_deleted)
 

@@ -57,7 +57,7 @@ def update_last_updated(addon_id):
 @task
 @use_primary_db
 def update_appsupport(ids, **kw):
-    log.info("[%s@None] Updating appsupport for %s." % (len(ids), ids))
+    log.info('[%s@None] Updating appsupport for %s.' % (len(ids), ids))
 
     addons = Addon.objects.filter(id__in=ids).no_transforms()
     support = []
@@ -82,7 +82,7 @@ def update_appsupport(ids, **kw):
 
 @task
 def update_addon_average_daily_users(data, **kw):
-    log.info("[%s] Updating add-ons ADU totals." % (len(data)))
+    log.info('[%s] Updating add-ons ADU totals.' % (len(data)))
 
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
@@ -118,7 +118,7 @@ def update_addon_download_totals(data, **kw):
         except Addon.DoesNotExist:
             # We exclude deleted add-ons in the cron, but an add-on could have
             # been deleted by the time the task is processed.
-            msg = ("Got new download totals (total=%s) but the add-on"
+            msg = ('Got new download totals (total=%s) but the add-on'
                    "doesn't exist (%s)" % (sum_download_counts, pk))
             log.debug(msg)
 

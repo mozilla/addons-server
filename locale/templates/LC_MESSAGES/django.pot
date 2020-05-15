@@ -9671,4 +9671,3 @@ msgstr ""
 #: src/olympia/zadmin/forms.py:31
 msgid "Deleted versions can`t be changed."
 msgstr ""
-

@@ -18,7 +18,7 @@ from premailer import transform
 
 SQL_DIR = os.path.join(
     settings.ROOT,
-    "src/olympia/reviewers/management/commands/review_reports_sql/")
+    'src/olympia/reviewers/management/commands/review_reports_sql/')
 
 REPORTS = {
     'addon': [('Weekly Add-on Reviews, 5 Reviews or More',
@@ -44,7 +44,7 @@ class Command(BaseCommand):
     help = 'Generate and send the review report'
 
     def handle(self, *args, **options):
-        log.info("Generating add-on reviews report...")
+        log.info('Generating add-on reviews report...')
 
         addon_report_data = self.fetch_report_data('addon')
         addon_report_html = self.generate_report_html('addon',
@@ -56,7 +56,7 @@ class Command(BaseCommand):
                          addon_report_subject,
                          addon_report_html)
 
-        log.info("Generating content reviews report...")
+        log.info('Generating content reviews report...')
         content_report_data = self.fetch_report_data('content')
         content_report_html = self.generate_report_html('content',
                                                         content_report_data)

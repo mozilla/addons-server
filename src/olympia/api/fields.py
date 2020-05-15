@@ -21,6 +21,7 @@ class ReverseChoiceField(fields.ChoiceField):
     Note that the values in the `choices_dict` must be unique, since they are
     used for both serialization and de-serialization.
     """
+
     def __init__(self, *args, **kwargs):
         self.reversed_choices = {v: k for k, v in kwargs['choices']}
         super(ReverseChoiceField, self).__init__(*args, **kwargs)
@@ -290,7 +291,7 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
         self.render_as = kwargs.pop('render_as', 'pk')
         if self.render_as not in ['pk', 'slug']:
             raise ValueError("'render_as' must be one of 'pk' or 'slug', "
-                             "not %r" % (self.render_as,))
+                             'not %r' % (self.render_as,))
         self.slug_field = kwargs.pop('slug_field', 'slug')
         super(SlugOrPrimaryKeyRelatedField, self).__init__(
             *args, **kwargs)

@@ -33,7 +33,7 @@ def create_search_ext(name, version_str, addon_status, file_status,
         defaults={'type': amo.ADDON_SEARCH, 'name': name})
     version, created_ = Version.objects.get_or_create(
         addon=addon, version=version_str, defaults={'channel': channel})
-    File.objects.create(version=version, filename=u"%s.xpi" % name,
+    File.objects.create(version=version, filename=u'%s.xpi' % name,
                         platform=amo.PLATFORM_ALL.id, status=file_status)
     if file_status == amo.STATUS_AWAITING_REVIEW:
         AddonReviewerFlags.objects.update_or_create(

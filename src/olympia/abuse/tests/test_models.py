@@ -47,9 +47,9 @@ class TestAbuse(TestCase):
             (2, 'Creates spam or advertising'),
             (3, 'Changes search / homepage / new tab page without informing '
                 'user'),
-            (5, "Doesn’t work, breaks websites, or slows Firefox down"),
+            (5, 'Doesn’t work, breaks websites, or slows Firefox down'),
             (6, 'Hateful, violent, or illegal content'),
-            (7, "Pretends to be something it’s not"),
+            (7, 'Pretends to be something it’s not'),
             (9, "Wasn't wanted / impossible to get rid of"),
             (127, 'Other'),
         )

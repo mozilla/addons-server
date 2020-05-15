@@ -458,7 +458,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     def handle_true_positive(self, request, pk, *args, **kwargs):
         can_use_actions = self.has_actions_permission(request)
-        if not can_use_actions or request.method != "POST":
+        if not can_use_actions or request.method != 'POST':
             raise Http404
 
         result = self.get_object(request, pk)
@@ -476,7 +476,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     def handle_inconclusive(self, request, pk, *args, **kwargs):
         can_use_actions = self.has_actions_permission(request)
-        if not can_use_actions or request.method != "POST":
+        if not can_use_actions or request.method != 'POST':
             raise Http404
 
         result = self.get_object(request, pk)
@@ -494,7 +494,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     def handle_false_positive(self, request, pk, *args, **kwargs):
         can_use_actions = self.has_actions_permission(request)
-        if not can_use_actions or request.method != "POST":
+        if not can_use_actions or request.method != 'POST':
             raise Http404
 
         result = self.get_object(request, pk)
@@ -530,7 +530,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     def handle_revert(self, request, pk, *args, **kwargs):
         is_admin = acl.action_allowed(
             request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
-        if not is_admin or request.method != "POST":
+        if not is_admin or request.method != 'POST':
             raise Http404
 
         result = self.get_object(request, pk)
@@ -613,8 +613,8 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     readonly_fields = ('created', 'modified', 'matched_results_link')
 
     def formfield_for_choice_field(self, db_field, request, **kwargs):
-        if db_field.name == "scanner":
-            kwargs['choices'] = (("", "---------"),)
+        if db_field.name == 'scanner':
+            kwargs['choices'] = (('', '---------'),)
             for key, value in db_field.get_choices():
                 if key in [CUSTOMS, YARA]:
                     kwargs['choices'] += ((key, value),)

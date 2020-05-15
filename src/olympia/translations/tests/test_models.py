@@ -37,7 +37,7 @@ def ids(qs):
 
 
 class TranslationFixturelessTestCase(TestCase):
-    "We want to be able to rollback stuff."
+    'We want to be able to rollback stuff.'
 
     def test_whitespace(self):
         t = Translation(localized_string='     khaaaaaan!    ', id=999)
@@ -470,10 +470,10 @@ class TranslationTestCase(TestCase):
             doc = pq(m.linkified.localized_string_clean)
             link = doc('a')[0]
             assert link.attrib['href'] == (
-                "http://example.com/40979175e3ef6d7a9081085f3b99f2f05447b22ba7"
-                "90130517dd62b7ee59ef94/http%3A//example.org/awesomepage.html")
-            assert link.attrib['rel'] == "nofollow"
-            assert link.text == "http://example.org/awesomepage.html"
+                'http://example.com/40979175e3ef6d7a9081085f3b99f2f05447b22ba7'
+                '90130517dd62b7ee59ef94/http%3A//example.org/awesomepage.html')
+            assert link.attrib['rel'] == 'nofollow'
+            assert link.text == 'http://example.org/awesomepage.html'
             assert m.linkified.localized_string == s
 
     def test_require_locale(self):

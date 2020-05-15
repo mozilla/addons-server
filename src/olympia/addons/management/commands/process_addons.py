@@ -182,6 +182,7 @@ class Command(BaseCommand):
     allowed_kwargs: any extra boolean kwargs that can be applied via
         additional arguments. Make sure to add it to `add_arguments` too.
     """
+
     def add_arguments(self, parser):
         """Handle command arguments."""
         parser.add_argument(

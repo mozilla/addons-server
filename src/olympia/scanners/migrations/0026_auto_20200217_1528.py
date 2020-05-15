@@ -13,11 +13,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='scannerqueryrule',
             name='run_on_disabled_addons',
-            field=models.BooleanField(default=False, help_text='Run this rule on add-ons that have been force-disabled as well.'),
+            field=models.BooleanField(
+                default=False, help_text='Run this rule on add-ons that have been force-disabled as well.'),
         ),
         migrations.AlterField(
             model_name='scannerqueryrule',
             name='scanner',
-            field=models.PositiveSmallIntegerField(choices=[(3, 'yara')], default=3),
+            field=models.PositiveSmallIntegerField(
+                choices=[(3, 'yara')], default=3),
         ),
     ]

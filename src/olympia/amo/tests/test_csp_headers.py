@@ -23,15 +23,15 @@ class TestCSPHeaders(TestCase):
         # Make sure a object-src is locked down.
         assert "object-src 'none'" in response['content-security-policy']
         # The report-uri should be set.
-        assert "report-uri" in response['content-security-policy']
+        assert 'report-uri' in response['content-security-policy']
         # Basic assertions on the things we've defined.
-        assert "script-src" in response['content-security-policy']
-        assert "style-src" in response['content-security-policy']
-        assert "font-src" in response['content-security-policy']
-        assert "form-action" in response['content-security-policy']
-        assert "frame-src" in response['content-security-policy']
-        assert "child-src" in response['content-security-policy']
-        assert "base-uri" in response['content-security-policy']
+        assert 'script-src' in response['content-security-policy']
+        assert 'style-src' in response['content-security-policy']
+        assert 'font-src' in response['content-security-policy']
+        assert 'form-action' in response['content-security-policy']
+        assert 'frame-src' in response['content-security-policy']
+        assert 'child-src' in response['content-security-policy']
+        assert 'base-uri' in response['content-security-policy']
 
     def test_unsafe_inline_not_in_script_src(self):
         """Make sure a script-src does not have unsafe-inline."""
@@ -105,7 +105,7 @@ class TestCSPHeaders(TestCase):
     def test_not_self_in_script_src(self):
         """script-src should not need 'self' or a.m.o for services.a.m.o"""
         assert "'self'" not in base_settings.CSP_SCRIPT_SRC
-        assert "https://addons.mozilla.org" not in base_settings.CSP_SCRIPT_SRC
+        assert 'https://addons.mozilla.org' not in base_settings.CSP_SCRIPT_SRC
 
     def test_analytics_in_common_settings(self):
         """Check for anaytics hosts in img-src and script-src"""

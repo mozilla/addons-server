@@ -146,4 +146,3 @@ Here is an example of the full json that would be sent for an user:
         "last_login": "2019-08-06T10:39:44Z",
         "location": ""
     }
-

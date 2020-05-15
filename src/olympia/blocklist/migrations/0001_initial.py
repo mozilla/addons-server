@@ -20,13 +20,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Block',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('url', models.CharField(blank=True, max_length=255)),
                 ('reason', models.TextField(blank=True)),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
-                ('updated_by', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                ('addon', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
+                ('updated_by', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
                 ('max_version', models.CharField(default='*', max_length=255)),
                 ('min_version', models.CharField(default='0', max_length=255)),
                 ('include_in_legacy', models.BooleanField(default=False)),
@@ -36,6 +40,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
     ]

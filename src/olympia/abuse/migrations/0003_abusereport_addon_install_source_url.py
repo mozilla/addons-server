@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='abusereport',
             name='addon_install_source_url',
-            field=models.CharField(blank=True, default=None, max_length=255, null=True),
+            field=models.CharField(
+                blank=True, default=None, max_length=255, null=True),
         ),
     ]

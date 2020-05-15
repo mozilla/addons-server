@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='blocksubmission',
             name='action',
-            field=models.SmallIntegerField(choices=[(0, 'Add/Change'), (1, 'Delete')], default=0),
+            field=models.SmallIntegerField(
+                choices=[(0, 'Add/Change'), (1, 'Delete')], default=0),
         ),
     ]

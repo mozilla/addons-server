@@ -30,7 +30,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='blocklog',
             name='block',
-            field=models.ForeignKey(null=True, on_delete=models.deletion.SET_NULL, to='blocklist.Block'),
+            field=models.ForeignKey(
+                null=True, on_delete=models.deletion.SET_NULL, to='blocklist.Block'),
         ),
         migrations.RunPython(set_guid_from_block),
     ]

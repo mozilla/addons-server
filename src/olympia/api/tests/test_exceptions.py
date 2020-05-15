@@ -14,6 +14,7 @@ from rest_framework.viewsets import GenericViewSet
 
 class DummyViewSet(GenericViewSet):
     """Dummy test viewset that raises an exception when calling list()."""
+
     def list(self, *args, **kwargs):
         raise Exception('something went wrong')
 

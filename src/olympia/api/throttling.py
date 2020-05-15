@@ -91,6 +91,7 @@ class GranularIPRateThrottle(GranularUserRateThrottle):
 class ThrottleOnlyUnsafeMethodsMixin():
     """Mixin to add to a throttling class to only apply the throttling if the
     request method is "unsafe", i.e. POST/PUT/PATCH/DELETE."""
+
     def allow_request(self, request, view):
         if request.method not in SAFE_METHODS:
             return super().allow_request(request, view)

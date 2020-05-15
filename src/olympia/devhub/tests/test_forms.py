@@ -783,7 +783,7 @@ class TestAdditionalDetailsForm(TestCase):
         action_allowed.return_value = True
         self.add_restricted()
         self.add_tags('i_am_a_restricted_tag, %s' % (', '.join('tag-test-%s' %
-                                                     i for i in range(0, 20))))
+                                                               i for i in range(0, 20))))
 
     def test_tags_restricted_count(self):
         self.add_restricted()
@@ -799,7 +799,7 @@ class TestAdditionalDetailsForm(TestCase):
     def test_tags_long(self):
         tag = ' -%s' % ('t' * 128)
         data = self.data.copy()
-        data.update({"tags": tag})
+        data.update({'tags': tag})
         form = forms.AdditionalDetailsForm(
             data=data, request=self.request, instance=self.addon)
         assert not form.is_valid()

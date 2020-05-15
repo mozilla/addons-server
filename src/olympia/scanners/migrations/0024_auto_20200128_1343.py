@@ -13,11 +13,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='scannerqueryresult',
             name='state',
-            field=models.PositiveSmallIntegerField(blank=True, choices=[(None, 'Unknown'), (1, 'True positive'), (2, 'False positive'), (3, 'Inconclusive')], default=None, null=True),
+            field=models.PositiveSmallIntegerField(blank=True, choices=[(None, 'Unknown'), (
+                1, 'True positive'), (2, 'False positive'), (3, 'Inconclusive')], default=None, null=True),
         ),
         migrations.AlterField(
             model_name='scannerresult',
             name='state',
-            field=models.PositiveSmallIntegerField(blank=True, choices=[(None, 'Unknown'), (1, 'True positive'), (2, 'False positive'), (3, 'Inconclusive')], default=None, null=True),
+            field=models.PositiveSmallIntegerField(blank=True, choices=[(None, 'Unknown'), (
+                1, 'True positive'), (2, 'False positive'), (3, 'Inconclusive')], default=None, null=True),
         ),
     ]

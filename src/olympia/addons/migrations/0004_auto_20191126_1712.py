@@ -13,7 +13,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='addon',
             name='type',
-            field=models.PositiveIntegerField(choices=[(1, 'Extension'), (2, 'Deprecated Complete Theme'), (3, 'Dictionary'), (4, 'Search Engine'), (5, 'Language Pack (Application)'), (6, 'Language Pack (Add-on)'), (7, 'Plugin'), (9, 'Deprecated LWT'), (10, 'Theme (Static)')], db_column='addontype_id', default=1),
+            field=models.PositiveIntegerField(choices=[(1, 'Extension'), (2, 'Deprecated Complete Theme'), (3, 'Dictionary'), (4, 'Search Engine'), (
+                5, 'Language Pack (Application)'), (6, 'Language Pack (Add-on)'), (7, 'Plugin'), (9, 'Deprecated LWT'), (10, 'Theme (Static)')], db_column='addontype_id', default=1),
         ),
         migrations.AlterField(
             model_name='addoncategory',
@@ -23,6 +24,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='category',
             name='type',
-            field=models.PositiveIntegerField(choices=[(1, 'Extension'), (2, 'Deprecated Complete Theme'), (3, 'Dictionary'), (4, 'Search Engine'), (5, 'Language Pack (Application)'), (6, 'Language Pack (Add-on)'), (7, 'Plugin'), (9, 'Deprecated LWT'), (10, 'Theme (Static)')], db_column='addontype_id'),
+            field=models.PositiveIntegerField(choices=[(1, 'Extension'), (2, 'Deprecated Complete Theme'), (3, 'Dictionary'), (4, 'Search Engine'), (
+                5, 'Language Pack (Application)'), (6, 'Language Pack (Add-on)'), (7, 'Plugin'), (9, 'Deprecated LWT'), (10, 'Theme (Static)')], db_column='addontype_id'),
         ),
     ]

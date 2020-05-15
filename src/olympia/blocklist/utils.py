@@ -160,31 +160,31 @@ def legacy_delete_blocks(blocks):
 # IDs may contain alphanumerics, _, -, {}, @ and a literal '.'
 # They may also contain backslashes (needed to escape the {} and dot)
 # We filter out backslash escape sequences (like `\w`) separately
-IS_MULTIPLE_ID_SUB_REGEX = r"\([\\\w .{}@-]+\)"
+IS_MULTIPLE_ID_SUB_REGEX = r'\([\\\w .{}@-]+\)'
 # Find regular expressions of the form:
 # /^((id1)|(id2)|(id3)|...|(idN))$/
 # The outer set of parens enclosing the entire list of IDs is optional.
 IS_MULTIPLE_IDS = re.compile(
     # Start with literal ^ then an optional `(``
-    r"^\^\(?" +
+    r'^\^\(?' +
     # Then at least one ID in parens ().
     IS_MULTIPLE_ID_SUB_REGEX +
     # Followed by any number of IDs in () separated by pipes.
-    r"(?:\|" + IS_MULTIPLE_ID_SUB_REGEX + r")*" +
+    r'(?:\|' + IS_MULTIPLE_ID_SUB_REGEX + r')*' +
     # Finally, we need to end with a literal sequence )$
     #  (the leading `)` is optional like at the start)
-    r"\)?\$$"
+    r'\)?\$$'
 )
 # Check for a backslash followed by anything other than a literal . or curlies
-REGEX_ESCAPE_SEQS = re.compile(r"\\[^.{}]")
+REGEX_ESCAPE_SEQS = re.compile(r'\\[^.{}]')
 # Used to remove the following 3 things:
 # leading literal ^(
 #    plus an optional (
 # any backslash
 # trailing literal )$
 #    plus an optional ) before the )$
-REGEX_REMOVAL_REGEX = re.compile(r"^\^\(\(?|\\|\)\)?\$$")
-GUID_SPLIT = re.compile(r"\)\|\(")
+REGEX_REMOVAL_REGEX = re.compile(r'^\^\(\(?|\\|\)\)?\$$')
+GUID_SPLIT = re.compile(r'\)\|\(')
 
 
 def split_regex_to_list(guid_re):

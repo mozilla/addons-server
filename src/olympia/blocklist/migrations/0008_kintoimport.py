@@ -16,18 +16,22 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='KintoImport',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('kinto_id', models.CharField(default='', max_length=255)),
                 ('record', django_extensions.db.fields.json.JSONField(default={})),
-                ('outcome', models.SmallIntegerField(choices=[(0, 'Incomplete'), (1, 'Missing GUID'), (2, 'Wrong target application'), (3, 'Added block'), (4, 'Added blocks from regex'), (5, 'No matches')], default=0)),
+                ('outcome', models.SmallIntegerField(choices=[(0, 'Incomplete'), (1, 'Missing GUID'), (
+                    2, 'Wrong target application'), (3, 'Added block'), (4, 'Added blocks from regex'), (5, 'No matches')], default=0)),
             ],
             options={
                 'get_latest_by': 'created',
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
     ]

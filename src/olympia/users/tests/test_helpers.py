@@ -21,7 +21,7 @@ def test_user_link():
 def test_user_link_xss():
     user = UserProfile(username='jconnor',
                        display_name='<script>alert(1)</script>', pk=1)
-    html = "&lt;script&gt;alert(1)&lt;/script&gt;"
+    html = '&lt;script&gt;alert(1)&lt;/script&gt;'
     assert user_link(user) == '<a href="%s" title="%s">%s</a>' % (
         user.get_absolute_url(), html, html)
 

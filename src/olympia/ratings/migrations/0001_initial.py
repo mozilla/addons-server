@@ -23,28 +23,38 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Rating',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('rating', models.PositiveSmallIntegerField(choices=[(None, 'None'), (0, '☆☆☆☆☆'), (1, '☆☆☆☆★'), (2, '☆☆☆★★'), (3, '☆☆★★★'), (4, '☆★★★★'), (5, '★★★★★')], null=True)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('rating', models.PositiveSmallIntegerField(choices=[(None, 'None'), (0, '☆☆☆☆☆'), (
+                    1, '☆☆☆☆★'), (2, '☆☆☆★★'), (3, '☆☆★★★'), (4, '☆★★★★'), (5, '★★★★★')], null=True)),
                 ('body', models.TextField(db_column='text_body', null=True)),
                 ('ip_address', models.CharField(default='0.0.0.0', max_length=255)),
                 ('editorreview', models.BooleanField(default=False)),
                 ('flag', models.BooleanField(default=False)),
                 ('deleted', models.BooleanField(default=False)),
-                ('is_latest', models.BooleanField(default=True, editable=False, help_text="Is this the user's latest rating for the add-on?")),
-                ('previous_count', models.PositiveIntegerField(default=0, editable=False, help_text='How many previous ratings by the user for this add-on?')),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='_ratings', to='addons.Addon')),
-                ('reply_to', models.OneToOneField(db_column='reply_to', null=True, on_delete=django.db.models.deletion.CASCADE, related_name='reply', to='ratings.Rating')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='_ratings_all', to=settings.AUTH_USER_MODEL)),
-                ('version', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='ratings', to='versions.Version')),
+                ('is_latest', models.BooleanField(default=True, editable=False,
+                                                  help_text="Is this the user's latest rating for the add-on?")),
+                ('previous_count', models.PositiveIntegerField(default=0, editable=False,
+                                                               help_text='How many previous ratings by the user for this add-on?')),
+                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                            related_name='_ratings', to='addons.Addon')),
+                ('reply_to', models.OneToOneField(db_column='reply_to', null=True,
+                                                  on_delete=django.db.models.deletion.CASCADE, related_name='reply', to='ratings.Rating')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                           related_name='_ratings_all', to=settings.AUTH_USER_MODEL)),
+                ('version', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE,
+                                              related_name='ratings', to='versions.Version')),
             ],
             options={
                 'db_table': 'reviews',
                 'ordering': ('-created',),
                 'base_manager_name': 'unfiltered',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
             managers=[
                 ('unfiltered', django.db.models.manager.Manager()),
             ],
@@ -52,18 +62,25 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='RatingFlag',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('flag', models.CharField(choices=[('review_flag_reason_spam', 'Spam or otherwise non-review content'), ('review_flag_reason_language', 'Inappropriate language/dialog'), ('review_flag_reason_bug_support', 'Misplaced bug report or support request'), ('review_flag_reason_other', 'Other (please specify)')], db_column='flag_name', default='review_flag_reason_other', max_length=64)),
-                ('note', models.CharField(blank=True, db_column='flag_notes', default='', max_length=100)),
-                ('rating', models.ForeignKey(db_column='review_id', on_delete=django.db.models.deletion.CASCADE, to='ratings.Rating')),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('flag', models.CharField(choices=[('review_flag_reason_spam', 'Spam or otherwise non-review content'), ('review_flag_reason_language', 'Inappropriate language/dialog'), ('review_flag_reason_bug_support',
+                                                                                                                                                                                           'Misplaced bug report or support request'), ('review_flag_reason_other', 'Other (please specify)')], db_column='flag_name', default='review_flag_reason_other', max_length=64)),
+                ('note', models.CharField(blank=True,
+                                          db_column='flag_notes', default='', max_length=100)),
+                ('rating', models.ForeignKey(db_column='review_id',
+                                             on_delete=django.db.models.deletion.CASCADE, to='ratings.Rating')),
+                ('user', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'db_table': 'reviews_moderation_flags',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='ratingflag',
@@ -79,7 +96,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='ratingflag',
-            constraint=models.UniqueConstraint(fields=('rating', 'user'), name='index_review_user'),
+            constraint=models.UniqueConstraint(
+                fields=('rating', 'user'), name='index_review_user'),
         ),
         migrations.AddIndex(
             model_name='rating',
@@ -95,10 +113,12 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='rating',
-            index=models.Index(fields=['reply_to', 'is_latest', 'addon', 'created'], name='latest_reviews'),
+            index=models.Index(
+                fields=['reply_to', 'is_latest', 'addon', 'created'], name='latest_reviews'),
         ),
         migrations.AddConstraint(
             model_name='rating',
-            constraint=models.UniqueConstraint(fields=('version', 'user', 'reply_to'), name='one_review_per_user'),
+            constraint=models.UniqueConstraint(
+                fields=('version', 'user', 'reply_to'), name='one_review_per_user'),
         ),
     ]

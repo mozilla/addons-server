@@ -33,7 +33,7 @@
             type: 'pie'
        }]
     };
-    
+
     $.fn.topChart = function(cfg) {
         $(this).each(function() {
             var $self   = $(this),

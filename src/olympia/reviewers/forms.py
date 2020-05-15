@@ -265,6 +265,7 @@ class AllAddonSearchForm(forms.Form):
 
 class NonValidatingChoiceField(forms.ChoiceField):
     """A ChoiceField that doesn't validate."""
+
     def validate(self, value):
         pass
 

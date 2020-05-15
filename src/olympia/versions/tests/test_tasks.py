@@ -98,16 +98,16 @@ def test_generate_static_theme_preview(
         {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
     ]
     theme_manifest = {
-        "images": {
+        'images': {
         },
-        "colors": {
-            "frame": "#918e43",
-            "tab_background_text": "#3deb60",
-            "bookmark_text": "#b5ba5b",
-            "toolbar_field": "#cc29cc",
-            "toolbar_field_text": "#17747d",
-            "tab_line": "#00db12",
-            "tab_selected": "#40df39",
+        'colors': {
+            'frame': '#918e43',
+            'tab_background_text': '#3deb60',
+            'bookmark_text': '#b5ba5b',
+            'toolbar_field': '#cc29cc',
+            'toolbar_field_text': '#17747d',
+            'tab_line': '#00db12',
+            'tab_selected': '#40df39',
         }
     }
     if header_url is not None:
@@ -184,44 +184,44 @@ def test_generate_static_theme_preview(
 @pytest.mark.parametrize(
     'manifest_images, manifest_colors, svg_colors', (
         (  # deprecated properties
-            {"headerURL": "transparent.gif"},
+            {'headerURL': 'transparent.gif'},
             {
-                "accentcolor": "#918e43",  # frame
-                "textcolor": "#3deb60",  # tab_background_text
-                "toolbar_text": "#b5ba5b",  # bookmark_text
+                'accentcolor': '#918e43',  # frame
+                'textcolor': '#3deb60',  # tab_background_text
+                'toolbar_text': '#b5ba5b',  # bookmark_text
             },
             {
-                "frame": "#918e43",
-                "tab_background_text": "#3deb60",
-                "bookmark_text": "#b5ba5b",
+                'frame': '#918e43',
+                'tab_background_text': '#3deb60',
+                'bookmark_text': '#b5ba5b',
             }
         ),
         (  # defaults and fallbacks
-            {"theme_frame": "transparent.gif"},
+            {'theme_frame': 'transparent.gif'},
             {
-                "icons": "#348923",  # icons have class bookmark_text
+                'icons': '#348923',  # icons have class bookmark_text
             },
             {
-                "frame": amo.THEME_FRAME_COLOR_DEFAULT,
-                "toolbar": "rgba(255,255,255,0.6)",
-                "toolbar_field": "rgba(255,255,255,1)",
-                "tab_selected": "rgba(0,0,0,0)",
-                "tab_line": "rgba(0,0,0,0.25)",
-                "tab_background_text": "",
-                "bookmark_text": "#348923",  # icons have class bookmark_text
+                'frame': amo.THEME_FRAME_COLOR_DEFAULT,
+                'toolbar': 'rgba(255,255,255,0.6)',
+                'toolbar_field': 'rgba(255,255,255,1)',
+                'tab_selected': 'rgba(0,0,0,0)',
+                'tab_line': 'rgba(0,0,0,0.25)',
+                'tab_background_text': '',
+                'bookmark_text': '#348923',  # icons have class bookmark_text
             },
         ),
         (  # chrome colors
-            {"theme_frame": "transparent.gif"},
+            {'theme_frame': 'transparent.gif'},
             {
-                "frame": [123, 45, 67],
-                "tab_background_text": [9, 87, 65],
-                "bookmark_text": [0, 0, 0],
+                'frame': [123, 45, 67],
+                'tab_background_text': [9, 87, 65],
+                'bookmark_text': [0, 0, 0],
             },
             {
-                "frame": "rgb(123,45,67)",
-                "tab_background_text": "rgb(9,87,65)",
-                "bookmark_text": "rgb(0,0,0)",
+                'frame': 'rgb(123,45,67)',
+                'tab_background_text': 'rgb(9,87,65)',
+                'bookmark_text': 'rgb(0,0,0)',
             },
         ),
     )
@@ -235,8 +235,8 @@ def test_generate_static_theme_preview_with_alternative_properties(
         {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
     ]
     theme_manifest = {
-        "images": manifest_images,
-        "colors": manifest_colors,
+        'images': manifest_images,
+        'colors': manifest_colors,
     }
     addon = addon_factory()
     destination = addon.current_version.all_files[0].current_file_path
@@ -336,17 +336,17 @@ def test_generate_preview_with_additional_backgrounds(
     ]
 
     theme_manifest = {
-        "images": {
-            "theme_frame": "empty.png",
-            "additional_backgrounds": ["weta_for_tiling.png"],
+        'images': {
+            'theme_frame': 'empty.png',
+            'additional_backgrounds': ['weta_for_tiling.png'],
         },
-        "colors": {
-            "textcolor": "#123456",
+        'colors': {
+            'textcolor': '#123456',
             # Just textcolor, to test the template defaults and fallbacks.
         },
-        "properties": {
-            "additional_backgrounds_alignment": ["top"],
-            "additional_backgrounds_tiling": ["repeat-x"],
+        'properties': {
+            'additional_backgrounds_alignment': ['top'],
+            'additional_backgrounds_tiling': ['repeat-x'],
         },
     }
     addon = addon_factory()
@@ -393,13 +393,13 @@ def test_generate_preview_with_additional_backgrounds(
 
     # These defaults are mostly defined in the xml template
     default_colors = {
-        "frame": "rgba(229,230,232,1)",  # amo.THEME_FRAME_COLOR_DEFAULT
-        "tab_background_text": "#123456",  # the only one defined in 'manifest'
-        "bookmark_text": "#123456",  # should default to tab_background_text
-        "toolbar_field": "rgba(255,255,255,1)",
-        "toolbar_field_text": "",
-        "tab_line": "rgba(0,0,0,0.25)",
-        "tab_selected": "rgba(0,0,0,0)",
+        'frame': 'rgba(229,230,232,1)',  # amo.THEME_FRAME_COLOR_DEFAULT
+        'tab_background_text': '#123456',  # the only one defined in 'manifest'
+        'bookmark_text': '#123456',  # should default to tab_background_text
+        'toolbar_field': 'rgba(255,255,255,1)',
+        'toolbar_field_text': '',
+        'tab_line': 'rgba(0,0,0,0.25)',
+        'tab_selected': 'rgba(0,0,0,0)',
     }
     colors = ['class="%s" fill="%s"' % (key, color)
               for (key, color) in default_colors.items()]

@@ -258,7 +258,7 @@ class TestSQLModel(TestCase):
 
     def test_filter_value_injection(self):
         v = ("'apparel'; drop table foo; "
-             "select * from sql_model_test_cat where c.name")
+             'select * from sql_model_test_cat where c.name')
         query = Summary.objects.all().filter(**{'c.name': v})
         try:
             query[0]

@@ -42,8 +42,8 @@
 			];
 
 		this.forHtmlScript({
-			left	: /(&lt;|<)%[@!=]?/g, 
-			right	: /%(&gt;|>)/g 
+			left	: /(&lt;|<)%[@!=]?/g,
+			right	: /%(&gt;|>)/g
 		});
 	};
 

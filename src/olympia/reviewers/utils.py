@@ -288,6 +288,7 @@ class ReviewHelper(object):
     A class that builds enough to render the form back to the user and
     process off to the correct handler.
     """
+
     def __init__(self, request=None, addon=None, version=None,
                  content_review=False):
         self.handler = None

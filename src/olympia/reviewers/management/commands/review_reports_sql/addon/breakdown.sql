@@ -2,7 +2,7 @@ SELECT 'All Reviewers' AS `Group`,
        IFNULL(FORMAT(SUM(aa.weight), 0), '-') AS `Total Risk`,
        IFNULL(FORMAT(AVG(aa.weight), 2), '-') AS `Average Risk`,
        FORMAT(COUNT(*), 0) AS `Add-ons Reviewed`
-FROM reviewer_scores rs 
+FROM reviewer_scores rs
 LEFT JOIN editors_autoapprovalsummary aa ON aa.version_id = rs.version_id
 JOIN users u ON u.id = rs.user_id
 WHERE DATE(rs.created) BETWEEN @WEEK_BEGIN AND @WEEK_END
@@ -16,7 +16,7 @@ SELECT 'Volunteers' AS `Group`,
        IFNULL(FORMAT(SUM(aa.weight), 0), '-') AS `Total Risk`,
        IFNULL(FORMAT(AVG(aa.weight), 2), '-') AS `Average Risk`,
        FORMAT(COUNT(*), 0) AS `Add-ons Reviewed`
-FROM reviewer_scores rs 
+FROM reviewer_scores rs
 LEFT JOIN editors_autoapprovalsummary aa ON aa.version_id = rs.version_id
 JOIN users u ON u.id = rs.user_id
 WHERE DATE(rs.created) BETWEEN @WEEK_BEGIN AND @WEEK_END

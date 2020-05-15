@@ -113,9 +113,9 @@ class TestMigratedUpdate(TestCase):
         assert update.data == {
             'stheme_id': stheme.id, 'filename': 'foo.xpi', 'hash': 'brown'}
         assert response == {
-            "converted_theme": {
-                "url": url,
-                "hash": 'brown'
+            'converted_theme': {
+                'url': url,
+                'hash': 'brown'
             }
         }
 
@@ -124,8 +124,8 @@ class TestMigratedUpdate(TestCase):
         assert update.data == {
             'stheme_id': stheme.id, 'filename': 'foo.xpi', 'hash': 'brown'}
         assert response == {
-            "converted_theme": {
-                "url": url,
-                "hash": 'brown'
+            'converted_theme': {
+                'url': url,
+                'hash': 'brown'
             }
         }

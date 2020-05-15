@@ -107,7 +107,7 @@ def summarize_validation(validation):
     # L10n: first parameter is the number of warnings
     warnings = ungettext('{0} warning', '{0} warnings',
                          validation.warnings).format(validation.warnings)
-    return "%s, %s" % (errors, warnings)
+    return '%s, %s' % (errors, warnings)
 
 
 @library.filter

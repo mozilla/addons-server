@@ -307,21 +307,21 @@ class RawSQLManager(object):
         return field
 
     def _compile(self, parts):
-        sep = u",\n"
+        sep = u',\n'
         and_ = u' %s\n' % AND
         select = [u'%s AS `%s`' % (v, k) for k, v in parts['select'].items()]
-        stmt = u"SELECT\n%s\nFROM\n%s" % (sep.join(select),
-                                          u"\n".join(parts['from']))
+        stmt = u'SELECT\n%s\nFROM\n%s' % (sep.join(select),
+                                          u'\n'.join(parts['from']))
         if parts.get('where'):
-            stmt = u"%s\nWHERE\n%s" % (stmt, and_.join(parts['where']))
+            stmt = u'%s\nWHERE\n%s' % (stmt, and_.join(parts['where']))
         if parts.get('group_by'):
-            stmt = u"%s\nGROUP BY\n%s" % (stmt, parts['group_by'])
+            stmt = u'%s\nGROUP BY\n%s' % (stmt, parts['group_by'])
         if parts.get('having'):
-            stmt = u"%s\nHAVING\n%s" % (stmt, and_.join(parts['having']))
+            stmt = u'%s\nHAVING\n%s' % (stmt, and_.join(parts['having']))
         if parts.get('order_by'):
-            stmt = u"%s\nORDER BY\n%s" % (stmt, sep.join(parts['order_by']))
+            stmt = u'%s\nORDER BY\n%s' % (stmt, sep.join(parts['order_by']))
         if len(parts['limit']):
-            stmt = u"%s\nLIMIT %s" % (stmt, ', '.join([str(i) for i in
+            stmt = u'%s\nLIMIT %s' % (stmt, ', '.join([str(i) for i in
                                                        parts['limit']]))
         return stmt
 
@@ -358,7 +358,7 @@ class RawSQLManager(object):
     def _check_limit(self, i):
         i = int(i)
         if i < 0:
-            raise IndexError("Negative indexing is not supported")
+            raise IndexError('Negative indexing is not supported')
         return i
 
 

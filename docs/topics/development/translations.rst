@@ -1,7 +1,7 @@
 .. _translations:
 
 ============================
-Translating Fields on Models 
+Translating Fields on Models
 ============================
 
 The ``olympia.translations`` app defines a

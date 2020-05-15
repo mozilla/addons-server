@@ -35,6 +35,7 @@ class OneOrZeroPageNumberPagination(CustomPageNumberPagination):
     CustomPageNumberPagination, but for special cases where we know we're never
     going to have more than one object in the results anyway.
     """
+
     def paginate_queryset(self, queryset, request, view=None):
         return list(queryset[:1])
 

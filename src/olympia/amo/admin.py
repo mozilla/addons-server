@@ -55,11 +55,11 @@ class CommaSearchInAdminMixin:
         # Apply keyword searches.
         def construct_search(field_name):
             if field_name.startswith('^'):
-                return "%s__istartswith" % field_name[1:]
+                return '%s__istartswith' % field_name[1:]
             elif field_name.startswith('='):
-                return "%s__iexact" % field_name[1:]
+                return '%s__iexact' % field_name[1:]
             elif field_name.startswith('@'):
-                return "%s__icontains" % field_name[1:]
+                return '%s__icontains' % field_name[1:]
             # Use field_name if it includes a lookup.
             opts = queryset.model._meta
             lookup_fields = field_name.split(models.constants.LOOKUP_SEP)
@@ -80,7 +80,7 @@ class CommaSearchInAdminMixin:
                         # Update opts to follow the relation.
                         opts = field.get_path_info()[-1].to_opts
             # Otherwise, use the field with icontains.
-            return "%s__icontains" % field_name
+            return '%s__icontains' % field_name
 
         use_distinct = False
         search_fields = self.get_search_fields(request)

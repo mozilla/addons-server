@@ -18,22 +18,29 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='MultiBlockSubmit',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('input_guids', models.TextField()),
-                ('min_version', models.CharField(choices=[('0', '0')], default='0', max_length=1)),
-                ('max_version', models.CharField(choices=[('*', '*')], default='*', max_length=1)),
+                ('min_version', models.CharField(choices=[
+                 ('0', '0')], default='0', max_length=1)),
+                ('max_version', models.CharField(choices=[
+                 ('*', '*')], default='*', max_length=1)),
                 ('url', models.CharField(blank=True, max_length=255)),
                 ('reason', models.TextField(blank=True)),
-                ('include_in_legacy', models.BooleanField(default=False, help_text='Include in legacy xml blocklist too, as well as new v3')),
-                ('updated_by', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                ('include_in_legacy', models.BooleanField(default=False,
+                                                          help_text='Include in legacy xml blocklist too, as well as new v3')),
+                ('updated_by', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'get_latest_by': 'created',
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
     ]

@@ -386,13 +386,13 @@ def test_format_unicode():
 
 class TestStoragePath(TestCase):
 
-    @override_settings(ADDONS_PATH=None, MEDIA_ROOT="/path/")
+    @override_settings(ADDONS_PATH=None, MEDIA_ROOT='/path/')
     def test_without_settings(self):
         del settings.ADDONS_PATH
         path = jinja_helpers.user_media_path('addons')
         assert path == '/path/addons'
 
-    @override_settings(ADDONS_PATH="/another/path/")
+    @override_settings(ADDONS_PATH='/another/path/')
     def test_with_settings(self):
         path = jinja_helpers.user_media_path('addons')
         assert path == '/another/path/'

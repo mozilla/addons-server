@@ -19,11 +19,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PrimaryHero',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('image', olympia.hero.models.WidgetCharField(blank=True, choices=[('ladder.jpg', 'ladder.jpg'), ('teamaddons.jpg', 'teamaddons.jpg')], max_length=255)),
-                ('gradient_color', olympia.hero.models.WidgetCharField(blank=True, choices=[('#054096', 'blue-70'), ('#068989', 'green-70'), ('#C60184', 'pink-70'), ('#712290', 'purple-70'), ('#582ACB', 'violet-70')], max_length=7)),
+                ('image', olympia.hero.models.WidgetCharField(blank=True, choices=[
+                 ('ladder.jpg', 'ladder.jpg'), ('teamaddons.jpg', 'teamaddons.jpg')], max_length=255)),
+                ('gradient_color', olympia.hero.models.WidgetCharField(blank=True, choices=[
+                 ('#054096', 'blue-70'), ('#068989', 'green-70'), ('#C60184', 'pink-70'), ('#712290', 'purple-70'), ('#582ACB', 'violet-70')], max_length=7)),
                 ('enabled', models.BooleanField(db_index=True, default=False)),
                 ('is_external', models.BooleanField(default=False)),
             ],
@@ -32,13 +36,16 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='SecondaryHero',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('headline', models.CharField(max_length=50)),
                 ('description', models.CharField(max_length=100)),
@@ -51,34 +58,42 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.hero.models.CTACheckMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.hero.models.CTACheckMixin, olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='SecondaryHeroModule',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('icon', olympia.hero.models.WidgetCharField(choices=[('Accessibility.svg', 'Accessibility.svg'), ('Audio.svg', 'Audio.svg'), ('Bookmark Outline.svg', 'Bookmark Outline.svg'), ('Customize.svg', 'Customize.svg'), ('Developer.svg', 'Developer.svg'), ('Device Mobile.svg', 'Device Mobile.svg'), ('Dictionaries.svg', 'Dictionaries.svg'), ('Download.svg', 'Download.svg'), ('Extensions.svg', 'Extensions.svg'), ('Folder.svg', 'Folder.svg'), ('Globe.svg', 'Globe.svg'), ('Highlights.svg', 'Highlights.svg'), ('History.svg', 'History.svg'), ('Login.svg', 'Login.svg'), ('Notification.svg', 'Notification.svg'), ('Performance.svg', 'Performance.svg'), ('Pin.svg', 'Pin.svg'), ('Play.svg', 'Play.svg'), ('Popular.svg', 'Popular.svg'), ('Private browsing.svg', 'Private browsing.svg'), ('Reader Mode.svg', 'Reader Mode.svg'), ('Save.svg', 'Save.svg'), ('Search.svg', 'Search.svg'), ('Secure.svg', 'Secure.svg'), ('Subscribe.svg', 'Subscribe.svg'), ('Tab new.svg', 'Tab new.svg'), ('Themes.svg', 'Themes.svg'), ('Trackers Disabled.svg', 'Trackers Disabled.svg'), ('Tracking Protection.svg', 'Tracking Protection.svg'), ('Video Recorder.svg', 'Video Recorder.svg'), ('Window New.svg', 'Window New.svg')], max_length=255)),
+                ('icon', olympia.hero.models.WidgetCharField(choices=[('Accessibility.svg', 'Accessibility.svg'), ('Audio.svg', 'Audio.svg'), ('Bookmark Outline.svg', 'Bookmark Outline.svg'), ('Customize.svg', 'Customize.svg'), ('Developer.svg', 'Developer.svg'), ('Device Mobile.svg', 'Device Mobile.svg'), ('Dictionaries.svg', 'Dictionaries.svg'), ('Download.svg', 'Download.svg'), ('Extensions.svg', 'Extensions.svg'), ('Folder.svg', 'Folder.svg'), ('Globe.svg', 'Globe.svg'), ('Highlights.svg', 'Highlights.svg'), ('History.svg', 'History.svg'), ('Login.svg', 'Login.svg'), ('Notification.svg', 'Notification.svg'), (
+                    'Performance.svg', 'Performance.svg'), ('Pin.svg', 'Pin.svg'), ('Play.svg', 'Play.svg'), ('Popular.svg', 'Popular.svg'), ('Private browsing.svg', 'Private browsing.svg'), ('Reader Mode.svg', 'Reader Mode.svg'), ('Save.svg', 'Save.svg'), ('Search.svg', 'Search.svg'), ('Secure.svg', 'Secure.svg'), ('Subscribe.svg', 'Subscribe.svg'), ('Tab new.svg', 'Tab new.svg'), ('Themes.svg', 'Themes.svg'), ('Trackers Disabled.svg', 'Trackers Disabled.svg'), ('Tracking Protection.svg', 'Tracking Protection.svg'), ('Video Recorder.svg', 'Video Recorder.svg'), ('Window New.svg', 'Window New.svg')], max_length=255)),
                 ('description', models.CharField(max_length=50)),
                 ('cta_url', models.CharField(blank=True, max_length=255)),
                 ('cta_text', models.CharField(blank=True, max_length=20)),
-                ('shelf', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='modules', to='hero.SecondaryHero')),
+                ('shelf', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                            related_name='modules', to='hero.SecondaryHero')),
             ],
             options={
                 'get_latest_by': 'created',
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.hero.models.CTACheckMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.hero.models.CTACheckMixin, olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='secondaryhero',
-            index=olympia.amo.models.LongNameIndex(fields=['enabled'], name='hero_secondaryhero_enabled_1a9ea03c'),
+            index=olympia.amo.models.LongNameIndex(
+                fields=['enabled'], name='hero_secondaryhero_enabled_1a9ea03c'),
         ),
         migrations.AddField(
             model_name='primaryhero',
             name='disco_addon',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='discovery.DiscoveryItem'),
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE, to='discovery.DiscoveryItem'),
         ),
     ]

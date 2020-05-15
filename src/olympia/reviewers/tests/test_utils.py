@@ -59,7 +59,7 @@ class TestViewExtensionQueueTable(TestCase):
 
         assert a.attr('href') == (
             reverse('reviewers.review', args=[str(row.addon_slug)]))
-        assert a.text() == u"フォクすけといっしょ 0.12"
+        assert a.text() == u'フォクすけといっしょ 0.12'
 
     def test_addon_type_id(self):
         row = Mock()
@@ -294,7 +294,7 @@ class TestReviewHelper(TestReviewHelperBase):
             helper = self.get_helper()
             actions = helper.actions
             for k, v in actions.items():
-                assert str(v['details']), "Missing details for: %s" % k
+                assert str(v['details']), 'Missing details for: %s' % k
 
     def get_review_actions(
             self, addon_status, file_status, content_review=False):

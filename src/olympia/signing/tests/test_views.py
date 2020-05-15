@@ -965,7 +965,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert response.data == {
             'error': (
                 "Please specify your Add-on ID in the manifest if it's "
-                "longer than 64 characters.")
+                'longer than 64 characters.')
         }
 
         assert not Addon.unfiltered.filter(guid=guid).exists()

@@ -19,7 +19,7 @@ class DatabaseSchemaEditor(MySQLDBSchemeEditor):
     def create_model(self, model):
         for field in model._meta.local_fields:
             # Autoincrement SQL for backends with post table definition variant
-            if field.get_internal_type() == "PositiveAutoField":
+            if field.get_internal_type() == 'PositiveAutoField':
                 autoinc_sql = self.connection.ops.autoinc_sql(
                     model._meta.db_table, field.column)
                 if autoinc_sql:

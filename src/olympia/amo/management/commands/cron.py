@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if not options['name']:
-            log.error("Cron called without args")
+            log.error('Cron called without args')
             raise CommandError('These jobs are available:\n%s' % '\n'.join(
                 sorted(settings.CRON_JOBS.keys())))
 

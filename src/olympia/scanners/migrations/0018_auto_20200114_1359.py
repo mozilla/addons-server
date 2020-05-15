@@ -13,11 +13,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='scannerqueryrule',
             name='is_active',
-            field=models.BooleanField(default=True, help_text='When unchecked, the scanner results will not be bound to this rule and the action will not be executed.'),
+            field=models.BooleanField(
+                default=True, help_text='When unchecked, the scanner results will not be bound to this rule and the action will not be executed.'),
         ),
         migrations.AlterField(
             model_name='scannerrule',
             name='is_active',
-            field=models.BooleanField(default=True, help_text='When unchecked, the scanner results will not be bound to this rule and the action will not be executed.'),
+            field=models.BooleanField(
+                default=True, help_text='When unchecked, the scanner results will not be bound to this rule and the action will not be executed.'),
         ),
     ]

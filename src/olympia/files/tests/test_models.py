@@ -834,17 +834,17 @@ class TestFileUpload(UploadTest):
 
     def test_validator_sets_binary_via_extensions(self):
         validation = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "metadata": {
-                "contains_binary_extension": True,
-                "version": "1.0",
-                "name": "gK0Bes Bot",
-                "id": "gkobes@gkobes",
+            'errors': 0,
+            'success': True,
+            'warnings': 0,
+            'notices': 0,
+            'message_tree': {},
+            'messages': [],
+            'metadata': {
+                'contains_binary_extension': True,
+                'version': '1.0',
+                'name': 'gK0Bes Bot',
+                'id': 'gkobes@gkobes',
             }
         })
         upload = self.get_upload(filename='extension.xpi',
@@ -859,17 +859,17 @@ class TestFileUpload(UploadTest):
 
     def test_validator_sets_binary_via_content(self):
         validation = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "metadata": {
-                "contains_binary_content": True,
-                "version": "1.0",
-                "name": "gK0Bes Bot",
-                "id": "gkobes@gkobes",
+            'errors': 0,
+            'success': True,
+            'warnings': 0,
+            'notices': 0,
+            'message_tree': {},
+            'messages': [],
+            'metadata': {
+                'contains_binary_content': True,
+                'version': '1.0',
+                'name': 'gK0Bes Bot',
+                'id': 'gkobes@gkobes',
             }
         })
         upload = self.get_upload(filename='extension.xpi',
@@ -885,24 +885,24 @@ class TestFileUpload(UploadTest):
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_warnings(self):
         data = {
-            "errors": 0,
-            "success": True,
-            "warnings": 500,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [{
-                "context": ["<code>", None],
-                "description": ["Something something, see "
-                                "https://bugzilla.mozilla.org/"],
-                "column": 0,
-                "line": 1,
-                "file": "chrome/content/down.html",
-                "tier": 2,
-                "message": "Some warning",
-                "type": "warning",
-                "id": [],
-                "uid": "bb9948b604b111e09dfdc42c0301fe38"}] * 12,
-            "metadata": {}
+            'errors': 0,
+            'success': True,
+            'warnings': 500,
+            'notices': 0,
+            'message_tree': {},
+            'messages': [{
+                'context': ['<code>', None],
+                'description': ['Something something, see '
+                                'https://bugzilla.mozilla.org/'],
+                'column': 0,
+                'line': 1,
+                'file': 'chrome/content/down.html',
+                'tier': 2,
+                'message': 'Some warning',
+                'type': 'warning',
+                'id': [],
+                'uid': 'bb9948b604b111e09dfdc42c0301fe38'}] * 12,
+            'metadata': {}
         }
 
         upload = FileUpload(validation=json.dumps(data))
@@ -915,45 +915,45 @@ class TestFileUpload(UploadTest):
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_compat_errors(self):
         data = {
-            "errors": 0,
-            "success": True,
-            "warnings": 100,
-            "notices": 0,
-            "message_tree": {},
-            "compatibility_summary": {"errors": 100,
-                                      "warnings": 0,
-                                      "notices": 0},
-            "messages": [
+            'errors': 0,
+            'success': True,
+            'warnings': 100,
+            'notices': 0,
+            'message_tree': {},
+            'compatibility_summary': {'errors': 100,
+                                      'warnings': 0,
+                                      'notices': 0},
+            'messages': [
                 {
-                    "context": ["<code>", None],
-                    "description": ["Something something, see "
-                                    "https://bugzilla.mozilla.org/"],
-                    "column": 0,
-                    "line": 1,
-                    "file": "chrome/content/down.html",
-                    "tier": 2,
-                    "message": "Some warning",
-                    "type": "warning",
-                    "compatibility_type": "warning",
-                    "id": [],
-                    "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                    'context': ['<code>', None],
+                    'description': ['Something something, see '
+                                    'https://bugzilla.mozilla.org/'],
+                    'column': 0,
+                    'line': 1,
+                    'file': 'chrome/content/down.html',
+                    'tier': 2,
+                    'message': 'Some warning',
+                    'type': 'warning',
+                    'compatibility_type': 'warning',
+                    'id': [],
+                    'uid': 'bb9948b604b111e09dfdc42c0301fe38'
                 },
                 {
-                    "context": ["<code>", None],
-                    "description": ["Something something, see "
-                                    "https://bugzilla.mozilla.org/"],
-                    "column": 0,
-                    "line": 1,
-                    "file": "chrome/content/down.html",
-                    "tier": 2,
-                    "message": "Some error",
-                    "type": "warning",
-                    "compatibility_type": "warning",
-                    "id": [],
-                    "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                    'context': ['<code>', None],
+                    'description': ['Something something, see '
+                                    'https://bugzilla.mozilla.org/'],
+                    'column': 0,
+                    'line': 1,
+                    'file': 'chrome/content/down.html',
+                    'tier': 2,
+                    'message': 'Some error',
+                    'type': 'warning',
+                    'compatibility_type': 'warning',
+                    'id': [],
+                    'uid': 'bb9948b604b111e09dfdc42c0301fe38'
                 }
             ] * 50,
-            "metadata": {}
+            'metadata': {}
         }
 
         upload = FileUpload(validation=json.dumps(data))
@@ -974,40 +974,40 @@ class TestFileUpload(UploadTest):
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_errors(self):
         data = {
-            "errors": 100,
-            "success": True,
-            "warnings": 100,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [
+            'errors': 100,
+            'success': True,
+            'warnings': 100,
+            'notices': 0,
+            'message_tree': {},
+            'messages': [
                 {
-                    "context": ["<code>", None],
-                    "description": ["Something something, see "
-                                    "https://bugzilla.mozilla.org/"],
-                    "column": 0,
-                    "line": 1,
-                    "file": "chrome/content/down.html",
-                    "tier": 2,
-                    "message": "Some warning",
-                    "type": "warning",
-                    "id": [],
-                    "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                    'context': ['<code>', None],
+                    'description': ['Something something, see '
+                                    'https://bugzilla.mozilla.org/'],
+                    'column': 0,
+                    'line': 1,
+                    'file': 'chrome/content/down.html',
+                    'tier': 2,
+                    'message': 'Some warning',
+                    'type': 'warning',
+                    'id': [],
+                    'uid': 'bb9948b604b111e09dfdc42c0301fe38'
                 },
                 {
-                    "context": ["<code>", None],
-                    "description": ["Something something, see "
-                                    "https://bugzilla.mozilla.org/"],
-                    "column": 0,
-                    "line": 1,
-                    "file": "chrome/content/down.html",
-                    "tier": 2,
-                    "message": "Some error",
-                    "type": "error",
-                    "id": [],
-                    "uid": "bb9948b604b111e09dfdc42c0301fe38"
+                    'context': ['<code>', None],
+                    'description': ['Something something, see '
+                                    'https://bugzilla.mozilla.org/'],
+                    'column': 0,
+                    'line': 1,
+                    'file': 'chrome/content/down.html',
+                    'tier': 2,
+                    'message': 'Some error',
+                    'type': 'error',
+                    'id': [],
+                    'uid': 'bb9948b604b111e09dfdc42c0301fe38'
                 }
             ] * 50,
-            "metadata": {}
+            'metadata': {}
         }
         upload = FileUpload(validation=json.dumps(data))
         validation = upload.processed_validation

@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='scannerresult',
             name='score',
-            field=models.DecimalField(blank=True, decimal_places=5, default=-1, max_digits=6, null=True),
+            field=models.DecimalField(
+                blank=True, decimal_places=5, default=-1, max_digits=6, null=True),
         ),
     ]

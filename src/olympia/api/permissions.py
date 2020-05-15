@@ -13,6 +13,7 @@ class GroupPermission(BasePermission):
     """
     Allow access depending on the result of action_allowed_user().
     """
+
     def __init__(self, permission):
         self.permission = permission
 
@@ -94,6 +95,7 @@ class AllowNone(BasePermission):
 
 class AllowAddonAuthor(BasePermission):
     """Allow access if the user is in the object authors."""
+
     def has_permission(self, request, view):
         return request.user.is_authenticated
 
@@ -107,6 +109,7 @@ class AllowOwner(BasePermission):
     a "user" FK pointing to an UserProfile, and you want only the corresponding
     user to be able to access your instance.
     """
+
     def has_permission(self, request, view):
         return request.user.is_authenticated
 
@@ -121,6 +124,7 @@ class AllowNotOwner(AllowOwner):
     a "user" FK pointing to an UserProfile, and you want only the corresponding
     user to be able to access your instance.
     """
+
     def has_object_permission(self, request, view, obj):
         return not super().has_object_permission(request, view, obj)
 
@@ -137,6 +141,7 @@ class AllowReviewer(BasePermission):
       'Addons:Review', 'Addons:PostReview' or 'Addons:ContentReview'
       permission.
     """
+
     def has_permission(self, request, view):
         return request.user.is_authenticated
 
@@ -163,6 +168,7 @@ class AllowReviewerUnlisted(AllowReviewer):
     An unlisted add-on reviewer is someone who is in the group with the
     following permission: 'Addons:ReviewUnlisted'.
     """
+
     def has_permission(self, request, view):
         return acl.check_unlisted_addons_reviewer(request)
 
@@ -189,6 +195,7 @@ class AllowAnyKindOfReviewer(BasePermission):
     Uses acl.is_user_any_kind_of_reviewer() behind the scenes.
     See also any_reviewer_required() decorator.
     """
+
     def has_permission(self, request, view):
         allow_viewers = request.method in SAFE_METHODS
         return acl.is_user_any_kind_of_reviewer(
@@ -202,6 +209,7 @@ class AllowIfPublic(BasePermission):
     """
     Allow access when the object's is_public() method returns True.
     """
+
     def has_permission(self, request, view):
         return True
 
@@ -214,6 +222,7 @@ class AllowReadOnlyIfPublic(AllowIfPublic):
     Allow access when the object's is_public() method returns True and the
     request HTTP method is GET/OPTIONS/HEAD.
     """
+
     def has_permission(self, request, view):
         return request.method in SAFE_METHODS
 
@@ -232,6 +241,7 @@ class ByHttpMethod(BasePermission):
     If using this permission, any method that does not have a permission set
     will raise MethodNotAllowed.
     """
+
     def __init__(self, method_permissions):
         # Initialize the permissions by calling them like DRF does.
         self.method_permissions = {
@@ -265,6 +275,7 @@ class AllowRelatedObjectPermissions(BasePermission):
     The second argument, `related_permissions`, is the list of permissions
     (behaving like DRF default implementation: all need to pass to be allowed).
     """
+
     def __init__(self, related_property, related_permissions):
         self.perms = [p() for p in related_permissions]
         self.related_property = related_property
@@ -285,6 +296,7 @@ class PreventActionPermission(BasePermission):
     """
     Allow access except for a given action(s).
     """
+
     def __init__(self, actions):
         if not isinstance(actions, (list, tuple)):
             actions = [actions]

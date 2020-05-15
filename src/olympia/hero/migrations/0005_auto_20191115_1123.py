@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='primaryhero',
             name='image',
-            field=olympia.hero.models.WidgetCharField(blank=True, choices=[('Adnauseum@2x.png', 'Adnauseum@2x.png'), ('Dark Reader 2@2x.png', 'Dark Reader 2@2x.png'), ('Enhancer@2x.png', 'Enhancer@2x.png'), ('Facetainer@2x.png', 'Facetainer@2x.png'), ('Gesturefy@2x.png', 'Gesturefy@2x.png'), ('Ghostery@2x.png', 'Ghostery@2x.png'), ('Google Translate@2x.png', 'Google Translate@2x.png'), ('Privacy Badger@2x.png', 'Privacy Badger@2x.png'), ('Search By Image@2x.png', 'Search By Image@2x.png'), ('Tst1@2x.png', 'Tst1@2x.png'), ('Typing Laptop@2x.png', 'Typing Laptop@2x.png'), ('Ubo@2x.png', 'Ubo@2x.png')], max_length=255),
+            field=olympia.hero.models.WidgetCharField(blank=True, choices=[('Adnauseum@2x.png', 'Adnauseum@2x.png'), ('Dark Reader 2@2x.png', 'Dark Reader 2@2x.png'), ('Enhancer@2x.png', 'Enhancer@2x.png'), ('Facetainer@2x.png', 'Facetainer@2x.png'), ('Gesturefy@2x.png', 'Gesturefy@2x.png'), ('Ghostery@2x.png', 'Ghostery@2x.png'), (
+                'Google Translate@2x.png', 'Google Translate@2x.png'), ('Privacy Badger@2x.png', 'Privacy Badger@2x.png'), ('Search By Image@2x.png', 'Search By Image@2x.png'), ('Tst1@2x.png', 'Tst1@2x.png'), ('Typing Laptop@2x.png', 'Typing Laptop@2x.png'), ('Ubo@2x.png', 'Ubo@2x.png')], max_length=255),
         ),
     ]

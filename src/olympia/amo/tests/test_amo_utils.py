@@ -28,7 +28,7 @@ def test_slug_validator():
     pytest.raises(ValidationError, slug_validator, 'tags/')
 
 
-@pytest.mark.parametrize("test_input,expected", [
+@pytest.mark.parametrize('test_input,expected', [
     ('xx x  - "#$@ x', 'xx-x-x'),
     (u'Bän...g (bang)', u'bäng-bang'),
     (u, u.lower()),
@@ -87,7 +87,7 @@ def test_resize_transparency_for_P_mode_bug_1181221():
             os.remove(dest)
 
 
-@pytest.mark.parametrize("test_input,expected", [
+@pytest.mark.parametrize('test_input,expected', [
     ('en-us', 'en-US'),
     ('en_US', 'en-US'),
     ('en_us', 'en-US'),
@@ -102,7 +102,7 @@ def test_to_language(test_input, expected):
     assert to_language(test_input) == expected
 
 
-@pytest.mark.parametrize("test_input,expected", [
+@pytest.mark.parametrize('test_input,expected', [
     ('en-us', 'en-US'),
     ('en_US', 'en-US'),
     ('en', 'en-US'),
@@ -223,7 +223,7 @@ class TestCacheNamespaces(TestCase):
         assert cache_ns_key(self.namespace) == expected
 
 
-@pytest.mark.parametrize("test_input,expected", [
+@pytest.mark.parametrize('test_input,expected', [
     ('<script>alert("BALL SO HARD")</script>',
      '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;'),
     (u'Bän...g (bang)', u'Bän...g (bang)'),

@@ -91,4 +91,3 @@ Any other content or invalid emails will be discarded.
     :<json string Message.TextBody: The plain text body of the email.
     :<json array To: Array of To email addresses.  All will be parsed, and the first matching the correct format used.
     :<json string To[].EmailAddress: An email address in the format `reviewreply+randomuuidstring@addons.mozilla.org`.
-

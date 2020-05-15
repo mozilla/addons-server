@@ -19,15 +19,22 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UpdateCount',
             fields=[
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('count', models.PositiveIntegerField()),
                 ('date', models.DateField()),
-                ('versions', django_extensions.db.fields.json.JSONField(db_column='version', default=dict, null=True)),
-                ('statuses', django_extensions.db.fields.json.JSONField(db_column='status', default=dict, null=True)),
-                ('applications', django_extensions.db.fields.json.JSONField(db_column='application', default=dict, null=True)),
-                ('oses', django_extensions.db.fields.json.JSONField(db_column='os', default=dict, null=True)),
-                ('locales', django_extensions.db.fields.json.JSONField(db_column='locale', default=dict, null=True)),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
+                ('versions', django_extensions.db.fields.json.JSONField(
+                    db_column='version', default=dict, null=True)),
+                ('statuses', django_extensions.db.fields.json.JSONField(
+                    db_column='status', default=dict, null=True)),
+                ('applications', django_extensions.db.fields.json.JSONField(
+                    db_column='application', default=dict, null=True)),
+                ('oses', django_extensions.db.fields.json.JSONField(
+                    db_column='os', default=dict, null=True)),
+                ('locales', django_extensions.db.fields.json.JSONField(
+                    db_column='locale', default=dict, null=True)),
+                ('addon', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
             ],
             options={
                 'db_table': 'update_counts',
@@ -37,11 +44,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='DownloadCount',
             fields=[
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('count', models.PositiveIntegerField()),
                 ('date', models.DateField()),
-                ('sources', django_extensions.db.fields.json.JSONField(db_column='src', default=dict, null=True)),
-                ('addon', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
+                ('sources', django_extensions.db.fields.json.JSONField(
+                    db_column='src', default=dict, null=True)),
+                ('addon', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='addons.Addon')),
             ],
             options={
                 'db_table': 'download_counts',
@@ -62,11 +72,13 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='updatecount',
-            index=models.Index(fields=['addon', 'count'], name='addon_and_count'),
+            index=models.Index(
+                fields=['addon', 'count'], name='addon_and_count'),
         ),
         migrations.AddIndex(
             model_name='updatecount',
-            index=models.Index(fields=['addon', 'date'], name='addon_date_idx'),
+            index=models.Index(
+                fields=['addon', 'date'], name='addon_date_idx'),
         ),
         migrations.AddIndex(
             model_name='downloadcount',
@@ -78,14 +90,17 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='downloadcount',
-            index=models.Index(fields=['addon', 'count'], name='addon_and_count'),
+            index=models.Index(
+                fields=['addon', 'count'], name='addon_and_count'),
         ),
         migrations.AddIndex(
             model_name='downloadcount',
-            index=models.Index(fields=['addon', 'date'], name='addon_date_idx'),
+            index=models.Index(
+                fields=['addon', 'date'], name='addon_date_idx'),
         ),
         migrations.AddConstraint(
             model_name='downloadcount',
-            constraint=models.UniqueConstraint(fields=('date', 'addon'), name='date_2'),
+            constraint=models.UniqueConstraint(
+                fields=('date', 'addon'), name='date_2'),
         ),
     ]

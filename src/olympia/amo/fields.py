@@ -19,10 +19,10 @@ class PositiveAutoField(models.AutoField):
 
     Because AutoFields are special we need a custom database backend to support
     using them.  See olympia.core.db.mysql.base for that."""
-    description = _("Positive integer")
+    description = _('Positive integer')
 
     def get_internal_type(self):
-        return "PositiveAutoField"
+        return 'PositiveAutoField'
 
     def rel_db_type(self, connection):
         return models.PositiveIntegerField().db_type(connection=connection)
@@ -60,6 +60,7 @@ class HttpHttpsOnlyURLField(fields.URLField):
 
 class ReCaptchaWidget(HumanCaptchaWidget):
     """Added to workaround to nobot0.5 not supporting django2.1"""
+
     def render(self, name, value, attrs=None, renderer=None):
         return super(ReCaptchaWidget, self).render(name, value, attrs=attrs)
 

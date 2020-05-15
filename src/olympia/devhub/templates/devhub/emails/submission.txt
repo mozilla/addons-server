@@ -16,6 +16,6 @@ If you are interested in getting more involved with Mozilla and want to help kee
 
 Happy developing!
 
--- 
+--
 Mozilla Add-ons
 https://addons.mozilla.org

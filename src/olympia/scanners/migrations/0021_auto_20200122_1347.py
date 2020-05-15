@@ -13,21 +13,25 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='scannerqueryresult',
             name='scanner',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'customs'), (2, 'wat'), (3, 'yara'), (4, 'ml_api')]),
+            field=models.PositiveSmallIntegerField(
+                choices=[(1, 'customs'), (2, 'wat'), (3, 'yara'), (4, 'ml_api')]),
         ),
         migrations.AlterField(
             model_name='scannerqueryrule',
             name='scanner',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'customs'), (2, 'wat'), (3, 'yara'), (4, 'ml_api')]),
+            field=models.PositiveSmallIntegerField(
+                choices=[(1, 'customs'), (2, 'wat'), (3, 'yara'), (4, 'ml_api')]),
         ),
         migrations.AlterField(
             model_name='scannerresult',
             name='scanner',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'customs'), (2, 'wat'), (3, 'yara'), (4, 'ml_api')]),
+            field=models.PositiveSmallIntegerField(
+                choices=[(1, 'customs'), (2, 'wat'), (3, 'yara'), (4, 'ml_api')]),
         ),
         migrations.AlterField(
             model_name='scannerrule',
             name='scanner',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'customs'), (2, 'wat'), (3, 'yara'), (4, 'ml_api')]),
+            field=models.PositiveSmallIntegerField(
+                choices=[(1, 'customs'), (2, 'wat'), (3, 'yara'), (4, 'ml_api')]),
         ),
     ]

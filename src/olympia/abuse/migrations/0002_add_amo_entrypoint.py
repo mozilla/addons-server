@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='abusereport',
             name='report_entry_point',
-            field=models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Uninstall'), (2, 'Menu'), (3, 'Toolbar context menu'), (4, 'AMO')], default=None, null=True),
+            field=models.PositiveSmallIntegerField(blank=True, choices=[(None, 'None'), (1, 'Uninstall'), (
+                2, 'Menu'), (3, 'Toolbar context menu'), (4, 'AMO')], default=None, null=True),
         ),
     ]

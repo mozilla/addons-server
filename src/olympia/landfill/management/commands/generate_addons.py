@@ -37,7 +37,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--app', action='store', dest='app_name',
             default='firefox',
-            help="Specific application targeted by add-ons creation.")
+            help='Specific application targeted by add-ons creation.')
 
     def handle(self, *args, **kwargs):
         if not settings.DEBUG:

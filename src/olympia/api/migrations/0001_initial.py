@@ -22,9 +22,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='APIKeyConfirmation',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
+                                              primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
                 ('token', models.CharField(max_length=20)),
                 ('confirmed_once', models.BooleanField(default=False)),
             ],
@@ -33,24 +35,31 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='APIKey',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('is_active', models.NullBooleanField(default=True)),
-                ('type', models.PositiveIntegerField(choices=[(1, 1)], default=0)),
+                ('type', models.PositiveIntegerField(
+                    choices=[(1, 1)], default=0)),
                 ('key', models.CharField(db_index=True, max_length=255, unique=True)),
-                ('secret', aesfield.field.AESField(aes_key='api_key:secret', aes_method=getattr(settings, 'AES_METHOD', 'aesfield.default'), aes_prefix='aes:')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='api_keys', to=settings.AUTH_USER_MODEL)),
+                ('secret', aesfield.field.AESField(aes_key='api_key:secret', aes_method=getattr(
+                    settings, 'AES_METHOD', 'aesfield.default'), aes_prefix='aes:')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                           related_name='api_keys', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'db_table': 'api_key',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='apikey',
@@ -58,6 +67,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='apikey',
-            constraint=models.UniqueConstraint(fields=('user', 'is_active'), name='user_id'),
+            constraint=models.UniqueConstraint(
+                fields=('user', 'is_active'), name='user_id'),
         ),
     ]

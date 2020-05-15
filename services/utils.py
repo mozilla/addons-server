@@ -32,7 +32,7 @@ def user_media_path(what):
 
     """
     default = os.path.join(settings.MEDIA_ROOT, what)
-    key = "{0}_PATH".format(what.upper())
+    key = '{0}_PATH'.format(what.upper())
     return getattr(settings, key, default)
 
 
@@ -46,7 +46,7 @@ def user_media_url(what):
     settings.
     """
     default = '%s%s/' % (settings.MEDIA_URL, what)
-    key = "{0}_URL".format(what.upper().replace('-', '_'))
+    key = '{0}_URL'.format(what.upper().replace('-', '_'))
     return getattr(settings, key, default)
 
 

@@ -267,7 +267,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                                 .order_by().distinct())
         ip_adresses.add(obj.last_login_ip)
         contents = format_html_join(
-            '', "<li>{}</li>", ((ip,) for ip in ip_adresses))
+            '', '<li>{}</li>', ((ip,) for ip in ip_adresses))
         return format_html('<ul>{}</ul>', contents)
 
     def last_known_activity_time(self, obj):

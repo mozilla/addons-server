@@ -301,47 +301,47 @@ COLLECTION_SEARCH_CHOICES = [
 
 # A skeleton set of passing validation results.
 VALIDATOR_SKELETON_RESULTS = {
-    "errors": 0,
-    "warnings": 0,
-    "notices": 0,
-    "success": True,
-    "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "metadata": {
-        "listed": True,
+    'errors': 0,
+    'warnings': 0,
+    'notices': 0,
+    'success': True,
+    'compatibility_summary': {'notices': 0, 'errors': 0, 'warnings': 0},
+    'metadata': {
+        'listed': True,
     },
-    "messages": [],
-    "message_tree": {},
-    "ending_tier": 5,
+    'messages': [],
+    'message_tree': {},
+    'ending_tier': 5,
 }
 
 # A skeleton set of validation results for a system error.
 VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
-    "errors": 1,
-    "warnings": 0,
-    "notices": 0,
-    "success": False,
-    "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "metadata": {
-        "listed": True,
-        "is_webextension": True,
+    'errors': 1,
+    'warnings': 0,
+    'notices': 0,
+    'success': False,
+    'compatibility_summary': {'notices': 0, 'errors': 0, 'warnings': 0},
+    'metadata': {
+        'listed': True,
+        'is_webextension': True,
     },
-    "messages": [
-        {"id": ["validator", "unexpected_exception"],
-         "message": "Sorry, we couldn't load your WebExtension.",
-         "description": [
-            "Validation was unable to complete successfully due to an "
-            "unexpected error.",
-            "Check https://developer.mozilla.org/en-US/Add-ons/WebExtensions "
-            "to ensure your webextension is valid or file a bug at "
-            "http://bit.ly/1POrYYU"],
-         "type": "error",
-         "fatal": True,
-         "tier": 1,
-         "for_appversions": None,
-         "uid": "35432f419340461897aa8362398339c4"}
+    'messages': [
+        {'id': ['validator', 'unexpected_exception'],
+         'message': "Sorry, we couldn't load your WebExtension.",
+         'description': [
+            'Validation was unable to complete successfully due to an '
+            'unexpected error.',
+            'Check https://developer.mozilla.org/en-US/Add-ons/WebExtensions '
+            'to ensure your webextension is valid or file a bug at '
+            'http://bit.ly/1POrYYU'],
+         'type': 'error',
+         'fatal': True,
+         'tier': 1,
+         'for_appversions': None,
+         'uid': '35432f419340461897aa8362398339c4'}
     ],
-    "message_tree": {},
-    "ending_tier": 5,
+    'message_tree': {},
+    'ending_tier': 5,
 }
 
 VERSION_SEARCH = re.compile(r'\.(\d+)$')

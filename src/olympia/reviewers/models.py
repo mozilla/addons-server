@@ -695,7 +695,7 @@ class ReviewerScore(ModelBase):
         reviewers = (UserProfile.objects
                                 .filter(groups__name__startswith='Reviewers: ')
                                 .exclude(groups__name__in=('Admins',
-                                         'No Reviewer Incentives'))
+                                                           'No Reviewer Incentives'))
                                 .distinct())
         qs = (cls.objects
                  .values_list('user__id')
@@ -984,7 +984,7 @@ class AutoApprovalSummary(ModelBase):
         """Returns a list of strings containing weight information."""
         if self.weight_info:
             weight_info = sorted(['%s: %d' % (k, v)
-                                 for k, v in self.weight_info.items() if v])
+                                  for k, v in self.weight_info.items() if v])
         else:
             weight_info = [ugettext('Risk breakdown not available.')]
         return weight_info

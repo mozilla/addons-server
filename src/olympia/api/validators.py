@@ -9,6 +9,7 @@ class OneOrMorePrintableCharacterAPIValidator(
         OneOrMorePrintableCharacterValidator):
     """Like OneOrMorePrintableCharacterValidator, but for the API - raises
     a DRF ValidationError instead of a django one."""
+
     def __call__(self, value):
         try:
             return super(

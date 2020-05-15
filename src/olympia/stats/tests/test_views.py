@@ -388,20 +388,20 @@ class TestResponses(ESStatsTest):
         assert response.status_code == 200
         self.assertListEqual(json.loads(force_text(response.content)), [
             {
-                "data": {
-                    "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1500}
+                'data': {
+                    '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': {'4.0': 1500}
                 },
-                "count": 1500,
-                "date": "2009-06-02",
-                "end": "2009-06-02"
+                'count': 1500,
+                'date': '2009-06-02',
+                'end': '2009-06-02'
             },
             {
-                "data": {
-                    "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1000}
+                'data': {
+                    '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': {'4.0': 1000}
                 },
-                "count": 1000,
-                "date": "2009-06-01",
-                "end": "2009-06-01"
+                'count': 1000,
+                'date': '2009-06-01',
+                'end': '2009-06-01'
             }
         ])
 
@@ -419,23 +419,23 @@ class TestResponses(ESStatsTest):
         assert response.status_code == 200
         self.assertListEqual(json.loads(force_text(response.content)), [
             {
-                "count": 1500,
-                "date": "2009-06-02",
-                "end": "2009-06-02",
-                "data": {
-                    u"Ελληνικά (el)": 400,
+                'count': 1500,
+                'date': '2009-06-02',
+                'end': '2009-06-02',
+                'data': {
+                    u'Ελληνικά (el)': 400,
                     u'Espa\xf1ol (de M\xe9xico) (es-mx)': 400,
-                    u"English (US) (en-us)": 300
+                    u'English (US) (en-us)': 300
                 }
             },
             {
-                "count": 1000,
-                "date": "2009-06-01",
-                "end": "2009-06-01",
-                "data": {
-                    u"Ελληνικά (el)": 400,
+                'count': 1000,
+                'date': '2009-06-01',
+                'end': '2009-06-01',
+                'data': {
+                    u'Ελληνικά (el)': 400,
                     u'Espa\xf1ol (de M\xe9xico) (es-mx)': 400,
-                    u"English (US) (en-us)": 300
+                    u'English (US) (en-us)': 300
                 }
             },
         ])
@@ -455,21 +455,21 @@ class TestResponses(ESStatsTest):
         assert response.status_code == 200
         self.assertListEqual(json.loads(force_text(response.content)), [
             {
-                "count": 1500,
-                "date": "2009-06-02",
-                "end": "2009-06-02",
-                "data": {
-                    "Linux": 400,
-                    "Windows": 500
+                'count': 1500,
+                'date': '2009-06-02',
+                'end': '2009-06-02',
+                'data': {
+                    'Linux': 400,
+                    'Windows': 500
                 }
             },
             {
-                "count": 1000,
-                "date": "2009-06-01",
-                "end": "2009-06-01",
-                "data": {
-                    "Linux": 300,
-                    "Windows": 400
+                'count': 1000,
+                'date': '2009-06-01',
+                'end': '2009-06-01',
+                'data': {
+                    'Linux': 300,
+                    'Windows': 400
                 }
             }
         ])
@@ -485,21 +485,21 @@ class TestResponses(ESStatsTest):
         assert response.status_code == 200
         self.assertListEqual(json.loads(force_text(response.content)), [
             {
-                "count": 1500,
-                "date": "2009-06-02",
-                "end": "2009-06-02",
-                "data": {
-                    "1.0": 550,
-                    "2.0": 950
+                'count': 1500,
+                'date': '2009-06-02',
+                'end': '2009-06-02',
+                'data': {
+                    '1.0': 550,
+                    '2.0': 950
                 }
             },
             {
-                "count": 1000,
-                "date": "2009-06-01",
-                "end": "2009-06-01",
-                "data": {
-                    "1.0": 200,
-                    "2.0": 800
+                'count': 1000,
+                'date': '2009-06-01',
+                'end': '2009-06-01',
+                'data': {
+                    '1.0': 200,
+                    '2.0': 800
                 }
             }
         ])
@@ -518,21 +518,21 @@ class TestResponses(ESStatsTest):
         assert response.status_code == 200
         self.assertListEqual(json.loads(force_text(response.content)), [
             {
-                "count": 1500,
-                "date": "2009-06-02",
-                "end": "2009-06-02",
-                "data": {
-                    "userDisabled": 130,
-                    "userEnabled": 1370
+                'count': 1500,
+                'date': '2009-06-02',
+                'end': '2009-06-02',
+                'data': {
+                    'userDisabled': 130,
+                    'userEnabled': 1370
                 }
             },
             {
-                "count": 1000,
-                "date": "2009-06-01",
-                "end": "2009-06-01",
-                "data": {
-                    "userDisabled": 50,
-                    "userEnabled": 950
+                'count': 1000,
+                'date': '2009-06-01',
+                'end': '2009-06-01',
+                'data': {
+                    'userDisabled': 50,
+                    'userEnabled': 950
                 }
             }
         ])
@@ -552,24 +552,24 @@ class TestResponses(ESStatsTest):
         # These are the dates from the fixtures. The return value will have
         # dates in between filled with zeroes.
         expected_data = [
-            {"date": "2009-09-03",
-             "data": {"downloads": 10, "updates": 0}},
-            {"date": "2009-08-03",
-             "data": {"downloads": 10, "updates": 0}},
-            {"date": "2009-07-03",
-             "data": {"downloads": 10, "updates": 0}},
-            {"date": "2009-06-28",
-             "data": {"downloads": 10, "updates": 0}},
-            {"date": "2009-06-20",
-             "data": {"downloads": 10, "updates": 0}},
-            {"date": "2009-06-12",
-             "data": {"downloads": 10, "updates": 0}},
-            {"date": "2009-06-07",
-             "data": {"downloads": 10, "updates": 0}},
-            {"date": "2009-06-02",
-             "data": {"downloads": 0, "updates": 1500}},
-            {"date": "2009-06-01",
-             "data": {"downloads": 10, "updates": 1000}}
+            {'date': '2009-09-03',
+             'data': {'downloads': 10, 'updates': 0}},
+            {'date': '2009-08-03',
+             'data': {'downloads': 10, 'updates': 0}},
+            {'date': '2009-07-03',
+             'data': {'downloads': 10, 'updates': 0}},
+            {'date': '2009-06-28',
+             'data': {'downloads': 10, 'updates': 0}},
+            {'date': '2009-06-20',
+             'data': {'downloads': 10, 'updates': 0}},
+            {'date': '2009-06-12',
+             'data': {'downloads': 10, 'updates': 0}},
+            {'date': '2009-06-07',
+             'data': {'downloads': 10, 'updates': 0}},
+            {'date': '2009-06-02',
+             'data': {'downloads': 0, 'updates': 1500}},
+            {'date': '2009-06-01',
+             'data': {'downloads': 10, 'updates': 1000}}
         ]
         actual_data = json.loads(force_text(response.content))
         # Make sure they match up at the front and back.
@@ -597,14 +597,14 @@ class TestResponses(ESStatsTest):
             'stats.downloads_series', group='day', format='json')
         assert response.status_code == 200
         self.assertListEqual(json.loads(force_text(response.content)), [
-            {"count": 10, "date": "2009-09-03", "end": "2009-09-03"},
-            {"count": 10, "date": "2009-08-03", "end": "2009-08-03"},
-            {"count": 10, "date": "2009-07-03", "end": "2009-07-03"},
-            {"count": 10, "date": "2009-06-28", "end": "2009-06-28"},
-            {"count": 10, "date": "2009-06-20", "end": "2009-06-20"},
-            {"count": 10, "date": "2009-06-12", "end": "2009-06-12"},
-            {"count": 10, "date": "2009-06-07", "end": "2009-06-07"},
-            {"count": 10, "date": "2009-06-01", "end": "2009-06-01"},
+            {'count': 10, 'date': '2009-09-03', 'end': '2009-09-03'},
+            {'count': 10, 'date': '2009-08-03', 'end': '2009-08-03'},
+            {'count': 10, 'date': '2009-07-03', 'end': '2009-07-03'},
+            {'count': 10, 'date': '2009-06-28', 'end': '2009-06-28'},
+            {'count': 10, 'date': '2009-06-20', 'end': '2009-06-20'},
+            {'count': 10, 'date': '2009-06-12', 'end': '2009-06-12'},
+            {'count': 10, 'date': '2009-06-07', 'end': '2009-06-07'},
+            {'count': 10, 'date': '2009-06-01', 'end': '2009-06-01'},
         ])
 
     def test_downloads_csv(self):
@@ -626,38 +626,38 @@ class TestResponses(ESStatsTest):
             'stats.sources_series', group='day', format='json')
         assert response.status_code == 200
         self.assertListEqual(json.loads(force_text(response.content)), [
-            {"count": 10,
-             "date": "2009-09-03",
-             "end": "2009-09-03",
-             "data": {"api": 2, "search": 3}},
-            {"count": 10,
-             "date": "2009-08-03",
-             "end": "2009-08-03",
-             "data": {"api": 2, "search": 3}},
-            {"count": 10,
-             "date": "2009-07-03",
-             "end": "2009-07-03",
-             "data": {"api": 2, "search": 3}},
-            {"count": 10,
-             "date": "2009-06-28",
-             "end": "2009-06-28",
-             "data": {"api": 2, "search": 3}},
-            {"count": 10,
-             "date": "2009-06-20",
-             "end": "2009-06-20",
-             "data": {"api": 2, "search": 3}},
-            {"count": 10,
-             "date": "2009-06-12",
-             "end": "2009-06-12",
-             "data": {"api": 2, "search": 3}},
-            {"count": 10,
-             "date": "2009-06-07",
-             "end": "2009-06-07",
-             "data": {"api": 2, "search": 3}},
-            {"count": 10,
-             "date": "2009-06-01",
-             "end": "2009-06-01",
-             "data": {"api": 2, "search": 3}}
+            {'count': 10,
+             'date': '2009-09-03',
+             'end': '2009-09-03',
+             'data': {'api': 2, 'search': 3}},
+            {'count': 10,
+             'date': '2009-08-03',
+             'end': '2009-08-03',
+             'data': {'api': 2, 'search': 3}},
+            {'count': 10,
+             'date': '2009-07-03',
+             'end': '2009-07-03',
+             'data': {'api': 2, 'search': 3}},
+            {'count': 10,
+             'date': '2009-06-28',
+             'end': '2009-06-28',
+             'data': {'api': 2, 'search': 3}},
+            {'count': 10,
+             'date': '2009-06-20',
+             'end': '2009-06-20',
+             'data': {'api': 2, 'search': 3}},
+            {'count': 10,
+             'date': '2009-06-12',
+             'end': '2009-06-12',
+             'data': {'api': 2, 'search': 3}},
+            {'count': 10,
+             'date': '2009-06-07',
+             'end': '2009-06-07',
+             'data': {'api': 2, 'search': 3}},
+            {'count': 10,
+             'date': '2009-06-01',
+             'end': '2009-06-01',
+             'data': {'api': 2, 'search': 3}}
         ])
 
     def test_downloads_sources_csv(self):

@@ -22,8 +22,8 @@ class TestRSS(TestCase):
         assert BlogPost.objects.count() == 5
 
         bp = BlogPost.objects.all()[0]
-        url = ("http://blog.mozilla.com/addons/2011/06/10/"
-               "update-in-time-for-thunderbird-5/")
+        url = ('http://blog.mozilla.com/addons/2011/06/10/'
+               'update-in-time-for-thunderbird-5/')
         assert bp.title == 'Test!'
         assert bp.date_posted == datetime.date(2011, 6, 10)
         assert bp.permalink == url

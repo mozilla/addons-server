@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='yararesult',
-            index=models.Index(fields=['has_matches'], name='yara_result_has_mat_eba666_idx'),
+            index=models.Index(fields=['has_matches'],
+                               name='yara_result_has_mat_eba666_idx'),
         ),
     ]

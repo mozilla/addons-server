@@ -21,6 +21,7 @@ class RatingQuerySet(models.QuerySet):
     """
     A queryset modified for soft deletion.
     """
+
     def to_moderate(self):
         """Return ratings to moderate.
 
@@ -108,7 +109,7 @@ class Rating(ModelBase):
         help_text="Is this the user's latest rating for the add-on?")
     previous_count = models.PositiveIntegerField(
         default=0, editable=False,
-        help_text="How many previous ratings by the user for this add-on?")
+        help_text='How many previous ratings by the user for this add-on?')
 
     unfiltered = RatingManager(include_deleted=True)
     objects = RatingManager()

@@ -1004,7 +1004,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         self.assertRedirects(response, next_path,
                              fetch_redirect_response=False)
 
-    def test_log_in_redirects_to_home_when_request_is_secure_but_next_path_is_not(self): # noqa
+    def test_log_in_redirects_to_home_when_request_is_secure_but_next_path_is_not(self):  # noqa
         email = 'real@yeahoo.com'
         UserProfile.objects.create(email=email)
         self.fxa_identify.return_value = {'email': email, 'uid': '9001'}

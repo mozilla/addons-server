@@ -33,6 +33,6 @@ class IPNetworkUserRestrictionForm(forms.ModelForm):
             raise forms.ValidationError(_(
                 'You can only enter one, either IP Address or Network.'))
         elif ip_address is not None and not network:
-            data['network'] = f"{ip_address}/32"
+            data['network'] = f'{ip_address}/32'
 
         return data

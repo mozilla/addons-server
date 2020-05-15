@@ -93,7 +93,7 @@ class TestSendMail(TestCase):
         success = send_mail('test subject', 'test body', perm_setting='reply',
                             recipient_list=[to])
 
-        assert "You received this email because" in mail.outbox[0].body
+        assert 'You received this email because' in mail.outbox[0].body
         assert success, "Email wasn't sent"
         assert len(mail.outbox) == 1
 
@@ -113,7 +113,7 @@ class TestSendMail(TestCase):
 
         assert success, "Email wasn't sent"
         body = mail.outbox[0].body
-        assert "Unsubscribe:" not in body
+        assert 'Unsubscribe:' not in body
         assert "You can't unsubscribe from" in body
 
     def test_user_setting_unchecked(self):

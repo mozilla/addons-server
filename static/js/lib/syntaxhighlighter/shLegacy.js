@@ -21,10 +21,10 @@ var dp = {
 dp.SyntaxHighlighter = {
 	parseParams: function(
 						input,
-						showGutter, 
-						showControls, 
-						collapseAll, 
-						firstLine, 
+						showGutter,
+						showControls,
+						collapseAll,
+						firstLine,
 						showColumns
 						)
 	{
@@ -33,19 +33,19 @@ dp.SyntaxHighlighter = {
 			var regex = XRegExp('^' + name + '\\[(?<value>\\w+)\\]$', 'gi'),
 				match = null
 				;
-			
-			for (var i = 0; i < list.length; i++) 
+
+			for (var i = 0; i < list.length; i++)
 				if ((match = XRegExp.exec(list[i], regex)) != null)
 					return match.value;
-			
+
 			return null;
 		};
-		
+
 		function defaultValue(value, def)
 		{
 			return value != null ? value : def;
 		};
-		
+
 		function asString(value)
 		{
 			return value != null ? value.toString() : null;
@@ -59,15 +59,15 @@ dp.SyntaxHighlighter = {
 			result = null,
 			defaults = SyntaxHighlighter.defaults
 			;
-		
+
 		for (var i in parts)
 			options[parts[i]] = 'true';
 
 		showGutter = asString(defaultValue(showGutter, defaults.gutter));
 		showControls = asString(defaultValue(showControls, defaults.toolbar));
-		collapseAll = asString(defaultValue(collapseAll, defaults.collapse)); 
+		collapseAll = asString(defaultValue(collapseAll, defaults.collapse));
 		showColumns = asString(defaultValue(showColumns, defaults.ruler));
-		firstLine = asString(defaultValue(firstLine, defaults['first-line'])); 
+		firstLine = asString(defaultValue(firstLine, defaults['first-line']));
 
 		return {
 			brush			: brushName,
@@ -78,76 +78,76 @@ dp.SyntaxHighlighter = {
 			'first-line'	: defaultValue(getValue(parts, 'firstline'), firstLine)
 		};
 	},
-	
+
 	HighlightAll: function(
-						name, 
-						showGutter /* optional */, 
-						showControls /* optional */, 
-						collapseAll /* optional */, 
-						firstLine /* optional */, 
+						name,
+						showGutter /* optional */,
+						showControls /* optional */,
+						collapseAll /* optional */,
+						firstLine /* optional */,
 						showColumns /* optional */
 						)
 	{
 		function findValue()
 		{
 			var a = arguments;
-			
-			for (var i = 0; i < a.length; i++) 
+
+			for (var i = 0; i < a.length; i++)
 			{
-				if (a[i] === null) 
+				if (a[i] === null)
 					continue;
-				
-				if (typeof(a[i]) == 'string' && a[i] != '') 
+
+				if (typeof(a[i]) == 'string' && a[i] != '')
 					return a[i] + '';
-				
-				if (typeof(a[i]) == 'object' && a[i].value != '') 
+
+				if (typeof(a[i]) == 'object' && a[i].value != '')
 					return a[i].value + '';
 			}
-			
+
 			return null;
 		};
 
 		function findTagsByName(list, name, tagName)
 		{
 			var tags = document.getElementsByTagName(tagName);
-			
-			for (var i = 0; i < tags.length; i++) 
-				if (tags[i].getAttribute('name') == name) 
+
+			for (var i = 0; i < tags.length; i++)
+				if (tags[i].getAttribute('name') == name)
 					list.push(tags[i]);
 		}
-		
+
 		var elements = [],
 			highlighter = null,
 			registered = {},
 			propertyName = 'innerHTML'
 			;
-		
-		// for some reason IE doesn't find <pre/> by name, however it does see them just fine by tag name... 
+
+		// for some reason IE doesn't find <pre/> by name, however it does see them just fine by tag name...
 		findTagsByName(elements, name, 'pre');
 		findTagsByName(elements, name, 'textarea');
 
 		if (elements.length === 0)
 			return;
-		
+
 		for (var i = 0; i < elements.length; i++)
 		{
 			var element = elements[i],
 				params = findValue(
-					element.attributes['class'], element.className, 
+					element.attributes['class'], element.className,
 					element.attributes['language'], element.language
 					),
 				language = ''
 				;
-			
-			if (params === null) 
+
+			if (params === null)
 				continue;
 
 			params = dp.SyntaxHighlighter.parseParams(
 				params,
-				showGutter, 
-				showControls, 
-				collapseAll, 
-				firstLine, 
+				showGutter,
+				showControls,
+				collapseAll,
+				firstLine,
 				showColumns
 				);
 

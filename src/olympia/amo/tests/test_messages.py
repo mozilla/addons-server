@@ -16,24 +16,24 @@ pytestmark = pytest.mark.django_db
 
 def test_xss():
 
-    title = "<script>alert(1)</script>"
-    message = "<script>alert(2)</script>"
+    title = '<script>alert(1)</script>'
+    message = '<script>alert(2)</script>'
 
     r = _make_message(title)
-    assert "&lt;script&gt;alert(1)&lt;/script&gt;" in r
+    assert '&lt;script&gt;alert(1)&lt;/script&gt;' in r
     r = _make_message(None, message)
-    assert "&lt;script&gt;alert(2)&lt;/script&gt;" in r
+    assert '&lt;script&gt;alert(2)&lt;/script&gt;' in r
 
     r = _make_message(title, title_safe=True)
-    assert "<script>alert(1)</script>" in r
+    assert '<script>alert(1)</script>' in r
     r = _make_message(None, message, message_safe=True)
-    assert "<script>alert(2)</script>" in r
+    assert '<script>alert(2)</script>' in r
 
     # Make sure safe flags are independent
     r = _make_message(title, message_safe=True)
-    assert "&lt;script&gt;alert(1)&lt;/script&gt;" in r
+    assert '&lt;script&gt;alert(1)&lt;/script&gt;' in r
     r = _make_message(None, message, title_safe=True)
-    assert "&lt;script&gt;alert(2)&lt;/script&gt;" in r
+    assert '&lt;script&gt;alert(2)&lt;/script&gt;' in r
 
 
 def test_no_dupes():
@@ -89,4 +89,4 @@ def test_html_rendered_properly():
 
     template = loader.get_template('messages.html')
     html = template.render({'messages': messages})
-    assert "<h2>" in html  # The html from _make_message is not escaped.
+    assert '<h2>' in html  # The html from _make_message is not escaped.

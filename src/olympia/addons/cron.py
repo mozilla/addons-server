@@ -173,7 +173,7 @@ def deliver_hotness():
     """
     frozen = set(f.id for f in FrozenAddon.objects.all())
     all_ids = list((Addon.objects.filter(status__in=amo.REVIEWED_STATUSES)
-                   .values_list('id', flat=True)))
+                    .values_list('id', flat=True)))
     now = datetime.now()
     one_week = now - timedelta(days=7)
     four_weeks = now - timedelta(days=28)

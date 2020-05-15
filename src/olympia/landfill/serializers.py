@@ -106,8 +106,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
             PrimaryHero.objects.create(disco_addon=item)
             SecondaryHero.objects.create(
                 enabled=True,
-                headline="This is a headline",
-                description="Hero Description")
+                headline='This is a headline',
+                description='Hero Description')
             item.addon.current_version.update(recommendation_approved=True)
             item.primaryhero.update(enabled=True)
 

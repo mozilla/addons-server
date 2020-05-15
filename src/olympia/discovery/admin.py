@@ -20,6 +20,7 @@ KEY_LOCALES_FOR_EDITORIAL_CONTENT = ('de', 'fr', 'es', 'pl', 'it', 'ja')
 class SlugOrPkChoiceField(forms.ModelChoiceField):
     """A ModelChoiceField that supports entering slugs instead of PKs for
     convenience."""
+
     def clean(self, value):
         if (value and isinstance(value, str) and not value.isdigit()):
             try:

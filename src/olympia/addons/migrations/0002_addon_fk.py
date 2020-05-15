@@ -24,10 +24,12 @@ class Migration(migrations.Migration):
                 related_name='+', to='versions.Version')),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['_current_version'], name='current_version'),
+            index=models.Index(
+                fields=['_current_version'], name='current_version'),
         ),
         migrations.AddIndex(
             model_name='addon',
-            index=models.Index(fields=['type', 'status', 'disabled_by_user', '_current_version'], name='visible_idx'),
+            index=models.Index(fields=[
+                               'type', 'status', 'disabled_by_user', '_current_version'], name='visible_idx'),
         ),
     ]

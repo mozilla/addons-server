@@ -324,10 +324,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         else:
             split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
             modified = int(time.mktime(self.modified.timetuple()))
-            path = "/".join([
+            path = '/'.join([
                 split_id.group(2) or '0',
                 split_id.group(1) or '0',
-                "%s.png?modified=%s" % (self.id, modified)
+                '%s.png?modified=%s' % (self.id, modified)
             ])
             return user_media_url('userpics') + path
 

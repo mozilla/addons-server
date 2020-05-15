@@ -658,9 +658,9 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'term': {'app': amo.FIREFOX.id}} in filter_
         assert {'range': {'current_version.compatible_apps.1.min':
-                {'lte': 46000000200100}}} in filter_
+                          {'lte': 46000000200100}}} in filter_
         assert {'range': {'current_version.compatible_apps.1.max':
-                {'gte': 46000000000100}}} in filter_
+                          {'gte': 46000000000100}}} in filter_
 
     def test_search_by_platform_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:

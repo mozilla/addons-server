@@ -45,10 +45,10 @@ def index_objects(ids, model, extract_func, index=None, transforms=None,
         data = extract_func(ob)
         for index in indices:
             bulk.append({
-                "_source": data,
-                "_id": ob.id,
-                "_type": ob.get_mapping_type(),
-                "_index": index
+                '_source': data,
+                '_id': ob.id,
+                '_type': ob.get_mapping_type(),
+                '_index': index
             })
 
     es = amo_search.get_es()
@@ -63,9 +63,9 @@ def raise_if_reindex_in_progress(site):
     """
     already_reindexing = Reindexing.objects._is_reindexing(site)
     if already_reindexing and 'FORCE_INDEXING' not in os.environ:
-        raise CommandError("Indexation already occurring. Add a "
-                           "FORCE_INDEXING variable in the environ "
-                           "to force it")
+        raise CommandError('Indexation already occurring. Add a '
+                           'FORCE_INDEXING variable in the environ '
+                           'to force it')
 
 
 def timestamp_index(index):

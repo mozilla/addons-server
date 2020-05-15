@@ -13,7 +13,6 @@ def featured_images_png_to_jpg(apps, schema_editor):
         shelf.update(image=new_name)
 
 
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -25,6 +24,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='primaryhero',
             name='image',
-            field=olympia.hero.models.WidgetCharField(blank=True, choices=[('Adnauseum@2x.jpg', 'Adnauseum@2x.jpg'), ('Dark Reader 2@2x.jpg', 'Dark Reader 2@2x.jpg'), ('Enhancer@2x.jpg', 'Enhancer@2x.jpg'), ('Facetainer@2x.jpg', 'Facetainer@2x.jpg'), ('Gesturefy@2x.jpg', 'Gesturefy@2x.jpg'), ('Ghostery@2x.jpg', 'Ghostery@2x.jpg'), ('Google Translate@2x.jpg', 'Google Translate@2x.jpg'), ('Privacy Badger@2x.jpg', 'Privacy Badger@2x.jpg'), ('Search By Image@2x.jpg', 'Search By Image@2x.jpg'), ('Sunset Window.jpg', 'Sunset Window.jpg'), ('Tst1@2x.jpg', 'Tst1@2x.jpg'), ('Typing Laptop@2x.jpg', 'Typing Laptop@2x.jpg'), ('Ubo@2x.jpg', 'Ubo@2x.jpg')], max_length=255),
+            field=olympia.hero.models.WidgetCharField(blank=True, choices=[('Adnauseum@2x.jpg', 'Adnauseum@2x.jpg'), ('Dark Reader 2@2x.jpg', 'Dark Reader 2@2x.jpg'), ('Enhancer@2x.jpg', 'Enhancer@2x.jpg'), ('Facetainer@2x.jpg', 'Facetainer@2x.jpg'), ('Gesturefy@2x.jpg', 'Gesturefy@2x.jpg'), ('Ghostery@2x.jpg', 'Ghostery@2x.jpg'), (
+                'Google Translate@2x.jpg', 'Google Translate@2x.jpg'), ('Privacy Badger@2x.jpg', 'Privacy Badger@2x.jpg'), ('Search By Image@2x.jpg', 'Search By Image@2x.jpg'), ('Sunset Window.jpg', 'Sunset Window.jpg'), ('Tst1@2x.jpg', 'Tst1@2x.jpg'), ('Typing Laptop@2x.jpg', 'Typing Laptop@2x.jpg'), ('Ubo@2x.jpg', 'Ubo@2x.jpg')], max_length=255),
         ),
     ]

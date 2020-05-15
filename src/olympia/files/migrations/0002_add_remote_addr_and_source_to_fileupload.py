@@ -18,6 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='fileupload',
             name='source',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'Developer Hub'), (2, 'API')], default=None, null=True),
+            field=models.PositiveSmallIntegerField(
+                choices=[(1, 'Developer Hub'), (2, 'API')], default=None, null=True),
         ),
     ]

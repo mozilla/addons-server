@@ -27,10 +27,10 @@ class Command(BaseCommand):
         except UserProfile.DoesNotExist:
             raise CommandError('User with email %s not found' % email)
 
-        admin_msg = ""
+        admin_msg = ''
         if set_admin:
-            admin_msg = "admin "
+            admin_msg = 'admin '
             GroupUser.objects.create(user=profile,
                                      group=Group.objects.get(name='Admins'))
-        self.stdout.write("Done, you can now login with your %suser" %
+        self.stdout.write('Done, you can now login with your %suser' %
                           admin_msg)

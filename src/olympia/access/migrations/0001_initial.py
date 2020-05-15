@@ -20,9 +20,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Group',
             fields=[
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                ('created', models.DateTimeField(blank=True,
+                                                 default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
                 ('name', models.CharField(default='', max_length=255)),
                 ('rules', models.TextField()),
                 ('notes', models.TextField(blank=True)),
@@ -30,14 +32,18 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'groups',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin,
+                   olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='GroupUser',
             fields=[
-                ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='access.Group')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('id', olympia.amo.fields.PositiveAutoField(
+                    primary_key=True, serialize=False)),
+                ('group', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='access.Group')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'db_table': 'groups_users',
@@ -46,10 +52,12 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='group',
             name='users',
-            field=models.ManyToManyField(related_name='groups', through='access.GroupUser', to=settings.AUTH_USER_MODEL),
+            field=models.ManyToManyField(
+                related_name='groups', through='access.GroupUser', to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddConstraint(
             model_name='groupuser',
-            constraint=models.UniqueConstraint(fields=('group', 'user'), name='group_id'),
+            constraint=models.UniqueConstraint(
+                fields=('group', 'user'), name='group_id'),
         ),
     ]

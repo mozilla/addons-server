@@ -1209,7 +1209,7 @@ class TestRatingViewSetEdit(TestCase):
         assert response.status_code == 400
         assert response.data['version'] == [
             u"You can't change the version of the add-on reviewed once "
-            u"the review has been created."]
+            u'the review has been created.']
 
     def test_edit_dont_allow_addon_to_be_edited(self):
         self.client.login_api(self.user)
@@ -1218,7 +1218,7 @@ class TestRatingViewSetEdit(TestCase):
         assert response.status_code == 400
         assert response.data['addon'] == [
             u"You can't change the add-on of a review once it has been "
-            u"created."]
+            u'created.']
 
     def test_edit_admin(self):
         original_review_user = self.rating.user
@@ -1627,7 +1627,7 @@ class TestRatingViewSetPost(TestCase):
         assert response.status_code == 400
         assert response.data['non_field_errors'] == [
             u"You can't leave more than one review for the same version of "
-            u"an add-on."]
+            u'an add-on.']
 
     @override_settings(CACHES=locmem_cache)
     def test_throttle(self):

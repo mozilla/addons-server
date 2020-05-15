@@ -97,7 +97,7 @@ def setup_es_test_data(es):
         es.cluster.health()
     except Exception as e:
         e.args = tuple(
-            [u"%s (it looks like ES is not running, try starting it or "
+            [u'%s (it looks like ES is not running, try starting it or '
              u"don't run ES tests: make test_no_es)" % e.args[0]] +
             list(e.args[1:]))
         raise

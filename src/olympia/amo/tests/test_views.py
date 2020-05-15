@@ -342,8 +342,8 @@ class TestOtherStuff(TestCase):
         assert page._headers['content-type'] == wanted
 
         doc = etree.fromstring(page.content)
-        e = doc.find("{http://a9.com/-/spec/opensearch/1.1/}ShortName")
-        assert e.text == "Firefox Add-ons"
+        e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}ShortName')
+        assert e.text == 'Firefox Add-ons'
 
 
 class TestCORS(TestCase):

@@ -297,12 +297,12 @@ def test_extract_theme_properties(zip_file):
     result = utils.extract_theme_properties(
         addon, addon.current_version.channel)
     assert result == {
-        "colors": {
-            "frame": "#adb09f",
-            "tab_background_text": "#000"
+        'colors': {
+            'frame': '#adb09f',
+            'tab_background_text': '#000'
         },
-        "images": {
-            "theme_frame": "weta.png"
+        'images': {
+            'theme_frame': 'weta.png'
         }
     }
 
@@ -431,18 +431,18 @@ class TestUploadRestrictionChecker(TestCase):
 
 def test_process_validation_ending_tier_is_preserved():
     results = {
-        "errors": 0,
-        "success": True,
-        "warnings": 0,
-        "notices": 0,
-        "message_tree": {},
-        "messages": [],
-        "ending_tier": 5,
-        "metadata": {
-            "contains_binary_extension": True,
-            "version": "1.0",
-            "name": "gK0Bes Bot",
-            "id": "gkobes@gkobes"
+        'errors': 0,
+        'success': True,
+        'warnings': 0,
+        'notices': 0,
+        'message_tree': {},
+        'messages': [],
+        'ending_tier': 5,
+        'metadata': {
+            'contains_binary_extension': True,
+            'version': '1.0',
+            'name': 'gK0Bes Bot',
+            'id': 'gkobes@gkobes'
         }
     }
     data = utils.process_validation(results)
