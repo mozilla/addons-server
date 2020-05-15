@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-15 15:48+0000\n"
+"PO-Revision-Date: 2020-05-15 16:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4938,15 +4938,15 @@ msgstr "Távolítsa el a nyomkövetési elemeket a webes hivatkozásokról."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Szerezzen automatikusan kitöltött RSS-hírcsatornákat tartalmazó könyvjelzőmappákat."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Rendezzen könnyedén számos nyitott lapot."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Lapcsoportok létrehozása és testreszabása."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4962,7 +4962,7 @@ msgstr "Az összes hirdetés blokkolása – videók, felugró ablakok, reklámc
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Nézzen bárhol közvetített médiatartalmakat barátaival és családjával."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5591,7 +5591,7 @@ msgid "Block Multiple Versions"
 msgstr "Több verzió blokkolása"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Ez némán letiltja a kiválasztott jóváhagyott verziókat, és megnyitja a blokkolás létrehozási adminisztrációs oldalt."
 
 msgid "Confirm Multiple Versions"
 msgstr "Több verzió megerősítése"
@@ -5633,12 +5633,12 @@ msgid "Add-on Review Guide"
 msgstr "Kiegészítő értékelési útmutató"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Átvizsgálók által megjelöltek"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Átvizsgálók által megjelölt ({0})"
+msgstr[1] "Átvizsgálók által megjelöltek ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatikusan jóváhagyott kiegészítők"
@@ -5717,7 +5717,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Adatvédelmi irányelvek"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Visszaélési jelentések – {addon} – Firefox-kiegészítők"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Visszaélési jelentések a(z) {addon} kiegészítőhöz és a fejlesztőknek ({num})"
@@ -5792,7 +5792,7 @@ msgid "Add-on name translations"
 msgstr "Kiegészítőnév-fordítások"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Értékelési eszközök – Firefox-kiegészítők"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Visszatérés a Szerkesztői eszközök vezérlőpultra"
@@ -5810,7 +5810,7 @@ msgid "Score"
 msgstr "Pontszám"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Értékelési moderátori napló – Firefox-kiegészítők"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5851,7 +5851,7 @@ msgid "Undelete"
 msgstr "Törlés visszavonása"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Értékelői teljesítmény – Firefox-kiegészítők"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Kiegészítő szerkesztő teljesítménye"
@@ -5901,22 +5901,22 @@ msgid "All-Time"
 msgstr "Bármikor"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Értékelési eszközök – Firefox-kiegészítők"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Tartalmi értékelés – Firefox-kiegészítők"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Automatikusan jóváhagyott kiegészítők – Firefox kiegészítők"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Értékelési moderálás – Firefox-kiegészítők"
 
 msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Lejárt információkérések – Firefox kiegészítők"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Nem listázott kiegészítők – Firefox-kiegészítők"
 
 msgid "Advanced Search"
 msgstr "Speciális keresés"
@@ -5954,7 +5954,7 @@ msgid "Reviewer's Guide"
 msgstr "Értékelők útmutatója"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Firefox-kiegészítők"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5974,7 +5974,7 @@ msgid "Previously deleted entries"
 msgstr "Korábban törölt bejegyzések"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Ez egy ajánlott kiegészítő."
 
 msgid "You don't have permission to review it."
 msgstr "Nincs engedélye az értékeléshez."
