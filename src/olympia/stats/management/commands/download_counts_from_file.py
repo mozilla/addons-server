@@ -25,7 +25,7 @@ def is_valid_source(src, fulls, prefixes):
     a prefix in the list of valid prefix sources.
 
     """
-    return src in fulls or any(p in src for p in prefixes)
+    return src in fulls or any(src.startswith(p) for p in prefixes)
 
 
 class Command(BaseCommand):
@@ -149,43 +149,42 @@ class Command(BaseCommand):
                 # Ignore completely invalid data.
                 continue
 
-            if id_or_slug.strip().isdigit():
+            if not is_valid_source(src, fulls=fulls, prefixes=prefixes):
+                continue
+
+            if id_or_slug.isdigit():
                 # If it's a digit, then it should be a file id.
                 try:
                     id_or_slug = int(id_or_slug)
                 except ValueError:
                     continue
-
-                # Does this file exist?
-                if id_or_slug in files_to_addon:
-                    addon_id = files_to_addon[id_or_slug]
-                # Maybe it's an add-on ?
-                elif id_or_slug in files_to_addon.values():
-                    addon_id = id_or_slug
-                else:
-                    # It's an integer we don't recognize, ignore the row.
-                    continue
+                addon_id = (
+                    # Does this file exist?
+                    files_to_addon.get(id_or_slug) or
+                    # Maybe it's an add-on ?
+                    (id_or_slug if id_or_slug in files_to_addon.values()
+                     # otherwise it doesn't exist
+                     else None))
             else:
-                # It's probably a slug.
-                if id_or_slug in slugs_to_addon:
-                    addon_id = slugs_to_addon[id_or_slug]
-                else:
-                    # We've exhausted all possibilities, ignore this row.
-                    continue
-
-            if not is_valid_source(src, fulls=fulls, prefixes=prefixes):
+                # If it's not numeric it's probably a slug.
+                addon_id = slugs_to_addon.get(id_or_slug)
+            if not addon_id:
+                # We've exhausted all possibilities, ignore this row.
                 continue
 
             # Memoize the DownloadCount.
             if addon_id in download_counts:
                 dc = download_counts[addon_id]
+                # update the DownloadCount object.
+                dc.count += counter
+                dc.sources = update_inc(dc.sources, src, counter)
             else:
-                dc = DownloadCount(date=day, addon_id=addon_id, count=0)
+                dc = DownloadCount(
+                    date=day,
+                    addon_id=addon_id,
+                    count=counter,
+                    sources={src: counter})
                 download_counts[addon_id] = dc
-
-            # We can now fill the DownloadCount object.
-            dc.count += counter
-            dc.sources = update_inc(dc.sources, src, counter)
 
         # Close all old connections in this thread before we start creating the
         # `DownloadCount` values.
