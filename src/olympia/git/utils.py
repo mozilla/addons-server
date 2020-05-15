@@ -57,8 +57,8 @@ GIT_DIFF_LINE_MAPPING = {
     GIT_DIFF_LINE_DEL_EOFNL: 'delete-eofnl',
 }
 
-# Prefix folder name we are using to store extracted add-on or source
-# data to avoid any clashes, e.g with .git folders.
+# Prefix folder name we are using to store extracted add-on data to avoid any
+# clashes, e.g with .git folders.
 EXTRACTED_PREFIX = 'extracted'
 
 # Rename and copy threshold, 50% is the default git threshold
@@ -159,7 +159,7 @@ class AddonGitRepository(object):
 
     def __init__(self, addon_or_id, package_type='addon'):
         from olympia.addons.models import Addon
-        assert package_type in ('addon', 'source')
+        assert package_type in ('addon',)
 
         # Always enforce the search path being set to our ROOT
         # setting. This is sad, libgit tries to fetch the global git
@@ -195,8 +195,6 @@ class AddonGitRepository(object):
             settings.GIT_FILE_STORAGE_PATH,
             id_to_path(self.addon_id),
             package_type)
-
-        self.package_type = package_type
 
     @property
     def is_extracted(self):
@@ -258,18 +256,11 @@ class AddonGitRepository(object):
         if not self.is_extracted:
             log.error('called delete() on a non-extracted git repository')
             return
-        if self.package_type == 'source':
-            # Reset the source git hash of each version of the add-on related
-            # to this git repository.
-            Version.unfiltered.filter(addon_id=self.addon_id).update(
-                source_git_hash=''
-            )
-        else:
-            # Reset the git hash of each version of the add-on related to this
-            # git repository.
-            Version.unfiltered.filter(addon_id=self.addon_id).update(
-                git_hash=''
-            )
+        # Reset the git hash of each version of the add-on related to this git
+        # repository.
+        Version.unfiltered.filter(addon_id=self.addon_id).update(
+            git_hash=''
+        )
         shutil.rmtree(self.git_repository_path)
 
     @classmethod

@@ -19,11 +19,9 @@ from olympia.abuse.models import AbuseReport
 from olympia.constants.base import _ADDON_PERSONA, _ADDON_THEME, _ADDON_WEBAPP
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
-from olympia.git.tasks import delete_source_git_repositories
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.reviewers.tasks import recalculate_post_review_weight
 from olympia.versions.compare import version_int
-from olympia.versions.models import Version
 
 
 firefox_56_star = version_int('56.*')
@@ -126,24 +124,6 @@ tasks = {
     'extract_colors_from_static_themes': {
         'method': extract_colors_from_static_themes,
         'qs': [Q(type=amo.ADDON_STATICTHEME)]
-    },
-    'delete_source_git_repositories': {
-        'method': delete_source_git_repositories,
-        'distinct': True,
-        'qs': [
-            Q(
-                # Retrieve a list of add-on IDs that have at least one version
-                # with a source git hash (which means source files have been
-                # git-extracted).
-                pk__in=Version.unfiltered.exclude(source_git_hash__exact='')
-                # This is needed to make `.distinct()` work, see:
-                # https://code.djangoproject.com/ticket/16058
-                .order_by()
-                .values_list('addon_id', flat=True)
-                .distinct()
-            )
-        ],
-        'allowed_kwargs': ('with_deleted',),
     },
     'delete_obsolete_addons': {
         'method': delete_addons,
