@@ -142,27 +142,6 @@ class TestFileEntriesSerializer(TestCase):
         with self.assertRaises(NotFound):
             self.serialize(file, file='UNKNOWN_FILE')
 
-    def test_supports_search_plugin(self):
-        self.addon = addon_factory(file_kw={'filename': 'search_20190331.xml'})
-        extract_version_to_git(self.addon.current_version.pk)
-        self.addon.current_version.refresh_from_db()
-        file = self.addon.current_version.current_file
-
-        data = self.serialize(file)
-
-        assert data['id'] == file.pk
-        assert set(data['entries'].keys()) == {'search_20190331.xml'}
-        assert data['selected_file'] == 'search_20190331.xml'
-        assert data['content'].startswith(
-            '<?xml version="1.0" encoding="utf-8"?>')
-        assert data['download_url'] == absolutify(reverse(
-            'reviewers.download_git_file',
-            kwargs={
-                'version_id': self.addon.current_version.pk,
-                'filename': 'search_20190331.xml'
-            }
-        ))
-
     def test_get_entries_cached(self):
         file = self.addon.current_version.current_file
         serializer = self.get_serializer(file)
@@ -259,7 +238,8 @@ class TestFileEntriesDiffSerializer(TestCase):
 
         self.addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi'})
+            file_kw={'filename': 'webextension_no_id.xpi',
+                     'is_webextension': True})
 
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.refresh_from_db()
@@ -267,7 +247,7 @@ class TestFileEntriesDiffSerializer(TestCase):
     def create_new_version_for_addon(self, xpi_filename):
         addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
-            file_kw={'filename': xpi_filename})
+            file_kw={'filename': xpi_filename, 'is_webextension': True})
 
         extract_version_to_git(addon.current_version.pk)
 
@@ -661,7 +641,8 @@ class TestAddonBrowseVersionSerializerFileOnly(TestCase):
         super(TestAddonBrowseVersionSerializerFileOnly, self).setUp()
 
         self.addon = addon_factory(
-            file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+            file_kw={'filename': 'notify-link-clicks-i18n.xpi',
+                     'is_webextension': True})
 
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.reload()
@@ -780,7 +761,8 @@ class TestAddonCompareVersionSerializerFileOnly(TestCase):
         super(TestAddonCompareVersionSerializerFileOnly, self).setUp()
 
         self.addon = addon_factory(
-            file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+            file_kw={'filename': 'notify-link-clicks-i18n.xpi',
+                     'is_webextension': True})
 
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.reload()

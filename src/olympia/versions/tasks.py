@@ -124,10 +124,18 @@ def extract_version_to_git(
     # we can access them.
     version = Version.unfiltered.get(pk=version_id)
 
+    if (
+        version.addon.type != amo.ADDON_EXTENSION or
+        not version.all_files[0].is_webextension
+    ):
+        log.debug('Skipping git extraction of add-on "{}": not a '
+                  'web-extension.'.format(version.addon.id))
+        return
+
     if not force_extraction and waffle.switch_is_active(
         'enable-git-extraction-cron'
     ):
-        log.info('Adding add-on {} to the git extraction '
+        log.info('Adding add-on "{}" to the git extraction '
                  'queue.'.format(version.addon.id))
         GitExtractionEntry.objects.create(addon=version.addon)
         return

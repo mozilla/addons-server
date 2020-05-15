@@ -162,7 +162,8 @@ class TestGitExtraction(TestCase):
         assert not GitExtractionEntry.objects.filter(pk=entry.pk).exists()
 
     def test_extract_addon(self):
-        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
         version = addon.current_version
         repo = AddonGitRepository(addon)
         entry = GitExtractionEntry.objects.create(addon=addon)
@@ -178,10 +179,12 @@ class TestGitExtraction(TestCase):
         assert version.git_hash
 
     def test_extract_addon_with_more_versions_than_batch_size(self):
-        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
         version_1 = addon.current_version
         version_2 = version_factory(
-            addon=addon, file_kw={'filename': 'webextension_no_id.xpi'}
+            addon=addon, file_kw={'filename': 'webextension_no_id.xpi',
+                                  'is_webextension': True}
         )
         repo = AddonGitRepository(addon)
         entry = GitExtractionEntry.objects.create(addon=addon)
@@ -218,7 +221,8 @@ class TestGitExtraction(TestCase):
     # Celery still raises errors so... we have to catch the exception too.
     @override_settings(CELERY_TASK_EAGER_PROPAGATES=False)
     def test_extract_addon_with_broken_ref_error_during_extraction(self):
-        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
         version = addon.current_version
         repo = AddonGitRepository(addon)
         # Force the creation of the git repository.
