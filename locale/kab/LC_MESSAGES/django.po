@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-16 15:20+0000\n"
+"PO-Revision-Date: 2020-05-16 21:34+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3599,7 +3599,7 @@ msgstr "Snerni tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Faṛs tagnit seg tmahilin timaynutin YouTube, am uskar sinima, asewḥel n udellel, taɣuri tawurmant, atg."
+msgstr "Faṛes tagnit seg tmahilin timaynutin YouTube, am uskar n ssinima, asewḥel n udellel, taɣuri tawurmant, atg."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
