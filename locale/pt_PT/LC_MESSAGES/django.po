@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-05 10:43+0000\n"
-"Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>\n"
+"PO-Revision-Date: 2020-05-16 18:39+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -1611,6 +1611,7 @@ msgstr "Os extras para Thunderbird e SeaMonkey são agora listados e mantidos em
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
+"Os extras de Pesquisa aberta {blog_link_open}{blog_link_open} já não são suportados no AMO {blog_link_close}. Como alternativa, pode criar uma {doc_link_open}extensão de pesquisa{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Este identificador já está a ser utilizado. Por favor, escolha outro."
@@ -2978,6 +2979,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"A seguinte chave de API foi adicionada à sua conta:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Se acredita que esta chave foi criada por engano, pode remover a chave e\n"
+"desativar o acesso na seguinte localização:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2990,6 +2999,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"A chave de API foi revogada da sua conta:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Se acredita que esta chave foi revogada por engano, pode criar uma nova\n"
+"na seguinte localização:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3003,6 +3020,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Caro programador de extras,\n"
+"\n"
+"Reparámos que as suas credenciais secretas da API da AMO foram incluídas num extra submetido para addons.mozilla.org. Para proteger a sua conta e os seus extras, nós revogamos as credenciais divulgadas.\n"
+"Pode gerar novas credenciais para a API em %(api_keys_url)s\n"
+"\n"
+"Por favor, certifique-se que nunca partilha as suas credenciais com ninguém. Nunca as inclua num repositório público, extra ou em qualquer outro local público. Nós recomendamos que reveja os seus repositórios de código e as suas extensões para remover quaisquer referências às suas credenciais do AMO.\n"
+"\n"
+"Obrigado,\n"
+"A equipa de extras da Mozilla"
 
 msgid "Invisible"
 msgstr "Invisível"
@@ -3151,10 +3177,12 @@ msgid "Read more about the source code review policy."
 msgstr "Leia mais acerca da política de revisão de código."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Crie extensões e temas de primeira classe"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Quer seja um principiante no desenvolvimento de extensões, esteja a aperfeiçoar ou a distribuir uma extensão ou tema existente ou a criar uma solução empresarial personalizada, nós temos os recursos"
+" para o apoiar."
 
 # Plural in this context means many of the add-on type
 #, fuzzy
@@ -3162,20 +3190,20 @@ msgid "Visit the Extension Workshop"
 msgstr "Workshop de extensões"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Ligue-se a nós"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
 msgstr "Programador"
 
 msgid "For end users"
-msgstr ""
+msgstr "Para utilizadores finais"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 #, fuzzy
@@ -3187,7 +3215,7 @@ msgid "Extensions Developers Newsletter"
 msgstr "Desenvolvimento de extensões"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Mantenha-se atualizado sobre notícias e eventos para os programadores de extensões do Firefox."
 
 #, fuzzy
 msgid "Email Address"
@@ -3195,14 +3223,14 @@ msgstr "Endereço IP"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Eu concordo que a Mozilla faça a gestão da minha informação como descrito nesta %(link_open)spolítica de privacidade%(link_close)s."
 
 #, fuzzy
 msgid "Sign Up"
 msgstr "Terminar sessão"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Obrigado!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
