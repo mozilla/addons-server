@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-16 14:38+0000\n"
+"PO-Revision-Date: 2020-05-16 15:04+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -473,7 +473,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Azegrir-agi ittekkayakan ar tegrumma"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Addad n tuffɣa"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -919,7 +919,7 @@ msgid "Block {1} action for {0} signed off."
 msgstr "Sewḥel {1} tigawt akken {0} ad teffɣeḍ."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Sewḥel addad n tuffɣa"
 
 msgid "User {user} session(s) reset."
 msgstr "Awennez n tɣimit (tɣimiyin) n useqdac {user}."
