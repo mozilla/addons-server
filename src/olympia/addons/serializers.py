@@ -10,6 +10,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
+from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APPS_ALL
