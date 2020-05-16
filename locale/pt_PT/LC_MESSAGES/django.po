@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-16 18:39+0000\n"
+"PO-Revision-Date: 2020-05-16 18:42+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3234,6 +3234,8 @@ msgstr "Obrigado!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Se não confirmou anteriormente uma subscrição para uma newsletter da Mozilla, poderá ter de o fazer. Por favor, procure na sua caixa de entrada ou no filtro de lixo eletrónico por uma mensagem "
+"nossa."
 
 msgid "Resources"
 msgstr "Recursos"
@@ -3252,7 +3254,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Botão \"Obter Extra\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Programa de extensões recomendadas"
 
 msgid "Contribute"
 msgstr "Contribuir"
@@ -3285,10 +3287,10 @@ msgid "See how"
 msgstr "Ver como"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Participe"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Ligue-se a milhares de programadores e descubra mais formas de contribuir para o ecossistema de extensões."
 
 #, fuzzy
 msgid "Learn more about the developer community"
@@ -3346,7 +3348,7 @@ msgid "Learn how to make an extension"
 msgstr "Aprender a fazer um extra"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Pronto para submeter ou gerir a sua extensão?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
