@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-17 23:05+0000\n"
+"PO-Revision-Date: 2020-05-17 23:08+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5754,7 +5754,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} :: Política de privacidade"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Relatórios de violação – {addon} – Extras para o Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Relatórios de abuso para {addon} e respetivos programadores ({num})"
@@ -5828,7 +5828,7 @@ msgid "Add-on name translations"
 msgstr "por versão do extra"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Ferramentas do revisor – Extras para o Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Voltar ao painel de controlo das ferramentas do revisor"
@@ -5846,7 +5846,7 @@ msgid "Score"
 msgstr "Pontuação"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Registo de moderação do revisor – Extras para o Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5887,7 +5887,7 @@ msgid "Undelete"
 msgstr "Recuperar"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Desempenho do revisor – Extras para o Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Desempenho do revisor do extra"
@@ -5936,24 +5936,24 @@ msgid "All-Time"
 msgstr "Desde sempre"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Ferramentas do revisor – Extras para o Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Revisão de conteúdo – Extras para o Firefox"
 
 #, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Extras aprovados automaticamente"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderação da revisão – Extras para o Firefox"
 
 #, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Solicitação de informação expirada"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Extras não listados – Extras para o Firefox"
 
 msgid "Advanced Search"
 msgstr "Pesquisa avançada"
@@ -5991,7 +5991,7 @@ msgid "Reviewer's Guide"
 msgstr "Guia dos revisores"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Extras para o Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6011,7 +6011,7 @@ msgid "Previously deleted entries"
 msgstr "Entradas excluídas anteriormente"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Esta é uma extensão recomendada."
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -6070,7 +6070,7 @@ msgid "Block add-on"
 msgstr "Voltar ao extra"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Atualizar bloqueio de extra"
 
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
@@ -6116,7 +6116,7 @@ msgid "Resolution"
 msgstr "Resolução"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Registo de revisão do extra – Extras para o Firefox"
 
 msgid "Reviewer"
 msgstr "Revisor"
@@ -6134,7 +6134,7 @@ msgid "No reviews found for this period."
 msgstr "Nenhuma revisão encontrada para este período."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Origem:"
 
 msgid "Method:"
 msgstr "Método:"
@@ -6324,10 +6324,10 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Abortar"
 
 msgid "Run"
-msgstr ""
+msgstr "Executar"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
