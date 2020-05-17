@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-16 17:57+0000\n"
+"PO-Revision-Date: 2020-05-17 09:03+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -128,17 +128,14 @@ msgstr "Shënime mund të shtohen vetëm te versionet më të reja të shtesave.
 msgid "Ratings"
 msgstr "Vlerësime"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Mjete Shqyrtuesi"
+msgstr "Mjete Shqyrtuesi (të shfaqura)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Mjete Shqyrtuesi"
+msgstr "Mjete Shqyrtuesi (të pashfaqura)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Mjete Shqyrtuesi"
+msgstr "Lidhje shqyrtuesi"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Shtesë jo në AMO -"
@@ -305,11 +302,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Oh"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Oh! Patëm një gabim.</h1> <p>Do ta ndreqim së shpejti.</p> <p> Mund të provoni rifreskimin e faqes, ose të ktheheni te <a href=\"%(home)s\">kreu i shtesave</a>. </p>"
+msgstr ""
+"<h1>Hëm! Patëm një gabim.</h1> <p>Do ta ndreqim së shpejti.</p> <p> Mund të provoni rifreskimin e faqes, ose të ktheheni te <a href=\"%(home)s\">kreu i Shtesave</a>. Mundeni edhe të na ndihmoni ta "
+"ndreqim, duke <a href=\"https://github.com/mozilla/addons/issues/new\">hapur një çështje</a> me hollësitë se si përfunduat te kjo faqe. </p>"
 
 msgid "No results found"
 msgstr "S’u gjetën përfundime"
@@ -402,10 +401,10 @@ msgid "Signature has expired."
 msgstr "Nënshkrimi ka skaduar."
 
 msgid "Error decoding signature."
-msgstr "Gabim në çkodimin e nënshkrimit."
+msgstr "Gabim në shkodimin e nënshkrimit."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr "Lloj i ngarkuar për një ose më tepër kyçe te ngarkesa"
+msgstr "Lloj i gabuar për një ose më tepër kyçe te ngarkesa"
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT i pavlefshëm."
@@ -483,15 +482,15 @@ msgid "This add-on already belongs to the collection"
 msgstr "Kjo shtesë bën pjesë tashmë te koleksioni"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Gjendje Nënshkrimi"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "S’u gjet bllok me GUID %(guid)s"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID-ja %(guid)s gjendet në Parashtrim pezull"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
@@ -499,56 +498,52 @@ msgstr "Shtesa me GUID %(guid)s s’ekziston"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s është tashmë në gjendjen Parashtrim pezull"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Blloqet që duhen përditësuar janë të ndryshëm, ngaqë versioni Min ose Max ka ndryshuar."
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Interval i pavlefshëm versioni."
+msgstr "Interval i pavlefshëm"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Versioni Min s’mund të jetë më i madh se versioni Max"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Është kërkuar shqyrtim"
+msgstr "Shqyrtoni të Shfaqura"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Shënim shqyrtimi"
+msgstr "Shqyrtoni të Pashfaqura"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Ky bllok qe importuar prej një Blloku kinto të dikurshëm me bazë shprehje të rregullt."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Çfarëdo ndryshimi i bërë NUK do të përditësohet te lista e blloqeve të dikurshëm - duhet të bëni një ndryshim dorazi përmes ndërfaqes web kinto të përgjegjësit."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Hidhi tej Versionet e Shumëfishtë"
+msgstr "Fshini %(name)s të Shumëfishtë"
 
-#, fuzzy
 msgid "Home"
-msgstr "Faqe Hyrëse"
+msgstr "Kreu"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s GUID-ra Shtesash janë bllokuar tashmë për %(v_min)s në %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "S’u gjetën %(count)s GUID-ra Shtesash"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "Blloku(qet) vijues u importuan prej një Blloku kinto të dikurshëm me bazë shprehje të rregullt."
 
 msgid "Save"
 msgstr "Ruaje"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Ruajeni dhe shtoni të tjera"
 
 msgid "Delete"
 msgstr "Fshije"
@@ -556,42 +551,37 @@ msgstr "Fshije"
 msgid "Update"
 msgstr "Përditësoje"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Kalo te Parashtrimet e Mia"
+msgstr "Hidhe Tej Parashtrimin"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Kalo te Parashtrimet e Mia"
+msgstr "Miratojeni Parashtrimin"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Shto %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID-ra Shtesash (një për rresht)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "Parashtrojeni Versionin"
+msgstr "Parashtrojeni"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s GUID-ra Shtesash"
 
-#, fuzzy
 msgid "users"
-msgstr "Përdorues"
+msgstr "përdorues"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Përpunoni Bllok"
 
-#, fuzzy
 msgid "versions"
-msgstr "Versione"
+msgstr "versione"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "E përfshirë në listë blloqesh të dikurshëm."
 
 msgid "{addon} was created."
 msgstr "{addon} u krijua."
@@ -914,45 +904,40 @@ msgid "User {user} api key reset."
 msgstr "Ricaktim kyçi API përdoruesi {user}."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blloku për {0} u shtua te Listë Blloqesh."
 
 msgid "Block added"
-msgstr ""
+msgstr "Blloku u shtua"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blloku për {0} u përpunua në Listë Blloqesh."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blloku u përpunua"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Versioni {0} u fshi prej {addon}."
+msgstr "Blloku për {0} u fshi prej Liste Blloqesh."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Shtesa u fshi."
+msgstr "Blloku u fshi"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID-ja për {addon} u shtua te DeniedGuid."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} u hoq prej {collection}."
+msgstr "GUID-ja për {addon} u hoq prej DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
 
 msgid "Block action signoff"
+msgstr "Nënshkrim veprimi blloku"
+
+msgid "User {user} session(s) reset."
 msgstr ""
 
-#, fuzzy
-msgid "User {user} session(s) reset."
-msgstr "Ricaktim kyçi API përdoruesi {user}."
-
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "U përpunua përdoruesi {user}, arsyeja: {1}"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -991,10 +976,10 @@ msgid "Deleted"
 msgstr "Fshirë"
 
 msgid "Unlisted"
-msgstr "E palistuar"
+msgstr "Të pashfaqura"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1006,9 +991,8 @@ msgstr "Zhvillues"
 msgid "Extension"
 msgstr "Zgjerim"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Shqyrtim i Përditësuar Teme të Plotë"
+msgstr "Temë e Plotë Nxjerrë Nga Përdorimi"
 
 msgid "Dictionary"
 msgstr "Fjalor"
@@ -1035,9 +1019,8 @@ msgstr "Temë (Statike)"
 msgid "Extensions"
 msgstr "Zgjerime"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Tema të Plota"
+msgstr "Tema të Plota Nxjerrë Nga Përdorimi"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1123,7 +1106,7 @@ msgid "Shopping"
 msgstr "Blerje"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "Shkarkoni zgjerime Firefox-i që mund të thellojnë punën tuaj me blerjet në internet, përmes gjetjesh kuponash, ulje çmimesh, analizues shqyrtimesh, etj."
+msgstr "Shkarkoni zgjerime Firefox-i që mund të thellojnë punën tuaj me blerjet në internet, përmes gjetjesh kuponësh, ulje çmimesh, analizues shqyrtimesh, etj."
 
 msgid "Social & Communication"
 msgstr "Shoqërore & Komunikim"
@@ -1164,7 +1147,7 @@ msgid "Download Firefox extensions that are regularly updated and ready for publ
 msgstr "Shkarkoni zgjerime Firefox-i që përditësohen rregullisht dhe janë gati për testim nga publiku. Mendimet tuaja ndihmojnë zhvilluesit të vendosin për ndryshimet në versione të ardhshëm."
 
 msgid "Performance"
-msgstr "Performancë"
+msgstr "Punim"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
 msgstr "Shkarkoni zgjerime Firefox-i që e ngrenë funksionimin në një shkallë të re. Gjeni zgjerime që ju ndihmojnë të jeni më prodhimtar dhe efikas, përmes bllokimit të reklamave bezdisëse, etj."
@@ -1207,7 +1190,7 @@ msgid "Compact"
 msgstr "Të përkora"
 
 msgid "Large"
-msgstr "Të mëdhaja"
+msgstr "Të mëdha"
 
 msgid "Miscellaneous"
 msgstr "Të ndryshme"
@@ -1286,7 +1269,7 @@ msgid "Download Firefox themes that feature the environment and the natural worl
 msgstr "Shkarkoni tema Firefox-i që lidhen me mjedisin dhe natyrën. Në këtë kategori përfshihen perëndime dielli, plazhe, ilustrime, relieve qytetesh, etj."
 
 msgid "Seasonal"
-msgstr "Sesonale"
+msgstr "Sezonale"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
 msgstr "Shkarkoni tema Firefox-i për të katër stinët — vjeshtë, dimër, pranverë, dhe verë. Gjethe vjeshte, maja malesh të veshur me dëborë, ditë vere plot diell, dhe lule pranvere."
@@ -1558,48 +1541,44 @@ msgstr "Figurë me cilësi të ulët, e shformuar, ose e zbrazët"
 msgid "Header image alignment problem"
 msgstr "Problem drejtimi figure kryeje"
 
-#, fuzzy
 msgid "No action"
-msgstr "Më Tepër Veprime"
+msgstr "Pa veprim"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "I vini shenjë për shqyrtim nga njeriu"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Çaktivizo Vetëmiratimin"
+msgstr "Vonoji vetëmiratimin"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Vonoji vetëmiratimin pa afat"
 
 msgid "True positive"
-msgstr ""
+msgstr "Pozitiv"
 
 msgid "False positive"
-msgstr ""
+msgstr "Alarm i rremë"
 
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Më e re"
+msgstr "E re"
 
 msgid "Running"
-msgstr ""
+msgstr "Po xhiron"
 
 msgid "Aborted"
-msgstr ""
+msgstr "U ndërpre"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Po ndërpritet"
 
-#, fuzzy
 msgid "Completed"
-msgstr "Jo i plotë"
+msgstr "U përfundua"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "U vu në plan"
 
 msgid "Core"
 msgstr "Baza"
@@ -1618,7 +1597,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Shtesat për Thunderbird-in dhe SeaMonkey-n tani shfaqen dhe mirëmbahen te addons.thunderbird.net. Mund të përdorni të njëjtën llogari që të përditësoni shtesat tuaja në sajtin e ri."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Shtesat Open Search {blog_link_open}s’mbulohen më në AMO{blog_link_close}. Në vend të kësaj, mund të krijoni një {doc_link_open}zgjerim kërkimesh{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ky identifikues është i përdorur tashmë. Ju lutemi, zgjidhni një tjetër."
@@ -1775,7 +1754,7 @@ msgstr ""
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
-"Nga vetë ju. <span class=\"helptext\">Parashtrimi juaj do të nënshkruhet menjëherë për vetë-shpërndarje. Përditësimet do të duhek t’i bëni ju vetë, përmes një updateURL ose përditësime të jashtme "
+"Nga vetë ju. <span class=\"helptext\">Parashtrimi juaj do të nënshkruhet menjëherë për vetë-shpërndarje. Përditësimet do të duhet t’i bëni ju vetë, përmes një updateURL ose përditësime të jashtme "
 "aplikacioni.</span>"
 
 msgid "Display Name"
@@ -1788,7 +1767,7 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr "Kyçi juaj API zhvilluesish u gjet te kartela e parashtruar. Që të mbrohet llogaria juaj, kyçi do të shfuqizohet."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "Kyçi API zhvilluesish i një bashkëautori u gjet te kartela e parashtruar. Që të mbrohet shtesa juaj, kyçi do të shfuqizohet."
+msgstr "Kyçi API zhvilluesish i një bashkautori u gjet te kartela e parashtruar. Që të mbrohet shtesa juaj, kyçi do të shfuqizohet."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Njoftim Sigurie nga Mozilla: Kredencialet tuaja API AMO janë shfuqizuar"
@@ -1883,7 +1862,7 @@ msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Figura duhet të jetë të paktën {0} piksela e gjerë dhe {1} piksela e lartë."
 
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Përmasat e figurës duhet të jenë nën përpjestimin 4:3."
+msgstr "Përmasat e figurës duhet të jenë nën përpjesëtimin 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Ikona duhet të jetë të paktën {0} piksela e gjerë dhe e lartë."
@@ -1894,11 +1873,12 @@ msgstr "Ikona duhet të jetë katrore (e njëjta gjerësi dhe lartësi)."
 msgid "There was an error uploading your preview."
 msgstr "Pati një gabim gjatë ngarkimit të paraparjes suaj."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "Versioni i fundit i miratuar i një zgjerimi të Rekomanduar s’mund të fshihet ose të çaktivizohet. Nëse ju duhet ndihmë për këtë, ju lutemi, lidhuni me Përgjegjësit e AMO-s."
+msgstr ""
+"Versioni i fundit i miratuar i këtij zgjerimi të Rekomanduar s’mund të fshihet ose të çaktivizohet, ngaqë versioni i mëparshëm s’qe miratuar për rekomandim. Nëse ju duhet ndihmë për këtë, ju lutemi,"
+" lidhuni me Përgjegjësit e AMO-s."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2079,7 +2059,7 @@ msgid "No results found."
 msgstr "S’u gjetën përfundime."
 
 msgid "Refine Activity"
-msgstr "Përimtësoni Veprimtarinë"
+msgstr "Përimtoni Veprimtarinë"
 
 msgid "Activity"
 msgstr "Veprimtari"
@@ -2171,7 +2151,7 @@ msgid "Preview"
 msgstr "Paraparje"
 
 msgid "Preview of listed version"
-msgstr "Paraparje e versionit të listës"
+msgstr "Paraparje e versionit të shfaqur"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Paraparja është duke u krijuar - rikthehuni më vonë ose rifreskoni faqen."
@@ -2248,7 +2228,7 @@ msgid "Default Locale"
 msgstr "Gjuhë Parazgjedhje"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Të dhënat rreth shtesës suaj shfaqen në këtë gjuhë, veç në e anashkalofshi këtë gjë me një përkthim në një gjuhë të caktuar. Kjo vlen vetëm për shtesat e paraqitura."
+msgstr "Të dhënat rreth shtesës suaj shfaqen në këtë gjuhë, veç në e anashkalofshi këtë gjë me një përkthim në një gjuhë të caktuar. Kjo vlen vetëm për shtesat e shfaqura."
 
 msgid "Homepage"
 msgstr "Faqe Hyrëse"
@@ -2258,7 +2238,7 @@ msgid ""
 "ons."
 msgstr ""
 "Nëse shtesa juaj ka një tjetër faqe të vetën, jepeni këtu adresën e saj. Nëse sajti juaj është i përkthyer në gjuhë të tjera, mund të shtohen përkthime të kësaj fushe. Kjo vlen vetëm për shtesa të "
-"paraqitura."
+"shfaqura."
 
 msgid "Describe Add-on"
 msgstr "Përshkruani Shtesën"
@@ -2302,7 +2282,7 @@ msgid "Experimental?"
 msgstr "Eksperimentale?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "Nëse shtesa juaj është eksperimentale ose ende jo gati për përdorim të përgjithshëm.  Shtesa do të paraqitet te listat, por do të ketë dukshmëri të reduktuar. "
+msgstr "Nëse shtesa juaj është eksperimentale ose ende jo gati për përdorim të përgjithshëm.  Shtesa do të shfaqet, por do të ketë dukshmëri të reduktuar. "
 
 msgid "This add-on is experimental."
 msgstr "Kjo shtesë është eksperimentale."
@@ -2336,7 +2316,7 @@ msgid ""
 " for listed add-ons."
 msgstr ""
 "Nëse dëshironi të shfaqni një adresë email për çështje asistence, jepeni këtu. Nëse keni adresa të ndryshme për çdo gjuhë, mund të shtohen përkthime të kësaj fushe. Kjo vlen vetëm për shtesa të "
-"paraqitura."
+"shfaqura."
 
 msgid "Website"
 msgstr "Sajt"
@@ -2346,7 +2326,7 @@ msgid ""
 "listed add-ons."
 msgstr ""
 "Nëse për shtesën tuaj keni një sajt apo forum asistence, jepeni këtu adresën e tij. Nëse sajti juaj është i përkthyer në gjuhë të tjera, mund të shtohen përkthime të kësaj fushe. Kjo vlen vetëm për "
-"shtesa të paraqitura."
+"shtesa të shfaqura."
 
 msgid "Images"
 msgstr "Figura"
@@ -2365,14 +2345,14 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Çfarëdo të dhënash që përdoruesit e zakonshëm do të donin të dinin, që jo domosdoshmërisht hyn te përmbledhja ose përshkrimi i shtesës. Si të tilla gjenden rëndom paraqitje të metash të rëndësishme "
-"të njohura, të dhëna se si të raportohen të meta, datë e përafërt e hedhjes në qarkullim e një versioni të ri, etj. Kjo vlen vetëm për shtesa të paraqitura."
+"Çfarëdo të dhënash që përdoruesit e zakonshëm do të donin të dinin, që jo doemos hyn te përmbledhja ose përshkrimi i shtesës. Si të tilla gjenden rëndom paraqitje të metash të rëndësishme të "
+"njohura, të dhëna se si të raportohen të meta, datë e përafërt e hedhjes në qarkullim e një versioni të ri, etj. Kjo vlen vetëm për shtesa të shfaqura."
 
 msgid "Public Stats?"
 msgstr "Statistika Publike?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Nëse mund të shfaqen apo jo statistika shkarkimesh dhe përdorimi të shtesës suaj te vendi ynë përkatës në internet. Kjo vlen vetëm për shtesa të pranishme në lista."
+msgstr "Nëse mund të shfaqen apo jo statistika shkarkimesh dhe përdorimi të shtesës suaj te vendi ynë përkatës në internet. Kjo vlen vetëm për shtesa të shfaqura."
 
 msgid "This add-on's stats are publicly viewable."
 msgstr "Statistikat mbi këtë shtesë mund të shihen publikisht."
@@ -2419,9 +2399,8 @@ msgstr "Përzgjidhni për shtesën tuaj një ikonë:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "E përdorur në lista shtesash, të tilla si përfundime kërkimi dhe shtesa të zgjedhura."
+msgstr "E përdorur në lista shtesash, të tilla si përfundime kërkimi."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2467,9 +2446,8 @@ msgstr "Mbulohen PNG dhe JPG, këshillohet PNG. Madhësia maksimum dhe e këshil
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Madhësia minimum është 1000x750, dhe përpjestimi 4:3 është i domosdoshëm."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Pasja e fotove të ekranit në faqen e produktit tuaj i rrit shumë shanset që atë ta instalojnë dhe të shfaqet si e zgjedhur te kreu."
+msgstr "Pasja e fotove të ekranit në faqen e produktit tuaj i rrit shumë shanset që atë ta instalojnë."
 
 msgid "Continue"
 msgstr "Vazhdo"
@@ -2499,10 +2477,10 @@ msgid "More information on Creative Commons licenses"
 msgstr "Më tepër të dhëna për licenca Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Shtesa juaj aktualisht është caktuar si “E padukshme”."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "Nën këtë gjendje, “Nga vetë ju” është e vetmja metodë shpërndarjeje e passhme."
 
 msgid "General Tests"
 msgstr "Prova të Përgjithshme"
@@ -2730,20 +2708,17 @@ msgstr "Parashtrimi juaj do të jetë më i suksesshëm, po t’i shtoni një p�
 msgid "Manage Listing"
 msgstr "Administroni Listën"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Këtë version mund ta përpunoni duke shtuar shënime versioni, ose kod burim, nëse parashtrimi juaj përmban kod të minimizuar, të errësuar ose kod përpilimi."
+msgstr "Këtë version mund ta përpunoni edhe duke shtuar shënime versioni, ose kod burim, nëse parashtrimi juaj përmban kod të minimizuar, të vënë varg, ose ndryshe, të prodhuar nga makinë."
 
 msgid "Edit version {0}"
 msgstr "Përpunoni versionin {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Version i Nënshkruar"
+msgstr "Në Pritje të Nënshkrimit të Versionit"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Kaq qe! Ky version do të jetë i gatshëm pasi të kalojë etapën e shqyrtimit. Do të njoftoheni kur të jetë shqyrtuar."
+msgstr "Kaq qe! Ky version do të nënshkruhet së shpejti për vetëshpërndarje. Do të njoftoheni me email, kur kartela e nënshkruar të jetë gati për shkarkim."
 
 msgid "Go to My Submissions"
 msgstr "Kalo te Parashtrimet e Mia"
@@ -2765,7 +2740,7 @@ msgid "Do you use any of the following?"
 msgstr "Përdorni ndonjë nga sa vijon?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Prodhues ose minimizues kodi"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Mjete që ndërthurin në një kartelë të vetme shumë kartela, fjala vjen, <span class=\"tech-emphasis\">webpack</span>"
@@ -2802,10 +2777,9 @@ msgstr ""
 "Hollësi (përfshi version të domosdoshëm dhe udhëzime instalimi), të çfarëdo programesh të përdorur në procesin e montimit (për shembull: version për <span class=\"tech-emphasis\">node</span> dhe "
 "<span class=\"tech-emphasis\">npm</span> të përdorur)."
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">Shënim:</span> Kartelat burim (ndaras nga librari me burim të hapët, prej palësh të treta) s’mund të ndërpërpilohen, errësohen, minimizohen apo të preken në "
+"<span class=\"instruction-emphasis\">Shënim:</span> Kartelat burim (ndaras nga librari me burim të hapët, prej palësh të treta) s’mund të ndërpërpilohen, vihen në varg, minimizohen apo të preken në "
 "rrugë të tjera nga makina."
 
 msgid "How to Submit:"
@@ -2962,6 +2936,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Tungjatjeta,\n"
+"\n"
+"Këtë mesazh po e merrni ngaqë keni kërkuar kyçe të rinj API zhvilluesish për\n"
+"%(domain)s. Që të përfundohet procesi, ju lutemi, klikoni mbi lidhjen më poshtë:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Nëse s’e kërkuat këtë, ju lutemi, njoftoni amo-admins@mozilla.com.\n"
+"\n"
+"Të fala,\n"
+"\n"
+"Ekipi i Shtesave Mozilla"
 
 #, python-format
 msgid ""
@@ -2974,6 +2960,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"Te llogaria juaj u shtua Kyçi vijues API:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Nëse besoni se ky kyç qe krijuar gabimisht, mund ta hiqni kyçin dhe\n"
+"të çaktivizoni përdorimin, që nga vendndodhja vijuese:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2986,6 +2980,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"Kyçi API u shfuqizua te llogaria juaj:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Nëse besoni se ky kyç u shfuqizua gabimisht, mund të krijoni një të ri\n"
+"që nga vendndodhja vijuese:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2999,6 +3001,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"I dashur zhvillues shtesash,\n"
+"\n"
+"Vumë re se kredencialet tuaja të fshehta për API-n e AMO-s qenë përfshirë te një shtesë e parashtruar në addons.mozilla.org. Për të mbrojtur llogarinë tuaj dhe shtesën(at) tuaja, kemi shfuqizuar kredencialet e mbetura zbuluar.\n"
+"Mund të prodhoni kredenciale të reja API që nga %(api_keys_url)s\n"
+"\n"
+"Ju lutemi, sigurohuni se kurrë s’do t’ia jepni kujt kredencialet tuaja. Kurrë mos i përfshini në një depo publike, shtesë ose ndonjë vend tjetër publik. Ju nxisim të shqyrtoni depot tuaja të kodit dhe zgjerimet tuaja, për të hequr çfarëdo reference te kredencialet tuaja AMO.\n"
+"\n"
+"Faleminderit,\n"
+"Ekipi i Shtesave Mozilla"
 
 msgid "Invisible"
 msgstr "E padukshme"
@@ -3065,7 +3076,7 @@ msgid "Latest Version:"
 msgstr "Version Më i Ri:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr "Ky është versioni më i ri i ngarkuar, i patreguar te sajti"
+msgstr "Ky është versioni më i ri i ngarkuar, i pashfaqur"
 
 msgid "Upload New Version"
 msgstr "Ngarkoni Version të Ri"
@@ -3101,7 +3112,7 @@ msgid "License"
 msgstr "Licencë"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr "Ju lutemi, zgjidhni një licencë të përshtatshme me të drejtat që akordoni mbi kodin burim të shtesës suaj. Kjo vlen vetëm për shtesat e paraqitura."
+msgstr "Ju lutemi, zgjidhni një licencë të përshtatshme me të drejtat që akordoni mbi kodin burim të shtesës suaj. Kjo vlen vetëm për shtesat e shfaqura."
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3125,7 +3136,7 @@ msgid "End-User License Agreement"
 msgstr "EULA"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Ju lutemi, mbani parasysh se një EULA s’është e njëjta gjë me një licencë kodi, bie fjala, GPL-ja ose MPL-ja. Kjo vlen vetëm për shtesat e paraqitura."
+msgstr "Ju lutemi, mbani parasysh se një EULA s’është e njëjta gjë me një licencë kodi, bie fjala, GPL-ja ose MPL-ja. Kjo vlen vetëm për shtesat e shfaqura."
 
 msgid "Privacy Policy"
 msgstr "Rregulla Privatësie"
@@ -3133,11 +3144,10 @@ msgstr "Rregulla Privatësie"
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
 "Nëse shtesa juaj transmeton çfarëdo të dhënash që nga kompjuteri i përdoruesit, lypsen rregulla privatësie për të, që shpjegojnë se çfarë të dhënash dërgohen dhe se si përdoren. Kjo vlen vetëm për "
-"shtesa të pranishme në lista."
+"shtesa të shfaqura."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Nëse shtesa juaj përmban kod dyor ose të turbullt, hiq librari të njohura, ngarkojini burimet e tyre për shqyrtim."
+msgstr "Nëse shtesa juaj përmban kod të minimizuar, të vënë në varg, ose ndryshe të prodhuar nga makinë, tjetër nga librari të njohura, ngarkojini burimet e tyre për shqyrtim."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Ju lutemi, përfshini udhëzime se si të riprodhohet kartela përfundimtare e shtesës, ose në një kartelë README, ose te Shënime për Shqyrtuesin për këtë version."
@@ -3146,68 +3156,65 @@ msgid "Read more about the source code review policy."
 msgstr "Lexoni më tepër rreth rregullave të shqyrtimit të kodit burim."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Krijoni zgjerimet dhe tema nga më të mirat e llojit"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Qoftë kur jeni i ri në zhvillim shtesash, qoftë kur po lëmoni apo përshtatni prej një platforme tjetër një zgjerim apo temë ekzistuese, apo po krijoni një zgjidhje të përshtatur, për nivel "
+"ndërmarrjeje, kemi burimet për mbështetjen tuaj."
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Praktikë Mbi Zgjerime"
+msgstr "Vizitoni Punishte Zgjerimesh"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Lidhuni me ne"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "Zhvillues"
+msgstr "Për zhvillues"
 
 msgid "For end users"
-msgstr ""
+msgstr "Për përdoruesit e zakonshëm"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Qendra e Zhvilluesve të Shtesave"
+msgstr "Listë Postimesh e Zhvilluesve të Shtesave"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Zhvillim Zgjerimesh"
+msgstr "Buletin Zhvilluesish Zgjerimesh"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Jini i përditësuar me lajme dhe veprimtari për zhvillues zgjerimesh Firefox-i."
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Adresë IP"
+msgstr "Adresë Email"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "S’kam probleme me trajtimin nga Mozilla të të dhënave të mia siç shpjegohet te ky %(link_open)sShënim mbi Privatësinë%(link_close)s."
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Dilni"
+msgstr "Regjistrohuni"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Faleminderit!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Nëse s’keni ripohuar më parë një pajtim te ndonjë buletin prej Mozilla-s, mund t’ju duhet të bëni kështu. Ju lutemi, shihni te email-et e marrë, ose te mesazhet e padëshiruar, për një email prej "
+"nesh."
 
 msgid "Resources"
 msgstr "Burime"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API WebExtension"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: krijoni & testoni zgjerime"
@@ -3216,10 +3223,10 @@ msgid "Promote"
 msgstr "Promovoni"
 
 msgid "\"Get The Add-on\" button"
-msgstr "Buton \"Merreni Shtesën\""
+msgstr "Buton “Merreni Shtesën”"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program Zgjerime të Rekomanduara"
 
 msgid "Contribute"
 msgstr "Kontribuoni"
@@ -3252,14 +3259,13 @@ msgid "See how"
 msgstr "Shihni se si"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Përfshihuni"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Lidhuni me mijëra zhvillues dhe zbuloni më tepër rrugë përmes të cilave mund të kontribuoni te ekosistemi i zgjerimeve."
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Lexoni më tepër rreth rregullave të shqyrtimit të kodit burim."
+msgstr "Lexoni më tepër rreth bashkësisë së zhvilluesve"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Paraqitur në këtë sajt pas kalimit me sukses të shqyrtimit të kodit. Për përditësimet e vetvetishme kujdeset ky sajt."
@@ -3269,7 +3275,7 @@ msgid "View All Submissions"
 msgstr "Shihni Tërë Parashtrimet"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "Kjo është pjesa ku shihni dhe administroni shtesat dhe temat tuaja. Që të botoni shtesën tuaj të parë, klikoni \"Parashtroni Shtesën Tuaj të Parë\" ose \"Parashtroni Temën Tuaj të Parë\"."
+msgstr "Kjo është pjesa ku shihni dhe administroni shtesat dhe temat tuaja. Që të botoni shtesën tuaj të parë, klikoni “Parashtroni Shtesën Tuaj të Parë” ose “Parashtroni Temën Tuaj të Parë”."
 
 msgid "Submit Your First Add-on"
 msgstr "Parashtroni Shtesën Tuaj të Parë"
@@ -3297,29 +3303,26 @@ msgstr "Pa Foto"
 msgid "User Photo"
 msgstr "Foto Përdoruesi"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Profili Im"
+msgstr "Profil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Parashtroni një Version të Ri"
+msgstr "Parashtroni ose Administroni Zgjerime"
 
 msgid "Customize Firefox"
 msgstr "Përshtateni Firefox-in"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Mësoni Si të Krijoni një Shtesë"
+msgstr "Mësoni si të krijoni një zgjerim"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Gati për të parashtruar apo administruar zgjerimin tuaj?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Që të parashtroni apo administroni zgjerime dhe tema, hyni te Qendra e Zhvilluesve."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Regjistrohuni për një llogari zhvilluesi ose hyni te Qendra e Zhvilluesve"
 
 # %s is the version number.
 msgid "Manage Version {0}"
@@ -3355,9 +3358,8 @@ msgstr "Në daçi, jepni çfarëdo të dhëne që mund të jetë e dobishme për
 msgid "Source code"
 msgstr "Kodi burim"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Nëse shtesa juaj përmban kod dyor ose të turbullt, jepeni burimin këtu për shqyrtuesit."
+msgstr "Nëse shtesa juaj përmban kod të minimizuar, të vënë në varg, ose ndryshe të prodhuar nga makinë, bëjeni burimin të passhëm këtu për shqyrtuesit."
 
 msgid "File {file_id} ({platform})"
 msgstr "Kartelë {file_id} ({platform})"
@@ -3410,7 +3412,7 @@ msgid "Leave a reply"
 msgstr "Lini një përgjigje"
 
 msgid "Reply"
-msgstr "Përgjigjjuni"
+msgstr "Përgjigjuni"
 
 msgid "Listing visibility"
 msgstr "Dukshmëri shtese"
@@ -3681,7 +3683,7 @@ msgstr "Lexoni kudo {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr "Dërgoni te pajisja juaj Kindke artikuj lajmesh, historira, postime blogjesh, etj."
+msgstr "Dërgoni te pajisja juaj Kindle artikuj lajmesh, histori, postime blogjesh, etj."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3736,9 +3738,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Përshtatni gjeste miu, {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Personalizoni gjeste miu. Zbuloni një rrugë të re për të lëvizur, përmes më shumë se 50 gjestesh miu të dobishme."
+msgstr "Përshtatni gjeste miu. Zbuloni një rrugë të re për të lëvizur, përmes më shumë se 50 formësimesh."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3779,7 +3780,7 @@ msgstr "Kalojeni kursorin përsipër figurës që të zmadhohet."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëni të zhduken cooki-et, {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Bëni të zhduken cookie-t, {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
@@ -3795,7 +3796,7 @@ msgstr "Një rrugë e thjeshtë për të rregulluar madhësinë e tekstit të ç
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bllokoni gjurmes të padukshëm, {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Bllokoni gjurmues të padukshëm, {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
@@ -3811,7 +3812,7 @@ msgstr "Lini një gjurmë dixhitale të pastër. Bëjeni Firefox-in të mos mbaj
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "S’është nevoja të shkruhet dhe të rishkruhet e njëjta gjë. Ruani tekst të dhënë shpesh, që ta ngjitni kur të doni."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3901,7 +3902,7 @@ msgstr "Kontrolloni luajtjen e videove {start_sub_heading}me {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr "Përmirësoni parjen e videove duke përshtatutr shpejtësinë, etj."
+msgstr "Përmirësoni parjen e videove duke përshtatur shpejtësinë, etj."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4004,9 +4005,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Lëvizje dinamike {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Përdorni veprime miu për të mbyllur skeda, për t’u kthyer mbrapsht një faqe, për ringarkim, etj."
+msgstr "Përdorni gjeste miu për të mbyllur skeda, për të lëvizur nëpër faqe, etj."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4030,7 +4030,7 @@ msgstr "Ndalni flluskat {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr "Bllkoni krejt flluskat, si parazgjedhje, mandej vendosni cilat dëshironi të hapen."
+msgstr "Bllokoni krejt flluskat, si parazgjedhje, mandej vendosni cilat dëshironi të hapen."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4090,7 +4090,7 @@ msgstr "Hyni te skeda të mbyllura së fundi, përmes djathtasklikimit të ikon�
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Frymëzoni prodhimshmëri {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Frymëzoni prodhimtarinë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -4098,7 +4098,7 @@ msgstr "Frymëzoni prodhimtarinë. Modifikojeni faqen tuaj për skeda të reja q
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shtoni prodhimshmërinë {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shtoni prodhimtari {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
@@ -4206,7 +4206,7 @@ msgstr "Mposhtni mesazhet e padëshiruar {start_sub_heading}me {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Dilini fitimtar mbi mesazhet e padëshiruar. Përdorni adresa email të mençura të përkohshme për të qenë anonim dhe për të shmangur mesazhe të padëshiruar."
+msgstr "Dilni fitimtar mbi mesazhet e padëshiruar. Përdorni adresa email të mençura të përkohshme për të qenë anonim dhe për të shmangur mesazhe të padëshiruar."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4254,7 +4254,7 @@ msgstr "Krijoni një listë bllokimesh sajti {start_sub_heading}me {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Kufizojini Firefox-it hyrjen në sajtet që caktoni ju. Një mjet i goditur për të ushtruar vetë-disiplinë internetore."
+msgstr "Kufizojini Firefox-it hyrjen në sajtet që caktoni ju. Një mjet i goditur për të ushtruar vetëdisiplinë internetore."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4362,7 +4362,7 @@ msgstr "Rrëshqitje si në telefon {start_sub_heading}me {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr "Rrëshqitje si te telefoni për desktopin tuaj. Përmban lëvizje miu në stil \"merr-dhe-vër\"."
+msgstr "Rrëshqitje si te telefoni për desktopin tuaj. Përmban lëvizje miu në stil “merr-dhe-vër”."
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4430,7 +4430,7 @@ msgstr "Ndaloni shfaqjen e reklamave te përfundimet tuaja të kërkimit."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Administrojini pa rrezil fjalëkalimet {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Administrojini pa rrezik fjalëkalimet {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -4527,7 +4527,7 @@ msgstr "Njihuni me një kotele të adhurueshme përmes çdo skede të re. Jepini
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ulni prodhimshmërinë {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Ulni prodhimtarinë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
@@ -4543,7 +4543,7 @@ msgstr "Kërkoni në Firefox duke hyrë lehtësisht në skeda tuajat të hapura,
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr "Një lumë skedash të hapura? Lëreni shfletimin dhe kërkoni përmesh shkurtoresh tastiere."
+msgstr "Një lumë skedash të hapura? Lëreni shfletimin dhe kërkoni përmes shkurtoresh tastiere."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4607,7 +4607,7 @@ msgstr "Blini me vetëbesim. Ky zgjerim furnizon një kontroll ekstra për t’u
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ndiqni prodhimshmërinë {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Ndiqni prodhimtarinë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
@@ -4921,50 +4921,47 @@ msgstr "Disa sajte kanë vështirësi të luajnë video nën Firefox për Androi
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Përzgjidhni, renditni dhe xhironi më shpejt shkarkimet tuaj."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Përditësime të atypëratyshme rreth motit nga anembanë botës."
+msgstr "Merrni përditësime rreth motit drejt e te shfletuesi."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Fshini cookie-t, historik shfletimesh dhe kartela të ruajtura në fshehtinë, vetëm me një tek klikim."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Hiqni prej tejlidhjesh elementë gjurmimi."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Merrni dosje faqerojtësish prurjesh RSS të vetëpopulluara."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Sistemoni lehtësisht thasë me skeda të hapura."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Krijoni dhe përshtatni grupe skedash."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Ruani faqe të tëra—ose thjesht pjesë—si një kartelë HTML njëshe."
+msgstr "Ruani një faqe të tërë—përfshi figura dhe stilizim—si një kartelë HTML njëshe."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Fshini automatikisht cookie-t, pasi mbyllni një skedë."
+msgstr "Zëvendësoni automatikisht fjalë përçmuese nëpër  web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Bllokoni krejt reklamat—video, flluska, banderola & më tepër."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Shihni transmetim mediash me shokë dhe familje, kudo."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4980,7 +4977,7 @@ msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Sistemues dhe mjete skedash"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5018,7 +5015,7 @@ msgid "Problems decoding {0}."
 msgstr "Probleme me shkodimin e {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Kjo kartelë s’mund të shihet në linjë. Ju lutemi,shkarkojeni kartelën që t’i shihni lëndën."
+msgstr "Kjo kartelë s’mund të shihet në linjë. Ju lutemi, shkarkojeni kartelën që t’i shihni lëndën."
 
 msgid "This file is a directory."
 msgstr "Kjo kartelë është drejtori."
@@ -5029,9 +5026,8 @@ msgstr "Nuk mund të kryhet diff kundrejt vetvetes"
 msgid "Could not parse the manifest file."
 msgstr "S’përtypi dot kartelën manifest."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID është i domosdoshëm për Firefox 47 dhe më të hershëm."
+msgstr "ID-ja e shtesës është i domosdoshëm për Firefox 47 dhe më të hershëm."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Versioni më u ulët që mbulojmë është \"strict_min_version\" 42.0."
@@ -5094,9 +5090,9 @@ msgstr "Madhësia maksimum për tema WebExtensions është {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "S’mund të parashtroni këtë lloj shtojce"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "S’mund të parashtroni një shtesë me një GUID që mbaron me %s"
+msgstr "S’mund të parashtroni një shtesë duke përdorur një ID që mbaron me %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "S’mund të parashtroni një Zgjerim të Nënshkruar nga Mozilla"
@@ -5223,7 +5219,7 @@ msgid "Do:"
 msgstr "Po:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Shkruani sikur t’i tegonit një miku rreth përvojës tuaj me shtesën."
+msgstr "Shkruani sikur t’i tregonit një miku rreth përvojës tuaj me shtesën."
 
 msgid "Keep reviews concise and easy to understand."
 msgstr "Kujdesuni që shqyrtimet të jenë të përpikta dhe të lehta për t’u kuptuar."
@@ -5253,7 +5249,7 @@ msgid "Don’t:"
 msgstr "Jo:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Parashtroni shqyrtime njëfjalëshe, të tilla si \"E fuqishme!\", \"e mrekullueshme,\" ose \"e keqe.\""
+msgstr "Parashtroni shqyrtime njëfjalëshe, të tilla si “E fuqishme!”, “e mrekullueshme”, ose “e keqe”."
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
@@ -5294,7 +5290,7 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Ju lutemi, raportoni ose i vini shenjë cilitdo shqyrtim problematik, duke klikuar mbi \"Raportojeni këtë shqyrtim\" dhe ai do të parashtrohet te sajti, për moderim. Ekipi ynë i moderimeve do të "
+"Ju lutemi, raportoni ose i vini shenjë cilitdo shqyrtim problematik, duke klikuar mbi “Raportojeni këtë shqyrtim”\" dhe ai do të parashtrohet te sajti, për moderim. Ekipi ynë i moderimeve do të "
 "përdorë Udhëzime Mbi Shqyrtimet për të peshuar nëse duhet fshirë apo jo shqyrtimi, ose për kthimin e tij te sajti."
 
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -5311,8 +5307,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"Në përgjithësi jo. Por nëse shqyrtimi s’pajtohet me udhëzimet mbi shqyrtimet, të përvijuara më sipër, mund të klikoni mbi \"Raportojeni këtë shqyrtim\" që ai të moderohet. Nëse një shqyrtim "
-"përfshinte një ankesë e cila s’ka më vend, për shkak të një versioni të ri të shtesës, mund të shohim mundësinë e fshirjes së shqyrtimit."
+"Në përgjithësi jo. Por nëse shqyrtimi s’pajtohet me udhëzimet mbi shqyrtimet, të përvijuara më sipër, mund të klikoni mbi “Raportojeni këtë shqyrtim” që ai të moderohet. Nëse një shqyrtim përfshinte"
+" një ankesë e cila s’ka më vend, për shkak të një versioni të ri të shtesës, mund të shohim mundësinë e fshirjes së shqyrtimit."
 
 msgid "User"
 msgstr "Përdorues"
@@ -5361,7 +5357,7 @@ msgid "This rating can't be flagged because it has no review text."
 msgstr "Këtij vlerësimi s’mund t’i vihesh shenjë, ngaqë nuk ka tekst shqyrtimi."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Kur përzgjidhet \"Tjetër\" si arsye, duhet dhënë një shpjegim i shkurtër."
+msgstr "Kur përzgjidhet “Tjetër” si arsye, duhet dhënë një shpjegim i shkurtër."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5482,23 +5478,22 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Vetëmiratimi është shtyrë përkohësisht për më vonë"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Vetëmiratimi është shtyrë pa përcaktim për më vonë"
 
 msgid "Is locked by a reviewer"
 msgstr "Është kyçur nga një shqyrtues"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "E ka të vendosur shenjën për çaktivizim vetëmiratimi"
+msgstr "E ka të vendosur shenjën për çaktivizim/shtyrje vetëmiratimi"
 
 msgid "Is recommendable"
 msgstr "Është e rekomandueshme"
 
 msgid "Delayed because it's the first listed version"
-msgstr "E vonuar ngaqë është versioni i parë i paraqitur në listë"
+msgstr "E vonuar ngaqë është versioni i parë i shfaqur"
 
 msgid "Risk breakdown not available."
 msgstr "Analiza e rrezikut s’është gati."
@@ -5506,12 +5501,11 @@ msgstr "Analiza e rrezikut s’është gati."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "S’mund të parashtroni koment, nëse është përkufizuar parametri `canned_response`."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "S’mund të parashtroni një paketë gjuhësore"
+msgstr "S’mund të parashtroni një koment të zbrazët."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "S’mund të parashtroni një numër rreshti pa e përshoqëruar me një emër kartele."
 
 msgid "Type"
 msgstr "Lloj"
@@ -5543,9 +5537,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} ditë"
 msgstr[1] "{0} ditë"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Shqyrtimi Më i RI"
@@ -5559,13 +5552,11 @@ msgstr "Afat Kërkese të Dhënash"
 msgid "Last Updated"
 msgstr "Përditësuar Së Fundi Më"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Tjetër Shqyrtim Pezull ({0})"
+msgstr "Versione në listë që lypin shqyrtim nga njeriu ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Tjetër Shqyrtim Pezull ({0})"
+msgstr "Versione të pashfaqura që lypin shqyrtim nga njeriu ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Kështu do të miratohet, nënshkruhet dhe publikohet ky version. Komentet do t’i dërgohen zhvilluesit."
@@ -5591,20 +5582,17 @@ msgstr "Hidhi tej Versionet e Shumëfishtë"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Kështu do hidhen tej versionet publike të përzgjedhur. Komentet do t’i dërgohen zhvilluesit."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Hidhi tej Versionet e Shumëfishtë"
+msgstr "Blloko Versione të Shumëfishtë"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Kjo do të çaktivizojë pa zhurmë versionet e miratuara të përzgjedhur, dhe hapë faqen e përgjegjësit për krijim blloqesh."
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Hidhi tej Versionet e Shumëfishtë"
+msgstr "Ripohoni Versione të Shumëfishtë"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Kjo regjistron miratimin tuaj të lëndës së versionit më të ri publik, pa e njoftuar zhvilluesin."
+msgstr "Kjo do të ripohojë miratim të versioneve të përzgjedhur, pa e njoftuar zhvilluesin."
 
 msgid "Reviewer reply"
 msgstr "Përgjigje shqyrtuesi"
@@ -5613,7 +5601,7 @@ msgid "This will send a message to the developer. You will be notified when they
 msgstr "Kështu do t’i dërgohet një mesazh programuesit. Do të njoftoheni, kur të përgjigjet."
 
 msgid "Request super-review"
-msgstr "Kërkoni super-shqyrtim"
+msgstr "Kërkoni supershqyrtim"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr "Nëse keni shqetësime rreth kësaj shtese, probleme të cilat duhet t’i shohë një administrator shqyrtues, jepini komentet tuaja në zonën më poshtë. Ato s’do t’i dërgohen autorit."
@@ -5640,12 +5628,12 @@ msgid "Add-on Review Guide"
 msgstr "Udhërrëfyes Shqyrtimesh Shtesash"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Me shenjë Prej Skanuesish"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Me shenjë Prej Skanuesish ({0})"
+msgstr[1] "Me shenjë Prej Skanuesish ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Shtesa të Vetëmiratuara"
@@ -5689,10 +5677,10 @@ msgid "Moderation Guide"
 msgstr "Udhërrëfyes Moderimi"
 
 msgid "Unlisted Add-ons"
-msgstr "Shtesa Jo Në Listë"
+msgstr "Shtesa të Pashfaqura"
 
 msgid "All Unlisted Add-ons"
-msgstr "Krejt Shtesat Jo Në Listë"
+msgstr "Krejt Shtesat e Pashfaqura"
 
 msgid "Announcement"
 msgstr "Njoftim"
@@ -5715,16 +5703,14 @@ msgstr "Shqyrtimi u krye me sukses."
 msgid "Review lock limit reached"
 msgstr "U mbërrit në kufijtë e kyçjes së rishikimit"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Rregulla Privatësie"
+msgstr "{addon} - Rregulla Privatësie"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr " Raportime Abuzimi – {addon} – Shtesa për Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Raporte Abuzimesh për {addon} dhe zhvilluesit e saj ({num})"
@@ -5793,12 +5779,11 @@ msgstr "Galeri Figurash"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Këtu nuk ka gjë për t’u parë.  Programuesi nuk ka dhënë ndonjë hollësi."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "sipas Versionit të Shtesës"
+msgstr "Përkthime emrash shtesash"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Mjete Shqyrtuesi - Shtesa për Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Kthehuni te pulti i Mjeteve të Shqyrtuesit"
@@ -5816,7 +5801,7 @@ msgid "Score"
 msgstr "Pikë"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Regjistër Moderimi Shqyrtuesi – Shtesa për Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5857,7 +5842,7 @@ msgid "Undelete"
 msgstr "Çfshije"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Suksesshmëri Shqyrtuesi – Shtesa për Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Suksesshmëri Shqyrtuesi Shtesash"
@@ -5905,24 +5890,22 @@ msgid "All-Time"
 msgstr "Tërë Kohën"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr " – Mjete Shqyrtuesi - Shtesa për Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Shqyrtim Lënde – Shtesa për Firefox"
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Shtesa të Vetëmiratuara"
+msgstr "Shtesa të Vetëmiratuara - Shtesa për Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderim Shqyrtimi – Shtesa për Firefox"
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Kërkesë e Skaduar të Dhënash"
+msgstr "Kërkesë e Skaduar të Dhënash - Shtesa për Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Shtesa të Pashfaqura – Shtesa për Firefox"
 
 msgid "Advanced Search"
 msgstr "Kërkim i Mëtejshëm"
@@ -5960,7 +5943,7 @@ msgid "Reviewer's Guide"
 msgstr "Udhërrëfyes Shqyrtuesish"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Shtesa për Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5971,7 +5954,7 @@ msgid "Review {0}"
 msgstr "Shqyrtoni {0}"
 
 msgid "Add-on user change history"
-msgstr "Historik ndryshimes përdoruesi shtese"
+msgstr "Historik ndryshimesh përdoruesi shtese"
 
 msgid "Add-on History"
 msgstr "Historik Shtese"
@@ -5980,11 +5963,10 @@ msgid "Previously deleted entries"
 msgstr "Zëra të fshirë më herët"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Ky është një zgjerim i rekomanduar."
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "S’keni kredenciale API."
+msgstr "S’keni leje ta shqyrtoni."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Ju lutemi, përzgjidhni te lista më sipër një ose më shumë versione."
@@ -5993,7 +5975,7 @@ msgid "You can still submit this form, however only do so if you know it won't c
 msgstr "Mundeni prapë ta parashtroni këtë formular, megjithatë, këtë bëjeni, nëse e dini që s’do të ketë përplasje."
 
 msgid "Insert canned response..."
-msgstr "Fusni përgjigje të gatshme…"
+msgstr "Futni përgjigje të gatshme…"
 
 msgid "Tested on:"
 msgstr "Provuar me:"
@@ -6014,15 +5996,13 @@ msgid "More Actions"
 msgstr "Më Tepër Veprime"
 
 msgid "Notify me about new listed versions"
-msgstr "Njoftomë rreth versionesh të rinj të paraqitur"
+msgstr "Njoftomë rreth versionesh të rinj të shfaqur"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Shihni Tërë Parashtrimet"
+msgstr "Lejo riparashtrim"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Administro Parashtrimet e Mia"
+msgstr "Moho riparashtrim"
 
 msgid "Force-disable add-on"
 msgstr "Aktivizoje shtesën me detyrim"
@@ -6030,32 +6010,26 @@ msgstr "Aktivizoje shtesën me detyrim"
 msgid "Force-enable add-on"
 msgstr "Aktivizoje shtesën me detyrim"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Shihni Tërë Parashtrimet"
+msgstr "Shihni Parashtrim Liste Blloqesh"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Mbrapsht te shtesa"
+msgstr "Bllokoje shtesën"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Përditësoni bllok shtesash"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Çaktivizo Vetëmiratimin"
+msgstr "Shtesa për Firefox"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Aktivizo Vetëmiratimin"
+msgstr "Aktivizo Vetëmiratim Për Shtesa Në Listë"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "E ka të vendosur shenjën për çaktivizim vetëmiratimi"
+msgstr "Vetëmiratim aktualisht i çaktivizuar deri më {date}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Aktivizo Vetëmiratimin"
+msgstr "Hiq Vonesë Ekstra për Vetëmiratimin"
 
 msgid "Clear information request"
 msgstr "Spastro kërkesë të dhënash"
@@ -6085,7 +6059,7 @@ msgid "Resolution"
 msgstr "Qartësi"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Regjistër Shqyrtimesh Shtesash – Shtesa për Firefox"
 
 msgid "Reviewer"
 msgstr "Shqyrtues"
@@ -6103,7 +6077,7 @@ msgid "No reviews found for this period."
 msgstr "S’u gjetën shqyrtime për këtë periudhë."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Origjinë:"
 
 msgid "Method:"
 msgstr "Metodë:"
@@ -6111,9 +6085,8 @@ msgstr "Metodë:"
 msgid "Source:"
 msgstr "Burim:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Burim:"
+msgstr "URL Burim-i:"
 
 msgid "Dismiss this announcement"
 msgstr "Hidhe tej këtë njoftim"
@@ -6141,7 +6114,7 @@ msgid "Newer"
 msgstr "Më e re"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} versione me shenjë vënë nga skanues, në faqe të tjera."
 
 msgid "Recent Points"
 msgstr "Pikë Së Fundi"
@@ -6192,7 +6165,7 @@ msgid "Weight:"
 msgstr "Peshë:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Me shenjë nga skanues të automatizuar"
 
 msgid "Download"
 msgstr "Shkarkim"
@@ -6236,74 +6209,66 @@ msgstr[1] "Kërkesa të Skaduara Për të Dhëna ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Nisjani"
+msgstr ""
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Paraparje e versionit të listës"
+msgstr "prani e një versioni"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Version i Nënshkruar"
+msgstr "kanal versioni"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Gjendje Shtese"
+msgstr "gjendje shtese"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Dukshmëri shtese"
+msgstr "dukshmëri shtese në listë"
 
-#, fuzzy
 msgid "file status"
-msgstr "Gjendje Sajti"
+msgstr "gjendje kartele"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} qe nënshkruar."
+msgstr "nënshkrim kartele"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Ky është emri i saktë i rregullit të përdorur nga një skanues."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Në u lëntë pa shenjë, përfundimet e skanuesit nuk do të kufizohen me këtë rregull dhe veprimi s’do të kryhet."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Rregullat Yara duhet të kenë një përkufizim"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Emri i rregullit në këtë përkufizim duhet të përputhet me emrin e rregullit të skanuesit"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Te përkufizimi lejohet vetëm një rregull Yara"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Përkufizimi s’është i vlefshëm: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Ndodhi një gabim gjatë përpilimit të përkufizimit"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Xhiroje këtë rregull edhe në shtesa që janë çaktivizuar me detyrim."
 
 msgid "Abort"
-msgstr ""
+msgstr "Ndërprite"
 
 msgid "Run"
-msgstr ""
+msgstr "Xhiroje"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "E dobishme kur përfundimi nga skanuesi është “true positive” por shtesa s’është dashakeqe"
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Përgjigje shqyrtuesi"
+msgstr ""
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6329,9 +6294,8 @@ msgstr "Ndërthurje e pavlefshme e parametrave \"%s\", \"%s\" dhe \"%s\"."
 msgid "Maximum query length exceeded."
 msgstr "U tejkalua gjatësia maksimum e kërkesave."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "S’u gjet dot shtesë me guid \"{}\"."
+msgstr "S’u gjet dot Shtesë me ID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Nuk jeni pronar i kësaj shtese."
@@ -6350,24 +6314,20 @@ msgstr "Versioni nuk përputhet me kartelën manifest."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Versioni ekziston. Versioni më i ri është: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Lënia jashtë e GUID-së lejohet vetëm për WebExtensions"
+msgstr "Lënia jashtë e ID-së lejohet vetëm për WebExtensions"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Ju lutemi, specifikoni në manifest GUID-në e shtesës tuaj, nëse është më gjatë se 64 shenja."
+msgstr "Ju lutemi, specifikoni në manifest ID Shtese, nëse është më i gjatë se 64 shenja."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "GUID i pavlefshëm në URL"
+msgstr "ID Shtese i pavlefshëm në URL ose paketë"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "S’mund të shtoni versione te një shtesë që ka gjendjen: %s."
+msgstr "S’mund të shtoni versione të shfaqur te një shtesë që ka gjendjen “E padukshme”."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr "S’mund të shtoni një version publik të kësaj shtese përmes API-t, për shkak se mungojnë tejtëdhëna. Ju lutemi, parashtrojeni përmes sajtit"
+msgstr "S’mund të shtoni një version të shfaqur të kësaj shtese përmes API-t, për shkak se mungojnë tejtëdhëna. Ju lutemi, parashtrojeni përmes sajtit"
 
 msgid "No uploaded file for that addon and version."
 msgstr "S’ka kartelë të ngarkuar për atë shtesë dhe version."
@@ -6532,7 +6492,7 @@ msgid "Download sources by Date"
 msgstr "Burime Shkarkimesh sipas Datash"
 
 msgid "About tracking external sources..."
-msgstr "Si të ndiqni burime të jashtme…"
+msgstr "Mbi ndjekjen e burimeve të jashtme…"
 
 #, python-format
 msgid ""
@@ -6709,13 +6669,12 @@ msgstr "Përdoruesit \"%(users)s\" janë dëbuar."
 msgid "Ban selected users"
 msgstr "Dëboni përdorues të përzgjedhur"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Kyçet API të përdoruesve \"%(users)s\" u ricaktuan."
+msgstr ""
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Fshije Versionin"
+msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6775,7 +6734,7 @@ msgid ""
 "restrictions\" instead."
 msgstr ""
 "Jepni përkatësinë e plotë email-i njëpërdorimsh që duhet bllokuar. Nuk mbulohen shenja të gjithëpushtetshme: nëse keni nevojë t’i përdorni, ose ju duhet të gjeni përputhje me email-in e plotë dhe jo"
-" thjesht me pjesën e përkatësisë, më mirë përdorni \"Kufizime email-i përdoruesi\"."
+" thjesht me pjesën e përkatësisë, më mirë përdorni “Kufizime email-i përdoruesi”."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -6784,11 +6743,8 @@ msgstr ""
 "Para se t’ia filloni, ju lutemi lexoni dhe pranoni Marrëveshjen mbi Shpërndarjen e Shtesave të Firefox-it, si dhe Rregullat tona mbi Shqyrtimet. Marrëveshja mbi Shpërndarjen e Shtesave të Firefox-it"
 " përmban edhe lidhje për te Shënimet tona mbi Privatësinë, ku shpjegohet se si i trajtojmë të dhënat tuaja."
 
-#, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Para se t’ia filloni, ju lutemi lexoni dhe pranoni Marrëveshjen mbi Shpërndarjen e Shtesave të Firefox-it, si dhe Rregullat tona mbi Shqyrtimet. Marrëveshja mbi Shpërndarjen e Shtesave të Firefox-it"
-" përmban edhe lidhje për te Shënimet tona mbi Privatësinë, ku shpjegohet se si i trajtojmë të dhënat tuaja."
+msgstr "Ju lutemi, lexoni dhe pranoni Marrëveshjen mbi Shpërndarjen e Shtesave të Firefox-it, si dhe Rregullat tona mbi Shqyrtimet, duke vizituar {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "një zhvillues shtese i përgjigjet shqyrtimit tim"
@@ -6820,9 +6776,8 @@ msgstr "Njoftime Përdoruesish"
 msgid "Ban"
 msgstr "Dëboje"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Fshije Versionin"
+msgstr ""
 
 msgid "Delete picture"
 msgstr "Fshije foton"
@@ -6833,6 +6788,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Te shtesa juaj %(addon_name)s ( %(addon_url)s ) është shtuar autori vijues:\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6849,6 +6807,19 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Përshëndetje %(author_name)s,\n"
+"\n"
+"Jeni ftuar të bëheni një autor i %(addon_name)s te %(domain)s. Pranimi i ftesës do t\n"
+"ju japë të drejtën e përpunimit të shtesës, dhe mund të sjellë shfaqjen e emrit tuaj te lista e autorëve, te sajti.\n"
+"\n"
+"Nëse doni të shtoheni si një autor për %(addon_name)s, klikoni mbi lidhjen më poshtë që të përgjigjeni.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Nëse s’prisnit të merrnit këtë ftesë, ju lutemi, dërgoni një email te to amo-admins@mozilla.com.\n"
+"\n"
+"Të fala,\n"
+"Ekipi i Shtesave Mozilla"
 
 #, python-format
 msgid ""
@@ -6856,6 +6827,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Te shtesa juaj %(addon_name)s ( %(addon_url)s ) është ndryshuar autori vijues:\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6863,6 +6837,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Autori vijues është hequr prej shtesës tuaj %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
