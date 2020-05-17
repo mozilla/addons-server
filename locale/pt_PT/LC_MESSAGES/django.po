@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-17 21:52+0000\n"
+"PO-Revision-Date: 2020-05-17 23:05+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3842,7 +3842,7 @@ msgstr "Deixe um rasto digital limpo. Faça com que o Firefox se esqueça dos da
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Não precisa de escrever a mesma coisa repetidamente. Guarde o texto inserido com frequência para colar a qualquer momento."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4949,7 +4949,7 @@ msgstr "Alguns sites têm dificuldade em reproduzir vídeos no Firefox para Andr
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Selecione, ordene e execute as suas transferências mais rapidamente."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4958,23 +4958,23 @@ msgstr "Atualizações meteorológicas instantâneas de todo o mundo."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Elimine cookies, histórico de navegação, ficheiros em cache com apenas um clique."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Remova os elementos de monitorização das ligações da Internet."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Obtenha pastas de marcadores de fontes RSS preenchidos automaticamente."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organize uma grande quantidade de separadores abertos com facilidade."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Crie e personalize grupos de separadores."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4988,11 +4988,11 @@ msgstr "Apague cookies automaticamente após fechar um separador."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Bloqueie todos os anúncios — de vídeo, popups, banners e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Assista a transmissões multimédia com os amigos e familiares em qualquer lugar."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5008,7 +5008,7 @@ msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Organizadores de separadores e ferramentas"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5512,10 +5512,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "A aprovação automática foi temporariamente atrasada"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "A aprovação automática foi atrasada indefinidamente"
 
 msgid "Is locked by a reviewer"
 msgstr "Está bloqueado por um revisor"
@@ -5541,7 +5541,7 @@ msgid "You can't submit an empty comment."
 msgstr "Você não pode enviar um pacote de idiomas"
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Não pode submeter um número de linha sem o associar a um nome de ficheiro."
 
 msgid "Type"
 msgstr "Tipo"
@@ -5626,7 +5626,7 @@ msgid "Block Multiple Versions"
 msgstr "Rejeitar múltiplas versões"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Isto irá desativar silenciosamente as versões aprovadas selecionadas e irá abrir a página de administração da criação de bloqueio."
 
 #, fuzzy
 msgid "Confirm Multiple Versions"
@@ -5670,12 +5670,12 @@ msgid "Add-on Review Guide"
 msgstr "Guia de revisão de extra"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Sinalizado por analisadores"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sinalizado por analisadores ({0})"
+msgstr[1] "Sinalizados por analisadores ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Extras aprovados automaticamente"
