@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-16 18:00+0000\n"
+"PO-Revision-Date: 2020-05-17 08:28+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -91,11 +91,11 @@ msgstr[1] "Shtesa juaj e kaloi vleftësimin pa gabime dhe me {0} sinjalizime."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Shtesa juaj u vleftësua pa gabime dhe {0} mesazh."
-msgstr[1] "Shtesa juaj u vleftësua pa gabime dhe {0} mesazhe."
+msgstr[0] "Shtesa juaj e kaloi vleftësimin pa gabime dhe {0} mesazh."
+msgstr[1] "Shtesa juaj e kaloi vleftësimin pa gabime dhe {0} mesazhe."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr "Shtesa juaj u vleftësua pa gabime apo sinjalizime."
+msgstr "Shtesa juaj e kaloi vleftësimin pa gabime apo sinjalizime."
 
 msgid "Your submission will be automatically signed."
 msgstr "Parashtrimi juaj do të nënshkruhet vetvetiu."
@@ -502,11 +502,11 @@ msgstr "Kontribute nga {0} te {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "Matje Për Site-in, {0} ditët e fundit"
+msgstr "Matje Për Sajtin, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "Matje Për Site-in nga {0} te {1}"
+msgstr "Matje Për Sajtin nga {0} te {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -689,7 +689,7 @@ msgid "Image changes being processed"
 msgstr "Po përpunohen ndryshimet e figurës"
 
 msgid "No results found."
-msgstr "Nuk u gjetën përfundime."
+msgstr "S’u gjetën përfundime."
 
 msgid "Loading..."
 msgstr "Po ngarkohet…"
@@ -707,7 +707,7 @@ msgstr[0] "Edhe <b>{0}</b> shenjë"
 msgstr[1] "Edhe <b>{0}</b> shenja"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e \"site\"-it web. Ju lutemi, riprovoni pas pak."
+msgstr "Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e sajtit. Ju lutemi, riprovoni pas pak."
 
 msgid "Remove this localization"
 msgstr "Hiqe këtë përkthim"
@@ -728,7 +728,7 @@ msgid "Notes for Reviewers"
 msgstr "Shënime për Shqyrtuesit"
 
 msgid "No version notes found"
-msgstr "S'u gjetën shënime versioni"
+msgstr "S’u gjetën shënime versioni"
 
 msgid "Review Text"
 msgstr "Tekst Shqyrtimi"
@@ -776,7 +776,7 @@ msgid "All tests passed successfully."
 msgstr "Krejt provat u kaluan me sukses."
 
 msgid "These tests were not run."
-msgstr "Këto prova nuk u xhiruan."
+msgstr "Këto prova s’u xhiruan."
 
 msgid "Tests"
 msgstr "Prova"
@@ -815,7 +815,7 @@ msgstr[0] "{0} njoftim"
 msgstr[1] "{0} njoftime"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr "Akti i vleftësimit nuk u plotësua dot ose u plotësua me gabime"
+msgstr "Akti i vleftësimit s’u plotësua dot ose u plotësua me gabime"
 
 msgid "Internal server error"
 msgstr "Gabim i brendshëm shërbyesi"
