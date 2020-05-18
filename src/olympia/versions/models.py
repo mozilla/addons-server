@@ -331,6 +331,10 @@ class Version(OnChangeMixin, ModelBase):
             theme_data = parsed_data.get('theme', {})
             generate_static_theme_preview(theme_data, version.pk)
 
+        # Authors need to be notified about auto-approval delay again since
+        # they are submitting a new version.
+        addon.reset_notified_about_auto_approval_delay()
+
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.
         upload_start = utc_millesecs_from_epoch(upload.created)

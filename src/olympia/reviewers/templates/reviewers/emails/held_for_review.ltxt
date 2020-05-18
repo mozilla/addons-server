@@ -1,0 +1,7 @@
+{% extends "reviewers/emails/base.ltxt" %}{% block content %}
+Thank you for submitting your add-on {{ name }} {{ version }} to addons.mozilla.org. Your submission is taking longer than usual to be reviewed and signed. This process could take a few extra hours and up to a couple of days. Due to disruptions caused by the COVID-19 pandemic, it may take up to a week.
+
+If you are in urgent need of assistance, please contact amo-admins@mozilla.com
+
+Thank you for your attention.
+{% endblock %}

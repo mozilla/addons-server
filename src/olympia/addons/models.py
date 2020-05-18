@@ -1518,6 +1518,17 @@ class Addon(OnChangeMixin, ModelBase):
             self.auto_approval_delayed_until > datetime.now()
         )
 
+    def reset_notified_about_auto_approval_delay(self):
+        """
+        Reset notified_about_auto_approval_delay reviewer flag for this addon.
+
+        This doesn't create an AddonReviewerFlags if there wasn't one, just
+        resets notified_about_auto_approval_delay to False if there were flags
+        for this add-on.
+        """
+        AddonReviewerFlags.objects.filter(addon=self).update(
+            notified_about_auto_approval_delay=False)
+
     @classmethod
     def get_lookup_field(cls, identifier):
         lookup_field = 'pk'
@@ -1705,6 +1716,7 @@ class AddonReviewerFlags(ModelBase):
         default=None, null=True)
     pending_info_request = models.DateTimeField(default=None, null=True)
     notified_about_expiring_info_request = models.BooleanField(default=False)
+    notified_about_auto_approval_delay = models.NullBooleanField(default=False)
 
 
 class MigratedLWT(OnChangeMixin, ModelBase):
