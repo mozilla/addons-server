@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-18 13:14+0000\n"
+"PO-Revision-Date: 2020-05-18 14:32+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3832,7 +3832,7 @@ msgstr "Deixe um rastro digital limpo. Faça com que o Firefox esqueça dados de
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Não precisa escrever a mesma coisa repetidamente. Salve os textos inseridos com frequência para colar quando quiser."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4936,7 +4936,7 @@ msgstr "Esta extensão repara a dificuldade que alguns sites têm em reproduzir 
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Selecione, ordene e execute seus downloads mais rápido."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4944,11 +4944,11 @@ msgstr "Receba novidades sobre o clima diretamente no navegador."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Exclua cookies, histórico de navegação e arquivos em cache com apenas um clique."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Remova elementos de rastreamento de links da web."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
@@ -4956,11 +4956,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organize facilmente montes de abas abertas."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Crie e personalize grupos de abas."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4972,11 +4972,11 @@ msgstr "Substitua automaticamente palavras depreciativas na web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Bloqueie todos os anúncios — vídeos, notificações, banners e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Assista a streaming de mídia com amigos e familiares em qualquer lugar."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4992,7 +4992,7 @@ msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Organizadores e ferramentas de abas"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5502,10 +5502,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "A aprovação automática foi adiada temporariamente"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "A aprovação automática foi adiada indefinidamente"
 
 msgid "Is locked by a reviewer"
 msgstr "Está bloqueado por um revisor"
@@ -5529,7 +5529,7 @@ msgid "You can't submit an empty comment."
 msgstr "Você não pode enviar um comentário vazio."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Você não pode enviar um número de linha sem associar a um nome de arquivo."
 
 msgid "Type"
 msgstr "Tipo"
@@ -5612,7 +5612,7 @@ msgid "Block Multiple Versions"
 msgstr "Bloquear várias versões"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Isso desativará as versões aprovadas selecionadas silenciosamente e abrirá a página de administração de criação de bloqueios."
 
 msgid "Confirm Multiple Versions"
 msgstr "Confirmar várias versões"
@@ -5741,7 +5741,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Política de privacidade"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Relatos de abuso – {addon} – Extensões do Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Denúncias de abuso para {addon} e os seus desenvolvedores ({num})"
