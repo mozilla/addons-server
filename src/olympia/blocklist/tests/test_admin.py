@@ -187,6 +187,7 @@ class TestBlockAdmin(TestCase):
             response,
             self.submission_url +
             f'?guids={addon.guid}&max_version={version.version}')
+        assert not response.context['messages']
 
         # Existing blocks are redirected to the change view instead
         block = Block.objects.create(addon=addon, updated_by=user_factory())
@@ -194,8 +195,25 @@ class TestBlockAdmin(TestCase):
             url + f'?max={version.pk}', follow=True)
         self.assertRedirects(
             response,
-            reverse('admin:blocklist_block_change', args=(block.pk,)) +
-            f'?max_version={version.version}')
+            reverse('admin:blocklist_block_change', args=(block.pk,)))
+        # with a message warning the versions were ignored
+        assert [msg.message for msg in response.context['messages']] == [
+            f'The versions 0 to {version.version} could not be pre-selected '
+            'because some versions have been blocked already']
+
+        # Pending blocksubmissions are redirected to the submission view
+        submission = BlocklistSubmission.objects.create(input_guids=addon.guid)
+        response = self.client.post(
+            url + f'?max={version.pk}', follow=True)
+        self.assertRedirects(
+            response,
+            reverse(
+                'admin:blocklist_blocklistsubmission_change',
+                args=(submission.pk,)))
+        # with a message warning the versions were ignored
+        assert [msg.message for msg in response.context['messages']] == [
+            f'The versions 0 to {version.version} could not be pre-selected '
+            'because this addon is part of a pending submission']
 
 
 class TestBlocklistSubmissionAdmin(TestCase):
