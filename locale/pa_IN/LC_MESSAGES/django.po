@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-03-27 13:18+0000\n"
-"Last-Translator: Jasmine <bangerjasmine9@gmail.com>\n"
+"PO-Revision-Date: 2020-05-18 17:48+0000\n"
+"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -125,13 +125,11 @@ msgstr "ਐਡ-ਆਨ ਦੇ ਸਿਰਫ ਨਵੀਨਤਮ ਵਰਜਨ ਹੀ
 msgid "Ratings"
 msgstr "ਦਰਜਾ"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "ਪੜਤਾਲ ਸੰਦ"
+msgstr "ਪੜਤਾਲ ਸੰਦ (ਸੂਚੀਬੱਧ)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "ਪੜਤਾਲ ਸੰਦ"
+msgstr "ਪੜਤਾਲ ਸੰਦ (ਨਾ-ਸੂਚੀਬੱਧ)"
 
 #, fuzzy
 msgid "Reviewer links"
@@ -241,8 +239,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"ਤੁਸੀਂ ਇਹ ਸੁਨੇਹਾ ਵੇਖ ਰਹੇ ਹੋ ਕਿਉਂਕਿ ਇਸ HTTPS ਸਾਈਟ ਨੂੰ ਤੁਹਾਡੇ ਵੈਬ ਬਰਾਊਜ਼ਰ ਵਲੋਂ ਭੇਜੇ ਜਾਣ ਵਾਲੇ 'ਰੈਫਰਰ ਹੈਡਰ' ਦੀ ਲੋੜ ਹੈ, ਪਰ ਕੋਈ ਵੀ ਨਹੀਂ ਭੇਜਿਆ ਗਿਆ ਸੀ। ਇਹ ਸਿਰਲੇਖ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਜ਼ਰੂਰੀ ਹੈ, ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਕਿ ਤੁਹਾਡੇ ਬਰਾਊਜ਼ਰ ਨੂੰ ਤੀਜੀ ਧਿਰ "
-"ਦੁਆਰਾ ਹਾਈਜੈਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
+"ਤੁਸੀਂ ਇਹ ਸੁਨੇਹਾ ਵੇਖ ਰਹੇ ਹੋ ਕਿਉਂਕਿ ਇਸ HTTPS ਸਾਈਟ ਨੂੰ ਤੁਹਾਡੇ ਵੈਬ ਬਰਾਊਜ਼ਰ ਵਲੋਂ ਭੇਜੇ ਜਾਣ ਵਾਲੇ 'ਰੈਫਰਰ ਹੈਡਰ' ਦੀ ਲੋੜ ਹੈ, ਪਰ ਕੋਈ ਵੀ ਨਹੀਂ ਭੇਜਿਆ ਗਿਆ ਸੀ। ਇਹ ਸਿਰਲੇਖ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਜ਼ਰੂਰੀ ਹੈ, ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ"
+" ਲਈ ਕਿ ਤੁਹਾਡੇ ਬਰਾਊਜ਼ਰ ਨੂੰ ਤੀਜੀ ਧਿਰ ਦੁਆਰਾ ਹਾਈਜੈਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr "ਜੇ ਤੁਸੀਂ 'ਸੁਧਾਰਕ' ਸਿਰਲੇਖ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਉਣ ਲਈ ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਦੀ ਸੰਰਚਨਾ ਕੀਤੀ ਹੈ, ਤਾਂ ਕਿਰਪਾ ਕਰਕੇ ਘੱਟੋ ਘੱਟ ਇਸ ਸਾਈਟ ਲਈ, ਜਾਂ HTTPS ਕਨੈਕਸ਼ਨ ਲਈ, ਜਾਂ 'ਉਸੇ ਮੂਲ' ਬੇਨਤੀਆਂ ਲਈ ਮੁੜ-ਸਮਰੱਥ ਕਰੋ।"
@@ -250,7 +248,9 @@ msgstr "ਜੇ ਤੁਸੀਂ 'ਸੁਧਾਰਕ' ਸਿਰਲੇਖ ਨੂੰ
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr "ਤੁਸੀਂ ਇਹ ਸੁਨੇਹਾ ਵੇਖ ਰਹੇ ਹੋ ਕਿਉਂਕਿ ਫਾਰਮ ਜਮ੍ਹਾਂ ਕਰਦੇ ਸਮੇਂ ਇਸ ਸਾਈਟ ਨੂੰ ਸੀਐਸਆਰਐਫ ਕੂਕੀ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ। ਇਹ ਕੂਕੀ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਜ਼ਰੂਰੀ ਹੈ, ਇਹ ਸੁਨਿਸਚਿਤ ਕਰਨ ਲਈ ਕਿ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਨੂੰ ਤੀਜੀ ਧਿਰ ਦੁਆਰਾ ਹਾਈਜੈਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
+msgstr ""
+"ਤੁਸੀਂ ਇਹ ਸੁਨੇਹਾ ਵੇਖ ਰਹੇ ਹੋ ਕਿਉਂਕਿ ਫਾਰਮ ਜਮ੍ਹਾਂ ਕਰਦੇ ਸਮੇਂ ਇਸ ਸਾਈਟ ਨੂੰ ਸੀਐਸਆਰਐਫ ਕੂਕੀ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ। ਇਹ ਕੂਕੀ ਸੁਰੱਖਿਆ ਕਾਰਨਾਂ ਕਰਕੇ ਜ਼ਰੂਰੀ ਹੈ, ਇਹ ਸੁਨਿਸਚਿਤ ਕਰਨ ਲਈ ਕਿ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਨੂੰ ਤੀਜੀ ਧਿਰ ਦੁਆਰਾ "
+"ਹਾਈਜੈਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
 
 msgid "Page Not Found"
 msgstr "ਇਹ ਸਫ਼ਾ ਨਹੀਂ ਲੱਭਿਆ"
@@ -275,7 +275,9 @@ msgstr "ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ਾ"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "ਜੇ ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਥਾਂ ਤੋਂ ਕਿਸੇ ਲਿੰਕ ਨੂੰ ਫ਼ਾਲੋ ਕਰਦੇ ਹੋ, ਤਾਂ %(open_bug_link)sਇੱਕ ਸਮੱਸਿਆ ਦੀ ਰਿਪੋਰਟ%(close_bug_link)s ਕਰੋ। ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ ਸੀ ਅਤੇ ਜੋ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਸੀ, ਅਤੇ ਅਸੀਂ ਇਸ ਨੂੰ ਠੀਕ ਕਰਨ ਲਈ ਪੂਰੀ ਕੋਸ਼ਿਸ਼ ਕਰਾਂਗੇ।"
+msgstr ""
+"ਜੇ ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਥਾਂ ਤੋਂ ਕਿਸੇ ਲਿੰਕ ਨੂੰ ਫ਼ਾਲੋ ਕਰਦੇ ਹੋ, ਤਾਂ %(open_bug_link)sਇੱਕ ਸਮੱਸਿਆ ਦੀ ਰਿਪੋਰਟ%(close_bug_link)s ਕਰੋ। ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ ਸੀ ਅਤੇ ਜੋ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਸੀ, ਅਤੇ ਅਸੀਂ ਇਸ ਨੂੰ ਠੀਕ "
+"ਕਰਨ ਲਈ ਪੂਰੀ ਕੋਸ਼ਿਸ਼ ਕਰਾਂਗੇ।"
 
 msgid "Not Found"
 msgstr "ਨਹੀਂ ਮਿਲਿਆ"
@@ -283,16 +285,17 @@ msgstr "ਨਹੀਂ ਮਿਲਿਆ"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>ਸਾਨੂੰ ਅਫ਼ਸੋਸ ਹੈ, ਪਰ ਤੁਸੀਂ ਜਿਸਦੀ ਭਾਲ ਕਰ ਰਹੇ ਹੋ ਅਸੀਂ ਉਹ ਲੱਭ ਨਹੀਂ ਸਕੇ।</h1> <p> ਜਿਸ ਵਰਕੇ ਜਾਂ ਫ਼ਾਈਲ ਦੀ ਬੇਨਤੀ ਤੁਸੀਂ ਕੀਤੀ ਸੀ, ਉਹ ਸਾਡੀ ਸਾਈਟ ਤੇ ਨਹੀਂ ਲੱਭੀ। ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਿਸੇ ਵੇਲਾ ਵਿਹਾ ਚੁੱਕੀ ਕਿਸੇ ਤੰਦ ਤੇ ਕਲਿੱਕ ਕੀਤਾ ਹੋਵੇ, ਜਾਂ ਫਿਰ ਤੁਸੀਂ "
-"ਗਲਤ ਪਤਾ ਲਿਖ ਦਿੱਤਾ ਹੋਵੇ। </p> <ul> <li>ਜੇਕਰ ਤੁਸੀਂ ਪਤਾ ਲਿਖਿਆ ਹੈ ਤਾਂ ਸ਼ਬਦ ਜੋੜ ਦੀ ਪੜਤਾਲ ਕਰੋ।</li> <li> ਜੇਕਰ ਤੁਸੀਂ ਤੰਦ ਕਿਸੇ ਹੋਰ ਥਾਂ ਤੋਂ ਲਈ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ %(open_bug_link)sਮਾਮਲਾ ਦਰਜ ਕਰਾਉ%(close_bug_link)s। ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ "
-"ਅਤੇ ਕੀ ਭਾਲ ਰਹੇ ਸੀ, ਅਤੇ ਅਸੀਂ ਇਸਦੀ ਮੁਰੰਮਤ ਲਈ ਪੂਰਾ ਜ਼ੋਰ ਲਾਵਾਂਗੇ। </li> </ul> <p>ਜਾਂ ਫਿਰ ਤੁਸੀਂ ਸਾਡੀ ਸਾਈਟ ਦੇ ਕੁੱਝ ਮਸ਼ਹੂਰ ਸਫ਼ਿਆਂ ਨੂੰ ਵੀ ਵੇਖ ਸਕਦੇ ਹੋ।<p> <ul> <li>ਕੀ ਤੁਹਾਨੂੰ <a href=\"%(rec)s\">ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨਾਂ ਦੀ ਸੂਚੀ</a> ਵਿੱਚ ਦਿਲਚਸਪੀ ਹੈ?</"
-"li> <li> ਕੀ ਤੁਸੀਂ <a href=\"%(search)s\">ਐਡ-ਆਨਾਂ ਲਈ ਖੋਜ</a> ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? ਤੁਸੀਂ <a href=\"%(search)s\">ਖੋਜ ਸਫ਼ੇ</a> ਤੇ ਜਾ ਸਕਦੇ ਹੋ ਜਾਂ ਫਿਰ ਉੱਪਰ ਦਿੱਤਾ ਖੋਜ ਖਾਨਾ ਵਰਤ ਸਕਦੇ ਹੋ। </li> <li> ਜੇਕਰ ਤੁਸੀਂ ਮੁੜ ਤੋਂ ਸ਼ੁਰੂਆਤ ਕਰਨ ਨੂੰ ਤਰਜੀਹ ਦੇਣੀ "
-"ਚਾਹੋ, ਤਾਂ ਤੁਸੀਂ <a href=\"%(home)s\">ਐਡ-ਆਨ ਦੇ ਮੁੱਖ ਸਫ਼ੇ</a> ਤੇ ਜਾਉ।</li> </ul>"
+"<h1>ਸਾਨੂੰ ਅਫ਼ਸੋਸ ਹੈ, ਪਰ ਤੁਸੀਂ ਜਿਸਦੀ ਭਾਲ ਕਰ ਰਹੇ ਹੋ ਅਸੀਂ ਉਹ ਲੱਭ ਨਹੀਂ ਸਕੇ।</h1> <p> ਜਿਸ ਵਰਕੇ ਜਾਂ ਫ਼ਾਈਲ ਦੀ ਬੇਨਤੀ ਤੁਸੀਂ ਕੀਤੀ ਸੀ, ਉਹ ਸਾਡੀ ਸਾਈਟ ਤੇ ਨਹੀਂ ਲੱਭੀ। ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕਿਸੇ ਵੇਲਾ ਵਿਹਾ ਚੁੱਕੀ ਕਿਸੇ ਤੰਦ"
+" ਤੇ ਕਲਿੱਕ ਕੀਤਾ ਹੋਵੇ, ਜਾਂ ਫਿਰ ਤੁਸੀਂ ਗਲਤ ਪਤਾ ਲਿਖ ਦਿੱਤਾ ਹੋਵੇ। </p> <ul> <li>ਜੇਕਰ ਤੁਸੀਂ ਪਤਾ ਲਿਖਿਆ ਹੈ ਤਾਂ ਸ਼ਬਦ ਜੋੜ ਦੀ ਪੜਤਾਲ ਕਰੋ।</li> <li> ਜੇਕਰ ਤੁਸੀਂ ਤੰਦ ਕਿਸੇ ਹੋਰ ਥਾਂ ਤੋਂ ਲਈ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ "
+"%(open_bug_link)sਮਾਮਲਾ ਦਰਜ ਕਰਾਉ%(close_bug_link)s। ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ ਅਤੇ ਕੀ ਭਾਲ ਰਹੇ ਸੀ, ਅਤੇ ਅਸੀਂ ਇਸਦੀ ਮੁਰੰਮਤ ਲਈ ਪੂਰਾ ਜ਼ੋਰ ਲਾਵਾਂਗੇ। </li> </ul> <p>ਜਾਂ ਫਿਰ ਤੁਸੀਂ ਸਾਡੀ ਸਾਈਟ ਦੇ ਕੁੱਝ ਮਸ਼ਹੂਰ "
+"ਸਫ਼ਿਆਂ ਨੂੰ ਵੀ ਵੇਖ ਸਕਦੇ ਹੋ।<p> <ul> <li>ਕੀ ਤੁਹਾਨੂੰ <a href=\"%(rec)s\">ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨਾਂ ਦੀ ਸੂਚੀ</a> ਵਿੱਚ ਦਿਲਚਸਪੀ ਹੈ?</li> <li> ਕੀ ਤੁਸੀਂ <a href=\"%(search)s\">ਐਡ-ਆਨਾਂ ਲਈ ਖੋਜ</a> ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ? "
+"ਤੁਸੀਂ <a href=\"%(search)s\">ਖੋਜ ਸਫ਼ੇ</a> ਤੇ ਜਾ ਸਕਦੇ ਹੋ ਜਾਂ ਫਿਰ ਉੱਪਰ ਦਿੱਤਾ ਖੋਜ ਖਾਨਾ ਵਰਤ ਸਕਦੇ ਹੋ। </li> <li> ਜੇਕਰ ਤੁਸੀਂ ਮੁੜ ਤੋਂ ਸ਼ੁਰੂਆਤ ਕਰਨ ਨੂੰ ਤਰਜੀਹ ਦੇਣੀ ਚਾਹੋ, ਤਾਂ ਤੁਸੀਂ <a href=\"%(home)s\">ਐਡ-ਆਨ ਦੇ "
+"ਮੁੱਖ ਸਫ਼ੇ</a> ਤੇ ਜਾਉ।</li> </ul>"
 
 msgid "Oops"
 msgstr "ਓ ਹੋ"
@@ -301,7 +304,8 @@ msgstr "ਓ ਹੋ"
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>ਓ ਹੋ!  ਸਾਨੂੰ ਗ਼ਲਤੀ ਮਿਲੀ।</h1> <p>ਅਸੀਂ ਛੇਤੀ ਹੋ ਇਸਨੂੰ ਸੋਧਣ ਵਿੱਚ ਲੱਗ ਜਾਵਾਂਗੇ।</ p> <p> ਤੁਸੀਂ ਇਸ ਸਫ਼ੇ ਨੂੰ ਤਾਜਾ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ <a href=\"%(home)s\">ਐਡਆਨ ਮੁੱਖ-ਸਫ਼ੇ</a> ਤੇ ਵਾਪਸ ਜਾਓ। </p>"
+msgstr ""
+"<h1>ਓ ਹੋ!  ਸਾਨੂੰ ਗ਼ਲਤੀ ਮਿਲੀ।</h1> <p>ਅਸੀਂ ਛੇਤੀ ਹੋ ਇਸਨੂੰ ਸੋਧਣ ਵਿੱਚ ਲੱਗ ਜਾਵਾਂਗੇ।</ p> <p> ਤੁਸੀਂ ਇਸ ਸਫ਼ੇ ਨੂੰ ਤਾਜਾ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ <a href=\"%(home)s\">ਐਡਆਨ ਮੁੱਖ-ਸਫ਼ੇ</a> ਤੇ ਵਾਪਸ ਜਾਓ। </p>"
 
 msgid "No results found"
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ"
@@ -336,8 +340,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> ਕਿਰਪਾ ਕਰਕੇ ਹੇਠ ਦਿੱਤੇ<strong>ਸਾਰੇ ਸ਼ਬਦ</strong>ਐਂਟਰ ਕਰੋ, <strong>ਜੇਕਰ ਲੋੜ ਪਵੇ ਤਾਂ ਇਹਨਾਂ ਵਿੱਚ ਇੱਕ ਸਪੇਸ ਦਾ ਫ਼ਰਕ ਹੋਣਾ ਚਾਹੀਦਾ ਹਨ</strong>। </p> <p> ਜੇਕਰ ਇਹ ਪੜ੍ਹਣ ਵਿੱਚ ਔਖ ਹੋ ਰਹੀ ਹੈ, ਤੁਸੀਂ <a href=\"#\" id="
-"\"recaptcha_different\">ਹੋਰ ਸ਼ਬਦਾਂ ਨੂੰ ਅਜ਼ਮਾ</a> ਸਕਦੇ ਹੋ ਜਾਂ ਇਸ ਦੀ ਬਜਾਏ <a href=\"#\" id=\"recaptcha_audio\">ਇੱਕ ਵੱਖਰੇ ਤਰ੍ਹਾਂ ਦੀ ਚੁਣੌਤੀ</a> ਦੀ ਕੋਸ਼ਿਸ ਕਰੋ। </p>"
+"<p> ਕਿਰਪਾ ਕਰਕੇ ਹੇਠ ਦਿੱਤੇ<strong>ਸਾਰੇ ਸ਼ਬਦ</strong>ਐਂਟਰ ਕਰੋ, <strong>ਜੇਕਰ ਲੋੜ ਪਵੇ ਤਾਂ ਇਹਨਾਂ ਵਿੱਚ ਇੱਕ ਸਪੇਸ ਦਾ ਫ਼ਰਕ ਹੋਣਾ ਚਾਹੀਦਾ ਹਨ</strong>। </p> <p> ਜੇਕਰ ਇਹ ਪੜ੍ਹਣ ਵਿੱਚ ਔਖ ਹੋ ਰਹੀ ਹੈ, ਤੁਸੀਂ <a href=\"#\""
+" id=\"recaptcha_different\">ਹੋਰ ਸ਼ਬਦਾਂ ਨੂੰ ਅਜ਼ਮਾ</a> ਸਕਦੇ ਹੋ ਜਾਂ ਇਸ ਦੀ ਬਜਾਏ <a href=\"#\" id=\"recaptcha_audio\">ਇੱਕ ਵੱਖਰੇ ਤਰ੍ਹਾਂ ਦੀ ਚੁਣੌਤੀ</a> ਦੀ ਕੋਸ਼ਿਸ ਕਰੋ। </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -431,7 +435,8 @@ msgid "Valid Application Versions"
 msgstr "ਸਹੀ ਐਪਲੀਕੇਸ਼ਨ ਵਰਜ਼ਨ"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "ਮੋਜ਼ੀਲਾ ਐਡਆਨ ਕੋਲ ਐਡਆਨ ਪੇਸ਼ ਕੀਤੇ ਜਾਣ ਵਾਲੇ ਕੋਲ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਹੇਠਲੇ ਐਪਲੀਕੇਸ਼ਨਾਂ ਦਾ ਸਮਰਥਨ ਕਰਨ ਵਾਲੀ ਮੈਨੀਫੈਸਟ ਫਾਇਲ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ। ਇਹਨਾਂ ਐਪਲੀਕੇਸ਼ਨਾਂ ਲਈ ਕੇਵਲ ਹੇਠਾਂ ਦਿੱਤੇ ਗਏ ਵਰਜ਼ਨ ਲਈ ਇਜਾਜ਼ਤ ਦਿੱਤੀ ਜਾਂਦੀ ਹੈ।"
+msgstr ""
+"ਮੋਜ਼ੀਲਾ ਐਡਆਨ ਕੋਲ ਐਡਆਨ ਪੇਸ਼ ਕੀਤੇ ਜਾਣ ਵਾਲੇ ਕੋਲ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਹੇਠਲੇ ਐਪਲੀਕੇਸ਼ਨਾਂ ਦਾ ਸਮਰਥਨ ਕਰਨ ਵਾਲੀ ਮੈਨੀਫੈਸਟ ਫਾਇਲ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ। ਇਹਨਾਂ ਐਪਲੀਕੇਸ਼ਨਾਂ ਲਈ ਕੇਵਲ ਹੇਠਾਂ ਦਿੱਤੇ ਗਏ ਵਰਜ਼ਨ ਲਈ ਇਜਾਜ਼ਤ ਦਿੱਤੀ ਜਾਂਦੀ ਹੈ।"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
@@ -445,9 +450,11 @@ msgstr "ਵਰਜ਼ਨ"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr "ਜੇ ਤੁਹਾਡੀ ਸਹਾਇਕ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਦੀ ਲੋੜ ਨਹੀਂ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਅਜੇ ਵੀ ਲੋੜੀਂਦੀ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨਾਲ ਇੱਕ ਨੂੰ ਸ਼ਾਮਿਲ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ ਜਿਵੇਂ ਕਿ ਖਾਸ %(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s ਹੈ।"
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+msgstr ""
+"ਜੇ ਤੁਹਾਡੀ ਸਹਾਇਕ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਦੀ ਲੋੜ ਨਹੀਂ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਅਜੇ ਵੀ ਲੋੜੀਂਦੀ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਨਾਲ ਇੱਕ ਨੂੰ ਸ਼ਾਮਿਲ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ ਜਿਵੇਂ ਕਿ ਖਾਸ "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s ਹੈ।"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "ਇਹ ਕਸਟਮ URL ਤੁਹਾਡੇ ਸੰਗ੍ਰਹਿ ਵਿੱਚੋਂ ਕਿਸੇ ਹੋਰ ਦੁਆਰਾ ਪਹਿਲਾਂ ਤੋਂ ਵਰਤਿਆ ਗਿਆ ਹੈ।"
@@ -489,20 +496,17 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "ਗਲਤ ਵਰਜ਼ਨ ਹੱਦ।"
+msgstr "ਗਲਤ ਵਰਜ਼ਨ"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
+msgstr "ਸੂਚੀਬੱਧ ਦੀ ਪੜਤਾਲ ਕਰੋ"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "ਪੜਤਾਲ ਲਿਖਤ"
+msgstr "ਨਾ-ਸੂਚੀਬੱਧ ਦੀ ਪੜਤਾਲ"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr ""
@@ -510,11 +514,10 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "ਬਹੁ ਵਰਜਨ ਨੂੰ ਰੱਦ ਕਰੋ"
+msgstr "ਕਈ %(name)s ਨੂੰ ਹਟਾਓ"
 
-#, fuzzy
 msgid "Home"
 msgstr "ਮੁੱਖ ਸਫ਼ਾ"
 
@@ -541,13 +544,11 @@ msgstr "ਹਟਾਓ"
 msgid "Update"
 msgstr "ਅੱਪਡੇਟ"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "ਮੇਰੇ ਪ੍ਰਸਤਾਵਾਂ ਤੇ ਜਾਓ"
+msgstr "ਪੇਸ਼ਕਸ਼ ਰੱਦ ਕਰੋ"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "ਮੇਰੇ ਪ੍ਰਸਤਾਵਾਂ ਤੇ ਜਾਓ"
+msgstr "ਪੇਸ਼ਕਸ਼ ਮਨਜ਼ੂਰ ਕਰੋ"
 
 #, python-format
 msgid "Add %(name)s"
@@ -556,22 +557,19 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "ਵਰਜਨ ਭੇਜੋ"
+msgstr "ਭੇਜੋ"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
 msgstr "ਵਰਤੋਂਕਾਰ"
 
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
 msgstr "ਵਰਜ਼ਨ"
 
@@ -911,9 +909,8 @@ msgstr ""
 msgid "Block for {0} deleted from Blocklist."
 msgstr "ਵਰਜ਼ਨ {0} {addon} ਤੋਂ ਹਟਾਇਆ।"
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "ਐਡ-ਆਨ ਹਟਾਇਆ।"
+msgstr "ਪਾਬੰਦੀ ਹਟਾਈ"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -1044,7 +1041,9 @@ msgid "Alerts & Updates"
 msgstr "ਚੇਤਾਵਨੀਆਂ ਅਤੇ ਨਵਿਆਈਆਂ"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr "ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਤੁਹਾਨੂੰ ਅਪ-ਟੂ-ਡੇਟ ਰਹਿਣ, ਕੰਮ ਨੂੰ ਟਰੈਕ ਕਰਨ, ਕੁਸ਼ਲਤਾ ਵਿੱਚ ਸੁਧਾਰ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।ਉਹ ਐਕਸਟੈਂਸ਼ਨਾਂ ਲੱਭੋ ਜੋ ਟੈਬਸ ਮੁੜ ਲੋਡ ਕਰਦੀਆਂ ਹਨ, ਉਤਪਾਦਕਤਾ ਪ੍ਰਬੰਧਿਤ ਕਰਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀੈ।"
+msgstr ""
+"ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਤੁਹਾਨੂੰ ਅਪ-ਟੂ-ਡੇਟ ਰਹਿਣ, ਕੰਮ ਨੂੰ ਟਰੈਕ ਕਰਨ, ਕੁਸ਼ਲਤਾ ਵਿੱਚ ਸੁਧਾਰ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।ਉਹ ਐਕਸਟੈਂਸ਼ਨਾਂ ਲੱਭੋ ਜੋ ਟੈਬਸ ਮੁੜ ਲੋਡ ਕਰਦੀਆਂ ਹਨ, ਉਤਪਾਦਕਤਾ ਪ੍ਰਬੰਧਿਤ ਕਰਦੀਆਂ ਹਨ, "
+"ਅਤੇ ਹੋਰ ਵੀੈ।"
 
 msgid "Appearance"
 msgstr "ਦਿੱਖ"
@@ -1062,7 +1061,9 @@ msgid "Download Management"
 msgstr "ਡਾਊਨਲੋਡ ਇੰਤਜ਼ਾਮ"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਵੈੱਬ, ਸੰਗੀਤ ਅਤੇ ਵੀਡੀਓ ਸਮੱਗਰੀ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦੇ ਹਨ। ਤੁਸੀਂ ਡਾਉਨਲੋਡ ਦੇ ਇੰਤਜ਼ਾਮ, ਫਾਈਲਾਂ ਸਾਂਝੀਆਂ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ ਕਰਨ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਲੱਭ ਸਕਦੇ ਹੋ।"
+msgstr ""
+"ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਵੈੱਬ, ਸੰਗੀਤ ਅਤੇ ਵੀਡੀਓ ਸਮੱਗਰੀ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰਨ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦੇ ਹਨ। ਤੁਸੀਂ ਡਾਉਨਲੋਡ ਦੇ ਇੰਤਜ਼ਾਮ, ਫਾਈਲਾਂ ਸਾਂਝੀਆਂ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ ਕਰਨ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਲੱਭ "
+"ਸਕਦੇ ਹੋ।"
 
 msgid "Feeds, News & Blogging"
 msgstr "ਫੀਡਜ਼, ਖਬਰਾਂ ਅਤੇ ਬਲੌਗ"
@@ -1092,7 +1093,9 @@ msgid "Privacy & Security"
 msgstr "ਪਰਦੇਦਾਰੀ ਅਤੇ ਸੁਰੱਖਿਆ"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr "ਪ੍ਰਾਈਵੇਟ ਅਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਨਾਲ ਬਰਾਉਜ਼ ਕਰਨ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕਣ, ਟਰੈਕਿੰਗ ਨੂੰ ਰੋਕਣ, ਰੀਡਾਇਰੈਕਟਾਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ ਸ਼ਾਮਲ ਹਨ।"
+msgstr ""
+"ਪ੍ਰਾਈਵੇਟ ਅਤੇ ਸੁਰੱਖਿਅਤ ਰੂਪ ਨਾਲ ਬਰਾਉਜ਼ ਕਰਨ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕਣ, ਟਰੈਕਿੰਗ ਨੂੰ ਰੋਕਣ, ਰੀਡਾਇਰੈਕਟਾਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰਨ ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ "
+"ਸ਼ਾਮਲ ਹਨ।"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਨਸ਼ਨ ਨੂੰ ਖੋਜ ਅਤੇ ਖੋਜ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਉਹ ਐਕਸਟੈਂਸ਼ਨਾਂ ਸ਼ਾਮਲ ਹੁੰਦੀਆਂ ਹਨ ਜੋ ਪਾਠ ਨੂੰ ਹਾਈਲਾਈਟ ਅਤੇ ਖੋਜ ਕਰਦੇ ਹਨ, IP ਪਤੇ/ਡੋਮੇਨ ਖੋਜ ਕਰਦੇ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ ਕਰਦੇ ਹਨ।"
@@ -1113,7 +1116,8 @@ msgid "Tabs"
 msgstr "ਟੈਬਾਂ"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr "ਟੈਬਾਂ ਅਤੇ ਨਵੀਂ ਟੈਬ ਸਫ਼ਾ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਉਣ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹ ਇਕਸਟੈਨਸ਼ਨਾਂ ਖੋਜੋ ਜੋ ਟੈਬਾਂ ਨੂੰ ਕੰਟਰੋਲ ਕਰ ਸਕਦੇ ਹਨ, ਉਨ੍ਹਾਂ ਨਾਲ ਕਿਵੇਂ ਤਾਲਮੇਲ ਬਿਠਾ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ।"
+msgstr ""
+"ਟੈਬਾਂ ਅਤੇ ਨਵੀਂ ਟੈਬ ਸਫ਼ਾ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਉਣ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹ ਇਕਸਟੈਨਸ਼ਨਾਂ ਖੋਜੋ ਜੋ ਟੈਬਾਂ ਨੂੰ ਕੰਟਰੋਲ ਕਰ ਸਕਦੇ ਹਨ, ਉਨ੍ਹਾਂ ਨਾਲ ਕਿਵੇਂ ਤਾਲਮੇਲ ਬਿਠਾ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ ਬਹੁਤ ਕੁਝ।"
 
 msgid "Web Development"
 msgstr "ਵੈੱਬ ਵਿਕਾਸ"
@@ -1157,7 +1161,8 @@ msgstr "ਸੁਰੱਖਿਆ ਅਤੇ ਪਰਦੇਦਾਰੀ"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
-"ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਲੁਕਾਏ ਇਸ਼ਤਿਹਾਰ ਟਰੈਕਾਂ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬਰਾਊਜ ਕਰਨ ਦੇ ਅਤੀਤ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਸਾਫ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
+"ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਲੁਕਾਏ ਇਸ਼ਤਿਹਾਰ ਟਰੈਕਾਂ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬਰਾਊਜ ਕਰਨ ਦੇ ਅਤੀਤ"
+" ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਸਾਫ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
 
 msgid "Social Networking"
 msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
@@ -1557,7 +1562,6 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
 msgstr "ਨਵਾਂ"
 
@@ -1570,9 +1574,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "ਅਧੂਰਾ"
+msgstr "ਪੂਰਾ ਹੋਇਆ"
 
 msgid "Scheduled"
 msgstr ""
@@ -1746,11 +1749,10 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"ਇਸ ਸਾਈਟ ਤੇ। <span class=\"helptext\">ਕੋਡ ਦੀ ਸਮੀਿਖਆ ਪਾਸ ਹੋਣ ਤੋਂ ਬਾਅਦ, ਲੱਖਾਂ ਉਪਭੋਗਤਾਵਾਂ ਲਈ ਤੁਹਾਡੀ ਅਧੀਨਗੀ ਦੀ ਸੂਚੀ ਇਸ ਸਾਈਟ ਤੇ ਹੋਵੇਗੀ ਅਤੇ ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਮੈਨੇਜਰ। ਇਸ ਸਾਈਟ ਦੁਆਰਾ ਆਟੋਮੈਟਿਕ ਅਪਡੇਟਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕੀਤਾ ਜਾਂਦਾ ਹੈ। ਇਹ ਐਡਆਨ ਨੂੰ "
-"ਮੋਜ਼ੀਲਾ ਪ੍ਰੋਮੋਸ਼ਨਾਂ ਅਤੇ ਮੁਕਾਬਲੇ ਲਈ ਵੀ ਵਿਚਾਰਿਆ ਜਾਵੇਗਾ। ਸਮੀਖਿਆ ਕੀਤੀ ਫਾਈਲਾਂ ਦੀ ਸਵੈ-ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਵੀ ਸੰਭਵ ਹੈ।</span>"
+"ਇਸ ਸਾਈਟ ਤੇ। <span class=\"helptext\">ਕੋਡ ਦੀ ਸਮੀਿਖਆ ਪਾਸ ਹੋਣ ਤੋਂ ਬਾਅਦ, ਲੱਖਾਂ ਉਪਭੋਗਤਾਵਾਂ ਲਈ ਤੁਹਾਡੀ ਅਧੀਨਗੀ ਦੀ ਸੂਚੀ ਇਸ ਸਾਈਟ ਤੇ ਹੋਵੇਗੀ ਅਤੇ ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਮੈਨੇਜਰ। ਇਸ ਸਾਈਟ ਦੁਆਰਾ ਆਟੋਮੈਟਿਕ ਅਪਡੇਟਾਂ ਦਾ ਪ੍ਰਬੰਧਨ "
+"ਕੀਤਾ ਜਾਂਦਾ ਹੈ। ਇਹ ਐਡਆਨ ਨੂੰ ਮੋਜ਼ੀਲਾ ਪ੍ਰੋਮੋਸ਼ਨਾਂ ਅਤੇ ਮੁਕਾਬਲੇ ਲਈ ਵੀ ਵਿਚਾਰਿਆ ਜਾਵੇਗਾ। ਸਮੀਖਿਆ ਕੀਤੀ ਫਾਈਲਾਂ ਦੀ ਸਵੈ-ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਵੀ ਸੰਭਵ ਹੈ।</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "ਆਪਣੇ ਆਪ ਤੇ। <span class=\"helptext\">ਸਵੈ-ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਲਈ ਤੁਹਾਡੇ ਸਬਮਿਸ਼ਨ ਤੁਰੰਤ ਹਸਤਾਖਰ ਕੀਤੇ ਜਾਣਗੇ। ਅੱਪਡੇਟ ਤੁਹਾਡੇ ਦੁਆਰਾ ਇੱਕ updateURL ਜਾਂ ਬਾਹਰੀ ਐਪਲੀਕੇਸ਼ਨ ਅਪਡੇਟਸ ਦੁਆਰਾ ਨਿਪਟਾਰੇ ਜਾਣੇ ਚਾਹੀਦੇ ਹਨ।</span>"
 
 msgid "Display Name"
@@ -2063,15 +2065,12 @@ msgstr "ਇਸ ਫ਼ੀਡ ਦੀ ਗਾਹਕੀ ਲਵੋ"
 msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
-msgstr "ਇਹ ਐਡ-ਆਨ %(app_name)s ਦੇ ਤਾਜ਼ਾ ਰਿਲੀਜ਼, <b>%(app_name)s %(app_version)s</b>ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਐਡ-ਆਨ ਦੀ ਅਨੁਕੂਲਤਾ ਜਾਣਕਾਰੀ ਅੱਪਡੇਟ ਕਰਨ ਤੇ ਵਿਚਾਰ ਕਰੋ, ਜਾਂ ਇਸ ਐਡ-ਆਨ ਦਾ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ।"
+msgstr ""
+"ਇਹ ਐਡ-ਆਨ %(app_name)s ਦੇ ਤਾਜ਼ਾ ਰਿਲੀਜ਼, <b>%(app_name)s %(app_version)s</b>ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਐਡ-ਆਨ ਦੀ ਅਨੁਕੂਲਤਾ ਜਾਣਕਾਰੀ ਅੱਪਡੇਟ ਕਰਨ ਤੇ ਵਿਚਾਰ ਕਰੋ, ਜਾਂ ਇਸ ਐਡ-ਆਨ ਦਾ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ।"
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">ਅਨੁਕੂਲਤਾ ਅੱਪਡੇਟ</a> <a href=\"%(version_url)s\" class=\"button\">ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ</a> or <a href=\"#\" class=\"close"
-"\">ਅਣਡਿੱਠ ਕਰੋ</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">ਅਨੁਕੂਲਤਾ ਅੱਪਡੇਟ</a> <a href=\"%(version_url)s\" class=\"button\">ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ</a> or <a href=\"#\" class=\"close\">ਅਣਡਿੱਠ ਕਰੋ</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "ਵੇਖੋ ਅਤੇ ਐਪਲੀਕੇਸ਼ਨ ਅਨੁਕੂਲਤਾ ਹੱਦਾਂ ਅੱਪਡੇਟ ਕਰੋ"
@@ -2177,8 +2176,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>ਐਡਆਨ ਕੋਲ 2 ਸੰਭਾਵਿਤ ਭੂਮਿਕਾਵਾਂ ਦੇ ਨਾਲ ਕੋਈ ਵੀ ਲੇਖਕ ਹੋ ਸਕਦੇ ਹਨ:</p> <ul> <li><b>ਮਾਲਕ:</b> ਐਡਆਨ ਦੀ ਸੂਚੀ ਦੇ ਸਾਰੇ ਪਹਿਲੂਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰ ਸਕਦਾ ਹੈ, ਸ਼ਾਮਲ ਅਤੇ </li> <li><b>ਡਿਵੈਲਪਰ:</b> ਐਡਆਨ ਦੀ ਸੂਚੀ ਦੇ ਸਾਰੇ ਪਹਿਲੂਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰ ਸਕਦਾ "
-"ਹੈ, ਹੋਰ ਲੇਖਕਾਂ ਨੂੰ ਜੋੜਨ ਅਤੇ ਹਟਾਉਣ ਤੋਂ ਇਲਾਵਾ</li> </ul>"
+"<p>ਐਡਆਨ ਕੋਲ 2 ਸੰਭਾਵਿਤ ਭੂਮਿਕਾਵਾਂ ਦੇ ਨਾਲ ਕੋਈ ਵੀ ਲੇਖਕ ਹੋ ਸਕਦੇ ਹਨ:</p> <ul> <li><b>ਮਾਲਕ:</b> ਐਡਆਨ ਦੀ ਸੂਚੀ ਦੇ ਸਾਰੇ ਪਹਿਲੂਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰ ਸਕਦਾ ਹੈ, ਸ਼ਾਮਲ ਅਤੇ </li> <li><b>ਡਿਵੈਲਪਰ:</b> ਐਡਆਨ ਦੀ ਸੂਚੀ ਦੇ ਸਾਰੇ "
+"ਪਹਿਲੂਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰ ਸਕਦਾ ਹੈ, ਹੋਰ ਲੇਖਕਾਂ ਨੂੰ ਜੋੜਨ ਅਤੇ ਹਟਾਉਣ ਤੋਂ ਇਲਾਵਾ</li> </ul>"
 
 msgid "Additional Details"
 msgstr "ਹੋਰ ਵੇਰਵੇ"
@@ -2226,7 +2225,9 @@ msgstr "ਮੁੱਖ ਸਫ਼ਾ"
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
-msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਕੋਈ ਹੋਰ ਵੀ ਮੁੱਖ-ਸਫ਼ਾ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਤਰਜਮਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਹੋਇਆ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+msgstr ""
+"ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਕੋਈ ਹੋਰ ਵੀ ਮੁੱਖ-ਸਫ਼ਾ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਤਰਜਮਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਹੋਇਆ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ "
+"ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Describe Add-on"
 msgstr "ਐਡ-ਆਨ ਦਾ ਵਰਣਨ ਕਰੋ"
@@ -2241,7 +2242,9 @@ msgstr "ਨਾਂ ਅਤੇ ਸੰਖੇਪ"
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
-msgstr "ਸੰਖੇਪ ਵਿੱਚ ਇਹ ਦੱਸਣਾ ਚਾਹੀਦਾ ਹੈ ਕਿ ਤੁਹਾਡੀ ਐਡ-ਆਨ ਕੀ ਕਰਦੀ ਹੈ, ਸਪਸ਼ਟ ਅਤੇ ਸੰਖੇਪ ਰੂਪ ਵਿੱਚ। ਦੋਵੇਂ ਨਾਮ ਅਤੇ ਸੰਖੇਪ ਤੁਹਾਡੇ ਉਤਪਾਦ ਪੇਜ ਅਤੇ ਖੋਜ ਨਤੀਜਿਆਂ ਤੇ ਦਿਖਾਈ ਦੇਣਗੇ। ਉਨ੍ਹਾਂ ਕੋਲ ਹਰੇਕ ਲਈ 70 ਅੱਖਰਾਂ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ ਲੰਬਾਈ ਅਤੇ ਘੱਟੋ ਘੱਟ 2 ਅੱਖਰਾਂ ਦੀ ਲੰਬਾਈ ਹੈ।"
+msgstr ""
+"ਸੰਖੇਪ ਵਿੱਚ ਇਹ ਦੱਸਣਾ ਚਾਹੀਦਾ ਹੈ ਕਿ ਤੁਹਾਡੀ ਐਡ-ਆਨ ਕੀ ਕਰਦੀ ਹੈ, ਸਪਸ਼ਟ ਅਤੇ ਸੰਖੇਪ ਰੂਪ ਵਿੱਚ। ਦੋਵੇਂ ਨਾਮ ਅਤੇ ਸੰਖੇਪ ਤੁਹਾਡੇ ਉਤਪਾਦ ਪੇਜ ਅਤੇ ਖੋਜ ਨਤੀਜਿਆਂ ਤੇ ਦਿਖਾਈ ਦੇਣਗੇ। ਉਨ੍ਹਾਂ ਕੋਲ ਹਰੇਕ ਲਈ 70 ਅੱਖਰਾਂ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ "
+"ਲੰਬਾਈ ਅਤੇ ਘੱਟੋ ਘੱਟ 2 ਅੱਖਰਾਂ ਦੀ ਲੰਬਾਈ ਹੈ।"
 
 msgid "Summary"
 msgstr "ਸਾਰ"
@@ -2298,9 +2301,11 @@ msgid "Email"
 msgstr "ਈਮੇਲ"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
-msgstr "ਜੇਕਰ ਤੁਸੀਂ ਸਹਿਯੋਗ ਪੁੱਛਗਿੱਛਾਂ ਲਈ ਇੱਕ ਈਮੇਲ ਪਤਾ ਵਿਖਾਉਣ ਦੇ ਚਾਹਵਾਨ ਹੋ, ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਹਰੇਕ ਭਾਸ਼ਾ ਲਈ ਵੱਖ-ਵੱਖ ਪਤੇ ਹਨ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
+msgstr ""
+"ਜੇਕਰ ਤੁਸੀਂ ਸਹਿਯੋਗ ਪੁੱਛਗਿੱਛਾਂ ਲਈ ਇੱਕ ਈਮੇਲ ਪਤਾ ਵਿਖਾਉਣ ਦੇ ਚਾਹਵਾਨ ਹੋ, ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਹਰੇਕ ਭਾਸ਼ਾ ਲਈ ਵੱਖ-ਵੱਖ ਪਤੇ ਹਨ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-"
+"ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Website"
 msgstr "ਵੈਬਸਾਈਟ"
@@ -2308,7 +2313,9 @@ msgstr "ਵੈਬਸਾਈਟ"
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
-msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਇੱਕ ਸਹਿਯੋਗ ਵੈੱਬਸਾਈਟ ਜਾਂ ਫੋਰਮ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਤਰਜਮਾ ਹੋਇਆ, ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+msgstr ""
+"ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਇੱਕ ਸਹਿਯੋਗ ਵੈੱਬਸਾਈਟ ਜਾਂ ਫੋਰਮ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਤਰਜਮਾ ਹੋਇਆ, ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ"
+" ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Images"
 msgstr "ਤਸਵੀਰਾਂ"
@@ -2327,8 +2334,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"ਅੰਤ ਵਰਤੋਂਕਾਰ ਕੋਈ ਵੀ ਜਾਣਕਾਰੀ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹੋਣ ਜੋ ਜ਼ਰੂਰੀ ਨਹੀਂ ਐਡ-ਆਨ ਦੇ ਸੰਖੇਪ ਵਰਣਨ ਜਾਂ ਵੇਰਵੇ ਤੇ ਲਾਗੂ ਹੋਵੋ। ਆਮ ਵਰਤੋਂ ਵਿੱਚ ਸ਼ਾਮਲ ਮੁੱਖ ਜਾਣੂ ਬੱਗਾਂ ਦੀ ਸੂਚੀ, ਬੱਗਾਂ ਦੀ ਸੂਚਨਾ ਕਿਵੇਂ ਭੇਜੀਏ ਦੀ ਜਾਣਕਾਰੀ, ਨਵੇਂ ਵਰਜਨ ਦੇ ਜਾਰੀ ਹੋਣ ਦੀ ਤਰੀਕ ਦਾ ਅਨੁਮਾਨ, ਆਦਿ। ਇਹ ਕੇਵਲ "
-"ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+"ਅੰਤ ਵਰਤੋਂਕਾਰ ਕੋਈ ਵੀ ਜਾਣਕਾਰੀ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹੋਣ ਜੋ ਜ਼ਰੂਰੀ ਨਹੀਂ ਐਡ-ਆਨ ਦੇ ਸੰਖੇਪ ਵਰਣਨ ਜਾਂ ਵੇਰਵੇ ਤੇ ਲਾਗੂ ਹੋਵੋ। ਆਮ ਵਰਤੋਂ ਵਿੱਚ ਸ਼ਾਮਲ ਮੁੱਖ ਜਾਣੂ ਬੱਗਾਂ ਦੀ ਸੂਚੀ, ਬੱਗਾਂ ਦੀ ਸੂਚਨਾ ਕਿਵੇਂ ਭੇਜੀਏ ਦੀ ਜਾਣਕਾਰੀ, ਨਵੇਂ ਵਰਜਨ "
+"ਦੇ ਜਾਰੀ ਹੋਣ ਦੀ ਤਰੀਕ ਦਾ ਅਨੁਮਾਨ, ਆਦਿ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Public Stats?"
 msgstr "ਜਨਤਕ ਅੰਕੜੇ?"
@@ -2358,8 +2365,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"ਸਫੈਦ ਬੋਰਡ ਤੁਹਾਡੇ ਐਡਆਨ ਨਾਲ ਸੰਬੰਧਿਤ ਜਾਣਕਾਰੀ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਸਥਾਨ ਹੈ, ਸਮੀਕਰਣਕਾਂ ਲਈ ਜੋ ਵੀ ਵਰਜਨ ਹੈ। ਇਸਦੀ ਵਰਤੋਂ ਐਡਨ ਦੀ ਜਾਂਚ ਕਰਨ ਦੇ ਤਰੀਕੇ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਕਰੋ, ਅਤੇ ਕੋਈ ਵਾਧੂ ਜਾਣਕਾਰੀ ਜੋ ਮਦਦ ਕਰ ਸਕਦੀ ਹੈ। ਸਮੀਖਿਅਕਾਂ ਦੁਆਰਾ ਇਹ ਵ੍ਹਾਈਟਬੋਰਡ ਵੀ "
-"ਸੰਪਾਦਨ ਯੋਗ ਹੈ।"
+"ਸਫੈਦ ਬੋਰਡ ਤੁਹਾਡੇ ਐਡਆਨ ਨਾਲ ਸੰਬੰਧਿਤ ਜਾਣਕਾਰੀ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਸਥਾਨ ਹੈ, ਸਮੀਕਰਣਕਾਂ ਲਈ ਜੋ ਵੀ ਵਰਜਨ ਹੈ। ਇਸਦੀ ਵਰਤੋਂ ਐਡਨ ਦੀ ਜਾਂਚ ਕਰਨ ਦੇ ਤਰੀਕੇ ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਕਰੋ, ਅਤੇ ਕੋਈ ਵਾਧੂ ਜਾਣਕਾਰੀ ਜੋ ਮਦਦ ਕਰ ਸਕਦੀ ਹੈ। ਸਮੀਖਿਅਕਾਂ "
+"ਦੁਆਰਾ ਇਹ ਵ੍ਹਾਈਟਬੋਰਡ ਵੀ ਸੰਪਾਦਨ ਯੋਗ ਹੈ।"
 
 msgid "Add-on Media for {0}"
 msgstr "{0} ਲਈ ਐਡ-ਆਨ ਮੀਡੀਆ"
@@ -2371,8 +2378,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"ਆਪਣੇ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਆਈਕਾਨ ਅੱਪਲੋਡ ਕਰੋ ਜਾਂ ਸਾਡਿਆਂ ਵਿੱਚ ਇੱਕ ਚੁਣੋ। ਆਈਕਾਨ ਲਗਭਗ ਹਰੇਕ ਥਾਂ ਵਿਖਾਇਆ ਜਾਏਗਾ ਜਿੱਥੇ ਵੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹੈ। ਅੱਪਲੋਡ ਕੀਤੀਆਂ ਤਸਵੀਰਾਂ ਅੱਗੇ ਦਿੱਤੀਆਂ ਤਸਵੀਰ ਕਿਸਮਾਂ ਵਿੱਚ ਇੱਕ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ: .png, .jpg। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ "
-"ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+"ਆਪਣੇ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਆਈਕਾਨ ਅੱਪਲੋਡ ਕਰੋ ਜਾਂ ਸਾਡਿਆਂ ਵਿੱਚ ਇੱਕ ਚੁਣੋ। ਆਈਕਾਨ ਲਗਭਗ ਹਰੇਕ ਥਾਂ ਵਿਖਾਇਆ ਜਾਏਗਾ ਜਿੱਥੇ ਵੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹੈ। ਅੱਪਲੋਡ ਕੀਤੀਆਂ ਤਸਵੀਰਾਂ ਅੱਗੇ ਦਿੱਤੀਆਂ ਤਸਵੀਰ ਕਿਸਮਾਂ ਵਿੱਚ ਇੱਕ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ: "
+".png, .jpg। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 msgid "Select an icon for your add-on:"
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਲਈ ਇੱਕ ਆਈਕਾਨ ਚੁਣੋ:"
@@ -2496,7 +2503,9 @@ msgstr "ਐਡ-ਆਨ ਹਟਾਓ"
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਲਈ ਸੂਚੀਬੱਧ ਸਾਰੇ ਸੰਸਕਰਣ ਅਤੇ ਫਾਈਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਮਿਟਾ ਦੇਗੇ। ਐਡ-ਆਨ ਆਈਡੀ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੋੜਿਆ ਜਾਣਾ ਜਾਰੀ ਰੱਖੇਗਾ, ਤਾਂ ਕਿ ਹੋਰ ਉਹੀ ਆਈਡੀ ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਰਜਨ ਨੂੰ ਜਮ੍ਹਾਂ ਨਾ ਕਰ ਸਕਣ।"
+msgstr ""
+"ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਲਈ ਸੂਚੀਬੱਧ ਸਾਰੇ ਸੰਸਕਰਣ ਅਤੇ ਫਾਈਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਮਿਟਾ ਦੇਗੇ। ਐਡ-ਆਨ ਆਈਡੀ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੋੜਿਆ ਜਾਣਾ ਜਾਰੀ ਰੱਖੇਗਾ, ਤਾਂ ਕਿ ਹੋਰ ਉਹੀ ਆਈਡੀ ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਰਜਨ ਨੂੰ "
+"ਜਮ੍ਹਾਂ ਨਾ ਕਰ ਸਕਣ।"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "ਆਪਣੇ ਫੈਸਲੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਹੇਠਲਾ ਪਾਠ ਦਰਜ ਕਰੋ: {slug}"
@@ -2568,7 +2577,9 @@ msgstr "ਜ਼ਰੂਰਤ"
 msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
-msgstr "ਚੇਤਾਵਨੀ: ਤੁਹਾਡੇ ਕੋਲ ਹੋਰ ਲੋਕਲ ਵਿੱਚ ਨਾਮ/summary ਮੁੱਲ ਹਨ ਜੋ ਕਿ ਆਟੋਮੈਟਿਕ ਹੀ %(max_length)s ਦੇ ਅੱਖਰਾਂ ਦੇ ਅਨੁਸਾਰ ਫਿੱਟ ਕੀਤੇ ਜਾਣਗੇ।  ਸਬਮਿਸ਼ਨ ਦੀ ਪ੍ਰਕਿਰਿਆ ਪੂਰੀ ਹੋਣ ਤੋਂ ਬਾਦ ਇਨ੍ਹਾਂ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ Edit Product Page ਵੱਲ ਜਾਓ।"
+msgstr ""
+"ਚੇਤਾਵਨੀ: ਤੁਹਾਡੇ ਕੋਲ ਹੋਰ ਲੋਕਲ ਵਿੱਚ ਨਾਮ/summary ਮੁੱਲ ਹਨ ਜੋ ਕਿ ਆਟੋਮੈਟਿਕ ਹੀ %(max_length)s ਦੇ ਅੱਖਰਾਂ ਦੇ ਅਨੁਸਾਰ ਫਿੱਟ ਕੀਤੇ ਜਾਣਗੇ।  ਸਬਮਿਸ਼ਨ ਦੀ ਪ੍ਰਕਿਰਿਆ ਪੂਰੀ ਹੋਣ ਤੋਂ ਬਾਦ ਇਨ੍ਹਾਂ ਨੂੰ ਸੰਪਾਦਿਤ ਕਰਨ ਲਈ Edit "
+"Product Page ਵੱਲ ਜਾਓ।"
 
 msgid "Add-on URL:"
 msgstr "ਐਡ-ਆਨ URL:"
@@ -2626,8 +2637,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"ਜੇ ਤੁਸੀਂ ਸਰੋਤ ਕੋਡ ਜਮ੍ਹਾਂ ਕਰ ਦਿੱਤਾ ਹੈ, ਪਰ ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਉਨ੍ਹਾਂ ਨੂੰ ਇੱਥੇ ਮੁਹੱਈਆ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ। ਐਡਆਨ ਕੋਡ ਦੀ ਪ੍ਰਤੀਲਿਪੀ, ਪ੍ਰਤੀ %(policy_requirements_open)sਸਪੋਰਿਸ਼ੀ ਜ਼ਰੂਰਤਾਂ %(policy_requirements_close)sਬਣਾਉਣ "
-"ਲਈ ਕਦਮ-ਦਰ-ਕਦਮ ਬਿਲਡ ਹਦਾਇਤਾਂ ਦਾਖਲ ਕਰੋ।"
+"ਜੇ ਤੁਸੀਂ ਸਰੋਤ ਕੋਡ ਜਮ੍ਹਾਂ ਕਰ ਦਿੱਤਾ ਹੈ, ਪਰ ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਉਨ੍ਹਾਂ ਨੂੰ ਇੱਥੇ ਮੁਹੱਈਆ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ। ਐਡਆਨ ਕੋਡ ਦੀ ਪ੍ਰਤੀਲਿਪੀ, ਪ੍ਰਤੀ %(policy_requirements_open)sਸਪੋਰਿਸ਼ੀ "
+"ਜ਼ਰੂਰਤਾਂ %(policy_requirements_close)sਬਣਾਉਣ ਲਈ ਕਦਮ-ਦਰ-ਕਦਮ ਬਿਲਡ ਹਦਾਇਤਾਂ ਦਾਖਲ ਕਰੋ।"
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "ਇਹ ਨੋਟ ਸਿਰਫ ਤੁਹਾਡੇ ਅਤੇ ਸਾਡੇ ਸਮੀਖਿਅਕਾਂ ਨੂੰ ਦਿਖਾਈ ਦੇਣਗੇ।"
@@ -2752,11 +2763,11 @@ msgid "Operating system and build environment requirements."
 msgstr "ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ ਅਤੇ ਵਾਤਾਵਰਨ ਜ਼ਰੂਰਤਾਂ ਦਾ ਨਿਰਮਾਣ।"
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
-"ਬਿਲਡ ਪ੍ਰਕਿਰਿਆ (ਲੋੜੀਂਦੀ ਵਰਜਨ ਅਤੇ ਇੰਸਟਾਲੇਸ਼ਨ ਹਦਾਇਤ ਸਮੇਤ), ਬਿਲਡ ਪ੍ਰਕਿਰਿਆ ਵਿਚ ਵਰਤੇ ਗਏ ਕਿਸੇ ਵੀ ਪ੍ਰੋਗ੍ਰਾਮ ਦੇ (ਉਦਾਹਰਨ ਲਈ: <span class=\"tech-emphasis\">node</span> ਅਤੇ <span class=\"tech-emphasis\">npm</span> ਵਰਜ਼ਨ ਵਰਤਿਆ "
-"ਗਿਆ ਹੈ)।"
+"ਬਿਲਡ ਪ੍ਰਕਿਰਿਆ (ਲੋੜੀਂਦੀ ਵਰਜਨ ਅਤੇ ਇੰਸਟਾਲੇਸ਼ਨ ਹਦਾਇਤ ਸਮੇਤ), ਬਿਲਡ ਪ੍ਰਕਿਰਿਆ ਵਿਚ ਵਰਤੇ ਗਏ ਕਿਸੇ ਵੀ ਪ੍ਰੋਗ੍ਰਾਮ ਦੇ (ਉਦਾਹਰਨ ਲਈ: <span class=\"tech-emphasis\">node</span> ਅਤੇ <span class=\"tech-"
+"emphasis\">npm</span> ਵਰਜ਼ਨ ਵਰਤਿਆ ਗਿਆ ਹੈ)।"
 
 #, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
@@ -2873,9 +2884,11 @@ msgstr "JWT ਗੁਪਤ"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
-msgstr "API ਬੇਨਤੀ ਕਰਨ ਲਈ, ਇੱਕ <a href=\"%(jwt_url)s\">JSON ਵੈਬ ਟੋਕਨ (JWT)</a> ਨੂੰ ਅਧਿਕ੍ਰਿਤੀ ਸਿਰਲੇਖ ਦੇ ਤੌਰ ਤੇ ਭੇਜੋ। ਤੁਹਾਨੂੰ <a href=\"%(docs_url)s\">API ਦਸਤਾਵੇਜ਼ਾਂ</a>ਵਿੱਚ ਦੱਸੇ ਗਏ ਹਰ ਬੇਨਤੀ ਲਈ JWT ਤਿਆਰ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੋਏਗੀ।"
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
+msgstr ""
+"API ਬੇਨਤੀ ਕਰਨ ਲਈ, ਇੱਕ <a href=\"%(jwt_url)s\">JSON ਵੈਬ ਟੋਕਨ (JWT)</a> ਨੂੰ ਅਧਿਕ੍ਰਿਤੀ ਸਿਰਲੇਖ ਦੇ ਤੌਰ ਤੇ ਭੇਜੋ। ਤੁਹਾਨੂੰ <a href=\"%(docs_url)s\">API ਦਸਤਾਵੇਜ਼ਾਂ</a>ਵਿੱਚ ਦੱਸੇ ਗਏ ਹਰ ਬੇਨਤੀ ਲਈ JWT ਤਿਆਰ ਕਰਨ ਦੀ"
+" ਜ਼ਰੂਰਤ ਹੋਏਗੀ।"
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -2946,8 +2959,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3103,9 +3115,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "ਇਕਸਟੈਂਸ਼ਨ ਵਰਕਸ਼ਾਪ"
+msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਰਕਸ਼ਾਪ ਵੇਖੋ"
 
 msgid "Connect with us"
 msgstr ""
@@ -3113,9 +3124,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "ਵਿਕਾਸਕਾਰ"
+msgstr "ਡਿਵੈਲਪਰਾਂ ਲਈ"
 
 msgid "For end users"
 msgstr ""
@@ -3134,17 +3144,15 @@ msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਿਕਾਸ"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP ਐਡਰੈੱਸ"
+msgstr "ਈਮੇਲ ਐਡਰੈੱਸ"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "ਸਾਈਨ ਆਉਟ"
+msgstr "ਸਾਈਨ ਅੱਪ ਕਰੋ"
 
 msgid "Thanks!"
 msgstr ""
@@ -3155,9 +3163,8 @@ msgstr ""
 msgid "Resources"
 msgstr "ਸਰੋਤ"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "ਵੈਬ-ਐਕਸਟੈਂਟ: ਬਿਲਡ ਅਤੇ ਟੈਸਟ ਐਕਸਟੈਂਸ਼ਨ"
@@ -3245,9 +3252,8 @@ msgstr "ਕੋਈ ਤਸਵੀਰ ਨਹੀਂ"
 msgid "User Photo"
 msgstr "ਵਰਤੋਂਕਾਰ ਫੋਟੋ"
 
-#, fuzzy
 msgid "Profile"
-msgstr "ਮੇਰਾ ਬਿਉਰਾ"
+msgstr "ਪਰੋਫਾਇਲ"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
@@ -3364,7 +3370,9 @@ msgstr "{label_open}ਦ੍ਰਿਸ਼ਮਾਨ:{label_close} {site_url} ਤੇ 
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr "{label_open}ਅਦਿੱਖ:{label_close} ਖੋਜ ਪਰਿਣਾਮਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ, ਅਤੇ ਇਸ ਦੀ ਉਤਪਾਦ ਪੰਨੇ ਇਹ ਸੰਕੇਤ ਦੇਵੇਗੀ ਕਿ ਤੁਸੀਂ ਇਸ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਇਆ ਹੈ। ਉਤਪਾਦ ਲਈ ਨਵੀਆਂ ਵਰਜਨ ਬੇਨਤੀਆਂ ਨੂੰ ਇਸ ਰਾਜ ਵਿੱਚ ਸਵੀਕਾਰ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ।"
+msgstr ""
+"{label_open}ਅਦਿੱਖ:{label_close} ਖੋਜ ਪਰਿਣਾਮਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ, ਅਤੇ ਇਸ ਦੀ ਉਤਪਾਦ ਪੰਨੇ ਇਹ ਸੰਕੇਤ ਦੇਵੇਗੀ ਕਿ ਤੁਸੀਂ ਇਸ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਇਆ ਹੈ। ਉਤਪਾਦ ਲਈ ਨਵੀਆਂ ਵਰਜਨ ਬੇਨਤੀਆਂ ਨੂੰ ਇਸ ਰਾਜ ਵਿੱਚ ਸਵੀਕਾਰ "
+"ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 msgid "Listed versions"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ"
@@ -4689,7 +4697,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪ੍
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "ਵਿਲੱਖਣ ਦਿੱਖ ਤਬਦਾਲੇ ਕਰੋ—ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਵੈੱਬਪੇਜ ਨੂੰ ਛਾਪਣ ਲਈ ਇਸ਼ਤਿਹਾਰ ਜਾਂ ਬੇਲੋੜੀ ਸਮੱਗਰੀ ਹਟਾਓ।"
+msgstr "ਛਾਪਣ ਤੋਂ ਪਹਿਲਾਂ ਵੈੱਬ ਸਫ਼ੇ ਨੂੰ ਸੋਧੋ। ਕਿਸੇ ਵੀ ਵੈੱਬ, ਜਿਸ ਨੂੰ ਤੁਸੀਂ ਛਾਪਣਾ ਚਾਹੁੰਦੇ ਹੋ ਤੋਂ— ਇਸ਼ਤਿਹਾਰ ਜਾਂ ਬੇਲੋੜੀ ਸਮੱਗਰੀ ਹਟਾ ਕੇ—ਦਿੱਖ ਤਬਾਦਲੇ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5214,10 +5222,11 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "ਸਮੀਖਿਆਵਾਂ ਬਾਰੇ ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
-"ਐਡ-ਆਨ ਸਮੀਖਿਆਵਾਂ ਤੁਹਾਡੇ ਲਈ ਤੁਹਾਡੇ ਵਲੋਂ ਇੰਸਟਾਲ ਕੀਤੇ ਅਤੇ ਵਰਤੇ ਐਡ-ਆਨਾਂ ਬਾਰੇ ਆਪਣੀ ਰਾਏ ਸਾਂਝੀ ਕਰਨ ਦਾ ਇੱਕ ਜਰੀਆ ਹਨ। ਸਾਡੀ ਸਮੀਖਿਆ ਸੂਤਰਧਾਰ ਟੀਮ ਕੋਲ ਕਿਸੇ ਵੀ ਸਮੀਖਿਆ ਨੂੰ ਇਨਕਾਰਨ ਜਾਂ ਹਟਾਉਣ ਦਾ ਅਧਿਕਾਰ ਹੈ ਜੋ ਸਾਡੇ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਦੀ ਪਾਲਣਾ ਨਹੀਂ ਕਰਦੀ।"
+"ਐਡ-ਆਨ ਸਮੀਖਿਆਵਾਂ ਤੁਹਾਡੇ ਲਈ ਤੁਹਾਡੇ ਵਲੋਂ ਇੰਸਟਾਲ ਕੀਤੇ ਅਤੇ ਵਰਤੇ ਐਡ-ਆਨਾਂ ਬਾਰੇ ਆਪਣੀ ਰਾਏ ਸਾਂਝੀ ਕਰਨ ਦਾ ਇੱਕ ਜਰੀਆ ਹਨ। ਸਾਡੀ ਸਮੀਖਿਆ ਸੂਤਰਧਾਰ ਟੀਮ ਕੋਲ ਕਿਸੇ ਵੀ ਸਮੀਖਿਆ ਨੂੰ ਇਨਕਾਰਨ ਜਾਂ ਹਟਾਉਣ ਦਾ ਅਧਿਕਾਰ ਹੈ ਜੋ ਸਾਡੇ "
+"ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਦੀ ਪਾਲਣਾ ਨਹੀਂ ਕਰਦੀ।"
 
 msgid "Do:"
 msgstr "ਕਰੋ:"
@@ -5282,8 +5291,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"ਐਡ-ਆਨ ਦੀ ਕਿਸੇ ਕੰਮ ਲਈ ਆਲੋਚਨਾ ਕਰਨਾ ਜੋ ਲਈ ਉਸ ਨੂੰ ਤਿਆਰ ਕੀਤਾ। ਮਿਸਾਲ ਲਈ, ਇਸ਼ਤਿਹਾਰ ਵਿਖਾਉਣ ਜਾਂ ਲੌੜੀਂਦਾ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਨੂੰ ਨਕਾਰਆਤਮਕ ਸਮੀਖਿਆ ਦੇਣਾ, ਜਦੋਂ ਐਡ-ਆਨ ਇਸੇ ਕਾਰਜ ਲਈ ਬਣਿਆ ਹੋਵੇ, ਜਾਂ ਐਡ-ਆਨ ਨੂੰ ਕੰਮ ਕਰਨ ਲਈ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਦੀ "
-"ਲੋੜ ਹੋਵੇ।"
+"ਐਡ-ਆਨ ਦੀ ਕਿਸੇ ਕੰਮ ਲਈ ਆਲੋਚਨਾ ਕਰਨਾ ਜੋ ਲਈ ਉਸ ਨੂੰ ਤਿਆਰ ਕੀਤਾ। ਮਿਸਾਲ ਲਈ, ਇਸ਼ਤਿਹਾਰ ਵਿਖਾਉਣ ਜਾਂ ਲੌੜੀਂਦਾ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਨੂੰ ਨਕਾਰਆਤਮਕ ਸਮੀਖਿਆ ਦੇਣਾ, ਜਦੋਂ ਐਡ-ਆਨ ਇਸੇ ਕਾਰਜ ਲਈ ਬਣਿਆ ਹੋਵੇ, ਜਾਂ ਐਡ-ਆਨ ਨੂੰ ਕੰਮ "
+"ਕਰਨ ਲਈ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਦੀ ਲੋੜ ਹੋਵੇ।"
 
 msgid "How can I report a problematic review?"
 msgstr "ਮੈਂ ਸਮੱਸਿਆ ਵਾਲੀ ਸਮੀਖਿਆ ਦੀ ਸੂਚਨਾ ਕਿਵੇਂ ਦੇ ਸਕਦਾ?"
@@ -5292,8 +5301,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"ਕਿਰਪਾ ਕਰਕੇ ਕਿਸੇ ਵੀ ਪ੍ਰਸ਼ਨਾਤਮਕ ਸਮੀਖਿਆ ਬਾਰੇ \"ਇਸ ਸਮੀਖਿਆ ਦੀ ਸੂਚਨਾ\" ਤੇ ਕਲਿੱਕ ਕਰਨ ਦੁਆਰਾ ਫ਼ਲੈਗ ਜਾਂ ਸੂਚਨਾ ਦਿਓ ਅਤੇ ਇਹ ਸਾਈਟ ਤੇ ਸੰਜਮ ਲਈ ਦਾਖਲ ਕਰ ਦਿੱਤੀ ਜਾਵੇਗੀ। ਇਸ ਸਮੀਖਿਆ ਨੂੰ ਸਾਈਟ ਤੇ ਵਾਪਸ ਰੱਖਣ ਜਾਂ ਹਟਾ ਦੇਣ ਬਾਰੇ ਫ਼ੈਸਲਾ ਲੈਣ ਸਾਡੀ ਸੰਜਮ ਟੀਮ "
-"ਸਮੀਖਿਆ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਦੀ ਵਰਤੋਂ ਕਰੇਗੀ।"
+"ਕਿਰਪਾ ਕਰਕੇ ਕਿਸੇ ਵੀ ਪ੍ਰਸ਼ਨਾਤਮਕ ਸਮੀਖਿਆ ਬਾਰੇ \"ਇਸ ਸਮੀਖਿਆ ਦੀ ਸੂਚਨਾ\" ਤੇ ਕਲਿੱਕ ਕਰਨ ਦੁਆਰਾ ਫ਼ਲੈਗ ਜਾਂ ਸੂਚਨਾ ਦਿਓ ਅਤੇ ਇਹ ਸਾਈਟ ਤੇ ਸੰਜਮ ਲਈ ਦਾਖਲ ਕਰ ਦਿੱਤੀ ਜਾਵੇਗੀ। ਇਸ ਸਮੀਖਿਆ ਨੂੰ ਸਾਈਟ ਤੇ ਵਾਪਸ ਰੱਖਣ ਜਾਂ ਹਟਾ ਦੇਣ ਬਾਰੇ "
+"ਫ਼ੈਸਲਾ ਲੈਣ ਸਾਡੀ ਸੰਜਮ ਟੀਮ ਸਮੀਖਿਆ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਦੀ ਵਰਤੋਂ ਕਰੇਗੀ।"
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "ਮੈਂ ਇੱਕ ਐਡ-ਆਨ ਲੇਖਕ ਹਾਂ, ਕੀ ਮੈਂ ਸਮੀਖਿਆਵਾਂ ਤੇ ਪ੍ਰਤਿਕਿਰਿਆ ਦੇ ਸਕਦਾ?"
@@ -5309,8 +5318,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"ਆਮ ਤੌਰ ਤੇ, ਨਹੀਂ। ਪਰ ਜੇ ਸਮੀਖਿਆ ਉੱਤੇ ਉਪਰੋਕਤ ਸਮੀਖਿਆ ਦਿਸ਼ਾ ਨਿਰਦੇਸ਼ਾਂ ਦੀ ਪੂਰਤੀ ਨਹੀਂ ਕੀਤੀ ਗਈ ਸੀ, ਤਾਂ ਤੁਸੀਂ \"ਇਸ ਸਮੀਖਿਆ ਦੀ ਰਿਪੋਰਟ ਕਰੋ\" ਤੇ ਕਲਿਕ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸਨੂੰ ਸੰਚਾਲਿਤ ਕਰ ਸਕਦੇ ਹੋ। ਜੇ ਕਿਸੇ ਸਮੀਖਿਆ ਵਿੱਚ ਇੱਕ ਸ਼ਿਕਾਇਤ ਸ਼ਾਮਲ ਕੀਤੀ ਗਈ ਹੈ ਜੋ ਹੁਣ "
-"ਤੁਹਾਡੇ ਐਡਆਨ ਦੀ ਨਵੀਂ ਰੀਲੀਜ਼ ਕਾਰਨ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਹੈ, ਤਾਂ ਅਸੀਂ ਸਮੀਖਿਆ ਨੂੰ ਮਿਟਾਉਣ ਬਾਰੇ ਵਿਚਾਰ ਕਰ ਸਕਦੇ ਹਾਂ।"
+"ਆਮ ਤੌਰ ਤੇ, ਨਹੀਂ। ਪਰ ਜੇ ਸਮੀਖਿਆ ਉੱਤੇ ਉਪਰੋਕਤ ਸਮੀਖਿਆ ਦਿਸ਼ਾ ਨਿਰਦੇਸ਼ਾਂ ਦੀ ਪੂਰਤੀ ਨਹੀਂ ਕੀਤੀ ਗਈ ਸੀ, ਤਾਂ ਤੁਸੀਂ \"ਇਸ ਸਮੀਖਿਆ ਦੀ ਰਿਪੋਰਟ ਕਰੋ\" ਤੇ ਕਲਿਕ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸਨੂੰ ਸੰਚਾਲਿਤ ਕਰ ਸਕਦੇ ਹੋ। ਜੇ ਕਿਸੇ ਸਮੀਖਿਆ ਵਿੱਚ "
+"ਇੱਕ ਸ਼ਿਕਾਇਤ ਸ਼ਾਮਲ ਕੀਤੀ ਗਈ ਹੈ ਜੋ ਹੁਣ ਤੁਹਾਡੇ ਐਡਆਨ ਦੀ ਨਵੀਂ ਰੀਲੀਜ਼ ਕਾਰਨ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਹੈ, ਤਾਂ ਅਸੀਂ ਸਮੀਖਿਆ ਨੂੰ ਮਿਟਾਉਣ ਬਾਰੇ ਵਿਚਾਰ ਕਰ ਸਕਦੇ ਹਾਂ।"
 
 msgid "User"
 msgstr "ਯੂਜ਼ਰ"
@@ -5541,9 +5550,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} ਦਿਨ"
 msgstr[1] "{0} ਦਿਨਾਂ"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ਪਛਾਣ"
 
 msgid "Last Review"
 msgstr "ਆਖਰੀ ਸਮੀਖਿਆ"
@@ -5713,13 +5721,11 @@ msgstr "ਸਮੀਖਿਆ ਤੇ ਕਾਰਵਾਈ ਸਫ਼ਲਤਾਪਰੂਵ
 msgid "Review lock limit reached"
 msgstr "ਸਮੀਖਿਆ ਲਾਕ ਸੀਮਾ ਤਕ ਪਹੁੰਚ ਗਈ"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: ਗੋਪਨੀਯਤਾ ਨੀਤੀ"
+msgstr "{addon} – ਪਰਦੇਦਾਰੀ ਨੀਤੀ"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5791,9 +5797,8 @@ msgstr "ਤਸਵੀਰ ਗੈਲਰੀ"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "ਇੱਥੇ ਵੇਖਣ ਲਈ ਕੁੱਝ ਨਹੀਂ!  ਡਿਵੈਲਪਰ ਨੇ ਕੋਈ ਵੇਰਵੇ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤੇ।"
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "ਐਡ-ਆਨ ਵਰਜਨ ਦੁਆਰਾ"
+msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6109,9 +6114,8 @@ msgstr "ਢੰਗ:"
 msgid "Source:"
 msgstr "ਸਰੋਤ:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "ਸਰੋਤ:"
+msgstr "ਸਰੋਤ URL:"
 
 msgid "Dismiss this announcement"
 msgstr "ਇਹ ਐਲਾਨ ਖਾਰਜ ਕਰੋ"
@@ -6489,7 +6493,9 @@ msgstr "ਡਾਊਨਲੋਡਾਂ ਦੀ ਗਿਣਤੀ ਕਿਵੇਂ ਕ�
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
-msgstr "<h2>ਡਾਊਨਲੋਡਾਂ ਦੀ ਗਿਣਤੀ ਕਿਵੇਂ ਕੀਤੀ ਜਾਂਦੀ ਹੈ?</h2> <p> ਡਾਊਨਲੋਡ ਗਿਣਤੀ ਹਰੇਕ ਸ਼ਾਮ ਅੱਪਡੇਟ ਕੀਤੀ ਜਾਂਦੀ ਹੈ ਅਤੇ ਕੇਵਲ ਅਸਲੀ ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਸ਼ਾਮਲ ਹੁੰਦੇ ਹਨ, ਅੱਪਡੇਟਾਂ ਨਹੀਂ। ਡਾਊਨਲੋਡਾਂ ਬਾਰੇ ਡਾਊਨਲੋਡ ਵੱਲ ਭੇਜਦੇ ਖਾਸ਼ ਸੋਰਸ ਦੁਆਰਾ ਪਤਾ ਲਗਾਇਆ ਜਾ ਸਕਦਾ।"
+msgstr ""
+"<h2>ਡਾਊਨਲੋਡਾਂ ਦੀ ਗਿਣਤੀ ਕਿਵੇਂ ਕੀਤੀ ਜਾਂਦੀ ਹੈ?</h2> <p> ਡਾਊਨਲੋਡ ਗਿਣਤੀ ਹਰੇਕ ਸ਼ਾਮ ਅੱਪਡੇਟ ਕੀਤੀ ਜਾਂਦੀ ਹੈ ਅਤੇ ਕੇਵਲ ਅਸਲੀ ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਸ਼ਾਮਲ ਹੁੰਦੇ ਹਨ, ਅੱਪਡੇਟਾਂ ਨਹੀਂ। ਡਾਊਨਲੋਡਾਂ ਬਾਰੇ ਡਾਊਨਲੋਡ ਵੱਲ ਭੇਜਦੇ ਖਾਸ਼ "
+"ਸੋਰਸ ਦੁਆਰਾ ਪਤਾ ਲਗਾਇਆ ਜਾ ਸਕਦਾ।"
 
 msgid "User languages by Date"
 msgstr "ਉਪਭੋਗੀ ਭਾਸ਼ਾਵਾਂ ਮਿਤੀ ਅਨੁਸਾਰ"
@@ -6532,16 +6538,17 @@ msgstr "ਬਾਹਰੀ ਸੋਰਸਾਂ ਦੀ ਨਿਗਰਾਨੀ ਬਾ�
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>ਬਾਹਰੀ ਸੋਰਸਾਂ ਦੀ ਨਿਗਰਾਨੀ</h2> <p> ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਐਡਆਨ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਨੂੰ ਜਾਂ ਇਸ ਦੀ ਫ਼ਾਈਲ ਨੂੰ ਸਿੱਧੇ ਤੌਰ ਤੇ ਬਾਹਰੀ ਵੈੱਬਸਾਈਟ ਤੋਂ ਲਿੰਕ ਕਰਦੇ ਹੋ, ਜਿਵੇਂ ਕੀ ਤੁਹਾਡਾ ਬਲੌਗ ਜਾਂ ਵੈੱਬਸਾਈਟ, ਤੁਸੀਂ ਇਸ ਸਫ਼ੇ ਤੇ ਇੱਕ ਵਾਧੂ ਡਾਊਨਲੋਡ ਸੋਰਸ ਦੇ ਤੌਰ ਤੇ  ਇਸ ਪੈਰਾਮੀਟਰ ਦੀ "
-"ਨਿਗਰਾਨੀ ਵਧਾ ਸਕਦੇ ਹੋ। ਮਿਸਾਲ ਲਈ, ਅੱਗੇ ਦਿੱਤੇ ਲਿੰਕ ਤੁਹਾਡੇ ਬਲੌਗ ਵਿੱਚ ਸੋਰਸ ਦੇ ਤੌਰ ਤੇ ਵਿਖਾਏ ਜਾਣਗੇ: <dl> <dt>ਐਡ-ਆਨ ਵੇਰਵਾ ਸਫ਼ਾ</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>ਬਾਹਰੀ ਬਲੌਗ</b></dd> <dt>ਸਿੱਧਾ ਫ਼ਾਈਲ ਲਿੰਕ</"
-"dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>ਬਾਹਰੀ ਬਲੌਗ</b></dd> </dl> <p> ਕੇਵਲ src ਪੈਰਾਮੀਟਰ ਜੋ \"external-\" ਨਾਲ ਸ਼ੁਰੂ ਹੋਵੇ ਦੀ ਨਿਗਰਾਨੀ ਹੋਵੇਗੀ, 61 ਵਾਧੂ ਅੱਖਰਾਂ ਤੱਕ। "
-"\"external-\" ਤੋਂ ਬਾਅਦ ਕੋਈ ਵੀ ਟੈਕਸਟ ਸੋਰਸ ਦੇ ਵੇਰਵੇ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ, ਜਿਵੇਂ ਕਿ \"ਬਾਹਰੀ-ਬਲੌਗ\", \"ਬਾਹਰੀ-ਸਾਈਡਬਾਰ\", \"ਬਾਹਰੀ-ਮੁਹਿੰਮ225\", ਆਦਿ। ਅੱਗੇ ਦਿੱਤੇ URL-ਸੁਰੱਖਿਅਤ ਅੱਖਰ ਪ੍ਰਵਾਨ ਹਨ: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>ਬਾਹਰੀ ਸੋਰਸਾਂ ਦੀ ਨਿਗਰਾਨੀ</h2> <p> ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਐਡਆਨ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਨੂੰ ਜਾਂ ਇਸ ਦੀ ਫ਼ਾਈਲ ਨੂੰ ਸਿੱਧੇ ਤੌਰ ਤੇ ਬਾਹਰੀ ਵੈੱਬਸਾਈਟ ਤੋਂ ਲਿੰਕ ਕਰਦੇ ਹੋ, ਜਿਵੇਂ ਕੀ ਤੁਹਾਡਾ ਬਲੌਗ ਜਾਂ ਵੈੱਬਸਾਈਟ, ਤੁਸੀਂ ਇਸ ਸਫ਼ੇ ਤੇ ਇੱਕ "
+"ਵਾਧੂ ਡਾਊਨਲੋਡ ਸੋਰਸ ਦੇ ਤੌਰ ਤੇ  ਇਸ ਪੈਰਾਮੀਟਰ ਦੀ ਨਿਗਰਾਨੀ ਵਧਾ ਸਕਦੇ ਹੋ। ਮਿਸਾਲ ਲਈ, ਅੱਗੇ ਦਿੱਤੇ ਲਿੰਕ ਤੁਹਾਡੇ ਬਲੌਗ ਵਿੱਚ ਸੋਰਸ ਦੇ ਤੌਰ ਤੇ ਵਿਖਾਏ ਜਾਣਗੇ: <dl> <dt>ਐਡ-ਆਨ ਵੇਰਵਾ ਸਫ਼ਾ</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>ਬਾਹਰੀ ਬਲੌਗ</b></dd> <dt>ਸਿੱਧਾ ਫ਼ਾਈਲ ਲਿੰਕ</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>ਬਾਹਰੀ "
+"ਬਲੌਗ</b></dd> </dl> <p> ਕੇਵਲ src ਪੈਰਾਮੀਟਰ ਜੋ \"external-\" ਨਾਲ ਸ਼ੁਰੂ ਹੋਵੇ ਦੀ ਨਿਗਰਾਨੀ ਹੋਵੇਗੀ, 61 ਵਾਧੂ ਅੱਖਰਾਂ ਤੱਕ। \"external-\" ਤੋਂ ਬਾਅਦ ਕੋਈ ਵੀ ਟੈਕਸਟ ਸੋਰਸ ਦੇ ਵੇਰਵੇ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ, ਜਿਵੇਂ ਕਿ "
+"\"ਬਾਹਰੀ-ਬਲੌਗ\", \"ਬਾਹਰੀ-ਸਾਈਡਬਾਰ\", \"ਬਾਹਰੀ-ਮੁਹਿੰਮ225\", ਆਦਿ। ਅੱਗੇ ਦਿੱਤੇ URL-ਸੁਰੱਖਿਅਤ ਅੱਖਰ ਪ੍ਰਵਾਨ ਹਨ: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "ਐਡ-ਆਨ ਦਰਜਾ ਮਿਤੀ ਅਨੁਸਾਰ"
@@ -6556,8 +6563,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ ਕੀ ਹਨ?</h2> <p>ਇਸ ਸਾਈਟ ਤੋਂ ਡਾਊਨਲੋਡ ਕੀਤੇ ਐਡ-ਆਨ ਦਿਨ ਵਿੱਚ ਇੱਕ ਵਾਰ ਅੱਪਡੇਟਾਂ ਦੀ ਪੜਤਾਲ ਕਰਦੇ ਹਨ। ਇਹਨਾਂ ਅੱਪਡੇਟ ਪਿੰਗਾਂ ਦੀ ਕੁੱਲ ਗਿਣਤੀ ਨੂੰ ਸਰਗਰਮ ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ ਵੱਜੋਂ ਜਾਣਿਆ ਜਾਂਦਾ। ਸਰਗਰਮ ਉਪਭੋਗੀ ਐਡ-ਆਨ ਵਰਜਨ, ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ, "
-"ਐਡ-ਆਨ ਦਰਜੇ, ਐਪਲੀਕੇਸ਼ਨ, ਅਤੇ ਲੋਕੇਲ ਦੇ ਅਧਾਰ ਤੇ ਵੰਡੇ ਜਾ ਸਕਦੇ ਹਨ।"
+"<h2>ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ ਕੀ ਹਨ?</h2> <p>ਇਸ ਸਾਈਟ ਤੋਂ ਡਾਊਨਲੋਡ ਕੀਤੇ ਐਡ-ਆਨ ਦਿਨ ਵਿੱਚ ਇੱਕ ਵਾਰ ਅੱਪਡੇਟਾਂ ਦੀ ਪੜਤਾਲ ਕਰਦੇ ਹਨ। ਇਹਨਾਂ ਅੱਪਡੇਟ ਪਿੰਗਾਂ ਦੀ ਕੁੱਲ ਗਿਣਤੀ ਨੂੰ ਸਰਗਰਮ ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ ਵੱਜੋਂ ਜਾਣਿਆ ਜਾਂਦਾ। ਸਰਗਰਮ "
+"ਉਪਭੋਗੀ ਐਡ-ਆਨ ਵਰਜਨ, ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ, ਐਡ-ਆਨ ਦਰਜੇ, ਐਪਲੀਕੇਸ਼ਨ, ਅਤੇ ਲੋਕੇਲ ਦੇ ਅਧਾਰ ਤੇ ਵੰਡੇ ਜਾ ਸਕਦੇ ਹਨ।"
 
 msgid "Application versions by Date"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ ਮਿਤੀ ਅਨੁਸਾਰ"
@@ -6593,8 +6600,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"ਇਸ ਤੋਂ ਇਲਾਵਾ ਜਿੱਥੇ ਵੀ <a href=\"https://www.mozilla.org/about/legal/\">ਨੋਟ ਕੀਤਾ ਗਿਆ ਹੈ</a>, ਇਸ ਸਾਈਟ ਤੇ ਦਿੱਤੀ ਗਈ ਸਮੱਗਰੀ ਨੂੰ <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ "
-"ਐਟਰੀਬਿਊਸ਼ਨ ਸ਼ੇਅਰ-ਅਲਾਇਕ ਲਾਈਸੈਂਸ v3.0 </a> ਜਾਂ ਕਿਸੇ ਹੋਰ ਬਾਅਦ ਦੇ ਵਰਜਨ।"
+"ਇਸ ਤੋਂ ਇਲਾਵਾ ਜਿੱਥੇ ਵੀ <a href=\"https://www.mozilla.org/about/legal/\">ਨੋਟ ਕੀਤਾ ਗਿਆ ਹੈ</a>, ਇਸ ਸਾਈਟ ਤੇ ਦਿੱਤੀ ਗਈ ਸਮੱਗਰੀ ਨੂੰ <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> ਕਰੀਏਟਿਵ"
+" ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ ਸ਼ੇਅਰ-ਅਲਾਇਕ ਲਾਈਸੈਂਸ v3.0 </a> ਜਾਂ ਕਿਸੇ ਹੋਰ ਬਾਅਦ ਦੇ ਵਰਜਨ।"
 
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>ਐਡ-ਆਨਾਂ</b>ਬਾਰੇ ਜਾਨਣ ਲਈ"
@@ -6769,17 +6776,17 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
-"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਸਵੀਕਾਰ ਕਰੋ। ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ ਵੀ ਸਾਡੇ ਗੋਪਨੀਯਤਾ ਨੋਟਿਸ ਨਾਲ ਜੁੜਦਾ ਹੈ ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ "
-"ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
+"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਸਵੀਕਾਰ ਕਰੋ। ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ ਵੀ ਸਾਡੇ ਗੋਪਨੀਯਤਾ ਨੋਟਿਸ ਨਾਲ "
+"ਜੁੜਦਾ ਹੈ ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
 
 #, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
-"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਸਵੀਕਾਰ ਕਰੋ। ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ ਵੀ ਸਾਡੇ ਗੋਪਨੀਯਤਾ ਨੋਟਿਸ ਨਾਲ ਜੁੜਦਾ ਹੈ ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ "
-"ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
+"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਸਵੀਕਾਰ ਕਰੋ। ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ ਵੀ ਸਾਡੇ ਗੋਪਨੀਯਤਾ ਨੋਟਿਸ ਨਾਲ "
+"ਜੁੜਦਾ ਹੈ ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
 
 msgid "an add-on developer replies to my review"
 msgstr "ਇੱਕ ਐਡ-ਆਨ ਡਿਵੈਲਪਰ ਨੇ ਮੇਰੀ ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ ਦਿੱਤਾ"
@@ -6811,9 +6818,8 @@ msgstr "ਉਪਭੋਗੀ ਅਧਿਸੂਚਨਾਵਾਂ"
 msgid "Ban"
 msgstr "ਪਾਬੰਦੀ"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "ਵਰਜਨ ਹਟਾਓ"
+msgstr "ਸ਼ੈਸ਼ਨ ਮੁੜ-ਸੈੱਟ ਕਰੋ"
 
 msgid "Delete picture"
 msgstr "ਤਸਵੀਰ ਮਿਟਾਓ"
@@ -6829,8 +6835,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
