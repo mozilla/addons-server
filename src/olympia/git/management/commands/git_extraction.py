@@ -6,6 +6,7 @@ from django.core.management.base import BaseCommand
 
 import olympia.core.logger
 
+from olympia import amo
 from olympia.amo.decorators import use_primary_db
 from olympia.files.utils import lock
 from olympia.git.models import GitExtractionEntry
@@ -67,6 +68,15 @@ class Command(BaseCommand):
         addon = entry.addon
         log.info('Starting git extraction of add-on "{}".'.format(addon.pk))
 
+        # See: https://github.com/mozilla/addons-server/issues/14289
+        if addon.type != amo.ADDON_EXTENSION:
+            log.info(
+                'Skipping git extraction of add-on "{}": not an '
+                'extension.'.format(addon.pk)
+            )
+            entry.delete()
+            return
+
         # We cannot use `entry.in_progress` because we have to be sure of the
         # add-on state and `entry` might not reflect the most up-to-date
         # database state here.
@@ -83,7 +93,7 @@ class Command(BaseCommand):
         # Retrieve all the version pks to extract, sorted by creation date.
         versions_to_extract = (
             addon.versions(manager='unfiltered_for_relations')
-            .filter(git_hash='')
+            .filter(files__is_webextension=True, git_hash='')
             .order_by('created')
             .values_list('pk', flat=True)
         )

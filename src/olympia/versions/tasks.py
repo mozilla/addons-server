@@ -128,8 +128,8 @@ def extract_version_to_git(
         version.addon.type != amo.ADDON_EXTENSION or
         not version.all_files[0].is_webextension
     ):
-        log.debug('Skipping git extraction of add-on "{}": not a '
-                  'web-extension.'.format(version.addon.id))
+        log.warning('Skipping git extraction of add-on "{}": not a '
+                    'web-extension.'.format(version.addon.id))
         return
 
     if not force_extraction and waffle.switch_is_active(
