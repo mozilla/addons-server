@@ -273,6 +273,52 @@ class NumberInput(widgets.Input):
     input_type = 'number'
 
 
+class VersionsChoiceField(ModelMultipleChoiceField):
+    """
+    Widget to use together with VersionsChoiceWidget to display the list of
+    versions used by review page for some actions.
+    """
+    def label_from_instance(self, obj):
+        """Return the object instead of transforming into a label at this stage
+        so that it's available in the widget."""
+        return obj
+
+
+class VersionsChoiceWidget(forms.SelectMultiple):
+    """
+    Widget to use together with VersionsChoiceField to display the list of
+    versions used by review page for some actions.
+    """
+    actions_filters = {
+        amo.STATUS_APPROVED: (
+            'confirm_multiple_versions', 'block_multiple_versions'
+        ),
+        amo.STATUS_AWAITING_REVIEW: (
+            'reject_multiple_versions',
+        )
+    }
+
+    def create_option(self, *args, **kwargs):
+        rval = super().create_option(*args, **kwargs)
+        # label_from_instance() on VersionsChoiceField returns the full object,
+        # not a label, this is what makes this work.
+        obj = rval['label']
+        status = obj.current_file.status if obj.current_file else None
+        versions_actions = getattr(self, 'versions_actions', None)
+        if versions_actions and obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
+            # For unlisted, some actions should only apply to approved/pending
+            # versions, so we add our special `data-toggle` class and the
+            # right `data-value` depending on status.
+            rval['attrs']['class'] = 'data-toggle'
+            rval['attrs']['data-value'] = '|'.join(
+                self.actions_filters.get(status, ()) + ('',)
+            )
+        # Just in case, let's now force the label to be a string (it would be
+        # converted anyway, but it's probably safer that way).
+        rval['label'] = str(obj)
+        return rval
+
+
 class ReviewForm(forms.Form):
     # Hack to restore behavior from pre Django 1.10 times.
     # Django 1.10 enabled `required` rendering for required widgets. That
@@ -285,8 +331,8 @@ class ReviewForm(forms.Form):
                                label=_(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
-    versions = ModelMultipleChoiceField(
-        widget=forms.SelectMultiple(attrs={'class': 'data-toggle'}),
+    versions = VersionsChoiceField(
+        widget=VersionsChoiceWidget(attrs={'class': 'data-toggle'}),
         required=False,
         queryset=Version.objects.none())  # queryset is set later in __init__.
 
@@ -345,16 +391,15 @@ class ReviewForm(forms.Form):
                 channel = self.helper.version.channel
             else:
                 channel = amo.RELEASE_CHANNEL_LISTED
-            # For unlisted, we only care about approved versions, reviewers
-            # aren't actively monitoring that queue.
-            if channel == amo.RELEASE_CHANNEL_UNLISTED:
-                statuses = (amo.STATUS_APPROVED, )
-            else:
-                statuses = (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)
+            statuses = (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)
+            self.fields['versions'].widget.versions_actions = versions_actions
             self.fields['versions'].queryset = (
-                self.helper.addon.versions.distinct().filter(
-                    channel=channel, files__status__in=statuses).
-                order_by('created'))
+                self.helper.addon.versions(manager='unfiltered_for_relations')
+                .filter(channel=channel, files__status__in=statuses)
+                .no_transforms()
+                .prefetch_related('files')
+                .distinct()
+                .order_by('created'))
             # Reset data-value depending on widget depending on actions
             # available ([''] added to get an extra '|' at the end).
             self.fields['versions'].widget.attrs['data-value'] = '|'.join(
