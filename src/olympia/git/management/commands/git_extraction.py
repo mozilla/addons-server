@@ -28,6 +28,8 @@ BATCH_SIZE = 10
 LOCK_NAME = 'git-extraction'
 # Name of the waffle switch.
 SWITCH_NAME = 'enable-git-extraction-cron'
+# The number of entries to process when the command is invoked.
+LIMIT = 20
 
 
 class Command(BaseCommand):
@@ -53,7 +55,9 @@ class Command(BaseCommand):
             # If an add-on ID is present more than once, the `extract_addon()`
             # method will skip all but the first occurrence because the add-on
             # will be locked for git extraction.
-            entries = GitExtractionEntry.objects.order_by('created').all()
+            entries = GitExtractionEntry.objects.order_by('-created').all()[
+                : options.get('limit', LIMIT)
+            ]
             for entry in entries:
                 self.extract_addon(entry)
 

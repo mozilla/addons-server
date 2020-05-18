@@ -72,9 +72,30 @@ class TestGitExtraction(TestCase):
         self.command.handle()
 
         self.command.extract_addon.assert_has_calls(
-            [mock.call(e1), mock.call(e2), mock.call(e3)]
+            [mock.call(e3), mock.call(e2), mock.call(e1)]
         )
         assert self.command.extract_addon.call_count == 3
+
+    def test_handle_limits_the_number_of_entries_to_process(self):
+        create_switch(SWITCH_NAME, active=True)
+        GitExtractionEntry.objects.create(addon=self.addon)
+        # Create a duplicate add-on.
+        GitExtractionEntry.objects.create(addon=self.addon)
+        # Create another add-on.
+        e3 = GitExtractionEntry.objects.create(
+            addon=addon_factory(file_kw={'is_webextension': True})
+        )
+        e4 = GitExtractionEntry.objects.create(
+            addon=addon_factory(file_kw={'is_webextension': True})
+        )
+        self.command.extract_addon = mock.Mock()
+
+        self.command.handle(None, limit=2)
+
+        self.command.extract_addon.assert_has_calls(
+            [mock.call(e4), mock.call(e3)]
+        )
+        assert self.command.extract_addon.call_count == 2
 
     @mock.patch('olympia.git.management.commands.git_extraction.chain')
     def test_extract_addon_aborts_when_addon_is_already_being_extracted(
