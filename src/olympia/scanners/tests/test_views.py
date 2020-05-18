@@ -8,7 +8,13 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.constants.scanners import YARA, CUSTOMS, WAT, TRUE_POSITIVE
+from olympia.constants.scanners import (
+    CUSTOMS,
+    LABEL_BAD,
+    TRUE_POSITIVE,
+    WAT,
+    YARA,
+)
 from olympia.blocklist.models import Block
 from olympia.blocklist.utils import block_activity_log_save
 from olympia.scanners.models import ScannerResult
@@ -326,3 +332,29 @@ class TestScannerResultView(TestCase):
 
         response = self.client.get(self.url)
         self.assert_json_results(response, expected_results=5)
+
+    def test_get_results_with_good_blocked_versions(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        # Result labelled as "good" because auto-approve has been confirmed.
+        version_1 = version_factory(addon=addon_factory())
+        result_1 = ScannerResult.objects.create(
+            scanner=CUSTOMS, version=version_1
+        )
+        VersionLog.objects.create(
+            activity_log=ActivityLog.create(
+                action=amo.LOG.CONFIRM_AUTO_APPROVED,
+                version=version_1,
+                user=self.user,
+            ),
+            version=version_1,
+        )
+        # Oh noes! The version has been blocked.
+        block_1 = Block.objects.create(
+            guid=version_1.addon.guid, updated_by=self.user
+        )
+        block_activity_log_save(block_1, change=False)
+
+        response = self.client.get(self.url)
+        results = self.assert_json_results(response, expected_results=1)
+        assert results[0]['id'] == result_1.id
+        assert results[0]['label'] == LABEL_BAD
