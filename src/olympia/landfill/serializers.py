@@ -67,7 +67,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             session.uid == m['headers']['x-uid']
         )
         session.verify_email_code(message['headers']['x-verify-code'])
-        log.debug('fxa account created: {}'.format(fxa_account))
+        log.info('fxa account created: {}'.format(fxa_account))
         return session.uid
 
     def _create_addon_user(self):
@@ -80,8 +80,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 display_name='uitest'
             )
         except Exception as e:
-            log.debug('There was a problem creating the user: {}.'
-                      ' Returning user from database'.format(e))
+            log.info('There was a problem creating the user: {}.'
+                     ' Returning user from database'.format(e))
             return UserProfile.objects.get(username='uitest')
 
     def create_generic_featured_addons(self):

@@ -591,7 +591,7 @@ class Addon(OnChangeMixin, ModelBase):
         NOTES: %(msg)s
         REASON GIVEN BY USER FOR DELETION: %(reason)s
         """ % context
-        log.debug('Sending delete email for %(atype)s %(id)s' % context)
+        log.info('Sending delete email for %(atype)s %(id)s' % context)
         subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
         return subject, email_msg
 
@@ -624,7 +624,7 @@ class Addon(OnChangeMixin, ModelBase):
             # need to make sure that the logs created below aren't cascade
             # deleted!
 
-            log.debug('Deleting add-on: %s' % self.id)
+            log.info('Deleting add-on: %s' % self.id)
 
             if send_delete_email:
                 email_to = [settings.DELETION_EMAIL]
@@ -718,8 +718,8 @@ class Addon(OnChangeMixin, ModelBase):
         if old_guid_addon:
             old_guid_addon.update(guid=GUID_REUSE_FORMAT.format(addon.pk))
             ReusedGUID.objects.create(addon=old_guid_addon, guid=guid)
-            log.debug(f'GUID {guid} from addon [{old_guid_addon.pk}] reused '
-                      f'by addon [{addon.pk}].')
+            log.info(f'GUID {guid} from addon [{old_guid_addon.pk}] reused '
+                     f'by addon [{addon.pk}].')
         if user:
             AddonUser(addon=addon, user=user).save()
         timer.log_interval('7.end')
@@ -760,7 +760,7 @@ class Addon(OnChangeMixin, ModelBase):
             channel=channel, parsed_data=parsed_data)
 
         activity.log_create(amo.LOG.CREATE_ADDON, addon)
-        log.debug('New addon %r from %r' % (addon, upload))
+        log.info('New addon %r from %r' % (addon, upload))
 
         return addon
 
@@ -1106,7 +1106,7 @@ class Addon(OnChangeMixin, ModelBase):
             try:
                 addon = addon_dict[version.addon_id]
             except KeyError:
-                log.debug('Version %s has an invalid add-on id.' % version.id)
+                log.info('Version %s has an invalid add-on id.' % version.id)
                 continue
             if addon._current_version_id == version.id:
                 addon._current_version = version

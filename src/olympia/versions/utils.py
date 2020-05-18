@@ -59,10 +59,10 @@ def write_svg_to_png(svg_content, out):
             ]
             subprocess.check_call(command)
         except IOError as io_error:
-            log.debug(io_error)
+            log.info(io_error)
             return False
         except subprocess.CalledProcessError as process_error:
-            log.debug(process_error)
+            log.info(process_error)
             return False
     return True
 
@@ -81,7 +81,7 @@ def encode_header(header_blob, file_ext):
         src = 'data:image/%s;base64,%s' % (
             img_format, force_text(b64encode(header_blob)))
     except (IOError, ValueError, TypeError, lxml.etree.XMLSyntaxError) as err:
-        log.debug(err)
+        log.info(err)
         return (None, 0, 0)
     return (src, width, height)
 

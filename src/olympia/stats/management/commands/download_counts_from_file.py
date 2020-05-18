@@ -137,7 +137,7 @@ class Command(BaseCommand):
             splitted = line[:-1].split(sep)
 
             if len(splitted) != 4:
-                log.debug('Badly formatted row: %s' % line)
+                log.info('Badly formatted row: %s' % line)
                 continue
 
             day, counter, id_or_slug, src = splitted
@@ -200,9 +200,9 @@ class Command(BaseCommand):
         DownloadCount.objects.bulk_create(download_counts.values(), 100)
 
         log.info('Processed a total of %s lines' % (index + 1))
-        log.debug('Total processing time: %s' % (datetime.now() - start))
+        log.info('Total processing time: %s' % (datetime.now() - start))
 
         if options['stats_source'] == 'file':
             # Clean up file.
-            log.debug('Deleting {path}'.format(path=filepath))
+            log.info('Deleting {path}'.format(path=filepath))
             unlink(filepath)

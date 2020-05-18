@@ -91,9 +91,9 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         has_permission = True
 
     if not has_permission:
-        log.info('download file {file_id}: addon/version/file not public and '
-                 'user {user_id} does not have relevant permissions.'.format(
-                     file_id=file_id, user_id=request.user.pk))
+        log.debug('download file {file_id}: addon/version/file not public and '
+                  'user {user_id} does not have relevant permissions.'.format(
+                      file_id=file_id, user_id=request.user.pk))
         raise http.Http404()  # Not owner or admin.
 
     if use_cdn:

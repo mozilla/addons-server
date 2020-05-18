@@ -103,7 +103,7 @@ def legacy_publish_blocks(blocks):
 
         if needs_updating or needs_creating:
             if block.is_imported_from_kinto_regex:
-                log.debug(
+                log.info(
                     f'Block [{block.guid}] was imported from a regex guid so '
                     'can\'t be safely updated.  Skipping.')
                 continue
@@ -128,7 +128,7 @@ def legacy_publish_blocks(blocks):
                 server.publish_record(data, block.kinto_id)
         elif needs_deleting:
             if block.is_imported_from_kinto_regex:
-                log.debug(
+                log.info(
                     f'Block [{block.guid}] was imported from a regex guid so '
                     'can\'t be safely deleted.  Skipping.')
             else:
@@ -144,7 +144,7 @@ def legacy_delete_blocks(blocks):
     for block in blocks:
         if block.kinto_id and block.include_in_legacy:
             if block.is_imported_from_kinto_regex:
-                log.debug(
+                log.info(
                     f'Block [{block.guid}] was imported from a regex guid so '
                     'can\'t be safely deleted.  Skipping.')
             else:

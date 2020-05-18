@@ -244,7 +244,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         white_list = []
         for email in recipient_list:
             if email and email.lower() in settings.EMAIL_DENY_LIST:
-                log.debug('Blacklisted email removed from list: %s' % email)
+                log.info('Blacklisted email removed from list: %s' % email)
             else:
                 white_list.append(email)
     else:
@@ -1040,7 +1040,7 @@ class StopWatch():
     def log_interval(self, label):
         now = datetime.datetime.utcnow()
         statsd.timing(self.prefix + label, now - self._timestamp)
-        log.debug(
+        log.info(
             "%s: %s", self.prefix + label, now - self._timestamp)
         self._timestamp = now
 

@@ -95,7 +95,7 @@ class MLBF():
         stats['mlbf_layers'] = cascade.layerCount()
         stats['mlbf_bits'] = cascade.bitCount()
 
-        log.debug(
+        log.info(
             f'Filter cascade layers: {cascade.layerCount()}, '
             f'bit: {cascade.bitCount()}')
 

@@ -234,7 +234,7 @@ class AddonGitRepository(object):
                 tree,  # tree
                 [])  # parents
 
-            log.debug('Initialized git repository {path}'.format(
+            log.info('Initialized git repository {path}'.format(
                 path=self.git_repository_path))
         else:
             git_repository = pygit2.Repository(self.git_repository_path)

@@ -1329,7 +1329,7 @@ def get_background_images(file_obj, theme_data, header_only=False):
                 except KeyError:
                     pass
     except IOError as ioerror:
-        log.debug(ioerror)
+        log.info(ioerror)
     return images
 
 
@@ -1384,7 +1384,7 @@ def lock(lock_dir, lock_name, timeout=6):
     """
     lock_name = f'{lock_name}.lock'
 
-    log.debug(f'Acquiring lock {lock_name}.')
+    log.info(f'Acquiring lock {lock_name}.')
 
     lock_path = os.path.join(lock_dir, lock_name)
 
@@ -1407,7 +1407,7 @@ def lock(lock_dir, lock_name, timeout=6):
         finally:
             # Always release the lock after the parent context
             # block has finised.
-            log.debug(f'Releasing lock {lock_name}.')
+            log.info(f'Releasing lock {lock_name}.')
             fcntl.flock(fileno, fcntl.LOCK_UN)
             lockfd.close()
 

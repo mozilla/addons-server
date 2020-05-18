@@ -96,8 +96,8 @@ class Command(BaseCommand):
                         version=version
                     ).exists()
                     if summary_exists:
-                        log.debug('Not running run_action() because it has '
-                                  'already been executed')
+                        log.info('Not running run_action() because it has '
+                                 'already been executed')
                     else:
                         ScannerResult.run_action(version)
 

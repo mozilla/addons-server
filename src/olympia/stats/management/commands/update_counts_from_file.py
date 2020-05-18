@@ -152,7 +152,7 @@ class Command(BaseCommand):
 
                 if ((group == 'app' and len(splitted) != 6) or
                         (group != 'app' and len(splitted) != 5)):
-                    log.debug('Badly formatted row: %s' % line)
+                    log.info('Badly formatted row: %s' % line)
                     continue
 
                 if group == 'app':
@@ -185,16 +185,16 @@ class Command(BaseCommand):
                 # > 16, if not, ignore the request.
                 # > udpateType & 31 == 16 == valid request.
                 if update_type and update_type & 31 != 16:
-                    log.debug("Update type doesn't add to 16: %s" %
-                              update_type)
+                    log.info("Update type doesn't add to 16: %s" %
+                             update_type)
                     continue
 
                 # Does this addon exist?
                 if addon_guid and addon_guid in guids_to_addon:
                     addon_id = guids_to_addon[addon_guid]
                 else:
-                    log.debug(u"Addon {guid} doesn't exist."
-                              .format(guid=addon_guid.strip()))
+                    log.info(u"Addon {guid} doesn't exist."
+                             .format(guid=addon_guid.strip()))
                     continue
 
                 # Memoize the UpdateCount.
@@ -238,12 +238,12 @@ class Command(BaseCommand):
         UpdateCount.objects.bulk_create(update_counts.values(), 100)
 
         log.info('Processed a total of %s lines' % (index + 1))
-        log.debug('Total processing time: %s' % (datetime.now() - start))
+        log.info('Total processing time: %s' % (datetime.now() - start))
 
         # Clean up files.
         if options['stats_source'] == 'file':
             for _, filepath in group_filepaths:
-                log.debug('Deleting {path}'.format(path=filepath))
+                log.info('Deleting {path}'.format(path=filepath))
                 unlink(filepath)
 
     def update_version(self, update_count, version, count):

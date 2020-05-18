@@ -94,7 +94,7 @@ def update_addon_average_daily_users(data, **kw):
             # The processing input comes from metrics which might be out of
             # date in regards to currently existing add-ons
             m = "Got an ADU update (%s) but the add-on doesn't exist (%s)"
-            log.debug(m % (count, pk))
+            log.info(m % (count, pk))
             continue
 
         addon.update(average_daily_users=int(float(count)))
@@ -120,7 +120,7 @@ def update_addon_download_totals(data, **kw):
             # been deleted by the time the task is processed.
             msg = ("Got new download totals (total=%s) but the add-on"
                    "doesn't exist (%s)" % (sum_download_counts, pk))
-            log.debug(msg)
+            log.info(msg)
 
 
 @task
