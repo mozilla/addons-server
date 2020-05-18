@@ -176,7 +176,6 @@ class Version(OnChangeMixin, ModelBase):
                                   default=amo.RELEASE_CHANNEL_LISTED)
 
     git_hash = models.CharField(max_length=40, blank=True)
-    source_git_hash = models.CharField(max_length=40, blank=True)
 
     recommendation_approved = models.BooleanField(null=False, default=False)
 
