@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-18 14:32+0000\n"
+"PO-Revision-Date: 2020-05-18 17:23+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1580,7 +1580,7 @@ msgid "New"
 msgstr "Novo"
 
 msgid "Running"
-msgstr ""
+msgstr "Executando"
 
 msgid "Aborted"
 msgstr ""
@@ -5817,7 +5817,7 @@ msgid "Add-on name translations"
 msgstr "Traduções do nome da extensão"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Ferramentas de revisão – Extensões do Firefox"
 
 # %1$s is the application name.  Example:  Firefox
 msgid "Return to the Reviewer Tools dashboard"
@@ -5836,7 +5836,7 @@ msgid "Score"
 msgstr "Pontuação"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Log de moderação de revisores – Extensões do Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5877,7 +5877,7 @@ msgid "Undelete"
 msgstr "Desfazer exclusão"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Desempenho da revisão – Extensões do Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Extensão de revisão do desempenho"
