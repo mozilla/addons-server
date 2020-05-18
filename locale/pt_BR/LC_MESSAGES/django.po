@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-18 13:12+0000\n"
+"PO-Revision-Date: 2020-05-18 13:14+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3337,7 +3337,7 @@ msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr "Entre na sua conta no Developer Hub para enviar ou gerenciar extensões e temas."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Crie uma conta de desenvolvedor ou acesse sua conta no Developer Hub"
 
 # %s is the version number.
 msgid "Manage Version {0}"
