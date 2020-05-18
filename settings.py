@@ -19,6 +19,33 @@ INSTALLED_APPS += (
     'debug_toolbar',
 )
 
+LOGGING['root'].update({'level': logging.DEBUG})
+
+LOGGING['loggers'].update({
+    'amo': {'level': logging.DEBUG},
+    'amqp': {'level': logging.DEBUG},
+    'caching': {'level': logging.DEBUG},
+    'caching.invalidation': {'level': logging.DEBUG},
+    'django': {'level': logging.DEBUG},
+    'django.security.csrf': {'level': logging.DEBUG},
+    'elasticsearch': {'level': logging.DEBUG},
+    # filtercascade
+    # mohawk.util
+    'newrelic': {'level': logging.DEBUG},
+    'parso': {'level': logging.DEBUG},
+    # post_request_task
+    'raven': {'level': logging.DEBUG},
+    'rdflib': {'level': logging.DEBUG},
+    'requests': {'level': logging.DEBUG},
+    'request.summary': {'level': logging.DEBUG},
+    's.client': {'level': logging.DEBUG},
+    'z': {'level': logging.DEBUG},
+    'z.addons': {'level': logging.DEBUG},
+    'z.celery': {'level': logging.DEBUG},
+    'z.es': {'level': logging.DEBUG},
+    'z.pool': {'level': logging.DEBUG},
+    'z.task': {'level': logging.DEBUG},
+})
 
 # django-debug-doolbar middleware needs to be inserted as high as possible
 # but after GZip middleware

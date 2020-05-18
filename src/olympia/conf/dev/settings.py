@@ -1,5 +1,3 @@
-import logging
-
 from olympia.lib.settings_base import *  # noqa
 
 
@@ -66,15 +64,6 @@ CACHES['default']['KEY_PREFIX'] = CACHE_KEY_PREFIX
 
 # Celery
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
-
-LOGGING['loggers'].update({
-    'amqp': {'level': logging.WARNING},
-    'raven': {'level': logging.WARNING},
-    'requests': {'level': logging.WARNING},
-    'z.addons': {'level': logging.DEBUG},
-    'z.task': {'level': logging.DEBUG},
-    'z.pool': {'level': logging.ERROR},
-})
 
 # Update the logger name used for mozlog
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_dev'
