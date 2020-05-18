@@ -23,9 +23,9 @@ def is_valid_source(src, fulls, prefixes):
 
     A source is valid if it is in the list of valid full sources or prefixed by
     a prefix in the list of valid prefix sources.
-
+    NOTE: doesn't actually check for a prefix with prefiex - does `p in ...`
     """
-    return src in fulls or any(src.startswith(p) for p in prefixes)
+    return src in fulls or any(p in src for p in prefixes)
 
 
 class Command(BaseCommand):

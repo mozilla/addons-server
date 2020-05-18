@@ -258,7 +258,7 @@ class TestADICommand(FixturesFolderMixin, TransactionTestCase):
         assert not is_valid_source('foob',
                                    fulls=['foo', 'bar'],
                                    prefixes=['baz', 'cruux'])
-        assert is_valid_source('bazfoo',
+        assert is_valid_source('foobaz',
                                fulls=['foo', 'bar'],
                                prefixes=['baz', 'cruux'])
         assert not is_valid_source('ba',
