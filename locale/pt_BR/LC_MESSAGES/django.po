@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-18 21:04+0000\n"
+"PO-Revision-Date: 2020-05-18 21:12+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -491,7 +491,7 @@ msgstr "Bloqueio com GUID %(guid)s não encontrado"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s está em um envio pendente"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
@@ -499,7 +499,7 @@ msgstr "Não existe extensão com GUID %(guid)s"
 
 #, python-format
 msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s já está em um envio pendente"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Os bloqueios a ser atualizados são diferentes porque a versão Mínima ou Máxima mudou."
@@ -1585,10 +1585,10 @@ msgid "Running"
 msgstr "Executando"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Interrompido"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Interrompendo"
 
 msgid "Completed"
 msgstr "Concluído"
@@ -3201,9 +3201,8 @@ msgstr "Matrix"
 msgid "Add-on Developers Mailing List"
 msgstr "Centro de desenvolvedor de extensão"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Desenvolvimento de extensões"
+msgstr "Boletim de desenvolvedores de extensões"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Fique em dia sobre notícias e eventos para desenvolvedores de extensões do Firefox."
@@ -6267,9 +6266,8 @@ msgstr "canal da versão"
 msgid "add-on status"
 msgstr "status da extensão"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Visibilidade da extensão"
+msgstr "visibilidade da extensão em listas"
 
 msgid "file status"
 msgstr "status do arquivo"
@@ -6303,7 +6301,7 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Interromper"
 
 msgid "Run"
 msgstr ""
@@ -6311,9 +6309,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Resposta do revisor"
+msgstr "Reverter denúncia"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6797,11 +6794,8 @@ msgstr ""
 "Antes de iniciar, por favor leia e aceite nosso acordo de distribuição de extensões para o Firefox. Ele também vincula a nossa notificação de privacidade que explica como nós tratamos sua "
 "informação."
 
-#, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Antes de iniciar, por favor leia e aceite nosso acordo de distribuição de extensões para o Firefox. Ele também vincula a nossa notificação de privacidade que explica como nós tratamos sua "
-"informação."
+msgstr "Leia e aceite nosso acordo de distribuição de extensões do Firefox, bem como nossas diretivas e regras de revisão, visitando {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "um desenvolvedor de extensões respondeu minha análise"
