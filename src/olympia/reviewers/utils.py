@@ -27,6 +27,7 @@ from olympia.reviewers.models import (
     get_flags_for_row)
 from olympia.users.models import UserProfile
 from olympia.versions.compare import addon_version_int
+from olympia.scanners.models import VersionScannerFlags
 
 import jinja2
 
@@ -942,6 +943,15 @@ class ReviewBase(object):
                 # needs_human_review flag on the latest version.
                 if self.version.needs_human_review:
                     self.version.update(needs_human_review=False)
+
+            # Clear the "needs_human_review" scanner flags too, if any, and
+            # only for the specified version.
+            try:
+                VersionScannerFlags.objects.get(
+                    version=self.version
+                ).clear_needs_human_review_flags()
+            except VersionScannerFlags.DoesNotExist:
+                pass
 
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(
