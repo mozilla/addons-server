@@ -3,6 +3,8 @@ import requests
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
+from django_statsd.clients import statsd
+
 import olympia.core.logger
 
 from olympia.blocklist.models import KintoImport
@@ -50,6 +52,15 @@ class Command(BaseCommand):
             '%s new, %s modified, %s deleted records from legacy blocklist to '
             'process',
             len(new_records), len(modified_records), len(deleted_record_ids))
+        statsd.incr(
+            'blocklist.import_blocklist.new_record_found',
+            count=len(new_records))
+        statsd.incr(
+            'blocklist.import_blocklist.modified_record_found',
+            count=len(modified_records))
+        statsd.incr(
+            'blocklist.import_blocklist.deleted_record_found',
+            count=len(deleted_record_ids))
         for record in new_records + modified_records:
             import_block_from_blocklist.delay(record)
         if deleted_record_ids:
