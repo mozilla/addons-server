@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-18 17:24+0000\n"
+"PO-Revision-Date: 2020-05-18 17:52+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5936,14 +5936,14 @@ msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Extensões aprovadas automaticamente – Extensões para o Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderação de revisores – Extensões do Firefox"
 
 #, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Solicitação de informação expirada"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Extensões não listadas – Extensões do Firefox"
 
 msgid "Advanced Search"
 msgstr "Pesquisa avançada"
@@ -5982,7 +5982,7 @@ msgid "Reviewer's Guide"
 msgstr "Guia dos Revisores"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Extensões do Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6002,7 +6002,7 @@ msgid "Previously deleted entries"
 msgstr "Itens anteriormente excluídos"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Esta é uma extensão recomendada."
 
 msgid "You don't have permission to review it."
 msgstr "Você não tem permissão para revisar."
@@ -6102,7 +6102,7 @@ msgid "Resolution"
 msgstr "Resolução"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Log de revisões da extensão – Extensões do Firefox"
 
 # 88%
 msgid "Reviewer"
@@ -6121,7 +6121,7 @@ msgid "No reviews found for this period."
 msgstr "Não foram encontradas análises nesse período."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Origem:"
 
 msgid "Method:"
 msgstr "Método:"
@@ -6252,13 +6252,13 @@ msgstr[0] "Solicitação de informação expirada ({0})"
 msgstr[1] "Solicitação de informações expiradas ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "presença de regras que correspondem"
 
 msgid "result state"
 msgstr "estado do resultado"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "tudo menos esta regra"
 
 msgid "presence of a version"
 msgstr "presença de uma versão"
@@ -6286,7 +6286,7 @@ msgid "When unchecked, the scanner results will not be bound to this rule and th
 msgstr ""
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Regras do Yara devem ter uma definição"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
 msgstr ""
