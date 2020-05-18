@@ -17,8 +17,8 @@ from olympia.versions.models import VersionPreview
 
 class TestMigrateWebextensionsToGitStorage(TestCase):
     def test_basic(self):
-        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
         migrate_webextensions_to_git_storage([addon.pk])
 
         repo = AddonGitRepository(addon.pk)
@@ -38,10 +38,12 @@ class TestMigrateWebextensionsToGitStorage(TestCase):
 
     @mock.patch('olympia.versions.tasks.extract_version_to_git')
     def test_skip_already_migrated_versions(self, extract_mock):
-        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
         version_to_migrate = addon.current_version
         already_migrated_version = version_factory(
-            addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+            addon=addon, file_kw={'filename': 'webextension_no_id.xpi',
+                                  'is_webextension': True})
         already_migrated_version.update(git_hash='already migrated...')
 
         migrate_webextensions_to_git_storage([addon.pk])
@@ -51,15 +53,18 @@ class TestMigrateWebextensionsToGitStorage(TestCase):
 
     @mock.patch('olympia.versions.tasks.extract_version_to_git')
     def test_migrate_versions_from_old_to_new(self, extract_mock):
-        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+        addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
         oldest_version = addon.current_version
         oldest_version.update(created=self.days_ago(6))
         older_version = version_factory(
             created=self.days_ago(5),
-            addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+            addon=addon, file_kw={'filename': 'webextension_no_id.xpi',
+                                  'is_webextension': True})
         most_recent = version_factory(
             created=self.days_ago(2),
-            addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+            addon=addon, file_kw={'filename': 'webextension_no_id.xpi',
+                                  'is_webextension': True})
 
         migrate_webextensions_to_git_storage([addon.pk])
 

@@ -6356,7 +6356,8 @@ class TestReviewAddonVersionViewSetDetail(
         # setUpTestData doesn't use proper paths (cgrebs)
         self.addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi'})
+            file_kw={'filename': 'webextension_no_id.xpi',
+                     'is_webextension': True})
 
         extract_version_to_git(self.addon.current_version.pk)
 
@@ -6423,7 +6424,8 @@ class TestReviewAddonVersionViewSetDetail(
 
     def test_requested_file_contains_whitespace(self):
         new_version = version_factory(
-            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
 
@@ -6450,38 +6452,6 @@ class TestReviewAddonVersionViewSetDetail(
             kwargs={
                 'version_id': new_version.pk,
                 'filename': 'content script.js'
-            }
-        ))
-
-    def test_supports_search_plugins(self):
-        self.addon = addon_factory(
-            name=u'My Addôn', slug='my-addon',
-            file_kw={'filename': 'search.xml'})
-
-        extract_version_to_git(self.addon.current_version.pk)
-
-        self.version = self.addon.current_version
-        self.version.refresh_from_db()
-
-        self._set_tested_url()
-
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.client.login_api(user)
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        result = json.loads(response.content)
-
-        assert result['file']['content'].startswith(
-            '<?xml version="1.0" encoding="utf-8"?>')
-
-        # make sure the correct download url is correctly generated
-        assert result['file']['download_url'] == absolutify(reverse(
-            'reviewers.download_git_file',
-            kwargs={
-                'version_id': self.version.pk,
-                'filename': 'search.xml'
             }
         ))
 
@@ -6566,7 +6536,8 @@ class TestReviewAddonVersionViewSetList(TestCase):
 
         self.addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi'})
+            file_kw={'filename': 'webextension_no_id.xpi',
+                     'is_webextension': True})
 
         extract_version_to_git(self.addon.current_version.pk)
 
@@ -6690,7 +6661,8 @@ class TestDraftCommentViewSet(TestCase):
 
         self.addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi'})
+            file_kw={'filename': 'webextension_no_id.xpi',
+                     'is_webextension': True})
 
         extract_version_to_git(self.addon.current_version.pk)
 
@@ -7216,7 +7188,8 @@ class TestReviewAddonVersionCompareViewSet(
 
         self.addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi'})
+            file_kw={'filename': 'webextension_no_id.xpi',
+                     'is_webextension': True})
 
         extract_version_to_git(self.addon.current_version.pk)
 
@@ -7269,7 +7242,8 @@ class TestReviewAddonVersionCompareViewSet(
 
     def test_requested_file_contains_whitespace(self):
         new_version = version_factory(
-            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
 
@@ -7294,47 +7268,6 @@ class TestReviewAddonVersionCompareViewSet(
         assert change['content'] == '(function() {})'
         assert change['type'] == 'insert'
 
-    def test_supports_search_plugins(self):
-        self.addon = addon_factory(
-            name=u'My Addôn', slug='my-addon',
-            file_kw={'filename': 'search.xml'})
-
-        extract_version_to_git(self.addon.current_version.pk)
-
-        self.version = self.addon.current_version
-        self.version.refresh_from_db()
-
-        new_version = version_factory(
-            addon=self.addon, file_kw={'filename': 'search.xml'})
-
-        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
-
-        apply_changes(repo, new_version, '<xml></xml>\n', 'search.xml')
-
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.client.login_api(user)
-
-        self.url = reverse_ns('reviewers-versions-compare-detail', kwargs={
-            'addon_pk': self.addon.pk,
-            'version_pk': self.version.pk,
-            'pk': new_version.pk})
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        result = json.loads(response.content)
-        changes = result['file']['diff']['hunks'][0]['changes']
-
-        assert result['file']['diff']['path'] == 'search.xml'
-        assert changes[-1] == {
-            'content': '<xml></xml>',
-            'new_line_number': 1,
-            'old_line_number': -1,
-            'type': 'insert'
-        }
-
-        assert all(x['type'] == 'delete' for x in changes[:-1])
-
     def test_version_get_not_found(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
@@ -7348,7 +7281,8 @@ class TestReviewAddonVersionCompareViewSet(
 
     def test_compare_basic(self):
         new_version = version_factory(
-            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
 
@@ -7397,7 +7331,8 @@ class TestReviewAddonVersionCompareViewSet(
 
     def test_compare_with_deleted_file(self):
         new_version = version_factory(
-            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
 
@@ -7457,7 +7392,8 @@ class TestReviewAddonVersionCompareViewSet(
 
     def test_compare_with_deleted_version(self):
         new_version = version_factory(
-            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
 
         # We need to run extraction first and delete afterwards, otherwise
         # we'll end up with errors because files don't exist anymore.
@@ -7511,7 +7447,8 @@ class TestDownloadGitFileView(TestCase):
 
         self.addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi'})
+            file_kw={'filename': 'webextension_no_id.xpi',
+                     'is_webextension': True})
 
         extract_version_to_git(self.addon.current_version.pk)
 
@@ -7573,7 +7510,8 @@ class TestDownloadGitFileView(TestCase):
 
     def test_download_emoji_filename(self):
         new_version = version_factory(
-            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi',
+                                       'is_webextension': True})
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
 

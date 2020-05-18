@@ -412,7 +412,8 @@ class TestTransactionRelatedSigning(TransactionTestCase):
         super().setUp()
 
         self.addon = amo.tests.addon_factory(file_kw={
-            'filename': 'webextension.xpi'
+            'filename': 'webextension.xpi',
+            'is_webextension': True,
         })
         self.version = self.addon.current_version
 
