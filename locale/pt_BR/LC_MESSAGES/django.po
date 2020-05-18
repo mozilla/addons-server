@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-18 17:55+0000\n"
+"PO-Revision-Date: 2020-05-18 18:21+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -304,11 +304,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Ops"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Opa!  Tivemos um problema.</h1> <p>Nós consertaremos isso logo.</p> <p>Você pode tentar atualizar a página ou voltar para a <a href=\"%(home)s\">página inicial das extensões</a>.</p>"
+msgstr ""
+"<h1>Ops! Houve um erro.</h1> <p>Vamos consertar logo.</p> <p>Você pode tentar atualizar a página, ou voltar para a <a href=\"%(home)s\">página inicial de extensões</a>. Também pode nos ajudar a "
+"corrigir isso <a href=\"https://github.com/mozilla/addons/issues/new\">registrando um problema</a> com detalhes de como chegou a esta página.</p>"
 
 msgid "No results found"
 msgstr "Nenhum resultado encontrado"
@@ -1890,11 +1892,12 @@ msgstr "O ícone deve ser quadrado (mesma largura e altura)."
 msgid "There was an error uploading your preview."
 msgstr "Ocorreu um erro ao enviar sua imagem."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "A última versão aprovada de uma extensão recomendada não pode ser excluída nem desativada. Se precisar de ajuda, entre em contato com os administradores do AMO."
+msgstr ""
+"A versão aprovada mais recente desta extensão recomendada não pode ser excluída nem desativada porque a versão anterior não foi aprovada para recomendação. Entre em contato com os administradores da"
+" AMO se precisar de ajuda com isso."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2431,9 +2434,8 @@ msgstr "Selecione um ícone para sua extensão:"
 msgid "32x32px"
 msgstr "32x32"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Usado em listas de extensões, como resultados de busca e extensões em destaque."
+msgstr "Usado em listas de extensões, como resultados de pesquisas."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2479,9 +2481,8 @@ msgstr "PNG e JPG suportados, PNG recomendado. O tamanho máximo e recomendado p
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "O tamanho mínimo é de 1000x750, necessitando de uma proporção de 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Ter capturas de tela na página do seu produto aumenta muito as chances de ser instalado e exibido em destaque na página inicial."
+msgstr "Ter capturas de tela na página do seu produto aumenta muito as chances de ser instalado."
 
 msgid "Continue"
 msgstr "Continuar"
@@ -2753,9 +2754,8 @@ msgstr "A sua listagem será mais bem sucedida adicionando uma descrição detal
 msgid "Manage Listing"
 msgstr "Gerenciar a lista"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Você pode editar esta versão para editar notas de versão, ou código-fonte se sua extensão contém código reduzido, ofuscado ou compilado."
+msgstr "Você também pode editar esta versão para adicionar notas da versão ou código fonte se o seu envio incluir código minimizado, concatenado ou gerado por máquina."
 
 msgid "Edit version {0}"
 msgstr "Editar a versão {0}"
