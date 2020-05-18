@@ -15,11 +15,14 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.urlresolvers import reverse
 from olympia.api.authentication import JWTKeyAuthentication
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.throttling import (
     GranularIPRateThrottle, GranularUserRateThrottle,
     ThrottleOnlyUnsafeMethodsMixin
 )
+from olympia.blocklist.models import Block
 from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.devhub.permissions import IsSubmissionAllowedFor
 from olympia.files.models import FileUpload
@@ -201,8 +204,9 @@ class VersionView(APIView):
                 ugettext('Version does not match the manifest file.'),
                 status.HTTP_400_BAD_REQUEST)
 
-        if (addon is not None and
-                addon.versions.filter(version=version_string).exists()):
+        existing_version = addon and Version.unfiltered.filter(
+            addon=addon, version=version_string)
+        if existing_version:
             latest_version = addon.find_latest_version(None, exclude=())
             msg = ugettext('Version already exists. Latest version is: %s.'
                            % latest_version.version)
@@ -232,14 +236,29 @@ class VersionView(APIView):
                 ))
 
             parsed_data['guid'] = guid
+        elif not guid and package_guid:
+            guid = package_guid
 
-        if package_guid or guid:
+        if guid:
             # If we did get a guid, regardless of its source, validate it now
             # before creating anything.
-            if not amo.ADDON_GUID_PATTERN.match(package_guid or guid):
+            if not amo.ADDON_GUID_PATTERN.match(guid):
                 raise forms.ValidationError(
                     ugettext('Invalid Add-on ID in URL or package'),
                     status.HTTP_400_BAD_REQUEST)
+
+        block_qs = Block.objects.filter(guid=addon.guid if addon else guid)
+        if block_qs and block_qs.first().is_version_blocked(version_string):
+            msg = ugettext(
+                'Version {version} matches {block_url} for this add-on. '
+                'You can contact {amo_admins} for additional information.')
+            raise forms.ValidationError(
+                msg.format(
+                    version=version_string,
+                    block_url=absolutify(
+                        reverse('blocklist.block', args=[guid])),
+                    amo_admins='amo-admins@mozilla.com'),
+                status.HTTP_400_BAD_REQUEST)
 
         # channel will be ignored for new addons.
         if addon is None:
