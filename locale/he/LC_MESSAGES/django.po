@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 11:45+0000\n"
+"PO-Revision-Date: 2020-05-18 19:16+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -5003,7 +5003,7 @@ msgstr "הרחבות הן כמו יישומים ל־Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "הן מוסיפות תכונות ל־‏Firefox כדי להפוך את הגלישה למהירה יותר, בטוחה יותר, או פשוט כיפית."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
