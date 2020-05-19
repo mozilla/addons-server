@@ -1596,10 +1596,11 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.helper.redirect_url == redirect_url
 
     def test_pending_blocklistsubmission_multiple_unlisted_versions(self):
-        subm = BlocklistSubmission.objects.create(
+        BlocklistSubmission.objects.create(
             input_guids=self.addon.guid, updated_by=user_factory())
-        redirect_url = reverse(
-            'admin:blocklist_blocklistsubmission_change', args=(subm.id,))
+        redirect_url = (
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.id,)) +
+            '?min=%s&max=%s')
         assert Block.objects.count() == 0
         self._test_block_multiple_unlisted_versions(redirect_url)
 

@@ -1087,19 +1087,10 @@ class ReviewUnlisted(ReviewBase):
                 self.addon,
                 ', '.join(str(v.pk) for v in self.data['versions'])))
 
-        if self.addon.blocklistsubmission:
-            self.redirect_url = (
-                reverse(
-                    'admin:blocklist_blocklistsubmission_change',
-                    args=(self.addon.blocklistsubmission.pk,)
-                ))
-        else:
-            params = (
-                f'?min={min_version[0].pk}&max={max_version[0].pk}')
-            self.redirect_url = (
-                reverse(
-                    'admin:blocklist_block_addaddon', args=(self.addon.pk,)
-                ) + params)
+        params = f'?min={min_version[0].pk}&max={max_version[0].pk}'
+        self.redirect_url = (
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.pk,)) +
+            params)
 
     def confirm_multiple_versions(self):
         """Confirm approval on a list of versions."""

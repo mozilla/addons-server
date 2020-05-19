@@ -1,4 +1,4 @@
-from django.contrib import admin, auth, contenttypes
+from django.contrib import admin, auth, contenttypes, messages
 from django.core.exceptions import PermissionDenied
 from django.forms.fields import ChoiceField
 from django.forms.widgets import HiddenInput
@@ -143,11 +143,36 @@ class BlockAdminAddMixin():
                     Version.unfiltered, pk=get_params.pop(key)[0])
                 get_params[f'{key}_version'] = version.version
 
-        if addon.block:
+        if 'min_version' in get_params or 'max_version' in get_params:
+            warning_message = (
+                f"The versions {get_params.get('min_version', '0')} to "
+                f"{get_params.get('max_version', '*')} could not be "
+                "pre-selected because {reason}")
+        else:
+            warning_message = None
+
+        if addon.blocklistsubmission:
+            if 'min_version' in get_params or 'max_version' in get_params:
+                messages.add_message(
+                    request,
+                    messages.WARNING,
+                    warning_message.format(
+                        reason='this addon is part of a pending submission'))
             return redirect(
                 reverse(
-                    'admin:blocklist_block_change', args=(addon.block.pk,)) +
-                f'?{get_params.urlencode()}')
+                    'admin:blocklist_blocklistsubmission_change',
+                    args=(addon.blocklistsubmission.pk,)
+                ))
+        elif addon.block:
+            if 'min_version' in get_params or 'max_version' in get_params:
+                messages.add_message(
+                    request,
+                    messages.WARNING,
+                    warning_message.format(
+                        reason='some versions have been blocked already'))
+            return redirect(
+                reverse(
+                    'admin:blocklist_block_change', args=(addon.block.pk,)))
         else:
             return redirect(
                 reverse('admin:blocklist_blocklistsubmission_add') +
