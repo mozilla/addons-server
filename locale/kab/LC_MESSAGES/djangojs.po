@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:24+0000\n"
+"PO-Revision-Date: 2020-05-19 21:34+0000\n"
 "Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -201,7 +201,7 @@ msgstr[1] "{0} tigrummiwin"
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} aɛiwed n tmuɣli"
-msgstr[1] "{0} aɛiwed n tɣuṛiwin"
+msgstr[1] "{0} aɛiwed n tmuɣliwin"
 
 msgid "{0} sale"
 msgid_plural "{0} sales"
@@ -346,19 +346,19 @@ msgid "Category Landing Featured Carousel"
 msgstr "Taggayt tagejdant n umray ifazen"
 
 msgid "Category Landing Top Rated"
-msgstr "Taggayt tagejdant yettaszemlen seg imezwura"
+msgstr "Taggayt tagejdant yettaszemlen seg yimezwura"
 
 msgid "Category Landing Most Popular"
-msgstr "Taggayt tagekdant yettwasnen aṭas"
+msgstr "Taggayt tagejdant yettwassnen aṭas"
 
 msgid "Category Landing Recently Added"
 msgstr "Taggayt tagejdant yettwarnan melmi kan"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Snirem tabdart n usmizzwer n yetran"
+msgstr "Snirem tabdart n usmizzwer n yitran"
 
 msgid "Browse Listing Users Sort"
-msgstr "Snirem tabdart n usmizzwer n iseqdacen"
+msgstr "Snirem tabdart n usmizzwer n yiseqdacen"
 
 msgid "Browse Listing Rating Sort"
 msgstr "Snirem tabdart n usmizzwer n tezmilin"
@@ -367,10 +367,10 @@ msgid "Browse Listing Created Sort"
 msgstr "Snirem tabdart n usmizzwer n tmerna"
 
 msgid "Browse Listing Name Sort"
-msgstr "Snirem tabdart n usmizzwer n yesmawen"
+msgstr "Snirem tabdart n usmizzwer n yismawen"
 
 msgid "Browse Listing Popular Sort"
-msgstr "Snirem tabdart n usmizzwer n yettwasnen aṭas"
+msgstr "Snirem tabdart n usmizzwer n yettwassnen aṭas"
 
 msgid "Browse Listing Updated Sort"
 msgstr "Snirem tabdart n usmizzwer n usnifel"
@@ -410,19 +410,19 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Isidar akked iseqdacen n yal ass, {0} n wussan ineggura"
+msgstr "Isidar akked yiseqdacen n yal ass, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Isidar akked iseqdacen n yal ass si {0} ar {1}"
+msgstr "Isidar akked yiseqdacen n yal ass seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr "Asebded akken iseqdacen n yal ass, {0} n wussan ineggura"
+msgstr "Asebded akked yiseqdacen n yal ass, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Asebded akked iseqdacen n yal ass si {0} ar {1}"
+msgstr "Asebded akked yiseqdacen n yal ass seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -430,7 +430,7 @@ msgstr "Isidar, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "Isidar si {0} ar {1}"
+msgstr "Isidar seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -438,7 +438,7 @@ msgstr "Iseqdacen n yal ass, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr "Iseqdacen n yal ass si {0} ar {1}"
+msgstr "Iseqdacen n yal ass seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
@@ -446,7 +446,7 @@ msgstr "Isnasen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr "Isnasen si {0} ar {1}"
+msgstr "Isnasen seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -454,7 +454,7 @@ msgstr "Tilɣubliḍin, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr "Tilɣibliḍin si {0} ar {1}"
+msgstr "Tilɣibliḍin seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
