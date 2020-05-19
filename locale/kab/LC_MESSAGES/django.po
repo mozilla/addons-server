@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:05+0000\n"
+"PO-Revision-Date: 2020-05-19 21:06+0000\n"
 "Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -145,7 +145,7 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr "Abrid n uzegrir akked taggayt sran ad fakken s \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr "ISmawen n yizegrar ur zmiren ara ad gebren ticraḍ yettwasersen n Mozilla neɣ Firefox."
+msgstr "Ismawen n yizegrar ur zmiren ara ad gebren ticraḍ yettwasersen n Mozilla neɣ Firefox."
 
 msgid "Sort by:"
 msgstr "Smizzwer s:"
@@ -163,13 +163,13 @@ msgid "Tools"
 msgstr "Ifecka"
 
 msgid "My Profile"
-msgstr "Imeɣna yinu"
+msgstr "Imeɣna-inu"
 
 msgid "Account Settings"
 msgstr "Iɣewwaṛen n umiḍan"
 
 msgid "My Collections"
-msgstr "Tigrummiwin yinu"
+msgstr "Tigrummiwin-iw"
 
 msgid "My Favorites"
 msgstr "Inurifen inu"

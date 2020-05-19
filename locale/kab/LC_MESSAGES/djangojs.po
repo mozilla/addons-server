@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-14 04:03+0000\n"
-"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
+"PO-Revision-Date: 2020-05-19 21:13+0000\n"
+"Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgid "Select a file..."
 msgstr "Fren afaylu..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Isem n ufaylu n uzegrir-ik issefka d ifak s .zip, .xpi, .crx neɣ .xml"
+msgstr "Isem n ufaylu n uzegrir-ik issefk ad ifak s .zip, .xpi, .crx neɣ .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -40,7 +40,7 @@ msgid "{0} of {1}"
 msgstr "{0} si {1}"
 
 msgid "Cancel"
-msgstr "Sefsex"
+msgstr "Semmet"
 
 msgid "Uploading {0}"
 msgstr "Asali {0}"
@@ -53,8 +53,8 @@ msgstr "Ḍmen tummla n wuguren meṛṛa n  linting deg GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Asentem n uzegrir inek ur yeddi ara s tuccḍa {0}."
-msgstr[1] "Asentem n uzegrir inek ur yeddi ara s tuccḍiwin {0}."
+msgstr[0] "Asentem n uzegrir-ik ur yeddi ara s tuccḍa {0}."
+msgstr[1] "Asentem n uzegrir-ik ur yeddi ara s tuccḍiwin {0}."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -68,19 +68,19 @@ msgid "Validating {0}"
 msgstr "Asentem {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr "Azegrir-ik iɛedda tilas n tuɣzi n {0}."
+msgstr "Azegrir-ik iɛedda tilas n teɣzi n {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Irmes-d tiririt tilment seg uqeddac; addad: {0}"
+msgstr "Irmes-d tiririt tilemt seg uqeddac; addad: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "Tuccḍa n uqeddac ur nettwaṛǧi ara deg usentem."
+msgstr "Tuccḍa n uqeddac ur nettwaraǧu ara deg usentem."
 
 msgid "Finished validating {0}"
 msgstr "Asentem yemmed {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "Asentem n uzegrir inek ur ifuk ara deg akud, ad yettwasenqed s ufus."
+msgstr "Asentem n uzegrir-ik ur ifukk ara deg wakud, ad yettwasenqed s ufus."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -123,8 +123,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Isekripten yettwasemẓin, yettwassden neɣ yettwasirwen s wudem awurman n kra n tarrayt (ur nelli ara seg wid n temkeṛḍiyin yettwasnen) yessefk iɣbula-nsen ad ttwaɛezlen akken ad ttusneqden weḥd-"
-"nsen. Wali ma yella tesseqdaceḍ urti n usali n tengalt taɣbalut akken tuzzna-inek ad tettwaqbal."
+"Isekripten yettwasemẓin, yettwassden neɣ yettwasirwen s wudem awurman n kra n tarrayt (ur nelli ara seg wid n temkeṛḍiyin yettwasnen) yessefk iɣbula-nsen ad ttwaɛezlen akken ad ttusneqden weḥd-nsen."
+" Wali ma yella tesseqdaceḍ urti n usali n tengalt taɣbalut akken tuzzna-inek ad tettwaqbal."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Akala n usentem yufa-d uguren i izemren ad yawi ɣer tugin:"
