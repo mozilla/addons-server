@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:34+0000\n"
+"PO-Revision-Date: 2020-05-19 21:43+0000\n"
 "Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -462,15 +462,15 @@ msgstr "Tutlayin, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr "Tutlayin si {0} ar {1}"
+msgstr "Tutlayin seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "Ileqman n izegrar, {0} n wussan ineggura"
+msgstr "Ileqman n yizegrar, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Ileqman n izegrar si {0} ar {1}"
+msgstr "Ileqman n yizegrar seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -478,7 +478,7 @@ msgstr "Addad n uzegrir, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr "Addad n uzegrir si {0} ar {1}"
+msgstr "Addad n uzegrir seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -486,19 +486,19 @@ msgstr "Iɣbula n usader, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "Iɣbula n usader si {0} ar {1}"
+msgstr "Iɣbula n usader seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "Atteki, {0} n wussan ineggura"
+msgstr "Attekki, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr "Attekki si {0} ar {1}"
+msgstr "Attekki seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "Asmel imizrir,{0} n ussan ineggura"
+msgstr "Asmel imizrir, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
@@ -510,7 +510,7 @@ msgstr "Izegrar yettuseqdacen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr "Izegrar yettuseqdacen si {0} ar {1}"
+msgstr "Izegrar yettuseqdacen seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
@@ -518,7 +518,7 @@ msgstr "Izegrar i d-yettwasidren, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Izegrar i d-yettwasidren si {0} ar {1}"
+msgstr "Izegrar i d-yettwasidren seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
@@ -526,7 +526,7 @@ msgstr "Izegrar yettwarnan, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr "Izegrar yettwarnan si {0} ar {1}"
+msgstr "Izegrar yettwarnan seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
@@ -534,7 +534,7 @@ msgstr "Izegrar yettwaleqmen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "Izegrar yettwaleqqmen si {0} ar {1}"
+msgstr "Izegrar yettwaleqqmen seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
@@ -590,11 +590,11 @@ msgstr "Asebded, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr "Asebded si {0} ar {1}"
+msgstr "Asebded seg {0} ɣer {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr "<b>{0}</b> di {1} n wussan ineggura"
+msgstr "<b>{0}</b> deg {1} n wussan ineggura"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
