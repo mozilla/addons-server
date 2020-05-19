@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 19:52+0000\n"
+"PO-Revision-Date: 2020-05-19 19:59+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -477,7 +477,7 @@ msgstr "GUID %(guid)s je we wustejacym zapodaću"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Blokowanje za GUID %(guid)s je přećiwo pisanju škitane - dyrbi so ze zestarjenej zběrku blokowanskich lisćinow wobźěłać"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -5568,13 +5568,11 @@ msgstr "Nalistowane wersije, kotrež sej čłowjeske přepruwowanje wužaduja ({
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Njenalistowane wersije, kotrež sej čłowjeske přepruwowanje wužaduja ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Nalistowane wersije"
+msgstr "Nalistowane wersije ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Nalistowane wersije"
+msgstr "Njenalistowane wersije ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej pósćelu."
@@ -5645,9 +5643,8 @@ msgstr "Protokol přepruwowanjow"
 msgid "Add-on Review Guide"
 msgstr "Nawod za přepruwowanje přidatkow"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Wěstotne testy"
+msgstr "Wěstotne skenery"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
@@ -5656,13 +5653,12 @@ msgstr[1] "Přez skenery markěrowane ({0})"
 msgstr[2] "Přez skenery markěrowane ({0})"
 msgstr[3] "Přez skenery markěrowane ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Za čłowjeske přepruwowanje markěrować"
-msgstr[1] "Za čłowjeske přepruwowanje markěrować"
-msgstr[2] "Za čłowjeske přepruwowanje markěrować"
-msgstr[3] "Za čłowjeske přepruwowanje markěrować"
+msgstr[0] "Za čłowjeske přepruwowanje markěrowany ({0})"
+msgstr[1] "Za čłowjeske přepruwowanje markěrować ({0})"
+msgstr[2] "Za čłowjeske přepruwowanje markěrowany ({0})"
+msgstr[3] "Za čłowjeske přepruwowanje markěrowany ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatisce schwalene přidatki"
