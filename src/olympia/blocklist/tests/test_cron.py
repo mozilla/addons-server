@@ -260,4 +260,4 @@ def test_auto_import_blocklist_waffle(call_command_mock):
             except CommandError:
                 pass
             incr_mock.assert_called_with(
-                'blocklist.cron.import_blocklist.error')
+                'blocklist.cron.import_blocklist.failure')

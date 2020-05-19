@@ -91,6 +91,6 @@ def auto_import_blocklist():
         try:
             call_command('import_blocklist')
         except CommandError as err:
-            statsd.incr('blocklist.cron.import_blocklist.error')
+            statsd.incr('blocklist.cron.import_blocklist.failure')
             raise err
     statsd.incr('blocklist.cron.import_blocklist.success')
