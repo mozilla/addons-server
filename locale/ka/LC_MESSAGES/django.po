@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:05+0000\n"
+"PO-Revision-Date: 2020-05-19 21:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -508,10 +508,10 @@ msgid "Review Unlisted"
 msgstr "მიმოხილვის შენიშვნა"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "ეს შეზღუდვა გადმოტანილია Regex-ზე დაფუძნებული Legacy-Kinto-შეზღუდვით."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "ნებისმიერი ცვლილება Legacy-შეზღუდვის სიაში არ აისახება – საჭირო იქნება ხელით ჩასწორება Kinto-ვებსამართავიდან."
 
 #, fuzzy, python-format
 msgid "Delete Multiple %(name)s"
@@ -523,11 +523,11 @@ msgstr "მთავარი გვერდი"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s დამატება GUID უკვე შეზღუდულია ვერსიებისთვის %(v_min)s – %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s დამატება GUID ვერ მოიძებნა"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
 msgstr ""
