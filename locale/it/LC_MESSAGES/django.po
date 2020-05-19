@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-16 08:40+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2020-05-19 12:17+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -5700,12 +5700,12 @@ msgid "Add-on Review Guide"
 msgstr "Guida sulla revisione dei componenti aggiuntivi"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Contrassegnato da scanner"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Contrassegnato da scanner ({0})"
+msgstr[1] "Contrassegnati da scanner ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Componenti aggiuntivi approvati automaticamente"
@@ -5855,7 +5855,7 @@ msgid "Add-on name translations"
 msgstr "Traduzioni nome del componente aggiuntivo"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Strumenti revisore – Componenti aggiuntivi per Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Torna al pannello degli strumenti per i revisori"
@@ -5873,7 +5873,7 @@ msgid "Score"
 msgstr "Punteggio"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Registro moderazione revisore – Componenti aggiuntivi per Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5914,7 +5914,7 @@ msgid "Undelete"
 msgstr "Ripristina"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Prestazioni revisore – Componenti aggiuntivi per Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Rendimento del revisore"
@@ -5962,7 +5962,7 @@ msgid "All-Time"
 msgstr "Di sempre"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Strumenti revisore – Componenti aggiuntivi per Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
 msgstr "Revisione del contenuto – Componenti aggiuntivi per Firefox"
@@ -5971,13 +5971,13 @@ msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Componenti aggiuntivi approvati automaticamente – Componenti aggiuntivi per Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderazione della revisione – Componenti aggiuntivi per Firefox"
 
 msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Richieste informazioni scadute – Componenti aggiuntivi per Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Componenti aggiuntivi fuori elenco – Componenti aggiuntivi per Firefox"
 
 msgid "Advanced Search"
 msgstr "Ricerca avanzata"
@@ -6135,7 +6135,7 @@ msgid "Resolution"
 msgstr "Risoluzione"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Registro revisioni componente aggiuntivo – Componenti aggiuntivi per Firefox"
 
 msgid "Reviewer"
 msgstr "Revisore"
