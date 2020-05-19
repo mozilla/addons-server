@@ -1360,46 +1360,16 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': False
         },
-        'request.summary': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
-        },
-        's.client': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
-        },
-        'z': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
-        },
-        'z.addons': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
-        },
         'z.celery': {
             'handlers': ['statsd'],
             'level': logging.ERROR,
             'propagate': True,
-        },
-        'z.es': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
         },
         'z.pool': {
             'handlers': ['mozlog'],
             'level': logging.ERROR,
             'propagate': False
         },
-        'z.task': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
-        }
     },
 }
 
