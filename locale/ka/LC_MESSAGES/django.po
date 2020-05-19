@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:34+0000\n"
+"PO-Revision-Date: 2020-05-19 21:43+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -559,22 +559,19 @@ msgstr "დაემატოს %(name)s"
 msgid "Add-on GUIDs (one per line)"
 msgstr "დამატება GUID (თითო ცალკე ხაზზე)"
 
-#, fuzzy
 msgid "Submit"
-msgstr "ვერსიის გადაგზავნა"
+msgstr "წარდგენა"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr "%(count)s დამატება GUID"
 
-#, fuzzy
 msgid "users"
 msgstr "მომხმარებლები"
 
 msgid "Edit Block"
 msgstr "შეზღუდვის ჩასწორება"
 
-#, fuzzy
 msgid "versions"
 msgstr "ვერსიები"
 
@@ -914,9 +911,8 @@ msgstr "შეზღუდვა ჩასწორებულია"
 msgid "Block for {0} deleted from Blocklist."
 msgstr "{addon}-ის Version {0} წაშლილია."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "დამატება წაშლილია."
+msgstr "შეზღუდვა წაშლილია"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID დამატებისთვის {addon} ჩაემატა DeniedGuid-ში."
@@ -1571,41 +1567,38 @@ msgstr "დამატებითი მოქმედებები"
 msgid "Flag for human review"
 msgstr "მონიშვნა ადამიანის მონაწილეობით განხილვისთვის"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "ავტომატური მიღების გამორთვა"
+msgstr "თვითდამოწმების გადადება"
 
 msgid "Delay auto-approval indefinitely"
 msgstr "თვითდამოწმების გადადება განუსაზღვრელად"
 
 msgid "True positive"
-msgstr ""
+msgstr "ჭეშმარიტი დადებითი"
 
 msgid "False positive"
-msgstr ""
+msgstr "ცრუ დადებითი"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "დაუდგენელი"
 
-#, fuzzy
 msgid "New"
-msgstr "უფრო ახალი"
+msgstr "ახალი"
 
 msgid "Running"
-msgstr ""
+msgstr "გაშვებული"
 
 msgid "Aborted"
-msgstr ""
+msgstr "შეწყვეტილი"
 
 msgid "Aborting"
-msgstr ""
+msgstr "წყდება"
 
-#, fuzzy
 msgid "Completed"
-msgstr "დაუსრულებელი"
+msgstr "დასრულებული"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "დაგეგმილი"
 
 msgid "Core"
 msgstr "ბირთვი"
@@ -2505,7 +2498,7 @@ msgid "More information on Creative Commons licenses"
 msgstr "ვრცლად, Creative Commons ლიცენზიების შესახებ"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "თქვენი დამატება ამჟამად „უხილავია“."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
@@ -3162,20 +3155,20 @@ msgid "Visit the Extension Workshop"
 msgstr "გაფართოებების შემუშავება"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "დაგვიკავშირდით"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
 msgstr "შემმუშავებელი"
 
 msgid "For end users"
-msgstr ""
+msgstr "მომხმარებლებისთვის"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 #, fuzzy
 msgid "Add-on Developers Mailing List"
@@ -3186,7 +3179,7 @@ msgid "Extensions Developers Newsletter"
 msgstr "გაფართოების შემუშავება"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "მუდმივად გაეცანით ბოლო სიახლეებსა და ღონისძიებებს Firefox-ის გაფართოებების შემმუშავებლებისთვის."
 
 #, fuzzy
 msgid "Email Address"
@@ -3194,17 +3187,17 @@ msgstr "IP-მისამართი"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "თანახმა ვარ, რომ Mozilla-მ ჩემი მონაცემები გამოიყენოს, %(link_open)sპირადულობის დაცვის განაცხადის%(link_close)s შესაბამისად."
 
 #, fuzzy
 msgid "Sign Up"
 msgstr "გამოსვლა"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "გმადლობთ!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "თუ ჯერ არ დაგიმოწმებიათ Mozilla-ს სიახლეების ცნობარი, ამის გაკეთება ახლაც შეგიძლიათ. გთხოვთ, მონახოთ ჩვენი გზავნილი მიღებული წერილების ან ჯართის საქაღალდეში."
 
 msgid "Resources"
 msgstr "სასარგებლო ბმულები"
@@ -3223,7 +3216,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "ღილაკი „გადმოწერეთ დამატება“"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "სასურველი გაფართოებების პროგრამა"
 
 msgid "Contribute"
 msgstr "შემოწირულობა"
@@ -3256,10 +3249,10 @@ msgid "See how"
 msgstr "ნახეთ როგორ"
 
 msgid "Get involved"
-msgstr ""
+msgstr "ჩაერთეთ"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "შემოუერთდით ათასობით შემმუშავებელს და მონახეთ მეტი გზა, გაფართოებების ეკოსისტემაში წვლილის შესატანად."
 
 #, fuzzy
 msgid "Learn more about the developer community"
@@ -3315,7 +3308,7 @@ msgid "Learn how to make an extension"
 msgstr "გაიგეთ, თუ როგორ იქმნება დამატებები"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "მზად ხართ თქვენი გაფართოების წარდგენის ან მართვისთვის?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
