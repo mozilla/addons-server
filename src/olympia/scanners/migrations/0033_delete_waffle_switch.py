@@ -11,6 +11,6 @@ def delete_waffle_switch(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    dependencies = [('scanners', '0031_versionscannerflags')]
+    dependencies = [('scanners', '0032_auto_20200519_1438')]
 
     operations = [migrations.RunPython(delete_waffle_switch)]
