@@ -31,6 +31,7 @@ from olympia.reviewers.utils import (
     ReviewAddon, ReviewFiles, ReviewHelper, ReviewUnlisted,
     ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
+from olympia.scanners.models import VersionScannerFlags
 from pyquery import PyQuery as pq
 
 
@@ -1047,6 +1048,18 @@ class TestReviewHelper(TestReviewHelperBase):
         self.test_public_addon_confirm_auto_approval()
         self.addon.current_version.reload()
         assert self.addon.current_version.needs_human_review is False
+
+    def test_addon_with_version_and_scanner_flag_confirm_auto_approvals(self):
+        flags = VersionScannerFlags.objects.create(
+            version=self.addon.current_version,
+            needs_human_review_by_mad=True,
+        )
+        assert flags.needs_human_review_by_mad
+
+        self.test_public_addon_confirm_auto_approval()
+
+        flags.refresh_from_db()
+        assert not flags.needs_human_review_by_mad
 
     def test_unlisted_version_addon_confirm_multiple_versions(self):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
