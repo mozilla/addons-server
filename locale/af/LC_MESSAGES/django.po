@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -378,9 +378,6 @@ msgstr "Wys tans <b>%(begin)s</b>&ndash;<b>%(end)s</b> van <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Byvoegings vir {0}"
 
-msgid "Add-ons"
-msgstr "Byvoegings"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} gelede"
@@ -491,19 +488,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -1782,6 +1779,12 @@ msgid "Need to select at least one application."
 msgstr ""
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -5633,6 +5636,14 @@ msgstr "Nie nagegaan nie"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Nie nagegaan nie"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Beta-weergawe {0}"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Beta-weergawe {0}"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5713,13 +5724,20 @@ msgstr "Resensie"
 msgid "Add-on Review Guide"
 msgstr "Nog geen resensies oor byvoegings nie."
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Privaatheid en sekuriteit"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Nie nagegaan nie"
+msgstr[1] "Nie nagegaan nie"
 
 # 75%
 # 100%
@@ -5831,9 +5849,6 @@ msgstr "Byvoegings"
 
 msgid "Internal AMO ID"
 msgstr ""
-
-msgid "Works with"
-msgstr "Werk met"
 
 msgid "Visibility"
 msgstr ""
@@ -5993,6 +6008,9 @@ msgstr ""
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
+
+msgid "Add-ons"
+msgstr "Byvoegings"
 
 msgid "Total"
 msgstr ""
@@ -6752,21 +6770,9 @@ msgstr "Terug na {0} se byvoegingsblad"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Byvoegings"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Byvoegings"
-
-msgid "My Account"
-msgstr "My rekening"
-
-msgid "Welcome, {0}"
-msgstr "Welkom, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registreer</a> of <a href=\"%(login)s\">Meld aan</a>"
-
-msgid "Android Add-ons"
-msgstr ""
 
 msgid "Required fields"
 msgstr "Vereiste velde"

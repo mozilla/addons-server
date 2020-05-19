@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2020-05-18 18:06+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -675,11 +675,6 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} arquivo"
 msgstr[1] "{files} arquivos"
-
-msgid "{reviews} user review"
-msgid_plural "{reviews} user reviews"
-msgstr[0] "{reviews} análise de usuário"
-msgstr[1] "{reviews} análises de usuários"
 
 msgid "Image changes being processed"
 msgstr "Processando alterações na imagem"

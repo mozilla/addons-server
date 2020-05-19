@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2020-05-14 04:03+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,8 +123,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Isekripten yettwasemẓin, yettwassden neɣ yettwasirwen s wudem awurman n kra n tarrayt (ur nelli ara seg wid n temkeṛḍiyin yettwasnen) yessefk iɣbula-nsen ad ttwaɛezlen akken ad ttusneqden weḥd-nsen."
-" Wali ma yella tesseqdaceḍ urti n usali n tengalt taɣbalut akken tuzzna-inek ad tettwaqbal."
+"Isekripten yettwasemẓin, yettwassden neɣ yettwasirwen s wudem awurman n kra n tarrayt (ur nelli ara seg wid n temkeṛḍiyin yettwasnen) yessefk iɣbula-nsen ad ttwaɛezlen akken ad ttusneqden weḥd-"
+"nsen. Wali ma yella tesseqdaceḍ urti n usali n tengalt taɣbalut akken tuzzna-inek ad tettwaqbal."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Akala n usentem yufa-d uguren i izemren ad yawi ɣer tugin:"
@@ -675,11 +675,6 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ufaylu"
 msgstr[1] "{files} ifuyla"
-
-msgid "{reviews} user review"
-msgid_plural "{reviews} user reviews"
-msgstr[0] "{reviews} acegger n useqdac"
-msgstr[1] "{reviews} iceggiren n useqdac"
 
 msgid "Image changes being processed"
 msgstr "Asnifel n tugniwin iteddu"

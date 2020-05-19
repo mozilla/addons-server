@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2020-05-01 21:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -367,9 +367,6 @@ msgstr "Monstrante <b>%(begin)s</b>&ndash;<b>%(end)s</b> de <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Additivos pro {0}"
 
-msgid "Add-ons"
-msgstr "Additivos"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} retro"
@@ -480,20 +477,20 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Bloco con GUID %(guid)s non trovate"
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "Le GUID %(guid)s es in un invio pendente"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "Le additivo con GUID %(guid)s non existe"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr "Le GUID %(guid)s es jam in un invio pendente"
+msgid "Block with GUID %(guid)s not found"
+msgstr "Bloco con GUID %(guid)s non trovate"
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr "Le additivo con GUID %(guid)s non existe"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Le blocadas a actualisar es differente perque le version minime o maxime ha cambiate."
@@ -1716,6 +1713,12 @@ msgstr "Il es necesse al minus eliger un application compatibile."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Tu ha incargate troppo de files recentemente. Reproba post alcun tempore."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Le version {version} ha jam essite incargate e delite."
@@ -5534,6 +5537,14 @@ msgstr "Alteres que attende revision ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Alteres que attende revision ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Versiones in le lista de presentation"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Versiones in le lista de presentation"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Isto approbara, signara, e publicara iste version. Le commentos sera inviate al disveloppator."
 
@@ -5606,13 +5617,20 @@ msgstr "Registro del revisiones"
 msgid "Add-on Review Guide"
 msgstr "Guida al revision del additivos"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Tests de securitate"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Signalar pro revision human"
+msgstr[1] "Signalar pro revision human"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Additivos approbate automaticamente"
@@ -5706,9 +5724,6 @@ msgstr "ID del additivo"
 
 msgid "Internal AMO ID"
 msgstr "ID interne de AMO"
-
-msgid "Works with"
-msgstr "Compatibile con"
 
 msgid "Visibility"
 msgstr "Visibilitate"
@@ -5856,6 +5871,9 @@ msgstr "Rendimento mensual"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "Punctuationes maxime per typo"
+
+msgid "Add-ons"
+msgstr "Additivos"
 
 msgid "Total"
 msgstr "Total"
@@ -6597,21 +6615,9 @@ msgstr "Retornar al {0} pagina principal del additivos"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "Additivos de <img alt=\"Firefox\" src=\"{0}\">"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "Additivos <img alt=\"\" src=\"{0}\">"
-
-msgid "My Account"
-msgstr "Mi conto"
-
-msgid "Welcome, {0}"
-msgstr "Benvenite, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registra te</a> o <a href=\"%(login)s\">accede</a>"
-
-msgid "Android Add-ons"
-msgstr "Additivos pro Android"
 
 msgid "Required fields"
 msgstr "Campos obligatori"

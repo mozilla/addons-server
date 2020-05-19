@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -381,9 +381,6 @@ msgstr "Приказано <b>%(begin)s</b>&ndash;<b>%(end)s</b> од <b>%(count
 msgid "Add-ons for {0}"
 msgstr "Додаци за {0}"
 
-msgid "Add-ons"
-msgstr "Додаци"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "пре {0}"
@@ -498,19 +495,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -1833,6 +1830,12 @@ msgid "Need to select at least one application."
 msgstr "Потребна је најмање једна компатибилна апликација."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -5740,6 +5743,14 @@ msgstr "Конторлисан преглед ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Конторлисан преглед ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Погледајте друге верзије"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Погледајте друге верзије"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5827,13 +5838,20 @@ msgstr "Датум рецензије"
 msgid "Add-on Review Guide"
 msgstr "Пуна рецензија додатка"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Тестови безбедности"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Конторлисан преглед ({0})"
+msgstr[1] "Конторлисана прегледа ({0})"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5943,9 +5961,6 @@ msgstr "Додатак"
 
 msgid "Internal AMO ID"
 msgstr ""
-
-msgid "Works with"
-msgstr "Ради са"
 
 msgid "Visibility"
 msgstr ""
@@ -6103,6 +6118,9 @@ msgstr "Месечне перформансе"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "Пресек по типу"
+
+msgid "Add-ons"
+msgstr "Додаци"
 
 msgid "Total"
 msgstr "Укупно"
@@ -6862,21 +6880,9 @@ msgstr "Вратите се на почетну страницу {0} додат�
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> додаци"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> додаци"
-
-msgid "My Account"
-msgstr "Мој налог"
-
-msgid "Welcome, {0}"
-msgstr "Добродошли, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Региструјте налог</a> или се <a href=\"%(login)s\">пријавите</a>"
-
-msgid "Android Add-ons"
-msgstr "Додаци за Android"
 
 msgid "Required fields"
 msgstr "Потребна поља"

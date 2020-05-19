@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -358,9 +358,6 @@ msgstr ""
 msgid "Add-ons for {0}"
 msgstr "Dodaci za {0}"
 
-msgid "Add-ons"
-msgstr ""
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr ""
@@ -469,19 +466,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -1725,6 +1722,12 @@ msgid "Need to select at least one application."
 msgstr "Treba barem jednu kompatibilnu aplikaciju."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -5709,6 +5712,14 @@ msgstr ""
 msgid "Unlisted versions needing human review ({0})"
 msgstr ""
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Navedene verzije"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Navedene verzije"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5779,11 +5790,18 @@ msgstr "Dnevnik pregleda"
 msgid "Add-on Review Guide"
 msgstr "Vodič za pregled dodatka"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Sigurnosni testovi"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -5882,9 +5900,6 @@ msgid "Add-on ID"
 msgstr "URL dodatka:"
 
 msgid "Internal AMO ID"
-msgstr ""
-
-msgid "Works with"
 msgstr ""
 
 msgid "Visibility"
@@ -6031,6 +6046,9 @@ msgid "Monthly Performance"
 msgstr ""
 
 msgid "All-time Point Breakdown by Type"
+msgstr ""
+
+msgid "Add-ons"
 msgstr ""
 
 msgid "Total"
@@ -6757,20 +6775,8 @@ msgstr ""
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
-
-msgid "My Account"
-msgstr ""
-
-msgid "Welcome, {0}"
-msgstr ""
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
-
-msgid "Android Add-ons"
 msgstr ""
 
 msgid "Required fields"

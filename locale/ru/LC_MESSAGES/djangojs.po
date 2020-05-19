@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2020-05-04 21:36+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -691,12 +691,6 @@ msgid_plural "{files} files"
 msgstr[0] "{files} файл"
 msgstr[1] "{files} файла"
 msgstr[2] "{files} файлов"
-
-msgid "{reviews} user review"
-msgid_plural "{reviews} user reviews"
-msgstr[0] "{reviews} отзыв"
-msgstr[1] "{reviews} отзыва"
-msgstr[2] "{reviews} отзывов"
 
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
