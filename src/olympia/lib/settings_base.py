@@ -1281,11 +1281,6 @@ LOGGING = {
     },
     'root': {'handlers': ['mozlog'], 'level': logging.INFO},
     'loggers': {
-        'amo': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
-            'propagate': False
-        },
         'amqp': {
             'handlers': ['null'],
             'level': logging.WARNING,

@@ -20,7 +20,7 @@ INSTALLED_APPS += (
 )
 
 # Override logging config to enable DEBUG logs for (almost) everything.
-LOGGING['root'] = {'handlers': ['mozlog'], 'level': logging.DEBUG}
+LOGGING['root']['level'] = logging.DEBUG
 for logger in list(LOGGING['loggers'].keys()):
     if logger not in ['filtercascade', 'mohawk.util', 'post_request_task']:
         del LOGGING['loggers'][logger]
