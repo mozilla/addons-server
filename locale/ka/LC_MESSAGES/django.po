@@ -6254,7 +6254,7 @@ msgid "file signature"
 msgstr "{file} დამოწმებულია."
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "ესაა ზუსტი დასახელება წესის, რომელსაც სკანერი იყენებს."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
