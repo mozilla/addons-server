@@ -42,11 +42,6 @@ class TestFileInfoSerializer(TestCase):
         self.file = self.addon.current_version.current_file
 
     def get_serializer(self, **extra_context):
-        api_version = api_settings.DEFAULT_VERSION
-        request = APIRequestFactory().get('/api/%s/' % api_version)
-        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
-        request.version = api_version
-        extra_context.setdefault('request', request)
         extra_context.setdefault('version', self.version)
 
         return FileInfoSerializer(
@@ -162,11 +157,6 @@ class TestFileInfoDiffSerializer(TestCase):
         self.file = self.addon.current_version.current_file
 
     def get_serializer(self, **extra_context):
-        api_version = api_settings.DEFAULT_VERSION
-        request = APIRequestFactory().get('/api/%s/' % api_version)
-        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
-        request.version = api_version
-        extra_context.setdefault('request', request)
         extra_context.setdefault('version', self.version)
 
         return FileInfoDiffSerializer(
@@ -358,12 +348,6 @@ class TestAddonBrowseVersionSerializerFileOnly(TestCase):
         self.version = self.addon.current_version
 
     def get_serializer(self, **extra_context):
-        api_version = api_settings.DEFAULT_VERSION
-        request = APIRequestFactory().get('/api/%s/' % api_version)
-        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
-        request.version = api_version
-        extra_context.setdefault('request', request)
-
         return AddonBrowseVersionSerializerFileOnly(
             instance=self.version, context=extra_context)
 
@@ -420,12 +404,6 @@ class TestAddonBrowseVersionSerializer(TestCase):
         self.version = self.addon.current_version
 
     def get_serializer(self, **extra_context):
-        api_version = api_settings.DEFAULT_VERSION
-        request = APIRequestFactory().get('/api/%s/' % api_version)
-        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
-        request.version = api_version
-        extra_context.setdefault('request', request)
-
         return AddonBrowseVersionSerializer(
             instance=self.version, context=extra_context)
 
@@ -545,12 +523,6 @@ class TestAddonCompareVersionSerializerFileOnly(TestCase):
         self.version = self.addon.current_version
 
     def get_serializer(self, **extra_context):
-        api_version = api_settings.DEFAULT_VERSION
-        request = APIRequestFactory().get('/api/%s/' % api_version)
-        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
-        request.version = api_version
-        extra_context.setdefault('request', request)
-
         return AddonCompareVersionSerializerFileOnly(
             instance=self.version, context=extra_context)
 
@@ -601,12 +573,6 @@ class TestAddonCompareVersionSerializer(TestCase):
         return addon, repo, parent_version, new_version
 
     def get_serializer(self, **extra_context):
-        api_version = api_settings.DEFAULT_VERSION
-        request = APIRequestFactory().get('/api/%s/' % api_version)
-        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
-        request.version = api_version
-        extra_context.setdefault('request', request)
-
         return AddonCompareVersionSerializer(
             instance=self.version, context=extra_context)
 
