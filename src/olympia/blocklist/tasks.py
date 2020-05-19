@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 
+from django_statsd.clients import statsd
 from multidb import get_replica
 
 import olympia.core.logger
@@ -61,7 +62,7 @@ def import_block_from_blocklist(record):
         defaults={'record': record, 'timestamp': record.get('last_modified')})
     if not import_created:
         log.debug('Kinto %s: updating existing KintoImport object', kinto_id)
-        existing_block_ids = (
+        existing_block_ids = list(
             Block.objects.filter(kinto_id__in=(kinto_id, f'*{kinto_id}'))
                          .values_list('id', flat=True))
 
@@ -104,6 +105,9 @@ def import_block_from_blocklist(record):
                 'Kinto %s: Broke down regex into list; '
                 'attempting to create Blocks for guids in %s',
                 kinto_id, guids_list)
+            statsd.incr(
+                'blocklist.tasks.import_blocklist.record_guid',
+                count=len(guids_list))
             addons_guids_qs = Addon.unfiltered.using(using_db).filter(
                 guid__in=guids_list).values_list('guid', flat=True)
         else:
@@ -123,6 +127,7 @@ def import_block_from_blocklist(record):
         log.debug(
             'Kinto %s: Attempting to create a Block for guid [%s]',
             kinto_id, guid)
+        statsd.incr('blocklist.tasks.import_blocklist.record_guid')
         addons_guids_qs = Addon.unfiltered.using(using_db).filter(
             guid=guid).values_list('guid', flat=True)
         regex = False
@@ -134,15 +139,18 @@ def import_block_from_blocklist(record):
             log.debug(
                 'Kinto %s: Skipped Block for [%s] because it has no '
                 'webextension files', kinto_id, guid)
+            statsd.incr('blocklist.tasks.import_blocklist.block_skipped')
             continue
         (block, created) = Block.objects.update_or_create(
             guid=guid, defaults=dict(guid=guid, **block_kw))
         block_activity_log_save(block, change=not created)
         if created:
             log.debug('Kinto %s: Added Block for [%s]', kinto_id, guid)
+            statsd.incr('blocklist.tasks.import_blocklist.block_added')
             block.update(modified=modified_date)
         else:
             log.debug('Kinto %s: Updated Block for [%s]', kinto_id, guid)
+            statsd.incr('blocklist.tasks.import_blocklist.block_updated')
         new_blocks.append(block)
     if new_blocks:
         kinto_import.outcome = (
@@ -162,8 +170,16 @@ def import_block_from_blocklist(record):
             block_activity_log_delete(
                 block, delete_user=block_kw['updated_by'])
             block.delete()
+            statsd.incr('blocklist.tasks.import_blocklist.block_deleted')
 
     kinto_import.save()
+
+    if import_created:
+        statsd.incr(
+            'blocklist.tasks.import_blocklist.new_record_processed')
+    else:
+        statsd.incr(
+            'blocklist.tasks.import_blocklist.modified_record_processed')
 
 
 @task
@@ -177,7 +193,9 @@ def delete_imported_block_from_blocklist(kinto_id):
         block_activity_log_delete(
             block, delete_user=task_user)
         block.delete()
+        statsd.incr('blocklist.tasks.import_blocklist.block_deleted')
     KintoImport.objects.get(kinto_id=kinto_id).delete()
+    statsd.incr('blocklist.tasks.import_blocklist.deleted_record_processed')
 
 
 @task

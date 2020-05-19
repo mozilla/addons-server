@@ -322,7 +322,8 @@ class TestImportBlocklist(TestCase):
         assert KintoImport.objects.filter(
             kinto_id='1234567890').exists()
 
-        call_command('import_blocklist')
+        with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
+            call_command('import_blocklist')
 
         assert Block.objects.all().count() == 2
         # existing block is still there, but updated
@@ -341,6 +342,42 @@ class TestImportBlocklist(TestCase):
 
         assert not KintoImport.objects.filter(kinto_id='1234567890').exists()
         assert not Block.objects.filter(kinto_id='1234567890').exists()
+
+        incr_mock.assert_has_calls([
+            mock.call('blocklist.import_blocklist.new_record_found',
+                      count=7),
+            mock.call('blocklist.import_blocklist.modified_record_found',
+                      count=1),
+            mock.call('blocklist.import_blocklist.deleted_record_found',
+                      count=1),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.record_guid'),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.record_guid'),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.record_guid', count=3),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.block_updated'),
+            mock.call('blocklist.tasks.import_blocklist.block_added'),
+            mock.call('blocklist.tasks.import_blocklist.block_deleted'),
+            mock.call(
+                'blocklist.tasks.import_blocklist.modified_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.block_deleted'),
+            mock.call(
+                'blocklist.tasks.import_blocklist.deleted_record_processed'),
+        ])
+        # 6 rather than 7 because there's 1 non-Firefox block in the test data
+        assert 6 == len([
+            call for call in incr_mock.mock_calls
+            if call[1][0].endswith('new_record_processed')])
+        assert 1 == len([
+            call for call in incr_mock.mock_calls
+            if call[1][0].endswith('modified_record_processed')])
+        assert 1 == len([
+            call for call in incr_mock.mock_calls
+            if call[1][0].endswith('deleted_record_processed')])
 
 
 class TestExportBlocklist(TestCase):

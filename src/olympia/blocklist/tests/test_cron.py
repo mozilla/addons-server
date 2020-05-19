@@ -7,6 +7,7 @@ from unittest import mock
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.management.base import CommandError
 
 from freezegun import freeze_time
 from waffle.testutils import override_switch
@@ -239,9 +240,24 @@ class TestUploadToKinto(TestCase):
 @mock.patch('olympia.blocklist.cron.call_command')
 def test_auto_import_blocklist_waffle(call_command_mock):
     with override_switch('blocklist_auto_import', active=False):
-        auto_import_blocklist()
-        call_command_mock.assert_not_called()
+        with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
+            auto_import_blocklist()
+            incr_mock.assert_not_called()
+            call_command_mock.assert_not_called()
 
     with override_switch('blocklist_auto_import', active=True):
-        auto_import_blocklist()
-        call_command_mock.assert_called()
+        with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
+            auto_import_blocklist()
+            incr_mock.assert_called_with(
+                'blocklist.cron.import_blocklist.success')
+            call_command_mock.assert_called()
+
+    call_command_mock.side_effect = CommandError('foo')
+    with override_switch('blocklist_auto_import', active=True):
+        with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
+            try:
+                auto_import_blocklist()
+            except CommandError:
+                pass
+            incr_mock.assert_called_with(
+                'blocklist.cron.import_blocklist.failure')

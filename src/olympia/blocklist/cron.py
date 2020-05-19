@@ -1,8 +1,10 @@
 import time
 
 from django.core.management import call_command
+from django.core.management.base import CommandError
 
 import waffle
+from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia.constants.blocklist import (
@@ -85,4 +87,10 @@ def auto_import_blocklist():
     if not waffle.switch_is_active('blocklist_auto_import'):
         log.info('Automatic import_blocklist cron job disabled.')
         return
-    call_command('import_blocklist')
+    with statsd.timer('blocklist.cron.import_blocklist'):
+        try:
+            call_command('import_blocklist')
+        except CommandError as err:
+            statsd.incr('blocklist.cron.import_blocklist.failure')
+            raise err
+    statsd.incr('blocklist.cron.import_blocklist.success')
