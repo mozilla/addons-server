@@ -4,8 +4,6 @@ import json
 from django.core.cache import cache
 
 from rest_framework.exceptions import NotFound
-from rest_framework.settings import api_settings
-from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
