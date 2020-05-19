@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-18 21:23+0000\n"
+"PO-Revision-Date: 2020-05-19 13:55+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5026,7 +5026,7 @@ msgstr "Privacidade além das extensões do navegador"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr "Aprimoradores de mídia para Firefox"
+msgstr "Aprimoradores de mídia para o Firefox"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
