@@ -46,6 +46,13 @@ class ScannerResultView(ListAPIView):
             bad_results = bad_results.filter(scanner=scanner)
             good_results = good_results.filter(scanner=scanner)
 
+        bad_filters = Q(state=TRUE_POSITIVE) | Q(
+            version__versionlog__activity_log__action__in=(
+                amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
+                amo.LOG.BLOCKLIST_BLOCK_EDITED.id,
+            )
+        )
+
         good_results = (
             good_results.filter(
                 Q(
@@ -57,18 +64,12 @@ class ScannerResultView(ListAPIView):
                     version__versionlog__activity_log__user_id=settings.TASK_USER_ID  # noqa
                 )
             )
+            .exclude(bad_filters)
             .annotate(label=Value(LABEL_GOOD, output_field=CharField()))
             .all()
         )
         bad_results = (
-            bad_results.filter(
-                Q(state=TRUE_POSITIVE) | Q(
-                    version__versionlog__activity_log__action__in=(
-                        amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
-                        amo.LOG.BLOCKLIST_BLOCK_EDITED.id,
-                    )
-                )
-            )
+            bad_results.filter(bad_filters)
             .annotate(label=Value(LABEL_BAD, output_field=CharField()))
             .all()
         )
