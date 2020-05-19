@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -384,9 +384,6 @@ msgstr "Wyświetlane <b>%(begin)s</b>-<b>%(end)s</b> z <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Dodatki dla programu {0}"
 
-msgid "Add-ons"
-msgstr "Dodatki"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} temu"
@@ -498,19 +495,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -1768,6 +1765,12 @@ msgid "Need to select at least one application."
 msgstr "Musi być określony przynajmniej jeden kompatybilny program."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -5713,6 +5716,14 @@ msgstr "Ocena opinii ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Ocena opinii ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Najnowsze wersje"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Najnowsze wersje"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Spowoduje to zatwierdzenie, podpisanie i opublikowanie tej wersji. Komentarze zostaną wysłane do autora."
 
@@ -5787,14 +5798,22 @@ msgstr "Dziennik sprawdzania"
 msgid "Add-on Review Guide"
 msgstr "Przewodnik recenzenta dodatków"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Testy bezpieczeństwa"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Ocena opinii ({0})"
+msgstr[1] "Oceny opinii ({0})"
+msgstr[2] "Oceny opinii ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatycznie zatwierdzone dodatki"
@@ -5892,9 +5911,6 @@ msgstr "Dodatek"
 
 msgid "Internal AMO ID"
 msgstr ""
-
-msgid "Works with"
-msgstr "Działa z"
 
 msgid "Visibility"
 msgstr "Widoczność"
@@ -6042,6 +6058,9 @@ msgstr "Miesięczna aktywność"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "Podział punktów wg rodzaju"
+
+msgid "Add-ons"
+msgstr "Dodatki"
 
 msgid "Total"
 msgstr "Razem"
@@ -6797,21 +6816,9 @@ msgstr "Wróć do głównej strony {0} — dodatki"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Dodatki"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Dodatki"
-
-msgid "My Account"
-msgstr "Moje konto"
-
-msgid "Welcome, {0}"
-msgstr "Witaj, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Zarejestruj się</a> lub <a href=\"%(login)s\">zaloguj się</a>"
-
-msgid "Android Add-ons"
-msgstr "Dodatki dla Androida"
 
 msgid "Required fields"
 msgstr "Wymagane pola"

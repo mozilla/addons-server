@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2020-04-07 13:55+0000\n"
 "Last-Translator: romi <romihardiyanto@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -377,9 +377,6 @@ msgstr "Menampilkan <b>%(begin)s</b>&ndash;<b>%(end)s</b> dari <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Pengaya untuk {0}"
 
-msgid "Add-ons"
-msgstr "Pengaya"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} yang lalu"
@@ -490,19 +487,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -1745,6 +1742,12 @@ msgstr "Perlu memilih setidaknya satu aplikasi."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Anda mengirimkan terlalu banyak unggahan baru-baru ini. Silakan coba lagi setelah beberapa waktu."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versi {version} sudah diunggah sebelumnya dan dihapus."
@@ -5600,6 +5603,14 @@ msgstr "Ulasan Tertunda Lainnya ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Ulasan Tertunda Lainnya ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Versi terdaftar"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Versi terdaftar"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ini akan menyetujui, menandai, dan menayangkan versi ini. Komentar akan dikirim ke pengembang."
 
@@ -5672,12 +5683,18 @@ msgstr "Log Tinjauan"
 msgid "Add-on Review Guide"
 msgstr "Panduan Ulasan Pengaya"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Uji Keamanan"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Peringkat Tinjauan ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Pengaya Disetujui Otomatis"
@@ -5772,9 +5789,6 @@ msgstr "ID Pengaya"
 
 msgid "Internal AMO ID"
 msgstr "ID AMO Internal"
-
-msgid "Works with"
-msgstr "Bekerja pada"
 
 msgid "Visibility"
 msgstr "Visibilitas"
@@ -5922,6 +5936,9 @@ msgstr "Kinerja Bulanan"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "Poin Perincian Sepanjang Masa berdasarkan Jenis"
+
+msgid "Add-ons"
+msgstr "Pengaya"
 
 msgid "Total"
 msgstr "Total"
@@ -6666,21 +6683,9 @@ msgstr "Kembali ke Beranda Pengaya {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Pengaya"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Pengaya"
-
-msgid "My Account"
-msgstr "Akun Saya"
-
-msgid "Welcome, {0}"
-msgstr "Selamat Datang {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Daftar</a> atau <a href=\"%(login)s\">Masuk</a>"
-
-msgid "Android Add-ons"
-msgstr "Pengaya Android"
 
 msgid "Required fields"
 msgstr "Bidang Yang Diperlukan"

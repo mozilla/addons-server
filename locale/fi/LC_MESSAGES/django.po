@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2019-10-05 22:41+0000\n"
 "Last-Translator: Teemu <teemu.kaiturinmaki@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -367,9 +367,6 @@ msgstr "Näytetään tulokset <b>%(begin)s</b>&ndash;<b>%(end)s</b> / <b>%(count
 msgid "Add-ons for {0}"
 msgstr "{0}in lisäosat"
 
-msgid "Add-ons"
-msgstr "Lisäosat"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} sitten"
@@ -477,19 +474,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -1750,6 +1747,12 @@ msgid "Need to select at least one application."
 msgstr "On valittava vähintään yksi sovellus."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -5596,6 +5599,14 @@ msgstr "Ei tarkastettu"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Ei tarkastettu"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Beetaversio {0}"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Beetaversio {0}"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5682,13 +5693,21 @@ msgstr "Arvostelu:"
 msgid "Add-on Review Guide"
 msgstr "Ei vielä lisäosa-arvioita."
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Tietoturvatestit"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+# 100%
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Ei tarkastettu"
+msgstr[1] "Ei tarkastettu"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5801,9 +5820,6 @@ msgstr "Lisäosan ID"
 
 msgid "Internal AMO ID"
 msgstr ""
-
-msgid "Works with"
-msgstr "Toimii kohteilla"
 
 msgid "Visibility"
 msgstr "Näkyvyys"
@@ -5955,6 +5971,9 @@ msgstr ""
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
+
+msgid "Add-ons"
+msgstr "Lisäosat"
 
 msgid "Total"
 msgstr ""
@@ -6714,21 +6733,9 @@ msgstr "Palaa {0}-lisäosien etusivulle"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Lisäosat"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Lisäosat"
-
-msgid "My Account"
-msgstr "Tilini"
-
-msgid "Welcome, {0}"
-msgstr "Tervetuloa, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Rekisteröidy</a> tai <a href=\"%(login)s\">kirjaudu sisään</a>"
-
-msgid "Android Add-ons"
-msgstr "Android-lisäosat"
 
 msgid "Required fields"
 msgstr "Vaaditut kentät"

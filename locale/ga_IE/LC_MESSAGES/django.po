@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -375,9 +375,6 @@ msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> as <b>%(count)s</b> á dtaispeáin
 msgid "Add-ons for {0}"
 msgstr "Breiseáin le haghaidh {0}"
 
-msgid "Add-ons"
-msgstr "Breiseáin"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} ó shin"
@@ -490,19 +487,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -1821,6 +1818,12 @@ msgid "Need to select at least one application."
 msgstr "Feidhmchlár comhoiriúnach amháin de dhíth ar a laghad."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -5699,6 +5702,14 @@ msgstr "Ag feitheamh le Réamhscrúdú"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Ag feitheamh le Réamhscrúdú"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Féach leaganacha eile"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Féach leaganacha eile"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5781,8 +5792,9 @@ msgstr "Nóta léirmheasa"
 msgid "Add-on Review Guide"
 msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Tástálacha Slándála"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
@@ -5791,6 +5803,15 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Ag feitheamh le Réamhscrúdú"
+msgstr[1] "Ag feitheamh le Réamhscrúdú"
+msgstr[2] "Ag feitheamh le Réamhscrúdú"
+msgstr[3] "Ag feitheamh le Réamhscrúdú"
+msgstr[4] "Ag feitheamh le Réamhscrúdú"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5903,9 +5924,6 @@ msgstr "Breiseán"
 
 msgid "Internal AMO ID"
 msgstr ""
-
-msgid "Works with"
-msgstr "Feidhmíonn sé le"
 
 msgid "Visibility"
 msgstr "Infheictheacht"
@@ -6061,6 +6079,9 @@ msgstr ""
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
+
+msgid "Add-ons"
+msgstr "Breiseáin"
 
 msgid "Total"
 msgstr "Iomlán"
@@ -6829,21 +6850,9 @@ msgstr "Fill ar leathanach baile na mbreiseán {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "Breiseáin <img alt=\"Firefox\" src=\"{0}\">"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "Breiseáin <img alt=\"\" src=\"{0}\">"
-
-msgid "My Account"
-msgstr "Mo Chuntas"
-
-msgid "Welcome, {0}"
-msgstr "Fáilte romhat a {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Cláraigh</a> nó <a href=\"%(login)s\">Logáil isteach</a>"
-
-msgid "Android Add-ons"
-msgstr "Breiseáin Android"
 
 msgid "Required fields"
 msgstr "Réimsí riachtanacha"

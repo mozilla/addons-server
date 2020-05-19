@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2019-12-15 16:48+0000\n"
 "Last-Translator: ahasan <ahasan@expedia.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -365,9 +365,6 @@ msgstr "الصفحة تُظهر <b>%(begin)s</b>&ndash;<b>%(end)s</b> من <b>%(
 msgid "Add-ons for {0}"
 msgstr "إضافات {0}"
 
-msgid "Add-ons"
-msgstr "الإضافات"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} مضت"
@@ -477,19 +474,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -1770,6 +1767,12 @@ msgid "Need to select at least one application."
 msgstr ""
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -5661,6 +5664,14 @@ msgstr "التعليق على {0}"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "التعليق على {0}"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "عرض الإصدارات الأخرى"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "عرض الإصدارات الأخرى"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5743,13 +5754,24 @@ msgstr "التعليق"
 msgid "Add-on Review Guide"
 msgstr "دليل مراجعة الإضافات"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "فحوص الأمان"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "التعليق على {0}"
+msgstr[1] "التعليق على {0}"
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
@@ -5867,9 +5889,6 @@ msgstr "الإضافة"
 
 msgid "Internal AMO ID"
 msgstr ""
-
-msgid "Works with"
-msgstr "تعمل مع"
 
 msgid "Visibility"
 msgstr ""
@@ -6025,6 +6044,9 @@ msgstr "الأداء الشهري"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
+
+msgid "Add-ons"
+msgstr "الإضافات"
 
 msgid "Total"
 msgstr "المجموع"
@@ -6791,21 +6813,9 @@ msgstr "عُد إلى صفحة بداية إضافات {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "إضافات <img alt=\"Firefox\" src=\"{0}\">"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "إضافات <img alt=\"\" src=\"{0}\">"
-
-msgid "My Account"
-msgstr "حسابي"
-
-msgid "Welcome, {0}"
-msgstr "مرحبا، {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">سجّل</a> أو <a href=\"%(login)s\">لِج</a>"
-
-msgid "Android Add-ons"
-msgstr "إضافات أندرويد"
 
 msgid "Required fields"
 msgstr "حقول مطلوبة"

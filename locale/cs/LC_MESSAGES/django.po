@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-19 18:29+0000\n"
 "PO-Revision-Date: 2020-04-20 06:29+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -375,9 +375,6 @@ msgstr "Zobrazení <b>%(begin)s</b>&ndash;<b>%(end)s</b> z <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Doplňky aplikace {0}"
 
-msgid "Add-ons"
-msgstr "Doplňky"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "před {0}"
@@ -484,19 +481,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -1743,6 +1740,12 @@ msgstr "Vyberte alespoň jednu aplikaci."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "V poslední době jste toho odeslali příliš mnoho. Zkuste to prosím znovu za nějaký čas."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verze {version} už byla dříve nahrána a smazána."
@@ -5572,6 +5575,14 @@ msgstr "Další nevyřízená recenze ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Další nevyřízená recenze ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Zveřejněné verze"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Zveřejněné verze"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Toto povede ke schválení, podepsání a publikaci této verze. Komentáře budou odeslány vývojáři."
 
@@ -5644,14 +5655,22 @@ msgstr "Záznam kontrol"
 msgid "Add-on Review Guide"
 msgstr "Příručka pro kontrolu doplňků"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Bezpečnostní testy"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Jedna kontrola hodnocení"
+msgstr[1] "{0} kontroly hodnocení"
+msgstr[2] "{0} kontrol hodnocení"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automaticky schválené doplňky"
@@ -5748,9 +5767,6 @@ msgstr "ID doplňku"
 
 msgid "Internal AMO ID"
 msgstr "Interní ID na AMO"
-
-msgid "Works with"
-msgstr "Podporuje"
 
 msgid "Visibility"
 msgstr "Viditelnost"
@@ -5900,6 +5916,9 @@ msgstr "Měsíční aktivita"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "All-time Point Breakdown by Type"
+
+msgid "Add-ons"
+msgstr "Doplňky"
 
 msgid "Total"
 msgstr "Celkem"
@@ -6651,21 +6670,9 @@ msgstr "Návrat na titulní stránku doplňků aplikace {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Doplňky"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Doplňky"
-
-msgid "My Account"
-msgstr "Můj účet"
-
-msgid "Welcome, {0}"
-msgstr "Vítejte uživateli {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registrace</a> nebo <a href=\"%(login)s\">přihlášení</a>"
-
-msgid "Android Add-ons"
-msgstr "Doplňky pro Android"
 
 msgid "Required fields"
 msgstr "Vyžadovaná pole"
