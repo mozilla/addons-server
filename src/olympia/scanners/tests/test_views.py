@@ -1,10 +1,6 @@
-import sys
+import pytest
 
-from importlib import reload
-
-from django.conf import settings
 from django.test.utils import override_settings
-from django.urls.base import clear_url_caches
 from django.urls.exceptions import NoReverseMatch
 
 from olympia import amo
@@ -31,33 +27,17 @@ from olympia.scanners.models import ScannerResult
 from olympia.scanners.serializers import ScannerResultSerializer
 
 
-class TestScannerResultView(TestCase):
+@pytest.mark.internal_routes_allowed
+class TestScannerResultViewInternal(TestCase):
     client_class = APITestClient
 
-    @override_settings(INTERNAL_ROUTES_ALLOWED=True)
     def setUp(self):
         super().setUp()
 
-        self.force_reload_urlconf()
         self.user = user_factory()
         self.grant_permission(self.user, 'Admin:ScannersResultsView')
         self.client.login_api(self.user)
         self.url = reverse_ns('scanner-results', api_version='v5')
-
-    @override_settings(INTERNAL_ROUTES_ALLOWED=False)
-    def tearDown(self):
-        super().tearDown()
-        self.force_reload_urlconf()
-
-    def force_reload_urlconf(self):
-        """This is needed to force-reload the URLCONF between the test cases
-        because the scanner urls depend on a setting and Django loads the
-        URLCONF once."""
-        clear_url_caches()
-        if settings.ROOT_URLCONF in sys.modules:
-            reload(sys.modules['olympia.scanners.api_urls'])
-            reload(sys.modules['olympia.api.urls'])
-            reload(sys.modules[settings.ROOT_URLCONF])
 
     def assert_json_results(self, response, expected_results):
         json = response.json()
@@ -378,8 +358,8 @@ class TestScannerResultView(TestCase):
         results = self.assert_json_results(response, expected_results=2)
         assert results[0]['id'] != results[1]['id']
 
-    @override_settings(INTERNAL_ROUTES_ALLOWED=False)
-    def test_route_does_not_exist_if_not_allowed(self):
-        self.force_reload_urlconf()
+
+class TestScannerResultView(TestCase):
+    def test_route_does_not_exist(self):
         with self.assertRaises(NoReverseMatch):
             assert not reverse_ns('scanner-results', api_version='v5')
