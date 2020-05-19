@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:19+0000\n"
+"PO-Revision-Date: 2020-05-19 21:34+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -471,7 +471,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "ეს დამატება, უკვე სხვა კრებულს ეკუთვნის"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "დამოწმების მდგომარეობა"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -926,10 +926,10 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "{addon} ამოიშალა {collection}-იდან."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "შეზღუდვის {1} მოქმედება {0} დამოწმებულისთვის."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "შეზღუდვის მოქმედების დამოწმება"
 
 #, fuzzy
 msgid "User {user} session(s) reset."
@@ -979,7 +979,7 @@ msgid "Unlisted"
 msgstr "გამოუქვეყნებელი"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "მფლობელი"
@@ -1569,14 +1569,14 @@ msgid "No action"
 msgstr "დამატებითი მოქმედებები"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "მონიშვნა ადამიანის მონაწილეობით განხილვისთვის"
 
 #, fuzzy
 msgid "Delay auto-approval"
 msgstr "ავტომატური მიღების გამორთვა"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "თვითდამოწმების გადადება განუსაზღვრელად"
 
 msgid "True positive"
 msgstr ""
@@ -5479,9 +5479,8 @@ msgstr ""
 msgid "Is locked by a reviewer"
 msgstr "შეჩერებულია მიმომხილველის მიერ"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "მონიშნულია, რომ ავტომატური დადასტურება გამორთული აქვს"
+msgstr "გათიშული/დაყოვნებული თვითდამოწმების მონიშვნა აქვს მითითებული"
 
 msgid "Is recommendable"
 msgstr "შესათავაზებელი"
@@ -5645,11 +5644,10 @@ msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] "მონიშნული სკანერების მიერ ({0})"
 msgstr[1] "მონიშნული სკანერების მიერ ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "მონიშნული სკანერების მიერ ({0})"
-msgstr[1] "მონიშნული სკანერების მიერ ({0})"
+msgstr[0] "მონიშნულია ადამიანის მონაწილეობით განხილვისთვის ({0})"
+msgstr[1] "მონიშნულია ადამიანის მონაწილეობით განხილვისთვის ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "ავტომატურად მიღებული დამატებები"
