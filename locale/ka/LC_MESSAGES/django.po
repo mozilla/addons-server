@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-19 16:44+0000\n"
+"PO-Revision-Date: 2020-05-19 17:06+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6220,7 +6220,7 @@ msgstr[0] "მონაცემების ვადაგასული მ�
 msgstr[1] "მონაცემების ვადაგასული მოთხოვნა ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "შესაბამისი წესების არსებობა"
 
 #, fuzzy
 msgid "result state"
@@ -6257,23 +6257,23 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "ესაა ზუსტი დასახელება წესის, რომელსაც სკანერი იყენებს."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "როცა მოუნიშნავია, სკანერის შედეგები არ გადაფარავს ამ წესს და მოქმედება არ შესრულდება."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara-წესს უნდა ჰქონდეს განმარტება"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "დასახელება ამ წესის განმარტებაში უნდა ემთხვეოდეს დასახელებას სკანერის წესში"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "მხოლოდ Yara-წესია დაშვებული განმარტებაში"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "განმარტება არამართებულია: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "მოხდა შეცდომა განმარტების შედგენისას"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "გამოიყენეთ ეს წესი იძულებით ამორთულ დამატებებზეც."
