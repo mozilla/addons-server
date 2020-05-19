@@ -4,6 +4,10 @@ from django.db import migrations
 
 
 def delete_version_scanner_flags(apps, schema_editor):
+    # We have to delete all the existing entries because we did not have the
+    # logic to clear the flags after a review, so all versions were kept in the
+    # queue. The feature is kinda new so it is fine to delete existing entries.
+    # See: https://github.com/mozilla/addons-server/issues/14284
     VersionScannerFlags = apps.get_model('scanners', 'VersionScannerFlags')
     VersionScannerFlags.objects.all().delete()
 
