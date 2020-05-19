@@ -515,7 +515,7 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
     def picture(self, request, pk=None):
         user = self.get_object()
         user.delete_picture()
-        log.debug(u'User (%s) deleted photo' % user)
+        log.info(u'User (%s) deleted photo' % user)
         return self.retrieve(request)
 
 

@@ -102,8 +102,8 @@ class AddonLog(ModelBase):
             # ``arguments = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
             arguments = json.loads(self.activity_log._arguments)
         except Exception:
-            log.debug('unserializing data from addon_log failed: %s' %
-                      self.activity_log.id)
+            log.info('unserializing data from addon_log failed: %s' %
+                     self.activity_log.id)
             return None
 
         new_arguments = []
@@ -387,10 +387,10 @@ class ActivityLog(ModelBase):
                 # `[{'addons.addon':12}, {'addons.addon':1}, ... ]`
                 activity.arguments_data = json.loads(activity._arguments)
             except Exception as e:
-                log.debug(
+                log.info(
                     'unserializing data from activity_log failed: %s',
                     activity.id)
-                log.debug(e)
+                log.info(e)
                 activity.arguments_data = []
 
             for item in activity.arguments_data:

@@ -1,5 +1,3 @@
-import logging
-
 from olympia.lib.settings_base import *  # noqa
 
 
@@ -54,16 +52,6 @@ CACHES['default']['KEY_PREFIX'] = CACHE_KEY_PREFIX
 
 # Celery
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.5
-
-LOGGING['loggers'].update({
-    'adi.updatecounts': {'level': logging.INFO},
-    'amqp': {'level': logging.WARNING},
-    'raven': {'level': logging.WARNING},
-    'requests': {'level': logging.WARNING},
-    'z.addons': {'level': logging.INFO},
-    'z.task': {'level': logging.DEBUG},
-    'z.pool': {'level': logging.ERROR},
-})
 
 ES_TIMEOUT = 60
 ES_HOSTS = env('ES_HOSTS')

@@ -1831,7 +1831,7 @@ def theme_background_image(request, addon_id, addon, channel):
 def logout(request):
     user = request.user
     if not user.is_anonymous:
-        log.debug('User (%s) logged out' % user)
+        log.info('User (%s) logged out' % user)
 
     if 'to' in request.GET and not _is_safe_url(request.GET['to'], request):
         log.info('Unsafe redirect to %s' % request.GET['to'])

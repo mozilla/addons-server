@@ -51,7 +51,7 @@ class BaseUserTaskSet(TaskSet):
         helpers.destroy_fxa_account(self.fxa_account, self.email_account)
 
     def login(self, fxa_account):
-        log.debug('calling login/start to generate fxa_state')
+        log.info('calling login/start to generate fxa_state')
         response = self.client.get(
             '/api/v3/accounts/login/start/',
             allow_redirects=True)
@@ -59,7 +59,7 @@ class BaseUserTaskSet(TaskSet):
         params = dict(urlparse.parse_qsl(response.url))
         fxa_state = params['state']
 
-        log.debug('Get browser id session token')
+        log.info('Get browser id session token')
         fxa_session = helpers.get_fxa_client().login(
             email=fxa_account.email,
             password=fxa_account.password)
@@ -69,7 +69,7 @@ class BaseUserTaskSet(TaskSet):
             client_secret=FXA_CONFIG['client_secret'],
             server_url=FXA_CONFIG['oauth_host'])
 
-        log.debug('convert browser id session token into oauth code')
+        log.info('convert browser id session token into oauth code')
         oauth_code = oauth_client.authorize_code(fxa_session, scope='profile')
 
         # Now authenticate the user, this will verify the user on the server
@@ -83,7 +83,7 @@ class BaseUserTaskSet(TaskSet):
         )
 
     def logout(self, account):
-        log.debug('Logging out {}'.format(account))
+        log.info('Logging out {}'.format(account))
         self.client.get('/en-US/firefox/users/logout/')
 
 

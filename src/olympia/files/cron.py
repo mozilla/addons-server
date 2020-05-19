@@ -23,7 +23,7 @@ def cleanup_extracted_file():
         today = datetime.now().strftime('%m%d')
 
         if day != today:
-            log.debug('Removing extracted files: %s, from %sd.' % (full, day))
+            log.info('Removing extracted files: %s, from %sd.' % (full, day))
 
             # Remove all files.
             # No need to remove any caches since we are deleting files from

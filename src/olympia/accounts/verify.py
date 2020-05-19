@@ -27,7 +27,7 @@ def fxa_identify(code, config=None):
 
 
 def get_fxa_token(code, config):
-    log.debug('Getting token [{code}]'.format(code=code))
+    log.info('Getting token [{code}]'.format(code=code))
     with statsd.timer('accounts.fxa.identify.token'):
         response = requests.post(settings.FXA_OAUTH_HOST + '/token', data={
             'code': code,
@@ -37,7 +37,7 @@ def get_fxa_token(code, config):
     if response.status_code == 200:
         data = response.json()
         if data.get('access_token'):
-            log.debug('Got token [{code}]'.format(code=code))
+            log.info('Got token [{code}]'.format(code=code))
             return data
         else:
             log.info('No token returned [{code}]'.format(code=code))

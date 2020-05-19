@@ -56,12 +56,12 @@ def process_blocklistsubmission(multi_block_submit_id, **kw):
 def import_block_from_blocklist(record):
     kinto_id = record.get('id')
     using_db = get_replica()
-    log.debug('Processing block id: [%s]', kinto_id)
+    log.info('Processing block id: [%s]', kinto_id)
     kinto_import, import_created = KintoImport.objects.update_or_create(
         kinto_id=kinto_id,
         defaults={'record': record, 'timestamp': record.get('last_modified')})
     if not import_created:
-        log.debug('Kinto %s: updating existing KintoImport object', kinto_id)
+        log.info('Kinto %s: updating existing KintoImport object', kinto_id)
         existing_block_ids = list(
             Block.objects.filter(kinto_id__in=(kinto_id, f'*{kinto_id}'))
                          .values_list('id', flat=True))
@@ -101,7 +101,7 @@ def import_block_from_blocklist(record):
         # we're going to try to split the regex into a list for efficiency.
         guids_list = split_regex_to_list(guid_regexp)
         if guids_list:
-            log.debug(
+            log.info(
                 'Kinto %s: Broke down regex into list; '
                 'attempting to create Blocks for guids in %s',
                 kinto_id, guids_list)
@@ -111,7 +111,7 @@ def import_block_from_blocklist(record):
             addons_guids_qs = Addon.unfiltered.using(using_db).filter(
                 guid__in=guids_list).values_list('guid', flat=True)
         else:
-            log.debug(
+            log.info(
                 'Kinto %s: Unable to break down regex into list; '
                 'attempting to create Blocks for guids matching [%s]',
                 kinto_id, guid_regexp)
@@ -124,7 +124,7 @@ def import_block_from_blocklist(record):
         block_kw['kinto_id'] = '*' + block_kw['kinto_id']
         regex = True
     else:
-        log.debug(
+        log.info(
             'Kinto %s: Attempting to create a Block for guid [%s]',
             kinto_id, guid)
         statsd.incr('blocklist.tasks.import_blocklist.record_guid')
@@ -136,7 +136,7 @@ def import_block_from_blocklist(record):
         valid_files_qs = File.objects.filter(
             version__addon__guid=guid, is_webextension=True)
         if not valid_files_qs.exists():
-            log.debug(
+            log.info(
                 'Kinto %s: Skipped Block for [%s] because it has no '
                 'webextension files', kinto_id, guid)
             statsd.incr('blocklist.tasks.import_blocklist.block_skipped')
@@ -145,11 +145,11 @@ def import_block_from_blocklist(record):
             guid=guid, defaults=dict(guid=guid, **block_kw))
         block_activity_log_save(block, change=not created)
         if created:
-            log.debug('Kinto %s: Added Block for [%s]', kinto_id, guid)
+            log.info('Kinto %s: Added Block for [%s]', kinto_id, guid)
             statsd.incr('blocklist.tasks.import_blocklist.block_added')
             block.update(modified=modified_date)
         else:
-            log.debug('Kinto %s: Updated Block for [%s]', kinto_id, guid)
+            log.info('Kinto %s: Updated Block for [%s]', kinto_id, guid)
             statsd.incr('blocklist.tasks.import_blocklist.block_updated')
         new_blocks.append(block)
     if new_blocks:
@@ -159,7 +159,7 @@ def import_block_from_blocklist(record):
         )
     else:
         kinto_import.outcome = KintoImport.OUTCOME_NOMATCH
-        log.debug('Kinto %s: No addon found', kinto_id)
+        log.info('Kinto %s: No addon found', kinto_id)
     if not import_created:
         # now reconcile the blocks that were connected to the import last time
         # but weren't changed this time - i.e. blocks we need to delete

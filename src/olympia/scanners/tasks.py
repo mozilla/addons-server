@@ -406,7 +406,7 @@ def call_mad_api(all_results, upload_pk):
         return results
 
     if not waffle.switch_is_active('enable-mad'):
-        log.debug('Skipping scanner "mad" task, switch is off')
+        log.info('Skipping scanner "mad" task, switch is off')
         return results
 
     log.info('Starting scanner "mad" task for FileUpload %s.', upload_pk)

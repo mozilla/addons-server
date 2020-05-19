@@ -181,7 +181,7 @@ class File(OnChangeMixin, ModelBase):
                 WebextPermission.objects.create(permissions=permissions,
                                                 file=file_)
 
-        log.debug('New file: %r from %r' % (file_, upload))
+        log.info('New file: %r from %r' % (file_, upload))
 
         # Move the uploaded file from the temp location.
         copy_stored_file(upload_path, file_.current_file_path)

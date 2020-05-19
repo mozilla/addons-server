@@ -25,7 +25,7 @@ class Command(BaseCommand):
         LEGACY_BLOCKLIST_URL = (
             f'{settings.REMOTE_SETTINGS_API_URL}buckets/blocklists/'
             f'collections/{REMOTE_SETTINGS_COLLECTION_LEGACY}/records')
-        log.debug('Downloading blocklist from %s', LEGACY_BLOCKLIST_URL)
+        log.info('Downloading blocklist from %s', LEGACY_BLOCKLIST_URL)
         response = requests.get(LEGACY_BLOCKLIST_URL)
 
         data = response.json().get('data', [])
@@ -48,7 +48,7 @@ class Command(BaseCommand):
             kinto_id for kinto_id in already_imported
             if kinto_id not in kinto_ids
         ]
-        log.debug(
+        log.info(
             '%s new, %s modified, %s deleted records from legacy blocklist to '
             'process',
             len(new_records), len(modified_records), len(deleted_record_ids))
@@ -64,7 +64,7 @@ class Command(BaseCommand):
         for record in new_records + modified_records:
             import_block_from_blocklist.delay(record)
         if deleted_record_ids:
-            log.debug(
+            log.info(
                 'Deleting Blocks that have been removed from legacy blocklist')
             for kinto_id in deleted_record_ids:
                 delete_imported_block_from_blocklist.delay(kinto_id)

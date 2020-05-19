@@ -82,7 +82,7 @@ def _change_last_updated(next):
     if not changes:
         return
 
-    log.debug('Updating %s add-ons' % len(changes))
+    log.info('Updating %s add-ons' % len(changes))
     # Update + invalidate.
     qs = Addon.objects.filter(id__in=changes).no_transforms()
     for addon in qs:

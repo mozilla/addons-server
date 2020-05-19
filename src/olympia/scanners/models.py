@@ -159,7 +159,7 @@ class AbstractScannerResult(ModelBase):
                          version.pk)
                 _flag_for_human_review_by_scanner(version, MAD)
         except cls.DoesNotExist:
-            log.debug('No MAD scanner result for version %s.', version.pk)
+            log.info('No MAD scanner result for version %s.', version.pk)
             pass
 
         rule_model = cls.matched_rules.rel.model

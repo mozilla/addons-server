@@ -103,7 +103,7 @@ class UserManager(BaseUserManager, ManagerBase):
         )
         if username is None:
             user.anonymize_username()
-        log.debug('Creating user with email {} and username {}'.format(
+        log.info('Creating user with email {} and username {}'.format(
             email, username))
         user.save(using=self._db)
         return user
@@ -553,8 +553,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @staticmethod
     def user_logged_in(sender, request, user, **kwargs):
         """Log when a user logs in and records its IP address."""
-        log.debug(u'User (%s) logged in successfully' % user,
-                  extra={'email': user.email})
+        log.info(u'User (%s) logged in successfully' % user,
+                 extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
 
     def mobile_collection(self):
@@ -956,7 +956,7 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
 
     # Log email changes.
     if 'email' in changes and new_attr['email'] is not None:
-        log.debug('Creating user history for user: %s' % instance.pk)
+        log.info('Creating user history for user: %s' % instance.pk)
         UserHistory.objects.create(
             email=old_attr.get('email'), user_id=instance.pk)
     # If username or display_name changes, reindex the user add-ons, if there

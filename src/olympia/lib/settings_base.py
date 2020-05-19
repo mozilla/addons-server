@@ -1267,7 +1267,7 @@ LOGGING = {
     },
     'handlers': {
         'mozlog': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'json'
         },
@@ -1279,16 +1279,11 @@ LOGGING = {
             'class': 'django_statsd.loggers.errors.StatsdHandler',
         },
     },
-    'root': {'handlers': ['mozlog'], 'level': logging.DEBUG},
+    'root': {'handlers': ['mozlog'], 'level': logging.INFO},
     'loggers': {
-        'amo': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
-            'propagate': False
-        },
-        'amqplib': {
+        'amqp': {
             'handlers': ['null'],
-            'level': logging.DEBUG,
+            'level': logging.WARNING,
             'propagate': False
         },
         'caching': {
@@ -1298,7 +1293,7 @@ LOGGING = {
         },
         'caching.invalidation': {
             'handlers': ['null'],
-            'level': logging.DEBUG,
+            'level': logging.INFO,
             'propagate': False
         },
         'django': {
@@ -1314,7 +1309,7 @@ LOGGING = {
         },
         'elasticsearch': {
             'handlers': ['null'],
-            'level': logging.DEBUG,
+            'level': logging.INFO,
             'propagate': False,
         },
         'filtercascade': {
@@ -1336,7 +1331,7 @@ LOGGING = {
         },
         'parso': {
             'handlers': ['null'],
-            'level': logging.DEBUG,
+            'level': logging.INFO,
             'propagate': False
         },
         'post_request_task': {
@@ -1345,24 +1340,19 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': False,
         },
+        'raven': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': False
+        },
         'rdflib': {
             'handlers': ['null'],
-            'level': logging.DEBUG,
+            'level': logging.INFO,
             'propagate': False,
         },
-        'request.summary': {
+        'request': {
             'handlers': ['mozlog'],
-            'level': logging.DEBUG,
-            'propagate': False
-        },
-        's.client': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
-        },
-        'z': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
+            'level': logging.WARNING,
             'propagate': False
         },
         'z.celery': {
@@ -1370,21 +1360,11 @@ LOGGING = {
             'level': logging.ERROR,
             'propagate': True,
         },
-        'z.es': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
-        },
         'z.pool': {
             'handlers': ['mozlog'],
             'level': logging.ERROR,
             'propagate': False
         },
-        'z.task': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
-            'propagate': False
-        }
     },
 }
 
