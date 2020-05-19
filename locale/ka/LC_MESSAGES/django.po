@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-19 17:06+0000\n"
+"PO-Revision-Date: 2020-05-19 17:13+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5626,12 +5626,12 @@ msgid "Add-on Review Guide"
 msgstr "დამატების მიმოხილვის სახელმძღვანელო"
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "მონიშნული სკანერების მიერ"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "მონიშნული სკანერების მიერ ({0})"
+msgstr[1] "მონიშნული სკანერების მიერ ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "ავტომატურად მიღებული დამატებები"
@@ -5710,7 +5710,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} :: პირადულობის დებულება"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "დარღვევებზე მოხსენებები – {addon} – Firefox-ის დამატებები"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "დარღვევის შესახებ მოხსენებები, {addon} და მის შემმუშავებლებთან ({num}) დაკავშირებით"
@@ -5784,7 +5784,7 @@ msgid "Add-on name translations"
 msgstr "დამატების ვერსია"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "მიმომხილველის ხელსაწყოები – Firefox-ის დამატებები"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "მიმომხილველის ხელსაწყოების გვერდზე დაბრუნება"
@@ -5843,7 +5843,7 @@ msgid "Undelete"
 msgstr "წაშლილის აღდგენა"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "მიმომხილველის წარმადობა – Firefox-ის დამატებები"
 
 msgid "Add-on Reviewer Performance"
 msgstr "დამატების მიმოხილვის წარმადობა"
@@ -5891,10 +5891,10 @@ msgid "All-Time"
 msgstr "ყველა დროის"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– მიმომხილველის ხელსაწყოები – Firefox-ის დამატებები"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "შიგთავსის განხილვა – Firefox-ის დამატებები"
 
 #, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
@@ -5908,7 +5908,7 @@ msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "მონაცემების ვადაგასული მოთხოვნა"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "გამოუქვეყნებელი დამატებები – Firefox-ის დამატებები"
 
 msgid "Advanced Search"
 msgstr "გაფართოებული ძებნა"
@@ -5946,7 +5946,7 @@ msgid "Reviewer's Guide"
 msgstr "მიმომხილველის სახელმძღვანელო"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Firefox-ის დამატებები"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5966,7 +5966,7 @@ msgid "Previously deleted entries"
 msgstr "ადრე წაშლილი მიმოხილვები"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "ეს სასურველი გაფართოებაა."
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -6025,7 +6025,7 @@ msgid "Block add-on"
 msgstr "დამატების გვერდზე დაბრუნება"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "განახლება დამატების შეზღუდვის"
 
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
@@ -6071,7 +6071,7 @@ msgid "Resolution"
 msgstr "გარჩევადობა"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "დამატების განხილვის ჩანაწერი – Firefox-ის დამატებები"
 
 msgid "Reviewer"
 msgstr "მიმომხილველი"
