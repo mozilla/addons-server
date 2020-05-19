@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:43+0000\n"
+"PO-Revision-Date: 2020-05-19 21:53+0000\n"
 "Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -598,11 +598,11 @@ msgstr "<b>{0}</b> deg {1} n wussan ineggura"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr "<b>{0}</b> si {1} ar {2}"
+msgstr "<b>{0}</b> seg {1} ɣer {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr "<b>{0}</b> di tlemmast ineggura {1} n wussan"
+msgstr "<b>{0}</b> deg tlemmast deg {1} n wussan ineggura"
 
 msgid "No data available."
 msgstr "Ulac isefka."
@@ -611,15 +611,15 @@ msgid "Date"
 msgstr "Azemz"
 
 msgid "Other"
-msgstr "Ayen niḍen"
+msgstr "Ayen-nniḍen"
 
 msgid "Select an application first"
-msgstr "Fren di tazwara asnas"
+msgstr "Fren asnas seg tazwara"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Sbadu {0} n uzegrir ar lqem afellay n {1} sakin azen imayl i umeskar."
-msgstr[1] "Sbadu {0} n izegrar ar lqem afellay n {1} sakin azen imayl i umeskar."
+msgstr[0] "Sbadu {0} n uzegrir ɣer lqem afellay n {1} sakin azen imayl i umeskar."
+msgstr[1] "Sbadu {0} n yizegrar ɣer lqem afellay n {1} sakin azen imayl i umeskar."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
@@ -641,23 +641,23 @@ msgid "Download for {0} anyway"
 msgstr "Sader {0} akken yebɣu yili"
 
 msgid "Not available for your platform"
-msgstr "Ulac i twennaṭ inek"
+msgstr "Ulac i twennaṭ-inek"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Azegrir-agi ur imṣada ara kked lqem inek n {0}."
+msgstr "Azegrir-a ur imṣada ara akked lqem-inek n {0}."
 
 msgid "View other versions"
-msgstr "Wali ileqman nniḍen"
+msgstr "Wali ileqman-nniḍen"
 
 msgid "Works with {app} {min} - {max}"
-msgstr "Iteddu s {app} {min} - {max}"
+msgstr "Itteddu s {app} {min} - {max}"
 
 msgid "Works with {app}"
-msgstr "Iteddu s {app}"
+msgstr "Itteddu s {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Ala s Firefox — Awi-d Firefox tura!"
+msgstr "Anagar s Firefox — Awi-d Firefox tura!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Suref-aɣ, tesriḍ iminig yebnan ɣef Mozilla (am Firfefox) akken ad tesbeddeḍ azegrir n unadi."
@@ -669,7 +669,7 @@ msgid "Enter a new author's email address"
 msgstr "Sekcem tansa imayl n umeskar amaynut"
 
 msgid "There was an error uploading your file."
-msgstr "Teḍra-d tuccḍa deg usali n ufaylu inek."
+msgstr "Teḍra-d tuccḍa deg usali n ufaylu-inek."
 
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -677,10 +677,10 @@ msgstr[0] "{files} ufaylu"
 msgstr[1] "{files} ifuyla"
 
 msgid "Image changes being processed"
-msgstr "Asnifel n tugniwin iteddu"
+msgstr "Asnifel n tugniwin itteddu"
 
 msgid "No results found."
-msgstr "Ulac igmad yettwafen."
+msgstr "Ulac igmaḍ yettwafen."
 
 msgid "Loading..."
 msgstr "Asali..."
@@ -688,8 +688,8 @@ msgstr "Asali..."
 #. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> n isekkilen"
-msgstr[1] "<b>{0}</b> n isekkilen"
+msgstr[0] "<b>{0}</b> n yisekkilen"
+msgstr[1] "<b>{0}</b> n yisekkilen"
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
