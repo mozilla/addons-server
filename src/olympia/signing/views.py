@@ -250,12 +250,13 @@ class VersionView(APIView):
         block_qs = Block.objects.filter(guid=addon.guid if addon else guid)
         if block_qs and block_qs.first().is_version_blocked(version_string):
             msg = ugettext(
-                'Version {version} matches {block_url} for this add-on. '
+                'Version {version} matches {block_link} for this add-on. '
                 'You can contact {amo_admins} for additional information.')
+
             raise forms.ValidationError(
                 msg.format(
                     version=version_string,
-                    block_url=absolutify(
+                    block_link=absolutify(
                         reverse('blocklist.block', args=[guid])),
                     amo_admins='amo-admins@mozilla.com'),
                 status.HTTP_400_BAD_REQUEST)

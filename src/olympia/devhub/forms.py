@@ -1006,16 +1006,16 @@ class NewUploadForm(forms.Form):
         block = Block.objects.filter(guid=guid).first()
         if block and block.is_version_blocked(version_string):
             msg = escape(ugettext(
-                'Version {version} matches a {block_link} for this add-on. '
-                'You can contact {email_link} for additional information.'))
+                'Version {version} matches {block_link} for this add-on. '
+                'You can contact {amo_admins} for additional information.'))
             formatted_msg = DoubleSafe(
                 msg.format(
                     version=version_string,
                     block_link=format_html(
                         '<a href="{}">{}</a>',
                         reverse('blocklist.block', args=[guid]),
-                        ugettext('blocklist entry')),
-                    email_link=(
+                        ugettext('a blocklist entry')),
+                    amo_admins=(
                         '<a href="mailto:amo-admins@mozilla.com">AMO Admins'
                         '</a>')
                 )
