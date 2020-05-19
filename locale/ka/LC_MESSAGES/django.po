@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-19 16:33+0000\n"
+"PO-Revision-Date: 2020-05-19 16:44+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6089,7 +6089,7 @@ msgid "No reviews found for this period."
 msgstr "დროის ამ მონაკვეთისთვის მიმოხილვები ვერ მოიძებნა."
 
 msgid "Origin:"
-msgstr ""
+msgstr "წარმომავლობა:"
 
 msgid "Method:"
 msgstr "მეთოდი:"
@@ -6127,7 +6127,7 @@ msgid "Newer"
 msgstr "უფრო ახალი"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} ვერსიები მონიშნულია სკანერების მიერ სხვა გვერდებზე."
 
 msgid "Recent Points"
 msgstr "ბოლო ქულები"
@@ -6178,7 +6178,7 @@ msgid "Weight:"
 msgstr "წონა:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "მონიშნულია ავტომატური სკანერების მიერ"
 
 msgid "Download"
 msgstr "ჩამოტვირთვა"
@@ -6227,7 +6227,7 @@ msgid "result state"
 msgstr "მუშაობის დაწყება"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "ყველა ამ წესის გარდა"
 
 #, fuzzy
 msgid "presence of a version"
@@ -6276,7 +6276,7 @@ msgid "An error occurred when compiling the definition"
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "გამოიყენეთ ეს წესი იძულებით ამორთულ დამატებებზეც."
 
 msgid "Abort"
 msgstr "შეწყვეტა"
@@ -6285,7 +6285,7 @@ msgid "Run"
 msgstr "გაშვება"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "გამოსადეგია, როდესაც სკანერის შედეგი ჭეშმარიტად დადებითია, მაგრამ დამატება არ არის მავნე"
 
 #, fuzzy
 msgid "Revert report"
