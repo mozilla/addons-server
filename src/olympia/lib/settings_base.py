@@ -1296,6 +1296,11 @@ LOGGING = {
             'level': logging.INFO,
             'propagate': False
         },
+        'celery.worker.strategy': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': False
+        },
         'django': {
             'handlers': ['statsd'],
             'level': logging.ERROR,
