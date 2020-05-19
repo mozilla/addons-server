@@ -65,7 +65,7 @@ from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer, AddonBrowseVersionSerializerFileOnly,
     AddonCompareVersionSerializer, AddonCompareVersionSerializerFileOnly,
     AddonReviewerFlagsSerializer, CannedResponseSerializer,
-    DiffableVersionSerializer, DraftCommentSerializer, FileEntriesSerializer,
+    DiffableVersionSerializer, DraftCommentSerializer, FileInfoSerializer,
 )
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
@@ -1168,21 +1168,22 @@ def download_git_stored_file(request, version_id, filename):
 
     file = version.current_file
 
-    serializer = FileEntriesSerializer(
+    serializer = FileInfoSerializer(
         instance=file, context={
             'file': filename,
-            'request': request
+            'request': request,
+            'version': version
         }
     )
 
     tree = serializer.tree
 
     try:
-        blob_or_tree = tree[serializer.get_selected_file(file)]
+        blob_or_tree = tree[serializer._get_selected_file()]
 
         if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
             return http.HttpResponseBadRequest('Can\'t serve directories')
-        selected_file = serializer.get_entries(file)[filename]
+        selected_file = serializer._get_entries()[filename]
     except (KeyError, NotFound):
         raise http.Http404()
 
@@ -1332,9 +1333,6 @@ class ReviewAddonVersionMixin(object):
                 pk=self.kwargs.get('addon_pk'))
         return self.addon_object
 
-    def get_version_object(self):
-        return self.get_object(pk=self.kwargs['version_pk'])
-
     def check_permissions(self, request):
         if self.action == u'list':
             # When listing DRF doesn't explicitly check for object permissions
@@ -1372,23 +1370,15 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
         context = super().get_serializer_context()
         context['file'] = self.request.GET.get('file', None)
 
-        if self.request.GET.get('file_only', False):
+        if self.request.GET.get('file_only', 'false') == 'true':
             context['exclude_entries'] = True
 
         return context
 
-    def get_serializer(
-            self, instance=None, data=None, many=False, partial=False):
-        if self.request.GET.get('file_only', False):
-            return AddonBrowseVersionSerializerFileOnly(
-                instance=instance,
-                context=self.get_serializer_context()
-            )
-
-        return AddonBrowseVersionSerializer(
-            instance=instance,
-            context=self.get_serializer_context()
-        )
+    def get_serializer_class(self):
+        if self.request.GET.get('file_only', 'false') == 'true':
+            return AddonBrowseVersionSerializerFileOnly
+        return AddonBrowseVersionSerializer
 
     def list(self, request, *args, **kwargs):
         """Return all (re)viewable versions for this add-on.
@@ -1526,7 +1516,7 @@ class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
         context = super().get_serializer_context()
         context['file'] = self.request.GET.get('file', None)
 
-        if self.request.GET.get('file_only', False):
+        if self.request.GET.get('file_only', 'false') == 'true':
             context['exclude_entries'] = True
 
         return context
@@ -1536,7 +1526,7 @@ class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
         context = self.get_serializer_context()
         context['parent_version'] = data['parent_version']
 
-        if self.request.GET.get('file_only', False):
+        if self.request.GET.get('file_only', 'false') == 'true':
             return AddonCompareVersionSerializerFileOnly(
                 instance=instance,
                 context=context

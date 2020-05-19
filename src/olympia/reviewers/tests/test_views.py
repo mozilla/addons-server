@@ -6404,6 +6404,7 @@ class TestReviewAddonVersionViewSetDetail(
         assert result['addon']['name'] == str(self.addon.name)
 
         assert result['file']['content'] == '# beastify\n'
+        assert result['file_entries'] is not None
 
         # make sure the correct download url is correctly generated
         assert result['file']['download_url'] == absolutify(reverse(
@@ -6513,7 +6514,6 @@ class TestReviewAddonVersionViewSetDetail(
 
         assert result['id'] == self.version.pk
         assert result['file']['content'] == '# beastify\n'
-        assert result['file']['entries'] is None
 
         # make sure the correct download url is correctly generated
         assert result['file']['download_url'] == absolutify(reverse(
@@ -6526,6 +6526,21 @@ class TestReviewAddonVersionViewSetDetail(
 
         # make sure we only returned `id` and `file` properties
         assert len(result.keys()) == 2
+
+    def test_file_only_false(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(
+            self.url + '?file=README.md&lang=en-US&file_only=false')
+        result = json.loads(response.content)
+
+        assert result['id'] == self.version.pk
+        assert result['file']['content'] == '# beastify\n'
+
+        # make sure we returned more than just the `id` and `file` properties
+        assert len(result.keys()) > 2
 
 
 class TestReviewAddonVersionViewSetList(TestCase):
@@ -7328,6 +7343,7 @@ class TestReviewAddonVersionCompareViewSet(
                 'type': 'insert'
             }
         ]
+        assert result['file_entries'] is not None
 
     def test_compare_with_deleted_file(self):
         new_version = version_factory(
@@ -7430,7 +7446,6 @@ class TestReviewAddonVersionCompareViewSet(
         result = json.loads(response.content)
 
         assert result['id'] == self.version.pk
-        assert result['file']['entries'] is None
         assert result['file']['diff']['path'] == 'README.md'
         change = result['file']['diff']['hunks'][0]['changes'][0]
 
@@ -7439,6 +7454,21 @@ class TestReviewAddonVersionCompareViewSet(
 
         # make sure we only returned `id` and `file` properties
         assert len(result.keys()) == 2
+
+    def test_file_only_false(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(
+            self.url + '?file=README.md&file_only=false')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['id'] == self.version.pk
+
+        # make sure we returned more than just the `id` and `file` properties
+        assert len(result.keys()) > 2
 
 
 class TestDownloadGitFileView(TestCase):
