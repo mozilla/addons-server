@@ -428,6 +428,3 @@ class VersionScannerFlags(ModelBase):
     @property
     def needs_human_review(self):
         return self.needs_human_review_by_mad
-
-    def clear_needs_human_review_flags(self):
-        self.update(needs_human_review_by_mad=False)

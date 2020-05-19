@@ -946,12 +946,9 @@ class ReviewBase(object):
 
             # Clear the "needs_human_review" scanner flags too, if any, and
             # only for the specified version.
-            try:
-                VersionScannerFlags.objects.get(
-                    version=self.version
-                ).clear_needs_human_review_flags()
-            except VersionScannerFlags.DoesNotExist:
-                pass
+            VersionScannerFlags.objects.filter(
+                version=self.version
+            ).update(needs_human_review_by_mad=False)
 
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(
