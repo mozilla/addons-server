@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:14+0000\n"
+"PO-Revision-Date: 2020-05-19 21:19+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -508,7 +508,7 @@ msgid "Review Unlisted"
 msgstr "მიმოხილვის შენიშვნა"
 
 msgid "This block was imported from a regex based legacy kinto Block."
-msgstr "ეს შეზღუდვა გადმოტანილია Regex-ზე დაფუძნებული Legacy-Kinto-შეზღუდვით."
+msgstr "ეს შეზღუდვა გადმოტანილია Regex-ზე დაფუძნებული Legacy-Kinto-შეზღუდვიდან."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "ნებისმიერი ცვლილება Legacy-შეზღუდვის სიაში არ აისახება – საჭირო იქნება ხელით ჩასწორება Kinto-ვებსამართავიდან."
@@ -530,13 +530,13 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s დამატება GUID ვერ მოიძებნა"
 
 msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgstr "მოცემული შეზღუდვ(ები)ა გადმოტანილია Regex-ზე დაფუძნებული Legacy-Kinto-შეზღუდვიდან."
 
 msgid "Save"
 msgstr "შენახვა"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "შენახვა და კიდევ დამატება"
 
 msgid "Delete"
 msgstr "წაშლა"
@@ -554,10 +554,10 @@ msgstr "წარდგენილ ნამუშევრებზე გა�
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "დაემატოს %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "დამატება GUID (თითო ცალკე ხაზზე)"
 
 #, fuzzy
 msgid "Submit"
@@ -565,21 +565,21 @@ msgstr "ვერსიის გადაგზავნა"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s დამატება GUID"
 
 #, fuzzy
 msgid "users"
 msgstr "მომხმარებლები"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "შეზღუდვის ჩასწორება"
 
 #, fuzzy
 msgid "versions"
 msgstr "ვერსიები"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "შეიცავს მოძველებული შეზღუდვის სია."
 
 msgid "{addon} was created."
 msgstr "{addon} შექმნილია."
@@ -899,16 +899,16 @@ msgid "User {user} api key reset."
 msgstr "{user} მომხმარებლის api-გასაღები ხელახლა შეიქმნა."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "შეზღუდვა {0}-ისთვის დამატებულია შეზღუდვის სიაში."
 
 msgid "Block added"
-msgstr ""
+msgstr "შეზღუდვა დამატებულია"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "შეზღუდვა {0}-ისთვის ჩასწორებულია შეზღუდვის სიაში."
 
 msgid "Block edited"
-msgstr ""
+msgstr "შეზღუდვა ჩასწორებულია"
 
 #, fuzzy
 msgid "Block for {0} deleted from Blocklist."
@@ -919,7 +919,7 @@ msgid "Block deleted"
 msgstr "დამატება წაშლილია."
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID დამატებისთვის {addon} ჩაემატა DeniedGuid-ში."
 
 #, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
