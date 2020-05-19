@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:13+0000\n"
+"PO-Revision-Date: 2020-05-19 21:24+0000\n"
 "Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -96,44 +96,44 @@ msgid "Your add-on was validated with no errors or warnings."
 msgstr "Azegrir yettwasentem s war tuccḍiwin neɣ ilɣa."
 
 msgid "Your submission will be automatically signed."
-msgstr "Tuzna yinek ad tettwazmel s wudem awurman."
+msgstr "Tuzna-inek ad tettwazmel s wudem awurman."
 
 msgid "WebExtension upgrade"
 msgstr "Aleqqem n WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Nessirig udiɣ nettmuddu tabɣest n lqem agi, acukan akal ticki yemmed, ulac tuɣalin ɣer deffir. Ticki iseqdacen inek sbedden WebExtension, ur ttizmiren ara ad sbedden izegrar iqbuṛen."
+msgstr "Nessirig udiɣ nettmuddu tabɣest n lqem-a, maca ticki yemmed, ulac tuɣalin ɣer deffir. Ticki iseqdace-ik sbedden WebExtension, ur ttizmiren ara ad sbedden izegrar iqbuṛen."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Awi-d izegrar iqbuṛen n Firefox ɣer MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Seddu tizmilin n lqem leqqayen (ayagi yezmer ad yettwag deg umecwaṛ i d-iteddun)."
+msgstr "Seddu tizmilin n lqem leqqayen (aya yezmer ad yettwag deg umecwaṛ i d-itteddun)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Ma yella yessefk ad yili umiḍan deg usmel web, rnu isem n useqdac akked wawal uffir n umiḍan si tezmilin i win ara ibeddlen taɣuri (ayagi yezmer ad yettwag deg umecwaṛ i d-iteddun)."
+msgstr "Ma yessefk ad yili umiḍan deg usmel web, rnu isem n useqdac akked wawal uffir n umiḍan seg tezmilin i win ara ibeddlen taɣuri (aya yezmer ad yettwag deg umecwaṛ i d-itteddun)."
 
 msgid "Add-on submission checklist"
-msgstr "Ayen ara yeyttwasneqden di tuzna n uzegrir"
+msgstr "Ayen ara yettwasneqden di tuzna n uzegrir"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Ma ulac aɣilif senqed tineqqiḍin agi send ad tazneḍ. Ayagi ad isenɣeṣ akud neɣ asmuckel dek ukala n uɛiwed n tɣuṛi:"
+msgstr "Ma ulac aɣilif senqed tineqqiḍin-a send ad tazneḍ. Aya ad isenɣes akud neɣ asmuckel deg ukala n uɛiwed n tɣuṛi:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Isekripten yettwasemẓin, yettwassden neɣ yettwasirwen s wudem awurman n kra n tarrayt (ur nelli ara seg wid n temkeṛḍiyin yettwasnen) yessefk iɣbula-nsen ad ttwaɛezlen akken ad ttusneqden weḥd-nsen."
-" Wali ma yella tesseqdaceḍ urti n usali n tengalt taɣbalut akken tuzzna-inek ad tettwaqbal."
+"Isekripten yettwasemẓin, yettwassden neɣ yettwasirwen s wudem awurman n kra n tarrayt (ur nelli ara seg wid n temkerḍiyin yettwassnen) yessefk iɣbula-nsen ad ttwaɛezlen akken ad ttusneqden weḥd-"
+"nsen. Wali ma yella tesseqdaceḍ urti n usali n tengalt taɣbalut akken tuzna-inek ad tettwaqbal."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Akala n usentem yufa-d uguren i izemren ad yawi ɣer tugin:"
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Anaw n ufaylu i tuzned ur yettwassen ara."
+msgstr "Anaw n ufaylu i tuzneḍ ur yettwassen ara."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr "Afaylu-ik iɛedda tilas n tuɣzi n {0}."
+msgstr "Afaylu-inek iɛedda tilas n teɣzi n {0}."
 
 msgid "You cancelled the upload."
 msgstr "Tesfesxeḍ tuzna."
@@ -146,37 +146,37 @@ msgstr "Yessefk tividyutin ad ilint s WebM."
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr "Asentel agi ur imṣada ara kked lqem inek n {0}"
+msgstr "Asentel-a ur imṣada ara akked lqem-inek n {0}"
 
 msgid "Flagged for review"
 msgstr "Yettwacreḍ i uɛawed n tmuɣli"
 
 msgid "Your input is required"
-msgstr "Asekcem inek yettwasra"
+msgstr "Asekcem-ik yettwasra"
 
 msgid "Marked for deletion"
 msgstr "Yettwacreḍ i tukksa"
 
 msgid "Updating results&hellip;"
-msgstr "Aleqqem n igmaḍ &hellip;"
+msgstr "Aleqqem n yigmaḍ &hellip;"
 
 msgid "Category"
 msgstr "Taggayt"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr "Anadi n isental i <b> {0} </b>"
+msgstr "Anadi n yisental i <b> {0} </b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr "Anadi n yesnasen i <b>{0}</b>"
+msgstr "Anadi n yisnasen i <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Anadi n izegrar i <b>{0}</b>"
+msgstr "Anadi n yizegrar i <b>{0}</b>"
 
 msgid "Use original"
 msgstr "seqdec aneẓli"
 
 msgid "Week of {0}"
-msgstr "Ḍduṛt n {0}"
+msgstr "Imalas n {0}"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
@@ -195,12 +195,12 @@ msgstr[1] "{0} izegrar"
 
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} tagruma"
+msgstr[0] "{0} tagrumma"
 msgstr[1] "{0} tigrummiwin"
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} aɛiwed n tɣuṛi"
+msgstr[0] "{0} aɛiwed n tmuɣli"
 msgstr[1] "{0} aɛiwed n tɣuṛiwin"
 
 msgid "{0} sale"
