@@ -70,7 +70,8 @@ def libraries():
         msg = "Failed to create a jpeg image: %s" % e
         libraries_results.append(('PIL+JPEG', False, msg))
 
-    missing_libs = [l for l, s, m in libraries_results if not s]
+    missing_libs = [
+        lib for lib, success, _ in libraries_results if not success]
     if missing_libs:
         status = 'missing libs: %s' % ",".join(missing_libs)
     return status, libraries_results
