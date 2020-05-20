@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-20 17:12+0000\n"
+"PO-Revision-Date: 2020-05-20 17:17+0000\n"
 "Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -643,7 +643,7 @@ msgid "{addon} {version} retained."
 msgstr "{addon} {version} giữ nguyên."
 
 msgid "Retained"
-msgstr ""
+msgstr "Đã giữ lại"
 
 msgid "{addon} {version} escalated."
 msgstr "{addon} {version} nâng cấp."
@@ -767,7 +767,7 @@ msgid "User {user} edited, reason: {1}"
 msgstr "Người dùng {user} đã chỉnh sửa, lý do: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Người dùng {user} đã ẩn danh."
 
 msgid "User {user} restricted."
 msgstr "Người dùng {user} đã bị hạn chế."
@@ -794,7 +794,7 @@ msgid "User {0.name} removed from {group}."
 msgstr "Đã xóa người dùng {0.name} khỏi {group}."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} chưa được thêm vào danh sách."
 
 msgid "{file} was signed."
 msgstr "{file} đã được ký."
@@ -816,7 +816,7 @@ msgid "Reply by reviewer on {addon} {version}."
 msgstr "Trả lời bởi người đánh giá về {addon} {version}."
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Trả lời của người đánh giá"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr "Đã thay đổi các ghi chú phê duyệt cho {addon} {version}."
@@ -966,10 +966,10 @@ msgid "Deleted"
 msgstr "Đã xóa"
 
 msgid "Unlisted"
-msgstr ""
+msgstr "Chưa được liệt kê"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1001,7 +1001,7 @@ msgid "Plugin"
 msgstr "Phần bổ trợ"
 
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "LWT ngừng hoạt động"
 
 msgid "Theme (Static)"
 msgstr "Chủ đề (Tĩnh)"
@@ -5915,9 +5915,8 @@ msgstr ""
 msgid "Allow resubmission"
 msgstr "Xem tất cả các đệ trình"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Quản lý Bản Gửi lên của Tôi"
+msgstr "Từ chối gửi lại"
 
 msgid "Force-disable add-on"
 msgstr ""
@@ -6126,9 +6125,8 @@ msgstr[0] "Yêu cầu thông tin đã hết hạn ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Bắt đầu"
+msgstr "trạng thái kết quả"
 
 msgid "all but this rule"
 msgstr ""
@@ -6137,9 +6135,8 @@ msgstr ""
 msgid "presence of a version"
 msgstr "Xem trước phiên bản được liệt kê"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Đã ký phiên bản"
+msgstr "kênh phiên bản"
 
 msgid "add-on status"
 msgstr "trạng thái tiện ích"
@@ -6188,9 +6185,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Trả lời của người đánh giá"
+msgstr "Hoàn nguyên báo cáo"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
