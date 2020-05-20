@@ -299,24 +299,24 @@ class VersionsChoiceWidget(forms.SelectMultiple):
     }
 
     def create_option(self, *args, **kwargs):
-        rval = super().create_option(*args, **kwargs)
+        option = super().create_option(*args, **kwargs)
         # label_from_instance() on VersionsChoiceField returns the full object,
         # not a label, this is what makes this work.
-        obj = rval['label']
+        obj = option['label']
         status = obj.current_file.status if obj.current_file else None
         versions_actions = getattr(self, 'versions_actions', None)
         if versions_actions and obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
             # For unlisted, some actions should only apply to approved/pending
             # versions, so we add our special `data-toggle` class and the
             # right `data-value` depending on status.
-            rval['attrs']['class'] = 'data-toggle'
-            rval['attrs']['data-value'] = '|'.join(
+            option['attrs']['class'] = 'data-toggle'
+            option['attrs']['data-value'] = '|'.join(
                 self.actions_filters.get(status, ()) + ('',)
             )
         # Just in case, let's now force the label to be a string (it would be
         # converted anyway, but it's probably safer that way).
-        rval['label'] = str(obj)
-        return rval
+        option['label'] = str(obj)
+        return option
 
 
 class ReviewForm(forms.Form):
@@ -332,6 +332,12 @@ class ReviewForm(forms.Form):
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
     versions = VersionsChoiceField(
+        # The <select> is displayed/hidden dynamically depending on the action
+        # so it needs the data-toggle class (data-value attribute is set later
+        # during __init__). VersionsChoiceWidget takes care of adding that to
+        # the individual <option> which is also needed for unlisted review
+        # where for some actions we display the dropdown hiding some of the
+        # versions it contains.
         widget=VersionsChoiceWidget(attrs={'class': 'data-toggle'}),
         required=False,
         queryset=Version.objects.none())  # queryset is set later in __init__.
