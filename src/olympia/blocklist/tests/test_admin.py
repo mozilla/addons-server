@@ -145,7 +145,7 @@ class TestBlockAdmin(TestCase):
         self.assertRedirects(response, self.submission_url, status_code=307)
 
         # but not if it's imported from a legacy record
-        block.update(include_in_legacy=True, kinto_id='343545')
+        block.update(include_in_legacy=True, legacy_id='343545')
         response = self.client.post(
             self.add_url, post_data, follow=True)
         assert b'Add-on GUIDs (one per line)' in response.content
@@ -726,7 +726,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             min_version='0',
             max_version='*',
             include_in_legacy=True,
-            kinto_id='34345',
+            legacy_id='34345',
             updated_by=user_factory())
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger')
@@ -735,14 +735,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
             min_version='1',
             max_version='99',
             include_in_legacy=True,
-            kinto_id='75456',
+            legacy_id='75456',
             updated_by=user_factory())
         Block.objects.create(
             addon=addon_factory(guid='regex@legacy'),
             min_version='23',
             max_version='567',
             include_in_legacy=True,
-            kinto_id='*regexlegacy',
+            legacy_id='*regexlegacy',
             updated_by=user_factory())
         response = self.client.post(
             self.submission_url,
@@ -784,7 +784,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             min_version='0',
             max_version='*',
             include_in_legacy=True,
-            kinto_id='5656',
+            legacy_id='5656',
             updated_by=user_factory())
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger')
@@ -793,14 +793,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
             min_version='1',
             max_version='99',
             include_in_legacy=True,
-            kinto_id='74356',
+            legacy_id='74356',
             updated_by=user_factory())
         Block.objects.create(
             addon=addon_factory(guid='regex@legacy'),
             min_version='23',
             max_version='567',
             include_in_legacy=True,
-            kinto_id='*regexlegacy',
+            legacy_id='*regexlegacy',
             updated_by=user_factory())
         response = self.client.post(
             self.submission_url,
@@ -1203,7 +1203,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert signoff_log.arguments == [addon, addon.guid, 'add', new_block]
         assert signoff_log.user == user
 
-        # blocks would have been submitted to kinto legacy collection
+        # blocks would have been submitted to remote settings legacy collection
         legacy_publish_blocks_mock.assert_called()
         legacy_publish_blocks_mock.assert_called_with([new_block])
 
@@ -1266,7 +1266,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert mbs.url != 'new.url'
         assert mbs.reason != 'a reason'
 
-        # blocks would not have been submitted to kinto legacy collection
+        # blocks would not have been submitted to remote settings legacy
+        # collection
         legacy_publish_blocks_mock.assert_not_called()
 
         # And the blocklistsubmission was rejected, so no Blocks created
@@ -1762,7 +1763,7 @@ class TestBlockAdminEdit(TestCase):
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
-        self.block.update(kinto_id='*foo@baa')
+        self.block.update(legacy_id='*foo@baa')
 
         response = self.client.get(self.change_url, follow=True)
         content = response.content.decode('utf-8')
@@ -1779,7 +1780,7 @@ class TestBlockAdminEdit(TestCase):
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
-        self.block.update(kinto_id='123456', include_in_legacy=True)
+        self.block.update(legacy_id='123456', include_in_legacy=True)
 
         response = self.client.get(self.change_url, follow=True)
         content = response.content.decode('utf-8')
@@ -1812,7 +1813,7 @@ class TestBlockAdminEdit(TestCase):
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
-        self.block.update(kinto_id='123456', include_in_legacy=True)
+        self.block.update(legacy_id='123456', include_in_legacy=True)
 
         response = self.client.get(self.change_url, follow=True)
         content = response.content.decode('utf-8')

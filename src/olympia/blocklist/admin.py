@@ -441,9 +441,9 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
         )
         if load_full_objects:
             Block.preload_addon_versions(objects['blocks'])
-        objects['is_imported_from_kinto_regex'] = [
+        objects['is_imported_from_legacy_regex'] = [
             obj.guid for obj in objects['blocks']
-            if obj.is_imported_from_kinto_regex
+            if obj.is_imported_from_legacy_regex
         ]
         return objects
 
@@ -707,8 +707,8 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                     reverse('admin:blocklist_blocklistsubmission_add'))
 
         extra_context['show_save_and_continue'] = False
-        extra_context['is_imported_from_kinto_regex'] = (
-            obj and obj.is_imported_from_kinto_regex)
+        extra_context['is_imported_from_legacy_regex'] = (
+            obj and obj.is_imported_from_legacy_regex)
 
         return super().changeform_view(
             request, object_id=obj_id, form_url=form_url,

@@ -13,7 +13,7 @@ from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
 from .models import Block
-from .tasks import upload_filter_to_kinto
+from .tasks import upload_filter
 
 
 log = olympia.core.logger.getLogger('z.cron')
@@ -24,18 +24,18 @@ def get_blocklist_last_modified_time():
     return int(latest_block.modified.timestamp() * 1000) if latest_block else 0
 
 
-def upload_mlbf_to_kinto(*, bypass_switch=False):
+def upload_mlbf_to_remote_settings(*, bypass_switch=False):
     """Creates a bloomfilter, and possibly a stash json blob, and uploads to
     remote-settings.
     bypass_switch=<Truthy value> will bypass the "blocklist_mlbf_submit" switch
     for manual use/testing."""
     bypass_switch = bool(bypass_switch)
     if not (bypass_switch or waffle.switch_is_active('blocklist_mlbf_submit')):
-        log.info('Upload MLBF to kinto cron job disabled.')
+        log.info('Upload MLBF to remote settings cron job disabled.')
         return
     last_generation_time = get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
 
-    log.info('Starting Upload MLBF to kinto cron job.')
+    log.info('Starting Upload MLBF to remote settings cron job.')
 
     # This timestamp represents the point in time when all previous addon
     # guid + versions and blocks were used to generate the bloomfilter.
@@ -77,7 +77,7 @@ def upload_mlbf_to_kinto(*, bypass_switch=False):
             # fallback to creating a new base if stash fails
             make_base_filter = True
 
-    upload_filter_to_kinto.delay(
+    upload_filter.delay(
         generation_time,
         is_base=make_base_filter,
         upload_stash=not make_base_filter)

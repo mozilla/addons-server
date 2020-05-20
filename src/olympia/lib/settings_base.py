@@ -1102,7 +1102,7 @@ CELERY_TASK_ROUTES = {
     'olympia.blocklist.tasks.delete_imported_block_from_blocklist': {
         'queue': 'priority'
     },
-    'olympia.blocklist.tasks.upload_filter_to_kinto': {
+    'olympia.blocklist.tasks.upload_filter': {
         'queue': 'priority'
     },
     'olympia.versions.tasks.generate_static_theme_preview': {
@@ -1846,7 +1846,7 @@ CRON_JOBS = {
     'weekly_downloads': 'olympia.amo.cron',
 
     'auto_import_blocklist': 'olympia.blocklist.cron',
-    'upload_mlbf_to_kinto': 'olympia.blocklist.cron',
+    'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
 
     'update_blog_posts': 'olympia.devhub.cron',
 
@@ -1919,11 +1919,11 @@ REMOTE_SETTINGS_API_URL = 'https://kinto.dev.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://kinto.dev.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'blocklists'
 
-# The kinto test server needs accounts and setting up before using.
-KINTO_API_IS_TEST_SERVER = False
-BLOCKLIST_KINTO_USERNAME = env(
+# The remote settings test server needs accounts and setting up before using.
+REMOTE_SETTINGS_IS_TEST_SERVER = False
+BLOCKLIST_REMOTE_SETTINGS_USERNAME = env(
     'BLOCKLIST_KINTO_USERNAME', default='amo_dev')
-BLOCKLIST_KINTO_PASSWORD = env(
+BLOCKLIST_REMOTE_SETTINGS_PASSWORD = env(
     'BLOCKLIST_KINTO_PASSWORD', default='amo_dev_password')
 
 # The path to the current google service account configuration. This is

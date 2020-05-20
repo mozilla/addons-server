@@ -15,18 +15,18 @@ from waffle.testutils import override_switch
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.blocklist.cron import (
     auto_import_blocklist, get_blocklist_last_modified_time,
-    upload_mlbf_to_kinto)
+    upload_mlbf_to_remote_settings)
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block
 from olympia.constants.blocklist import (
     MLBF_TIME_CONFIG_KEY, MLBF_BASE_ID_CONFIG_KEY)
-from olympia.lib.kinto import KintoServer
+from olympia.lib.remote_settings import RemoteSettings
 from olympia.zadmin.models import get_config, set_config
 
 
 @freeze_time('2020-01-01 12:34:56')
 @override_switch('blocklist_mlbf_submit', active=True)
-class TestUploadToKinto(TestCase):
+class TestUploadToRemoteSettings(TestCase):
     def setUp(self):
         addon_factory()
         self.block = Block.objects.create(
@@ -34,9 +34,12 @@ class TestUploadToKinto(TestCase):
                 version_kw={'version': '1.2b3'},
                 file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
-        delete_patcher = mock.patch.object(KintoServer, 'delete_all_records')
-        attach_patcher = mock.patch.object(KintoServer, 'publish_attachment')
-        record_patcher = mock.patch.object(KintoServer, 'publish_record')
+        delete_patcher = mock.patch.object(
+            RemoteSettings, 'delete_all_records')
+        attach_patcher = mock.patch.object(
+            RemoteSettings, 'publish_attachment')
+        record_patcher = mock.patch.object(
+            RemoteSettings, 'publish_record')
         self.addCleanup(delete_patcher.stop)
         self.addCleanup(attach_patcher.stop)
         self.addCleanup(record_patcher.stop)
@@ -45,7 +48,7 @@ class TestUploadToKinto(TestCase):
         self.publish_record_mock = record_patcher.start()
 
     def test_no_previous_mlbf(self):
-        upload_mlbf_to_kinto()
+        upload_mlbf_to_remote_settings()
 
         generation_time = int(
             datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
@@ -79,7 +82,7 @@ class TestUploadToKinto(TestCase):
         with storage.open(prev_blocked_path, 'w') as blocked_file:
             json.dump(['madeup@guid:123'], blocked_file)
 
-        upload_mlbf_to_kinto()
+        upload_mlbf_to_remote_settings()
 
         generation_time = int(
             datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
@@ -118,7 +121,7 @@ class TestUploadToKinto(TestCase):
         with storage.open(base_blocked_path, 'w') as blocked_file:
             json.dump([], blocked_file)
 
-        upload_mlbf_to_kinto()
+        upload_mlbf_to_remote_settings()
 
         generation_time = int(
             datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
@@ -159,7 +162,7 @@ class TestUploadToKinto(TestCase):
         with storage.open(base_blocked_path, 'w') as blocked_file:
             json.dump([], blocked_file)
 
-        upload_mlbf_to_kinto()
+        upload_mlbf_to_remote_settings()
 
         generation_time = int(
             datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
@@ -185,14 +188,14 @@ class TestUploadToKinto(TestCase):
 
     @override_switch('blocklist_mlbf_submit', active=False)
     def test_waffle_off_disables_publishing(self):
-        upload_mlbf_to_kinto()
+        upload_mlbf_to_remote_settings()
 
         self.publish_attachment_mock.assert_not_called()
         self.publish_record_mock.assert_not_called()
         assert not get_config(MLBF_TIME_CONFIG_KEY)
 
         # except when 'bypass_switch' kwarg is passed
-        upload_mlbf_to_kinto(bypass_switch=True)
+        upload_mlbf_to_remote_settings(bypass_switch=True)
         self.publish_attachment_mock.assert_called()
         assert get_config(MLBF_TIME_CONFIG_KEY)
 
@@ -209,7 +212,7 @@ class TestUploadToKinto(TestCase):
         with storage.open(prev_blocked_path, 'w') as blocked_file:
             json.dump([f'{self.block.guid}:1.2b3'], blocked_file)
 
-        upload_mlbf_to_kinto()
+        upload_mlbf_to_remote_settings()
         # So no need for a new bloomfilter
         self.publish_attachment_mock.assert_not_called()
         self.publish_record_mock.assert_not_called()
@@ -220,7 +223,7 @@ class TestUploadToKinto(TestCase):
             addon=addon_factory(
                 file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
-        upload_mlbf_to_kinto()
+        upload_mlbf_to_remote_settings()
         self.publish_attachment_mock.assert_called_once()
         assert (
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
@@ -232,7 +235,7 @@ class TestUploadToKinto(TestCase):
         last_modified = get_blocklist_last_modified_time()
         self.block.delete()
         assert last_modified == get_blocklist_last_modified_time()
-        upload_mlbf_to_kinto()
+        upload_mlbf_to_remote_settings()
         assert self.publish_attachment_mock.call_count == 2  # called again
 
 

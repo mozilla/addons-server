@@ -7,7 +7,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia.blocklist.models import KintoImport
+from olympia.blocklist.models import LegacyImport
 from olympia.blocklist.tasks import (
     delete_imported_block_from_blocklist, import_block_from_blocklist)
 from olympia.constants.blocklist import REMOTE_SETTINGS_COLLECTION_LEGACY
@@ -29,12 +29,13 @@ class Command(BaseCommand):
         response = requests.get(LEGACY_BLOCKLIST_URL)
 
         data = response.json().get('data', [])
-        kinto_ids = [record['id'] for record in data]
+        legacy_ids = [record['id'] for record in data]
         # filter out the blocks we've already imported
-        kinto_import_qs = KintoImport.objects.all().values_list(
-            'kinto_id', 'timestamp', named=True)
+        legacy_import_qs = LegacyImport.objects.all().values_list(
+            'legacy_id', 'timestamp', named=True)
         already_imported = {
-            import_.kinto_id: import_.timestamp for import_ in kinto_import_qs}
+            import_.legacy_id: import_.timestamp
+            for import_ in legacy_import_qs}
         new_records = [
             record for record in data
             if record['id'] not in already_imported
@@ -45,8 +46,8 @@ class Command(BaseCommand):
             record['last_modified'] != already_imported[record['id']]
         ]
         deleted_record_ids = [
-            kinto_id for kinto_id in already_imported
-            if kinto_id not in kinto_ids
+            legacy_id for legacy_id in already_imported
+            if legacy_id not in legacy_ids
         ]
         log.info(
             '%s new, %s modified, %s deleted records from legacy blocklist to '
@@ -66,5 +67,5 @@ class Command(BaseCommand):
         if deleted_record_ids:
             log.info(
                 'Deleting Blocks that have been removed from legacy blocklist')
-            for kinto_id in deleted_record_ids:
-                delete_imported_block_from_blocklist.delay(kinto_id)
+            for legacy_id in deleted_record_ids:
+                delete_imported_block_from_blocklist.delay(legacy_id)

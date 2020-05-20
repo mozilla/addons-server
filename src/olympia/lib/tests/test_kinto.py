@@ -8,16 +8,16 @@ from django.test.utils import override_settings
 import responses
 
 from olympia.amo.tests import TestCase
-from olympia.lib.kinto import KintoServer
+from olympia.lib.remote_settings import RemoteSettings
 
 
 @override_settings(
-    BLOCKLIST_KINTO_USERNAME='test_username',
-    BLOCKLIST_KINTO_PASSWORD='test_password')
-class TestKintoServer(TestCase):
+    BLOCKLIST_REMOTE_SETTINGS_USERNAME='test_username',
+    BLOCKLIST_REMOTE_SETTINGS_PASSWORD='test_password')
+class TestRemoteSettings(TestCase):
 
     def test_setup_server_auth(self):
-        server = KintoServer('foo', 'baa')
+        server = RemoteSettings('foo', 'baa')
         responses.add(
             responses.GET,
             settings.REMOTE_SETTINGS_WRITER_URL,
@@ -40,7 +40,7 @@ class TestKintoServer(TestCase):
         server.setup_test_server_auth()
 
     def test_setup_server_bucket(self):
-        server = KintoServer('foo', 'baa')
+        server = RemoteSettings('foo', 'baa')
         # if the server 403s on the bucket it's because it doesn't exist
         responses.add(
             responses.GET,
@@ -67,7 +67,7 @@ class TestKintoServer(TestCase):
         server.setup_test_server_collection()
 
     def test_setup_server_collection(self):
-        server = KintoServer('foo', 'baa')
+        server = RemoteSettings('foo', 'baa')
         # But if the bucket exists then the collection should still be created
         responses.add(
             responses.GET,
@@ -87,17 +87,17 @@ class TestKintoServer(TestCase):
             status=201)
         server.setup_test_server_collection()
 
-    @override_settings(KINTO_API_IS_TEST_SERVER=False)
+    @override_settings(REMOTE_SETTINGS_IS_TEST_SERVER=False)
     def test_setup_not_test_server(self):
-        server = KintoServer('foo', 'baa')
+        server = RemoteSettings('foo', 'baa')
 
         server.setup()  # will just return
         assert server._setup_done
         assert server.bucket == 'foo'
 
-    @override_settings(KINTO_API_IS_TEST_SERVER=True)
+    @override_settings(REMOTE_SETTINGS_IS_TEST_SERVER=True)
     def test_setup(self):
-        server = KintoServer('foo', 'baa')
+        server = RemoteSettings('foo', 'baa')
         responses.add(
             responses.GET,
             settings.REMOTE_SETTINGS_WRITER_URL,
@@ -122,7 +122,7 @@ class TestKintoServer(TestCase):
         server.setup()  # a second time shouldn't make any requests
 
     def test_publish_record(self):
-        server = KintoServer('foo', 'baa')
+        server = RemoteSettings('foo', 'baa')
         server._setup_done = True
         assert not server._changes
         responses.add(
@@ -148,10 +148,10 @@ class TestKintoServer(TestCase):
         record = server.publish_record({'something': 'somevalue'}, 'an-id')
         assert record == {'id': 'updated'}
 
-    @mock.patch('olympia.lib.kinto.uuid')
+    @mock.patch('olympia.lib.remote_settings.uuid')
     def test_publish_attachment(self, uuidmock):
         uuidmock.uuid4.return_value = 1234567890
-        server = KintoServer('foo', 'baa')
+        server = RemoteSettings('foo', 'baa')
         server._setup_done = True
         assert not server._changes
         url = (
@@ -182,7 +182,7 @@ class TestKintoServer(TestCase):
         assert record == {'id': 'an-id'}
 
     def test_delete_record(self):
-        server = KintoServer('foo', 'baa')
+        server = RemoteSettings('foo', 'baa')
         server._setup_done = True
         assert not server._changes
         url = (
@@ -197,7 +197,7 @@ class TestKintoServer(TestCase):
         assert server._changes
 
     def test_delete_all_records(self):
-        server = KintoServer('foo', 'baa')
+        server = RemoteSettings('foo', 'baa')
         server._setup_done = True
         assert not server._changes
         url = (
@@ -212,7 +212,7 @@ class TestKintoServer(TestCase):
         assert server._changes
 
     def test_complete_session(self):
-        server = KintoServer('foo', 'baa')
+        server = RemoteSettings('foo', 'baa')
         server._setup_done = True
         # should return because nothing to signoff
         server.complete_session()
@@ -230,8 +230,8 @@ class TestKintoServer(TestCase):
         assert responses.calls[0].request.body == json.dumps(
             {'data': {'status': 'to-review'}}).encode()
 
-    def test_complete_session_no_kinto_signoff(self):
-        server = KintoServer('foo', 'baa', kinto_sign_off_needed=False)
+    def test_complete_session_no_signoff(self):
+        server = RemoteSettings('foo', 'baa', sign_off_needed=False)
         server._setup_done = True
         # should return because nothing to signoff
         server.complete_session()
