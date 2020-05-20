@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-20 05:48+0000\n"
+"PO-Revision-Date: 2020-05-20 05:46+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -491,7 +491,7 @@ msgstr "GUID %(guid)s is in behandeling"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "De blokkering voor GUID %(guid)s is alleen-lezen – deze moet via de verouderde blokkeringslijstcollectie worden bewerkt"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -1725,10 +1725,10 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "U hebt onlangs te veel uploads ingediend. Probeer het na enige tijd nog eens."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "Versie {version} komt overeen met {block_link} voor deze add-on. U kunt contact opnemen met {amo_admins} voor aanvullende informatie."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "een blokkeringslijstitem"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versie {version} is eerder geüpload en verwijderd."
