@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-20 01:51+0000\n"
+"PO-Revision-Date: 2020-05-20 01:53+0000\n"
 "Last-Translator: πάθοςγιατηζωή <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1692,7 +1692,7 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr "版本 {version} 与该附加组件的 {block_link} 相匹配。您可以联系 {amo_admins} 了解更多信息。"
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "屏蔽列表条目"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 此前已上传并已删除。"
