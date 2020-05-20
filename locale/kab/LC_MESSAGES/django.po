@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:06+0000\n"
-"Last-Translator: K_ahina <kahinamessaoudi03@gmail.com>\n"
+"PO-Revision-Date: 2020-05-20 11:47+0000\n"
+"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -5506,13 +5506,11 @@ msgstr "Ileqman ittwabedren yesran acegger ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Ieqman ur nettwabder ara yesran acegger ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Ileqman yettwabedren"
+msgstr "Ileqman yettwabedren ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Ileqman yettwabedren"
+msgstr "Ileqman ur d-yettwabedren ara ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad ttwaznen i uneflay."
@@ -5592,11 +5590,10 @@ msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] "Yettwacegger s yisniram ({0})"
 msgstr[1] "Ttwaceggren s yisniram ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Annay i usenqed n umdan"
-msgstr[1] "Annay i usenqed n umdan"
+msgstr[0] "Yettunefk-d i usenqed n umdan ({0})"
+msgstr[1] "Yettunefk-d i usenqed n umdan ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Izegrar yettwaqeblen s wudem awurman"
