@@ -1,5 +1,6 @@
 import functools
 
+from django import http
 from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
@@ -130,6 +131,19 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context['has_users_edit_permission'] = acl.action_allowed(
             request, amo.permissions.USERS_EDIT)
+
+        lookup_field = UserProfile.get_lookup_field(object_id)
+        if lookup_field != 'pk':
+            try:
+                if lookup_field == 'email':
+                    user = UserProfile.objects.get(email=object_id)
+            except UserProfile.DoesNotExist:
+                raise http.Http404
+            url = request.path.replace(object_id, str(user.id), 1)
+            if request.GET:
+                url += '?' + request.GET.urlencode()
+            return http.HttpResponsePermanentRedirect(url)
+
         return super(UserAdmin, self).change_view(
             request, object_id, form_url, extra_context=extra_context,
         )
