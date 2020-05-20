@@ -12,9 +12,9 @@ tox==3.15.0 \
     --hash=sha256:af09c19478e8fc7ce7555b3d802ddf601b82684b874812c5857f774b8aee1b67
 
 # Dependencies of Tox
-virtualenv==20.0.20 \
-    --hash=sha256:b4c14d4d73a0c23db267095383c4276ef60e161f94fde0427f2f21a0132dde74 \
-    --hash=sha256:fd0e54dec8ac96c1c7c87daba85f0a59a7c37fe38748e154306ca21c73244637
+virtualenv==20.0.21 \
+    --hash=sha256:a730548b27366c5e6cbdf6f97406d861cccece2e22275e8e1a757aeff5e00c70 \
+    --hash=sha256:a116629d4e7f4d03433b8afa27f43deba09d48bc48f5ecefa4f015a178efb6cf
 six==1.14.0 \
     --hash=sha256:236bdbdce46e6e6a3d61a337c0f8b763ca1e8717c03b369e87a7ec7ce1319c0a \
     --hash=sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c
