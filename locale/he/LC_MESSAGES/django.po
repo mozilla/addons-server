@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-20 13:21+0000\n"
+"PO-Revision-Date: 2020-05-20 13:31+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1724,7 +1724,7 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "הגשת יותר מידי העלאות לאחרונה. נא לנסות שוב לאחר זמן מה."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "הגרסה {version} תואמת ל־{block_link} עבור תוספת זו. באפשרותך ליצור קשר עם {amo_admins} לקבלת מידע נוסף."
 
 msgid "a blocklist entry"
 msgstr ""
@@ -2448,7 +2448,7 @@ msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "הגודל המינימלי הוא 750×1000 פיקסלים, ונדרש יחס של 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "הצגת צילומי מסך בדף המוצר שלך מגדילה מאוד את הסיכויים שיתקינו אותו."
 
 msgid "Continue"
 msgstr "המשך"
@@ -3132,16 +3132,16 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "למפתחים"
 
 msgid "For end users"
-msgstr ""
+msgstr "למשתמשי קצה"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
@@ -3159,13 +3159,13 @@ msgstr "כתובת דוא״ל"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "מקובלת עלי הדרך בה Mozilla מטפלת במידע שלי כמוסבר ב%(link_open)sהצהרת פרטיות זו%(link_close)s."
 
 msgid "Sign Up"
 msgstr "הרשמה"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "תודה!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3186,7 +3186,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "הכפתור ״Get The Add-on״"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "תוכנית ההרחבות המומלצות"
 
 msgid "Contribute"
 msgstr "תרומה"
@@ -3221,7 +3221,7 @@ msgid "See how"
 msgstr "למדו כיצד"
 
 msgid "Get involved"
-msgstr ""
+msgstr "הצטרפות"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -4980,7 +4980,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "יצירה והתאמה אישית של קבוצות לשוניות."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -6022,7 +6022,7 @@ msgid "Reviewer's Guide"
 msgstr "מדריך לסוקרים"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "‏{addon} – תוספות עבור Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6042,7 +6042,7 @@ msgid "Previously deleted entries"
 msgstr "רשומות שנמחקו בעבר"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "זוהי הרחבה מומלצת."
 
 msgid "You don't have permission to review it."
 msgstr "אין לך הרשאה לסקור את זה."
