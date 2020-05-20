@@ -451,6 +451,27 @@ class TestReviewHelper(TestReviewHelperBase):
             file_status=amo.STATUS_APPROVED,
             content_review=True).keys()) == expected
 
+    def test_actions_unlisted(self):
+        # Just regular review permissions don't let you do much on an unlisted
+        # review page.
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_NULL,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # Once you have ReviewUnlisted more actions are available.
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        expected = [
+            'public', 'reject_multiple_versions',
+            'block_multiple_versions', 'confirm_multiple_versions',
+            'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_NULL,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.handler.set_files(amo.STATUS_APPROVED,
@@ -1479,6 +1500,58 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 2
 
+    def test_reject_multiple_versions_unlisted(self):
+        old_version = self.version
+        self.make_addon_unlisted(self.addon)
+        self.version = version_factory(
+            addon=self.addon, version='3.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=101)
+        # An extra file should not change anything.
+        file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
+        self.setup_data(
+            amo.STATUS_NULL, file_status=amo.STATUS_AWAITING_REVIEW)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewUnlisted)
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.file.status == amo.STATUS_AWAITING_REVIEW
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.current_version is None
+        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert self.file.status == amo.STATUS_DISABLED
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
+        assert mail.outbox[0].subject == (
+            'Mozilla Add-ons: Versions disabled for Delicious Bookmarks')
+        assert (
+            'versions of your add-on Delicious Bookmarks have been disabled'
+            in mail.outbox[0].body
+        )
+        log_token = ActivityLogToken.objects.get()
+        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
+
+        logs = (ActivityLog.objects.for_addons(self.addon)
+                                   .filter(action=amo.LOG.REJECT_VERSION.id))
+        assert logs[0].created == logs[1].created
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+
     def test_approve_content_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
         self.setup_data(
@@ -1568,7 +1641,7 @@ class TestReviewHelper(TestReviewHelperBase):
         data = self.get_data().copy()
         data['versions'] = self.addon.versions.all()
         self.helper.set_data(data)
-        self.helper.handler.reject_multiple_versions()
+        self.helper.handler.block_multiple_versions()
 
         self.addon.reload()
         self.file.reload()
