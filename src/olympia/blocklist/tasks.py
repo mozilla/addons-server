@@ -72,7 +72,7 @@ def import_block_from_blocklist(record):
         kinto_import.save()
         log.error('Kinto %s: GUID is falsey, skipping.', kinto_id)
         return
-    version_range = record.get('versionRange', [{}])[0]
+    version_range = (record.get('versionRange') or [{}])[0]
     target_application = version_range.get('targetApplication') or [{}]
     target_GUID = target_application[0].get('guid')
     if target_GUID and target_GUID != amo.FIREFOX.guid:
