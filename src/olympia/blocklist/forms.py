@@ -13,7 +13,7 @@ from .utils import splitlines
 def _get_matching_guids_and_errors(guids):
     error_list = []
     matching = dict(Block.objects.filter(
-        guid__in=guids).values_list('guid', 'kinto_id'))
+        guid__in=guids).values_list('guid', 'legacy_id'))
     for guid in guids:
         if BlocklistSubmission.get_submissions_from_guid(guid):
             error_list.append(ValidationError(
@@ -23,7 +23,7 @@ def _get_matching_guids_and_errors(guids):
         'blocklist_legacy_submit')
     if legacy_submit_off:
         v2_imported = (
-            guid for guid, kinto_id in matching.items() if kinto_id != '')
+            guid for guid, legacy_id in matching.items() if legacy_id != '')
         for guid in v2_imported:
             error_list.append(ValidationError(
                 _('The block for GUID %(guid)s is readonly '

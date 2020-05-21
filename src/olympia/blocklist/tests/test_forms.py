@@ -23,8 +23,8 @@ class LegacySyncCheckMixin():
         form.is_valid()
         form.clean()  # would raise
 
-        # Give any@thing a .kinto_id so its sync'd with legacy blocklist
-        anyblock.update(kinto_id='123456')
+        # Give any@thing a .legacy_id so its sync'd with legacy blocklist
+        anyblock.update(legacy_id='123456')
         form.is_valid()
         with self.assertRaises(ValidationError):
             form.clean()

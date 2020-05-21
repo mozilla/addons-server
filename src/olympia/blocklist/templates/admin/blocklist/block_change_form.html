@@ -2,9 +2,9 @@
 {% load i18n admin_urls %}
 
 {% block field_sets %}
-  {% if is_imported_from_kinto_regex %}
+  {% if is_imported_from_legacy_regex %}
     <p class="errornote">
-      {% trans "This block was imported from a regex based legacy kinto Block." %}
+      {% trans "This block was imported from a regex based legacy Block." %}
       {% trans "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui." %}
     </p>
   {% endif %}

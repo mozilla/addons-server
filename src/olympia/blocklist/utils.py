@@ -7,7 +7,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.activity import log_create
 from olympia.constants.blocklist import REMOTE_SETTINGS_COLLECTION_LEGACY
-from olympia.lib.kinto import KintoServer
+from olympia.lib.remote_settings import RemoteSettings
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -95,14 +95,14 @@ def splitlines(text):
 
 def legacy_publish_blocks(blocks):
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
-    server = KintoServer(bucket, REMOTE_SETTINGS_COLLECTION_LEGACY)
+    server = RemoteSettings(bucket, REMOTE_SETTINGS_COLLECTION_LEGACY)
     for block in blocks:
-        needs_updating = block.include_in_legacy and block.kinto_id
-        needs_creating = block.include_in_legacy and not block.kinto_id
-        needs_deleting = block.kinto_id and not block.include_in_legacy
+        needs_updating = block.include_in_legacy and block.legacy_id
+        needs_creating = block.include_in_legacy and not block.legacy_id
+        needs_deleting = block.legacy_id and not block.include_in_legacy
 
         if needs_updating or needs_creating:
-            if block.is_imported_from_kinto_regex:
+            if block.is_imported_from_legacy_regex:
                 log.info(
                     f'Block [{block.guid}] was imported from a regex guid so '
                     'can\'t be safely updated.  Skipping.')
@@ -123,33 +123,33 @@ def legacy_publish_blocks(blocks):
             }
             if needs_creating:
                 record = server.publish_record(data)
-                block.update(kinto_id=record.get('id', ''))
+                block.update(legacy_id=record.get('id', ''))
             else:
-                server.publish_record(data, block.kinto_id)
+                server.publish_record(data, block.legacy_id)
         elif needs_deleting:
-            if block.is_imported_from_kinto_regex:
+            if block.is_imported_from_legacy_regex:
                 log.info(
                     f'Block [{block.guid}] was imported from a regex guid so '
                     'can\'t be safely deleted.  Skipping.')
             else:
-                server.delete_record(block.kinto_id)
-            block.update(kinto_id='')
-        # else no existing kinto record and it shouldn't be in legacy so skip
+                server.delete_record(block.legacy_id)
+            block.update(legacy_id='')
+        # else no existing legacy record and it shouldn't be in legacy so skip
     server.complete_session()
 
 
 def legacy_delete_blocks(blocks):
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
-    server = KintoServer(bucket, REMOTE_SETTINGS_COLLECTION_LEGACY)
+    server = RemoteSettings(bucket, REMOTE_SETTINGS_COLLECTION_LEGACY)
     for block in blocks:
-        if block.kinto_id and block.include_in_legacy:
-            if block.is_imported_from_kinto_regex:
+        if block.legacy_id and block.include_in_legacy:
+            if block.is_imported_from_legacy_regex:
                 log.info(
                     f'Block [{block.guid}] was imported from a regex guid so '
                     'can\'t be safely deleted.  Skipping.')
             else:
-                server.delete_record(block.kinto_id)
-            block.update(kinto_id='')
+                server.delete_record(block.legacy_id)
+            block.update(legacy_id='')
     server.complete_session()
 
 
