@@ -14,6 +14,7 @@ There are two options for running docker depending on the platform
 you are running.
 
  * Run docker on the host machine directly (recommended)
+    - Update default settings in Docker Desktop - increase RAM limit from 2 GB (preferably 4 GB) in the Resources/Advanced section and click on "Apply and Restart".
  * Run docker-machine which will run docker inside a virtual-machine
 
 Historically Mac and Windows could only run Docker via a vm. That has
@@ -189,7 +190,7 @@ or your docker-machine VM:
 This allows processes to allocate more `memory map areas`_.
 
 
-Docker for Windows only: elasticsearch container exits with code 137
+Connection to elasticsearch timed out (elasticsearch container exits with code 137)
 --------------------------------------------------------------------
 
 ``docker-compose up -d`` brings up all containers, but running
