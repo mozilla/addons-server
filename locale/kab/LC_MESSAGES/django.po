@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-20 11:51+0000\n"
+"PO-Revision-Date: 2020-05-21 21:18+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -478,7 +478,7 @@ msgstr "Guid %(guid)s ha-t-an deg tuzzna yettraǧu"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Iḥder n UMNIR %(guid)s i tɣuri kan - ilaq ad yettusnifel s ulqaḍ n wumuɣen n usewḥel iqburen"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
