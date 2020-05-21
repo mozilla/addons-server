@@ -191,7 +191,7 @@ This allows processes to allocate more `memory map areas`_.
 
 
 Connection to elasticsearch timed out (elasticsearch container exits with code 137)
---------------------------------------------------------------------
+------------------------------------------------------------------------------------
 
 ``docker-compose up -d`` brings up all containers, but running
 ``make initialize`` causes the elasticsearch container to go down. Running
