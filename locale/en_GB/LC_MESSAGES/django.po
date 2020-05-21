@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-20 16:48+0000\n"
+"PO-Revision-Date: 2020-05-21 16:34+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -5529,13 +5529,11 @@ msgstr "Listed versions needing human review ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Unlisted versions needing human review ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Listed versions"
+msgstr "Listed versions ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Listed versions"
+msgstr "Unlisted versions ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "This will approve, sign, and publish this version. The comments will be sent to the developer."
@@ -5606,20 +5604,18 @@ msgstr "Review Log"
 msgid "Add-on Review Guide"
 msgstr "Add-on Review Guide"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Security Tests"
+msgstr "Security Scanners"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] "Flagged By Scanners ({0})"
 msgstr[1] "Flagged By Scanners ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Flag for human review"
-msgstr[1] "Flag for human review"
+msgstr[0] "Flagged for Human Review ({0})"
+msgstr[1] "Flagged for Human Review ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Auto-Approved Add-ons"
