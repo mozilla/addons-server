@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-20 02:51+0000\n"
+"PO-Revision-Date: 2020-05-21 07:38+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3002,7 +3002,7 @@ msgid "Admin Manage"
 msgstr "管理員管理"
 
 msgid "View Statistics Dashboard"
-msgstr "檢視統計資訊儀表板"
+msgstr "檢視統計資訊儀錶板"
 
 msgid "Developer News"
 msgstr "開發者新聞"
@@ -6253,13 +6253,13 @@ msgstr "匯出"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} :: 統計資訊儀表板 :: {1} 的附加元件"
+msgstr "{0} :: 統計資訊儀錶板 :: {1} 的附加元件"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr "{0} :: 統計資訊儀表板"
+msgstr "{0} :: 統計資訊儀錶板"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "統計資訊儀表板 :: {0} 的附加元件"
+msgstr "統計資訊儀錶板 :: {0} 的附加元件"
 
 #. {0} is an add-on name
 # %1 is the name of a collection
@@ -6267,7 +6267,7 @@ msgid "Statistics for {0}"
 msgstr "{0} 的統計資訊"
 
 msgid "Statistics Dashboard"
-msgstr "統計資訊儀表板"
+msgstr "統計資訊儀錶板"
 
 msgid "Controls:"
 msgstr "控制圖表:"
@@ -6315,10 +6315,10 @@ msgid "No data available."
 msgstr "無資料。"
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr "這個儀表板目前是<b>公開的</b>。"
+msgstr "這個儀錶板目前是<b>公開的</b>。"
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr "這個儀表板目前<b>並未公開</b>。"
+msgstr "這個儀錶板目前<b>並未公開</b>。"
 
 msgid "Change settings."
 msgstr "更改設定。"
