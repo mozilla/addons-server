@@ -541,12 +541,6 @@ class DraftCommentSerializer(serializers.ModelSerializer):
             'version', 'user', 'canned_response'
         )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Set the instance for `AddonBrowseVersionSerializer` which requires
-        # on `instance` being set correctly.
-        self.fields['version'].output.instance = self.context['version']
-
     def get_or_default(self, key, data, default=''):
         """Return the value of ``key`` in ``data``
 
@@ -586,3 +580,16 @@ class DraftCommentSerializer(serializers.ModelSerializer):
                     'You can\'t submit a line number without associating '
                     'it to a filename.')})
         return data
+
+
+class DraftCommentSerializerReadOnly(DraftCommentSerializer):
+    version_id = serializers.SerializerMethodField()
+
+    class Meta(DraftCommentSerializer.Meta):
+        fields = (
+            'id', 'filename', 'lineno', 'comment',
+            'version_id', 'user', 'canned_response'
+        )
+
+    def get_version_id(self, obj):
+        return obj.version.id
