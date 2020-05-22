@@ -11,6 +11,7 @@ from olympia.amo.tests import (
 from olympia.constants.scanners import (
     CUSTOMS,
     LABEL_BAD,
+    MAD,
     TRUE_POSITIVE,
     WAT,
     YARA,
@@ -36,9 +37,9 @@ class TestScannerResultView(TestCase):
     def assert_json_results(self, response, expected_results):
         json = response.json()
         assert 'results' in json
-        results = json['results']
-        assert len(results) == expected_results
-        return results
+        assert 'count' in json
+        assert json['count'] == expected_results
+        return json['results']
 
     def test_endpoint_requires_authentication(self):
         self.client.logout_api()
@@ -73,67 +74,33 @@ class TestScannerResultView(TestCase):
         good_result_1 = ScannerResult.objects.create(
             scanner=WAT, version=good_version_1
         )
-        VersionLog.objects.create(
-            activity_log=ActivityLog.create(
-                action=amo.LOG.APPROVE_VERSION,
-                version=good_version_1,
-                user=self.user,
-            ),
-            version=good_version_1,
+        ActivityLog.create(
+            amo.LOG.APPROVE_VERSION, good_version_1, user=self.user
         )
         # result labelled as "good" because auto-approve has been confirmed
         good_version_2 = version_factory(addon=addon_factory())
         good_result_2 = ScannerResult.objects.create(
             scanner=CUSTOMS, version=good_version_2
         )
-        VersionLog.objects.create(
-            activity_log=ActivityLog.create(
-                action=amo.LOG.APPROVE_VERSION,
-                version=good_version_2,
-                user=task_user,
-            ),
-            version=good_version_2,
+        ActivityLog.create(
+            amo.LOG.APPROVE_VERSION, good_version_2, user=task_user
         )
-        VersionLog.objects.create(
-            activity_log=ActivityLog.create(
-                action=amo.LOG.CONFIRM_AUTO_APPROVED,
-                version=good_version_2,
-                user=self.user,
-            ),
-            version=good_version_2,
+        ActivityLog.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED, good_version_2, user=self.user
         )
         # Simulate a reviewer who has confirmed auto-approval a second time. We
         # should not return duplicate results.
-        VersionLog.objects.create(
-            activity_log=ActivityLog.create(
-                action=amo.LOG.CONFIRM_AUTO_APPROVED,
-                version=good_version_2,
-                user=self.user,
-            ),
-            version=good_version_2,
+        ActivityLog.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED, good_version_2, user=self.user
         )
         # result NOT labelled as "good" because action is not correct.
         version_3 = version_factory(addon=addon_factory())
         ScannerResult.objects.create(scanner=YARA, version=version_3)
-        VersionLog.objects.create(
-            activity_log=ActivityLog.create(
-                action=amo.LOG.REJECT_VERSION,
-                version=version_3,
-                user=self.user,
-            ),
-            version=version_3,
-        )
+        ActivityLog.create(amo.LOG.REJECT_VERSION, version_3, user=self.user)
         # result NOT labelled as "good" because user is TASK_USER_ID
         version_4 = version_factory(addon=addon_factory())
         ScannerResult.objects.create(scanner=YARA, version=version_4)
-        VersionLog.objects.create(
-            activity_log=ActivityLog.create(
-                action=amo.LOG.APPROVE_VERSION,
-                version=version_4,
-                user=task_user,
-            ),
-            version=version_4,
-        )
+        ActivityLog.create(amo.LOG.APPROVE_VERSION, version_4, user=task_user)
 
         with override_settings(TASK_USER_ID=task_user.pk):
             response = self.client.get(self.url)
@@ -340,14 +307,7 @@ class TestScannerResultView(TestCase):
         result_1 = ScannerResult.objects.create(
             scanner=CUSTOMS, version=version_1
         )
-        VersionLog.objects.create(
-            activity_log=ActivityLog.create(
-                action=amo.LOG.CONFIRM_AUTO_APPROVED,
-                version=version_1,
-                user=self.user,
-            ),
-            version=version_1,
-        )
+        ActivityLog.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
         # Oh noes! The version has been blocked.
         block_1 = Block.objects.create(
             guid=version_1.addon.guid, updated_by=self.user
@@ -358,3 +318,51 @@ class TestScannerResultView(TestCase):
         results = self.assert_json_results(response, expected_results=1)
         assert results[0]['id'] == result_1.id
         assert results[0]['label'] == LABEL_BAD
+
+    def test_get_unique_bad_results(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        version_1 = version_factory(addon=addon_factory(), version='1.0')
+        ScannerResult.objects.create(scanner=MAD, version=version_1)
+        ActivityLog.create(
+            amo.LOG.BLOCKLIST_BLOCK_ADDED, version_1, user=self.user
+        )
+        ActivityLog.create(
+            amo.LOG.BLOCKLIST_BLOCK_EDITED, version_1, user=self.user
+        )
+        version_2 = version_factory(addon=addon_factory(), version='2.0')
+        ScannerResult.objects.create(scanner=MAD, version=version_2)
+        ActivityLog.create(
+            amo.LOG.BLOCKLIST_BLOCK_ADDED, version_2, user=self.user
+        )
+        ActivityLog.create(
+            amo.LOG.BLOCKLIST_BLOCK_EDITED, version_2, user=self.user
+        )
+
+        response = self.client.get('{}?label=bad'.format(self.url))
+        results = self.assert_json_results(response, expected_results=2)
+        assert results[0]['id'] != results[1]['id']
+
+    def test_get_unique_good_results(self):
+        self.create_switch('enable-scanner-results-api', active=True)
+        version_1 = version_factory(addon=addon_factory(), version='1.0')
+        ScannerResult.objects.create(scanner=MAD, version=version_1)
+        ActivityLog.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
+        ActivityLog.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user
+        )
+        ActivityLog.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user
+        )
+        version_2 = version_factory(addon=addon_factory(), version='2.0')
+        ScannerResult.objects.create(scanner=MAD, version=version_2)
+        ActivityLog.create(amo.LOG.APPROVE_VERSION, version_2, user=self.user)
+        ActivityLog.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user
+        )
+        ActivityLog.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user
+        )
+
+        response = self.client.get('{}?label=good'.format(self.url))
+        results = self.assert_json_results(response, expected_results=2)
+        assert results[0]['id'] != results[1]['id']

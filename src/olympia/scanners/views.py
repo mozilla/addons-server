@@ -65,11 +65,13 @@ class ScannerResultView(ListAPIView):
                 )
             )
             .exclude(bad_filters)
+            .distinct()
             .annotate(label=Value(LABEL_GOOD, output_field=CharField()))
             .all()
         )
         bad_results = (
             bad_results.filter(bad_filters)
+            .distinct()
             .annotate(label=Value(LABEL_BAD, output_field=CharField()))
             .all()
         )
