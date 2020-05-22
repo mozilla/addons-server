@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-22 16:40+0000\n"
+"PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -126,17 +126,14 @@ msgstr "ઍડ-ઑન્સના ફક્ત નવીનતમ આવૃત�
 msgid "Ratings"
 msgstr "રેટિંગ્સ"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "સમીક્ષક સાધનો"
+msgstr "સમીક્ષક સાધનો (સૂચિબદ્ધ)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "સમીક્ષક સાધનો"
+msgstr "સમીક્ષક સાધનો (અસૂચિબદ્ધ)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "સમીક્ષક સાધનો"
+msgstr "સમીક્ષક લિંક્સ"
 
 msgid "- Add-on not on AMO -"
 msgstr "- ઍડ-ઑન AMO પર નથી -"
@@ -478,20 +475,17 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "અમાન્ય JWT ટોકન."
+msgstr "અમાન્ય આવ્રુત્તિ"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "સમીક્ષા વિનંતી"
+msgstr "સમીક્ષા સૂચિબદ્ધ"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "સમીક્ષા નોંધ"
+msgstr "સમીક્ષા અસૂચિબદ્ધ"
 
 msgid "This block was imported from a regex based legacy kinto Block."
 msgstr ""
@@ -555,7 +549,6 @@ msgstr ""
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
 msgstr "આવૃત્તિઓ"
 
@@ -1531,9 +1524,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "નવીનત્તમ"
+msgstr "નવું"
 
 msgid "Running"
 msgstr ""
@@ -3188,9 +3180,8 @@ msgstr ""
 msgid "User Photo"
 msgstr ""
 
-#, fuzzy
 msgid "Profile"
-msgstr "મારી પ્રોફાઈલ"
+msgstr "પ્રોફાઇલ"
 
 msgid "Submit or Manage Extensions"
 msgstr ""
@@ -5398,9 +5389,8 @@ msgid_plural "{0} days"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "ID"
-msgstr "GUID"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr ""
