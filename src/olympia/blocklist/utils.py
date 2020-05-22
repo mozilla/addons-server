@@ -17,9 +17,9 @@ def add_version_log_for_blocked_versions(obj, al):
     from olympia.activity.models import VersionLog
 
     VersionLog.objects.bulk_create([
-        VersionLog(activity_log=al, version_id=id_)
-        for version, (id_, _) in obj.addon_versions.items()
-        if obj.is_version_blocked(version)
+        VersionLog(activity_log=al, version_id=version.id)
+        for version in obj.addon_versions
+        if obj.is_version_blocked(version.version)
     ])
 
 
