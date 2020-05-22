@@ -409,7 +409,9 @@ def call_mad_api(all_results, upload_pk):
         log.info('Skipping scanner "mad" task, switch is off')
         return results
 
-    log.info('Starting scanner "mad" task for FileUpload %s.', upload_pk)
+    request_id = uuid.uuid4().hex
+    log.info('Starting scanner "mad" task for FileUpload %s, request_id=%s.',
+             upload_pk, request_id)
 
     if not results['metadata']['is_webextension']:
         log.info(
@@ -441,6 +443,7 @@ def call_mad_api(all_results, upload_pk):
                 url=settings.MAD_API_URL,
                 json=json_payload,
                 timeout=settings.MAD_API_TIMEOUT,
+                headers={'x-request-id': request_id},
             )
 
         try:

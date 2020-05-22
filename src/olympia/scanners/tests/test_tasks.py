@@ -795,15 +795,19 @@ class TestCallMadApi(UploadTest, TestCase):
         assert len(ScannerResult.objects.all()) == self.default_results_count
         assert returned_results == results
 
+    @mock.patch('olympia.scanners.tasks.uuid.uuid4')
     @mock.patch('olympia.scanners.tasks.statsd.timer')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch('olympia.scanners.tasks.requests.post')
-    def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock):
+    def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock,
+                             uuid4_mock):
         ml_results = {
             'ensemble': 0.56,
             'scanners': {'customs': {'score': 0.123}},
         }
         requests_mock.return_value = self.create_response(data=ml_results)
+        requestId = 'some request id'
+        uuid4_mock.return_value.hex = requestId
         assert len(ScannerResult.objects.all()) == self.default_results_count
         assert self.customs_result.score == -1.0
 
@@ -814,6 +818,7 @@ class TestCallMadApi(UploadTest, TestCase):
             url=settings.MAD_API_URL,
             json={'scanners': {'customs': self.customs_result.results}},
             timeout=settings.MAD_API_TIMEOUT,
+            headers={'x-request-id': requestId},
         )
         assert (
             len(ScannerResult.objects.all()) == self.default_results_count + 1
