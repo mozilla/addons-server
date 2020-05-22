@@ -5,10 +5,8 @@
         {% for block_obj in blocks %}
           <li>
             {{ block_obj.guid }}.
-            {% if block_obj.addon %}
-              <span class="addon-name">{{ block_obj.addon.name }}</span>
-              ({{ block_obj.addon.average_daily_users }} {% trans 'users' %}).
-            {% endif %}
+            <span class="addon-name">{{ block_obj.addon.name }}</span>
+            ({{ block_obj.average_daily_users }} {% trans 'users' %}).
             {{ block_obj.review_listed_link }}
             {{ block_obj.review_unlisted_link }}
             {% if block_obj.id %}

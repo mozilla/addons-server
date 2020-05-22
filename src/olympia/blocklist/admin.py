@@ -606,7 +606,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return obj.addon.modified
 
     def users(self, obj):
-        return obj.addon.average_daily_users
+        return obj.average_daily_users
 
     def url_link(self, obj):
         return format_html('<a href="{}">{}</a>', obj.url, obj.url)
