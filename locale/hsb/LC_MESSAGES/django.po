@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 19:59+0000\n"
+"PO-Revision-Date: 2020-05-22 09:49+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -477,7 +477,7 @@ msgstr "GUID %(guid)s je we wustejacym zapodaću"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "Blokowanje za GUID %(guid)s je přećiwo pisanju škitane - dyrbi so ze zestarjenej zběrku blokowanskich lisćinow wobźěłać"
+msgstr "Blokowanje za GUID %(guid)s je přećiwo pisanju škitane - dyrbi so ze zestarjenej zběrku blokowanskich lisćinow wobdźěłać"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
