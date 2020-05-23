@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-23 08:52+0000\n"
+"PO-Revision-Date: 2020-05-23 08:54+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1542,9 +1542,8 @@ msgstr "Více akcí"
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Vypnout automatické schvalování"
+msgstr "Zpozdit automatické schvalování"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -1558,9 +1557,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Novější"
+msgstr "Nové"
 
 msgid "Running"
 msgstr ""
@@ -1571,9 +1569,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Nekompletní"
+msgstr "Dokončeno"
 
 msgid "Scheduled"
 msgstr ""
@@ -1881,11 +1878,12 @@ msgstr "Ikona musí být čtvercová (stejná šířka a výška)."
 msgid "There was an error uploading your preview."
 msgstr "Při nahrávání obrázku se vyskytla chyba."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "Nejnovější schválenou verzi doporučeného rozšíření nelze odstranit ani zakázat. Kontaktujte prosím administrátory AMO, pokud s tímto potřebujete pomoci."
+msgstr ""
+"Nejnovější schválenou verzi doporučeného rozšíření nelze odstranit ani zakázat, protože předchozí verze nebyla pro doporučení schválena. Kontaktujte prosím administrátory AMO, pokud s tímto "
+"potřebujete pomoci."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2407,9 +2405,8 @@ msgstr "Vyberte svému doplňku ikonku:"
 msgid "32x32px"
 msgstr "32 x 32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Bude použita v seznamech doplňků jako jsou výsledky vyhledávání či doporučené doplňky."
+msgstr "Bude použit v seznamech doplňků jako jsou výsledky vyhledávání."
 
 #. The size of the icon
 msgid "64x64px"
