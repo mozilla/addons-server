@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-04 21:36+0000\n"
+"PO-Revision-Date: 2020-05-23 16:41+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -28,7 +28,7 @@ msgid "Select a file..."
 msgstr "Выбрать файл..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Имя файла дополнения должно заканчиваться на .zip, .xpi, .crx или .xml"
+msgstr "Расширение файла после точки должно заканчиваться на zip, xpi, crx или xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -64,7 +64,7 @@ msgstr[1] "&hellip;и ещё {0}"
 msgstr[2] "&hellip;и ещё {0}"
 
 msgid "See full validation report"
-msgstr "Прочесть весь отчёт о валидации"
+msgstr "Прочесть весь отчёт о проверке"
 
 msgid "Validating {0}"
 msgstr "Проверка {0}"
@@ -76,34 +76,34 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "Получен пустой ответ от сервера; статус: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "При валидации произошла неожиданная ошибка сервера."
+msgstr "При проверке произошла неожиданная ошибка сервера."
 
 msgid "Finished validating {0}"
-msgstr "Закончена валидация {0}"
+msgstr "Закончена проверка {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "Время ожидания валидации вашего дополнения истекло, оно будет проверено вручную."
+msgstr "Время ожидания проверки вашего дополнения истекло, оно будет проверено вручную."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждением."
-msgstr[1] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждениями."
-msgstr[2] "Ваше дополнение прошло валидацию без ошибок и с {0} предупреждениями."
+msgstr[0] "Ваше дополнение прошло проверку без ошибок и с {0} предупреждением."
+msgstr[1] "Ваше дополнение прошло проверку без ошибок и с {0} предупреждениями."
+msgstr[2] "Ваше дополнение прошло проверку без ошибок и с {0} предупреждениями."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщением."
-msgstr[1] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщениями."
-msgstr[2] "Ваше дополнение прошло валидацию без ошибок и c {0} сообщениями."
+msgstr[0] "Ваше дополнение прошло проверку без ошибок и c {0} сообщением."
+msgstr[1] "Ваше дополнение прошло проверку без ошибок и c {0} сообщениями."
+msgstr[2] "Ваше дополнение прошло проверку без ошибок и c {0} сообщениями."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr "Ваше дополнение прошло валидацию без ошибок или предупреждений."
+msgstr "Ваше дополнение прошло проверку без ошибок или предупреждений."
 
 msgid "Your submission will be automatically signed."
-msgstr "Ваш материал будет автоматически утвержден."
+msgstr "Ваше представление будет автоматически подписано."
 
 msgid "WebExtension upgrade"
-msgstr "Обновление на WebExtension"
+msgstr "Обновление до WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -113,7 +113,7 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Портирование устаревшего дополнения Firefox на MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Включить подробные примечания к версии (это может быть сделано в следующем шаге)."
+msgstr "Включить подробные примечания к версии (это может быть сделано на следующем шаге)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Если для полного тестирования дополнения необходима учётная запись на веб-сайте, укажите тестовый логин и пароль в примечаниях для проверяющего (это может быть сделано в следующем шаге)."
