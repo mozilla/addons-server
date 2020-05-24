@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-24 21:12+0000\n"
+"PO-Revision-Date: 2020-05-24 23:50+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3350,10 +3350,10 @@ msgid "Ready to submit or manage your extension?"
 msgstr "მზად ხართ თქვენი გაფართოების წარდგენის ან მართვისთვის?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "გაწევრიანდით შემმუშავებლების ერთობაში რომ წარადგინოთ ან მართოთ გაფართოებები და თემები."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "შექმენით შემმუშავებლის ანგარიში ან შედით შემმუშავებლების ერთობაში"
 
 msgid "Manage Version {0}"
 msgstr "{0} ვერსიის მართვა"
@@ -3837,7 +3837,7 @@ msgstr "ნუ დატოვებთ კვალს. Firefox არ და�
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "არაა საჭირო მუდმივად ერთი და იმავეს წერა. შეინახეთ ხშირად გამოყენებული ტექსტი და ჩასვით როცა დაგჭირდებათ."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4943,7 +4943,7 @@ msgstr "საიტების ნაწილს ხარვეზები 
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "შეარჩიეთ, დაალაგეთ და წამოიწყეთ თქვენი ჩამოტვირთვები სწრაფად."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4952,23 +4952,23 @@ msgstr "ამინდის პროგნოზის მყისიერ�
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "წაშალეთ ფუნთუშები, გვერდების ისტორია და დამახსოვრებული ფაილები ერთი წკაპით."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "მოაცილეთ თვალის მდევნელები ინტერნეტბმულებიდან."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "გამოიყენეთ თვითშევსებადი RSS-არხების სანიშნეთა საქაღალდეები."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "მარტივად დაალაგეთ უთვალავი გახსნილი ჩანართი."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "შექმენით და მოირგეთ ჩანართების ჯგუფები."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4982,7 +4982,7 @@ msgstr "ფუნთუშების ავტომატურად წა�
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "შეზღუდეთ ყველა რეკლამა — ვიდეო, ამომხტომი, ბანერი და ა.შ."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
