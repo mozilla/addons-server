@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-19 21:43+0000\n"
+"PO-Revision-Date: 2020-05-24 20:50+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -479,7 +479,7 @@ msgstr "GUID %(guid)s მზადაა წარსადგენად"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "შეზღუდვა GUID-ისთვის %(guid)s არის მხოლოდ წასაკითხი – მის ჩასასწორებლად საჭიროა Legacy-შეზღუდვის სიის ნაკრები"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -1617,7 +1617,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "დამატებები Thunderbird და SeaMonkey პროგრამებისთვის, ახლა უკვე განთავსებულია addons.thunderbird.net საიტზე. თქვენი დამატებებისთვის, შეგიძლიათ იგივე ანგარიში გამოიყენოთ ახალ საიტზეც."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open-Search-დამატებები აღარაა {blog_link_open}მხარდაჭერილი AMO-საიტზე{blog_link_close}. სანაცვლოდ, შეგიძლიათ {doc_link_open}საძიებო გაფართოების შექმნა{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "ეს დაბოლოება უკვე გამოიყენება. გთხოვთ, შეარჩიოთ სხვა."
@@ -1742,10 +1742,10 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "ზედმეტად ბევრი ატვირთული მასალა წარადგინეთ ახლახანს. გთხოვთ, მოითმინოთ და კვლავ სცადოთ ცოტა მოგვიანებით."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "ვერსია {version} და {block_link} ემთხვევა ამ დამატებისთვის. დამატებითი ინფორმაციისთვის, შეგიძლიათ {amo_admins}-ს დაუკავშირდეთ."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "შეზღუდვის სიის ჩანაწერი"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} ვერსია იყო ატვირთული და წაიშალა."
@@ -2501,7 +2501,7 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "თქვენი დამატება ამჟამად „უხილავია“."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "ამ პირობებში „საკუთარი ძალისხმევით“ გავრცელება არის ერთადერთი საშუალება."
 
 msgid "General Tests"
 msgstr "ზოგადი შემოწმება"
