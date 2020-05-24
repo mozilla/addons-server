@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-21 09:36+0000\n"
+"PO-Revision-Date: 2020-05-23 07:54+0000\n"
 "Last-Translator: Paul Playe <firefox@playe.io>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -497,7 +497,7 @@ msgstr "Le GUID %(guid)s est dans une soumission en attente"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Le blocage pour le GUID %(guid)s est en lecture seule - Il ne peut-être modifié que via la collection de listes de blocage héritées."
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
