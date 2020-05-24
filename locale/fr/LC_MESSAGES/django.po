@@ -5599,13 +5599,11 @@ msgstr ""
 msgid "Unlisted versions needing human review ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Versions publiées"
+msgstr ""
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Versions publiées"
+msgstr ""
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
@@ -5676,20 +5674,18 @@ msgstr "Journal des revues"
 msgid "Add-on Review Guide"
 msgstr "Guide de revue des modules complémentaires"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Tests de sécurité"
+msgstr ""
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Demander un examen manuel"
-msgstr[1] "Demander un examen manuel"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Modules approuvés automatiquement"
