@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-24 18:19+0000\n"
+"PO-Revision-Date: 2020-05-24 18:33+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2767,7 +2767,7 @@ msgid "Version Signature Pending"
 msgstr ""
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr ""
+msgstr "C’est tout ! Cette version sera bientôt signée et disponible pour une distribution personnelle. Vous recevrez une notification par courriel lorsque votre fichier aura été signé."
 
 msgid "Go to My Submissions"
 msgstr "Accéder à mes propositions"
@@ -3007,6 +3007,13 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"La clé API suivante a été ajoutée à votre compte :\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Si vous pensez que cette clé a été créée par erreur, vous pouvez retirer la clé et révoquer l’accès à l’adresse suivante :\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3019,6 +3026,13 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"La clé API suivante a été supprimée de votre compte :\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Si vous pensez que cette clé a été supprimée par erreur, vous pouvez en créer une nouvelle à l’adresse suivante :\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3173,6 +3187,7 @@ msgstr ""
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
 msgstr ""
+"Si votre module complémentaire contient des fichiers binaires ou du code compressé qui n’est pas celui de bibliothèques connues, veuillez envoyer les fichiers sources afin qu’ils soient vérifiés."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Veuillez inclure la méthode à suivre afin de reproduire le fichier final du module complémentaire. Vous pouvez utiliser un fichier README ou les notes aux testeurs de cette version."
@@ -3185,6 +3200,8 @@ msgstr ""
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Que vous soyez novice dans le développement d’extensions, que vous peaufiniez ou adaptiez une extension ou un thème existants, ou que vous créiez une solution d’entreprise spécifique, nous avons les"
+" ressources pour vous soutenir."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
@@ -3207,10 +3224,10 @@ msgstr "Matrix"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
-msgstr ""
+msgstr "Liste de diffusion des développeurs de modules complémentaires"
 
 msgid "Extensions Developers Newsletter"
-msgstr ""
+msgstr "Lettre d’information des développeurs d’extensions"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3337,7 +3354,7 @@ msgid "Learn how to make an extension"
 msgstr ""
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Prêt·e à soumettre ou gérer votre extension ?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
