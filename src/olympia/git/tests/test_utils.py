@@ -1565,3 +1565,20 @@ def test_extract_version_to_git_with_not_extension_type():
 
     repo = AddonGitRepository(addon.pk)
     assert not repo.is_extracted
+
+
+@pytest.mark.django_db
+@mock.patch(
+    'olympia.git.utils.AddonGitRepository.extract_and_commit_from_version'
+)
+@mock.patch('olympia.git.utils.statsd.incr')
+def test_extract_version_to_git_with_error(incr_mock, extract_and_commit_mock):
+    addon = addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True}
+    )
+    extract_and_commit_mock.side_effect = Exception()
+
+    with pytest.raises(Exception):
+        extract_version_to_git(addon.current_version.pk)
+
+    incr_mock.assert_called_with('git.extraction.version.failure')
