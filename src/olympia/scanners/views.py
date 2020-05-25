@@ -1,9 +1,6 @@
-import waffle
-
 from django.conf import settings
 from django.db.models import CharField, Value, Q
 from django.db.transaction import non_atomic_requests
-from django.http import Http404
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import ListAPIView
 
@@ -88,9 +85,6 @@ class ScannerResultView(ListAPIView):
         return queryset.order_by('-created')
 
     def get(self, request, format=None):
-        if not waffle.switch_is_active('enable-scanner-results-api'):
-            raise Http404
-
         label = self.request.query_params.get('label', None)
         if label is not None and label not in [LABEL_BAD, LABEL_GOOD]:
             raise ParseError("invalid value for label")

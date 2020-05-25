@@ -1,3 +1,8 @@
+import pytest
+
+from django.test.utils import override_settings
+from django.urls.exceptions import NoReverseMatch
+
 from olympia import amo
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.amo.tests import (
@@ -20,10 +25,10 @@ from olympia.blocklist.models import Block
 from olympia.blocklist.utils import block_activity_log_save
 from olympia.scanners.models import ScannerResult
 from olympia.scanners.serializers import ScannerResultSerializer
-from django.test.utils import override_settings
 
 
-class TestScannerResultView(TestCase):
+@pytest.mark.internal_routes_allowed
+class TestScannerResultViewInternal(TestCase):
     client_class = APITestClient
 
     def setUp(self):
@@ -52,13 +57,7 @@ class TestScannerResultView(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 403
 
-    def test_endpoint_can_be_disabled(self):
-        self.create_switch('enable-scanner-results-api', active=False)
-        response = self.client.get(self.url)
-        assert response.status_code == 404
-
     def test_get(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         task_user = user_factory()
         # result labelled as "bad" because its state is TRUE_POSITIVE
         bad_version = version_factory(addon=addon_factory())
@@ -128,7 +127,6 @@ class TestScannerResultView(TestCase):
         assert results[2] == ScannerResultSerializer(instance=bad_result).data
 
     def test_get_by_scanner(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         # result labelled as "bad" because its state is TRUE_POSITIVE
         bad_version = version_factory(addon=addon_factory())
         ScannerResult.objects.create(
@@ -150,7 +148,6 @@ class TestScannerResultView(TestCase):
         assert results[0].get('scanner') == 'customs'
 
     def test_get_by_scanner_with_empty_value(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         invalid_scanner = ""
         response = self.client.get(
             '{}?scanner={}'.format(self.url, invalid_scanner)
@@ -158,7 +155,6 @@ class TestScannerResultView(TestCase):
         assert response.status_code == 400
 
     def test_get_by_scanner_with_unknown_scanner(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         invalid_scanner = "yaraaaa"
         response = self.client.get(
             '{}?scanner={}'.format(self.url, invalid_scanner)
@@ -166,7 +162,6 @@ class TestScannerResultView(TestCase):
         assert response.status_code == 400
 
     def test_get_by_label(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         # result labelled as "bad" because its state is TRUE_POSITIVE
         bad_version = version_factory(addon=addon_factory())
         ScannerResult.objects.create(
@@ -196,7 +191,6 @@ class TestScannerResultView(TestCase):
         assert results[0].get('label') == 'bad'
 
     def test_get_by_label_with_empty_value(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         invalid_label = ""
         response = self.client.get(
             '{}?label={}'.format(self.url, invalid_label)
@@ -204,7 +198,6 @@ class TestScannerResultView(TestCase):
         assert response.status_code == 400
 
     def test_get_by_label_with_unknown_label(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         invalid_label = "gooda"
         response = self.client.get(
             '{}?label={}'.format(self.url, invalid_label)
@@ -212,7 +205,6 @@ class TestScannerResultView(TestCase):
         assert response.status_code == 400
 
     def test_get_by_label_and_scanner(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         # result labelled as "bad" because its state is TRUE_POSITIVE
         bad_version = version_factory(addon=addon_factory())
         ScannerResult.objects.create(
@@ -252,7 +244,6 @@ class TestScannerResultView(TestCase):
         self.assert_json_results(response, expected_results=1)
 
     def test_get_results_with_blocked_versions(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         # result labelled as "bad" because its state is TRUE_POSITIVE
         bad_version = version_factory(addon=addon_factory())
         ScannerResult.objects.create(
@@ -301,7 +292,6 @@ class TestScannerResultView(TestCase):
         self.assert_json_results(response, expected_results=5)
 
     def test_get_results_with_good_blocked_versions(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         # Result labelled as "good" because auto-approve has been confirmed.
         version_1 = version_factory(addon=addon_factory())
         result_1 = ScannerResult.objects.create(
@@ -320,7 +310,6 @@ class TestScannerResultView(TestCase):
         assert results[0]['label'] == LABEL_BAD
 
     def test_get_unique_bad_results(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         version_1 = version_factory(addon=addon_factory(), version='1.0')
         ScannerResult.objects.create(scanner=MAD, version=version_1)
         ActivityLog.create(
@@ -343,7 +332,6 @@ class TestScannerResultView(TestCase):
         assert results[0]['id'] != results[1]['id']
 
     def test_get_unique_good_results(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         version_1 = version_factory(addon=addon_factory(), version='1.0')
         ScannerResult.objects.create(scanner=MAD, version=version_1)
         ActivityLog.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
@@ -366,3 +354,9 @@ class TestScannerResultView(TestCase):
         response = self.client.get('{}?label=good'.format(self.url))
         results = self.assert_json_results(response, expected_results=2)
         assert results[0]['id'] != results[1]['id']
+
+
+class TestScannerResultView(TestCase):
+    def test_route_does_not_exist(self):
+        with self.assertRaises(NoReverseMatch):
+            assert not reverse_ns('scanner-results', api_version='v5')
