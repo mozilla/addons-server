@@ -21,7 +21,7 @@ class GitExtractionEntryAdmin(admin.ModelAdmin):
         'modified',
     )
 
-    ordering = ('created',)
+    ordering = ('-created',)
 
     # Remove the "add" button
     def has_add_permission(self, request):
