@@ -1149,31 +1149,9 @@ class TestExtensionVersionFromUploadTransactional(
         create_entry_mock.assert_called_once_with(version=version)
 
     @mock.patch('olympia.git.utils.create_git_extraction_entry')
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_creates_git_extraction_entry_async(self, create_entry_mock):
-        addon = addon_factory()
-        user = user_factory(username='fancyuser')
-        upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon, user=user)
-
-        @transaction.atomic
-        def create_new_version():
-            return Version.from_upload(
-                upload, addon, [amo.FIREFOX.id],
-                amo.RELEASE_CHANNEL_LISTED,
-                parsed_data=parsed_data)
-
-        version = create_new_version()
-
-        assert version.pk
-
-        # Only once instead of twice
-        create_entry_mock.assert_called_once_with(version=version)
-
-    @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @mock.patch('olympia.versions.models.utc_millesecs_from_epoch')
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_commits_to_git_async_only_if_version_created(
+    def test_does_not_create_git_extraction_entry_when_version_is_not_created(
             self, utc_millisecs_mock, create_entry_mock):
         utc_millisecs_mock.side_effect = ValueError
         addon = addon_factory()

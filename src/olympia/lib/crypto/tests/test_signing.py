@@ -428,7 +428,8 @@ class TestTransactionRelatedSigning(TransactionTestCase):
 
     @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_does_not_create_git_entry_on_error(self, create_entry_mock):
+    def test_does_not_create_git_extraction_entry_on_error(self,
+                                                           create_entry_mock):
         def call_sign_file():
             signing.sign_file(self.version.current_file)
             # raise ValueError after the sign_file call so that

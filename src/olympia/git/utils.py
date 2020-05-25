@@ -749,7 +749,7 @@ def extract_version_to_git(version_id):
 
     if skip_git_extraction(version):
         # We log a warning message because this should not happen (as the CRON
-        # task should no select non-webextension versions).
+        # task should not select non-webextension versions).
         log.warning('Skipping git extraction of add-on "{}": not a '
                     'web-extension.'.format(version.addon.id))
         return
