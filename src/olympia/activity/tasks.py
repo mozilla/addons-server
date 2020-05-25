@@ -21,15 +21,19 @@ def process_email(message, spam_rating, **kwargs):
             if header.get('Name', '').lower() == 'message-id':
                 msg_id = header.get('Value')
     if not msg_id:
-        log.error('No MessageId in message, aborting.')
-        log.error(message)
+        log.error('No MessageId in message, aborting.', extra={
+            'message_obj': message
+        })
         return
     _, created = ActivityLogEmails.objects.get_or_create(messageid=msg_id)
     if not created:
-        log.error('Already processed [%s], skipping' % msg_id)
-        log.error(message)
+        log.error('Already processed email [%s], skipping', msg_id, extra={
+            'message_obj': message
+        })
         return
     res = add_email_to_activity_log_wrapper(message, spam_rating)
 
     if not res:
-        log.error('Failed to save email.')
+        log.error('Failed to process email [%s].', msg_id, extra={
+            'message_obj': message
+        })
