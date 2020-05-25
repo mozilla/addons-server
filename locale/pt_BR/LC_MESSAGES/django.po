@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-25 17:31+0000\n"
+"PO-Revision-Date: 2020-05-25 17:44+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -480,7 +480,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Essa extensão já pertence à coleção"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Estado de encerramento"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -936,10 +936,10 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID de {addon} removido do DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Bloqueio da ação {1} de {0} encerrado."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Encerramento da ação de bloqueio"
 
 msgid "User {user} session(s) reset."
 msgstr "As sessões do usuário {user} foram reiniciadas."
