@@ -313,7 +313,8 @@ def add_api_token_to_response(response, user):
         domain=settings.SESSION_COOKIE_DOMAIN,
         max_age=settings.SESSION_COOKIE_AGE,
         secure=settings.SESSION_COOKIE_SECURE,
-        httponly=settings.SESSION_COOKIE_HTTPONLY)
+        httponly=settings.SESSION_COOKIE_HTTPONLY,
+        samesite=settings.SESSION_COOKIE_SAMESITE)
 
     return response
 
