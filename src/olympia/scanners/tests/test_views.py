@@ -292,7 +292,6 @@ class TestScannerResultViewInternal(TestCase):
         self.assert_json_results(response, expected_results=5)
 
     def test_get_results_with_good_blocked_versions(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         # Result labelled as "good" because auto-approve has been confirmed.
         version_1 = version_factory(addon=addon_factory())
         result_1 = ScannerResult.objects.create(
@@ -311,7 +310,6 @@ class TestScannerResultViewInternal(TestCase):
         assert results[0]['label'] == LABEL_BAD
 
     def test_get_unique_bad_results(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         version_1 = version_factory(addon=addon_factory(), version='1.0')
         ScannerResult.objects.create(scanner=MAD, version=version_1)
         ActivityLog.create(
@@ -334,7 +332,6 @@ class TestScannerResultViewInternal(TestCase):
         assert results[0]['id'] != results[1]['id']
 
     def test_get_unique_good_results(self):
-        self.create_switch('enable-scanner-results-api', active=True)
         version_1 = version_factory(addon=addon_factory(), version='1.0')
         ScannerResult.objects.create(scanner=MAD, version=version_1)
         ActivityLog.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
