@@ -193,8 +193,7 @@ class Command(BaseCommand):
                 if addon_guid and addon_guid in guids_to_addon:
                     addon_id = guids_to_addon[addon_guid]
                 else:
-                    log.info(u"Addon {guid} doesn't exist."
-                             .format(guid=addon_guid.strip()))
+                    log.debug("Addon %s doesn't exist.", addon_guid.strip())
                     continue
 
                 # Memoize the UpdateCount.
