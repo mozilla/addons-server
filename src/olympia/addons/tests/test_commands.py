@@ -425,59 +425,6 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
         assert calc_weight_mock.call_count == 4
 
 
-class TestExtractWebextensionsToGitStorage(TestCase):
-    @mock.patch('olympia.addons.tasks.index_addons.delay', autospec=True)
-    @mock.patch(
-        'olympia.versions.tasks.extract_version_to_git', autospec=True)
-    def test_basic(self, extract_version_to_git_mock, index_addons_mock):
-        addon_factory(file_kw={'is_webextension': True})
-        addon_factory(file_kw={'is_webextension': True})
-        addon_factory(
-            type=amo.ADDON_STATICTHEME, file_kw={'is_webextension': True})
-        addon_factory(
-            file_kw={'is_webextension': True}, status=amo.STATUS_DISABLED)
-        addon_factory(type=amo.ADDON_LPAPP, file_kw={'is_webextension': True})
-        addon_factory(type=amo.ADDON_DICT, file_kw={'is_webextension': True})
-        addon_factory(
-            type=amo.ADDON_SEARCH, file_kw={'is_webextension': False})
-
-        call_command('process_addons',
-                     task='extract_webextensions_to_git_storage')
-
-        assert extract_version_to_git_mock.call_count == 7
-
-    @mock.patch('olympia.addons.tasks.index_addons.delay', autospec=True)
-    @mock.patch(
-        'olympia.versions.tasks.extract_version_to_git', autospec=True)
-    def test_only_extract_specific_channel(self, extract_version_to_git_mock,
-                                           index_addons_mock):
-
-        file_kw = {'is_webextension': True}
-        listed_kw = {'channel': amo.RELEASE_CHANNEL_LISTED}
-        unlisted_kw = {'channel': amo.RELEASE_CHANNEL_UNLISTED}
-
-        addon_factory(file_kw=file_kw, version_kw=listed_kw)
-        addon_factory(file_kw=file_kw, version_kw=unlisted_kw)
-        addon_factory(file_kw=file_kw, version_kw=unlisted_kw)
-        addon_factory(
-            type=amo.ADDON_STATICTHEME, file_kw=file_kw, version_kw=listed_kw)
-        addon_factory(
-            type=amo.ADDON_STATICTHEME, file_kw=file_kw,
-            version_kw=unlisted_kw)
-
-        call_command('process_addons',
-                     task='extract_webextensions_to_git_storage',
-                     channel='unlisted')
-
-        assert extract_version_to_git_mock.call_count == 3
-        extract_version_to_git_mock.reset_mock()
-
-        call_command('process_addons',
-                     task='extract_webextensions_to_git_storage',
-                     channel='listed')
-
-        assert extract_version_to_git_mock.call_count == 2
-
 
 class TestExtractColorsFromStaticThemes(TestCase):
     @mock.patch('olympia.addons.tasks.extract_colors_from_image')
