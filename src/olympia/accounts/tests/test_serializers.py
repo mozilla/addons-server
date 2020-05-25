@@ -279,14 +279,15 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
 class TestUserProfileBasketSyncSerializer(TestCase):
     def setUp(self):
         self.user = user_factory(
-            display_name=None, last_login=self.days_ago(1))
+            display_name=None, last_login=self.days_ago(1),
+            fxa_id='qsdfghjklmù')
 
     def test_basic(self):
         serializer = UserProfileBasketSyncSerializer(self.user)
         assert serializer.data == {
             'deleted': False,
             'display_name': None,
-            'email': self.user.email,
+            'fxa_id': self.user.fxa_id,
             'homepage': '',
             'id': self.user.pk,
             'last_login': self.user.last_login.replace(
@@ -304,7 +305,7 @@ class TestUserProfileBasketSyncSerializer(TestCase):
         assert serializer.data == {
             'deleted': True,
             'display_name': None,
-            'email': None,
+            'fxa_id': None,
             'homepage': '',
             'id': self.user.pk,
             'last_login': self.user.last_login.replace(

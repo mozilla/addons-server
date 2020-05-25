@@ -1329,8 +1329,8 @@ class TestAddonBasketSyncSerializer(TestCase):
 
     def test_non_listed_author(self):
         self.addon = addon_factory()
-        user1 = user_factory()
-        user2 = user_factory()
+        user1 = user_factory(fxa_id='azerty')
+        user2 = user_factory(fxa_id=None)  # somehow no fxa_id.
         AddonUser.objects.create(
             addon=self.addon, user=user1, listed=True,
             role=amo.AUTHOR_ROLE_OWNER, position=1)
@@ -1342,7 +1342,7 @@ class TestAddonBasketSyncSerializer(TestCase):
             'id': user1.pk,
             'deleted': False,
             'display_name': '',
-            'email': user1.email,
+            'fxa_id': user1.fxa_id,
             'homepage': user1.homepage,
             'last_login': user1.last_login,
             'location': user1.location
@@ -1350,7 +1350,7 @@ class TestAddonBasketSyncSerializer(TestCase):
             'id': user2.pk,
             'deleted': False,
             'display_name': '',
-            'email': user2.email,
+            'fxa_id': user2.fxa_id,
             'homepage': user2.homepage,
             'last_login': user2.last_login,
             'location': user2.location

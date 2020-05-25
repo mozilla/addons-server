@@ -36,10 +36,10 @@ User Accounts
     :<json int id: The numeric user id.
     :<json boolean deleted: Is the account deleted.
     :<json string|null display_name: The name chosen by the user.
-    :<json string email: Email address used by the user to login and create this account.
+    :<json string|null homepage: The user's website.
+    :<json string fxa_id|null: The user FxA Identifier
     :<json string|null last_login: The date of the last successful log in to the website.
     :<json string|null location: The location of the user.
-    :<json string|null homepage: The user's website.
 
 Add-ons
 ~~~~~~~
@@ -80,8 +80,8 @@ Here is an example of the full json that would be sent for an add-on:
             {
                 "id": 11263,
                 "deleted": false,
-                "display_name": "serses",
-                "email": "mozilla@virgule.net",
+                "display_name": "qwerty",
+                "fxa_id": "1209e9bf1eeb59d0934579b6db0ccad1",
                 "homepage": "",
                 "last_login": "2019-08-06T10:39:44Z",
                 "location": ""
