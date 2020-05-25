@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-24 23:50+0000\n"
+"PO-Revision-Date: 2020-05-24 23:59+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4986,7 +4986,7 @@ msgstr "შეზღუდეთ ყველა რეკლამა — ვ�
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "უყურეთ ეთერში გაშვებულ მასალებს მეგობრებთან ან ოჯახთან ერთად ყველგან."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5002,7 +5002,7 @@ msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "ჩანართების მორგება და ხელსაწყოები"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5503,10 +5503,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "თვითდამოწმება გადადებულია დროებით"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "თვითდამოწმება გადადებულია გაურკვეველი ვადით"
 
 msgid "Is locked by a reviewer"
 msgstr "შეჩერებულია მიმომხილველის მიერ"
@@ -5531,7 +5531,7 @@ msgid "You can't submit an empty comment."
 msgstr "ენის პაკეტის წარდგენა არ შეგიძლიათ"
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "თქვენ ვერ წარადგენთ ხაზის ნომერს, დაკავშირებული ფაილის სახელის გარეშე."
 
 msgid "Type"
 msgstr "სახეობა"
@@ -5624,7 +5624,7 @@ msgid "Block Multiple Versions"
 msgstr "რამდენიმე ვერსიის უარყოფა"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "შედეგად, მითითებული დამოწმებული ვერსიები გაითიშება შეუმჩნევლად და გაიხსნება შეზღუდვის შესაქმნელი სამართავი გვერდი."
 
 #, fuzzy
 msgid "Confirm Multiple Versions"
@@ -5847,7 +5847,7 @@ msgid "Score"
 msgstr "ქულა"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "ზედამხედველობის ჩანაწერის მიმოხილვა – Firefox-ის დამატებები"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5949,7 +5949,7 @@ msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "ავტომატურად მიღებული დამატებები"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "ზედამხედველობის მიმოხილვა – Firefox-ის დამატებები"
 
 #, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
@@ -6145,9 +6145,8 @@ msgstr "მეთოდი:"
 msgid "Source:"
 msgstr "წყარო:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "წყარო:"
+msgstr "წყაროს ბმული:"
 
 msgid "Dismiss this announcement"
 msgstr "განცხადების გამოტოვება"
@@ -6270,9 +6269,8 @@ msgstr[1] "მონაცემების ვადაგასული მ�
 msgid "presence of matched rules"
 msgstr "შესაბამისი წესების არსებობა"
 
-#, fuzzy
 msgid "result state"
-msgstr "მუშაობის დაწყება"
+msgstr "შედეგის მდგომარეობა"
 
 msgid "all but this rule"
 msgstr "ყველა ამ წესის გარდა"
@@ -6285,21 +6283,17 @@ msgstr "გამოქვეყნებული ვერსიის წი�
 msgid "version channel"
 msgstr "ვერსია დამოწმებულია"
 
-#, fuzzy
 msgid "add-on status"
 msgstr "დამატების მდგომარეობა"
 
-#, fuzzy
 msgid "add-on listing visibility"
 msgstr "დამატებების ხილულობა"
 
-#, fuzzy
 msgid "file status"
-msgstr "საიტის მდგომარეობა"
+msgstr "ფაილის მდგომარეობა"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} დამოწმებულია."
+msgstr "ფაილის ხელმოწერა"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "ესაა ზუსტი დასახელება წესის, რომელსაც სკანერი იყენებს."
@@ -6335,9 +6329,8 @@ msgstr "გაშვება"
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr "გამოსადეგია, როდესაც სკანერის შედეგი ჭეშმარიტად დადებითია, მაგრამ დამატება არ არის მავნე"
 
-#, fuzzy
 msgid "Revert report"
-msgstr "მიმომხილველის პასუხი"
+msgstr "მოხსენების გამოხმობა"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
