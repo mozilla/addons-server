@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-25 17:20+0000\n"
+"PO-Revision-Date: 2020-05-25 17:31+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3215,6 +3215,8 @@ msgstr "Crie extensões e temas de primeira classe"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Seja você iniciante no desenvolvimento de extensões, estar aprimorando ou portando uma extensão ou tema existente, ou criando uma solução corporativa personalizada, temos os recursos para lhe "
+"apoiar."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
@@ -4990,7 +4992,7 @@ msgstr "Remova elementos de rastreamento de links da web."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Tenha pastas de favoritos de feeds RSS preenchidas automaticamente."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
