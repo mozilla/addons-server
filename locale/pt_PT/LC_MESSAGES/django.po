@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-25 21:50+0000\n"
+"PO-Revision-Date: 2020-05-25 21:55+0000\n"
 "Last-Translator: Carlos (SUMO @albertdecastro) <carlos.a.silva@pm.me>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -487,7 +487,7 @@ msgstr "GUID %(guid)s está numa Submissão pendente"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "O bloqueio para GUID %(guid)s é aleatório - é obrigatório ser editado através da coleção de listas de bloqueio de legado"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -1733,10 +1733,10 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "Submeteu muitos envios recentemente. Por favor, tente novamente depois de algum tempo."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "A versão {version} corresponde a {block_link} para este Extra. Pode contactar {amo_admins} para informação adicional."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "uma entrada de lista de bloqueio"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A versão {version} foi carregada e eliminada anteriormente."
@@ -6333,7 +6333,7 @@ msgid "Maximum query length exceeded."
 msgstr "Comprimento máximo de consulta excedido."
 
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Não foi possível encontrar o Extra com a ID. \"{}\"."
+msgstr "Não foi possível encontrar o Extra com a Identificação. \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Não é proprietário deste extra."
@@ -6353,18 +6353,16 @@ msgid "Version already exists. Latest version is: %s."
 msgstr "A versão já existe. A versão mais recente é: %s."
 
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Apenas as WebExtensions têm permissão para omitir a ID. do Extra"
+msgstr "Apenas as WebExtensions têm permissão para omitir a Identificação do Extra"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Por favor, especifique o ID do seu Extra no manifesto se for maior do que 64 carateres."
+msgstr "Por favor, especifique a Identificação do seu Extra no manifesto se for maior do que 64 carateres."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "GUID inválido no URL"
+msgstr "Identificação do Extra inválida no URL ou pacote"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Não pode adicionar versões a um extra que possui o estado: %s."
+msgstr "Não pode adicionar versões listadas a um extra definido para o estado \"Invisível\"."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Não pode adicionar uma versão listada a este extra via API devido a metadados em falta. Por favor submeta via website"
@@ -6699,13 +6697,12 @@ msgstr "Os utilizadores \"%(users)s\" foram banidos."
 msgid "Ban selected users"
 msgstr "Banir utilizadores selecionados"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Os utilizadores \"%(users)s\" tiveram a respetiva chave da API redefinida."
+msgstr "Os utilizadores \"%(users)s\" tiveram a respetiva sessão/sessões reiniciada(s)."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Eliminar versão"
+msgstr "Reiniciar sessão"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6810,9 +6807,8 @@ msgstr "Notificações do utilizador"
 msgid "Ban"
 msgstr "Banir"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Eliminar versão"
+msgstr "Reiniciar sessão/sessões"
 
 msgid "Delete picture"
 msgstr "Apagar imagem"
@@ -6823,6 +6819,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"O seguinte autor foi adicionado ao seu extra %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6839,6 +6838,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Saudações %(author_name)s,\n"
+"\n"
+"Foi convidado para tornar-se num autor de %(addon_name)s em %(domain)s. Se aceitar o convite irá dar acesso à edição do extra, e poderá mostrar o seu nome na lista de autores no website.\n"
+"\n"
+"Clique na ligação abaixo para responder se deseja ser adicionado como autor para %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Se você não esperava receber este convite, envie um email para amo-admins@mozilla.com.\n"
+"\n"
+"Atenciosamente,\n"
+"A equipe de complementos do Mozilla"
 
 #, python-format
 msgid ""
@@ -6846,6 +6857,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"O seguinte autor foi alterado no seu extra %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6853,6 +6867,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"O seguinte autor foi removido do extra %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
