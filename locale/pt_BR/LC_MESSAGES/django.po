@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-25 16:51+0000\n"
+"PO-Revision-Date: 2020-05-25 17:07+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3208,9 +3208,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Workshop de extensões"
+msgstr "Visite o workshop de extensões"
 
 msgid "Connect with us"
 msgstr "Entre em contato conosco"
@@ -3228,9 +3227,8 @@ msgid "Matrix"
 msgstr "Matrix"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Centro de desenvolvedor de extensão"
+msgstr "Lista de discussão de desenvolvedores de extensões"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Boletim de desenvolvedores de extensões"
@@ -5615,13 +5613,11 @@ msgstr "Versões listadas que precisam de revisão humana ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Versões não listadas que precisam de revisão humana ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Versão listada"
+msgstr "Versões listadas ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Versão listada"
+msgstr "Versões não listadas ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Isto irá aprovar, assinar e publicar esta versão. Comentários serão enviados para o desenvolvedor."
@@ -5694,20 +5690,18 @@ msgid "Add-on Review Guide"
 msgstr "Guia de revisão de extensão"
 
 # This is the name/category for a group of tests
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Testes de segurança"
+msgstr "Verificadores de segurança"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sinalizado por verificadores ({0})"
+msgstr[1] "Sinalizados por verificadores ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Sinalizar para revisão humana"
-msgstr[1] "Sinalizar para revisão humana"
+msgstr[0] "Sinalizado para revisão humana ({0})"
+msgstr[1] "Sinalizados para revisão humana ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Extensões aprovadas automaticamente"
@@ -6106,13 +6100,11 @@ msgstr "Bloquear extensão"
 msgid "Update add-on block"
 msgstr "Atualizar bloqueio de extensão"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Desativar aprovação automática"
+msgstr "Desativar a aprovação automática de listados"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Ativar aprovação automática"
+msgstr "Ativar a aprovação automática de listados"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Aprovação automática desativada no momento, até {date}"
@@ -6204,7 +6196,7 @@ msgid "Newer"
 msgstr "Recentes"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} versões sinalizadas por verificadores em outras páginas."
 
 msgid "Recent Points"
 msgstr "Pontuação recente"
@@ -6255,7 +6247,7 @@ msgid "Weight:"
 msgstr "Peso:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Sinalizado por verificadores automatizados"
 
 msgid "Download"
 msgstr "Baixar"
@@ -6325,7 +6317,7 @@ msgid "file signature"
 msgstr "assinatura do arquivo"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Este é o nome exato da regra usada por um verificador."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
