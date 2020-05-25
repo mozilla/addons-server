@@ -968,7 +968,7 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
             index_addons.delay(ids)
 
     basket_relevant_changes = (
-        'deleted', 'display_name', 'email', 'homepage', 'last_login',
+        'deleted', 'display_name', 'fxa_id', 'homepage', 'last_login',
         'location'
     )
     if any(field in changes for field in basket_relevant_changes):
