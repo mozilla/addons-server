@@ -10,16 +10,9 @@ import pytest
 
 from olympia import amo
 from olympia.amo.storage_utils import copy_stored_file
-from olympia.amo.tests import addon_factory, create_switch
-from olympia.addons.cron import hide_disabled_files
-from olympia.files.utils import id_to_path
-from olympia.git.models import GitExtractionEntry
-from olympia.git.utils import AddonGitRepository
+from olympia.amo.tests import addon_factory
 from olympia.versions.models import VersionPreview
-from olympia.versions.tasks import (
-    generate_static_theme_preview,
-    extract_version_to_git,
-)
+from olympia.versions.tasks import generate_static_theme_preview
 
 
 HEADER_ROOT = os.path.join(
@@ -412,90 +405,3 @@ def test_generate_preview_with_additional_backgrounds(
     check_render_additional(force_text(single_svg), 720, colors)
 
     index_addons_mock.assert_called_with([addon.id])
-
-
-@pytest.mark.django_db
-@mock.patch('olympia.versions.tasks.statsd.timer')
-@mock.patch('olympia.versions.tasks.statsd.incr')
-def test_extract_version_to_git(incr_mock, timer_mock):
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
-                                   'is_webextension': True})
-
-    extract_version_to_git(addon.current_version.pk)
-
-    repo = AddonGitRepository(addon.pk)
-
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
-    assert os.listdir(repo.git_repository_path) == ['.git']
-    timer_mock.assert_any_call('git.extraction.version')
-    incr_mock.assert_called_with('git.extraction.version.success')
-
-
-@pytest.mark.django_db
-def test_extract_version_to_git_deleted_version():
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
-                                   'is_webextension': True})
-
-    version = addon.current_version
-    version.delete()
-
-    hide_disabled_files()
-
-    extract_version_to_git(version.pk)
-
-    repo = AddonGitRepository(addon.pk)
-
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
-    assert os.listdir(repo.git_repository_path) == ['.git']
-
-
-@pytest.mark.django_db
-def test_extract_version_to_git_with_cron_enabled():
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
-                                   'is_webextension': True})
-    repo = AddonGitRepository(addon.pk)
-    create_switch('enable-git-extraction-cron')
-    assert GitExtractionEntry.objects.count() == 0
-
-    extract_version_to_git(addon.current_version.pk)
-
-    assert GitExtractionEntry.objects.count() == 1
-    assert not repo.is_extracted
-
-
-@pytest.mark.django_db
-def test_extract_version_to_git_with_cron_enabled_and_force_extraction():
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
-                                   'is_webextension': True})
-    repo = AddonGitRepository(addon.pk)
-    create_switch('enable-git-extraction-cron')
-    assert GitExtractionEntry.objects.count() == 0
-
-    extract_version_to_git(addon.current_version.pk, force_extraction=True)
-
-    assert GitExtractionEntry.objects.count() == 0
-    assert repo.is_extracted
-
-
-@pytest.mark.django_db
-def test_extract_version_to_git_with_non_webextension():
-    addon = addon_factory(
-        type=amo.ADDON_EXTENSION, file_kw={'is_webextension': False}
-    )
-
-    extract_version_to_git(addon.current_version.pk)
-
-    repo = AddonGitRepository(addon.pk)
-    assert not repo.is_extracted
-
-
-@pytest.mark.django_db
-def test_extract_version_to_git_with_not_extension_type():
-    addon = addon_factory(type=amo.ADDON_STATICTHEME)
-
-    extract_version_to_git(addon.current_version.pk)
-
-    repo = AddonGitRepository(addon.pk)
-    assert not repo.is_extracted

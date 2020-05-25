@@ -44,7 +44,7 @@ from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
-from olympia.git.utils import AddonGitRepository
+from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.git.tests.test_utils import apply_changes
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
@@ -57,7 +57,6 @@ from olympia.reviewers.serializers import (
 from olympia.scanners.models import VersionScannerFlags
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
-from olympia.versions.tasks import extract_version_to_git
 from olympia.zadmin.models import get_config
 
 

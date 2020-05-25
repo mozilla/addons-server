@@ -2,14 +2,13 @@ import datetime
 
 from unittest import mock
 
-from olympia.amo.tests import TestCase, addon_factory
-
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.git.models import GitExtractionEntry
 from olympia.git.tasks import (
     continue_git_extraction,
-    remove_git_extraction_entry,
-    on_extraction_error,
     extract_versions_to_git,
+    on_extraction_error,
+    remove_git_extraction_entry,
 )
 from olympia.git.utils import (
     AddonGitRepository,
@@ -174,12 +173,36 @@ class TestExtractVersionsToGit(TestCase):
     def test_calls_extract_version_to_git_n_times(
         self, extract_version_to_git_mock
     ):
-        extract_versions_to_git(addon_pk=123, version_pks=[1, 2, 3])
+        v1 = version_factory(
+            addon=addon_factory(),
+            file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            },
+        )
+        v2 = version_factory(
+            addon=addon_factory(),
+            file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            },
+        )
+        v3 = version_factory(
+            addon=addon_factory(),
+            file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            },
+        )
+
+        extract_versions_to_git(
+            addon_pk=123, version_pks=[v1.pk, v2.pk, v3.pk]
+        )
 
         extract_version_to_git_mock.assert_has_calls(
             [
-                mock.call(version_id=1, force_extraction=True),
-                mock.call(version_id=2, force_extraction=True),
-                mock.call(version_id=3, force_extraction=True),
+                mock.call(version_id=v1.pk),
+                mock.call(version_id=v2.pk),
+                mock.call(version_id=v3.pk),
             ]
         )

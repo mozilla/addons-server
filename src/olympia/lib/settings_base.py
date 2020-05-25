@@ -1173,14 +1173,10 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.add_dynamic_theme_tag': {'queue': 'addons'},
     'olympia.addons.tasks.delete_addons': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
-    'olympia.addons.tasks.migrate_webextensions_to_git_storage': {
-        'queue': 'addons'
-    },
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
     'olympia.files.tasks.extract_webext_permissions': {'queue': 'addons'},
     'olympia.files.tasks.hide_disabled_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
-    'olympia.versions.tasks.extract_version_to_git': {'queue': 'addons'},
     'olympia.git.tasks.continue_git_extraction': {'queue': 'addons'},
     'olympia.git.tasks.extract_versions_to_git': {'queue': 'addons'},
     'olympia.git.tasks.on_extraction_error': {'queue': 'addons'},

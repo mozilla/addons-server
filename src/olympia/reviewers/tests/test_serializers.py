@@ -10,7 +10,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import FileValidation
-from olympia.git.utils import AddonGitRepository
+from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.git.tests.test_utils import apply_changes
 from olympia.reviewers.models import CannedResponse
 from olympia.reviewers.serializers import (
@@ -18,7 +18,6 @@ from olympia.reviewers.serializers import (
     AddonCompareVersionSerializerFileOnly, AddonCompareVersionSerializer,
     CannedResponseSerializer, FileInfoDiffSerializer, FileInfoSerializer)
 from olympia.versions.models import License
-from olympia.versions.tasks import extract_version_to_git
 
 
 class TestFileInfoSerializer(TestCase):

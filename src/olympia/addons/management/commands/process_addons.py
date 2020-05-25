@@ -12,7 +12,6 @@ from olympia.addons.tasks import (
     delete_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
-    migrate_webextensions_to_git_storage,
     recreate_theme_previews,
 )
 from olympia.abuse.models import AbuseReport
@@ -109,17 +108,6 @@ tasks = {
             Q(status=amo.STATUS_APPROVED,
               _current_version__files__is_webextension=True)
         ]
-    },
-    'extract_webextensions_to_git_storage': {
-        'method': migrate_webextensions_to_git_storage,
-        'qs': [
-            Q(type__in=(
-                # Ignoring legacy add-ons and lightweight themes
-                amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME,
-                amo.ADDON_DICT, amo.ADDON_LPAPP, amo.ADDON_SEARCH))
-        ],
-        'distinct': True,
-        'allowed_kwargs': ('channel',),
     },
     'extract_colors_from_static_themes': {
         'method': extract_colors_from_static_themes,

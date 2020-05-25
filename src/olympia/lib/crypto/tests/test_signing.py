@@ -27,8 +27,6 @@ from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
 from olympia.discovery.models import DiscoveryItem
 from olympia.lib.crypto import signing, tasks
-from olympia.git.utils import AddonGitRepository
-from olympia.git.tests.test_utils import _run_process
 from olympia.versions.compare import version_int
 
 
@@ -419,35 +417,19 @@ class TestTransactionRelatedSigning(TransactionTestCase):
 
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 
-        # Make sure the initial version is already extracted, simulating
-        # a regular upload.
-        AddonGitRepository.extract_and_commit_from_version(self.version)
-        self.version.refresh_from_db()
-
+    @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_runs_git_extraction_after_signing(self):
-        old_git_hash = self.version.git_hash
-
+    def test_creates_git_extraction_entry_after_signing(self,
+                                                        create_entry_mock):
         with transaction.atomic():
             signing.sign_file(self.version.current_file)
 
-        self.version.refresh_from_db()
-        assert self.version.git_hash != old_git_hash
+        create_entry_mock.assert_called_once_with(version=self.version)
 
-        repo = AddonGitRepository(self.addon)
-
-        output = _run_process('git log listed', repo)
-        assert output.count('Create new version') == 2
-        assert '(after successful signing)' in output
-
-        # 2 actual commits, including the repo initialization
-        assert output.count('Mozilla Add-ons Robot') == 3
-
-    @mock.patch('olympia.versions.tasks.extract_version_to_git.delay')
+    @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_commits_to_git_async_signing_happened(self, extract_mock):
-        old_git_hash = self.version.git_hash
-
+    def test_does_not_create_git_extraction_entry_on_error(self,
+                                                           create_entry_mock):
         def call_sign_file():
             signing.sign_file(self.version.current_file)
             # raise ValueError after the sign_file call so that
@@ -459,15 +441,7 @@ class TestTransactionRelatedSigning(TransactionTestCase):
             with transaction.atomic():
                 call_sign_file()
 
-        extract_mock.assert_not_called()
-
-        self.version.refresh_from_db()
-        assert self.version.git_hash == old_git_hash
-
-        repo = AddonGitRepository(self.addon)
-
-        output = _run_process('git log listed', repo)
-        assert output.count('Create new version') == 1
+        assert not create_entry_mock.called
 
 
 class TestTasks(TestCase):
