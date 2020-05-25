@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-23 07:54+0000\n"
-"Last-Translator: Paul Playe <firefox@playe.io>\n"
+"PO-Revision-Date: 2020-05-25 10:25+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1762,7 +1762,7 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr ""
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "Une entrée de liste de blocage"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La version {version} a déjà été envoyée et supprimée."
@@ -3196,7 +3196,7 @@ msgid "Read more about the source code review policy."
 msgstr "En savoir plus sur la politique de revue du code source."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Concevez des extensions et des thèmes de premier ordre"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -3297,7 +3297,7 @@ msgid "See how"
 msgstr "Découvrez comment"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Participez"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -3351,7 +3351,7 @@ msgid "Customize Firefox"
 msgstr "Personnalisez Firefox"
 
 msgid "Learn how to make an extension"
-msgstr ""
+msgstr "Apprenez à créer une extension"
 
 msgid "Ready to submit or manage your extension?"
 msgstr "Prêt·e à soumettre ou gérer votre extension ?"
