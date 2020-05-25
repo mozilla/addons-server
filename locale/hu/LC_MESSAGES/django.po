@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-23 18:40+0000\n"
+"PO-Revision-Date: 2020-05-25 09:08+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4933,7 +4933,7 @@ msgstr "Kapjon időjárási információkat közvetlenül a böngészőben."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Törölje a sütiket, a böngészési előzményeket és a gyorsítótárazott fájlokat egyetlen kattintással."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
@@ -6832,6 +6832,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"A következő szerző eltávolításra került a(z) %(addon_name)s (%(addon_url)s) kiegészítőtől:\n"
+"\n"
+"%(author_name)s (%(author_url)s)"
 
 msgctxt "user_list_others"
 msgid "others"
