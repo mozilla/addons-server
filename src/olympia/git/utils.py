@@ -11,6 +11,8 @@ from collections import namedtuple
 
 import pygit2
 
+from django_statsd.clients import statsd
+
 from django.conf import settings
 from django.utils import translation
 from django.utils.functional import cached_property
@@ -21,6 +23,8 @@ from olympia import amo
 from olympia.versions.models import Version
 from olympia.files.utils import (
     id_to_path, extract_extension_to_dest, get_all_files)
+
+from .models import GitExtractionEntry
 
 
 log = olympia.core.logger.getLogger('z.git_storage')
@@ -717,3 +721,51 @@ class AddonGitRepository(object):
         }
 
         return entry
+
+
+def skip_git_extraction(version):
+    return (
+        version.addon.type != amo.ADDON_EXTENSION or
+        not version.all_files[0].is_webextension
+    )
+
+
+def create_git_extraction_entry(version):
+    if skip_git_extraction(version):
+        log.debug('Skipping git extraction of add-on "{}": not a '
+                  'web-extension.'.format(version.addon.id))
+        return
+
+    log.info('Adding add-on "{}" to the git extraction '
+             'queue.'.format(version.addon.id))
+    GitExtractionEntry.objects.create(addon=version.addon)
+
+
+def extract_version_to_git(version_id):
+    """Extract a `Version` into our git storage backend."""
+    # We extract deleted or disabled versions as well so we need to make sure
+    # we can access them.
+    version = Version.unfiltered.get(pk=version_id)
+
+    if skip_git_extraction(version):
+        # We log a warning message because this should not happen (as the CRON
+        # task should no select non-webextension versions).
+        log.warning('Skipping git extraction of add-on "{}": not a '
+                    'web-extension.'.format(version.addon.id))
+        return
+
+    log.info('Extracting {version_id} into git backend'.format(
+        version_id=version_id))
+
+    try:
+        with statsd.timer('git.extraction.version'):
+            repo = AddonGitRepository.extract_and_commit_from_version(
+                version=version
+            )
+        statsd.incr('git.extraction.version.success')
+    except Exception as exc:
+        statsd.incr('git.extraction.version.failure')
+        raise exc
+
+    log.info('Extracted {version} into {git_path}'.format(
+        version=version_id, git_path=repo.git_repository_path))

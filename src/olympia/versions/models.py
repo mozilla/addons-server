@@ -218,6 +218,8 @@ class Version(OnChangeMixin, ModelBase):
         We can't check for that here because an admin may have overridden the
         validation results.
         """
+        from olympia.git.utils import create_git_extraction_entry
+
         assert parsed_data is not None
 
         if addon.status == amo.STATUS_DISABLED:
@@ -314,9 +316,11 @@ class Version(OnChangeMixin, ModelBase):
                 ScannerResult.objects.filter(upload_id=upload.id).update(
                     version=version)
 
-        # Extract this version into git repository
-        transaction.on_commit(
-            lambda: extract_version_to_git_repository(version, upload))
+        if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
+            # Schedule this version for git extraction.
+            transaction.on_commit(
+                lambda: create_git_extraction_entry(version=version)
+            )
 
         # Generate a preview and icon for listed static themes
         if (addon.type == amo.ADDON_STATICTHEME and
@@ -688,15 +692,6 @@ def generate_static_theme_preview(theme_data, version_pk):
     # To avoid a circular import
     from . import tasks
     tasks.generate_static_theme_preview.delay(theme_data, version_pk)
-
-
-def extract_version_to_git_repository(version, upload):
-    """Extract and commit ``version`` into our git-storage backend."""
-    from . import tasks
-    if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
-        tasks.extract_version_to_git.delay(
-            version_id=version.pk,
-            author_id=upload.user.pk if upload.user else None)
 
 
 class VersionPreview(BasePreview, ModelBase):

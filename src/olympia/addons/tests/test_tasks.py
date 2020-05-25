@@ -7,10 +7,7 @@ from django.conf import settings
 from olympia import amo
 from olympia.addons.tasks import recreate_theme_previews
 from olympia.amo.storage_utils import copy_stored_file
-from olympia.amo.tests import (
-    addon_factory, TestCase, version_factory)
-from olympia.files.utils import id_to_path
-from olympia.git.utils import AddonGitRepository
+from olympia.amo.tests import addon_factory
 from olympia.versions.models import VersionPreview
 
 

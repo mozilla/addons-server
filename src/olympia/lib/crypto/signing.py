@@ -144,7 +144,7 @@ def sign_file(file_obj):
 
     Otherwise proceed with signing and return the signed file.
     """
-    from olympia.versions.tasks import extract_version_to_git
+    from olympia.git.utils import create_git_extraction_entry
 
     if (file_obj.version.addon.type == amo.ADDON_SEARCH and
             file_obj.version.is_webextension is False):
@@ -189,11 +189,10 @@ def sign_file(file_obj):
     log.info(u'Signing complete for file {0}'.format(file_obj.pk))
 
     if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
-        # Extract this version into git repository
+        # Schedule this version for git extraction.
         transaction.on_commit(
-            lambda: extract_version_to_git.delay(
-                version_id=file_obj.version.pk,
-                note='after successful signing'))
+            lambda: create_git_extraction_entry(version=file_obj.version)
+        )
 
     return file_obj
 

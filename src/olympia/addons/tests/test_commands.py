@@ -425,7 +425,6 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
         assert calc_weight_mock.call_count == 4
 
 
-
 class TestExtractColorsFromStaticThemes(TestCase):
     @mock.patch('olympia.addons.tasks.extract_colors_from_image')
     def test_basic(self, extract_colors_from_image_mock):

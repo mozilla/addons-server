@@ -4,10 +4,10 @@ import olympia.core.logger
 
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.versions.tasks import extract_version_to_git
 
 from .models import GitExtractionEntry
-from .utils import AddonGitRepository, BrokenRefError, MissingMasterBranchError
+from .utils import (AddonGitRepository, BrokenRefError,
+                    MissingMasterBranchError, extract_version_to_git)
 
 
 log = olympia.core.logger.getLogger('z.git.task')
@@ -100,4 +100,4 @@ def extract_versions_to_git(addon_pk, version_pks):
         )
     )
     for version_pk in version_pks:
-        extract_version_to_git(version_id=version_pk, force_extraction=True)
+        extract_version_to_git(version_id=version_pk)
