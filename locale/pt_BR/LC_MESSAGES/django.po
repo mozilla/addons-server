@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-25 17:07+0000\n"
+"PO-Revision-Date: 2020-05-25 17:11+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6320,13 +6320,13 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "Este é o nome exato da regra usada por um verificador."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Quando desmarcada, os resultados de verificadores não serão vinculados a esta regra e a ação não será executada."
 
 msgid "Yara rules should have a definition"
 msgstr "Regras Yara devem ter uma definição"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "O nome da regra na definição deve corresponder ao nome da regra de verificação"
 
 msgid "Only one Yara rule is allowed in the definition"
 msgstr "Somente uma regra Yara é permitida na definição"
@@ -6339,7 +6339,7 @@ msgid "An error occurred when compiling the definition"
 msgstr "Houve um erro ao compilar a definição"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Execute também esta regra em extensões que foram desativadas à força."
 
 msgid "Abort"
 msgstr "Interromper"
@@ -6348,7 +6348,7 @@ msgid "Run"
 msgstr "Executar"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Útil quando o resultado da verificação é um verdadeiro positivo, mas a extensão não é maliciosa"
 
 msgid "Revert report"
 msgstr "Reverter denúncia"
