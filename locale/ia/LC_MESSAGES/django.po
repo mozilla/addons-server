@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-20 16:07+0000\n"
+"PO-Revision-Date: 2020-05-25 02:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -474,7 +474,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Iste additivo pertine ja al collection"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Stato disconnexion"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
