@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 17:33+0000\n"
+"PO-Revision-Date: 2020-05-26 17:41+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5948,9 +5948,8 @@ msgstr "Entratas previemente delite"
 msgid "This is a recommended extension."
 msgstr "Isto es un extension recommendate."
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Tu non ha credentiales API."
+msgstr "Tu non ha permisso pro revider lo."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Per favor elige un o plus versiones in le lista supra."
@@ -5994,19 +5993,17 @@ msgstr "Fortiar disactivation de additivo"
 msgid "Force-enable add-on"
 msgstr "Fortiar activation de additivo"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Vide tote le submissiones"
+msgstr "Vider invio del lista del blocadas"
 
 msgid "Block add-on"
 msgstr "Blocar additivo"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Actualisar blocada de additivo"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Disactivar auto-approbation"
+msgstr "Disactivar auto-approbation de additivos publicate"
 
 #, fuzzy
 msgid "Enable Listed Auto-Approval"
