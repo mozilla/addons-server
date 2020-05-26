@@ -806,6 +806,11 @@ class ReviewBase(object):
         # Clear needs_human_review flags on past listed versions.
         if self.human_review:
             self.unset_past_needs_human_review()
+            # Clear the "needs_human_review" scanner flags too, if any, and
+            # only for the specified version.
+            VersionScannerFlags.objects.filter(
+                version=self.version
+            ).update(needs_human_review_by_mad=False)
 
         # Increment approvals counter if we have a request (it means it's a
         # human doing the review) otherwise reset it as it's an automatic
@@ -1128,3 +1133,9 @@ class ReviewUnlisted(ReviewBase):
                 # that the reviewer looked at all versions they are approving.
                 if version.needs_human_review:
                     version.update(needs_human_review=False)
+
+                # Clear the "needs_human_review" scanner flags too, if any, and
+                # only for the specified version.
+                VersionScannerFlags.objects.filter(
+                    version=version
+                ).update(needs_human_review_by_mad=False)

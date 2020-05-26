@@ -724,6 +724,19 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert self.version.needs_human_review
 
+    def test_nomination_to_public_with_version_scanner_flags(self):
+        flags = VersionScannerFlags.objects.create(
+            version=self.addon.current_version,
+            needs_human_review_by_mad=True,
+        )
+        assert flags.needs_human_review_by_mad
+
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_public()
+
+        flags.refresh_from_db()
+        assert not flags.needs_human_review_by_mad
+
     @patch('olympia.reviewers.utils.sign_file')
     def test_nomination_to_public(self, sign_mock):
         sign_mock.reset()
@@ -1078,6 +1091,25 @@ class TestReviewHelper(TestReviewHelperBase):
         assert flags.needs_human_review_by_mad
 
         self.test_public_addon_confirm_auto_approval()
+
+        flags.refresh_from_db()
+        assert not flags.needs_human_review_by_mad
+
+    def test_confirm_multiple_versions_with_version_scanner_flags(self):
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        flags = VersionScannerFlags.objects.create(
+            version=self.version,
+            needs_human_review_by_mad=True,
+        )
+        assert flags.needs_human_review_by_mad
+        helper = self.get_helper()  # pick the updated version
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        helper.set_data(data)
+
+        helper.handler.confirm_multiple_versions()
 
         flags.refresh_from_db()
         assert not flags.needs_human_review_by_mad
