@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-25 02:48+0000\n"
+"PO-Revision-Date: 2020-05-26 14:58+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -482,11 +482,11 @@ msgstr "Le GUID %(guid)s es in un invio pendente"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Le blocada pro GUID %(guid)s es solo lectura: illo debe esser modificate via le collection lista del blocadas obsolete"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr "Bloco con GUID %(guid)s non trovate"
+msgstr "Blocada con GUID %(guid)s non trovate"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
