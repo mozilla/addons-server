@@ -6720,7 +6720,7 @@ class TestDraftCommentViewSet(TestCase):
             'lineno': 20,
             'comment': 'Some really fancy comment',
             'canned_response': None,
-            'version_id': self.version.pk,
+            'version': {'id': self.version.pk},
             'user': json.loads(json.dumps(
                 BaseUserSerializer(
                     user, context={'request': request}).data,
@@ -6753,23 +6753,6 @@ class TestDraftCommentViewSet(TestCase):
             # - 1 drafts
             response = self.client.get(url, {'lang': 'en-US'})
         assert response.json()['count'] == 3
-
-    def test_retrieve_uses_read_only_serializer(self):
-        user = user_factory(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.client.login_api(user)
-        comment = DraftComment.objects.create(
-            version=self.version, comment='test1', user=user,
-            lineno=0, filename='manifest.json')
-        url = reverse_ns('reviewers-versions-draft-comment-detail', kwargs={
-            'addon_pk': self.addon.pk,
-            'version_pk': self.version.pk,
-            'pk': comment.id
-        })
-
-        response = self.client.get(url, {'lang': 'en-US'})
-        assert response.json()['version_id'] == self.version.id
-        assert 'version' not in response.json()
 
     def test_create_retrieve_and_update(self):
         user = user_factory(username='reviewer')
@@ -7026,7 +7009,7 @@ class TestDraftCommentViewSet(TestCase):
             'canned_response': json.loads(json.dumps(
                 CannedResponseSerializer(canned_response).data,
                 cls=amo.utils.AMOJSONEncoder)),
-            'version_id': self.version.id,
+            'version': {'id': self.version.id},
             'user': json.loads(json.dumps(
                 BaseUserSerializer(
                     user, context={'request': request}).data,
