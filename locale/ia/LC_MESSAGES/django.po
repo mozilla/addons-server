@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 15:19+0000\n"
+"PO-Revision-Date: 2020-05-26 15:29+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3785,7 +3785,7 @@ msgstr "Lassa un pista digital munde. Face in modo que Firefox oblida le datos d
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Nulle besonio de scriber identic objecto repetitemente. Salva texto inserite frequentemente pro collar lo quando tu vole."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4891,7 +4891,7 @@ msgstr "Alcun sitos ha difficultate a reproducer videos sur Firefox pro Android.
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Elige, ordina, e face fluer tu discargamentos plus velocemente."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4900,11 +4900,11 @@ msgstr "Informationes meteorologic de tote le mundo in tempore real."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Dele cookies, chronologia de exploration e le files in cache con justo un sol clic."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Remove elementos traciante de ligamines web."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
