@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 17:21+0000\n"
+"PO-Revision-Date: 2020-05-26 17:33+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5759,12 +5759,11 @@ msgstr "Galeria de imagines"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nihil a vider ci!  Le disveloppator non ha includite detalios."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "per version del additivo"
+msgstr "Traductiones del nomine de additivo"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Applicationes de revisores – Additivos pro Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Retornar al pannello de utensiles del revisor"
@@ -5782,7 +5781,7 @@ msgid "Score"
 msgstr "Punctuation"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Registro moderation de revisores – Additivos pro Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5823,7 +5822,7 @@ msgid "Undelete"
 msgstr "Restabilir"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Prestation de revisores – Additivos pro Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Rendimento del revisor del additivo"
@@ -5874,24 +5873,22 @@ msgid "All-Time"
 msgstr "De sempre"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Applicationes de revisores – Additivos pro Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Revision del contento – Additivos pro Firefox"
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Additivos approbate automaticamente"
+msgstr "Additivos approbate automaticamente – Additivos pro Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderation de revisiones – Additivos pro Firefox"
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Requesta de informationes expirate"
+msgstr "Requestas informationes expirate – Additivos pro Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Additivos non publicate – Additivos pro Firefox"
 
 msgid "Advanced Search"
 msgstr "Recerca avantiate"
@@ -5929,7 +5926,7 @@ msgid "Reviewer's Guide"
 msgstr "Guida del revisor"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Additivos pro Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
