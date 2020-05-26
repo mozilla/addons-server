@@ -24,11 +24,14 @@ def get_blocklist_last_modified_time():
     return int(latest_block.modified.timestamp() * 1000) if latest_block else 0
 
 
-def upload_mlbf_to_remote_settings(*, bypass_switch=False):
+def upload_mlbf_to_remote_settings(*, bypass_switch=False, force_base=False):
     """Creates a bloomfilter, and possibly a stash json blob, and uploads to
     remote-settings.
     bypass_switch=<Truthy value> will bypass the "blocklist_mlbf_submit" switch
-    for manual use/testing."""
+    for manual use/testing.
+    force_base=<Truthy value> will force a new base MLBF and a reset of the
+    collection.
+    """
     bypass_switch = bool(bypass_switch)
     if not (bypass_switch or waffle.switch_is_active('blocklist_mlbf_submit')):
         log.info('Upload MLBF to remote settings cron job disabled.')
@@ -48,10 +51,11 @@ def upload_mlbf_to_remote_settings(*, bypass_switch=False):
     mlbf = MLBF(generation_time)
     previous_filter = MLBF(last_generation_time)
 
-    need_mlbf = (
+    need_update = (
+        force_base or
         last_generation_time < get_blocklist_last_modified_time() or
         mlbf.blocks_changed_since_previous(previous_filter))
-    if not need_mlbf:
+    if not need_update:
         log.info(
             'No new/modified/deleted Blocks in database; '
             'skipping MLBF generation')
@@ -68,7 +72,10 @@ def upload_mlbf_to_remote_settings(*, bypass_switch=False):
         previous_filter)
 
     make_base_filter = (
-        not base_filter or mlbf.should_reset_base_filter(base_filter))
+        force_base or
+        not base_filter or
+        mlbf.should_reset_base_filter(base_filter))
+
     if last_generation_time and not make_base_filter:
         try:
             mlbf.write_stash(previous_filter)

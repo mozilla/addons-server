@@ -186,6 +186,38 @@ class TestUploadToRemoteSettings(TestCase):
         # no stash because we're starting with a new base mlbf
         assert not os.path.exists(os.path.join(gen_path, 'stash.json'))
 
+    @override_switch('blocklist_mlbf_submit', active=True)
+    @mock.patch.object(MLBF, 'should_reset_base_filter')
+    def test_force_base_option(self, should_reset_mock):
+        should_reset_mock.return_value = False
+
+        # set the times to now
+        now = datetime.datetime.now()
+        now_timestamp = now.timestamp() * 1000
+        set_config(MLBF_TIME_CONFIG_KEY, now_timestamp, json_value=True)
+        self.block.update(modified=now)
+        prev_blocked_path = os.path.join(
+            settings.MLBF_STORAGE_PATH, str(now_timestamp), 'blocked.json')
+        with storage.open(prev_blocked_path, 'w') as blocked_file:
+            json.dump([f'{self.block.guid}:1.2b3'], blocked_file)
+        # without force_base nothing happens
+        upload_mlbf_to_remote_settings()
+        self.publish_attachment_mock.assert_not_called()
+        self.publish_record_mock.assert_not_called()
+
+        # but with force_base=True we generate a filter
+        upload_mlbf_to_remote_settings(force_base=True)
+        self.publish_attachment_mock.assert_called_once()  # the mlbf
+        self.publish_record_mock.assert_not_called()  # no stash
+        self.delete_mock.assert_called()  # the collection was cleared
+
+        # doublecheck no stash
+        gen_path = os.path.join(
+            settings.MLBF_STORAGE_PATH,
+            str(get_config(MLBF_TIME_CONFIG_KEY, json_value=True)))
+        # no stash because we're starting with a new base mlbf
+        assert not os.path.exists(os.path.join(gen_path, 'stash.json'))
+
     @override_switch('blocklist_mlbf_submit', active=False)
     def test_waffle_off_disables_publishing(self):
         upload_mlbf_to_remote_settings()
