@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 17:11+0000\n"
+"PO-Revision-Date: 2020-05-26 17:21+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5693,13 +5693,13 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Politica de confidentialitate"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Signalationes de abuso {addon}: additivos pro Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Reportos de abuso pro {addon} e su disveloppatores ({num})"
+msgstr "Signalationes de abuso pro {addon} e su disveloppatores ({num})"
 
 msgid "Abuse Reports"
-msgstr "Reportos de abuso"
+msgstr "Signalationes de abuso"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
@@ -5739,7 +5739,7 @@ msgid "Last Approval Date"
 msgstr "Data del ultime approbation"
 
 msgid "Abuse Reports ({num})"
-msgstr "Reportos de abuso ({num})"
+msgstr "Signalationes de abuso ({num})"
 
 msgid "Bad User Ratings ({num})"
 msgstr "Evalutationes negative de usatores ({num})"
