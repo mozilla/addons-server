@@ -151,11 +151,6 @@
       },
       "enabled": true,
       "versionRange": [
-        {
-          "severity": 3,
-          "maxVersion": "*",
-          "minVersion": "0"
-        }
       ],
       "id": "36f97298-8bef-4372-a548-eb829413bee9",
       "last_modified": 1523286321447
@@ -169,13 +164,6 @@
         "name": "FF updater (malware)"
       },
       "enabled": true,
-      "versionRange": [
-        {
-          "severity": 3,
-          "maxVersion": "*",
-          "minVersion": "0"
-        }
-      ],
       "id": "48b14881-5f6b-4e48-afc5-3d9a7fae26a3",
       "last_modified": 1519826648080
     }
