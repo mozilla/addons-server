@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 16:06+0000\n"
+"PO-Revision-Date: 2020-05-26 16:22+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4923,17 +4923,16 @@ msgid "Save an entire web page—including images and styling—as a single HTML
 msgstr "Salva un integre pagina web, con imagines e stilos, como singule file HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Rade automaticamente le cookies post que tu claude un scheda."
+msgstr "Supplanta automaticamente parolas degradante inter le Web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Bloca tote le avisos publicitari: videos, quadros resaltante, banners e altero ancora."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Specta con amicos e familia ubique le medios diffuse."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4949,7 +4948,7 @@ msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Applicationes de organisation e gestion de schedas"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5449,10 +5448,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Auto-approbation retardate temporarimente"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Auto-approbation retardate indefinitemente"
 
 msgid "Is locked by a reviewer"
 msgstr "Blocate per un revisor"
