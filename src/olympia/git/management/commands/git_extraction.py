@@ -39,8 +39,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if not waffle.switch_is_active(SWITCH_NAME):
             log.info(
-                'Not running git_extraction command because switch "{}" is '
-                'not active.'.format(SWITCH_NAME)
+                'Not running git_extraction command because switch "%s" is '
+                'not active.',
+                SWITCH_NAME,
             )
             return
 
@@ -49,7 +50,7 @@ class Command(BaseCommand):
         with lock(settings.TMP_PATH, LOCK_NAME) as lock_attained:
             if not lock_attained:
                 # We didn't get the lock...
-                log.error('{} lock present, aborting.'.format(LOCK_NAME))
+                log.error('%s lock present, aborting.', LOCK_NAME)
                 return
 
             # If an add-on ID is present more than once, the `extract_addon()`
@@ -70,13 +71,13 @@ class Command(BaseCommand):
         It does not run if the add-on is locked for git extraction.
         """
         addon = entry.addon
-        log.info('Starting git extraction of add-on "{}".'.format(addon.pk))
+        log.info('Starting git extraction of add-on "%s".', addon.pk)
 
         # See: https://github.com/mozilla/addons-server/issues/14289
         if addon.type != amo.ADDON_EXTENSION:
             log.info(
-                'Skipping git extraction of add-on "{}": not an '
-                'extension.'.format(addon.pk)
+                'Skipping git extraction of add-on "%s": not an extension.',
+                addon.pk,
             )
             entry.delete()
             return
@@ -86,12 +87,13 @@ class Command(BaseCommand):
         # database state here.
         if addon.git_extraction_is_in_progress:
             log.info(
-                'Aborting extraction of addon "{}" to git storage '
-                'because it is already in progress.'.format(addon.pk)
+                'Aborting extraction of addon "%s" to git storage '
+                'because it is already in progress.',
+                addon.pk,
             )
             return
 
-        log.info('Locking add-on "{}" before extraction.'.format(addon.pk))
+        log.info('Locking add-on "%s" before extraction.', addon.pk)
         entry.update(in_progress=True)
 
         # Retrieve all the version pks to extract, sorted by creation date.
@@ -104,8 +106,7 @@ class Command(BaseCommand):
 
         if len(versions_to_extract) == 0:
             log.info(
-                'No version to git-extract for add-on "{}", '
-                'exiting.'.format(addon.pk)
+                'No version to git-extract for add-on "%s", exiting.', addon.pk
             )
             # We can safely delete the entry because there is no version to
             # extract.
@@ -132,8 +133,10 @@ class Command(BaseCommand):
             tasks.append(remove_git_extraction_entry.si(addon.pk))
 
         log.info(
-            'Submitted {} tasks to git-extract {} versions for add-on '
-            '"{}".'.format(len(tasks), len(versions_to_extract), addon.pk)
+            'Submitted %s tasks to git-extract %s versions for add-on "%s".',
+            len(tasks),
+            len(versions_to_extract),
+            addon.pk,
         )
         # Attach an error handler on the chain and run it. The error
         # handler should remove the add-on lock (among other things).

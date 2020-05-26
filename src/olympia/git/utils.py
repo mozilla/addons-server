@@ -238,8 +238,8 @@ class AddonGitRepository(object):
                 tree,  # tree
                 [])  # parents
 
-            log.info('Initialized git repository {path}'.format(
-                path=self.git_repository_path))
+            log.info('Initialized git repository "%s"',
+                     self.git_repository_path)
         else:
             git_repository = pygit2.Repository(self.git_repository_path)
 
@@ -732,12 +732,12 @@ def skip_git_extraction(version):
 
 def create_git_extraction_entry(version):
     if skip_git_extraction(version):
-        log.debug('Skipping git extraction of add-on "{}": not a '
-                  'web-extension.'.format(version.addon.id))
+        log.debug('Skipping git extraction of add-on "%s" not a '
+                  'web-extension.', version.addon.id)
         return
 
-    log.info('Adding add-on "{}" to the git extraction '
-             'queue.'.format(version.addon.id))
+    log.info('Adding add-on "%s" to the git extraction queue.',
+             version.addon.id)
     GitExtractionEntry.objects.create(addon=version.addon)
 
 
@@ -750,12 +750,11 @@ def extract_version_to_git(version_id):
     if skip_git_extraction(version):
         # We log a warning message because this should not happen (as the CRON
         # task should not select non-webextension versions).
-        log.warning('Skipping git extraction of add-on "{}": not a '
-                    'web-extension.'.format(version.addon.id))
+        log.warning('Skipping git extraction of add-on "%s": not a '
+                    'web-extension.', version.addon.id)
         return
 
-    log.info('Extracting {version_id} into git backend'.format(
-        version_id=version_id))
+    log.info('Extracting version "%s" into git backend', version_id)
 
     try:
         with statsd.timer('git.extraction.version'):
@@ -767,5 +766,5 @@ def extract_version_to_git(version_id):
         statsd.incr('git.extraction.version.failure')
         raise exc
 
-    log.info('Extracted {version} into {git_path}'.format(
-        version=version_id, git_path=repo.git_repository_path))
+    log.info('Extracted version "%s" into "%s".', version_id,
+             repo.git_repository_path)
