@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 16:22+0000\n"
+"PO-Revision-Date: 2020-05-26 16:29+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5456,9 +5456,8 @@ msgstr "Auto-approbation retardate indefinitemente"
 msgid "Is locked by a reviewer"
 msgstr "Blocate per un revisor"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Marcate pro le disactivation del approbation automatic"
+msgstr "Contrasignate pro le disactivation o le retardo del approbation automatic"
 
 msgid "Is recommendable"
 msgstr "Il es recommendabile"
@@ -5472,9 +5471,8 @@ msgstr "Analyse risco non disponibile."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Tu non pote inviar un commento si `canned_response` es definite."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Impossibile cargar un pacchetto linguistic"
+msgstr "Tu non pote inviar un commento vacue."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
