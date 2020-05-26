@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 15:29+0000\n"
+"PO-Revision-Date: 2020-05-26 15:37+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4908,11 +4908,11 @@ msgstr "Remove elementos traciante de ligamines web."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Replena automaticamente plicas de marcapaginas de fluxo RSS."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organisa facilemente tonnas de schedas aperte."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
