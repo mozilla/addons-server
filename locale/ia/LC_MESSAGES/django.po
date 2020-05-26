@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 16:29+0000\n"
+"PO-Revision-Date: 2020-05-26 16:39+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5475,7 +5475,7 @@ msgid "You can't submit an empty comment."
 msgstr "Tu non pote inviar un commento vacue."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Tu non pote inviar un numero de riga sin associar lo a un nomine de file."
 
 msgid "Type"
 msgstr "Typo"
@@ -5522,21 +5522,17 @@ msgstr "Data limite del demanda de informationes"
 msgid "Last Updated"
 msgstr "Ultime actualisation"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Alteres que attende revision ({0})"
+msgstr "Versiones publicate besoniante de revision human ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Alteres que attende revision ({0})"
+msgstr "Versiones non publicate besoniante de revision human ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Versiones in le lista de presentation"
+msgstr "Versiones publicate ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Versiones in le lista de presentation"
+msgstr "Versiones non publicate ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Isto approbara, signara, e publicara iste version. Le commentos sera inviate al disveloppator."
