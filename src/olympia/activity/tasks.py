@@ -27,7 +27,7 @@ def process_email(message, spam_rating, **kwargs):
         return
     _, created = ActivityLogEmails.objects.get_or_create(messageid=msg_id)
     if not created:
-        log.error('Already processed email [%s], skipping', msg_id, extra={
+        log.warning('Already processed email [%s], skipping', msg_id, extra={
             'message_obj': message
         })
         return
