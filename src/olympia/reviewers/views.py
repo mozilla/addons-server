@@ -65,8 +65,7 @@ from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer, AddonBrowseVersionSerializerFileOnly,
     AddonCompareVersionSerializer, AddonCompareVersionSerializerFileOnly,
     AddonReviewerFlagsSerializer, CannedResponseSerializer,
-    DiffableVersionSerializer, DraftCommentSerializer,
-    DraftCommentSerializerReadOnly, FileInfoSerializer,
+    DiffableVersionSerializer, DraftCommentSerializer, FileInfoSerializer,
 )
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
@@ -1399,6 +1398,7 @@ class ReviewAddonVersionDraftCommentViewSet(
     )]
 
     queryset = DraftComment.objects.all()
+    serializer_class = DraftCommentSerializer
 
     def check_object_permissions(self, request, obj):
         """Check permissions against the parent add-on object."""
@@ -1480,11 +1480,6 @@ class ReviewAddonVersionDraftCommentViewSet(
         # and not provided by the API client as part of the POST data.
         self.request.data.update(self.get_extra_comment_data())
         return context
-
-    def get_serializer_class(self):
-        if self.action in ['list', 'retrieve']:
-            return DraftCommentSerializerReadOnly
-        return DraftCommentSerializer
 
 
 class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,

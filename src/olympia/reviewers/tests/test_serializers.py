@@ -6,10 +6,9 @@ from django.core.cache import cache
 from rest_framework.exceptions import NotFound
 
 from olympia import amo
-from olympia.activity.models import DraftComment
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    TestCase, addon_factory, user_factory, version_factory)
+    TestCase, addon_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import FileValidation
 from olympia.git.utils import AddonGitRepository
@@ -18,7 +17,7 @@ from olympia.reviewers.models import CannedResponse
 from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer, AddonBrowseVersionSerializerFileOnly,
     AddonCompareVersionSerializerFileOnly, AddonCompareVersionSerializer,
-    CannedResponseSerializer, DraftCommentSerializerReadOnly,
+    CannedResponseSerializer,
     FileInfoDiffSerializer, FileInfoSerializer)
 from olympia.versions.models import License
 from olympia.versions.tasks import extract_version_to_git
@@ -780,26 +779,3 @@ class TestCannedResponseSerializer(TestCase):
             'response': 'test',
             'category': 'Other',
         }
-
-
-class TestDraftCommentSerializerReadOnly(TestCase):
-
-    def test_basic(self):
-        addon = addon_factory()
-        comment_text = 'Some comment'
-        filename = 'somefile.js'
-        lineno = 19
-        user = user_factory()
-        comment = DraftComment.objects.create(
-            comment=comment_text, filename=filename, lineno=lineno,
-            user=user, version=addon.current_version)
-
-        data = DraftCommentSerializerReadOnly(instance=comment).data
-
-        assert data['comment'] == comment_text
-        assert data['filename'] == filename
-        assert data['id'] == comment.id
-        assert data['lineno'] == lineno
-        assert data['user']['id'] == user.id
-        assert data['version_id'] == addon.current_version.id
-        assert 'version' not in data
