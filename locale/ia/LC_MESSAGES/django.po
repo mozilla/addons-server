@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 15:12+0000\n"
+"PO-Revision-Date: 2020-05-26 15:19+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3161,7 +3161,7 @@ msgid "For developers"
 msgstr "Pro disveloppatores"
 
 msgid "For end users"
-msgstr ""
+msgstr "Pro usatores final"
 
 msgid "Matrix"
 msgstr "Matrice"
@@ -3207,7 +3207,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Button \"Obtener le additivo\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Programma de extensiones recommendate"
 
 msgid "Contribute"
 msgstr "Contribuer"
@@ -3243,7 +3243,7 @@ msgid "Get involved"
 msgstr "Collabora"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Connecte te con milles disveloppatores e discoperi plus manieras con que tu pote collaborar con le ecosystema del extensiones."
 
 msgid "Learn more about the developer community"
 msgstr "Saper plus re le communitate de disveloppatores"
@@ -3295,13 +3295,13 @@ msgid "Learn how to make an extension"
 msgstr "Apprende como crear un extension"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Preste a inviar o gerer tu extension?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Accede al Centro de disveloppamento pro inviar o gerer extensiones e themas."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Registra te a un conto de disveloppator o accede al Centro de disveloppamento"
 
 msgid "Manage Version {0}"
 msgstr "Gere version {0}"
