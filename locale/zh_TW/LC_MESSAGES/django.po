@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 06:25+0000\n"
+"PO-Revision-Date: 2020-05-26 10:28+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -467,7 +467,7 @@ msgstr "GUID %(guid)s 仍在準備送出中"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "GUID %(guid)s 的區塊唯讀，必須透過傳統 blocklist collection 進行編輯"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
