@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 16:01+0000\n"
+"PO-Revision-Date: 2020-05-26 16:06+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4919,9 +4919,8 @@ msgid "Create and customize tab groups."
 msgstr "Crea e personalisa gruppos de schedas."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Salva paginas complete, o solo portiones, como un singule file HTML."
+msgstr "Salva un integre pagina web, con imagines e stilos, como singule file HTML."
 
 #. editorial content for the discovery pane.
 #, fuzzy
