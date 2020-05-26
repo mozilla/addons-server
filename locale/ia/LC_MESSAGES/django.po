@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 14:58+0000\n"
+"PO-Revision-Date: 2020-05-26 15:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1715,10 +1715,10 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "Tu ha incargate troppo de files recentemente. Reproba post alcun tempore."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "Version {version} concorda con {block_link} pro iste additivo. Tu pote continger {amo_admins} pro altere informationes."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "un entrata de lista del blocadas"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Le version {version} ha jam essite incargate e delite."
@@ -3141,16 +3141,18 @@ msgid "Read more about the source code review policy."
 msgstr "Leger plus sur le politica de revision del codice fonte."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Produce extensiones e themas de prime classe"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Si tu es nove al disveloppamento de extension, perfectionamento o portabilitate de un extension o thema existente, o creation de un solution de interprisa personalisate, nos ha le ressources pro te "
+"supportar."
 
 msgid "Visit the Extension Workshop"
 msgstr "Visitar le laboratorio de extensiones"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Connecte te con nos"
 
 msgid "Twitter"
 msgstr "Twitter"
