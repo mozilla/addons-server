@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 15:37+0000\n"
+"PO-Revision-Date: 2020-05-26 16:01+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4916,7 +4916,7 @@ msgstr "Organisa facilemente tonnas de schedas aperte."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Crea e personalisa gruppos de schedas."
 
 #. editorial content for the discovery pane.
 #, fuzzy
