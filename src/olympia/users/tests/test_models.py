@@ -643,6 +643,17 @@ class TestUserProfile(TestCase):
         assert sync_object_to_basket_mock.delay.called_with(
             'userprofile', 4043307)
 
+    def test_get_lookup_field(self):
+        user = UserProfile.objects.get(id=55021)
+        lookup_field_pk = UserProfile.get_lookup_field(str(user.id))
+        assert lookup_field_pk == 'pk'
+        lookup_field_email = UserProfile.get_lookup_field(user.email)
+        assert lookup_field_email == 'email'
+        lookup_field_random_digit = UserProfile.get_lookup_field('123456')
+        assert lookup_field_random_digit == 'pk'
+        lookup_field_random_string = UserProfile.get_lookup_field('my@mail.co')
+        assert lookup_field_random_string == 'email'
+
 
 class TestDeniedName(TestCase):
     fixtures = ['users/test_backends']

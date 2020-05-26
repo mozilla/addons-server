@@ -189,6 +189,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def __str__(self):
         return u'%s: %s' % (self.id, self.display_name or self.username)
 
+    @classmethod
+    def get_lookup_field(cls, identifier):
+        lookup_field = 'pk'
+        if identifier and not identifier.isdigit():
+            # If the identifier contains anything other than a digit,
+            # it's an email.
+            lookup_field = 'email'
+        return lookup_field
+
     @property
     def is_superuser(self):
         return any(group.rules == '*:*' for group in self.groups_list)
