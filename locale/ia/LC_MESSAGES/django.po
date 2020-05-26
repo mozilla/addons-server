@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 16:39+0000\n"
+"PO-Revision-Date: 2020-05-26 17:05+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5558,20 +5558,17 @@ msgstr "Rejectar plure versiones"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "Isto rejectara le versiones public seligite. Le commentos sera inviate al disveloppator."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Rejectar plure versiones"
+msgstr "Blocar plure versiones"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Iste disactivara silentemente le versiones approbate seligite e aperira le pagina del administrator de creation de blocadas."
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Rejectar plure versiones"
+msgstr "Confirmar plure versiones"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Isto registra tu approbation del contento del ultime version public, sin notificar le disveloppator."
+msgstr "Isto confirmara approbation del versiones seligite sin notificar le disveloppator"
 
 msgid "Reviewer reply"
 msgstr "Responsa del revisor"
@@ -5606,9 +5603,8 @@ msgstr "Registro del revisiones"
 msgid "Add-on Review Guide"
 msgstr "Guida al revision del additivos"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Tests de securitate"
+msgstr "Scanditores de securitate"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
