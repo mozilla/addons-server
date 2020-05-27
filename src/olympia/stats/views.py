@@ -128,7 +128,7 @@ def extract(dicts):
 
 @addon_view_stats
 @non_atomic_requests
-def overview_series(request, addon, group, start, end, format):
+def overview_series(request, addon, group, start, end, format, beta=False):
     """Combines downloads_series and updates_series into one payload."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
@@ -177,7 +177,7 @@ def zip_overview(downloads, updates):
 
 @addon_view_stats
 @non_atomic_requests
-def downloads_series(request, addon, group, start, end, format):
+def downloads_series(request, addon, group, start, end, format, beta=False):
     """Generate download counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
@@ -192,7 +192,7 @@ def downloads_series(request, addon, group, start, end, format):
 
 @addon_view_stats
 @non_atomic_requests
-def sources_series(request, addon, group, start, end, format):
+def sources_series(request, addon, group, start, end, format, beta=False):
     """Generate download source breakdown."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
@@ -210,7 +210,7 @@ def sources_series(request, addon, group, start, end, format):
 
 @addon_view_stats
 @non_atomic_requests
-def usage_series(request, addon, group, start, end, format):
+def usage_series(request, addon, group, start, end, format, beta=False):
     """Generate ADU counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
@@ -227,8 +227,8 @@ def usage_series(request, addon, group, start, end, format):
 
 @addon_view_stats
 @non_atomic_requests
-def usage_breakdown_series(request, addon, group,
-                           start, end, format, field):
+def usage_breakdown_series(request, addon, group, start, end, format, field,
+                           beta=False):
     """Generate ADU breakdown of ``field``."""
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon)
@@ -314,13 +314,22 @@ def check_stats_permission(request, addon):
 
 @addon_view_stats
 @non_atomic_requests
-def stats_report(request, addon, report):
+def stats_report(request, addon, report, beta=False):
     check_stats_permission(request, addon)
-    stats_base_url = reverse('stats.overview', args=[addon.slug])
+    stats_base_url = reverse('stats.overview.beta' if beta else
+                             'stats.overview', args=[addon.slug])
     view = get_report_view(request)
-    return render(request, 'stats/reports/%s.html' % report,
-                  {'addon': addon, 'report': report, 'view': view,
-                   'stats_base_url': stats_base_url})
+    return render(
+        request,
+        'stats/reports/%s.html' % report,
+        {
+            'addon': addon,
+            'beta': beta,
+            'report': report,
+            'stats_base_url': stats_base_url,
+            'view': view,
+        }
+    )
 
 
 def get_report_view(request):

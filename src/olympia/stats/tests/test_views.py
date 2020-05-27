@@ -11,8 +11,9 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, version_factory
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests import (TestCase, version_factory, addon_factory,
+                               user_factory)
+from olympia.amo.urlresolvers import reverse, resolve
 from olympia.stats import tasks, views
 from olympia.stats.models import DownloadCount, UpdateCount
 from olympia.users.models import UserProfile
@@ -691,3 +692,30 @@ class TestXss(amo.tests.TestXss):
 
         req = RequestFactory().get('/', last='<alert>')
         assert views.get_report_view(req) == {}
+
+
+class TestStatsBeta(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.user = user_factory()
+        self.addon = addon_factory(users=[self.user])
+        self.client.login(email=self.user.email)
+
+    def test_stats_overview_page(self):
+        url = reverse('stats.overview.beta', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'You are viewing a beta feature.' in response.content
+        assert response.context['beta']
+
+    def test_beta_series_urls(self):
+        url = reverse(
+            'stats.overview_series.beta',
+            args=[self.addon.slug, 'day', '20200101', '20200105', 'json']
+        )
+
+        match = resolve(url)
+
+        assert match.kwargs['beta']
