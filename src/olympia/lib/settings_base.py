@@ -833,9 +833,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/l10n.js',
             'js/impala/forms.js',
 
-            # Homepage
-            'js/impala/homepage.js',
-
             # Add-ons details page
             'js/lib/ui.lightbox.js',
             'js/impala/addon_details.js',
