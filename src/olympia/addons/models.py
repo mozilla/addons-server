@@ -2116,7 +2116,7 @@ class AddonGUID(ModelBase):
     For deleted addons it will contain an fk to the Addon instance even after
     Addon.guid has been set to null (i.e. when it's been reuploaded).
     """
-    guid = models.CharField(max_length=255, null=False)
+    guid = models.CharField(max_length=255, null=False, db_index=True)
     addon = models.OneToOneField(
         Addon, null=False, on_delete=models.CASCADE, unique=True)
 

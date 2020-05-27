@@ -66,7 +66,6 @@ class MLBF():
         qs = (
             Version.unfiltered.exclude(id__in=excluding_version_ids or ())
                    .values_list('addon__addonguid__guid', 'version'))
-
         return list(qs)
 
     @classmethod
