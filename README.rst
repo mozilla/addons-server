@@ -5,6 +5,8 @@
 .. image:: https://travis-ci.org/mozilla/addons-server.svg?branch=master
     :target: https://travis-ci.org/mozilla/addons-server
 
+.. image:: https://coveralls.io/repos/github/mozilla/addons-server/badge.svg?branch=master
+    :target: https://coveralls.io/github/mozilla/addons-server?branch=master   
 
 Addons-Server
 =============
