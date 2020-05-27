@@ -6,7 +6,7 @@ from unittest import mock
 from filtercascade import FilterCascade
 
 from olympia import amo
-from olympia.addons.models import GUID_REUSE_FORMAT, ReusedGUID
+from olympia.addons.models import GUID_REUSE_FORMAT, AddonGUID
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
 from olympia.blocklist.models import Block
@@ -82,14 +82,14 @@ class TestMLBF(TestCase):
         version_factory(
             addon=current_addon, version='3.0',
             file_kw={'is_signed': True, 'is_webextension': True})
-        reused_2_1 = ReusedGUID.objects.create(
+        reused_2_1 = AddonGUID.objects.create(
             # this a previous, superceeded, addon that should be included
             guid=current_addon.guid, addon=addon_factory(
                 guid=GUID_REUSE_FORMAT.format(current_addon.id),
                 version_kw={'version': '2.1'},
                 file_kw={'is_signed': True, 'is_webextension': True}))
         self.addon_deleted_before_2_1_ver = reused_2_1.addon.versions.all()[0]
-        reused_2_5 = ReusedGUID.objects.create(
+        reused_2_5 = AddonGUID.objects.create(
             # And this is an earlier addon that should also be included
             guid=current_addon.guid, addon=addon_factory(
                 guid=GUID_REUSE_FORMAT.format(

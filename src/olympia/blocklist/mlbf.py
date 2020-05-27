@@ -5,7 +5,6 @@ from collections import defaultdict
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.db.models import Q
 from django.utils.functional import cached_property
 
 from filtercascade import FilterCascade
@@ -34,20 +33,16 @@ class MLBF():
         blocks_guids = [block.guid for block in blocks]
 
         file_qs = File.objects.filter(
-            Q(version__addon__guid__in=blocks_guids) |
-            Q(version__addon__reusedguid__guid__in=blocks_guids),
+            version__addon__addonguid__guid__in=blocks_guids,
             is_signed=True,
             is_webextension=True,
         ).order_by('version_id').values(
-            'version__addon__guid',
-            'version__addon__reusedguid__guid',
+            'version__addon__addonguid__guid',
             'version__version',
             'version_id')
         addons_versions = defaultdict(list)
         for file_ in file_qs:
-            addon_key = (
-                file_['version__addon__reusedguid__guid'] or
-                file_['version__addon__guid'])
+            addon_key = file_['version__addon__addonguid__guid']
             addons_versions[addon_key].append(
                 (file_['version__version'], file_['version_id']))
 
@@ -70,12 +65,9 @@ class MLBF():
 
         qs = (
             Version.unfiltered.exclude(id__in=excluding_version_ids or ())
-                   .values(
-                       'addon__guid', 'addon__reusedguid__guid', 'version'))
-        return list(
-            (version['addon__reusedguid__guid'] or version['addon__guid'],
-             version['version'])
-            for version in qs)
+                   .values_list('addon__addonguid__guid', 'version'))
+
+        return list(qs)
 
     @classmethod
     def hash_filter_inputs(cls, input_list):

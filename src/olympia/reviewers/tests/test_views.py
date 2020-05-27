@@ -32,7 +32,7 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser, DeniedGuid,
-    ReusedGUID)
+    AddonGUID)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, format_date, format_datetime)
@@ -5184,14 +5184,14 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'Previously deleted entries' not in response.content
 
-        old_one = addon_factory(status=amo.STATUS_DELETED)
-        old_two = addon_factory(status=amo.STATUS_DELETED)
-        old_other = addon_factory(status=amo.STATUS_DELETED)
-        old_noguid = addon_factory(status=amo.STATUS_DELETED)
-        ReusedGUID.objects.create(addon=old_one, guid='reuse@')
-        ReusedGUID.objects.create(addon=old_two, guid='reuse@')
-        ReusedGUID.objects.create(addon=old_other, guid='other@')
-        ReusedGUID.objects.create(addon=old_noguid, guid='')
+        old_one = addon_factory(status=amo.STATUS_DELETED, guid=None)
+        old_two = addon_factory(status=amo.STATUS_DELETED, guid=None)
+        old_other = addon_factory(status=amo.STATUS_DELETED, guid=None)
+        old_noguid = addon_factory(status=amo.STATUS_DELETED, guid=None)
+        AddonGUID.objects.create(addon=old_one, guid='reuse@')
+        AddonGUID.objects.create(addon=old_two, guid='reuse@')
+        AddonGUID.objects.create(addon=old_other, guid='other@')
+        AddonGUID.objects.create(addon=old_noguid, guid='')
         self.addon.update(guid='reuse@')
 
         response = self.client.get(self.url)

@@ -39,7 +39,7 @@ from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, CommentLog, DraftComment
 from olympia.addons.decorators import addon_view, owner_or_unlisted_reviewer
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, ReusedGUID)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonGUID)
 from olympia.amo.decorators import (
     json_view, login_required, permission_required, post_required)
 from olympia.amo.urlresolvers import reverse
@@ -851,8 +851,10 @@ def review(request, addon, channel=None):
     actions_comments = [k for (k, a) in actions if a.get('comments', True)]
 
     deleted_addon_ids = (
-        ReusedGUID.objects.filter(guid=addon.guid).values_list(
-            'addon_id', flat=True) if addon.guid else [])
+        AddonGUID.objects.filter(guid=addon.guid)
+                         .exclude(addon=addon)
+                         .values_list('addon_id', flat=True)
+        if addon.guid else [])
 
     pager = paginate(request, versions_qs, 10)
     num_pages = pager.paginator.num_pages

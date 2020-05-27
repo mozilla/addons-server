@@ -15,7 +15,7 @@ from olympia.addons import models as addons_models
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
     AppSupport, Category, DeniedGuid, DeniedSlug, FrozenAddon, MigratedLWT,
-    Preview, ReusedGUID, track_addon_status_change)
+    Preview, AddonGUID, track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
@@ -2220,6 +2220,7 @@ class TestAddonFromUpload(UploadTest):
         parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(self.upload, [self.selected_app],
                                     parsed_data=parsed_data)
+        assert AddonGUID.objects.filter(guid='guid@xpi').count() == 1
         # Claim the add-on.
         AddonUser(addon=deleted, user=self.user).save()
         deleted.update(status=amo.STATUS_APPROVED)
@@ -2235,8 +2236,8 @@ class TestAddonFromUpload(UploadTest):
         deleted.reload()
         assert addon.guid == 'guid@xpi'
         assert deleted.guid == 'guid-reused-by-pk-%s' % addon.pk
-        assert ReusedGUID.objects.filter(guid='guid@xpi').count() == 1
-        assert ReusedGUID.objects.filter(guid='guid@xpi').last().addon == (
+        assert AddonGUID.objects.filter(guid='guid@xpi').count() == 2
+        assert AddonGUID.objects.filter(guid='guid@xpi').first().addon == (
             deleted)
 
     def test_old_soft_deleted_addons_and_upload_non_extension(self):
