@@ -44,10 +44,13 @@ from .compare import version_int
 log = olympia.core.logger.getLogger('z.versions')
 
 
-# Valid source extensions. Used in error messages to the user and to skip
-# early in source_upload_path() if necessary, but the actual validation is
-# more complex and done in olympia.devhub.WithSourceMixin.clean_source
-VALID_SOURCE_EXTENSIONS = ('.zip', '.tar.gz', '.tar.bz2',)
+# Valid source extensions. Actual validation lives in
+# devhub.forms.WithSourceMixin and is slightly more complex (the file
+# contents are checked to see if it matches the extension).
+# If changing this, make sure devhub.forms.WithSourceMixin.clean_source() and
+# source_upload_path() are updated accordingly if needed, and that source
+# submission still works both at add-on and version upload time.
+VALID_SOURCE_EXTENSIONS = ('.zip', '.tar.gz', '.tgz', '.tar.bz2',)
 
 
 class VersionManager(ManagerBase):
