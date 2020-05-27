@@ -146,13 +146,13 @@ class Command(BaseCommand):
             count_file = get_stats_data(filepath)
             for index, line in enumerate(count_file):
                 if index and (index % 1000000) == 0:
-                    log.info('Processed %s lines' % index)
+                    log.debug('Processed %s lines' % index)
 
                 splitted = line[:-1].split(sep)
 
                 if ((group == 'app' and len(splitted) != 6) or
                         (group != 'app' and len(splitted) != 5)):
-                    log.info('Badly formatted row: %s' % line)
+                    log.debug('Badly formatted row: %s' % line)
                     continue
 
                 if group == 'app':
@@ -185,8 +185,8 @@ class Command(BaseCommand):
                 # > 16, if not, ignore the request.
                 # > udpateType & 31 == 16 == valid request.
                 if update_type and update_type & 31 != 16:
-                    log.info("Update type doesn't add to 16: %s" %
-                             update_type)
+                    log.debug("Update type doesn't add to 16: %s" %
+                              update_type)
                     continue
 
                 # Does this addon exist?
