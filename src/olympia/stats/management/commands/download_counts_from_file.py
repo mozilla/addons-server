@@ -132,12 +132,12 @@ class Command(BaseCommand):
         count_file = get_stats_data(filepath)
         for index, line in enumerate(count_file):
             if index and (index % 1000000) == 0:
-                log.info('Processed %s lines' % index)
+                log.debug('Processed %s lines' % index)
 
             splitted = line[:-1].split(sep)
 
             if len(splitted) != 4:
-                log.info('Badly formatted row: %s' % line)
+                log.debug('Badly formatted row: %s' % line)
                 continue
 
             day, counter, id_or_slug, src = splitted
