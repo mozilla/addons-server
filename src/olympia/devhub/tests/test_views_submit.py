@@ -753,6 +753,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
+        assert str(self.get_version().source).endswith('.zip')
         assert self.addon.needs_admin_code_review
         mode = (
             '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
@@ -764,6 +765,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
+        assert str(self.get_version().source).endswith('.tar.gz')
         assert self.addon.needs_admin_code_review
         mode = (
             '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
@@ -776,6 +778,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
+        assert str(self.get_version().source).endswith('.tgz')
         assert self.addon.needs_admin_code_review
         mode = (
             '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
@@ -788,6 +791,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
+        assert str(self.get_version().source).endswith('.tar.bz2')
         assert self.addon.needs_admin_code_review
         mode = (
             '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
@@ -851,8 +855,8 @@ class TestAddonSubmitSource(TestSubmitBase):
             expect_errors=True)
         assert response.context['form'].errors == {
             'source': [
-                u'Unsupported file type, please upload an archive file '
-                u'(.zip, .tar.gz, .tar.bz2).'],
+                'Unsupported file type, please upload an archive file '
+                '(.zip, .tar.gz, .tgz, .tar.bz2).'],
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source

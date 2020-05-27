@@ -724,9 +724,20 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
 
 
 class WithSourceMixin(object):
+    def get_invalid_source_file_type_message(self):
+        valid_extensions_string = '(%s)' % ', '.join(VALID_SOURCE_EXTENSIONS)
+        return ugettext(
+            'Unsupported file type, please upload an archive '
+            'file {extensions}.'.format(extensions=valid_extensions_string))
+
     def clean_source(self):
         source = self.cleaned_data.get('source')
         if source:
+            # Ensure the file type is one we support.
+            if not source.name.endswith(VALID_SOURCE_EXTENSIONS):
+                raise forms.ValidationError(
+                    self.get_invalid_source_file_type_message())
+            # Check inside to see if the file extension matches the content.
             try:
                 if source.name.endswith('.zip'):
                     zip_file = SafeZip(source)
@@ -741,13 +752,8 @@ class WithSourceMixin(object):
                         for member in archive_members:
                             archive_member_validator(archive, member)
                 else:
-                    valid_extensions_string = u'(%s)' % u', '.join(
-                        VALID_SOURCE_EXTENSIONS)
                     raise forms.ValidationError(
-                        ugettext(
-                            'Unsupported file type, please upload an archive '
-                            'file {extensions}.'.format(
-                                extensions=valid_extensions_string)))
+                        self.get_invalid_source_file_type_message())
             except (zipfile.BadZipfile, tarfile.ReadError, IOError, EOFError):
                 raise forms.ValidationError(
                     ugettext('Invalid or broken archive.'))
