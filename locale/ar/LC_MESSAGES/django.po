@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-19 18:29+0000\n"
+"POT-Creation-Date: 2020-05-27 19:49+0000\n"
 "PO-Revision-Date: 2019-12-15 16:48+0000\n"
 "Last-Translator: ahasan <ahasan@expedia.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -507,7 +507,7 @@ msgstr "طُلبت المراجعة"
 msgid "Review Unlisted"
 msgstr "مراجعة الملاحظة"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -529,7 +529,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -5042,6 +5042,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5697,7 +5705,7 @@ msgid "Reject Multiple Versions"
 msgstr "صِف إضافتك"
 
 #, fuzzy
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "سيؤدي ذلك لرفض الإضافة وإزالتها من قائمة المراجعة."
 
 #, fuzzy
