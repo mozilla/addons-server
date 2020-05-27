@@ -20,6 +20,10 @@ class TestGenerateDownloadCounts(TestCase):
         generate_download_counts(self.addon, x_days)
 
         assert DownloadCount.objects.all().count() == x_days
+        download_count = DownloadCount.objects.all()[0]
+        assert not download_count.sources
+        download_count = DownloadCount.objects.all()[1]
+        assert 'search' in download_count.sources
 
 
 class TestGenerateUpdateCounts(TestCase):
