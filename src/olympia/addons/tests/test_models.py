@@ -1521,7 +1521,7 @@ class TestAddonModels(TestCase):
 
         # Flags with property already false: nothing happens, flags still there
         flags = AddonReviewerFlags.objects.create(addon=addon)
-        assert flags.notified_about_auto_approval_delay is False
+        assert flags.notified_about_auto_approval_delay is None
         addon.reset_notified_about_auto_approval_delay()
         flags.reload()
         assert flags.notified_about_auto_approval_delay is False

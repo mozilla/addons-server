@@ -784,7 +784,12 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         qs = command.fetch_versions_waiting_for_approval_for_too_long()
         assert qs.exists()
 
+        assert not AddonReviewerFlags.objects.filter(addon=addon).exists()
+
+        # Set up is done, let's call the command!
         call_command('notify_about_auto_approve_delay')
+
+        addon.reload()
 
         assert len(mail.outbox) == 2
         assert mail.outbox[0].body == mail.outbox[1].body
@@ -805,3 +810,5 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
             {message.to[0] for message in mail.outbox} ==
             {user.email for user in users}
         )
+
+        assert addon.addonreviewerflags.notified_about_auto_approval_delay

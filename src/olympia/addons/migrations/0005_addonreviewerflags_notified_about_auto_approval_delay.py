@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='addonreviewerflags',
             name='notified_about_auto_approval_delay',
-            field=models.NullBooleanField(default=False),
+            field=models.NullBooleanField(default=None),
         ),
     ]
