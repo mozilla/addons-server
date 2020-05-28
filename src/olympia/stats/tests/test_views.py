@@ -701,7 +701,7 @@ class TestStatsBeta(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.user = user_factory()
+        self.user = user_factory(email='staff@mozilla.com')
         self.addon = addon_factory(users=[self.user])
         self.client.login(email=self.user.email)
 
@@ -735,3 +735,14 @@ class TestStatsBeta(TestCase):
 
         with self.assertRaises(NoReverseMatch):
             reverse('tats.statuses_series.beta', args=[self.addon.slug])
+
+    def test_no_beta_for_non_staff(self):
+        self.client.logout()
+        self.user.update(email='not.staff@yahoo.com')
+        self.client.login(email=self.user.email)
+
+        url = reverse('stats.overview.beta', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert response.status_code == 404
