@@ -83,7 +83,7 @@ before_script:
   - java -version
   - |
     if [ $TOXENV == "es" ]; then
-        sleep 1;
+        sleep 10;
         curl -v http://localhost:9200/;
     fi
   - sudo touch /addons-server-docker-container
