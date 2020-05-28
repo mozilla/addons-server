@@ -801,4 +801,4 @@ class TestDraftCommentSerializer(TestCase):
         assert data['id'] == comment.id
         assert data['lineno'] == lineno
         assert data['user']['id'] == user.id
-        assert data['version'] == addon.current_version.id
+        assert data['version_id'] == addon.current_version.id

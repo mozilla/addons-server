@@ -578,3 +578,8 @@ class DraftCommentSerializer(serializers.ModelSerializer):
                     'You can\'t submit a line number without associating '
                     'it to a filename.')})
         return data
+
+    def to_representation(self, obj):
+        data = super(DraftCommentSerializer, self).to_representation(obj)
+        data['version_id'] = data.pop('version')
+        return data

@@ -6720,7 +6720,7 @@ class TestDraftCommentViewSet(TestCase):
             'lineno': 20,
             'comment': 'Some really fancy comment',
             'canned_response': None,
-            'version': self.version.pk,
+            'version_id': self.version.pk,
             'user': json.loads(json.dumps(
                 BaseUserSerializer(
                     user, context={'request': request}).data,
@@ -7009,7 +7009,7 @@ class TestDraftCommentViewSet(TestCase):
             'canned_response': json.loads(json.dumps(
                 CannedResponseSerializer(canned_response).data,
                 cls=amo.utils.AMOJSONEncoder)),
-            'version': self.version.id,
+            'version_id': self.version.id,
             'user': json.loads(json.dumps(
                 BaseUserSerializer(
                     user, context={'request': request}).data,
