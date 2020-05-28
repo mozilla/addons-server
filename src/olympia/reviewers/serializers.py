@@ -518,21 +518,12 @@ class CannedResponseSerializer(serializers.ModelSerializer):
         return amo.CANNED_RESPONSE_CATEGORY_CHOICES[obj.category]
 
 
-class VersionIdOnlySerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Version
-        fields = ['id']
-
-
 class DraftCommentSerializer(serializers.ModelSerializer):
     user = SplitField(
         serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
         BaseUserSerializer())
-    version = SplitField(
-        serializers.PrimaryKeyRelatedField(
-            queryset=Version.unfiltered.all()),
-        VersionIdOnlySerializer())
+    version = serializers.PrimaryKeyRelatedField(
+        queryset=Version.unfiltered.all())
     canned_response = SplitField(
         serializers.PrimaryKeyRelatedField(
             queryset=CannedResponse.objects.all(),

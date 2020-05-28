@@ -371,8 +371,7 @@ These endpoints allow you to draft comments that can be submitted through the re
     :>json string comment: The comment that is being drafted as part of a review. Specific to a line in a file.
     :>json string|null filename: The full file path a specific comment is related to. Can be ``null`` in case a comment doesn't belong to a specific file but the whole version.
     :>json int|null lineno: The line number a specific comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent. Can be ``null`` in case a comment belongs to the whole file and not to a specific line.
-    :>json object version: The version that corresponds to the comment.
-    :>json int version.id: The id of the version.
+    :>json int version: The id of the version.
     :>json int user.id: The id for an author.
     :>json string user.name: The name for an author.
     :>json string user.username: The username for an author.
