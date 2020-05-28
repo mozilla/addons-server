@@ -101,40 +101,8 @@ z.StatsManager = (function() {
         if (currentView.range.custom && typeof currentView.range.end == 'object') {
             currentView.range.end = new Date(currentView.range.end.getTime() + msDay);
         }
-
-        // Fetch the data from the server or storage, and notify other components.
-        $.when( getDataRange(currentView), getSiteEvents(currentView) )
-         .then( function(data, events) {
-            setTimeout(function() {
-                $(window).trigger("dataready", {
-                    'view'  : currentView,
-                    'fields': getAvailableFields(currentView),
-                    'data'  : data,
-                    'events': events
-                });
-            }, 0);
-        });
     }
     $(window).on('changeview', processView);
-
-
-    // Retrieves a list of site-wide events that may impact statistics data.
-    function getSiteEvents(view) {
-        if (!siteEventsEnabled) return [];
-        var range = normalizeRange(view.range),
-            urlStart = Highcharts.dateFormat('%Y%m%d', range.start),
-            urlEnd = Highcharts.dateFormat('%Y%m%d', range.end),
-            url = format('/en-US/statistics/events-{0}-{1}.json', urlStart, urlEnd),
-            $def = $.Deferred();
-        $.getJSON(url)
-         .done(function(data) {
-             $def.resolve(data);
-         })
-         .fail(function() {
-             $def.resolve([]);
-         });
-        return $def;
-    }
 
 
     function annotateData(data, events) {
