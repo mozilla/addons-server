@@ -46,8 +46,8 @@ class MLBF():
         addons_versions = defaultdict(list)
         for file_ in file_qs:
             addon_key = (
-                file_['version__addon__guid'] or
-                file_['version__addon__reusedguid__guid'])
+                file_['version__addon__reusedguid__guid'] or
+                file_['version__addon__guid'])
             addons_versions[addon_key].append(
                 (file_['version__version'], file_['version_id']))
 
@@ -73,7 +73,7 @@ class MLBF():
                    .values(
                        'addon__guid', 'addon__reusedguid__guid', 'version'))
         return list(
-            (version['addon__guid'] or version['addon__reusedguid__guid'],
+            (version['addon__reusedguid__guid'] or version['addon__guid'],
              version['version'])
             for version in qs)
 
