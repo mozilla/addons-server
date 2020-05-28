@@ -522,8 +522,8 @@ class DraftCommentSerializer(serializers.ModelSerializer):
     user = SplitField(
         serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
         BaseUserSerializer())
-    version = serializers.PrimaryKeyRelatedField(
-        queryset=Version.unfiltered.all())
+    version_id = serializers.PrimaryKeyRelatedField(
+        queryset=Version.unfiltered.all(), source='version')
     canned_response = SplitField(
         serializers.PrimaryKeyRelatedField(
             queryset=CannedResponse.objects.all(),
@@ -536,7 +536,7 @@ class DraftCommentSerializer(serializers.ModelSerializer):
         model = DraftComment
         fields = (
             'id', 'filename', 'lineno', 'comment',
-            'version', 'user', 'canned_response'
+            'version_id', 'user', 'canned_response'
         )
 
     def get_or_default(self, key, data, default=''):
@@ -577,9 +577,4 @@ class DraftCommentSerializer(serializers.ModelSerializer):
                 {'comment': ugettext(
                     'You can\'t submit a line number without associating '
                     'it to a filename.')})
-        return data
-
-    def to_representation(self, obj):
-        data = super(DraftCommentSerializer, self).to_representation(obj)
-        data['version_id'] = data.pop('version')
         return data
