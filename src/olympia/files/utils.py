@@ -571,6 +571,12 @@ class ManifestJSONExtractor(object):
                     'permissions': self.get('permissions', []),
                     'content_scripts': self.get('content_scripts', []),
                 })
+
+                if self.get('devtools_page'):
+                    data.update({
+                        'devtools_page': self.get('devtools_page')
+                    })
+
             elif self.type == amo.ADDON_DICT:
                 data['target_locale'] = self.target_locale()
         return data

@@ -508,6 +508,26 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert apps[1].min.version == (
             amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
 
+    def test_devtools_page(self):
+        json_string = """
+                {
+                    // Required
+                    "manifest_version": 2,
+                    "name": "My Extension",
+                    "version": "versionString",
+
+                    // Recommended
+                    "default_locale": "en",
+                    "description": "A plain text description",
+
+                    "devtools_page": "devtools/my-page.html"
+                }
+                """
+        parsed_data = utils.ManifestJSONExtractor(
+            '/fake_path', json_string).parse()
+
+        assert parsed_data['devtools_page'] == "devtools/my-page.html"
+
 
 class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
     def test_parse_langpack(self):
