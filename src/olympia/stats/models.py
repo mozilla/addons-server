@@ -12,18 +12,15 @@ def update_inc(initial, key, count):
     return initial
 
 
-class StatsSearchMixin(SearchMixin):
-
-    ES_ALIAS_KEY = 'stats'
-
-
-class DownloadCount(StatsSearchMixin, models.Model):
+class DownloadCount(SearchMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey('addons.Addon', on_delete=models.CASCADE)
 
     count = models.PositiveIntegerField()
     date = models.DateField()
     sources = JSONField(db_column='src', null=True)
+
+    ES_ALIAS_KEY = 'stats_download_counts'
 
     class Meta:
         db_table = 'download_counts'
@@ -39,7 +36,7 @@ class DownloadCount(StatsSearchMixin, models.Model):
         ]
 
 
-class UpdateCount(StatsSearchMixin, models.Model):
+class UpdateCount(SearchMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey('addons.Addon', on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
@@ -49,6 +46,8 @@ class UpdateCount(StatsSearchMixin, models.Model):
     applications = JSONField(db_column='application', null=True)
     oses = JSONField(db_column='os', null=True)
     locales = JSONField(db_column='locale', null=True)
+
+    ES_ALIAS_KEY = 'stats_update_counts'
 
     class Meta:
         db_table = 'update_counts'

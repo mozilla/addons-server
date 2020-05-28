@@ -1529,7 +1529,8 @@ ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {
     'default': 'addons',
-    'stats': 'addons_stats',
+    'stats_download_counts': 'addons_stats_download_counts',
+    'stats_update_counts': 'addons_stats_update_counts',
 }
 
 ES_TIMEOUT = 30

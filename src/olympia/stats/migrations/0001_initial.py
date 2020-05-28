@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'update_counts',
             },
-            bases=(olympia.stats.models.StatsSearchMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin, models.Model),
         ),
         migrations.CreateModel(
             name='DownloadCount',
@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'download_counts',
             },
-            bases=(olympia.stats.models.StatsSearchMixin, models.Model),
+            bases=(olympia.amo.models.SearchMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='updatecount',
