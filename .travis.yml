@@ -83,12 +83,7 @@ before_script:
   - java -version
   - |
     if [ $TOXENV == "es" ]; then
-        sudo ls -alR /etc/elasticsearch/;
-        sudo cat /etc/elasticsearch/elasticsearch.yml;
-        sudo cat /etc/elasticsearch/jvm.options;
-        sleep 10;
-        sudo ls -alR /var/log/elasticsearch/;
-        sudo cat /var/log/elasticsearch/elasticsearch.log;
+        sleep 1;
         curl -v http://localhost:9200/;
     fi
   - sudo touch /addons-server-docker-container
