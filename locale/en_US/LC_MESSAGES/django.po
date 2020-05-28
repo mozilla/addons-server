@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-19 18:29+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -536,7 +536,8 @@ msgstr "Review requested"
 msgid "Review Unlisted"
 msgstr "Review Date"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+#, fuzzy
+msgid "This block was imported from a regex based legacy Block."
 msgstr "This block was imported from a regex based legacy kinto Block."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -558,7 +559,8 @@ msgstr "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s Add-on GUIDs were not found"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+#, fuzzy
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr "The following block(s) were imported from a regex based legacy kinto Block."
 
 msgid "Save"
@@ -5483,6 +5485,14 @@ msgstr "Block all ads—video, pop-ups, banners & more."
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Watch streaming media with friends and family anywhere."
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr "Skip over sponsored portions of YouTube videos."
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr "Have web pages read aloud to you. 40+ languages supported."
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -6147,7 +6157,7 @@ msgid "Reject Multiple Versions"
 msgstr "Re-enable Version"
 
 #, fuzzy
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "This will approve, sign, and publish this version. The comments will be sent to the developer."
 
 #, fuzzy
