@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-28 11:02+0000\n"
+"PO-Revision-Date: 2020-05-28 11:09+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4959,11 +4959,11 @@ msgstr "Дивіться потоковий медіа-вміст з друзя�
 
 #. editorial content for the discovery pane.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Пропустіть проплачені частини відео на YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Озвучування вмісту вебсторінок для вас. Доступно більш як 40 мовами."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
