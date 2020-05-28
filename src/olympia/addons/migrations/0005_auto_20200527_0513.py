@@ -9,7 +9,9 @@ def add_all_addon_guids_to_addon_guid(apps, schema_editor):
     Addon = apps.get_model('addons', 'Addon')
 
     batch_size = 1000
-    addon_qs = Addon.unfiltered.exclude(guid=None).values('id', 'guid')
+    existing_ids = AddonGUID.objects.all().values_list('addon_id', flat=True)
+    addon_qs = Addon.unfiltered.exclude(
+        guid=None, id__in=existing_ids).values('id', 'guid')
     for addons in chunked(addon_qs, batch_size):
         addonguids = [
             AddonGUID(
