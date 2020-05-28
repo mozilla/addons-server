@@ -26,6 +26,7 @@ class StatsTest(TestCase):
         super(StatsTest, self).setUp()
         # Default url_args to an addon and range with data.
         self.url_args = {'start': '20090601', 'end': '20090930', 'addon_id': 4}
+
         # We use fixtures with fixed add-on pks. That causes the add-ons to be
         # in a weird state that we have to fix.
         # We simply add a version and it will automatically be
@@ -148,7 +149,8 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
 
     def setUp(self):
         super(ESStatsTest, self).setUp()
-        self.empty_index('stats')
+        self.empty_index('stats_download_counts')
+        self.empty_index('stats_update_counts')
         self.index()
 
     def index(self):
@@ -156,7 +158,8 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
         tasks.index_update_counts(list(updates))
         downloads = DownloadCount.objects.values_list('id', flat=True)
         tasks.index_download_counts(list(downloads))
-        self.refresh('stats')
+        self.refresh('stats_download_counts')
+        self.refresh('stats_update_counts')
 
     def csv_eq(self, response, expected):
         content = force_text(response.content)
@@ -233,7 +236,6 @@ class TestCSVs(ESStatsTest):
     def test_usage_series(self):
         response = self.get_view_response('stats.usage_series',
                                           group='month', format='csv')
-
         assert response.status_code == 200
         self.csv_eq(response, """date,count
                                  2009-06-02,1500

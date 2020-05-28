@@ -3,7 +3,7 @@ from itertools import chain
 from unittest import mock
 
 from olympia import amo
-from olympia.addons.indexers import AddonIndexer, reindex_tasks_group
+from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, Preview, attach_tags, attach_translations)
 from olympia.amo.models import SearchMixin
@@ -451,7 +451,7 @@ class TestAddonIndexer(TestCase):
                 status=amo.STATUS_NULL,
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}).pk,
         ]
-        rval = reindex_tasks_group('addons')
+        rval = AddonIndexer.reindex_tasks_group('addons')
         assert create_chunked_tasks_signatures_mock.call_count == 1
         assert create_chunked_tasks_signatures_mock.call_args[0] == (
             index_addons, expected_ids, 150

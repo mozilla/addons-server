@@ -9,13 +9,13 @@ from elasticsearch.exceptions import NotFoundError
 
 import olympia.core.logger
 
-from olympia.addons import indexers as addons_indexer
+from olympia.addons.indexers import AddonIndexer
 from olympia.amo.celery import task
 from olympia.amo.search import get_es
 from olympia.lib.es.utils import (
     flag_reindexing_amo, is_reindexing_amo, timestamp_index,
     unflag_reindexing_amo)
-from olympia.stats import search as stats_indexer
+from olympia.stats.indexers import DownloadCountIndexer, UpdateCountIndexer
 
 
 logger = olympia.core.logger.getLogger('z.elasticsearch')
@@ -29,25 +29,13 @@ def get_indexer(alias):
     the value of settings.ES_INDEXES to hit test-specific aliases.
     """
     modules = {
-        settings.ES_INDEXES['default']: addons_indexer,
-        settings.ES_INDEXES['stats']: stats_indexer
+        # The keys are the index alias names, the values the indexer classes.
+        # The 'default' in ES_INDEXES is actually named 'addons'
+        settings.ES_INDEXES['default']: AddonIndexer,
+        settings.ES_INDEXES['stats_download_counts']: DownloadCountIndexer,
+        settings.ES_INDEXES['stats_update_counts']: UpdateCountIndexer,
     }
     return modules[alias]
-
-
-def get_alias(data_name):
-    """
-    Return ES alias name for the kind of data we're interested in
-    ("addons" or "stats").
-
-    This needs to be dynamic to work with testing correctly, since tests change
-    the value of settings.ES_INDEXES to hit test-specific aliases.
-    """
-    aliases = {
-        'addons': settings.ES_INDEXES['default'],
-        'stats': settings.ES_INDEXES['stats']
-    }
-    return aliases[data_name]
 
 
 @task
@@ -118,17 +106,25 @@ class Command(BaseCommand):
             help=('Deletes AMO indexes prior to reindexing.'),
             default=False),
         parser.add_argument(
-            '--data',
+            '--key',
             action='store',
-            help=('Data to reindex. Can be "addons" or "stats". '
-                  'Default: "addons".'),
-            default='addons'),
+            help=(
+                'Key in settings.ES_INDEXES corresponding to the alias to '
+                'reindex. Can be one of the following: %s. Default is '
+                '"default", which contains Add-ons data.' % (
+                   self.accepted_keys()
+                )
+            ),
+            default='default'),
         parser.add_argument(
             '--noinput',
             action='store_true',
             help=('Do not ask for confirmation before wiping. '
                   'Default: False'),
             default=False),
+
+    def accepted_keys(self):
+        return ', '.join(settings.ES_INDEXES.keys())
 
     def handle(self, *args, **kwargs):
         """Reindexing work.
@@ -143,12 +139,14 @@ class Command(BaseCommand):
             raise CommandError('Indexation already occurring - use --force to '
                                'bypass')
 
-        if kwargs['data'] not in ('addons', 'stats'):
-            raise CommandError('--data should be "addons" or "stats".')
-
-        alias = get_alias(kwargs['data'])
-
-        self.stdout.write('Starting the reindexation')
+        alias = settings.ES_INDEXES.get(kwargs['key'], None)
+        if alias is None:
+            raise CommandError(
+                'Invalid --key parameter. It should be one of: %s.' % (
+                    self.accepted_keys()
+                )
+            )
+        self.stdout.write('Starting the reindexation for %s.' % alias)
 
         if kwargs['wipe']:
             skip_confirmation = kwargs['noinput']
@@ -162,7 +160,15 @@ class Command(BaseCommand):
 
             if (confirm == 'yes' or skip_confirmation):
                 unflag_database()
-                ES.indices.delete(alias, ignore=404)
+                # Retrieve the actual index and delete it. That way whether or
+                # not this was an alias or an index (which is wrong, but
+                # happens if data was indexed before the first reindex was
+                # done) doesn't matter.
+                try:
+                    index = next(iter(ES.indices.get(alias)))
+                    ES.indices.delete(index)
+                except NotFoundError:
+                    pass
             else:
                 raise CommandError('Aborted.')
         elif force:

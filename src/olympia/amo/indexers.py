@@ -4,7 +4,6 @@ import olympia.core.logger
 
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
-from .models import SearchMixin
 from .utils import to_language
 
 
@@ -18,17 +17,17 @@ class BaseSearchIndexer(object):
 
     Intended to be inherited from every document type that we want to put in
     ElasticSearch for search-related purposes. A class inheriting from
-    BaseSearchIndexer should implement the following classmethods:
+    BaseSearchIndexer should implement at least the following classmethods:
 
     - get_model(cls)
     - get_mapping(cls)
     - extract_document(cls, obj)
+    - create_new_index(cls, index_name)
+    - reindex_tasks_group(cls, index_name)
     """
-
     @classmethod
     def get_index_alias(cls):
-        """Return the index alias name."""
-        return settings.ES_INDEXES.get(SearchMixin.ES_ALIAS_KEY)
+        return settings.ES_INDEXES.get(cls.get_model().ES_ALIAS_KEY)
 
     @classmethod
     def get_doctype_name(cls):
