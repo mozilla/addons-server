@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-04-27 18:34+0000\n"
-"Last-Translator: Carlos (SUMO @silva.ac.carlos) <carlos.a.silva@pm.me>\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-25 21:55+0000\n"
+"Last-Translator: Carlos (SUMO @albertdecastro) <carlos.a.silva@pm.me>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -372,9 +372,6 @@ msgstr "A mostrar <b>%(begin)s</b>&ndash;<b>%(end)s</b> de <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Extras para o {0}"
 
-msgid "Add-ons"
-msgstr "Extras"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} atrás"
@@ -482,23 +479,23 @@ msgid "This add-on already belongs to the collection"
 msgstr "Este extra já pertence à coleção"
 
 msgid "Signoff State"
-msgstr ""
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Bloqueio com GUID %(guid)s não encontrado"
+msgstr "Estado do fim de emissão"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s está numa Submissão pendente"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "O Extra com GUID %(guid)s não existe"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr "O bloqueio para GUID %(guid)s é aleatório - é obrigatório ser editado através da coleção de listas de bloqueio de legado"
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr "GUID %(guid)s já está numa Submissão pendente"
+msgid "Block with GUID %(guid)s not found"
+msgstr "Bloqueio com GUID %(guid)s não encontrado"
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr "O Extra com GUID %(guid)s não existe"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Os bloqueios para serem atualizados são diferentes porque as versões Mín ou Máx foram alteradas."
@@ -515,7 +512,8 @@ msgstr "Revisão Listada"
 msgid "Review Unlisted"
 msgstr "Revisão Não Listada"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+#, fuzzy
+msgid "This block was imported from a regex based legacy Block."
 msgstr "Este bloqueio foi importado de um Bloqueio kinto legado baseado em regex."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -536,7 +534,8 @@ msgstr "%(count)s GUIDs de Extra já estão bloqueados para %(v_min)s até %(v_m
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "Não foram encontrados %(count)s GUIDs de Extra"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+#, fuzzy
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr "O(s) bloqueio(s) seguinte(s) foi/foram importados de um Bloqueio kinto legado baseado em regex."
 
 msgid "Save"
@@ -1611,6 +1610,7 @@ msgstr "Os extras para Thunderbird e SeaMonkey são agora listados e mantidos em
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
+"Os extras de Pesquisa aberta {blog_link_open}{blog_link_open} já não são suportados no AMO {blog_link_close}. Como alternativa, pode criar uma {doc_link_open}extensão de pesquisa{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Este identificador já está a ser utilizado. Por favor, escolha outro."
@@ -1733,6 +1733,12 @@ msgstr "Necessita de selecionar pelo menos uma aplicação."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Submeteu muitos envios recentemente. Por favor, tente novamente depois de algum tempo."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "A versão {version} corresponde a {block_link} para este Extra. Pode contactar {amo_admins} para informação adicional."
+
+msgid "a blocklist entry"
+msgstr "uma entrada de lista de bloqueio"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A versão {version} foi carregada e eliminada anteriormente."
@@ -2981,6 +2987,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"A seguinte chave de API foi adicionada à sua conta:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Se acredita que esta chave foi criada por engano, pode remover a chave e\n"
+"desativar o acesso na seguinte localização:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2993,6 +3007,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"A chave de API foi revogada da sua conta:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Se acredita que esta chave foi revogada por engano, pode criar uma nova\n"
+"na seguinte localização:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3007,6 +3029,17 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Caro programador de extras,\n"
+"\n"
+"Reparámos que as suas credenciais secretas da API da AMO foram incluídas num extra submetido para addons.mozilla.org. Para proteger a sua conta e os seus extras, nós revogamos as credenciais "
+"divulgadas.\n"
+"Pode gerar novas credenciais para a API em %(api_keys_url)s\n"
+"\n"
+"Por favor, certifique-se que nunca partilha as suas credenciais com ninguém. Nunca as inclua num repositório público, extra ou em qualquer outro local público. Nós recomendamos que reveja os seus "
+"repositórios de código e as suas extensões para remover quaisquer referências às suas credenciais do AMO.\n"
+"\n"
+"Obrigado,\n"
+"A equipa de extras da Mozilla"
 
 msgid "Invisible"
 msgstr "Invisível"
@@ -3144,9 +3177,8 @@ msgstr ""
 "Se o seu extra transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados. Esta apenas é "
 "relevante para extras listados."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Se o seu extra contem código binário ou ofuscado para além de bibliotecas conhecidas, envie as respetivas fontes para revisão."
+msgstr "Se o seu extra contiver código minificado, concatenado ou código gerado por máquina que não bibliotecas conhecidas, carregue as suas fontes para revisão."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Por favor inclua instruções de como reproduzir o ficheiro de extra final, ou num ficheiro README ou nas notas para o revisor para esta versão."
@@ -3155,68 +3187,65 @@ msgid "Read more about the source code review policy."
 msgstr "Leia mais acerca da política de revisão de código."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Crie extensões e temas de primeira classe"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Quer seja um principiante no desenvolvimento de extensões, esteja a aperfeiçoar ou a distribuir uma extensão ou tema existente ou a criar uma solução empresarial personalizada, nós temos os "
+"recursos para o apoiar."
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Workshop de extensões"
+msgstr "Visite o Workshop de Extensões"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Ligue-se a nós"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "Programador"
+msgstr "Para programadores"
 
 msgid "For end users"
-msgstr ""
+msgstr "Para utilizadores finais"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Central do programador de extras"
+msgstr "Lista de Endereços dos Programadores de Extras"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Desenvolvimento de extensões"
+msgstr "Newsletter de Programadores de Extensões"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Mantenha-se atualizado sobre notícias e eventos para os programadores de extensões do Firefox."
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Endereço IP"
+msgstr "Endereço de e-mail"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Eu concordo que a Mozilla faça a gestão da minha informação como descrito nesta %(link_open)spolítica de privacidade%(link_close)s."
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Terminar sessão"
+msgstr "Registar-se"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Obrigado!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Se não confirmou anteriormente uma subscrição para uma newsletter da Mozilla, poderá ter de o fazer. Por favor, procure na sua caixa de entrada ou no filtro de lixo eletrónico por uma mensagem "
+"nossa."
 
 msgid "Resources"
 msgstr "Recursos"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "API de WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: construir e testar extensões"
@@ -3228,7 +3257,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Botão \"Obter Extra\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Programa de extensões recomendadas"
 
 msgid "Contribute"
 msgstr "Contribuir"
@@ -3261,14 +3290,13 @@ msgid "See how"
 msgstr "Ver como"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Participe"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Ligue-se a milhares de programadores e descubra mais formas de contribuir para o ecossistema de extensões."
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Leia mais acerca da política de revisão de código."
+msgstr "Leia mais sobre a comunidade do programador"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listado neste site após efetuada a revisão do código. As atualizações automáticas são geridas por este site."
@@ -3306,29 +3334,26 @@ msgstr "Sem fotografia"
 msgid "User Photo"
 msgstr "Fotografia do utilizador"
 
-#, fuzzy
 msgid "Profile"
-msgstr "O meu perfil"
+msgstr "Perfil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Submeter uma nova versão"
+msgstr "Submeter ou Gerir Extensões"
 
 msgid "Customize Firefox"
 msgstr "Personalize o Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Aprender a fazer um extra"
+msgstr "Saiba como criar uma extensão"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Pronto para submeter ou gerir a sua extensão?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Inicie a sessão no portal do programador para submeter ou gerir extensões e temas."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Registe-se para uma conta de programador ou inicie a sessão no portal do programador"
 
 msgid "Manage Version {0}"
 msgstr "Gerir versão {0}"
@@ -3363,9 +3388,8 @@ msgstr "Opcionalmente, introduza qualquer informação que possa ser útil para 
 msgid "Source code"
 msgstr "Código fonte"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Se o seu extra contem código binário ou código ofuscado, disponibilize o código aqui para os revisores."
+msgstr "Se o seu extra contem minificado, concatenado ou de outro modo código gerado por máquina, disponibilize a fonte aqui para os revisores."
 
 msgid "File {file_id} ({platform})"
 msgstr "Ficheiro {file_id} ({platform})"
@@ -3741,9 +3765,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Personalize os gestos do rato {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Personalize os gestos do rato. Descubra uma nova forma de navegar com mais de 50 gestos de rato úteis."
+msgstr "Personalize os gestos do rato. Descubra uma nova forma de navegar com mais de 50 configurações."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3816,7 +3839,7 @@ msgstr "Deixe um rasto digital limpo. Faça com que o Firefox se esqueça dos da
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Não precisa de escrever a mesma coisa repetidamente. Guarde o texto inserido com frequência para colar a qualquer momento."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4007,9 +4030,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navegação dinâmica {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Utilize gestos do rato para fechar separadores, retroceder uma página, recarregar, entre outros."
+msgstr "Utilize gestos do rato para fechar separadores, navegar nas páginas, e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4923,49 +4945,54 @@ msgstr "Alguns sites têm dificuldade em reproduzir vídeos no Firefox para Andr
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Selecione, ordene e execute as suas transferências mais rapidamente."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Atualizações meteorológicas instantâneas de todo o mundo."
+msgstr "Receba atualizações meteorológicas diretamente no navegador."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Elimine cookies, histórico de navegação, ficheiros em cache com apenas um clique."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Remova os elementos de monitorização das ligações da Internet."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Obtenha pastas de marcadores de fontes RSS preenchidos automaticamente."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organize uma grande quantidade de separadores abertos com facilidade."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Crie e personalize grupos de separadores."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Guarde páginas inteiras—ou apenas porções—como um ficheiro HTML único."
+msgstr "Guarde páginas Web inteiras — incluindo imagens e estilo — como um único ficheiro HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Apague cookies automaticamente após fechar um separador."
+msgstr "Substitua automaticamente as palavras derrogatórias na Web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Bloqueie todos os anúncios — de vídeo, popups, banners e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
+msgstr "Assista a transmissões multimédia com os amigos e familiares em qualquer lugar."
+
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4982,7 +5009,7 @@ msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Organizadores de separadores e ferramentas"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5031,9 +5058,8 @@ msgstr "Não é possível comparar uma versão consigo própria"
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o ficheiro manifest."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID é necessário para o Firefox 47 e versões anteriores."
+msgstr "A identificação do extra é obrigatória para o Firefox 47 e inferior."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "\"strict_min_version\" mais baixa suportada é 42.0."
@@ -5096,9 +5122,9 @@ msgstr "Tamanho máximo para temas WebExtension é de {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Não pode submeter este tipo de extras"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Não pode submeter um extra com um guid que acabe em %s"
+msgstr "Não pode submeter um extra utilizando uma identificação que acabe em %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Não pode submeter uma extensão assinada pela Mozilla"
@@ -5486,17 +5512,16 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "A aprovação automática foi temporariamente atrasada"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "A aprovação automática foi atrasada indefinidamente"
 
 msgid "Is locked by a reviewer"
 msgstr "Está bloqueado por um revisor"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Tem definida a etiqueta de auto-aprovação desativada"
+msgstr "Tem definida a sinalização de aprovação desativada/atrasada"
 
 msgid "Is recommendable"
 msgstr "É recomendável"
@@ -5510,12 +5535,11 @@ msgstr "Análise do risco não disponível."
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Não pode submeter um comentário se `canned_response` estiver definida."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Você não pode enviar um pacote de idiomas"
+msgstr "Não pode submeter um comentário vazio."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Não pode submeter um número de linha sem o associar a um nome de ficheiro."
 
 msgid "Type"
 msgstr "Tipo"
@@ -5547,9 +5571,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} dia"
 msgstr[1] "{0} dias"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID."
 
 msgid "Last Review"
 msgstr "Última revisão"
@@ -5563,13 +5586,19 @@ msgstr "Prazo de solicitação de informação"
 msgid "Last Updated"
 msgstr "Última atualização"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Outra revisão pendente ({0})"
+msgstr "Versões listadas que precisam de revisão humana ({0})"
+
+msgid "Unlisted versions needing human review ({0})"
+msgstr "Versões não listadas que precisam de revisão humana ({0})"
 
 #, fuzzy
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Outra revisão pendente ({0})"
+msgid "Listed versions ({0})"
+msgstr "Versões listadas"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Versões listadas"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Isto vai aprovar, assinar, e publicar esta versão. Os comentários serão enviados para o programador."
@@ -5592,23 +5621,21 @@ msgstr "A última versão pública deste extra foi aprovada automaticamente. Ist
 msgid "Reject Multiple Versions"
 msgstr "Rejeitar múltiplas versões"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+#, fuzzy
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Isto vai rejeitar as versões públicas selecionadas. Os comentários serão enviados para o programador."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Rejeitar múltiplas versões"
+msgstr "Bloquear Múltiplas Versões"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Isto irá desativar silenciosamente as versões aprovadas selecionadas e irá abrir a página de administração da criação de bloqueio."
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Rejeitar múltiplas versões"
+msgstr "Confirmar Múltiplas Versões"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Isto grava a sua aprovação do conteúdo da última versão pública, sem notificar o programador."
+msgstr "Isto irá confirmar a aprovação das versões selecionadas sem notificar o programador."
 
 msgid "Reviewer reply"
 msgstr "Resposta do revisor"
@@ -5643,13 +5670,20 @@ msgstr "Registo de revisão"
 msgid "Add-on Review Guide"
 msgstr "Guia de revisão de extra"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Testes de segurança"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sinalizado por analisadores ({0})"
+msgstr[1] "Sinalizados por analisadores ({0})"
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Sinalizar para revisão humana"
+msgstr[1] "Sinalizar para revisão humana"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Extras aprovados automaticamente"
@@ -5728,7 +5762,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} :: Política de privacidade"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Relatórios de violação – {addon} – Extras para o Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Relatórios de abuso para {addon} e respetivos programadores ({num})"
@@ -5745,9 +5779,6 @@ msgstr "ID do extra"
 
 msgid "Internal AMO ID"
 msgstr "ID interno do AMO"
-
-msgid "Works with"
-msgstr "Funciona com"
 
 msgid "Visibility"
 msgstr "Visibilidade"
@@ -5797,12 +5828,11 @@ msgstr "Galeria de imagens"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nada a mostrar aqui! O programador não incluiu quaisquer detalhes."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "por versão do extra"
+msgstr "Traduções do nome do extra"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Ferramentas do revisor – Extras para o Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Voltar ao painel de controlo das ferramentas do revisor"
@@ -5820,7 +5850,7 @@ msgid "Score"
 msgstr "Pontuação"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Registo de moderação do revisor – Extras para o Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5861,7 +5891,7 @@ msgid "Undelete"
 msgstr "Recuperar"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Desempenho do revisor – Extras para o Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Desempenho do revisor do extra"
@@ -5896,6 +5926,9 @@ msgstr "Desempenho mensal"
 msgid "All-time Point Breakdown by Type"
 msgstr "Resumo de todos pontos por Tipo"
 
+msgid "Add-ons"
+msgstr "Extras"
+
 msgid "Total"
 msgstr "Total"
 
@@ -5910,24 +5943,24 @@ msgid "All-Time"
 msgstr "Desde sempre"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Ferramentas do revisor – Extras para o Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Revisão de conteúdo – Extras para o Firefox"
 
 #, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Extras aprovados automaticamente"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderação da revisão – Extras para o Firefox"
 
 #, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Solicitação de informação expirada"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Extras não listados – Extras para o Firefox"
 
 msgid "Advanced Search"
 msgstr "Pesquisa avançada"
@@ -5965,7 +5998,7 @@ msgid "Reviewer's Guide"
 msgstr "Guia dos revisores"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Extras para o Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5985,11 +6018,10 @@ msgid "Previously deleted entries"
 msgstr "Entradas excluídas anteriormente"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Esta é uma extensão recomendada."
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Não possui quaisquer credenciais da API."
+msgstr "Não tem permissão para o rever."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Por favor selecione uma ou mais versões na lista acima."
@@ -6021,13 +6053,11 @@ msgstr "Mais ações"
 msgid "Notify me about new listed versions"
 msgstr "Notificar-me acerca de novas versões listadas"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Ver todas as submissões"
+msgstr "Permitir ressubmissão"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Gerir as minhas submissões"
+msgstr "Negar ressubmissão"
 
 msgid "Force-disable add-on"
 msgstr "Desativar forçosamente o extra"
@@ -6035,32 +6065,26 @@ msgstr "Desativar forçosamente o extra"
 msgid "Force-enable add-on"
 msgstr "Ativar forçosamente o extra"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Ver todas as submissões"
+msgstr "Ver a Lista de Bloqueios de Submissão"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Voltar ao extra"
+msgstr "Bloquear extra"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Atualizar bloqueio de extra"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Desativar auto-aprovação"
+msgstr "Desativar Aprovação Automática Listada"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Ativar auto-aprovação"
+msgstr "Ativar Aprovação Automática Listada"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Tem definida a etiqueta de auto-aprovação desativada"
+msgstr "A aprovação automática está atualmente desativada até {date}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Ativar auto-aprovação"
+msgstr "Limpar Atraso da Aprovação Automática do Extra"
 
 msgid "Clear information request"
 msgstr "Limpar solicitação de informação"
@@ -6090,7 +6114,7 @@ msgid "Resolution"
 msgstr "Resolução"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Registo de revisão do extra – Extras para o Firefox"
 
 msgid "Reviewer"
 msgstr "Revisor"
@@ -6108,7 +6132,7 @@ msgid "No reviews found for this period."
 msgstr "Nenhuma revisão encontrada para este período."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Origem:"
 
 msgid "Method:"
 msgstr "Método:"
@@ -6116,9 +6140,8 @@ msgstr "Método:"
 msgid "Source:"
 msgstr "Fonte:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Fonte:"
+msgstr "URL da fonte:"
 
 msgid "Dismiss this announcement"
 msgstr "Dispensar este anúncio"
@@ -6146,7 +6169,7 @@ msgid "Newer"
 msgstr "Mais recente"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} versões sinalizadas pelos pesquisadores em outras páginas."
 
 msgid "Recent Points"
 msgstr "Pontos recentes"
@@ -6197,7 +6220,7 @@ msgid "Weight:"
 msgstr "Peso:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Sinalizado por pesquisadores automatizados"
 
 msgid "Download"
 msgstr "Transferir"
@@ -6239,76 +6262,68 @@ msgstr[0] "Solicitação de informação expirada ({0})"
 msgstr[1] "Solicitações de informação expiradas ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "presença de regras correspondentes"
 
-#, fuzzy
 msgid "result state"
-msgstr "Começar"
+msgstr "estado do resultado"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "tudo menos esta regra"
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Pré-visualização da versão listada"
+msgstr "presença de uma versão"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Versão assinada"
+msgstr "canal de versão"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Estado do extra"
+msgstr "estado do extra"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Visibilidade nas listas"
+msgstr "visibilidade na listagem de extra"
 
-#, fuzzy
 msgid "file status"
-msgstr "Estado do site"
+msgstr "estado do ficheiro"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} assinado."
+msgstr "assinatura de ficheiro"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Este é o nome exato da regra utilizada por um pesquisador."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Quando desmarcada, os resultados do pesquisador não serão associados a esta regra e a ação não será executada."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "As regras de Yara deviam ter uma definição"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "O nome da regra na definição devia corresponder ao nome da regra do pesquisador"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Só é permitida uma regra de Yara na definição"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "A definição não é válida: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Ocorreu um erro quando compilava a definição"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Execute também esta regra nos extras que também foram desativados à força."
 
 msgid "Abort"
-msgstr ""
+msgstr "Abortar"
 
 msgid "Run"
-msgstr ""
+msgstr "Executar"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Útil quando o resultado do pesquisador é um positivo verdadeiro, mas o extra não é malicioso"
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Resposta do revisor"
+msgstr "Reverter relatório"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6334,9 +6349,8 @@ msgstr "Combinação inválida dos parâmetros \"%s\", \"%s\" e \"%s\"."
 msgid "Maximum query length exceeded."
 msgstr "Comprimento máximo de consulta excedido."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Não foi possível encontrar o extra com o guid \"{}\"."
+msgstr "Não foi possível encontrar o Extra com a Identificação. \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Não é proprietário deste extra."
@@ -6355,21 +6369,17 @@ msgstr "A versão não corresponde ao ficheiro manifest."
 msgid "Version already exists. Latest version is: %s."
 msgstr "A versão já existe. A versão mais recente é: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Apenas WebExtensions têm permissão para omitir o GUID"
+msgstr "Apenas as WebExtensions têm permissão para omitir a Identificação do Extra"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Por favor, especifique o GUID do seu extra no manifesto se for maior do que 64 caracteres."
+msgstr "Por favor, especifique a Identificação do seu Extra no manifesto se for maior do que 64 carateres."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "GUID inválido no URL"
+msgstr "Identificação do Extra inválida no URL ou pacote"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Não pode adicionar versões a um extra que possui o estado: %s."
+msgstr "Não pode adicionar versões listadas a um extra definido para o estado \"Invisível\"."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Não pode adicionar uma versão listada a este extra via API devido a metadados em falta. Por favor submeta via website"
@@ -6647,21 +6657,9 @@ msgstr "Voltar à página inicial dos extras do {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Extras"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Extras"
-
-msgid "My Account"
-msgstr "A Minha Conta"
-
-msgid "Welcome, {0}"
-msgstr "Bem-vindo, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registar</a> ou <a href=\"%(login)s\">Iniciar sessão</a>"
-
-msgid "Android Add-ons"
-msgstr "Extras para Android"
 
 msgid "Required fields"
 msgstr "Campos necessários"
@@ -6716,13 +6714,12 @@ msgstr "Os utilizadores \"%(users)s\" foram banidos."
 msgid "Ban selected users"
 msgstr "Banir utilizadores selecionados"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Os utilizadores \"%(users)s\" tiveram a respetiva chave da API redefinida."
+msgstr "Os utilizadores \"%(users)s\" tiveram a respetiva sessão/sessões reiniciada(s)."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Eliminar versão"
+msgstr "Reiniciar sessão"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6827,9 +6824,8 @@ msgstr "Notificações do utilizador"
 msgid "Ban"
 msgstr "Banir"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Eliminar versão"
+msgstr "Reiniciar sessão/sessões"
 
 msgid "Delete picture"
 msgstr "Apagar imagem"
@@ -6840,6 +6836,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"O seguinte autor foi adicionado ao seu extra %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6857,6 +6856,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Saudações %(author_name)s,\n"
+"\n"
+"Foi convidado para tornar-se num autor de %(addon_name)s em %(domain)s. Se aceitar o convite irá dar acesso à edição do extra, e poderá mostrar o seu nome na lista de autores no website.\n"
+"\n"
+"Clique na ligação abaixo para responder se deseja ser adicionado como autor para %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Se você não esperava receber este convite, envie um email para amo-admins@mozilla.com.\n"
+"\n"
+"Atenciosamente,\n"
+"A equipe de complementos do Mozilla"
 
 #, python-format
 msgid ""
@@ -6864,6 +6875,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"O seguinte autor foi alterado no seu extra %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6871,6 +6885,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"O seguinte autor foi removido do extra %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"

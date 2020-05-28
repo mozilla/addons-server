@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 11:45+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-28 11:42+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -367,9 +367,6 @@ msgstr "מוצגים <b>%(begin)s</b>&ndash;<b>%(end)s</b> מתוך <b>%(count)s
 msgid "Add-ons for {0}"
 msgstr "תוספות עבור {0}"
 
-msgid "Add-ons"
-msgstr "תוספות"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "לפני {0}"
@@ -477,19 +474,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -509,7 +506,7 @@ msgstr "נוספה בקשה לסקירה"
 msgid "Review Unlisted"
 msgstr "סקירה"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -532,14 +529,14 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
 msgstr "שמירה"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "שמירה והוספת עוד"
 
 msgid "Delete"
 msgstr "מחיקה"
@@ -557,7 +554,7 @@ msgstr "אישור הגשה"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "הוספת %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
@@ -573,7 +570,7 @@ msgid "users"
 msgstr "משתמשים"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "עריכת חסימה"
 
 msgid "versions"
 msgstr "גרסאות"
@@ -899,16 +896,16 @@ msgid "User {user} api key reset."
 msgstr "מפתח API של המשתמש {user} אופס."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "החסימה עבור {0} נוספה לרשימת החסימה."
 
 msgid "Block added"
-msgstr ""
+msgstr "החסימה נוספה"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "החסימה עבור {0} נערכה ברשימת החסימה."
 
 msgid "Block edited"
-msgstr ""
+msgstr "החסימה נערכה"
 
 msgid "Block for {0} deleted from Blocklist."
 msgstr "החסימה עבור {0} נמחקה מרשימת החסימה."
@@ -917,7 +914,7 @@ msgid "Block deleted"
 msgstr "החסימה נמחקה"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "ה־GUID עבור {addon} נוסף אל DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "ה־GUID עבור {addon} הוסר מ־DeniedGuid."
@@ -1602,7 +1599,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "תוספות עבור Thunderbird ו־SeaMonkey כרגע מוצגות ומתוחזקות ב־addons.thunderbird.net. ניתן להשתמש באותו החשבון כדי לעדכן את התוספות שלך באתר החדש."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "תוספות של Open Search {blog_link_open}אינן נתמכות עוד ב־AMO{blog_link_close}. באפשרותך ליצור {doc_link_open}הרחבת חיפוש במקום{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr ""
@@ -1725,6 +1722,12 @@ msgstr "יש לבחור ביישום אחד לפחות."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "הגשת יותר מידי העלאות לאחרונה. נא לנסות שוב לאחר זמן מה."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "הגרסה {version} תואמת ל־{block_link} עבור תוספת זו. באפשרותך ליצור קשר עם {amo_admins} לקבלת מידע נוסף."
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "הגרסה {version} הועלתה בעבר ונמחקה."
@@ -2445,7 +2448,7 @@ msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "הגודל המינימלי הוא 750×1000 פיקסלים, ונדרש יחס של 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "הצגת צילומי מסך בדף המוצר שלך מגדילה מאוד את הסיכויים שיתקינו אותו."
 
 msgid "Continue"
 msgstr "המשך"
@@ -3129,16 +3132,16 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "למפתחים"
 
 msgid "For end users"
-msgstr ""
+msgstr "למשתמשי קצה"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
@@ -3156,13 +3159,13 @@ msgstr "כתובת דוא״ל"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "מקובלת עלי הדרך בה Mozilla מטפלת במידע שלי כמוסבר ב%(link_open)sהצהרת פרטיות זו%(link_close)s."
 
 msgid "Sign Up"
 msgstr "הרשמה"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "תודה!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3183,7 +3186,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "הכפתור ״Get The Add-on״"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "תוכנית ההרחבות המומלצות"
 
 msgid "Contribute"
 msgstr "תרומה"
@@ -3218,7 +3221,7 @@ msgid "See how"
 msgstr "למדו כיצד"
 
 msgid "Get involved"
-msgstr ""
+msgstr "הצטרפות"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -4977,7 +4980,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "יצירה והתאמה אישית של קבוצות לשוניות."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4997,13 +5000,21 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "הרחבות הן כמו יישומים ל־Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "הן מוסיפות תכונות ל־‏Firefox כדי להפוך את הגלישה למהירה יותר, בטוחה יותר, או פשוט כיפית."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -5591,6 +5602,12 @@ msgstr "גרסאות מוצגות שצריכות לעבור סקירה אנוש�
 msgid "Unlisted versions needing human review ({0})"
 msgstr "גרסאות לא מוצגות שצריכות לעבור סקירה אנושית ({0})"
 
+msgid "Listed versions ({0})"
+msgstr "גרסאות שמוצגות ({0})"
+
+msgid "Unlisted versions ({0})"
+msgstr "גרסאות שאינן מוצגות ({0})"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "פעולה זו תאשר, תחתום ותפיץ את הגרסה הזאת. ההערות תישלחנה אל המפתח."
 
@@ -5614,8 +5631,8 @@ msgstr "הגרסה הציבורית העדכנית ביותר של תוסף זה
 msgid "Reject Multiple Versions"
 msgstr "דחיית גרסאות מרובות"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "פעולה זו תדחה את הגרסאות הציבוריות שנבחרו. ההערות תישלחנה אל המפתח."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
+msgstr "פעולה זו תדחה את הגרסאות שנבחרו. ההערות תישלחנה אל המפתח."
 
 # 75%
 # 100%
@@ -5669,13 +5686,18 @@ msgstr "יומן סקירה"
 msgid "Add-on Review Guide"
 msgstr "מדריך סקירת תוספות"
 
-msgid "Flagged By Scanners"
-msgstr ""
+msgid "Security Scanners"
+msgstr "סורקי אבטחה"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "סומן לסקירה אנושית ({0})"
+msgstr[1] "סומנו לסקירה אנושית ({0})"
 
 # 75%
 # 100%
@@ -5779,9 +5801,6 @@ msgstr "מזהה תוספת"
 
 msgid "Internal AMO ID"
 msgstr "מזהה AMO פנימי"
-
-msgid "Works with"
-msgstr "עובד עם"
 
 msgid "Visibility"
 msgstr "הצגה"
@@ -5938,6 +5957,9 @@ msgstr "ביצועים חודשיים"
 msgid "All-time Point Breakdown by Type"
 msgstr "כל הנקודות שהוענקו אי פעם לפי סוג"
 
+msgid "Add-ons"
+msgstr "תוספות"
+
 msgid "Total"
 msgstr "סה״כ"
 
@@ -6008,7 +6030,7 @@ msgid "Reviewer's Guide"
 msgstr "מדריך לסוקרים"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "‏{addon} – תוספות עבור Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6028,7 +6050,7 @@ msgid "Previously deleted entries"
 msgstr "רשומות שנמחקו בעבר"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "זוהי הרחבה מומלצת."
 
 msgid "You don't have permission to review it."
 msgstr "אין לך הרשאה לסקור את זה."
@@ -6328,7 +6350,7 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "ההגדרה הזו אינה תקינה: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr ""
@@ -6672,21 +6694,9 @@ msgstr "חזרה לדף הבית של תוספות עבור {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "תוספות עבור <img alt=\"Firefox\" src=\"{0}\">"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "תוספות עבור <img alt=\"\" src=\"{0}\">"
-
-msgid "My Account"
-msgstr "החשבון שלי"
-
-msgid "Welcome, {0}"
-msgstr "ברוך בואך, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">הרשמה</a> או <a href=\"%(login)s\">התחברות</a>"
-
-msgid "Android Add-ons"
-msgstr "תוספות ל־Android"
 
 msgid "Required fields"
 msgstr "שדות נדרשות"

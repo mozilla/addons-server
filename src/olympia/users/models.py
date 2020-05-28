@@ -103,7 +103,7 @@ class UserManager(BaseUserManager, ManagerBase):
         )
         if username is None:
             user.anonymize_username()
-        log.debug('Creating user with email {} and username {}'.format(
+        log.info('Creating user with email {} and username {}'.format(
             email, username))
         user.save(using=self._db)
         return user
@@ -188,6 +188,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     def __str__(self):
         return u'%s: %s' % (self.id, self.display_name or self.username)
+
+    @classmethod
+    def get_lookup_field(cls, identifier):
+        lookup_field = 'pk'
+        if identifier and not identifier.isdigit():
+            # If the identifier contains anything other than a digit,
+            # it's an email.
+            lookup_field = 'email'
+        return lookup_field
 
     @property
     def is_superuser(self):
@@ -553,8 +562,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @staticmethod
     def user_logged_in(sender, request, user, **kwargs):
         """Log when a user logs in and records its IP address."""
-        log.debug(u'User (%s) logged in successfully' % user,
-                  extra={'email': user.email})
+        log.info(u'User (%s) logged in successfully' % user,
+                 extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
 
     def mobile_collection(self):
@@ -956,7 +965,7 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
 
     # Log email changes.
     if 'email' in changes and new_attr['email'] is not None:
-        log.debug('Creating user history for user: %s' % instance.pk)
+        log.info('Creating user history for user: %s' % instance.pk)
         UserHistory.objects.create(
             email=old_attr.get('email'), user_id=instance.pk)
     # If username or display_name changes, reindex the user add-ons, if there
@@ -968,7 +977,7 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
             index_addons.delay(ids)
 
     basket_relevant_changes = (
-        'deleted', 'display_name', 'email', 'homepage', 'last_login',
+        'deleted', 'display_name', 'fxa_id', 'homepage', 'last_login',
         'location'
     )
     if any(field in changes for field in basket_relevant_changes):

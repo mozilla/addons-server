@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import datetime
-import os
 import zipfile
 
 from django.core.files import temp
@@ -9,7 +8,6 @@ from django.core.files.base import File as DjangoFile
 from unittest import mock
 
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
@@ -22,7 +20,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
-from olympia.lib.git import AddonGitRepository
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -831,38 +828,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert not version.addon.needs_admin_code_review
-
-    @override_switch('enable-uploads-commit-to-git-storage', active=False)
-    def test_submit_source_doesnt_commit_to_git_by_default(self):
-        with temp.NamedTemporaryFile(
-                suffix='.zip', dir=temp.gettempdir()) as source_file:
-            with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
-            source_file.seek(0)
-            data = self.formset(source=source_file)
-            response = self.client.post(self.url, data)
-        assert response.status_code == 302
-        version = Version.objects.get(pk=self.version.pk)
-        assert version.source
-
-        repo = AddonGitRepository(self.addon.pk, package_type='source')
-        assert not os.path.exists(repo.git_repository_path)
-
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_submit_source_commits_to_git(self):
-        with temp.NamedTemporaryFile(
-                suffix='.zip', dir=temp.gettempdir()) as source_file:
-            with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
-            source_file.seek(0)
-            data = self.formset(source=source_file)
-            response = self.client.post(self.url, data)
-        assert response.status_code == 302
-        version = Version.objects.get(pk=self.version.pk)
-        assert version.source
-
-        repo = AddonGitRepository(self.addon.pk, package_type='source')
-        assert os.path.exists(repo.git_repository_path)
 
     def test_show_request_for_information(self):
         self.user = UserProfile.objects.latest('pk')

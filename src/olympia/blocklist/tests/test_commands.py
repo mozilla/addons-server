@@ -12,7 +12,7 @@ import responses
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 
-from ..models import Block, KintoImport
+from ..models import Block, LegacyImport
 
 
 # This is a fragment of the actual json blocklist file
@@ -32,7 +32,7 @@ class TestImportBlocklist(TestCase):
             json=blocklist_json)
         self.task_user = user_factory(
             id=settings.TASK_USER_ID, username='mozilla')
-        assert KintoImport.objects.count() == 0
+        assert LegacyImport.objects.count() == 0
 
     def test_empty(self):
         """ Test nothing is added if none of the guids match - any nothing
@@ -42,12 +42,12 @@ class TestImportBlocklist(TestCase):
         assert Block.objects.count() == 0
         call_command('import_blocklist')
         assert Block.objects.count() == 0
-        assert KintoImport.objects.count() == 8
+        assert LegacyImport.objects.count() == 8
         # the sample blocklist.json contains one regex for Thunderbird only
-        assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOTFIREFOX).count() == 1
-        assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 7
+        assert LegacyImport.objects.filter(
+            outcome=LegacyImport.OUTCOME_NOTFIREFOX).count() == 1
+        assert LegacyImport.objects.filter(
+            outcome=LegacyImport.OUTCOME_NOMATCH).count() == 7
 
     def test_regex(self):
         """ Test regex style "guids" are parsed and expanded to blocks."""
@@ -82,17 +82,17 @@ class TestImportBlocklist(TestCase):
                 this_block['versionRange'][0]['minVersion'])
             assert block.max_version == (
                 this_block['versionRange'][0]['maxVersion'])
-            assert block.kinto_id == '*' + this_block['id']
+            assert block.legacy_id == '*' + this_block['id']
             assert block.include_in_legacy
             assert block.modified == datetime(2019, 11, 29, 22, 22, 46, 785000)
-            assert block.is_imported_from_kinto_regex
-        assert KintoImport.objects.count() == 8
-        assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 6
-        kinto = KintoImport.objects.get(
-            outcome=KintoImport.OUTCOME_REGEXBLOCKS)
-        assert kinto.kinto_id == this_block['id']
-        assert kinto.record == this_block
+            assert block.is_imported_from_legacy_regex
+        assert LegacyImport.objects.count() == 8
+        assert LegacyImport.objects.filter(
+            outcome=LegacyImport.OUTCOME_NOMATCH).count() == 6
+        legacy_import = LegacyImport.objects.get(
+            outcome=LegacyImport.OUTCOME_REGEXBLOCKS)
+        assert legacy_import.legacy_id == this_block['id']
+        assert legacy_import.record == this_block
 
     def test_no_start_end_regex(self):
         """There are some regex that don't start with ^ and end with $"""
@@ -134,10 +134,10 @@ class TestImportBlocklist(TestCase):
             blocklist_json['data'][1]['versionRange'][0]['minVersion'])
         assert blocks[0].max_version == (
             blocklist_json['data'][1]['versionRange'][0]['maxVersion'])
-        assert blocks[0].kinto_id == blocklist_json['data'][1]['id']
+        assert blocks[0].legacy_id == blocklist_json['data'][1]['id']
         assert blocks[0].include_in_legacy
         assert blocks[0].modified == datetime(2019, 11, 29, 15, 32, 56, 477000)
-        assert not blocks[0].is_imported_from_kinto_regex
+        assert not blocks[0].is_imported_from_legacy_regex
 
         assert blocks[1].guid == 'Ytarkovpn.5.14@firefox.com'
         assert blocks[1].url == blocklist_json['data'][2]['details']['bug']
@@ -146,21 +146,21 @@ class TestImportBlocklist(TestCase):
             blocklist_json['data'][2]['versionRange'][0]['minVersion'])
         assert blocks[1].max_version == (
             blocklist_json['data'][2]['versionRange'][0]['maxVersion'])
-        assert blocks[1].kinto_id == blocklist_json['data'][2]['id']
+        assert blocks[1].legacy_id == blocklist_json['data'][2]['id']
         assert blocks[1].include_in_legacy
         assert blocks[1].modified == datetime(2019, 11, 22, 16, 49, 58, 416000)
-        assert not blocks[1].is_imported_from_kinto_regex
+        assert not blocks[1].is_imported_from_legacy_regex
 
-        assert KintoImport.objects.count() == 8
-        assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 5
-        kintos = KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_BLOCK).order_by('created')
-        assert kintos.count() == 2
-        assert kintos[0].kinto_id == blocks[0].kinto_id
-        assert kintos[0].record == blocklist_json['data'][1]
-        assert kintos[1].kinto_id == blocks[1].kinto_id
-        assert kintos[1].record == blocklist_json['data'][2]
+        assert LegacyImport.objects.count() == 8
+        assert LegacyImport.objects.filter(
+            outcome=LegacyImport.OUTCOME_NOMATCH).count() == 5
+        imports = LegacyImport.objects.filter(
+            outcome=LegacyImport.OUTCOME_BLOCK).order_by('created')
+        assert imports.count() == 2
+        assert imports[0].legacy_id == blocks[0].legacy_id
+        assert imports[0].record == blocklist_json['data'][1]
+        assert imports[1].legacy_id == blocks[1].legacy_id
+        assert imports[1].record == blocklist_json['data'][2]
 
     def test_single_guids_not_webextension(self):
         addon_factory(
@@ -172,9 +172,9 @@ class TestImportBlocklist(TestCase):
         call_command('import_blocklist')
         assert Block.objects.count() == 0
 
-        assert KintoImport.objects.count() == 8
-        assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 7
+        assert LegacyImport.objects.count() == 8
+        assert LegacyImport.objects.filter(
+            outcome=LegacyImport.OUTCOME_NOMATCH).count() == 7
 
     def test_target_application(self):
         fx_addon = addon_factory(
@@ -193,13 +193,13 @@ class TestImportBlocklist(TestCase):
             this_block['versionRange'][0]['targetApplication'][0]['guid'] ==
             amo.FIREFOX.guid)
         assert Block.objects.get().guid == fx_addon.guid
-        assert KintoImport.objects.count() == 8
-        assert KintoImport.objects.filter(
-            outcome=KintoImport.OUTCOME_NOMATCH).count() == 6
-        kinto = KintoImport.objects.get(
-            outcome=KintoImport.OUTCOME_REGEXBLOCKS)
-        assert kinto.kinto_id == this_block['id']
-        assert kinto.record == this_block
+        assert LegacyImport.objects.count() == 8
+        assert LegacyImport.objects.filter(
+            outcome=LegacyImport.OUTCOME_NOMATCH).count() == 6
+        legacy_import = LegacyImport.objects.get(
+            outcome=LegacyImport.OUTCOME_REGEXBLOCKS)
+        assert legacy_import.legacy_id == this_block['id']
+        assert legacy_import.record == this_block
 
     def test_bracket_escaping(self):
         """Some regexs don't escape the {} which is invalid in mysql regex.
@@ -226,7 +226,7 @@ class TestImportBlocklist(TestCase):
                 this_block['versionRange'][0]['minVersion'])
             assert block.max_version == (
                 this_block['versionRange'][0]['maxVersion'])
-            assert block.kinto_id == '*' + this_block['id']
+            assert block.legacy_id == '*' + this_block['id']
             assert block.include_in_legacy
 
     def test_regex_syntax_changed_to_mysql(self):
@@ -250,11 +250,11 @@ class TestImportBlocklist(TestCase):
     def test_blocks_are_not_imported_twice(self, import_task_mock):
         addon_factory(guid='{99454877-975a-443e-a0c7-03ab910a8461}')
         addon_factory()
-        imported_not_changed = KintoImport.objects.create(
-            kinto_id='5d2778e3-cbaa-5192-89f0-5abf3ea10656',
+        imported_not_changed = LegacyImport.objects.create(
+            legacy_id='5d2778e3-cbaa-5192-89f0-5abf3ea10656',
             timestamp=1574441398416)
-        imported_and_changed = KintoImport.objects.create(
-            kinto_id='9085fdba-8598-46a9-b9fd-4e7343a15c62',
+        imported_and_changed = LegacyImport.objects.create(
+            legacy_id='9085fdba-8598-46a9-b9fd-4e7343a15c62',
             timestamp=0)
         assert len(blocklist_json['data']) == 8
 
@@ -265,7 +265,8 @@ class TestImportBlocklist(TestCase):
         assert import_task_mock.call_args_list[1][0] == (
             blocklist_json['data'][1],)
         # blocklist_json['data'][2] is the already imported block
-        assert imported_not_changed.kinto_id == blocklist_json['data'][2]['id']
+        assert imported_not_changed.legacy_id == (
+            blocklist_json['data'][2]['id'])
         assert import_task_mock.call_args_list[2][0] == (
             blocklist_json['data'][3],)
         assert import_task_mock.call_args_list[3][0] == (
@@ -280,19 +281,20 @@ class TestImportBlocklist(TestCase):
         # last_modified timestamp so we're processing it again
         assert import_task_mock.call_args_list[6][0] == (
             blocklist_json['data'][5],)
-        assert imported_and_changed.kinto_id == blocklist_json['data'][5]['id']
+        assert imported_and_changed.legacy_id == (
+            blocklist_json['data'][5]['id'])
 
-    def test_existing_kinto_import_updates_changes(self):
-        # this is the KintoImport from the last time
-        existing_import = KintoImport.objects.create(
-            kinto_id='029fa6f9-2341-40b7-5443-9a66a057f199',
+    def test_existing_legacy_import_updates_changes(self):
+        # this is the LegacyImport from the last time
+        existing_import = LegacyImport.objects.create(
+            legacy_id='029fa6f9-2341-40b7-5443-9a66a057f199',
             timestamp=0)
         # A Block created last time
         existing_block = Block.objects.create(
             addon=addon_factory(
                 guid='{bf8194c2-b86d-4ebc-9b53-1c07b6ff779e}',
                 file_kw={'is_webextension': True}),
-            kinto_id='*029fa6f9-2341-40b7-5443-9a66a057f199',
+            legacy_id='*029fa6f9-2341-40b7-5443-9a66a057f199',
             min_version='123',
             max_version='456',
             reason='old reason',
@@ -300,7 +302,7 @@ class TestImportBlocklist(TestCase):
         # Another Block created last time, but not in the current guid regex.
         block_to_be_deleted_id = Block.objects.create(
             addon=addon_factory(file_kw={'is_webextension': True}),
-            kinto_id='*029fa6f9-2341-40b7-5443-9a66a057f199',
+            legacy_id='*029fa6f9-2341-40b7-5443-9a66a057f199',
             min_version='123',
             max_version='456',
             reason='old reason',
@@ -309,20 +311,21 @@ class TestImportBlocklist(TestCase):
         new_addon = addon_factory(
             guid='{f0af364e-5167-45ca-9cf0-66b396d1918c}',
             file_kw={'is_webextension': True})
-        # And this is a KintoImport from last time but has been deleted from v2
-        KintoImport.objects.create(
-            kinto_id='1234567890', timestamp=0)
+        # And this is LegacyImport from last time but has been deleted from v2
+        LegacyImport.objects.create(
+            legacy_id='1234567890', timestamp=0)
         # And a block that was created last time from that import
         Block.objects.create(
             guid='something@',
-            kinto_id='1234567890', updated_by=self.task_user)
+            legacy_id='1234567890', updated_by=self.task_user)
         assert Block.objects.all().count() == 3
-        assert KintoImport.objects.filter(
-            kinto_id='029fa6f9-2341-40b7-5443-9a66a057f199').exists()
-        assert KintoImport.objects.filter(
-            kinto_id='1234567890').exists()
+        assert LegacyImport.objects.filter(
+            legacy_id='029fa6f9-2341-40b7-5443-9a66a057f199').exists()
+        assert LegacyImport.objects.filter(
+            legacy_id='1234567890').exists()
 
-        call_command('import_blocklist')
+        with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
+            call_command('import_blocklist')
 
         assert Block.objects.all().count() == 2
         # existing block is still there, but updated
@@ -339,8 +342,44 @@ class TestImportBlocklist(TestCase):
         existing_import.reload()
         assert existing_import.timestamp != 0
 
-        assert not KintoImport.objects.filter(kinto_id='1234567890').exists()
-        assert not Block.objects.filter(kinto_id='1234567890').exists()
+        assert not LegacyImport.objects.filter(legacy_id='1234567890').exists()
+        assert not Block.objects.filter(legacy_id='1234567890').exists()
+
+        incr_mock.assert_has_calls([
+            mock.call('blocklist.import_blocklist.new_record_found',
+                      count=7),
+            mock.call('blocklist.import_blocklist.modified_record_found',
+                      count=1),
+            mock.call('blocklist.import_blocklist.deleted_record_found',
+                      count=1),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.record_guid'),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.record_guid'),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.record_guid', count=3),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.new_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.block_updated'),
+            mock.call('blocklist.tasks.import_blocklist.block_added'),
+            mock.call('blocklist.tasks.import_blocklist.block_deleted'),
+            mock.call(
+                'blocklist.tasks.import_blocklist.modified_record_processed'),
+            mock.call('blocklist.tasks.import_blocklist.block_deleted'),
+            mock.call(
+                'blocklist.tasks.import_blocklist.deleted_record_processed'),
+        ])
+        # 6 rather than 7 because there's 1 non-Firefox block in the test data
+        assert 6 == len([
+            call for call in incr_mock.mock_calls
+            if call[1][0].endswith('new_record_processed')])
+        assert 1 == len([
+            call for call in incr_mock.mock_calls
+            if call[1][0].endswith('modified_record_processed')])
+        assert 1 == len([
+            call for call in incr_mock.mock_calls
+            if call[1][0].endswith('deleted_record_processed')])
 
 
 class TestExportBlocklist(TestCase):

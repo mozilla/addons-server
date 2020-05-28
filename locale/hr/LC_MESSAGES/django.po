@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-04-26 12:10+0000\n"
-"Last-Translator: Milo <mail@milotype.de>\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-27 20:03+0000\n"
+"Last-Translator: Ivan <ivan.mas342@gmail.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -371,9 +371,6 @@ msgstr "Prikaz za <b>%(begin)s</b> &ndash; <b>%(end)s</b> od <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Dodaci za {0}"
 
-msgid "Add-ons"
-msgstr "Dodaci"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "prije {0}"
@@ -480,19 +477,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -511,7 +508,7 @@ msgstr "Pregled navedenih"
 msgid "Review Unlisted"
 msgstr "Pregled nenavedenih"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -532,7 +529,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -1724,6 +1721,12 @@ msgstr "Moraš odabrati barem jednu aplikaciju."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Nedavno si poslao/la previše prijenosa. Pokušaj ponovo nakon nekog vremena."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzija {version} je već prije bila prenesena i izbrisana."
@@ -4904,6 +4907,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5496,6 +5507,12 @@ msgstr "Navedene verzije koje trebaju ljudski pregled ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Nenavedene verzije koje trebaju ljudski pregled ({0})"
 
+msgid "Listed versions ({0})"
+msgstr "Navedene verzije ({0})"
+
+msgid "Unlisted versions ({0})"
+msgstr "Nenavedene verzije ({0})"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ovime će se odobriti, potpisati i objaviti ova verzija. Komentari će se poslati programeru."
 
@@ -5517,7 +5534,8 @@ msgstr "Najnovija javna verzija ovog dodatka automatski je odobrena. Ovime se za
 msgid "Reject Multiple Versions"
 msgstr "Odbaci višestruke verzije"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+#, fuzzy
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Ovime će se odbaciti odabrane javne verzije. Komentari će se poslati programeru."
 
 msgid "Block Multiple Versions"
@@ -5567,14 +5585,20 @@ msgstr "Zapisnik pregleda"
 msgid "Add-on Review Guide"
 msgstr "Vodič za pregled dodataka"
 
-msgid "Flagged By Scanners"
-msgstr ""
+msgid "Security Scanners"
+msgstr "Skeneri sigurnosti"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Označeno za ljudski pregled ({0})"
+msgstr[1] "Označeno za ljudski pregled ({0})"
+msgstr[2] "Označeno za ljudski pregled ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatski odobreni dodaci"
@@ -5647,13 +5671,11 @@ msgstr "Recenzija je uspješno obrađena."
 msgid "Review lock limit reached"
 msgstr "Dostignuto ograničenje zaključavanja recenzije"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: licenca korisnika (EULA)"
+msgstr "{addon} – licenca korisnika (EULA)"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Pravila o privatnosti"
+msgstr "{addon} – Politika privatnosti"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5673,9 +5695,6 @@ msgstr "ID dodatka"
 
 msgid "Internal AMO ID"
 msgstr "Interni AMO ID"
-
-msgid "Works with"
-msgstr "Kompatibilan sa"
 
 msgid "Visibility"
 msgstr "Vidljivost"
@@ -5823,6 +5842,9 @@ msgstr "Mjesečni učinak"
 msgid "All-time Point Breakdown by Type"
 msgstr ""
 
+msgid "Add-ons"
+msgstr "Dodaci"
+
 msgid "Total"
 msgstr "Ukupno"
 
@@ -5841,16 +5863,14 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Automatski odobreni dodaci"
+msgstr "Automatski odobreni dodaci – dodaci za Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Istekao zahtjev za informacijama"
+msgstr "Istekao zahtjev za podacima – dodaci za Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6550,21 +6570,9 @@ msgstr "Natrag na {0} početnu stranicu dodataka"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> dodaci"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Dodaci"
-
-msgid "My Account"
-msgstr "Moj račun"
-
-msgid "Welcome, {0}"
-msgstr "Pozdrav, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registriraj se</a> ili <a href=\"%(login)s\">Prijavi se</a>"
-
-msgid "Android Add-ons"
-msgstr "Dodaci za Android"
 
 msgid "Required fields"
 msgstr "Obavezna polja"
@@ -6596,7 +6604,7 @@ msgstr "Odbaci promjene"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Zaista želiš ukloniti sve prijevode za <b>{0}</b>? To nije moguće vratiti."
+msgstr "Zaista želiš ukloniti sve prijevode za <b>{0}</b>? To nije moguće poništiti."
 
 msgid "Delete Locale"
 msgstr "Izbriši prijevod"

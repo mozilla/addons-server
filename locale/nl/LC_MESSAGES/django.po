@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 11:44+0000\n"
-"Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-28 11:14+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -376,9 +376,6 @@ msgstr "Resultaten <b>%(begin)s</b>&ndash;<b>%(end)s</b> van <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Add-ons voor {0}"
 
-msgid "Add-ons"
-msgstr "Add-ons"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} geleden"
@@ -486,23 +483,23 @@ msgid "This add-on already belongs to the collection"
 msgstr "Deze add-on behoort al tot de collectie"
 
 msgid "Signoff State"
-msgstr ""
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blokkering met GUID %(guid)s niet gevonden"
+msgstr "Afmeldingsstatus"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s is in behandeling"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "Add-on met GUID %(guid)s bestaat niet"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr "De blokkering voor GUID %(guid)s is alleen-lezen – deze moet via de verouderde blokkeringslijstcollectie worden bewerkt"
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr "GUID %(guid)s is al in behandeling"
+msgid "Block with GUID %(guid)s not found"
+msgstr "Blokkering met GUID %(guid)s niet gevonden"
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr "Add-on met GUID %(guid)s bestaat niet"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Bij te werken blokkeringen zijn verschillend, omdat de minimum- of maximumversie is gewijzigd."
@@ -519,8 +516,8 @@ msgstr "Vermeldingen beoordelen"
 msgid "Review Unlisted"
 msgstr "Niet-vermelde items beoordelen"
 
-msgid "This block was imported from a regex based legacy kinto Block."
-msgstr "Deze blokkering is geïmporteerd uit een verouderde, op een reguliere expressie gebaseerde kinto-blokkering."
+msgid "This block was imported from a regex based legacy Block."
+msgstr "Deze blokkering is geïmporteerd uit een verouderde, op een reguliere expressie gebaseerde blokkering."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Elke wijziging wordt NIET bijgewerkt in de lijst met verouderde blokkeringen – u dient een handmatige wijziging aan te brengen via de online kinto-beheerdersinterface."
@@ -540,8 +537,8 @@ msgstr "%(count)s add-on-GUID’s zijn al geblokkeerd voor %(v_min)s tot %(v_max
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s add-on-GUID’s zijn niet gevonden"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr "De volgende blokkering(en) is/zijn geïmporteerd vanuit een verouderde kinto-blokkering op basis van een reguliere expressie."
+msgid "The following block(s) were imported from a regex based legacy Block."
+msgstr "De volgende blokkering(en) is/zijn geïmporteerd vanuit een verouderde blokkering op basis van een reguliere expressie."
 
 msgid "Save"
 msgstr "Opslaan"
@@ -1726,6 +1723,12 @@ msgstr "U dient ten minste één toepassing te selecteren."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "U hebt onlangs te veel uploads ingediend. Probeer het na enige tijd nog eens."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Versie {version} komt overeen met {block_link} voor deze add-on. U kunt contact opnemen met {amo_admins} voor aanvullende informatie."
+
+msgid "a blocklist entry"
+msgstr "een blokkeringslijstitem"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versie {version} is eerder geüpload en verwijderd."
@@ -3008,7 +3011,7 @@ msgid ""
 msgstr ""
 "Beste add-on-ontwikkelaar,\n"
 "\n"
-"We hebben gemerkt dat uw geheime AMO API-aanmeldgegevens zijn opgenomen in een add-on die is ingediend bij addons.mozilla.org. Om uw account en uw add-on(s) te beschermen, hebben we de gelekte inloggegevens ingetrokken.\n"
+"We hebben gemerkt dat uw geheime AMO API-aanmeldgegevens zijn opgenomen in een add-on die is ingediend bij addons.mozilla.org. Om uw account en uw add-on(s) te beschermen, hebben we de gelekte aanmeldgegevens ingetrokken.\n"
 "U kunt nieuwe API-aanmeldgegevens aanmaken op %(api_keys_url)s\n"
 "\n"
 "Zorg ervoor dat u uw aanmeldgegevens nooit met iemand deelt. Neem ze nooit op in een openbare repository, add-on of een andere openbare plaats. We raden u aan uw code-repositories en uw extensies te controleren om verwijzingen naar uw AMO-aanmeldgegevens te verwijderen.\n"
@@ -4962,6 +4965,14 @@ msgstr "Blokkeer alle advertenties – video, pop-ups, banners en meer."
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Bekijk overal streaming media met vrienden en familie."
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr "Sla gesponsorde delen van YouTube-video’s over."
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr "Laat webpagina’s hardop voorlezen. Meer dan 40 ondersteunde talen."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensies zijn als apps voor Firefox."
@@ -5558,6 +5569,12 @@ msgstr "Vermelde versies die handmatig moeten worden beoordeeld ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Niet-vermelde versies die handmatig moeten worden beoordeeld ({0})"
 
+msgid "Listed versions ({0})"
+msgstr "Vermelde versies ({0})"
+
+msgid "Unlisted versions ({0})"
+msgstr "Niet-vermelde versies ({0})"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Hierdoor wordt deze versie goedgekeurd, ondertekend en gepubliceerd. De opmerkingen worden naar de ontwikkelaar gestuurd."
 
@@ -5579,8 +5596,8 @@ msgstr "De laatste publieke versie van deze add-on is automatisch goedgekeurd. D
 msgid "Reject Multiple Versions"
 msgstr "Meerdere versies afwijzen"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Hierdoor worden de geselecteerde openbare versies afgewezen. De opmerkingen worden naar de ontwikkelaar gestuurd."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
+msgstr "Hierdoor worden de geselecteerde versies afgewezen. De opmerkingen worden naar de ontwikkelaar gestuurd."
 
 msgid "Block Multiple Versions"
 msgstr "Meerdere versies blokkeren"
@@ -5627,13 +5644,18 @@ msgstr "Beoordelingslogboek"
 msgid "Add-on Review Guide"
 msgstr "Add-on-beoordelingsgids"
 
-msgid "Flagged By Scanners"
-msgstr "Gemarkeerd door scanners"
+msgid "Security Scanners"
+msgstr "Beveiligingsscanners"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] "Gemarkeerd door scanner ({0})"
 msgstr[1] "Gemarkeerd door scanners ({0})"
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Gemarkeerd voor persoonlijke beoordeling ({0})"
+msgstr[1] "Gemarkeerd voor persoonlijke beoordeling ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatisch goedgekeurde add-ons"
@@ -5727,9 +5749,6 @@ msgstr "Add-on-ID"
 
 msgid "Internal AMO ID"
 msgstr "Interne AMO-ID"
-
-msgid "Works with"
-msgstr "Werkt met"
 
 msgid "Visibility"
 msgstr "Zichtbaarheid"
@@ -5876,6 +5895,9 @@ msgstr "Maandelijkse prestaties"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "Puntenopbouw op type"
+
+msgid "Add-ons"
+msgstr "Add-ons"
 
 msgid "Total"
 msgstr "Totaal"
@@ -6605,21 +6627,9 @@ msgstr "Terug naar de {0}-add-ons-startpagina"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\">-add-ons"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\">-add-ons"
-
-msgid "My Account"
-msgstr "Mijn account"
-
-msgid "Welcome, {0}"
-msgstr "Welkom {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registreren</a> of <a href=\"%(login)s\">aanmelden</a>"
-
-msgid "Android Add-ons"
-msgstr "Android-add-ons"
 
 msgid "Required fields"
 msgstr "Vereiste velden"

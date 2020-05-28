@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 18:16+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-28 11:52+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -375,9 +375,6 @@ msgstr "Angezeigt werden <b>%(begin)s</b>&ndash;<b>%(end)s</b> von <b>%(count)s<
 msgid "Add-ons for {0}"
 msgstr "Add-ons für {0}"
 
-msgid "Add-ons"
-msgstr "Add-ons"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "vor {0}"
@@ -488,20 +485,20 @@ msgid "Signoff State"
 msgstr "Status der Freischaltung"
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Sperre mit GUID %(guid)s nicht gefunden"
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "Einreichung zu GUID %(guid)s steht noch aus"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "Add-on mit GUID %(guid)s existiert nicht"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr "Die Sperre für GUID %(guid)s ist schreibgeschützt – sie muss über die Legacy-Sperrlistensammlung bearbeitet werden"
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr "Einreichung zu GUID %(guid)s steht noch aus"
+msgid "Block with GUID %(guid)s not found"
+msgstr "Sperre mit GUID %(guid)s nicht gefunden"
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr "Add-on mit GUID %(guid)s existiert nicht"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Zu aktualisierende Sperren unterscheiden sich, weil sich Min- oder Max-Version geändert haben."
@@ -518,8 +515,8 @@ msgstr "Gelistete überprüfen"
 msgid "Review Unlisted"
 msgstr "Ungelistete überprüfen"
 
-msgid "This block was imported from a regex based legacy kinto Block."
-msgstr "Diese Sperre wurde aus einer Regex-basierten Legacy-Kinto-Sperre importiert."
+msgid "This block was imported from a regex based legacy Block."
+msgstr "Diese Sperre wurde aus einer Regex-basierten Legacy-Sperre importiert."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Alle vorgenommenen Änderungen werden NICHT in der Legacy-Sperrliste aktualisiert. Sie müssen eine manuelle Änderung über die Kinto-Verwaltungs-Weboberfläche vornehmen."
@@ -539,8 +536,8 @@ msgstr "%(count)s Add-on-GUIDs sind bereits für %(v_min)s bis %(v_max)s gesperr
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s Add-on-GUIDs wurden nicht gefunden"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr "Die folgenden Sperre(n) wurde(n) aus einer Regex-basierten Legacy-Kinto-Sperre importiert."
+msgid "The following block(s) were imported from a regex based legacy Block."
+msgstr "Die folgenden Sperre(n) wurde(n) aus einer Regex-basierten Legacy-Sperre importiert."
 
 msgid "Save"
 msgstr "Speichern"
@@ -1741,6 +1738,12 @@ msgstr "Es muss mindestens eine Anwendung ausgewählt werden."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Sie haben in letzter Zeit zu viele Uploads übermittelt. Bitte versuchen Sie es nach einiger Zeit erneut."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Version {version} passt zu {block_link} für dieses Add-on. Weitere Informationen erhalten Sie per E-Mail von {amo_admins}."
+
+msgid "a blocklist entry"
+msgstr "ein Sperrlisteneintrag"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} wurde zuvor schon hochgeladen und gelöscht."
@@ -4979,6 +4982,14 @@ msgstr "Blockieren Sie alle Anzeigen – Videos, Popups, Banner und mehr."
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Sehen Sie sich Streaming-Medien mit Freunden und Familie überall an."
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr "Den Werbeteil von YouTube-Videos überspringen."
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr "Lassen Sie sich Webseiten vorlesen. Über 40 Sprachen werden unterstützt."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Erweiterungen sind wie Apps für Firefox."
@@ -5576,6 +5587,12 @@ msgstr "Gelistete Versionen, die einer menschlichen Überprüfung bedürfen ({0}
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Nicht gelistete Versionen, die einer menschlichen Überprüfung bedürfen ({0})"
 
+msgid "Listed versions ({0})"
+msgstr "Gelistete Versionen ({0})"
+
+msgid "Unlisted versions ({0})"
+msgstr "Nicht gelistete Versionen ({0})"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Dadurch wird diese Version freigeschaltet, signiert und veröffentlicht. Die Kommentare werden an den Entwickler geschickt."
 
@@ -5597,8 +5614,8 @@ msgstr "Die neueste öffentliche Version dieses Add-ons wurde automatisch freige
 msgid "Reject Multiple Versions"
 msgstr "Mehrere Versionen ablehnen"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Dadurch werden die gewählten öffentlichen Versionen abgelehnt. Die Kommentare werden an den Entwickler geschickt."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
+msgstr "Dadurch werden die gewählten Versionen abgelehnt. Die Kommentare werden an den Entwickler geschickt."
 
 msgid "Block Multiple Versions"
 msgstr "Mehrere Versionen sperren"
@@ -5645,13 +5662,18 @@ msgstr "Logbuch der Überprüfungen"
 msgid "Add-on Review Guide"
 msgstr "Leitfaden zur Add-on-Überprüfung"
 
-msgid "Flagged By Scanners"
-msgstr "Von Scannern markiert"
+msgid "Security Scanners"
+msgstr "Sicherheitstests"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] "Von Scannern markiert ({0})"
 msgstr[1] "Von Scannern markiert ({0})"
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Für menschliche Überprüfung markiert ({0})"
+msgstr[1] "Für menschliche Überprüfung markiert ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatisch freigeschaltete Add-ons"
@@ -5745,9 +5767,6 @@ msgstr "Add-on-ID"
 
 msgid "Internal AMO ID"
 msgstr "Interne AMO-ID"
-
-msgid "Works with"
-msgstr "Funktioniert mit"
 
 msgid "Visibility"
 msgstr "Sichtbarkeit"
@@ -5894,6 +5913,9 @@ msgstr "Monatliche Leistung"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "Aufteilung der Gesamtpunkte nach Typ"
+
+msgid "Add-ons"
+msgstr "Add-ons"
 
 msgid "Total"
 msgstr "Gesamt"
@@ -6617,21 +6639,9 @@ msgstr "Zurück zur {0}-Add-ons-Startseite"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Add-ons"
-
-msgid "My Account"
-msgstr "Mein Konto"
-
-msgid "Welcome, {0}"
-msgstr "Willkommen, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Neu registrieren</a> oder <a href=\"%(login)s\">anmelden</a>"
-
-msgid "Android Add-ons"
-msgstr "Add-ons für Android"
 
 msgid "Required fields"
 msgstr "Erforderliche Felder"

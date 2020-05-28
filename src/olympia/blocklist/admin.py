@@ -1,4 +1,4 @@
-from django.contrib import admin, auth, contenttypes
+from django.contrib import admin, auth, contenttypes, messages
 from django.core.exceptions import PermissionDenied
 from django.forms.fields import ChoiceField
 from django.forms.widgets import HiddenInput
@@ -8,6 +8,8 @@ from django.template.response import TemplateResponse
 from django.urls import path
 from django.utils.html import format_html
 from django.utils.translation import ugettext
+
+import waffle
 
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
@@ -141,11 +143,36 @@ class BlockAdminAddMixin():
                     Version.unfiltered, pk=get_params.pop(key)[0])
                 get_params[f'{key}_version'] = version.version
 
-        if addon.block:
+        if 'min_version' in get_params or 'max_version' in get_params:
+            warning_message = (
+                f"The versions {get_params.get('min_version', '0')} to "
+                f"{get_params.get('max_version', '*')} could not be "
+                "pre-selected because {reason}")
+        else:
+            warning_message = None
+
+        if addon.blocklistsubmission:
+            if 'min_version' in get_params or 'max_version' in get_params:
+                messages.add_message(
+                    request,
+                    messages.WARNING,
+                    warning_message.format(
+                        reason='this addon is part of a pending submission'))
             return redirect(
                 reverse(
-                    'admin:blocklist_block_change', args=(addon.block.pk,)) +
-                f'?{get_params.urlencode()}')
+                    'admin:blocklist_blocklistsubmission_change',
+                    args=(addon.blocklistsubmission.pk,)
+                ))
+        elif addon.block:
+            if 'min_version' in get_params or 'max_version' in get_params:
+                messages.add_message(
+                    request,
+                    messages.WARNING,
+                    warning_message.format(
+                        reason='some versions have been blocked already'))
+            return redirect(
+                reverse(
+                    'admin:blocklist_block_change', args=(addon.block.pk,)))
         else:
             return redirect(
                 reverse('admin:blocklist_blocklistsubmission_add') +
@@ -293,35 +320,28 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
                 (input_guids, block_history, delete))
 
     def get_readonly_fields(self, request, obj=None):
+        ro_fields = [
+            'blocks',
+            'updated_by',
+            'signoff_by',
+            'block_history',
+            'submission_logs',
+        ]
+        if not waffle.switch_is_active('blocklist_legacy_submit'):
+            ro_fields.append('include_in_legacy')
         if obj:
-            if not self.has_change_permission(request, obj, strict=True):
-                ro_fields = admin.utils.flatten_fieldsets(
-                    self.get_fieldsets(request, obj))
-            else:
-                ro_fields = [
-                    'blocks',
-                    'updated_by',
-                    'signoff_by',
-                    'submission_logs',
-                    'input_guids',
-                    'action',
-                    'min_version',
-                    'max_version',
-                    'existing_min_version',
-                    'existing_max_version',
-                ]
             ro_fields += [
+                'input_guids',
+                'action',
+                'min_version',
+                'max_version',
                 'existing_min_version',
                 'existing_max_version',
             ]
-        else:
-            ro_fields = (
-                'blocks',
-                'block_history',
-                'updated_by',
-                'signoff_by',
-                'submission_logs',
-            )
+            if not self.has_change_permission(request, obj, strict=True):
+                ro_fields += admin.utils.flatten_fieldsets(
+                    self.get_fieldsets(request, obj))
+
         return ro_fields
 
     def _get_input_guids(self, request):
@@ -421,9 +441,9 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
         )
         if load_full_objects:
             Block.preload_addon_versions(objects['blocks'])
-        objects['is_imported_from_kinto_regex'] = [
+        objects['is_imported_from_legacy_regex'] = [
             obj.guid for obj in objects['blocks']
-            if obj.is_imported_from_kinto_regex
+            if obj.is_imported_from_legacy_regex
         ]
         return objects
 
@@ -553,7 +573,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         'max_version',
         'updated_by',
         'modified')
-    readonly_fields = (
+    _readonly_fields = (
         'addon_guid',
         'addon_name',
         'addon_updated',
@@ -631,14 +651,20 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
 
         return (details, history, edit)
 
+    def get_readonly_fields(self, request, obj=None):
+        fields = list(self._readonly_fields)
+        if not waffle.switch_is_active('blocklist_legacy_submit'):
+            fields.append('include_in_legacy')
+        return fields
+
     def has_change_permission(self, request, obj=None):
-        if obj and obj.active_submissions:
+        if obj and obj.is_readonly:
             return False
         else:
             return super().has_change_permission(request, obj=obj)
 
     def has_delete_permission(self, request, obj=None):
-        if obj and obj.active_submissions:
+        if obj and obj.is_readonly:
             return False
         else:
             return super().has_delete_permission(request, obj=obj)
@@ -681,8 +707,8 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                     reverse('admin:blocklist_blocklistsubmission_add'))
 
         extra_context['show_save_and_continue'] = False
-        extra_context['is_imported_from_kinto_regex'] = (
-            obj and obj.is_imported_from_kinto_regex)
+        extra_context['is_imported_from_legacy_regex'] = (
+            obj and obj.is_imported_from_legacy_regex)
 
         return super().changeform_view(
             request, object_id=obj_id, form_url=form_url,

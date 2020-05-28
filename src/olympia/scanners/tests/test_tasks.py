@@ -724,7 +724,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         self.rule.reload()
         assert self.rule.state == RUNNING  # Not touched by this task.
 
-    def test_run_on_chunk_fallback_path(self):
+    def test_run_on_chunk_fallback_file_path(self):
         # Make sure it still works when a file has been disabled but the path
         # has not been moved to the guarded location yet (we fall back to the
         # other path).
@@ -735,11 +735,11 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         )
         self.test_run_on_chunk()
 
-    def test_run_on_chunk_fallback_path_guarded(self):
-        # Like test_run_on_chunk_fallback_path() but starting with a public
-        # File instance that somehow still has its file in the guarded path
-        # (Would happen if the whole add-on was disabled then re-enabled and
-        # the files haven't been moved back to the public location yet).
+    def test_run_on_chunk_fallback_file_path_guarded(self):
+        # Like test_run_on_chunk_fallback_file_path() but starting with a
+        # public File instance that somehow still has its file in the guarded
+        # path (Would happen if the whole add-on was disabled then re-enabled
+        # and the files haven't been moved back to the public location yet).
         file_ = self.version.all_files[0]
         if not os.path.exists(os.path.dirname(file_.guarded_file_path)):
             os.makedirs(os.path.dirname(file_.guarded_file_path))
@@ -795,15 +795,19 @@ class TestCallMadApi(UploadTest, TestCase):
         assert len(ScannerResult.objects.all()) == self.default_results_count
         assert returned_results == results
 
+    @mock.patch('olympia.scanners.tasks.uuid.uuid4')
     @mock.patch('olympia.scanners.tasks.statsd.timer')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch('olympia.scanners.tasks.requests.post')
-    def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock):
+    def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock,
+                             uuid4_mock):
         ml_results = {
             'ensemble': 0.56,
             'scanners': {'customs': {'score': 0.123}},
         }
         requests_mock.return_value = self.create_response(data=ml_results)
+        requestId = 'some request id'
+        uuid4_mock.return_value.hex = requestId
         assert len(ScannerResult.objects.all()) == self.default_results_count
         assert self.customs_result.score == -1.0
 
@@ -814,6 +818,7 @@ class TestCallMadApi(UploadTest, TestCase):
             url=settings.MAD_API_URL,
             json={'scanners': {'customs': self.customs_result.results}},
             timeout=settings.MAD_API_TIMEOUT,
+            headers={'x-request-id': requestId},
         )
         assert (
             len(ScannerResult.objects.all()) == self.default_results_count + 1

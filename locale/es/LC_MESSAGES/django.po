@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
 "PO-Revision-Date: 2019-12-22 17:56+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -380,9 +380,6 @@ msgstr "Mostrando <b>%(begin)s</b>&ndash;<b>%(end)s</b> de <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Complementos para {0}"
 
-msgid "Add-ons"
-msgstr "Complementos"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "hace {0}"
@@ -494,19 +491,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -527,7 +524,7 @@ msgstr "Revisión solicitada"
 msgid "Review Unlisted"
 msgstr "Nota de revisión"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -549,7 +546,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -1759,6 +1756,12 @@ msgstr "Es necesario seleccionar al menos una aplicación."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Has enviado demasiadas subidas últimamente. Vuelve a intentarlo dentro de poco."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La versión {version} fue cargada anteriormente y eliminada."
@@ -5058,6 +5061,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -5666,6 +5677,14 @@ msgstr "Otras revisiones pendientes ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Otras revisiones pendientes ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Versiones listadas"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Versiones listadas"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Esto aprobará, firmará y publicará esta versión. El desarrollador recibirá los comentarios."
 
@@ -5687,7 +5706,8 @@ msgstr "La última versión publicada de este complemento se aprobó automática
 msgid "Reject Multiple Versions"
 msgstr "Rechazar varias versiones"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+#, fuzzy
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Esto eliminará las versiones públicas seleccionadas. El desarrollador recibirá los comentarios."
 
 #, fuzzy
@@ -5738,13 +5758,20 @@ msgstr "Registro de revisiones"
 msgid "Add-on Review Guide"
 msgstr "Guía de revisión de complementos"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Pruebas de seguridad"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Revisión de la calificación ({0})"
+msgstr[1] "Revisiones de la calificación ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Complementos autoaprobados"
@@ -5842,9 +5869,6 @@ msgstr "ID del complemento"
 
 msgid "Internal AMO ID"
 msgstr "ID interno de AMO"
-
-msgid "Works with"
-msgstr "Funciona con"
 
 msgid "Visibility"
 msgstr "Visibilidad"
@@ -5994,6 +6018,9 @@ msgstr "Rendimiento mensual"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "Desglose de puntuaciones máximas por tipo"
+
+msgid "Add-ons"
+msgstr "Complementos"
 
 msgid "Total"
 msgstr "Total"
@@ -6746,21 +6773,9 @@ msgstr "Volver a la página de inicio de Complementos para {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Complementos"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Complementos"
-
-msgid "My Account"
-msgstr "Mi cuenta"
-
-msgid "Welcome, {0}"
-msgstr "Bienvenido/a, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registrarse</a> o <a href=\"%(login)s\">Conectarse</a>"
-
-msgid "Android Add-ons"
-msgstr "Complementos para Android"
 
 msgid "Required fields"
 msgstr "Campos obligatorios"

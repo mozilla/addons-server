@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-04-20 06:29+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-23 08:54+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -138,9 +138,8 @@ msgstr "Nástroje pro redaktory"
 msgid "Reviewer Tools (unlisted)"
 msgstr "Nástroje pro redaktory"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Nástroje pro redaktory"
+msgstr ""
 
 msgid "- Add-on not on AMO -"
 msgstr "- Doplněk není na AMO -"
@@ -375,9 +374,6 @@ msgstr "Zobrazení <b>%(begin)s</b>&ndash;<b>%(end)s</b> z <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Doplňky aplikace {0}"
 
-msgid "Add-ons"
-msgstr "Doplňky"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "před {0}"
@@ -484,50 +480,46 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
+msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is in a pending Submission"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr ""
+
+#, python-format
+msgid "Block with GUID %(guid)s not found"
 msgstr ""
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
-#, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
-
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Neplatný rozsah verzí."
+msgstr "Neplatná verze"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Vyžádána kontrola"
+msgstr ""
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Poznámka ke kontrole"
+msgstr ""
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Odmítnout více verzí"
+msgstr ""
 
-#, fuzzy
 msgid "Home"
 msgstr "Domovská stránka"
 
@@ -539,7 +531,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -554,13 +546,11 @@ msgstr "Smazat"
 msgid "Update"
 msgstr "Aktualizovat"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Přejít k mým příspěvkům"
+msgstr ""
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Přejít k mým příspěvkům"
+msgstr ""
 
 #, python-format
 msgid "Add %(name)s"
@@ -569,24 +559,21 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "Odeslat verzi"
+msgstr "Odeslat"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "Uživatelé"
+msgstr ""
 
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
-msgstr "Verze"
+msgstr ""
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -921,20 +908,17 @@ msgstr ""
 msgid "Block edited"
 msgstr ""
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "U doplňku {addon} byla smazána verze {0}."
+msgstr ""
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Doplněk smazán."
+msgstr ""
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "Doplněk {addon} byl odebrán ze sbírky {collection}."
+msgstr ""
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -942,13 +926,11 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "API klíč uživatele {user} byl obnoven."
+msgstr ""
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Uživatel {user} upraven, důvod: {1}"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1002,9 +984,8 @@ msgstr "Vývojář"
 msgid "Extension"
 msgstr "Rozšíření"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Kontrola aktualizovaných plných motivů vzhledu"
+msgstr ""
 
 msgid "Dictionary"
 msgstr "Slovník"
@@ -1031,9 +1012,8 @@ msgstr "Vzhled (statický)"
 msgid "Extensions"
 msgstr "Rozšíření"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Plné motivy vzhledu"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1562,9 +1542,8 @@ msgstr "Více akcí"
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Vypnout automatické schvalování"
+msgstr "Zpozdit automatické schvalování"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -1578,9 +1557,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Novější"
+msgstr "Nové"
 
 msgid "Running"
 msgstr ""
@@ -1591,9 +1569,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Nekompletní"
+msgstr "Dokončeno"
 
 msgid "Scheduled"
 msgstr ""
@@ -1743,6 +1720,12 @@ msgstr "Vyberte alespoň jednu aplikaci."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "V poslední době jste toho odeslali příliš mnoho. Zkuste to prosím znovu za nějaký čas."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verze {version} už byla dříve nahrána a smazána."
@@ -1896,11 +1879,12 @@ msgstr "Ikona musí být čtvercová (stejná šířka a výška)."
 msgid "There was an error uploading your preview."
 msgstr "Při nahrávání obrázku se vyskytla chyba."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "Nejnovější schválenou verzi doporučeného rozšíření nelze odstranit ani zakázat. Kontaktujte prosím administrátory AMO, pokud s tímto potřebujete pomoci."
+msgstr ""
+"Nejnovější schválenou verzi doporučeného rozšíření nelze odstranit ani zakázat, protože předchozí verze nebyla pro doporučení schválena. Kontaktujte prosím administrátory AMO, pokud s tímto "
+"potřebujete pomoci."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2424,9 +2408,8 @@ msgstr "Vyberte svému doplňku ikonku:"
 msgid "32x32px"
 msgstr "32 x 32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Bude použita v seznamech doplňků jako jsou výsledky vyhledávání či doporučené doplňky."
+msgstr "Bude použit v seznamech doplňků jako jsou výsledky vyhledávání."
 
 #. The size of the icon
 msgid "64x64px"
@@ -4968,6 +4951,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Rozšíření jsou jako aplikace pro Firefox."
@@ -5572,6 +5563,14 @@ msgstr "Další nevyřízená recenze ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Další nevyřízená recenze ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Zveřejněné verze"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Zveřejněné verze"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Toto povede ke schválení, podepsání a publikaci této verze. Komentáře budou odeslány vývojáři."
 
@@ -5593,7 +5592,8 @@ msgstr "Poslední veřejná verze tohoto doplňku byla schválena automaticky. T
 msgid "Reject Multiple Versions"
 msgstr "Odmítnout více verzí"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+#, fuzzy
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Toto povede k odmítnutí vybraných zveřejněných verzí. Komentáře budou odeslány vývojáři."
 
 #, fuzzy
@@ -5644,14 +5644,22 @@ msgstr "Záznam kontrol"
 msgid "Add-on Review Guide"
 msgstr "Příručka pro kontrolu doplňků"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Bezpečnostní testy"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Jedna kontrola hodnocení"
+msgstr[1] "{0} kontroly hodnocení"
+msgstr[2] "{0} kontrol hodnocení"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automaticky schválené doplňky"
@@ -5748,9 +5756,6 @@ msgstr "ID doplňku"
 
 msgid "Internal AMO ID"
 msgstr "Interní ID na AMO"
-
-msgid "Works with"
-msgstr "Podporuje"
 
 msgid "Visibility"
 msgstr "Viditelnost"
@@ -5900,6 +5905,9 @@ msgstr "Měsíční aktivita"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "All-time Point Breakdown by Type"
+
+msgid "Add-ons"
+msgstr "Doplňky"
 
 msgid "Total"
 msgstr "Celkem"
@@ -6651,21 +6659,9 @@ msgstr "Návrat na titulní stránku doplňků aplikace {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Doplňky"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Doplňky"
-
-msgid "My Account"
-msgstr "Můj účet"
-
-msgid "Welcome, {0}"
-msgstr "Vítejte uživateli {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registrace</a> nebo <a href=\"%(login)s\">přihlášení</a>"
-
-msgid "Android Add-ons"
-msgstr "Doplňky pro Android"
 
 msgid "Required fields"
 msgstr "Vyžadovaná pole"

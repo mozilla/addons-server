@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-04-30 09:14+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-25 09:08+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -372,9 +372,6 @@ msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> / <b>%(count)s</b> megjelenítése
 msgid "Add-ons for {0}"
 msgstr "{0}-kiegészítők"
 
-msgid "Add-ons"
-msgstr "Kiegészítők"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} elteltével"
@@ -483,20 +480,20 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "A(z) %(guid)s GUID azonosítójú blokkolás nem található"
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "A(z) %(guid)s GUID szerepel egy függőben lévő beküldésben"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "A(z) %(guid)s GUID azonosítójú kiegészítő nem található"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr "A(z) %(guid)s GUID már szerepel egy függőben lévő beküldésben"
+msgid "Block with GUID %(guid)s not found"
+msgstr "A(z) %(guid)s GUID azonosítójú blokkolás nem található"
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr "A(z) %(guid)s GUID azonosítójú kiegészítő nem található"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "A frissítendő blokkolások különböznek, mert a Min vagy Max verzió megváltozott."
@@ -513,7 +510,8 @@ msgstr "Listázottak értékelése"
 msgid "Review Unlisted"
 msgstr "Nem listázottak értékelése"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+#, fuzzy
+msgid "This block was imported from a regex based legacy Block."
 msgstr "Ez a blokkolás egy regex-alapú örökölt kinto blokkolásból lett importálva."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -534,7 +532,8 @@ msgstr "%(count)s kiegészítő GUID-ja van már blokkolva %(v_min)s és %(v_max
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s kiegészítő GUID-ja nem található"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+#, fuzzy
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr "A következő blokkolások egy regex-alapú örökölt kinto blokkolásból lett importálva."
 
 msgid "Save"
@@ -933,9 +932,8 @@ msgstr "Blokkolási művelet aláírása"
 msgid "User {user} session(s) reset."
 msgstr "{user} felhasználó munkamenetei helyreállítva."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "{user} felhasználó szerkesztette a következő okból: {1}"
+msgstr "{user} felhasználót lekorlátozták „{0}” hatókörre"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1738,6 +1736,12 @@ msgstr "Legalább egy alkalmazást ki kell választania."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Túl sok feltöltést küldött be a közelmúltban. Próbálkozzon újra egy kicsit később."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A(z) {version} verzió már korábban fel lett töltve, és törölve lett."
@@ -2740,9 +2744,8 @@ msgstr "{0} verzió szerkesztése"
 msgid "Version Signature Pending"
 msgstr "Verzió aláírása függőben"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Kész van! Ez a verzió elérhető lesz, amint átmegy az értékelésen. Értesítve lesz, ha értékelésre kerül."
+msgstr "Kész van! A verzió hamarosan aláírásra kerül személyesen terjesztésre. E-mailben lesz értesítve, ha az aláírt fájl letöltésre kész."
 
 msgid "Go to My Submissions"
 msgstr "Ugrás a beküldésekhez"
@@ -2801,11 +2804,10 @@ msgstr ""
 "Részletek (köztük a szükséges verzió és a telepítési utasítások) az összeállítási folyamat során használt programokról (például: használt <span class=\"tech-emphasis\">node</span> és <span class="
 "\"tech-emphasis\">npm</span> verziók)."
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
 "<span class=\"instruction-emphasis\">Megjegyzés:</span> A forrásfájlok (leszámítva a harmadik féltől származó nyílt forráskódú programkönyvtárakat) nem lehetnek más nyelvről átfordítva, "
-"obfuszkálva, minimalizálva vagy másképpen gép által előállítva."
+"összefűzött, minimalizálva vagy másképpen gép által előállítva."
 
 msgid "How to Submit:"
 msgstr "Beküldés menete:"
@@ -2946,7 +2948,7 @@ msgstr "Megerősítés és új hitelesítő adatok előállítása"
 msgid "Generate new credentials"
 msgstr "Új hitelesítő adatok létrehozása"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -2972,9 +2974,9 @@ msgstr ""
 "\n"
 "Üdvözlettel,\n"
 "\n"
-"A Mozilla Kiegészítők csapata\n"
+"A Mozilla Kiegészítők csapata"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following API Key was added to your account:\n"
 "\n"
@@ -2992,9 +2994,9 @@ msgstr ""
 "Ha úgy véli, hogy ez hiba, akkor eltávolíthatja kézzel, és\n"
 "letilthatja a hozzáférést a következő helyen:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The API Key was revoked from your account:\n"
 "\n"
@@ -3012,7 +3014,7 @@ msgstr ""
 "Ha úgy véli, hogy ez hiba, akkor eltávolíthatja kézzel, és\n"
 "létrehozhat egy újat a következő helyen:\n"
 "\n"
-"%(url)s\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3166,9 +3168,8 @@ msgstr ""
 "Ha a kiegészítője bármilyen adatot továbbít a felhasználó számítógépéről, akkor egy adatvédelmi szabályzat szükséges, amely elmagyarázza milyen adatok kerülnek elküldésre, és hogyan kerülnek "
 "felhasználásra. Ez csak a listázott kiegészítők esetén lényeges."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Ha a kiegészítője bináris vagy obfuszkált kódot tartalmaz, az ismert kódkönyvtárak mellett, akkor töltse fel a forrásaikat értékelésre."
+msgstr "Ha a kiegészítője minimalizált, összefűzött vagy egyéb módon géppel előállított kódot tartalmaz az ismert programkönyvtárak mellett, akkor töltse fel a forrásaikat értékelésre."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Kérjük adjon utasításokat hogyan kell előállítani a végső kiegészítő fájlt, vagy egy README fájlban, vagy a Megjegyzések az értékelőnek részben ehhez a verzióhoz."
@@ -3177,7 +3178,7 @@ msgid "Read more about the source code review policy."
 msgstr "Olvasson többet a forráskód-értékelési házirendről."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Készítse el a legjobb kiegészítőket és témákat"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -3216,7 +3217,7 @@ msgstr "E-mail cím"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Elfogadom, hogy a Mozilla ennek az %(link_open)sadatvédelmi nyilatkozatnak%(link_close)s megfelelően kezelje az adataimat."
 
 msgid "Sign Up"
 msgstr "Regisztráció"
@@ -3280,11 +3281,10 @@ msgid "Get involved"
 msgstr "Csatlakozzon"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Lépjen kapcsolatba több ezer fejlesztővel és fedezzen fel további lehetőségeket, amelyekkel hozzájárulhat a kiegészítők ökoszisztémájához."
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Olvasson többet a forráskód-értékelési házirendről."
+msgstr "Tudjon meg többet a fejlesztői közösségről"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Ezen az oldalon kerül listázásra, a kódértékelésen átjutás után. Az automatikus frissítést ez az oldal kezeli."
@@ -3335,10 +3335,10 @@ msgid "Learn how to make an extension"
 msgstr "Tudja meg hogy készítsen el egy kiegészítőt"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Készen áll a kiterjesztés benyújtására vagy kezelésére?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Jelentkezzen be a fejlesztőközpontba a kiegészítők és témák benyújtásához vagy kezeléséhez."
 
 msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
@@ -3376,9 +3376,8 @@ msgstr "Tetszés szerint adjon meg minden olyan információt, amely hasznos leh
 msgid "Source code"
 msgstr "Forráskód"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Ha a kiegészítő bináris vagy olvashatatlanná tett kódot tartalmaz, akkor tegye elérhetővé itt a forrást az értékelőknek."
+msgstr "Ha a kiegészítője minimalizált, összefűzött vagy egyéb módon géppel előállított kódot tartalmaz, akkor tegye elérhetővé itt a forrást az értékelőknek."
 
 msgid "File {file_id} ({platform})"
 msgstr "Fájl {file_id} ({platform})"
@@ -3754,9 +3753,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Egérgesztusok testreszabása {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Szabja testre az egérgesztusokat. Fedezze fel a navigáció új módját több mint 50 hasznos egérgesztussal."
+msgstr "Szabja testre az egérgesztusokat. Fedezze fel a navigáció új módját több mint 50+ konfigurációval."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4020,9 +4018,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dinamikus navigáció {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Használjon egérgesztusokat a lapok bezárásához, az egy lappal visszalépéshez, az újratöltéshez, és egyebekhez."
+msgstr "Használjon egérgesztusokat a lapok bezárásához, a lapok közti navigációhoz, és egyebekhez."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4937,34 +4934,32 @@ msgid "Select, sort, and run your downloads faster."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Azonnali időjárási információk a világ minden tájáról."
+msgstr "Kapjon időjárási információkat közvetlenül a böngészőben."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Törölje a sütiket, a böngészési előzményeket és a gyorsítótárazott fájlokat egyetlen kattintással."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Távolítsa el a nyomkövetési elemeket a webes hivatkozásokról."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Szerezzen automatikusan kitöltött RSS-hírcsatornákat tartalmazó könyvjelzőmappákat."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Rendezzen könnyedén számos nyitott lapot."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Lapcsoportok létrehozása és testreszabása."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Teljes oldal – vagy csak egy részének – letöltése egyetlen HTML fájlként."
+msgstr "Teljes oldal – vagy csak a képek és stílusok – letöltése egyetlen HTML-fájlként."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
@@ -4976,6 +4971,14 @@ msgstr "Az összes hirdetés blokkolása – videók, felugró ablakok, reklámc
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
+msgstr "Nézzen bárhol közvetített médiatartalmakat barátaival és családjával."
+
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5577,6 +5580,12 @@ msgstr "Emberi értékelést igénylő listázott verziók ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Emberi értékelést igénylő nem listázott verziók ({0})"
 
+msgid "Listed versions ({0})"
+msgstr "Listázott verziók ({0})"
+
+msgid "Unlisted versions ({0})"
+msgstr "Nem listázott verziók ({0})"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ez jóváhagyja, aláírja és közzéteszi ezt a verziót. A megjegyzések elküldésre kerülnek a fejlesztőnek."
 
@@ -5598,14 +5607,15 @@ msgstr "A kiegészítő legutóbbi nyilvános verziója automatikusan lett jóv�
 msgid "Reject Multiple Versions"
 msgstr "Több verzió elutasítása"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+#, fuzzy
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Ez elutasítja a kiválasztott nyilvános verziókat. A megjegyzések elküldésre kerülnek a fejlesztőnek."
 
 msgid "Block Multiple Versions"
 msgstr "Több verzió blokkolása"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Ez némán letiltja a kiválasztott jóváhagyott verziókat, és megnyitja a blokkolás létrehozási adminisztrációs oldalt."
 
 msgid "Confirm Multiple Versions"
 msgstr "Több verzió megerősítése"
@@ -5646,13 +5656,18 @@ msgstr "Értékelési napló"
 msgid "Add-on Review Guide"
 msgstr "Kiegészítő értékelési útmutató"
 
-msgid "Flagged By Scanners"
-msgstr ""
+msgid "Security Scanners"
+msgstr "Biztonsági átvizsgálók"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Átvizsgálók által megjelölt ({0})"
+msgstr[1] "Átvizsgálók által megjelöltek ({0})"
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Emberi felülvizsgálatra jelöltek ({0})"
+msgstr[1] "Emberi felülvizsgálatra jelöltek ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatikusan jóváhagyott kiegészítők"
@@ -5731,7 +5746,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Adatvédelmi irányelvek"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Visszaélési jelentések – {addon} – Firefox-kiegészítők"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Visszaélési jelentések a(z) {addon} kiegészítőhöz és a fejlesztőknek ({num})"
@@ -5748,9 +5763,6 @@ msgstr "Kiegészítő-azonosító"
 
 msgid "Internal AMO ID"
 msgstr "Belső AMO azonosító"
-
-msgid "Works with"
-msgstr "Működik"
 
 msgid "Visibility"
 msgstr "Láthatóság"
@@ -5806,7 +5818,7 @@ msgid "Add-on name translations"
 msgstr "Kiegészítőnév-fordítások"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Értékelési eszközök – Firefox-kiegészítők"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Visszatérés a Szerkesztői eszközök vezérlőpultra"
@@ -5824,7 +5836,7 @@ msgid "Score"
 msgstr "Pontszám"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Értékelési moderátori napló – Firefox-kiegészítők"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5865,7 +5877,7 @@ msgid "Undelete"
 msgstr "Törlés visszavonása"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Értékelői teljesítmény – Firefox-kiegészítők"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Kiegészítő szerkesztő teljesítménye"
@@ -5902,6 +5914,9 @@ msgstr "Havi teljesítmény"
 msgid "All-time Point Breakdown by Type"
 msgstr "Örökös pontok típus szerint lebontva"
 
+msgid "Add-ons"
+msgstr "Kiegészítők"
+
 msgid "Total"
 msgstr "Összesen"
 
@@ -5915,22 +5930,22 @@ msgid "All-Time"
 msgstr "Bármikor"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Értékelési eszközök – Firefox-kiegészítők"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Tartalmi értékelés – Firefox-kiegészítők"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Automatikusan jóváhagyott kiegészítők – Firefox kiegészítők"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Értékelési moderálás – Firefox-kiegészítők"
 
 msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Lejárt információkérések – Firefox kiegészítők"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Nem listázott kiegészítők – Firefox-kiegészítők"
 
 msgid "Advanced Search"
 msgstr "Speciális keresés"
@@ -5968,7 +5983,7 @@ msgid "Reviewer's Guide"
 msgstr "Értékelők útmutatója"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Firefox-kiegészítők"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5988,7 +6003,7 @@ msgid "Previously deleted entries"
 msgstr "Korábban törölt bejegyzések"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Ez egy ajánlott kiegészítő."
 
 msgid "You don't have permission to review it."
 msgstr "Nincs engedélye az értékeléshez."
@@ -6035,9 +6050,8 @@ msgstr "Kiegészítő erőltetett letiltása"
 msgid "Force-enable add-on"
 msgstr "Kiegészítő erőltetett engedélyezése"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Összes beküldés megtekintése"
+msgstr "Összes blokkolási lista beküldése"
 
 # 80%
 # 100%
@@ -6045,7 +6059,7 @@ msgid "Block add-on"
 msgstr "Kiegészítő blokkolása"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Kiegészítő blokkolásának frissítése"
 
 msgid "Disable Listed Auto-Approval"
 msgstr "Listázottak automatikus jóváhagyásának letiltása"
@@ -6087,7 +6101,7 @@ msgid "Resolution"
 msgstr "Felbontás"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Kiegészítő-értékelési napló – Firefox-kiegészítők"
 
 msgid "Reviewer"
 msgstr "Értékelő"
@@ -6237,34 +6251,29 @@ msgstr[1] "Lejárt információkérések ({0})"
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Kezdő lépések"
+msgstr "eredmény állapota"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Listázott verziók előnézete"
+msgstr "verzió jelenléte"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Verzió aláírva"
+msgstr "verzió csatorna"
 
 msgid "add-on status"
 msgstr "kiegészítő állapota"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Listázás láthatósága"
+msgstr "kiegészítő listázásának láthatósága"
 
 msgid "file status"
 msgstr "fájl állapota"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} aláírása megtörtént."
+msgstr "fájl aláírása"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6350,16 +6359,14 @@ msgstr "A verzió már létezik. A legfrissebb verzió: %s."
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr "Csak WebExtensionök számára megengedett a kiegészítőazonosító elhagyása"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "A leírófájlban adja meg a kiegészítő GUID-ját, ha 64 karakternél hosszabb."
+msgstr "A leírófájlban adja meg a kiegészítő ID-ját, ha 64 karakternél hosszabb."
 
 msgid "Invalid Add-on ID in URL or package"
 msgstr "Érvénytelen kiegészítőazonosító az URL-ben vagy csomagban"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Nem adhat hozzá verziókat olyan kiegészítőkhöz, melyek állapota: %s."
+msgstr "Nem adhat hozzá listázott verziókat olyan kiegészítőkhöz, melyek „Láthatatlan” állapotúak."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Nem adhat hozzá listázott verziót ehhez a kiegészítőhöz az API-n keresztül, mert hiányoznak metaadatok. Küldje be a webhelyen keresztül"
@@ -6633,21 +6640,9 @@ msgstr "Visszatérés a {0}-kiegészítők honlapjára"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Kiegészítők"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Kiegészítők"
-
-msgid "My Account"
-msgstr "Saját fiók"
-
-msgid "Welcome, {0}"
-msgstr "Üdvözöljük, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Regisztráció</a> vagy <a href=\"%(login)s\">Bejelentkezés</a>"
-
-msgid "Android Add-ons"
-msgstr "Android kiegészítők"
 
 msgid "Required fields"
 msgstr "Szükséges mezők"
@@ -6776,11 +6771,8 @@ msgstr ""
 "Kezdés előtt olvassa el és fogadja el a Firefox kiegészítő-terjesztési megállapodásunkat, valamint az értékelési irányelveinket és szabályzatunkat. A Firefox kiegészítő-terjesztési megállapodás "
 "hivatkozik az adatvédelmi nyilatkozatra is, amely elmagyarázza, hogyan kezeljük az adatait."
 
-#, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Kezdés előtt olvassa el és fogadja el a Firefox kiegészítő-terjesztési megállapodásunkat, valamint az értékelési irányelveinket és szabályzatunkat. A Firefox kiegészítő-terjesztési megállapodás "
-"hivatkozik az adatvédelmi nyilatkozatra is, amely elmagyarázza, hogyan kezeljük az adatait."
+msgstr "Kezdés előtt olvassa el és fogadja el a Firefox kiegészítő-terjesztési megállapodásunkat, valamint az értékelési irányelveinket és szabályzatunkat a(z) {url} felkeresésével"
 
 msgid "an add-on developer replies to my review"
 msgstr "egy kiegészítő fejlesztője válaszol az értékelésemre"
@@ -6855,6 +6847,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"A következő szerző eltávolításra került a(z) %(addon_name)s (%(addon_url)s) kiegészítőtől:\n"
+"\n"
+"%(author_name)s (%(author_url)s)"
 
 msgctxt "user_list_others"
 msgid "others"

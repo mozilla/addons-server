@@ -42,10 +42,10 @@ class Command(BaseCommand):
         mlbf = MLBF(options.get('id'))
 
         if options.get('block_guids_input'):
-            mlbf.blocked_json = MLBF.hash_filter_inputs(
-                self.load_json(options.get('block_guids_input')))
+            mlbf.blocked_json = list(MLBF.hash_filter_inputs(
+                self.load_json(options.get('block_guids_input'))))
         if options.get('addon_guids_input'):
-            mlbf.not_blocked_json = MLBF.hash_filter_inputs(
-                self.load_json(options.get('addon_guids_input')))
+            mlbf.not_blocked_json = list(MLBF.hash_filter_inputs(
+                self.load_json(options.get('addon_guids_input'))))
 
         mlbf.generate_and_write_mlbf()

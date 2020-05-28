@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-28 10:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -793,7 +793,7 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1167
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1163
 #: static/js/zamboni/reviewers.js:437
 msgid "Select an application first"
 msgstr ""
@@ -871,19 +871,13 @@ msgstr ""
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:551
+#: static/js/zamboni/devhub.js:550
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:554
-msgid "{reviews} user review"
-msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
-
-#: static/js/zamboni/devhub.js:1068
+#: static/js/zamboni/devhub.js:1064
 msgid "Image changes being processed"
 msgstr ""
 

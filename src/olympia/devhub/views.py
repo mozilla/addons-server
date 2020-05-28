@@ -52,7 +52,6 @@ from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import DeveloperAgreementRestriction
 from olympia.versions.models import Version
-from olympia.versions.tasks import extract_version_source_to_git
 from olympia.versions.utils import get_next_version_number
 from olympia.zadmin.models import get_config
 
@@ -1060,15 +1059,6 @@ def version_edit(request, addon_id, addon, version_id):
                 AddonReviewerFlags.objects.update_or_create(
                     addon=addon, defaults={'needs_admin_code_review': True})
 
-                commit_to_git = waffle.switch_is_active(
-                    'enable-uploads-commit-to-git-storage')
-
-                if commit_to_git:
-                    # Extract into git repository
-                    extract_version_source_to_git.delay(
-                        version_id=data['version_form'].instance.pk,
-                        author_id=request.user.pk)
-
                 if had_pending_info_request:
                     log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
                                    request.user, version)
@@ -1452,14 +1442,6 @@ def _submit_source(request, addon, version, next_view):
                 version_id=latest_version.id, activity_log=activity_log)
             form.save()
 
-            # We can extract the actual source file only after the form
-            # has been saved because the file behind it may not have been
-            # written to disk yet (e.g for in-memory uploads)
-            if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
-                extract_version_source_to_git.delay(
-                    version_id=form.instance.pk,
-                    author_id=request.user.pk)
-
         return redirect(next_view, *redirect_args)
     context = {
         'form': form,
@@ -1605,7 +1587,7 @@ def _submit_finish(request, addon, version):
         # speaks the same language by the time he/she reads the email.
         context = {
             'addon_name': str(addon.name),
-            'app': str(request.APP.pretty),
+            'app': str(amo.FIREFOX.pretty),
             'detail_url': absolutify(addon.get_url_path()),
             'version_url': absolutify(addon.get_dev_url('versions')),
             'edit_url': absolutify(addon.get_dev_url('edit')),
@@ -1849,7 +1831,7 @@ def theme_background_image(request, addon_id, addon, channel):
 def logout(request):
     user = request.user
     if not user.is_anonymous:
-        log.debug('User (%s) logged out' % user)
+        log.info('User (%s) logged out' % user)
 
     if 'to' in request.GET and not _is_safe_url(request.GET['to'], request):
         log.info('Unsafe redirect to %s' % request.GET['to'])

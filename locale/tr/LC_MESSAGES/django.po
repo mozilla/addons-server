@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
 "PO-Revision-Date: 2019-04-08 09:20+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -379,9 +379,6 @@ msgstr "<b>%(count)s</b> sonuçtan <b>%(begin)s</b>&ndash;<b>%(end)s</b> arasın
 msgid "Add-ons for {0}"
 msgstr "{0} Eklentileri"
 
-msgid "Add-ons"
-msgstr "Eklentiler"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} önce"
@@ -489,19 +486,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -522,7 +519,7 @@ msgstr "İnceleme talep edildi"
 msgid "Review Unlisted"
 msgstr "İnceleme notu"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -546,7 +543,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -1764,6 +1761,12 @@ msgid "Need to select at least one application."
 msgstr "En az bir uygulamanın seçilmesi gerekiyor."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -5003,6 +5006,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -5627,6 +5638,14 @@ msgstr "İnceleme:"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "İnceleme:"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Listelenen sürümler"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Listelenen sürümler"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5651,7 +5670,7 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "Koleksiyonu Sil"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 # 78%
@@ -5710,12 +5729,19 @@ msgstr "İnceleme Günlüğü"
 msgid "Add-on Review Guide"
 msgstr "Eklenti İnceleme Rehberi"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Güvenlik testleri"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
+msgstr[1] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "İnceleme:"
 msgstr[1] ""
 
 #, fuzzy
@@ -5820,9 +5846,6 @@ msgstr "Eklenti ID'si"
 
 msgid "Internal AMO ID"
 msgstr ""
-
-msgid "Works with"
-msgstr "Uyumlu sürümler:"
 
 msgid "Visibility"
 msgstr "Görünürlük"
@@ -5977,6 +6000,9 @@ msgstr "Aylık performans"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
+
+msgid "Add-ons"
+msgstr "Eklentiler"
 
 msgid "Total"
 msgstr "Toplam"
@@ -6746,21 +6772,9 @@ msgstr "{0} Eklentileri ana sayfasına dön"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Eklentiler"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Eklentiler"
-
-msgid "My Account"
-msgstr "Hesabım"
-
-msgid "Welcome, {0}"
-msgstr "Hoş geldin {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Kaydol</a> veya <a href=\"%(login)s\">giriş yap</a>"
-
-msgid "Android Add-ons"
-msgstr "Android Eklentileri"
 
 msgid "Required fields"
 msgstr "Gerekli alanlar"

@@ -26,8 +26,8 @@ def primary_email_change_event(email, uid, timestamp):
             log.warning('Account [%s] email updated ignored, %s > %s' %
                         (profile.id, profile.email_changed, changed_date))
     except ValueError as e:
-        log.error(e)
+        log.warning(e)
     except UserProfile.MultipleObjectsReturned:
-        log.error('Multiple profile matches for FxA id %s' % uid)
+        log.warning('Multiple profile matches for FxA id %s' % uid)
     except UserProfile.DoesNotExist:
-        log.error('No profile match for FxA id %s' % uid)
+        log.info('No profile match for FxA id %s' % uid)

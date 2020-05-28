@@ -146,7 +146,7 @@ class Command(BaseCommand):
             count_file = get_stats_data(filepath)
             for index, line in enumerate(count_file):
                 if index and (index % 1000000) == 0:
-                    log.info('Processed %s lines' % index)
+                    log.debug('Processed %s lines' % index)
 
                 splitted = line[:-1].split(sep)
 
@@ -193,8 +193,7 @@ class Command(BaseCommand):
                 if addon_guid and addon_guid in guids_to_addon:
                     addon_id = guids_to_addon[addon_guid]
                 else:
-                    log.debug(u"Addon {guid} doesn't exist."
-                              .format(guid=addon_guid.strip()))
+                    log.debug("Addon %s doesn't exist.", addon_guid)
                     continue
 
                 # Memoize the UpdateCount.
@@ -238,12 +237,12 @@ class Command(BaseCommand):
         UpdateCount.objects.bulk_create(update_counts.values(), 100)
 
         log.info('Processed a total of %s lines' % (index + 1))
-        log.debug('Total processing time: %s' % (datetime.now() - start))
+        log.info('Total processing time: %s' % (datetime.now() - start))
 
         # Clean up files.
         if options['stats_source'] == 'file':
             for _, filepath in group_filepaths:
-                log.debug('Deleting {path}'.format(path=filepath))
+                log.info('Deleting {path}'.format(path=filepath))
                 unlink(filepath)
 
     def update_version(self, update_count, version, count):

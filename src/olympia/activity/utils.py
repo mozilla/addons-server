@@ -145,7 +145,7 @@ def add_email_to_activity_log_wrapper(message, spam_rating):
 
 
 def add_email_to_activity_log(parser):
-    log.debug("Saving from email reply")
+    log.info("Saving from email reply")
     uuid = parser.get_uuid()
     try:
         token = ActivityLogToken.objects.get(uuid=uuid)

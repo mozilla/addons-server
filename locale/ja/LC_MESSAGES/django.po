@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
 "PO-Revision-Date: 2020-01-04 16:07+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -371,9 +371,6 @@ msgstr "<b>%(count)s</b> 件中 <b>%(begin)s</b> から <b>%(end)s</b> 件目ま
 msgid "Add-ons for {0}"
 msgstr "{0}向けアドオン"
 
-msgid "Add-ons"
-msgstr "アドオン"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0}前"
@@ -484,19 +481,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -517,7 +514,7 @@ msgstr "審査が申請されました"
 msgid "Review Unlisted"
 msgstr "審査担当者へのメモ"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -539,7 +536,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -1728,6 +1725,12 @@ msgid "Need to select at least one application."
 msgstr "対応アプリケーションを少なくとも一つ選択する必要があります。"
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -4988,6 +4991,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "拡張機能は Firefox 向けのアプリのようなものです。"
@@ -5582,6 +5593,14 @@ msgstr "その他の保留中のレビュー ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "その他の保留中のレビュー ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "公開バージョン"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "公開バージョン"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "これにより、このバージョンを承認、署名、公開します。コメントは開発者へ送られます。"
 
@@ -5603,7 +5622,8 @@ msgstr "このアドオンの最新公開バージョンは自動承認されま
 msgid "Reject Multiple Versions"
 msgstr "複数のバージョンを却下"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+#, fuzzy
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "これにより、選択された公開バージョンを却下します。コメントは開発者へ送られます。"
 
 #, fuzzy
@@ -5654,12 +5674,18 @@ msgstr "審査ログ"
 msgid "Add-on Review Guide"
 msgstr "アドオン審査ガイド"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "セキュリティテスト"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "レーティング審査 ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自動承認されたアドオン"
@@ -5754,9 +5780,6 @@ msgstr "アドオン ID"
 
 msgid "Internal AMO ID"
 msgstr "内部 AMO ID"
-
-msgid "Works with"
-msgstr "動作環境:"
 
 msgid "Visibility"
 msgstr "公開状態"
@@ -5904,6 +5927,9 @@ msgstr "月別パフォーマンス"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "全期間ポイントの種類別内訳"
+
+msgid "Add-ons"
+msgstr "アドオン"
 
 msgid "Total"
 msgstr "合計"
@@ -6647,21 +6673,9 @@ msgstr "{0}アドオンのホームページへ戻る"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\">アドオン"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\">アドオン"
-
-msgid "My Account"
-msgstr "マイアカウント"
-
-msgid "Welcome, {0}"
-msgstr "ようこそ {0}さん"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">ユーザー登録</a> / <a href=\"%(login)s\">ログイン</a>"
-
-msgid "Android Add-ons"
-msgstr "Android 向けアドオン"
 
 msgid "Required fields"
 msgstr "入力必須項目"

@@ -313,7 +313,8 @@ def add_api_token_to_response(response, user):
         domain=settings.SESSION_COOKIE_DOMAIN,
         max_age=settings.SESSION_COOKIE_AGE,
         secure=settings.SESSION_COOKIE_SECURE,
-        httponly=settings.SESSION_COOKIE_HTTPONLY)
+        httponly=settings.SESSION_COOKIE_HTTPONLY,
+        samesite=settings.SESSION_COOKIE_SAMESITE)
 
     return response
 
@@ -515,7 +516,7 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
     def picture(self, request, pk=None):
         user = self.get_object()
         user.delete_picture()
-        log.debug(u'User (%s) deleted photo' % user)
+        log.info(u'User (%s) deleted photo' % user)
         return self.retrieve(request)
 
 

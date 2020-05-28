@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -374,9 +374,6 @@ msgstr "<b>%(count)s</b>ਵਿੱਚ<b>%(begin)s</b>&ndash;<b>%(end)s</b>ਵਿ�
 msgid "Add-ons for {0}"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ ਪੇਸਕਸ਼"
 
-msgid "Add-ons"
-msgstr "ਐਡ-ਆਨ"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} ਪਹਿਲਾਂ"
@@ -491,19 +488,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -524,7 +521,7 @@ msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
 msgid "Review Unlisted"
 msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -546,7 +543,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -1816,6 +1813,12 @@ msgid "Need to select at least one application."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਅਨੁਕੂਲ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਲੋੜ।"
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -5106,6 +5109,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5724,6 +5735,14 @@ msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "ਦੁਜੇ ਵਰਜਨ ਵੇਖੋ"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "ਦੁਜੇ ਵਰਜਨ ਵੇਖੋ"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5750,7 +5769,7 @@ msgid "Reject Multiple Versions"
 msgstr "ਛਪਣਯੋਗ ਵਰਜਨ"
 
 #, fuzzy
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "ਉਹ ਐਡ-ਆਨ ਨੂੰ ਰੱਦ ਅਤੇ ਇਸ ਨੂੰ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਹਟਾ ਦੇਣਗੇ।"
 
 #, fuzzy
@@ -5809,13 +5828,20 @@ msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
 msgid "Add-on Review Guide"
 msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "ਸੁਰੱਖਿਆ ਪਰਖ"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
+msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5925,9 +5951,6 @@ msgstr "ਐਡ-ਆਨ"
 
 msgid "Internal AMO ID"
 msgstr ""
-
-msgid "Works with"
-msgstr "ਨਾਲ ਕੰਮ ਕਰਦਾ"
 
 msgid "Visibility"
 msgstr "ਪ੍ਰਤੱਖਤਾ"
@@ -6086,6 +6109,9 @@ msgstr "ਮਹੀਨਾਵਾਰ ਕਾਰਗੁਜ਼ਾਰੀ"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "ਕਿਸਮ ਦੁਆਰਾ ਹਰ ਵੇਲੇ ਬਿੰਦੂ ਟੁੱਟਣਾ"
+
+msgid "Add-ons"
+msgstr "ਐਡ-ਆਨ"
 
 msgid "Total"
 msgstr "ਕੁੱਲ"
@@ -6846,21 +6872,9 @@ msgstr "{0} ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> ਐਡ-ਆਨ"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> ਐਡ-ਆਨ"
-
-msgid "My Account"
-msgstr "ਮੇਰਾ ਖਾਤਾ"
-
-msgid "Welcome, {0}"
-msgstr "ਜੀ ਆਇਆ ਨੂੰ, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">ਦਰਜ ਹੋਵੇ</a> ਜਾਂ <a href=\"%(login)s\">ਲਾਗ ਇਨ</a>"
-
-msgid "Android Add-ons"
-msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
 
 msgid "Required fields"
 msgstr "ਲੁੜੀਂਦੀਆਂ ਥਾਵਾਂ"

@@ -31,6 +31,10 @@ ALLOWED_HOSTS = [
     '.mozaws.net',
 ]
 
+
+# This variable should only be set to `True` for local env and internal hosts.
+INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
+
 # jingo-minify settings
 CACHEBUST_IMGS = True
 try:
@@ -312,7 +316,6 @@ TEMPLATES = [
 
                 'django.contrib.messages.context_processors.messages',
 
-                'olympia.amo.context_processors.app',
                 'olympia.amo.context_processors.i18n',
                 'olympia.amo.context_processors.global_settings',
                 'olympia.amo.context_processors.static_url',
@@ -430,7 +433,6 @@ MIDDLEWARE = (
     # IP).
     'olympia.access.middleware.UserAndAddrMiddleware',
 
-    'olympia.amo.middleware.ScrubRequestOnException',
     'olympia.amo.middleware.RequestIdMiddleware',
 )
 
@@ -831,9 +833,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/l10n.js',
             'js/impala/forms.js',
 
-            # Homepage
-            'js/impala/homepage.js',
-
             # Add-ons details page
             'js/lib/ui.lightbox.js',
             'js/impala/addon_details.js',
@@ -1104,7 +1103,7 @@ CELERY_TASK_ROUTES = {
     'olympia.blocklist.tasks.delete_imported_block_from_blocklist': {
         'queue': 'priority'
     },
-    'olympia.blocklist.tasks.upload_filter_to_kinto': {
+    'olympia.blocklist.tasks.upload_filter': {
         'queue': 'priority'
     },
     'olympia.versions.tasks.generate_static_theme_preview': {
@@ -1171,17 +1170,11 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.add_dynamic_theme_tag': {'queue': 'addons'},
     'olympia.addons.tasks.delete_addons': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
-    'olympia.addons.tasks.migrate_webextensions_to_git_storage': {
-        'queue': 'addons'
-    },
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
     'olympia.files.tasks.extract_webext_permissions': {'queue': 'addons'},
     'olympia.files.tasks.hide_disabled_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
-    'olympia.versions.tasks.extract_version_to_git': {'queue': 'addons'},
-    'olympia.versions.tasks.extract_version_source_to_git': {
-        'queue': 'addons'
-    },
+    'olympia.git.tasks.continue_git_extraction': {'queue': 'addons'},
     'olympia.git.tasks.extract_versions_to_git': {'queue': 'addons'},
     'olympia.git.tasks.on_extraction_error': {'queue': 'addons'},
     'olympia.git.tasks.remove_git_extraction_entry': {'queue': 'addons'},
@@ -1271,7 +1264,7 @@ LOGGING = {
     },
     'handlers': {
         'mozlog': {
-            'level': 'DEBUG',
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
             'formatter': 'json'
         },
@@ -1283,16 +1276,11 @@ LOGGING = {
             'class': 'django_statsd.loggers.errors.StatsdHandler',
         },
     },
-    'root': {'handlers': ['mozlog'], 'level': logging.DEBUG},
+    'root': {'handlers': ['mozlog'], 'level': logging.INFO},
     'loggers': {
-        'amo': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
-            'propagate': False
-        },
-        'amqplib': {
+        'amqp': {
             'handlers': ['null'],
-            'level': logging.DEBUG,
+            'level': logging.WARNING,
             'propagate': False
         },
         'caching': {
@@ -1302,7 +1290,12 @@ LOGGING = {
         },
         'caching.invalidation': {
             'handlers': ['null'],
-            'level': logging.DEBUG,
+            'level': logging.INFO,
+            'propagate': False
+        },
+        'celery.worker.strategy': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
             'propagate': False
         },
         'django': {
@@ -1318,7 +1311,7 @@ LOGGING = {
         },
         'elasticsearch': {
             'handlers': ['null'],
-            'level': logging.DEBUG,
+            'level': logging.INFO,
             'propagate': False,
         },
         'filtercascade': {
@@ -1340,7 +1333,7 @@ LOGGING = {
         },
         'parso': {
             'handlers': ['null'],
-            'level': logging.DEBUG,
+            'level': logging.INFO,
             'propagate': False
         },
         'post_request_task': {
@@ -1349,24 +1342,19 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': False,
         },
+        'raven': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': False
+        },
         'rdflib': {
             'handlers': ['null'],
-            'level': logging.DEBUG,
+            'level': logging.INFO,
             'propagate': False,
         },
-        'request.summary': {
+        'request': {
             'handlers': ['mozlog'],
-            'level': logging.DEBUG,
-            'propagate': False
-        },
-        's.client': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
-        },
-        'z': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
+            'level': logging.WARNING,
             'propagate': False
         },
         'z.celery': {
@@ -1374,21 +1362,11 @@ LOGGING = {
             'level': logging.ERROR,
             'propagate': True,
         },
-        'z.es': {
-            'handlers': ['mozlog'],
-            'level': logging.INFO,
-            'propagate': False
-        },
         'z.pool': {
             'handlers': ['mozlog'],
             'level': logging.ERROR,
             'propagate': False
         },
-        'z.task': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
-            'propagate': False
-        }
     },
 }
 
@@ -1866,7 +1844,7 @@ CRON_JOBS = {
     'weekly_downloads': 'olympia.amo.cron',
 
     'auto_import_blocklist': 'olympia.blocklist.cron',
-    'upload_mlbf_to_kinto': 'olympia.blocklist.cron',
+    'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
 
     'update_blog_posts': 'olympia.devhub.cron',
 
@@ -1939,11 +1917,11 @@ REMOTE_SETTINGS_API_URL = 'https://kinto.dev.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://kinto.dev.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'blocklists'
 
-# The kinto test server needs accounts and setting up before using.
-KINTO_API_IS_TEST_SERVER = False
-BLOCKLIST_KINTO_USERNAME = env(
+# The remote settings test server needs accounts and setting up before using.
+REMOTE_SETTINGS_IS_TEST_SERVER = False
+BLOCKLIST_REMOTE_SETTINGS_USERNAME = env(
     'BLOCKLIST_KINTO_USERNAME', default='amo_dev')
-BLOCKLIST_KINTO_PASSWORD = env(
+BLOCKLIST_REMOTE_SETTINGS_PASSWORD = env(
     'BLOCKLIST_KINTO_PASSWORD', default='amo_dev_password')
 
 # The path to the current google service account configuration. This is

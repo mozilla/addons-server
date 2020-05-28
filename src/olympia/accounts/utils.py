@@ -131,7 +131,7 @@ def process_fxa_event(raw_body, **kwargs):
             else:
                 primary_email_change_event.delay(email, uid, timestamp)
         else:
-            log.debug('Dropping unknown event type %r', event_type)
+            log.info('Dropping unknown event type %r', event_type)
 
 
 def process_sqs_queue(queue_url):

@@ -608,7 +608,7 @@ class TestUserProfile(TestCase):
         user = UserProfile.objects.get(id=4043307)
         # Note that basket_token is for newsletters, and is irrelevant here.
         user.update(
-            basket_token='FOO', fxa_id='BAR', is_public=True,
+            basket_token='FOO', email='newemail@example.com', is_public=True,
             read_dev_agreement=self.days_ago(42), notes='Blah',
             biography='Something', auth_id=12345)
         assert sync_object_to_basket_mock.delay.call_count == 0
@@ -628,6 +628,12 @@ class TestUserProfile(TestCase):
         assert sync_object_to_basket_mock.delay.called_with(
             'userprofile', 4043307)
 
+        sync_object_to_basket_mock.reset_mock()
+        user.update(fxa_id='wât')  # Can technically happen if admins do it.
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'userprofile', 4043307)
+
     @mock.patch('olympia.amo.tasks.sync_object_to_basket')
     def test_user_deletion_synced_to_basket(
             self, sync_object_to_basket_mock):
@@ -636,6 +642,17 @@ class TestUserProfile(TestCase):
         assert sync_object_to_basket_mock.delay.call_count == 1
         assert sync_object_to_basket_mock.delay.called_with(
             'userprofile', 4043307)
+
+    def test_get_lookup_field(self):
+        user = UserProfile.objects.get(id=55021)
+        lookup_field_pk = UserProfile.get_lookup_field(str(user.id))
+        assert lookup_field_pk == 'pk'
+        lookup_field_email = UserProfile.get_lookup_field(user.email)
+        assert lookup_field_email == 'email'
+        lookup_field_random_digit = UserProfile.get_lookup_field('123456')
+        assert lookup_field_random_digit == 'pk'
+        lookup_field_random_string = UserProfile.get_lookup_field('my@mail.co')
+        assert lookup_field_random_string == 'email'
 
 
 class TestDeniedName(TestCase):

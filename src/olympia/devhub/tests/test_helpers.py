@@ -25,7 +25,6 @@ pytestmark = pytest.mark.django_db
 def test_dev_page_title():
     translation.activate('en-US')
     request = Mock()
-    request.APP = None
     addon = Mock()
     addon.name = 'name'
     ctx = {'request': request, 'addon': addon}

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
 "PO-Revision-Date: 2020-05-04 05:13+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -370,9 +370,6 @@ msgstr "Se afișează <b>%(begin)s</b>&ndash;<b>%(end)s</b> din <b>%(count)s</b>
 msgid "Add-ons for {0}"
 msgstr "Suplimente pentru {0}"
 
-msgid "Add-ons"
-msgstr "Suplimente"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} în urmă"
@@ -483,20 +480,20 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blocare cu GUID %(guid)s negăsită"
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s este o propunere în așteptare"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "Suplimentul cu GUID %(guid)s nu există"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr "GUID %(guid)s este deja într-o propunere în așteptare"
+msgid "Block with GUID %(guid)s not found"
+msgstr "Blocare cu GUID %(guid)s negăsită"
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr "Suplimentul cu GUID %(guid)s nu există"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Blocajele de actualizat sunt diferite deoarece versiunea Min sau Max a fost modificată."
@@ -513,7 +510,8 @@ msgstr "Recenzie listată"
 msgid "Review Unlisted"
 msgstr "Recenzie nelistată"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+#, fuzzy
+msgid "This block was imported from a regex based legacy Block."
 msgstr "Acest blocaj a fost importat dintr-un blocaj kinto moștenit pe bază de regex."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -534,7 +532,8 @@ msgstr "%(count)s GUID-urile de suplimente sunt deja blocate de la %(v_min)s pâ
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUID-uri de suplimente negăsite"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+#, fuzzy
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr "Următoarele blocaje au fost importate dintr-un blocaj kinto moștenit pe bază de regex."
 
 msgid "Save"
@@ -1735,6 +1734,12 @@ msgstr "Necesită selectarea cel puțin a unei aplicații."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Ai realizat prea multe încărcări în ultimul timp. Te rugăm să încerci din nou mai târziu."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versiunea {version} a mai fost încărcată și apoi ștearsă."
@@ -4992,6 +4997,14 @@ msgstr "Blochează toate reclamele — video, pop-up, bannere și multe altele."
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Urmărești fluxuri media cu prietenii și familia oriunde."
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensiile sunt ca un fel de aplicații pentru Firefox."
@@ -5593,6 +5606,14 @@ msgstr "Versiuni listate care necesită o recenzie de către un om ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Versiuni nelistate care necesită o recenzie de către un om ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Versiunile listate"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Versiunile listate"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Această acțiune va aproba, semna și publica această versiune. Comentariile vor fi trimise dezvoltatorului."
 
@@ -5616,7 +5637,8 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "Respinge multiple versiuni"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+#, fuzzy
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Această acțiune va respinge versiunile publice selectate. Comentariile vor fi trimise dezvoltatorului."
 
 msgid "Block Multiple Versions"
@@ -5664,14 +5686,22 @@ msgstr "Jurnal de recenzii"
 msgid "Add-on Review Guide"
 msgstr "Ghid de recenzare pentru suplimente"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Teste de securitate"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Marcat pentru recenzare de către o persoană"
+msgstr[1] "Marcat pentru recenzare de către o persoană"
+msgstr[2] "Marcat pentru recenzare de către o persoană"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Suplimente aprobate automat"
@@ -5772,9 +5802,6 @@ msgstr "ID supliment"
 
 msgid "Internal AMO ID"
 msgstr "ID AMO intern"
-
-msgid "Works with"
-msgstr "Funcționează cu"
 
 msgid "Visibility"
 msgstr "Vizibilitate"
@@ -5922,6 +5949,9 @@ msgstr "Performanță lunară"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "Desfășurător punctaje totale după tip"
+
+msgid "Add-ons"
+msgstr "Suplimente"
 
 msgid "Total"
 msgstr "Total"
@@ -6653,21 +6683,9 @@ msgstr "Înapoi la pagina de start a suplimentelor {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Suplimente"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Suplimente"
-
-msgid "My Account"
-msgstr "Contul meu"
-
-msgid "Welcome, {0}"
-msgstr "Bine ai venit, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Înregistrare</a> sau <a href=\"%(login)s\">Conectare</a>"
-
-msgid "Android Add-ons"
-msgstr "Suplimente pentru Android"
 
 msgid "Required fields"
 msgstr "Câmpuri obligatorii"

@@ -94,7 +94,7 @@ def update_addon_average_daily_users(data, **kw):
             # The processing input comes from metrics which might be out of
             # date in regards to currently existing add-ons
             m = "Got an ADU update (%s) but the add-on doesn't exist (%s)"
-            log.debug(m % (count, pk))
+            log.info(m % (count, pk))
             continue
 
         addon.update(average_daily_users=int(float(count)))
@@ -120,7 +120,7 @@ def update_addon_download_totals(data, **kw):
             # been deleted by the time the task is processed.
             msg = ("Got new download totals (total=%s) but the add-on"
                    "doesn't exist (%s)" % (sum_download_counts, pk))
-            log.debug(msg)
+            log.info(msg)
 
 
 @task
@@ -199,77 +199,6 @@ def add_dynamic_theme_tag(ids, **kw):
         if any('theme' in file_.webext_permissions_list for file_ in files):
             Tag(tag_text='dynamic theme').save_tag(addon)
             index_addons.delay([addon.id])
-
-
-# Rate limiting to 1 per minute to not overload our networking filesystem
-# and block our celery workers. Extraction to our git backend doesn't have
-# to be fast. Each instance processes 100 add-ons so we'll process
-# 6000 add-ons per hour which is fine.
-@task(rate_limit='1/m')
-def migrate_webextensions_to_git_storage(ids, **kw):
-    # recursive imports...
-    from olympia.versions.tasks import (
-        extract_version_to_git, extract_version_source_to_git)
-
-    log.info(
-        'Migrating add-ons to git storage %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
-
-    addons = Addon.unfiltered.filter(id__in=ids)
-
-    for addon in addons:
-        # Filter out versions that are already present in the git
-        # storage.
-        versions = addon.versions.filter(git_hash='').order_by('created')
-
-        for version in versions:
-            # Back in the days an add-on was able to have multiple files
-            # per version. That changed, we are very naive here and extracting
-            # simply the first file in the list. For WebExtensions there is
-            # only a very very small number that have different files for
-            # a single version.
-            unique_file_hashes = set([
-                x.original_hash for x in version.all_files
-            ])
-
-            if len(unique_file_hashes) > 1:
-                # Log actually different hashes so that we can clean them
-                # up manually and work together with developers later.
-                log.info(
-                    'Version {version} of {addon} has more than one uploaded '
-                    'file'.format(version=repr(version), addon=repr(addon)))
-
-            if not unique_file_hashes:
-                log.info('No files found for {version} from {addon}'.format(
-                    version=repr(version), addon=repr(addon)))
-                continue
-
-            # Don't call the task as a task but do the extraction in process
-            # this makes sure we don't overwhelm the storage and also makes
-            # sure we don't end up with tasks committing at random times but
-            # correctly in-order instead.
-            try:
-                file_id = version.all_files[0].pk
-
-                log.info('Extracting file {file_id} to git storage'.format(
-                    file_id=file_id))
-
-                extract_version_to_git(version.pk)
-
-                if version.source:
-                    extract_version_source_to_git(version.pk)
-
-                log.info(
-                    'Extraction of file {file_id} into git storage succeeded'
-                    .format(file_id=file_id))
-            except Exception:
-                log.exception(
-                    'Extraction of file {file_id} from {version} '
-                    '({addon}) failed'.format(
-                        file_id=version.all_files[0],
-                        version=repr(version),
-                        addon=repr(addon)))
-                continue
 
 
 @task

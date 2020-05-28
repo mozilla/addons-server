@@ -15,7 +15,7 @@ task_log = olympia.core.logger.getLogger('z.task')
 
 @task
 def delete_photo(dst, **kw):
-    task_log.debug('[1@None] Deleting photo: %s.' % dst)
+    task_log.info('[1@None] Deleting photo: %s.' % dst)
 
     if not dst.startswith(user_media_path('userpics')):
         task_log.error("Someone tried deleting something they shouldn't: %s"
@@ -32,7 +32,7 @@ def delete_photo(dst, **kw):
 @set_modified_on
 def resize_photo(src, dst, locally=False, **kw):
     """Resizes userpics to 200x200"""
-    task_log.debug('[1@None] Resizing photo: %s' % dst)
+    task_log.info('[1@None] Resizing photo: %s' % dst)
 
     try:
         resize_image(src, dst, (200, 200))

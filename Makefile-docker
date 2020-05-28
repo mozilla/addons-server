@@ -187,9 +187,11 @@ perf-tests: setup-ui-tests
 setup-codestyle:
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle.txt
 
-.PHONY: lint-codestyle
-lint-codestyle: ## lint the code
+.PHONY: lint
+lint: ## lint the code
 	flake8 src/ services/ tests/
+
+lint-codestyle: lint
 
 .PHONY: docs
 docs: ## build the documentation
@@ -210,9 +212,11 @@ dbshell: ## connect to a database shell
 .PHONY: initialize
 initialize: update_deps initialize_db update_assets populate_data ## init the dependencies, the database, and assets
 
-.PHONY: reload-uwsgi
-reload-uwsgi: ## force django code reload
+.PHONY: reload
+reload: ## force django code reload
 	uwsgi --reload /code/docker/artifacts/addons-server-uwsgi-master.pid
+
+reload-uwsgi: reload
 
 .PHONY: test
 test: ## run the entire test suite

@@ -558,7 +558,8 @@ class TestWithUser(TestCase):
             domain=settings.SESSION_COOKIE_DOMAIN,
             max_age=settings.SESSION_COOKIE_AGE,
             secure=settings.SESSION_COOKIE_SECURE,
-            httponly=settings.SESSION_COOKIE_HTTPONLY)
+            httponly=settings.SESSION_COOKIE_HTTPONLY,
+            samesite=settings.SESSION_COOKIE_SAMESITE)
 
     def test_state_does_not_match(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}

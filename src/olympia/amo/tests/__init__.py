@@ -814,7 +814,6 @@ def req_factory_factory(url, user=None, post=False, data=None, session=None):
         req.user = AnonymousUser()
     if session is not None:
         req.session = session
-    req.APP = None
     req.check_ownership = partial(check_ownership, req)
     return req
 
@@ -864,7 +863,7 @@ def version_factory(file_kw=None, **kw):
     addon_type = getattr(kw.get('addon'), 'type', None)
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
-    version_str = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    version_str = kw.pop('version', '%.1f' % (random.uniform(0, 99) + 0.1))
     application = kw.pop('application', amo.FIREFOX.id)
     if not kw.get('license') and not kw.get('license_id'):
         # Is there a built-in one we can use?

@@ -250,7 +250,7 @@ class ES(object):
             raise
 
         statsd.timing('search.es.took', hits['took'])
-        log.debug('[%s] [%s] %s' % (hits['took'], timer.ms, build_body))
+        log.info('[%s] [%s] %s' % (hits['took'], timer.ms, build_body))
         return hits
 
     def __iter__(self):

@@ -369,15 +369,9 @@ def _run_yara_query_rule_on_version(version, rule):
             scanner_result, file_.current_file_path,
             definition=rule.definition)
     except FileNotFoundError:
-        # Fallback in case the file was disabled/re-enabled and not yet moved,
-        # we try the other possible path. This shouldn't happen too often.
-        tried_path = file_.current_file_path
-        fallback_path = (
-            file_.file_path if tried_path == file_.guarded_file_path
-            else file_.guarded_file_path
-        )
         _run_yara_for_path(
-            scanner_result, fallback_path, definition=rule.definition)
+            scanner_result, file_.fallback_file_path,
+            definition=rule.definition)
     # Unlike ScannerResult, we only want to save ScannerQueryResult if there is
     # a match, there would be too many things to save otherwise and we don't
     # really care about non-matches.
@@ -412,10 +406,12 @@ def call_mad_api(all_results, upload_pk):
         return results
 
     if not waffle.switch_is_active('enable-mad'):
-        log.debug('Skipping scanner "mad" task, switch is off')
+        log.info('Skipping scanner "mad" task, switch is off')
         return results
 
-    log.info('Starting scanner "mad" task for FileUpload %s.', upload_pk)
+    request_id = uuid.uuid4().hex
+    log.info('Starting scanner "mad" task for FileUpload %s, request_id=%s.',
+             upload_pk, request_id)
 
     if not results['metadata']['is_webextension']:
         log.info(
@@ -447,6 +443,7 @@ def call_mad_api(all_results, upload_pk):
                 url=settings.MAD_API_URL,
                 json=json_payload,
                 timeout=settings.MAD_API_TIMEOUT,
+                headers={'x-request-id': request_id},
             )
 
         try:

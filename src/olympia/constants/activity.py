@@ -401,12 +401,14 @@ class ADMIN_USER_EDITED(_LOG):
 class ADMIN_USER_ANONYMIZED(_LOG):
     id = 104
     format = _(u'User {user} anonymized.')
+    keep = True
     admin_event = True
 
 
 class ADMIN_USER_RESTRICTED(_LOG):
     id = 105
     format = _(u'User {user} restricted.')
+    keep = True
     admin_event = True
 
 
@@ -426,11 +428,13 @@ class THEME_REVIEW(_LOG):
     id = 108
     action_class = 'review'
     format = _(u'{addon} reviewed.')
+    keep = True
 
 
 class ADMIN_USER_BANNED(_LOG):
     id = 109
     format = _(u'User {user} banned.')
+    keep = True
     admin_event = True
 
 
@@ -724,21 +728,27 @@ LOGS = [x for x in vars().values()
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len(set(log.id for log in LOGS))
 
-LOG_BY_ID = dict((l.id, l) for l in LOGS)
-LOG = namedtuple('LogTuple', [l.__name__ for l in LOGS])(*[l for l in LOGS])
-LOG_ADMINS = [l.id for l in LOGS if hasattr(l, 'admin_event')]
-LOG_KEEP = [l.id for l in LOGS if hasattr(l, 'keep')]
-LOG_RATING_MODERATION = [l.id for l in LOGS if hasattr(l, 'reviewer_event')]
-LOG_REVIEW_QUEUE = [l.id for l in LOGS if hasattr(l, 'review_queue')]
+LOG_BY_ID = dict((log.id, log) for log in LOGS)
+LOG = namedtuple('LogTuple', [log.__name__ for log in LOGS])(
+    *[log for log in LOGS])
+LOG_ADMINS = [
+    log.id for log in LOGS if hasattr(log, 'admin_event')]
+LOG_KEEP = [
+    log.id for log in LOGS if hasattr(log, 'keep')]
+LOG_RATING_MODERATION = [
+    log.id for log in LOGS if hasattr(log, 'reviewer_event')]
+LOG_REVIEW_QUEUE = [
+    log.id for log in LOGS if hasattr(log, 'review_queue')]
 LOG_REVIEWER_REVIEW_ACTION = [
-    l.id for l in LOGS if hasattr(l, 'reviewer_review_action')]
+    log.id for log in LOGS if hasattr(log, 'reviewer_review_action')]
 
 # Is the user emailed the message?
-LOG_REVIEW_EMAIL_USER = [l.id for l in LOGS if hasattr(l, 'review_email_user')]
+LOG_REVIEW_EMAIL_USER = [
+    log.id for log in LOGS if hasattr(log, 'review_email_user')]
 # Logs *not* to show to the developer.
-LOG_HIDE_DEVELOPER = [l.id for l in LOGS
-                      if (getattr(l, 'hide_developer', False) or
-                          l.id in LOG_ADMINS)]
+LOG_HIDE_DEVELOPER = [
+    log.id for log in LOGS
+    if (getattr(log, 'hide_developer', False) or log.id in LOG_ADMINS)]
 # Review Queue logs to show to developer (i.e. hiding admin/private)
-LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_REVIEW_QUEUE) -
-                                  set(LOG_HIDE_DEVELOPER))
+LOG_REVIEW_QUEUE_DEVELOPER = list(
+    set(LOG_REVIEW_QUEUE) - set(LOG_HIDE_DEVELOPER))

@@ -40,7 +40,9 @@ class Block(ModelBase):
     include_in_legacy = models.BooleanField(
         default=False,
         help_text='Include in legacy xml blocklist too, as well as new v3')
-    kinto_id = models.CharField(max_length=255, null=False, default='')
+    legacy_id = models.CharField(
+        max_length=255, null=False, default='', db_index=True,
+        db_column='kinto_id')
     submission = models.ManyToManyField('BlocklistSubmission')
 
     ACTIVITY_IDS = (
@@ -65,8 +67,8 @@ class Block(ModelBase):
         return super().save(**kwargs)
 
     @property
-    def is_imported_from_kinto_regex(self):
-        return self.kinto_id.startswith('*')
+    def is_imported_from_legacy_regex(self):
+        return self.legacy_id.startswith('*')
 
     @cached_property
     def addon(self):
@@ -151,6 +153,13 @@ class Block(ModelBase):
     def active_submissions(self):
         return BlocklistSubmission.get_submissions_from_guid(self.guid)
 
+    @property
+    def is_readonly(self):
+        legacy_submit_off = not waffle.switch_is_active(
+            'blocklist_legacy_submit')
+        return (
+            (legacy_submit_off and self.legacy_id) or self.active_submissions)
+
     @classmethod
     def get_blocks_from_guids(cls, guids):
         """Given a list of guids, return a list of Blocks - either existing
@@ -208,7 +217,7 @@ class BlocklistSubmission(ModelBase):
     }
     FakeBlock = namedtuple(
         'FakeBlock', ('id', 'guid', 'addon', 'min_version', 'max_version',
-                      'is_imported_from_kinto_regex'))
+                      'is_imported_from_legacy_regex'))
     FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
 
     action = models.SmallIntegerField(
@@ -277,7 +286,7 @@ class BlocklistSubmission(ModelBase):
                     addon=None,
                     min_version=None,
                     max_version=None,
-                    is_imported_from_kinto_regex=None)
+                    is_imported_from_legacy_regex=None)
                 for block in blocks]
         return blocks
 
@@ -411,7 +420,8 @@ class BlocklistSubmission(ModelBase):
 
         # And then any existing block instances
         block_qs = Block.objects.filter(guid__in=guids).values_list(
-            'id', 'guid', 'min_version', 'max_version', 'kinto_id', named=True)
+            'id', 'guid', 'min_version', 'max_version', 'legacy_id',
+            named=True)
         existing_blocks = [
             cls.FakeBlock(
                 id=block.id,
@@ -419,7 +429,7 @@ class BlocklistSubmission(ModelBase):
                 addon=addon_guid_dict.get(block.guid),
                 min_version=block.min_version,
                 max_version=block.max_version,
-                is_imported_from_kinto_regex=block.kinto_id.startswith('*'))
+                is_imported_from_legacy_regex=block.legacy_id.startswith('*'))
             for block in block_qs]
 
         if len(guids) == 1 or not filter_existing:
@@ -451,7 +461,7 @@ class BlocklistSubmission(ModelBase):
                     addon=addon,
                     min_version=Block.MIN,
                     max_version=Block.MAX,
-                    is_imported_from_kinto_regex=False)
+                    is_imported_from_legacy_regex=False)
             blocks.append(block)
         if not filter_existing:
             # we want to be able to delete a block without an addon (which
@@ -477,7 +487,7 @@ class BlocklistSubmission(ModelBase):
         Block.addon.average_daily_users,
         Block.min_version,
         Block.max_version,
-        Block.is_imported_from_kinto_regex
+        Block.is_imported_from_legacy_regex
         """
         all_guids = set(splitlines(guids))
 
@@ -499,12 +509,24 @@ class BlocklistSubmission(ModelBase):
         assert self.is_submission_ready
         assert self.action == self.ACTION_ADDCHANGE
 
-        all_guids_to_block = [block['guid'] for block in self.to_block]
-        kinto_submit_legacy_switch = waffle.switch_is_active(
+        submit_legacy_switch = waffle.switch_is_active(
             'blocklist_legacy_submit')
+        fields_to_set = [
+            'min_version',
+            'max_version',
+            'url',
+            'reason',
+            'updated_by',
+        ]
+        if submit_legacy_switch:
+            fields_to_set.append('include_in_legacy')
+
+        all_guids_to_block = [block['guid'] for block in self.to_block]
+
         for guids_chunk in chunked(all_guids_to_block, 100):
-            blocks = save_guids_to_blocks(guids_chunk, self)
-            if kinto_submit_legacy_switch:
+            blocks = save_guids_to_blocks(
+                guids_chunk, self, fields_to_set=fields_to_set)
+            if submit_legacy_switch:
                 legacy_publish_blocks(blocks)
             self.save()
 
@@ -514,14 +536,14 @@ class BlocklistSubmission(ModelBase):
         assert self.is_submission_ready
         assert self.action == self.ACTION_DELETE
         block_ids_to_delete = [block['id'] for block in self.to_block]
-        kinto_submit_legacy_switch = waffle.switch_is_active(
+        submit_legacy_switch = waffle.switch_is_active(
             'blocklist_legacy_submit')
         for ids_chunk in chunked(block_ids_to_delete, 100):
             blocks = list(Block.objects.filter(id__in=ids_chunk))
             Block.preload_addon_versions(blocks)
             for block in blocks:
                 block_activity_log_delete(block, submission_obj=self)
-            if kinto_submit_legacy_switch:
+            if submit_legacy_switch:
                 legacy_delete_blocks(blocks)
             self.save()
             Block.objects.filter(id__in=ids_chunk).delete()
@@ -535,7 +557,7 @@ class BlocklistSubmission(ModelBase):
                        .filter(to_block__contains=f'"{guid}"'))
 
 
-class KintoImport(ModelBase):
+class LegacyImport(ModelBase):
     OUTCOME_INCOMPLETE = 0
     OUTCOME_MISSINGGUID = 1
     OUTCOME_NOTFIREFOX = 2
@@ -550,8 +572,13 @@ class KintoImport(ModelBase):
         OUTCOME_REGEXBLOCKS: 'Added blocks from regex',
         OUTCOME_NOMATCH: 'No matches',
     }
-    kinto_id = models.CharField(max_length=255, null=False, default='')
+    legacy_id = models.CharField(
+        unique=True, max_length=255, null=False, default='',
+        db_column='kinto_id')
     record = JSONField(default={})
     outcome = models.SmallIntegerField(
         default=OUTCOME_INCOMPLETE, choices=OUTCOMES.items())
     timestamp = models.BigIntegerField()
+
+    class Meta:
+        db_table = 'blocklist_kintoimport'

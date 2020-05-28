@@ -280,10 +280,10 @@ class Rating(ModelBase):
             # change.
             action = 'New' if created else 'Edited'
             if instance.reply_to:
-                log.debug('%s reply to %s: %s' % (
+                log.info('%s reply to %s: %s' % (
                     action, instance.reply_to_id, instance.pk))
             else:
-                log.debug('%s rating: %s' % (action, instance.pk))
+                log.info('%s rating: %s' % (action, instance.pk))
 
             # For new ratings - not replies - and all edits (including replies
             # this time) by users we want to insert a new ActivityLog.

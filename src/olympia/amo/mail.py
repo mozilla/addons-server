@@ -28,7 +28,7 @@ class DevEmailBackend(BaseEmailBackend):
         If one of the target email addresses is in
         `settings.EMAIL_QA_ALLOW_LIST`, it send a real email message.
         """
-        log.debug('Sending dev mail messages.')
+        log.info('Sending dev mail messages.')
         qa_messages = []
         for msg in messages:
             FakeEmail.objects.create(message=msg.message().as_string())
@@ -43,7 +43,7 @@ class DevEmailBackend(BaseEmailBackend):
                     msg.to = list(qa_emails)
                 qa_messages.append(msg)
         if qa_messages:
-            log.debug('Sending real mail messages to QA.')
+            log.info('Sending real mail messages to QA.')
             connection = mail.get_connection()
             connection.send_messages(qa_messages)
         return len(messages)

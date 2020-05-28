@@ -11,6 +11,8 @@ from olympia.lib.settings_base import *  # noqa
 
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
+INTERNAL_ROUTES_ALLOWED = True
+
 DEBUG = True
 
 # These apps are great during development.
@@ -19,6 +21,11 @@ INSTALLED_APPS += (
     'debug_toolbar',
 )
 
+# Override logging config to enable DEBUG logs for (almost) everything.
+LOGGING['root']['level'] = logging.DEBUG
+for logger in list(LOGGING['loggers'].keys()):
+    if logger not in ['filtercascade', 'mohawk.util', 'post_request_task']:
+        del LOGGING['loggers'][logger]
 
 # django-debug-doolbar middleware needs to be inserted as high as possible
 # but after GZip middleware

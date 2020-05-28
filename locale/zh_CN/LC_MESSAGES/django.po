@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 14:36+0000\n"
-"Last-Translator: passionforlife <eloli@foxmail.com>\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-28 11:29+0000\n"
+"Last-Translator: πάθοςγιατηζωή <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -357,9 +357,6 @@ msgstr "目前显示第 <b>%(begin)s</b>&ndash;<b>%(end)s</b> 项，共 <b>%(cou
 msgid "Add-ons for {0}"
 msgstr "{0} 附加组件"
 
-msgid "Add-ons"
-msgstr "附加组件"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0}前"
@@ -466,20 +463,20 @@ msgid "Signoff State"
 msgstr "确认状态"
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "找不到对应 GUID %(guid)s 的屏蔽记录"
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s 仍在准备提交中"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "GUID 为 %(guid)s 的附加组件不存在"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr "对 GUID %(guid)s 的屏蔽是只读的 - 必须通过旧版屏蔽列表集，才可对其进行编辑"
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr "GUID %(guid)s 已在准备提交中"
+msgid "Block with GUID %(guid)s not found"
+msgstr "找不到对应 GUID %(guid)s 的屏蔽记录"
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr "GUID 为 %(guid)s 的附加组件不存在"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "由于最低或最高版本变动，要更新的屏蔽内容不同。"
@@ -496,8 +493,8 @@ msgstr "审核上架项目"
 msgid "Review Unlisted"
 msgstr "审核未上架项目"
 
-msgid "This block was imported from a regex based legacy kinto Block."
-msgstr "此屏蔽项目导入自基于正则的旧有 kinto 屏蔽列表。"
+msgid "This block was imported from a regex based legacy Block."
+msgstr "此屏蔽项目导入自基于正则的旧有屏蔽列表。"
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "任何变更不会应用到旧有屏蔽列表，您必须回到 kinto 的管理界面手动更新。"
@@ -517,8 +514,8 @@ msgstr "有 %(count)s 个附加组件 GUID 已针对 %(v_min)s~%(v_max)s 版本�
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "未找到 %(count)s 个附加组件 GUID"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr "下列屏蔽项目导入自基于正则的旧有 kinto 屏蔽列表。"
+msgid "The following block(s) were imported from a regex based legacy Block."
+msgstr "下列屏蔽项目导入自基于正则的旧有屏蔽列表。"
 
 msgid "Save"
 msgstr "保存"
@@ -1690,6 +1687,12 @@ msgstr "需要选择至少一个应用程序。"
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "您最近提交了太多上传内容。请过一段时间再试。"
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "版本 {version} 与该附加组件的 {block_link} 相匹配。您可以联系 {amo_admins} 了解更多信息。"
+
+msgid "a blocklist entry"
+msgstr "屏蔽列表条目"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 此前已上传并已删除。"
@@ -4862,6 +4865,14 @@ msgstr "屏蔽所有广告 — 包括但不限于视频、弹窗，横幅等类�
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "随时随地与朋友和家人观看流媒体。"
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr "跳过 YouTube 视频的赞助部分。"
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr "朗读网页给您听，支持 40 多种语言。"
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "给 Firefox 加点机能。"
@@ -5443,6 +5454,12 @@ msgstr "需要人工审核的上架版本（{0}）"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "需要人工审核的未上架版本（{0}）"
 
+msgid "Listed versions ({0})"
+msgstr "上架版本（{0}）"
+
+msgid "Unlisted versions ({0})"
+msgstr "未上架版本（{0}）"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "这将批准、签名并发布此版本。该评论将发送给其开发者。"
 
@@ -5464,8 +5481,8 @@ msgstr "此附加组件的最新公开版本已自动批准。这将记录您对
 msgid "Reject Multiple Versions"
 msgstr "驳回多个版本"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "这将驳回选定的公开版本。该评论将发送给其开发者。"
+msgid "This will reject the selected versions. The comments will be sent to the developer."
+msgstr "这将驳回选定的版本。该评论将发送给其开发者。"
 
 msgid "Block Multiple Versions"
 msgstr "屏蔽多个版本"
@@ -5512,12 +5529,16 @@ msgstr "审核日志"
 msgid "Add-on Review Guide"
 msgstr "附加组件审核指南"
 
-msgid "Flagged By Scanners"
-msgstr "由扫描器标记"
+msgid "Security Scanners"
+msgstr "安全性扫描器"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] "由扫描器标记（{0}）"
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "标为需要人工审查（{0}）"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自动批准的附加组件"
@@ -5610,9 +5631,6 @@ msgstr "附加组件 ID"
 
 msgid "Internal AMO ID"
 msgstr "AMO 内部 ID"
-
-msgid "Works with"
-msgstr "兼容于"
 
 msgid "Visibility"
 msgstr "可见性"
@@ -5759,6 +5777,9 @@ msgstr "每月效绩"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "全程故障点（按类型）"
+
+msgid "Add-ons"
+msgstr "附加组件"
 
 msgid "Total"
 msgstr "总共"
@@ -6470,21 +6491,9 @@ msgstr "返回 {0} 附加组件主页"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> 附加组件"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> 附加组件"
-
-msgid "My Account"
-msgstr "我的账户"
-
-msgid "Welcome, {0}"
-msgstr "欢迎，{0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">注册</a> 或 <a href=\"%(login)s\">登录</a>"
-
-msgid "Android Add-ons"
-msgstr "Android 附加组件"
 
 msgid "Required fields"
 msgstr "必填字段"

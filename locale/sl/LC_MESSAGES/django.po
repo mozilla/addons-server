@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
 "PO-Revision-Date: 2020-04-30 09:51+0000\n"
 "Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -368,9 +368,6 @@ msgstr "Prikaz <b>%(begin)s</b>&ndash;<b>%(end)s</b> od <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Dodatki za {0}"
 
-msgid "Add-ons"
-msgstr "Dodatki"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "pred {0}"
@@ -477,19 +474,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -509,7 +506,7 @@ msgstr "Zahtevan pregled"
 msgid "Review Unlisted"
 msgstr "Opomba pregleda"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -531,7 +528,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -1747,6 +1744,12 @@ msgstr "Izbrati je treba vsaj en program."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "V zadnjem času ste naložili preveč datotek. Poskusite znova čez nekaj časa."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Različica {version} je bila v preteklosti že naložena in izbrisana."
@@ -4988,6 +4991,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Razširitve so kot aplikacije za Firefox."
@@ -5602,6 +5613,14 @@ msgstr "Drugi čakajoči na pregled ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Drugi čakajoči na pregled ({0})"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Navedene različice"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Navedene različice"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "S tem boste različico odobrili, podpisali in objavili. Komentarji bodo poslani razvijalcu."
 
@@ -5623,7 +5642,8 @@ msgstr "Najnovejša javna različica tega dodatka je bila samodejno odobrena. To
 msgid "Reject Multiple Versions"
 msgstr "Zavrni več različic"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+#, fuzzy
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "S tem boste zavrnili izbrane javne različice. Komentarji bodo poslani razvijalcu."
 
 #, fuzzy
@@ -5674,8 +5694,9 @@ msgstr "Dnevnik pregledov"
 msgid "Add-on Review Guide"
 msgstr "Vodnik za pregledovanje dodatkov"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Preizkusi varnosti"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
@@ -5683,6 +5704,14 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Pregled ocene ({0})"
+msgstr[1] "Pregleda ocen ({0})"
+msgstr[2] "Pregledi ocen ({0})"
+msgstr[3] "Pregledi ocen ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Samodejno odobreni dodatki"
@@ -5782,9 +5811,6 @@ msgstr "ID dodatka"
 
 msgid "Internal AMO ID"
 msgstr "Notranji ID AMO"
-
-msgid "Works with"
-msgstr "Deluje s"
 
 msgid "Visibility"
 msgstr "Vidnost"
@@ -5934,6 +5960,9 @@ msgstr "Uspešnost mesečno"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "Vrstni red po točkah vseh časov "
+
+msgid "Add-ons"
+msgstr "Dodatki"
 
 msgid "Total"
 msgstr "Skupaj"
@@ -6705,21 +6734,9 @@ msgstr "Vrni se na domačo stran za {0} dodatki"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Dodatki"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Dodatki"
-
-msgid "My Account"
-msgstr "Moj račun"
-
-msgid "Welcome, {0}"
-msgstr "Dobrodošli, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registrirajte se</a> ali <a href=\"%(login)s\">Prijavite</a>"
-
-msgid "Android Add-ons"
-msgstr "Dodatki za Android"
 
 msgid "Required fields"
 msgstr "Zahtevana polja"

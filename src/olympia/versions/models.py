@@ -44,10 +44,13 @@ from .compare import version_int
 log = olympia.core.logger.getLogger('z.versions')
 
 
-# Valid source extensions. Used in error messages to the user and to skip
-# early in source_upload_path() if necessary, but the actual validation is
-# more complex and done in olympia.devhub.WithSourceMixin.clean_source
-VALID_SOURCE_EXTENSIONS = ('.zip', '.tar.gz', '.tar.bz2',)
+# Valid source extensions. Actual validation lives in
+# devhub.forms.WithSourceMixin and is slightly more complex (the file
+# contents are checked to see if it matches the extension).
+# If changing this, make sure devhub.forms.WithSourceMixin.clean_source() and
+# source_upload_path() are updated accordingly if needed, and that source
+# submission still works both at add-on and version upload time.
+VALID_SOURCE_EXTENSIONS = ('.zip', '.tar.gz', '.tgz', '.tar.bz2',)
 
 
 class VersionManager(ManagerBase):
@@ -170,13 +173,12 @@ class Version(OnChangeMixin, ModelBase):
     deleted = models.BooleanField(default=False)
 
     source = models.FileField(
-        upload_to=source_upload_path, null=True, blank=True)
+        upload_to=source_upload_path, null=True, blank=True, max_length=255)
 
     channel = models.IntegerField(choices=amo.RELEASE_CHANNEL_CHOICES,
                                   default=amo.RELEASE_CHANNEL_LISTED)
 
     git_hash = models.CharField(max_length=40, blank=True)
-    source_git_hash = models.CharField(max_length=40, blank=True)
 
     recommendation_approved = models.BooleanField(null=False, default=False)
 
@@ -219,6 +221,8 @@ class Version(OnChangeMixin, ModelBase):
         We can't check for that here because an admin may have overridden the
         validation results.
         """
+        from olympia.git.utils import create_git_extraction_entry
+
         assert parsed_data is not None
 
         if addon.status == amo.STATUS_DISABLED:
@@ -315,9 +319,11 @@ class Version(OnChangeMixin, ModelBase):
                 ScannerResult.objects.filter(upload_id=upload.id).update(
                     version=version)
 
-        # Extract this version into git repository
-        transaction.on_commit(
-            lambda: extract_version_to_git_repository(version, upload))
+        if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
+            # Schedule this version for git extraction.
+            transaction.on_commit(
+                lambda: create_git_extraction_entry(version=version)
+            )
 
         # Generate a preview and icon for listed static themes
         if (addon.type == amo.ADDON_STATICTHEME and
@@ -689,15 +695,6 @@ def generate_static_theme_preview(theme_data, version_pk):
     # To avoid a circular import
     from . import tasks
     tasks.generate_static_theme_preview.delay(theme_data, version_pk)
-
-
-def extract_version_to_git_repository(version, upload):
-    """Extract and commit ``version`` into our git-storage backend."""
-    from . import tasks
-    if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
-        tasks.extract_version_to_git.delay(
-            version_id=version.pk,
-            author_id=upload.user.pk if upload.user else None)
 
 
 class VersionPreview(BasePreview, ModelBase):

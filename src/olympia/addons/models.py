@@ -234,12 +234,10 @@ class AddonManager(ManagerBase):
         """
         return self.get_queryset().listed(app, *status)
 
-    def get_auto_approved_queue(self, admin_reviewer=False):
-        """Return a queryset of Addon objects that have been auto-approved but
-        not confirmed by a human yet."""
-        success_verdict = amo.AUTO_APPROVED
+    def get_base_queryset_for_queue(self, admin_reviewer=False,
+                                    admin_content_review=False):
         qs = (
-            self.get_queryset().public()
+            self.get_queryset()
             # We don't want the default transformer, it does too much, and
             # crucially, it prevents the
             # select_related('_current_version__autoapprovalsummary') from
@@ -247,8 +245,7 @@ class AddonManager(ManagerBase):
             # it fetches. We want translations though.
             .only_translations()
             # We need those joins for the queue to work without making extra
-            # queries. `files` are fetched through a prefetch_related() since
-            # those are a many-to-one relation.
+            # queries.
             .select_related(
                 'addonapprovalscounter',
                 'addonreviewerflags',
@@ -257,6 +254,27 @@ class AddonManager(ManagerBase):
             .prefetch_related(
                 '_current_version__files'
             )
+        )
+        if not admin_reviewer:
+            if admin_content_review:
+                qs = qs.exclude(
+                    addonreviewerflags__needs_admin_content_review=True
+                )
+            else:
+                qs = qs.exclude(
+                    addonreviewerflags__needs_admin_code_review=True
+                )
+        return qs
+
+    def get_auto_approved_queue(self, admin_reviewer=False):
+        """Return a queryset of Addon objects that have been auto-approved but
+        not confirmed by a human yet."""
+        success_verdict = amo.AUTO_APPROVED
+        qs = (
+            self.get_base_queryset_for_queue(
+                admin_reviewer=admin_reviewer
+            )
+            .public()
             .filter(
                 _current_version__autoapprovalsummary__verdict=success_verdict
             )
@@ -269,17 +287,16 @@ class AddonManager(ManagerBase):
                 'created',
             )
         )
-        if not admin_reviewer:
-            qs = qs.exclude(addonreviewerflags__needs_admin_code_review=True)
         return qs
 
     def get_content_review_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that need content review."""
         qs = (
-            self.get_queryset().valid()
-            # We don't want the default transformer.
-            # See get_auto_approved_queue()
-            .only_translations()
+            self.get_base_queryset_for_queue(
+                admin_reviewer=admin_reviewer,
+                admin_content_review=True
+            )
+            .valid()
             .filter(
                 addonapprovalscounter__last_content_review=None,
                 # Only content review extensions and dictionaries. See
@@ -287,31 +304,18 @@ class AddonManager(ManagerBase):
                 # https://github.com/mozilla/addons-server/issues/12065
                 type__in=(amo.ADDON_EXTENSION, amo.ADDON_DICT),
             )
-            # We need those joins for the queue to work without making extra
-            # queries. See get_auto_approved_queue()
-            .select_related(
-                'addonapprovalscounter',
-                'addonreviewerflags',
-                '_current_version__autoapprovalsummary',
-            )
-            .prefetch_related(
-                '_current_version__files'
-            )
-            .order_by(
-                'created',
-            )
+            .order_by('created')
         )
-        if not admin_reviewer:
-            qs = qs.exclude(
-                addonreviewerflags__needs_admin_content_review=True)
         return qs
 
-    def get_needs_human_review_queue(self, admin_reviewer=False):
+    def get_scanners_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that have been approved but
         contain versions that were automatically flagged as needing human
         review (regardless of channel)."""
-        qs = (
-            self.get_queryset()
+        return (
+            self.get_base_queryset_for_queue(
+                admin_reviewer=admin_reviewer
+            )
             # All valid statuses, plus incomplete as well because the add-on
             # could be purely unlisted (so we can't use valid_q(), which
             # filters out current_version=None). We know the add-ons are likely
@@ -326,30 +330,36 @@ class AddonManager(ManagerBase):
                 ],
                 versions__needs_human_review=True
             )
-            # We don't want the default transformer.
-            # See get_auto_approved_queue()
-            .only_translations()
-            # We need those joins for the queue to work without making extra
-            # queries. See get_auto_approved_queue()
-            .select_related(
-                'addonapprovalscounter',
-                'addonreviewerflags',
-                '_current_version__autoapprovalsummary',
-            )
-            .prefetch_related(
-                '_current_version__files'
-            )
-            .order_by(
-                'created',
-            )
+            .order_by('created')
             # There could be several versions matching for a single add-on so
             # we need a distinct.
             .distinct()
         )
-        if not admin_reviewer:
-            qs = qs.exclude(
-                addonreviewerflags__needs_admin_code_review=True)
-        return qs
+
+    def get_mad_queue(self, admin_reviewer=False):
+        return (
+            self.get_base_queryset_for_queue(
+                admin_reviewer=admin_reviewer
+            )
+            # All valid statuses, plus incomplete as well because the add-on
+            # could be purely unlisted (so we can't use valid_q(), which
+            # filters out current_version=None). We know the add-ons are likely
+            # to have a version since they got the needs_human_review_by_mad
+            # flag, so returning incomplete ones is acceptable.
+            .filter(
+                status__in=[
+                    amo.STATUS_APPROVED, amo.STATUS_NOMINATED, amo.STATUS_NULL
+                ],
+                versions__files__status__in=[
+                    amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
+                ],
+                versions__versionscannerflags__needs_human_review_by_mad=True
+            )
+            .order_by('created')
+            # There could be several versions matching for a single add-on so
+            # we need a distinct.
+            .distinct()
+        )
 
 
 class Addon(OnChangeMixin, ModelBase):
@@ -581,7 +591,7 @@ class Addon(OnChangeMixin, ModelBase):
         NOTES: %(msg)s
         REASON GIVEN BY USER FOR DELETION: %(reason)s
         """ % context
-        log.debug('Sending delete email for %(atype)s %(id)s' % context)
+        log.info('Sending delete email for %(atype)s %(id)s' % context)
         subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
         return subject, email_msg
 
@@ -614,7 +624,7 @@ class Addon(OnChangeMixin, ModelBase):
             # need to make sure that the logs created below aren't cascade
             # deleted!
 
-            log.debug('Deleting add-on: %s' % self.id)
+            log.info('Deleting add-on: %s' % self.id)
 
             if send_delete_email:
                 email_to = [settings.DELETION_EMAIL]
@@ -708,8 +718,8 @@ class Addon(OnChangeMixin, ModelBase):
         if old_guid_addon:
             old_guid_addon.update(guid=GUID_REUSE_FORMAT.format(addon.pk))
             ReusedGUID.objects.create(addon=old_guid_addon, guid=guid)
-            log.debug(f'GUID {guid} from addon [{old_guid_addon.pk}] reused '
-                      f'by addon [{addon.pk}].')
+            log.info(f'GUID {guid} from addon [{old_guid_addon.pk}] reused '
+                     f'by addon [{addon.pk}].')
         if user:
             AddonUser(addon=addon, user=user).save()
         timer.log_interval('7.end')
@@ -750,7 +760,7 @@ class Addon(OnChangeMixin, ModelBase):
             channel=channel, parsed_data=parsed_data)
 
         activity.log_create(amo.LOG.CREATE_ADDON, addon)
-        log.debug('New addon %r from %r' % (addon, upload))
+        log.info('New addon %r from %r' % (addon, upload))
 
         return addon
 
@@ -1096,7 +1106,7 @@ class Addon(OnChangeMixin, ModelBase):
             try:
                 addon = addon_dict[version.addon_id]
             except KeyError:
-                log.debug('Version %s has an invalid add-on id.' % version.id)
+                log.info('Version %s has an invalid add-on id.' % version.id)
                 continue
             if addon._current_version_id == version.id:
                 addon._current_version = version

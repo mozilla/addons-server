@@ -103,13 +103,15 @@ REMOTE_NOTIFICATIONS = [
 
 NOTIFICATIONS_COMBINED = AMO_NOTIFICATIONS + REMOTE_NOTIFICATIONS
 
-NOTIFICATIONS_BY_ID = {l.id: l for l in NOTIFICATIONS_COMBINED}
+NOTIFICATIONS_BY_ID = {
+    ntfn.id: ntfn for ntfn in NOTIFICATIONS_COMBINED}
 NOTIFICATIONS_BY_ID_NOT_DEV = {
-    l.id: l for l in NOTIFICATIONS_COMBINED if l.group != 'dev'}
+    ntfn.id: ntfn for ntfn in NOTIFICATIONS_COMBINED if ntfn.group != 'dev'}
 
 REMOTE_NOTIFICATIONS_BY_BASKET_ID = {
-    l.basket_newsletter_id: l for l in REMOTE_NOTIFICATIONS}
+    ntfn.basket_newsletter_id: ntfn for ntfn in REMOTE_NOTIFICATIONS}
 
-NOTIFICATIONS_BY_SHORT = {l.short: l for l in NOTIFICATIONS_COMBINED}
+NOTIFICATIONS_BY_SHORT = {
+    ntfn.short: ntfn for ntfn in NOTIFICATIONS_COMBINED}
 NOTIFICATIONS_DEFAULT = [
-    l.id for l in NOTIFICATIONS_COMBINED if l.default_checked]
+    ntfn.id for ntfn in NOTIFICATIONS_COMBINED if ntfn.default_checked]

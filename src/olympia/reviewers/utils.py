@@ -27,6 +27,7 @@ from olympia.reviewers.models import (
     get_flags_for_row)
 from olympia.users.models import UserProfile
 from olympia.versions.compare import addon_version_int
+from olympia.scanners.models import VersionScannerFlags
 
 import jinja2
 
@@ -240,34 +241,47 @@ class ContentReviewTable(AutoApprovedTable):
         return reverse('reviewers.review', args=['content', record.slug])
 
 
-class NeedsHumanReviewTable(AutoApprovedTable):
+class ScannersReviewTable(AutoApprovedTable):
+    listed_text = _('Listed versions needing human review ({0})')
+    unlisted_text = _('Unlisted versions needing human review ({0})')
+    filters = {'needs_human_review': True}
+
     def render_addon_name(self, record):
         rval = [jinja2.escape(record.name)]
-        versions_flagged_by_scanners = record.versions.filter(
+
+        listed_versions = record.versions.filter(
             channel=amo.RELEASE_CHANNEL_LISTED,
-            needs_human_review=True).count()
-        if versions_flagged_by_scanners:
+            **self.filters,
+        ).count()
+        if listed_versions:
             url = reverse('reviewers.review', args=[record.slug])
             rval.append(
                 '<a href="%s">%s</a>' % (
                     url,
-                    _('Listed versions needing human review ({0})').format(
-                        versions_flagged_by_scanners)
+                    self.listed_text.format(listed_versions)
                 )
             )
-        unlisted_versions_flagged_by_scanners = record.versions.filter(
+
+        unlisted_versions = record.versions.filter(
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            needs_human_review=True).count()
-        if unlisted_versions_flagged_by_scanners:
+            **self.filters,
+        ).count()
+        if unlisted_versions:
             url = reverse('reviewers.review', args=['unlisted', record.slug])
             rval.append(
                 '<a href="%s">%s</a>' % (
                     url,
-                    _('Unlisted versions needing human review ({0})').format(
-                        unlisted_versions_flagged_by_scanners)
+                    self.unlisted_text.format(unlisted_versions)
                 )
             )
+
         return ''.join(rval)
+
+
+class MadReviewTable(ScannersReviewTable):
+    listed_text = _('Listed versions ({0})')
+    unlisted_text = _('Unlisted versions ({0})')
+    filters = {'versionscannerflags__needs_human_review_by_mad': True}
 
 
 class ReviewHelper(object):
@@ -375,25 +389,14 @@ class ReviewHelper(object):
         is_appropriate_reviewer = acl.action_allowed_user(
             request.user, permission)
 
-        # Special logic for availability of reject multiple action:
-        if (self.content_review or
-                is_recommendable or
-                self.addon.type == amo.ADDON_STATICTHEME):
-            can_reject_multiple = is_appropriate_reviewer
-        else:
-            # When doing a code review, this action is also available to
-            # users with Addons:PostReview even if the current version hasn't
-            # been auto-approved, provided that the add-on isn't marked as
-            # needing admin review.
-            can_reject_multiple = (
-                is_appropriate_reviewer or
-                (acl.action_allowed_user(
-                    request.user, amo.permissions.ADDONS_POST_REVIEW) and
-                 not is_admin_needed)
-            )
-
         addon_is_complete = self.addon.status not in (
             amo.STATUS_NULL, amo.STATUS_DELETED)
+        addon_is_incomplete_and_version_is_unlisted = (
+            self.addon.status == amo.STATUS_NULL and version_is_unlisted
+        )
+        addon_is_reviewable = (
+            addon_is_complete or addon_is_incomplete_and_version_is_unlisted
+        )
         version_is_unreviewed = self.version and self.version.is_unreviewed
         addon_is_valid = self.addon.is_public() or self.addon.is_unreviewed()
         addon_is_valid_and_version_is_listed = (
@@ -401,6 +404,28 @@ class ReviewHelper(object):
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED
         )
+
+        # Special logic for availability of reject multiple action:
+        if version_is_unlisted:
+            can_reject_multiple = is_appropriate_reviewer
+        elif (self.content_review or
+                is_recommendable or
+                self.addon.type == amo.ADDON_STATICTHEME):
+            can_reject_multiple = (
+                addon_is_valid_and_version_is_listed and
+                is_appropriate_reviewer
+            )
+        else:
+            # When doing a code review, this action is also available to
+            # users with Addons:PostReview even if the current version hasn't
+            # been auto-approved, provided that the add-on isn't marked as
+            # needing admin review.
+            can_reject_multiple = addon_is_valid_and_version_is_listed and (
+                is_appropriate_reviewer or
+                (acl.action_allowed_user(
+                    request.user, amo.permissions.ADDONS_POST_REVIEW) and
+                 not is_admin_needed)
+            )
 
         # Definitions for all actions.
         actions['public'] = {
@@ -412,7 +437,7 @@ class ReviewHelper(object):
             'label': _('Approve'),
             'available': (
                 not self.content_review and
-                addon_is_complete and
+                addon_is_reviewable and
                 version_is_unreviewed and
                 is_appropriate_reviewer
             )
@@ -426,7 +451,10 @@ class ReviewHelper(object):
             'minimal': False,
             'available': (
                 not self.content_review and
-                addon_is_complete and
+                # We specifically don't let the individual reject action be
+                # available for unlisted review. `process_sandbox` isn't
+                # currently implemented for unlisted.
+                addon_is_valid_and_version_is_listed and
                 version_is_unreviewed and
                 is_appropriate_reviewer
             )
@@ -466,16 +494,14 @@ class ReviewHelper(object):
             'label': _('Reject Multiple Versions'),
             'minimal': True,
             'versions': True,
-            'details': _('This will reject the selected public '
-                         'versions. The comments will be sent to the '
-                         'developer.'),
+            'details': _('This will reject the selected versions. '
+                         'The comments will be sent to the developer.'),
             'available': (
-                addon_is_valid_and_version_is_listed and
                 can_reject_multiple
             ),
         }
         actions['block_multiple_versions'] = {
-            'method': self.handler.reject_multiple_versions,
+            'method': self.handler.block_multiple_versions,
             'label': _('Block Multiple Versions'),
             'minimal': True,
             'versions': True,
@@ -780,6 +806,11 @@ class ReviewBase(object):
         # Clear needs_human_review flags on past listed versions.
         if self.human_review:
             self.unset_past_needs_human_review()
+            # Clear the "needs_human_review" scanner flags too, if any, and
+            # only for the specified version.
+            VersionScannerFlags.objects.filter(
+                version=self.version
+            ).update(needs_human_review_by_mad=False)
 
         # Increment approvals counter if we have a request (it means it's a
         # human doing the review) otherwise reset it as it's an automatic
@@ -930,6 +961,12 @@ class ReviewBase(object):
                 if self.version.needs_human_review:
                     self.version.update(needs_human_review=False)
 
+            # Clear the "needs_human_review" scanner flags too, if any, and
+            # only for the specified version.
+            VersionScannerFlags.objects.filter(
+                version=self.version
+            ).update(needs_human_review_by_mad=False)
+
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(
                 self.user, self.addon, self.addon.status,
@@ -942,6 +979,7 @@ class ReviewBase(object):
         # modify in this action, so set them to None before finding the right
         # versions.
         status = self.addon.status
+        channel = self.version.channel
         latest_version = self.version
         self.version = None
         self.files = None
@@ -967,7 +1005,8 @@ class ReviewBase(object):
         # of the add-on instead of one of the versions we rejected, it will be
         # used to generate a token allowing the developer to reply, and that
         # only works with the latest version.
-        if self.addon.status != amo.STATUS_APPROVED:
+        if (self.addon.status != amo.STATUS_APPROVED and
+                channel == amo.RELEASE_CHANNEL_LISTED):
             template = u'reject_multiple_versions_disabled_addon'
             subject = (u'Mozilla Add-ons: %s%s has been disabled on '
                        u'addons.mozilla.org')
@@ -989,6 +1028,9 @@ class ReviewBase(object):
                 post_review=True, content_review=self.content_review)
 
     def confirm_multiple_versions(self):
+        raise NotImplementedError  # only implemented for unlisted below.
+
+    def block_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
 
 
@@ -1037,7 +1079,7 @@ class ReviewUnlisted(ReviewBase):
                  (self.addon, ', '.join([f.filename for f in self.files])))
         log.info(u'Sending email for %s' % (self.addon))
 
-    def reject_multiple_versions(self):
+    def block_multiple_versions(self):
         # self.version and self.files won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
@@ -1067,19 +1109,10 @@ class ReviewUnlisted(ReviewBase):
                 self.addon,
                 ', '.join(str(v.pk) for v in self.data['versions'])))
 
-        if self.addon.blocklistsubmission:
-            self.redirect_url = (
-                reverse(
-                    'admin:blocklist_blocklistsubmission_change',
-                    args=(self.addon.blocklistsubmission.pk,)
-                ))
-        else:
-            params = (
-                f'?min={min_version[0].pk}&max={max_version[0].pk}')
-            self.redirect_url = (
-                reverse(
-                    'admin:blocklist_block_addaddon', args=(self.addon.pk,)
-                ) + params)
+        params = f'?min={min_version[0].pk}&max={max_version[0].pk}'
+        self.redirect_url = (
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.pk,)) +
+            params)
 
     def confirm_multiple_versions(self):
         """Confirm approval on a list of versions."""
@@ -1100,3 +1133,9 @@ class ReviewUnlisted(ReviewBase):
                 # that the reviewer looked at all versions they are approving.
                 if version.needs_human_review:
                     version.update(needs_human_review=False)
+
+                # Clear the "needs_human_review" scanner flags too, if any, and
+                # only for the specified version.
+                VersionScannerFlags.objects.filter(
+                    version=version
+                ).update(needs_human_review_by_mad=False)

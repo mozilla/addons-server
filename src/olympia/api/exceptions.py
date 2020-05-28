@@ -62,11 +62,7 @@ def custom_exception_handler(exc, context=None):
     else:
         # Not a DRF exception, we want to return an APIfied 500 error while
         # still logging it to Sentry.
-        # Start with a generic default error message.
-        data = {'detail': 'Internal Server Error'}
-
-        if settings.DEBUG:
-            data['traceback'] = traceback.format_exc()
+        data = base_500_data()
 
         # Send the got_request_exception signal so other apps like sentry
         # are aware of the exception. The sender does not match what a real
@@ -80,3 +76,12 @@ def custom_exception_handler(exc, context=None):
         response = Response(data, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     return response
+
+
+def base_500_data():
+    # Start with a generic default error message.
+    data = {'detail': 'Internal Server Error'}
+
+    if settings.DEBUG:
+        data['traceback'] = traceback.format_exc()
+    return data

@@ -10,7 +10,7 @@ from .models import GitExtractionEntry
 
 @admin.register(GitExtractionEntry)
 class GitExtractionEntryAdmin(admin.ModelAdmin):
-    actions = None
+    actions = ['delete_selected']
     view_on_site = False
 
     list_display = (
@@ -21,7 +21,7 @@ class GitExtractionEntryAdmin(admin.ModelAdmin):
         'modified',
     )
 
-    ordering = ('created',)
+    ordering = ('-created',)
 
     # Remove the "add" button
     def has_add_permission(self, request):
@@ -49,7 +49,7 @@ class GitExtractionEntryAdmin(admin.ModelAdmin):
         return format_html(
             '<a href="{}">{}</a>',
             reverse('admin:addons_addon_change', args=(obj.addon.pk,)),
-            obj.addon.name,
+            str(obj.addon),
         )
 
     formatted_addon.short_description = 'Add-on'

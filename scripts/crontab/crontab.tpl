@@ -21,7 +21,7 @@ HOME=/tmp
 
 # Four times per day
 35 23,17,11,5 * * * %(z_cron)s auto_import_blocklist
-35 18,12,6,0 * * * %(z_cron)s upload_mlbf_to_kinto
+35 18,12,6,0 * * * %(z_cron)s upload_mlbf_to_remote_settings
 
 # Once per day
 1 6 * * * %(django)s clear_old_last_login_ip

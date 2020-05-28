@@ -6,11 +6,14 @@ from django.utils.deprecation import MiddlewareMixin
 
 
 class IdentifyAPIRequestMiddleware(MiddlewareMixin):
-    def process_request(self, request):
-        """Identify API requests.  Note this will not identify legacy API
-        requests - we can't do that reliably until after
-        LocaleAndAppURLMiddleware has activated."""
+    def identify_request(self, request):
         request.is_api = re.match(settings.DRF_API_REGEX, request.path_info)
+
+    def process_request(self, request):
+        self.identify_request(request)
+
+    def process_exception(self, request, exception):
+        self.identify_request(request)
 
 
 class GZipMiddlewareForAPIOnly(GZipMiddleware):

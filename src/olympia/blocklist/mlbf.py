@@ -5,12 +5,14 @@ from collections import defaultdict
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.db.models import Q
 from django.utils.functional import cached_property
 
 from filtercascade import FilterCascade
 from filtercascade.fileformats import HashAlgorithm
 
 import olympia.core.logger
+from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -18,8 +20,6 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 class MLBF():
     KEY_FORMAT = '{guid}:{version}'
-    # How many guids should there be in the stashs before we make a new base.
-    BASE_REPLACE_THRESHOLD = 500
 
     def __init__(self, id_):
         # simplify later code by assuming always a string
@@ -34,18 +34,22 @@ class MLBF():
         blocks_guids = [block.guid for block in blocks]
 
         file_qs = File.objects.filter(
-            version__addon__guid__in=blocks_guids,
+            Q(version__addon__guid__in=blocks_guids) |
+            Q(version__addon__reusedguid__guid__in=blocks_guids),
             is_signed=True,
             is_webextension=True,
         ).order_by('version_id').values(
             'version__addon__guid',
+            'version__addon__reusedguid__guid',
             'version__version',
             'version_id')
-        addons_versions = defaultdict(dict)
+        addons_versions = defaultdict(list)
         for file_ in file_qs:
-            addon_key = file_['version__addon__guid']
-            addons_versions[addon_key][file_['version__version']] = (
-                file_['version_id'])
+            addon_key = (
+                file_['version__addon__reusedguid__guid'] or
+                file_['version__addon__guid'])
+            addons_versions[addon_key].append(
+                (file_['version__version'], file_['version_id']))
 
         all_versions = {}
         # collect all the blocked versions
@@ -55,7 +59,7 @@ class MLBF():
                 block.max_version == Block.MAX)
             versions = {
                 version_id: (block.guid, version)
-                for version, version_id in addons_versions[block.guid].items()
+                for version, version_id in addons_versions[block.guid]
                 if is_all_versions or block.is_version_blocked(version)}
             all_versions.update(versions)
         return all_versions
@@ -64,15 +68,21 @@ class MLBF():
     def fetch_all_versions_from_db(cls, excluding_version_ids=None):
         from olympia.versions.models import Version
 
-        return (
+        qs = (
             Version.unfiltered.exclude(id__in=excluding_version_ids or ())
-                   .values_list('addon__guid', 'version'))
+                   .values(
+                       'addon__guid', 'addon__reusedguid__guid', 'version'))
+        return list(
+            (version['addon__reusedguid__guid'] or version['addon__guid'],
+             version['version'])
+            for version in qs)
 
     @classmethod
     def hash_filter_inputs(cls, input_list):
-        return [
+        """Returns a set"""
+        return {
             cls.KEY_FORMAT.format(guid=guid, version=version)
-            for (guid, version) in input_list]
+            for (guid, version) in input_list}
 
     @classmethod
     def generate_mlbf(cls, stats, blocked, not_blocked):
@@ -87,15 +97,16 @@ class MLBF():
         cascade.set_crlite_error_rates(
             include_len=error_rates[0], exclude_len=error_rates[1])
 
-        cascade.initialize(include=blocked, exclude=not_blocked)
-
         stats['mlbf_blocked_count'] = len(blocked)
         stats['mlbf_notblocked_count'] = len(not_blocked)
+
+        cascade.initialize(include=blocked, exclude=not_blocked)
+
         stats['mlbf_version'] = cascade.version
         stats['mlbf_layers'] = cascade.layerCount()
         stats['mlbf_bits'] = cascade.bitCount()
 
-        log.debug(
+        log.info(
             f'Filter cascade layers: {cascade.layerCount()}, '
             f'bit: {cascade.bitCount()}')
 
@@ -125,11 +136,11 @@ class MLBF():
         except FileNotFoundError:
             # when self._blocked_path doesn't exist
             pass
-        blocked_versions = self.fetch_blocked_from_db()
-        blocked = blocked_versions.values()
+        blocked_ids_to_versions = self.fetch_blocked_from_db()
+        blocked = blocked_ids_to_versions.values()
         # cache version ids so query in fetch_not_blocked_json is efficient
-        self._version_excludes = blocked_versions.keys()
-        self.blocked_json = self.hash_filter_inputs(blocked)
+        self._version_excludes = blocked_ids_to_versions.keys()
+        self.blocked_json = list(self.hash_filter_inputs(blocked))
         return self.blocked_json
 
     @property
@@ -153,8 +164,14 @@ class MLBF():
         # see fetch_blocked_json
         version_excludes = getattr(
             self, '_version_excludes', self.fetch_blocked_from_db().keys())
-        self.not_blocked_json = self.hash_filter_inputs(
-            self.fetch_all_versions_from_db(version_excludes))
+        # even though we exclude all the version ids in the query there's an
+        # edge case where the version string occurs twice for an addon so we
+        # ensure not_blocked_json doesn't contain any blocked_json.
+        self.not_blocked_json = list(
+            self.hash_filter_inputs(
+                self.fetch_all_versions_from_db(version_excludes)) -
+            set(self.blocked_json))
+
         return self.not_blocked_json
 
     @property
@@ -170,26 +187,31 @@ class MLBF():
     def generate_and_write_mlbf(self):
         stats = {}
 
+        blocked_json = self.fetch_blocked_json()
+        not_blocked_json = self.fetch_not_blocked_json()
+
+        # write blocked json
+        blocked_path = self._blocked_path
+        with storage.open(blocked_path, 'w') as json_file:
+            log.info("Writing to file {}".format(blocked_path))
+            json.dump(blocked_json, json_file)
+        # and the not blocked json
+        not_blocked_path = self._not_blocked_path
+        with storage.open(not_blocked_path, 'w') as json_file:
+            log.info("Writing to file {}".format(not_blocked_path))
+            json.dump(not_blocked_json, json_file)
+
         bloomfilter = self.generate_mlbf(
             stats=stats,
-            blocked=self.fetch_blocked_json(),
-            not_blocked=self.fetch_not_blocked_json())
+            blocked=blocked_json,
+            not_blocked=not_blocked_json)
+
         # write bloomfilter
         mlbf_path = self.filter_path
         with storage.open(mlbf_path, 'wb') as filter_file:
             log.info("Writing to file {}".format(mlbf_path))
             bloomfilter.tofile(filter_file)
             stats['mlbf_filesize'] = os.stat(mlbf_path).st_size
-        # write blocked json
-        blocked_path = self._blocked_path
-        with storage.open(blocked_path, 'w') as json_file:
-            log.info("Writing to file {}".format(blocked_path))
-            json.dump(self.blocked_json, json_file)
-        # and the not blocked json
-        not_blocked_path = self._not_blocked_path
-        with storage.open(not_blocked_path, 'w') as json_file:
-            log.info("Writing to file {}".format(not_blocked_path))
-            json.dump(self.not_blocked_json, json_file)
 
         log.info(json.dumps(stats))
 
@@ -220,7 +242,7 @@ class MLBF():
             # compare base with current blocks
             extras, deletes = self.generate_diffs(
                 previous_base_mlbf.blocked_json, self.fetch_blocked_json())
-            return (len(extras) + len(deletes)) > self.BASE_REPLACE_THRESHOLD
+            return (len(extras) + len(deletes)) > BASE_REPLACE_THRESHOLD
         except FileNotFoundError:
             # when previous_base_mlfb._blocked_path doesn't exist
             return True

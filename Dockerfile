@@ -39,7 +39,6 @@ RUN apt-get update && apt-get -t buster install -y \
         zlib1g-dev \
         libffi-dev \
         libssl-dev \
-        libmagic-dev \
         libpcre3-dev \
         nodejs \
         # Git, because we're using git-checkout dependencies
@@ -56,12 +55,11 @@ RUN apt-get update && apt-get -t buster install -y \
         # Use libmaxmind for speedy geoip lookups
         libmaxminddb0                    \
         libmaxminddb-dev                 \
-        file \
-        libmagic-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # IMPORTANT: When editing one of these lists below, make sure to also update
 # `Dockerfile.deploy`.
+ADD docker/etc/mime.types /etc/mime.types
 
 # Install a recent libgit2-dev version...
 RUN apt-get update && apt-get -t buster-backports install -y \

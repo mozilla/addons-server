@@ -3,10 +3,7 @@ import operator
 import os
 import itertools
 
-import waffle
-
 from django.template import loader
-from django_statsd.clients import statsd
 
 import olympia.core.logger
 
@@ -17,10 +14,7 @@ from olympia.amo.utils import extract_colors_from_image, pngcrush_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
-from olympia.git.models import GitExtractionEntry
 from olympia.versions.models import Version, VersionPreview
-from olympia.lib.git import AddonGitRepository
-from olympia.users.models import UserProfile
 
 from .utils import (
     AdditionalBackground, process_color_value,
@@ -112,75 +106,3 @@ def generate_static_theme_preview(theme_manifest, version_pk):
 def delete_preview_files(pk, **kw):
     VersionPreview.delete_preview_files(
         sender=None, instance=VersionPreview.objects.get(pk=pk))
-
-
-@task
-@use_primary_db
-def extract_version_to_git(
-    version_id, author_id=None, note=None, force_extraction=False
-):
-    """Extract a `File` into our git storage backend."""
-    # We extract deleted or disabled versions as well so we need to make sure
-    # we can access them.
-    version = Version.unfiltered.get(pk=version_id)
-
-    if not force_extraction and waffle.switch_is_active(
-        'enable-git-extraction-cron'
-    ):
-        log.info('Adding add-on {} to the git extraction '
-                 'queue.'.format(version.addon.id))
-        GitExtractionEntry.objects.create(addon=version.addon)
-        return
-
-    if author_id is not None:
-        author = UserProfile.objects.get(pk=author_id)
-    else:
-        author = None
-
-    log.info('Extracting {version_id} into git backend'.format(
-        version_id=version_id))
-
-    try:
-        with statsd.timer('git.extraction.version'):
-            repo = AddonGitRepository.extract_and_commit_from_version(
-                version=version, author=author, note=note)
-        statsd.incr('git.extraction.version.success')
-    except Exception as exc:
-        statsd.incr('git.extraction.version.failure')
-        raise exc
-
-    log.info('Extracted {version} into {git_path}'.format(
-        version=version_id, git_path=repo.git_repository_path))
-
-
-@task
-@use_primary_db
-def extract_version_source_to_git(version_id, author_id=None):
-    # We extract deleted or disabled versions as well so we need to make sure
-    # we can access them.
-    version = Version.unfiltered.get(pk=version_id)
-
-    if not version.source:
-        log.info('Tried to extract sources of {version_id} but there none.')
-        return
-
-    if author_id is not None:
-        author = UserProfile.objects.get(pk=author_id)
-    else:
-        author = None
-
-    log.info('Extracting {version_id} source into git backend'.format(
-        version_id=version_id))
-
-    try:
-        with statsd.timer('git.extraction.version_source'):
-            repo = AddonGitRepository.extract_and_commit_source_from_version(
-                version=version, author=author)
-        statsd.incr('git.extraction.version_source.success')
-    except Exception as exc:
-        statsd.incr('git.extraction.version_source.failure')
-        raise exc
-
-    log.info(
-        'Extracted source files from {version} into {git_path}'.format(
-            version=version_id, git_path=repo.git_repository_path))

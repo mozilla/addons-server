@@ -62,13 +62,15 @@ from olympia.reviewers.models import (
     clear_reviewing_cache, get_flags, get_reviewing_cache,
     get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.serializers import (
-    AddonBrowseVersionSerializer, AddonCompareVersionSerializer,
+    AddonBrowseVersionSerializer, AddonBrowseVersionSerializerFileOnly,
+    AddonCompareVersionSerializer, AddonCompareVersionSerializerFileOnly,
     AddonReviewerFlagsSerializer, CannedResponseSerializer,
-    DiffableVersionSerializer, DraftCommentSerializer, FileEntriesSerializer)
+    DiffableVersionSerializer, DraftCommentSerializer, FileInfoSerializer,
+)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
-    NeedsHumanReviewTable, ReviewHelper, ViewUnlistedAllListTable,
-    view_table_factory)
+    MadReviewTable, ScannersReviewTable, ReviewHelper,
+    ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
@@ -181,12 +183,17 @@ def dashboard(request):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         ),
         ))
-        sections[ugettext('Flagged By Scanners')] = [(
+        sections[ugettext('Security Scanners')] = [(
             ugettext('Flagged By Scanners ({0})').format(
-                Addon.objects.get_needs_human_review_queue(
+                Addon.objects.get_scanners_queue(
                     admin_reviewer=admin_reviewer).count()),
-            reverse('reviewers.queue_needs_human_review'))
-        ]
+            reverse('reviewers.queue_scanners'),
+        ), (
+            ugettext('Flagged for Human Review ({0})').format(
+                Addon.objects.get_mad_queue(
+                    admin_reviewer=admin_reviewer).count()),
+            reverse('reviewers.queue_mad'),
+        )]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
@@ -539,8 +546,10 @@ def fetch_queue_counts(admin_reviewer):
         'content_review': (
             Addon.objects.get_content_review_queue(
                 admin_reviewer=admin_reviewer).count),
-        'needs_human_review': (
-            Addon.objects.get_needs_human_review_queue(
+        'mad': (Addon.objects.get_mad_queue(
+                admin_reviewer=admin_reviewer).count),
+        'scanners': (
+            Addon.objects.get_scanners_queue(
                 admin_reviewer=admin_reviewer).count),
         'expired_info_requests': expired.count,
     }
@@ -646,12 +655,18 @@ def queue_expired_info_requests(request):
 
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_needs_human_review(request):
+def queue_scanners(request):
     admin_reviewer = is_admin_reviewer(request)
-    qs = Addon.objects.get_needs_human_review_queue(
-        admin_reviewer=admin_reviewer)
-    return _queue(request, NeedsHumanReviewTable, 'needs_human_review',
-                  qs=qs, SearchForm=None)
+    qs = Addon.objects.get_scanners_queue(admin_reviewer=admin_reviewer)
+    return _queue(request, ScannersReviewTable, 'scanners', qs=qs,
+                  SearchForm=None)
+
+
+@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+def queue_mad(request):
+    admin_reviewer = is_admin_reviewer(request)
+    qs = Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer)
+    return _queue(request, MadReviewTable, 'mad', qs=qs, SearchForm=None)
 
 
 def determine_channel(channel_as_text):
@@ -782,7 +797,7 @@ def review(request, addon, channel=None):
             queue_type = 'extension'
         redirect_url = reverse('reviewers.queue_%s' % queue_type)
     else:
-        redirect_url = reverse('reviewers.unlisted_queue_all')
+        redirect_url = reverse('reviewers.review', args=['unlisted', addon.pk])
 
     if request.method == 'POST' and form.is_valid():
         # Execute the action (is_valid() ensures the action is available to the
@@ -1153,21 +1168,22 @@ def download_git_stored_file(request, version_id, filename):
 
     file = version.current_file
 
-    serializer = FileEntriesSerializer(
+    serializer = FileInfoSerializer(
         instance=file, context={
             'file': filename,
-            'request': request
+            'request': request,
+            'version': version
         }
     )
 
     tree = serializer.tree
 
     try:
-        blob_or_tree = tree[serializer.get_selected_file(file)]
+        blob_or_tree = tree[serializer._get_selected_file()]
 
         if blob_or_tree.type == pygit2.GIT_OBJ_TREE:
             return http.HttpResponseBadRequest('Can\'t serve directories')
-        selected_file = serializer.get_entries(file)[filename]
+        selected_file = serializer._get_entries()[filename]
     except (KeyError, NotFound):
         raise http.Http404()
 
@@ -1317,9 +1333,6 @@ class ReviewAddonVersionMixin(object):
                 pk=self.kwargs.get('addon_pk'))
         return self.addon_object
 
-    def get_version_object(self):
-        return self.get_object(pk=self.kwargs['version_pk'])
-
     def check_permissions(self, request):
         if self.action == u'list':
             # When listing DRF doesn't explicitly check for object permissions
@@ -1353,22 +1366,26 @@ class ReviewAddonVersionMixin(object):
 class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
                                 RetrieveModelMixin, GenericViewSet):
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['file'] = self.request.GET.get('file', None)
+
+        if self.request.GET.get('file_only', 'false') == 'true':
+            context['exclude_entries'] = True
+
+        return context
+
+    def get_serializer_class(self):
+        if self.request.GET.get('file_only', 'false') == 'true':
+            return AddonBrowseVersionSerializerFileOnly
+        return AddonBrowseVersionSerializer
+
     def list(self, request, *args, **kwargs):
         """Return all (re)viewable versions for this add-on.
 
         Full list, no pagination."""
         qs = self.filter_queryset(self.get_queryset())
         serializer = DiffableVersionSerializer(qs, many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, *args, **kwargs):
-        serializer = AddonBrowseVersionSerializer(
-            instance=self.get_object(),
-            context={
-                'file': self.request.GET.get('file', None),
-                'request': self.request
-            }
-        )
         return Response(serializer.data)
 
 
@@ -1495,16 +1512,37 @@ class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
             'parent_version': objs[parent_version_pk]
         }
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['file'] = self.request.GET.get('file', None)
+
+        if self.request.GET.get('file_only', 'false') == 'true':
+            context['exclude_entries'] = True
+
+        return context
+
+    def get_serializer(
+            self, instance=None, data=None, many=False, partial=False):
+        context = self.get_serializer_context()
+        context['parent_version'] = data['parent_version']
+
+        if self.request.GET.get('file_only', 'false') == 'true':
+            return AddonCompareVersionSerializerFileOnly(
+                instance=instance,
+                context=context
+            )
+
+        return AddonCompareVersionSerializer(
+            instance=instance,
+            context=context
+        )
+
     def retrieve(self, request, *args, **kwargs):
         objs = self.get_objects()
-        serializer = AddonCompareVersionSerializer(
-            instance=objs['instance'],
-            context={
-                'file': self.request.GET.get('file', None),
-                'request': self.request,
-                'parent_version': objs['parent_version'],
-            })
+        version = objs['instance']
 
+        serializer = self.get_serializer(
+            instance=version, data={'parent_version': objs['parent_version']})
         return Response(serializer.data)
 
 

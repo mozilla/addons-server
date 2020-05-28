@@ -1,7 +1,6 @@
 import datetime
 import os
 import subprocess
-import zipfile
 
 import pytest
 import pygit2
@@ -10,16 +9,16 @@ from unittest.mock import MagicMock
 from pathlib import Path
 
 from django.conf import settings
-from django.core.files import temp
-from django.core.files.base import File as DjangoFile
-from django.utils.encoding import force_bytes
 
 from olympia import amo
+from olympia.addons.cron import hide_disabled_files
+from olympia.amo.storage_utils import move_stored_file
 from olympia.amo.tests import (
     addon_factory, version_factory, user_factory, activate_locale)
-from olympia.lib.git import (
+from olympia.git.utils import (
     AddonGitRepository, BrokenRefError, MissingMasterBranchError,
-    TemporaryWorktree, BRANCHES, EXTRACTED_PREFIX, get_mime_type_for_blob)
+    TemporaryWorktree, BRANCHES, EXTRACTED_PREFIX, get_mime_type_for_blob,
+    extract_version_to_git)
 from olympia.files.utils import id_to_path
 
 
@@ -194,6 +193,59 @@ def test_extract_and_commit_from_version(settings):
         repr(addon.current_version), addon.current_version.id, repr(addon),
         repr(addon.current_version.all_files[0]))
     assert expected in output
+
+    # Check that the files are there.
+    expected = set(['extracted/README.md', 'extracted/manifest.json'])
+    output = _run_process(
+        'git ls-tree -r --name-only listed', repo)
+    assert set(output.split()) == expected
+
+
+@pytest.mark.django_db
+def test_extract_and_commit_from_version_fallback_file_path(settings):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+    # Pretend the add-on file is in fallback_file_path instead of the normal
+    # path, just like it would happen if by misfortune we run the extraction
+    # after the add-on/file status has changed but before the file has been
+    # moved.
+    move_stored_file(
+        addon.current_version.current_file.current_file_path,
+        addon.current_version.current_file.fallback_file_path)
+
+    # Everything should still be processed normally.
+
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        addon.current_version)
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
+    assert os.listdir(repo.git_repository_path) == ['.git']
+
+    # Verify via subprocess to make sure the repositories are properly
+    # read by the regular git client
+    output = _run_process('git branch', repo)
+    assert 'listed' in output
+    assert 'unlisted' not in output
+
+    # Test that a new "unlisted" branch is created only if needed
+    addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        version=addon.current_version)
+    output = _run_process('git branch', repo)
+    assert 'listed' in output
+    assert 'unlisted' in output
+
+    output = _run_process('git log listed', repo)
+    expected = 'Create new version {} ({}) for {} from {}'.format(
+        repr(addon.current_version), addon.current_version.id, repr(addon),
+        repr(addon.current_version.all_files[0]))
+    assert expected in output
+
+    # Check that the files are there.
+    expected = set(['extracted/README.md', 'extracted/manifest.json'])
+    output = _run_process(
+        'git ls-tree -r --name-only listed', repo)
+    assert set(output.split()) == expected
 
 
 @pytest.mark.django_db
@@ -413,110 +465,6 @@ def test_extract_and_commit_from_version_valid_extensions(settings, filename):
         repr(addon.current_version), addon.current_version.id, repr(addon),
         repr(addon.current_version.all_files[0]))
     assert expected in output
-
-
-@pytest.mark.django_db
-def test_extract_and_commit_source_from_version(settings):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi'},
-        version_kw={'version': '0.1'})
-
-    # Generate source file
-    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
-    with zipfile.ZipFile(source, 'w') as zip_file:
-        zip_file.writestr('manifest.json', '{}')
-    source.seek(0)
-    addon.current_version.source = DjangoFile(source)
-    addon.current_version.save()
-
-    repo = AddonGitRepository.extract_and_commit_source_from_version(
-        addon.current_version)
-
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
-    assert os.listdir(repo.git_repository_path) == ['.git']
-
-    # Verify via subprocess to make sure the repositories are properly
-    # read by the regular git client
-    output = _run_process('git branch', repo)
-    assert 'listed' in output
-
-    output = _run_process('git log listed', repo)
-    expected = 'Create new version {} ({}) for {} from source file'.format(
-        repr(addon.current_version), addon.current_version.id, repr(addon))
-    assert expected in output
-
-
-@pytest.mark.django_db
-def test_extract_and_commit_source_from_version_no_dotgit_clash(settings):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi'},
-        version_kw={'version': '0.1'})
-
-    # Generate source file
-    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
-    with zipfile.ZipFile(source, 'w') as zip_file:
-        zip_file.writestr('manifest.json', '{}')
-        zip_file.writestr('.git/config', '')
-    source.seek(0)
-    addon.current_version.source = DjangoFile(source)
-    addon.current_version.save()
-
-    with mock.patch('olympia.lib.git.uuid.uuid4') as uuid4_mock:
-        uuid4_mock.return_value = mock.Mock(
-            hex='b236f5994773477bbcd2d1b75ab1458f')
-        repo = AddonGitRepository.extract_and_commit_source_from_version(
-            addon.current_version)
-
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
-    assert os.listdir(repo.git_repository_path) == ['.git']
-
-    # Verify via subprocess to make sure the repositories are properly
-    # read by the regular git client
-    output = _run_process('git ls-tree -r --name-only listed', repo)
-    assert set(output.split()) == {
-        'extracted/manifest.json', 'extracted/.git.b236f599/config'}
-
-
-@pytest.mark.django_db
-def test_extract_and_commit_source_from_version_rename_dotgit_files(settings):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi'},
-        version_kw={'version': '0.1'})
-
-    # Generate source file
-    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
-    with zipfile.ZipFile(source, 'w') as zip_file:
-        zip_file.writestr('manifest.json', '{}')
-        zip_file.writestr('.gitattributes', '')
-        zip_file.writestr('.gitignore', '')
-        zip_file.writestr('.gitmodules', '')
-        zip_file.writestr('some/directory/.gitattributes', '')
-        zip_file.writestr('some/directory/.gitignore', '')
-        zip_file.writestr('some/directory/.gitmodules', '')
-    source.seek(0)
-    addon.current_version.source = DjangoFile(source)
-    addon.current_version.save()
-
-    with mock.patch('olympia.lib.git.uuid.uuid4') as uuid4_mock:
-        uuid4_mock.return_value = mock.Mock(
-            hex='b236f5994773477bbcd2d1b75ab1458f')
-        repo = AddonGitRepository.extract_and_commit_source_from_version(
-            addon.current_version)
-
-    # Verify via subprocess to make sure the repositories are properly
-    # read by the regular git client
-    output = _run_process('git ls-tree -r --name-only listed', repo)
-    assert set(output.split()) == {
-        'extracted/manifest.json',
-        'extracted/.gitattributes.b236f599',
-        'extracted/.gitignore.b236f599',
-        'extracted/.gitmodules.b236f599',
-        'extracted/some/directory/.gitattributes.b236f599',
-        'extracted/some/directory/.gitignore.b236f599',
-        'extracted/some/directory/.gitmodules.b236f599',
-    }
 
 
 @pytest.mark.django_db
@@ -1223,7 +1171,7 @@ def test_get_raw_diff_cache():
 
     apply_changes(repo, version, '', 'manifest.json', delete=True)
 
-    with mock.patch('olympia.lib.git.pygit2.Repository.diff') as mocked_diff:
+    with mock.patch('olympia.git.utils.pygit2.Repository.diff') as mocked_diff:
         repo.get_diff(
             commit=version.git_hash,
             parent=original_version.git_hash)
@@ -1252,7 +1200,7 @@ def test_get_raw_diff_cache_unmodified_file():
 
     repo = AddonGitRepository.extract_and_commit_from_version(version)
 
-    with mock.patch('olympia.lib.git.pygit2.Repository.diff') as mocked_diff:
+    with mock.patch('olympia.git.utils.pygit2.Repository.diff') as mocked_diff:
         repo.get_diff(
             commit=version.git_hash,
             parent=original_version.git_hash)
@@ -1278,7 +1226,7 @@ def test_get_raw_diff_cache_unmodified_file():
         (MagicMock(type=_blob_type), 'blank.pdf', 'binary', 'application/pdf'),
         (MagicMock(type=_blob_type), 'blank.txt', 'text', 'text/plain'),
         (MagicMock(type=_blob_type), 'empty_bat.exe', 'binary',
-                                     'application/x-dosexec'),
+                                     'application/x-msdos-program'),
         (MagicMock(type=_blob_type), 'fff.gif', 'image', 'image/gif'),
         (MagicMock(type=_blob_type), 'foo.css', 'text', 'text/css'),
         (MagicMock(type=_blob_type), 'foo.html', 'text', 'text/html'),
@@ -1286,73 +1234,27 @@ def test_get_raw_diff_cache_unmodified_file():
         (MagicMock(type=_blob_type), 'foo.py', 'text', 'text/x-python'),
         (MagicMock(type=_blob_type), 'image.jpg', 'image', 'image/jpeg'),
         (MagicMock(type=_blob_type), 'image.png', 'image', 'image/png'),
-        (MagicMock(type=_blob_type), 'search.xml', 'text', 'text/xml'),
+        (MagicMock(type=_blob_type), 'search.xml', 'text', 'application/xml'),
         (MagicMock(type=_blob_type), 'js_containing_png_data.js', 'text',
                                      'text/javascript'),
         (MagicMock(type=_blob_type), 'foo.json', 'text', 'application/json'),
         (MagicMock(type=_tree_type), 'foo', 'directory',
                                      'application/octet-stream'),
         (MagicMock(type=_blob_type), 'image-svg-without-xml.svg', 'image',
+
                                      'image/svg+xml'),
         (MagicMock(type=_blob_type), 'bmp-v3.bmp', 'image', 'image/bmp'),
         (MagicMock(type=_blob_type), 'bmp-v4.bmp', 'image', 'image/bmp'),
         (MagicMock(type=_blob_type), 'bmp-v5.bmp', 'image', 'image/bmp'),
         (MagicMock(type=_blob_type), 'bmp-os2-v1.bmp', 'image', 'image/bmp'),
-        # This is testing that a tag listed at
-        # https://github.com/file/file/blob/master/magic/Magdir/sgml#L57
-        # doesn't lead to the file being detected as HTML, which was fixed
-        # in most recent libmagic versions.
-        (MagicMock(type=_blob_type), 'html-containing.json', 'text',
-                                     'application/json'),
     ]
 )
-def test_get_mime_type_for_blob(
-        entry, filename, expected_category, expected_mimetype):
-    root = os.path.join(
-        settings.ROOT,
-        'src/olympia/files/fixtures/files/file_viewer_filetypes/')
-
-    if entry.type == pygit2.GIT_OBJ_TREE:
-        mime, category = get_mime_type_for_blob(entry.type, filename, None)
-    else:
-        with open(os.path.join(root, filename), 'rb') as fobj:
-            mime, category = get_mime_type_for_blob(
-                entry.type, filename, force_bytes(fobj.read()))
+def test_get_mime_type_for_blob(entry, filename, expected_category,
+                                expected_mimetype):
+    mime, category = get_mime_type_for_blob(entry.type, filename)
 
     assert mime == expected_mimetype
     assert category == expected_category
-
-
-@pytest.mark.parametrize(
-    'entry, filename, expected_mimetype, simplified_detection',
-    [
-        (MagicMock(type=_blob_type), 'foo.css', 'text/css', True),
-        (MagicMock(type=_blob_type), 'foo.html', 'text/html', True),
-        (MagicMock(type=_blob_type), 'foo.js', 'text/javascript', True),
-        (MagicMock(type=_blob_type), 'foo.json', 'application/json', True),
-        (MagicMock(type=_blob_type), 'blank.pdf', 'application/pdf', False),
-        (MagicMock(type=_blob_type), 'blank.txt', 'text/plain', False),
-        (MagicMock(type=_blob_type), 'fff.gif', 'image/gif', False),
-        (MagicMock(type=_blob_type), 'image.jpg', 'image/jpeg', False),
-        (MagicMock(type=_blob_type), 'image.png', 'image/png', False),
-        (MagicMock(type=_blob_type), 'search.xml', 'text/xml', False),
-    ]
-)
-def test_get_mime_type_for_blob_simplified_detection(
-        entry, filename, expected_mimetype, simplified_detection):
-    root = os.path.join(
-        settings.ROOT,
-        'src/olympia/files/fixtures/files/file_viewer_filetypes/')
-
-    with mock.patch('olympia.lib.git.magic.from_buffer') as mocked_from_buffer:
-        with open(os.path.join(root, filename), 'rb') as fobj:
-            mime, category = get_mime_type_for_blob(
-                entry.type, filename, force_bytes(fobj.read()))
-
-        if simplified_detection:
-            mocked_from_buffer.assert_not_called()
-        else:
-            mocked_from_buffer.assert_called_once()
 
 
 @pytest.mark.django_db
@@ -1524,6 +1426,7 @@ def test_get_deltas_unmodified_file_by_default_not_rendered():
 
     assert not changes
 
+
 # See: https://github.com/mozilla/addons-server/issues/13932
 @pytest.mark.django_db
 def test_commit_with_old_reference(settings):
@@ -1535,7 +1438,8 @@ def test_commit_with_old_reference(settings):
 
     # We create an empyy commit on the 'branch-1'.
     commit = repo._commit_through_worktree(
-        path=None, message='commit on branch 1', author=None, branch=branch_1
+        file_obj=None, message='commit on branch 1',
+        author=None, branch=branch_1
     )
     # We set the target of the most up-to-date reference to 'branch 2'. This
     # means both branches point to the same commit created above.
@@ -1543,7 +1447,8 @@ def test_commit_with_old_reference(settings):
     # We create a second commit on the second branch and we pass the old
     # reference to 'branch-2'.
     repo._commit_through_worktree(
-        path=None, message='commit on branch 2', author=None, branch=branch_2
+        file_obj=None, message='commit on branch 2',
+        author=None, branch=branch_2
     )
 
     # `git log` but with messages only
@@ -1601,3 +1506,79 @@ def test_is_recent_with_oldish_repo(settings):
     update_git_repo_creation_time(repo, time=time)
 
     assert not repo.is_recent
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.git.utils.statsd.timer')
+@mock.patch('olympia.git.utils.statsd.incr')
+def test_extract_version_to_git(incr_mock, timer_mock):
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
+                                   'is_webextension': True})
+
+    extract_version_to_git(addon.current_version.pk)
+
+    repo = AddonGitRepository(addon.pk)
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
+    assert os.listdir(repo.git_repository_path) == ['.git']
+    timer_mock.assert_any_call('git.extraction.version')
+    incr_mock.assert_called_with('git.extraction.version.success')
+
+
+@pytest.mark.django_db
+def test_extract_version_to_git_deleted_version():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi',
+                                   'is_webextension': True})
+
+    version = addon.current_version
+    version.delete()
+
+    hide_disabled_files()
+
+    extract_version_to_git(version.pk)
+
+    repo = AddonGitRepository(addon.pk)
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
+    assert os.listdir(repo.git_repository_path) == ['.git']
+
+
+@pytest.mark.django_db
+def test_extract_version_to_git_with_non_webextension():
+    addon = addon_factory(
+        type=amo.ADDON_EXTENSION, file_kw={'is_webextension': False}
+    )
+
+    extract_version_to_git(addon.current_version.pk)
+
+    repo = AddonGitRepository(addon.pk)
+    assert not repo.is_extracted
+
+
+@pytest.mark.django_db
+def test_extract_version_to_git_with_not_extension_type():
+    addon = addon_factory(type=amo.ADDON_STATICTHEME)
+
+    extract_version_to_git(addon.current_version.pk)
+
+    repo = AddonGitRepository(addon.pk)
+    assert not repo.is_extracted
+
+
+@pytest.mark.django_db
+@mock.patch(
+    'olympia.git.utils.AddonGitRepository.extract_and_commit_from_version'
+)
+@mock.patch('olympia.git.utils.statsd.incr')
+def test_extract_version_to_git_with_error(incr_mock, extract_and_commit_mock):
+    addon = addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True}
+    )
+    extract_and_commit_mock.side_effect = Exception()
+
+    with pytest.raises(Exception):
+        extract_version_to_git(addon.current_version.pk)
+
+    incr_mock.assert_called_with('git.extraction.version.failure')

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
 "PO-Revision-Date: 2020-04-24 12:49+0000\n"
 "Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -363,9 +363,6 @@ msgstr "<b>%(count)s</b> का <b>%(begin)s</b>&ndash;<b>%(end)s</b> दिख�
 msgid "Add-ons for {0}"
 msgstr "{0} के लिए ऐड-ऑन"
 
-msgid "Add-ons"
-msgstr "ऐड-ऑन्स"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} पूर्व"
@@ -475,19 +472,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -508,7 +505,7 @@ msgstr "समीक्षा अनुरोधित"
 msgid "Review Unlisted"
 msgstr "समीक्षा नोट"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -530,7 +527,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -1717,6 +1714,12 @@ msgid "Need to select at least one application."
 msgstr "कम से कम एक अनुप्रयोग की चयन करने की आवश्यकता है।"
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -4874,6 +4877,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5462,6 +5473,14 @@ msgstr ""
 msgid "Unlisted versions needing human review ({0})"
 msgstr ""
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "सूचीबद्ध संस्करण"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "सूचीबद्ध संस्करण"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5483,7 +5502,7 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr ""
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 #, fuzzy
@@ -5534,13 +5553,20 @@ msgstr "लॉग की समीक्षा करें"
 msgid "Add-on Review Guide"
 msgstr "ऐड-ऑन रिव्यू गाइड"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "सुरक्षा"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "सामग्री की समीक्षा ({0})"
+msgstr[1] "सामग्री की समीक्षा ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "ऑटो-स्वीकृत ऐड-ऑन"
@@ -5636,9 +5662,6 @@ msgid "Add-on ID"
 msgstr "ऐड-ऑन"
 
 msgid "Internal AMO ID"
-msgstr ""
-
-msgid "Works with"
 msgstr ""
 
 msgid "Visibility"
@@ -5787,6 +5810,9 @@ msgstr "मासिक प्रदर्शन"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
+
+msgid "Add-ons"
+msgstr "ऐड-ऑन्स"
 
 msgid "Total"
 msgstr "कुल"
@@ -6514,20 +6540,8 @@ msgstr "{0} ऐड-ऑन मुखपृष्ठ पर वापस लौट
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
-
-msgid "My Account"
-msgstr "मेरा खाता"
-
-msgid "Welcome, {0}"
-msgstr "आपका स्वागत है, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
-
-msgid "Android Add-ons"
 msgstr ""
 
 msgid "Required fields"

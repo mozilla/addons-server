@@ -14,6 +14,7 @@ from django.forms.formsets import BaseFormSet, formset_factory
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.utils.encoding import force_text
+from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
@@ -38,6 +39,7 @@ from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
+from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES, CATEGORIES_NO_APP
 from olympia.devhub.utils import (
     fetch_existing_translations_from_addon, UploadRestrictionChecker)
@@ -722,9 +724,20 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
 
 
 class WithSourceMixin(object):
+    def get_invalid_source_file_type_message(self):
+        valid_extensions_string = '(%s)' % ', '.join(VALID_SOURCE_EXTENSIONS)
+        return ugettext(
+            'Unsupported file type, please upload an archive '
+            'file {extensions}.'.format(extensions=valid_extensions_string))
+
     def clean_source(self):
         source = self.cleaned_data.get('source')
         if source:
+            # Ensure the file type is one we support.
+            if not source.name.endswith(VALID_SOURCE_EXTENSIONS):
+                raise forms.ValidationError(
+                    self.get_invalid_source_file_type_message())
+            # Check inside to see if the file extension matches the content.
             try:
                 if source.name.endswith('.zip'):
                     zip_file = SafeZip(source)
@@ -739,13 +752,8 @@ class WithSourceMixin(object):
                         for member in archive_members:
                             archive_member_validator(archive, member)
                 else:
-                    valid_extensions_string = u'(%s)' % u', '.join(
-                        VALID_SOURCE_EXTENSIONS)
                     raise forms.ValidationError(
-                        ugettext(
-                            'Unsupported file type, please upload an archive '
-                            'file {extensions}.'.format(
-                                extensions=valid_extensions_string)))
+                        self.get_invalid_source_file_type_message())
             except (zipfile.BadZipfile, tarfile.ReadError, IOError, EOFError):
                 raise forms.ValidationError(
                     ugettext('Invalid or broken archive.'))
@@ -999,6 +1007,51 @@ class NewUploadForm(forms.Form):
                 _('You have submitted too many uploads recently. '
                   'Please try again after some time.'))
 
+    def check_blocklist(self, guid, version_string):
+        # check the guid/version isn't in the addon blocklist
+        block = Block.objects.filter(guid=guid).first()
+        if block and block.is_version_blocked(version_string):
+            msg = escape(ugettext(
+                'Version {version} matches {block_link} for this add-on. '
+                'You can contact {amo_admins} for additional information.'))
+            formatted_msg = DoubleSafe(
+                msg.format(
+                    version=version_string,
+                    block_link=format_html(
+                        '<a href="{}">{}</a>',
+                        reverse('blocklist.block', args=[guid]),
+                        ugettext('a blocklist entry')),
+                    amo_admins=(
+                        '<a href="mailto:amo-admins@mozilla.com">AMO Admins'
+                        '</a>')
+                )
+            )
+            raise forms.ValidationError(formatted_msg)
+
+    def check_for_existing_versions(self, version_string):
+        if self.addon:
+            # Make sure we don't already have this version.
+            existing_versions = Version.unfiltered.filter(
+                addon=self.addon, version=version_string)
+            if existing_versions.exists():
+                version = existing_versions[0]
+                if version.deleted:
+                    msg = ugettext(
+                        'Version {version} was uploaded before and deleted.')
+                elif version.unreviewed_files:
+                    next_url = reverse(
+                        'devhub.submit.version.details',
+                        args=[self.addon.slug, version.pk])
+                    msg = DoubleSafe('%s <a href="%s">%s</a>' % (
+                        ugettext(u'Version {version} already exists.'),
+                        next_url,
+                        ugettext(u'Continue with existing upload instead?')
+                    ))
+                else:
+                    msg = ugettext(u'Version {version} already exists.')
+                raise forms.ValidationError(
+                    msg.format(version=version_string))
+
     def clean(self):
         self.check_throttles(self.request)
 
@@ -1008,28 +1061,11 @@ class NewUploadForm(forms.Form):
                 self.cleaned_data['upload'], self.addon,
                 user=self.request.user)
 
-            if self.addon:
-                # Make sure we don't already have this version.
-                existing_versions = Version.unfiltered.filter(
-                    addon=self.addon, version=parsed_data['version'])
-                if existing_versions.exists():
-                    version = existing_versions[0]
-                    if version.deleted:
-                        msg = ugettext(
-                            u'Version {version} was uploaded before and '
-                            u'deleted.')
-                    elif version.unreviewed_files:
-                        next_url = reverse('devhub.submit.version.details',
-                                           args=[self.addon.slug, version.pk])
-                        msg = DoubleSafe('%s <a href="%s">%s</a>' % (
-                            ugettext(u'Version {version} already exists.'),
-                            next_url,
-                            ugettext(u'Continue with existing upload instead?')
-                        ))
-                    else:
-                        msg = ugettext(u'Version {version} already exists.')
-                    raise forms.ValidationError(
-                        msg.format(version=parsed_data['version']))
+            self.check_blocklist(
+                self.addon.guid if self.addon else parsed_data.get('guid'),
+                parsed_data.get('version'))
+            self.check_for_existing_versions(parsed_data.get('version'))
+
             self.cleaned_data['parsed_data'] = parsed_data
         return self.cleaned_data
 

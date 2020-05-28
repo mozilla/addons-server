@@ -31,6 +31,7 @@ from olympia.reviewers.utils import (
     ReviewAddon, ReviewFiles, ReviewHelper, ReviewUnlisted,
     ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
+from olympia.scanners.models import VersionScannerFlags
 from pyquery import PyQuery as pq
 
 
@@ -450,6 +451,27 @@ class TestReviewHelper(TestReviewHelperBase):
             file_status=amo.STATUS_APPROVED,
             content_review=True).keys()) == expected
 
+    def test_actions_unlisted(self):
+        # Just regular review permissions don't let you do much on an unlisted
+        # review page.
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_NULL,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # Once you have ReviewUnlisted more actions are available.
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        expected = [
+            'public', 'reject_multiple_versions',
+            'block_multiple_versions', 'confirm_multiple_versions',
+            'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_NULL,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.handler.set_files(amo.STATUS_APPROVED,
@@ -701,6 +723,19 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
         assert self.version.needs_human_review
+
+    def test_nomination_to_public_with_version_scanner_flags(self):
+        flags = VersionScannerFlags.objects.create(
+            version=self.addon.current_version,
+            needs_human_review_by_mad=True,
+        )
+        assert flags.needs_human_review_by_mad
+
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_public()
+
+        flags.refresh_from_db()
+        assert not flags.needs_human_review_by_mad
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_nomination_to_public(self, sign_mock):
@@ -1047,6 +1082,37 @@ class TestReviewHelper(TestReviewHelperBase):
         self.test_public_addon_confirm_auto_approval()
         self.addon.current_version.reload()
         assert self.addon.current_version.needs_human_review is False
+
+    def test_addon_with_version_and_scanner_flag_confirm_auto_approvals(self):
+        flags = VersionScannerFlags.objects.create(
+            version=self.addon.current_version,
+            needs_human_review_by_mad=True,
+        )
+        assert flags.needs_human_review_by_mad
+
+        self.test_public_addon_confirm_auto_approval()
+
+        flags.refresh_from_db()
+        assert not flags.needs_human_review_by_mad
+
+    def test_confirm_multiple_versions_with_version_scanner_flags(self):
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        flags = VersionScannerFlags.objects.create(
+            version=self.version,
+            needs_human_review_by_mad=True,
+        )
+        assert flags.needs_human_review_by_mad
+        helper = self.get_helper()  # pick the updated version
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        helper.set_data(data)
+
+        helper.handler.confirm_multiple_versions()
+
+        flags.refresh_from_db()
+        assert not flags.needs_human_review_by_mad
 
     def test_unlisted_version_addon_confirm_multiple_versions(self):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
@@ -1466,6 +1532,58 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 2
 
+    def test_reject_multiple_versions_unlisted(self):
+        old_version = self.version
+        self.make_addon_unlisted(self.addon)
+        self.version = version_factory(
+            addon=self.addon, version='3.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=101)
+        # An extra file should not change anything.
+        file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
+        self.setup_data(
+            amo.STATUS_NULL, file_status=amo.STATUS_AWAITING_REVIEW)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewUnlisted)
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.file.status == amo.STATUS_AWAITING_REVIEW
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.current_version is None
+        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert self.file.status == amo.STATUS_DISABLED
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
+        assert mail.outbox[0].subject == (
+            'Mozilla Add-ons: Versions disabled for Delicious Bookmarks')
+        assert (
+            'versions of your add-on Delicious Bookmarks have been disabled'
+            in mail.outbox[0].body
+        )
+        log_token = ActivityLogToken.objects.get()
+        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
+
+        logs = (ActivityLog.objects.for_addons(self.addon)
+                                   .filter(action=amo.LOG.REJECT_VERSION.id))
+        assert logs[0].created == logs[1].created
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+
     def test_approve_content_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
         self.setup_data(
@@ -1555,7 +1673,7 @@ class TestReviewHelper(TestReviewHelperBase):
         data = self.get_data().copy()
         data['versions'] = self.addon.versions.all()
         self.helper.set_data(data)
-        self.helper.handler.reject_multiple_versions()
+        self.helper.handler.block_multiple_versions()
 
         self.addon.reload()
         self.file.reload()
@@ -1583,10 +1701,11 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.helper.redirect_url == redirect_url
 
     def test_pending_blocklistsubmission_multiple_unlisted_versions(self):
-        subm = BlocklistSubmission.objects.create(
+        BlocklistSubmission.objects.create(
             input_guids=self.addon.guid, updated_by=user_factory())
-        redirect_url = reverse(
-            'admin:blocklist_blocklistsubmission_change', args=(subm.id,))
+        redirect_url = (
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.id,)) +
+            '?min=%s&max=%s')
         assert Block.objects.count() == 0
         self._test_block_multiple_unlisted_versions(redirect_url)
 

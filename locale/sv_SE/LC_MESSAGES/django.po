@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 12:01+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-28 10:57+0000\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -365,9 +365,6 @@ msgstr "Visar <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Tillägg för {0}"
 
-msgid "Add-ons"
-msgstr "Tillägg"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} sedan"
@@ -476,20 +473,20 @@ msgid "Signoff State"
 msgstr "Signoff-tillstånd"
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blockera med GUID %(guid)s hittades inte"
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s är en väntande inlämning"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "Tillägg med GUID %(guid)s finns inte"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr "Blocket för GUID %(guid)s är endast läsbart - det måste redigeras via den gamla blocklistsamlingen"
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr "GUID %(guid)s är redan en väntande inlämning"
+msgid "Block with GUID %(guid)s not found"
+msgstr "Blockera med GUID %(guid)s hittades inte"
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr "Tillägg med GUID %(guid)s finns inte"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Block som ska uppdateras är olika eftersom Min- eller Max-versionen har ändrats."
@@ -506,8 +503,8 @@ msgstr "Granskning listad"
 msgid "Review Unlisted"
 msgstr "Granskning olistad"
 
-msgid "This block was imported from a regex based legacy kinto Block."
-msgstr "Detta block importerades från ett regex-baserat äldre kinto-block."
+msgid "This block was imported from a regex based legacy Block."
+msgstr "Detta block importerades från ett regex-baserat äldre block."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Alla ändringar som görs kommer INTE att uppdateras i den gamla blocklistan - du måste göra en manuell ändring via kinto admin webui."
@@ -527,8 +524,8 @@ msgstr "%(count)s GUID-tillägg är redan blockerade för %(v_min)s till %(v_max
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUID-tillägg hittades inte"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr "Följande block importerades från en regex-baserad äldre kinto-block."
+msgid "The following block(s) were imported from a regex based legacy Block."
+msgstr "Följande block importerades från en regex-baserad äldre block."
 
 msgid "Save"
 msgstr "Spara"
@@ -1704,6 +1701,12 @@ msgstr "Välj åtminstone ett program."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Du har skickat in för många uppladdningar nyligen. Vänligen försök igen efter en stund."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Version {version} matchar {block_link} för detta tillägg. Du kan kontakta {amo_admins} för ytterligare information."
+
+msgid "a blocklist entry"
+msgstr "en blocklistpost"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} har laddats upp innan och tas bort."
@@ -4944,6 +4947,14 @@ msgstr "Blockera alla annonser—video, popup-fönster, banners och mer."
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Se strömmande media med vänner och familj var som helst."
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Tillägg är som appar för Firefox."
@@ -5540,6 +5551,12 @@ msgstr "Listade versioner som behöver mänsklig granskning ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Olistade versioner som behöver mänsklig granskning ({0})"
 
+msgid "Listed versions ({0})"
+msgstr "Listade versioner ({0})"
+
+msgid "Unlisted versions ({0})"
+msgstr "Olistade versioner ({0})"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Detta kommer godkänna, signera och publicera denna version. Kommentarerna kommer att skickas till utvecklaren."
 
@@ -5561,8 +5578,8 @@ msgstr "Den senaste offentliga versionen av detta tillägg godkändes automatisk
 msgid "Reject Multiple Versions"
 msgstr "Avvisa flera versioner"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Detta kommer att avvisa de valda publika versionerna. Kommentarerna kommer att skickas till utvecklaren."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
+msgstr "Detta kommer att avvisa de valda versionerna. Kommentarerna kommer att skickas till utvecklaren."
 
 msgid "Block Multiple Versions"
 msgstr "Blockera dubbla versioner"
@@ -5609,13 +5626,18 @@ msgstr "Granskningslogg"
 msgid "Add-on Review Guide"
 msgstr "Granskningsriktlinjer för tillägg"
 
-msgid "Flagged By Scanners"
-msgstr "Flaggad av skannrar"
+msgid "Security Scanners"
+msgstr "Säkerhetsskannrar"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] "Flaggad av skannrar ({0})"
 msgstr[1] "Flaggad av skannrar ({0})"
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Flaggad för mänsklig granskning ({0})"
+msgstr[1] "Flaggas för mänsklig granskning ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatiskt godkända tillägg"
@@ -5709,9 +5731,6 @@ msgstr "Tilläggs-ID"
 
 msgid "Internal AMO ID"
 msgstr "Internt AMO-ID"
-
-msgid "Works with"
-msgstr "Fungerar med"
 
 msgid "Visibility"
 msgstr "Synlighet"
@@ -5858,6 +5877,9 @@ msgstr "Månadsprestanda"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "Total poängfördelning efter typ"
+
+msgid "Add-ons"
+msgstr "Tillägg"
 
 msgid "Total"
 msgstr "Totalt"
@@ -6579,21 +6601,9 @@ msgstr "Återgå till hemsidan för tillägget {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Tillägg"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Tillägg"
-
-msgid "My Account"
-msgstr "Mitt konto"
-
-msgid "Welcome, {0}"
-msgstr "Välkommen, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registrera</a> eller <a href=\"%(login)s\">Logga in</a>"
-
-msgid "Android Add-ons"
-msgstr "Android tillägg"
 
 msgid "Required fields"
 msgstr "Obligatoriska fält"

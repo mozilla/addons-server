@@ -545,15 +545,11 @@ function initVersions() {
                 is_current = el.data('is-current') === 1,
                 can_be_disabled =  el.data('can-be-disabled') === 1,
                 header = $('h3', this),
-                files = $('#del-files', this),
-                reviews = $('#del-reviews', this);
+                files = $('#del-files', this);
             header.text(format(header.attr('data-tmpl'), version));
             files.text(format(ngettext('{files} file', '{files} files',
                                        version.files),
                               version));
-            reviews.text(format(ngettext('{reviews} user review', '{reviews} user reviews',
-                                         version.reviews),
-                                version));
             $('.version_id', this).val(version.id);
             $('.current-version-warning', this).toggle(is_current);
             // If the version is recommended and current, show the warning and

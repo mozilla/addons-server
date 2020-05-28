@@ -20,7 +20,7 @@
     "less": "3.11.1",
     "source-map": "0.7.3",
     "timeago": "1.6.7",
-    "uglify-js": "3.9.1",
+    "uglify-js": "3.9.3",
     "underscore": "1.10.2"
   },
   "devDependencies": {}

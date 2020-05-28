@@ -1,5 +1,6 @@
 import functools
 
+from django import http
 from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
@@ -58,7 +59,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     inlines = (GroupUserInline, UserRestrictionHistoryInline)
     show_full_result_count = False  # Turn off to avoid the query.
 
-    readonly_fields = ('id', 'picture_img', 'banned', 'deleted', 'is_public',
+    readonly_fields = ('id', 'created', 'picture_img',
+                       'banned', 'deleted', 'is_public',
                        'last_login', 'last_login_ip', 'known_ip_adresses',
                        'last_known_activity_time', 'ratings_created',
                        'collections_created', 'addons_created', 'activity',
@@ -67,7 +69,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                        'has_active_api_key')
     fieldsets = (
         (None, {
-            'fields': ('id', 'email', 'fxa_id', 'username', 'display_name',
+            'fields': ('id', 'created', 'email', 'fxa_id', 'username',
+                       'display_name',
                        'reviewer_name', 'biography', 'homepage', 'location',
                        'occupation', 'picture_img'),
         }),
@@ -128,6 +131,19 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context['has_users_edit_permission'] = acl.action_allowed(
             request, amo.permissions.USERS_EDIT)
+
+        lookup_field = UserProfile.get_lookup_field(object_id)
+        if lookup_field != 'pk':
+            try:
+                if lookup_field == 'email':
+                    user = UserProfile.objects.get(email=object_id)
+            except UserProfile.DoesNotExist:
+                raise http.Http404
+            url = request.path.replace(object_id, str(user.id), 1)
+            if request.GET:
+                url += '?' + request.GET.urlencode()
+            return http.HttpResponsePermanentRedirect(url)
+
         return super(UserAdmin, self).change_view(
             request, object_id, form_url, extra_context=extra_context,
         )

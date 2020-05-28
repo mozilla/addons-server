@@ -18,8 +18,10 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase, addon_factory, create_default_webext_appversion,
-    developer_factory, get_random_ip, reverse_ns)
+    developer_factory, get_random_ip, reverse_ns, user_factory)
+from olympia.amo.urlresolvers import reverse
 from olympia.api.tests.utils import APIKeyAuthTestMixin
+from olympia.blocklist.models import Block
 from olympia.files.models import File, FileUpload
 from olympia.signing.views import VersionView
 from olympia.users.models import (
@@ -64,18 +66,18 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
         response = self.request('PUT', self.url(self.guid, version), version)
         assert response.status_code in [201, 202]
 
-    def xpi_filepath(self, addon, version):
+    def xpi_filepath(self, guid, version):
         return os.path.join(
             'src', 'olympia', 'signing', 'fixtures',
-            '{addon}-{version}.xpi'.format(addon=addon, version=version))
+            '{addon}-{version}.xpi'.format(addon=guid, version=version))
 
     def request(self, method='PUT', url=None, version='3.0',
-                addon='@upload-version', filename=None, channel=None,
+                guid='@upload-version', filename=None, channel=None,
                 extra_kwargs=None):
         if filename is None:
-            filename = self.xpi_filepath(addon, version)
+            filename = self.xpi_filepath(guid, version)
         if url is None:
-            url = self.url(addon, version)
+            url = self.url(guid, version)
 
         with open(filename, 'rb') as upload:
             data = {'upload': upload}
@@ -105,7 +107,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
-        response = self.request('PUT', addon=guid, version='1.0')
+        response = self.request('PUT', guid=guid, version='1.0')
         assert response.status_code == 201
         assert qs.exists()
         addon = qs.get()
@@ -122,7 +124,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         guid = '@create-webextension'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
-        response = self.request('PUT', addon=guid, version='1.0')
+        response = self.request('PUT', guid=guid, version='1.0')
         assert response.status_code == 201
         assert qs.exists()
         addon = qs.get()
@@ -232,7 +234,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert not qs.exists()
         response = self.request(
             'PUT',
-            addon=guid, version='0.0.1',
+            guid=guid, version='0.0.1',
             filename='src/olympia/files/fixtures/files/'
                      'experiment_inside_webextension.xpi')
         assert response.status_code == 201
@@ -251,7 +253,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert not qs.exists()
         response = self.request(
             'PUT',
-            addon=guid, version='0.1',
+            guid=guid, version='0.1',
             filename='src/olympia/files/fixtures/files/'
                      'experiment_inside_webextension.xpi')
         assert response.status_code == 400
@@ -265,7 +267,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert not qs.exists()
         response = self.request(
             'PUT',
-            addon=guid, version='0.0.1',
+            guid=guid, version='0.0.1',
             filename='src/olympia/files/fixtures/files/'
                      'webextension_signed_already.xpi')
         assert response.status_code == 201
@@ -286,7 +288,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert not qs.exists()
         response = self.request(
             'PUT',
-            addon=guid, version='0.0.1',
+            guid=guid, version='0.0.1',
             filename='src/olympia/files/fixtures/files/'
                      'webextension_signed_already.xpi')
         assert response.status_code == 400
@@ -300,7 +302,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert not qs.exists()
         response = self.request(
             'PUT',
-            addon=guid, version='0.0.1',
+            guid=guid, version='0.0.1',
             filename='src/olympia/files/fixtures/files/'
                      'mozilla_guid.xpi')
         assert response.status_code == 201
@@ -320,7 +322,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert not qs.exists()
         response = self.request(
             'PUT',
-            addon=guid, version='0.1',
+            guid=guid, version='0.1',
             filename='src/olympia/files/fixtures/files/'
                      'mozilla_guid.xpi')
         assert response.status_code == 400
@@ -341,7 +343,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             user=self.user)
         response = self.request(
             'PUT',
-            addon=guid, version='0.0.1',
+            guid=guid, version='0.0.1',
             filename='src/olympia/files/fixtures/files/'
                      'mozilla_guid.xpi')
         assert response.status_code == 202
@@ -358,7 +360,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'PUT',
             self.url(self.guid, '1.0'),
-            addon='@create-webextension-invalid-version',
+            guid='@create-webextension-invalid-version',
             version='1.0')
         assert response.status_code == 400
 
@@ -407,7 +409,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
-        response = self.request('PUT', addon=guid, version='1.0',
+        response = self.request('PUT', guid=guid, version='1.0',
                                 channel='listed')
         assert response.status_code == 201
         addon = qs.get()
@@ -513,7 +515,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 verb,
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': '63.245.208.194'})
             assert response.status_code == 429, response.content
@@ -524,7 +526,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 verb,
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': '63.245.208.194'})
             assert response.status_code == expected_status
@@ -555,7 +557,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 verb,
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': '63.245.208.194'})
             assert response.status_code == 429
@@ -566,7 +568,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 verb,
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': '63.245.208.194'})
             assert response.status_code == 429
@@ -577,7 +579,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 verb,
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': '63.245.208.194'})
             assert response.status_code == expected_status
@@ -599,7 +601,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 verb,
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': get_random_ip()})
             assert response.status_code == 429
@@ -610,7 +612,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 verb,
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': get_random_ip()})
             assert response.status_code == expected_status
@@ -633,7 +635,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 verb,
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': get_random_ip()})
             assert response.status_code == 429
@@ -644,7 +646,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 verb,
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': get_random_ip()})
             assert response.status_code == 429
@@ -655,7 +657,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 verb,
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': get_random_ip()})
             assert response.status_code == expected_status
@@ -716,10 +718,74 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             response = self.request(
                 'PUT',
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': '1.2.3.4'})
             assert response.status_code == 202
+
+    def test_version_blocked(self):
+        block = Block.objects.create(
+            guid=self.guid, max_version='3.0', updated_by=user_factory())
+        response = self.request('PUT', self.url(self.guid, '3.0'))
+        assert response.status_code == 400
+        block_url = absolutify(reverse('blocklist.block', args=(self.guid,)))
+        assert response.data['error'] == (
+            f'Version 3.0 matches {block_url} for this add-on. '
+            'You can contact amo-admins@mozilla.com for additional '
+            'information.')
+        # it's okay if it's outside of the blocked range though
+        block.update(max_version='2.9')
+        response = self.request('PUT', self.url(self.guid, '3.0'))
+        assert response.status_code == 202
+
+    def test_addon_blocked(self):
+        guid = '@create-webextension'
+        block = Block.objects.create(
+            guid=guid, max_version='3.0', updated_by=user_factory())
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+
+        # Testing when a new addon guid is specified in the url
+        response = self.request('PUT', guid=guid, version='1.0')
+        assert response.status_code == 400
+        block_url = absolutify(reverse('blocklist.block', args=(guid,)))
+        error_msg = (
+            f'Version 1.0 matches {block_url} for this add-on. '
+            'You can contact amo-admins@mozilla.com for additional '
+            'information.')
+        assert response.data['error'] == error_msg
+        assert not qs.exists()
+
+        # it's okay if it's outside of the blocked range though
+        block.update(min_version='2.0')
+        response = self.request('PUT', guid=guid, version='1.0')
+        assert response.status_code == 201
+
+    def test_addon_blocked_guid_in_xpi(self):
+        guid = '@webextension-with-guid'
+        block = Block.objects.create(
+            guid=guid, max_version='3.0', updated_by=user_factory())
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        filename = self.xpi_filepath('@create-webextension-with-guid', '1.0')
+        url = reverse_ns('signing.version')
+
+        response = self.request(
+            'POST', guid=guid, version='1.0', filename=filename, url=url)
+        assert response.status_code == 400
+        block_url = absolutify(reverse('blocklist.block', args=(guid,)))
+        error_msg = (
+            f'Version 1.0 matches {block_url} for this add-on. '
+            'You can contact amo-admins@mozilla.com for additional '
+            'information.')
+        assert response.data['error'] == error_msg
+        assert not qs.exists()
+
+        # it's okay if it's outside of the blocked range though
+        block.update(min_version='2.0')
+        response = self.request(
+            'POST', guid=guid, version='1.0', filename=filename, url=url)
+        assert response.status_code == 201
 
 
 class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
@@ -727,7 +793,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),
-            addon='@create-webextension',
+            guid='@create-webextension',
             version='1.0',
             extra_kwargs={'REMOTE_ADDR': '127.0.3.1'})
         assert response.status_code == 201
@@ -760,7 +826,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),
-            addon='@create-webextension',
+            guid='@create-webextension',
             version='1.0')
         assert response.status_code == 403
         assert json.loads(response.content.decode('utf-8')) == {
@@ -772,7 +838,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),
-            addon='@create-webextension',
+            guid='@create-webextension',
             version='1.0')
         assert response.status_code == 403
         assert json.loads(response.content.decode('utf-8')) == {
@@ -800,7 +866,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),
-            addon='@create-webextension',
+            guid='@create-webextension',
             version='1.0')
         assert response.status_code == 403
         assert json.loads(response.content.decode('utf-8')) == {
@@ -829,7 +895,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),
-            addon='@create-webextension',
+            guid='@create-webextension',
             version='1.0')
         assert response.status_code == 403
         assert json.loads(response.content.decode('utf-8')) == {
@@ -847,7 +913,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'PUT',  # PUT, not POST, since we're specifying a guid in the URL.
             filename=filename,
-            addon=guid,  # Will end up in the url since we're not passing one.
+            guid=guid,  # Will end up in the url since we're not passing one.
             version='1.0')
         assert response.status_code == 201
 
@@ -872,7 +938,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'PUT',  # PUT, not POST, since we're specifying a guid in the URL.
             filename=filename,
-            addon=guid,  # Will end up in the url since we're not passing one.
+            guid=guid,  # Will end up in the url since we're not passing one.
             version='1.0')
         assert response.status_code == 400
         assert response.data['error'] == 'Invalid Add-on ID in URL or package'
@@ -882,7 +948,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),
-            addon='@create-webextension-with-guid',
+            guid='@create-webextension-with-guid',
             version='1.0')
 
         guid = response.data['guid']
@@ -897,14 +963,14 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),
-            addon='@create-webextension-with-guid',
+            guid='@create-webextension-with-guid',
             version='1.0')
         assert response.status_code == 201
 
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),
-            addon='@create-webextension-with-guid',
+            guid='@create-webextension-with-guid',
             version='1.0')
         assert response.status_code == 400
         assert response.data['error'] == 'Duplicate add-on ID found.'
@@ -915,7 +981,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),
-            addon='@create-webextension-with-guid-and-version',
+            guid='@create-webextension-with-guid-and-version',
             version='99.0')
         assert response.status_code == 201
         assert (
@@ -930,7 +996,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'POST',
             url=reverse_ns('signing.version'),
-            addon='@notify-link-clicks-i18n',
+            guid='@notify-link-clicks-i18n',
             version='1.0',
             filename=fname)
         assert response.status_code == 201
@@ -1001,7 +1067,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
             # But unlisted should be ignored
             response = self.request(
                 'PUT', self.url(self.guid, '1.0'), version='1.0',
-                addon='@create-webextension', channel='unlisted')
+                guid='@create-webextension', channel='unlisted')
             assert response.status_code == 202, response.data['error']
             assert not addon.tags.filter(tag_text='dynamic theme').exists()
             addon.versions.latest().delete(hard=True)
@@ -1009,7 +1075,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
             # Only listed version get the tag
             response = self.request(
                 'PUT', self.url(self.guid, '1.0'), version='1.0',
-                addon='@create-webextension', channel='listed')
+                guid='@create-webextension', channel='listed')
             assert response.status_code == 202, response.data['error']
             assert addon.tags.filter(tag_text='dynamic theme').exists()
 
@@ -1035,7 +1101,7 @@ class TestTestUploadVersionWebextensionTransactions(
             response = self.request(
                 'POST',
                 url=url,
-                addon='@create-webextension',
+                guid='@create-webextension',
                 version='1.0',
                 extra_kwargs={'REMOTE_ADDR': '1.2.3.4'})
             assert response.status_code == 429, response.content
@@ -1049,7 +1115,7 @@ class TestTestUploadVersionWebextensionTransactions(
         response = self.request(
             'POST',
             url=url,
-            addon='@create-webextension',
+            guid='@create-webextension',
             version='1.0',
             extra_kwargs={'REMOTE_ADDR': '1.2.3.4'})
         assert response.status_code == 403, response.content
@@ -1129,7 +1195,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         self.user = UserProfile.objects.create(
             read_dev_agreement=datetime.now(), email='foo@bar.com')
         self.api_key = self.create_api_key(self.user, 'bar')
-        response = self.request('PUT', addon='@create-version', version='1.0')
+        response = self.request('PUT', guid='@create-version', version='1.0')
         assert response.status_code == 201
         upload = FileUpload.objects.latest()
 

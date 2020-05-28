@@ -160,11 +160,17 @@ This endpoint allows you to browse through the contents of an Add-on version.
 
     .. _reviewers-versions-browse-detail:
 
-    :param file: The specific file in the XPI to retrieve. Defaults to manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines.
+    :param string file: The specific file in the XPI to retrieve. Defaults to manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines.
+    :param boolean file_only: Indicates that the API should only return data for the requested file, and not version data. If this is ``true`` then the only property returned of those listed below is the ``file`` property.
     :>json string validation_url_json: The absolute url to the addons-linter validation report, rendered as JSON.
     :>json string validation_url: The absolute url to the addons-linter validation report, rendered as HTML.
     :>json boolean has_been_validated: ``True`` if the version has been validated through addons-linter.
     :>json object addon: A simplified :ref:`add-on <addon-detail-object>` object that contains only a few properties: ``id``, ``name``, ``icon_url`` and ``slug``.
+    :>json array file_entries[]: The complete file-tree of the extracted XPI.
+    :>json int file_entries[].depth: Level of folder-tree depth, starting with 0.
+    :>json string file_entries[].filename: The filename of the file.
+    :>json string file_entries[].path: The absolute path (from the root of the XPI) of the file.
+    :>json string file_entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json object file: The requested file.
     :>json int file.id: The id of the submitted file (i.e., the xpi file).
     :>json string file.content: Raw content of the requested file.
@@ -176,11 +182,6 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string file.filename: The filename of the file.
     :>json string file.mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json boolean uses_unknown_minified_code: Indicates that the selected file could be using minified code.
-    :>json array file.entries[]: The complete file-tree of the extracted XPI.
-    :>json int file.entries[].depth: Level of folder-tree depth, starting with 0.
-    :>json string file.entries[].filename: The filename of the file.
-    :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
-    :>json string file.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
 
 
 -------
@@ -206,12 +207,12 @@ This endpoint allows you to compare two Add-on versions with each other.
 
     Properties specific to this endpoint:
 
-    :>json array file.entries[]: The complete file-tree of the extracted XPI.
+    :>json array file_entries[]: The complete file-tree of the extracted XPI.
     :>json string file.entries[].status: Status of this file, see https://git-scm.com/docs/git-status#_short_format
-    :>json int|null file.entries[].depth: Level of folder-tree depth, starting with 0.
-    :>json string file.entries[].filename: The filename of the file.
-    :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
-    :>json string|null file.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
+    :>json int file_entries[].depth: Level of folder-tree depth, starting with 0.
+    :>json string file_entries[].filename: The filename of the file.
+    :>json string file_entries[].path: The absolute path (from the root of the XPI) of the file.
+    :>json string file_entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json object|null diff: See the following output with inline comments for a complete description.
     :>json object base_file: The file attached to the base version you're comparing against.
     :>json object base_file.id: The id of the base file.

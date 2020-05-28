@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 import django
 from django import test
 from django.conf import settings
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
@@ -24,8 +25,9 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser, get_random_slug
 from olympia.amo.tests import (
     APITestClient, TestCase, WithDynamicEndpointsAndTransactions, check_links,
-    reverse_ns)
+    reverse_ns, user_factory)
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.views import handler500
 from olympia.users.models import UserProfile
 from olympia.zadmin.models import set_config
 
@@ -92,6 +94,47 @@ class Test404(TestCase):
         res = self.client.get('/en-US/firefox/xxxxxxx', X_IS_MOBILE_AGENTS='0')
         assert res.status_code == 404
         self.assertTemplateUsed(res, 'amo/404.html')
+
+
+class Test500(TestCase):
+    def test_500_logged_in(self):
+        self.client.login(email=user_factory().email)
+        response = self.client.get('/services/500')
+        assert response.status_code == 500
+        self.assertTemplateUsed(response, 'amo/500.html')
+        content = response.content.decode('utf-8')
+        assert 'data-anonymous="false"' in content
+        assert 'Log in' not in content
+
+    def test_500_logged_out(self):
+        response = self.client.get('/services/500')
+        assert response.status_code == 500
+        self.assertTemplateUsed(response, 'amo/500.html')
+        content = response.content.decode('utf-8')
+        assert 'data-anonymous="true"' in content
+        assert 'Log in' in content
+
+    def test_500_api(self):
+        # Simulate an early API 500 not caught by DRF
+        from olympia.api.middleware import IdentifyAPIRequestMiddleware
+        request = RequestFactory().get('/api/v4/addons/addon/lol/')
+        IdentifyAPIRequestMiddleware().process_exception(request, Exception())
+        response = handler500(request)
+        assert response.status_code == 500
+        assert response['Content-Type'] == 'application/json'
+        data = json.loads(response.content)
+        assert data['detail'] == 'Internal Server Error'
+
+    @override_settings(MIDDLEWARE=())
+    def test_500_early_exception_no_middlewares(self):
+        # Simulate a early 500 causing middlewares breakage - we should still
+        # be able to display the 500.
+        response = self.client.get('/services/500')
+        assert response.status_code == 500
+        self.assertTemplateUsed(response, 'amo/500.html')
+        content = response.content.decode('utf-8')
+        assert 'data-anonymous="true"' in content
+        assert 'Log in' not in content  # No session, can't show login process.
 
 
 class TestCommon(TestCase):
@@ -252,7 +295,6 @@ class TestOtherStuff(TestCase):
             assert text == doc('.site-title').text()
 
         title_eq('/firefox/', 'Firefox', 'Add-ons')
-        title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
     @patch('olympia.accounts.utils.default_fxa_login_url',
            lambda request: 'https://login.com')

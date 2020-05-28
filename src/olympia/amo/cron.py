@@ -30,7 +30,7 @@ def gc(test_result=True):
     def days_ago(days):
         return datetime.today() - timedelta(days=days)
 
-    log.debug('Collecting data to delete')
+    log.info('Collecting data to delete')
 
     logs = (ActivityLog.objects.filter(created__lt=days_ago(90))
             .exclude(action__in=amo.LOG_KEEP).values_list('id', flat=True))
@@ -60,8 +60,8 @@ def gc(test_result=True):
     stale_uploads = FileUpload.objects.filter(
         created__lte=a_week_ago).order_by('id')
     for file_upload in stale_uploads:
-        log.debug(u'[FileUpload:{uuid}] Removing file: {path}'
-                  .format(uuid=file_upload.uuid, path=file_upload.path))
+        log.info(u'[FileUpload:{uuid}] Removing file: {path}'
+                 .format(uuid=file_upload.uuid, path=file_upload.path))
         if file_upload.path:
             try:
                 storage.delete(file_upload.path)
@@ -77,7 +77,7 @@ def category_totals():
     """
     Update category counts for sidebar navigation.
     """
-    log.debug('Starting category counts update...')
+    log.info('Starting category counts update...')
     addon_statuses = ",".join(['%s'] * len(VALID_ADDON_STATUSES))
     file_statuses = ",".join(['%s'] * len(VALID_FILE_STATUSES))
 

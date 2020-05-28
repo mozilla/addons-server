@@ -2,10 +2,34 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
+import waffle
+
 from olympia.addons.models import Addon
 
 from .models import Block, BlocklistSubmission
 from .utils import splitlines
+
+
+def _get_matching_guids_and_errors(guids):
+    error_list = []
+    matching = dict(Block.objects.filter(
+        guid__in=guids).values_list('guid', 'legacy_id'))
+    for guid in guids:
+        if BlocklistSubmission.get_submissions_from_guid(guid):
+            error_list.append(ValidationError(
+                _('GUID %(guid)s is in a pending Submission'),
+                params={'guid': guid}))
+    legacy_submit_off = not waffle.switch_is_active(
+        'blocklist_legacy_submit')
+    if legacy_submit_off:
+        v2_imported = (
+            guid for guid, legacy_id in matching.items() if legacy_id != '')
+        for guid in v2_imported:
+            error_list.append(ValidationError(
+                _('The block for GUID %(guid)s is readonly '
+                  '- it must be edited via the legacy blocklist collection'),
+                params={'guid': guid}))
+    return matching.keys(), error_list
 
 
 class MultiGUIDInputForm(forms.Form):
@@ -20,23 +44,17 @@ class MultiDeleteForm(MultiGUIDInputForm):
 
     def clean(self):
         guids = splitlines(self.cleaned_data.get('guids'))
-        errors = []
-        if len(guids) >= 1:
-            qs = Block.objects.filter(guid__in=guids)
-            matching_guids = list(qs.values_list('guid', flat=True))
-            missing_guids = [
-                guid for guid in guids if guid not in matching_guids]
-            if missing_guids:
-                errors.append(
-                    [ValidationError(
-                        _('Block with GUID %(guid)s not found'),
-                        params={'guid': guid})
-                     for guid in missing_guids])
-            for guid in matching_guids:
-                if BlocklistSubmission.get_submissions_from_guid(guid):
-                    errors.append(ValidationError(
-                        _('GUID %(guid)s is in a pending Submission'),
-                        params={'guid': guid}))
+        matching, errors = _get_matching_guids_and_errors(guids)
+
+        missing_guids = [
+            guid for guid in guids if guid not in matching]
+        if missing_guids:
+            errors.append([
+                ValidationError(
+                    _('Block with GUID %(guid)s not found'),
+                    params={'guid': guid})
+                for guid in missing_guids])
+
         if errors:
             raise ValidationError(errors)
 
@@ -45,7 +63,8 @@ class MultiAddForm(MultiGUIDInputForm):
 
     def clean(self):
         guids = splitlines(self.cleaned_data.get('guids'))
-        errors = []
+        matching, errors = _get_matching_guids_and_errors(guids)
+
         if len(guids) == 1:
             guid = guids[0]
             blk = self.existing_block = Block.objects.filter(guid=guid).first()
@@ -53,11 +72,7 @@ class MultiAddForm(MultiGUIDInputForm):
                 errors.append(ValidationError(
                     _('Addon with GUID %(guid)s does not exist'),
                     params={'guid': guid}))
-        for guid in guids:
-            if BlocklistSubmission.get_submissions_from_guid(guid):
-                errors.append(ValidationError(
-                    _('GUID %(guid)s is already in a pending Submission'),
-                    params={'guid': guid}))
+
         if errors:
             raise ValidationError(errors)
 
@@ -97,6 +112,7 @@ class BlocklistSubmissionForm(forms.ModelForm):
         is_addchange_submission = (
             data.get('action', BlocklistSubmission.ACTION_ADDCHANGE) ==
             BlocklistSubmission.ACTION_ADDCHANGE)
+        blocks, errors = _get_matching_guids_and_errors(guids)
         if len(guids) > 1 and is_addchange_submission:
             blocks_have_changed = self._check_if_existing_blocks_changed(
                 guids,
@@ -105,6 +121,8 @@ class BlocklistSubmissionForm(forms.ModelForm):
                 data.get('existing_min_version'),
                 data.get('existing_max_version'))
             if blocks_have_changed:
-                raise ValidationError(
+                errors.append(ValidationError(
                     _('Blocks to be updated are different because Min or '
-                      'Max version has changed.'))
+                      'Max version has changed.')))
+        if errors:
+            raise ValidationError(errors)

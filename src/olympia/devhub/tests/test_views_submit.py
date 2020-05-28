@@ -26,14 +26,14 @@ from olympia.addons.models import (
     Addon, AddonCategory, AddonReviewerFlags, Category)
 from olympia.amo.tests import (
     TestCase, addon_factory, create_default_webext_appversion, formset,
-    initial, version_factory)
+    initial, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
+from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
-from olympia.lib.git import AddonGitRepository
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
 from olympia.versions.models import License, VersionPreview
 from olympia.zadmin.models import Config, set_config
@@ -495,6 +495,23 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert 'new_addon_form' not in response.context
         assert get_addon_count('Beastify') == 2
 
+    def test_new_addon_is_already_blocked(self):
+        self.upload = self.get_upload('webextension.xpi')
+        guid = '@webextension-guid'
+        block = Block.objects.create(
+            guid=guid, updated_by=user_factory())
+
+        response = self.post(expect_errors=True)
+        assert pq(response.content)('ul.errorlist').text() == (
+            'Version 0.0.1 matches a blocklist entry for this add-on. '
+            'You can contact AMO Admins for additional information.')
+        assert pq(response.content)('ul.errorlist a').attr('href') == (
+            reverse('blocklist.block', args=[guid]))
+
+        # Though we allow if the version is outside of the specified range
+        block.update(min_version='0.0.2')
+        response = self.post(expect_errors=False)
+
     def test_success_listed(self):
         assert Addon.objects.count() == 0
         response = self.post()
@@ -736,6 +753,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
+        assert str(self.get_version().source).endswith('.zip')
         assert self.addon.needs_admin_code_review
         mode = (
             '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
@@ -747,6 +765,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
+        assert str(self.get_version().source).endswith('.tar.gz')
         assert self.addon.needs_admin_code_review
         mode = (
             '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
@@ -759,6 +778,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
+        assert str(self.get_version().source).endswith('.tgz')
         assert self.addon.needs_admin_code_review
         mode = (
             '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
@@ -771,6 +791,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
+        assert str(self.get_version().source).endswith('.tar.bz2')
         assert self.addon.needs_admin_code_review
         mode = (
             '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
@@ -834,8 +855,8 @@ class TestAddonSubmitSource(TestSubmitBase):
             expect_errors=True)
         assert response.context['form'].errors == {
             'source': [
-                u'Unsupported file type, please upload an archive file '
-                u'(.zip, .tar.gz, .tar.bz2).'],
+                'Unsupported file type, please upload an archive file '
+                '(.zip, .tar.gz, .tgz, .tar.bz2).'],
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -920,41 +941,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon.update(type=amo.ADDON_DICT)
         response = self.client.get(self.url)
         self.assert3xx(response, self.next_url)
-
-    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)
-    @override_switch('enable-uploads-commit-to-git-storage', active=False)
-    def test_submit_source_doesnt_commit_to_git_by_default(self):
-        response = self.post(
-            has_source=True, source=self.generate_source_zip())
-        self.assert3xx(response, self.next_url)
-        self.addon = self.addon.reload()
-        assert self.get_version().source
-
-        repo = AddonGitRepository(self.addon.pk, package_type='source')
-        assert not os.path.exists(repo.git_repository_path)
-
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_submit_source_commits_to_git(self):
-        response = self.post(
-            has_source=True, source=self.generate_source_zip())
-        self.assert3xx(response, self.next_url)
-        self.addon = self.addon.reload()
-        assert self.get_version().source
-
-        repo = AddonGitRepository(self.addon.pk, package_type='source')
-        assert os.path.exists(repo.git_repository_path)
-
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    @mock.patch('olympia.devhub.views.extract_version_source_to_git.delay')
-    def test_submit_source_commits_to_git_asnychronously(self, extract_mock):
-        response = self.post(
-            has_source=True, source=self.generate_source_zip())
-        self.assert3xx(response, self.next_url)
-        self.addon = self.addon.reload()
-        assert self.get_version().source
-        extract_mock.assert_called_once_with(
-            version_id=self.addon.current_version.pk,
-            author_id=self.user.pk)
 
 
 class DetailsPageMixin(object):
@@ -1982,6 +1968,20 @@ class VersionSubmitUploadMixin(object):
         assert pq(response.content)('ul.errorlist a').attr('href') == (
             reverse('devhub.submit.version.details', args=[
                 self.addon.slug, self.version.pk]))
+
+    def test_addon_version_is_blocked(self):
+        block = Block.objects.create(
+            guid=self.addon.guid, updated_by=user_factory())
+        response = self.post(expected_status=200)
+        assert pq(response.content)('ul.errorlist').text() == (
+            'Version 0.1 matches a blocklist entry for this add-on. '
+            'You can contact AMO Admins for additional information.')
+        assert pq(response.content)('ul.errorlist a').attr('href') == (
+            reverse('blocklist.block', args=[self.addon.guid]))
+
+        # Though we allow if the version is outside of the specified range
+        block.update(min_version='0.2')
+        response = self.post(expected_status=302), response.content
 
     def test_distribution_link(self):
         response = self.client.get(self.url)

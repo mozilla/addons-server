@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-03-27 13:18+0000\n"
-"Last-Translator: Jasmine <bangerjasmine9@gmail.com>\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-18 17:48+0000\n"
+"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -125,13 +125,11 @@ msgstr "ਐਡ-ਆਨ ਦੇ ਸਿਰਫ ਨਵੀਨਤਮ ਵਰਜਨ ਹੀ
 msgid "Ratings"
 msgstr "ਦਰਜਾ"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "ਪੜਤਾਲ ਸੰਦ"
+msgstr "ਪੜਤਾਲ ਸੰਦ (ਸੂਚੀਬੱਧ)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "ਪੜਤਾਲ ਸੰਦ"
+msgstr "ਪੜਤਾਲ ਸੰਦ (ਨਾ-ਸੂਚੀਬੱਧ)"
 
 #, fuzzy
 msgid "Reviewer links"
@@ -362,9 +360,6 @@ msgstr "<b>%(count)s</b>ਵਿੱਚ<b>%(begin)s</b>&ndash;<b>%(end)s</b>ਵਿ�
 msgid "Add-ons for {0}"
 msgstr "{0} ਲਈ ਐਡ-ਆਨ"
 
-msgid "Add-ons"
-msgstr "ਐਡ-ਆਨ"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} ਪਹਿਲਾਂ"
@@ -471,50 +466,46 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
+msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is in a pending Submission"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr ""
+
+#, python-format
+msgid "Block with GUID %(guid)s not found"
 msgstr ""
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
-#, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
-
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "ਗਲਤ ਵਰਜ਼ਨ ਹੱਦ।"
+msgstr "ਗਲਤ ਵਰਜ਼ਨ"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
+msgstr "ਸੂਚੀਬੱਧ ਦੀ ਪੜਤਾਲ ਕਰੋ"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "ਪੜਤਾਲ ਲਿਖਤ"
+msgstr "ਨਾ-ਸੂਚੀਬੱਧ ਦੀ ਪੜਤਾਲ"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "ਬਹੁ ਵਰਜਨ ਨੂੰ ਰੱਦ ਕਰੋ"
+msgstr "ਕਈ %(name)s ਨੂੰ ਹਟਾਓ"
 
-#, fuzzy
 msgid "Home"
 msgstr "ਮੁੱਖ ਸਫ਼ਾ"
 
@@ -526,7 +517,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -541,13 +532,11 @@ msgstr "ਹਟਾਓ"
 msgid "Update"
 msgstr "ਅੱਪਡੇਟ"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "ਮੇਰੇ ਪ੍ਰਸਤਾਵਾਂ ਤੇ ਜਾਓ"
+msgstr "ਪੇਸ਼ਕਸ਼ ਰੱਦ ਕਰੋ"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "ਮੇਰੇ ਪ੍ਰਸਤਾਵਾਂ ਤੇ ਜਾਓ"
+msgstr "ਪੇਸ਼ਕਸ਼ ਮਨਜ਼ੂਰ ਕਰੋ"
 
 #, python-format
 msgid "Add %(name)s"
@@ -556,22 +545,19 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "ਵਰਜਨ ਭੇਜੋ"
+msgstr "ਭੇਜੋ"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
 msgstr "ਵਰਤੋਂਕਾਰ"
 
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
 msgstr "ਵਰਜ਼ਨ"
 
@@ -911,9 +897,8 @@ msgstr ""
 msgid "Block for {0} deleted from Blocklist."
 msgstr "ਵਰਜ਼ਨ {0} {addon} ਤੋਂ ਹਟਾਇਆ।"
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "ਐਡ-ਆਨ ਹਟਾਇਆ।"
+msgstr "ਪਾਬੰਦੀ ਹਟਾਈ"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -1557,7 +1542,6 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
 msgstr "ਨਵਾਂ"
 
@@ -1570,9 +1554,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "ਅਧੂਰਾ"
+msgstr "ਪੂਰਾ ਹੋਇਆ"
 
 msgid "Scheduled"
 msgstr ""
@@ -1717,6 +1700,12 @@ msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ �
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "ਤੁਸੀਂ ਹਾਲ ਹੀ ਵਿੱਚ ਬਹੁਤ ਸਾਰੇ ਅਪਲੋਡ ਕੀਤੇ ਹਨ। ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਸਮੇਂ ਬਾਅਦ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "ਵੰਨਗੀ {version} ਪਹਿਲਾਂ ਲੱਦੀ ਅਤੇ ਮਿਟਾਈ ਗਈ।"
@@ -3103,9 +3092,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "ਇਕਸਟੈਂਸ਼ਨ ਵਰਕਸ਼ਾਪ"
+msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਰਕਸ਼ਾਪ ਵੇਖੋ"
 
 msgid "Connect with us"
 msgstr ""
@@ -3113,9 +3101,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "ਵਿਕਾਸਕਾਰ"
+msgstr "ਡਿਵੈਲਪਰਾਂ ਲਈ"
 
 msgid "For end users"
 msgstr ""
@@ -3134,17 +3121,15 @@ msgstr "ਇਕਸਟੈਨਸ਼ਨ ਵਿਕਾਸ"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP ਐਡਰੈੱਸ"
+msgstr "ਈਮੇਲ ਐਡਰੈੱਸ"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "ਸਾਈਨ ਆਉਟ"
+msgstr "ਸਾਈਨ ਅੱਪ ਕਰੋ"
 
 msgid "Thanks!"
 msgstr ""
@@ -3155,9 +3140,8 @@ msgstr ""
 msgid "Resources"
 msgstr "ਸਰੋਤ"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "ਵੈਬ-ਐਕਸਟੈਂਟ: ਬਿਲਡ ਅਤੇ ਟੈਸਟ ਐਕਸਟੈਂਸ਼ਨ"
@@ -3245,9 +3229,8 @@ msgstr "ਕੋਈ ਤਸਵੀਰ ਨਹੀਂ"
 msgid "User Photo"
 msgstr "ਵਰਤੋਂਕਾਰ ਫੋਟੋ"
 
-#, fuzzy
 msgid "Profile"
-msgstr "ਮੇਰਾ ਬਿਉਰਾ"
+msgstr "ਪਰੋਫਾਇਲ"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
@@ -4689,7 +4672,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪ੍
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "ਵਿਲੱਖਣ ਦਿੱਖ ਤਬਦਾਲੇ ਕਰੋ—ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਵੈੱਬਪੇਜ ਨੂੰ ਛਾਪਣ ਲਈ ਇਸ਼ਤਿਹਾਰ ਜਾਂ ਬੇਲੋੜੀ ਸਮੱਗਰੀ ਹਟਾਓ।"
+msgstr "ਛਾਪਣ ਤੋਂ ਪਹਿਲਾਂ ਵੈੱਬ ਸਫ਼ੇ ਨੂੰ ਸੋਧੋ। ਕਿਸੇ ਵੀ ਵੈੱਬ, ਜਿਸ ਨੂੰ ਤੁਸੀਂ ਛਾਪਣਾ ਚਾਹੁੰਦੇ ਹੋ ਤੋਂ— ਇਸ਼ਤਿਹਾਰ ਜਾਂ ਬੇਲੋੜੀ ਸਮੱਗਰੀ ਹਟਾ ਕੇ—ਦਿੱਖ ਤਬਾਦਲੇ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4965,6 +4948,14 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5541,9 +5532,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} ਦਿਨ"
 msgstr[1] "{0} ਦਿਨਾਂ"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ਪਛਾਣ"
 
 msgid "Last Review"
 msgstr "ਆਖਰੀ ਸਮੀਖਿਆ"
@@ -5564,6 +5554,14 @@ msgstr "ਹੋਰ ਬਕਾਇਆ ਸਮੀਖਿਆ ({0})"
 #, fuzzy
 msgid "Unlisted versions needing human review ({0})"
 msgstr "ਹੋਰ ਬਕਾਇਆ ਸਮੀਖਿਆ ({0})"
+
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "ਤਾਜ਼ਾ ਵਰਜਨ"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "ਤਾਜ਼ਾ ਵਰਜਨ"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "ਇਹ ਇਸ ਸੰਸਕਰਣ ਦੀ ਮਨਜ਼ੂਰੀ, ਹਸਤਾਖਰ ਅਤੇ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੇਗਾ। ਟਿੱਪਣੀ ਵਿਕਾਸਕਾਰ ਨੂੰ ਭੇਜੀ ਜਾਵੇਗੀ।"
@@ -5586,7 +5584,8 @@ msgstr "ਇਸ ਐਡ-ਓਨ ਦਾ ਨਵੀਨਤਮ ਜਨਤਕ ਸੰਸਕ
 msgid "Reject Multiple Versions"
 msgstr "ਬਹੁ ਵਰਜਨ ਨੂੰ ਰੱਦ ਕਰੋ"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+#, fuzzy
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "ਇਹ ਚੁਣੇ ਗਏ ਜਨਤਕ ਸੰਸਕਰਣਾਂ ਨੂੰ ਅਸਵੀਕਾਰ ਕਰੇਗਾ। ਟਿੱਪਣੀ ਵਿਕਾਸਕਾਰ ਨੂੰ ਭੇਜੀ ਜਾਵੇਗੀ।"
 
 #, fuzzy
@@ -5637,13 +5636,20 @@ msgstr "ਰੀਵਿਊ ਲੌਗ"
 msgid "Add-on Review Guide"
 msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਗਾਈਡ"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "ਸੁਰੱਖਿਆ ਪਰਖ"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "ਰੇਟਿੰਗ ਸਮੀਖਿਆ ({0})"
+msgstr[1] "ਰੇਟਿੰਗ ਸਮੀਖਿਆ ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "ਆਟੋ-ਮਨਜ਼ੂਰ ਐਡਆਨ"
@@ -5713,13 +5719,11 @@ msgstr "ਸਮੀਖਿਆ ਤੇ ਕਾਰਵਾਈ ਸਫ਼ਲਤਾਪਰੂਵ
 msgid "Review lock limit reached"
 msgstr "ਸਮੀਖਿਆ ਲਾਕ ਸੀਮਾ ਤਕ ਪਹੁੰਚ ਗਈ"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: ਗੋਪਨੀਯਤਾ ਨੀਤੀ"
+msgstr "{addon} – ਪਰਦੇਦਾਰੀ ਨੀਤੀ"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5739,9 +5743,6 @@ msgstr "ਐਡ-ਆਨ ID"
 
 msgid "Internal AMO ID"
 msgstr "ਅੰਦਰੂਨੀ AMO ID"
-
-msgid "Works with"
-msgstr "ਨਾਲ ਕੰਮ ਕਰਦਾ"
 
 msgid "Visibility"
 msgstr "ਪ੍ਰਤੱਖਤਾ"
@@ -5791,9 +5792,8 @@ msgstr "ਤਸਵੀਰ ਗੈਲਰੀ"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "ਇੱਥੇ ਵੇਖਣ ਲਈ ਕੁੱਝ ਨਹੀਂ!  ਡਿਵੈਲਪਰ ਨੇ ਕੋਈ ਵੇਰਵੇ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤੇ।"
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "ਐਡ-ਆਨ ਵਰਜਨ ਦੁਆਰਾ"
+msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5889,6 +5889,9 @@ msgstr "ਮਹੀਨਾਵਾਰ ਕਾਰਗੁਜ਼ਾਰੀ"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "ਕਿਸਮ ਦੁਆਰਾ ਹਰ ਵੇਲੇ ਬਿੰਦੂ ਟੁੱਟਣਾ"
+
+msgid "Add-ons"
+msgstr "ਐਡ-ਆਨ"
 
 msgid "Total"
 msgstr "ਕੁੱਲ"
@@ -6109,9 +6112,8 @@ msgstr "ਢੰਗ:"
 msgid "Source:"
 msgstr "ਸਰੋਤ:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "ਸਰੋਤ:"
+msgstr "ਸਰੋਤ URL:"
 
 msgid "Dismiss this announcement"
 msgstr "ਇਹ ਐਲਾਨ ਖਾਰਜ ਕਰੋ"
@@ -6632,21 +6634,9 @@ msgstr "{0} ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> ਐਡ-ਆਨ"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> ਐਡ-ਆਨ"
-
-msgid "My Account"
-msgstr "ਮੇਰਾ ਖਾਤਾ"
-
-msgid "Welcome, {0}"
-msgstr "ਜੀ ਆਇਆ ਨੂੰ, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">ਦਰਜ ਹੋਵੇ</a> ਜਾਂ <a href=\"%(login)s\">ਲਾਗ ਇਨ</a>"
-
-msgid "Android Add-ons"
-msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
 
 msgid "Required fields"
 msgstr "ਲੁੜੀਂਦੀਆਂ ਥਾਵਾਂ"
@@ -6811,9 +6801,8 @@ msgstr "ਉਪਭੋਗੀ ਅਧਿਸੂਚਨਾਵਾਂ"
 msgid "Ban"
 msgstr "ਪਾਬੰਦੀ"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "ਵਰਜਨ ਹਟਾਓ"
+msgstr "ਸ਼ੈਸ਼ਨ ਮੁੜ-ਸੈੱਟ ਕਰੋ"
 
 msgid "Delete picture"
 msgstr "ਤਸਵੀਰ ਮਿਟਾਓ"

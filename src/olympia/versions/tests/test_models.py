@@ -28,7 +28,6 @@ from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
-from olympia.lib.git import AddonGitRepository
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
@@ -1113,8 +1112,11 @@ class TestExtensionVersionFromUploadTransactional(
         upload.save()
         return upload
 
+    @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @override_switch('enable-uploads-commit-to-git-storage', active=False)
-    def test_doesnt_commit_to_git_by_default(self):
+    def test_doesnt_create_git_extraction_entry_when_switch_is_off(
+        self, create_entry_mock
+    ):
         addon = addon_factory()
         user = user_factory(username='fancyuser')
         upload = self.get_upload('webextension_no_id.xpi', user=user)
@@ -1127,11 +1129,11 @@ class TestExtensionVersionFromUploadTransactional(
                 parsed_data=parsed_data)
         assert version.pk
 
-        repo = AddonGitRepository(addon.pk)
-        assert not os.path.exists(repo.git_repository_path)
+        assert not create_entry_mock.called
 
+    @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_commits_to_git_waffle_enabled(self):
+    def test_creates_git_extraction_entry(self, create_entry_mock):
         addon = addon_factory()
         user = user_factory(username='fancyuser')
         upload = self.get_upload('webextension_no_id.xpi', user=user)
@@ -1144,37 +1146,13 @@ class TestExtensionVersionFromUploadTransactional(
                 parsed_data=parsed_data)
         assert version.pk
 
-        repo = AddonGitRepository(addon.pk)
-        assert os.path.exists(repo.git_repository_path)
+        create_entry_mock.assert_called_once_with(version=version)
 
-    @mock.patch('olympia.versions.tasks.extract_version_to_git.delay')
-    @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_commits_to_git_async(self, extract_mock):
-        addon = addon_factory()
-        user = user_factory(username='fancyuser')
-        upload = self.get_upload('webextension_no_id.xpi', user=user)
-        parsed_data = parse_addon(upload, addon, user=user)
-
-        @transaction.atomic
-        def create_new_version():
-            return Version.from_upload(
-                upload, addon, [amo.FIREFOX.id],
-                amo.RELEASE_CHANNEL_LISTED,
-                parsed_data=parsed_data)
-
-        version = create_new_version()
-
-        assert version.pk
-
-        # Only once instead of twice
-        extract_mock.assert_called_once_with(
-            version_id=version.pk, author_id=upload.user.pk)
-
-    @mock.patch('olympia.versions.tasks.extract_version_to_git.delay')
+    @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @mock.patch('olympia.versions.models.utc_millesecs_from_epoch')
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
-    def test_commits_to_git_async_only_if_version_created(
-            self, utc_millisecs_mock, extract_mock):
+    def test_does_not_create_git_extraction_entry_when_version_is_not_created(
+            self, utc_millisecs_mock, create_entry_mock):
         utc_millisecs_mock.side_effect = ValueError
         addon = addon_factory()
         user = user_factory(username='fancyuser')
@@ -1190,7 +1168,7 @@ class TestExtensionVersionFromUploadTransactional(
                     amo.RELEASE_CHANNEL_LISTED,
                     parsed_data=parsed_data)
 
-        extract_mock.assert_not_called()
+        create_entry_mock.assert_not_called()
 
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
@@ -1246,6 +1224,30 @@ class TestStatusFromUpload(TestVersionFromUpload):
             parsed_data=self.dummy_parsed_data)
         assert File.objects.filter(version=self.current)[0].status == (
             amo.STATUS_DISABLED)
+
+
+class TestPermissionsFromUpload(TestVersionFromUpload):
+    filename = 'webextension_all_perms.xpi'
+
+    def setUp(self):
+        super(TestPermissionsFromUpload, self).setUp()
+        self.addon.update(guid="allPermissions1@mozilla.com")
+        self.current = self.addon.current_version
+
+    def test_permissions_includes_devtools(self):
+        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            [amo.FIREFOX.id],
+            amo.RELEASE_CHANNEL_UNLISTED,
+            parsed_data=parsed_data,
+        )
+        file = version.all_files[0]
+
+        permissions = file.webext_permissions_list
+
+        assert 'devtools' in permissions
 
 
 class TestStaticThemeFromUpload(UploadTest):

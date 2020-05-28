@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2019-07-11 17:15+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gu_IN\n"
@@ -126,20 +126,17 @@ msgstr "ઍડ-ઑન્સના ફક્ત નવીનતમ આવૃત�
 msgid "Ratings"
 msgstr "રેટિંગ્સ"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "સમીક્ષક સાધનો"
+msgstr "સમીક્ષક સાધનો (સૂચિબદ્ધ)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "સમીક્ષક સાધનો"
+msgstr "સમીક્ષક સાધનો (અસૂચિબદ્ધ)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "સમીક્ષક સાધનો"
+msgstr "સમીક્ષક લિંક્સ"
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- ઍડ-ઑન AMO પર નથી -"
 
 msgid "Listed"
 msgstr "સૂચિબદ્ધ"
@@ -209,7 +206,7 @@ msgid "This field can only be used to link to external websites. URLs on %(domai
 msgstr ""
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "ખોટું છે, કૃપા કરીને ફરી પ્રયાસ કરો."
 
 msgid "Error verifying input, please try again."
 msgstr ""
@@ -218,25 +215,25 @@ msgid "Enter a valid IP4 or IP6 network."
 msgstr ""
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
 msgid "Must contain at least one printable character."
-msgstr ""
+msgstr "ઓછામાં ઓછું એક છાપવા યોગ્ય અક્ષર હોવું આવશ્યક છે."
 
 msgid "Ensure this field contains at least one letter or number character."
 msgstr ""
 
 msgid "Not allowed"
-msgstr ""
+msgstr "મંજૂરી નથી"
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "અરેરે! મંજૂરી નથી."
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "તમે એવું કરવા માટે પ્રયત્ન કર્યો છે જે તમને કરવાની મંજૂરી નથી."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -354,9 +351,6 @@ msgstr "<b>%(count)s</b> નું <b>%(begin)s</b>&ndash;<b>%(end)s</b> બત�
 msgid "Add-ons for {0}"
 msgstr "{0} માટે એડ-ઑન્સ"
 
-msgid "Add-ons"
-msgstr "ઍડ-ઑન્સ"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} પહેલાં"
@@ -463,40 +457,37 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
+msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is in a pending Submission"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr ""
+
+#, python-format
+msgid "Block with GUID %(guid)s not found"
 msgstr ""
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
-#, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
-
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "અમાન્ય JWT ટોકન."
+msgstr "અમાન્ય આવ્રુત્તિ"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "સમીક્ષા વિનંતી"
+msgstr "સમીક્ષા સૂચિબદ્ધ"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "સમીક્ષા નોંધ"
+msgstr "સમીક્ષા અસૂચિબદ્ધ"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -517,7 +508,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -558,7 +549,6 @@ msgstr ""
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
 msgstr "આવૃત્તિઓ"
 
@@ -1534,9 +1524,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "નવીનત્તમ"
+msgstr "નવું"
 
 msgid "Running"
 msgstr ""
@@ -1692,6 +1681,12 @@ msgid "Need to select at least one application."
 msgstr ""
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -3189,9 +3184,8 @@ msgstr ""
 msgid "User Photo"
 msgstr ""
 
-#, fuzzy
 msgid "Profile"
-msgstr "મારી પ્રોફાઈલ"
+msgstr "પ્રોફાઇલ"
 
 msgid "Submit or Manage Extensions"
 msgstr ""
@@ -4834,6 +4828,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5399,9 +5401,8 @@ msgid_plural "{0} days"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "ID"
-msgstr "GUID"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr ""
@@ -5420,6 +5421,14 @@ msgstr ""
 
 msgid "Unlisted versions needing human review ({0})"
 msgstr ""
+
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "આવૃત્તિ {0}"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "અમાન્ય JWT ટોકન."
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5442,7 +5451,7 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr ""
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 #, fuzzy
@@ -5491,11 +5500,16 @@ msgstr ""
 msgid "Add-on Review Guide"
 msgstr ""
 
-msgid "Flagged By Scanners"
+msgid "Security Scanners"
 msgstr ""
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -5591,9 +5605,6 @@ msgid "Add-on ID"
 msgstr "એડ-ઑન ક્રમાંક"
 
 msgid "Internal AMO ID"
-msgstr ""
-
-msgid "Works with"
 msgstr ""
 
 msgid "Visibility"
@@ -5741,6 +5752,9 @@ msgstr ""
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
+
+msgid "Add-ons"
+msgstr "ઍડ-ઑન્સ"
 
 msgid "Total"
 msgstr ""
@@ -6452,20 +6466,8 @@ msgstr ""
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
-
-msgid "My Account"
-msgstr ""
-
-msgid "Welcome, {0}"
-msgstr ""
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
-
-msgid "Android Add-ons"
 msgstr ""
 
 msgid "Required fields"

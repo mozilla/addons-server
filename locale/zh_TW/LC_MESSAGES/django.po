@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-04 12:50+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-28 10:53+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -356,9 +356,6 @@ msgstr "顯示第 <b>%(begin)s</b>&ndash;<b>%(end)s</b> 筆，共 <b>%(count)s</
 msgid "Add-ons for {0}"
 msgstr "{0} 附加元件"
 
-msgid "Add-ons"
-msgstr "附加元件"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} 前"
@@ -465,20 +462,20 @@ msgid "Signoff State"
 msgstr "確認狀態"
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "找不到對 GUID %(guid)s 的封鎖紀錄"
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s 仍在準備送出中"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "GUID 為 %(guid)s 的附加元件不存在"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr "GUID %(guid)s 的區塊唯讀，必須透過傳統 blocklist collection 進行編輯"
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr "GUID %(guid)s 已在準備送出中"
+msgid "Block with GUID %(guid)s not found"
+msgstr "找不到對 GUID %(guid)s 的封鎖紀錄"
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
+msgstr "GUID 為 %(guid)s 的附加元件不存在"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "由於最小或最大版本變動，要更新的封鎖資訊不同。"
@@ -495,8 +492,8 @@ msgstr "審核上架項目"
 msgid "Review Unlisted"
 msgstr "審核未上架項目"
 
-msgid "This block was imported from a regex based legacy kinto Block."
-msgstr "此封鎖項目是從傳統的 regex kinto Block 匯入的。"
+msgid "This block was imported from a regex based legacy Block."
+msgstr "此封鎖項目是從傳統的 regex Block 匯入的。"
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "任何變更不會套用到傳統封鎖清單，您必須回到 kinto 的管理介面手動更新。"
@@ -516,8 +513,8 @@ msgstr "有 %(count)s 筆附加元件 GUID 已經針對 %(v_min)s~%(v_max)s 版�
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "找不到 %(count)s 筆附加元件 GUID"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr "已從傳統的 regex kinto Block 匯入下列封鎖項目。"
+msgid "The following block(s) were imported from a regex based legacy Block."
+msgstr "已從傳統的 regex Block 匯入下列封鎖項目。"
 
 msgid "Save"
 msgstr "儲存"
@@ -1703,6 +1700,12 @@ msgstr "至少需要一套相容的應用程式。"
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "您最近上傳了太多項目，請稍候再試。"
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 之前已上傳過，且已刪除。"
@@ -2999,7 +3002,7 @@ msgid "Admin Manage"
 msgstr "管理員管理"
 
 msgid "View Statistics Dashboard"
-msgstr "檢視統計資訊儀表板"
+msgstr "檢視統計資訊儀錶板"
 
 msgid "Developer News"
 msgstr "開發者新聞"
@@ -3355,7 +3358,7 @@ msgstr "刪除版本 {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr "您即將刪除目前版本的附加元件，這樣可能會造成您的附加元件狀態有所變更，或是如果只有這一版公開的話就會被下架。"
+msgstr "即將刪除目前版本的附加元件，這樣可能會造成您的附加元件狀態有所變更，或如果只有這一版公開的話就會被下架。"
 
 msgid "Deleting this version will permanently delete:"
 msgstr "刪除這個版本會永久刪除:"
@@ -4846,6 +4849,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "擴充套件就像是在 Firefox 中安裝應用程式。"
@@ -5432,6 +5443,12 @@ msgstr "需要人工審核的公開上架版本（{0}）"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "需要人工審核的未公開上架版本（{0}）"
 
+msgid "Listed versions ({0})"
+msgstr "已上架的版本（{0}）"
+
+msgid "Unlisted versions ({0})"
+msgstr "未上架的版本（{0}）"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "將會通過審核、簽署、並發布此版本。將把留言傳送給開發者。"
 
@@ -5453,8 +5470,8 @@ msgstr "此附加元件的最新公開版本是系統自動審核通過的，此
 msgid "Reject Multiple Versions"
 msgstr "退回多個版本"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "將會退回所選擇的公開版本。留言將會傳送給開發者。"
+msgid "This will reject the selected versions. The comments will be sent to the developer."
+msgstr "將會退回所選擇的版本，並傳送留言給開發者。"
 
 msgid "Block Multiple Versions"
 msgstr "封鎖多個版本"
@@ -5501,12 +5518,16 @@ msgstr "審核紀錄"
 msgid "Add-on Review Guide"
 msgstr "附加元件審核指南"
 
-msgid "Flagged By Scanners"
-msgstr "由掃描器標示"
+msgid "Security Scanners"
+msgstr "安全性掃描"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] "由掃描器標示（{0}）"
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "標示進行人工審查（{0}）"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自動通過審核的附加元件"
@@ -5599,9 +5620,6 @@ msgstr "附加元件 ID"
 
 msgid "Internal AMO ID"
 msgstr "AMO 內部 ID"
-
-msgid "Works with"
-msgstr "相容於"
 
 msgid "Visibility"
 msgstr "公開情況"
@@ -5748,6 +5766,9 @@ msgstr "每個月績效"
 
 msgid "All-time Point Breakdown by Type"
 msgstr "點數總排名（按類型）"
+
+msgid "Add-ons"
+msgstr "附加元件"
 
 msgid "Total"
 msgstr "共計"
@@ -6240,13 +6261,13 @@ msgstr "匯出"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} :: 統計資訊儀表板 :: {1} 的附加元件"
+msgstr "{0} :: 統計資訊儀錶板 :: {1} 的附加元件"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr "{0} :: 統計資訊儀表板"
+msgstr "{0} :: 統計資訊儀錶板"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "統計資訊儀表板 :: {0} 的附加元件"
+msgstr "統計資訊儀錶板 :: {0} 的附加元件"
 
 #. {0} is an add-on name
 # %1 is the name of a collection
@@ -6254,7 +6275,7 @@ msgid "Statistics for {0}"
 msgstr "{0} 的統計資訊"
 
 msgid "Statistics Dashboard"
-msgstr "統計資訊儀表板"
+msgstr "統計資訊儀錶板"
 
 msgid "Controls:"
 msgstr "控制圖表:"
@@ -6302,10 +6323,10 @@ msgid "No data available."
 msgstr "無資料。"
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr "這個儀表板目前是<b>公開的</b>。"
+msgstr "這個儀錶板目前是<b>公開的</b>。"
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr "這個儀表板目前<b>並未公開</b>。"
+msgstr "這個儀錶板目前<b>並未公開</b>。"
 
 msgid "Change settings."
 msgstr "更改設定。"
@@ -6461,21 +6482,9 @@ msgstr "回到 {0} 附加元件首頁"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> 附加元件"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> 附加元件"
-
-msgid "My Account"
-msgstr "我的帳號"
-
-msgid "Welcome, {0}"
-msgstr "歡迎您，{0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">註冊</a>或<a href=\"%(login)s\">登入</a>"
-
-msgid "Android Add-ons"
-msgstr "Android 附加元件"
 
 msgid "Required fields"
 msgstr "必填欄位"

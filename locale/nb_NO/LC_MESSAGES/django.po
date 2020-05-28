@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
 "PO-Revision-Date: 2018-08-21 11:20+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -374,9 +374,6 @@ msgstr "Viser <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
 msgid "Add-ons for {0}"
 msgstr "Utvidelser for {0}"
 
-msgid "Add-ons"
-msgstr "Utvidelser"
-
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr "{0} siden"
@@ -488,19 +485,19 @@ msgid "Signoff State"
 msgstr ""
 
 #, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
+msgid "Block with GUID %(guid)s not found"
+msgstr ""
+
+#, python-format
+msgid "Addon with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
@@ -521,7 +518,7 @@ msgstr "Gjennomgang er forespurt"
 msgid "Review Unlisted"
 msgstr "Gjennomgang er forespurt"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -543,7 +540,7 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -1801,6 +1798,12 @@ msgid "Need to select at least one application."
 msgstr "Trenger minst ett kompatibelt program."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
@@ -5026,6 +5029,14 @@ msgstr ""
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5627,6 +5638,14 @@ msgstr "Venter på gjennomgang"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Venter på gjennomgang"
 
+#, fuzzy
+msgid "Listed versions ({0})"
+msgstr "Vis andre versjoner"
+
+#, fuzzy
+msgid "Unlisted versions ({0})"
+msgstr "Vis andre versjoner"
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -5651,7 +5670,7 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "Flere utvidelser"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 #, fuzzy
@@ -5706,13 +5725,20 @@ msgstr "Gjennomgang er forespurt"
 msgid "Add-on Review Guide"
 msgstr "Full gjennomgang av utvidelse"
 
-msgid "Flagged By Scanners"
-msgstr ""
+#, fuzzy
+msgid "Security Scanners"
+msgstr "Sikkerhetstester"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
+msgstr[0] "Venter på gjennomgang"
+msgstr[1] "Venter på gjennomgang"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5818,9 +5844,6 @@ msgstr "Utvidelse"
 
 msgid "Internal AMO ID"
 msgstr ""
-
-msgid "Works with"
-msgstr "Virker med"
 
 msgid "Visibility"
 msgstr "Synlighet"
@@ -5974,6 +5997,9 @@ msgstr ""
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
+
+msgid "Add-ons"
+msgstr "Utvidelser"
 
 msgid "Total"
 msgstr ""
@@ -6714,20 +6740,8 @@ msgstr "Gå tilbake til hjemmesiden til {0}-utvidelser"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
-
-msgid "My Account"
-msgstr ""
-
-msgid "Welcome, {0}"
-msgstr ""
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
-
-msgid "Android Add-ons"
 msgstr ""
 
 msgid "Required fields"

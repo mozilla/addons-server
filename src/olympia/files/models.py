@@ -174,6 +174,12 @@ class File(OnChangeMixin, ModelBase):
 
         if file_.is_webextension:
             permissions = list(parsed_data.get('permissions', []))
+
+            # devtools_page isn't in permissions block but treated as one
+            # if a custom devtools page is added by an addon
+            if 'devtools_page' in parsed_data:
+                permissions.append('devtools')
+
             # Add content_scripts host matches too.
             for script in parsed_data.get('content_scripts', []):
                 permissions.extend(script.get('matches', []))
@@ -181,7 +187,7 @@ class File(OnChangeMixin, ModelBase):
                 WebextPermission.objects.create(permissions=permissions,
                                                 file=file_)
 
-        log.debug('New file: %r from %r' % (file_, upload))
+        log.info('New file: %r from %r' % (file_, upload))
 
         # Move the uploaded file from the temp location.
         copy_stored_file(upload_path, file_.current_file_path)
@@ -273,6 +279,17 @@ class File(OnChangeMixin, ModelBase):
             return self.guarded_file_path
         else:
             return self.file_path
+
+    @property
+    def fallback_file_path(self):
+        """Fallback path in case the file was disabled/re-enabled and not yet
+        moved - sort of the opposite to current_file_path. This should only be
+        used for things like code search or git extraction where we really want
+        the file contents no matter what."""
+        return (
+            self.file_path if self.current_file_path == self.guarded_file_path
+            else self.guarded_file_path
+        )
 
     @property
     def extension(self):

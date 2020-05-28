@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-import io
 import mimetypes
 import os
-import posixpath
 import shutil
 import sys
 import tempfile
@@ -12,7 +10,8 @@ from datetime import datetime, timedelta
 from collections import namedtuple
 
 import pygit2
-import magic
+
+from django_statsd.clients import statsd
 
 from django.conf import settings
 from django.utils import translation
@@ -24,6 +23,8 @@ from olympia import amo
 from olympia.versions.models import Version
 from olympia.files.utils import (
     id_to_path, extract_extension_to_dest, get_all_files)
+
+from .models import GitExtractionEntry
 
 
 log = olympia.core.logger.getLogger('z.git_storage')
@@ -60,31 +61,12 @@ GIT_DIFF_LINE_MAPPING = {
     GIT_DIFF_LINE_DEL_EOFNL: 'delete-eofnl',
 }
 
-# Prefix folder name we are using to store extracted add-on or source
-# data to avoid any clashes, e.g with .git folders.
+# Prefix folder name we are using to store extracted add-on data to avoid any
+# clashes, e.g with .git folders.
 EXTRACTED_PREFIX = 'extracted'
 
 # Rename and copy threshold, 50% is the default git threshold
 SIMILARITY_THRESHOLD = 50
-
-
-# Sometime mimetypes get changed in libmagic so this is a (hopefully short)
-# list of mappings from old -> new types so that we stay compatible
-# with versions out there in the wild.
-MIMETYPE_COMPAT_MAPPING = {
-    # https://github.com/file/file/commit/cee2b49c
-    'application/xml': 'text/xml',
-    # Special case, for empty text files libmime reports
-    # application/x-empty for empty plain text files
-    # So, let's normalize this.
-    'application/x-empty': 'text/plain',
-    # See: https://github.com/mozilla/addons-server/issues/11382
-    'image/svg': 'image/svg+xml',
-    # See: https://github.com/mozilla/addons-server/issues/11383
-    'image/x-ms-bmp': 'image/bmp',
-    # See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#textjavascript  # noqa
-    'application/javascript': 'text/javascript',
-}
 
 
 # Some official mimetypes belong to the `text` category, even though their
@@ -94,11 +76,15 @@ MIMETYPE_CATEGORY_MAPPING = {
     'application/xml': 'text',
 }
 
-SIMPLIFIED_MIMETYPE_DETECTION = {
-    '.js': 'text/javascript',
-    '.css': 'text/css',
-    '.html': 'text/html',
-    '.json': 'application/json'
+
+# Some mimetypes need to be hanged to some other mimetypes.
+MIMETYPE_COMPAT_MAPPING = {
+    # See: https://github.com/mozilla/addons-server/issues/11382
+    'image/svg': 'image/svg+xml',
+    # See: https://github.com/mozilla/addons-server/issues/11383
+    'image/x-ms-bmp': 'image/bmp',
+    # See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#textjavascript  # noqa
+    'application/javascript': 'text/javascript',
 }
 
 
@@ -110,48 +96,17 @@ class MissingMasterBranchError(RuntimeError):
     pass
 
 
-def get_mime_type_for_blob(tree_or_blob, name, blob):
+def get_mime_type_for_blob(tree_or_blob, name):
     """Returns the mimetype and type category for a git blob.
 
-    The type category can be ``image``, ``directory``, ``text`` or
-    ``binary``.
+    The type category can be ``image``, ``directory``, ``text`` or ``binary``.
     """
     if tree_or_blob == pygit2.GIT_OBJ_TREE:
         return 'application/octet-stream', 'directory'
 
-    # If a file is in our list to allow a simplified detection
-    # we'll skip reading from the blob.
-    base, ext = posixpath.splitext(name)
-    if ext in SIMPLIFIED_MIMETYPE_DETECTION:
-        mimetype = SIMPLIFIED_MIMETYPE_DETECTION[ext]
-    else:
-        # Hardcoding the maximum amount of bytes to read here
-        # until https://github.com/ahupp/python-magic/commit/50e8c856
-        # lands in a release and we can read that value from libmagic
-        # We're only reading the needed amount of content from the file to
-        # not exhaust/read the whole blob into memory again.
-        bytes_ = io.BytesIO(memoryview(blob)).read(1048576)
-        mimetype = magic.from_buffer(bytes_, mime=True)
-
-        # Apply compatibility mappings
-        mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
-
-        # Try to find a more accurate "textual" mimetype.
-        if mimetype == 'text/plain':
-            # Allow text mimetypes to be more specific for readable files.
-            # `python-magic`/`libmagic` usually just returns plain/text but we
-            # should use actual types like text/css or text/javascript.
-            guessed_mimetype, _ = mimetypes.guess_type(name)
-
-            # If the file for some reason doesn't have a known file extension
-            # (could happen for text files like `README`, `LICENSE` etc)
-            # don't null the originally detected mimetype
-            if guessed_mimetype is not None:
-                # Re-apply compatibility mappings since `guess_type()` might
-                # return a completely different mimetype.
-                mimetype = MIMETYPE_COMPAT_MAPPING.get(
-                    guessed_mimetype, guessed_mimetype)
-
+    (mimetype, _) = mimetypes.guess_type(name)
+    # We use `text/plain` as default.
+    mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype or 'text/plain')
     known_type_cagegories = ('image', 'text')
     default_type_category = 'binary'
     # If mimetype has an explicit category, use it.
@@ -208,7 +163,7 @@ class AddonGitRepository(object):
 
     def __init__(self, addon_or_id, package_type='addon'):
         from olympia.addons.models import Addon
-        assert package_type in ('addon', 'source')
+        assert package_type in ('addon',)
 
         # Always enforce the search path being set to our ROOT
         # setting. This is sad, libgit tries to fetch the global git
@@ -283,8 +238,8 @@ class AddonGitRepository(object):
                 tree,  # tree
                 [])  # parents
 
-            log.debug('Initialized git repository {path}'.format(
-                path=self.git_repository_path))
+            log.info('Initialized git repository "%s"',
+                     self.git_repository_path)
         else:
             git_repository = pygit2.Repository(self.git_repository_path)
 
@@ -307,7 +262,9 @@ class AddonGitRepository(object):
             return
         # Reset the git hash of each version of the add-on related to this git
         # repository.
-        Version.unfiltered.filter(addon_id=self.addon_id).update(git_hash='')
+        Version.unfiltered.filter(addon_id=self.addon_id).update(
+            git_hash=''
+        )
         shutil.rmtree(self.git_repository_path)
 
     @classmethod
@@ -385,7 +342,7 @@ class AddonGitRepository(object):
             note = ' ({})'.format(note) if note else ''
 
             commit = repo._commit_through_worktree(
-                path=file_obj.current_file_path if file_obj else None,
+                file_obj=file_obj,
                 message=(
                     'Create new version {version} ({version_id}) for '
                     '{addon} from {file_obj}{note}'.format(
@@ -401,38 +358,6 @@ class AddonGitRepository(object):
             version.update(git_hash=commit.hex)
         finally:
             translation.activate(current_language)
-        return repo
-
-    @classmethod
-    def extract_and_commit_source_from_version(cls, version, author=None):
-        """Extract the source file from `version` and comit it.
-
-        This is doing the following:
-
-        * Create a temporary `git worktree`_
-        * Remove all files in that worktree
-        * Extract the xpi behind `version` into the worktree
-        * Commit all files
-
-        See `extract_and_commit_from_version` for more details.
-        """
-        repo = cls(version.addon.id, package_type='source')
-        branch = repo.find_or_create_branch(BRANCHES[version.channel])
-
-        commit = repo._commit_through_worktree(
-            path=version.source.path,
-            message=(
-                'Create new version {version} ({version_id}) for '
-                '{addon} from source file'.format(
-                    version=repr(version),
-                    version_id=version.id,
-                    addon=repr(version.addon))),
-            author=author,
-            branch=branch)
-
-        # Set the latest git hash on the related version.
-        version.update(source_git_hash=commit.hex)
-
         return repo
 
     def get_author(self, user=None):
@@ -459,19 +384,25 @@ class AddonGitRepository(object):
 
         return branch
 
-    def _commit_through_worktree(self, path, message, author, branch):
+    def _commit_through_worktree(self, file_obj, message, author, branch):
         """
         Create a temporary worktree that we can use to unpack the extension
         without disturbing the current git workdir since it creates a new
         temporary directory where we extract to.
         """
         with TemporaryWorktree(self.git_repository) as worktree:
-            if path:
+            if file_obj:
                 # Now extract the extension to the workdir
-                extract_extension_to_dest(
-                    source=path,
-                    dest=worktree.extraction_target_path,
-                    force_fsync=True)
+                try:
+                    extract_extension_to_dest(
+                        source=file_obj.current_file_path,
+                        dest=worktree.extraction_target_path,
+                        force_fsync=True)
+                except FileNotFoundError:
+                    extract_extension_to_dest(
+                        source=file_obj.fallback_file_path,
+                        dest=worktree.extraction_target_path,
+                        force_fsync=True)
 
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct
@@ -751,7 +682,7 @@ class AddonGitRepository(object):
             blob_or_tree = tree[patch.delta.new_file.path]
             actual_blob = self.git_repository[blob_or_tree.oid]
             mime_category = get_mime_type_for_blob(
-                blob_or_tree.type, patch.delta.new_file.path, actual_blob)[1]
+                blob_or_tree.type, patch.delta.new_file.path)[1]
 
             if mime_category == 'text':
                 data = actual_blob.data
@@ -790,3 +721,50 @@ class AddonGitRepository(object):
         }
 
         return entry
+
+
+def skip_git_extraction(version):
+    return (
+        version.addon.type != amo.ADDON_EXTENSION or
+        not version.all_files[0].is_webextension
+    )
+
+
+def create_git_extraction_entry(version):
+    if skip_git_extraction(version):
+        log.debug('Skipping git extraction of add-on "%s" not a '
+                  'web-extension.', version.addon.id)
+        return
+
+    log.info('Adding add-on "%s" to the git extraction queue.',
+             version.addon.id)
+    GitExtractionEntry.objects.create(addon=version.addon)
+
+
+def extract_version_to_git(version_id):
+    """Extract a `Version` into our git storage backend."""
+    # We extract deleted or disabled versions as well so we need to make sure
+    # we can access them.
+    version = Version.unfiltered.get(pk=version_id)
+
+    if skip_git_extraction(version):
+        # We log a warning message because this should not happen (as the CRON
+        # task should not select non-webextension versions).
+        log.warning('Skipping git extraction of add-on "%s": not a '
+                    'web-extension.', version.addon.id)
+        return
+
+    log.info('Extracting version "%s" into git backend', version_id)
+
+    try:
+        with statsd.timer('git.extraction.version'):
+            repo = AddonGitRepository.extract_and_commit_from_version(
+                version=version
+            )
+        statsd.incr('git.extraction.version.success')
+    except Exception as exc:
+        statsd.incr('git.extraction.version.failure')
+        raise exc
+
+    log.info('Extracted version "%s" into "%s".', version_id,
+             repo.git_repository_path)

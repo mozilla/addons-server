@@ -653,6 +653,21 @@ class TestUserAdmin(TestCase):
         assert url == expected_url
         assert text == '2'
 
+    def test_access_using_email(self):
+        lookup_user = user_factory(email='foo@bar.xyz')
+        detail_url_by_email = reverse(
+            'admin:users_userprofile_change', args=(lookup_user.email,)
+        )
+        detail_url_final = reverse(
+            'admin:users_userprofile_change', args=(lookup_user.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(detail_url_by_email, follow=False)
+        self.assert3xx(response, detail_url_final, 301)
+
 
 class TestEmailUserRestrictionAdmin(TestCase):
     def setUp(self):

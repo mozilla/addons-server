@@ -1,16 +1,20 @@
 import time
 
 from django.core.management import call_command
+from django.core.management.base import CommandError
 
 import waffle
+from django_statsd.clients import statsd
 
 import olympia.core.logger
+from olympia.constants.blocklist import (
+    MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY)
 from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
 from .models import Block
-from .tasks import (
-    MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY, upload_filter_to_kinto)
+from .tasks import upload_filter
+
 
 log = olympia.core.logger.getLogger('z.cron')
 
@@ -20,13 +24,21 @@ def get_blocklist_last_modified_time():
     return int(latest_block.modified.timestamp() * 1000) if latest_block else 0
 
 
-def upload_mlbf_to_kinto():
-    if not waffle.switch_is_active('blocklist_mlbf_submit'):
-        log.info('Upload MLBF to kinto cron job disabled.')
+def upload_mlbf_to_remote_settings(*, bypass_switch=False, force_base=False):
+    """Creates a bloomfilter, and possibly a stash json blob, and uploads to
+    remote-settings.
+    bypass_switch=<Truthy value> will bypass the "blocklist_mlbf_submit" switch
+    for manual use/testing.
+    force_base=<Truthy value> will force a new base MLBF and a reset of the
+    collection.
+    """
+    bypass_switch = bool(bypass_switch)
+    if not (bypass_switch or waffle.switch_is_active('blocklist_mlbf_submit')):
+        log.info('Upload MLBF to remote settings cron job disabled.')
         return
     last_generation_time = get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
 
-    log.info('Starting Upload MLBF to kinto cron job.')
+    log.info('Starting Upload MLBF to remote settings cron job.')
 
     # This timestamp represents the point in time when all previous addon
     # guid + versions and blocks were used to generate the bloomfilter.
@@ -39,10 +51,11 @@ def upload_mlbf_to_kinto():
     mlbf = MLBF(generation_time)
     previous_filter = MLBF(last_generation_time)
 
-    need_mlbf = (
+    need_update = (
+        force_base or
         last_generation_time < get_blocklist_last_modified_time() or
         mlbf.blocks_changed_since_previous(previous_filter))
-    if not need_mlbf:
+    if not need_update:
         log.info(
             'No new/modified/deleted Blocks in database; '
             'skipping MLBF generation')
@@ -59,7 +72,10 @@ def upload_mlbf_to_kinto():
         previous_filter)
 
     make_base_filter = (
-        not base_filter or mlbf.should_reset_base_filter(base_filter))
+        force_base or
+        not base_filter or
+        mlbf.should_reset_base_filter(base_filter))
+
     if last_generation_time and not make_base_filter:
         try:
             mlbf.write_stash(previous_filter)
@@ -68,7 +84,7 @@ def upload_mlbf_to_kinto():
             # fallback to creating a new base if stash fails
             make_base_filter = True
 
-    upload_filter_to_kinto.delay(
+    upload_filter.delay(
         generation_time,
         is_base=make_base_filter,
         upload_stash=not make_base_filter)
@@ -78,4 +94,10 @@ def auto_import_blocklist():
     if not waffle.switch_is_active('blocklist_auto_import'):
         log.info('Automatic import_blocklist cron job disabled.')
         return
-    call_command('import_blocklist')
+    with statsd.timer('blocklist.cron.import_blocklist'):
+        try:
+            call_command('import_blocklist')
+        except CommandError as err:
+            statsd.incr('blocklist.cron.import_blocklist.failure')
+            raise err
+    statsd.incr('blocklist.cron.import_blocklist.success')

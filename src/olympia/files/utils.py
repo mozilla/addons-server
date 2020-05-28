@@ -571,6 +571,12 @@ class ManifestJSONExtractor(object):
                     'permissions': self.get('permissions', []),
                     'content_scripts': self.get('content_scripts', []),
                 })
+
+                if self.get('devtools_page'):
+                    data.update({
+                        'devtools_page': self.get('devtools_page')
+                    })
+
             elif self.type == amo.ADDON_DICT:
                 data['target_locale'] = self.target_locale()
         return data
@@ -861,6 +867,7 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
 
     :returns: Extraction target directory, if `dest` is `None` it'll be a
               temporary directory.
+    :raises FileNotFoundError: if the source file is not found on the filestem
     """
     target, tempdir = None, None
 
@@ -885,9 +892,14 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
             shutil.copy(source, target)
             if force_fsync:
                 FSyncMixin()._fsync_file(target)
-    except (zipfile.BadZipfile, tarfile.ReadError, IOError):
+    except (zipfile.BadZipfile, tarfile.ReadError, IOError) as e:
         if tempdir is not None:
             rm_local_tmp_dir(tempdir)
+        if isinstance(e, FileNotFoundError):
+            # We let FileNotFoundError (which are a subclass of IOError, or
+            # rather OSError but that's an alias) be raised, the caller will
+            # have to deal with it.
+            raise
         raise forms.ValidationError(
             ugettext('Invalid or broken archive.'))
     return target
@@ -1323,7 +1335,7 @@ def get_background_images(file_obj, theme_data, header_only=False):
                 except KeyError:
                     pass
     except IOError as ioerror:
-        log.debug(ioerror)
+        log.info(ioerror)
     return images
 
 
@@ -1378,7 +1390,7 @@ def lock(lock_dir, lock_name, timeout=6):
     """
     lock_name = f'{lock_name}.lock'
 
-    log.debug(f'Acquiring lock {lock_name}.')
+    log.info(f'Acquiring lock {lock_name}.')
 
     lock_path = os.path.join(lock_dir, lock_name)
 
@@ -1401,7 +1413,7 @@ def lock(lock_dir, lock_name, timeout=6):
         finally:
             # Always release the lock after the parent context
             # block has finised.
-            log.debug(f'Releasing lock {lock_name}.')
+            log.info(f'Releasing lock {lock_name}.')
             fcntl.flock(fileno, fcntl.LOCK_UN)
             lockfd.close()
 

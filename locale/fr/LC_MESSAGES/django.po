@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-04 11:24+0000\n"
-"PO-Revision-Date: 2020-05-03 01:10+0000\n"
-"Last-Translator: Mélanie Chauvel <perso@hack-libre.org>\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"PO-Revision-Date: 2020-05-28 10:50+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -133,13 +133,13 @@ msgid "Ratings"
 msgstr "Notes"
 
 msgid "Reviewer Tools (listed)"
-msgstr ""
+msgstr "Outils de révision (répertoriés)"
 
 msgid "Reviewer Tools (unlisted)"
-msgstr ""
+msgstr "Outils de révision (non répertoriés)"
 
 msgid "Reviewer links"
-msgstr ""
+msgstr "Liens pour la révision"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Module complémentaire non présent sur AMO -"
@@ -314,6 +314,9 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
+"<h1>Oups, une erreur est survenue.</h1> <p>Nous allons la corriger rapidement.</p> <p> Vous pouvez essayer de recharger la page ou retourner sur <a href=\"%(home)s\">la page d’accueil des "
+"modules</a>. Vous pouvez également nous aider à la résoudre en <a href=\"https://github.com/mozilla/addons/issues/new\">signalant un problème</a> détaillant la manière dont vous êtes arrivé·e sur "
+"cette page. </p>"
 
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
@@ -378,9 +381,6 @@ msgstr "Affiché <b>%(begin)s</b>&ndash;<b>%(end)s</b> sur <b>%(count)s</b>"
 # Sunbird
 msgid "Add-ons for {0}"
 msgstr "Modules pour {0}"
-
-msgid "Add-ons"
-msgstr "Modules"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -489,68 +489,68 @@ msgid "This add-on already belongs to the collection"
 msgstr "Ce module appartient déjà à la collection"
 
 msgid "Signoff State"
-msgstr ""
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "État d’approbation"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "Le GUID %(guid)s est dans une soumission en attente"
+
+#, python-format
+msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
+msgstr "Le blocage pour le GUID %(guid)s est en lecture seule - Il ne peut-être modifié que via la collection de listes de blocage héritées."
+
+#, python-format
+msgid "Block with GUID %(guid)s not found"
+msgstr "Le blocage avec le GUID %(guid)s est introuvable"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
-
-#, python-format
-msgid "GUID %(guid)s is already in a pending Submission"
-msgstr ""
+msgstr "Il n’existe pas de module complémentaire avec le GUID %(guid)s"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Les blocages à mettre à jour sont différents car la version Min ou Max a changé."
 
 msgid "Invalid version"
 msgstr "Version invalide"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "La version Min ne peut pas être supérieure à la version Max"
 
 msgid "Review Listed"
-msgstr ""
+msgstr "Revue listée"
 
 msgid "Review Unlisted"
-msgstr ""
+msgstr "Revue non listée"
 
-msgid "This block was imported from a regex based legacy kinto Block."
-msgstr ""
+msgid "This block was imported from a regex based legacy Block."
+msgstr "Ce blocage a été importé d’un blocage hérité basé sur des expressions régulières."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Toute modification apportée ne sera PAS mise à jour dans la liste de blocage héritée – vous devez effectuer une modification manuelle via kinto admin webui."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
-msgstr ""
+msgstr "Supprimer plusieurs %(name)s"
 
 msgid "Home"
 msgstr "Accueil"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s GUID de modules sont déjà bloqués pour les versions %(v_min)s à %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s GUID de modules sont introuvables"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
-msgstr ""
+msgid "The following block(s) were imported from a regex based legacy Block."
+msgstr "Le·s blocage·s suivant·s ont été importés d’un blocage hérité basé sur une expression régulière."
 
 msgid "Save"
 msgstr "Sauvegarder"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Enregistrer et ajouter plus"
 
 msgid "Delete"
 msgstr "Supprimer"
@@ -569,26 +569,26 @@ msgid "Add %(name)s"
 msgstr "Ajouter %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID de modules (un par ligne)"
 
 msgid "Submit"
-msgstr ""
+msgstr "Envoyer"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s GUID de modules"
 
 msgid "users"
-msgstr ""
+msgstr "utilisateurs"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Modifier le blocage"
 
 msgid "versions"
 msgstr "versions"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Inclus dans la liste de blocage héritée."
 
 msgid "{addon} was created."
 msgstr "{addon} a été créé."
@@ -910,40 +910,40 @@ msgid "User {user} api key reset."
 msgstr "Réinitialisation de la clé d’API de l’utilisateur {user}."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blocage pour {0} ajouté à la liste de blocage."
 
 msgid "Block added"
-msgstr ""
+msgstr "Blocage ajouté"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blocage pour {0} modifié dans la liste de blocage."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blocage modifié"
 
 msgid "Block for {0} deleted from Blocklist."
-msgstr ""
+msgstr "Blocage pour {0} supprimé de la liste de blocage."
 
 msgid "Block deleted"
-msgstr ""
+msgstr "Blocage supprimé"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID du module {addon} ajouté à DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr ""
+msgstr "GUID du module {addon} supprimé de DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Blocage de l’action {1} pour {0} validations."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Validation de l’action de blocage"
 
 msgid "User {user} session(s) reset."
-msgstr ""
+msgstr "Réinitialisation des sessions de l’utilisateur {user}."
 
 msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
+msgstr "Utilisateur {user} limité pour le scope « {0} »"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -985,7 +985,7 @@ msgid "Unlisted"
 msgstr "Non répertorié"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -998,7 +998,7 @@ msgid "Extension"
 msgstr "Extension"
 
 msgid "Deprecated Complete Theme"
-msgstr ""
+msgstr "Thème complet obsolète"
 
 msgid "Dictionary"
 msgstr "Dictionnaire"
@@ -1026,7 +1026,7 @@ msgid "Extensions"
 msgstr "Extensions"
 
 msgid "Deprecated Complete Themes"
-msgstr ""
+msgstr "Thèmes complets obsolètes"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1577,43 +1577,43 @@ msgid "Header image alignment problem"
 msgstr "Problème d’alignement de l’image d’en-tête"
 
 msgid "No action"
-msgstr ""
+msgstr "Aucune action"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Demander un examen manuel"
 
 msgid "Delay auto-approval"
-msgstr ""
+msgstr "Retarder l’approbation automatique"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Retarder l’approbation automatique indéfiniment"
 
 msgid "True positive"
 msgstr "Vrai positif"
 
 msgid "False positive"
-msgstr ""
+msgstr "Faux positif"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Non concluant"
 
 msgid "New"
-msgstr ""
+msgstr "Nouveau"
 
 msgid "Running"
-msgstr ""
+msgstr "En cours d’exécution"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Annulé"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Annulation"
 
 msgid "Completed"
-msgstr ""
+msgstr "Terminé"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Planifié"
 
 msgid "Core"
 msgstr "Noyau"
@@ -1757,6 +1757,12 @@ msgstr "Choisissez au moins une application."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Vous avez envoyé trop de fichiers en ligne récemment. Veuillez réessayer après un certain temps."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "a blocklist entry"
+msgstr "Une entrée de liste de blocage"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La version {version} a déjà été envoyée et supprimée."
@@ -1914,6 +1920,8 @@ msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
 msgstr ""
+"La dernière version approuvée de cette extension recommandée ne peut pas être supprimée ou désactivée car la version précédente n’est pas une version recommandée. Si vous avez besoin d’aide à ce "
+"sujet, veuillez contacter les administrateurs d’AMO."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2439,7 +2447,7 @@ msgid "32x32px"
 msgstr "32x32 px"
 
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
+msgstr "Utilisé dans les listes de modules complémentaires, par exemple les résultats de recherche."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2486,7 +2494,7 @@ msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "La taille minimale est de 1000×750 et un ratio de 4:3 est requis."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Mettre des captures d’écran sur la page de votre produit augmente grandement ses chances d’être installé."
 
 msgid "Continue"
 msgstr "Continuer"
@@ -2516,7 +2524,7 @@ msgid "More information on Creative Commons licenses"
 msgstr "Plus d’informations sur les licences Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Votre module complémentaire est pour le moment « Invisible »."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
@@ -2750,7 +2758,7 @@ msgid "Manage Listing"
 msgstr "Gérer la page de l’application"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr ""
+msgstr "Vous pouvez également modifier cette version pour ajouter des notes de version, ou le code source si votre proposition contient du code minifié, compacté ou compilé."
 
 msgid "Edit version {0}"
 msgstr "Modifier la version {0}"
@@ -2759,7 +2767,7 @@ msgid "Version Signature Pending"
 msgstr ""
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr ""
+msgstr "C’est tout ! Cette version sera bientôt signée et disponible pour une distribution personnelle. Vous recevrez une notification par courriel lorsque votre fichier aura été signé."
 
 msgid "Go to My Submissions"
 msgstr "Accéder à mes propositions"
@@ -2999,6 +3007,13 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"La clé API suivante a été ajoutée à votre compte :\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Si vous pensez que cette clé a été créée par erreur, vous pouvez retirer la clé et révoquer l’accès à l’adresse suivante :\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3011,6 +3026,13 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"La clé API suivante a été supprimée de votre compte :\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Si vous pensez que cette clé a été supprimée par erreur, vous pouvez en créer une nouvelle à l’adresse suivante :\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3165,6 +3187,7 @@ msgstr ""
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
 msgstr ""
+"Si votre module complémentaire contient des fichiers binaires ou du code compressé qui n’est pas celui de bibliothèques connues, veuillez envoyer les fichiers sources afin qu’ils soient vérifiés."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Veuillez inclure la méthode à suivre afin de reproduire le fichier final du module complémentaire. Vous pouvez utiliser un fichier README ou les notes aux testeurs de cette version."
@@ -3173,10 +3196,12 @@ msgid "Read more about the source code review policy."
 msgstr "En savoir plus sur la politique de revue du code source."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Concevez des extensions et des thèmes de premier ordre"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Que vous soyez novice dans le développement d’extensions, que vous peaufiniez ou adaptiez une extension ou un thème existants, ou que vous créiez une solution d’entreprise spécifique, nous avons les"
+" ressources pour vous soutenir."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
@@ -3199,10 +3224,10 @@ msgstr "Matrix"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
-msgstr ""
+msgstr "Liste de diffusion des développeurs de modules complémentaires"
 
 msgid "Extensions Developers Newsletter"
-msgstr ""
+msgstr "Lettre d’information des développeurs d’extensions"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3272,7 +3297,7 @@ msgid "See how"
 msgstr "Découvrez comment"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Participez"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -3320,16 +3345,16 @@ msgid "Profile"
 msgstr "Profil"
 
 msgid "Submit or Manage Extensions"
-msgstr ""
+msgstr "Soumettre ou gérer vos extensions"
 
 msgid "Customize Firefox"
 msgstr "Personnalisez Firefox"
 
 msgid "Learn how to make an extension"
-msgstr ""
+msgstr "Apprenez à créer une extension"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Prêt·e à soumettre ou gérer votre extension ?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
@@ -4977,6 +5002,14 @@ msgstr "Bloquez toutes les pubs — vidéos, popups, bannières, etc."
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Regardez des médias en streaming avec vos amis et votre famille où que vous soyez."
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Les extensions sont comme des applications pour Firefox."
@@ -5574,6 +5607,12 @@ msgstr ""
 msgid "Unlisted versions needing human review ({0})"
 msgstr ""
 
+msgid "Listed versions ({0})"
+msgstr ""
+
+msgid "Unlisted versions ({0})"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
 
@@ -5595,8 +5634,8 @@ msgstr "La dernière version publique de ce module a été automatiquement appro
 msgid "Reject Multiple Versions"
 msgstr "Rejeter plusieurs versions"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Cette action rejettera les versions publiques sélectionnées. Les commentaires seront envoyés au développeur."
+msgid "This will reject the selected versions. The comments will be sent to the developer."
+msgstr "Cette action rejettera les versions sélectionnées. Les commentaires seront envoyés au développeur."
 
 msgid "Block Multiple Versions"
 msgstr "Bloquer plusieurs versions"
@@ -5643,11 +5682,16 @@ msgstr "Journal des revues"
 msgid "Add-on Review Guide"
 msgstr "Guide de revue des modules complémentaires"
 
-msgid "Flagged By Scanners"
+msgid "Security Scanners"
 msgstr ""
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Flagged for Human Review ({0})"
+msgid_plural "Flagged for Human Review ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -5743,9 +5787,6 @@ msgstr "Identifiant du module"
 
 msgid "Internal AMO ID"
 msgstr "Identifiant interne AMO"
-
-msgid "Works with"
-msgstr "Fonctionne avec"
 
 msgid "Visibility"
 msgstr "Visibilité"
@@ -5893,6 +5934,9 @@ msgstr "Performance mensuelle"
 msgid "All-time Point Breakdown by Type"
 msgstr "Séparer les points par type sur toute la durée"
 
+msgid "Add-ons"
+msgstr "Modules"
+
 msgid "Total"
 msgstr "Total"
 
@@ -5979,10 +6023,10 @@ msgid "Previously deleted entries"
 msgstr "Entrées précédemment supprimées"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Cette extension est recommandée."
 
 msgid "You don't have permission to review it."
-msgstr ""
+msgstr "Vous n’avez pas la permission de faire cette revue."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Veuillez sélectionner une ou plusieurs versions dans la liste ci-dessus."
@@ -6234,22 +6278,22 @@ msgid "all but this rule"
 msgstr ""
 
 msgid "presence of a version"
-msgstr ""
+msgstr "Présence d’une version"
 
 msgid "version channel"
 msgstr ""
 
 msgid "add-on status"
-msgstr ""
+msgstr "État du module"
 
 msgid "add-on listing visibility"
 msgstr ""
 
 msgid "file status"
-msgstr ""
+msgstr "État du fichier"
 
 msgid "file signature"
-msgstr ""
+msgstr "Signature du fichier"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6619,21 +6663,9 @@ msgstr "Revenir à la page d’accueil des modules {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Modules"
 
-msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"\" src=\"{0}\"> Modules"
-
-msgid "My Account"
-msgstr "Mon compte"
-
-msgid "Welcome, {0}"
-msgstr "Bienvenue, {0}"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">S’inscrire</a> ou <a href=\"%(login)s\">Se connecter</a>"
-
-msgid "Android Add-ons"
-msgstr "Modules Android"
 
 msgid "Required fields"
 msgstr "Champs nécessaires"

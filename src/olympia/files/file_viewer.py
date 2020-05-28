@@ -60,7 +60,7 @@ def extract_file(viewer, **kw):
     # This message is for end users so they'll see a nice error.
     msg = Message('file-viewer:%s' % viewer)
     msg.delete()
-    task_log.debug('Unzipping %s for file viewer.' % viewer)
+    task_log.info('Unzipping %s for file viewer.' % viewer)
 
     try:
         lock_attained = viewer.extract()
