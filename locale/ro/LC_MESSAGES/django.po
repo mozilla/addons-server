@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-19 18:29+0000\n"
+"POT-Creation-Date: 2020-05-28 10:35+0000\n"
 "PO-Revision-Date: 2020-05-04 05:13+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -510,7 +510,8 @@ msgstr "Recenzie listată"
 msgid "Review Unlisted"
 msgstr "Recenzie nelistată"
 
-msgid "This block was imported from a regex based legacy kinto Block."
+#, fuzzy
+msgid "This block was imported from a regex based legacy Block."
 msgstr "Acest blocaj a fost importat dintr-un blocaj kinto moștenit pe bază de regex."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
@@ -531,7 +532,8 @@ msgstr "%(count)s GUID-urile de suplimente sunt deja blocate de la %(v_min)s pâ
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUID-uri de suplimente negăsite"
 
-msgid "The following block(s) were imported from a regex based legacy kinto Block."
+#, fuzzy
+msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr "Următoarele blocaje au fost importate dintr-un blocaj kinto moștenit pe bază de regex."
 
 msgid "Save"
@@ -4995,6 +4997,14 @@ msgstr "Blochează toate reclamele — video, pop-up, bannere și multe altele."
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Urmărești fluxuri media cu prietenii și familia oriunde."
 
+#. editorial content for the discovery pane.
+msgid "Skip over sponsored portions of YouTube videos."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensiile sunt ca un fel de aplicații pentru Firefox."
@@ -5627,7 +5637,8 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "Respinge multiple versiuni"
 
-msgid "This will reject the selected public versions. The comments will be sent to the developer."
+#, fuzzy
+msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Această acțiune va respinge versiunile publice selectate. Comentariile vor fi trimise dezvoltatorului."
 
 msgid "Block Multiple Versions"
