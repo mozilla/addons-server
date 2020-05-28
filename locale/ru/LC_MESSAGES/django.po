@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-19 18:29+0000\n"
-"PO-Revision-Date: 2020-05-26 08:36+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2020-05-27 11:28+0000\n"
+"Last-Translator: anpas <anpas@tutanota.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -3154,7 +3154,7 @@ msgid "Read more about the source code review policy."
 msgstr "Узнайте больше о политике проверки исходного кода."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Создавайте лучшие в своем классе расширения и темы"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -3808,7 +3808,7 @@ msgstr "«Сотрите» цифровой след. Заставьте Firefox
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Не нужно писать одно и то же снова и снова. Сохраняйте часто вводимый текст для вставки в любое время."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
