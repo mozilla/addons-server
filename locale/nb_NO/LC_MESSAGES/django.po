@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-29 20:00+0000\n"
+"PO-Revision-Date: 2020-05-29 20:11+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -831,17 +831,14 @@ msgstr "{addon} {version} er foreløpig gjennomgått."
 msgid "Reply by developer on {addon} {version}."
 msgstr "Kommentar på {addon} {version}."
 
-#, fuzzy
 msgid "Developer Reply"
-msgstr "Utvikler"
+msgstr "Utviklersvar"
 
-#, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Kommentar på {addon} {version}."
+msgstr "Svar fra omtaler for {addon} {version}."
 
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Utvikler"
+msgstr "Svar fra omtaler"
 
 #, fuzzy
 msgid "Approval notes changed for {addon} {version}."
@@ -1422,21 +1419,17 @@ msgstr "Rediger tema"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Sikkerhetstester"
+msgstr "Sikkerhet"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Personvernbestemmelser"
+msgstr "Personvern"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Utviklerkommentarer"
+msgstr "Utviklingspraksis"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Unntak"
+msgstr "Ingen omdømme"
 
 msgid "Good (1)"
 msgstr ""
