@@ -22,7 +22,6 @@ from rest_framework.test import APIRequestFactory
 from freezegun import freeze_time
 from lxml.html import HTMLParser, fromstring
 from pyquery import PyQuery as pq
-from waffle.testutils import override_flag
 
 from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
