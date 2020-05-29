@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-29 19:50+0000\n"
+"PO-Revision-Date: 2020-05-29 20:00+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -18,9 +18,8 @@ msgstr ""
 msgid "type"
 msgstr ""
 
-#, fuzzy
 msgid "Users"
-msgstr "Daglige brukere"
+msgstr "Brukere"
 
 msgid "Addons"
 msgstr ""
@@ -28,17 +27,14 @@ msgstr ""
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
 
-#, fuzzy
 msgid "creation date"
-msgstr "Gjennomgang av moderert utvidelse"
+msgstr "opprettelsesdato"
 
-#, fuzzy
 msgid "User / Add-on"
-msgstr "%s utvidelser"
+msgstr "Bruker / tillegg"
 
-#, fuzzy
 msgid "Distribution"
-msgstr "Beskrivelse"
+msgstr "Distribusjon"
 
 msgid "Reporter's country"
 msgstr ""
@@ -76,9 +72,8 @@ msgstr "Ingen lenker tillatt."
 msgid "This display name cannot be used."
 msgstr "Dette visningsnavnet kan ikke brukes."
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "Dette navnet kan ikke brukes."
+msgstr "Dette omtaler-navnet kan ikke brukes."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
@@ -244,9 +239,8 @@ msgstr "Ikke tillatt"
 msgid "Oops! Not allowed."
 msgstr "Ikke tillatt"
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Oops! Ikke tillatt.</h1> <p>Du prøvde gjøre noe som du ikke har tillatelse til.</p>"
+msgstr "Du prøvde å gjøre noe som du ikke har tillatelse til."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -261,9 +255,8 @@ msgid ""
 "parties."
 msgstr ""
 
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Ikke funnet"
+msgstr "Siden ble ikke funnet"
 
 msgid "Firefox Add-ons"
 msgstr "Firefox-utvidelser"
@@ -274,17 +267,14 @@ msgstr ""
 msgid "Suggested Pages"
 msgstr "Foreslåtte sider"
 
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Mest populære utvidelser"
+msgstr "Bla igjennom alle utvidelser"
 
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Se alle {0}-temaer"
+msgstr "Bla igjennom alle tema"
 
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Hjemmeside for utvidelsen"
+msgstr "Startside for tillegg"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
