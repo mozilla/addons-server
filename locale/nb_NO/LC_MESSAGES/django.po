@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-29 20:17+0000\n"
+"PO-Revision-Date: 2020-05-29 21:08+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -887,9 +887,8 @@ msgstr "Kommentar på {addon} {version}."
 msgid "Information request removed"
 msgstr "Informasjonsforespørsel fjernet"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} gjennomgang er forespurt."
+msgstr "{addon} {version} tillegsgjennomgang av admin er forespurt."
 
 #, fuzzy
 msgid "Admin add-on-review requested"
