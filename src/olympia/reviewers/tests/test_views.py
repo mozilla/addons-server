@@ -48,7 +48,7 @@ from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary, CannedResponse, ReviewerScore, ReviewerSubscription,
     Whiteboard)
-from olympia.reviewers.templatetags import jinja_helpers
+from olympia.reviewers.templatetags.jinja_helpers import code_manager_url
 from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
 from olympia.reviewers.serializers import CannedResponseSerializer
@@ -4298,9 +4298,8 @@ class TestReview(ReviewBase):
         links = doc('#versions-history .file-info .compare')
 
         expected = [
-            jinja_helpers.code_manager_url(
-                '/compare/{}/versions/{}...{}/'.format(
-                    self.addon.pk, first_version_pk, new_version.pk)),
+            code_manager_url('compare', self.addon.pk,
+                             new_version.pk, first_version_pk),
         ]
 
         check_links(expected, links, verify=False)
@@ -4330,9 +4329,8 @@ class TestReview(ReviewBase):
         # ignoring the interim version because it was auto-approved and not
         # manually confirmed by a human.
         expected = [
-            jinja_helpers.code_manager_url(
-                '/compare/{}/versions/{}...{}/'.format(
-                    self.addon.pk, first_version_pk, new_version.pk)),
+            code_manager_url('compare', self.addon.pk,
+                             new_version.pk, first_version_pk),
         ]
         check_links(expected, links, verify=False)
 
@@ -4367,9 +4365,8 @@ class TestReview(ReviewBase):
         # manually confirmed by a human (the second was auto-approved but
         # was manually confirmed).
         expected = [
-            jinja_helpers.code_manager_url(
-                '/compare/{}/versions/{}...{}/'.format(
-                    self.addon.pk, confirmed_version.pk, new_version.pk)),
+            code_manager_url('compare', self.addon.pk,
+                             new_version.pk, confirmed_version.pk),
         ]
         check_links(expected, links, verify=False)
 
@@ -4397,9 +4394,8 @@ class TestReview(ReviewBase):
         # Comparison should be between the last version and the second,
         # because second was approved by human before auto-approval ran on it
         expected = [
-            jinja_helpers.code_manager_url(
-                '/compare/{}/versions/{}...{}/'.format(
-                    self.addon.pk, confirmed_version.pk, new_version.pk)),
+            code_manager_url('compare', self.addon.pk,
+                             new_version.pk, confirmed_version.pk),
         ]
         check_links(expected, links, verify=False)
 

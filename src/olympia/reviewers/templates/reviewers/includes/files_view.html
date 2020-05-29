@@ -1,45 +1,36 @@
 <div><strong>{{ _('Files in this version:') }}</strong></div>
 <ul>
-  {% set
-  latest_version_in_channel=addon.find_latest_version(channel=version.channel)
-  %} {% for file in distinct_files %}
-  <li class="file-info">
-    <span class="light">
-      <strong
-        ><a
-          href="{{ file[0].get_absolute_url('reviewer') }}"
-          class="reviewers-install"
-          data-type="{{ amo.ADDON_SLUGS[addon.type] }}"
-          >{{ file[1] }}</a
-        ></strong
+{% set latest_version_in_channel=addon.find_latest_version(channel=version.channel) %}
+{% for file in distinct_files %}
+<li class="file-info">
+  <span class="light">
+    <strong><a href="{{ file[0].get_absolute_url('reviewer') }}" class="reviewers-install"
+        data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ file[1] }}</a></strong>
+    <div>
+      {{ file_review_status(addon, file[0]) }}
+    </div>
+    <a href="{{ url('devhub.file_validation', addon.slug, file[0].id) }}">{{ _('Validation') }}</a>
+    &middot;
+    <a 
+      href="{{ code_manager_url('browse', addon.pk, version.pk) }}"
+      title="Browse all files in this version"
       >
-      <div>
-        {{ file_review_status(addon, file[0]) }}
-      </div>
-      <a href="{{ url('devhub.file_validation', addon.slug, file[0].id) }}"
-        >{{ _('Validation') }}</a
-      >
-      &middot;
-      <a
-        href="{{ code_manager_url('/browse/{}/versions/{}/'.format(addon.pk, version.pk)) }}"
-        title="Browse all files in this version"
-      >
-        {{ _('Contents') }}</a
-      >
-      {% if show_diff and version == latest_version_in_channel %} &middot;
-      <a
-        class="compare"
-        href="{{ code_manager_url('/compare/{}/versions/{}...{}/'.format(addon.pk, show_diff.pk, version.pk)) }}"
-        title="Compare this version to the last reviewed version"
-        >{{ _('Compare') }}</a
-      >
-      {% endif %} {% if file[0].is_webextension %}
-      <div class="file-permissions">
-        <strong>{{ _('Permissions:') }}</strong> {{ ',
-        '.join(file[0].webext_permissions_list) or _('None') }}
-      </div>
-      {% endif %}
-    </span>
-  </li>
-  {% endfor %}
+        {{ _('Contents') }}
+    </a>
+    {% if show_diff and version == latest_version_in_channel %}
+    &middot;
+    <a
+      class="compare"
+      href="{{ code_manager_url('compare', addon.pk, version.pk, show_diff.pk) }}"
+      title="Compare this version to the last reviewed version"
+    >
+      {{ _('Compare') }}
+    </a>
+    {% endif %}
+    {% if file[0].is_webextension %}
+    <div class="file-permissions"><strong>{{ _('Permissions:') }}</strong> {{ ', '.join(file[0].webext_permissions_list) or _('None') }}</div>
+    {% endif %}
+  </span>
+</li>
+{% endfor %}
 </ul>

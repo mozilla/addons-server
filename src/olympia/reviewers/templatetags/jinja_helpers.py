@@ -13,6 +13,7 @@ from olympia.access import acl
 from olympia.addons.templatetags.jinja_helpers import new_context
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import ReviewerScore
+from olympia.reviewers.templatetags import code_manager_tags
 from olympia.versions.models import Version
 
 
@@ -221,13 +222,10 @@ def is_expired_lock(context, lock):
 
 
 @library.global_function
-def code_manager_url(path):
-    if not path.startswith('/'):
-        raise ValueError(
-            'Expected a relative path; got: "{}"'.format(path)
-        )
-    # Always return URLs in en-US because the Code Manager is not localized.
-    return '{}/en-US{}'.format(settings.CODE_MANAGER_URL, path)
+def code_manager_url(
+        page, addon_id, version_id, compare_version_id=None):
+    return code_manager_tags.code_manager_url(
+        page, addon_id, version_id, compare_version_id)
 
 
 @library.global_function

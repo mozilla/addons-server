@@ -38,6 +38,7 @@ from olympia.constants.scanners import (
     YARA,
 )
 from olympia.files.models import FileUpload
+from olympia.reviewers.templatetags.code_manager_tags import code_manager_url
 from olympia.scanners.admin import (
     ExcludeMatchedRuleFilter,
     MatchesFilter,
@@ -221,17 +222,13 @@ class TestScannerResultAdmin(TestCase):
         result.add_yara_result(rule=rule.name, meta={'filename': filename})
         result.save()
 
-        external_site_url = 'http://example.org'
         file_id = version.all_files[0].id
         assert file_id is not None
-        expect_file_item = '<a href="{}{}">{}</a>'.format(
-            external_site_url,
-            reverse('files.list', args=[file_id, 'file', filename]),
-            filename
-        )
-        with override_settings(EXTERNAL_SITE_URL=external_site_url):
-            assert (expect_file_item in
-                    self.admin.formatted_matched_rules_with_files(result))
+
+        expect_file_item = code_manager_url(
+            'browse', version.addon.pk, version.pk, file=filename)
+        assert (expect_file_item in
+                self.admin.formatted_matched_rules_with_files(result))
 
     def test_formatted_matched_rules_with_files_without_version(self):
         result = ScannerResult.objects.create(scanner=YARA)
@@ -245,7 +242,7 @@ class TestScannerResultAdmin(TestCase):
                 self.admin.formatted_matched_rules_with_files(result))
         # ...but we do not add a link to it because there is no associated
         # version.
-        assert ('/file/' not in
+        assert ('/browse/' not in
                 self.admin.formatted_matched_rules_with_files(result))
 
     def test_formatted_score_when_scanner_is_not_mad_or_customs(self):
@@ -1500,16 +1497,11 @@ class TestScannerQueryResultAdmin(TestCase):
         rule_url = reverse(
             'admin:scanners_scannerqueryrule_change', args=(rule.pk,))
 
-        external_site_url = 'http://example.org'
         file_id = version.all_files[0].id
         assert file_id is not None
-        expect_file_item = '<a href="{}{}">{}</a>'.format(
-            external_site_url,
-            reverse('files.list', args=[file_id, 'file', filename]),
-            filename
-        )
-        with override_settings(EXTERNAL_SITE_URL=external_site_url):
-            content = self.admin.formatted_matched_rules_with_files(result)
+        expect_file_item = code_manager_url(
+            'browse', version.addon.pk, version.pk, file=filename)
+        content = self.admin.formatted_matched_rules_with_files(result)
         assert expect_file_item in content
         assert rule_url in content
 
@@ -1522,14 +1514,16 @@ class TestScannerQueryResultAdmin(TestCase):
         result1.add_yara_result(
             rule=rule.name, meta={'filename': 'some/file/somewhere.js'})
         result1.add_yara_result(
-            rule=rule.name, meta={'filename': 'another/file/somewhereelse.js'})
+            rule=rule.name,
+            meta={'filename': 'another/file/somewhereelse.js'})
         result1.save()
         result2 = ScannerQueryResult.objects.create(
             scanner=YARA, version=addon_factory().current_version,
             created=self.days_ago(1),
         )
         result2.add_yara_result(
-            rule=rule.name, meta={'filename': 'a/file/from/another_addon.js'})
+            rule=rule.name,
+            meta={'filename': 'a/file/from/another_addon.js'})
         result2.save()
         response = self.client.get(self.list_url)
         assert response.status_code == 200
@@ -1537,15 +1531,15 @@ class TestScannerQueryResultAdmin(TestCase):
         links = doc('.field-matching_filenames a')
         assert len(links) == 3
         expected = [
-            'http://testserver{}'.format(reverse('files.list', args=[
-                result1.version.all_files[0].pk, 'file',
-                'some/file/somewhere.js'])),
-            'http://testserver{}'.format(reverse('files.list', args=[
-                result1.version.all_files[0].pk, 'file',
-                'another/file/somewhereelse.js'])),
-            'http://testserver{}'.format(reverse('files.list', args=[
-                result2.version.all_files[0].pk, 'file',
-                'a/file/from/another_addon.js'])),
+            code_manager_url(
+                'browse', result1.version.addon.pk, result1.version.pk,
+                file='some/file/somewhere.js'),
+            code_manager_url(
+                'browse', result1.version.addon.pk, result1.version.pk,
+                file='another/file/somewhereelse.js'),
+            code_manager_url(
+                'browse', result2.version.addon.pk, result2.version.pk,
+                file='a/file/from/another_addon.js'),
         ]
         assert [link.attrib['href'] for link in links] == expected
 

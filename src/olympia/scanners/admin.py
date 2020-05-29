@@ -435,7 +435,9 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                         'files': files_by_matched_rules[rule.name],
                     }
                     for rule in obj.matched_rules.all()
-                ]
+                ],
+                'addon_id': obj.version.addon.pk if obj.version else None,
+                'version_id': obj.version.pk if obj.version else None,
             },
         )
 

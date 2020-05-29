@@ -1,4 +1,5 @@
 {% load admin_urls %}
+{% load code_manager_tags %}
 {# This template can be used for both scanner results and scanner query results. Keep it generic. #}
 
 <ul>
@@ -6,7 +7,7 @@
     {% for file in rule.files %}
       <li>
         {% if file_id %}
-          <a href="{{ external_site_url }}{% url 'files.list' file_id 'file' file %}">{{ file }}</a>
+          <a href="{% code_manager_url 'browse' addon_id version_id file=file %}">{{ file }}</a>
         {% else %}
           {{ file }}
         {% endif %}
