@@ -31,8 +31,7 @@ from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser, DeniedGuid,
-    ReusedGUID)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser, DeniedGuid)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, format_date, format_datetime)
@@ -5188,10 +5187,10 @@ class TestReview(ReviewBase):
         old_two = addon_factory(status=amo.STATUS_DELETED)
         old_other = addon_factory(status=amo.STATUS_DELETED)
         old_noguid = addon_factory(status=amo.STATUS_DELETED)
-        ReusedGUID.objects.create(addon=old_one, guid='reuse@')
-        ReusedGUID.objects.create(addon=old_two, guid='reuse@')
-        ReusedGUID.objects.create(addon=old_other, guid='other@')
-        ReusedGUID.objects.create(addon=old_noguid, guid='')
+        old_one.addonguid.update(guid='reuse@')
+        old_two.addonguid.update(guid='reuse@')
+        old_other.addonguid.update(guid='other@')
+        old_noguid.addonguid.update(guid='')
         self.addon.update(guid='reuse@')
 
         response = self.client.get(self.url)

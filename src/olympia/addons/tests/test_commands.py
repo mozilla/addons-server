@@ -11,7 +11,7 @@ import pytest
 
 from olympia import amo
 from olympia.addons.management.commands import process_addons
-from olympia.addons.models import Addon, ReusedGUID, GUID_REUSE_FORMAT
+from olympia.addons.models import Addon
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
@@ -474,54 +474,6 @@ class TestResignAddonsForCose(TestCase):
         call_command('process_addons', task='resign_addons_for_cose')
 
         assert sign_file_mock.call_count == 5
-
-
-@pytest.mark.django_db
-def test_backfill_reused_guid():
-    # shouldn't show up in the query but throw them in anyway
-    addon_factory(name='just a deleted addon', status=amo.STATUS_DELETED)
-    addon_factory(name='just a public addon')
-    # simple case - an add-on's guid is reused once.
-    single_reuse_deleted = addon_factory(
-        name='single reuse', status=amo.STATUS_DELETED)
-    single_reuse_addon = addon_factory(
-        name='single reuse', guid='single@reuse')
-    single_reuse_deleted.update(
-        guid=GUID_REUSE_FORMAT.format(single_reuse_addon.id))
-    # more complex case - a guid is reused multiple times.
-    multi_reuse_deleted_a = addon_factory(
-        name='multi reuse', status=amo.STATUS_DELETED)
-    multi_reuse_deleted_b = addon_factory(
-        name='multi reuse', status=amo.STATUS_DELETED)
-    multi_reuse_addon = addon_factory(
-        name='multi reuse', guid='multi@reuse')
-    multi_reuse_deleted_a.update(
-        guid=GUID_REUSE_FORMAT.format(multi_reuse_deleted_b.id))
-    multi_reuse_deleted_b.update(
-        guid=GUID_REUSE_FORMAT.format(multi_reuse_addon.id))
-    # a guid reuse referencing a pk that doesn't exist (addon hard delete?)
-    addon_factory(
-        name='missing reuse', status=amo.STATUS_DELETED,
-        guid=GUID_REUSE_FORMAT.format(999))
-    # reusedguid object already there
-    reused_exists_deleted = addon_factory(
-        name='reused_exists', status=amo.STATUS_DELETED)
-    reused_exists_addon = addon_factory(
-        name='reused_exists', guid='exists@reuse')
-    reused_exists_deleted.update(
-        guid=GUID_REUSE_FORMAT.format(reused_exists_addon.id))
-    ReusedGUID.objects.create(addon=reused_exists_deleted, guid='exists@reuse')
-
-    assert ReusedGUID.objects.count() == 1
-    call_command('backfill_reused_guid')
-    assert ReusedGUID.objects.count() == 4
-    qs_values = ReusedGUID.objects.all().order_by('id').values('addon', 'guid')
-    assert list(qs_values) == [
-        {'addon': reused_exists_deleted.id, 'guid': 'exists@reuse'},
-        {'addon': single_reuse_deleted.id, 'guid': 'single@reuse'},
-        {'addon': multi_reuse_deleted_a.id, 'guid': 'multi@reuse'},
-        {'addon': multi_reuse_deleted_b.id, 'guid': 'multi@reuse'},
-    ]
 
 
 class TestDeleteObsoleteAddons(TestCase):

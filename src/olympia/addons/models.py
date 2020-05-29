@@ -715,9 +715,10 @@ class Addon(OnChangeMixin, ModelBase):
         addon.save()
         timer.log_interval('6.addon_save')
 
+        if guid:
+            AddonGUID.objects.create(addon=addon, guid=guid)
         if old_guid_addon:
             old_guid_addon.update(guid=GUID_REUSE_FORMAT.format(addon.pk))
-            ReusedGUID.objects.create(addon=old_guid_addon, guid=guid)
             log.info(f'GUID {guid} from addon [{old_guid_addon.pk}] reused '
                      f'by addon [{addon.pk}].')
         if user:
@@ -2109,11 +2110,15 @@ def track_addon_status_change(addon):
                 .format(addon.status))
 
 
-class ReusedGUID(ModelBase):
+class AddonGUID(ModelBase):
     """
-    Addons + guids will be added to this table when a new Add-on has reused
-    the guid from an earlier deleted Add-on.
+    Addons + guids will be added to this table whenever an addon is created.
+    For deleted addons it will contain an fk to the Addon instance even after
+    Addon.guid has been set to null (i.e. when it's been reuploaded).
     """
-    guid = models.CharField(max_length=255, null=False)
+    guid = models.CharField(max_length=255, null=False, db_index=True)
     addon = models.OneToOneField(
         Addon, null=False, on_delete=models.CASCADE, unique=True)
+
+    class Meta:
+        db_table = 'addons_reusedguid'

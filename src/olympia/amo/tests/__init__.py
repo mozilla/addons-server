@@ -43,7 +43,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, AddonCategory, Category,
+    Addon, AddonCategory, AddonGUID, Category,
     update_search_index as addon_update_search_index)
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.amo.storage_utils import copy_stored_file
@@ -736,6 +736,8 @@ def addon_factory(
 
     # Save 4.
     addon.save()
+    if addon.guid:
+        AddonGUID.objects.create(addon=addon, guid=addon.guid)
 
     # Potentially update is_public on authors
     [user.update_is_public() for user in users]

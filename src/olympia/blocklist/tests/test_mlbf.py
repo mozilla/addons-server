@@ -6,7 +6,7 @@ from unittest import mock
 from filtercascade import FilterCascade
 
 from olympia import amo
-from olympia.addons.models import GUID_REUSE_FORMAT, ReusedGUID
+from olympia.addons.models import GUID_REUSE_FORMAT
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
 from olympia.blocklist.models import Block
@@ -71,6 +71,18 @@ class TestMLBF(TestCase):
             min_version='9999')
 
         # A blocked addon has been uploaded and deleted before
+        reused_2_1_addon = addon_factory(
+            # this a previous, superceeded, addon that should be included
+            status=amo.STATUS_DELETED,  # they should all be deleted
+            version_kw={'version': '2.1'},
+            file_kw={'is_signed': True, 'is_webextension': True})
+        self.addon_deleted_before_2_1_ver = reused_2_1_addon.versions.all()[0]
+        reused_2_5_addon = addon_factory(
+            # And this is an earlier addon that should also be included
+            status=amo.STATUS_DELETED,  # they should all be deleted
+            version_kw={'version': '2.5'},
+            file_kw={'is_signed': True, 'is_webextension': True})
+        self.addon_deleted_before_2_5_ver = reused_2_5_addon.versions.all()[0]
         current_addon = addon_factory(
             version_kw={'version': '2'},
             file_kw={'is_signed': True, 'is_webextension': True})
@@ -82,22 +94,12 @@ class TestMLBF(TestCase):
         version_factory(
             addon=current_addon, version='3.0',
             file_kw={'is_signed': True, 'is_webextension': True})
-        reused_2_1 = ReusedGUID.objects.create(
-            # this a previous, superceeded, addon that should be included
-            guid=current_addon.guid, addon=addon_factory(
-                guid=GUID_REUSE_FORMAT.format(current_addon.id),
-                version_kw={'version': '2.1'},
-                file_kw={'is_signed': True, 'is_webextension': True}))
-        self.addon_deleted_before_2_1_ver = reused_2_1.addon.versions.all()[0]
-        reused_2_5 = ReusedGUID.objects.create(
-            # And this is an earlier addon that should also be included
-            guid=current_addon.guid, addon=addon_factory(
-                guid=GUID_REUSE_FORMAT.format(
-                    self.addon_deleted_before_2_1_ver.addon_id),
-                status=amo.STATUS_DELETED,  # they should all be deleted tbf
-                version_kw={'version': '2.5'},
-                file_kw={'is_signed': True, 'is_webextension': True}))
-        self.addon_deleted_before_2_5_ver = reused_2_5.addon.versions.all()[0]
+        reused_2_1_addon.update(
+            guid=GUID_REUSE_FORMAT.format(current_addon.id))
+        reused_2_5_addon.update(
+            guid=GUID_REUSE_FORMAT.format(reused_2_1_addon.id))
+        reused_2_1_addon.addonguid.update(guid=current_addon.guid)
+        reused_2_5_addon.addonguid.update(guid=current_addon.guid)
         self.addon_deleted_before_block = Block.objects.create(
             guid=current_addon.guid, min_version='2.0.1', updated_by=user)
 
