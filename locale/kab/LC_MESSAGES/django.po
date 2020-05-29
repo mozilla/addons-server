@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-29 14:07+0000\n"
+"PO-Revision-Date: 2020-05-29 14:15+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -340,7 +340,7 @@ msgid ""
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
 "<p> Ma ulac aɣilif sekcem<strong>akk awalen</strong> dagi, <strong>yettwabrez s isekkilen ilmawen</strong>. </p> <p> Ma yewɛeṛ i tɣuṛi, tzemreḍ <a href=\"#\" id=\"recaptcha_different\">ɛreḍ awalen "
-"nniḍen</a> ou <a href=\"#\" id=\"recaptcha_audio\">ɛreḍ anaw nniḍen</a> àdeg umdiq-is.</p>"
+"nniḍen</a> ou <a href=\"#\" id=\"recaptcha_audio\">ɛreḍ anaw nniḍen</a> deg umdiq-is.</p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
