@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-29 20:11+0000\n"
+"PO-Revision-Date: 2020-05-29 20:17+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -560,24 +560,21 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "Send inn ny utvidelse"
+msgstr "Send inn"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "Daglige brukere"
+msgstr "brukere"
 
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
-msgstr "Versjoner"
+msgstr "versjoner"
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -682,9 +679,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Kommentar på {addon} {version}."
 
-#, fuzzy
 msgid "Commented"
-msgstr "Kommentar"
+msgstr "Kommentert"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} lagt til på {addon}."
@@ -724,9 +720,8 @@ msgstr "{0} {1} lagt til."
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr "{0.name} sin rolle endret til {1} for {addon}."
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "{addon} er nå lisensiert under {0.name}."
+msgstr "{addon} er nå lisensiert under {0}."
 
 msgid "{addon} policy changed."
 msgstr "{addon} sin policy endret."
@@ -734,9 +729,8 @@ msgstr "{addon} sin policy endret."
 msgid "{addon} icon changed."
 msgstr "{addon} ikon endret."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{review} for {addon} godkjent."
+msgstr "{rating} for {addon} godkjent."
 
 #, fuzzy
 msgid "{user} approved {rating} for {addon}."
@@ -862,45 +856,36 @@ msgstr "Kommentar på {addon} {version}."
 msgid "Auto-Approval confirmed"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} avvist."
+msgstr "{addon} {version} aktivert på nytt."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} eskalert."
+msgstr "{addon} {version} deaktivert."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} godkjent."
+msgstr "{addon} {version} innhold godkjent."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "{addon} {version} godkjent."
+msgstr "Innhold godkjent"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} avvist."
+msgstr "{addon} {version} innhold avvist."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "{addon} {version} avvist."
+msgstr "Innhold avvist"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Mer informasjon er forespurt"
+msgstr "{addon} informasjonsforespørsel endert eller tatt vekk av admin."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Mer informasjon er forespurt"
+msgstr "Informasjonsforespørsel endert"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr "Kommentar på {addon} {version}."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Mer informasjon er forespurt"
+msgstr "Informasjonsforespørsel fjernet"
 
 #, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
