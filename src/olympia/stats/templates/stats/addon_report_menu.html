@@ -27,7 +27,11 @@
       <li data-report="os">
         <a href="{{ stats_url('stats.os', addon.slug) }}">{{ _('by Platform') }}</a>
       </li>
-      {% if not beta %}
+      {% if beta %}
+      <li data-report="countries">
+        <a href="{{ url('stats.countries.beta', addon.slug) }}">{{ _('by Country') }}</a>
+      </li>
+      {% else %}
       <li data-report="statuses">
         <a href="{{ url('stats.statuses', addon.slug) }}">{{ _('by Add-on Status') }}</a>
       </li>

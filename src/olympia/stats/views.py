@@ -36,6 +36,7 @@ SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
 SERIES = ('downloads', 'usage', 'overview', 'sources', 'os',
           'locales', 'statuses', 'versions', 'apps')
+BETA_SERIES = SERIES + ('countries',)
 
 
 storage = get_storage_class()()
@@ -247,6 +248,7 @@ def usage_breakdown_series(request, addon, group, start, end, format, field,
 
     fields = {
         'applications': 'apps',
+        'countries': 'countries',
         'locales': 'locales',
         'oses': 'os',
         'statuses': 'status',

@@ -96,7 +96,8 @@
         "ratings"            : "collections",
         "sales"              : "sales",
         "refunds"            : "refunds",
-        "installs"           : "installs"
+        "installs"           : "installs",
+        "countries"          : "users",
     };
 
     var acceptedGroups = {

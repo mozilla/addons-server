@@ -6,6 +6,7 @@ from olympia.constants.applications import FIREFOX
 # This is the mapping between the AMO stats `sources` and the BigQuery columns.
 AMO_TO_BIGQUERY_COLUMN_MAPPING = {
     'apps': 'dau_by_app_version',
+    'countries': 'dau_by_country',
     'locales': 'dau_by_locale',
     'os': 'dau_by_app_os',
     'versions': 'dau_by_addon_version',

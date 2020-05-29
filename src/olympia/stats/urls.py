@@ -10,7 +10,7 @@ format_re = r'(?P<format>' + '|'.join(views.SERIES_FORMATS) + ')'
 series_re = r'%s-%s\.%s$' % (group_re, range_re, format_re)
 series = dict((type, r'^%s-%s' % (type, series_re)) for type in views.SERIES)
 beta_series = dict(
-    (type, r'^beta/%s-%s' % (type, series_re)) for type in views.SERIES
+    (type, r'^beta/%s-%s' % (type, series_re)) for type in views.BETA_SERIES
 )
 
 
@@ -61,6 +61,10 @@ stats_patterns = [
     url(r'^beta/usage/os/$', views.stats_report, name='stats.os.beta',
         kwargs={'report': 'os', 'beta': True}),
 
+    url(r'^beta/usage/countries/$', views.stats_report,
+        name='stats.countries.beta',
+        kwargs={'report': 'countries', 'beta': True}),
+
     # time series URLs following this pattern:
     # /addon/{addon_id}/statistics/{series}-{group}-{start}-{end}.{format}
     url(series['overview'], views.overview_series,
@@ -106,4 +110,8 @@ stats_patterns = [
     url(beta_series['apps'], views.usage_breakdown_series,
         name='stats.apps_series.beta',
         kwargs={'field': 'applications', 'beta': True}),
+
+    url(beta_series['countries'], views.usage_breakdown_series,
+        name='stats.countries_series.beta',
+        kwargs={'field': 'countries', 'beta': True}),
 ]
