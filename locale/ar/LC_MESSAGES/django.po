@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-29 04:32+0000\n"
+"PO-Revision-Date: 2020-05-29 04:41+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -1070,46 +1070,46 @@ msgid "Feeds, News & Blogging"
 msgstr "التلقيمات والأخبار والمدوّنات"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "نزّل امتدادات Firefox ترمي بالفوضى من المتصفّح لتبقى على اطّلاع دائم بوسائل التواصل وتتفقّد ما فاتك من المدوّنات وتلقيمات RSS، كما وتقليل الإجهاد على العين وأكثر."
 
 msgid "Games & Entertainment"
 msgstr "ألعاب وتسلية"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "نزّل امتدادات Firefox تحسّن من تجربتك الترفيهية. تشمل هذه الفئة امتدادات تحسّن الألعبا وتتحكّم بتشغيل الڤديو وأكثر."
 
 msgid "Language Support"
 msgstr "دعم اللغات"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "نزّل امتدادات Firefox تتيح دعم اللغات مثل التدقيقي النحوي والبحث عن الكلمات وترجمة النصوص ونطق النصوص وأكثر."
 
 msgid "Photos, Music & Videos"
 msgstr "الصور والموسيقى والفيديو"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "نزّل امتدادات Firefox تحسّن تجربة عرض الصور والموسيقى والڤديو. تُعدّل الامتدادات في هذه الفئة الصوت والڤديو، وتبحث عن الصور وأكثر."
 
 msgid "Privacy & Security"
 msgstr "الخصوصية والسريّة"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "نزّل امتدادات Firefox لتتصفّح تصفّحًا آمنًا وخاصًا. تشمل هذه الفئة امتدادات تحجب الإعلانات المزعجة وتمنع التعقّب وتُدير التحويلات وأكثر."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "نزّل امتدادات Firefox للبحث. تشمل هذه الفئة الامتدادات التي تُبرز النص وتبحث فيه، وتبحث عن عناوين IP والنطاقات، وأكثر."
 
 msgid "Shopping"
 msgstr "تسوّق"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "نزّل امتدادات Firefox تحسّن من تجربة الشراء على الإنترنت بالبحث عن القسائم والعروض وتحليل المراجعات وأكثر."
 
 msgid "Social & Communication"
 msgstr "اجتماعيات وتواصل"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "نزّل امتدادات Firefox تحسّن وسائل التواصل والتراسل الآني. تشمل هذه الفئة تنبيهات ألسنة محسّنة وأدوات تنزيل الڤديوهات وأكثر."
 
 msgid "Tabs"
 msgstr "الألسنة"
@@ -1615,7 +1615,7 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "هذا الاسم التقني (slug) مُستخدم بالفعل. رجاءً اختر اسما آخر."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
@@ -2032,14 +2032,13 @@ msgid "Documentation"
 msgstr "التوثيق"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "تطوير الامتدادات"
 
 msgid "Themes"
 msgstr "السِمات"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "أخبار المطور"
+msgstr "سياسات المطوّرين"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -2057,7 +2056,7 @@ msgid "Add-ons Forum"
 msgstr "منتدى الإضافات"
 
 msgid "More Resources"
-msgstr ""
+msgstr "مصادر اكثر"
 
 msgid "Search Developer Docs"
 msgstr "ابحث في توثيق المطوّرين"
@@ -2293,14 +2292,12 @@ msgid ""
 "ons."
 msgstr ""
 
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "صِف إضافتك"
+msgstr "صِف الإضافة"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "صِف إضافتك"
+msgstr "صِف {0}"
 
 msgid "Name and Summary"
 msgstr ""
@@ -2735,7 +2732,7 @@ msgid "More information on Add-on Distribution and Signing"
 msgstr ""
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "تم الإرسال"
 
 #, fuzzy
 msgid "Version Submitted for Review"
@@ -5036,7 +5033,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr ""
+msgstr "تُشبه الامتدادات التطبيقات، ولكنّها لمتصفّح Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
@@ -5883,10 +5880,10 @@ msgid "Internal AMO ID"
 msgstr ""
 
 msgid "Visibility"
-msgstr ""
+msgstr "الرؤية"
 
 msgid "Visible"
-msgstr ""
+msgstr "ظاهرة"
 
 msgid "View Statistics"
 msgstr "اعرض الإحصائيات"
@@ -5979,7 +5976,7 @@ msgid "No events found for this period."
 msgstr ""
 
 msgid "Log details"
-msgstr ""
+msgstr "تفاصيل السجل"
 
 #, fuzzy
 msgid "Review Author"
