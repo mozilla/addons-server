@@ -522,10 +522,8 @@ class DraftCommentSerializer(serializers.ModelSerializer):
     user = SplitField(
         serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
         BaseUserSerializer())
-    version = SplitField(
-        serializers.PrimaryKeyRelatedField(
-            queryset=Version.unfiltered.all()),
-        AddonBrowseVersionSerializer())
+    version_id = serializers.PrimaryKeyRelatedField(
+        queryset=Version.unfiltered.all(), source='version')
     canned_response = SplitField(
         serializers.PrimaryKeyRelatedField(
             queryset=CannedResponse.objects.all(),
@@ -538,14 +536,8 @@ class DraftCommentSerializer(serializers.ModelSerializer):
         model = DraftComment
         fields = (
             'id', 'filename', 'lineno', 'comment',
-            'version', 'user', 'canned_response'
+            'version_id', 'user', 'canned_response'
         )
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Set the instance for `AddonBrowseVersionSerializer` which requires
-        # on `instance` being set correctly.
-        self.fields['version'].output.instance = self.context['version']
 
     def get_or_default(self, key, data, default=''):
         """Return the value of ``key`` in ``data``

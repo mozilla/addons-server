@@ -1464,7 +1464,7 @@ class ReviewAddonVersionDraftCommentViewSet(
 
     def get_extra_comment_data(self):
         return {
-            'version': self.get_version_object().pk,
+            'version_id': self.get_version_object().pk,
             'user': self.request.user.pk
         }
 

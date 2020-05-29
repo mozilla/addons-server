@@ -51,8 +51,7 @@ from olympia.reviewers.models import (
     Whiteboard)
 from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
-from olympia.reviewers.serializers import (
-    CannedResponseSerializer, AddonBrowseVersionSerializer)
+from olympia.reviewers.serializers import CannedResponseSerializer
 from olympia.scanners.models import VersionScannerFlags
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
@@ -6719,9 +6718,7 @@ class TestDraftCommentViewSet(TestCase):
             'lineno': 20,
             'comment': 'Some really fancy comment',
             'canned_response': None,
-            'version': json.loads(json.dumps(
-                AddonBrowseVersionSerializer(self.version).data,
-                cls=amo.utils.AMOJSONEncoder)),
+            'version_id': self.version.pk,
             'user': json.loads(json.dumps(
                 BaseUserSerializer(
                     user, context={'request': request}).data,
@@ -6745,13 +6742,11 @@ class TestDraftCommentViewSet(TestCase):
             'addon_pk': self.addon.pk,
             'version_pk': self.version.pk
         })
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(9):
             # - 2 savepoints because of tests
             # - 2 user and groups
             # - 2 addon and translations
             # - 1 version
-            # - 1 files
-            # - 1 file validation
             # - 1 count
             # - 1 drafts
             response = self.client.get(url, {'lang': 'en-US'})
@@ -7012,9 +7007,7 @@ class TestDraftCommentViewSet(TestCase):
             'canned_response': json.loads(json.dumps(
                 CannedResponseSerializer(canned_response).data,
                 cls=amo.utils.AMOJSONEncoder)),
-            'version': json.loads(json.dumps(
-                AddonBrowseVersionSerializer(self.version).data,
-                cls=amo.utils.AMOJSONEncoder)),
+            'version_id': self.version.id,
             'user': json.loads(json.dumps(
                 BaseUserSerializer(
                     user, context={'request': request}).data,
