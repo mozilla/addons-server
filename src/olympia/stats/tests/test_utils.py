@@ -9,19 +9,33 @@ from olympia.constants.applications import FIREFOX
 from olympia.stats.utils import (
     AMO_STATS_DAU_VIEW,
     AMO_TO_BIGQUERY_COLUMN_MAPPING,
+    get_addons_and_average_daily_users_from_bigquery,
     get_updates_series,
     rows_to_series,
 )
 
 
-class TestRowsToSeries(TestCase):
-    def create_fake_bigquery_row(
-        self, dau=123, submission_date=date(2020, 5, 28), **kwargs
-    ):
-        data = {'dau': dau, 'submission_date': submission_date, **kwargs}
+class BigQueryTestMixin(object):
+    def create_mock_client(self, results=None):
+        client = mock.Mock()
+        result_mock = mock.Mock()
+        result_mock.result.return_value = list(results if results else [])
+        client.query.return_value = result_mock
+        return client
+
+    def create_bigquery_row(self, data):
         return bigquery.Row(
             list(data.values()),
             {key: idx for idx, key in enumerate(data.keys())},
+        )
+
+
+class TestRowsToSeries(BigQueryTestMixin, TestCase):
+    def create_fake_bigquery_row(
+        self, dau=123, submission_date=date(2020, 5, 28), **kwargs
+    ):
+        return self.create_bigquery_row(
+            {'dau': dau, 'submission_date': submission_date, **kwargs}
         )
 
     def test_no_rows(self):
@@ -99,24 +113,19 @@ class TestRowsToSeries(TestCase):
 
 
 @override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
-class TestGetUpdatesSeries(TestCase):
+class TestGetUpdatesSeries(BigQueryTestMixin, TestCase):
     def setUp(self):
         super().setUp()
 
         self.addon = addon_factory()
 
-    def create_mock_client(self):
-        client = mock.Mock()
-        result_mock = mock.Mock()
-        result_mock.return_value = []
-        client.query.return_value = result_mock
-        return client
-
     @mock.patch('google.cloud.bigquery.Client')
     def test_create_client(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+
         credentials = 'path/to/credentials.json'
         with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
-            bigquery_client_mock.from_service_account_json = mock.Mock()
             get_updates_series(
                 addon=self.addon,
                 start_date=date(2020, 5, 27),
@@ -183,3 +192,47 @@ LIMIT 365"""
             timer_mock.assert_called_with(
                 f'stats.get_updates_series.bigquery.{source}'
             )
+
+
+@override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
+class TestGetAddonsAndAverageDailyUsersFromBigQuery(
+    BigQueryTestMixin, TestCase
+):
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_client(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+
+        credentials = 'path/to/credentials.json'
+        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
+            get_addons_and_average_daily_users_from_bigquery()
+
+        bigquery_client_mock.from_service_account_json.assert_called_once_with(
+            credentials
+        )
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_query(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+        expected_query = f"""
+SELECT addon_id, AVG(dau) AS count
+FROM `project.dataset.{AMO_STATS_DAU_VIEW}`
+WHERE submission_date > DATE_SUB(CURRENT_DATE(), INTERVAL 13 DAY)
+GROUP BY addon_id"""
+
+        get_addons_and_average_daily_users_from_bigquery()
+
+        client.query.assert_called_once_with(expected_query)
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_returned_results(self, bigquery_client_mock):
+        results = [
+            self.create_bigquery_row({'addon_id': 1, 'count': 123}),
+            self.create_bigquery_row({'addon_id': 2, 'count': 456}),
+        ]
+        client = self.create_mock_client(results=results)
+        bigquery_client_mock.from_service_account_json.return_value = client
+
+        returned_results = get_addons_and_average_daily_users_from_bigquery()
+        assert returned_results == [(1, 123), (2, 456)]

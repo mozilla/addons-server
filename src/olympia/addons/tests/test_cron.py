@@ -5,6 +5,7 @@ import os
 from django.core.files.storage import default_storage as storage
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
+from waffle.testutils import override_switch
 
 from unittest import mock
 
@@ -301,6 +302,22 @@ class TestAvgDailyUserCountTestCase(TestCase):
             81710 + 78843 + 99383 + 104431 + 105943) / 12 == 95451
 
         assert addon.average_daily_users == 95451
+
+    @override_switch('use-bigquery-for-addon-adu', active=True)
+    @mock.patch(
+        'olympia.addons.cron.get_addons_and_average_daily_users_from_bigquery'
+    )
+    def test_update_addon_average_daily_users_with_bigquery(self, get_mock):
+        addon = Addon.objects.get(pk=3615)
+        addon.update(average_daily_users=0)
+        count = 56789
+        get_mock.return_value = [(addon.guid, count)]
+
+        cron.update_addon_average_daily_users()
+        addon.refresh_from_db()
+
+        get_mock.assert_called
+        assert addon.average_daily_users == count
 
     def test_adu_flag(self):
         addon = Addon.objects.get(pk=3615)

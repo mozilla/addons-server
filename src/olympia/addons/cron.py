@@ -23,6 +23,8 @@ from olympia.amo.utils import chunked
 from olympia.files.models import File
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 from olympia.stats.models import UpdateCount
+from olympia.stats.utils import (
+    get_addons_and_average_daily_users_from_bigquery)
 
 
 log = olympia.core.logger.getLogger('z.cron')
@@ -34,19 +36,28 @@ def update_addon_average_daily_users():
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    raise_if_reindex_in_progress('amo')
-    cursor = connections[multidb.get_replica()].cursor()
-    q = """SELECT addon_id, AVG(`count`)
-           FROM update_counts
-           WHERE `date` > DATE_SUB(CURDATE(), INTERVAL 13 DAY)
-           GROUP BY addon_id
-           ORDER BY addon_id"""
-    cursor.execute(q)
-    d = cursor.fetchall()
-    cursor.close()
+    kwargs = {'id_field': 'pk'}
+    if waffle.switch_is_active('use-bigquery-for-addon-adu'):
+        d = get_addons_and_average_daily_users_from_bigquery()
+        # BigQuery stores GUIDs, not AMO primary keys.
+        kwargs['id_field'] = 'guid'
+    else:
+        raise_if_reindex_in_progress('amo')
+        cursor = connections[multidb.get_replica()].cursor()
+        q = """SELECT addon_id, AVG(`count`)
+            FROM update_counts
+            WHERE `date` > DATE_SUB(CURDATE(), INTERVAL 13 DAY)
+            GROUP BY addon_id
+            ORDER BY addon_id"""
+        cursor.execute(q)
+        d = cursor.fetchall()
+        cursor.close()
 
-    ts = [_update_addon_average_daily_users.subtask(args=[chunk])
-          for chunk in chunked(d, 250)]
+    ts = [
+        _update_addon_average_daily_users.subtask(
+            args=[chunk], kwargs=kwargs
+        ) for chunk in chunked(d, 250)
+    ]
     group(ts).apply_async()
 
 

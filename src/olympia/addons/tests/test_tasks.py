@@ -3,9 +3,11 @@ import os
 import pytest
 
 from django.conf import settings
+from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.addons.tasks import recreate_theme_previews
+from olympia.addons.tasks import (recreate_theme_previews,
+                                  update_addon_average_daily_users)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory
 from olympia.versions.models import VersionPreview
@@ -79,3 +81,30 @@ def test_create_missing_theme_previews(parse_addon_mock):
     with mock.patch('olympia.addons.tasks.generate_static_theme_preview') as p:
         recreate_theme_previews([theme.id], only_missing=True)
         assert p.call_count == 1
+
+
+@pytest.mark.django_db
+@override_switch('local-statistics-processing', active=True)
+def test_update_addon_average_daily_users_with_guid():
+    addon = addon_factory(average_daily_users=0)
+    count = 123
+    data = [(addon.guid, count)]
+    assert addon.average_daily_users == 0
+
+    update_addon_average_daily_users(data, id_field='guid')
+    addon.refresh_from_db()
+
+    assert addon.average_daily_users == count
+
+@pytest.mark.django_db
+@override_switch('local-statistics-processing', active=True)
+def test_update_addon_average_daily_users_with_pk():
+    addon = addon_factory(average_daily_users=0)
+    count = 123
+    data = [(addon.id, count)]
+    assert addon.average_daily_users == 0
+
+    update_addon_average_daily_users(data, id_field='pk')
+    addon.refresh_from_db()
+
+    assert addon.average_daily_users == count
