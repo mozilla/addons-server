@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:36+0000\n"
-"PO-Revision-Date: 2020-05-29 04:02+0000\n"
+"PO-Revision-Date: 2020-05-29 04:09+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -359,16 +359,16 @@ msgid "Detail Page"
 msgstr "صفحة التفاصيل"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "صفحة التفاصيل (من الأسفل)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "صفحة التفاصيل (قناة التطوير)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "تُستعمل عادةً مع"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "أخرى حسب المؤلف"
 
 msgid "Dependencies"
 msgstr "الاعتماديات"
@@ -855,9 +855,8 @@ msgstr "تحذير"
 msgid "{0} line {1} column {2}"
 msgstr "{0} سطر {1} عمود {2}"
 
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} من {1}"
+msgstr "‏{0} سطر {1}"
 
 msgid "Add-on failed validation."
 msgstr "فشل التثبّت من الإضافة."
