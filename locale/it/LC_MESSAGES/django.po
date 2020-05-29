@@ -5666,9 +5666,8 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "Rifiuta più versioni"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Questa azione rifiuterà tutte le versioni pubbliche selezionate. Il commento verrà inviato allo sviluppatore."
+msgstr ""
 
 msgid "Block Multiple Versions"
 msgstr "Blocca più versioni"
