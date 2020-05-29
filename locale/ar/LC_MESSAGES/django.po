@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-29 04:19+0000\n"
+"PO-Revision-Date: 2020-05-29 04:32+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -551,27 +551,25 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "تقديم إضافة جديدة"
+msgstr "أرسِل"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "المستخدمون"
+msgstr "من المستخدمين"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "حرّر الكتلة"
 
 #, fuzzy
 msgid "versions"
 msgstr "الإصدارات"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "مشمولة في قائمة المنع العتيقة."
 
 msgid "{addon} was created."
 msgstr "أُنشأت {addon}."
@@ -625,7 +623,7 @@ msgid "{addon} {version} approved."
 msgstr "قُبلت الإصدارة {version} من {addon}."
 
 msgid "Approved"
-msgstr ""
+msgstr "مقبولة"
 
 msgid "{addon} {version} given preliminary review."
 msgstr ""
@@ -637,7 +635,7 @@ msgid "{addon} {version} rejected."
 msgstr "رُفضت الإصدارة {version} من {addon}."
 
 msgid "Rejected"
-msgstr ""
+msgstr "مرفوضة"
 
 msgid "{addon} {version} retained."
 msgstr ""
@@ -830,9 +828,8 @@ msgstr "رُفع الكود المصدري للإصدارة {version} من {addo
 msgid "Source code uploaded"
 msgstr "رُفع الكود المصدري"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "رخصة الكود المصدري لـ {addon}"
+msgstr "تأكّدت الموافقة التلقائية للإصدارة {version} من {addon}."
 
 msgid "Auto-Approval confirmed"
 msgstr "تأكّدت الموافقة الآلية"
@@ -855,13 +852,11 @@ msgstr "رُفض محتوى الإصدارة {version} من {addon}."
 msgid "Content rejected"
 msgstr "رُفض المحتوى"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "التعليق"
+msgstr "عدّل المدير طلب المعلومات حول {addon} أو أزاله."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "التعليق"
+msgstr "تعدّل طلب المعلومات"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
@@ -900,7 +895,7 @@ msgid "Block for {0} added to Blocklist."
 msgstr ""
 
 msgid "Block added"
-msgstr ""
+msgstr "أُضيفت كتلة"
 
 msgid "Block for {0} edited in Blocklist."
 msgstr ""
@@ -1003,7 +998,7 @@ msgid "Language Pack (Application)"
 msgstr "حزمة لغة (تطبيق)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "حزمة لغات (إضافة)"
 
 msgid "Plugin"
 msgstr "ملحق"
@@ -1051,25 +1046,25 @@ msgid "Alerts & Updates"
 msgstr "التنبيهات والتحديثات"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "نزّل امتدادات Firefox تساعدك لتعرف الجديد وتتابع مهامك وتزيد كفائتك. ابحث عن الامتدادات التي تُعيد تحميل الألسنة وتضبط الإنتاجية وأكثر."
 
 msgid "Appearance"
 msgstr "المظهر"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "نزّل امتدادات تُعدّل مظهر المواقع ومتصفّح Firefox. تشمل هذه الفئة امتدادات السمات الداكنة وإدارة الألسنة وأكثر."
 
 msgid "Bookmarks"
 msgstr "العلامات المرجعية"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "نزّل امتدادات تحسّن العلامات بحمايتها بكلمات السر والبحث عن التكرار فيها والروابط التي لم تعد تعمل وأكثر."
 
 msgid "Download Management"
 msgstr "إدارة التنزيلات"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "نزّل امتدادات Firefox تساعدك في تنزيل المحتوى الموسيقي والڤديوي في الوِب. يمكنك أن تجد امتدادات تُدير التنزيلات وتُشارك الملفات وأكثر."
 
 msgid "Feeds, News & Blogging"
 msgstr "التلقيمات والأخبار والمدوّنات"
