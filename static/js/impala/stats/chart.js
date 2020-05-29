@@ -128,7 +128,8 @@
             date_range_days = parseInt((end - start) / 1000 / 3600 / 24, 10),
             fields  = obj.fields ? obj.fields.slice(0,5) : ['count'],
             series  = {},
-            events  = obj.events,
+            events  = [], // TODO: remove this, it is not used anymore because
+                          // the caller does not pass any values anymore.
             chartRange = {},
             t, row, i, field, val,
             is_overview = metric == 'overview' || metric == 'app_overview';
