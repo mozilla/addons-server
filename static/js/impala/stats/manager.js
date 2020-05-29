@@ -101,9 +101,20 @@ z.StatsManager = (function() {
         if (currentView.range.custom && typeof currentView.range.end == 'object') {
             currentView.range.end = new Date(currentView.range.end.getTime() + msDay);
         }
+
+        // Fetch the data from the server or storage, and notify other components.
+        $.when(getDataRange(currentView))
+            .then(function(data) {
+                setTimeout(function() {
+                    $(window).trigger("dataready", {
+                        'view'  : currentView,
+                        'fields': getAvailableFields(currentView),
+                        'data'  : data,
+                    });
+                }, 0);
+            });
     }
     $(window).on('changeview', processView);
-
 
     function annotateData(data, events) {
         var i, ev, sd, ed;
