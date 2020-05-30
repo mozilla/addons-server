@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-30 00:14+0000\n"
+"PO-Revision-Date: 2020-05-30 18:28+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -111,14 +111,13 @@ msgid "Notification [%s] does not exist"
 msgstr ""
 
 msgid "Review"
-msgstr "Vurdering"
+msgstr "Omtale"
 
 msgid "Version {0}"
 msgstr "Versjon {0}"
 
-#, fuzzy
 msgid "Review note"
-msgstr "Gjennomgang er forespurt"
+msgstr "Vurderingsmerkand"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
@@ -126,13 +125,11 @@ msgstr ""
 msgid "Ratings"
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Utvikler"
+msgstr "Gjennomgangsverktøy (listet)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Utvikler"
+msgstr "Gjennomgangsverktøy (ulistet)"
 
 #, fuzzy
 msgid "Reviewer links"
