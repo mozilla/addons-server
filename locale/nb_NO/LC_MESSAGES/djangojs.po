@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:36+0000\n"
-"PO-Revision-Date: 2020-05-30 15:33+0000\n"
+"PO-Revision-Date: 2020-05-30 15:36+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -111,13 +111,14 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inkluder detaljerte versjonsmerkander (dette kan gjøres i det neste steget)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Hvis din utvidelse krever en konto på et nettsted for å kunne bli ordentlig testet, legg med et brukernavn og passord i notatene for anmelderen (dette kan bli gjort i det neste trinnet)."
+msgstr ""
+"Hvis din utvidelse krever en konto på et nettsted for å kunne bli ordentlig testet, legg med et brukernavn og passord i notatene for den som skal gjennomgå (dette kan bli gjort i det neste trinnet)."
 
 msgid "Add-on submission checklist"
 msgstr "Sjekkliste for å sende inn utvidelser"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Verifiser de følgende punktene før du fullfører innsendingen din. Dette vil minimalisere forsinkelser og misforståelser under vurderingsprosessen:"
+msgstr "Verifiser de følgende punktene før du fullfører innsendingen din. Dette vil minimalisere forsinkelser og misforståelser under gjennomgangsprosessen:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -200,8 +201,8 @@ msgstr[1] "{0} samlinger"
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} vurdering"
-msgstr[1] "{0} vurderinger"
+msgstr[0] "{0} omtale"
+msgstr[1] "{0} omtaler"
 
 msgid "{0} sale"
 msgid_plural "{0} sales"
@@ -253,7 +254,7 @@ msgid "Add-ons Updated"
 msgstr "Utvidelser oppdatert"
 
 msgid "Reviews Written"
-msgstr "Anmeldelser skrevet"
+msgstr "Omtaler skrevet"
 
 msgid "User Signups"
 msgstr "Brukerregistreringer"
@@ -538,11 +539,11 @@ msgstr "Utvidelser oppdatert fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "Anmeldelser skrevet, siste {0} dager"
+msgstr "Omtaler skrevet, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "Anmeldelser skrevet fra {0} til {1}"
+msgstr "Omtaler skrevet fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -716,16 +717,16 @@ msgid "Version Notes"
 msgstr "Versjonnotat"
 
 msgid "Notes for Reviewers"
-msgstr "Notat for redaktører"
+msgstr "Notat for omtalere"
 
 msgid "No version notes found"
 msgstr "Versjonsnotat ikke funnet"
 
 msgid "Review Text"
-msgstr "Vurderingstekst"
+msgstr "Omtalingstekst"
 
 msgid "Review notes found"
-msgstr "Fant ingen vurderingstekst"
+msgstr "Fant ingen omtalingstekst"
 
 msgid "Average Reviews"
 msgstr "Gjennomsnittlige vurderinger"
