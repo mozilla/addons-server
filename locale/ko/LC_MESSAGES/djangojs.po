@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:36+0000\n"
-"PO-Revision-Date: 2020-04-22 22:44+0000\n"
-"Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
+"PO-Revision-Date: 2019-11-11 03:00+0000\n"
+"Last-Translator: Jennie Park <jennie.sungah@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -118,9 +118,7 @@ msgstr "제출을 마무리 하기 전에 다음 사항을 확인 하십시오. 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 귀하의 제출이 거절되지 않도록 소스 코드 업로드 필드를 사용하고 있는지 확인하십시"
-"오."
+msgstr "컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 귀하의 제출이 거절되지 않도록 소스 코드 업로드 필드를 사용하고 있는지 확인하십시오."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "유효성 검사 과정에서 거부 원인이 될 수 있는 문제들 발견:"
@@ -677,10 +675,9 @@ msgid "Loading..."
 msgstr "읽는 중..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b>자 남았습니다."
+msgstr[0] "<b>{0}</b>자"
 
 #. L10n: {0} is the number of characters left.
 #, fuzzy
