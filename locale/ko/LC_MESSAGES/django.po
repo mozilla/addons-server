@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-30 08:23+0000\n"
+"PO-Revision-Date: 2020-05-30 08:25+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -2915,7 +2915,7 @@ msgid "JWT issuer"
 msgstr "JWT 발급자"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT 시크릿"
 
 #, python-format
 msgid ""
@@ -3015,9 +3015,8 @@ msgstr "검토 완료시 이메일을 받아보게 됩니다. 그 전까지 부�
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "부가 기능이 갤러리에 노출되고 있고 사용자들은 자동으로 업데이트를 받아보게 됩니다."
 
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "부가 기능이 사이트 관리자에의해 비활성화되어 갤러리에 더이상 노출되지 않습니다. 문의 사항이 있으시면, amo-admins@mozilla.com 로 이메일을 부탁드립니다."
+msgstr "부가 기능이 사이트 관리자에의해 비활성화되어 갤러리에 더이상 노출되지 않습니다. 문의 사항이 있으시면, amo-admins@mozilla.com 으로 이메일을 보내 주세요."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -3114,7 +3113,7 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "허용되는 HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "일부 HTML 코드를 사용할 수 있습니다."
@@ -3254,7 +3253,7 @@ msgid "You don't need coding skills to help keep Firefox the most customizable b
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "방법보기"
 
 msgid "Get involved"
 msgstr ""
@@ -6169,7 +6168,7 @@ msgid "Origin:"
 msgstr ""
 
 msgid "Method:"
-msgstr ""
+msgstr "방법:"
 
 msgid "Source:"
 msgstr "출처:"
@@ -6252,7 +6251,7 @@ msgid "The developer has provided source code."
 msgstr "이 개발자는 소스 코드를 제공합니다."
 
 msgid "Weight:"
-msgstr ""
+msgstr "무게:"
 
 msgid "Flagged by automated scanners"
 msgstr ""
@@ -6760,7 +6759,7 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "선택된 사용자 차단"
 
 #, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
