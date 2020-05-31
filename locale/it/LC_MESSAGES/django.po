@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-28 17:41+0000\n"
-"Last-Translator: Aurora_25 <aury_24@hotmail.it>\n"
+"PO-Revision-Date: 2020-05-29 17:36+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -5033,11 +5033,11 @@ msgstr "Guarda contenuti multimediali in streaming in compagnia di amici e famil
 
 #. editorial content for the discovery pane.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Salta le porzioni sponsorizzate dei video su YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Ascolta il contenuto delle pagine web. Più di 40 lingue supportate."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5667,7 +5667,7 @@ msgid "Reject Multiple Versions"
 msgstr "Rifiuta più versioni"
 
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Con questa azione, tutte le versioni selezionate verranno rifiutate e i commenti verranno inviati allo sviluppatore."
 
 msgid "Block Multiple Versions"
 msgstr "Blocca più versioni"
