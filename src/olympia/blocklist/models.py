@@ -89,6 +89,7 @@ class Block(ModelBase):
         qs = (
             Version.unfiltered.filter(**{f'{GUID}__in': block_guids})
                               .order_by('id')
+                              .no_transforms()
                               .annotate(**{GUID: models.F(GUID)}))
 
         all_addon_versions = defaultdict(list)
