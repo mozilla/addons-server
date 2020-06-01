@@ -1511,6 +1511,27 @@ class TestAddonModels(TestCase):
         flags.update(pending_info_request=in_the_future)
         assert not addon.expired_info_request
 
+    def test_reset_notified_about_auto_approval_delay(self):
+        addon = Addon.objects.get(pk=3615)
+        assert not AddonReviewerFlags.objects.filter(addon=addon).exists()
+
+        # No flags: nothing happens, flags still absent
+        addon.reset_notified_about_auto_approval_delay()
+        assert not AddonReviewerFlags.objects.filter(addon=addon).exists()
+
+        # Flags with property already false: nothing happens, flags still there
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.notified_about_auto_approval_delay is None
+        addon.reset_notified_about_auto_approval_delay()
+        flags.reload()
+        assert flags.notified_about_auto_approval_delay is False
+
+        # Flags with property True: value reset to False.
+        flags.update(notified_about_auto_approval_delay=True)
+        addon.reset_notified_about_auto_approval_delay()
+        flags.reload()
+        assert flags.notified_about_auto_approval_delay is False
+
     def test_attach_previews(self):
         addons = [addon_factory(), addon_factory(), addon_factory()]
         # Give some of the addons previews:

@@ -19,7 +19,9 @@ from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
-from olympia.reviewers.management.commands import auto_approve
+from olympia.reviewers.management.commands import (
+    auto_approve, notify_about_auto_approve_delay
+)
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, get_reviewing_cache)
@@ -28,6 +30,10 @@ from olympia.scanners.models import ScannerResult, ScannerRule
 
 class AutoApproveTestsMixin(object):
     def setUp(self):
+        user_factory(
+            id=settings.TASK_USER_ID, username='taskuser',
+            email='taskuser@mozilla.com')
+
         # Always mock log_final_summary() method so we can look at the stats
         # easily.
         patcher = mock.patch.object(auto_approve.Command, 'log_final_summary')
@@ -42,12 +48,7 @@ class AutoApproveTestsMixin(object):
         stats = self.log_final_summary_mock.call_args[0][0]
         assert stats == expected_stats
 
-
-class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
-    def setUp(self):
-        self.user = user_factory(
-            id=settings.TASK_USER_ID, username='taskuser',
-            email='taskuser@mozilla.com')
+    def create_base_test_addon(self):
         self.addon = addon_factory(name='Basic Addøn', average_daily_users=666)
         self.version = version_factory(
             addon=self.addon, file_kw={
@@ -57,9 +58,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self.file_validation = FileValidation.objects.create(
             file=self.version.all_files[0], validation=u'{}')
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
-        super(TestAutoApproveCommand, self).setUp()
 
-    def test_fetch_candidates(self):
+    def create_candidates(self):
         # We already have an add-on with a version awaiting review that should
         # be considered. Make sure its nomination date is in the past to test
         # ordering.
@@ -266,14 +266,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
         }, status=amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME)
 
-        # ---------------------------------------------------------------------
-        # Gather the candidates.
-        command = auto_approve.Command()
-        command.post_review = True
-        qs = command.fetch_candidates()
-
-        # We should find these versions, in this exact order.
-        expected = [(version.addon, version) for version in [
+        return [(version.addon, version) for version in [
             unlisted_theme_version,
             pure_unlisted_version,
             user_disabled_addon_version,
@@ -288,6 +281,23 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             self.version,
         ]]
 
+
+class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
+    def setUp(self):
+        self.create_base_test_addon()
+        super(TestAutoApproveCommand, self).setUp()
+
+    def test_fetch_candidates(self):
+        # Create the candidates and extra addons & versions that should not be
+        # considered for auto-approval.
+        expected = self.create_candidates()
+
+        # Gather the candidates.
+        command = auto_approve.Command()
+        command.post_review = True
+        qs = command.fetch_candidates()
+
+        # Test that they are all present.
         assert [(version.addon, version) for version in qs] == expected
 
     @mock.patch(
@@ -537,9 +547,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 class TestAutoApproveCommandTransactions(
         AutoApproveTestsMixin, TransactionTestCase):
     def setUp(self):
-        user_factory(
-            id=settings.TASK_USER_ID, username='taskuser',
-            email='taskuser@mozilla.com')
         self.addons = [
             addon_factory(average_daily_users=666, users=[user_factory()]),
             addon_factory(average_daily_users=999, users=[user_factory()]),
@@ -710,3 +717,98 @@ class TestSendInfoRequestLastWarningNotification(TestCase):
 
         flags.reload()
         assert flags.notified_about_expiring_info_request is True
+
+
+class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
+    def test_fetch_versions_waiting_for_approval_for_too_long(self):
+        self.create_base_test_addon()
+        expected = self.create_candidates()
+        command = notify_about_auto_approve_delay.Command()
+        qs = command.fetch_versions_waiting_for_approval_for_too_long()
+
+        # Test that they are all present (all nomination date created by
+        # create_candidates() are far enough in the past)
+        assert [(version.addon, version) for version in qs] == expected
+
+        # Reset nomination for a few selected add-ons to be more recent and
+        # they should no longer be present (remove them from expected and
+        # re-test)
+        addon, version = expected.pop(0)
+        version.update(nomination=datetime.now())
+        addon, version = expected.pop(0)
+        version.update(nomination=datetime.now() - timedelta(
+            hours=command.WAITING_PERIOD_HOURS) + timedelta(seconds=30))
+        qs = command.fetch_versions_waiting_for_approval_for_too_long()
+        assert [(version.addon, version) for version in qs] == expected
+
+        # Set notified_about_auto_approval_delay=True for an add-on and
+        # it should no longer be present (remove it from expected and re-test)
+        addon, version = expected.pop(0)
+        AddonReviewerFlags.objects.create(
+            addon=addon, notified_about_auto_approval_delay=True)
+        qs = command.fetch_versions_waiting_for_approval_for_too_long()
+        assert [(version.addon, version) for version in qs] == expected
+
+    def test_notify_nothing(self):
+        command = notify_about_auto_approve_delay.Command()
+        qs = command.fetch_versions_waiting_for_approval_for_too_long()
+        assert not qs.exists()
+
+        call_command('notify_about_auto_approve_delay')
+        assert len(mail.outbox) == 0
+
+    def test_notify_authors(self):
+        # Not awaiting review.
+        addon_factory(
+            file_kw={'is_webextension': True},
+            version_kw={'nomination': self.days_ago(1)}
+        ).authors.add(user_factory())
+        # Not awaiting review for long enough.
+        addon_factory(
+            file_kw={
+                'is_webextension': True,
+                'status': amo.STATUS_AWAITING_REVIEW,
+            }
+        ).authors.add(user_factory())
+        # Valid.
+        addon = addon_factory(
+            file_kw={
+                'is_webextension': True,
+                'status': amo.STATUS_AWAITING_REVIEW
+            },
+            version_kw={'nomination': self.days_ago(1)})
+        users = [user_factory(), user_factory()]
+        [addon.authors.add(user) for user in users]
+
+        command = notify_about_auto_approve_delay.Command()
+        qs = command.fetch_versions_waiting_for_approval_for_too_long()
+        assert qs.exists()
+
+        assert not AddonReviewerFlags.objects.filter(addon=addon).exists()
+
+        # Set up is done, let's call the command!
+        call_command('notify_about_auto_approve_delay')
+
+        addon.reload()
+
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].body == mail.outbox[1].body
+        assert mail.outbox[0].subject == mail.outbox[1].subject
+        subject = mail.outbox[0].subject
+        assert subject == (
+            'Mozilla Add-ons: %s %s is pending review' % (
+                addon.name, addon.current_version.version
+            )
+        )
+        body = mail.outbox[0].body
+        assert 'Thank you for submitting your add-on' in body
+        assert str(addon.name) in body
+        assert str(addon.current_version.version) in body
+        for message in mail.outbox:
+            assert len(message.to) == 1
+        assert (
+            {message.to[0] for message in mail.outbox} ==
+            {user.email for user in users}
+        )
+
+        assert addon.addonreviewerflags.notified_about_auto_approval_delay

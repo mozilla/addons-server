@@ -702,6 +702,17 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         super(TestExtensionVersionFromUpload, self).setUp()
         self.dummy_parsed_data['is_webextension'] = True
 
+    def test_notified_about_auto_approval_delay_flag_is_reset(self):
+        flags = AddonReviewerFlags.objects.create(
+            addon=self.addon, notified_about_auto_approval_delay=True)
+        version = Version.from_upload(
+            self.upload, self.addon, [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=self.dummy_parsed_data)
+        assert version
+        flags.reload()
+        assert flags.notified_about_auto_approval_delay is False
+
     @mock.patch('olympia.versions.models.log')
     def test_logging_nulls(self, log_mock):
         assert self.upload.user is None

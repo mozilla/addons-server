@@ -11,6 +11,7 @@ HOME=/tmp
 1-60/5 * * * * %(django)s git_extraction
 
 # Once per hour
+5 * * * * %(django)s notify_about_auto_approve_delay
 10 * * * * %(z_cron)s update_blog_posts
 15 * * * * %(django)s send_info_request_last_warning_notifications
 20 * * * * %(z_cron)s addon_last_updated
