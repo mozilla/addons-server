@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-28 19:07+0000\n"
+"PO-Revision-Date: 2020-06-01 14:50+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6387,7 +6387,7 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Inválido GUID do Retorno ao AMO (não está no formato base64url ?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr "Inválido GUID do Retorno ao AMO (não é uma extensão curada)"
+msgstr "Inválido GUID do Retorno ao AMO (não é uma extensão de curadoria)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
