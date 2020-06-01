@@ -131,7 +131,7 @@ def extract(dicts):
 def overview_series(request, addon, group, start, end, format, beta=False):
     """Combines downloads_series and updates_series into one payload."""
     date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon)
+    check_stats_permission(request, addon, beta)
 
     dls = get_series(DownloadCount, addon=addon.id, date__range=date_range)
     updates = get_series(UpdateCount, addon=addon.id, date__range=date_range)
@@ -180,7 +180,7 @@ def zip_overview(downloads, updates):
 def downloads_series(request, addon, group, start, end, format, beta=False):
     """Generate download counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon)
+    check_stats_permission(request, addon, beta)
 
     series = get_series(DownloadCount, addon=addon.id, date__range=date_range)
 
@@ -195,7 +195,7 @@ def downloads_series(request, addon, group, start, end, format, beta=False):
 def sources_series(request, addon, group, start, end, format, beta=False):
     """Generate download source breakdown."""
     date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon)
+    check_stats_permission(request, addon, beta)
 
     series = get_series(DownloadCount, source='sources',
                         addon=addon.id, date__range=date_range)
@@ -213,7 +213,7 @@ def sources_series(request, addon, group, start, end, format, beta=False):
 def usage_series(request, addon, group, start, end, format, beta=False):
     """Generate ADU counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon)
+    check_stats_permission(request, addon, beta)
 
     series = get_series(
         UpdateCount,
@@ -231,7 +231,7 @@ def usage_breakdown_series(request, addon, group, start, end, format, field,
                            beta=False):
     """Generate ADU breakdown of ``field``."""
     date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon)
+    check_stats_permission(request, addon, beta)
 
     fields = {
         'applications': 'apps',
@@ -297,12 +297,21 @@ def check_series_params_or_404(group, start, end, format):
     return get_daterange_or_404(start, end)
 
 
-def check_stats_permission(request, addon):
+def check_stats_permission(request, addon, beta):
     """
-    Check if user is allowed to view stats for ``addon``.
+    Check if user is allowed to view stats/beta stats for ``addon``.
 
     Raises PermissionDenied if user is not allowed.
+
+    Raises Http404 if user cannot access the beta mode (only if enabled).
     """
+    user = request.user
+    if beta and (
+        not user.is_authenticated or
+        (user.is_authenticated and not user.email.endswith('@mozilla.com'))
+    ):
+        raise http.Http404
+
     can_view = addon.public_stats or (
         request.user.is_authenticated and (
             addon.has_author(request.user) or
@@ -315,7 +324,7 @@ def check_stats_permission(request, addon):
 @addon_view_stats
 @non_atomic_requests
 def stats_report(request, addon, report, beta=False):
-    check_stats_permission(request, addon)
+    check_stats_permission(request, addon, beta)
     stats_base_url = reverse('stats.overview.beta' if beta else
                              'stats.overview', args=[addon.slug])
     view = get_report_view(request)
