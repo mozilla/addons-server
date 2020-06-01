@@ -1,35 +1,35 @@
 <nav id="side-nav" class="report-menu">
   <ul>
-      <li data-report="overview" data-layout="overview">
-        <a href="{{ url('stats.overview', addon.slug) }}">{{ _('Overview') }}</a>
-      </li>
-      <li data-report="downloads">
-        <a href="{{ url('stats.downloads', addon.slug) }}">{{ _('Downloads') }}</a>
-      </li>
-      <ul>
-        <li data-report="sources">
-          <a href="{{ url('stats.sources', addon.slug) }}">{{ _('by Source') }}</a>
-        </li>
-      </ul>
-    <li data-report="usage">
-      <a href="{{ url('stats.usage', addon.slug) }}">{{ _('Daily Users') }}</a>
+    <li data-report="overview" data-layout="overview">
+      <a href="{{ stats_url('stats.overview', addon.slug) }}">{{ _('Overview') }}</a>
     </li>
-      <ul>
-        <li data-report="versions">
-          <a href="{{ url('stats.versions', addon.slug) }}">{{ _('by Add-on Version') }}</a>
-        </li>
-        <li data-report="apps">
-          <a href="{{ url('stats.apps', addon.slug) }}">{{ _('by Application') }}</a>
-        </li>
-        <li data-report="locales">
-          <a href="{{ url('stats.locales', addon.slug) }}">{{ _('by Language') }}</a>
-        </li>
-        <li data-report="os">
-          <a href="{{ url('stats.os', addon.slug) }}">{{ _('by Platform') }}</a>
-        </li>
-        <li data-report="statuses">
-          <a href="{{ url('stats.statuses', addon.slug) }}">{{ _('by Add-on Status') }}</a>
-        </li>
-      </ul>
+    <li data-report="downloads">
+      <a href="{{ stats_url('stats.downloads', addon.slug) }}">{{ _('Downloads') }}</a>
+    </li>
+    <ul>
+      <li data-report="sources">
+        <a href="{{ stats_url('stats.sources', addon.slug) }}">{{ _('by Source') }}</a>
+      </li>
+    </ul>
+    <li data-report="usage">
+      <a href="{{ stats_url('stats.usage', addon.slug) }}">{{ _('Daily Users') }}</a>
+    </li>
+    <ul>
+      <li data-report="versions">
+        <a href="{{ stats_url('stats.versions', addon.slug) }}">{{ _('by Add-on Version') }}</a>
+      </li>
+      <li data-report="apps">
+        <a href="{{ stats_url('stats.apps', addon.slug) }}">{{ _('by Application') }}</a>
+      </li>
+      <li data-report="locales">
+        <a href="{{ stats_url('stats.locales', addon.slug) }}">{{ _('by Language') }}</a>
+      </li>
+      <li data-report="os">
+        <a href="{{ stats_url('stats.os', addon.slug) }}">{{ _('by Platform') }}</a>
+      </li>
+      <li data-report="statuses">
+        <a href="{{ stats_url('stats.statuses', addon.slug) }}">{{ _('by Add-on Status') }}</a>
+      </li>
+    </ul>
   </ul>
 </nav>

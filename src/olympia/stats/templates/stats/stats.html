@@ -89,6 +89,14 @@
 {% endblock %}
 
 {% block content %}
+  {% if beta %}
+  <div class="notification-box info">
+    {% trans %}
+    You are viewing a beta feature. Things might not work as expected yet.
+    {% endtrans %}
+  </div>
+  {% endif %}
+
   {% if not waffle.switch('local-statistics-processing') %}
   <div class="notification-box warning">
     {% trans %}
@@ -97,6 +105,7 @@
     {% endtrans %}
   </div>
   {% endif %}
+
   <div id="lm" class="loadmessage"><span>{{ _('Loading the latest data&hellip;') }}</span></div>
   <div class="secondary">
     {% if addon %}
