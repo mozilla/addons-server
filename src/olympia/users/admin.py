@@ -152,8 +152,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         # Deleting a user through the admin also deletes related content
         # produced by that user.
         ActivityLog.create(amo.LOG.ADMIN_USER_ANONYMIZED, obj)
-        obj.delete_or_disable_related_content(delete=True)
-        obj.delete()
+        obj.delete(related_content=True)
 
     def save_model(self, request, obj, form, change):
         changes = {k: (form.initial.get(k), form.cleaned_data.get(k))
@@ -173,7 +172,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             return HttpResponseForbidden()
 
         ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
-        obj.ban_and_disable_related_content()
+        UserProfile.ban_and_disable_related_content_bulk(
+            [obj], move_files=True)
         kw = {'user': force_text(obj)}
         self.message_user(
             request, ugettext('The user "%(user)s" has been banned.' % kw))

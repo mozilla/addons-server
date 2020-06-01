@@ -113,23 +113,6 @@ class TestUserProfile(TestCase):
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
 
-    @mock.patch.object(UserProfile, 'delete_or_disable_related_content')
-    def test_ban_and_disable_related_content(
-            self, delete_or_disable_related_content_mock):
-        user = UserProfile.objects.get(pk=4043307)
-        user.ban_and_disable_related_content()
-        user.reload()
-        assert user.deleted
-        self.assertCloseToNow(user.banned)
-        assert user.email == 'jbalogh@mozilla.com'
-        assert user.auth_id
-        assert user.fxa_id == '0824087ad88043e2a52bd41f51bbbe79'
-
-        assert delete_or_disable_related_content_mock.call_count == 1
-        assert (
-            delete_or_disable_related_content_mock.call_args[1] ==
-            {'delete': False})
-
     @mock.patch.object(File, 'hide_disabled_file')
     def test_ban_and_disable_related_content_bulk(self, hide_disabled_mock):
         user_sole = user_factory(email='sole@foo.baa', fxa_id='13579',
@@ -209,36 +192,14 @@ class TestUserProfile(TestCase):
             reply_to=rating)
         Collection.objects.create(author=user)
 
-    @mock.patch.object(File, 'hide_disabled_file')
-    def test_delete_or_disable_related_content(self, hide_disabled_mock):
-        user = UserProfile.objects.get(pk=55021)
-        addon = user.addons.last()
-        self.setup_user_to_be_have_content_disabled(user)
-
-        # Now that everything is set up, disable/delete related content.
-        user.delete_or_disable_related_content()
-
-        assert user.addons.exists()
-        addon.reload()
-        assert addon.status == amo.STATUS_DISABLED
-
-        assert not user._ratings_all.exists()  # Even replies.
-        assert not user.collections.exists()
-
-        assert not storage.exists(user.picture_path)
-        assert not storage.exists(user.picture_path_original)
-
-        hide_disabled_mock.assert_called_once()
-
-    def test_delete_or_disable_related_content_exclude_addons_with_other_devs(
-            self):
+    def test_delete_with_related_content_exclude_addons_with_other_devs(self):
         user = UserProfile.objects.get(pk=55021)
         addon = user.addons.last()
         self.setup_user_to_be_have_content_disabled(user)
         AddonUser.objects.create(addon=addon, user=user_factory())
 
         # Now that everything is set up, disable/delete related content.
-        user.delete_or_disable_related_content()
+        user.delete(related_content=True)
 
         # The add-on should not have been touched, it has another dev.
         assert not user.addons.exists()
@@ -251,7 +212,7 @@ class TestUserProfile(TestCase):
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
 
-    def test_delete_or_disable_related_content_actually_delete(self):
+    def test_delete_with_related_content_actually_delete(self):
         addon = Addon.objects.latest('pk')
         user = UserProfile.objects.get(pk=55021)
         user.update(picture_type='image/png')
@@ -272,7 +233,7 @@ class TestUserProfile(TestCase):
         Collection.objects.create(author=user)
 
         # Now that everything is set up, delete related content.
-        user.delete_or_disable_related_content(delete=True)
+        user.delete(related_content=True)
 
         assert not user.addons.exists()
 

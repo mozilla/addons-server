@@ -420,55 +420,40 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """All ratings that are not dev replies."""
         return self._ratings_all.filter(reply_to=None)
 
-    def delete_or_disable_related_content(self, delete=False):
-        """Delete or disable content produced by this user if they are the only
-        author."""
+    def _delete_related_content(self, *, addon_msg=''):
+        """Delete content produced by this user if they are the only author."""
         self.collections.all().delete()
         for addon in self.addons.all().iterator():
             if not addon.authors.exclude(pk=self.pk).exists():
-                if delete:
-                    addon.delete()
-                else:
-                    addon.force_disable()
+                addon.delete(msg=addon_msg)
             else:
                 addon.addonuser_set.filter(user=self).delete()
         user_responsible = core.get_user()
         self._ratings_all.all().delete(user_responsible=user_responsible)
-        self.delete_picture()
 
-    def delete_picture(self, picture_path=None, original_picture_path=None):
+    def delete_picture(self):
         """Delete picture of this user."""
         # Recursive import
         from olympia.users.tasks import delete_photo
 
-        if picture_path is None:
-            picture_path = self.picture_path
-        if original_picture_path is None:
-            original_picture_path = self.picture_path_original
+        if storage.exists(self.picture_path):
+            delete_photo.delay(self.picture_path)
 
-        if storage.exists(picture_path):
-            delete_photo.delay(picture_path)
-
-        if storage.exists(original_picture_path):
-            delete_photo.delay(original_picture_path)
+        if storage.exists(self.picture_path_original):
+            delete_photo.delay(self.picture_path_original)
 
         if self.picture_type:
             self.update(picture_type=None)
 
-    def ban_and_disable_related_content(self):
-        """Admin method to ban the user and disable the content they produced.
+    @classmethod
+    def ban_and_disable_related_content_bulk(cls, users, move_files=False):
+        """Admin method to ban users and disable the content they produced.
 
         Similar to deletion, except that the content produced by the user is
         forcibly disabled instead of being deleted where possible, and the user
         is not fully anonymized: we keep their fxa_id and email so that they
         are never able to log back in.
         """
-        self.delete_or_disable_related_content(delete=False)
-        return self.delete(ban_user=True)
-
-    @classmethod
-    def ban_and_disable_related_content_bulk(cls, users, move_files=False):
-        """Like ban_and_disable_related_content, but in bulk. """
         from olympia.addons.models import Addon, AddonUser
         from olympia.addons.tasks import index_addons
         from olympia.bandwagon.models import Collection
@@ -513,28 +498,38 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             user_responsible=core.get_user())
         # And then delete the users.
         for user in users:
-            user.delete(ban_user=True)
+            user.picture_type = None
+            user.delete_picture()
+            log.info(
+                f'User ({user}: <{user.email}>) is being partially '
+                'anonymized and banned.')
+            # We don't clear email or fxa_id when banning
+            user.banned = datetime.now()
+            # last_login_ip is kept, deleted by clear_old_last_login_ip
+            # command after 6 months.
+            user.biography = ''
+            user.display_name = None
+            user.homepage = ''
+            user.location = ''
+            user.deleted = True
+            user.auth_id = generate_auth_id()
+            user.anonymize_username()
+        cls.objects.bulk_update(users, fields=(
+            'picture_type', 'banned', 'biography', 'display_name', 'homepage',
+            'location', 'deleted', 'auth_id', 'username'))
 
-    def delete(self, hard=False, ban_user=False):
-        # Cache the values in case we do a hard delete and loose
-        # reference to the user-id.
-        picture_path = self.picture_path
-        original_picture_path = self.picture_path_original
+    def delete(self, hard=False, related_content=False, addon_msg=''):
+        self.picture_type = None
+        self.delete_picture()
 
         if hard:
             super(UserProfile, self).delete()
         else:
-            if ban_user:
-                log.info(
-                    f'User ({self}: <{self.email}>) is being partially '
-                    'anonymized and banned.')
-                # We don't clear email or fxa_id when banning
-                self.banned = datetime.now()
-            else:
-                log.info(u'User (%s: <%s>) is being anonymized.' % (
-                    self, self.email))
-                self.email = None
-                self.fxa_id = None
+            if related_content:
+                self._delete_related_content(addon_msg=addon_msg)
+            log.info(f'User ({self}: <{self.email}>) is being anonymized.')
+            self.email = None
+            self.fxa_id = None
             # last_login_ip is kept, deleted by clear_old_last_login_ip
             # command after 6 months.
             self.biography = ''
@@ -542,13 +537,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.homepage = ''
             self.location = ''
             self.deleted = True
-            self.picture_type = None
             self.auth_id = generate_auth_id()
             self.anonymize_username()
             self.save()
-
-        self.delete_picture(picture_path=picture_path,
-                            original_picture_path=original_picture_path)
 
     def set_unusable_password(self):
         raise NotImplementedError('cannot set unusable password')
