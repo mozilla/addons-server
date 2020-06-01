@@ -4,6 +4,7 @@ import json
 
 from django.http import Http404
 from django.test.client import RequestFactory
+from django.urls.exceptions import NoReverseMatch
 from django.utils.encoding import force_text
 
 from pyquery import PyQuery as pq
@@ -721,3 +722,16 @@ class TestStatsBeta(TestCase):
         match = resolve(url)
 
         assert match.kwargs['beta']
+
+    def test_no_status_page(self):
+        url = reverse('stats.overview.beta', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'by Add-on Status' not in response.content
+
+        with self.assertRaises(NoReverseMatch):
+            reverse('stats.statuses.beta', args=[self.addon.slug])
+
+        with self.assertRaises(NoReverseMatch):
+            reverse('tats.statuses_series.beta', args=[self.addon.slug])

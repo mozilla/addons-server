@@ -50,9 +50,6 @@ stats_patterns = [
 
     url(r'^usage/status/$', views.stats_report, name='stats.statuses',
         kwargs={'report': 'statuses'}),
-    url(r'^beta/usage/status/$', views.stats_report,
-        name='stats.statuses.beta',
-        kwargs={'report': 'statuses', 'beta': True}),
 
     url(r'^usage/applications/$', views.stats_report, name='stats.apps',
         kwargs={'report': 'apps'}),
@@ -97,9 +94,6 @@ stats_patterns = [
 
     url(series['statuses'], views.usage_breakdown_series,
         name='stats.statuses_series', kwargs={'field': 'statuses'}),
-    url(beta_series['statuses'], views.usage_breakdown_series,
-        name='stats.statuses_series.beta',
-        kwargs={'field': 'statuses', 'beta': True}),
 
     url(series['versions'], views.usage_breakdown_series,
         name='stats.versions_series', kwargs={'field': 'versions'}),
