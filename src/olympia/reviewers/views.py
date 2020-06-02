@@ -822,7 +822,7 @@ def review(request, addon, channel=None):
 
     try:
         # Find the previously approved version to compare to.
-        show_diff = version and (
+        base_version = version and (
             addon.versions.exclude(id=version.id).filter(
                 # We're looking for a version that was either manually approved
                 # (either it has no auto approval summary, or it has one but
@@ -839,7 +839,7 @@ def review(request, addon, channel=None):
                 created__lt=version.created,
                 files__status=amo.STATUS_APPROVED).latest())
     except Version.DoesNotExist:
-        show_diff = None
+        base_version = None
 
     # The actions we shouldn't show a minimal form for.
     actions_full = [
@@ -917,7 +917,8 @@ def review(request, addon, channel=None):
         deleted_addon_ids=deleted_addon_ids, flags=flags,
         form=form, is_admin=is_admin, is_recommendable=is_recommendable,
         name_translations=name_translations, now=datetime.now(),
-        num_pages=num_pages, pager=pager, reports=reports, show_diff=show_diff,
+        num_pages=num_pages, pager=pager, reports=reports,
+        base_version=base_version,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),

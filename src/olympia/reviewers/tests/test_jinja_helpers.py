@@ -6,7 +6,7 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.files.models import File
 from olympia.reviewers.templatetags import (
-    code_manager_tags, jinja_helpers)
+    code_manager, jinja_helpers)
 from olympia.versions.models import Version
 
 
@@ -79,5 +79,6 @@ def test_file_review_status_handles_invalid_status_id():
 
 def test_create_a_code_manager_url():
     assert jinja_helpers.code_manager_url(
-        'browse', 1, 2, 3) == code_manager_tags.code_manager_url(
-            'browse', 1, 2, 3)
+        'browse', addon_id=1, base_version_id=2, version_id=3
+    ) == code_manager.code_manager_url(
+        'browse', addon_id=1, base_version_id=2, version_id=3)

@@ -3,10 +3,10 @@
 from django.db import migrations
 
 
-def delete_waffle_switch(apps, schema_editor):
-    Switch = apps.get_model('waffle', 'Switch')
+def delete_waffle_flag(apps, schema_editor):
+    Flag = apps.get_model('waffle', 'Flag')
 
-    Switch.objects.filter(name='code-manager').delete()
+    Flag.objects.filter(name='code-manager').delete()
 
 
 class Migration(migrations.Migration):
@@ -15,4 +15,4 @@ class Migration(migrations.Migration):
         ('reviewers', '0004_remove_autoapprovalsummary_is_listing_disabled'),
     ]
 
-    operations = [migrations.RunPython(delete_waffle_switch)]
+    operations = [migrations.RunPython(delete_waffle_flag)]

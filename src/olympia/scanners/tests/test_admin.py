@@ -38,7 +38,7 @@ from olympia.constants.scanners import (
     YARA,
 )
 from olympia.files.models import FileUpload
-from olympia.reviewers.templatetags.code_manager_tags import code_manager_url
+from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.scanners.admin import (
     ExcludeMatchedRuleFilter,
     MatchesFilter,

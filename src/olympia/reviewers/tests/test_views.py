@@ -4294,12 +4294,13 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['show_diff']
+        assert response.context['base_version']
         links = doc('#versions-history .file-info .compare')
 
         expected = [
-            code_manager_url('compare', self.addon.pk,
-                             new_version.pk, first_version_pk),
+            code_manager_url(
+                'compare', addon_id=self.addon.pk,
+                base_version_id=first_version_pk, version_id=new_version.pk),
         ]
 
         check_links(expected, links, verify=False)
@@ -4323,14 +4324,15 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['show_diff']
+        assert response.context['base_version']
         links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the first,
         # ignoring the interim version because it was auto-approved and not
         # manually confirmed by a human.
         expected = [
-            code_manager_url('compare', self.addon.pk,
-                             new_version.pk, first_version_pk),
+            code_manager_url(
+                'compare', addon_id=self.addon.pk,
+                base_version_id=first_version_pk, version_id=new_version.pk),
         ]
         check_links(expected, links, verify=False)
 
@@ -4358,15 +4360,17 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['show_diff']
+        assert response.context['base_version']
         links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the second,
         # ignoring the third version because it was auto-approved and not
         # manually confirmed by a human (the second was auto-approved but
         # was manually confirmed).
         expected = [
-            code_manager_url('compare', self.addon.pk,
-                             new_version.pk, confirmed_version.pk),
+            code_manager_url(
+                'compare', addon_id=self.addon.pk,
+                base_version_id=confirmed_version.pk,
+                version_id=new_version.pk),
         ]
         check_links(expected, links, verify=False)
 
@@ -4389,13 +4393,15 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['show_diff']
+        assert response.context['base_version']
         links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the second,
         # because second was approved by human before auto-approval ran on it
         expected = [
-            code_manager_url('compare', self.addon.pk,
-                             new_version.pk, confirmed_version.pk),
+            code_manager_url(
+                'compare', addon_id=self.addon.pk,
+                base_version_id=confirmed_version.pk,
+                version_id=new_version.pk),
         ]
         check_links(expected, links, verify=False)
 

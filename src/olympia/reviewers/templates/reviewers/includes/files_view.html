@@ -13,16 +13,16 @@
     &middot;
     <a 
       href="{{ code_manager_url('browse', addon.pk, version.pk) }}"
-      title="Browse all files in this version"
+      title="{{ _('Browse all files in this version') }}"
       >
         {{ _('Contents') }}
     </a>
-    {% if show_diff and version == latest_version_in_channel %}
+    {% if base_version and version == latest_version_in_channel %}
     &middot;
     <a
       class="compare"
-      href="{{ code_manager_url('compare', addon.pk, version.pk, show_diff.pk) }}"
-      title="Compare this version to the last reviewed version"
+      href="{{ code_manager_url('compare', addon.pk, version.pk, base_version.pk) }}"
+      title="{{ _('Compare this version to the last reviewed version') }}"
     >
       {{ _('Compare') }}
     </a>
