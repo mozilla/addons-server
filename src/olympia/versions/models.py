@@ -698,7 +698,7 @@ class VersionReviewerFlags(ModelBase):
         Version, primary_key=True, on_delete=models.CASCADE
     )
     needs_human_review_by_mad = models.BooleanField(default=False)
-    pending_rejection = models.DateTimeField(default=None)
+    pending_rejection = models.DateTimeField(default=None, null=True)
 
     @property
     def needs_human_review(self):

@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('version', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='versions.Version')),
                 ('needs_human_review_by_mad', models.BooleanField(default=False)),
-                ('pending_rejection', models.DateTimeField(default=None)),
+                ('pending_rejection', models.DateTimeField(default=None, null=True)),
             ],
             options={
                 'get_latest_by': 'created',
