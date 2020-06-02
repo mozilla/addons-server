@@ -1733,6 +1733,11 @@ class TestAddonModels(TestCase):
         block.update(guid='not-a-guid')
         assert addon.block is None
 
+        del addon.block
+        addon.delete()
+        AddonGUID.objects.create(addon=addon, guid='not-a-guid')
+        assert addon.block == block
+
     def test_blocklistsubmission_property(self):
         addon = Addon.objects.get(id=3615)
         assert addon.blocklistsubmission is None
@@ -1744,8 +1749,13 @@ class TestAddonModels(TestCase):
 
         del addon.blocklistsubmission
         submission.update(input_guids='not-a-guid')
-        submission.update(to_block=None)
+        submission.update(to_block=["not-a-guid"])
         assert addon.blocklistsubmission is None
+
+        del addon.blocklistsubmission
+        addon.delete()
+        AddonGUID.objects.create(addon=addon, guid='not-a-guid')
+        assert addon.blocklistsubmission == submission
 
 
 class TestShouldRedirectToSubmitFlow(TestCase):

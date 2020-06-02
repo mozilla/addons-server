@@ -171,6 +171,16 @@ class TestBlockAdmin(TestCase):
         self.assertRedirects(
             response, self.submission_url + f'?guids={addon.guid}')
 
+        # if (for some reason) we're passed a previous, deleted, addon
+        # instance, we still correctly passed along the guid.
+        deleted_addon = addon_factory(status=amo.STATUS_DELETED)
+        deleted_addon.addonguid.update(guid=addon.guid)
+        url = reverse(
+            'admin:blocklist_block_addaddon', args=(deleted_addon.id,))
+        response = self.client.post(url, follow=True)
+        self.assertRedirects(
+            response, self.submission_url + f'?guids={addon.guid}')
+
         # GET params are passed along
         version = addon.current_version
         response = self.client.post(
@@ -229,6 +239,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
+        deleted_addon = addon_factory(version_kw={'version': '1.2.5'})
+        deleted_addon_version = deleted_addon.current_version
+        deleted_addon.delete()
+        deleted_addon.addonguid.update(guid='guid@')
         addon = addon_factory(
             guid='guid@', name='Danger Danger', version_kw={'version': '1.2a'})
         first_version = addon.current_version
@@ -279,6 +293,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         assert log == ActivityLog.objects.for_version(first_version).last()
         assert log == ActivityLog.objects.for_version(second_version).last()
+        assert log == ActivityLog.objects.for_version(
+            deleted_addon_version).last()
         assert not ActivityLog.objects.for_version(pending_version).exists()
         assert [msg.message for msg in response.context['messages']] == [
             'The blocklist submission "No Sign-off: guid@; dfd; some reason" '
@@ -1593,6 +1609,9 @@ class TestBlockAdminEdit(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
 
+        deleted_addon = addon_factory(version_kw={'version': '345.34a'})
+        deleted_addon.delete()
+        deleted_addon.addonguid.update(guid=self.addon.guid)
         self.addon.current_version.update(version='123.4b5')
         version_factory(addon=self.addon, version='678')
         # Update min_version in self.block to a version that doesn't exist
@@ -1602,17 +1621,19 @@ class TestBlockAdminEdit(TestCase):
         content = response.content.decode('utf-8')
         doc = pq(content)
         ver_list = doc('#id_min_version option')
-        assert len(ver_list) == 4
+        assert len(ver_list) == 5
         assert ver_list.eq(0).attr['value'] == '444.4a'
         assert ver_list.eq(0).text() == '(invalid)'
         assert ver_list.eq(1).attr['value'] == '0'
         assert ver_list.eq(2).attr['value'] == '123.4b5'
-        assert ver_list.eq(3).attr['value'] == '678'
+        assert ver_list.eq(3).attr['value'] == '345.34a'
+        assert ver_list.eq(4).attr['value'] == '678'
         ver_list = doc('#id_max_version option')
-        assert len(ver_list) == 3
+        assert len(ver_list) == 4
         assert ver_list.eq(0).attr['value'] == '*'
         assert ver_list.eq(1).attr['value'] == '123.4b5'
-        assert ver_list.eq(2).attr['value'] == '678'
+        assert ver_list.eq(2).attr['value'] == '345.34a'
+        assert ver_list.eq(3).attr['value'] == '678'
 
         data = {
             'input_guids': self.block.guid,
@@ -1641,14 +1662,14 @@ class TestBlockAdminEdit(TestCase):
         # Change to a version that exists
         response = self.client.post(
             self.change_url, dict(
-                min_version='123.4b5',
+                min_version='345.34a',
                 max_version='*',
                 **data),
             follow=True)
         assert response.status_code == 200
         assert b'Invalid version' not in response.content
         self.block = self.block.reload()
-        assert self.block.min_version == '123.4b5'  # changed
+        assert self.block.min_version == '345.34a'  # changed
         assert self.block.max_version == '*'
         assert ActivityLog.objects.for_addons(self.addon).exists()
         # the value shouldn't be in the list of versions either any longer.

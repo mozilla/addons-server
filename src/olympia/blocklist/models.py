@@ -90,7 +90,7 @@ class Block(ModelBase):
     def preload_addon_versions(cls, blocks):
         """Preload block.addon_versions into a list of blocks."""
         block_guids = [block.guid for block in blocks]
-        GUID = 'addon__guid'
+        GUID = 'addon__addonguid__guid'
         qs = (
             Version.unfiltered.filter(**{f'{GUID}__in': block_guids})
                               .order_by('id')
