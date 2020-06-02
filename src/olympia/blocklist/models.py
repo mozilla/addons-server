@@ -75,6 +75,11 @@ class Block(ModelBase):
         return Addon.unfiltered.filter(
             guid=self.guid).only_translations().first()
 
+    @property
+    def average_daily_users(self):
+        addon = self.addon
+        return addon.average_daily_users if addon else 0
+
     @cached_property
     def addon_versions(self):
         # preload_addon_versions will overwrite this cached_property.
@@ -176,7 +181,6 @@ class Block(ModelBase):
             block.guid: block
             for block in cls.objects.using(using_db).filter(guid__in=guids)}
 
-        blocks = []
         for addon in addons:
             # get the existing block object or create a new instance
             block = existing_blocks.get(addon.guid, None)
@@ -185,12 +189,9 @@ class Block(ModelBase):
                 block.addon = addon
             else:
                 # otherwise create a new Block
-                block = cls(addon=addon)
-            blocks.append(block)
-        blocks.extend(
-            block for guid, block in existing_blocks.items()
-            if block not in blocks)
-        return blocks
+                block = Block(addon=addon)
+                existing_blocks[block.guid] = block
+        return list(existing_blocks.values())
 
 
 class BlocklistSubmission(ModelBase):
@@ -217,9 +218,9 @@ class BlocklistSubmission(ModelBase):
         ACTION_DELETE: 'Delete',
     }
     FakeBlock = namedtuple(
-        'FakeBlock', ('id', 'guid', 'addon', 'min_version', 'max_version',
-                      'is_imported_from_legacy_regex'))
-    FakeAddon = namedtuple('FakeAddon', ('guid', 'average_daily_users'))
+        'FakeBlock', (
+            'id', 'guid', 'min_version', 'max_version',
+            'is_imported_from_legacy_regex', 'average_daily_users'))
 
     action = models.SmallIntegerField(
         choices=ACTIONS.items(), default=ACTION_ADDCHANGE)
@@ -284,10 +285,11 @@ class BlocklistSubmission(ModelBase):
                 self.FakeBlock(
                     id=block.id,
                     guid=block.guid,
-                    addon=None,
                     min_version=None,
                     max_version=None,
-                    is_imported_from_legacy_regex=None)
+                    is_imported_from_legacy_regex=None,
+                    average_daily_users=None,
+                )
                 for block in blocks]
         return blocks
 
@@ -340,8 +342,7 @@ class BlocklistSubmission(ModelBase):
             return {
                 'id': block.id,
                 'guid': block.guid,
-                'average_daily_users':
-                    block.addon.average_daily_users if block.addon else -1,
+                'average_daily_users': block.average_daily_users,
             }
 
         processed = self.process_input_guids(
@@ -362,9 +363,11 @@ class BlocklistSubmission(ModelBase):
     @classmethod
     def _split_guids_full(cls, guids, v_min, v_max, filter_existing):
         # load all the Addon instances together
-        addon_qs = Addon.unfiltered.filter(guid__in=guids).order_by(
-            '-average_daily_users').only_translations()
-        addons = list(addon_qs)
+        addons_qs = Addon.unfiltered.filter(guid__in=guids).only_translations()
+        addons = sorted(
+            addons_qs,
+            key=lambda addon: addon.average_daily_users,
+            reverse=True)
         addon_guid_dict = {addon.guid: addon for addon in addons}
 
         # And then any existing block instances
@@ -410,14 +413,15 @@ class BlocklistSubmission(ModelBase):
     @classmethod
     def _split_guids_fake(cls, guids, v_min, v_max, filter_existing):
         # load all the Addon instances together
-        addon_qs = (
-            Addon.unfiltered
-            .filter(guid__in=guids)
-            .order_by('-average_daily_users')
-            .values_list('guid', 'average_daily_users'))
-        addons = [
-            cls.FakeAddon(guid, addon_users) for guid, addon_users in addon_qs]
-        addon_guid_dict = {addon.guid: addon for addon in addons}
+        addons_qs = Addon.unfiltered.filter(guid__in=guids).values_list(
+            'guid', 'average_daily_users', named=True)
+
+        addons = sorted(
+            addons_qs,
+            key=lambda addon: addon.average_daily_users,
+            reverse=True)
+        adu_lookup = {
+            addon.guid: addon.average_daily_users for addon in addons}
 
         # And then any existing block instances
         block_qs = Block.objects.filter(guid__in=guids).values_list(
@@ -427,10 +431,11 @@ class BlocklistSubmission(ModelBase):
             cls.FakeBlock(
                 id=block.id,
                 guid=block.guid,
-                addon=addon_guid_dict.get(block.guid),
                 min_version=block.min_version,
                 max_version=block.max_version,
-                is_imported_from_legacy_regex=block.legacy_id.startswith('*'))
+                is_imported_from_legacy_regex=block.legacy_id.startswith('*'),
+                average_daily_users=adu_lookup.get(block.guid, -1),
+            )
             for block in block_qs]
 
         if len(guids) == 1 or not filter_existing:
@@ -450,19 +455,21 @@ class BlocklistSubmission(ModelBase):
 
         blocks = []
         for addon in addons:
-            if addon.guid in existing_guids:
+            guid = addon.guid
+            if guid in existing_guids:
                 # it's an existing block but doesn't need updating
                 continue
             # get the existing block object or create a new instance
-            block = blocks_to_update_dict.get(addon.guid, None)
+            block = blocks_to_update_dict.get(guid, None)
             if not block:
                 block = cls.FakeBlock(
                     id=None,
-                    guid=addon.guid,
-                    addon=addon,
+                    guid=guid,
                     min_version=Block.MIN,
                     max_version=Block.MAX,
-                    is_imported_from_legacy_regex=False)
+                    is_imported_from_legacy_regex=False,
+                    average_daily_users=adu_lookup.get(guid, -1),
+                )
             blocks.append(block)
         if not filter_existing:
             # we want to be able to delete a block without an addon (which
@@ -484,8 +491,7 @@ class BlocklistSubmission(ModelBase):
         If `load_full_objects=False` is passed the Block instances are fake
         (namedtuples) with only minimal data available in the "Block" objects:
         Block.guid,
-        Block.addon.guid,
-        Block.addon.average_daily_users,
+        Block.average_daily_users,
         Block.min_version,
         Block.max_version,
         Block.is_imported_from_legacy_regex

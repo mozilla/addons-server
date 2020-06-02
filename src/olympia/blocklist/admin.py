@@ -604,7 +604,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return obj.addon.modified
 
     def users(self, obj):
-        return obj.addon.average_daily_users
+        return obj.average_daily_users
 
     def block_history(self, obj):
         logs = ActivityLog.objects.for_guidblock(obj.guid).filter(
