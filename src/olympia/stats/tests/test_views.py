@@ -2,6 +2,9 @@
 import csv
 import json
 
+from datetime import date
+from unittest import mock
+
 from django.http import Http404
 from django.test.client import RequestFactory
 from django.urls.exceptions import NoReverseMatch
@@ -703,6 +706,15 @@ class TestStatsBeta(TestCase):
 
         self.user = user_factory(email='staff@mozilla.com')
         self.addon = addon_factory(users=[self.user])
+        self.start_date = date(2020, 1, 1)
+        self.end_date = date(2020, 1, 5)
+        self.series_args = [
+            self.addon.slug,
+            'day',
+            self.start_date.strftime('%Y%m%d'),
+            self.end_date.strftime('%Y%m%d'),
+            'json'
+        ]
         self.client.login(email=self.user.email)
 
     def test_stats_overview_page(self):
@@ -714,10 +726,7 @@ class TestStatsBeta(TestCase):
         assert response.context['beta']
 
     def test_beta_series_urls(self):
-        url = reverse(
-            'stats.overview_series.beta',
-            args=[self.addon.slug, 'day', '20200101', '20200105', 'json']
-        )
+        url = reverse('stats.overview_series.beta', args=self.series_args)
 
         match = resolve(url)
 
@@ -734,7 +743,7 @@ class TestStatsBeta(TestCase):
             reverse('stats.statuses.beta', args=[self.addon.slug])
 
         with self.assertRaises(NoReverseMatch):
-            reverse('tats.statuses_series.beta', args=[self.addon.slug])
+            reverse('stats.statuses_series.beta', args=self.series_args)
 
     def test_no_beta_for_non_staff(self):
         self.client.logout()
@@ -746,3 +755,67 @@ class TestStatsBeta(TestCase):
         response = self.client.get(url)
 
         assert response.status_code == 404
+
+    @mock.patch('olympia.stats.views.get_updates_series')
+    def test_beta_overview_series(self, get_updates_series_mock):
+        get_updates_series_mock.return_value = []
+        url = reverse('stats.overview_series.beta', args=self.series_args)
+
+        self.client.get(url)
+
+        get_updates_series_mock.assert_called_once_with(
+            addon=self.addon,
+            start_date=self.start_date,
+            end_date=self.end_date
+        )
+
+    @mock.patch('olympia.stats.views.get_updates_series')
+    def test_beta_usage_series(self, get_updates_series_mock):
+        get_updates_series_mock.return_value = []
+        url = reverse('stats.usage_series.beta', args=self.series_args)
+
+        self.client.get(url)
+
+        get_updates_series_mock.assert_called_once_with(
+            addon=self.addon,
+            start_date=self.start_date,
+            end_date=self.end_date
+        )
+
+    def test_beta_usage_breakdown_series(self):
+        for (url_name, source) in [
+                ('stats.apps_series.beta', 'apps'),
+                ('stats.locales_series.beta', 'locales'),
+                ('stats.os_series.beta', 'os'),
+                ('stats.versions_series.beta', 'versions'),
+        ]:
+            url = reverse(url_name, args=self.series_args)
+
+            with mock.patch(
+                'olympia.stats.views.get_updates_series'
+            ) as get_updates_series_mock:
+                get_updates_series_mock.return_value = []
+                self.client.get(url)
+
+                get_updates_series_mock.assert_called_once_with(
+                    addon=self.addon,
+                    start_date=self.start_date,
+                    end_date=self.end_date,
+                    source=source
+                )
+
+
+class TestProcessLocales(TestCase):
+    def test_performs_lowercase_lookup(self):
+        series = [{'data': {'en-US': 123}}]
+
+        series = views.process_locales(series)
+
+        assert len(next(series)['data']) == 1
+
+    def test_skips_none_key(self):
+        series = [{'data': {None: 123}}]
+
+        series = views.process_locales(series)
+
+        assert len(next(series)['data']) == 0

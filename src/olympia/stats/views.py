@@ -5,14 +5,13 @@ import itertools
 
 from datetime import timedelta
 
+from dateutil.parser import parse
 from django import http
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import get_storage_class
 from django.db.transaction import non_atomic_requests
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.encoding import force_text
-
-from dateutil.parser import parse
 
 import olympia.core.logger
 
@@ -26,6 +25,7 @@ from olympia.stats.decorators import addon_view_stats
 from olympia.stats.forms import DateForm
 
 from .models import DownloadCount, UpdateCount
+from .utils import get_updates_series
 
 
 logger = olympia.core.logger.getLogger('z.apps.stats.views')
@@ -134,7 +134,14 @@ def overview_series(request, addon, group, start, end, format, beta=False):
     check_stats_permission(request, addon, beta)
 
     dls = get_series(DownloadCount, addon=addon.id, date__range=date_range)
-    updates = get_series(UpdateCount, addon=addon.id, date__range=date_range)
+
+    if beta:
+        updates = get_updates_series(addon=addon,
+                                     start_date=date_range[0],
+                                     end_date=date_range[1])
+    else:
+        updates = get_series(UpdateCount, addon=addon.id,
+                             date__range=date_range)
 
     series = zip_overview(dls, updates)
 
@@ -215,9 +222,14 @@ def usage_series(request, addon, group, start, end, format, beta=False):
     date_range = check_series_params_or_404(group, start, end, format)
     check_stats_permission(request, addon, beta)
 
-    series = get_series(
-        UpdateCount,
-        addon=addon.id, date__range=date_range)
+    if beta:
+        series = get_updates_series(addon=addon,
+                                    start_date=date_range[0],
+                                    end_date=date_range[1])
+    else:
+        series = get_series(
+            UpdateCount,
+            addon=addon.id, date__range=date_range)
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])
@@ -237,11 +249,19 @@ def usage_breakdown_series(request, addon, group, start, end, format, field,
         'applications': 'apps',
         'locales': 'locales',
         'oses': 'os',
-        'versions': 'versions',
         'statuses': 'status',
+        'versions': 'versions',
     }
-    series = get_series(UpdateCount, source=fields[field],
-                        addon=addon.id, date__range=date_range)
+    source = fields[field]
+
+    if beta:
+        series = get_updates_series(addon=addon,
+                                    start_date=date_range[0],
+                                    end_date=date_range[1], source=source)
+    else:
+        series = get_series(UpdateCount, source=source, addon=addon.id,
+                            date__range=date_range)
+
     if field == 'locales':
         series = process_locales(series)
 
@@ -283,8 +303,8 @@ def process_locales(series):
         if 'data' in row:
             new = {}
             for key, count in row['data'].items():
-                if key in languages:
-                    k = u'%s (%s)' % (languages[key], key)
+                if key and key.lower() in languages:
+                    k = '%s (%s)' % (languages[key.lower()], key)
                     new[k] = count
             row['data'] = new
         yield row
