@@ -304,7 +304,7 @@ def process_locales(series):
             new = {}
             for key, count in row['data'].items():
                 if key and key.lower() in languages:
-                    k = u'%s (%s)' % (languages[key.lower()], key)
+                    k = '%s (%s)' % (languages[key.lower()], key)
                     new[k] = count
             row['data'] = new
         yield row
