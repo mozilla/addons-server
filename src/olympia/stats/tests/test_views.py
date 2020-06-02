@@ -745,6 +745,13 @@ class TestStatsBeta(TestCase):
         with self.assertRaises(NoReverseMatch):
             reverse('stats.statuses_series.beta', args=self.series_args)
 
+    def test_overview_shows_link_to_stats_by_country(self):
+        url = reverse('stats.overview.beta', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'by Country' in response.content
+
     def test_no_beta_for_non_staff(self):
         self.client.logout()
         self.user.update(email='not.staff@yahoo.com')
@@ -785,6 +792,7 @@ class TestStatsBeta(TestCase):
     def test_beta_usage_breakdown_series(self):
         for (url_name, source) in [
                 ('stats.apps_series.beta', 'apps'),
+                ('stats.countries_series.beta', 'countries'),
                 ('stats.locales_series.beta', 'locales'),
                 ('stats.os_series.beta', 'os'),
                 ('stats.versions_series.beta', 'versions'),
@@ -803,6 +811,13 @@ class TestStatsBeta(TestCase):
                     end_date=self.end_date,
                     source=source
                 )
+
+    def test_stats_by_country(self):
+        url = reverse('stats.countries.beta', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'User countries by Date' in response.content
 
 
 class TestProcessLocales(TestCase):

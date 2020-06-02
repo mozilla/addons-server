@@ -34,7 +34,8 @@ z.StatsManager = (function() {
         "versions": true,
         "statuses": true,
         "overview": true,
-        "site": true
+        "site": true,
+        "countries": true,
     };
 
     // is a metric an average or a sum?
@@ -47,7 +48,8 @@ z.StatsManager = (function() {
         "statuses"      : "mean",
         "downloads"     : "sum",
         "sources"       : "sum",
-        "contributions" : "sum"
+        "contributions" : "sum",
+        "countries"     : "mean",
     };
 
     // Initialize from localStorage when dom is ready.

@@ -154,6 +154,12 @@ var csv_keys = {
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Applications from {0} to {1}")
         ],
+        "countries"  : [
+            // L10n: {0} is an integer.
+            gettext("Countries, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Countries from {0} to {1}")
+        ],
         "os"  : [
             // L10n: {0} is an integer.
             gettext("Platforms, last {0} days"),
