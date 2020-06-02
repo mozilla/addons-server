@@ -37,11 +37,11 @@ def _delay_auto_approval_indefinitely(version):
 
 
 def _flag_for_human_review_by_scanner(version, scanner):
-    from olympia.scanners.models import VersionScannerFlags
+    from olympia.versions.models import VersionReviewerFlags
 
     if scanner is not MAD:
         raise ValueError('scanner should be MAD')
 
-    VersionScannerFlags.objects.update_or_create(
+    VersionReviewerFlags.objects.update_or_create(
         version=version, defaults={'needs_human_review_by_mad': True}
     )

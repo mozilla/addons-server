@@ -353,7 +353,7 @@ class AddonManager(ManagerBase):
                 versions__files__status__in=[
                     amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
                 ],
-                versions__versionscannerflags__needs_human_review_by_mad=True
+                versions__versionreviewerflags__needs_human_review_by_mad=True
             )
             .order_by('created')
             # There could be several versions matching for a single add-on so

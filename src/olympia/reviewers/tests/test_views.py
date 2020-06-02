@@ -52,9 +52,9 @@ from olympia.reviewers.models import (
 from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
 from olympia.reviewers.serializers import CannedResponseSerializer
-from olympia.scanners.models import VersionScannerFlags
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, AppVersion
+from olympia.versions.models import (
+    ApplicationsVersions, AppVersion, VersionReviewerFlags)
 from olympia.zadmin.models import get_config
 
 
@@ -7771,12 +7771,12 @@ class TestMadQueue(QueueTest):
 
         # This add-on should be listed once, even with two versions.
         listed_addon = addon_factory(created=self.days_ago(15))
-        VersionScannerFlags.objects.create(
+        VersionReviewerFlags.objects.create(
             version=version_factory(addon=listed_addon,
                                     channel=amo.RELEASE_CHANNEL_LISTED),
             needs_human_review_by_mad=True
         )
-        VersionScannerFlags.objects.create(
+        VersionReviewerFlags.objects.create(
             version=version_factory(addon=listed_addon,
                                     channel=amo.RELEASE_CHANNEL_LISTED),
             needs_human_review_by_mad=True
@@ -7784,12 +7784,12 @@ class TestMadQueue(QueueTest):
 
         # This add-on should be listed once, even with two versions.
         unlisted_addon = addon_factory(created=self.days_ago(5))
-        VersionScannerFlags.objects.create(
+        VersionReviewerFlags.objects.create(
             version=version_factory(addon=unlisted_addon,
                                     channel=amo.RELEASE_CHANNEL_UNLISTED),
             needs_human_review_by_mad=True
         )
-        VersionScannerFlags.objects.create(
+        VersionReviewerFlags.objects.create(
             version=version_factory(addon=unlisted_addon,
                                     channel=amo.RELEASE_CHANNEL_UNLISTED),
             needs_human_review_by_mad=True
@@ -7798,14 +7798,14 @@ class TestMadQueue(QueueTest):
         unflagged_addon = addon_factory()
         version_factory(addon=unflagged_addon)
 
-        VersionScannerFlags.objects.create(
+        VersionReviewerFlags.objects.create(
             version=version_factory(addon=addon_factory()),
             needs_human_review_by_mad=False
         )
 
         # Needs admin code review, so wouldn't show up for regular reviewers.
         addon_admin_only = addon_factory(created=self.days_ago(1))
-        VersionScannerFlags.objects.create(
+        VersionReviewerFlags.objects.create(
             version=version_factory(addon=addon_admin_only),
             needs_human_review_by_mad=True
         )

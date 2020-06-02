@@ -16,7 +16,6 @@ from olympia.constants.scanners import (
 from olympia.scanners.models import (
     ScannerResult,
     ScannerRule,
-    VersionScannerFlags,
 )
 from olympia.scanners.actions import (
     _delay_auto_approval,
@@ -25,6 +24,7 @@ from olympia.scanners.actions import (
     _flag_for_human_review_by_scanner,
     _no_action,
 )
+from olympia.versions.models import VersionReviewerFlags
 
 
 class TestActions(TestCase):
@@ -63,23 +63,23 @@ class TestActions(TestCase):
 
     def test_flag_for_human_review_by_scanner(self):
         version = version_factory(addon=addon_factory())
-        with self.assertRaises(VersionScannerFlags.DoesNotExist):
-            version.versionscannerflags
+        with self.assertRaises(VersionReviewerFlags.DoesNotExist):
+            version.versionreviewerflags
 
         _flag_for_human_review_by_scanner(version, MAD)
 
-        assert version.versionscannerflags.needs_human_review_by_mad
+        assert version.versionreviewerflags.needs_human_review_by_mad
 
     def test_flag_for_human_review_by_scanner_with_existing_flags(self):
         version = version_factory(addon=addon_factory())
-        VersionScannerFlags.objects.create(version=version)
+        VersionReviewerFlags.objects.create(version=version)
 
-        assert not version.versionscannerflags.needs_human_review_by_mad
+        assert not version.versionreviewerflags.needs_human_review_by_mad
 
         _flag_for_human_review_by_scanner(version, MAD)
         version.refresh_from_db()
 
-        assert version.versionscannerflags.needs_human_review_by_mad
+        assert version.versionreviewerflags.needs_human_review_by_mad
 
     def test_flag_for_human_review_by_scanner_raises_if_not_mad(self):
         version = version_factory(addon=addon_factory())
@@ -204,7 +204,7 @@ class TestRunAction(TestCase):
 
         ScannerResult.run_action(version)
 
-        assert version.versionscannerflags.needs_human_review_by_mad
+        assert version.versionreviewerflags.needs_human_review_by_mad
 
     def test_flags_for_human_review_by_mad_when_score_is_too_high(self):
         version = version_factory(addon=addon_factory())
@@ -215,7 +215,7 @@ class TestRunAction(TestCase):
 
         ScannerResult.run_action(version)
 
-        assert version.versionscannerflags.needs_human_review_by_mad
+        assert version.versionreviewerflags.needs_human_review_by_mad
 
     def test_flags_for_human_review_by_mad_when_models_disagree(self):
         version = version_factory(addon=addon_factory())
@@ -230,7 +230,7 @@ class TestRunAction(TestCase):
 
         ScannerResult.run_action(version)
 
-        assert version.versionscannerflags.needs_human_review_by_mad
+        assert version.versionreviewerflags.needs_human_review_by_mad
 
     def test_does_not_flag_for_human_review_by_mad_when_score_is_okay(self):
         version = version_factory(addon=addon_factory())
@@ -241,5 +241,5 @@ class TestRunAction(TestCase):
 
         ScannerResult.run_action(version)
 
-        with self.assertRaises(VersionScannerFlags.DoesNotExist):
-            version.versionscannerflags
+        with self.assertRaises(VersionReviewerFlags.DoesNotExist):
+            version.versionreviewerflags
