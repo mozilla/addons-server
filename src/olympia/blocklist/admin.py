@@ -172,10 +172,9 @@ class BlockAdminAddMixin():
                 reverse(
                     'admin:blocklist_block_change', args=(addon.block.pk,)))
         else:
-            guid = getattr(getattr(addon, 'addonguid', addon), 'guid')
             return redirect(
                 reverse('admin:blocklist_blocklistsubmission_add') +
-                f'?guids={guid}&{get_params.urlencode()}')
+                f'?guids={addon.addonguid__guid}&{get_params.urlencode()}')
 
 
 @admin.register(BlocklistSubmission)

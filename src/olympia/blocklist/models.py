@@ -70,10 +70,14 @@ class Block(ModelBase):
     def is_imported_from_legacy_regex(self):
         return self.legacy_id.startswith('*')
 
+    @classmethod
+    def get_addons_for_guids_qs(cls, guids):
+        return Addon.unfiltered.filter(
+            guid__in=guids).order_by('-id').only_translations()
+
     @cached_property
     def addon(self):
-        return Addon.unfiltered.filter(
-            guid=self.guid).only_translations().first()
+        return self.get_addons_for_guids_qs((self.guid,)).first()
 
     @property
     def average_daily_users(self):
@@ -173,8 +177,7 @@ class Block(ModelBase):
         """
         # load all the Addon instances together
         using_db = get_replica()
-        addons = list(Addon.unfiltered.using(using_db).filter(
-            guid__in=guids).no_transforms())
+        addons = list(cls.get_addons_for_guids_qs(guids).using(using_db))
 
         # And then any existing block instances
         existing_blocks = {
@@ -361,65 +364,11 @@ class BlocklistSubmission(ModelBase):
         super().save(*args, **kwargs)
 
     @classmethod
-    def _split_guids_full(cls, guids, v_min, v_max, filter_existing):
-        # load all the Addon instances together
-        addons_qs = Addon.unfiltered.filter(guid__in=guids).only_translations()
-        addons = sorted(
-            addons_qs,
-            key=lambda addon: addon.average_daily_users,
-            reverse=True)
-        addon_guid_dict = {addon.guid: addon for addon in addons}
-
-        # And then any existing block instances
-        block_qs = Block.objects.filter(guid__in=guids)
-        existing_blocks = list(block_qs)
-        # hook up block.addon cached_property
-        for block in existing_blocks:
-            block.addon = addon_guid_dict.get(block.guid)
-
-        if len(guids) == 1 or not filter_existing:
-            # We special case a single guid to always update it.
-            blocks_to_update_dict = {
-                block.guid: block for block in existing_blocks}
-        else:
-            # identify the blocks that need updating -
-            # i.e. not v_min - vmax already
-            blocks_to_update_dict = {
-                block.guid: block for block in existing_blocks
-                if not (
-                    block.min_version == v_min and block.max_version == v_max)}
-        existing_guids = [
-            block.guid for block in existing_blocks
-            if block.guid not in blocks_to_update_dict]
-
-        blocks = []
-        for addon in addons:
-            if addon.guid in existing_guids:
-                # it's an existing block but doesn't need updating
-                continue
-            # get the existing block object or create a new instance
-            block = (
-                blocks_to_update_dict.get(addon.guid, None) or
-                Block(addon=addon))
-            blocks.append(block)
-        if not filter_existing:
-            # we want to be able to delete a block without an addon (which
-            # should never happen... but might) so we have to add any missing
-            # blocks on too
-            blocks.extend(
-                block for block in existing_blocks if block not in blocks)
-        return blocks, existing_guids
-
-    @classmethod
-    def _split_guids_fake(cls, guids, v_min, v_max, filter_existing):
-        # load all the Addon instances together
-        addons_qs = Addon.unfiltered.filter(guid__in=guids).values_list(
-            'guid', 'average_daily_users', named=True)
-
-        addons = sorted(
-            addons_qs,
-            key=lambda addon: addon.average_daily_users,
-            reverse=True)
+    def _get_fake_blocks_from_guids(cls, guids):
+        addons = list(
+            Block.get_addons_for_guids_qs(guids)
+                 .values_list(
+                     'guid', 'average_daily_users', named=True))
         adu_lookup = {
             addon.guid: addon.average_daily_users for addon in addons}
 
@@ -427,8 +376,8 @@ class BlocklistSubmission(ModelBase):
         block_qs = Block.objects.filter(guid__in=guids).values_list(
             'id', 'guid', 'min_version', 'max_version', 'legacy_id',
             named=True)
-        existing_blocks = [
-            cls.FakeBlock(
+        blocks = {
+            block.guid: cls.FakeBlock(
                 id=block.id,
                 guid=block.guid,
                 min_version=block.min_version,
@@ -436,52 +385,28 @@ class BlocklistSubmission(ModelBase):
                 is_imported_from_legacy_regex=block.legacy_id.startswith('*'),
                 average_daily_users=adu_lookup.get(block.guid, -1),
             )
-            for block in block_qs]
+            for block in block_qs}
 
-        if len(guids) == 1 or not filter_existing:
-            # We special case a single guid to always update it.
-            blocks_to_update_dict = {
-                block.guid: block for block in existing_blocks}
-        else:
-            # identify the blocks that need updating -
-            # i.e. not v_min - vmax already
-            blocks_to_update_dict = {
-                block.guid: block for block in existing_blocks
-                if not (
-                    block.min_version == v_min and block.max_version == v_max)}
-        existing_guids = [
-            block.guid for block in existing_blocks
-            if block.guid not in blocks_to_update_dict]
-
-        blocks = []
         for addon in addons:
-            guid = addon.guid
-            if guid in existing_guids:
-                # it's an existing block but doesn't need updating
+            block = blocks.get(addon.guid)
+            if block:
+                # it's an existing block
                 continue
-            # get the existing block object or create a new instance
-            block = blocks_to_update_dict.get(guid, None)
-            if not block:
-                block = cls.FakeBlock(
-                    id=None,
-                    guid=guid,
-                    min_version=Block.MIN,
-                    max_version=Block.MAX,
-                    is_imported_from_legacy_regex=False,
-                    average_daily_users=adu_lookup.get(guid, -1),
-                )
-            blocks.append(block)
-        if not filter_existing:
-            # we want to be able to delete a block without an addon (which
-            # should never happen... but might) so we have to add any missing
-            # blocks on too
-            blocks.extend(
-                block for block in existing_blocks if block not in blocks)
-        return blocks, existing_guids
+            # create a new instance
+            block = cls.FakeBlock(
+                id=None,
+                guid=addon.guid,
+                min_version=Block.MIN,
+                max_version=Block.MAX,
+                is_imported_from_legacy_regex=False,
+                average_daily_users=adu_lookup.get(addon.guid, -1),
+            )
+            blocks[addon.guid] = block
+        return list(blocks.values())
 
     @classmethod
-    def process_input_guids(cls, guids, v_min, v_max, load_full_objects=True,
-                            filter_existing=True):
+    def process_input_guids(cls, input_guids, v_min, v_max, *,
+                            load_full_objects=True, filter_existing=True):
         """Process a line-return separated list of guids into a list of invalid
         guids, a list of guids that are blocked already for v_min - vmax, and a
         list of Block instances - including new Blocks (unsaved) and existing
@@ -496,13 +421,29 @@ class BlocklistSubmission(ModelBase):
         Block.max_version,
         Block.is_imported_from_legacy_regex
         """
-        all_guids = set(splitlines(guids))
+        all_guids = set(splitlines(input_guids))
 
-        blocks, existing_guids = (
-            cls._split_guids_full(all_guids, v_min, v_max, filter_existing)
-            if load_full_objects else
-            cls._split_guids_fake(all_guids, v_min, v_max, filter_existing))
+        unfiltered_blocks = (
+            Block.get_blocks_from_guids(all_guids) if load_full_objects else
+            cls._get_fake_blocks_from_guids(all_guids))
 
+        if len(all_guids) == 1 or not filter_existing:
+            # We special case a single guid to always update it.
+            blocks = unfiltered_blocks
+            existing_guids = []
+        else:
+            # unfiltered_blocks contains blocks that don't need to be updated.
+            blocks = [
+                block for block in unfiltered_blocks
+                if not block.id or block.min_version != v_min or
+                block.max_version != v_max
+            ]
+            existing_guids = [
+                block.guid for block in unfiltered_blocks
+                if block not in blocks]
+
+        blocks.sort(
+            key=lambda block: block.average_daily_users, reverse=True)
         invalid_guids = list(
             all_guids - set(existing_guids) - {block.guid for block in blocks})
 
