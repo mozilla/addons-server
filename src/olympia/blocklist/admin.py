@@ -30,11 +30,9 @@ GUID_FULL_LOAD_LIMIT = 100
 def _get_version_choices(block, field_name):
     # field_name will be `min_version` or `max_version`
     default = block._meta.get_field(field_name).default
-    choices = [
-        (version, version) for version in (
-            [default] + list(block.addon_versions.keys())
-        )
-    ]
+    choices = [(default, default)] + list(
+        (version.version, version.version) for version in block.addon_versions
+    )
     block_version = getattr(block, field_name)
     if block_version and (block_version, block_version) not in choices:
         # if the current version isn't in choices it's not a valid version of
@@ -608,9 +606,6 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     def users(self, obj):
         return obj.addon.average_daily_users
 
-    def url_link(self, obj):
-        return format_html('<a href="{}">{}</a>', obj.url, obj.url)
-
     def block_history(self, obj):
         logs = ActivityLog.objects.for_guidblock(obj.guid).filter(
             action__in=Block.ACTIVITY_IDS).order_by('created')
@@ -622,6 +617,9 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                 'blocklistsubmission_changes':
                     submission.get_changes_from_block(obj) if submission else
                     {}})
+
+    def url_link(self, obj):
+        return format_html('<a href="{}">{}</a>', obj.url, obj.url)
 
     def get_fieldsets(self, request, obj):
         details = (

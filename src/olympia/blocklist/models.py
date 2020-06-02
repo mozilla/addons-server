@@ -1,10 +1,11 @@
-from collections import defaultdict, namedtuple, OrderedDict
+from collections import defaultdict, namedtuple
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.html import format_html
 from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
 
 import waffle
 from django_extensions.db.fields.json import JSONField
@@ -17,7 +18,6 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 from olympia.users.models import UserProfile
-from django.utils.translation import gettext_lazy as _
 from olympia.versions.compare import addon_version_int
 from olympia.versions.models import Version
 
@@ -83,20 +83,20 @@ class Block(ModelBase):
 
     @classmethod
     def preload_addon_versions(cls, blocks):
-        """Preload block.addon_versions into a list of blocks.
-        If you're calling this on a list of blocks it's expected that you've
-        set cached_property self.addon in a db efficient way beforehand.
-        """
-        addon_ids = [block.addon.id for block in blocks if block.addon]
-        qs = Version.unfiltered.filter(addon_id__in=addon_ids).order_by(
-            'id').values('addon_id', 'version', 'id', 'channel')
-        addons_versions = defaultdict(OrderedDict)
+        """Preload block.addon_versions into a list of blocks."""
+        block_guids = [block.guid for block in blocks]
+        GUID = 'addon__guid'
+        qs = (
+            Version.unfiltered.filter(**{f'{GUID}__in': block_guids})
+                              .order_by('id')
+                              .no_transforms()
+                              .annotate(**{GUID: models.F(GUID)}))
+
+        all_addon_versions = defaultdict(list)
         for version in qs:
-            addons_versions[str(version['addon_id'])][version['version']] = (
-                version['id'], version['channel'])
+            all_addon_versions[getattr(version, GUID)].append(version)
         for block in blocks:
-            block.addon_versions = (
-                addons_versions[str(block.addon.id)] if block.addon else {})
+            block.addon_versions = all_addon_versions[block.guid]
 
     @cached_property
     def min_version_vint(self):
@@ -110,7 +110,8 @@ class Block(ModelBase):
         if self.id:
             # We're only concerned with edits - self.guid isn't set at this
             # point for new instances anyway.
-            choices = list(self.addon_versions.keys())
+            choices = list(
+                version.version for version in self.addon_versions)
             if self.min_version not in choices + [self.MIN]:
                 raise ValidationError({'min_version': _('Invalid version')})
             if self.max_version not in choices + [self.MAX]:
@@ -127,8 +128,8 @@ class Block(ModelBase):
 
     def review_listed_link(self):
         has_listed = any(
-            True for id_, chan in self.addon_versions.values()
-            if chan == amo.RELEASE_CHANNEL_LISTED)
+            True for version in self.addon_versions
+            if version.channel == amo.RELEASE_CHANNEL_LISTED)
         if has_listed:
             url = absolutify(reverse(
                 'reviewers.review',
@@ -139,8 +140,8 @@ class Block(ModelBase):
 
     def review_unlisted_link(self):
         has_unlisted = any(
-            True for id_, chan in self.addon_versions.values()
-            if chan == amo.RELEASE_CHANNEL_UNLISTED)
+            True for version in self.addon_versions
+            if version.channel == amo.RELEASE_CHANNEL_UNLISTED)
         if has_unlisted:
             url = absolutify(reverse(
                 'reviewers.review',
