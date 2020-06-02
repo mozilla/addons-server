@@ -110,8 +110,10 @@ class TestCSPHeaders(TestCase):
     def test_analytics_in_common_settings(self):
         """Check for anaytics hosts in img-src and script-src"""
         analytics_host = base_settings.ANALYTICS_HOST
-        assert analytics_host in base_settings.CSP_IMG_SRC
-        assert 'https://ssl.google-analytics.com/ga.js' in \
+        assert analytics_host in base_settings.CSP_CONNECT_SRC
+        # See https://github.com/mozilla/addons-server/issues/14427
+        assert analytics_host not in base_settings.CSP_IMG_SRC
+        assert 'https://www.google-analytics.com/analytics.js' in \
             base_settings.CSP_SCRIPT_SRC
 
     def test_csp_settings_not_overriden_for_prod(self):

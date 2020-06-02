@@ -1,6 +1,6 @@
 
 function trackEvent(event) {
-  _gaq.push(['_trackEvent', 'opt-in', 'click']); // Will need to filter on utm_source
+  ga('send', 'event', 'opt-in', 'click'); // Will need to filter on utm_source
   event.target.innerHTML = "Thank you! Opted In";
   event.target.setAttribute("onclick","");
   return true; // For href to work

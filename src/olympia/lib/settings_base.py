@@ -1373,7 +1373,7 @@ LOGGING = {
 # CSP Settings
 
 PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
-ANALYTICS_HOST = 'https://ssl.google-analytics.com'
+ANALYTICS_HOST = 'https://www.google-analytics.com'
 
 CSP_REPORT_URI = '/__cspreport__'
 CSP_REPORT_ONLY = False
@@ -1392,6 +1392,7 @@ CSP_BASE_URI = (
 CSP_CONNECT_SRC = (
     "'self'",
     'https://sentry.prod.mozaws.net',
+    ANALYTICS_HOST,
     PROD_CDN_HOST,
 )
 CSP_FORM_ACTION = (
@@ -1412,7 +1413,6 @@ CSP_IMG_SRC = (
     "'self'",
     'data:',  # Used in inlined mobile css.
     'blob:',  # Needed for image uploads.
-    ANALYTICS_HOST,
     PROD_CDN_HOST,
     'https://static.addons.mozilla.net',  # CDN origin server.
     'https://sentry.prod.mozaws.net',
@@ -1423,7 +1423,7 @@ CSP_MEDIA_SRC = (
 CSP_OBJECT_SRC = ("'none'",)
 
 CSP_SCRIPT_SRC = (
-    'https://ssl.google-analytics.com/ga.js',
+    'https://www.google-analytics.com/analytics.js',
     'https://www.google.com/recaptcha/',
     'https://www.recaptcha.net/recaptcha/',
     'https://www.gstatic.com/recaptcha/',

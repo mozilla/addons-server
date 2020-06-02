@@ -303,7 +303,7 @@ z.installAddon = function(name, url, icon, hash, callback) {
     }
     // InstallTrigger is a Gecko API.
     InstallTrigger.install(params, callback);
-    _gaq.push(['_trackEvent', 'AMO Addon / Theme Installs', 'addon', name]);
+    ga('send', 'event', 'AMO Addon / Theme Installs', 'addon', name);
 };
 
 
@@ -311,7 +311,7 @@ z.installSearch = function(name, url, icon, hash, callback) {
     if (window.external && window.external.AddSearchProvider) {
         window.external.AddSearchProvider(url);
         callback();
-        _gaq.push(['_trackEvent', 'AMO Addon / Theme Installs', 'addon', name]);
+        ga('send', 'event', 'AMO Addon / Theme Installs', 'addon', name);
     } else {
         // Alert!  Deal with it.
         alert(gettext('Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin.'));
