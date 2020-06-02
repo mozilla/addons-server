@@ -6,7 +6,7 @@
     "node": ">= 10.13"
   },
   "dependencies": {
-    "addons-linter": "1.24.0",
+    "addons-linter": "1.25.0",
     "clean-css": "4.2.3",
     "clean-css-cli": "4.3.0",
     "jqmodal": "1.4.2",
