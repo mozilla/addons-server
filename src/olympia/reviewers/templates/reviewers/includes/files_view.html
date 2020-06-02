@@ -11,38 +11,26 @@
     </div>
     <a href="{{ url('devhub.file_validation', addon.slug, file[0].id) }}">{{ _('Validation') }}</a>
     &middot;
-    <a href="{{ url('files.list', file[0].id) }}">{{ _('Contents') }}</a>
-    {% if show_diff and version == latest_version_in_channel %}
+    <a 
+      href="{{ code_manager_url('browse', addon.pk, version.pk) }}"
+      title="{{ _('Browse all files in this version') }}"
+      >
+        {{ _('Contents') }}
+    </a>
+    {% if base_version and version == latest_version_in_channel %}
     &middot;
-    <a class="compare" href="{{ url('files.compare', file[0].id, file_compare(file[0], show_diff)) }}">{{ _('Compare') }}</a>
+    <a
+      class="compare"
+      href="{{ code_manager_url('compare', addon.pk, version.pk, base_version.pk) }}"
+      title="{{ _('Compare this version to the last reviewed version') }}"
+    >
+      {{ _('Compare') }}
+    </a>
     {% endif %}
     {% if file[0].is_webextension %}
     <div class="file-permissions"><strong>{{ _('Permissions:') }}</strong> {{ ', '.join(file[0].webext_permissions_list) or _('None') }}</div>
     {% endif %}
   </span>
 </li>
-{% if waffle.flag('code-manager') %}
-  <li class="code-manager-links">
-    <div>
-      <strong>Code Manager</strong>
-      <img width="25" height="9" src="{{ static('img/reviewers/new.gif') }}">
-    </div>
-    <a
-      href="{{ code_manager_url('/browse/{}/versions/{}/'.format(addon.pk, version.pk)) }}"
-      title="Browse all files in this version"
-    >
-      {{ _('Contents') }}
-    </a>
-    {% if show_diff and version == latest_version_in_channel %}
-      &middot;
-      <a
-        href="{{ code_manager_url('/compare/{}/versions/{}...{}/'.format(addon.pk, show_diff.pk, version.pk)) }}"
-        title="Compare this version to the last reviewed version"
-      >
-        {{ _('Compare') }}
-      </a>
-    {% endif %}
-  </li>
-{% endif %}
 {% endfor %}
 </ul>

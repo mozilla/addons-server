@@ -22,7 +22,6 @@ from rest_framework.test import APIRequestFactory
 from freezegun import freeze_time
 from lxml.html import HTMLParser, fromstring
 from pyquery import PyQuery as pq
-from waffle.testutils import override_flag
 
 from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
@@ -49,6 +48,7 @@ from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary, CannedResponse, ReviewerScore, ReviewerSubscription,
     Whiteboard)
+from olympia.reviewers.templatetags.jinja_helpers import code_manager_url
 from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
 from olympia.reviewers.serializers import CannedResponseSerializer
@@ -3064,7 +3064,6 @@ class ReviewBase(QueueTest):
         return data
 
 
-@override_flag('code-manager', active=False)
 class TestReview(ReviewBase):
 
     def test_reviewer_required(self):
@@ -4286,26 +4285,31 @@ class TestReview(ReviewBase):
         first_file = self.addon.current_version.files.all()[0]
         first_file.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(created=self.days_ago(2))
+        first_version_pk = self.addon.current_version.pk
 
         new_version = version_factory(addon=self.addon, version='0.2')
-        new_file = new_version.files.all()[0]
         self.addon.update(_current_version=new_version)
         assert self.addon.current_version == new_version
 
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['show_diff']
+        assert response.context['base_version']
         links = doc('#versions-history .file-info .compare')
+
         expected = [
-            reverse('files.compare', args=[new_file.pk, first_file.pk]),
+            code_manager_url(
+                'compare', addon_id=self.addon.pk,
+                base_version_id=first_version_pk, version_id=new_version.pk),
         ]
+
         check_links(expected, links, verify=False)
 
     def test_compare_link_auto_approved_ignored(self):
         first_file = self.addon.current_version.files.all()[0]
         first_file.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(created=self.days_ago(3))
+        first_version_pk = self.addon.current_version.pk
 
         interim_version = version_factory(addon=self.addon, version='0.2')
         interim_version.update(created=self.days_ago(2))
@@ -4313,7 +4317,6 @@ class TestReview(ReviewBase):
             version=interim_version, verdict=amo.AUTO_APPROVED)
 
         new_version = version_factory(addon=self.addon, version='0.3')
-        new_file = new_version.files.all()[0]
 
         self.addon.update(_current_version=new_version)
         assert self.addon.current_version == new_version
@@ -4321,13 +4324,15 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['show_diff']
+        assert response.context['base_version']
         links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the first,
         # ignoring the interim version because it was auto-approved and not
         # manually confirmed by a human.
         expected = [
-            reverse('files.compare', args=[new_file.pk, first_file.pk]),
+            code_manager_url(
+                'compare', addon_id=self.addon.pk,
+                base_version_id=first_version_pk, version_id=new_version.pk),
         ]
         check_links(expected, links, verify=False)
 
@@ -4338,7 +4343,6 @@ class TestReview(ReviewBase):
 
         confirmed_version = version_factory(addon=self.addon, version='0.2')
         confirmed_version.update(created=self.days_ago(2))
-        confirmed_file = confirmed_version.files.all()[0]
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=confirmed_version,
             confirmed=True)
@@ -4349,7 +4353,6 @@ class TestReview(ReviewBase):
             version=interim_version, verdict=amo.AUTO_APPROVED)
 
         new_version = version_factory(addon=self.addon, version='0.4')
-        new_file = new_version.files.all()[0]
 
         self.addon.update(_current_version=new_version)
         assert self.addon.current_version == new_version
@@ -4357,14 +4360,17 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['show_diff']
+        assert response.context['base_version']
         links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the second,
         # ignoring the third version because it was auto-approved and not
         # manually confirmed by a human (the second was auto-approved but
         # was manually confirmed).
         expected = [
-            reverse('files.compare', args=[new_file.pk, confirmed_file.pk]),
+            code_manager_url(
+                'compare', addon_id=self.addon.pk,
+                base_version_id=confirmed_version.pk,
+                version_id=new_version.pk),
         ]
         check_links(expected, links, verify=False)
 
@@ -4375,13 +4381,11 @@ class TestReview(ReviewBase):
 
         confirmed_version = version_factory(addon=self.addon, version='0.2')
         confirmed_version.update(created=self.days_ago(2))
-        confirmed_file = confirmed_version.files.all()[0]
         AutoApprovalSummary.objects.create(
             verdict=amo.NOT_AUTO_APPROVED, version=confirmed_version
         )
 
         new_version = version_factory(addon=self.addon, version='0.3')
-        new_file = new_version.files.all()[0]
 
         self.addon.update(_current_version=new_version)
         assert self.addon.current_version == new_version
@@ -4389,12 +4393,15 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['show_diff']
+        assert response.context['base_version']
         links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the second,
         # because second was approved by human before auto-approval ran on it
         expected = [
-            reverse('files.compare', args=[new_file.pk, confirmed_file.pk]),
+            code_manager_url(
+                'compare', addon_id=self.addon.pk,
+                base_version_id=confirmed_version.pk,
+                version_id=new_version.pk),
         ]
         check_links(expected, links, verify=False)
 
@@ -5392,61 +5399,6 @@ class TestAbuseReportsView(ReviewerTest):
             #     of)
             response = self.client.get(self.url)
         assert response.status_code == 200
-
-
-@override_flag('code-manager', active=True)
-class TestCodeManagerLinks(ReviewBase):
-
-    def get_links(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-        doc = pq(response.content)
-        return doc.find('.code-manager-links')
-
-    def test_link_to_contents(self):
-        links = self.get_links()
-
-        contents = links.find('a').eq(0)
-        assert contents.text() == "Contents"
-        assert contents.attr('href').endswith(
-            '/browse/{}/versions/{}/'.format(
-                self.addon.pk, self.version.pk
-            )
-        )
-
-        # There should only be one Contents link for the version.
-        assert links.find('a').length == 1
-
-    def test_link_to_version_comparison(self):
-        last_version = self.addon.current_version
-        last_version.files.update(status=amo.STATUS_APPROVED)
-        last_version.update(created=self.days_ago(2))
-
-        new_version = version_factory(addon=self.addon, version='0.2')
-        self.addon.update(_current_version=new_version)
-
-        links = self.get_links()
-
-        compare = links.find('a').eq(2)
-        assert compare.text() == "Compare"
-        assert compare.attr('href').endswith(
-            '/compare/{}/versions/{}...{}/'.format(
-                self.addon.pk,
-                last_version.pk,
-                new_version.pk,
-            )
-        )
-
-        # There should be three links:
-        # 1. The first version's Contents link
-        # 2. The second version's Contents link
-        # 3. The second version's Compare link
-        assert links.find('a').length == 3
-
-    def test_hide_links_when_flag_is_inactive(self):
-        with override_flag('code-manager', active=False):
-            assert self.get_links() == []
 
 
 class TestReviewPending(ReviewBase):

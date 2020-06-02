@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from django.test.utils import override_settings
-
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase
 from olympia.files.models import File
-from olympia.reviewers.templatetags import jinja_helpers
+from olympia.reviewers.templatetags import (
+    code_manager, jinja_helpers)
 from olympia.versions.models import Version
 
 
@@ -79,12 +78,7 @@ def test_file_review_status_handles_invalid_status_id():
 
 
 def test_create_a_code_manager_url():
-    with override_settings(CODE_MANAGER_URL='http://code-manager'):
-        assert jinja_helpers.code_manager_url('/some/path') == (
-            'http://code-manager/en-US/some/path'
-        )
-
-
-def test_code_manager_url_expects_a_relative_path():
-    with pytest.raises(ValueError):
-        jinja_helpers.code_manager_url('http://code-manager/some/path')
+    assert jinja_helpers.code_manager_url(
+        'browse', addon_id=1, base_version_id=2, version_id=3
+    ) == code_manager.code_manager_url(
+        'browse', addon_id=1, base_version_id=2, version_id=3)
