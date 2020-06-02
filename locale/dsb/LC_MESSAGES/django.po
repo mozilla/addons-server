@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-02 14:11+0000\n"
+"PO-Revision-Date: 2020-06-02 14:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4986,7 +4986,7 @@ msgstr "Sponsorowane źěle wideo YouTube pśeskócyś."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Dajśo se webboki pśedcytaś. Pśez 40 rěcow se pódpěra."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
