@@ -18,10 +18,12 @@ class TestDiscoveryAdmin(TestCase):
             "primaryhero-MIN_NUM_FORMS": "0",
             "primaryhero-MAX_NUM_FORMS": "1",
             "primaryhero-0-image": "",
+            "primaryhero-0-custom_image": "",
             "primaryhero-0-gradient_color": "",
             "primaryhero-0-id": "",
             "primaryhero-0-disco_addon": item_id,
             "primaryhero-__prefix__-image": "",
+            "primaryhero-__prefix__-custom_image": "",
             "primaryhero-__prefix__-gradient_color": "",
             "primaryhero-__prefix__-id": "",
             "primaryhero-__prefix__-disco_addon": item_id,
@@ -255,6 +257,7 @@ class TestDiscoveryAdmin(TestCase):
                 'primaryhero-0-disco_addon': str(item.pk),
                 'primaryhero-0-gradient_color': '#054096',
                 'primaryhero-0-image': 'Ubo@2x.jpg',
+                'primaryhero-0-custom_image': '',
             }, follow=True)
         assert response.status_code == 200
         item.reload()
@@ -291,6 +294,7 @@ class TestDiscoveryAdmin(TestCase):
                 'recommendable': True,
                 'primaryhero-0-gradient_color': '#054096',
                 'primaryhero-0-image': 'Ubo@2x.jpg',
+                'primaryhero-0-custom_image': '',
             }),
             follow=True)
         assert response.status_code == 200
@@ -302,6 +306,7 @@ class TestDiscoveryAdmin(TestCase):
         assert item.recommendable is True
         hero = PrimaryHero.objects.last()
         assert hero.image == 'Ubo@2x.jpg'
+        assert hero.custom_image == ''
         assert hero.gradient_color == '#054096'
         assert hero.disco_addon == item
 
