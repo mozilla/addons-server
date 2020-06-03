@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-29 08:36+0000\n"
+"PO-Revision-Date: 2020-06-03 06:29+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -62,10 +62,10 @@ msgstr ""
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Av %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 msgid "No links are allowed."
 msgstr "Ingen lenker er tillatne."
@@ -546,7 +546,7 @@ msgstr "Gå til bidraga mine"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Legg til %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
@@ -976,7 +976,7 @@ msgid "Unlisted"
 msgstr "Ikkje oppført"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "Eigar"
