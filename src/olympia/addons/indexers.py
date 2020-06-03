@@ -266,7 +266,6 @@ class AddonIndexer(BaseSearchIndexer):
                             },
                         },
                     },
-                    'public_stats': {'type': 'boolean', 'index': False},
                     'ratings': {
                         'type': 'object',
                         'properties': {
@@ -383,7 +382,7 @@ class AddonIndexer(BaseSearchIndexer):
                  'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type',
                  'is_disabled', 'is_experimental', 'is_recommended',
                  'last_updated',
-                 'modified', 'public_stats', 'requires_payment', 'slug',
+                 'modified', 'requires_payment', 'slug',
                  'status', 'type', 'view_source', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 

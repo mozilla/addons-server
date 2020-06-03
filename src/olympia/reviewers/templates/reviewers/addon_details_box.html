@@ -86,10 +86,6 @@
             <td>
               <strong class="downloads">{{
                 addon.total_downloads|numberfmt }}</strong>
-              {% if addon.public_stats %}
-                <a href="{{ url('stats.overview', addon.slug) }}">
-                  {{ _('View Statistics') }}</a>
-              {% endif %}
             </td>
           </tr>
           {% if addon.average_daily_users %}
@@ -98,10 +94,6 @@
               <td>
                 <strong class="downloads">{{
                   addon.average_daily_users|numberfmt }}</strong>
-                {% if addon.public_stats %}
-                  <a href="{{ url('stats.overview', addon.slug) }}">
-                    {{ _('View Statistics') }}</a>
-                {% endif %}
               </td>
             </tr>
           {% endif %}

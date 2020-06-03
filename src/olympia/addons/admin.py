@@ -154,7 +154,7 @@ class AddonAdmin(admin.ModelAdmin):
         }),
         ('Flags', {
             'fields': ('disabled_by_user', 'view_source', 'requires_payment',
-                       'public_stats', 'is_experimental', 'reputation'),
+                       'is_experimental', 'reputation'),
         }),
         ('Dictionaries and Language Packs', {
             'fields': ('target_locale',),

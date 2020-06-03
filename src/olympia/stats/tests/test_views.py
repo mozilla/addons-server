@@ -10,8 +10,6 @@ from django.test.client import RequestFactory
 from django.urls.exceptions import NoReverseMatch
 from django.utils.encoding import force_text
 
-from pyquery import PyQuery as pq
-
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
@@ -84,7 +82,6 @@ class TestUnlistedAddons(StatsTest):
     def setUp(self):
         super(TestUnlistedAddons, self).setUp()
         addon = Addon.objects.get(pk=4)
-        addon.update(public_stats=True)
         self.make_addon_unlisted(addon)
 
     def test_no_stats_for_unlisted_addon(self):
@@ -111,7 +108,6 @@ class TestListedAddons(StatsTest):
             email='nobodyspecial@mozilla.com')
 
     def test_private_stats_for_listed_addon(self):
-        self.addon.update(public_stats=False)
         self.login_as_visitor()
         self._check_it(self.public_views_gen(format='json'), 403)
 
@@ -200,12 +196,12 @@ class TestSeriesSecurity(StatsTest):
         self.client.logout()
         self._check_it(self.views_gen(format='json'), 403)
 
-    def test_public_addon_no_groups(self):
+    def test_addon_no_groups(self):
         # Logged in but no groups
         self.login_as_visitor()
-        self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
+        self._check_it(self.public_views_gen(addon_id=5, format='json'), 403)
 
-    def test_public_addon_stats_group(self):
+    def test_addon_stats_group(self):
         # Logged in with stats group.
         user = UserProfile.objects.get(email='nobodyspecial@mozilla.com')
         group = Group.objects.create(name='Stats', rules='Stats:View')
@@ -214,10 +210,10 @@ class TestSeriesSecurity(StatsTest):
 
         self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
 
-    def test_public_addon_anonymous(self):
+    def test_addon_anonymous(self):
         # Not logged in
         self.client.logout()
-        self._check_it(self.public_views_gen(addon_id=5, format='json'), 200)
+        self._check_it(self.public_views_gen(addon_id=5, format='json'), 403)
 
 
 class TestCSVs(ESStatsTest):
@@ -349,24 +345,14 @@ class TestCacheControl(StatsTest):
 
 class TestLayout(StatsTest):
 
-    def test_not_public_stats(self):
+    def test_no_public_stats(self):
         self.login_as_visitor()
-        addon = amo.tests.addon_factory(public_stats=False)
+        addon = amo.tests.addon_factory()
         response = self.client.get(self.get_public_url(addon))
         assert response.status_code == 403
 
     def get_public_url(self, addon):
         return reverse('stats.downloads', args=[addon.slug])
-
-    def test_public_stats_page_loads(self):
-        addon = amo.tests.addon_factory(public_stats=True)
-        response = self.client.get(self.get_public_url(addon))
-        assert response.status_code == 200
-
-    def test_public_stats_stats_notes(self):
-        addon = amo.tests.addon_factory(public_stats=True)
-        response = self.client.get(self.get_public_url(addon))
-        assert pq(response.content)('#stats-note h2').length == 1
 
 
 class TestResponses(ESStatsTest):

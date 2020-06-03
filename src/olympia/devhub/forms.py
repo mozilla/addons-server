@@ -401,7 +401,7 @@ class AddonFormTechnical(AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('developer_comments', 'public_stats')
+        fields = ('developer_comments',)
 
 
 class AddonFormTechnicalUnlisted(AddonFormBase):
