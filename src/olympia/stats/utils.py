@@ -13,7 +13,7 @@ AMO_TO_BIGQUERY_COLUMN_MAPPING = {
 }
 
 
-AMO_STATS_DAU_TABLE = 'moz-fx-data-shared-prod.telemetry.amo_stats_dau'
+AMO_STATS_DAU_TABLE = 'amo_stats_dau_v1'
 
 
 def rows_to_series(rows, filter_by=None):
@@ -47,9 +47,18 @@ def get_updates_series(addon, start_date, end_date, source=None):
     select_clause = 'SELECT submission_date, dau'
     if filter_by:
         select_clause = f'{select_clause}, {filter_by}'
+
+    fully_qualified_table_name = '.'.join(
+        [
+            settings.BIGQUERY_PROJECT,
+            settings.BIGQUERY_AMO_DATASET,
+            AMO_STATS_DAU_TABLE,
+        ]
+    )
+
     query = f"""
 {select_clause}
-FROM `{AMO_STATS_DAU_TABLE}`
+FROM `{fully_qualified_table_name}`
 WHERE addon_id = @addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC

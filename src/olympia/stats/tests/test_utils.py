@@ -7,9 +7,10 @@ from google.cloud import bigquery
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.constants.applications import FIREFOX
 from olympia.stats.utils import (
+    AMO_STATS_DAU_TABLE,
     AMO_TO_BIGQUERY_COLUMN_MAPPING,
-    rows_to_series,
     get_updates_series,
+    rows_to_series,
 )
 
 
@@ -97,6 +98,7 @@ class TestRowsToSeries(TestCase):
         }
 
 
+@override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
 class TestGetUpdatesSeries(TestCase):
     def setUp(self):
         super().setUp()
@@ -131,9 +133,9 @@ class TestGetUpdatesSeries(TestCase):
         bigquery_client_mock.from_service_account_json.return_value = client
         start_date = date(2020, 5, 27)
         end_date = date(2020, 5, 28)
-        expected_query = """
+        expected_query = f"""
 SELECT submission_date, dau
-FROM `moz-fx-data-shared-prod.telemetry.amo_stats_dau`
+FROM `project.dataset.{AMO_STATS_DAU_TABLE}`
 WHERE addon_id = @addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
@@ -157,7 +159,7 @@ LIMIT 365"""
         for source, column in AMO_TO_BIGQUERY_COLUMN_MAPPING.items():
             expected_query = f"""
 SELECT submission_date, dau, {column}
-FROM `moz-fx-data-shared-prod.telemetry.amo_stats_dau`
+FROM `project.dataset.{AMO_STATS_DAU_TABLE}`
 WHERE addon_id = @addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
