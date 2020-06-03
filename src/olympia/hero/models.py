@@ -92,7 +92,9 @@ class PrimaryHero(ModelBase):
     image = WidgetCharField(
         choices=DirImageChoices(path=FEATURED_IMAGE_PATH), max_length=255,
         widget=ImageChoiceWidget, blank=True)
-    custom_image = models.ImageField(upload_to='status/img/hero/featured', blank=True)
+    custom_image = models.ImageField(
+        upload_to='status/img/hero/featured',
+        blank=True)
     gradient_color = WidgetCharField(
         choices=GRADIENT_COLORS.items(), max_length=7,
         widget=GradientChoiceWidget, blank=True)

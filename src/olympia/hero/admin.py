@@ -7,7 +7,12 @@ from .models import PrimaryHero, SecondaryHeroModule
 
 class PrimaryHeroInline(admin.StackedInline):
     model = PrimaryHero
-    fields = ('image', 'custom_image', 'gradient_color', 'is_external', 'enabled')
+    fields = (
+        'image',
+        'custom_image',
+        'gradient_color',
+        'is_external',
+        'enabled')
     view_on_site = False
     can_delete = False
 
