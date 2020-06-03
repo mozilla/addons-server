@@ -257,7 +257,7 @@ class TestDiscoveryAdmin(TestCase):
                 'primaryhero-0-disco_addon': str(item.pk),
                 'primaryhero-0-gradient_color': '#054096',
                 'primaryhero-0-image': 'Ubo@2x.jpg',
-                'primaryhero-0-custom_image': '',
+                'primaryhero-0-custom_image': 'Ubo@2x.jpg',
             }, follow=True)
         assert response.status_code == 200
         item.reload()
@@ -294,7 +294,7 @@ class TestDiscoveryAdmin(TestCase):
                 'recommendable': True,
                 'primaryhero-0-gradient_color': '#054096',
                 'primaryhero-0-image': 'Ubo@2x.jpg',
-                'primaryhero-0-custom_image': '',
+                'primaryhero-0-custom_image': 'Ubo@2x.jpg',
             }),
             follow=True)
         assert response.status_code == 200
