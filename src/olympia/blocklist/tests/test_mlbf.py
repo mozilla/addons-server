@@ -274,20 +274,24 @@ class TestMLBF(TestCase):
             buffer = filter_file.read()
             bfilter = FilterCascade.from_buf(buffer)
 
-        assert bfilter.bitCount() == 1384
         blocked_versions = mlbf.fetch_blocked_from_db()
-        for guid, version_str in blocked_versions.values():
+        blocked_guids = blocked_versions.values()
+        for guid, version_str in blocked_guids:
             key = mlbf.KEY_FORMAT.format(guid=guid, version=version_str)
             assert key in bfilter
 
         all_addons = mlbf.fetch_all_versions_from_db(blocked_versions.keys())
         for guid, version_str in all_addons:
             # edge case where a version_str exists in both
-            if (guid, version_str) in blocked_versions.values():
+            if (guid, version_str) in blocked_guids:
                 continue
             key = mlbf.KEY_FORMAT.format(guid=guid, version=version_str)
             assert key not in bfilter
-        assert os.stat(mlbf.filter_path).st_size == 203
+            
+        assert os.stat(mlbf.filter_path).st_size == 203, (
+            blocked_guids, all_addons)
+        assert bfilter.bitCount() == 1384, (
+            blocked_guids, all_addons)
 
     def test_generate_diffs(self):
         old_versions = [
