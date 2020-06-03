@@ -1929,3 +1929,6 @@ BLOCKLIST_REMOTE_SETTINGS_PASSWORD = env(
 # If this is `None` we're going to use service mocks for testing
 GOOGLE_APPLICATION_CREDENTIALS = env(
     'GOOGLE_APPLICATION_CREDENTIALS', default=None)
+# See: https://bugzilla.mozilla.org/show_bug.cgi?id=1633746
+BIGQUERY_PROJECT = 'moz-fx-data-shared-prod'
+BIGQUERY_AMO_DATASET = 'amo_dev'
