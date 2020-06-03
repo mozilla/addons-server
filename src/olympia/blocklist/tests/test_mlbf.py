@@ -287,7 +287,7 @@ class TestMLBF(TestCase):
                 continue
             key = mlbf.KEY_FORMAT.format(guid=guid, version=version_str)
             assert key not in bfilter
-            
+
         assert os.stat(mlbf.filter_path).st_size == 203, (
             blocked_guids, all_addons)
         assert bfilter.bitCount() == 1384, (
