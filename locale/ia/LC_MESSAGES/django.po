@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-04 16:05+0000\n"
+"PO-Revision-Date: 2020-06-04 23:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6055,7 +6055,7 @@ msgid "Resolution"
 msgstr "Resolution"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Registro revisiones de additivos – Additivos pro Firefox"
 
 msgid "Reviewer"
 msgstr "Revisor"
@@ -6110,7 +6110,7 @@ msgid "Newer"
 msgstr "Plus recente"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} versiones signalate per scanditores sur altere paginas."
 
 msgid "Recent Points"
 msgstr "Punctos recente"
@@ -6161,7 +6161,7 @@ msgid "Weight:"
 msgstr "Peso:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Signalate per scanditores automatisate"
 
 msgid "Download"
 msgstr "Discargar"
@@ -6203,7 +6203,7 @@ msgstr[0] "Requesta de informationes expirate ({0})"
 msgstr[1] "Requestas de informationes expirate ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "presentia de regulas concordate"
 
 msgid "result state"
 msgstr "stato de resultato"
@@ -6235,7 +6235,7 @@ msgid "file signature"
 msgstr "{file} ha essite signate."
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Isto es le nomine exacte del regula usate per un scanditor."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
