@@ -417,14 +417,3 @@ class ScannerQueryResult(AbstractScannerResult):
 class ScannerQueryMatch(ModelBase):
     result = models.ForeignKey(ScannerQueryResult, on_delete=models.CASCADE)
     rule = models.ForeignKey(ScannerQueryRule, on_delete=models.CASCADE)
-
-
-class VersionScannerFlags(ModelBase):
-    version = models.OneToOneField(
-        'versions.Version', primary_key=True, on_delete=models.CASCADE
-    )
-    needs_human_review_by_mad = models.BooleanField(default=False)
-
-    @property
-    def needs_human_review(self):
-        return self.needs_human_review_by_mad

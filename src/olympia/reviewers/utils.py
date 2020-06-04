@@ -27,7 +27,7 @@ from olympia.reviewers.models import (
     get_flags_for_row)
 from olympia.users.models import UserProfile
 from olympia.versions.compare import addon_version_int
-from olympia.scanners.models import VersionScannerFlags
+from olympia.versions.models import VersionReviewerFlags
 
 import jinja2
 
@@ -281,7 +281,7 @@ class ScannersReviewTable(AutoApprovedTable):
 class MadReviewTable(ScannersReviewTable):
     listed_text = _('Listed versions ({0})')
     unlisted_text = _('Unlisted versions ({0})')
-    filters = {'versionscannerflags__needs_human_review_by_mad': True}
+    filters = {'versionreviewerflags__needs_human_review_by_mad': True}
 
 
 class ReviewHelper(object):
@@ -808,7 +808,7 @@ class ReviewBase(object):
             self.unset_past_needs_human_review()
             # Clear the "needs_human_review" scanner flags too, if any, and
             # only for the specified version.
-            VersionScannerFlags.objects.filter(
+            VersionReviewerFlags.objects.filter(
                 version=self.version
             ).update(needs_human_review_by_mad=False)
 
@@ -963,7 +963,7 @@ class ReviewBase(object):
 
             # Clear the "needs_human_review" scanner flags too, if any, and
             # only for the specified version.
-            VersionScannerFlags.objects.filter(
+            VersionReviewerFlags.objects.filter(
                 version=self.version
             ).update(needs_human_review_by_mad=False)
 
@@ -1147,6 +1147,6 @@ class ReviewUnlisted(ReviewBase):
 
                 # Clear the "needs_human_review" scanner flags too, if any, and
                 # only for the specified version.
-                VersionScannerFlags.objects.filter(
+                VersionReviewerFlags.objects.filter(
                     version=version
                 ).update(needs_human_review_by_mad=False)

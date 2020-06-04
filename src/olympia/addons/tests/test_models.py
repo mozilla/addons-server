@@ -36,8 +36,7 @@ from olympia.translations.models import (
 from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
-    ApplicationsVersions, Version, VersionPreview)
-from olympia.scanners.models import VersionScannerFlags
+    ApplicationsVersions, Version, VersionPreview, VersionReviewerFlags)
 
 
 class TestCleanSlug(TestCase):
@@ -2792,8 +2791,8 @@ class TestGetMadQueue(TestCase):
     def test_returns_addons_with_versions_flagged_by_mad(self):
         flagged_addon = addon_factory()
         version = version_factory(addon=flagged_addon)
-        VersionScannerFlags.objects.create(version=version,
-                                           needs_human_review_by_mad=True)
+        VersionReviewerFlags.objects.create(version=version,
+                                            needs_human_review_by_mad=True)
         other_addon = addon_factory()
         version = version_factory(addon=other_addon)
 

@@ -31,7 +31,7 @@ from olympia.reviewers.utils import (
     ReviewAddon, ReviewFiles, ReviewHelper, ReviewUnlisted,
     ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
-from olympia.scanners.models import VersionScannerFlags
+from olympia.versions.models import VersionReviewerFlags
 from pyquery import PyQuery as pq
 
 
@@ -725,7 +725,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.version.needs_human_review
 
     def test_nomination_to_public_with_version_scanner_flags(self):
-        flags = VersionScannerFlags.objects.create(
+        flags = VersionReviewerFlags.objects.create(
             version=self.addon.current_version,
             needs_human_review_by_mad=True,
         )
@@ -1084,7 +1084,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.needs_human_review is False
 
     def test_addon_with_version_and_scanner_flag_confirm_auto_approvals(self):
-        flags = VersionScannerFlags.objects.create(
+        flags = VersionReviewerFlags.objects.create(
             version=self.addon.current_version,
             needs_human_review_by_mad=True,
         )
@@ -1099,7 +1099,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        flags = VersionScannerFlags.objects.create(
+        flags = VersionReviewerFlags.objects.create(
             version=self.version,
             needs_human_review_by_mad=True,
         )

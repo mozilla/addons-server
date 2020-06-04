@@ -693,6 +693,14 @@ class Version(OnChangeMixin, ModelBase):
         return True
 
 
+class VersionReviewerFlags(ModelBase):
+    version = models.OneToOneField(
+        Version, primary_key=True, on_delete=models.CASCADE
+    )
+    needs_human_review_by_mad = models.BooleanField(default=False)
+    pending_rejection = models.DateTimeField(default=None, null=True)
+
+
 def generate_static_theme_preview(theme_data, version_pk):
     """This redirection is so we can mock generate_static_theme_preview, where
     needed, in tests."""
