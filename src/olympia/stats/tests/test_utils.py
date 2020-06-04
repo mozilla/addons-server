@@ -127,8 +127,9 @@ class TestGetUpdatesSeries(TestCase):
             credentials
         )
 
+    @mock.patch('olympia.stats.utils.statsd.timer')
     @mock.patch('google.cloud.bigquery.Client')
-    def test_create_query(self, bigquery_client_mock):
+    def test_create_query(self, bigquery_client_mock, timer_mock):
         client = self.create_mock_client()
         bigquery_client_mock.from_service_account_json.return_value = client
         start_date = date(2020, 5, 27)
@@ -148,9 +149,13 @@ LIMIT 365"""
         client.query.assert_called_once_with(
             expected_query, job_config=mock.ANY
         )
+        timer_mock.assert_called_once_with(
+            'stats.get_updates_series.bigquery.no_source'
+        )
 
+    @mock.patch('olympia.stats.utils.statsd.timer')
     @mock.patch('google.cloud.bigquery.Client')
-    def test_create_query_with_source(self, bigquery_client_mock):
+    def test_create_query_with_source(self, bigquery_client_mock, timer_mock):
         client = self.create_mock_client()
         bigquery_client_mock.from_service_account_json.return_value = client
         start_date = date(2020, 5, 27)
@@ -174,4 +179,7 @@ LIMIT 365"""
 
             client.query.assert_called_with(
                 expected_query, job_config=mock.ANY
+            )
+            timer_mock.assert_called_with(
+                f'stats.get_updates_series.bigquery.{source}'
             )

@@ -65,7 +65,8 @@ AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
 LIMIT 365"""
 
-    with statsd.timer('stats.get_updates_series.bigquery'):
+    statsd_timer = f'stats.get_updates_series.bigquery.{source or "no_source"}'
+    with statsd.timer(statsd_timer):
         rows = client.query(
             query,
             job_config=bigquery.QueryJobConfig(
