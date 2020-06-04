@@ -19,7 +19,7 @@ def dev_required(owner_for_post=False, allow_reviewers_for_read=False,
     When allow_reviewers is True, reviewers can view the page.
     """
     def decorator(f):
-        @addon_view_factory(qs=Addon.objects.all)
+        @addon_view_factory(qs=Addon.unfiltered.all)
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):

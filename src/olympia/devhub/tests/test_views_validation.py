@@ -276,6 +276,13 @@ class TestFileValidation(TestCase):
         assert link.text == 'https://bugzilla.mozilla.org/'
         assert link.attrib['href'] == 'https://bugzilla.mozilla.org/'
 
+    def test_can_see_json_results_for_deleted_addon(self):
+        self.client.logout()
+        assert self.client.login(email='admin@mozilla.com')
+        self.addon.delete()
+
+        assert self.client.head(self.json_url, follow=False).status_code == 200
+
 
 class TestValidateAddon(TestCase):
     fixtures = ['base/users']
