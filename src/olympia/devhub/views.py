@@ -678,7 +678,7 @@ def file_validation(request, addon_id, addon, file_id):
 
 
 @csrf_exempt
-@dev_required(allow_reviewers_for_read=True)
+@dev_required(allow_reviewers_for_read=True, qs=Addon.unfiltered.all)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, version__addon=addon, id=file_id)
     try:

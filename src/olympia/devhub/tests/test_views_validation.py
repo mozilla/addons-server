@@ -284,6 +284,15 @@ class TestFileValidation(TestCase):
         doc = pq(response.content)
         assert doc('#addon-validator-suite').attr['data-file-url'] == file_url
 
+    def test_can_see_json_results_for_deleted_addon(self):
+        self.client.logout()
+        assert self.client.login(email='admin@mozilla.com')
+        self.addon.delete()
+        args = [self.addon.pk, self.file.id]
+        json_url = reverse('devhub.json_file_validation', args=args)
+
+        assert self.client.head(json_url, follow=False).status_code == 200
+
 
 class TestValidateAddon(TestCase):
     fixtures = ['base/users']

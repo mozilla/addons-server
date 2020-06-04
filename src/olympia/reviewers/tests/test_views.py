@@ -6484,6 +6484,18 @@ class TestReviewAddonVersionViewSetDetail(
         # make sure we returned more than just the `id` and `file` properties
         assert len(result.keys()) > 2
 
+    def test_deleted_addon(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, 'Addons:ViewDeleted')
+        self.client.login_api(user)
+
+        self.addon.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.version.pk
+
 
 class TestReviewAddonVersionViewSetList(TestCase):
     client_class = APITestClient
@@ -7171,6 +7183,26 @@ class TestDraftCommentViewSet(TestCase):
         # Should not be able to delete comments.
         response = self.client.delete(url)
         assert response.status_code == 403
+
+    def test_deleted_addon(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, 'Addons:ViewDeleted')
+        self.client.login_api(user)
+
+        DraftComment.objects.create(
+            version=self.version, comment='test', user=user,
+            lineno=0, filename='manifest.json')
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk
+        })
+
+        self.addon.delete()
+        response = self.client.get(url)
+        assert response.status_code == 200
+        assert response.json()['count'] == 1
 
 
 class TestReviewAddonVersionCompareViewSet(
