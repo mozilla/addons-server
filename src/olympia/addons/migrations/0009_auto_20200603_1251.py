@@ -5,12 +5,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        (
-            'addons',
-            '0007_addonreviewerflags_notified_about_auto_approval_delay',
-        )
-    ]
+    dependencies = [('addons', '0008_auto_20200604_0928')]
 
     operations = [
         migrations.AlterField(
