@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-02 16:44+0000\n"
+"PO-Revision-Date: 2020-06-04 16:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1739,7 +1739,7 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr ""
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "egy blokklistabejegyzés"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A(z) {version} verzió már korábban fel lett töltve, és törölve lett."
@@ -6275,13 +6275,13 @@ msgid "When unchecked, the scanner results will not be bound to this rule and th
 msgstr ""
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "A Yara szabályoknak definícióval kell rendelkezniük"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
 msgstr ""
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Csak egy Yara-szabály lehet a definícióban"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
