@@ -9,7 +9,7 @@ function isDoNotTrackEnabled() {
   if (dnt === '1') {
     window.console &&
       console.info(
-        '[TRACKING]: Do Not Track Enabled; Google Analytics will not be loaded.',
+        '[TRACKING]: Do Not Track Enabled; Google Analytics will not be loaded.'
       );
     return true;
   }
@@ -36,7 +36,7 @@ if (isDoNotTrackEnabled() === false) {
     document,
     'script',
     'https://www.google-analytics.com/analytics.js',
-    'ga',
+    'ga'
   );
 
   ga('create', 'UA-36116321-7', 'auto');
