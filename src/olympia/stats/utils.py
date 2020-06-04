@@ -1,4 +1,5 @@
 from django.conf import settings
+from django_statsd.clients import statsd
 from google.cloud import bigquery
 
 from olympia.constants.applications import FIREFOX
@@ -64,21 +65,23 @@ AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
 LIMIT 365"""
 
-    rows = client.query(
-        query,
-        job_config=bigquery.QueryJobConfig(
-            query_parameters=[
-                bigquery.ScalarQueryParameter(
-                    'addon_id', 'STRING', addon.guid
-                ),
-                bigquery.ScalarQueryParameter(
-                    'submission_date_start', 'DATE', start_date
-                ),
-                bigquery.ScalarQueryParameter(
-                    'submission_date_end', 'DATE', end_date
-                ),
-            ]
-        ),
-    ).result()
+    statsd_timer = f'stats.get_updates_series.bigquery.{source or "no_source"}'
+    with statsd.timer(statsd_timer):
+        rows = client.query(
+            query,
+            job_config=bigquery.QueryJobConfig(
+                query_parameters=[
+                    bigquery.ScalarQueryParameter(
+                        'addon_id', 'STRING', addon.guid
+                    ),
+                    bigquery.ScalarQueryParameter(
+                        'submission_date_start', 'DATE', start_date
+                    ),
+                    bigquery.ScalarQueryParameter(
+                        'submission_date_end', 'DATE', end_date
+                    ),
+                ]
+            ),
+        ).result()
 
     return rows_to_series(rows, filter_by=filter_by)
