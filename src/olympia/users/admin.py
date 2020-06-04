@@ -23,7 +23,9 @@ from olympia.amo.utils import render
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
-from olympia.zadmin.admin import related_content_link
+from olympia.zadmin.admin import (
+    related_content_link, related_single_content_link
+)
 
 from . import forms
 from .models import (
@@ -36,27 +38,13 @@ class GroupUserInline(admin.TabularInline):
     raw_id_fields = ('user',)
 
 
-class UserRestrictionHistoryInline(admin.TabularInline):
-    model = UserRestrictionHistory
-    raw_id_fields = ('user',)
-    readonly_fields = ('restriction', 'ip_address', 'user',
-                       'last_login_ip', 'created')
-    extra = 0
-    can_delete = False
-    view_on_site = False
-    verbose_name_plural = _('User Restriction History')
-
-    def has_add_permission(self, request, obj):
-        return False
-
-
 @admin.register(UserProfile)
 class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     list_display = ('__str__', 'email', 'is_public', 'deleted')
     search_fields = ('=id', '^email', '^username')
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
-    inlines = (GroupUserInline, UserRestrictionHistoryInline)
+    inlines = (GroupUserInline, )
     show_full_result_count = False  # Turn off to avoid the query.
 
     readonly_fields = ('id', 'created', 'picture_img',
@@ -66,7 +54,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                        'collections_created', 'addons_created', 'activity',
                        'abuse_reports_by_this_user',
                        'abuse_reports_for_this_user',
-                       'has_active_api_key')
+                       'has_active_api_key',
+                       'restriction_history_for_this_user')
     fieldsets = (
         (None, {
             'fields': ('id', 'created', 'email', 'fxa_id', 'username',
@@ -87,7 +76,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         }),
         ('Admin', {
             'fields': ('last_login', 'last_known_activity_time', 'activity',
-                       'last_login_ip', 'known_ip_adresses', 'banned', 'notes',
+                       'restriction_history_for_this_user', 'last_login_ip',
+                       'known_ip_adresses', 'banned', 'notes',
                        'bypass_upload_restrictions', 'has_active_api_key')
         }),
     )
@@ -320,6 +310,9 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def abuse_reports_for_this_user(self, obj):
         return related_content_link(obj, AbuseReport, 'user')
 
+    def restriction_history_for_this_user(self, obj):
+        return related_content_link(obj, UserRestrictionHistory, 'user')
+
 
 class DeniedModelAdmin(admin.ModelAdmin):
     def add_view(self, request, form_url='', extra_context=None):
@@ -381,3 +374,27 @@ class EmailUserRestrictionAdmin(admin.ModelAdmin):
 class DisposableEmailDomainRestrictionAdmin(admin.ModelAdmin):
     list_display = ('domain',)
     search_fields = ('^domain',)
+
+
+@admin.register(UserRestrictionHistory)
+class UserRestrictionHistoryAdmin(admin.ModelAdmin):
+    raw_id_fields = ('user',)
+    readonly_fields = ('restriction', 'ip_address', 'user_link',
+                       'last_login_ip', 'created')
+    list_display = (
+        'created', 'user_link', 'restriction', 'ip_address', 'last_login_ip',
+    )
+    extra = 0
+    can_delete = False
+    view_on_site = False
+
+    def user_link(self, obj):
+        return related_single_content_link(obj, 'user')
+    user_link.short_description = _(u'User')
+
+    def has_add_permission(self, request):
+        return False
+
+    def get_queryset(self, request):
+        base_qs = UserRestrictionHistory.objects.all()
+        return base_qs.prefetch_related('user')

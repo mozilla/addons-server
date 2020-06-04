@@ -27,7 +27,8 @@ from olympia.users.admin import UserAdmin
 from olympia.users.models import (
     EmailUserRestriction,
     IPNetworkUserRestriction,
-    UserProfile
+    UserProfile,
+    UserRestrictionHistory,
 )
 
 
@@ -653,6 +654,20 @@ class TestUserAdmin(TestCase):
         assert url == expected_url
         assert text == '2'
 
+    def test_user_restriction_history(self):
+        other_user = user_factory()
+        UserRestrictionHistory.objects.create(user=self.user)
+        UserRestrictionHistory.objects.create(user=self.user)
+        UserRestrictionHistory.objects.create(user=other_user)
+
+        url, text = self._call_related_content_method(
+            'restriction_history_for_this_user')
+        expected_url = (
+            reverse('admin:users_userrestrictionhistory_changelist') +
+            '?user=%d' % self.user.pk)
+        assert url == expected_url
+        assert text == '2'
+
     def test_access_using_email(self):
         lookup_user = user_factory(email='foo@bar.xyz')
         detail_url_by_email = reverse(
@@ -680,7 +695,7 @@ class TestEmailUserRestrictionAdmin(TestCase):
 
     def test_list(self):
         EmailUserRestriction.objects.create(email_pattern='*@*foo.com')
-        response = self.client.get(self.list_url, follow=True)
+        response = self.client.get(self.list_url)
         assert response.status_code == 200
 
 
@@ -696,5 +711,32 @@ class TestIPNetworkUserRestrictionAdmin(TestCase):
 
     def test_list(self):
         IPNetworkUserRestriction.objects.create(network='192.168.0.0/24')
-        response = self.client.get(self.list_url, follow=True)
+        response = self.client.get(self.list_url)
         assert response.status_code == 200
+
+
+class TestUserRestrictionHistoryAdmin(TestCase):
+    def setUp(self):
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Admin:Tools')
+        self.grant_permission(self.user, 'Admin:Advanced')
+
+        self.client.login(email=self.user.email)
+        self.list_url = reverse(
+            'admin:users_userrestrictionhistory_changelist')
+
+    def test_list(self):
+        other_user = user_factory()
+        UserRestrictionHistory.objects.create(user=self.user)
+        UserRestrictionHistory.objects.create(user=other_user)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert str(self.user) in content
+        assert str(other_user) in content
+
+        response = self.client.get(self.list_url + '?user=%s' % self.user.pk)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert str(self.user) in content
+        assert str(other_user) not in content

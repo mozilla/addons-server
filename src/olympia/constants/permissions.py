@@ -189,6 +189,7 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'users.delete_disposableemaildomainrestriction,': ADMIN_ADVANCED,
     'users.delete_emailuserrestriction': ADMIN_ADVANCED,
     'users.delete_ipnetworkuserrestriction': ADMIN_ADVANCED,
+    'users.view_userrestrictionhistory': ADMIN_ADVANCED,
 
     'ratings.change_rating': RATINGS_MODERATE,
     'ratings.delete_rating': ADMIN_ADVANCED,
