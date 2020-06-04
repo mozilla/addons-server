@@ -749,6 +749,11 @@ class EmailUserRestriction(
     def __str__(self):
         return str(self.email_pattern)
 
+    def save(self, **kw):
+        if '@' in self.email_pattern:
+            self.email_pattern = self.normalize_email(self.email_pattern)
+        super().save(**kw)
+
     @classmethod
     def allow_request(cls, request):
         """

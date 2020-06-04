@@ -802,8 +802,7 @@ class TestEmailUserRestriction(TestCase):
         assert EmailUserRestriction.allow_email(request.user.email)
 
     def test_blocked_subdomain_but_allow_parent(self):
-        EmailUserRestriction.objects.create(
-            email_pattern='*.mail.com')
+        EmailUserRestriction.objects.create(email_pattern='*.mail.com')
 
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@faz.mail.com')
@@ -819,6 +818,13 @@ class TestEmailUserRestriction(TestCase):
         request.user = user_factory(email='foo@gmail.com')
         assert EmailUserRestriction.allow_request(request)
         assert EmailUserRestriction.allow_email(request.user.email)
+
+    def test_normalize_email_pattern_on_save(self):
+        eur = EmailUserRestriction.objects.create(
+            email_pattern='u.s.e.r@example.com'
+        )
+
+        assert eur.email_pattern == 'user@example.com'
 
 
 @override_settings(
