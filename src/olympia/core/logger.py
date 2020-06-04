@@ -54,9 +54,10 @@ class JsonFormatter(dockerflow.logging.JsonLogFormatter):
         record.__dict__['uid'] = record.__dict__.pop('USERNAME', '')
         record.__dict__['remoteAddressChain'] = record.__dict__.pop(
             'REMOTE_ADDR', '')
-        # Call the parent implementation to get most of the return value built.
-        out = super().convert_record(record)
+        if record.exc_info is not False:
+            # Call the parent implementation to get most of the return value built.
+            out = super().convert_record(record)
 
-        # Add custom keys for stackdriver that need to live at the root level.
-        out['severity'] = self.STACKDRIVER_LEVEL_MAP.get(record.levelno, 0)
-        return out
+            # Add custom keys for stackdriver that need to live at the root level.
+            out['severity'] = self.STACKDRIVER_LEVEL_MAP.get(record.levelno, 0)
+            return out
