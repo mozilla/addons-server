@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-04 16:04+0000\n"
+"PO-Revision-Date: 2020-06-04 16:08+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6285,13 +6285,13 @@ msgstr "Csak egy Yara-szabály lehet a definícióban"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "A definíció érvénytelen: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Hiba történt a definíció összeállításakor"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Futtassa ezt a szabályt azokon a kiegészítőkön is, amelyek kényszerítetten is le lettek tiltva."
 
 msgid "Abort"
 msgstr "Megszakítás"
