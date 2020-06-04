@@ -68,34 +68,35 @@ class TestModelBase(TestCase):
 
     def test_change_called_on_new_instance_save(self):
         for create_addon in (Addon, Addon.objects.create):
-            addon = create_addon(view_source=False, type=amo.ADDON_EXTENSION)
-            addon.view_source = True
+            addon = create_addon(disabled_by_user=False,
+                                 type=amo.ADDON_EXTENSION)
+            addon.disabled_by_user = True
             addon.save()
             assert self.cb.called
             kw = self.cb.call_args[1]
-            assert not kw['old_attr']['view_source']
-            assert kw['new_attr']['view_source']
+            assert not kw['old_attr']['disabled_by_user']
+            assert kw['new_attr']['disabled_by_user']
             assert kw['instance'].id == addon.id
             assert kw['sender'] == Addon
 
     def test_change_called_on_update(self):
         addon = Addon.objects.get(pk=3615)
-        addon.update(view_source=True)
+        addon.update(disabled_by_user=True)
         assert self.cb.called
         kw = self.cb.call_args[1]
-        assert not kw['old_attr']['view_source']
-        assert kw['new_attr']['view_source']
+        assert not kw['old_attr']['disabled_by_user']
+        assert kw['new_attr']['disabled_by_user']
         assert kw['instance'].id == addon.id
         assert kw['sender'] == Addon
 
     def test_change_called_on_save(self):
         addon = Addon.objects.get(pk=3615)
-        addon.view_source = True
+        addon.disabled_by_user = True
         addon.save()
         assert self.cb.called
         kw = self.cb.call_args[1]
-        assert not kw['old_attr']['view_source']
-        assert kw['new_attr']['view_source']
+        assert not kw['old_attr']['disabled_by_user']
+        assert kw['new_attr']['disabled_by_user']
         assert kw['instance'].id == addon.id
         assert kw['sender'] == Addon
 
@@ -108,13 +109,13 @@ class TestModelBase(TestCase):
                      sender=None, **kw):
             fn.called = True
             # Both save and update should be protected:
-            instance.update(view_source=True)
+            instance.update(disabled_by_user=True)
             instance.save()
 
         Addon.on_change(callback)
 
         addon = Addon.objects.get(pk=3615)
-        assert not addon.view_source
+        assert not addon.disabled_by_user
         addon.save()
         assert fn.called
         # No exception = pass
