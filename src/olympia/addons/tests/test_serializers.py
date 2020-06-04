@@ -133,7 +133,6 @@ class AddonSerializerOutputTestMixin(object):
             icon_hash='fakehash',
             icon_type='image/png',
             name=u'My Addôn',
-            public_stats=True,
             slug='my-addon',
             summary=u'My Addôn summary',
             support_email=u'support@example.org',
@@ -271,7 +270,6 @@ class AddonSerializerOutputTestMixin(object):
         assert (
             result['ratings_url'] == absolutify(self.addon.ratings_url) ==
             absolutify(reverse('addons.ratings.list', args=[self.addon.slug])))
-        assert result['public_stats'] == self.addon.public_stats
         assert result['requires_payment'] == self.addon.requires_payment
         assert result['review_url'] == absolutify(
             reverse('reviewers.review', args=[self.addon.pk]))

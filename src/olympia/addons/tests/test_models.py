@@ -1619,7 +1619,7 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(id=3615)
         addon.update(
             average_rating=4.5, weekly_downloads=666, average_daily_users=999,
-            last_updated=self.days_ago(1), public_stats=True,
+            last_updated=self.days_ago(1),
             contributions='http://payme.example.com/',
             is_experimental=True)
         assert sync_object_to_basket_mock.delay.call_count == 0

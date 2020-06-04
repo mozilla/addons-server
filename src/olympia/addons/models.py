@@ -412,7 +412,6 @@ class Addon(OnChangeMixin, ModelBase):
 
     disabled_by_user = models.BooleanField(default=False, db_column='inactive')
     view_source = models.BooleanField(default=True, db_column='viewsource')
-    public_stats = models.BooleanField(default=False, db_column='publicstats')
 
     target_locale = models.CharField(
         max_length=255, blank=True, null=True,

@@ -40,21 +40,6 @@
               {% endif %}
             </td>
           </tr>
-          {% endif %}   
-          {% if show_listed_fields %}
-          <tr>
-            <th>
-              {{ tip(_("Public Stats?"),
-                     _("Whether the download and usage stats of your add-on can "
-                       "be displayed in our online viewer. "
-                       "It is only relevant for listed add-ons.")) }}
-            </th>
-            <td>
-              {{ flags(_("This add-on's stats are publicly viewable."),
-                       addon.public_stats if not editable else form.public_stats, editable,
-                       _("No, this add-on's stats are not publicly viewable.")) }}
-            </td>
-          </tr>
           {% endif %}
           <tr>
             <th>
