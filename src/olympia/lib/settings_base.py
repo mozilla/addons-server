@@ -1357,6 +1357,11 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': False
         },
+        'z': {
+            'handlers': ['mozlog'],
+            'level': logging.INFO,
+            'propagate': True
+        },
         'z.celery': {
             'handlers': ['statsd'],
             'level': logging.ERROR,
