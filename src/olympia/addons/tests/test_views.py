@@ -1379,26 +1379,25 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_category_multiple_types(self):
         def get_category(type_, name):
-            static_category = (
-                CATEGORIES[amo.FIREFOX.id][type_][name])
+            static_category = CATEGORIES[amo.FIREFOX.id][type_][name]
             return Category.from_static_category(static_category, True)
 
-        addon_lwt = addon_factory(
-            slug='my-addon-search', name=u'My Addôn Search',
-            category=get_category(amo.ADDON_SEARCH, 'music'),
-            type=amo.ADDON_SEARCH)
+        addon_ext = addon_factory(
+            slug='my-addon-ext', name=u'My Addôn Ext',
+            category=get_category(amo.ADDON_EXTENSION, 'other'),
+            type=amo.ADDON_EXTENSION)
         addon_st = addon_factory(
             slug='my-addon-st', name=u'My Addôn ST',
-            category=get_category(amo.ADDON_STATICTHEME, 'music'),
+            category=get_category(amo.ADDON_STATICTHEME, 'other'),
             type=amo.ADDON_STATICTHEME)
 
         self.refresh()
 
         # Create some add-ons in a different category.
         addon_factory(
-            slug='different-addon-search', name=u'Diff Addôn Src',
-            category=get_category(amo.ADDON_SEARCH, 'sports'),
-            type=amo.ADDON_SEARCH)
+            slug='different-addon-ext', name=u'Diff Addôn Ext',
+            category=get_category(amo.ADDON_EXTENSION, 'tabs'),
+            type=amo.ADDON_EXTENSION)
         addon_factory(
             slug='different-addon-st', name=u'Diff Addôn ST',
             category=get_category(amo.ADDON_STATICTHEME, 'sports'),
@@ -1408,12 +1407,12 @@ class TestAddonSearchView(ESTestCase):
 
         # Search for add-ons in the first category. There should be two.
         data = self.perform_search(self.url, {'app': 'firefox',
-                                              'type': 'search,statictheme',
-                                              'category': 'music'})
+                                              'type': 'extension,statictheme',
+                                              'category': 'other'})
         assert data['count'] == 2
         assert len(data['results']) == 2
         result_ids = (data['results'][0]['id'], data['results'][1]['id'])
-        assert sorted(result_ids) == [addon_lwt.pk, addon_st.pk]
+        assert sorted(result_ids) == [addon_ext.pk, addon_st.pk]
 
     def test_filter_with_tags(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
@@ -2044,7 +2043,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
 
-        assert len(data) == 96
+        assert len(data) == 58
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -2073,7 +2072,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_text(response.content))
 
-        assert len(data) == 96
+        assert len(data) == 58
 
         # some basic checks to verify integrity
         entry = data[0]

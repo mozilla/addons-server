@@ -721,11 +721,13 @@ def addon_factory(
         addon.addonuser_set.create(user=user)
 
     application = version_kw.get('application', amo.FIREFOX.id)
-    if not category:
+    if not category and addon.type in CATEGORIES[application]:
         static_category = random.choice(list(
-            CATEGORIES[application][addon.type].values()))
+            CATEGORIES[application][addon.type].values()
+        ))
         category = Category.from_static_category(static_category, True)
-    AddonCategory.objects.create(addon=addon, category=category)
+    if category:
+        AddonCategory.objects.create(addon=addon, category=category)
 
     if should_be_recommended:
         DiscoveryItem.objects.create(addon=addon, recommendable=True)
