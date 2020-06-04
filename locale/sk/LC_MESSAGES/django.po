@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-01-07 21:13+0000\n"
+"PO-Revision-Date: 2020-06-04 21:31+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -497,13 +497,11 @@ msgstr "Neplatný rozsah verzií."
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Vyžiadaná kontrola"
+msgstr ""
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Poznámka ku kontrole"
+msgstr ""
 
 msgid "This block was imported from a regex based legacy Block."
 msgstr ""
@@ -515,7 +513,6 @@ msgstr ""
 msgid "Delete Multiple %(name)s"
 msgstr ""
 
-#, fuzzy
 msgid "Home"
 msgstr "Domovská stránka"
 
@@ -542,13 +539,11 @@ msgstr "Odstrániť"
 msgid "Update"
 msgstr "Aktualizovať"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Správa mnou odoslaných doplnkov"
+msgstr ""
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Schválené, ale čaká"
+msgstr ""
 
 #, python-format
 msgid "Add %(name)s"
@@ -571,9 +566,8 @@ msgstr "Používatelia"
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
-msgstr "Verzie"
+msgstr "verzie"
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -3141,17 +3135,15 @@ msgstr "Vývoj doplnkov"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Adresa IP"
+msgstr "E-mailová adresa"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Odhlásiť sa"
+msgstr ""
 
 msgid "Thanks!"
 msgstr ""
@@ -3162,9 +3154,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Zdroje"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -4982,9 +4973,8 @@ msgstr "Nie je možné porovnávať verziu s ňou samotnou"
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Pre Firefox 47 a starší je vyžadované GUID."
+msgstr "Pre Firefox 47 a starší je vyžadované ID doplnku."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Najnižšia možná hodnota \"strict_min_version\" je 42.0."
@@ -5047,9 +5037,9 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr "Pridávanie takéhoto typu doplnku nie je povolené"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Nemôžete nahrať rozšírenie podpísané Mozillou"
+msgstr "Nemôžete nahrať rozšírenie, ktorého ID končí na %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemôžete nahrať rozšírenie podpísané Mozillou"
@@ -5453,9 +5443,8 @@ msgstr ""
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Pridávanie takéhoto typu doplnku nie je povolené"
+msgstr "Nemôžete pridať prázdny komentár."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5494,7 +5483,7 @@ msgstr[1] "{0} dni"
 msgstr[2] "{0} dní"
 
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Posledná recenzia"
@@ -5679,10 +5668,10 @@ msgid "Review lock limit reached"
 msgstr ""
 
 msgid "{addon} – EULA"
-msgstr ""
+msgstr "{addon} – EULA"
 
 msgid "{addon} – Privacy Policy"
-msgstr ""
+msgstr "{addon} – Zásady ochrany súkromia"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
