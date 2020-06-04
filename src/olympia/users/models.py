@@ -935,6 +935,9 @@ class UserRestrictionHistory(ModelBase):
     ip_address = models.CharField(default='', max_length=45)
     last_login_ip = models.CharField(default='', max_length=45)
 
+    class Meta:
+        verbose_name_plural = _('User Restriction History')
+
 
 class UserHistory(ModelBase):
     id = PositiveAutoField(primary_key=True)
