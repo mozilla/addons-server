@@ -700,10 +700,6 @@ class VersionReviewerFlags(ModelBase):
     needs_human_review_by_mad = models.BooleanField(default=False)
     pending_rejection = models.DateTimeField(default=None, null=True)
 
-    @property
-    def needs_human_review(self):
-        return self.needs_human_review_by_mad
-
 
 def generate_static_theme_preview(theme_data, version_pk):
     """This redirection is so we can mock generate_static_theme_preview, where
