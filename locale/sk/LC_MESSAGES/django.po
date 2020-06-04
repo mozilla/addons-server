@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-04 21:31+0000\n"
+"PO-Revision-Date: 2020-06-04 21:34+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -296,11 +296,11 @@ msgstr ""
 msgid "Oops"
 msgstr "Ups"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Ups!  Vyskytla sa chyba.</h1> <p>Pokúsime sa ju čím skôr opraviť.</p> <p> Môžete skúsiť znova načítať túto stránku alebo prejdite na <a href=\"%(home)s\">domovskú stránku Doplnkov</a>. </p>"
+msgstr ""
 
 msgid "No results found"
 msgstr "Neboli nájdené žiadne výsledky."
@@ -490,9 +490,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Neplatný rozsah verzií."
+msgstr "Neplatná verzia"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -559,9 +558,8 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "Používatelia"
+msgstr ""
 
 msgid "Edit Block"
 msgstr ""
@@ -902,20 +900,17 @@ msgstr ""
 msgid "Block edited"
 msgstr ""
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Pre doplnok {addon} odstránená verzia {0}."
+msgstr ""
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Doplnok bol odstránený."
+msgstr ""
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "Doplnok {addon} odstránený z kolekcie {collection}."
+msgstr ""
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -923,13 +918,11 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Používateľ {user} bol obmedzený."
+msgstr ""
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Používateľ {user} bol upravený, dôvod: {1}"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -983,9 +976,8 @@ msgstr "Vývojár"
 msgid "Extension"
 msgstr "Rozšírenie"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Kontrola aktualizácie plných tém"
+msgstr ""
 
 msgid "Dictionary"
 msgstr "Slovník"
@@ -1012,9 +1004,8 @@ msgstr "Téma vzhľadu (statická)"
 msgid "Extensions"
 msgstr "Rozšírenia"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Plné témy vzhľadu"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1532,9 +1523,8 @@ msgstr "Obrázok nízkej kvality, zlých rozmerov, alebo prázdny obrázok"
 msgid "Header image alignment problem"
 msgstr "Problém so zarovnaním obrázku záhlavia"
 
-#, fuzzy
 msgid "No action"
-msgstr "Žiadna reputácia"
+msgstr ""
 
 msgid "Flag for human review"
 msgstr ""
@@ -1554,9 +1544,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Novší"
+msgstr ""
 
 msgid "Running"
 msgstr ""
@@ -1567,9 +1556,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Nekompletný"
+msgstr ""
 
 msgid "Scheduled"
 msgstr ""
@@ -2387,9 +2375,8 @@ msgstr "Zvoľte ikonu pre váš doplnok:"
 msgid "32x32px"
 msgstr "32x32 bodov"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Použitá v zoznamoch doplnkov, ako napr. výsledky vyhľadávania alebo zoznam odporúčaných doplnkov."
+msgstr ""
 
 #. The size of the icon
 msgid "64x64px"
@@ -2698,11 +2685,9 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Upraviť verziu {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Verzia bola podpísaná"
+msgstr ""
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
 msgstr "Hotovo! Táto verzia bude k dispozícii po jej kontrole. O jej dokončení vás budeme informovať."
 
@@ -3088,9 +3073,8 @@ msgstr "Zásady ochrany súkromia"
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Ak váš doplnok obsahuje binárny alebo obfuskovaný kód a nejedná sa o známu knižnicu, nahrajte pre kontrolu jeho zdrojový kód."
+msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr ""
@@ -3113,9 +3097,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "Vývojár"
+msgstr "Pre vývojárov"
 
 msgid "For end users"
 msgstr ""
@@ -3124,13 +3107,11 @@ msgid "Matrix"
 msgstr ""
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Centrum pre vývojárov doplnkov"
+msgstr ""
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Vývoj doplnkov"
+msgstr ""
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3205,9 +3186,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Prečítajte si viac o zásadách pre kontrolu zdrojového kódu."
+msgstr "Ďalšie informácie o komunite vývojárov"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -3246,20 +3226,17 @@ msgstr "Bez fotografie"
 msgid "User Photo"
 msgstr "Fotografia používateľa"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Môj profil"
+msgstr "Profil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Odoslať novú verziu"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Prispôsobte si Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Prehliadať všetky rozšírenia"
+msgstr ""
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -3303,9 +3280,8 @@ msgstr ""
 msgid "Source code"
 msgstr "Zdrojový kód"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Ak váš doplnok obsahuje binárny alebo obfuskovaný kód a nejedná sa o známu knižnicu, nahrajte pre kontrolu jeho zdrojový kód."
+msgstr ""
 
 msgid "File {file_id} ({platform})"
 msgstr "Súbor {file_id} ({platform})"
@@ -5740,9 +5716,8 @@ msgstr "Galéria obrázkov"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Tu nie je nič zaujímavé!  Vývojár neposkytol žiadne detaily."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "podľa verzie doplnku"
+msgstr ""
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5964,13 +5939,11 @@ msgstr ""
 msgid "Notify me about new listed versions"
 msgstr ""
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Všetky verzie"
+msgstr ""
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Správa mnou odoslaných doplnkov"
+msgstr ""
 
 msgid "Force-disable add-on"
 msgstr ""
@@ -6053,9 +6026,8 @@ msgstr ""
 msgid "Source:"
 msgstr "Zdroj:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Zdroj:"
+msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr "Skryť toto oznámenie"
@@ -6196,20 +6168,17 @@ msgstr ""
 msgid "version channel"
 msgstr ""
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Stav doplnku"
+msgstr ""
 
 msgid "add-on listing visibility"
 msgstr ""
 
-#, fuzzy
 msgid "file status"
-msgstr "Stav stránky"
+msgstr ""
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} bol podpísaný."
+msgstr ""
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6636,9 +6605,8 @@ msgstr "Zablokovať vybraných používateľov"
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr ""
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Odstrániť verziu"
+msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6734,9 +6702,8 @@ msgstr "Používateľské upozornenia"
 msgid "Ban"
 msgstr "Zablokovať"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Odstrániť verziu"
+msgstr ""
 
 msgid "Delete picture"
 msgstr "Odstrániť obrázok"
