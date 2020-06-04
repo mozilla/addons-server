@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-04 23:32+0000\n"
+"PO-Revision-Date: 2020-06-04 23:42+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6238,20 +6238,20 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "Isto es le nomine exacte del regula usate per un scanditor."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Quando non marcate, le resultatos del scanditor non sera integrate con iste regula e le action non sera exequite."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Le regulas Yara debe haber un definition"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Le nomine del regula in le definition debe concordar le nomine del regula del scanditor"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Un sol regula Yara es consentite in le definition"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Le definition non es valide: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr "Un error occurreva durante le implementation del definition"
