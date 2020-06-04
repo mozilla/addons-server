@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-04 23:42+0000\n"
+"PO-Revision-Date: 2020-06-04 23:48+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6257,7 +6257,7 @@ msgid "An error occurred when compiling the definition"
 msgstr "Un error occurreva durante le implementation del definition"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Exeque tam ben iste regula sur additivos que ha essite disactivate a fortia."
 
 msgid "Abort"
 msgstr "Abortar"
@@ -6266,7 +6266,7 @@ msgid "Run"
 msgstr "Exequer"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Utile quando le resultato del scanditor es un ver positive, ma le additivo non es maligne"
 
 #, fuzzy
 msgid "Revert report"
@@ -6786,6 +6786,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Le sequente autor ha essite addite a tu additivo %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
