@@ -13,7 +13,7 @@ AMO_TO_BIGQUERY_COLUMN_MAPPING = {
 }
 
 
-AMO_STATS_DAU_TABLE = 'amo_stats_dau_v1'
+AMO_STATS_DAU_VIEW = 'amo_stats_dau'
 
 
 def rows_to_series(rows, filter_by=None):
@@ -52,7 +52,7 @@ def get_updates_series(addon, start_date, end_date, source=None):
         [
             settings.BIGQUERY_PROJECT,
             settings.BIGQUERY_AMO_DATASET,
-            AMO_STATS_DAU_TABLE,
+            AMO_STATS_DAU_VIEW,
         ]
     )
 
