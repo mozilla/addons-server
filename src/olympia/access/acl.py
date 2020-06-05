@@ -127,12 +127,16 @@ def check_addon_ownership(request, addon, dev=False, admin=True,
                                 addonuser__role__in=roles).exists()
 
 
-def check_addons_reviewer(request):
-    return (
-        action_allowed(request, amo.permissions.ADDONS_REVIEW) or
-        action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) or
-        action_allowed(request, amo.permissions.ADDONS_POST_REVIEW) or
-        action_allowed(request, amo.permissions.ADDONS_RECOMMENDED_REVIEW))
+def check_addons_reviewer(request, allow_content_reviewers=True):
+    permissions = [
+        amo.permissions.ADDONS_REVIEW,
+        amo.permissions.ADDONS_POST_REVIEW,
+        amo.permissions.ADDONS_RECOMMENDED_REVIEW
+    ]
+    if allow_content_reviewers:
+        permissions.append(amo.permissions.ADDONS_CONTENT_REVIEW)
+    allow_access = any(action_allowed(request, perm) for perm in permissions)
+    return allow_access
 
 
 def check_unlisted_addons_reviewer(request):
@@ -143,12 +147,18 @@ def check_static_theme_reviewer(request):
     return action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW)
 
 
-def is_reviewer(request, addon):
+def is_reviewer(request, addon, allow_content_reviewers=True):
     """Return True if the user is an addons reviewer, or a theme reviewer
-    and the addon is a theme."""
+    and the addon is a theme.
+
+    If allow_content_reviewers is passed and False (defaults to True), then
+    having content review permission is not enough to be considered an addons
+    reviewer.
+    """
     if addon.type == amo.ADDON_STATICTHEME:
         return check_static_theme_reviewer(request)
-    return check_addons_reviewer(request)
+    return check_addons_reviewer(
+        request, allow_content_reviewers=allow_content_reviewers)
 
 
 def is_user_any_kind_of_reviewer(user, allow_viewers=False):
@@ -163,13 +173,15 @@ def is_user_any_kind_of_reviewer(user, allow_viewers=False):
     use this function behind the scenes to guard views that don't change the
     add-on but still need to be restricted to reviewers only.
     """
-    allow_access = (
-        (allow_viewers and
-            action_allowed_user(user, amo.permissions.REVIEWER_TOOLS_VIEW)) or
-        action_allowed_user(user, amo.permissions.ADDONS_REVIEW) or
-        action_allowed_user(user, amo.permissions.ADDONS_REVIEW_UNLISTED) or
-        action_allowed_user(user, amo.permissions.ADDONS_CONTENT_REVIEW) or
-        action_allowed_user(user, amo.permissions.ADDONS_POST_REVIEW) or
-        action_allowed_user(user, amo.permissions.ADDONS_RECOMMENDED_REVIEW) or
-        action_allowed_user(user, amo.permissions.STATIC_THEMES_REVIEW))
+    permissions = [
+        amo.permissions.ADDONS_REVIEW,
+        amo.permissions.ADDONS_REVIEW_UNLISTED,
+        amo.permissions.ADDONS_CONTENT_REVIEW,
+        amo.permissions.ADDONS_POST_REVIEW,
+        amo.permissions.ADDONS_RECOMMENDED_REVIEW,
+        amo.permissions.STATIC_THEMES_REVIEW,
+    ]
+    if allow_viewers:
+        permissions.append(amo.permissions.REVIEWER_TOOLS_VIEW)
+    allow_access = any(action_allowed_user(user, perm) for perm in permissions)
     return allow_access

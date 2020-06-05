@@ -180,6 +180,8 @@ class TestCheckReviewer(TestCase):
         assert not check_static_theme_reviewer(request)
         assert not is_user_any_kind_of_reviewer(request.user)
         assert not is_reviewer(request, self.addon)
+        assert not is_reviewer(
+            request, self.addon, allow_content_reviewers=False)
         assert not is_reviewer(request, self.statictheme)
 
     def test_perm_addons(self):
@@ -213,12 +215,17 @@ class TestCheckReviewer(TestCase):
         assert is_reviewer(request, self.addon)
         assert not is_reviewer(request, self.statictheme)
         assert is_user_any_kind_of_reviewer(request.user)
+        assert is_reviewer(request, self.addon, allow_content_reviewers=False)
 
     def test_is_reviewer_for_static_theme_reviewer(self):
         self.grant_permission(self.user, 'Addons:ThemeReview')
         request = req_factory_factory('noop', user=self.user)
         assert not is_reviewer(request, self.addon)
+        assert not is_reviewer(
+            request, self.addon, allow_content_reviewers=False)
         assert is_reviewer(request, self.statictheme)
+        assert is_reviewer(
+            request, self.statictheme, allow_content_reviewers=False)
         assert check_static_theme_reviewer(request)
         assert is_user_any_kind_of_reviewer(request.user)
 
@@ -233,6 +240,7 @@ class TestCheckReviewer(TestCase):
 
         assert check_addons_reviewer(request)
         assert is_reviewer(request, self.addon)
+        assert is_reviewer(request, self.addon, allow_content_reviewers=False)
 
     def test_perm_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
@@ -242,9 +250,13 @@ class TestCheckReviewer(TestCase):
         assert not check_unlisted_addons_reviewer(request)
         assert not check_static_theme_reviewer(request)
         assert not is_reviewer(request, self.statictheme)
+        assert not is_reviewer(
+            request, self.statictheme, allow_content_reviewers=False)
 
         assert check_addons_reviewer(request)
         assert is_reviewer(request, self.addon)
+        assert not is_reviewer(
+            request, self.addon, allow_content_reviewers=False)
 
     def test_perm_reviewertools_view(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -256,3 +268,5 @@ class TestCheckReviewer(TestCase):
         assert not is_reviewer(request, self.statictheme)
         assert not check_addons_reviewer(request)
         assert not is_reviewer(request, self.addon)
+        assert not is_reviewer(
+            request, self.addon, allow_content_reviewers=False)

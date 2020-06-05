@@ -4632,6 +4632,14 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         self.assert3xx(response, content_review_url)
 
+    def test_dont_content_review_redirect_if_theme_reviewer_only(self):
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
     def test_cant_postreview_if_admin_content_review_flag_is_set(self):
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_content_review=True)
