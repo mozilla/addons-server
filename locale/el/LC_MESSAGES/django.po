@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-05 11:33+0000\n"
+"PO-Revision-Date: 2020-06-05 12:27+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -127,13 +127,11 @@ msgstr "Μόνο οι τελευταίες εκδόσεις προσθέτων �
 msgid "Ratings"
 msgstr "Βαθμολογίες"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Εργαλεία κριτή"
+msgstr "Εργαλεία αξιολογητή (καταχωρημένα)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Εργαλεία κριτή"
+msgstr "Εργαλεία αξιολογητή (μη καταχωρημένα)"
 
 msgid "Reviewer links"
 msgstr "Σύνδεσμοι αξιολογητή"
