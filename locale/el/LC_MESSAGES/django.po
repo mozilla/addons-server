@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-05 08:58+0000\n"
+"PO-Revision-Date: 2020-06-05 11:31+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -6377,9 +6377,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Απάντηση κριτή"
+msgstr "Ανάκληση αναφοράς"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6771,9 +6770,8 @@ msgstr "Φραγή επιλεγμένων χρηστών"
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr "Τα κλειδιά API των χρηστών \"%(users)s\" έχουν επαναφερθεί."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Διαγραφή έκδοσης"
+msgstr "Επαναφορά συνεδρίας"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6874,9 +6872,8 @@ msgstr "Ειδοποιήσεις χρήστη"
 msgid "Ban"
 msgstr "Αποκλεισμός"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Διαγραφή έκδοσης"
+msgstr "Επαναφορά συνεδρίας(ών)"
 
 msgid "Delete picture"
 msgstr "Διαγραφή εικόνας"
