@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-02 14:13+0000\n"
+"PO-Revision-Date: 2020-06-05 16:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -300,11 +300,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Hopla"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Hopla! Zmólka jo nastała.</h1> <p>Buźomy problem skóro rozwězowaś.</p><p> Móžośo wopytaś, bok aktualizěrowaś, abo wrośćo se k <a href=\"%(home)s\">startowemu bokoju dodankow</a>.</p>"
+msgstr ""
+"<h1>Hopla! Zmólka jo nastała.</h1> <p>Buźomy problem skóro rozwězowaś.</p><p> Móžośo wopytaś, bok aktualizěrowaś, abo wrośćo se k <a href=\"%(home)s\">startowemu bokoju dodankow</a>.</p>  Móžośo nam"
+" teke pomagaś to rozwězaś, gaž <a href=\"https://github.com/mozilla/addons/issues/new\">zmólkowu rozpšawu pišośo</a>, z drobnostkami, kak sćo se dostał k toś tomu bokoju.</p>"
 
 msgid "No results found"
 msgstr "Žedne wuslědki namakane"
@@ -496,17 +498,14 @@ msgstr "Njepłaśiwa wersija"
 msgid "Min version can not be greater than Max version"
 msgstr "Minimalna wersija njamóžo wětša ako maksimalna wersija byś"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Pśeglědowanje jo se pominało"
+msgstr "Nalicone pśeglědowaś"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Pśeglědański pśipisk"
+msgstr "Njenalicone pśeglědowaś"
 
-#, fuzzy
 msgid "This block was imported from a regex based legacy Block."
-msgstr "Toś to blokěrowanje jo se importěrował ze zestarjonego blokěrowanja Kinto, kótarež na regularnych wurazach bazěrujo."
+msgstr "Toś to blokěrowanje jo se importěrował ze zestarjonego blokěrowanja, kótarež na regularnych wurazach bazěrujo."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr "Pśewjeźone změny se w zestarjonej lisćinje blokěrowanjow NJEaktualizěruju - musyśo manuelnu změnu pśez webowy pówjerch zarědowanja Kinto pśewjasć."
@@ -526,9 +525,8 @@ msgstr ""
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
-#, fuzzy
 msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "Slědujuce blokěrowanja su se importěrowali ze zestarjonego blokěrowanja Kinto, kótarež na regularnych wurazach bazěrujo."
+msgstr "Slědujuce blokěrowanja su se importěrowali ze zestarjonego blokěrowanja, kótarež na regularnych wurazach bazěrujo."
 
 msgid "Save"
 msgstr "Składowaś"

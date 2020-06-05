@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:36+0000\n"
-"PO-Revision-Date: 2019-10-06 12:22+0000\n"
+"PO-Revision-Date: 2020-06-05 15:58+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -129,13 +129,12 @@ msgstr "Kontrolna lisćina za zapdaśa dodankow"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Pšosym wobkšuśćo slědujuce dypki, nježli až swóje zapódaśe dokóńcyjośo. To miniměrujo wokomuźenja abo njedorozměśa za pséglědowański proces:"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Kompilěrowane binarne dataje ako teke skrótcone abo skazone skripty (mimo znatych bibliotekow) muse se separatnje za pśeglědowanje zapódaś. Wužywajśo na kuždy pad pólo za nagrawanje žrědłowego "
-"koda, až njeby se wašo zapódaśe wótpokazało."
+"Minificěrowane, zwězane abo hynac pśez mašiny napórane skripty (mimo znatych bibliotekow) muse se separatnje za pśeglědowanje zapódaś. Wužywajśo na kuždy pad pólo za nagrawanje žrědłowego koda, až "
+"njeby se wašo zapódaśe wótpokazało."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Pśeglědowański proces jo slědujuce problemy namakał, kótarež bymógli k wótpokazanjam wjasć:"
