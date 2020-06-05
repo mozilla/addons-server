@@ -23,7 +23,6 @@ jobs:
     - { env: TOXENV=docs }
     - { env: TOXENV=assets }
     - { env: TOXENV=addons-versions-files-ratings }
-    - { env: TOXENV=es ES_VERSION=5.x }
     - { env: TOXENV=es ES_VERSION=6.x }
     - { env: TOXENV=devhub }
     - { env: TOXENV=reviewers-and-zadmin }

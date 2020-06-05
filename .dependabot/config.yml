@@ -17,10 +17,10 @@ update_configs:
           version_requirement: ">=2"
       - match:
           dependency_name: "elasticsearch"
-          version_requirement: ">=6"
+          version_requirement: ">=7"
       - match:
           dependency_name: "elasticsearch-dsl"
-          version_requirement: ">=6"
+          version_requirement: ">=7"
       - match:
           dependency_name: "pygit2"
           version_requirement: ">=1.2.0"
