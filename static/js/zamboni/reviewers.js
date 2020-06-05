@@ -222,7 +222,7 @@ function initExtraReviewActions() {
     }));
 
     // One-off-style buttons.
-    $('#clear_admin_code_review, #clear_admin_content_review, #clear_pending_info_request, #clear_auto_approval_delayed_until').click(_pd(function() {
+    $('#clear_admin_code_review, #clear_admin_content_review, #clear_admin_theme_review, #clear_pending_info_request, #clear_auto_approval_delayed_until').click(_pd(function() {
         var $button = $(this).prop('disabled', true);  // Prevent double-send.
         var apiUrl = $button.data('api-url');
         var data = $button.data('api-data') || null;
