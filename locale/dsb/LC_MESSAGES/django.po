@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-05 16:04+0000\n"
+"PO-Revision-Date: 2020-06-05 16:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -924,9 +924,8 @@ msgstr "Blokěrowanje akcije wótpóraś"
 msgid "User {user} session(s) reset."
 msgstr "Pósejźenja wužywarja  {user} su se slědk stajili."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Wužywaŕ {user} jo se wobźěłał, pśicyna: {1}"
+msgstr "Wužywaŕ {user} jo se zdroslował za wobceŕk „{0}“"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1536,9 +1535,8 @@ msgstr "Žedna akcija"
 msgid "Flag for human review"
 msgstr "Za cłowjeske pśěglědanje markěrowaś"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Awtomatiske pśizwólenje znjemóžniś"
+msgstr "Awtomatiske pśizwólenje wokomuźiś"
 
 msgid "Delay auto-approval indefinitely"
 msgstr "Awtomatiske pśizwólenje na njewěsty cas wótstarcyś"
@@ -1876,11 +1874,12 @@ msgstr "Symbol musy kwadratiski byś (jadnaka šyrokosć a wusokosć)."
 msgid "There was an error uploading your preview."
 msgstr "Pśi nagrawanju wašogo pśeglěda jo zmólka nastała."
 
-#, fuzzy
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
-msgstr "Nejnowša pśizwólona wersija dopóruconego rozšyrjenja njedajo se wulašowaś abo znjemóžniś. Pšosym stajśo se z administratorami AMO do zwiska, jolic pomoc wó tom trjebaśo."
+msgstr ""
+"Nejnowša pśizwólona wersija dopóruconego rozšyrjenja njedajo se wulašowaś abo znjemóžniś, dokulaž pjerwjejšna wersija njejo se pśizwóliła za dopórucenje. Pšosym stajśo se z administratorami AMO do "
+"zwiska, jolic pomoc wó tom trjebaśo."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2407,9 +2406,8 @@ msgstr "Wubjeŕśo symbol za swój dodank:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Wužywa se w zapiskach lisćinow dodankow, ako na pśikład w pytańskich wuslědkach a pśedstajonych dodankach."
+msgstr "Wužywa se w zapiskach lisćinow dodankow, ako na pśikład w pytańskich wuslědkach."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2455,9 +2453,8 @@ msgstr "PNG a JPG se pódpěratej, PNG se pśiraźijo. Maksimalna a pśiraźona 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Minimalna wjelikosć jo 1000x750, a poměr 4:3 jo trěbny."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Fota wobrazowki na wašem produktowem boku pówušuju šanse wašogo dodanka, až se na startowem boku instalěrujo a pśedstaja."
+msgstr "Fota wobrazowki na wašem produktowem boku pówušuju šanse wašogo dodanka, až se  instalěrujo."
 
 msgid "Continue"
 msgstr "Dalej"
@@ -2722,16 +2719,14 @@ msgstr "Waš lisćinowy zapisk buźo wuspěšnjejšy, gaž pśidawaśo nadrobne 
 msgid "Manage Listing"
 msgstr "Lisćinowy zapisk zastojaś"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Móžośo teke toś tu wersiju wobźěłaś, aby wersijowe informacije abo žrědłowy tekst pśidał, jolic wašo zapódaśe wopśimujo pónižony, zamazany abo kompilěrowany žrědłowy tekst."
+msgstr "Móžośo teke toś tu wersiju wobźěłaś, aby wersijowe informacije abo žrědłowy tekst pśidał, jolic wašo zapódaśe minificěrowany, zwězany abo hynac mašinelnje napórany kod wopśimujo."
 
 msgid "Edit version {0}"
 msgstr "Wersiju wobźěłaś {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Wersija jo se signěrowała"
+msgstr "Wersijowe signěrowanje hyšći faluje"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
