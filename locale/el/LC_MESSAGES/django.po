@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-05 08:48+0000\n"
+"PO-Revision-Date: 2020-06-05 08:58+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -507,9 +507,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Μη έγκυρο εύρος εκδόσεων."
+msgstr "Μη έγκυρη έκδοση"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -528,13 +527,12 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Απόρριψη πολλαπλών εκδόσεων"
+msgstr "Διαγραφή πολλαπλών %(name)s"
 
-#, fuzzy
 msgid "Home"
-msgstr "Αρχική σελίδα"
+msgstr "Αρχική"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -559,13 +557,11 @@ msgstr "Διαγραφή"
 msgid "Update"
 msgstr "Ενημέρωση"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Μετάβαση στις υποβολές μου"
+msgstr "Απόρριψη υποβολής"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Μετάβαση στις υποβολές μου"
+msgstr "Έγκριση υποβολής"
 
 #, python-format
 msgid "Add %(name)s"
@@ -574,24 +570,21 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "Υποβολή έκδοσης"
+msgstr "Υποβολή"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
 
-#, fuzzy
 msgid "users"
-msgstr "Χρήστες"
+msgstr "χρήστες"
 
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
-msgstr "Εκδόσεις"
+msgstr "εκδόσεις"
 
 msgid "Included in legacy blocklist."
 msgstr ""
@@ -1621,9 +1614,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Νεότερο"
+msgstr "Νέο"
 
 msgid "Running"
 msgstr ""
@@ -3208,9 +3200,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "Δημιουργός"
+msgstr "Για προγραμματιστές"
 
 msgid "For end users"
 msgstr ""
@@ -3230,17 +3221,15 @@ msgstr "Ανάπτυξη επεκτάσεων"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "Διεύθυνση IP"
+msgstr "Διεύθυνση email"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Αποσύνδεση"
+msgstr "Εγγραφή"
 
 msgid "Thanks!"
 msgstr ""
@@ -3251,9 +3240,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Πόροι"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: ανάπτυξη & δοκιμή επεκτάσεων"
@@ -3345,9 +3333,8 @@ msgstr "Χωρίς φωτογραφία"
 msgid "User Photo"
 msgstr "Φωτογραφία χρήστη"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Το προφίλ μου"
+msgstr "Προφίλ"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
@@ -5813,13 +5800,11 @@ msgstr "Η αξιολόγηση επεξεργάστηκε με επιτυχία
 msgid "Review lock limit reached"
 msgstr "Έχετε φτάσει το όριο κλειδωμάτων αξιολογήσεων"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Πολιτική απορρήτου"
+msgstr "{addon} – Πολιτική απορρήτου"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5888,9 +5873,8 @@ msgstr "Συλλογή εικόνων"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Τίποτα προς προβολή!  Ο δημιουργός δεν συμπεριέλαβε καμία λεπτομέρεια."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "κατά έκδοση πρόσθετου"
+msgstr "Μεταφράσεις ονόματος προσθέτου"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6133,9 +6117,8 @@ msgstr "Εξαναγκαστική ενεργοποίηση προσθέτου"
 msgid "View Blocklist Submission"
 msgstr "Προβολή όλων των υποβολών"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Πίσω στο πρόσθετο"
+msgstr "Αποκλεισμός προσθέτου"
 
 msgid "Update add-on block"
 msgstr ""
@@ -6209,9 +6192,8 @@ msgstr "Μέθοδος:"
 msgid "Source:"
 msgstr "Πηγή:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Πηγή:"
+msgstr "URL πηγής:"
 
 msgid "Dismiss this announcement"
 msgstr "Απομάκρυνση αυτής της ανακοίνωσης"
@@ -6337,36 +6319,29 @@ msgstr[1] "Αιτήματα πληροφοριών που έχουν λήξει 
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Ξεκινήστε"
+msgstr "κατάσταση αποτελέσματος"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Προεπισκόπηση αναγραφόμενης έκδοσης"
+msgstr "παρουσία μιας έκδοσης"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Η έκδοση υπογράφηκε"
+msgstr "κανάλι έκδοσης"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Κατάσταση πρόσθετου"
+msgstr "κατάσταση προσθέτου"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Ορατότητα στη λίστα"
+msgstr "ορατότητα καταχώρησης προσθέτου"
 
-#, fuzzy
 msgid "file status"
-msgstr "Κατάσταση ιστοσελίδας"
+msgstr "κατάσταση αρχείου"
 
-#, fuzzy
 msgid "file signature"
-msgstr "Το {file} έχει υπογραφεί."
+msgstr "υπογραφή αρχείου"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
