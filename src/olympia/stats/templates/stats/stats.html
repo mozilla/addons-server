@@ -91,8 +91,10 @@
 {% block content %}
   {% if beta %}
   <div class="notification-box info">
+    {% set stats_overview_url = url('stats.overview', addon.slug) %}
     {% trans %}
-    You are viewing a beta feature. Things might not work as expected yet.
+    You are viewing a beta feature. You can still access the deprecated statistics
+    pages <a href="{{ stats_overview_url }}">here</a>.
     {% endtrans %}
   </div>
   {% endif %}
