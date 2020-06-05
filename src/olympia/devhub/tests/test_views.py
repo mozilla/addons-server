@@ -17,7 +17,7 @@ import pytest
 import responses
 
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
+from waffle.testutils import override_switch, override_flag
 
 from olympia import amo, core
 from olympia.accounts.views import API_TOKEN_COOKIE
@@ -1978,3 +1978,35 @@ class TestLogout(UserViewBase):
         jwt_cookie = response.cookies[API_TOKEN_COOKIE]
         assert jwt_cookie.value == ''
         assert jwt_cookie['expires'].replace('-', ' ') == cookie_date_string
+
+
+class TestStatsLinksInManageMySubmissionsPage(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.user = user_factory()
+        self.addon = addon_factory(users=[self.user])
+        self.url = reverse('devhub.addons')
+        self.client.login(email=self.user.email)
+
+    @override_flag('beta-stats', active=False)
+    def test_no_link_when_not_listed(self):
+        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+
+        assert not (reverse('stats.overview', args=[self.addon.slug]) in
+                    str(response.content))
+
+    @override_flag('beta-stats', active=False)
+    def test_link_to_old_stats_when_flag_is_inactive(self):
+        response = self.client.get(self.url)
+
+        assert (reverse('stats.overview', args=[self.addon.slug]) in
+                str(response.content))
+
+    @override_flag('beta-stats', active=True)
+    def test_link_to_beta_stats_when_flag_is_active(self):
+        response = self.client.get(self.url)
+
+        assert (reverse('stats.overview.beta', args=[self.addon.slug]) in
+                str(response.content))

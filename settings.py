@@ -64,6 +64,7 @@ CACHES = {
 # If you're not running on SSL you'll want this to be False.
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = None
+WAFFLE_SECURE = False
 
 CELERY_TASK_ALWAYS_EAGER = False
 
