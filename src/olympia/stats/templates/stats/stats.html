@@ -89,15 +89,21 @@
 {% endblock %}
 
 {% block content %}
-  {% if beta %}
   <div class="notification-box info">
+  {% if beta %}
     {% set stats_overview_url = url('stats.overview', addon.slug) %}
     {% trans %}
     You are viewing a beta feature. You can still access the deprecated statistics
     pages <a href="{{ stats_overview_url }}">here</a>.
     {% endtrans %}
-  </div>
+  {% elif waffle.flag('beta-stats') %}
+    {% set beta_stats_overview_url = url('stats.overview.beta', addon.slug) %}
+    {% trans %}
+    We are rolling out new statistics pages and you have access to the preview!
+    <a href="{{ beta_stats_overview_url }}">Take me to the new dashboard</a>
+    {% endtrans %}
   {% endif %}
+  </div>
 
   {% if not waffle.switch('local-statistics-processing') %}
   <div class="notification-box warning">

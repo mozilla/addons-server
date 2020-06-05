@@ -996,6 +996,8 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
+WAFFLE_SECURE = True
+
 # These should have app+locale at the start to avoid redirects
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'

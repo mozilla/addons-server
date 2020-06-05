@@ -49,9 +49,18 @@
       <li><a href="{{ url('devhub.feed', addon.slug) }}">
         {{ _('View Recent Changes') }}</a></li>
       {% if not theme %}
-        {% if show_listed %}
-          <li class="view-stats"><a href="{{ url('stats.overview', addon.slug) }}">
-            {{ _('View Statistics Dashboard') }}</a></li>
+        {% if waffle.flag('beta-stats') %}
+          <li class="view-stats">
+            <a href="{{ url('stats.overview.beta', addon.slug) }}">
+              {{ _('View Statistics Dashboard') }}
+            </a>
+          </li>
+        {% elif show_listed %}
+          <li class="view-stats">
+            <a href="{{ url('stats.overview', addon.slug) }}">
+              {{ _('View Statistics Dashboard') }}
+            </a>
+          </li>
         {% endif %}
       {% endif %}
     </ul>

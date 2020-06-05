@@ -5,6 +5,8 @@ import itertools
 
 from datetime import timedelta
 
+import waffle
+
 from dateutil.parser import parse
 from django import http
 from django.core.exceptions import PermissionDenied
@@ -329,8 +331,12 @@ def check_stats_permission(request, addon, beta):
     """
     user = request.user
     if beta and (
-        not user.is_authenticated or
-        (user.is_authenticated and not user.email.endswith('@mozilla.com'))
+        not user.is_authenticated or (
+            user.is_authenticated and not (
+                user.email.endswith('@mozilla.com') or
+                waffle.flag_is_active(request, 'beta-stats')
+            )
+        )
     ):
         raise http.Http404
 
