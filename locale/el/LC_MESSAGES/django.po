@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-05 11:31+0000\n"
+"PO-Revision-Date: 2020-06-05 11:33+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -135,9 +135,8 @@ msgstr "Εργαλεία κριτή"
 msgid "Reviewer Tools (unlisted)"
 msgstr "Εργαλεία κριτή"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Εργαλεία κριτή"
+msgstr "Σύνδεσμοι αξιολογητή"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Το πρόσθετο δεν είναι στο AMO -"
@@ -1591,9 +1590,8 @@ msgstr "Χαμηλής ποιότητας, παραποιημένη, ή κενή
 msgid "Header image alignment problem"
 msgstr "Πρόβλημα στοίχησης εικόνας τύπου κεφαλίδας"
 
-#, fuzzy
 msgid "No action"
-msgstr "Περισσότερες ενέργειες"
+msgstr "Καμία ενέργεια"
 
 msgid "Flag for human review"
 msgstr ""
@@ -5569,9 +5567,8 @@ msgstr ""
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Δεν μπορείτε να υποβάλετε ένα πακέτο γλώσσας"
+msgstr "Δεν μπορείτε να υποβάλετε κενό σχόλιο."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5606,9 +5603,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} ημέρα"
 msgstr[1] "{0} ημέρες"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Τελευταία αξιολόγηση"
