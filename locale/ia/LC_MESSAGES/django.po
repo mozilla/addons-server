@@ -6016,7 +6016,7 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Activar auto-approbation de additivos publicate"
 
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Auto-approbation actualmente disactivate usque {data}"
+msgstr "Auto-approbation actualmente disactivate usque {date}"
 
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Clarar le extra retardo del auto-approbation"
@@ -6647,7 +6647,7 @@ msgstr "Blocar le usatores eligite"
 
 #, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Le usatores \"%(usatores)s\" habeva lor session(s) reinitialisate."
+msgstr "Le usatores \"%(users)s\" habeva lor session(s) reinitialisate."
 
 msgid "Reset session"
 msgstr "Reinitialisar session"
@@ -6785,7 +6785,7 @@ msgid ""
 msgstr ""
 "Salute %(author_name)s,\n"
 "\n"
-"Tu ha essite invitate a devenir un autor de %(addon_name)s sur %(dominio)s. Le acceptation del invitation te dara accesso a rediger le additivo e potera monstrar tu nomine in le lista de autores sur le sito web.\n"
+"Tu ha essite invitate a devenir un autor de %(addon_name)s sur %(domain)s. Le acceptation del invitation te dara accesso a rediger le additivo e potera monstrar tu nomine in le lista de autores sur le sito web.\n"
 "\n"
 "Clicca sur le ligamine infra pro responder si tu desira esser addite como autor pro %(addon_name)s.\n"
 "\n"
