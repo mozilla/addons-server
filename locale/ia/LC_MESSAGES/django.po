@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-05 07:41+0000\n"
+"PO-Revision-Date: 2020-06-05 07:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6208,24 +6208,20 @@ msgstr "toto salvo iste regula"
 msgid "presence of a version"
 msgstr "presentia de un version"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Version signate"
+msgstr "canal de version"
 
-#, fuzzy
 msgid "add-on status"
 msgstr "Stato del additivo"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Visibilitate del lista de presentation"
+msgstr "Visibilitate del lista de presentation del additivo"
 
 msgid "file status"
 msgstr "stato del file"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} ha essite signate."
+msgstr "firma del file"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "Isto es le nomine exacte del regula usate per un scanditor."
@@ -6261,9 +6257,8 @@ msgstr "Exequer"
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr "Utile quando le resultato del scanditor es un ver positive, ma le additivo non es maligne"
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Responsa del revisor"
+msgstr "Reverter le reporto"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6289,7 +6284,6 @@ msgstr "Combination de parametros \"%s\", \"%s\" e \"%s\" non valide."
 msgid "Maximum query length exceeded."
 msgstr "Maxime longitude del consulta excedite."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Impossibile trovar un additivo con id \"{}\"."
 
@@ -6310,17 +6304,14 @@ msgstr "Le version non concorda con le file manifesto."
 msgid "Version already exists. Latest version is: %s."
 msgstr "Le version existe jam. Le ultime version es: %s."
 
-#, fuzzy
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Solo WebExtensions pote omitter le GUID"
+msgstr "Solo WebExtensions pote omitter le ID del additivo"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Per favor specifica le GUID de tu additivo in le file manifesto si illo es plus longe que 64 characteres."
+msgstr "Specifica tu ID del additivo in le file manifesto si illo es plus longe que 64 characteres."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "GUID non valide in URL"
+msgstr "ID del additivo non valide in URL o pacchetto"
 
 #, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
