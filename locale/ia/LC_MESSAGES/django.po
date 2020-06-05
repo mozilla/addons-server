@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-05 07:50+0000\n"
+"PO-Revision-Date: 2020-06-05 07:57+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6313,9 +6313,8 @@ msgstr "Specifica tu ID del additivo in le file manifesto si illo es plus longe 
 msgid "Invalid Add-on ID in URL or package"
 msgstr "ID del additivo non valide in URL o pacchetto"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Tu non pote adder versiones a un additivo in stato: %s."
+msgstr "Tu non pote adder versiones publicate a un additivo definite como stato \"Invisibile\"."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Tu non pote usar le API pro adder un version jam in lista de presentation pro iste additivo, perque il ha metadatos mancante. Per favor invia lo per le sito web"
@@ -6646,13 +6645,12 @@ msgstr "Le usatores \"%(users)s\" ha essite blocate."
 msgid "Ban selected users"
 msgstr "Blocar le usatores eligite"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Le claves API del usatores \"%(users)s\" ha essite reinitialisate."
+msgstr "Le usatores \"%(usatores)s\" habeva lor session(s) reinitialisate."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Deler le version"
+msgstr "Reinitialisar session"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6721,11 +6719,8 @@ msgstr ""
 "Ante de initiar, per favor lege e accepta nostre Accordo de distribution del additivos de Firefox assi como nostre Politicas e regulas de revision. Le Accordo de distribution del additivos de "
 "Firefox etiam se refere a nostre Aviso de confidentialitate que explica como nos gere tu informationes."
 
-#, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Ante de initiar, per favor lege e accepta nostre Accordo de distribution del additivos de Firefox assi como nostre Politicas e regulas de revision. Le Accordo de distribution del additivos de "
-"Firefox etiam se refere a nostre Aviso de confidentialitate que explica como nos gere tu informationes."
+msgstr "Per favor lege e accepta nostre Accordo de distribution del additivos de Firefox e nostre Politicas e regulas de revision visitante {url}"
 
 msgid "an add-on developer replies to my review"
 msgstr "le disveloppator de un additivo responde a mi recension"
@@ -6757,9 +6752,8 @@ msgstr "Notificationes del usator"
 msgid "Ban"
 msgstr "Blocar"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Deler le version"
+msgstr "Reinitialisar session(s)"
 
 msgid "Delete picture"
 msgstr "Deler imagine"
