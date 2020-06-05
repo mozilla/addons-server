@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-05 07:31+0000\n"
+"PO-Revision-Date: 2020-06-05 07:41+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4894,9 +4894,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr "Elige, ordina, e face fluer tu discargamentos plus velocemente."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Informationes meteorologic de tote le mundo in tempore real."
+msgstr "Informationes meteorologic  justo in le navigator."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -5563,9 +5562,8 @@ msgstr "Le ultime version public de iste additivo esseva automaticamente approba
 msgid "Reject Multiple Versions"
 msgstr "Rejectar plure versiones"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Isto rejectara le versiones public seligite. Le commentos sera inviate al disveloppator."
+msgstr "Isto rejectara le versiones seligite. Le commentos sera inviate al disveloppator."
 
 msgid "Block Multiple Versions"
 msgstr "Blocar plure versiones"
@@ -6014,17 +6012,14 @@ msgstr "Actualisar blocada de additivo"
 msgid "Disable Listed Auto-Approval"
 msgstr "Disactivar auto-approbation de additivos publicate"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Activar auto-approbation"
+msgstr "Activar auto-approbation de additivos publicate"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Marcate pro le disactivation del approbation automatic"
+msgstr "Auto-approbation actualmente disactivate usque {data}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Activar auto-approbation"
+msgstr "Clarar le extra retardo del auto-approbation"
 
 msgid "Clear information request"
 msgstr "Rader requesta de information"
@@ -6210,9 +6205,8 @@ msgstr "stato de resultato"
 msgid "all but this rule"
 msgstr "toto salvo iste regula"
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Vista preliminar del version listate"
+msgstr "presentia de un version"
 
 #, fuzzy
 msgid "version channel"
