@@ -111,9 +111,9 @@ class TestUserAdmin(TestCase):
         assert alog.arguments == [self.user]
         assert alog.details == {'username': [old_username, 'foo']}
 
-    @mock.patch.object(UserProfile, 'delete_or_disable_related_content')
+    @mock.patch.object(UserProfile, '_delete_related_content')
     def test_can_not_delete_with_users_edit_permission(
-            self, delete_or_disable_related_content_mock):
+            self, _delete_related_content_mock):
         user = user_factory()
         assert not user.deleted
         self.grant_permission(user, 'Admin:Tools')
@@ -127,11 +127,11 @@ class TestUserAdmin(TestCase):
         user.reload()
         assert not user.deleted
         assert user.email
-        assert delete_or_disable_related_content_mock.call_count == 0
+        assert _delete_related_content_mock.call_count == 0
 
-    @mock.patch.object(UserProfile, 'delete_or_disable_related_content')
+    @mock.patch.object(UserProfile, '_delete_related_content')
     def test_can_delete_with_admin_advanced_permission(
-            self, delete_or_disable_related_content_mock):
+            self, _delete_related_content_mock):
         user = user_factory()
         assert not self.user.deleted
         self.grant_permission(user, 'Admin:Tools')
@@ -147,10 +147,7 @@ class TestUserAdmin(TestCase):
         self.user.reload()
         assert self.user.deleted
         assert self.user.email is None
-        assert delete_or_disable_related_content_mock.call_count == 1
-        assert (
-            delete_or_disable_related_content_mock.call_args[1] ==
-            {'delete': True})
+        assert _delete_related_content_mock.call_count == 1
         alog = ActivityLog.objects.latest('pk')
         assert alog.action == amo.LOG.ADMIN_USER_ANONYMIZED.id
         assert alog.arguments == [self.user]
