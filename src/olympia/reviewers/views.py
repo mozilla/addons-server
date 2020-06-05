@@ -715,11 +715,8 @@ def review(request, addon, channel=None):
     # permissions ? Redirect to content review page, it will be more useful.
     if (channel == amo.RELEASE_CHANNEL_LISTED and content_review is False and
         acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW) and
-        not any(
-            acl.action_allowed(request, perm) for perm in (
-                amo.permissions.ADDONS_REVIEW,
-                amo.permissions.ADDONS_POST_REVIEW,
-                amo.permissions.ADDONS_RECOMMENDED_REVIEW))):
+        not acl.is_reviewer(
+            request, addon, allow_content_reviewers=False)):
         return redirect('reviewers.review', 'content', addon.pk)
 
     # Other cases are handled in ReviewHelper by limiting what actions are
