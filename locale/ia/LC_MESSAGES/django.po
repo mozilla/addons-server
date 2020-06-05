@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-05 00:03+0000\n"
+"PO-Revision-Date: 2020-06-05 07:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -528,9 +528,8 @@ msgstr "%(count)s GUIDs de additivos es jam blocate pro le versiones de %(v_min)
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUIDs de additivos non ha essite trovate"
 
-#, fuzzy
 msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "Le sequente blocada(s) ha essite importate de un blocada Kinto obsolete, basate sur expression regular."
+msgstr "Le sequente bloco(s) ha essite importate de un bloco obsolete basate sur expressiones regular."
 
 msgid "Save"
 msgstr "Salvar"
