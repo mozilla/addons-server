@@ -1543,7 +1543,15 @@ class Addon(OnChangeMixin, ModelBase):
         return lookup_field
 
     @property
-    def addonguid__guid(self):
+    def addonguid_guid(self):
+        """ Use this function to avoid having to wrap `addon.addonguid.guid` in
+        a try...except.
+        There *should* be a matching AddonGUID record for every Addon with a
+        guid, but the foreign key is from AddonGUID to Addon so there's a
+        possiblity of bad data leading to the AddonGUID not existing.  Plus we
+        don't want this to fail if an upload with guid=None somehow ended up
+        getting through.
+        """
         return getattr(self, 'addonguid', self).guid
 
     @cached_property
@@ -1551,7 +1559,7 @@ class Addon(OnChangeMixin, ModelBase):
         from olympia.blocklist.models import Block
 
         # Block.guid is unique so it's either on the list or not.
-        return Block.objects.filter(guid=self.addonguid__guid).last()
+        return Block.objects.filter(guid=self.addonguid_guid).last()
 
     @cached_property
     def blocklistsubmission(self):
@@ -1559,7 +1567,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         # GUIDs should only exist in one (active) submission at once.
         return BlocklistSubmission.get_submissions_from_guid(
-            self.addonguid__guid).last()
+            self.addonguid_guid).last()
 
     @property
     def git_extraction_is_in_progress(self):

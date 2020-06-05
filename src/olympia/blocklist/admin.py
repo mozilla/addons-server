@@ -174,7 +174,7 @@ class BlockAdminAddMixin():
         else:
             return redirect(
                 reverse('admin:blocklist_blocklistsubmission_add') +
-                f'?guids={addon.addonguid__guid}&{get_params.urlencode()}')
+                f'?guids={addon.addonguid_guid}&{get_params.urlencode()}')
 
 
 @admin.register(BlocklistSubmission)
