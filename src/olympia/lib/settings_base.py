@@ -1256,6 +1256,7 @@ CELERY_TASK_ROUTES = {
 LOGGING = {
     'version': 1,
     'filters': {},
+    'disable_existing_loggers': False,
     'formatters': {
         'json': {
             '()': olympia.core.logger.JsonFormatter,
@@ -1360,6 +1361,9 @@ LOGGING = {
         'z': {
             'handlers': ['mozlog'],
             'level': logging.INFO,
+            # We need to set `propagate` to `True` so that `z.*` loggers are
+            # able to log messages. That wouldn't work otherwise, likely
+            # because `disable_existing_loggers` is set to `False` now.
             'propagate': True
         },
         'z.celery': {

@@ -67,19 +67,15 @@ SIGNING_SERVER = ''
 ENABLE_ADDON_SIGNING = False
 
 # Limit logging in tests.
-LOGGING['loggers'] = {
-    '': {
-        'handlers': ['null'],
-        'level': logging.DEBUG,
-        'propogate': False,
-    },
-    # Need to disable celery logging explicitly. Celery configures it's
-    # logging manually and we don't catch their logger in our default config.
-    'celery': {
-        'handlers': ['null'],
-        'level': logging.DEBUG,
-        'propagate': False
-    },
+LOGGING['root']['handlers'] = ['null']
+for logger in list(LOGGING['loggers'].keys()):
+    LOGGING['loggers'][logger]['handlers'] = ['null']
+# Need to disable celery logging explicitly. Celery configures its logging
+# manually and we don't catch their logger in our default config.
+LOGGING['loggers']['celery'] = {
+    'handlers': ['null'],
+    'level': logging.DEBUG,
+    'propagate': False
 }
 
 # To speed tests up, crushing uploaded images is disabled in tests except
