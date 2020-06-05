@@ -7,14 +7,15 @@ from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_text
 
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
+from waffle.testutils import override_switch, override_flag
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, Category)
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import TestCase, formset, initial, req_factory_factory
+from olympia.amo.tests import (TestCase, formset, initial, req_factory_factory,
+                               addon_factory, user_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import image_size
@@ -1595,3 +1596,27 @@ class TestEditTechnicalStaticThemeListed(StaticMixin,
 class TestEditTechnicalStaticThemeUnlisted(StaticMixin,
                                            TestEditTechnicalUnlisted):
     pass
+
+
+class TestStatsLinkInSidePanel(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.user = user_factory()
+        self.addon = addon_factory(users=[self.user])
+        self.url = reverse('devhub.addons.edit', args=[self.addon.slug])
+        self.client.login(email=self.user.email)
+
+    @override_flag('beta-stats', active=False)
+    def test_link_to_old_stats_when_flag_is_inactive(self):
+        response = self.client.get(self.url)
+
+        assert (reverse('stats.overview', args=[self.addon.slug]) in
+                str(response.content))
+
+    @override_flag('beta-stats', active=True)
+    def test_link_to_beta_stats_when_flag_is_active(self):
+        response = self.client.get(self.url)
+
+        assert (reverse('stats.overview.beta', args=[self.addon.slug]) in
+                str(response.content))

@@ -10,6 +10,8 @@ from django.test.client import RequestFactory
 from django.urls.exceptions import NoReverseMatch
 from django.utils.encoding import force_text
 
+from waffle.testutils import override_flag
+
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
@@ -711,6 +713,14 @@ class TestStatsBeta(TestCase):
         assert b'You are viewing a beta feature.' in response.content
         assert response.context['beta']
 
+    @override_flag('beta-stats', active=True)
+    def test_old_stats_shows_message_for_beta(self):
+        url = reverse('stats.overview', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'We are rolling out new statistics pages' in response.content
+
     def test_beta_series_urls(self):
         url = reverse('stats.overview_series.beta', args=self.series_args)
 
@@ -748,6 +758,38 @@ class TestStatsBeta(TestCase):
         response = self.client.get(url)
 
         assert response.status_code == 404
+
+    @override_flag('beta-stats', active=False)
+    def test_no_beta_for_non_staff_and_flag_inactive(self):
+        self.client.logout()
+        self.user.update(email='not.staff@yahoo.com')
+        self.client.login(email=self.user.email)
+
+        url = reverse('stats.overview.beta', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert response.status_code == 404
+
+    @override_flag('beta-stats', active=True)
+    def test_beta_available_to_users_with_flag_active(self):
+        self.client.logout()
+        self.user.update(email='not.staff@yahoo.com')
+        self.client.login(email=self.user.email)
+
+        url = reverse('stats.overview.beta', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+
+    @override_flag('beta-stats', active=True)
+    def test_beta_available_to_staff_when_flag_is_inactive(self):
+        url = reverse('stats.overview.beta', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert response.status_code == 200
 
     @mock.patch('olympia.stats.views.get_updates_series')
     def test_beta_overview_series(self, get_updates_series_mock):
