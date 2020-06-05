@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-04 23:48+0000\n"
+"PO-Revision-Date: 2020-06-05 00:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4937,11 +4937,11 @@ msgstr "Specta con amicos e familia ubique le medios diffuse."
 
 #. editorial content for the discovery pane.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Salta le portiones sponsorisate del videos sur YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Ascolta le contento del paginas web. Plus de 40 linguas supportate."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5069,9 +5069,9 @@ msgstr "Le dimension maxime pro le themas de WebExtension es {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Tu non pote inviar iste typo de additivo"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Tu non pote inviar un additivo con un guid que fini in %s"
+msgstr "Tu non pote inviar un additivo per un ID finiente con %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Tu non pote inviar un extension jam signate per Mozilla"
@@ -6805,6 +6805,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Salute %(author_name)s,\n"
+"\n"
+"Tu ha essite invitate a devenir un autor de %(addon_name)s sur %(dominio)s. Le acceptation del invitation te dara accesso a rediger le additivo e potera monstrar tu nomine in le lista de autores sur le sito web.\n"
+"\n"
+"Clicca sur le ligamine infra pro responder si tu desira esser addite como autor pro %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Si tu non expecta reciper iste invitation, per favor inviar un email a amo-admins@mozilla.com.\n"
+"\n"
+"Salutationes amical,\n"
+"Le equipa del additivos de Mozilla"
 
 #, python-format
 msgid ""
@@ -6812,6 +6824,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Le sequente autor ha essite cambiate sur tu additivo %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6819,6 +6834,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Le sequente autor ha essite removite ab le additivo %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
