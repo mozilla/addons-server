@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-04 18:16+0000\n"
-"Last-Translator: TrickyFoxy <roman.deev06@gmail.com>\n"
+"PO-Revision-Date: 2020-06-06 13:34+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -2327,7 +2327,7 @@ msgid "Categories"
 msgstr "Категории"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr "Категории - основной критерий, по которому пользователи просматривают дополнения. Выберите любую, которая наилучшим образом соответствует функциональности вашего дополнения."
+msgstr "Категории — основной критерий, по которому пользователи просматривают дополнения. Выберите любую, которая наилучшим образом соответствует функциональности вашего дополнения."
 
 msgid "Email"
 msgstr "Адрес эл. почты"
@@ -3134,7 +3134,7 @@ msgid "End-User License Agreement"
 msgstr "Лицензионное соглашение с конечным пользователем"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Обратите внимание, что EULA - это не то же самое, что и лицензия на ваш исходный код, такая как GPL или MPL. Это относится только к опубликованным дополнениям."
+msgstr "Обратите внимание, что EULA — это не то же самое, что и лицензия на ваш исходный код, такая как GPL или MPL. Это относится только к опубликованным дополнениям."
 
 msgid "Privacy Policy"
 msgstr "Политика приватности"
@@ -3157,7 +3157,7 @@ msgid "Build best-in-class extensions and themes"
 msgstr "Создавайте лучшие в своем классе расширения и темы"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "Неважно, новичок вы в разработке расширений, или вы улучшаете, переносите существующее расширение или тему, создаете корпоративное решение — у нас есть ресурсы для помощи вам."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
@@ -5593,9 +5593,8 @@ msgstr "Последняя публичная версия этого допол
 msgid "Reject Multiple Versions"
 msgstr "Отклонить несколько версий"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Это действие отклонит выбранные публичные версии. Разработчику будут отправлены комментарии."
+msgstr "Это действие отклонит выбранные версии. Разработчику будут отправлены комментарии."
 
 msgid "Block Multiple Versions"
 msgstr "Блокировать несколько версий"
