@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-07 11:50+0000\n"
+"PO-Revision-Date: 2020-06-07 11:59+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -3099,24 +3099,21 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "開発者"
+msgstr "開発者向け"
 
 msgid "For end users"
-msgstr ""
+msgstr "利用者向け"
 
 msgid "Matrix"
 msgstr ""
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "アドオン開発者センター"
+msgstr "アドオン開発者メーリングリスト"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "拡張機能開発"
+msgstr "拡張機能開発者ニュースレター"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3246,7 +3243,6 @@ msgstr "新しいバージョンを登録"
 msgid "Customize Firefox"
 msgstr "Firefox をカスタマイズ"
 
-#, fuzzy
 msgid "Learn how to make an extension"
 msgstr "アドオンの作り方を学ぶ"
 
@@ -4973,11 +4969,11 @@ msgstr "タブ管理ツール"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "ブラウザー拡張機能を超えたプライバシー"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Firefox 向けメディア拡張機能"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
