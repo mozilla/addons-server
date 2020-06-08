@@ -253,7 +253,7 @@ function initValidator($doc) {
             }
 
             if (this.fileURL) {
-                var url = this.fileURL + file;
+                var url = this.fileURL + '?path=' + file;
                 if (msg.line) {
                     url += "#L" + msg.line;
                 }
