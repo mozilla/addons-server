@@ -36,6 +36,12 @@ def upload_mlbf_to_remote_settings(*, bypass_switch=False, force_base=False):
     if not (bypass_switch or waffle.switch_is_active('blocklist_mlbf_submit')):
         log.info('Upload MLBF to remote settings cron job disabled.')
         return
+    with statsd.timer('blocklist.cron.upload_mlbf_to_remote_settings'):
+        _upload_mlbf_to_remote_settings(force_base=bool(force_base))
+    statsd.incr('blocklist.cron.upload_mlbf_to_remote_settings.success')
+
+
+def _upload_mlbf_to_remote_settings(*, force_base=False):
     last_generation_time = get_config(MLBF_TIME_CONFIG_KEY, 0, json_value=True)
 
     log.info('Starting Upload MLBF to remote settings cron job.')
@@ -51,10 +57,14 @@ def upload_mlbf_to_remote_settings(*, bypass_switch=False, force_base=False):
     mlbf = MLBF(generation_time)
     previous_filter = MLBF(last_generation_time)
 
+    changes_count = mlbf.blocks_changed_since_previous(previous_filter)
+    statsd.incr(
+        'blocklist.cron.upload_mlbf_to_remote_settings.blocked_changed',
+        changes_count)
     need_update = (
         force_base or
         last_generation_time < get_blocklist_last_modified_time() or
-        mlbf.blocks_changed_since_previous(previous_filter))
+        changes_count)
     if not need_update:
         log.info(
             'No new/modified/deleted Blocks in database; '
@@ -62,6 +72,12 @@ def upload_mlbf_to_remote_settings(*, bypass_switch=False, force_base=False):
         return
 
     mlbf.generate_and_write_mlbf()
+    statsd.incr(
+        'blocklist.cron.upload_mlbf_to_remote_settings.blocked_count',
+        len(mlbf.fetch_blocked_json()))
+    statsd.incr(
+        'blocklist.cron.upload_mlbf_to_remote_settings.not_blocked_count',
+        len(mlbf.fetch_not_blocked_json()))
 
     base_filter_id = get_config(MLBF_BASE_ID_CONFIG_KEY, 0, json_value=True)
     # optimize for when the base_filter was the previous generation so
