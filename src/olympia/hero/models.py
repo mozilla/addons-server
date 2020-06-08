@@ -87,6 +87,11 @@ class WidgetCharField(models.CharField):
             kwargs['blank_choice'] = [('', self.blank_text)]
         return super().get_choices(*args, **kwargs)
 
+class PrimaryHeroImage(models.Model):
+    custom_image = models.ImageField(upload_to='static/img/hero/featured', blank=True)
+
+    def __str__(self):
+        return f'{self.custom_image}'
 
 class PrimaryHero(ModelBase):
     image = WidgetCharField(
