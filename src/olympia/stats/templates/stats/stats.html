@@ -180,15 +180,9 @@
         </div>
       </div>
     {% endblock %}
-    {% if addon %}
-      <div id="stats-permissions">
-        <p>{{ _('This dashboard is <b>private</b>.') }}</p>
-
-        {% if request.check_ownership(addon) %}
-          <p><a href="{{ addon.get_dev_url() }}#edit-addon-technical">{{ _('Change settings.') }}</a></p>
-        {% endif %}
-      </div>
-    {% endif %}
+    <div id="stats-permissions">
+      <p>{{ _('This dashboard is <b>private</b>.') }}</p>
+    </div>
     <div class="hidden">
       <div id="fieldMenuPopup" class="popup">
         <form id="fieldMenu" data-no-csrf>
