@@ -239,11 +239,12 @@ class MLBF():
             return True
 
     def blocks_changed_since_previous(self, previous_base_mlbf):
+        blocked_json = self.fetch_blocked_json()
         try:
             # compare base with current blocks
             extras, deletes = self.generate_diffs(
-                previous_base_mlbf.blocked_json, self.fetch_blocked_json())
-            return bool(extras) or bool(deletes)
+                previous_base_mlbf.blocked_json, blocked_json)
+            return len(extras) + len(deletes)
         except FileNotFoundError:
             # when previous_base_mlfb._blocked_path doesn't exist
-            return True
+            return len(blocked_json)

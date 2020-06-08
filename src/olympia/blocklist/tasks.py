@@ -208,6 +208,7 @@ def upload_filter(generation_time, is_base=True, upload_stash=False):
     if is_base:
         # clear the collection for the base - we want to be the only filter
         server.delete_all_records()
+        statsd.incr('blocklist.tasks.upload_filter.reset_collection')
     # Deal with possible stashes first
     if upload_stash:
         # If we have a stash, write that
@@ -217,6 +218,7 @@ def upload_filter(generation_time, is_base=True, upload_stash=False):
             'stash': mlbf.stash_json,
         }
         server.publish_record(stash_data)
+        statsd.incr('blocklist.tasks.upload_filter.upload_stash')
 
     # Then the bloomfilter
     data = {
@@ -229,6 +231,10 @@ def upload_filter(generation_time, is_base=True, upload_stash=False):
     with storage.open(mlbf.filter_path, 'rb') as filter_file:
         attachment = ('filter.bin', filter_file, 'application/octet-stream')
         server.publish_attachment(data, attachment)
+        statsd.incr('blocklist.tasks.upload_filter.upload_mlbf')
+    statsd.incr(
+        'blocklist.tasks.upload_filter.upload_mlbf.'
+        f'{"base" if is_base else "full"}')
     server.complete_session()
     set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
     if is_base:

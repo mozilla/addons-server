@@ -12,7 +12,8 @@ from django.core.management.base import CommandError
 from freezegun import freeze_time
 from waffle.testutils import override_switch
 
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import (
+    addon_factory, TestCase, user_factory, version_factory)
 from olympia.blocklist.cron import (
     auto_import_blocklist, get_blocklist_last_modified_time,
     upload_mlbf_to_remote_settings)
@@ -24,11 +25,16 @@ from olympia.lib.remote_settings import RemoteSettings
 from olympia.zadmin.models import get_config, set_config
 
 
+STATSD_PREFIX = 'blocklist.cron.upload_mlbf_to_remote_settings.'
+
+
 @freeze_time('2020-01-01 12:34:56')
 @override_switch('blocklist_mlbf_submit', active=True)
 class TestUploadToRemoteSettings(TestCase):
     def setUp(self):
-        addon_factory()
+        addon = addon_factory()
+        version_factory(addon=addon)
+        version_factory(addon=addon)
         self.block = Block.objects.create(
             addon=addon_factory(
                 version_kw={'version': '1.2b3'},
@@ -40,12 +46,15 @@ class TestUploadToRemoteSettings(TestCase):
             RemoteSettings, 'publish_attachment')
         record_patcher = mock.patch.object(
             RemoteSettings, 'publish_record')
+        statsd_incr_patcher = mock.patch('olympia.blocklist.cron.statsd.incr')
         self.addCleanup(delete_patcher.stop)
         self.addCleanup(attach_patcher.stop)
         self.addCleanup(record_patcher.stop)
+        self.addCleanup(statsd_incr_patcher.stop)
         self.delete_mock = delete_patcher.start()
         self.publish_attachment_mock = attach_patcher.start()
         self.publish_record_mock = record_patcher.start()
+        self.statsd_incr_mock = statsd_incr_patcher.start()
 
     def test_no_previous_mlbf(self):
         upload_mlbf_to_remote_settings()
@@ -73,6 +82,16 @@ class TestUploadToRemoteSettings(TestCase):
         assert os.path.getsize(os.path.join(gen_path, 'notblocked.json'))
         # no stash because no previous mlbf
         assert not os.path.exists(os.path.join(gen_path, 'stash.json'))
+
+        self.statsd_incr_mock.assert_has_calls([
+            mock.call(f'{STATSD_PREFIX}blocked_changed', 1),
+            mock.call(f'{STATSD_PREFIX}blocked_count', 1),
+            mock.call(f'{STATSD_PREFIX}not_blocked_count', 3),
+            mock.call('blocklist.tasks.upload_filter.reset_collection'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf.base'),
+            mock.call(f'{STATSD_PREFIX}success'),
+        ])
 
     def test_stash_because_previous_mlbf(self):
         set_config(MLBF_TIME_CONFIG_KEY, 123456, json_value=True)
@@ -108,6 +127,16 @@ class TestUploadToRemoteSettings(TestCase):
         assert (
             get_config(MLBF_BASE_ID_CONFIG_KEY, json_value=True) ==
             123456)
+
+        self.statsd_incr_mock.assert_has_calls([
+            mock.call(f'{STATSD_PREFIX}blocked_changed', 2),
+            mock.call(f'{STATSD_PREFIX}blocked_count', 1),
+            mock.call(f'{STATSD_PREFIX}not_blocked_count', 3),
+            mock.call('blocklist.tasks.upload_filter.upload_stash'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf.full'),
+            mock.call(f'{STATSD_PREFIX}success'),
+        ])
 
     def test_stash_because_many_mlbf(self):
         set_config(MLBF_TIME_CONFIG_KEY, 123456, json_value=True)
@@ -148,6 +177,16 @@ class TestUploadToRemoteSettings(TestCase):
             get_config(MLBF_BASE_ID_CONFIG_KEY, json_value=True) ==
             987654)
 
+        self.statsd_incr_mock.assert_has_calls([
+            mock.call(f'{STATSD_PREFIX}blocked_changed', 2),
+            mock.call(f'{STATSD_PREFIX}blocked_count', 1),
+            mock.call(f'{STATSD_PREFIX}not_blocked_count', 3),
+            mock.call('blocklist.tasks.upload_filter.upload_stash'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf.full'),
+            mock.call(f'{STATSD_PREFIX}success'),
+        ])
+
     @mock.patch.object(MLBF, 'should_reset_base_filter')
     def test_reset_base_because_over_reset_threshold(self, should_reset_mock):
         should_reset_mock.return_value = True
@@ -186,6 +225,16 @@ class TestUploadToRemoteSettings(TestCase):
         # no stash because we're starting with a new base mlbf
         assert not os.path.exists(os.path.join(gen_path, 'stash.json'))
 
+        self.statsd_incr_mock.assert_has_calls([
+            mock.call(f'{STATSD_PREFIX}blocked_changed', 2),
+            mock.call(f'{STATSD_PREFIX}blocked_count', 1),
+            mock.call(f'{STATSD_PREFIX}not_blocked_count', 3),
+            mock.call('blocklist.tasks.upload_filter.reset_collection'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf.base'),
+            mock.call(f'{STATSD_PREFIX}success'),
+        ])
+
     @override_switch('blocklist_mlbf_submit', active=True)
     @mock.patch.object(MLBF, 'should_reset_base_filter')
     def test_force_base_option(self, should_reset_mock):
@@ -217,6 +266,19 @@ class TestUploadToRemoteSettings(TestCase):
             str(get_config(MLBF_TIME_CONFIG_KEY, json_value=True)))
         # no stash because we're starting with a new base mlbf
         assert not os.path.exists(os.path.join(gen_path, 'stash.json'))
+
+        self.statsd_incr_mock.assert_has_calls([
+            mock.call(f'{STATSD_PREFIX}blocked_changed', 0),
+            mock.call(f'{STATSD_PREFIX}success'),
+            # 2nd execution
+            mock.call(f'{STATSD_PREFIX}blocked_changed', 0),
+            mock.call(f'{STATSD_PREFIX}blocked_count', 1),
+            mock.call(f'{STATSD_PREFIX}not_blocked_count', 3),
+            mock.call('blocklist.tasks.upload_filter.reset_collection'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf.base'),
+            mock.call(f'{STATSD_PREFIX}success'),
+        ])
 
     @override_switch('blocklist_mlbf_submit', active=False)
     def test_waffle_off_disables_publishing(self):
@@ -250,7 +312,6 @@ class TestUploadToRemoteSettings(TestCase):
         self.publish_record_mock.assert_not_called()
 
         # But if we add a new Block a new filter is needed
-        addon_factory()
         Block.objects.create(
             addon=addon_factory(
                 file_kw={'is_signed': True, 'is_webextension': True}),
@@ -260,6 +321,7 @@ class TestUploadToRemoteSettings(TestCase):
         assert (
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
             int(datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000))
+        self.statsd_incr_mock.reset_mock()
 
         frozen_time.tick()
         # If the first block is deleted the last_modified date won't have
@@ -269,6 +331,26 @@ class TestUploadToRemoteSettings(TestCase):
         assert last_modified == get_blocklist_last_modified_time()
         upload_mlbf_to_remote_settings()
         assert self.publish_attachment_mock.call_count == 2  # called again
+
+        self.statsd_incr_mock.assert_has_calls([
+            mock.call(f'{STATSD_PREFIX}blocked_changed', 1),
+            mock.call(f'{STATSD_PREFIX}blocked_count', 1),
+            mock.call(f'{STATSD_PREFIX}not_blocked_count', 4),
+            mock.call('blocklist.tasks.upload_filter.upload_stash'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
+            mock.call('blocklist.tasks.upload_filter.upload_mlbf.full'),
+            mock.call(f'{STATSD_PREFIX}success'),
+        ])
+
+    @mock.patch('olympia.blocklist.cron._upload_mlbf_to_remote_settings')
+    def test_no_statsd_ping_when_switch_off(self, inner_mock):
+        with override_switch('blocklist_mlbf_submit', active=False):
+            upload_mlbf_to_remote_settings()
+            self.statsd_incr_mock.assert_not_called()
+
+        with override_switch('blocklist_mlbf_submit', active=True):
+            upload_mlbf_to_remote_settings()
+            self.statsd_incr_mock.assert_called()
 
 
 @pytest.mark.django_db
