@@ -239,16 +239,18 @@ def totimestamp(datetime_obj):
 
 
 class TestProcessFxAEventEmail(TestCase):
+    fxa_id = 'ABCDEF012345689'
+
     def setUp(self):
         self.email_changed_date = self.days_ago(42)
         self.body = json.dumps({'Message': json.dumps(
             {'email': 'new-email@example.com', 'event': 'primaryEmailChanged',
-             'uid': 'ABCDEF012345689',
+             'uid': self.fxa_id,
              'ts': totimestamp(self.email_changed_date)})})
 
     def test_success_integration(self):
         user = user_factory(email='old-email@example.com',
-                            fxa_id='ABCDEF012345689')
+                            fxa_id=self.fxa_id)
         process_fxa_event(self.body)
         user.reload()
         assert user.email == 'new-email@example.com'
@@ -256,7 +258,7 @@ class TestProcessFxAEventEmail(TestCase):
 
     def test_success_integration_previously_changed_once(self):
         user = user_factory(email='old-email@example.com',
-                            fxa_id='ABCDEF012345689',
+                            fxa_id=self.fxa_id,
                             email_changed=datetime(2017, 10, 11))
         process_fxa_event(self.body)
         user.reload()
@@ -268,22 +270,24 @@ class TestProcessFxAEventEmail(TestCase):
         process_fxa_event(self.body)
         primary_email_change_event.assert_called()
         primary_email_change_event.assert_called_with(
-            'ABCDEF012345689',
+            self.fxa_id,
             totimestamp(self.email_changed_date),
             'new-email@example.com')
 
 
 class TestProcessFxAEventDelete(TestCase):
+    fxa_id = 'ABCDEF012345689'
+
     def setUp(self):
         self.email_changed_date = self.days_ago(42)
         self.body = json.dumps({'Message': json.dumps(
             {'event': 'delete',
-             'uid': 'ABCDEF012345689',
+             'uid': self.fxa_id,
              'ts': totimestamp(self.email_changed_date)})})
 
     @override_switch('fxa-account-delete', active=True)
     def test_success_integration(self):
-        user = user_factory(fxa_id='ABCDEF012345689')
+        user = user_factory(fxa_id=self.fxa_id)
         process_fxa_event(self.body)
         user.reload()
         assert user.email is None
@@ -296,7 +300,7 @@ class TestProcessFxAEventDelete(TestCase):
         process_fxa_event(self.body)
         delete_user_event_mock.assert_called()
         delete_user_event_mock.assert_called_with(
-            'ABCDEF012345689',
+            self.fxa_id,
             totimestamp(self.email_changed_date))
 
     @override_switch('fxa-account-delete', active=False)

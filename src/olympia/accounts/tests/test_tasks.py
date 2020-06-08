@@ -12,12 +12,13 @@ from olympia.ratings.models import Rating
 
 
 class TestPrimaryEmailChangeEvent(TestCase):
+    fxa_id = 'ABCDEF012345689'
 
     def test_success(self):
         user = user_factory(email='old-email@example.com',
-                            fxa_id='ABCDEF012345689')
+                            fxa_id=self.fxa_id)
         primary_email_change_event(
-            'ABCDEF012345689',
+            self.fxa_id,
             totimestamp(datetime(2017, 10, 11)),
             'new-email@example.com')
         user.reload()
@@ -26,25 +27,25 @@ class TestPrimaryEmailChangeEvent(TestCase):
 
     def test_ignored_because_old_timestamp(self):
         user = user_factory(email='old-email@example.com',
-                            fxa_id='ABCDEF012345689')
+                            fxa_id=self.fxa_id)
         yesterday = datetime(2017, 10, 1)
         today = datetime(2017, 10, 2)
         tomorrow = datetime(2017, 10, 3)
 
         primary_email_change_event(
-            'ABCDEF012345689',
+            self.fxa_id,
             totimestamp(today),
             'today@example.com')
         assert user.reload().email == 'today@example.com'
 
         primary_email_change_event(
-            'ABCDEF012345689',
+            self.fxa_id,
             totimestamp(tomorrow),
             'tomorrow@example.com')
         assert user.reload().email == 'tomorrow@example.com'
 
         primary_email_change_event(
-            'ABCDEF012345689',
+            self.fxa_id,
             totimestamp(yesterday),
             'yesterday@example.com')
         assert user.reload().email != 'yesterday@example.com'
@@ -53,18 +54,20 @@ class TestPrimaryEmailChangeEvent(TestCase):
     def test_ignored_if_user_not_found(self):
         """Check that this doesn't throw"""
         primary_email_change_event(
-            'ABCDEF012345689',
+            self.fxa_id,
             totimestamp(datetime(2017, 10, 11)),
             'email@example.com')
 
 
 class TestDeleteUserEvent(TestCase):
+    fxa_id = 'ABCDEF012345689'
+
     def setUp(self):
-        self.user = user_factory(fxa_id='ABCDEF012345689')
+        self.user = user_factory(fxa_id=self.fxa_id)
 
     def _fire_event(self):
         delete_user_event(
-            'ABCDEF012345689',
+            self.fxa_id,
             totimestamp(datetime(2017, 10, 11)))
         self.user.reload()
         assert self.user.email is None
