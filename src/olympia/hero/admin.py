@@ -9,7 +9,6 @@ class PrimaryHeroInline(admin.StackedInline):
     model = PrimaryHero
     fields = (
         'image',
-        'custom_image',
         'gradient_color',
         'is_external',
         'enabled')
