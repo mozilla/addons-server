@@ -288,9 +288,15 @@ class TestMLBF(TestCase):
             key = mlbf.KEY_FORMAT.format(guid=guid, version=version_str)
             assert key not in bfilter
 
-        assert os.stat(mlbf.filter_path).st_size == 203, (
+        # Occasionally a combination of salt generated with secrets.token_bytes
+        # and the version str generated in version_factory results in a
+        # collision in layer 1 of the bloomfilter, leading to a second layer
+        # being generated.  When this happns the bitCount and size is larger.
+        expected_size, expected_bit_count = (
+            (203, 1384) if bfilter.layerCount() == 1 else (393, 2824))
+        assert os.stat(mlbf.filter_path).st_size == expected_size, (
             blocked_guids, all_addons)
-        assert bfilter.bitCount() == 1384, (
+        assert bfilter.bitCount() == expected_bit_count, (
             blocked_guids, all_addons)
 
     def test_generate_diffs(self):
