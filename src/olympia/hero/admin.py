@@ -15,9 +15,11 @@ class PrimaryHeroInline(admin.StackedInline):
     view_on_site = False
     can_delete = False
 
+
 class PrimaryHeroImageAdmin(admin.ModelAdmin):
     list_display = ('custom_image',)
     actions = ['delete_selected']
+
 
 class HeroModuleInlineFormSet(BaseInlineFormSet):
     def clean(self):
