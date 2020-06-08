@@ -291,7 +291,7 @@ class TestMLBF(TestCase):
         # Occasionally a combination of salt generated with secrets.token_bytes
         # and the version str generated in version_factory results in a
         # collision in layer 1 of the bloomfilter, leading to a second layer
-        # being generated.  When this happns the bitCount and size is larger.
+        # being generated.  When this happens the bitCount and size is larger.
         expected_size, expected_bit_count = (
             (203, 1384) if bfilter.layerCount() == 1 else (393, 2824))
         assert os.stat(mlbf.filter_path).st_size == expected_size, (
