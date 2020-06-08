@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-08 06:39+0000\n"
+"PO-Revision-Date: 2020-06-08 06:57+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1633,7 +1633,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "మీ అప్రమేయ లొకేలును మార్చడానికి ముందు మీకు ఆ భాషలో ఒక పేరు, సారాంశం, వివరణ ఉండాలి. మీరు %s‌ను మర్చిపోయారు."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "వాడుకరులను నేరుగా జోడించలేరు"
 
 msgid "An author can only be present once."
 msgstr "ఒక రచయిత ఒకసారి మాత్రమే ఉండగలరు."
@@ -1702,7 +1702,7 @@ msgid "Need to select at least one application."
 msgstr "కనీసం ఒక అనువర్తనాన్నైనా ఎంచుకోవాలి."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "మీరు ఈమధ్య చాలా ఎక్కింపులను సమర్పించారు. దయచేసి కొంత సమయం తర్వాత మళ్ళీ ప్రయత్నించండి."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -2141,7 +2141,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr ""
 
 msgid "Decline"
-msgstr ""
+msgstr "తిరస్కరించు"
 
 msgid "Manage Authors & License"
 msgstr "రచయితలు & లైసెన్సులు నిర్వహించండి"
