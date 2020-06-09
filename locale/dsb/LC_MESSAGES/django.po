@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-09 20:23+0000\n"
+"PO-Revision-Date: 2020-06-09 21:19+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6135,9 +6135,8 @@ msgstr "Toś to pśipowěźenje zachyśiś"
 msgid "Files in this version:"
 msgstr "Dataje w toś tej wersiji:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Dataje w toś tej wersiji:"
+msgstr "Wšykne dataje w toś tej wersiji pśeglědowaś"
 
 msgid "Contents"
 msgstr "Wopśimjeśe"
@@ -6499,16 +6498,14 @@ msgstr "Nejnowše daty se zacytuju&hellip;"
 msgid "No data available."
 msgstr "Žedne daty k dispoziciji."
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Toś ta kontrolna deska jo tuchylu <b>priwatna</b>."
+msgstr "Toś ta kontrolna delka jo <b>priwatna</b>."
 
 msgid "Application usage by Date"
 msgstr "Wužywanje nałoženja pó datumje"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Wužywarske rěcy pó datumje"
+msgstr "Wužywaŕske kraje pó datumje"
 
 msgid "Downloaded by Date"
 msgstr "Ześěgnjenja pó datumje"
