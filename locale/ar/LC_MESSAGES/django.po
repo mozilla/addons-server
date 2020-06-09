@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 07:09+0000\n"
+"PO-Revision-Date: 2020-06-09 07:25+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -33,7 +33,7 @@ msgid "Addons"
 msgstr "الإضافات"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "الحد الأدنى لعدد التقارير (مجمعة حسب الدليل)"
 
 msgid "creation date"
 msgstr "تاريخ الإنشاء"
@@ -220,19 +220,19 @@ msgid "Error verifying input, please try again."
 msgstr "حدث عُطل أثناء التثبّت ممّا أدخلت. من فضلك أعِد المحاولة."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "أدخل رقم تعريفي IP4 أو IP6 صالح."
 
 msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "بعض الميزات معطلة مؤقتًا أثناء قيامنا بصيانة موقع الويب. سنعود بكامل طاقتنا قريبًا."
 
 msgid "Must contain at least one printable character."
 msgstr "يجب أن يحتوي محرف مطبوع واحد أقلّه."
 
 msgid "Ensure this field contains at least one letter or number character."
-msgstr ""
+msgstr "تأكد من أن هذا الحقل يحتوي على حرف أو رقم على الأقل."
 
 msgid "Not allowed"
 msgstr "غير مسموح"
@@ -301,6 +301,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
+"<h1> عفوًا! حدث خطأ. </ h1> <p> سنصلح ذلك قريبًا. </ p> <p> يمكنك تجربة تحديث الصفحة ، أو العودة إلى <a href = \"٪ (home) s \"> الصفحة الرئيسية للإضافات </a>. يمكنك أيضًا مساعدتنا في حل هذه المشكلة "
+"عن طريق <a href=\"https://github.com/mozilla/addons/issues/new\"> تقديم مشكلة </a> مع تفاصيل كيفية دخولك إلى هذه الصفحة. </p>"
 
 msgid "No results found"
 msgstr "لم يُعثر على نتائج"
@@ -314,7 +316,7 @@ msgstr "التالي"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "النتائج <strong>٪ (start) s </strong> و ndash ؛ <strong>٪ (end) s </strong> من <strong>٪ (count) s </strong>"
 
 msgid "Maintenance in progress"
 msgstr "الصيانة جارية"
@@ -417,7 +419,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "تأكيد لمفاتيح API المطور"
 
 msgid "Application Versions"
 msgstr "إصدارات التطبيقات"
@@ -466,7 +468,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "هذه الإضافة موجودة في تجميعة من التجميعات بالفعل"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "حالة تسجيل الخروج"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -535,17 +537,15 @@ msgstr "احذف"
 msgid "Update"
 msgstr "حدّث"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "عرض جميع الإصدارات"
+msgstr "رفض التقديم"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "عرض جميع الإصدارات"
+msgstr "الموافقة على التقديم"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "أضف٪ (name) s"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
@@ -563,7 +563,6 @@ msgstr "من المستخدمين"
 msgid "Edit Block"
 msgstr "حرّر الكتلة"
 
-#, fuzzy
 msgid "versions"
 msgstr "الإصدارات"
 
@@ -590,7 +589,7 @@ msgid "{0.name} ({1}) removed from {addon}."
 msgstr "أُزيل {0.name} ‏({1}) من {addon}."
 
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "مساهمات ل {addon}."
 
 msgid "{addon} disabled."
 msgstr "عُطّلت {addon}."
@@ -628,7 +627,7 @@ msgid "{addon} {version} given preliminary review."
 msgstr ""
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "تمت الموافقة عليه مبدئيًا"
 
 msgid "{addon} {version} rejected."
 msgstr "رُفضت الإصدارة {version} من {addon}."
