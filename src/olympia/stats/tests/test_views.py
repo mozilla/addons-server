@@ -115,16 +115,19 @@ class TestUnlistedAddons(StatsTest):
 class TestListedAddons(StatsTest):
 
     def setUp(self):
-        super(TestListedAddons, self).setUp()
+        super().setUp()
+
         self.addon = Addon.objects.get(pk=4)
         self.someuser = UserProfile.objects.get(
-            email='nobodyspecial@mozilla.com')
+            email='nobodyspecial@mozilla.com'
+        )
+        AddonUser.objects.create(user=self.someuser, addon=self.addon)
 
     def test_private_stats_for_listed_addon(self):
-        self.login_as_visitor()
+        self.client.logout()
         self._check_it(self.public_views_gen(format='json'), 403)
 
-        AddonUser.objects.create(user=self.someuser, addon=self.addon)
+        self.client.login(email=self.someuser.email)
         self._check_it(self.public_views_gen(format='json'), 200)
 
     def test_stats_for_mozilla_disabled_addon(self):
@@ -132,10 +135,12 @@ class TestListedAddons(StatsTest):
 
         # Public users should not see stats
         self.client.logout()
+        # It is a 404 (and not a 403) before the decorator first tries to
+        # retrieve the add-on.
         self._check_it(self.public_views_gen(format='json'), 404)
 
         # Developers should not see stats
-        AddonUser.objects.create(user=self.someuser, addon=self.addon)
+        self.client.login(email=self.someuser.email)
         self._check_it(self.public_views_gen(format='json'), 404)
 
         # Admins should see stats
@@ -147,10 +152,10 @@ class TestListedAddons(StatsTest):
 
         # Public users should not see stats
         self.client.logout()
-        self._check_it(self.public_views_gen(format='json'), 404)
+        self._check_it(self.public_views_gen(format='json'), 403)
 
         # Developers should see stats
-        AddonUser.objects.create(user=self.someuser, addon=self.addon)
+        self.client.login(email=self.someuser.email)
         self._check_it(self.public_views_gen(format='json'), 200)
 
         # Admins should see stats
