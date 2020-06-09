@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 13:11+0000\n"
+"PO-Revision-Date: 2020-06-09 13:17+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -692,13 +692,13 @@ msgstr ""
 
 #. L10n: {0} is a category name.
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "لم يعد {addon} مميزًا في {0}."
 
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} مميزة الآن."
 
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} غير مميزة الآن."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -718,13 +718,13 @@ msgid "{addon} icon changed."
 msgstr "تغيّرت أيقونة {addon}."
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "تمت الموافقة على {rating} لـ {addon}."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr ""
+msgstr "وافق {user} على {rating} لـ {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "تم حذف مراجعة {rating} لـ {addon}."
 
 msgid "{user} deleted {rating} for {addon}."
 msgstr ""
@@ -967,10 +967,10 @@ msgid "Deleted"
 msgstr "محذوفة"
 
 msgid "Unlisted"
-msgstr ""
+msgstr "غير مدرج"
 
 msgid "API"
-msgstr ""
+msgstr "واجهة برمجة التطبيقات"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1028,7 +1028,7 @@ msgid "Language Packs (Application)"
 msgstr "حزمات لغات (تطبيق)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "حزم اللغات (إضافة)"
 
 msgid "Plugins"
 msgstr "مُلحقات"
@@ -1383,16 +1383,16 @@ msgid "No Reputation"
 msgstr "التوثيق"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "جيد (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "جيد جدًا (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "ممتاز (3)"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "نقاط المراجع اليدوي"
 
 #, fuzzy
 msgid "New Legacy Add-on Review"
@@ -1512,16 +1512,16 @@ msgid "Request More Info"
 msgstr "اطلب معلومات أكثر"
 
 msgid "Flag"
-msgstr ""
+msgstr "تبليغ"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "مكرر"
 
 msgid "Reject"
-msgstr ""
+msgstr "رفض"
 
 msgid "Approve"
-msgstr ""
+msgstr "قبول"
 
 msgid "Sexual or pornographic content"
 msgstr "محتوى جنسي أو إباحي"
@@ -1545,7 +1545,7 @@ msgid "Spam content"
 msgstr "محتوًى سخام"
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "صورة ذات جودة منخفضة، ممدودة، أو فارغة"
 
 msgid "Header image alignment problem"
 msgstr ""
