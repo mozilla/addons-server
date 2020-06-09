@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:36+0000\n"
+"POT-Creation-Date: 2020-06-09 18:01+0000\n"
 "PO-Revision-Date: 2020-05-23 16:41+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -460,6 +460,16 @@ msgstr "Приложения, последние {0} дней"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
 msgstr "Приложения, с {0} по {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Countries, last {0} days"
+msgstr "Взносы, последние {0} дней"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Countries from {0} to {1}"
+msgstr "Взносы, с {0} по {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"

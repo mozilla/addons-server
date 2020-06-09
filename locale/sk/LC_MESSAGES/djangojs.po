@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:36+0000\n"
+"POT-Creation-Date: 2020-06-09 18:01+0000\n"
 "PO-Revision-Date: 2019-10-11 14:32+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -459,6 +459,16 @@ msgstr "Aplikácie, posledných {0} dní"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
 msgstr "Aplikácie od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Countries, last {0} days"
+msgstr "Príspevky, posledných {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Countries from {0} to {1}"
+msgstr "Prispievatelia od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"

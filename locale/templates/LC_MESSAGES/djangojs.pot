@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:36+0000\n"
+"POT-Creation-Date: 2020-06-09 18:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -227,82 +227,82 @@ msgstr ""
 msgid "Use original"
 msgstr ""
 
-#: static/js/impala/stats/chart.js:267
+#: static/js/impala/stats/chart.js:269
 msgid "Week of {0}"
 msgstr ""
 
-#: static/js/impala/stats/chart.js:269
+#: static/js/impala/stats/chart.js:271
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/impala/stats/chart.js:270
+#: static/js/impala/stats/chart.js:272
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/impala/stats/chart.js:271
+#: static/js/impala/stats/chart.js:273
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/impala/stats/chart.js:272
+#: static/js/impala/stats/chart.js:274
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/impala/stats/chart.js:273
+#: static/js/impala/stats/chart.js:275
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/impala/stats/chart.js:275
+#: static/js/impala/stats/chart.js:277
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/impala/stats/chart.js:276
+#: static/js/impala/stats/chart.js:278
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/impala/stats/chart.js:277
+#: static/js/impala/stats/chart.js:279
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
+#: static/js/impala/stats/chart.js:371 static/js/impala/stats/csv_keys.js:3
 #: static/js/impala/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr ""
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
+#: static/js/impala/stats/chart.js:381 static/js/impala/stats/csv_keys.js:6
 #: static/js/impala/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr ""
 
-#: static/js/impala/stats/chart.js:410
+#: static/js/impala/stats/chart.js:412
 msgid "Amount, in USD"
 msgstr ""
 
-#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104
+#: static/js/impala/stats/chart.js:423 static/js/impala/stats/csv_keys.js:104
 msgid "Number of Contributions"
 msgstr ""
 
-#: static/js/impala/stats/chart.js:447
+#: static/js/impala/stats/chart.js:449
 msgid "More Info..."
 msgstr ""
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js:451
+#: static/js/impala/stats/chart.js:453
 msgid "Details for {0}"
 msgstr ""
 
@@ -588,196 +588,206 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:159
-msgid "Platforms, last {0} days"
+msgid "Countries, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:161
-msgid "Platforms from {0} to {1}"
+msgid "Countries from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:165
-msgid "Languages, last {0} days"
+msgid "Platforms, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:167
-msgid "Languages from {0} to {1}"
+msgid "Platforms from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:171
-msgid "Add-on Versions, last {0} days"
+msgid "Languages, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:173
-msgid "Add-on Versions from {0} to {1}"
+msgid "Languages from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:177
-msgid "Add-on Status, last {0} days"
+msgid "Add-on Versions, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:179
-msgid "Add-on Status from {0} to {1}"
+msgid "Add-on Versions from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:183
-msgid "Download Sources, last {0} days"
+msgid "Add-on Status, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:185
-msgid "Download Sources from {0} to {1}"
+msgid "Add-on Status from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:189
-msgid "Contributions, last {0} days"
+msgid "Download Sources, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:191
-msgid "Contributions from {0} to {1}"
+msgid "Download Sources from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:195
-msgid "Site Metrics, last {0} days"
+msgid "Contributions, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:197
-msgid "Site Metrics from {0} to {1}"
+msgid "Contributions from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:201
-msgid "Add-ons in Use, last {0} days"
+msgid "Site Metrics, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:203
-msgid "Add-ons in Use from {0} to {1}"
+msgid "Site Metrics from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:207
-msgid "Add-ons Downloaded, last {0} days"
+msgid "Add-ons in Use, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:209
-msgid "Add-ons Downloaded from {0} to {1}"
+msgid "Add-ons in Use from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:213
-msgid "Add-ons Created, last {0} days"
+msgid "Add-ons Downloaded, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:215
-msgid "Add-ons Created from {0} to {1}"
+msgid "Add-ons Downloaded from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:219
-msgid "Add-ons Updated, last {0} days"
+msgid "Add-ons Created, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:221
-msgid "Add-ons Updated from {0} to {1}"
+msgid "Add-ons Created from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:225
-msgid "Reviews Written, last {0} days"
+msgid "Add-ons Updated, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:227
-msgid "Reviews Written from {0} to {1}"
+msgid "Add-ons Updated from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:231
-msgid "User Signups, last {0} days"
+msgid "Reviews Written, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:233
-msgid "User Signups from {0} to {1}"
+msgid "Reviews Written from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:237
-msgid "Collections Created, last {0} days"
+msgid "User Signups, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:239
-msgid "Collections Created from {0} to {1}"
+msgid "User Signups from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:243
-msgid "Subscribers, last {0} days"
+msgid "Collections Created, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:245
-msgid "Subscribers from {0} to {1}"
+msgid "Collections Created from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:249
-msgid "Ratings, last {0} days"
+msgid "Subscribers, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:251
-msgid "Ratings from {0} to {1}"
+msgid "Subscribers from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:255
-msgid "Sales, last {0} days"
+msgid "Ratings, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:257
-msgid "Sales from {0} to {1}"
+msgid "Ratings from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:261
-msgid "Installs, last {0} days"
+msgid "Sales, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js:263
+msgid "Sales from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+#: static/js/impala/stats/csv_keys.js:267
+msgid "Installs, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/impala/stats/csv_keys.js:269
 msgid "Installs from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js:269
+#: static/js/impala/stats/csv_keys.js:275
 msgid "<b>{0}</b> in last {1} days"
 msgstr ""
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277
+#: static/js/impala/stats/csv_keys.js:277 static/js/impala/stats/csv_keys.js:283
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr ""
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js:275
+#: static/js/impala/stats/csv_keys.js:281
 msgid "<b>{0}</b> average in last {1} days"
 msgstr ""
 

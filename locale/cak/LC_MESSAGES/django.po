@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2020-03-19 00:02+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2380,18 +2380,6 @@ msgid ""
 msgstr ""
 "Xab'achike etamab'äl nikajo' niketamaj ri okisanela' xa xe chi man k'o ta pa ruch'utitzijol o rutzijoxkil tz'aqat. Ri relik ta okisanem ja ri kicholb'al etaman taq sachoj, etamab'äl pa ruwi' "
 "rub'eyal ye'atäq sachoj, kiq'ijul k'ak'a' taq ruwäch, ch'aqa' chik. Okel xa xe pa cholajin taq tz'aqat."
-
-msgid "Public Stats?"
-msgstr "¿La E Xab'achike Molob'a'?"
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Yojtikïr niqak'üt ri ruqasaxik chuqa' ri rub'anikil rokisaxik ri atz'aqat pan online qatz'etob'al. Okel xa xe pa cholajin taq tz'aqat."
-
-msgid "This add-on's stats are publicly viewable."
-msgstr "Ri taq rumolob'a' re tz'aqat re' xab'achike nitz'eto."
-
-msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Manäq, ri taq rumolob'a' re tz'aqat re' man xab'achike ta nitz'eto."
 
 msgid "Universally unique identifier"
 msgstr "Ojer yonil k'utunel"
@@ -5853,9 +5841,6 @@ msgstr "Wachel"
 msgid "Visible"
 msgstr "Tz'etel"
 
-msgid "View Statistics"
-msgstr "Kek'ut pe ri taq Molob'a'"
-
 msgid "Average Daily Users"
 msgstr "Kipajik Okisanela' Q'ij Q'ij"
 
@@ -6228,8 +6213,15 @@ msgstr "Titz'apïx re rutzijol re'"
 msgid "Files in this version:"
 msgstr "Taq ruyakb'al re ruwäch re':"
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Taq ruyakb'al re ruwäch re':"
+
 msgid "Contents"
 msgstr "Taq rupam"
+
+msgid "Compare this version to the last reviewed version"
+msgstr ""
 
 msgid "Compare"
 msgstr "Tijunamäx"
@@ -6500,6 +6492,9 @@ msgstr "chi Ch'ab'äl"
 msgid "by Platform"
 msgstr "chi Nuk'uche'el"
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr "chi Kib'anikilTz'aqat"
 
@@ -6568,6 +6563,14 @@ msgstr "365 taq q'ij"
 msgid "Custom..."
 msgstr "Ichinan..."
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "Wakami chupül ri rub'eyal molob'a', ruma ri' toq ri k'ak'a' taq tzij man e wachel ta. K'a yeqamöl taq molob'a' chuqa' xtuk'ëx ri' ri ruxaq rik'in ri taq tzij k'a nrajo' na."
 
@@ -6577,17 +6580,16 @@ msgstr "Yesamajib'ëx ri ruk'isib'äl taq tzij&hellip;"
 msgid "No data available."
 msgstr "Majun tzij wachel"
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "Wakami re pas re' <b>aj winäq</b>."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "Wakami re pas re' <b>ichinan</b>."
-
-msgid "Change settings."
-msgstr "Kejal taq nuk'ulem."
 
 msgid "Application usage by Date"
 msgstr "Rokisaxik chokoy chi Q'ijul"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "Kich'ab'äl okisanela' chi Q'ijul"
 
 msgid "Downloaded by Date"
 msgstr "Niqasäx chi Q'ijul"
@@ -6778,10 +6780,6 @@ msgstr "¿La kan nawajo' ye'ayüj ri taq <b>{0}</b> tzalq'omanïk? Man xkatikïr
 msgid "Delete Locale"
 msgstr "Tiyuj Ch'ab'äl"
 
-#, fuzzy
-msgid "User Restriction History"
-msgstr "Titz'apïx Runatab'al Nik'oxik"
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "Xyuj ri okisanel \"%(user)s\"."
@@ -6874,6 +6872,10 @@ msgid "Please read and accept our Firefox Add-on Distribution Agreement as well 
 msgstr ""
 "Chuwäch natikirisaj, tasik'ij chuqa' tak'ulu' ri Qajunamil richin Kitaluxik Kitz'aqat Firefox chuqa' ri taq Qab'eyal chuqa' taq Qana'ojil richin Nik'oxïk. Pa ri Junamil chuqa' xtawïl jun ximonel "
 "yaruk'waj pa ri Qatzijol richin Ichinanem, chi ri' nitzijöx rub'eyal xtiqanuk'samajij ri awetamab'al."
+
+#, fuzzy
+msgid "User Restriction History"
+msgstr "Titz'apïx Runatab'al Nik'oxik"
 
 msgid "an add-on developer replies to my review"
 msgstr "jun b'anonel tz'aqat nutzolij tzij chi rij ri nunik'oxïk"

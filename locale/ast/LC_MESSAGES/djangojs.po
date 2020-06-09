@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:36+0000\n"
+"POT-Creation-Date: 2020-06-09 18:01+0000\n"
 "PO-Revision-Date: 2020-03-21 14:08+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -445,6 +445,16 @@ msgstr "Aplicaciones nos últimos {0} díes"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
 msgstr "Aplicaciones dende'l {0} hasta'l {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Countries, last {0} days"
+msgstr "Collaboraciones nos últimos {0} díes"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Countries from {0} to {1}"
+msgstr "Collaboraciones dende'l {0} hasta'l {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"

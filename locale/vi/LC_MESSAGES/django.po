@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2020-05-20 17:17+0000\n"
 "Last-Translator: Pierre Neter <pierreneter@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -2327,18 +2327,6 @@ msgstr "Bình luận của Nhà phát triển"
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Public Stats?"
-msgstr ""
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's stats are publicly viewable."
-msgstr ""
-
-msgid "No, this add-on's stats are not publicly viewable."
 msgstr ""
 
 msgid "Universally unique identifier"
@@ -5659,9 +5647,6 @@ msgstr ""
 msgid "Visible"
 msgstr ""
 
-msgid "View Statistics"
-msgstr "Xem Thống Kê"
-
 msgid "Average Daily Users"
 msgstr "Người dùng Hàng ngày Trung bình"
 
@@ -6025,7 +6010,14 @@ msgstr "Bỏ thông báo này"
 msgid "Files in this version:"
 msgstr ""
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Khám phá tất cả tiện ích"
+
 msgid "Contents"
+msgstr ""
+
+msgid "Compare this version to the last reviewed version"
 msgstr ""
 
 msgid "Compare"
@@ -6284,6 +6276,9 @@ msgstr "theo Ngôn ngữ"
 msgid "by Platform"
 msgstr "theo Nền tảng"
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr "theo Trạng thái Tiện ích"
 
@@ -6352,6 +6347,14 @@ msgstr "365 ngày"
 msgid "Custom..."
 msgstr "Tùy biến…"
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
 
@@ -6361,17 +6364,16 @@ msgstr "Đang nạp dữ liệu mới nhất&hellip;"
 msgid "No data available."
 msgstr "Không có dữ liệu."
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "Bảng điều khiển này hiện đang <b>công khai</b>."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "Bảng điều khiển này hiện đang <b>riêng tư</b>."
-
-msgid "Change settings."
-msgstr "Thay đổi cài đặt."
 
 msgid "Application usage by Date"
 msgstr "Sử dụng ứng dụng theo Ngày"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "Ngôn ngữ người dùng theo Ngày"
 
 msgid "Downloaded by Date"
 msgstr "Tải xuống theo ngày"
@@ -6557,9 +6559,6 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
-msgid "User Restriction History"
-msgstr ""
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr ""
@@ -6644,6 +6643,9 @@ msgid ""
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgstr ""
+
+msgid "User Restriction History"
 msgstr ""
 
 msgid "an add-on developer replies to my review"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2367,18 +2367,6 @@ msgid ""
 msgstr ""
 "Maklumat yang mungkin ingin diketahui oleh pengguna akhir dan tidak semestinya berkaitan ringkasan dan keterangan add-on. Biasanya digunakan untuk menyenaraikan pepijat utama yang ketahui, maklumat "
 "perihal cara melaporkan pepijat, tarikh keluaran versi baru, dsb. Ini hanya berkenaan add-on yang tersenarai."
-
-msgid "Public Stats?"
-msgstr "Statistik Umum?"
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Samada muat turun dan penggunaan add-on anda boleh dipamer pada paparan dalam talian kami. Ini hanya berkenaan add-on yang tersenarai."
-
-msgid "This add-on's stats are publicly viewable."
-msgstr "Statistik add-on ini dipamer kepada umum."
-
-msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Tidak, statistik add-on ini tidak boleh dipamer kepada umum."
 
 msgid "Universally unique identifier"
 msgstr "Pengecam unik universal"
@@ -5851,9 +5839,6 @@ msgstr "Ketampakan"
 msgid "Visible"
 msgstr "Tampak"
 
-msgid "View Statistics"
-msgstr "Lihat Statistik"
-
 msgid "Average Daily Users"
 msgstr "Purata Pengguna Harian"
 
@@ -6226,8 +6211,15 @@ msgstr "Abaikan pengumuman ini"
 msgid "Files in this version:"
 msgstr "Fail dalam versi ini:"
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Fail dalam versi ini:"
+
 msgid "Contents"
 msgstr "Kandungan"
+
+msgid "Compare this version to the last reviewed version"
+msgstr ""
 
 msgid "Compare"
 msgstr "Banding"
@@ -6494,6 +6486,9 @@ msgstr "mengikut Bahasa"
 msgid "by Platform"
 msgstr "mengikut Platform"
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr "mengikut Status Add-on"
 
@@ -6562,6 +6557,14 @@ msgstr "365 hari"
 msgid "Custom..."
 msgstr "Penyesuaian..."
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "Pemprosesan statistik dinyahdayakan buat masa ini, jadi tidak ada data terkini. Statistik masih sedang dikumpulkan dan halaman ini akan dikemaskini tidak lama lagi dengan data yang hilang."
 
@@ -6571,17 +6574,16 @@ msgstr "Memuatkan data&hellip; terkini"
 msgid "No data available."
 msgstr "Tiada data tersedia."
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "Papan pemuka ini kini<b>umum</b>."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "Papan pemuka ini kini<b>peribadi</b>."
-
-msgid "Change settings."
-msgstr "Tukar tetapan."
 
 msgid "Application usage by Date"
 msgstr "Penggunaan Aplikasi mengikut Tarikh"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "Bahasa pengguna mengikut Tarikh"
 
 msgid "Downloaded by Date"
 msgstr "Dimuat turun mengikut Tarikh"
@@ -6777,10 +6779,6 @@ msgstr "Adakah anda pasti mahu menghapuskan semua terjemahan <b>{0}</b>? Ini tid
 msgid "Delete Locale"
 msgstr "Buang Lokaliti"
 
-#, fuzzy
-msgid "User Restriction History"
-msgstr "Tutup Sejarah Semakan"
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "Pengguna \"%(user)s\" telah disekat."
@@ -6873,6 +6871,10 @@ msgid "Please read and accept our Firefox Add-on Distribution Agreement as well 
 msgstr ""
 "Sebelum memulakan, sila baca dan terima Perjanjian Pengedaran Add-on Firefox serta Polisi dan Peraturan Semakan kami. Perjanjian Pengedaran Add-on Firefox juga ada hubungan dengan Notis Privasi "
 "kami yang menjelaskan cara kami mengendalikan maklumat anda."
+
+#, fuzzy
+msgid "User Restriction History"
+msgstr "Tutup Sejarah Semakan"
 
 msgid "an add-on developer replies to my review"
 msgstr "pembangun add-on membalas ulasan saya"

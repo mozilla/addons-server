@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2020-05-04 05:13+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -2376,18 +2376,6 @@ msgid ""
 msgstr ""
 "Orice informații pe care utilizatorii finali ar vrea să le știe și care nu sunt neapărat obligatoriu de inclus în rezumatul sau în descrierea suplimentului. Utilizările frecvente includ enumerarea "
 "defectelor majore, informații despre raportarea defectelor, data preconizată de lansare a unei versiuni noi etc. Este relevant numai pentru suplimentele listate."
-
-msgid "Public Stats?"
-msgstr "Statistici publice?"
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Dacă statisticile de descărcare și de utilizare aferente suplimentului tău pot fi afișate în vizualizatorul nostru online. Are relevanță numai pentru suplimentele listate."
-
-msgid "This add-on's stats are publicly viewable."
-msgstr "Statisticile acestui supliment sunt vizibile publicului."
-
-msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Nu, statisticile acestui supliment nu sunt vizibile publicului."
 
 msgid "Universally unique identifier"
 msgstr "Identificator unic universal"
@@ -5809,9 +5797,6 @@ msgstr "Vizibilitate"
 msgid "Visible"
 msgstr "Vizibil"
 
-msgid "View Statistics"
-msgstr "Vezi statisticile"
-
 msgid "Average Daily Users"
 msgstr "Media de utilizatori zilnici"
 
@@ -6170,8 +6155,15 @@ msgstr "Respinge acest anunț"
 msgid "Files in this version:"
 msgstr "Fișiere în această versiune:"
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Fișiere în această versiune:"
+
 msgid "Contents"
 msgstr "Conținuturi"
+
+msgid "Compare this version to the last reviewed version"
+msgstr ""
 
 msgid "Compare"
 msgstr "Compară"
@@ -6436,6 +6428,9 @@ msgstr "după limbă"
 msgid "by Platform"
 msgstr "după platformă"
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr "după starea suplimentului"
 
@@ -6504,6 +6499,14 @@ msgstr "365 de zile"
 msgid "Custom..."
 msgstr "Personalizat..."
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
 "Prelucrarea statisticilor este momentan dezactivată și, deci, nu sunt disponibile date recente. Statisticile sunt în continuare colectate și pagina va fi actualizată în curând cu datele lipsă."
@@ -6514,17 +6517,16 @@ msgstr "Se încarcă cele mai recente date&hellip;"
 msgid "No data available."
 msgstr "Nu există date disponibile."
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "Acest tablou de bord este în prezent <b>public</b>."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "Acest tablou de bord este în prezent <b>privat</b>."
-
-msgid "Change settings."
-msgstr "Modifică setările."
 
 msgid "Application usage by Date"
 msgstr "Utilizarea aplicației în funcție de dată"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "Limbile utilizatorilor în funcție de dată"
 
 msgid "Downloaded by Date"
 msgstr "Descărcări în funcție de dată"
@@ -6722,9 +6724,6 @@ msgstr "Sigur vrei să elimini toate <b>{0}</b> traducerile? Acțiunea nu poate 
 msgid "Delete Locale"
 msgstr "Șterge traducerea"
 
-msgid "User Restriction History"
-msgstr "Istoricul restricțiilor utilizatorului"
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "Utilizatorului „%(user)s” i s-a pus interdicție."
@@ -6817,6 +6816,9 @@ msgstr ""
 #, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Te rugăm să citești și să accepți Acordul de distribuție Firefox, precum și Politicile și regulile noastre pentru recenzii intrând pe {url}"
+
+msgid "User Restriction History"
+msgstr "Istoricul restricțiilor utilizatorului"
 
 msgid "an add-on developer replies to my review"
 msgstr "un dezvoltator de suplimente răspunde la recenzia mea"
