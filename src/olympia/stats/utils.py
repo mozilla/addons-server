@@ -85,3 +85,26 @@ LIMIT 365"""
         ).result()
 
     return rows_to_series(rows, filter_by=filter_by)
+
+
+def get_addons_and_average_daily_users_from_bigquery():
+    client = bigquery.Client.from_service_account_json(
+        settings.GOOGLE_APPLICATION_CREDENTIALS
+    )
+
+    fully_qualified_table_name = '.'.join(
+        [
+            settings.BIGQUERY_PROJECT,
+            settings.BIGQUERY_AMO_DATASET,
+            AMO_STATS_DAU_VIEW,
+        ]
+    )
+    query = f"""
+SELECT addon_id, AVG(dau) AS count
+FROM `{fully_qualified_table_name}`
+WHERE submission_date > DATE_SUB(CURRENT_DATE(), INTERVAL 13 DAY)
+GROUP BY addon_id"""
+
+    rows = client.query(query).result()
+
+    return [(row['addon_id'], row['count']) for row in rows]

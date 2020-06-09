@@ -5,14 +5,12 @@ from django.core.management import call_command
 import waffle
 
 import olympia.core.logger
-
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 
 from .models import UpdateCount
 
 
-task_log = olympia.core.logger.getLogger('z.task')
-cron_log = olympia.core.logger.getLogger('z.cron')
+log = olympia.core.logger.getLogger('z.cron')
 
 
 def index_latest_stats(index=None):
@@ -29,5 +27,5 @@ def index_latest_stats(index=None):
     else:
         latest = fmt(datetime.date.today() - datetime.timedelta(days=1))
     date_range = '%s:%s' % (latest, fmt(datetime.date.today()))
-    cron_log.info('index_stats --date=%s' % date_range)
+    log.info('index_stats --date=%s' % date_range)
     call_command('index_stats', addons=None, date=date_range)
