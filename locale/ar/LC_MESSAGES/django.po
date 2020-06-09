@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-05-29 04:41+0000\n"
-"Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
+"PO-Revision-Date: 2020-06-09 06:22+0000\n"
+"Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -3271,7 +3271,7 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "برنامج الإمتدادات الموصى بها"
 
 msgid "Contribute"
 msgstr "ساهم"
@@ -5730,7 +5730,7 @@ msgid "Pre-Review Add-ons"
 msgstr "تعليق على هذه الإضافة"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "موصى به ({0})"
 
 #, fuzzy
 msgid "Other Pending Review ({0})"
@@ -6129,7 +6129,7 @@ msgid "Previously deleted entries"
 msgstr ""
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "هذا امتداد موصى به."
 
 msgid "You don't have permission to review it."
 msgstr ""
