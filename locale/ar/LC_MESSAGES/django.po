@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 07:25+0000\n"
+"PO-Revision-Date: 2020-06-09 07:36+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -4200,7 +4200,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "اجعله يوتيوبك الخاص. شغّل فيديوهاتك في نافذة منبثقة ، ولا تشاهد الإعلانات إلا ضمن القنوات المشترك بها، والتقط لقطات شاشة للفيديو ، وغير ذلك الكثير."
+msgstr "اجعله يوتيوبك الخاص. شغّل الفيديوهات في نافذة منبثقة ، ولا تشاهد الإعلانات إلا ضمن القنوات المشترك بها، والتقط لقطات شاشة للفيديو ، وغير ذلك الكثير."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5044,7 +5044,7 @@ msgstr "أدوات التحكم في الألسنة وتنظيمها"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "الخصوصية خارج امتدادات المتصفح"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
