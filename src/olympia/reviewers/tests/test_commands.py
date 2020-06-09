@@ -61,9 +61,11 @@ class AutoApproveTestsMixin(object):
 
     def create_candidates(self):
         # We already have an add-on with a version awaiting review that should
-        # be considered. Make sure its nomination date is in the past to test
-        # ordering.
-        self.version.update(nomination=self.days_ago(1))
+        # be considered. Make sure its nomination and creation date is in the
+        # past to test ordering.
+        self.version.update(
+            created=self.days_ago(1), nomination=self.days_ago(1)
+        )
         # Add a second file to self.version to test the distinct().
         file_factory(
             version=self.version, status=amo.STATUS_AWAITING_REVIEW,
@@ -81,7 +83,8 @@ class AutoApproveTestsMixin(object):
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
         new_addon_version = new_addon.versions.all()[0]
-        new_addon_version.update(nomination=self.days_ago(2))
+        new_addon_version.update(
+            created=self.days_ago(2), nomination=self.days_ago(2))
         # Even add an empty reviewer flags instance, that should not matter.
         AddonReviewerFlags.objects.create(addon=new_addon)
 
@@ -92,7 +95,8 @@ class AutoApproveTestsMixin(object):
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
         langpack_version = langpack.versions.all()[0]
-        langpack_version.update(nomination=self.days_ago(3))
+        langpack_version.update(
+            created=self.days_ago(3), nomination=self.days_ago(3))
 
         # Add a dictionary: it should also be considered.
         dictionary = addon_factory(
@@ -101,7 +105,8 @@ class AutoApproveTestsMixin(object):
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True})
         dictionary_version = dictionary.versions.all()[0]
-        dictionary_version.update(nomination=self.days_ago(4))
+        dictionary_version.update(
+            created=self.days_ago(4), nomination=self.days_ago(4))
 
         # search engine plugins are considered now
         search_addon = addon_factory(name='Search', type=amo.ADDON_SEARCH)
@@ -109,7 +114,7 @@ class AutoApproveTestsMixin(object):
             addon=search_addon, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True},
-            nomination=self.days_ago(5))
+            created=self.days_ago(5), nomination=self.days_ago(5))
 
         # Some recommended add-ons - one nominated and one update.
         # They should be considered by fetch_candidate(), so that they get a
@@ -120,7 +125,8 @@ class AutoApproveTestsMixin(object):
             status=amo.STATUS_NOMINATED,
             version_kw={
                 'recommendation_approved': True,
-                'nomination': self.days_ago(6)
+                'nomination': self.days_ago(6),
+                'created': self.days_ago(6),
             },
             file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
@@ -134,6 +140,7 @@ class AutoApproveTestsMixin(object):
             addon=recommended_addon,
             recommendation_approved=True,
             nomination=self.days_ago(7),
+            created=self.days_ago(7),
             file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True
@@ -149,11 +156,13 @@ class AutoApproveTestsMixin(object):
             name='Complex Addon', file_kw={'is_webextension': True})
         complex_addon_version = version_factory(
             nomination=self.days_ago(8),
+            created=self.days_ago(8),
             addon=complex_addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
             file_kw={'is_webextension': True,
                      'status': amo.STATUS_AWAITING_REVIEW})
         version_factory(
             nomination=self.days_ago(9),
+            created=self.days_ago(9),
             addon=complex_addon, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW}
         )
@@ -165,6 +174,7 @@ class AutoApproveTestsMixin(object):
         complex_addon_2_version = version_factory(
             addon=complex_addon_2, channel=amo.RELEASE_CHANNEL_UNLISTED,
             nomination=self.days_ago(10),
+            created=self.days_ago(10),
             file_kw={'is_webextension': True,
                      'status': amo.STATUS_AWAITING_REVIEW}
         )
@@ -177,6 +187,7 @@ class AutoApproveTestsMixin(object):
             disabled_by_user=True)
         user_disabled_addon_version = version_factory(
             nomination=self.days_ago(11),
+            created=self.days_ago(11),
             channel=amo.RELEASE_CHANNEL_UNLISTED,
             addon=user_disabled_addon, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
@@ -188,7 +199,8 @@ class AutoApproveTestsMixin(object):
         # about that.
         pure_unlisted = addon_factory(name='Pure unlisted', version_kw={
             'channel': amo.RELEASE_CHANNEL_UNLISTED,
-            'nomination': self.days_ago(12)}, file_kw={
+            'nomination': self.days_ago(12),
+            'created': self.days_ago(12)}, file_kw={
             'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
         }, status=amo.STATUS_NULL)
         pure_unlisted_version = pure_unlisted.versions.get()
@@ -196,7 +208,8 @@ class AutoApproveTestsMixin(object):
         # Unlisted static theme.
         unlisted_theme = addon_factory(name='Unlisted theme', version_kw={
             'channel': amo.RELEASE_CHANNEL_UNLISTED,
-            'nomination': self.days_ago(13)}, file_kw={
+            'nomination': self.days_ago(13),
+            'created': self.days_ago(13)}, file_kw={
             'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW
         }, status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
         unlisted_theme_version = unlisted_theme.versions.get()
@@ -726,17 +739,17 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         command = notify_about_auto_approve_delay.Command()
         qs = command.fetch_versions_waiting_for_approval_for_too_long()
 
-        # Test that they are all present (all nomination date created by
+        # Test that they are all present (all created date created by
         # create_candidates() are far enough in the past)
         assert [(version.addon, version) for version in qs] == expected
 
-        # Reset nomination for a few selected add-ons to be more recent and
+        # Reset created for a few selected add-ons to be more recent and
         # they should no longer be present (remove them from expected and
         # re-test)
         addon, version = expected.pop(0)
-        version.update(nomination=datetime.now())
+        version.update(created=datetime.now())
         addon, version = expected.pop(0)
-        version.update(nomination=datetime.now() - timedelta(
+        version.update(created=datetime.now() - timedelta(
             hours=command.WAITING_PERIOD_HOURS) + timedelta(seconds=30))
         qs = command.fetch_versions_waiting_for_approval_for_too_long()
         assert [(version.addon, version) for version in qs] == expected
@@ -761,7 +774,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         # Not awaiting review.
         addon_factory(
             file_kw={'is_webextension': True},
-            version_kw={'nomination': self.days_ago(1)}
+            version_kw={'created': self.days_ago(1)}
         ).authors.add(user_factory())
         # Not awaiting review for long enough.
         addon_factory(
@@ -776,7 +789,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
                 'is_webextension': True,
                 'status': amo.STATUS_AWAITING_REVIEW
             },
-            version_kw={'nomination': self.days_ago(1)})
+            version_kw={'created': self.days_ago(1)})
         users = [user_factory(), user_factory()]
         [addon.authors.add(user) for user in users]
 
