@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:01+0000\n"
-"PO-Revision-Date: 2019-10-01 18:50+0000\n"
-"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
+"PO-Revision-Date: 2020-06-09 19:47+0000\n"
+"Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -447,14 +447,12 @@ msgid "Applications from {0} to {1}"
 msgstr "יישומים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "תרומות, ב־{0} הימים האחרונים"
+msgstr "מדינות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "תרומות מתאריך {0} עד {1}"
+msgstr "מדינות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
