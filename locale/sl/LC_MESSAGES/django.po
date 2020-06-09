@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 08:38+0000\n"
+"PO-Revision-Date: 2020-06-09 08:49+0000\n"
 "Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3825,7 +3825,7 @@ msgstr "Pustite čisto digitalno sled. Naj Firefox pozabi podatke spletnih mest,
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Ni potrebe pisati iste stvari znova in znova. Pogosto uporabljena besedila shranite, da jih lahko kadarkoli prilepite."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4904,7 +4904,7 @@ msgstr "Glasovno iskanje {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Uporabite prepoznavo govora, da omogočite glasovno iskanje v iskalnikih Google, Yahooj in DuckDuckGo."
 
 #. editorial content for the discovery pane.
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4912,7 +4912,7 @@ msgstr "Sledite cenam izdelkov {start_sub_heading}z {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Sledite izdelkom in prejemajte obvestila, ko se znižajo cene izdelkov, ki vas zanimajo v trgovinah Amazon, Best Buy, eBay, Home Depot in Walmart."
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4928,7 +4928,7 @@ msgstr "Izboljšano iskanje v Androidu {start_sub_heading}z {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Pridobite naprednejšo stran za iskanje v Firefoxu za Android."
 
 #. editorial content for the discovery pane.
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4940,7 +4940,7 @@ msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v Firefoxu 
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Izberite, razvrstite in hitreje zaženite prenose."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4961,11 +4961,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Preprosto organizirajte veliko število odprtih zavihkov."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Ustvarite in prilagodite skupine zavihkov."
 
 #. editorial content for the discovery pane.
 #, fuzzy
