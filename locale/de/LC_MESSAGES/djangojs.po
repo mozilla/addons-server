@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:01+0000\n"
-"PO-Revision-Date: 2015-10-19 21:09+0000\n"
+"PO-Revision-Date: 2020-06-09 18:34+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -126,8 +126,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Von minifizierten, verkürzten oder anderweitig maschinengenerierten Skripten (außer bekannten Bibliotheken) müssen die Quelltexte getrennt zur Überprüfung eingereicht werden. Verwenden Sie "
-"unbedingt das Feld zum Hochladen von Quelltext, damit Ihre Einreichung nicht abgelehnt wird."
+"Von minifizierten, verkürzten oder anderweitig maschinengenerierten Skripten (außer bekannten Bibliotheken) müssen die Quelltexte getrennt zur Überprüfung eingereicht werden. Verwenden Sie unbedingt"
+" das Feld zum Hochladen von Quelltext, damit Ihre Einreichung nicht abgelehnt wird."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Der Validierungsprozess stellte folgende Probleme fest, die zur Ablehnung führen könnten:"
@@ -452,14 +452,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Apps von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Spenden in den letzten {0} Tagen"
+msgstr "Länder in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Spenden von {0} bis {1}"
+msgstr "Länder von {0} bis {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
