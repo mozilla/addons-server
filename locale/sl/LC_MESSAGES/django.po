@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 09:07+0000\n"
+"PO-Revision-Date: 2020-06-09 09:15+0000\n"
 "Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4926,9 +4926,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr "Izberite, razvrstite in hitreje zaženite prenose."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "Trenutne vremenske posodobitve z vsega sveta."
+msgstr "Trenutne vremenske posodobitve neposredno v brskalniku."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -5038,9 +5037,8 @@ msgstr "Ne morete razlikovati različice od same sebe"
 msgid "Could not parse the manifest file."
 msgstr "Datoteke manifesta ni bilo mogoče razčleniti."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Za Firefox 47 in nižje je zahtevan GUID."
+msgstr "Za Firefox 47 in starejše je zahtevan ID dodatka."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Najnižja podprta vrednost \"strict_min_version\" je 42.0."
@@ -5103,9 +5101,9 @@ msgstr "Največja možna velikost za teme WebExtension je {0}."
 msgid "You cannot submit this type of add-on"
 msgstr "Te vrste dodatka ne morete oddati"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "Ne morete oddati dodatka, katerega guid se končuje z %s"
+msgstr "Ne morete oddati dodatka, katerega ID se končuje z %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ne morete poslati Mozilline podpisane razširitve"
@@ -5566,9 +5564,8 @@ msgstr[1] "{0} dneva"
 msgstr[2] "{0} dnevi"
 msgstr[3] "{0} dni"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Zadnji pregled"
@@ -5582,21 +5579,18 @@ msgstr "Rok zahteve za informacije"
 msgid "Last Updated"
 msgstr "Nazadnje posodobljeno"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Drugi čakajoči na pregled ({0})"
+msgstr "Različice na seznamu, ki potrebujejo človeški pregled ({0})"
 
 #, fuzzy
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Drugi čakajoči na pregled ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Navedene različice"
+msgstr "Navedene različice ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Navedene različice"
+msgstr "Nenavedene različice ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "S tem boste različico odobrili, podpisali in objavili. Komentarji bodo poslani razvijalcu."
@@ -5619,24 +5613,20 @@ msgstr "Najnovejša javna različica tega dodatka je bila samodejno odobrena. To
 msgid "Reject Multiple Versions"
 msgstr "Zavrni več različic"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "S tem boste zavrnili izbrane javne različice. Komentarji bodo poslani razvijalcu."
+msgstr "S tem boste zavrnili izbrane različice. Komentarji bodo poslani razvijalcu."
 
-#, fuzzy
 msgid "Block Multiple Versions"
 msgstr "Zavrni več različic"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Zavrni več različic"
+msgstr "Potrdi več različic"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "To zabeleži vašo odobritev vsebine zadnje javne različice, brez obveščanja razvijalca."
+msgstr "S tem boste potrdili odobritev izbranih različic, ne da bi o tem obvestili razvijalca."
 
 msgid "Reviewer reply"
 msgstr "Odgovor pregledovalca"
@@ -5762,13 +5752,11 @@ msgstr "Pregled uspešno obdelan."
 msgid "Review lock limit reached"
 msgstr "Dosežena omejitev za zaklepanje pregledov"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: Licenčna pogodba"
+msgstr "{addon} – Licenčna pogodba"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Pravilnik o zasebnosti"
+msgstr "{addon} – Pravilnik o zasebnosti"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5960,9 +5948,8 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Samodejno odobreni dodatki"
+msgstr "Samodejno odobreni dodatki – Dodatki za Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
@@ -6032,9 +6019,8 @@ msgstr "Predhodno izbrisani vnosi"
 msgid "This is a recommended extension."
 msgstr "To je priporočena razširitev."
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Nimate poveril API."
+msgstr "Nimate dovoljenja za pregled."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Izberite eno ali več različic na zgornjem seznamu."
@@ -6086,9 +6072,8 @@ msgstr "Ogled vseh prispevkov"
 
 # 80%
 # 100%
-#, fuzzy
 msgid "Block add-on"
-msgstr "Nazaj na dodatek"
+msgstr "Zavrni dodatek"
 
 msgid "Update add-on block"
 msgstr ""
@@ -6390,9 +6375,8 @@ msgstr "Neveljavna kombinacija parametrov \"%s\", \"%s\" in \"%s\"."
 msgid "Maximum query length exceeded."
 msgstr "Največja dolžina poizvedbe prekoračena."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Dodatka z guid-jem \"{}\" ni bilo mogoče najti."
+msgstr "Dodatka z ID-jem \"{}\" ni bilo mogoče najti."
 
 msgid "You do not own this addon."
 msgstr "Niste lastnik tega dodatka."
@@ -6415,13 +6399,11 @@ msgstr "Različica že obstaja. Najnovejša različica je: %s."
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr "GUID-ju se lahko izognejo samo WebExtensions"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "V manifestu navedite GUID svojega dodatka, če je daljši od 64 znakov."
+msgstr "V manifestu navedite ID svojega dodatka, če je daljši od 64 znakov."
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Neveljaven GUID v spletnem naslovu"
+msgstr "Neveljaven ID dodatka v spletnem naslovu ali paketu"
 
 #, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
