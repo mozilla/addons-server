@@ -4,8 +4,6 @@ from django.utils.translation import ugettext_lazy as _
 
 import waffle
 
-from olympia.addons.models import Addon
-
 from .models import Block, BlocklistSubmission
 from .utils import splitlines
 
@@ -68,7 +66,7 @@ class MultiAddForm(MultiGUIDInputForm):
         if len(guids) == 1:
             guid = guids[0]
             blk = self.existing_block = Block.objects.filter(guid=guid).first()
-            if not blk and not Addon.unfiltered.filter(guid=guid).exists():
+            if not blk and not Block.get_addons_for_guids_qs((guid,)).exists():
                 errors.append(ValidationError(
                     _('Addon with GUID %(guid)s does not exist'),
                     params={'guid': guid}))
