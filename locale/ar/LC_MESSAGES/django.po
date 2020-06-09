@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 13:08+0000\n"
+"PO-Revision-Date: 2020-06-09 13:11+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -666,7 +666,7 @@ msgid "The addon has been flagged for Admin Review.  It's still in our review qu
 msgstr ""
 
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "تعليق على {addon} {version}."
 
 msgid "Commented"
 msgstr "علّق"
@@ -736,7 +736,7 @@ msgid "Authors emailed about compatibility of {version}."
 msgstr ""
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "تم إرسال بريد إلكتروني إلى المسؤل حول توافق الإضافة."
 
 msgid "Password changed."
 msgstr "تغيّرت كلمة السر."
@@ -769,16 +769,16 @@ msgid "User {user} restricted."
 msgstr "المستخدم {user} محظور."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "قام المسؤول {0} بعرض سجل الأنشطة لـ {user}."
 
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "تم تحديث {rating} لـ {addon}."
 
 msgid "{addon} reviewed."
 msgstr "جرت مراجعة {addon}."
 
 msgid "User {user} banned."
-msgstr ""
+msgstr "تم حظر {user}."
 
 msgid "User {user} picture deleted."
 msgstr ""
