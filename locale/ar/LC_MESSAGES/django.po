@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 06:22+0000\n"
+"PO-Revision-Date: 2020-06-09 06:50+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -2909,7 +2909,7 @@ msgid "Select a header image for your theme"
 msgstr "اختر ترخيصًا"
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "الارتفاع الموصى به: 200 بكسل"
 
 msgid "6.9MB max"
 msgstr ""
@@ -3046,9 +3046,8 @@ msgstr ""
 msgid "Invisible"
 msgstr ""
 
-#, fuzzy
 msgid "Approved and recommended"
-msgstr "التعليقات الموافق عليها"
+msgstr "المُعتمدة والمُقترحة"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -3271,7 +3270,7 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Recommended Extensions program"
-msgstr "برنامج الإمتدادات الموصى بها"
+msgstr "برنامج الإمتدادات المُقترحة"
 
 msgid "Contribute"
 msgstr "ساهم"
@@ -5568,7 +5567,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "مُقترحة"
 
 msgid "Delayed because it's the first listed version"
 msgstr ""
@@ -5730,7 +5729,7 @@ msgid "Pre-Review Add-ons"
 msgstr "تعليق على هذه الإضافة"
 
 msgid "Recommended ({0})"
-msgstr "موصى به ({0})"
+msgstr "المُقترح ({0})"
 
 #, fuzzy
 msgid "Other Pending Review ({0})"
@@ -6129,7 +6128,7 @@ msgid "Previously deleted entries"
 msgstr ""
 
 msgid "This is a recommended extension."
-msgstr "هذا امتداد موصى به."
+msgstr "هذا امتداد مُقترح."
 
 msgid "You don't have permission to review it."
 msgstr ""
