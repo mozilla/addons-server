@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 07:36+0000\n"
+"PO-Revision-Date: 2020-06-09 08:49+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -5032,7 +5032,7 @@ msgstr "تُشبه الامتدادات التطبيقات، ولكنّها لم
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "إنها تضيف ميزات إضافية لفيرفُكس لتجعل التصفح أكثر سرعة وأمان أو لمجرد التسلية."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
