@@ -418,7 +418,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             'has_auto_approval_disabled': 0,
             'is_locked': 0,
             'is_recommendable': 0,
-            'should_be_delayed': 0
+            'should_be_delayed': 0,
+            'is_blocked': 0,
         })
 
     @mock.patch.object(auto_approve.Command, 'approve')
@@ -609,7 +610,8 @@ class TestAutoApproveCommandTransactions(
             'has_auto_approval_disabled': 0,
             'is_locked': 0,
             'is_recommendable': 0,
-            'should_be_delayed': 0
+            'should_be_delayed': 0,
+            'is_blocked': 0,
         })
 
 

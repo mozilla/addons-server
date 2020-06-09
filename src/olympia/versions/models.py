@@ -692,6 +692,11 @@ class Version(OnChangeMixin, ModelBase):
                 return False
         return True
 
+    @property
+    def is_blocked(self):
+        block = self.addon.block
+        return bool(block and block.is_version_blocked(self.version))
+
 
 class VersionReviewerFlags(ModelBase):
     version = models.OneToOneField(

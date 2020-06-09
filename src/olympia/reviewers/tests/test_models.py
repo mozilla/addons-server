@@ -13,6 +13,7 @@ from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
+from olympia.blocklist.models import Block
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating
@@ -1742,6 +1743,22 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_should_be_delayed(
             self.version) is False
 
+    def test_check_is_blocked(self):
+        assert AutoApprovalSummary.check_is_blocked(self.version) is False
+
+        block = Block.objects.create(
+            addon=self.addon, updated_by=user_factory())
+        del self.version.addon.block
+        assert AutoApprovalSummary.check_is_blocked(self.version) is True
+
+        block.update(min_version='9999999')
+        del self.version.addon.block
+        assert AutoApprovalSummary.check_is_blocked(self.version) is False
+
+        block.update(min_version='0')
+        del self.version.addon.block
+        assert AutoApprovalSummary.check_is_blocked(self.version) is True
+
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
 
@@ -1822,6 +1839,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
+            'is_blocked': False,
         }
 
     def test_create_summary_no_files(self):
@@ -1839,6 +1857,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_locked': True,
             'is_recommendable': False,
             'should_be_delayed': False,
+            'is_blocked': False,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
 
@@ -1851,6 +1870,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_locked': True,
             'is_recommendable': False,
             'should_be_delayed': False,
+            'is_blocked': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1862,6 +1882,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
+            'is_blocked': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
 
@@ -1873,6 +1894,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
+            'is_blocked': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
@@ -1885,6 +1907,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': False,
+            'is_blocked': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1897,6 +1920,20 @@ class TestAutoApprovalSummary(TestCase):
             'is_locked': False,
             'is_recommendable': True,
             'should_be_delayed': False,
+            'is_blocked': False,
+        }
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
+
+    def test_calculate_verdict_is_blocked(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, is_blocked=True)
+        info = summary.calculate_verdict()
+        assert info == {
+            'has_auto_approval_disabled': False,
+            'is_locked': False,
+            'is_recommendable': False,
+            'should_be_delayed': False,
+            'is_blocked': True,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1909,6 +1946,7 @@ class TestAutoApprovalSummary(TestCase):
             'is_locked': False,
             'is_recommendable': False,
             'should_be_delayed': True,
+            'is_blocked': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1918,11 +1956,13 @@ class TestAutoApprovalSummary(TestCase):
             'is_locked': True,
             'is_recommendable': True,
             'should_be_delayed': True,
+            'is_blocked': True,
         }
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
             'Has auto-approval disabled/delayed flag set',
+            'Version string and guid match a blocklist Block',
             'Is locked by a reviewer',
             'Is recommendable',
             "Delayed because it's the first listed version",

@@ -472,6 +472,34 @@ class TestReviewHelper(TestReviewHelperBase):
             addon_status=amo.STATUS_NULL,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
 
+    def test_actions_version_blocked(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        # default case
+        expected = ['public', 'reject', 'reject_multiple_versions', 'reply',
+                    'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # But when the add-on is blocked 'public' shouldn't be available
+        block = Block.objects.create(
+            addon=self.addon, updated_by=self.request.user)
+        del self.addon.block
+        expected = ['reject', 'reject_multiple_versions', 'reply',
+                    'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # it's okay if the version is outside the blocked range though
+        block.update(min_version=self.version.version + '.1')
+        expected = ['public', 'reject', 'reject_multiple_versions', 'reply',
+                    'super', 'comment']
+        del self.addon.block
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.handler.set_files(amo.STATUS_APPROVED,
@@ -1723,6 +1751,14 @@ class TestReviewHelper(TestReviewHelperBase):
             reverse('admin:blocklist_block_addaddon', args=(self.addon.id,)) +
             '?min=%s&max=%s')
         self._test_block_multiple_unlisted_versions(redirect_url)
+
+    def test_process_public_fails_for_blocked_version(self):
+        Block.objects.create(addon=self.addon, updated_by=user_factory())
+        self.setup_data(amo.STATUS_NOMINATED)
+        del self.addon.block
+
+        with self.assertRaises(AssertionError):
+            self.helper.handler.process_public()
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

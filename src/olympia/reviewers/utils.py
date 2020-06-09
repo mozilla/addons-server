@@ -405,6 +405,8 @@ class ReviewHelper(object):
             self.version.channel == amo.RELEASE_CHANNEL_LISTED
         )
 
+        version_is_blocked = self.version and self.version.is_blocked
+
         # Special logic for availability of reject multiple action:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
@@ -439,7 +441,8 @@ class ReviewHelper(object):
                 not self.content_review and
                 addon_is_reviewable and
                 version_is_unreviewed and
-                is_appropriate_reviewer
+                is_appropriate_reviewer and
+                not version_is_blocked
             )
         }
         actions['reject'] = {
@@ -765,6 +768,7 @@ class ReviewBase(object):
             detail_kwargs={'reviewtype': self.review_type.split('_')[1]})
 
     def sign_files(self):
+        assert not (self.version and self.version.is_blocked)
         for file_ in self.files:
             if file_.is_experiment:
                 ActivityLog.create(
