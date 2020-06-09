@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 08:49+0000\n"
+"PO-Revision-Date: 2020-06-09 09:07+0000\n"
 "Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -125,9 +125,8 @@ msgstr "Opombe so lahko dodane samo najnovejšim različicam dodatkov."
 msgid "Ratings"
 msgstr "Ocene"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Orodja za pregledovalce"
+msgstr "Orodja za pregledovalce (na seznamu)"
 
 #, fuzzy
 msgid "Reviewer Tools (unlisted)"
@@ -516,9 +515,8 @@ msgstr ""
 msgid "Delete Multiple %(name)s"
 msgstr "Zavrni več različic"
 
-#, fuzzy
 msgid "Home"
-msgstr "Domača stran"
+msgstr "Domov"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -535,7 +533,7 @@ msgid "Save"
 msgstr "Shrani"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Shrani in dodaj več"
 
 msgid "Delete"
 msgstr "Izbriši"
@@ -998,9 +996,8 @@ msgstr "Razvijalec"
 msgid "Extension"
 msgstr "Dodatek"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Pregled posodobljene celotne teme"
+msgstr "Zastarela celotna tema"
 
 msgid "Dictionary"
 msgstr "Slovar"
@@ -1026,9 +1023,8 @@ msgstr "Tema (statična)"
 msgid "Extensions"
 msgstr "Razširitve"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Celotne teme"
+msgstr "Zastarele celotne teme"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1574,9 +1570,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Novejše"
+msgstr "Novo"
 
 msgid "Running"
 msgstr ""
@@ -2424,11 +2419,8 @@ msgstr "Izberite ikono dodatka:"
 msgid "32x32px"
 msgstr "32 x 32 pik"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
-"Uporablja se na seznamih z dodatki, kot na primer\n"
-"                            v rezultatih iskanja ali pa na seznamu izbranih dodatkov."
+msgstr "Uporablja se na seznamih z dodatki, kot na primer v rezultatih iskanja."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2474,9 +2466,8 @@ msgstr "Podprti obliki sta PNG in JPG, priporočena je PNG. Največja in priporo
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Najmanjša dovoljena velikost je 1000 × 750; zahtevano je razmerje 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "S posnetki zaslona na strani dodatka izrazito povečate možnost, da ga uporabniki namestijo ali da se ga predstavi na domači strani."
+msgstr "S posnetki zaslona na strani dodatka izrazito povečate možnost, da ga uporabniki namestijo."
 
 msgid "Continue"
 msgstr "Nadaljuj"
@@ -3172,9 +3163,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Delavnica razširitev"
+msgstr "Obiščite delavnico razširitev"
 
 msgid "Connect with us"
 msgstr "Povežite se z nami"
@@ -3273,9 +3263,8 @@ msgstr "Pridružite se"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr "Povežite se s tisočimi razvijalci in odkrijte več načinov, kako lahko prispevate k ekosistemu razširitev."
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Preberite več o pravilniku pregleda izvorne kode."
+msgstr "Več o skupnosti razvijalcev"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Po opravljenem pregledu kode gostovan na tej strani. Za samodejne posodobitve skrbi ta stran."
@@ -3322,9 +3311,8 @@ msgstr "Pošlji novo različico"
 msgid "Customize Firefox"
 msgstr "Prilagodite si Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Naučite se ustvariti dodatek"
+msgstr "Naučite se ustvariti razširitev"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -3750,9 +3738,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Prilagodite poteze z miško {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Prilagodite miškine kretnje. Odkrijte nov način za krmarjenje s 50+ uporabnimi kretnjami miške."
+msgstr "Prilagodite miškine kretnje. Odkrijte nov način za krmarjenje z več kot 50 nastavitvami."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3969,9 +3956,8 @@ msgid "Surf anonymously. Browse the web with disguised identity—even appear as
 msgstr "Brskajte anonimno. Brskajte po spletu z zakrito identiteto – po želji celo brskajte iz druge države."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Dostopajte do svojih priljubljenih strani, nedavno zaprtih zavihkov in drugih na ličnem pogledu ploščic."
+msgstr "Boljša vizualizacija zaznamkov. Dostopajte do svojih priljubljenih strani, nedavno zaprtih zavihkov in drugih na ličnem pogledu ploščic."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3994,9 +3980,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Zmogljivo upravljanje prenosov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Preverite stanje svojih prenosov prek vrstice stanja, strani zgodovine prenosov in več."
+msgstr "Zmogljivo upravljanje prenosov. Preverite stanje svojih prenosov prek vrstice stanja, strani zgodovine prenosov in več."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4019,9 +4004,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dinamična navigacija {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Uporabljajte poteze z miško za zapiranje zavihka, vrnitev na prejšnjo stran, ponovno nalaganje in več."
+msgstr "Uporabljajte poteze z miško za zapiranje zavihkov, krmarjenje po straneh in drugo."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4180,7 +4164,6 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Delajte hitreje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
 msgstr "Opravite delo hitreje – s potezami miške."
 
@@ -6027,7 +6010,7 @@ msgid "Reviewer's Guide"
 msgstr "Vodnik za pregledovalce"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Dodatki za Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6047,7 +6030,7 @@ msgid "Previously deleted entries"
 msgstr "Predhodno izbrisani vnosi"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "To je priporočena razširitev."
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -6154,7 +6137,7 @@ msgid "Resolution"
 msgstr "Odločitev"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Dnevnik pregledov dodatkov – Dodatki za Firefox"
 
 # 88%
 msgid "Reviewer"
@@ -6173,7 +6156,7 @@ msgid "No reviews found for this period."
 msgstr "Za to obdobje ni najti pregledov."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Izvor:"
 
 msgid "Method:"
 msgstr "Metoda:"
@@ -6371,10 +6354,10 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Prekini"
 
 msgid "Run"
-msgstr ""
+msgstr "Zaženi"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
