@@ -96,6 +96,7 @@ def test_update_addon_average_daily_users_with_guid():
 
     assert addon.average_daily_users == count
 
+
 @pytest.mark.django_db
 @override_switch('local-statistics-processing', active=True)
 def test_update_addon_average_daily_users_with_pk():
