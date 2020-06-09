@@ -388,12 +388,13 @@ z.StatsManager = (function() {
                 mindate = (new Date()).iso();
 
             if (xhr.status == 200) {
-                // Reset the datastore for a given metric so that we don't keep
-                // stale data.
-                dataStore[metric] = {
-                    mindate : (new Date()).iso(),
-                    maxdate : '1970-01-01'
-                };
+
+                if (!dataStore[metric]) {
+                    dataStore[metric] = {
+                        mindate : (new Date()).iso(),
+                        maxdate : '1970-01-01'
+                    };
+                }
 
                 var ds = dataStore[metric],
                     data = JSON.parse(raw_data);
