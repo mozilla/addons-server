@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-03 07:35+0000\n"
+"PO-Revision-Date: 2020-06-09 05:54+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3090,7 +3090,7 @@ msgid "License"
 msgstr "Turagt"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr "MA ulac aɣilif, fren turgat ilaqen i yizerfan i tebɣiḍ ad tmuddeḍ i tengalt inek aɣbalu. Urti-agi yettwaseqdac kan i yizegrar yettwasnen, yettwakelsen."
+msgstr "Ma ulac aɣilif, fren turgat i ilaqen i yizerfan i tebɣiḍ ad tmuddeḍ i tengalt-inek taɣbalut. Urti-agi yettwaseqdac kan i yizegrar yettwassnen, yettwakelsen."
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -5285,7 +5285,7 @@ msgid "Other (please specify)"
 msgstr "Ayen nniḍen (ini-d)"
 
 msgid "This field is required."
-msgstr "Urti agi yettwasra."
+msgstr "Urti-agi yettwasra."
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr "Ur tezmireḍ ara ad tesnifleḍ azegrir n ucegger ticki yettwarna."
