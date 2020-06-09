@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 06:50+0000\n"
+"PO-Revision-Date: 2020-06-09 07:01+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -2024,9 +2024,8 @@ msgid "more add-ons..."
 msgstr "مزيد من الإضافات..."
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "الامتدادات"
+msgstr "ورشة عمل الامتدادات"
 
 msgid "Documentation"
 msgstr "التوثيق"
@@ -3201,9 +3200,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "الامتدادات"
+msgstr "قم بزيارة ورشة عمل الامتدادات"
 
 msgid "Connect with us"
 msgstr ""
@@ -3667,7 +3665,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "هل ترى صورة مثيرة للاهتمام على الويب وترغب بمعرفة المزيد عنها؟ جرب أداة البحث عن الصور هذه."
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4204,7 +4202,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "اجعله يوتيوبك الخاص. شغّل فيديوهاتك في نافذة منبثقة ، ولا تشاهد الإعلانات إلا ضمن القنوات المشترك بها، والتقط لقطات شاشة للفيديو ، وغير ذلك الكثير."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5039,7 +5037,6 @@ msgid "They add features to Firefox to make browsing faster, safer, or just plai
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
 msgstr "تصفح كل الإضافات"
 
@@ -5053,13 +5050,12 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "مُحسنات الوسائط لفيرفُكس"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Explore extensions"
-msgstr "الامتدادات"
+msgstr "استكشف الامتدادات"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
