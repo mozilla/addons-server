@@ -4,6 +4,7 @@ import os
 
 from base64 import urlsafe_b64encode
 from urllib.parse import urlencode, urlparse
+from waffle import switch_is_active
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
@@ -12,7 +13,8 @@ from django.utils.http import is_safe_url
 
 import boto3
 
-from olympia.accounts.tasks import primary_email_change_event
+from olympia.accounts.tasks import (
+    delete_user_event, primary_email_change_event)
 from olympia.core.logger import getLogger
 
 
@@ -106,7 +108,7 @@ def camel_case(snake):
     return parts[0] + ''.join(part.capitalize() for part in parts[1:])
 
 
-def process_fxa_event(raw_body, **kwargs):
+def process_fxa_event(raw_body):
     """Parse and process a single firefox account event."""
     # Try very hard not to error out if there's junk in the queue.
     log = getLogger('accounts.sqs')
@@ -129,7 +131,9 @@ def process_fxa_event(raw_body, **kwargs):
                 log.error('Email property must be non-empty for "%s" event' %
                           event_type)
             else:
-                primary_email_change_event.delay(email, uid, timestamp)
+                primary_email_change_event.delay(uid, timestamp, email)
+        elif event_type == 'delete' and switch_is_active('fxa-account-delete'):
+            delete_user_event.delay(uid, timestamp)
         else:
             log.info('Dropping unknown event type %r', event_type)
 

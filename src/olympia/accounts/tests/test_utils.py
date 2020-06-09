@@ -12,6 +12,8 @@ from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.utils.encoding import force_bytes, force_text
 
+from waffle.testutils import override_switch
+
 from olympia.accounts import utils
 from olympia.accounts.utils import process_fxa_event
 from olympia.amo.tests import TestCase, user_factory
@@ -212,22 +214,43 @@ class TestProcessSqsQueue(TestCase):
             QueueUrl='https://sqs.nowh-ere.aws.com/123456789/',
             ReceiptHandle='$$$')
 
+    @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
+    @mock.patch('olympia.accounts.utils.delete_user_event.delay')
+    def test_malformed_body_doesnt_throw(self, email_mock, delete_mock):
+        process_fxa_event('')
+        process_fxa_event(json.dumps({'Message': ''}))
+        process_fxa_event(json.dumps({'Message': 'ddfdfd'}))
+        # No timestamps
+        process_fxa_event(json.dumps({'Message': json.dumps(
+            {'email': 'foo@baa', 'event': 'primaryEmailChanged',
+             'uid': '999'})}))
+        process_fxa_event(json.dumps({'Message': json.dumps(
+            {'event': 'delete', 'uid': '999'})}))
+        # Not a supported event type
+        process_fxa_event(json.dumps({'Message': json.dumps(
+            {'email': 'foo@baa', 'event': 'not-an-event', 'uid': '999',
+             'ts': totimestamp(datetime.now())})}))
+        delete_mock.assert_not_called()
+        email_mock.assert_not_called()
+
 
 def totimestamp(datetime_obj):
     return time.mktime(datetime_obj.timetuple())
 
 
-class TestProcessFxAEvent(TestCase):
+class TestProcessFxAEventEmail(TestCase):
+    fxa_id = 'ABCDEF012345689'
+
     def setUp(self):
         self.email_changed_date = self.days_ago(42)
         self.body = json.dumps({'Message': json.dumps(
             {'email': 'new-email@example.com', 'event': 'primaryEmailChanged',
-             'uid': 'ABCDEF012345689',
+             'uid': self.fxa_id,
              'ts': totimestamp(self.email_changed_date)})})
 
     def test_success_integration(self):
         user = user_factory(email='old-email@example.com',
-                            fxa_id='ABCDEF012345689')
+                            fxa_id=self.fxa_id)
         process_fxa_event(self.body)
         user.reload()
         assert user.email == 'new-email@example.com'
@@ -235,7 +258,7 @@ class TestProcessFxAEvent(TestCase):
 
     def test_success_integration_previously_changed_once(self):
         user = user_factory(email='old-email@example.com',
-                            fxa_id='ABCDEF012345689',
+                            fxa_id=self.fxa_id,
                             email_changed=datetime(2017, 10, 11))
         process_fxa_event(self.body)
         user.reload()
@@ -247,20 +270,41 @@ class TestProcessFxAEvent(TestCase):
         process_fxa_event(self.body)
         primary_email_change_event.assert_called()
         primary_email_change_event.assert_called_with(
-            'new-email@example.com', 'ABCDEF012345689',
+            self.fxa_id,
+            totimestamp(self.email_changed_date),
+            'new-email@example.com')
+
+
+class TestProcessFxAEventDelete(TestCase):
+    fxa_id = 'ABCDEF012345689'
+
+    def setUp(self):
+        self.email_changed_date = self.days_ago(42)
+        self.body = json.dumps({'Message': json.dumps(
+            {'event': 'delete',
+             'uid': self.fxa_id,
+             'ts': totimestamp(self.email_changed_date)})})
+
+    @override_switch('fxa-account-delete', active=True)
+    def test_success_integration(self):
+        user = user_factory(fxa_id=self.fxa_id)
+        process_fxa_event(self.body)
+        user.reload()
+        assert user.email is None
+        assert user.deleted
+        assert user.fxa_id is None
+
+    @override_switch('fxa-account-delete', active=True)
+    @mock.patch('olympia.accounts.utils.delete_user_event.delay')
+    def test_success(self, delete_user_event_mock):
+        process_fxa_event(self.body)
+        delete_user_event_mock.assert_called()
+        delete_user_event_mock.assert_called_with(
+            self.fxa_id,
             totimestamp(self.email_changed_date))
 
-    @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
-    def test_malformed_body_doesnt_throw(self, primary_email_change_event):
-        process_fxa_event('')
-        process_fxa_event(json.dumps({'Message': ''}))
-        process_fxa_event(json.dumps({'Message': 'ddfdfd'}))
-        # No timestamp
-        process_fxa_event(json.dumps({'Message': json.dumps(
-            {'email': 'foo@baa', 'event': 'primaryEmailChanged',
-             'uid': '999'})}))
-        # Not a supported event type
-        process_fxa_event(json.dumps({'Message': json.dumps(
-            {'email': 'foo@baa', 'event': 'not-an-event', 'uid': '999',
-             'ts': totimestamp(datetime.now())})}))
-        primary_email_change_event.assert_not_called()
+    @override_switch('fxa-account-delete', active=False)
+    @mock.patch('olympia.accounts.utils.delete_user_event.delay')
+    def test_waffle_off(self, delete_user_event_mock):
+        process_fxa_event(self.body)
+        delete_user_event_mock.assert_not_called()
