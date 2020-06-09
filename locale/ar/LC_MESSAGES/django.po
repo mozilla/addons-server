@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-05-28 10:35+0000\n"
-"PO-Revision-Date: 2020-06-09 07:01+0000\n"
+"PO-Revision-Date: 2020-06-09 07:09+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -48,7 +48,7 @@ msgid "Reporter's country"
 msgstr "بلد المُبلّغ"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "مقتطفات الرسالة"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -139,9 +139,8 @@ msgstr "أدوات المراجعين (المُدرجة)"
 msgid "Reviewer Tools (unlisted)"
 msgstr "أدوات المراجعين (غير المُدرجة)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "أدوات المُراجع"
+msgstr "روابط المُراجع"
 
 msgid "- Add-on not on AMO -"
 msgstr "- الإضافة ليست على AMO -"
@@ -187,7 +186,7 @@ msgid "Log out"
 msgstr "خروج"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "إدارة التقديمات الخاصة بي"
 
 msgid "Submit a New Add-on"
 msgstr "تقديم إضافة جديدة"
@@ -212,7 +211,7 @@ msgstr "عدد صحيح موجب"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "يمكن استخدام هذا الحقل فقط للربط بمواقع الويب الخارجية. عناوين URL على %(domain)s غير مسموح بها."
 
 msgid "Incorrect, please try again."
 msgstr "خطأ. من فضلك أعِد المحاولة."
@@ -5042,7 +5041,7 @@ msgstr "تصفح كل الإضافات"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "أدوات التحكم في الألسنة وتنظيمها"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
