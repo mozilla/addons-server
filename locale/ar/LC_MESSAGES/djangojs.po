@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:36+0000\n"
+"POT-Creation-Date: 2020-06-09 18:01+0000\n"
 "PO-Revision-Date: 2020-04-28 05:06+0000\n"
 "Last-Translator: Mustapha ben bihi <elm.benbihi@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -143,8 +143,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"عليك إرسال المصدر البرمجي منفصلًا لكلّ من: الملفات الثنائية المصرّفة والسكربتات المقلّصة/minified والمشوّشة/obfuscated (عدا المكتبات المعروفة). لا تنسَ أن تستعمل حقل رفع الكود البرمجي لألّا تتفاجأ "
-"برفض الإضافة."
+"عليك إرسال المصدر البرمجي منفصلًا لكلّ من: الملفات الثنائية المصرّفة والسكربتات المقلّصة/minified والمشوّشة/obfuscated (عدا المكتبات المعروفة). لا تنسَ أن تستعمل حقل رفع الكود البرمجي لألّا تتفاجأ برفض "
+"الإضافة."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "وجدت عملية التثبّت المشكلات الآتية والتي قد تؤدّي بالرفض:"
@@ -499,6 +499,16 @@ msgstr "التطبيقات في آخر {0} من الأيام"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
 msgstr "التطبيقات من {0} إلى {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Countries, last {0} days"
+msgstr "المساهمات في آخر {0} من الأيام"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Countries from {0} to {1}"
+msgstr "المساهمات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"

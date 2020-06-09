@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2518,18 +2518,6 @@ msgid ""
 msgstr ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
-
-msgid "Public Stats?"
-msgstr "Public Stats?"
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-
-msgid "This add-on's stats are publicly viewable."
-msgstr "This add-on's stats are publicly viewable."
-
-msgid "No, this add-on's stats are not publicly viewable."
-msgstr "No, this add-on's stats are not publicly viewable."
 
 msgid "Universally unique identifier"
 msgstr "Universally unique identifier"
@@ -6348,9 +6336,6 @@ msgstr "Visibility"
 msgid "Visible"
 msgstr "Visibility"
 
-msgid "View Statistics"
-msgstr "View Statistics"
-
 msgid "Average Daily Users"
 msgstr "Average Daily Users"
 
@@ -6743,8 +6728,15 @@ msgstr "Dismiss this announcement"
 msgid "Files in this version:"
 msgstr "Files in this version:"
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Files in this version:"
+
 msgid "Contents"
 msgstr "Contents"
+
+msgid "Compare this version to the last reviewed version"
+msgstr "Compare this version to the last reviewed version"
 
 msgid "Compare"
 msgstr "Compare"
@@ -7022,6 +7014,9 @@ msgstr "by Language"
 msgid "by Platform"
 msgstr "by Platform"
 
+msgid "by Country"
+msgstr "by Country"
+
 msgid "by Add-on Status"
 msgstr "by Add-on Status"
 
@@ -7091,6 +7086,14 @@ msgstr "365 days"
 msgid "Custom..."
 msgstr "Custom..."
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 
@@ -7100,17 +7103,16 @@ msgstr "Loading the latest data&hellip;"
 msgid "No data available."
 msgstr "No data available."
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "This dashboard is currently <b>public</b>."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "This dashboard is currently <b>private</b>."
-
-msgid "Change settings."
-msgstr "Change settings."
 
 msgid "Application usage by Date"
 msgstr "Application usage by Date"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "User languages by Date"
 
 msgid "Downloaded by Date"
 msgstr "Downloaded by Date"
@@ -7313,10 +7315,6 @@ msgstr "Are you sure you want to remove all <b>{0}</b> translations? This cannot
 msgid "Delete Locale"
 msgstr "Delete Locale"
 
-#, fuzzy
-msgid "User Restriction History"
-msgstr "Review History"
-
 #, fuzzy, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "The user \"%(user)s\" has been banned.user"
@@ -7413,6 +7411,10 @@ msgstr "Before starting, please read and accept our Firefox Add-on Distribution 
 #, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
+
+#, fuzzy
+msgid "User Restriction History"
+msgstr "Review History"
 
 msgid "an add-on developer replies to my review"
 msgstr "an add-on developer replies to my review"

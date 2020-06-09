@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2020-05-23 08:54+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -2356,18 +2356,6 @@ msgid ""
 msgstr ""
 "Jakékoli informace, které by uživatelé mohli chtít vědět a které nezapadají do souhrnu ani do popisu doplňku. Běžně se používá ke zveřejnění seznamu známých chyb, popisu postupu jejich hlášení, "
 "předpokládaného data vydání příští verze atd. Relevantní pouze pro zveřejněné doplňky."
-
-msgid "Public Stats?"
-msgstr "Veřejné statistiky?"
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Určuje, zda mohou být statistiky použití zobrazeny v našem online prohlížeči. Relevantní pouze pro zveřejněné doplňky."
-
-msgid "This add-on's stats are publicly viewable."
-msgstr "Statistiky tohoto doplňku jsou veřejně dostupné."
-
-msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Statistiky k tomuto doplňku nejsou veřejně přístupné."
 
 msgid "Universally unique identifier"
 msgstr "Universally unique identifier"
@@ -5763,9 +5751,6 @@ msgstr "Viditelnost"
 msgid "Visible"
 msgstr "Viditelné"
 
-msgid "View Statistics"
-msgstr "Zobrazit statistiky"
-
 msgid "Average Daily Users"
 msgstr "Průměrný počet denních uživatelů"
 
@@ -6138,8 +6123,15 @@ msgstr "Skrýt toto oznámení"
 msgid "Files in this version:"
 msgstr "Soubory v této verzi:"
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Soubory v této verzi:"
+
 msgid "Contents"
 msgstr "Obsah"
+
+msgid "Compare this version to the last reviewed version"
+msgstr ""
 
 msgid "Compare"
 msgstr "Porovnání"
@@ -6414,6 +6406,9 @@ msgstr "dle jazyka"
 msgid "by Platform"
 msgstr "dle platformy"
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr "dle stavu doplňku"
 
@@ -6482,6 +6477,14 @@ msgstr "365 dní"
 msgid "Custom..."
 msgstr "Vlastní..."
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "Zpracování statistik je momentálně zakázáno a aktuální data nejsou dostupná. Statistiky jsou ale nadále sbírány a tato stránka bude brzy o chybějící data doplněna."
 
@@ -6491,17 +6494,16 @@ msgstr "Načítají se poslední data&hellip;"
 msgid "No data available."
 msgstr "Nejsou dostupná žádná data."
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "Nástěnka je aktuálně <b>veřejná</b>."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "Tato nástěnka je aktuálně <b>soukromá</b>."
-
-msgid "Change settings."
-msgstr "Změnit nastavení."
 
 msgid "Application usage by Date"
 msgstr "Podíl aplikace dle data"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "Jazyky dle data"
 
 msgid "Downloaded by Date"
 msgstr "Stažení dle data"
@@ -6698,9 +6700,6 @@ msgstr "Chcete odstranit všechny překlady pro jazyk <b>{0}</b>? Tuto operaci n
 msgid "Delete Locale"
 msgstr "Smazat jazyk"
 
-msgid "User Restriction History"
-msgstr "Historie omezení uživatelů"
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "Uživatel %(user)s byl zablokován."
@@ -6796,6 +6795,9 @@ msgid "Please read and accept our Firefox Add-on Distribution Agreement as well 
 msgstr ""
 "Než začnete, přečtěte si prosím naše pravidla pro distribuci doplňků pro Firefox a zásady a pravidla pro kontrolu doplňků. Pravidla pro distribuci doplňků pro Firefox také odkazují na naše zásady "
 "ochrany osobních údajů, které vysvětlují, jak nakládáme s vašimi údaji."
+
+msgid "User Restriction History"
+msgstr "Historie omezení uživatelů"
 
 msgid "an add-on developer replies to my review"
 msgstr "vývojář doplňku odpoví na mou recenzi"

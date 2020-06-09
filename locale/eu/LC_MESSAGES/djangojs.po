@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:36+0000\n"
+"POT-Creation-Date: 2020-06-09 18:01+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -445,6 +445,14 @@ msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+msgid "Countries, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+msgid "Countries from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.

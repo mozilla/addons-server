@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2416,18 +2416,6 @@ msgid ""
 msgstr ""
 "Wszelkie informacje, których użytkownik może chcieć się dowiedzieć, a które nie są odpowiednie dla podsumowania i opisu dodatku. Typowe zastosowania to lista głównych znanych błędów, informacje, "
 "jak zgłaszać błędy, przewidywana data premiery nowej wersji itp. Dotyczy tylko wyświetlanych dodatków."
-
-msgid "Public Stats?"
-msgstr "Upublicznić statystyki?"
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Czy statystyki pobrań i użycia dodatku mogą być wyświetlane w przeglądarce online. Dotyczy tylko wyświetlanych dodatków."
-
-msgid "This add-on's stats are publicly viewable."
-msgstr "Statystyki tego dodatku są upublicznione."
-
-msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Nie, statystyki tego dodatku nie są upublicznione."
 
 msgid "Universally unique identifier"
 msgstr "Uniwersalny unikalny identyfikator"
@@ -5927,9 +5915,6 @@ msgstr "Widoczność"
 msgid "Visible"
 msgstr "Widoczny"
 
-msgid "View Statistics"
-msgstr "Wyświetl statystyki"
-
 msgid "Average Daily Users"
 msgstr "Średnia dzienna liczba użytkowników"
 
@@ -6302,8 +6287,15 @@ msgstr "Zamknij komunikat"
 msgid "Files in this version:"
 msgstr "Pakiet dla systemu:"
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Pakiet dla systemu:"
+
 msgid "Contents"
 msgstr "Zawartość"
+
+msgid "Compare this version to the last reviewed version"
+msgstr ""
 
 msgid "Compare"
 msgstr "Porównaj"
@@ -6578,6 +6570,9 @@ msgstr "wg języka"
 msgid "by Platform"
 msgstr "wg platformy"
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr "wg statusu dodatku"
 
@@ -6647,6 +6642,14 @@ msgstr "365 dni"
 msgid "Custom..."
 msgstr "Inny przedział…"
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
 "Przetwarzanie statystyk jest obecnie wyłączone, dlatego ostatnie dane są niedostępne. Statystyki są nadal gromadzone, a ta strona zostanie wkrótce zaktualizowana przy użyciu brakujących danych."
@@ -6657,17 +6660,16 @@ msgstr "Wczytywanie najnowszych danych&hellip;"
 msgid "No data available."
 msgstr "Brak dostępnych danych."
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "Ten panel jest obecnie <b>upubliczniony</b>."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "Ten panel jest obecnie <b>nieupubliczniony</b>."
-
-msgid "Change settings."
-msgstr "Zmień ustawienia."
 
 msgid "Application usage by Date"
 msgstr "Użycie programu wg daty"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "Języki użytkownika wg daty"
 
 msgid "Downloaded by Date"
 msgstr "Pobrane wg daty"
@@ -6864,10 +6866,6 @@ msgstr "Czy na pewno chcesz usunąć wszystkie tłumaczenia <b>{0}</b>? Tej oper
 msgid "Delete Locale"
 msgstr "Usuń lokalizację"
 
-#, fuzzy
-msgid "User Restriction History"
-msgstr "Zamknij historię sprawdzania"
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "Użytkownik „%(user)s” został zablokowany."
@@ -6961,6 +6959,10 @@ msgid "Please read and accept our Firefox Add-on Distribution Agreement as well 
 msgstr ""
 "Przed rozpoczęciem przeczytaj i zaakceptuj Umowę dotyczącą dystrybucji dodatków Firefoksa, a także nasze Zasady i reguły sprawdzania. Umowa dotycząca dystrybucji dodatków Firefoksa zawiera również "
 "łącze do Powiadomienia o prywatności, które wyjaśnia, jak postępujemy z Twoimi informacjami."
+
+#, fuzzy
+msgid "User Restriction History"
+msgstr "Zamknij historię sprawdzania"
 
 msgid "an add-on developer replies to my review"
 msgstr "Autor dodatku odpowiedział na moją opinię"

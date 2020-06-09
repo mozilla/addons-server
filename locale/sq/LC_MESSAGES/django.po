@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2020-05-17 09:03+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -2355,18 +2355,6 @@ msgid ""
 msgstr ""
 "Çfarëdo të dhënash që përdoruesit e zakonshëm do të donin të dinin, që jo doemos hyn te përmbledhja ose përshkrimi i shtesës. Si të tilla gjenden rëndom paraqitje të metash të rëndësishme të "
 "njohura, të dhëna se si të raportohen të meta, datë e përafërt e hedhjes në qarkullim e një versioni të ri, etj. Kjo vlen vetëm për shtesa të shfaqura."
-
-msgid "Public Stats?"
-msgstr "Statistika Publike?"
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Nëse mund të shfaqen apo jo statistika shkarkimesh dhe përdorimi të shtesës suaj te vendi ynë përkatës në internet. Kjo vlen vetëm për shtesa të shfaqura."
-
-msgid "This add-on's stats are publicly viewable."
-msgstr "Statistikat mbi këtë shtesë mund të shihen publikisht."
-
-msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Jo, statistikat mbi këtë shtesë s’mund të shihen publikisht."
 
 msgid "Universally unique identifier"
 msgstr "Identifikues universalisht unik"
@@ -5769,9 +5757,6 @@ msgstr "Dukshmëri"
 msgid "Visible"
 msgstr "E dukshme"
 
-msgid "View Statistics"
-msgstr "Shihni Statistika"
-
 msgid "Average Daily Users"
 msgstr "Përdorues të Përditshëm Mesatarisht"
 
@@ -6129,8 +6114,15 @@ msgstr "Hidhe tej këtë njoftim"
 msgid "Files in this version:"
 msgstr "Kartela në këtë version:"
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Kartela në këtë version:"
+
 msgid "Contents"
 msgstr "Përmbajtje"
+
+msgid "Compare this version to the last reviewed version"
+msgstr ""
 
 msgid "Compare"
 msgstr "Krahaso"
@@ -6388,6 +6380,9 @@ msgstr "sipas Gjuhësh"
 msgid "by Platform"
 msgstr "sipas Platformash"
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr "sipas Gjendjes së Shtesës"
 
@@ -6456,6 +6451,14 @@ msgstr "365 ditë"
 msgid "Custom..."
 msgstr "Vetjake…"
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "Përpunimi i statistikave është hëpërhë i çaktivizuar, kështu që s’ka të dhëna të reja. Statistikat ende po grumbullohen dhe kjo faqe do të përditësohet së shpejti me të dhënat që mungojnë."
 
@@ -6465,17 +6468,16 @@ msgstr "Po ngarkohen të dhënat më të reja&hellip;"
 msgid "No data available."
 msgstr "Pa të dhëna të passhme."
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "Ky pult, për çastin, është <b>publik</b>."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "Ky pult, hëpërhë, është <b>privat</b>."
-
-msgid "Change settings."
-msgstr "Ndryshoni rregullimet."
 
 msgid "Application usage by Date"
 msgstr "Përdorim aplikacioni sipas Datash"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "Gjuhë përdoruesish sipas Datash"
 
 msgid "Downloaded by Date"
 msgstr "Shtesa sipas Datash Shkarkimi"
@@ -6672,9 +6674,6 @@ msgstr "Jeni i sigurt se doni të hiqen krejt përkthimet për <b>{0}</b>? Kjo s
 msgid "Delete Locale"
 msgstr "Fshije Vendoren"
 
-msgid "User Restriction History"
-msgstr "Historik Kufizimesh Përdoruesi"
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr "Përdoruesi \"%(user)s\" është dëbuar."
@@ -6766,6 +6765,9 @@ msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Ju lutemi, lexoni dhe pranoni Marrëveshjen mbi Shpërndarjen e Shtesave të Firefox-it, si dhe Rregullat tona mbi Shqyrtimet, duke vizituar {url}"
+
+msgid "User Restriction History"
+msgstr "Historik Kufizimesh Përdoruesi"
 
 msgid "an add-on developer replies to my review"
 msgstr "një zhvillues shtese i përgjigjet shqyrtimit tim"

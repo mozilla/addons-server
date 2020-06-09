@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2286,18 +2286,6 @@ msgstr ""
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Public Stats?"
-msgstr ""
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's stats are publicly viewable."
-msgstr ""
-
-msgid "No, this add-on's stats are not publicly viewable."
 msgstr ""
 
 msgid "Universally unique identifier"
@@ -5601,9 +5589,6 @@ msgstr ""
 msgid "Visible"
 msgstr ""
 
-msgid "View Statistics"
-msgstr ""
-
 msgid "Average Daily Users"
 msgstr ""
 
@@ -5961,7 +5946,13 @@ msgstr ""
 msgid "Files in this version:"
 msgstr ""
 
+msgid "Browse all files in this version"
+msgstr ""
+
 msgid "Contents"
+msgstr ""
+
+msgid "Compare this version to the last reviewed version"
 msgstr ""
 
 msgid "Compare"
@@ -6220,6 +6211,9 @@ msgstr ""
 msgid "by Platform"
 msgstr ""
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr ""
 
@@ -6288,6 +6282,14 @@ msgstr ""
 msgid "Custom..."
 msgstr ""
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
 
@@ -6297,16 +6299,13 @@ msgstr ""
 msgid "No data available."
 msgstr ""
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr ""
-
-msgid "This dashboard is currently <b>private</b>."
-msgstr ""
-
-msgid "Change settings."
+msgid "This dashboard is <b>private</b>."
 msgstr ""
 
 msgid "Application usage by Date"
+msgstr ""
+
+msgid "User countries by Date"
 msgstr ""
 
 msgid "Downloaded by Date"
@@ -6492,9 +6491,6 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
-msgid "User Restriction History"
-msgstr ""
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr ""
@@ -6579,6 +6575,9 @@ msgid ""
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
+msgstr ""
+
+msgid "User Restriction History"
 msgstr ""
 
 msgid "an add-on developer replies to my review"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2472,18 +2472,6 @@ msgid ""
 msgstr ""
 "Qualquer informação que os utilizadores finais podem querer saber e que não seja necessariamente aplicável no resumo ou descrição do extra. Utilizações comuns incluem a listagem de bugs "
 "significativos conhecidos, informações sobre como reportar problemas, antecipar a data de lançamento de uma nova versão, etc. Isto apenas é relevante para extras listados."
-
-msgid "Public Stats?"
-msgstr "Estatísticas públicas?"
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Se as estatísticas de transferências e de utilização para o seu extra podem ser apresentadas no nosso visualizador online. Isto apenas é relevante para extras listados."
-
-msgid "This add-on's stats are publicly viewable."
-msgstr "As estatísticas deste extra são visíveis publicamente."
-
-msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Não, as estatísticas deste extra não são visíveis publicamente."
 
 msgid "Universally unique identifier"
 msgstr "Identificador universal único"
@@ -5993,9 +5981,6 @@ msgstr "Visibilidade"
 msgid "Visible"
 msgstr "Visibilidade"
 
-msgid "View Statistics"
-msgstr "Ver estatísticas"
-
 msgid "Average Daily Users"
 msgstr "Média de utilizadores diários"
 
@@ -6387,8 +6372,15 @@ msgstr "Ignorar este anúncio"
 msgid "Files in this version:"
 msgstr "Ficheiros nesta versão:"
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Ficheiros nesta versão:"
+
 msgid "Contents"
 msgstr "Conteúdos"
+
+msgid "Compare this version to the last reviewed version"
+msgstr ""
 
 msgid "Compare"
 msgstr "Comparar"
@@ -6660,6 +6652,9 @@ msgstr "por Idioma"
 msgid "by Platform"
 msgstr "por Plataforma"
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr "por Estado do extra"
 
@@ -6728,6 +6723,14 @@ msgstr "365 dias"
 msgid "Custom..."
 msgstr "Personalizar..."
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
 
@@ -6737,17 +6740,16 @@ msgstr "A carregar os últimos dados&hellip;"
 msgid "No data available."
 msgstr "Sem dados disponíveis."
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "Este painel está atualmente <b>público</b>."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "Este painel está atualmente <b>privado</b>."
-
-msgid "Change settings."
-msgstr "Alterar definições."
 
 msgid "Application usage by Date"
 msgstr "Utilização da aplicação por data"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "Idiomas de utilizador por data"
 
 msgid "Downloaded by Date"
 msgstr "Transferências por data"
@@ -6950,10 +6952,6 @@ msgstr "Tem a certeza que deseja remover todas as <b>{0}</b> traduções? Isto n
 msgid "Delete Locale"
 msgstr "Eliminar idioma"
 
-#, fuzzy
-msgid "User Restriction History"
-msgstr "Histórico da análise"
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr ""
@@ -7045,6 +7043,10 @@ msgstr "Ante de começar, por favor leia e aceite o nosso acordo de distribuiç�
 #, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Ante de começar, por favor leia e aceite o nosso acordo de distribuição de extra do Firefox. Também tem uma ligação para a nossa nota de privacidade que explica como gerimos a sua informação."
+
+#, fuzzy
+msgid "User Restriction History"
+msgstr "Histórico da análise"
 
 msgid "an add-on developer replies to my review"
 msgstr "um programador de um extra respondeu ao meu comentário"

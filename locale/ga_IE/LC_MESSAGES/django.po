@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -2467,18 +2467,6 @@ msgstr "Nótaí Tráchta ón Fhorbróir"
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Public Stats?"
-msgstr "Staitisticí Poiblí?"
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's stats are publicly viewable."
-msgstr ""
-
-msgid "No, this add-on's stats are not publicly viewable."
 msgstr ""
 
 msgid "Universally unique identifier"
@@ -5939,9 +5927,6 @@ msgstr "Infheictheacht"
 msgid "Visible"
 msgstr "Infheicthe"
 
-msgid "View Statistics"
-msgstr "Amharc ar Staitisticí"
-
 msgid "Average Daily Users"
 msgstr "Meánlíon na nÚsáideoirí Laethúla"
 
@@ -6328,8 +6313,15 @@ msgstr ""
 msgid "Files in this version:"
 msgstr ""
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Brabhsáil gach breiseán"
+
 msgid "Contents"
 msgstr "Ábhar"
+
+msgid "Compare this version to the last reviewed version"
+msgstr ""
 
 msgid "Compare"
 msgstr "Cuir i gComparáid"
@@ -6615,6 +6607,9 @@ msgstr "de réir Teanga"
 msgid "by Platform"
 msgstr "de réir Ardáin"
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr "de réir Stádas an Bhreiseáin"
 
@@ -6684,6 +6679,14 @@ msgstr "365 lá"
 msgid "Custom..."
 msgstr "Saincheap..."
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
 
@@ -6693,17 +6696,16 @@ msgstr "Sonraí is déanaí á lódáil&hellip;"
 msgid "No data available."
 msgstr "Níl aon sonraí ar fáil."
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "Tá an painéal seo <b>poiblí</b> faoi láthair."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "Tá an painéal seo <b>príobháideach</b> faoi láthair."
-
-msgid "Change settings."
-msgstr ""
 
 msgid "Application usage by Date"
 msgstr "Úsáid an fheidhmchláir de réir Dáta"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "Teangacha úsáideora de réir Dáta"
 
 msgid "Downloaded by Date"
 msgstr ""
@@ -6897,10 +6899,6 @@ msgstr ""
 msgid "Delete Locale"
 msgstr "Scrios an Teanga"
 
-#, fuzzy
-msgid "User Restriction History"
-msgstr "Stair na Léirmheasanna"
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr ""
@@ -6990,6 +6988,10 @@ msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
+
+#, fuzzy
+msgid "User Restriction History"
+msgstr "Stair na Léirmheasanna"
 
 msgid "an add-on developer replies to my review"
 msgstr ""

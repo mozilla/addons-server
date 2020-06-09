@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-28 10:35+0000\n"
+"POT-Creation-Date: 2020-06-09 18:00+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2479,18 +2479,6 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-
-msgid "Public Stats?"
-msgstr "Јавна статистика?"
-
-msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on's stats are publicly viewable."
-msgstr "Статистика овог додатка је јавна."
-
-msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Не, статистика овог додатка није доступна јавности."
 
 msgid "Universally unique identifier"
 msgstr "Универзално јединствен идентификатор"
@@ -5976,9 +5964,6 @@ msgstr ""
 msgid "Visible"
 msgstr ""
 
-msgid "View Statistics"
-msgstr "Погледај статистику"
-
 msgid "Average Daily Users"
 msgstr "Просечани дневни корисници"
 
@@ -6371,8 +6356,15 @@ msgstr "Одбаци ову најаву"
 msgid "Files in this version:"
 msgstr "Датотеке у овој верзији:"
 
+#, fuzzy
+msgid "Browse all files in this version"
+msgstr "Датотеке у овој верзији:"
+
 msgid "Contents"
 msgstr "Садржаји"
+
+msgid "Compare this version to the last reviewed version"
+msgstr ""
 
 msgid "Compare"
 msgstr "Упореди"
@@ -6642,6 +6634,9 @@ msgstr "по језику"
 msgid "by Platform"
 msgstr "по платформи"
 
+msgid "by Country"
+msgstr ""
+
 msgid "by Add-on Status"
 msgstr "по статусу додатка"
 
@@ -6710,6 +6705,14 @@ msgstr "365 дана"
 msgid "Custom..."
 msgstr "Прилагођено..."
 
+#, python-format
+msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
+msgstr ""
+
+#, python-format
+msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
+msgstr ""
+
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
 
@@ -6719,17 +6722,16 @@ msgstr "Учитавам најновије податке&hellip;"
 msgid "No data available."
 msgstr "Нема доступних података."
 
-msgid "This dashboard is currently <b>public</b>."
-msgstr "Ова контролна табла је тренутно <b>јавна</b>."
-
-msgid "This dashboard is currently <b>private</b>."
+#, fuzzy
+msgid "This dashboard is <b>private</b>."
 msgstr "Ова контролна табла је тренутно <b>приватна</b>."
-
-msgid "Change settings."
-msgstr "Промени поставке."
 
 msgid "Application usage by Date"
 msgstr "Коришћење апликације по датуму"
+
+#, fuzzy
+msgid "User countries by Date"
+msgstr "Језици корисника по датуму"
 
 msgid "Downloaded by Date"
 msgstr "Преузимања по датуму"
@@ -6927,10 +6929,6 @@ msgstr "Да ли сте сигурни да желите да уклоните 
 msgid "Delete Locale"
 msgstr "Избриши локал"
 
-#, fuzzy
-msgid "User Restriction History"
-msgstr "Историја рецензија"
-
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
 msgstr ""
@@ -7019,6 +7017,10 @@ msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
+
+#, fuzzy
+msgid "User Restriction History"
+msgstr "Историја рецензија"
 
 msgid "an add-on developer replies to my review"
 msgstr "програмер додатка ми одговорио на критику"
