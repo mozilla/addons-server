@@ -212,6 +212,15 @@ class TestAddonManager(TestCase):
         assert self.addon in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
 
+    def test_managers_not_disabled_by_mozilla(self):
+        assert self.addon in Addon.objects.not_disabled_by_mozilla()
+        assert self.addon in Addon.unfiltered.not_disabled_by_mozilla()
+
+        self.addon.update(status=amo.STATUS_DISABLED)
+
+        assert self.addon not in Addon.objects.not_disabled_by_mozilla()
+        assert self.addon not in Addon.unfiltered.not_disabled_by_mozilla()
+
     def test_managers_unlisted(self):
         self.make_addon_unlisted(self.addon)
         assert self.addon in Addon.objects.all()

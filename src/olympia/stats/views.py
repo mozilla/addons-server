@@ -340,8 +340,8 @@ def check_stats_permission(request, addon, beta):
     ):
         raise http.Http404
 
-    can_view = request.user.is_authenticated and (
-        addon.has_author(request.user) or
+    can_view = user.is_authenticated and (
+        addon.has_author(user) or
         acl.action_allowed(request, amo.permissions.STATS_VIEW)
     )
     if not can_view:
