@@ -165,6 +165,10 @@ class AddonQuerySet(BaseQuerySet):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.VALID_ADDON_STATUSES))
 
+    def not_disabled_by_mozilla(self):
+        """Get all add-ons not disabled by Mozilla."""
+        return self.exclude(status=amo.STATUS_DISABLED)
+
     def listed(self, app, *status):
         """
         Return add-ons that support a given ``app``, have a version with a file
@@ -233,6 +237,10 @@ class AddonManager(ManagerBase):
         matching ``status`` and are not disabled.
         """
         return self.get_queryset().listed(app, *status)
+
+    def not_disabled_by_mozilla(self):
+        """Get all add-ons not disabled by Mozilla."""
+        return self.get_queryset().not_disabled_by_mozilla()
 
     def get_base_queryset_for_queue(self, admin_reviewer=False,
                                     admin_content_review=False):

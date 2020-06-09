@@ -82,22 +82,33 @@ class StatsTest(TestCase):
 class TestUnlistedAddons(StatsTest):
 
     def setUp(self):
-        super(TestUnlistedAddons, self).setUp()
-        addon = Addon.objects.get(pk=4)
-        self.make_addon_unlisted(addon)
+        super().setUp()
 
-    def test_no_stats_for_unlisted_addon(self):
+        self.author = user_factory(email='user@example.com')
+        self.addon = addon_factory(users=[self.author])
+        self.url_args = {
+            'start': '20090601',
+            'end': '20090930',
+            'addon_id': self.addon.pk
+        }
+        self.make_addon_unlisted(self.addon)
+
+    def test_no_public_stats_for_unlisted_addon(self):
         """All the views for the stats return 404 for unlisted addons."""
         self.login_as_visitor()
-
         self._check_it(self.public_views_gen(format='json'), 404)
 
     def test_stats_available_for_admins(self):
         """
-        All the views for the stats are available to admins for
-        unlisted addons.
+        All the views for the stats are available to admins for unlisted
+        addons.
         """
         self.login_as_admin()
+        self._check_it(self.public_views_gen(format='json'), 200)
+
+    def test_stats_available_for_authors(self):
+        self.client.logout()
+        self.client.login(email=self.author.email)
         self._check_it(self.public_views_gen(format='json'), 200)
 
 
@@ -138,9 +149,9 @@ class TestListedAddons(StatsTest):
         self.client.logout()
         self._check_it(self.public_views_gen(format='json'), 404)
 
-        # Developers should not see stats
+        # Developers should see stats
         AddonUser.objects.create(user=self.someuser, addon=self.addon)
-        self._check_it(self.public_views_gen(format='json'), 404)
+        self._check_it(self.public_views_gen(format='json'), 200)
 
         # Admins should see stats
         self.login_as_admin()
