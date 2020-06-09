@@ -24,9 +24,14 @@ class Command(BaseCommand):
             'addon__addonreviewerflags__notified_about_auto_approval_delay':
                 True
         }
-        return Version.objects.auto_approvable().filter(
-            nomination__lt=waiting_period).exclude(**exclude_kwargs).order_by(
-            'nomination', 'created').distinct()
+        return (
+            Version.objects
+                   .auto_approvable()
+                   .filter(created__lt=waiting_period)
+                   .exclude(**exclude_kwargs)
+                   .order_by('created')
+                   .distinct()
+        )
 
     def notify_developers(self, version):
         """
