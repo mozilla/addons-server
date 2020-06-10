@@ -6399,9 +6399,8 @@ msgstr "Asali n isefka ineggura &hellip;"
 msgid "No data available."
 msgstr "Ulac isefka."
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Tafelwit-agi n usenqded akka tura d <b>tusligt</b>."
+msgstr "Tafelwit-agi n usenqded d <b>tusligt</b>."
 
 msgid "Application usage by Date"
 msgstr "Aseqdec n usnas s wazemz"
