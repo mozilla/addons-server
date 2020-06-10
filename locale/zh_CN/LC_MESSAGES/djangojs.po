@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:01+0000\n"
-"PO-Revision-Date: 2020-04-26 02:28+0000\n"
-"Last-Translator: passionforlife <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2020-06-10 12:48+0000\n"
+"Last-Translator: πάθοςγιατηζωή <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -433,14 +433,12 @@ msgid "Applications from {0} to {1}"
 msgstr "从 {0} 至 {1} 的应用程序"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "最近 {0} 天的捐款"
+msgstr "国家/地区，过去 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "从 {0} 至 {1} 的捐款"
+msgstr "从 {0} 至 {1} 的国家/地区"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"

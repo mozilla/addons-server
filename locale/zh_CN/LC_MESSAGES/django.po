@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 02:41+0000\n"
+"PO-Revision-Date: 2020-06-10 12:51+0000\n"
 "Last-Translator: πάθοςγιατηζωή <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5983,9 +5983,8 @@ msgstr "忽略此公告"
 msgid "Files in this version:"
 msgstr "在此版本中的文件："
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "在此版本中的文件："
+msgstr "浏览在此版本的所有文件"
 
 msgid "Contents"
 msgstr "内容"
@@ -6334,16 +6333,14 @@ msgstr "载入最新数据&hellip;"
 msgid "No data available."
 msgstr "没有可用数据。"
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "这个面板目前<b>私密</b>。"
+msgstr "这个仪表盘目前<b>不公开的</b>。"
 
 msgid "Application usage by Date"
 msgstr "依照日期统计的应用程序使用"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "依照日期统计的用户语言"
+msgstr "依照日期显示用户国家/地区"
 
 msgid "Downloaded by Date"
 msgstr "依照日期统计的下载"
