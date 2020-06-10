@@ -153,13 +153,9 @@ class AddonQuerySet(BaseQuerySet):
             return self.filter(slug=val)
         return self.filter(id=val)
 
-    def enabled(self):
-        """Get add-ons that haven't been disabled by their developer(s)."""
-        return self.filter(disabled_by_user=False)
-
     def public(self):
-        """Get public add-ons only"""
-        return self.filter(self.valid_q([amo.STATUS_APPROVED]))
+        """Get reviewed add-ons only"""
+        return self.filter(self.valid_q(amo.REVIEWED_STATUSES))
 
     def valid(self):
         """Get valid, enabled add-ons only"""
@@ -169,34 +165,16 @@ class AddonQuerySet(BaseQuerySet):
         """Get all add-ons not disabled by Mozilla."""
         return self.exclude(status=amo.STATUS_DISABLED)
 
-    def listed(self, app, *status):
-        """
-        Return add-ons that support a given ``app``, have a version with a file
-        matching ``status`` and are not disabled.
-        """
-        if len(status) == 0:
-            status = [amo.STATUS_APPROVED]
-        return self.filter(self.valid_q(status), appsupport__app=app.id)
-
-    def valid_q(self, status=None, prefix=''):
+    def valid_q(self, statuses):
         """
         Return a Q object that selects a valid Addon with the given statuses.
 
         An add-on is valid if not disabled and has a current version.
-        ``prefix`` can be used if you're not working with Addon directly and
-        need to hop across a join, e.g. ``prefix='addon__'`` in
-        CollectionAddon.
         """
-        if not status:
-            status = [amo.STATUS_APPROVED]
-
-        def q(*args, **kw):
-            if prefix:
-                kw = dict((prefix + k, v) for k, v in kw.items())
-            return Q(*args, **kw)
-
-        return q(q(_current_version__isnull=False),
-                 disabled_by_user=False, status__in=status)
+        return Q(
+            _current_version__isnull=False,
+            disabled_by_user=False,
+            status__in=statuses)
 
 
 class AddonManager(ManagerBase):
@@ -219,10 +197,6 @@ class AddonManager(ManagerBase):
         """Get add-ons by id or slug."""
         return self.get_queryset().id_or_slug(val)
 
-    def enabled(self):
-        """Get add-ons that haven't been disabled by their developer(s)."""
-        return self.get_queryset().enabled()
-
     def public(self):
         """Get public add-ons only"""
         return self.get_queryset().public()
@@ -230,13 +204,6 @@ class AddonManager(ManagerBase):
     def valid(self):
         """Get valid, enabled add-ons only"""
         return self.get_queryset().valid()
-
-    def listed(self, app, *status):
-        """
-        Return add-ons that support a given ``app``, have a version with a file
-        matching ``status`` and are not disabled.
-        """
-        return self.get_queryset().listed(app, *status)
 
     def not_disabled_by_mozilla(self):
         """Get all add-ons not disabled by Mozilla."""
@@ -1198,20 +1165,6 @@ class Addon(OnChangeMixin, ModelBase):
 
     def show_adu(self):
         return self.type != amo.ADDON_SEARCH
-
-    def authors_other_addons(self, app=None):
-        """
-        Return other addons by the author(s) of this addon,
-        optionally takes an app.
-        """
-        if app:
-            qs = Addon.objects.listed(app)
-        else:
-            qs = Addon.objects.valid()
-        return (qs.exclude(id=self.id)
-                  .filter(addonuser__listed=True,
-                          authors__in=self.listed_authors)
-                  .distinct())
 
     @property
     def contribution_url(self, lang=settings.LANGUAGE_CODE,
