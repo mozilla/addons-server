@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 15:22+0000\n"
+"PO-Revision-Date: 2020-06-10 15:24+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5759,7 +5759,7 @@ msgid "Add-on name translations"
 msgstr "Oersettingen fan add-on-namme"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Beoardielershelpmiddelen – Add-ons foar Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Tebek nei it dashboerd fan it Beoardielersark"
@@ -5777,7 +5777,7 @@ msgid "Score"
 msgstr "Skoare"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Moderaasjelochboek foar beoardielers – Add-ons foar Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5818,7 +5818,7 @@ msgid "Undelete"
 msgstr "Fuortsmiten ûngedien meitsje"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Beoardielersprestaasjes – Add-ons foar Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Prestaasjes fan add-on-beoardieler"
@@ -5869,22 +5869,22 @@ msgid "All-Time"
 msgstr "Alles"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Helpmiddelen foar beoardielers – Add-ons foar Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Ynhâldsbeoardieling – Add-ons foar Firefox"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Automatysk goedkarre add-ons – Add-ons foar Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Beoardielingsmoderaasje – Add-ons foar Firefox"
 
 msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Ferrûn fersyk om ynformaasje – Add-ons foar Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Net-fermelde add-ons – Add-ons foar Firefox"
 
 msgid "Advanced Search"
 msgstr "Avansearre sykje"
@@ -6152,7 +6152,7 @@ msgid "Weight:"
 msgstr "Gewicht:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Troch automatyske scanners markearre"
 
 msgid "Download"
 msgstr "Downloade"
@@ -6341,7 +6341,7 @@ msgid "by Platform"
 msgstr "op platfoarm"
 
 msgid "by Country"
-msgstr ""
+msgstr "op Lân"
 
 msgid "by Add-on Status"
 msgstr "op add-onsteat"
