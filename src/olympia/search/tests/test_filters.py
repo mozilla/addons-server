@@ -802,7 +802,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         # firefox57 is in the ignore list, we shouldn't filter the query with
         # it.
         qs = self._filter(data={'tag': 'firefox57'})
-        assert 'bool' not in qs['query']
+        assert 'bool' not in qs.get('query', {})
 
         qs = self._filter(data={'tag': 'foo,firefox57'})
         assert 'must' not in qs['query']['bool']
