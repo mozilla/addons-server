@@ -14,7 +14,7 @@ z.StatsManager = (function() {
     // strictly the same and the cache might contain mixed data so we
     // cache-bust the (session) cache when users switch between the two stats
     // features.
-    var isBeta = $primary.attr("data-is-beta") === 'True';
+    var isBeta = $primary.data("is-beta") === 'True';
     if (isBeta) {
         STATS_VERSION += '-beta';
     }
@@ -24,8 +24,8 @@ z.StatsManager = (function() {
         dataStore       = {},
         currentView     = {},
         siteEvents      = [],
-        addonId         = parseInt($primary.attr("data-addon_id"), 10),
-        baseURL         = $primary.attr("data-base_url"),
+        addonId         = parseInt($primary.data("addon_id"), 10),
+        baseURL         = $primary.data("base_url"),
         pendingFetches  = 0,
         siteEventsEnabled = true,
         writeInterval   = false,
