@@ -46,8 +46,8 @@ pyparsing==2.4.7 \
 appdirs==1.4.4 \
     --hash=sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128 \
     --hash=sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41
-importlib_resources==1.5.0 \
-    --hash=sha256:85dc0b9b325ff78c8bef2e4ff42616094e16b98ebd5e3b50fe7e2f0bbcdcde49 \
-    --hash=sha256:6f87df66833e1942667108628ec48900e02a4ab4ad850e25fbf07cb17cf734ca
+importlib_resources==2.0.0 \
+    --hash=sha256:a86462cf34a6d391d1d5d598a5e2f5aac9fc00b265d40542e1196328f015d1f6 \
+    --hash=sha256:7f6aae2ed252ba10f5d1af5676b0e35f3b3eb7d3cc103b8365cc92aec0c79258
 distlib==0.3.0 \
     --hash=sha256:2e166e231a26b36d6dfe35a48c4464346620f8645ed0ace01ee31822b288de21
