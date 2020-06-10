@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 08:43+0000\n"
+"PO-Revision-Date: 2020-06-10 08:48+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -1686,16 +1686,16 @@ msgid "Users can not be added directly"
 msgstr ""
 
 msgid "An author can only be present once."
-msgstr ""
+msgstr "يمكنك ذكر المؤلف مرة واحدة فقط."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "يجب أن يكون لديك مالك واحد على الأقل."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "يجب إدراج مؤلف واحد على الأقل."
 
 msgid "Slug incorrect."
 msgstr ""
@@ -1731,16 +1731,16 @@ msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
 msgid "Invalid or broken archive."
-msgstr ""
+msgstr "أرشيف معطوب أو غير صالح ."
 
 msgid "View current"
-msgstr ""
+msgstr "شاهد الحالي"
 
 msgid "Invalid version range."
 msgstr ""
 
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "تحتاج إلى تطبيق واحد متوافق على الأقل."
 
 msgid "There was an error with your upload. Please try again."
 msgstr ""
