@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 19:11+0000\n"
+"PO-Revision-Date: 2020-06-10 19:21+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2928,7 +2928,7 @@ msgstr "Confirmar e gerar novas credenciais"
 msgid "Generate new credentials"
 msgstr "Gerar novas credenciais"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -2945,16 +2945,16 @@ msgid ""
 msgstr ""
 "Olá,\n"
 "\n"
-"Está a receber esta mensagem porque solicitou novas chaves da API de programador\n"
+"Está a receber esta mensagem porque solicitou novas chaves para a API de programador\n"
 "para %(domain)s. Para finalizar este processo, clique na ligação abaixo:\n"
 "\n"
 "%(api_key_confirmation_link)s\n"
 "\n"
 "Se não solicitou isto, por favor, notifique amo-admins@mozilla.com\n"
 "\n"
-"Atentamente,\n"
+"Com os melhores cumprimentos,\n"
 "\n"
-"A Equipa de Extras da Mozilla\n"
+"A equipa de extras da Mozilla"
 
 #, python-format
 msgid ""
@@ -5569,13 +5569,11 @@ msgstr "Versões listadas que precisam de revisão humana ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Versões não listadas que precisam de revisão humana ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Versões listadas"
+msgstr "Versões listadas ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Versões listadas"
+msgstr "Versões não listadas ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Isto vai aprovar, assinar, e publicar esta versão. Os comentários serão enviados para o programador."
@@ -5598,9 +5596,8 @@ msgstr "A última versão pública deste extra foi aprovada automaticamente. Ist
 msgid "Reject Multiple Versions"
 msgstr "Rejeitar múltiplas versões"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Isto vai rejeitar as versões públicas selecionadas. Os comentários serão enviados para o programador."
+msgstr "Isto vai rejeitar as versões selecionadas. Os comentários serão enviados para o programador."
 
 msgid "Block Multiple Versions"
 msgstr "Bloquear Múltiplas Versões"
@@ -5647,20 +5644,18 @@ msgstr "Registo de revisão"
 msgid "Add-on Review Guide"
 msgstr "Guia de revisão de extra"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Testes de segurança"
+msgstr "Analisadores de segurança"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] "Sinalizado por analisadores ({0})"
 msgstr[1] "Sinalizados por analisadores ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Sinalizar para revisão humana"
-msgstr[1] "Sinalizar para revisão humana"
+msgstr[0] "Sinalizado para revisão humana ({0})"
+msgstr[1] "Sinalizados para revisão humana ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Extras aprovados automaticamente"
@@ -5730,13 +5725,11 @@ msgstr "Revisão processada com sucesso."
 msgid "Review lock limit reached"
 msgstr "Limite de bloqueio de revisão atingido"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – Acordo de licenciamento para utilizador final"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Política de privacidade"
+msgstr "{addon} – Política de privacidade"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr "Relatórios de violação – {addon} – Extras para o Firefox"
@@ -5922,16 +5915,14 @@ msgstr "– Ferramentas do revisor – Extras para o Firefox"
 msgid "Content Review – Add-ons for Firefox"
 msgstr "Revisão de conteúdo – Extras para o Firefox"
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Extras aprovados automaticamente"
+msgstr "Extras aprovados automaticamente - Extras para o Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr "Moderação da revisão – Extras para o Firefox"
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Solicitação de informação expirada"
+msgstr "Pedidos de informação expirados - Extras para o Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr "Extras não listados – Extras para o Firefox"
@@ -6123,9 +6114,8 @@ msgstr "Dispensar este anúncio"
 msgid "Files in this version:"
 msgstr "Ficheiros nesta versão:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Ficheiros nesta versão:"
+msgstr "Explorar todos os ficheiros nesta versão"
 
 msgid "Contents"
 msgstr "Conteúdos"
@@ -6480,16 +6470,14 @@ msgstr "A carregar os últimos dados&hellip;"
 msgid "No data available."
 msgstr "Sem dados disponíveis."
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Este painel de momento é <b>privado</b>."
+msgstr "Este painel é <b>privado</b>."
 
 msgid "Application usage by Date"
 msgstr "Utilização da aplicação por data"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Idiomas de utilizador por data"
+msgstr "Países dos utilizadores por data"
 
 msgid "Downloaded by Date"
 msgstr "Transferidos por data"
