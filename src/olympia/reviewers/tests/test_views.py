@@ -3458,6 +3458,61 @@ class TestReview(ReviewBase):
         assert doc('th').eq(1).text() == 'Commented'
         assert doc('.history-comment').text() == 'hello sailor'
 
+    def test_item_history_pending_rejection(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('#versions-history .review-files')
+        assert doc('.pending-rejection') == []
+        VersionReviewerFlags.objects.create(
+            version=self.version,
+            pending_rejection=datetime.now() + timedelta(hours=1, minutes=1))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('#versions-history .review-files')
+        assert doc('.pending-rejection').text() == (
+            '· Scheduled for rejection in 1\xa0hour'
+        )
+
+    def test_item_history_pending_rejection_other_pages(self):
+        self.addon.current_version.update(created=self.days_ago(366))
+        for i in range(0, 10):
+            # Add versions 1.0 to 1.9. Schedule a couple for future rejection
+            # (the date doesn't matter).
+            version = version_factory(
+                addon=self.addon, version=f'1.{i}',
+                created=self.days_ago(365 - i))
+            if not bool(i % 5):
+                VersionReviewerFlags.objects.create(
+                    version=version, pending_rejection=datetime.now())
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        ths = doc('#versions-history tr.listing-header th')
+        assert ths.length == 10
+        # Original version should not be there any more, it's on the second
+        # page. Versions on the page should be displayed in chronological order
+        # Versions 1.0, and 1.5 are pending rejection.
+        assert 'Scheduled for rejection in' in ths.eq(0).text()
+        assert 'Scheduled for rejection in' in ths.eq(5).text()
+
+        # Make sure the message doesn't appear on the rest of the versions.
+        for num in [1, 2, 3, 4, 6, 7, 8, 9]:
+            assert 'Scheduled for rejection in' not in ths.eq(num).text()
+
+        # There are no other versions pending rejection in other pages.
+        span = doc('#review-files-header .other-pending-rejection')
+        assert span.length == 0
+
+        # Load the second page. This time there should be a message indicating
+        # there are flagged versions in other pages.
+        response = self.client.get(self.url, {'page': 2})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        span = doc('#review-files-header .other-pending-rejection')
+        assert span.length == 1
+        assert span.text() == '2 versions pending rejection on other pages.'
+
     def test_files_in_item_history(self):
         data = {'action': 'public', 'operating_systems': 'win',
                 'applications': 'something', 'comments': 'something'}

@@ -8,6 +8,10 @@
     <span class="light">{{ _("(Confirmed)") }}</span>
     {% endif %}
 
+    {% if version.pending_rejection %}
+    <span class="pending-rejection" title="{{ version.pending_rejection|datetime }}">&middot; {{ _("Scheduled for rejection in {0} "|format_html(version.pending_rejection|timeuntil)) }}</span>
+    {% endif %}
+
     {% if addon.block and addon.block.is_version_blocked(version.version) %}
     <span class="blocked-version">Blocked</span>
     {% endif %}

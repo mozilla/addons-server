@@ -245,6 +245,11 @@ def timesince(time):
     return ugettext(u'{0} ago').format(ago)
 
 
+@library.filter
+def timeuntil(time):
+    return defaultfilters.timeuntil(time)
+
+
 @library.global_function
 @library.render_with('amo/recaptcha.html')
 @jinja2.contextfunction

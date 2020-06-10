@@ -739,6 +739,7 @@ def review(request, addon, channel=None):
         addon.versions(manager='unfiltered_for_relations')
              .filter(channel=channel)
              .select_related('autoapprovalsummary')
+             .select_related('versionreviewerflags')
         # Add activity transformer to prefetch all related activity logs on
         # top of the regular transformers.
              .transform(Version.transformer_activity)
@@ -880,6 +881,9 @@ def review(request, addon, channel=None):
     # paginated).
     versions_flagged_by_scanners = versions_qs.filter(
         needs_human_review=True).exclude(pk__in=version_ids).count()
+    versions_pending_rejection = versions_qs.filter(
+        versionreviewerflags__pending_rejection__isnull=False).exclude(
+        pk__in=version_ids).count()
 
     flags = get_flags(addon, version) if version else []
 
@@ -921,6 +925,7 @@ def review(request, addon, channel=None):
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes_log=user_changes_log, user_ratings=user_ratings,
         versions_flagged_by_scanners=versions_flagged_by_scanners,
+        versions_pending_rejection=versions_pending_rejection,
         version=version, whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)

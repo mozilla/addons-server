@@ -378,6 +378,13 @@ def test_timesince():
     assert jinja_helpers.timesince(None) == u''
 
 
+def test_timeuntil():
+    a_month_in_the_future = datetime.now() + timedelta(days=31)
+    assert jinja_helpers.timeuntil(a_month_in_the_future) == '1 month'
+    a_week_in_the_future = datetime.now() + timedelta(days=14, hours=1)
+    assert jinja_helpers.timeuntil(a_week_in_the_future) == '2 weeks'
+
+
 def test_format_unicode():
     # This makes sure there's no UnicodeEncodeError when doing the string
     # interpolation.
