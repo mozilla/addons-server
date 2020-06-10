@@ -47,20 +47,18 @@
       </li>
     {% endif %}
   {% endif %}
-  {% if not addon.disabled_by_user and addon.status == amo.STATUS_APPROVED %}
-    {% if waffle.flag('beta-stats') %}
-      <li>
-        <a href="{{ url('stats.overview.beta', addon.slug) }}" class="tooltip"
-          title="{{ _('Daily statistics on downloads and users') }}">
-          {{ _('Statistics') }}</a>
-      </li>
-    {% elif show_listed %}
-      <li>
-        <a href="{{ url('stats.overview', addon.slug) }}" class="tooltip"
-          title="{{ _('Daily statistics on downloads and users') }}">
-          {{ _('Statistics') }}</a>
-      </li>
-    {% endif %}
+  {% if addon.status != amo.STATUS_DISABLED and waffle.flag('beta-stats') %}
+    <li>
+      <a href="{{ url('stats.overview.beta', addon.slug) }}" class="tooltip"
+        title="{{ _('Daily statistics on downloads and users') }}">
+        {{ _('Statistics') }}</a>
+    </li>
+  {% elif not addon.disabled_by_user and addon.status == amo.STATUS_APPROVED and show_listed %}
+    <li>
+      <a href="{{ url('stats.overview', addon.slug) }}" class="tooltip"
+        title="{{ _('Daily statistics on downloads and users') }}">
+        {{ _('Statistics') }}</a>
+    </li>
   {% endif %}
   <li>
     <a href="#" class="more-actions">{{ _('More') }}</a>
