@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 19:21+0000\n"
+"PO-Revision-Date: 2020-06-10 22:04+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4028,11 +4028,11 @@ msgstr "Torne a web mais fácil para os olhos escurecendo a sua apresentação."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pare os popups {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Pare os pop-ups {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr "Bloqueie todos os popups por predefinição e depois decida quais gostaria de abrir."
+msgstr "Bloqueie todos os pop-ups por predefinição e depois decida quais gostaria de abrir."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4958,7 +4958,7 @@ msgstr "Substitua automaticamente as palavras derrogatórias na Web."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr "Bloqueie todos os anúncios — de vídeo, popups, banners e muito mais."
+msgstr "Bloqueie todos os anúncios — de vídeo, pop-ups, banners e muito mais."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
