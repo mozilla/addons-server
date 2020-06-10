@@ -2010,3 +2010,32 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
 
         assert (reverse('stats.overview.beta', args=[self.addon.slug]) in
                 str(response.content))
+
+    @override_flag('beta-stats', active=True)
+    def test_link_to_beta_stats_for_addon_disabled_by_user(self):
+        self.addon.update(disabled_by_user=True)
+
+        response = self.client.get(self.url)
+
+        assert (reverse('stats.overview.beta', args=[self.addon.slug]) in
+                str(response.content))
+
+    @override_flag('beta-stats', active=True)
+    def test_link_to_beta_stats_for_unlisted_addon(self):
+        self.make_addon_unlisted(self.addon)
+
+        response = self.client.get(self.url)
+
+        assert (reverse('stats.overview.beta', args=[self.addon.slug]) in
+                str(response.content))
+
+    @override_flag('beta-stats', active=True)
+    def test_no_link_for_addon_disabled_by_mozilla(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+
+        self.make_addon_unlisted(self.addon)
+
+        response = self.client.get(self.url)
+
+        assert (reverse('stats.overview.beta', args=[self.addon.slug]) not in
+                str(response.content))
