@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 05:11+0000\n"
+"PO-Revision-Date: 2020-06-10 05:17+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6389,7 +6389,7 @@ msgstr "Aql-ak/ekem teskanayeḍ-d tamahilt beta. Mazal tzemreḍ ad tkecmeḍ �
 
 #, python-format
 msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
-msgstr ""
+msgstr "Ad nesken isebtar n tddadanin timaynutin yerna tzemreḍ ad tkecmeḍ ɣer teskant! <a href=\"%(beta_stats_overview_url)s\">Awi-yi ɣer tfelwit n usenqed tamaynut.</a>"
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "Asesfer n tiddadanin yensa akka tura daɣen isefka inegura ur ttilin ara. Tiddadanin ad kemmlent ad ttwalqaḍent daɣen asebter-a ad yettwalqem ɣer zdat s yisefka i ixuṣṣen."
