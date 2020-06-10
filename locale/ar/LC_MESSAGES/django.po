@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 08:25+0000\n"
+"PO-Revision-Date: 2020-06-10 08:43+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -742,7 +742,7 @@ msgid "Password changed."
 msgstr "تغيّرت كلمة السر."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "تمت الموافقة على {version} {addon} وفي انتظار الإعلان عنها للجمهور."
+msgstr "تمت الموافقة على {addon} {version} وفي انتظار الإعلان عنها للجمهور."
 
 msgid "Approved but waiting"
 msgstr "تمت الموافقة لكنه في الانتظار"
@@ -833,10 +833,10 @@ msgid "Auto-Approval confirmed"
 msgstr "تأكّدت الموافقة الآلية"
 
 msgid "{addon} {version} re-enabled."
-msgstr ""
+msgstr "تم إعادة تفعيل {addon} {version}."
 
 msgid "{addon} {version} disabled."
-msgstr ""
+msgstr "تم تعطيل {addon} {version}."
 
 msgid "{addon} {version} content approved."
 msgstr ""
@@ -1704,28 +1704,28 @@ msgid "Details"
 msgstr "التفاصيل"
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "ما اسم رخصتك؟"
 
 msgid "Custom License"
 msgstr "رخصة مخصصة"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "قدم نص الترخيص الخاص بك."
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "مطلوب نص الترخيص عند اختيار أخرى."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "تحتوي هذه الإضافة على اتفاقية ترخيص للمستخدم النهائي"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "يرجى تحديد اتفاقية ترخيص المستخدم النهائي للإضافة:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "هذه الإضافة لها سياسة خصوصية"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "يرجى تحديد سياسة خصوصية إضافتك:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
