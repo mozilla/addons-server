@@ -419,7 +419,8 @@ class Addon(OnChangeMixin, ModelBase):
         null=True, help_text='Last time this add-on had a file/version update')
 
     disabled_by_user = models.BooleanField(default=False, db_column='inactive')
-    view_source = models.BooleanField(default=True, db_column='viewsource')
+    view_source = models.BooleanField(
+        null=True, default=True, db_column='viewsource')
 
     target_locale = models.CharField(
         max_length=255, blank=True, null=True,
