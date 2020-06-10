@@ -834,15 +834,20 @@ class AutoApprovalSummary(ModelBase):
     version = models.OneToOneField(
         Version, on_delete=models.CASCADE, primary_key=True)
     is_locked = models.BooleanField(
-        default=False, help_text=_('Is locked by a reviewer'))
+        default=False,
+        help_text=_('Is locked by a reviewer'))
     has_auto_approval_disabled = models.BooleanField(
         default=False,
         help_text=_('Has auto-approval disabled/delayed flag set'))
     is_recommendable = models.BooleanField(
-        default=False, help_text=_('Is recommendable'))
+        default=False,
+        help_text=_('Is recommendable'))
     should_be_delayed = models.BooleanField(
         default=False,
         help_text=_("Delayed because it's the first listed version"))
+    is_blocked = models.BooleanField(
+        default=False,
+        help_text=_('Version string and guid match a blocklist Block'))
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
@@ -863,7 +868,8 @@ class AutoApprovalSummary(ModelBase):
         'has_auto_approval_disabled',
         'is_locked',
         'is_recommendable',
-        'should_be_delayed'
+        'should_be_delayed',
+        'is_blocked',
     )
 
     def __str__(self):
@@ -1195,6 +1201,13 @@ class AutoApprovalSummary(ModelBase):
             version.addon.status == amo.STATUS_NOMINATED and
             now - nomination < timedelta(hours=24) and
             content_review is None)
+
+    @classmethod
+    def check_is_blocked(cls, version):
+        """Check if the version matches a Block in the blocklist.  Such uploads
+        would have been prevented, but if it was uploaded before the Block was
+        created, it's possible it'll still be pending."""
+        return version.is_blocked
 
     @classmethod
     def create_summary_for_version(cls, version, dry_run=False):
