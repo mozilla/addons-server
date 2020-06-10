@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 05:17+0000\n"
+"PO-Revision-Date: 2020-06-10 06:13+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6046,9 +6046,8 @@ msgstr "Agi alɣu-a"
 msgid "Files in this version:"
 msgstr "Ifuyla di lqem-agi:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Ifuyla di lqem-agi:"
+msgstr "Wali akk ifuyla n lqem-a"
 
 msgid "Contents"
 msgstr "Igburen"
@@ -6407,9 +6406,8 @@ msgstr "Tafelwit-agi n usenqded akka tura d <b>tusligt</b>."
 msgid "Application usage by Date"
 msgstr "Aseqdec n usnas s wazemz"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Tutlayin n useqdac s wazemz"
+msgstr "Timura n useqdac s wazemz"
 
 msgid "Downloaded by Date"
 msgstr "Isidar s wazemz"
