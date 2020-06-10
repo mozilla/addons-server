@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-05-28 11:14+0000\n"
+"PO-Revision-Date: 2020-06-09 18:25+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -6104,13 +6104,13 @@ msgid "Files in this version:"
 msgstr "Bestanden in deze versie:"
 
 msgid "Browse all files in this version"
-msgstr ""
+msgstr "Door alle bestanden in deze versie bladeren"
 
 msgid "Contents"
 msgstr "Inhoud"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "Deze versie met de laatst beoordeelde versie vergelijken"
 
 msgid "Compare"
 msgstr "Vergelijken"
@@ -6369,7 +6369,7 @@ msgid "by Platform"
 msgstr "op platform"
 
 msgid "by Country"
-msgstr ""
+msgstr "op Land"
 
 msgid "by Add-on Status"
 msgstr "op add-onstatus"
@@ -6441,11 +6441,11 @@ msgstr "Aangepast…"
 
 #, python-format
 msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr ""
+msgstr "U bekijkt een bètafunctie. U kunt <a href=\"%(stats_overview_url)s\">hier</a> nog steeds de verouderde statistiekenpagina bekijken."
 
 #, python-format
 msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
-msgstr ""
+msgstr "We implementeren nieuwe statistiekenpagina’s en u hebt toegang tot de voorvertoning! <a href=\"%(beta_stats_overview_url)s\">Breng me naar het nieuwe dashboard.</a>"
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -6459,13 +6459,13 @@ msgid "No data available."
 msgstr "Geen gegevens beschikbaar."
 
 msgid "This dashboard is <b>private</b>."
-msgstr ""
+msgstr "Dit dashboard is <b>privé</b>."
 
 msgid "Application usage by Date"
 msgstr "Toepassingsgebruik op datum"
 
 msgid "User countries by Date"
-msgstr ""
+msgstr "Gebruikerslanden op datum"
 
 msgid "Downloaded by Date"
 msgstr "Gedownload op datum"
