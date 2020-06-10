@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 22:12+0000\n"
+"PO-Revision-Date: 2020-06-10 22:19+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2339,8 +2339,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Se o seu extra tem um website ou fórum de apoio, introduza o respetivo endereço aqui. Se o seu website está traduzido noutros idiomas, múltiplas traduções deste campo podem ser adicionadas. Isto "
-"apenas é relevante para extras listados."
+"Se o seu extra tem um site ou fórum de apoio, introduza o respetivo endereço aqui. Se o seu site está traduzido noutros idiomas, múltiplas traduções deste campo podem ser adicionadas. Isto é "
+"relevante apenas para extras listados."
 
 msgid "Images"
 msgstr "Imagens"
@@ -2628,7 +2628,7 @@ msgid "Support email:"
 msgstr "Email de apoio:"
 
 msgid "Support website:"
-msgstr "Website de apoio:"
+msgstr "Site de apoio:"
 
 msgid "License:"
 msgstr "Licença:"
@@ -4152,7 +4152,7 @@ msgstr "Melhore o tráfego do seu site {start_sub_heading}com {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr "Obtenha informação pormenorizada sobre tráfego e interesse para qualquer website."
+msgstr "Obtenha informação pormenorizada sobre tráfego e interesse para qualquer site."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4356,7 +4356,7 @@ msgstr "Faça notas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr "Crie notas gerais e específicas a websites para rever mais tarde."
+msgstr "Crie notas gerais e específicas de sites para rever mais tarde."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4436,7 +4436,7 @@ msgstr "Faça a gestão das suas palavras-passe com segurança {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr "Armazene palavras-passe em segurança e inicie sessão para websites conhecidos automaticamente."
+msgstr "Armazene palavras-passe em segurança e inicie sessão automaticamente em sites conhecidos."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4484,7 +4484,7 @@ msgstr "Encontre vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr "Destaque texto de qualquer website e clique com o lado direito para pesquisar no YouTube por multimédia relacionada."
+msgstr "Destaque texto de qualquer site e clique com o lado direito para pesquisar no YouTube por multimédia relacionada."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4586,7 +4586,7 @@ msgstr "Mantenha as palavras-passe seguras {start_sub_heading}com {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr "Armazene palavras-passe em segurança e inicie sessão automaticamente para websites conhecidos."
+msgstr "Armazene palavras-passe em segurança e inicie sessão automaticamente em sites conhecidos."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -4642,7 +4642,7 @@ msgstr "Esqueça o histórico {start_sub_heading}com {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr "Apague histórico do navegador automaticamente para os websites que selecionar."
+msgstr "Apague automaticamente o histórico do navegador para os sites que selecionar."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4694,7 +4694,7 @@ msgstr "Conhecimento da localização {start_sub_heading}com {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr "Saiba onde o servidor de qualquer website está localizado geograficamente. Seja um(a) viajante web informado(a)."
+msgstr "Saiba onde o servidor de qualquer site está localizado geograficamente. Seja um viajante da Internet informado."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6353,7 +6353,7 @@ msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
 msgstr "Não pode adicionar versões listadas a um extra definido para o estado \"Invisível\"."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr "Não pode adicionar uma versão listada a este extra via API devido a metadados em falta. Por favor submeta via website"
+msgstr "Não pode adicionar uma versão listada a este extra via API devido aos metadados em falta. Por favor, submeta via site"
 
 msgid "No uploaded file for that addon and version."
 msgstr "Não existe um ficheiro enviado para esse extra e versão."
@@ -6539,7 +6539,7 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Monitorização de fontes externas</h2> <p> Se ligou a página de detalhes do extra ou diretamente o seu ficheiro a partir de um site externo, tal como o seu blogue ou website, pode adicionar um "
+"<h2>Monitorização de fontes externas</h2> <p> Se ligou a página de detalhes do extra ou diretamente o seu ficheiro a partir de um site externo, tal como o seu blogue ou site, pode adicionar um "
 "parâmetro para ser referenciado como uma fonte adicional de transferência nesta página. Por exemplo, as ligações seguintes iriam aparecer classificadas como o seu blogue: <dl> <dt>Página de detalhes"
 " do extra</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligação direta ao ficheiro</dt> "
 "<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Apenas os parâmetros src que começam com \"external-\" serão monitorizados, até"
@@ -6581,7 +6581,7 @@ msgid "Report Trademark Abuse"
 msgstr "Reportar abuso de marca registada"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr "O novo website suporta clientes móveis e computadores"
+msgstr "O novo site suporta clientes móveis e computadores"
 
 msgid "View the new site"
 msgstr "Ver o novo site"
@@ -6833,16 +6833,16 @@ msgid ""
 msgstr ""
 "Saudações %(author_name)s,\n"
 "\n"
-"Foi convidado para tornar-se num autor de %(addon_name)s em %(domain)s. Se aceitar o convite irá dar acesso à edição do extra, e poderá mostrar o seu nome na lista de autores no website.\n"
+"Foi convidado para tornar-se num autor de %(addon_name)s em %(domain)s. Se aceitar o convite irá dar acesso à edição do extra e poderá mostrar o seu nome na lista de autores no site.\n"
 "\n"
 "Clique na ligação abaixo para responder se deseja ser adicionado como autor para %(addon_name)s.\n"
 "\n"
 "%(author_confirmation_link)s\n"
 "\n"
-"Se você não esperava receber este convite, envie um email para amo-admins@mozilla.com.\n"
+"Se não esperava receber este convite, envie um email para amo-admins@mozilla.com.\n"
 "\n"
 "Atenciosamente,\n"
-"A equipe de complementos do Mozilla"
+"A equipa de extras da Mozilla"
 
 #, python-format
 msgid ""
