@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 06:13+0000\n"
+"PO-Revision-Date: 2020-06-10 18:27+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6384,7 +6384,7 @@ msgstr "Udmawan..."
 
 #, python-format
 msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr "Aql-ak/ekem teskanayeḍ-d tamahilt beta. Mazal tzemreḍ ad tkecmeḍ ɣer yisebtar n tddadanin tigejdanin<a href=\"%(stats_overview_url)s\">dagi</a>."
+msgstr "Aql-ak/kem teskanayeḍ-d tamahilt beta. Mazal tzemreḍ ad tkecmeḍ ɣer yisebtar n tddadanin tigejdanin<a href=\"%(stats_overview_url)s\">dagi</a>."
 
 #, python-format
 msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
