@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:01+0000\n"
-"PO-Revision-Date: 2020-04-27 18:11+0000\n"
-"Last-Translator: Carlos (SUMO @silva.ac.carlos) <carlos.a.silva@pm.me>\n"
+"PO-Revision-Date: 2020-06-10 19:08+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -123,8 +123,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Os binários compilados, bem como os \"scripts\" reduzidos ou ofuscados (excluindo as bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente para revisão. Certifique-se que "
-"utiliza o campo de envio do código fonte para evitar que a sua submissão seja rejeitada."
+"Os binários compilados, bem como os \"scripts\" reduzidos ou ofuscados (excluindo as bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente para revisão. Certifique-se que utiliza"
+" o campo de envio do código fonte para evitar que a sua submissão seja rejeitada."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "O processo de validação encontrou estes problemas que podem levar a rejeições:"
@@ -449,14 +449,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Aplicações de {0} até {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Contribuições, últimos {0} dias"
+msgstr "Países, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Contribuições de {0} até {1}"
+msgstr "Países de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
