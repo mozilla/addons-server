@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from django.core.management.base import BaseCommand
+from django.db.models import Max
 
 from olympia.reviewers.utils import ReviewHelper
 from olympia.versions.models import Version
@@ -17,21 +18,36 @@ class Command(BaseCommand):
         """
         Return versions that are auto-approvable but have waited long enough
         that we need to notify their developers about the delay.
+
+        Versions are grouped by add-on, only the latest auto-approvable version
+        for each add-on is considered ; if a version has been created recently
+        enough for a given add-on and not auto-approved, none of its other
+        versions will be returned.
         """
-        waiting_period = datetime.now() - timedelta(
-            hours=self.WAITING_PERIOD_HOURS)
         exclude_kwargs = {
             'addon__addonreviewerflags__notified_about_auto_approval_delay':
                 True
         }
-        return (
+        qs = (
+            # Base queryset with auto-approvable versions. Default ordering
+            # is reset to make the GROUP BY work.
             Version.objects
                    .auto_approvable()
-                   .filter(created__lt=waiting_period)
                    .exclude(**exclude_kwargs)
-                   .order_by('created')
-                   .distinct()
+                   .order_by()
         )
+        # Get only the latest version for each add-on from the auto-approvable
+        # versions.
+        latest_per_addon = qs.values('addon').annotate(latest_pk=Max('pk'))
+        # Now that we have the pks of the latest versions waiting for approval
+        # for each add-on, we can use that in a subquery and apply the filter
+        # to only care about versions that have been waiting long enough.
+        maximum_created = datetime.now() - timedelta(
+            hours=self.WAITING_PERIOD_HOURS)
+        return Version.objects.filter(
+            pk__in=latest_per_addon.values('latest_pk'),
+            created__lt=maximum_created,
+        ).order_by('created')
 
     def notify_developers(self, version):
         """

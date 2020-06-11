@@ -762,6 +762,46 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         qs = command.fetch_versions_waiting_for_approval_for_too_long()
         assert [(version.addon, version) for version in qs] == expected
 
+    def test_fetch_versions_waiting_for_approval_for_too_long_reset(self):
+        """Ensure we only consider the latest auto-approvable version for each
+        add-on."""
+        self.create_base_test_addon()
+        old_version = self.version
+        old_version.update(
+            created=self.days_ago(2), nomination=self.days_ago(2)
+        )
+        command = notify_about_auto_approve_delay.Command()
+        qs = command.fetch_versions_waiting_for_approval_for_too_long()
+        assert qs.count() == 1
+        assert qs[0] == self.version
+
+        # When we submit a new version, if it's waiting for approval as well,
+        # it "resets" the waiting period.
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True})
+
+        command = notify_about_auto_approve_delay.Command()
+        qs = command.fetch_versions_waiting_for_approval_for_too_long()
+        assert qs.count() == 0
+
+        # If the new version is old enough, then it's returned (and only this
+        # version).
+        new_version.update(created=self.days_ago(1))
+        command = notify_about_auto_approve_delay.Command()
+        qs = command.fetch_versions_waiting_for_approval_for_too_long()
+        assert qs.count() == 1
+        assert qs[0] == new_version
+
+        # If the new version is approved but not the old one, then the old one
+        # is returned, the new version no longer prevents the old one from
+        # being considered.
+        new_version.files.update(status=amo.STATUS_APPROVED)
+        command = notify_about_auto_approve_delay.Command()
+        qs = command.fetch_versions_waiting_for_approval_for_too_long()
+        assert qs.count() == 1
+        assert qs[0] == old_version
+
     def test_notify_nothing(self):
         command = notify_about_auto_approve_delay.Command()
         qs = command.fetch_versions_waiting_for_approval_for_too_long()
