@@ -146,7 +146,7 @@ class TestUserAdmin(TestCase):
         assert response.status_code == 200
         self.user.reload()
         assert self.user.deleted
-        assert self.user.email is None
+        assert self.user.email
         assert _delete_related_content_mock.call_count == 1
         alog = ActivityLog.objects.latest('pk')
         assert alog.action == amo.LOG.ADMIN_USER_ANONYMIZED.id
@@ -197,7 +197,7 @@ class TestUserAdmin(TestCase):
         assert response.status_code == 200
         self.user.reload()
         assert self.user.deleted
-        assert self.user.email is None
+        assert self.user.email
         alog = ActivityLog.objects.filter(
             action=amo.LOG.ADMIN_USER_ANONYMIZED.id).get()
         assert alog.arguments == [self.user]

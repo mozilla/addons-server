@@ -115,9 +115,8 @@ def find_user(identity):
         user = UserProfile.objects.get(
             Q(fxa_id=identity['uid']) | Q(email=identity['email']))
         is_task_user = user.id == settings.TASK_USER_ID
-        if user.deleted or is_task_user:
-            # If the user was found through its email/fxa_id but is deleted, it
-            # means we wanted to ban them. Raise a 403, it's not the prettiest
+        if user.banned or is_task_user:
+            # If the user was banned raise a 403, it's not the prettiest
             # but should be enough.
             # Alternatively if someone tried to log in as the task user then
             # prevent that because that user "owns" a number of important
@@ -133,13 +132,18 @@ def find_user(identity):
         raise
 
 
-def register_user(sender, request, identity):
+def register_user(identity):
     user = UserProfile.objects.create_user(
-        email=identity['email'], username=None, fxa_id=identity['uid'])
+        email=identity['email'], fxa_id=identity['uid'])
     log.info('Created user {} from FxA'.format(user))
     statsd.incr('accounts.account_created_from_fxa')
-    login_user(sender, request, user, identity)
     return user
+
+
+def reregister_user(user):
+    user.update(deleted=False)
+    log.info('Re-created deleted user {} from FxA'.format(user))
+    statsd.incr('accounts.account_created_from_fxa')
 
 
 def update_user(user, identity):
@@ -359,17 +363,22 @@ class AuthenticateView(FxAConfigMixin, APIView):
         # At this point @with_user guarantees that we have a valid fxa
         # identity. We are proceeding with either registering the user or
         # logging them on.
-        if user is None:
-            user = register_user(self.__class__, request, identity)
+        if user is None or user.deleted:
+            action = 'register'
+            if user is None:
+                user = register_user(identity)
+            else:
+                reregister_user(user)
             edit_page = reverse('users.edit')
             if _is_safe_url(next_path, request):
                 next_path = f'{edit_page}?to={quote_plus(next_path)}'
             else:
                 next_path = edit_page
-            response = safe_redirect(next_path, 'register', request)
         else:
-            login_user(self.__class__, request, user, identity)
-            response = safe_redirect(next_path, 'login', request)
+            action = 'login'
+
+        login_user(self.__class__, request, user, identity)
+        response = safe_redirect(next_path, action, request)
         add_api_token_to_response(response, user)
         return response
 
