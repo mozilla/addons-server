@@ -207,6 +207,7 @@ VALID_CONTRIBUTION_DOMAINS = (
     'buymeacoffee.com',
     'donate.mozilla.org',
     'flattr.com',
+    'ko-fi.com',
     'liberapay.com',
     'micropayment.de',
     'opencollective.com',
