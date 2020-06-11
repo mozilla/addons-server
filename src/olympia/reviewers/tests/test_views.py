@@ -6211,12 +6211,12 @@ class AddonReviewerViewSetPermissionMixin(object):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
-    def test_disabled_version_author(self):
+    def test_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
-        self._test_url()
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
@@ -6225,7 +6225,7 @@ class AddonReviewerViewSetPermissionMixin(object):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
-    def test_disabled_version_user_but_not_author(self):
+    def test_disabled_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
@@ -6240,14 +6240,6 @@ class AddonReviewerViewSetPermissionMixin(object):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-    def test_deleted_version_author(self):
-        user = UserProfile.objects.create(username='author')
-        AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login_api(user)
-        self.version.delete()
-        response = self.client.get(self.url)
-        assert response.status_code == 404
-
     def test_deleted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
@@ -6255,7 +6247,7 @@ class AddonReviewerViewSetPermissionMixin(object):
         self.version.delete()
         self._test_url()
 
-    def test_deleted_version_user_but_not_author(self):
+    def test_deleted_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.delete()
@@ -6277,13 +6269,6 @@ class AddonReviewerViewSetPermissionMixin(object):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url()
 
-    def test_unlisted_version_author(self):
-        user = UserProfile.objects.create(username='author')
-        AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self._test_url()
-
     def test_unlisted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
@@ -6291,7 +6276,7 @@ class AddonReviewerViewSetPermissionMixin(object):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url()
 
-    def test_unlisted_version_user_but_not_author(self):
+    def test_unlisted_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -6542,12 +6527,12 @@ class TestReviewAddonVersionViewSetList(TestCase):
         self.client.login_api(user)
         self._test_url()
 
-    def test_permissions_disabled_version_author(self):
+    def test_permissions_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
-        self._test_url()
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
     def test_permissions_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
@@ -6556,7 +6541,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
-    def test_permissions_disabled_version_user_but_not_author(self):
+    def test_permissions_disabled_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
@@ -6999,7 +6984,7 @@ class TestDraftCommentViewSet(TestCase):
         response = self.client.delete(url)
         assert response.status_code == 404
 
-    def test_disabled_version_user_but_not_author(self):
+    def test_disabled_version_user(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
@@ -7085,7 +7070,7 @@ class TestDraftCommentViewSet(TestCase):
 
         assert DraftComment.objects.count() == 1
 
-    def test_deleted_version_user_but_not_author(self):
+    def test_deleted_version_user(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.delete()
@@ -7124,7 +7109,7 @@ class TestDraftCommentViewSet(TestCase):
         response = self.client.post(url, data)
         assert response.status_code == 403
 
-    def test_unlisted_version_user_but_not_author(self):
+    def test_unlisted_version_user(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -7141,6 +7126,50 @@ class TestDraftCommentViewSet(TestCase):
         })
 
         response = self.client.post(url, data)
+        assert response.status_code == 403
+
+    def test_not_reviewer_or_admin(self):
+        reviewer_user = user_factory(username='reviewer')
+        self.grant_permission(reviewer_user, 'Addons:Review')
+        # Create a comment from a reviewer.
+        comment = DraftComment.objects.create(
+            version=self.version, comment='test1', user=reviewer_user,
+            lineno=0, filename='manifest.json')
+
+        user = user_factory(username='simpleuser')
+        self.client.login_api(user)
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk
+        })
+
+        # Should not be able to retrieve comments.
+        response = self.client.get(url)
+        assert response.status_code == 403
+
+        # Should not be able to add comments.
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+        response = self.client.post(url, data)
+        assert response.status_code == 403
+
+        # Should not be able to edit comments.
+        url = reverse_ns('reviewers-versions-draft-comment-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': comment.pk
+        })
+
+        response = self.client.patch(url, {
+            'comment': 'Updated comment!'
+        })
+        assert response.status_code == 403
+
+        # Should not be able to delete comments.
+        response = self.client.delete(url)
         assert response.status_code == 403
 
 
@@ -7546,12 +7575,12 @@ class TestDownloadGitFileView(TestCase):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url_success()
 
-    def test_disabled_version_author(self):
+    def test_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login(email=user.email)
-        self.version.files.update(status=amo.STATUS_DISABLED)
-        self._test_url_success()
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
@@ -7560,7 +7589,7 @@ class TestDownloadGitFileView(TestCase):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url_success()
 
-    def test_disabled_version_user_but_not_author(self):
+    def test_disabled_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login(email=user.email)
         self.version.files.update(status=amo.STATUS_DISABLED)
@@ -7594,13 +7623,6 @@ class TestDownloadGitFileView(TestCase):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url_success()
 
-    def test_unlisted_version_author(self):
-        user = UserProfile.objects.create(username='author')
-        AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login(email=user.email)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self._test_url_success()
-
     def test_unlisted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
@@ -7608,7 +7630,7 @@ class TestDownloadGitFileView(TestCase):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url_success()
 
-    def test_unlisted_version_user_but_not_author(self):
+    def test_unlisted_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login(email=user.email)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
