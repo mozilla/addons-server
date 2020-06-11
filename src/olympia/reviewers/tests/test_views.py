@@ -7575,12 +7575,12 @@ class TestDownloadGitFileView(TestCase):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url_success()
 
-    def test_author(self):
+    def test_disabled_version_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login(email=user.email)
-        response = self.client.get(self.url)
-        assert response.status_code == 403
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url_success()
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
@@ -7589,7 +7589,7 @@ class TestDownloadGitFileView(TestCase):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url_success()
 
-    def test_disabled_version_user(self):
+    def test_disabled_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login(email=user.email)
         self.version.files.update(status=amo.STATUS_DISABLED)
@@ -7623,6 +7623,13 @@ class TestDownloadGitFileView(TestCase):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url_success()
 
+    def test_unlisted_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login(email=user.email)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self._test_url_success()
+
     def test_unlisted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
@@ -7630,7 +7637,7 @@ class TestDownloadGitFileView(TestCase):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url_success()
 
-    def test_unlisted_version_user(self):
+    def test_unlisted_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login(email=user.email)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
