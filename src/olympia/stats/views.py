@@ -19,6 +19,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
+from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME
 from olympia.amo.decorators import allow_cross_site_request
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
@@ -336,7 +337,7 @@ def check_stats_permission(request, addon, beta):
                 user.email.endswith('@mozilla.com') or
                 waffle.flag_is_active(request, 'beta-stats')
             )
-        )
+        ) or addon.type not in [ADDON_EXTENSION, ADDON_STATICTHEME]
     ):
         raise http.Http404
 
@@ -355,12 +356,15 @@ def stats_report(request, addon, report, beta=False):
     stats_base_url = reverse('stats.overview.beta' if beta else
                              'stats.overview', args=[addon.slug])
     view = get_report_view(request)
+    hide_beta = addon.type not in [ADDON_EXTENSION, ADDON_STATICTHEME]
+
     return render(
         request,
         'stats/reports/%s.html' % report,
         {
             'addon': addon,
             'beta': beta,
+            'hide_beta': hide_beta,
             'report': report,
             'stats_base_url': stats_base_url,
             'view': view,
