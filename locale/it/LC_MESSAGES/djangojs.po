@@ -456,14 +456,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Applicazioni da {0} a {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Donazioni, ultimi {0} giorni"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Donazioni da {0} a {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
