@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 12:10+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2020-06-11 12:19+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1760,7 +1760,7 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "Vous avez envoyé trop de fichiers en ligne récemment. Veuillez réessayer après un certain temps."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "La version {version} correspond à {block_link} pour ce module complémentaire. Vous pouvez contacter {amo_admins} pour plus d’informations."
 
 msgid "a blocklist entry"
 msgstr "Une entrée de liste de blocage"
@@ -2516,7 +2516,7 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Votre module complémentaire est pour le moment « Invisible »."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "Dans cet état, « par vos propres moyens » est la seule méthode de distribution disponible."
 
 msgid "General Tests"
 msgstr "Tests généraux"
@@ -2753,7 +2753,7 @@ msgid "Edit version {0}"
 msgstr "Modifier la version {0}"
 
 msgid "Version Signature Pending"
-msgstr ""
+msgstr "Signature de version en attente"
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
 msgstr "C’est tout ! Cette version sera bientôt signée et disponible pour une distribution personnelle. Vous recevrez une notification par courriel lorsque votre fichier aura été signé."
