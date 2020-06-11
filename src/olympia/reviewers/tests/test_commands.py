@@ -768,6 +768,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         self.create_base_test_addon()
         old_version = self.version
         old_version.update(
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
             created=self.days_ago(2), nomination=self.days_ago(2)
         )
         command = notify_about_auto_approve_delay.Command()
@@ -778,7 +779,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         # When we submit a new version, if it's waiting for approval as well,
         # it "resets" the waiting period.
         new_version = version_factory(
-            addon=self.addon, file_kw={
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED, file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True})
 
         command = notify_about_auto_approve_delay.Command()
