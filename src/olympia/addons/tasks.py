@@ -11,7 +11,7 @@ import olympia.core
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, AppSupport, Preview, attach_tags, attach_translations)
+    Addon, AppSupport, DeniedGuid, Preview, attach_tags, attach_translations)
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
@@ -267,6 +267,14 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
                 delete_addons.rate_limit, addon_ids[0]))
     addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
     if with_deleted:
+        # Stop any of these guids from being reused
+        addon_guids = list(
+            addons.exclude(guid=None).values_list('guid', flat=True))
+        denied = [
+            DeniedGuid(
+                guid=guid, comments='Hard deleted with delete_addons task')
+            for guid in addon_guids]
+        DeniedGuid.objects.bulk_create(denied, ignore_conflicts=True)
         # Call QuerySet.delete rather than Addon.delete.
         addons.delete()
     else:
