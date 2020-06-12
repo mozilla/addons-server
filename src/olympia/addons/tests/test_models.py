@@ -237,37 +237,6 @@ class TestAddonManager(TestCase):
         assert self.addon not in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
 
-    def test_listed(self):
-        # We need this for the fixtures, but it messes up the tests.
-        self.addon.update(disabled_by_user=True)
-        # Now continue as normal.
-        Addon.objects.filter(id=5299).update(disabled_by_user=True)
-        q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_APPROVED)
-        assert len(q.all()) == 3
-
-        # Pick one of the listed addons.
-        addon = Addon.objects.get(pk=2464)
-        assert addon in q.all()
-
-        # Disabling hides it.
-        addon.disabled_by_user = True
-        addon.save()
-
-        # Should be 2 now, since the one is now disabled.
-        assert q.count() == 2
-
-        # If we search for public or unreviewed we find it.
-        addon.disabled_by_user = False
-        addon.status = amo.STATUS_NOMINATED
-        addon.save()
-        assert q.count() == 2
-        assert Addon.objects.listed(amo.FIREFOX, amo.STATUS_APPROVED,
-                                    amo.STATUS_NOMINATED).count() == 3
-
-        # Can't find it without a file.
-        addon.versions.get().files.get().delete()
-        assert q.count() == 2
-
     def test_public(self):
         for a in Addon.objects.public():
             assert a.status == amo.STATUS_APPROVED
