@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 22:54+0000\n"
+"PO-Revision-Date: 2020-06-12 23:51+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -25,7 +25,7 @@ msgid "Addons"
 msgstr "Πρόσθετα"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "ελάχιστος αριθμός αναφορών (ομαδοποίηση κατά guid)"
 
 msgid "creation date"
 msgstr "ημερομηνία δημιουργίας"
@@ -305,13 +305,14 @@ msgstr ""
 msgid "Oops"
 msgstr "Ωχ"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Ωχ!  Προέκυψε σφάλμα.</h1> <p>Θα το διορθώσουμε σύντομα.</p> <p> Μπορείτε να δοκιμάσετε να φορτώσετε εκ νέου τη σελίδα, ή να επιστρέψετε στην <a href=\"%(home)s\">αρχική σελίδα των "
-"προσθέτων</a>. </p>"
+"<h1>Ωχ! Προέκυψε σφάλμα.</h1> <p>Θα το διορθώσουμε το συντομότερο δυνατό.</p> <p> Μπορείτε να δοκιμάσετε να ανανεώσετε τη σελίδα, ή να επιστρέψετε στην <a href=\"%(home)s\">αρχική σελίδα των "
+"προσθέτων</a>. Μπορείτε επίσης να μας βοήθησετε να διορθώσουμε αυτό το ζήτημα, <a href=\"https://github.com/mozilla/addons/issues/new\">αναφέροντας το πρόβλημα</a> με λεπτομέρειες σχετικά με το πώς "
+"φτάσατε σε αυτή τη σελιδα. </p>"
 
 msgid "No results found"
 msgstr "Δεν βρέθηκαν αποτελέσματα"
@@ -510,13 +511,11 @@ msgstr "Μη έγκυρη έκδοση"
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Ζητήθηκε αξιολόγηση"
+msgstr "Αναρτημένη αξιολόγηση"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Σημείωση αξιολόγησης"
+msgstr "Μη αναρτημένη αξιολόγηση"
 
 msgid "This block was imported from a regex based legacy Block."
 msgstr ""
@@ -546,7 +545,7 @@ msgid "Save"
 msgstr "Αποθήκευση"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Αποθήκευση και προσθήκη περισσότερων"
 
 msgid "Delete"
 msgstr "Διαγραφή"
@@ -565,7 +564,7 @@ msgid "Add %(name)s"
 msgstr "Προσθήκη %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID προσθέτων (ένα ανά γραμμή)"
 
 msgid "Submit"
 msgstr "Υποβολή"
@@ -998,9 +997,8 @@ msgstr "Δημιουργός"
 msgid "Extension"
 msgstr "Επέκταση"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Αξιολόγηση ενημερωμένου πλήρους θέματος"
+msgstr "Παρωχημένο πλήρες θέμα"
 
 msgid "Dictionary"
 msgstr "Λεξικό"
@@ -1027,9 +1025,8 @@ msgstr "Θέμα (Στατικό)"
 msgid "Extensions"
 msgstr "Επεκτάσεις"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Πλήρη θέματα"
+msgstr "Παρωχημένα πλήρη θέματα"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -3208,7 +3205,7 @@ msgstr "Διεύθυνση email"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Δεν με πειράζει η Mozilla να χειρίζεται τις πληροφορίες μου όπως εξηγούνται σε αυτή τη %(link_open)sΣημείωση απορρήτου%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Εγγραφή"
@@ -3218,6 +3215,8 @@ msgstr "Ευχαριστούμε!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Αν δεν έχετε προηγουμένως επιβεβαιώσει την εγγραφή σας σε κάποιο newsletter σχετικό με τη Mozilla, ίσως θα πρέπει να το κάνετε. Παρακαλούμε ελέγξτε τα εισερχόμενα ή το φίλτρο ανεπιθύμητων για ένα "
+"email από εμάς."
 
 msgid "Resources"
 msgstr "Πόροι"
@@ -3235,7 +3234,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Κουμπί \"Λήψη προσθέτου\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Πρόγραμμα προτεινόμενων επεκτάσεων"
 
 msgid "Contribute"
 msgstr "Συνεισφορά"
@@ -3268,7 +3267,7 @@ msgid "See how"
 msgstr "Δείτε πώς"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Συμμετοχή"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -6160,7 +6159,7 @@ msgid "No reviews found for this period."
 msgstr "Δεν βρέθηκαν αξιολογήσεις γι' αυτή την περίοδο."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Προέλευση:"
 
 msgid "Method:"
 msgstr "Μέθοδος:"
@@ -6352,7 +6351,7 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Ακύρωση"
 
 msgid "Run"
 msgstr ""
