@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 01:13+0000\n"
+"PO-Revision-Date: 2020-06-12 01:53+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -126,13 +126,11 @@ msgstr "Berre siste versjonar av utvidingar kan ha merknadar."
 msgid "Ratings"
 msgstr "Vurderingar"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "Vurderingsverktøy"
+msgstr "Gjennomgangsverktøy (lista)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "Vurderingsverktøy"
+msgstr "Gjennomgangsverktøy (ulista)"
 
 #, fuzzy
 msgid "Reviewer links"
@@ -485,9 +483,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Ugyldig versjonsintervall."
+msgstr "Ugyldig versjon"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -506,9 +503,9 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Avvis fleire versjonar"
+msgstr "Fjern doble %(name)s"
 
 msgid "Home"
 msgstr "Startside"
