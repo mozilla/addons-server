@@ -19,7 +19,6 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME
 from olympia.amo.decorators import allow_cross_site_request
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
@@ -331,14 +330,15 @@ def check_stats_permission(request, addon, beta):
     Raises Http404 if user cannot access the beta mode (only if enabled).
     """
     user = request.user
-    if beta and (
-        not user.is_authenticated or (
-            user.is_authenticated and not (
-                user.email.endswith('@mozilla.com') or
-                waffle.flag_is_active(request, 'beta-stats')
-            )
-        ) or addon.type not in [ADDON_EXTENSION, ADDON_STATICTHEME]
-    ):
+    user_cannot_access_beta = not user.is_authenticated or (
+        user.is_authenticated and not (
+            user.email.endswith('@mozilla.com') or
+            waffle.flag_is_active(request, 'beta-stats')
+        )
+    )
+    addon_has_no_beta = addon.type not in amo.ADDON_TYPES_WITH_STATS
+
+    if beta and (user_cannot_access_beta or addon_has_no_beta):
         raise http.Http404
 
     can_view = user.is_authenticated and (
@@ -356,7 +356,7 @@ def stats_report(request, addon, report, beta=False):
     stats_base_url = reverse('stats.overview.beta' if beta else
                              'stats.overview', args=[addon.slug])
     view = get_report_view(request)
-    hide_beta = addon.type not in [ADDON_EXTENSION, ADDON_STATICTHEME]
+    hide_beta = addon.type not in amo.ADDON_TYPES_WITH_STATS
 
     return render(
         request,

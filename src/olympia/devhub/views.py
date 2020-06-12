@@ -320,8 +320,7 @@ def edit(request, addon_id, addon):
     data = {
         'page': 'edit',
         'addon': addon,
-        'link_to_old_stats': addon.type not in [amo.ADDON_STATICTHEME,
-                                                amo.ADDON_EXTENSION],
+        'link_to_old_stats': addon.type not in amo.ADDON_TYPES_WITH_STATS,
         'whiteboard': whiteboard,
         'editable': False,
         'show_listed_fields': addon.has_listed_versions(),
