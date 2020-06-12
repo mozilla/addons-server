@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 01:53+0000\n"
+"PO-Revision-Date: 2020-06-12 02:04+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1365,17 +1365,14 @@ msgstr "Statisk tema"
 msgid "Persona"
 msgstr "Persona"
 
-#, fuzzy
 msgid "Security"
-msgstr "Sikkerheitstestar"
+msgstr "Sikkerheit"
 
-#, fuzzy
 msgid "Privacy"
-msgstr "Personvernpraksis"
+msgstr "Personvern"
 
-#, fuzzy
 msgid "Development Practices"
-msgstr "Utviklarnytt"
+msgstr "Utviklingspraksis"
 
 msgid "No Reputation"
 msgstr "Ikkje noko rykte"
@@ -1392,9 +1389,8 @@ msgstr "Framifrå (3)"
 msgid "Manual Reviewer Points"
 msgstr "Manuelle vurderarpoeng"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Ny vurdering av utviding"
+msgstr "Ny gransking av eldre tillegg"
 
 msgid "Preliminary Add-on Review"
 msgstr "Foreløpig gjennomgang av utviding"
@@ -1539,9 +1535,8 @@ msgstr "Lågkvalitet, strekt eller tomt bilde"
 msgid "Header image alignment problem"
 msgstr "Problem med bildejustering i sidehovudet"
 
-#, fuzzy
 msgid "No action"
-msgstr "Fleire handlingar"
+msgstr "Inga handling"
 
 msgid "Flag for human review"
 msgstr ""
@@ -1562,9 +1557,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Nyare"
+msgstr "Ny"
 
 msgid "Running"
 msgstr ""
@@ -1575,9 +1569,8 @@ msgstr "Avbroten"
 msgid "Aborting"
 msgstr "Avbryt"
 
-#, fuzzy
 msgid "Completed"
-msgstr "Ufullstendig"
+msgstr "Fullført"
 
 msgid "Scheduled"
 msgstr ""
@@ -1984,9 +1977,8 @@ msgstr "Godta"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "eller <a href=\"{0}\">Avbryt</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Meir informasjon om Creative Commons-lisensar"
+msgstr "Meir informasjon om utviklarkontoar"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2002,9 +1994,8 @@ msgstr "Utviklarsenter for<small> tillegg</small>"
 msgid "more add-ons..."
 msgstr "fleire utvidingar…"
 
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Utvidingar"
+msgstr "Utvidingsverkstad"
 
 msgid "Documentation"
 msgstr "Dokumentasjon"
@@ -2015,9 +2006,8 @@ msgstr "Utvidingsutvikling"
 msgid "Themes"
 msgstr "Tema"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Utviklarnytt"
+msgstr "Utviklarpolicy"
 
 msgid "Add-on Validator"
 msgstr "Utvidingsvalidator"
@@ -2203,16 +2193,14 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Utvidingsdetaljar"
+msgstr "Ytterlegare detaljar"
 
 msgid "Edit"
 msgstr "Rediger"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Utvidingsdetaljar for {0}"
+msgstr "Ytterlegare detaljar for {0}"
 
 msgid "Tags"
 msgstr "Taggar"
@@ -2832,9 +2820,8 @@ msgstr "Temanamn"
 msgid "Select a header image for your theme"
 msgstr "Vel eit bilde for temaet ditt til sidehovudet."
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "Bildehøgde bør vere 200 pikslar"
+msgstr "Tilrådd høgde: 200 pikslar"
 
 msgid "6.9MB max"
 msgstr "6,9 MB maks"
@@ -2904,9 +2891,8 @@ msgstr "Tilbakekall"
 msgid "Revoke and regenerate credentials"
 msgstr "Kall tilbake og regenerer akkreditiv"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Generer nye akkreditiv"
+msgstr "Stadfest og generer nye referansar"
 
 msgid "Generate new credentials"
 msgstr "Generer nye akkreditiv"
@@ -2967,9 +2953,8 @@ msgstr ""
 msgid "Invisible"
 msgstr "Usynleg"
 
-#, fuzzy
 msgid "Approved and recommended"
-msgstr "Godkjende vurderingar"
+msgstr "Godkjend og tilrådd"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -3119,9 +3104,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Utvidingar"
+msgstr "Besøk Extensions Workshop"
 
 msgid "Connect with us"
 msgstr ""
@@ -3129,9 +3113,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "Utviklar"
+msgstr "For utviklarar"
 
 msgid "For end users"
 msgstr ""
@@ -3150,9 +3133,8 @@ msgstr "Utvidingsutvikling"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP-adresse"
+msgstr "E-postadresse"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -3170,9 +3152,8 @@ msgstr ""
 msgid "Resources"
 msgstr "Resursar"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3222,9 +3203,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Les meir om vurderingspraksisen for kjeldekode."
+msgstr "Les meir om utviklarfellesskapet"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -3260,13 +3240,11 @@ msgstr "Ingen foto"
 msgid "User Photo"
 msgstr "Brukarbilde"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Min profil"
+msgstr "Profil"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Send inn ein ny versjon"
+msgstr "Send inn eller handter utvidingar"
 
 msgid "Customize Firefox"
 msgstr "Tilpass Firefox"
@@ -5623,9 +5601,8 @@ msgstr ""
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Du kan ikkje sende inn ei Mozilla-signert utviding"
+msgstr "Du kan ikkje sende inn ein tom kommentar."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5660,9 +5637,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} dag"
 msgstr[1] "{0} dagar"
 
-#, fuzzy
 msgid "ID"
-msgstr "GUID"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "Siste vurdering"
@@ -5674,9 +5650,8 @@ msgstr "Vekt"
 msgid "Information Request Deadline"
 msgstr "Meir informasjon er påkravd"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Sist oppdatert:"
+msgstr "Sist oppdatert"
 
 #, fuzzy
 msgid "Listed versions needing human review ({0})"

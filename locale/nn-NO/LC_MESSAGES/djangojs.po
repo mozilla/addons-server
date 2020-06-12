@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:01+0000\n"
-"PO-Revision-Date: 2020-06-12 01:51+0000\n"
+"PO-Revision-Date: 2020-06-12 02:00+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -27,9 +27,8 @@ msgstr "Det gjekk ikkje å kontakte tenaren."
 msgid "Select a file..."
 msgstr "Vel ei fil…"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx or .xml"
-msgstr "Utvidinga di må slutte på .zip, .xpi, .crx, .jar eller .xml"
+msgstr "Tillegget ditt må slutte på .zip, .xpi, .crx eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
