@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 15:41+0000\n"
+"PO-Revision-Date: 2020-06-12 22:54+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1622,9 +1622,8 @@ msgstr "Ακυρώθηκε"
 msgid "Aborting"
 msgstr "Ακύρωση"
 
-#, fuzzy
 msgid "Completed"
-msgstr "Ημιτελές"
+msgstr "Ολοκληρώθηκε"
 
 msgid "Scheduled"
 msgstr "Προγραμματισμένο"
@@ -2759,9 +2758,8 @@ msgstr "Μπορείτε επίσης να επεξεργαστείτε αυτή
 msgid "Edit version {0}"
 msgstr "Επεξεργασία έκδοσης {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Η έκδοση υπογράφηκε"
+msgstr "Εκκρεμεί η υπογραφή έκδοσης"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
@@ -3327,9 +3325,8 @@ msgstr "Υποβολή νέας έκδοσης"
 msgid "Customize Firefox"
 msgstr "Προσαρμογή του Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Μάθετε πώς να δημιουργήσετε ένα πρόσθετο"
+msgstr "Μάθετε πώς να δημιουργήσετε μια επέκταση"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
