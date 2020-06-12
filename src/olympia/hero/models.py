@@ -1,10 +1,12 @@
 import os
 
+from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms.widgets import RadioSelect
+from django.utils.safestring import mark_safe
 
 from olympia.amo.models import LongNameIndex, ModelBase
 from olympia.discovery.models import DiscoveryItem
@@ -104,7 +106,16 @@ class PrimaryHeroImage(models.Model):
     preview_image.allow_tags = True
 
 
+class ImageChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return mark_safe(
+            '<img src="{}" width="150" height="120" />'.format(
+                obj.custom_image.url))
+
+
 class PrimaryHero(ModelBase):
+    select_image = models.ForeignKey(
+        PrimaryHeroImage, blank=True, null=True, on_delete=models.SET_NULL)
     image = WidgetCharField(
         choices=DirImageChoices(path=FEATURED_IMAGE_PATH), max_length=255,
         widget=ImageChoiceWidget, blank=True)
