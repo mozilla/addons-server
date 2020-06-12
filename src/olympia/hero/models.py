@@ -96,6 +96,13 @@ class PrimaryHeroImage(models.Model):
     def __str__(self):
         return f'{self.custom_image}'
 
+    def preview_image(self):
+        return mark_safe('<img src="{}" width="150" />'.format(
+            self.custom_image.url)
+        )
+    preview_image.short_description = "Image"
+    preview_image.allow_tags = True
+
 
 class PrimaryHero(ModelBase):
     image = WidgetCharField(

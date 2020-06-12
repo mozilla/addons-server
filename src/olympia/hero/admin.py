@@ -17,8 +17,9 @@ class PrimaryHeroInline(admin.StackedInline):
 
 
 class PrimaryHeroImageAdmin(admin.ModelAdmin):
-    list_display = ('custom_image',)
+    list_display = ('preview_image',)
     actions = ['delete_selected']
+    readonly_fields = ('preview_image',)
 
 
 class HeroModuleInlineFormSet(BaseInlineFormSet):
