@@ -210,7 +210,8 @@ class AddonManager(ManagerBase):
         return self.get_queryset().not_disabled_by_mozilla()
 
     def get_base_queryset_for_queue(self, admin_reviewer=False,
-                                    admin_content_review=False):
+                                    admin_content_review=False,
+                                    show_pending_rejection=False):
         qs = (
             self.get_queryset()
             # We don't want the default transformer, it does too much, and
@@ -230,6 +231,10 @@ class AddonManager(ManagerBase):
                 '_current_version__files'
             )
         )
+        if not show_pending_rejection:
+            qs = qs.filter(
+                _current_version__reviewerflags__pending_rejection__isnull=True
+            )
         if not admin_reviewer:
             if admin_content_review:
                 qs = qs.exclude(

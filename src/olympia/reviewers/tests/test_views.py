@@ -1672,6 +1672,17 @@ class TestExtensionQueue(QueueTest):
             self.addons['Nominated One'], self.addons['Pending One']]
         self._test_results()
 
+    def test_pending_rejection_filtered_out(self):
+        VersionReviewerFlags.objects.create(
+            version=self.addons['Nominated Two'].current_version,
+            pending_rejection=datetime.now())
+        VersionReviewerFlags.objects.create(
+            version=self.addons['Pending Two'].current_version,
+            pending_rejection=datetime.now())
+        self.expected_addons = [
+            self.addons['Nominated One'], self.addons['Pending One']]
+        self._test_results()
+
 
 class TestThemeNominatedQueue(QueueTest):
 
@@ -2205,6 +2216,18 @@ class TestAutoApprovedQueue(QueueTest):
             'Auto Approved', tab_position=0, total_addons=4, total_queues=1,
             per_page=1)
 
+    def test_pending_rejection_filtered_out(self):
+        self.login_with_permission()
+        self.generate_files()
+        VersionReviewerFlags.objects.create(
+            version=self.expected_addons[0].current_version,
+            pending_rejection=datetime.now())
+        VersionReviewerFlags.objects.create(
+            version=self.expected_addons[1].current_version,
+            pending_rejection=datetime.now())
+        self.expected_addons = self.expected_addons[2:]
+        self._test_results()
+
 
 class TestExpiredInfoRequestsQueue(QueueTest):
 
@@ -2438,6 +2461,18 @@ class TestContentReviewQueue(QueueTest):
 
         self._test_queue_layout(
             'Content Review', tab_position=0, total_addons=5, total_queues=2)
+
+    def test_pending_rejection_filtered_out(self):
+        self.login_with_permission()
+        self.generate_files()
+        VersionReviewerFlags.objects.create(
+            version=self.expected_addons[0].current_version,
+            pending_rejection=datetime.now())
+        VersionReviewerFlags.objects.create(
+            version=self.expected_addons[1].current_version,
+            pending_rejection=datetime.now())
+        self.expected_addons = self.expected_addons[2:]
+        self._test_results()
 
 
 class TestScannersReviewQueue(QueueTest):
