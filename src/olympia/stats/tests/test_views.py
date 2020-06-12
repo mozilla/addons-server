@@ -863,6 +863,40 @@ class TestStatsBeta(TestCase):
 
         assert b'User countries by Date' in response.content
 
+    def test_no_beta_stats_for_langpacks(self):
+        self.addon.update(type=amo.ADDON_LPAPP)
+        url = reverse('stats.overview.beta', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert response.status_code == 404
+
+    def test_no_beta_stats_for_dictionaries(self):
+        self.addon.update(type=amo.ADDON_DICT)
+        url = reverse('stats.overview.beta', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert response.status_code == 404
+
+    @override_flag('beta-stats', active=True)
+    def test_old_stats_doesnt_show_message_for_beta_if_langpack(self):
+        self.addon.update(type=amo.ADDON_LPAPP)
+        url = reverse('stats.overview', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'We are rolling out new statistics' not in response.content
+
+    @override_flag('beta-stats', active=True)
+    def test_old_stats_doesnt_show_message_for_beta_if_dictionary(self):
+        self.addon.update(type=amo.ADDON_DICT)
+        url = reverse('stats.overview', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'We are rolling out new statistics' not in response.content
+
 
 class TestProcessLocales(TestCase):
     def test_performs_lowercase_lookup(self):
