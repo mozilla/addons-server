@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 02:04+0000\n"
+"PO-Revision-Date: 2020-06-12 02:05+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3249,9 +3249,8 @@ msgstr "Send inn eller handter utvidingar"
 msgid "Customize Firefox"
 msgstr "Tilpass Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Lær korleis du lagar eit tillegg"
+msgstr "Lær deg korleis du lagar ei utviding"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -5742,9 +5741,8 @@ msgstr "Vurderingslogg"
 msgid "Add-on Review Guide"
 msgstr "Vurderingsretningslinjer for tillegg"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Sikkerheitstestar"
+msgstr "Tryggingsskannarar"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
