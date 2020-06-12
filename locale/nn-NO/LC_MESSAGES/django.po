@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 02:05+0000\n"
+"PO-Revision-Date: 2020-06-12 03:29+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -41,7 +41,7 @@ msgid "Reporter's country"
 msgstr ""
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Meldingsutdrag"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -1827,10 +1827,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL-namn var feil. Utvidinga vart ikkje fjerna."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Invitasjon godkjend."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Invitasjon avvist."
 
 msgid "An author has been added to your add-on"
 msgstr "Ein opphavsmann er lagt til i utvidinga di"
@@ -1840,7 +1840,7 @@ msgid "Author invitation for {addon_name}"
 msgstr "Bidrag til {addon}."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Ein stadfestings e-post er sendt til {email}"
 
 #, fuzzy
 msgid "An author role has been changed on your add-on"
