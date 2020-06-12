@@ -22,8 +22,8 @@ class Command(BaseCommand):
         # Fetch addons with request for information expiring in one day.
         one_day_in_the_future = datetime.now() + timedelta(days=1)
         qs = Addon.objects.filter(
-            addonreviewerflags__notified_about_expiring_info_request=False,
-            addonreviewerflags__pending_info_request__lt=one_day_in_the_future)
+            reviewerflags__notified_about_expiring_info_request=False,
+            reviewerflags__pending_info_request__lt=one_day_in_the_future)
         for addon in qs:
             # The note we need to send the mail should always going to be the
             # last information request, as making a new one extends the
@@ -40,5 +40,5 @@ class Command(BaseCommand):
             notify_about_activity_log(
                 addon, version, note, perm_setting=reviewer_reviewed.short,
                 send_to_reviewers=False, send_to_staff=False)
-            addon.addonreviewerflags.update(
+            addon.reviewerflags.update(
                 notified_about_expiring_info_request=True)

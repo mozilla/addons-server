@@ -700,14 +700,15 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def pending_rejection(self):
         try:
-            return self.versionreviewerflags.pending_rejection
+            return self.reviewerflags.pending_rejection
         except VersionReviewerFlags.DoesNotExist:
             return None
 
 
 class VersionReviewerFlags(ModelBase):
     version = models.OneToOneField(
-        Version, primary_key=True, on_delete=models.CASCADE
+        Version, primary_key=True, on_delete=models.CASCADE,
+        related_name='reviewerflags',
     )
     needs_human_review_by_mad = models.BooleanField(default=False)
     pending_rejection = models.DateTimeField(default=None, null=True)

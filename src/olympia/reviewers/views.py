@@ -281,10 +281,10 @@ def dashboard(request):
             request, amo.permissions.REVIEWS_ADMIN):
         expired = (
             Addon.objects.filter(
-                addonreviewerflags__pending_info_request__lt=datetime.now(),
+                reviewerflags__pending_info_request__lt=datetime.now(),
                 status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
                 disabled_by_user=False)
-            .order_by('addonreviewerflags__pending_info_request'))
+            .order_by('reviewerflags__pending_info_request'))
 
         sections[ugettext('Admin Tools')] = [(
             ugettext('Expired Information Requests ({0})'.format(
@@ -525,10 +525,10 @@ def fetch_queue_counts(admin_reviewer):
 
     expired = (
         Addon.objects.filter(
-            addonreviewerflags__pending_info_request__lt=datetime.now(),
+            reviewerflags__pending_info_request__lt=datetime.now(),
             status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
             disabled_by_user=False)
-        .order_by('addonreviewerflags__pending_info_request'))
+        .order_by('reviewerflags__pending_info_request'))
 
     counts = {
         'extension': construct_query_from_sql_model(
@@ -646,10 +646,10 @@ def queue_auto_approved(request):
 def queue_expired_info_requests(request):
     qs = (
         Addon.objects.filter(
-            addonreviewerflags__pending_info_request__lt=datetime.now(),
+            reviewerflags__pending_info_request__lt=datetime.now(),
             status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
             disabled_by_user=False)
-        .order_by('addonreviewerflags__pending_info_request'))
+        .order_by('reviewerflags__pending_info_request'))
     return _queue(request, ExpiredInfoRequestsTable, 'expired_info_requests',
                   qs=qs, SearchForm=None)
 
@@ -739,7 +739,7 @@ def review(request, addon, channel=None):
         addon.versions(manager='unfiltered_for_relations')
              .filter(channel=channel)
              .select_related('autoapprovalsummary')
-             .select_related('versionreviewerflags')
+             .select_related('reviewerflags')
         # Add activity transformer to prefetch all related activity logs on
         # top of the regular transformers.
              .transform(Version.transformer_activity)
@@ -882,7 +882,7 @@ def review(request, addon, channel=None):
     versions_flagged_by_scanners = versions_qs.filter(
         needs_human_review=True).exclude(pk__in=version_ids).count()
     versions_pending_rejection = versions_qs.filter(
-        versionreviewerflags__pending_rejection__isnull=False).exclude(
+        reviewerflags__pending_rejection__isnull=False).exclude(
         pk__in=version_ids).count()
 
     flags = get_flags(addon, version) if version else []

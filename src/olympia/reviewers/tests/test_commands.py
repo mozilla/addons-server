@@ -533,7 +533,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             aps = self.version.autoapprovalsummary
             assert aps.has_auto_approval_disabled
 
-            flags = self.addon.addonreviewerflags
+            flags = self.addon.reviewerflags
             assert flags.auto_approval_delayed_until
 
             assert not sign_file_mock.called
@@ -867,4 +867,4 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
             {user.email for user in users}
         )
 
-        assert addon.addonreviewerflags.notified_about_auto_approval_delay
+        assert addon.reviewerflags.notified_about_auto_approval_delay

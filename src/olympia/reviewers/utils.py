@@ -210,7 +210,7 @@ class ModernAddonQueueTable(ReviewerQueueTable):
 class ExpiredInfoRequestsTable(ModernAddonQueueTable):
     deadline = tables.Column(
         verbose_name=_(u'Information Request Deadline'),
-        accessor='addonreviewerflags.pending_info_request')
+        accessor='reviewerflags.pending_info_request')
 
     class Meta(ModernAddonQueueTable.Meta):
         fields = ('addon_name', 'flags', 'last_human_review', 'weight',
@@ -281,7 +281,7 @@ class ScannersReviewTable(AutoApprovedTable):
 class MadReviewTable(ScannersReviewTable):
     listed_text = _('Listed versions ({0})')
     unlisted_text = _('Unlisted versions ({0})')
-    filters = {'versionreviewerflags__needs_human_review_by_mad': True}
+    filters = {'reviewerflags__needs_human_review_by_mad': True}
 
 
 class ReviewHelper(object):
@@ -382,7 +382,7 @@ class ReviewHelper(object):
         if self.version and not is_admin_needed:
             most_recent_version_pending_rejection = self.addon.versions.filter(
                 channel=self.version.channel,
-                versionreviewerflags__pending_rejection__isnull=False).last()
+                reviewerflags__pending_rejection__isnull=False).last()
             # self.version is always the latest version available in this
             # channel, so if it's the same as the last one pending rejection,
             # that means no new version were posted and only admins can perform
@@ -763,11 +763,11 @@ class ReviewBase(object):
                     datetime.now() + timedelta(days=info_request_deadline_days)
                 )
                 # Update or create the reviewer flags, overwriting
-                # self.addon.addonreviewerflags with the one we
+                # self.addon.reviewerflags with the one we
                 # create/update so that we don't use an older version of it
                 # later when notifying. Also, since this is a new request,
                 # clear out the notified_about_expiring_info_request field.
-                self.addon.addonreviewerflags = (
+                self.addon.reviewerflags = (
                     AddonReviewerFlags.objects.update_or_create(
                         addon=self.addon, defaults={
                             'pending_info_request': info_request_deadline,

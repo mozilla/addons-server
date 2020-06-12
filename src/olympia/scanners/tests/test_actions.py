@@ -64,22 +64,22 @@ class TestActions(TestCase):
     def test_flag_for_human_review_by_scanner(self):
         version = version_factory(addon=addon_factory())
         with self.assertRaises(VersionReviewerFlags.DoesNotExist):
-            version.versionreviewerflags
+            version.reviewerflags
 
         _flag_for_human_review_by_scanner(version, MAD)
 
-        assert version.versionreviewerflags.needs_human_review_by_mad
+        assert version.reviewerflags.needs_human_review_by_mad
 
     def test_flag_for_human_review_by_scanner_with_existing_flags(self):
         version = version_factory(addon=addon_factory())
         VersionReviewerFlags.objects.create(version=version)
 
-        assert not version.versionreviewerflags.needs_human_review_by_mad
+        assert not version.reviewerflags.needs_human_review_by_mad
 
         _flag_for_human_review_by_scanner(version, MAD)
         version.refresh_from_db()
 
-        assert version.versionreviewerflags.needs_human_review_by_mad
+        assert version.reviewerflags.needs_human_review_by_mad
 
     def test_flag_for_human_review_by_scanner_raises_if_not_mad(self):
         version = version_factory(addon=addon_factory())
@@ -204,7 +204,7 @@ class TestRunAction(TestCase):
 
         ScannerResult.run_action(version)
 
-        assert version.versionreviewerflags.needs_human_review_by_mad
+        assert version.reviewerflags.needs_human_review_by_mad
 
     def test_flags_for_human_review_by_mad_when_score_is_too_high(self):
         version = version_factory(addon=addon_factory())
@@ -215,7 +215,7 @@ class TestRunAction(TestCase):
 
         ScannerResult.run_action(version)
 
-        assert version.versionreviewerflags.needs_human_review_by_mad
+        assert version.reviewerflags.needs_human_review_by_mad
 
     def test_flags_for_human_review_by_mad_when_models_disagree(self):
         version = version_factory(addon=addon_factory())
@@ -230,7 +230,7 @@ class TestRunAction(TestCase):
 
         ScannerResult.run_action(version)
 
-        assert version.versionreviewerflags.needs_human_review_by_mad
+        assert version.reviewerflags.needs_human_review_by_mad
 
     def test_does_not_flag_for_human_review_by_mad_when_score_is_okay(self):
         version = version_factory(addon=addon_factory())
@@ -242,4 +242,4 @@ class TestRunAction(TestCase):
         ScannerResult.run_action(version)
 
         with self.assertRaises(VersionReviewerFlags.DoesNotExist):
-            version.versionreviewerflags
+            version.reviewerflags
