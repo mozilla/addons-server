@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-11 15:43+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2020-06-12 15:29+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -3359,10 +3359,10 @@ msgid "Ready to submit or manage your extension?"
 msgstr "Prêt·e à soumettre ou gérer votre extension ?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Connectez-vous au Pôle développeur pour soumettre ou gérer des extensions et des thèmes."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Inscrivez-vous pour un compte développeur ou connectez-vous au Pôle développeur"
 
 msgid "Manage Version {0}"
 msgstr "Gérer la version {0}"
@@ -5964,7 +5964,7 @@ msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr "Demandes d’informations expirées – Modules complémentaires pour Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Modules complémentaires non publiés – Modules complémentaires pour Firefox"
 
 msgid "Advanced Search"
 msgstr "Recherche avancée"
@@ -6072,25 +6072,25 @@ msgid "Force-enable add-on"
 msgstr "Forcer l’activation du module"
 
 msgid "View Blocklist Submission"
-msgstr ""
+msgstr "Afficher la soumission de la liste de blocage"
 
 msgid "Block add-on"
 msgstr "Bloquer le module"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Mettre à jour le blocage de module complémentaire"
 
 msgid "Disable Listed Auto-Approval"
-msgstr ""
+msgstr "Désactiver l’approbation automatique de module publié"
 
 msgid "Enable Listed Auto-Approval"
-msgstr ""
+msgstr "Activer l’approbation automatique de module publié"
 
 msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
+msgstr "L’approbation automatique est actuellement désactivée jusqu'au {date}"
 
 msgid "Clear Auto-Approval Extra Delay"
-msgstr ""
+msgstr "Effacer le délai supplémentaire d’approbation automatique"
 
 msgid "Clear information request"
 msgstr "Effacer la demande d’informations"
@@ -6120,7 +6120,7 @@ msgid "Resolution"
 msgstr "Résolution"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Journal de vérification des modules complémentaires – Modules complémentaires pour Firefox"
 
 msgid "Reviewer"
 msgstr "Testeur"
@@ -6138,7 +6138,7 @@ msgid "No reviews found for this period."
 msgstr "Pas de revue trouvée pour cette période."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Origine :"
 
 msgid "Method:"
 msgstr "Méthode :"
@@ -6147,7 +6147,7 @@ msgid "Source:"
 msgstr "Source :"
 
 msgid "Source URL:"
-msgstr ""
+msgstr "URL source :"
 
 msgid "Dismiss this announcement"
 msgstr "Rejeter cette annonce"
@@ -6156,13 +6156,13 @@ msgid "Files in this version:"
 msgstr "Fichiers dans cette version :"
 
 msgid "Browse all files in this version"
-msgstr ""
+msgstr "Parcourir tous les fichiers de cette version"
 
 msgid "Contents"
 msgstr "Contenu"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "Comparer cette version à la dernière version vérifiée"
 
 msgid "Compare"
 msgstr "Comparer"
@@ -6181,7 +6181,7 @@ msgid "Newer"
 msgstr "Plus récent"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} versions signalées par des scanners sur d’autres pages."
 
 msgid "Recent Points"
 msgstr "Points récents"
@@ -6232,7 +6232,7 @@ msgid "Weight:"
 msgstr "Poids :"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Marqué par des scanners automatisés"
 
 msgid "Download"
 msgstr "Téléchargement"
@@ -6274,25 +6274,25 @@ msgstr[0] "Demande d’informations expirée ({0})"
 msgstr[1] "Demandes d’informations expirées ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "présence de règles de correspondance"
 
 msgid "result state"
-msgstr ""
+msgstr "état du résultat"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "tout sauf cette règle"
 
 msgid "presence of a version"
 msgstr "Présence d’une version"
 
 msgid "version channel"
-msgstr ""
+msgstr "canal de version"
 
 msgid "add-on status"
 msgstr "État du module"
 
 msgid "add-on listing visibility"
-msgstr ""
+msgstr "visibilité de la liste des modules complémentaires"
 
 msgid "file status"
 msgstr "État du fichier"
@@ -6301,19 +6301,19 @@ msgid "file signature"
 msgstr "Signature du fichier"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Ceci est le nom exact de la règle utilisée par un scanner."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Si non sélectionné, les résultats du scanner ne seront pas liés à cette règle et l’action ne sera pas exécutée."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Les règles Yara doivent avoir une définition"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Le nom de la règle dans la définition doit correspondre au nom de la règle du scanner"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Une seule règle Yara est autorisée dans la définition"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
@@ -6323,13 +6323,13 @@ msgid "An error occurred when compiling the definition"
 msgstr "Une erreur est survenue pendant la compilation de la définition"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Exécuter cette règle également sur les modules complémentaires qui ont été désactivés de force."
 
 msgid "Abort"
-msgstr ""
+msgstr "Annuler"
 
 msgid "Run"
-msgstr ""
+msgstr "Exécuter"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
