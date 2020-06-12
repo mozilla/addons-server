@@ -223,6 +223,13 @@ class TestFileValidation(TestCase):
             args=[other_addon.slug, self.file.id])
         assert self.client.get(url, follow=False).status_code == 404
 
+    def test_developer_cant_see_json_results_from_deleted_addon(self):
+        self.addon.delete()
+        url = reverse(
+            'devhub.json_file_validation',
+            args=[self.addon.pk, self.file.id])
+        assert self.client.get(url, follow=False).status_code == 404
+
     def test_only_safe_html_in_messages(self):
         response = self.client.post(self.json_url, follow=False)
         assert response.status_code == 200
@@ -284,9 +291,13 @@ class TestFileValidation(TestCase):
         doc = pq(response.content)
         assert doc('#addon-validator-suite').attr['data-file-url'] == file_url
 
-    def test_can_see_json_results_for_deleted_addon(self):
+    def test_reviewers_can_see_json_results_for_deleted_addon(self):
         self.client.logout()
-        assert self.client.login(email='admin@mozilla.com')
+        assert self.client.login(email='reviewer@mozilla.com')
+        self.grant_permission(
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
+            'Addons:ReviewUnlisted')
+
         self.addon.delete()
         args = [self.addon.pk, self.file.id]
         json_url = reverse('devhub.json_file_validation', args=args)
