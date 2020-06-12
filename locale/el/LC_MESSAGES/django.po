@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 15:13+0000\n"
+"PO-Revision-Date: 2020-06-12 15:41+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -562,7 +562,7 @@ msgstr "Έγκριση υποβολής"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Προσθήκη %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
@@ -572,7 +572,7 @@ msgstr "Υποβολή"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s GUID προσθέτου"
 
 msgid "users"
 msgstr "χρήστες"
@@ -1614,20 +1614,20 @@ msgid "New"
 msgstr "Νέο"
 
 msgid "Running"
-msgstr ""
+msgstr "Σε λειτουργία"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Ακυρώθηκε"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Ακύρωση"
 
 #, fuzzy
 msgid "Completed"
 msgstr "Ημιτελές"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Προγραμματισμένο"
 
 msgid "Core"
 msgstr "Πυρήνας"
