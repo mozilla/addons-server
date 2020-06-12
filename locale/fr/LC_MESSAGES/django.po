@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 15:29+0000\n"
+"PO-Revision-Date: 2020-06-12 15:31+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6332,10 +6332,10 @@ msgid "Run"
 msgstr "Exécuter"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Utile lorsque le résultat du scanner est réellement positif mais que le module complémentaire n’est pas malveillant"
 
 msgid "Revert report"
-msgstr ""
+msgstr "Rétablir le rapport"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6362,7 +6362,7 @@ msgid "Maximum query length exceeded."
 msgstr "Taille maximale de la requête dépassée."
 
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr ""
+msgstr "Impossible de trouver le module complémentaire avec l’ID « {} »."
 
 msgid "You do not own this addon."
 msgstr "Vous n’êtes pas propriétaire de ce module."
@@ -6385,7 +6385,7 @@ msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr "Seules les WebExtensions sont autorisées à omettre l’identifiant de module"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Veuillez spécifier l’identifiant de votre module dans le manifeste s’il est plus long que 64 caractères."
 
 msgid "Invalid Add-on ID in URL or package"
 msgstr "Identifiant de module invalide dans l’URL ou le paquet"
