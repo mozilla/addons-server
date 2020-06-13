@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 23:53+0000\n"
+"PO-Revision-Date: 2020-06-13 22:12+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3174,7 +3174,7 @@ msgid "Visit the Extension Workshop"
 msgstr "Εργαστήριο επεκτάσεων"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Συνδεθείτε μαζί μας"
 
 msgid "Twitter"
 msgstr "Twitter"
@@ -3186,7 +3186,7 @@ msgid "For end users"
 msgstr "Για τελικούς χρήστες"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 #, fuzzy
