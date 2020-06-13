@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 23:51+0000\n"
+"PO-Revision-Date: 2020-06-12 23:53+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -6018,7 +6018,7 @@ msgid "Reviewer's Guide"
 msgstr "Οδηγός αξιολογητή"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Πρόσθετα για το Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6038,14 +6038,14 @@ msgid "Previously deleted entries"
 msgstr "Προηγουμένως διαγραμμένες καταχωρήσεις"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Αυτή είναι μια προτεινόμενη επέκταση."
 
 #, fuzzy
 msgid "You don't have permission to review it."
 msgstr "Δεν έχετε κανένα διαπιστευτήριο API."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Παρακαλούμε επιλέξτε μία ή περισσότερες εκδόσεις στην παραπάνω λίστα."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
@@ -6354,7 +6354,7 @@ msgid "Abort"
 msgstr "Ακύρωση"
 
 msgid "Run"
-msgstr ""
+msgstr "Εκτέλεση"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
@@ -6450,7 +6450,7 @@ msgid "by Platform"
 msgstr "κατά πλατφόρμα"
 
 msgid "by Country"
-msgstr ""
+msgstr "ανά χώρα"
 
 msgid "by Add-on Status"
 msgstr "κατά κατάσταση πρόσθετου"
@@ -6876,6 +6876,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Ο ακόλουθος δημιουργός έχει προστεθεί στο πρόσθετό σας, %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6899,6 +6902,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Ο ακόλουθος δημιουργός έχει άλλαξει στο πρόσθετό σας, %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6906,6 +6912,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Ο ακόλουθος δημιουργός έχει αφαιρεθεί από το πρόσθετο %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 msgctxt "user_list_others"
 msgid "others"
