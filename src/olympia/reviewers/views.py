@@ -1327,7 +1327,7 @@ class ReviewAddonVersionMixin(object):
         if not hasattr(self, 'addon_object'):
             # We only need translations on the add-on, no other transforms.
             self.addon_object = get_object_or_404(
-                Addon.objects.get_queryset().only_translations(),
+                Addon.unfiltered.all().only_translations(),
                 pk=self.kwargs.get('addon_pk'))
         return self.addon_object
 
@@ -1439,7 +1439,7 @@ class ReviewAddonVersionDraftCommentViewSet(
                 # The serializer will not need to return much info about the
                 # addon, so we can use just the translations transformer and
                 # avoid the rest.
-                Addon.objects.get_queryset().only_translations(),
+                Addon.unfiltered.all().only_translations(),
                 pk=self.kwargs['addon_pk'])
         return self.addon_object
 

@@ -13,13 +13,13 @@ from olympia.constants import permissions
 
 
 def dev_required(owner_for_post=False, allow_reviewers_for_read=False,
-                 submitting=False):
+                 submitting=False, qs=Addon.objects.all):
     """Requires user to be add-on owner or admin.
 
     When allow_reviewers is True, reviewers can view the page.
     """
     def decorator(f):
-        @addon_view_factory(qs=Addon.objects.all)
+        @addon_view_factory(qs=qs)
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
