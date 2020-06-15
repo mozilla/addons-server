@@ -33,7 +33,7 @@
             type: 'pie'
        }]
     };
-    
+
     $.fn.topChart = function(cfg) {
         $(this).each(function() {
             var $self   = $(this),
@@ -80,8 +80,11 @@
                 // Convert all fields to percentages and prettify names.
                 var rankedList = _.map(data, function(val, key) {
                     var field = key.split("|").slice(-1)[0];
-                    return [z.StatsManager.getPrettyName(metric, field),
-                            val, val/totalValue*100];
+                    return [
+                        z.StatsManager.getPrettyName(metric, field),
+                        val,
+                        (val / totalValue) * 100
+                    ];
                 });
                 // Sort by value.
                 rankedList = _.sortBy(rankedList, function(a) {
@@ -93,20 +96,30 @@
                 }
                 // Take the top 5 values and append an 'Other' row.
                 rankedList = rankedList.slice(0,5);
-                rankedList.push([gettext('Other'), otherValue, otherValue/totalValue*100]);
+                rankedList.push([
+                    gettext('Other'),
+                    otherValue,
+                    (otherValue / totalValue) * 100
+                ]);
                 // Move on with our lives.
                 done(rankedList);
             }
 
-            var tableRow = template("<tr><td>{0}</td><td>{1}</td><td>({2}%)</td></tr>");
+            var tableRow = template("<tr><td>{0}</td><td title=\"{3}\">{1}</td><td>({2}%)</td></tr>");
 
             function render(data) {
                 var newBody = "<tbody>";
                 _.each(data, function(row) {
-                    var pct = Math.round(row[2]);
-                        num = Highcharts.numberFormat(row[1], 0);
-                    if (pct < 1) pct = "<1";
-                    newBody += tableRow([row[0], num, pct]);
+                    var title = row[0];
+                    var raw_value = row[1];
+                    var value = Highcharts.numberFormat(raw_value, raw_value < 10 ? 1 : 0);
+                    var percent = Highcharts.numberFormat(row[2], 0);
+
+                    if (percent < 1) {
+                        percent = "<1";
+                    }
+
+                    newBody += tableRow([title, value, percent, raw_value]);
                 });
                 newBody += "</tbody>";
                 $table.html(newBody);
