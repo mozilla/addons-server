@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-11 07:58+0000\n"
+"PO-Revision-Date: 2020-06-15 21:37+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -485,7 +485,7 @@ msgstr "A(z) %(guid)s GUID szerepel egy függőben lévő beküldésben"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "A(z) %(guid)s GUID azonosítóhoz tartozó blokkolás csak olvasható – azt a régi blokklista-gyűjteményen keresztül lehet szerkeszteni."
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -4913,7 +4913,7 @@ msgstr "Néhány weboldalon nehezen játszhatóak le a videók az androidos Fire
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Válassza ki, rendezze és futtassa a letöltéseket gyorsabban."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -6121,7 +6121,7 @@ msgid "Contents"
 msgstr "Tartalom"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "E verzió összehasonlítása az utolsó felülvizsgált verzióval"
 
 msgid "Compare"
 msgstr "Összehasonlítás"
@@ -6239,7 +6239,7 @@ msgid "result state"
 msgstr "eredmény állapota"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "ezt a szabályt kivéve mindegyik"
 
 msgid "presence of a version"
 msgstr "verzió jelenléte"
