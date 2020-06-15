@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-13 22:12+0000\n"
+"PO-Revision-Date: 2020-06-15 23:04+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -536,7 +536,7 @@ msgstr ""
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "Δεν βρέθηκαν %(count)s GUID προσθέτου"
 
 msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
@@ -577,7 +577,7 @@ msgid "users"
 msgstr "χρήστες"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Επεξεργασία μπλοκ"
 
 msgid "versions"
 msgstr "εκδόσεις"
@@ -925,11 +925,10 @@ msgid "Block deleted"
 msgstr "Διαγράφηκε το πρόσθετο."
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "Το GUID για το {addon} προστέθηκε στο DeniedGuid."
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "Αφαιρέθηκε το {addon} από τη συλλογή {collection}."
+msgstr "Το GUID για το {addon} αφαιρέθηκε από το DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -1591,12 +1590,11 @@ msgstr "Καμία ενέργεια"
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Απενεργοποίηση αυτόματης έγκρισης"
+msgstr "Καθυστέρηση αυτόματης έγκρισης"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Καθυστέρηση αυτόματης έγκρισης επ 'αόριστον"
 
 msgid "True positive"
 msgstr ""
@@ -4302,7 +4300,7 @@ msgstr "Εξυπνότερη εργασία {start_sub_heading}με το {addon_
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Διαχειριστείτε την παραγωγικότητά σας δουλεύοντας σε σταθερά χρονικά διαστήματα."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5641,16 +5639,14 @@ msgstr "Απόρριψη πολλαπλών εκδόσεων"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Αυτό θα εγκρίνει, υπογράψει και δημοσιεύσει αυτή την έκδοση. Τα σχόλια θα αποσταλούν στον προγραμματιστή."
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Απόρριψη πολλαπλών εκδόσεων"
+msgstr "Φραγή πολλαπλών εκδόσεων"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Απόρριψη πολλαπλών εκδόσεων"
+msgstr "Επιβεβαίωση πολλαπλών εκδόσεων"
 
 #, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
