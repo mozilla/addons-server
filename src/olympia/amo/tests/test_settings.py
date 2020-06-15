@@ -6,7 +6,7 @@ import pytest
 
 from django.conf import settings
 
-from olympia.lib.settings_base import get_raven_release
+from olympia.lib.settings_base import get_sentry_release
 
 
 @pytest.mark.parametrize('key', (
@@ -31,14 +31,14 @@ def test_base_paths_bytestring(key):
     assert isinstance(getattr(settings, key), str)
 
 
-def test_raven_release_config():
+def test_sentry_release_config():
     version_json = os.path.join(settings.ROOT, 'version.json')
     original = None
 
     # There is a version.json that contains `version: origin/master`
     # by default in the repository. We should ignore that and fetch
     # the git commit.
-    assert len(get_raven_release()) == 40
+    assert len(get_sentry_release()) == 40
 
     # Cleanup for tests
     if os.path.exists(version_json):
@@ -48,7 +48,7 @@ def test_raven_release_config():
         os.remove(version_json)
 
     # by default, if no version.json exists it simply fetches a git-sha
-    assert len(get_raven_release()) == 40
+    assert len(get_sentry_release()) == 40
 
     # It fetches `version` from the version.json
     with open(version_json, 'w') as fobj:
@@ -56,7 +56,7 @@ def test_raven_release_config():
             'version': '2018.07.19'
         }))
 
-    assert get_raven_release() == '2018.07.19'
+    assert get_sentry_release() == '2018.07.19'
 
     os.remove(version_json)
 
@@ -66,7 +66,7 @@ def test_raven_release_config():
             'commit': '1111111'
         }))
 
-    assert get_raven_release() == '1111111'
+    assert get_sentry_release() == '1111111'
 
     if original:
         with open(version_json, 'w') as fobj:
@@ -79,7 +79,7 @@ def test_raven_release_config():
             'commit': '1111111'
         }))
 
-    assert get_raven_release() == '1111111'
+    assert get_sentry_release() == '1111111'
 
     if original:
         with open(version_json, 'w') as fobj:

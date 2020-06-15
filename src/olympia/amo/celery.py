@@ -13,14 +13,15 @@ import datetime
 from django.conf import settings
 from django.core.cache import cache
 
+import sentry_sdk
 from celery import Celery, group
 from celery.signals import task_failure, task_postrun, task_prerun
 from django_statsd.clients import statsd
 from kombu import serialization
 from post_request_task.task import (
     PostRequestTask, _start_queuing_tasks, _send_tasks_and_stop_queuing)
-from raven import Client
-from raven.contrib.celery import register_logger_signal, register_signal
+from sentry_sdk.integrations.celery import CeleryIntegration
+from sentry_sdk.integrations.django import DjangoIntegration
 
 import olympia.core.logger
 
@@ -81,17 +82,9 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 # Hook up Sentry in celery.
-raven_client = Client(settings.RAVEN_CONFIG['dsn'])
-
-# register a custom filter to filter out duplicate logs
-register_logger_signal(raven_client)
-
-# hook into the Celery error handler
-register_signal(raven_client)
-
-# After upgrading raven we can specify loglevel=logging.INFO to override
-# the default (which is ERROR).
-register_logger_signal(raven_client)
+sentry_sdk.init(
+    integrations=[DjangoIntegration(), CeleryIntegration()],
+    dsn=settings.SENTRY_CONFIG['dsn'])
 
 
 @task_failure.connect

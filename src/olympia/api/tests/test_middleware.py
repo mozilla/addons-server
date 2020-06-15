@@ -51,10 +51,8 @@ class TestGzipMiddleware(TestCase):
         # Gzip middleware should be near the top of the list, so that it runs
         # last in the process_response phase, in case the response body has
         # been modified by another middleware.
-        # Sadly, raven inserts 2 middlewares before, but luckily the ones it
-        # automatically inserts not modify the response.
         assert (
-            settings.MIDDLEWARE[4] ==
+            settings.MIDDLEWARE[2] ==
             'olympia.api.middleware.GZipMiddlewareForAPIOnly')
 
     def test_api_endpoint_gzipped(self):
