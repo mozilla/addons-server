@@ -45,7 +45,7 @@ from olympia.amo.decorators import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowAnyKindOfReviewer, AllowReviewer,
+    AllowAnyKindOfReviewer, AllowReviewer,
     AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
@@ -1290,9 +1290,7 @@ class AddonReviewerViewSet(GenericViewSet):
 
 
 class ReviewAddonVersionMixin(object):
-    permission_classes = [AnyOf(
-        AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
-    )]
+    permission_classes = [AnyOf(AllowReviewer, AllowReviewerUnlisted)]
 
     def get_queryset(self):
         # Permission classes disallow access to non-public/unlisted add-ons
@@ -1393,9 +1391,7 @@ class ReviewAddonVersionDraftCommentViewSet(
         RetrieveModelMixin, ListModelMixin, CreateModelMixin,
         DestroyModelMixin, UpdateModelMixin, GenericViewSet):
 
-    permission_classes = [AnyOf(
-        AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
-    )]
+    permission_classes = [AnyOf(AllowReviewer, AllowReviewerUnlisted)]
 
     queryset = DraftComment.objects.all()
     serializer_class = DraftCommentSerializer
