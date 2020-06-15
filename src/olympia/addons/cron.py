@@ -38,7 +38,18 @@ def update_addon_average_daily_users():
 
     kwargs = {'id_field': 'pk'}
     if waffle.switch_is_active('use-bigquery-for-addon-adu'):
-        d = get_addons_and_average_daily_users_from_bigquery()
+        # BigQuery does not have data for add-ons with type other than those in
+        # `ADDON_TYPES_WITH_STATS` so we use download counts instead.
+        # See: https://github.com/mozilla/addons-server/issues/14609
+        d = list(
+            Addon.objects
+            .exclude(type__in=amo.ADDON_TYPES_WITH_STATS)
+            .annotate(count=Sum('downloadcount__count'))
+            .values_list('guid', 'count')
+            .order_by('guid')
+            .all()
+        )
+        d += get_addons_and_average_daily_users_from_bigquery()
         # BigQuery stores GUIDs, not AMO primary keys.
         kwargs['id_field'] = 'guid'
     else:
