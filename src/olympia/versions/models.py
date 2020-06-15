@@ -697,6 +697,13 @@ class Version(OnChangeMixin, ModelBase):
         block = self.addon.block
         return bool(block and block.is_version_blocked(self.version))
 
+    @property
+    def pending_rejection(self):
+        try:
+            return self.versionreviewerflags.pending_rejection
+        except VersionReviewerFlags.DoesNotExist:
+            return None
+
 
 class VersionReviewerFlags(ModelBase):
     version = models.OneToOneField(

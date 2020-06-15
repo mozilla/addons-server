@@ -34,7 +34,8 @@ from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
-    ApplicationsVersions, Version, VersionPreview, source_upload_path)
+    ApplicationsVersions, Version, VersionPreview, VersionReviewerFlags,
+    source_upload_path)
 from olympia.scanners.models import ScannerResult
 
 
@@ -654,6 +655,20 @@ class TestVersion(TestCase):
 
         block.update(min_version='0')
         assert Addon.objects.get(id=3615).current_version.is_blocked is True
+
+    def test_pending_rejection_property(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        # No flags: None
+        assert version.pending_rejection is None
+        # Flag present, value is None (default): None.
+        flags = VersionReviewerFlags.objects.create(version=version)
+        assert flags.pending_rejection is None
+        assert version.pending_rejection is None
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(pending_rejection=in_the_past)
+        assert version.pending_rejection == in_the_past
 
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
