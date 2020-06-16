@@ -1634,10 +1634,12 @@ def test_extract_and_commit_source_from_version_rename_dotgit_files(settings):
     # the regular git client.
     output = _run_process('git ls-tree -r --name-only listed', repo)
     assert set(output.split()) == {
-        'extracted/manifest.json',
+        'extracted/.git.b236f599/.git.b236f599/.git.b236f599/.gitconfig.b236f599',  # noqa
+        'extracted/.git.b236f599/.gitmodules.b236f599',
         'extracted/.gitattributes.b236f599',
         'extracted/.gitignore.b236f599',
         'extracted/.gitmodules.b236f599',
+        'extracted/manifest.json',
         'extracted/some/directory/.gitattributes.b236f599',
         'extracted/some/directory/.gitignore.b236f599',
         'extracted/some/directory/.gitmodules.b236f599',
