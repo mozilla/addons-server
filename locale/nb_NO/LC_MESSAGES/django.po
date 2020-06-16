@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 09:10+0000\n"
+"PO-Revision-Date: 2020-06-16 09:18+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -733,17 +733,14 @@ msgstr "{addon} ikon endret."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} for {addon} godkjent."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} godkjente {review} for {addon}."
+msgstr "{user} godkjente {rating} for {addon}."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "{review} for {addon} oppdatert."
+msgstr "Omtale {rating} for {addon} er slettet."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} godkjente {review} for {addon}."
+msgstr "{user} slettet {rating} for {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Maksversjon for applikasjon for {version} oppdatert."
@@ -787,16 +784,14 @@ msgstr "Bruker {user} begrenset."
 msgid "Admin {0} viewed activity log for {user}."
 msgstr "Admin {0} viste aktivitetslogg for {user}."
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} for {addon} oppdatert."
+msgstr "{rating} for {addon} oppdatert."
 
 msgid "{addon} reviewed."
 msgstr "{addon} gjennomgått."
 
-#, fuzzy
 msgid "User {user} banned."
-msgstr "Bruker {user} anonymisert."
+msgstr "Bruker {user} utestengt."
 
 #, fuzzy
 msgid "User {user} picture deleted."
