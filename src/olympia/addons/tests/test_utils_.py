@@ -29,10 +29,9 @@ from olympia.amo.tests import AMOPaths, TestCase, addon_factory, user_factory
     # First with the content optimization waffle off:
     # Regular name, obviously always allowed
     ('Fancy new Add-on', True, 'foo@bar.com', False),
-    # We allow the 'for ...' postfix to be used
-    ('Fancy new Add-on for Firefox', True, 'foo@bar.com', False),
-    ('Fancy new Add-on for Mozilla', True, 'foo@bar.com', False),
-    # But only the postfix
+    # We don't allow the 'for ...' postfix to be used anymore
+    ('Fancy new Add-on for Firefox', False, 'foo@bar.com', False),
+    ('Fancy new Add-on for Mozilla', False, 'foo@bar.com', False),
     ('Fancy new Add-on for Firefox Browser', False, 'foo@bar.com', False),
     ('For Firefox fancy new add-on', False, 'foo@bar.com', False),
     # But users with @mozilla.com or @mozilla.org email addresses
@@ -46,11 +45,11 @@ from olympia.amo.tests import AMOPaths, TestCase, addon_factory, user_factory
     ('Firefox add-on for Firefox', False, 'foo@bar.com', False),
     ('Firefox add-on for Firefox', True, 'foo@mozilla.com', False),
     ('Foobarfor Firefox', False, 'foo@bar.com', False),
-    ('Better Privacy for Firefox!', True, 'foo@bar.com', False),
+    ('Better Privacy for Firefox!', False, 'foo@bar.com', False),
     ('Firefox awesome for Mozilla', False, 'foo@bar.com', False),
     ('Firefox awesome for Mozilla', True, 'foo@mozilla.org', False),
 
-    # And with the content optimization waffle onL
+    # And with the content optimization waffle on
     # Regular name, obviously always allowed
     ('Fancy new Add-on', True, 'foo@bar.com', True),
     # We don't allow the 'for ...' postfix to be used anymore
