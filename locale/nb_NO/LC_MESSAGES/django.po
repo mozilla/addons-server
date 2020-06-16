@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 14:13+0000\n"
+"PO-Revision-Date: 2020-06-16 14:18+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1796,7 +1796,7 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "Visningsnavn"
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -1831,7 +1831,7 @@ msgid "Rating"
 msgstr "Rangering"
 
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Alle tilleggene mine"
 
 msgid "All Activity"
 msgstr "All aktivitet"
@@ -1840,7 +1840,7 @@ msgid "Add-on Updates"
 msgstr "Tilleggsoppdateringer"
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "Status for tillegg"
 
 msgid "User Collections"
 msgstr "Brukersamlinger"
@@ -1855,7 +1855,7 @@ msgid "Theme deleted."
 msgstr "Tema slettet."
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Tillegg slettet."
 
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
@@ -1864,10 +1864,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Invitasjon godkjent."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Invitasjon avvist."
 
 msgid "An author has been added to your add-on"
 msgstr ""
