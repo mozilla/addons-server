@@ -153,24 +153,21 @@ def dashboard(request):
     sections = OrderedDict()
     view_all = acl.action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW)
     admin_reviewer = is_admin_reviewer(request)
+    queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
+
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_REVIEW):
-        review_queue = ViewExtensionQueue.objects
-        if not admin_reviewer:
-            review_queue = filter_admin_review_for_legacy_queue(
-                review_queue)
-
         sections[ugettext('Pre-Review Add-ons')] = []
         if acl.action_allowed(
                 request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
-            recommended_queue_count = ViewRecommendedQueue.objects.count()
             sections[ugettext('Pre-Review Add-ons')].append((
-                ugettext('Recommended ({0})').format(recommended_queue_count),
+                ugettext('Recommended ({0})').format(
+                    queue_counts['recommended']),
                 reverse('reviewers.queue_recommended')
             ))
         sections[ugettext('Pre-Review Add-ons')].extend(((
             ugettext('Other Pending Review ({0})').format(
-                review_queue.count()),
+                queue_counts['extension']),
             reverse('reviewers.queue_extension')
         ), (
             ugettext('Performance'),
@@ -185,21 +182,18 @@ def dashboard(request):
         ))
         sections[ugettext('Security Scanners')] = [(
             ugettext('Flagged By Scanners ({0})').format(
-                Addon.objects.get_scanners_queue(
-                    admin_reviewer=admin_reviewer).count()),
+                queue_counts['scanners']),
             reverse('reviewers.queue_scanners'),
         ), (
             ugettext('Flagged for Human Review ({0})').format(
-                Addon.objects.get_mad_queue(
-                    admin_reviewer=admin_reviewer).count()),
+                queue_counts['mad']),
             reverse('reviewers.queue_mad'),
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
             ugettext('Auto Approved Add-ons ({0})').format(
-                Addon.objects.get_auto_approved_queue(
-                    admin_reviewer=admin_reviewer).count()),
+                queue_counts['auto_approved']),
             reverse('reviewers.queue_auto_approved')
         ), (
             ugettext('Performance'),
@@ -215,8 +209,7 @@ def dashboard(request):
             request, amo.permissions.ADDONS_CONTENT_REVIEW):
         sections[ugettext('Content Review')] = [(
             ugettext('Content Review ({0})').format(
-                Addon.objects.get_content_review_queue(
-                    admin_reviewer=admin_reviewer).count()),
+                queue_counts['content_review']),
             reverse('reviewers.queue_content_review')
         ), (
             ugettext('Performance'),
@@ -224,19 +217,11 @@ def dashboard(request):
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.STATIC_THEMES_REVIEW):
-        full_review_queue = ViewThemeFullReviewQueue.objects
-        pending_queue = ViewThemePendingQueue.objects
-        if not admin_reviewer:
-            full_review_queue = filter_admin_review_for_legacy_queue(
-                full_review_queue)
-            pending_queue = filter_admin_review_for_legacy_queue(
-                pending_queue)
-
         sections[ugettext('Themes')] = [(
-            ugettext('New ({0})').format(full_review_queue.count()),
+            ugettext('New ({0})').format(queue_counts['theme_nominated']),
             reverse('reviewers.queue_theme_nominated')
         ), (
-            ugettext('Updates ({0})').format(pending_queue.count()),
+            ugettext('Updates ({0})').format(queue_counts['theme_pending']),
             reverse('reviewers.queue_theme_pending')
         ), (
             ugettext('Performance'),
@@ -253,7 +238,7 @@ def dashboard(request):
             request, amo.permissions.RATINGS_MODERATE):
         sections[ugettext('User Ratings Moderation')] = [(
             ugettext('Ratings Awaiting Moderation ({0})').format(
-                Rating.objects.all().to_moderate().count()),
+                queue_counts['moderated']),
             reverse('reviewers.queue_moderated')
         ), (
             ugettext('Moderated Review Log'),
@@ -279,16 +264,9 @@ def dashboard(request):
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.REVIEWS_ADMIN):
-        expired = (
-            Addon.objects.filter(
-                reviewerflags__pending_info_request__lt=datetime.now(),
-                status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
-                disabled_by_user=False)
-            .order_by('reviewerflags__pending_info_request'))
-
         sections[ugettext('Admin Tools')] = [(
             ugettext('Expired Information Requests ({0})'.format(
-                expired.count())),
+                queue_counts['expired_info_requests'])),
             reverse('reviewers.queue_expired_info_requests')
         )]
     return render(request, 'reviewers/dashboard.html', context(**{
