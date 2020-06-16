@@ -236,3 +236,15 @@ GROUP BY addon_id"""
 
         returned_results = get_addons_and_average_daily_users_from_bigquery()
         assert returned_results == [(1, 123), (2, 456)]
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_skips_null_values(self, bigquery_client_mock):
+        results = [
+            self.create_bigquery_row({'addon_id': 1, 'count': 123}),
+            self.create_bigquery_row({'addon_id': 2, 'count': None}),
+        ]
+        client = self.create_mock_client(results=results)
+        bigquery_client_mock.from_service_account_json.return_value = client
+
+        returned_results = get_addons_and_average_daily_users_from_bigquery()
+        assert returned_results == [(1, 123)]
