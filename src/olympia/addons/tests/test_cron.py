@@ -328,19 +328,25 @@ class TestAvgDailyUserCountTestCase(TestCase):
             date=datetime.date.today(),
             defaults={'count': dictionary_count}
         )
+        addon_without_count = addon_factory(type=amo.ADDON_DICT,
+                                            average_daily_users=2)
         assert addon.average_daily_users == 0
         assert langpack.average_daily_users == 0
         assert dictionary.average_daily_users == 0
+        assert addon_without_count.average_daily_users == 2
 
         cron.update_addon_average_daily_users()
         addon.refresh_from_db()
         langpack.refresh_from_db()
         dictionary.refresh_from_db()
+        addon_without_count.refresh_from_db()
 
         get_mock.assert_called
         assert addon.average_daily_users == count
         assert langpack.average_daily_users == langpack_count
         assert dictionary.average_daily_users == dictionary_count
+        # The value is 0 because the add-on does not have download counts.
+        assert addon_without_count.average_daily_users == 0
 
     @override_switch('use-bigquery-for-addon-adu', active=True)
     @mock.patch('olympia.addons.cron.chunked')
@@ -378,6 +384,8 @@ class TestAvgDailyUserCountTestCase(TestCase):
             date=datetime.date.today(),
             defaults={'count': 123}
         )
+        # This one should be ignored as well.
+        addon_factory(guid='', type=amo.ADDON_LPAPP)
 
         cron.update_addon_average_daily_users()
 
