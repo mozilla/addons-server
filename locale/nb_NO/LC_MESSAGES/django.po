@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 13:34+0000\n"
+"PO-Revision-Date: 2020-06-16 13:52+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -810,7 +810,7 @@ msgstr "{file} ble signert."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "Tilleggs-ID {0} med GUID {1} har blitt slettet"
+msgstr "Tilleggs-ID {0} med GUID {1} er slettet"
 
 #, fuzzy
 msgid "{addon} migrated from preliminary."
@@ -1094,9 +1094,8 @@ msgstr "Spill og underholdning"
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Language Support"
-msgstr "Språk"
+msgstr "Språkstøtte"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
 msgstr ""
@@ -1107,9 +1106,8 @@ msgstr "Foto, musikk og videoer"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Privacy & Security"
-msgstr "Personvernbestemmelser"
+msgstr "Personvern og sikkerhet"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
@@ -1213,9 +1211,8 @@ msgstr "Diverse"
 msgid "Modern"
 msgstr "Moderne"
 
-#, fuzzy
 msgid "Nature"
-msgstr "Fremhevet"
+msgstr "Natur"
 
 msgid "OS Integration"
 msgstr "OS-integrasjon"
@@ -1223,9 +1220,8 @@ msgstr "OS-integrasjon"
 msgid "Retro"
 msgstr "Retro"
 
-#, fuzzy
 msgid "Sports"
-msgstr "Støtte"
+msgstr "Sport"
 
 msgid "Abstract"
 msgstr "Abstrakt"
@@ -1300,9 +1296,8 @@ msgstr ""
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Websites"
-msgstr "Nettsted"
+msgstr "Nettsteder"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
 msgstr ""
@@ -1313,15 +1308,14 @@ msgstr "Generelt"
 msgid "Business"
 msgstr "Business"
 
-#, fuzzy
 msgid "Dictionaries & Encyclopedias"
-msgstr "Ordbøker og språkpakker"
+msgstr "Ordbøker og oppslagsverk"
 
 msgid "Kids"
 msgstr "Barn"
 
 msgid "Multiple Search"
-msgstr ""
+msgstr "Kombinert søking"
 
 msgid "News & Blogs"
 msgstr "Nyheter og blogger"
@@ -1333,7 +1327,7 @@ msgid "Shopping & E-Commerce"
 msgstr "Shopping og E-handel"
 
 msgid "Social & People"
-msgstr ""
+msgstr "Sosialt og mennesker"
 
 msgid "Travel"
 msgstr "Reise"
@@ -1410,10 +1404,10 @@ msgid "No Reputation"
 msgstr "Ingen omdømme"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Bra (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Veldig bra (2)"
 
 msgid "Excellent (3)"
 msgstr ""
