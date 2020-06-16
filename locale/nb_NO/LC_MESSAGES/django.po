@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 18:32+0000\n"
+"PO-Revision-Date: 2020-06-16 18:40+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2336,13 +2336,13 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "Dette tillegget krever betaling, ikke-gratis tjenester eller programvare eller ekstra maskinvare."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Dette tillegget krever ikke ytterligere betalinger, betalte tjenester, programvare eller ekstra maskinvare."
 
 msgid "Categories"
 msgstr "Kategorier"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Kategorier er den viktigste måten brukerne blar gjennom tillegg på. Velg de som passer til tilleggets funksjonalitet for mest mulig eksponering."
 
 msgid "Email"
 msgstr "E-post"
@@ -2379,7 +2379,7 @@ msgid ""
 msgstr ""
 
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Universelt unik identifikator"
 
 msgid "UUID"
 msgstr "UUID"
