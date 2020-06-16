@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 18:13+0000\n"
+"PO-Revision-Date: 2020-06-16 18:23+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1958,7 +1958,7 @@ msgid "The color of the text and icons in the toolbar and the active tab. Manife
 msgstr ""
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Bakgrunn for feltområdet for verktøylinjen"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
@@ -2100,7 +2100,7 @@ msgid "No results found."
 msgstr "Ingen resultater."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Avgrens aktivitet"
 
 msgid "Activity"
 msgstr "Aktivitet"
@@ -2205,13 +2205,13 @@ msgid "Decline"
 msgstr ""
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Håndtere opphavsmenn og lisens"
 
 msgid "Authors"
-msgstr ""
+msgstr "Opphavsmenn"
 
 msgid "About author roles"
-msgstr ""
+msgstr "Om roller for opphavsmenn"
 
 msgid "Authors pending confirmation"
 msgstr ""
@@ -2236,23 +2236,23 @@ msgid "Additional Details for {0}"
 msgstr "Tekniske detaljer for {0}"
 
 msgid "Tags"
-msgstr ""
+msgstr "Stikkord"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "Stikkord hjelper brukere å finne din utvidelse og bør være korte beskrivelser som faner, verktøyfelt eller twitter. Du kan ha høyst {0} stikkord."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kommaseparert, minst {0} tegn."
+msgstr[1] "Kommaseparert, minst {0} tegn."
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Eksempel: mørk, kino, noir. Høyest 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "Reserverte tagger:"
 
 #, fuzzy
 msgid "Contributions URL"
