@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 00:12+0000\n"
+"PO-Revision-Date: 2020-06-16 00:22+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -920,9 +920,8 @@ msgstr ""
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Διαγράφηκε η έκδοση {0} του {addon}."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Διαγράφηκε το πρόσθετο."
+msgstr "Το μπλοκ διαγράφηκε"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "Το GUID για το {addon} προστέθηκε στο DeniedGuid."
@@ -3641,9 +3640,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Ένα ελαφρύ και αποτελεσματικό πρόσθετο φραγής διαφημίσεων. Το uBlock Origin εξαναγκάζει χιλιάδες φίλτρα περιεχομένου χωρίς να καταναλώνει υπερβολική μνήμη."
+msgstr "Ελαφρύ και αποτελεσματικό πρόσθετο φραγής διαφημίσεων. Το uBlock Origin εξαναγκάζει χιλιάδες φίλτρα περιεχομένου χωρίς να καταναλώνει υπερβολική μνήμη."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3881,27 +3879,24 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ανάγνωση αρχείων ePub {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Απολαύστε αρχεία ePub απευθείας στο Firefox—μεγέθυνση γραμματοσειράς, διαστάσεις σελίδας και άλλα."
+msgstr "Διαβάστε αρχεία ePub απευθείας στο Firefox—μεγέθυνση γραμματοσειράς, διαστάσεις σελίδας και άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτίωση εμπειρίας YouTube {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Αναπαραγωγή βίντεο από προεπιλογή στην υψηλότερη ποιότητα, απενεργοποίηση σχολιασμών και πολλά άλλα."
+msgstr "Αναπαραγωγή YouTube βίντεο από προεπιλογή στην υψηλότερη ποιότητα, απενεργοποίηση σχολιασμών και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Εντοπισμός ιχνηλατών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Δείτε ποιος σάς παρακολουθεί με ένα μόνο κλικ."
+msgstr "Παρακολουθήστε τους ιχνηλάτες. Δείτε ποιος σας παρακολουθεί με ένα μόνο κλικ."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3970,14 +3965,12 @@ msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ανώνυμη πλοήγηση {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Περιηγηθείτε στο διαδίκτυο με συγκεκαλυμμένη ταυτότητα—σαν να περιηγείστε από κάποια άλλη χώρα."
+msgstr "Σερφάρετε ανώνυμα. Περιηγηθείτε στο διαδίκτυο με συγκεκαλυμμένη ταυτότητα—σαν να περιηγείστε από κάποια άλλη χώρα."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Πρόσβαση σε αγαπημένες ιστοσελίδες, καρτέλες που κλείσατε πρόσφατα και πολλά άλλα—όλα από μια πανέμορφη διάταξη πλακιδίων."
+msgstr "Απολαύστε οπτικούς σελιδοδείκτες. Πρόσβαση σε αγαπημένες ιστοσελίδες, καρτέλες που κλείσατε πρόσφατα και πολλά άλλα—όλα από μια πανέμορφη διάταξη πλακιδίων."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4000,9 +3993,8 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Πανίσχυρη διαχείριση λήψεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Ελέγξτε την κατάσταση των λήψεών σας μέσω της γραμμής κατάστασης, της σελίδας ιστορικού λήψεων και πολλά άλλα."
+msgstr "Πανίσχυρη διαχείριση λήψεων. Ελέγξτε την κατάσταση των λήψεών σας μέσω της γραμμής κατάστασης, της σελίδας ιστορικού λήψεων και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4017,9 +4009,8 @@ msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Προστασία από καταγραφή αναζήτησης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Εμποδίστε ιχνηλάτες όταν κάνετε κλικ σε αποτελέσματα αναζήτησης Google και Yandex."
+msgstr "Εμποδίστε ιχνηλάτες διαφημίσεων όταν κάνετε κλικ σε αποτελέσματα αναζήτησης Google και Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4035,9 +4026,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Προσθήκη εικόνων σε αποτελέσματα αναζήτησης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Απολαύστε μικρογραφίες δίπλα στα αποτελέσματα αναζήτησής σας."
+msgstr "Απολαύστε μικρογραφίες ιστοσελίδων δίπλα στα αποτελέσματα αναζήτησής σας."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4093,16 +4083,14 @@ msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_
 msgstr "Βελτίωση εμπειρίας ανάγνωσης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr "Κάντε το κείμενο που διαβάζετε πιο ελκυστικό, αφαιρώντας περιττά στοιχεία."
+msgstr "Βελτιώστε την εμπειρία ανάγνωσής σας. Κάντε το κείμενο που διαβάζετε πιο ελκυστικό, αφαιρώντας περιττά στοιχεία."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Άνοιγμα πολλαπλών συνδέσμων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Κάντε δεξί κλικ και σύρετε τους συνδέσμους που θέλετε να ανοίξετε σε νέες καρτέλες."
 
@@ -4191,9 +4179,8 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ταχύτερη εργασία {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
-msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για να κάνετε πράγματα—ταχύτερα."
+msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για να εργαστείτε ταχύτερα."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4265,9 +4252,8 @@ msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "WhatsApp στο διαδίκτυο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Πρόσβαση στο WhatsApp από τη γραμμή εργαλείων του Firefox για ειδοποιήσεις μη αναγνωσμένων νημάτων."
+msgstr "WhatsApp στο διαδίκτυο. Πρόσβαση στο WhatsApp από τη γραμμή εργαλείων του Firefox για ειδοποιήσεις μη αναγνωσμένων νημάτων."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4343,7 +4329,6 @@ msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Εξαγωγή συνδέσμων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
 msgstr "Άμεση εμφάνιση όλων των συνδέσμων από μια ιστοσελίδα σε νέες καρτέλες."
 
@@ -4416,9 +4401,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Απολαύστε μουσική απ' όλο τον κόσμο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Πρόσβαση σε 30.000+ ραδιοφωνικούς σταθμούς από όλο τον κόσμο."
+msgstr "Απολαύστε μουσική από 30.000+ ραδιοφωνικούς σταθμούς από όλο τον κόσμο."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4731,9 +4715,8 @@ msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Διόρθωση ενοχλητικού ήχου {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Είναι πολύ χαμηλή η ένταση σε κάποια ιστοσελίδα; Πολύ υψηλή; Το SoundFixer μπορεί να βοηθήσει."
+msgstr "Διόρθωση ενοχλητικού ήχου. Είναι πολύ χαμηλή η ένταση σε κάποια ιστοσελίδα; Πολύ υψηλή; Το SoundFixer μπορεί να βοηθήσει."
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4780,9 +4763,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Απλοποίηση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Οργανώστε τις ανοικτές σας καρτέλες σε μια κάθετη πλευρική γραμμή."
+msgstr "Απλοποίηση καρτελών. Οργανώστε τις ανοικτές σας καρτέλες σε μια τακτοποιημένη κάθετη πλευρική γραμμή."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5677,9 +5659,8 @@ msgstr "Αρχείο καταγραφής αξιολόγησης"
 msgid "Add-on Review Guide"
 msgstr "Οδηγός αξιολόγησης προσθέτων"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Δοκιμές ασφαλείας"
+msgstr "Εφαρμογές σάρωσης ασφαλείας"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
@@ -6062,13 +6043,11 @@ msgstr "Περισσότερες ενέργειες"
 msgid "Notify me about new listed versions"
 msgstr "Ειδοποίηση για νέες καταχωρημένες εκδόσεις"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Προβολή όλων των υποβολών"
+msgstr "Αποδοχή επανυποβολής"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Διαχείριση των υποβολών μου"
+msgstr "Άρνηση επανυποβολής"
 
 msgid "Force-disable add-on"
 msgstr "Εξαναγκασμός απενεργοποίησης προσθέτου"
@@ -6164,9 +6143,8 @@ msgstr "Απομάκρυνση αυτής της ανακοίνωσης"
 msgid "Files in this version:"
 msgstr "Αρχεία σε αυτή την έκδοση:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Αρχεία σε αυτή την έκδοση:"
+msgstr "Περιήγηση σε όλα τα αρχεία σε αυτή την έκδοση"
 
 msgid "Contents"
 msgstr "Περιεχόμενα"
