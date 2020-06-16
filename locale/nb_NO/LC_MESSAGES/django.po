@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 19:10+0000\n"
+"PO-Revision-Date: 2020-06-16 20:31+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2482,7 +2482,7 @@ msgid "The licensor permits others to distribute derivativeworks only under the 
 msgstr ""
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "Tillegget ditt blir utgitt under følgende lisens:"
 
 msgid "Select a different license."
 msgstr "Velg en annen lisens."
@@ -2513,10 +2513,10 @@ msgid "Compatibility Tests"
 msgstr "Kompatibilitetstester"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Skjul meldinger som ikker kreves for automatisk signering"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Skjul meldinger som finnes i tidligere versjon og ignorerte"
 
 msgid "Top"
 msgstr "Topp"
@@ -2567,14 +2567,13 @@ msgid "Manage Status & Versions"
 msgstr ""
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Vis siste endringer"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Denne utvidelsen er ikke kompatibel med din versjon av %(app)s."
+msgstr "Dette tillegget har ingen andre versjoner."
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -2588,9 +2587,8 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiv bruker"
 msgstr[1] "<strong>{0}</strong> aktive brukere"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Send inn ny utvidelse"
+msgstr "Send inn en ny versjon"
 
 #, fuzzy
 msgid "Name and Summary:"
@@ -2605,12 +2603,11 @@ msgid ""
 "submission process is complete."
 msgstr ""
 
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "Utvidelse"
+msgstr "URL for tillegg:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Bruk bare bokstaver, tall, understrek og bindestrek i din nettadresse."
 
 msgid "Name:"
 msgstr "Navn:"
