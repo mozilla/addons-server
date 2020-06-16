@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 10:21+0000\n"
+"PO-Revision-Date: 2020-06-16 10:33+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -26,7 +26,7 @@ msgid "Addons"
 msgstr "Tillegg"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "miste tal på rapportar (gruppert etter guid)"
 
 msgid "creation date"
 msgstr "dato oppretta"
@@ -38,21 +38,21 @@ msgid "Distribution"
 msgstr "Distribusjon"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Rapportørland"
 
 msgid "Message excerpt"
 msgstr "Meldingsutdrag"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "Dei %d markerte rapportane har blitt markerte som gyldige."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "Dei %d markerte rapportane har blitt markerte som mistenkte."
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "Marker valde misbruksrapporter som mistenkeleg"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
@@ -121,7 +121,7 @@ msgid "Review note"
 msgstr "Vurderingsmerknad"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr "Berre siste versjonar av utvidingar kan ha merknadar."
+msgstr "Berre dei siste versjonane-) av tillegg kan ha vedlagde merknadar."
 
 msgid "Ratings"
 msgstr "Vurderingar"
@@ -459,7 +459,7 @@ msgid "This custom URL cannot be used."
 msgstr "Denne tilpassa URL-en kan ikkje brukast."
 
 msgid "This add-on already belongs to the collection"
-msgstr "Denne utvidinga høyrer allereie til samlinga"
+msgstr "Dette tillegget er allereie ein del av samlinga samlinga"
 
 msgid "Signoff State"
 msgstr ""
