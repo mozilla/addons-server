@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 08:37+0000\n"
+"PO-Revision-Date: 2020-06-16 09:03+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -408,7 +408,7 @@ msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "Ugyldig pk eller slugg \"%s\" - objektet finst ikkje."
+msgstr "Ugyldig pk eller slugg «%s» - objektet finst ikkje."
 
 #, fuzzy
 msgid "Confirmation for developer API keys"
