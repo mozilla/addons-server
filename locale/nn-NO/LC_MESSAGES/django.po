@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 10:35+0000\n"
+"PO-Revision-Date: 2020-06-16 10:49+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -385,7 +385,7 @@ msgid "Error decoding signature."
 msgstr "Feil ved dekoding av signaturen."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Feil type for ein eller fleire nøklar i pakkeinnhald"
 
 msgid "Invalid JWT Token."
 msgstr "Ugylig JWT-token."
@@ -404,7 +404,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Språkkoden {lang_code} er ugyldig."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Du må oppgi eit objekt med {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
