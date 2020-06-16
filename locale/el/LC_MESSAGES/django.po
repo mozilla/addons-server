@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 00:22+0000\n"
+"PO-Revision-Date: 2020-06-16 00:28+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2754,9 +2754,8 @@ msgstr "Επεξεργασία έκδοσης {0}"
 msgid "Version Signature Pending"
 msgstr "Εκκρεμεί η υπογραφή έκδοσης"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Τελειώσατε! Αυτή η έκδοση θα είναι διαθέσιμη αφού περάσει την αξιολόγηση. Θα ειδοποιηθείτε όταν αξιολογηθεί."
+msgstr "Τελειώσατε! Αυτή η έκδοση θα υπογραφεί σύντομα για αυτόματη διανομή. Θα ειδοποιηθείτε μέσω email όταν το υπογεγγραμμένο αρχείο είναι έτοιμο προς λήψη."
 
 msgid "Go to My Submissions"
 msgstr "Μετάβαση στις υποβολές μου"
@@ -3573,9 +3572,9 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Διακοπή καταγραφής Facebook {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Απομονώστε την ταυτότητα του Facebook σας σε ένα ξεχωριστό “χώρο” που κάνει πιο δύσκολη την καταγραφή των κινήσεών σας στο διαδίκτυο από το Facebook."
+msgstr ""
+"Σταματήστε την παρακολούθηση του Facebook. Απομονώστε την ταυτότητα του Facebook σας σε ένα ξεχωριστό “χώρο” που κάνει πιο δύσκολη την καταγραφή των κινήσεών σας στο διαδίκτυο από το Facebook."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3816,9 +3815,8 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Διαγράψτε τα ψηφιακά ίχνη σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Κάντε το Firefox να ξεχάσει τα δεδομένα ιστοσελίδων, όπως cookies και τοπική αποθήκευση, αλλά μόνο για τους τομείς που θα επιλέξετε."
+msgstr "Αφήστε καθαρό ψηφιακό μονοπάτι. Κάντε το Firefox να ξεχάσει τα δεδομένα ιστοσελίδων, όπως cookies και τοπική αποθήκευση, αλλά μόνο για τους τομείς που θα επιλέξετε."
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
@@ -3845,9 +3843,8 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Αποφυγή ύπουλων ιχνηλατών και περιορισμών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Μεταμφιέστε την πλοήγησή σας καλύπτοντας την ταυτότητα του προγράμματος περιήγησης και του λειτουργικού σας συστήματος."
+msgstr "Αποφύγετε πονηρούς ιχνηλάτες και περιορισμούς. Μεταμφιέστε την πλοήγησή σας καλύπτοντας την ταυτότητα του προγράμματος περιήγησης και του λειτουργικού σας συστήματος."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3862,9 +3859,8 @@ msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Διαχωρισμός διαδικτυακών ζωών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Διαχωρίστε ιδιωτικά τις διάφορες διαδικτυακές σας ταυτότητες—εργασία, προσωπικά κλπ.—με χρωματιστές καρτέλες που χωρίζουν τα ψηφιακά σας ίχνη."
+msgstr "Διακρίνετε τις διαδικτυακές σας ζωές. Διαχωρίστε ιδιωτικά τις διάφορες διαδικτυακές σας ταυτότητες—εργασία, προσωπικά κλπ.—με χρωματιστές καρτέλες που χωρίζουν τα ψηφιακά σας ίχνη."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
