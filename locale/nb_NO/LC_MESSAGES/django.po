@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 08:09+0000\n"
+"PO-Revision-Date: 2020-06-16 08:12+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -218,7 +218,7 @@ msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Noen funksjoner er midlertidig utilgjengelig mens vi utfører rutinemessig vedlikehold av nettstedet. Vi kommer tilbake med full kapasitet om kort tid."
 
 #, fuzzy
 msgid "Must contain at least one printable character."
@@ -231,9 +231,8 @@ msgstr "Må ha minst én eier."
 msgid "Not allowed"
 msgstr "Ikke tillatt"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Ikke tillatt"
+msgstr "Ops! Ikke tillatt."
 
 msgid "You tried to do something that you weren't allowed to."
 msgstr "Du prøvde å gjøre noe som du ikke har tillatelse til."
@@ -242,6 +241,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Du ser denne meldingen fordi dette HTTPS-nettstedet krever en «Referer header» som skal sendes fra din nettleser, men ingen var sendt. Dette header-et kreves av sikkerhetsgrunner for å sikre at din "
+"nettleser ikke blir kapret av en tredjepart."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
