@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 22:42+0000\n"
+"PO-Revision-Date: 2020-06-16 22:50+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2811,20 +2811,20 @@ msgid "Include instructions in a README file in the source code,"
 msgstr "Ta med instruksjoner i en README-fil i kildekoden,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "eller i vurderingsnotater på neste side (hvis aktuelt)."
 
 msgid "Upload source code:"
-msgstr ""
+msgstr "Last opp kildekode:"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Distribusjonsavtale for tillegg"
 
 #, fuzzy
 msgid "Upload Add-on"
 msgstr "Blokkerte utvidelser"
 
 msgid "Where to Host Version"
-msgstr ""
+msgstr "Hvor skal versjonen huses"
 
 msgid "Change"
 msgstr "Endre"
@@ -2859,7 +2859,7 @@ msgid "Theme generate"
 msgstr "Gjennomgang av tema"
 
 msgid "Theme generator"
-msgstr ""
+msgstr "Temagenerator"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
 msgstr ""
@@ -2869,25 +2869,25 @@ msgid "Theme name"
 msgstr "Gjennomgang av tema"
 
 msgid "Select a header image for your theme"
-msgstr ""
+msgstr "Velg et toppbilde for ditt tema"
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "Anbefalt høyde: 200 piksler"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "6,9 MB maks"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG eller GIF (ikke animert)"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Justert øverst til høyre"
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "Velg et annet toppbilde"
 
 msgid "Select colors for your theme"
-msgstr ""
+msgstr "Velg farger for temaet ditt"
 
 #, fuzzy
 msgid "optional"
@@ -2906,10 +2906,10 @@ msgid "Finish Theme"
 msgstr "%s temaer"
 
 msgid "Back"
-msgstr ""
+msgstr "Tilbake"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "API-innloggingsopplysninger"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -2938,10 +2938,10 @@ msgid "A confirmation link will be sent to your email address. After confirmatio
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Du har ingen API-innloggingsopplysninger."
 
 msgid "Revoke"
-msgstr ""
+msgstr "Tilbakekall"
 
 msgid "Revoke and regenerate credentials"
 msgstr ""
