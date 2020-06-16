@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 
 from django.db import connections
 from django.db.models import Avg, F, Q, Sum
+from django.db.models.functions import Coalesce
 
 import multidb
 import waffle
@@ -45,7 +46,8 @@ def update_addon_average_daily_users():
             Addon.objects
             .exclude(type__in=amo.ADDON_TYPES_WITH_STATS)
             .exclude(guid__isnull=True)
-            .annotate(count=Sum('downloadcount__count'))
+            .exclude(guid__exact='')
+            .annotate(count=Coalesce(Sum('downloadcount__count'), 0))
             .values_list('guid', 'count')
         )
         counts += get_addons_and_average_daily_users_from_bigquery()
