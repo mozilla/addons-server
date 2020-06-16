@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 18:40+0000\n"
+"PO-Revision-Date: 2020-06-16 18:45+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2388,7 +2388,7 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr ""
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "Oppslagstavle"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
@@ -2407,21 +2407,21 @@ msgid ""
 msgstr ""
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Velg et ikon for tillegget ditt:"
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results."
 msgstr ""
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Brukes i detaljoversikt for tillegg."
 
 #. The size of the icon
 msgid "128x128px"
@@ -2431,7 +2431,7 @@ msgid "Will be the standard in future add-on detail pages."
 msgstr ""
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Last opp et egendefinert ikon…"
 
 msgid "PNG and JPG supported."
 msgstr ""
@@ -2446,7 +2446,7 @@ msgid "Screenshots"
 msgstr "Skjermbilde"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Du må ha minst ett skjermbilde av tillegget ditt:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "Oppgi en bildetekst for dette skjermbildet:"
@@ -2467,10 +2467,10 @@ msgid "Continue"
 msgstr "Fortsett"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "Kan andre dele tillegget ditt, så lenge du er kreditert?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "Kan andre bruke ditt tillegg til kommersielle formål?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr ""
