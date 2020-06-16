@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 22:00+0000\n"
+"PO-Revision-Date: 2020-06-16 22:42+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2760,28 +2760,28 @@ msgstr "Du må kanskje sende inn kildekode. Om du ikke gjør dette kan tillegget
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr ""
+msgstr "Les <a %(a_attrs)s>retningslinjene for innsending av kildekode</a>."
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "Bruker du noe av følgende?"
 
 msgid "Code generators or minifiers"
 msgstr ""
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "Verktøy som kombinerer flere filer i en enkelt fil, for eksempel <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
 msgstr ""
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "Ethvert annet verktøy som håndterer kode eller filer, bruker prosessering og genererer kode eller fil(er) som inkluderes i tillegget"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Du trenger ikke å sende inn kildekode, og du er klar for neste steg."
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "Du trenger å sende inn kildekode."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
@@ -2805,10 +2805,10 @@ msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside fro
 msgstr ""
 
 msgid "How to Submit:"
-msgstr ""
+msgstr "Hvordan sende inn:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "Ta med instruksjoner i en README-fil i kildekoden,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
