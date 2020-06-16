@@ -12,6 +12,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Prefetch, Q
 from django.db.transaction import non_atomic_requests
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
 from django.utils.translation import ugettext
@@ -50,6 +51,7 @@ from olympia.api.permissions import (
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.discovery.models import DiscoveryItem
+from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.forms import (
     AllAddonSearchForm, MOTDForm, PublicWhiteboardForm, QueueSearchForm,
@@ -1151,6 +1153,26 @@ def theme_background_images(request, version_id):
     """similar to devhub.views.theme_background_image but returns all images"""
     version = get_object_or_404(Version, id=int(version_id))
     return version.get_background_images_encoded(header_only=False)
+
+
+@any_reviewer_required
+def json_file_validation(request, addon_id, file_id):
+    addon = get_object_or_404(Addon.unfiltered.id_or_slug(addon_id))
+    file = get_object_or_404(File, version__addon=addon, id=file_id)
+    try:
+        result = file.validation
+    except File.validation.RelatedObjectDoesNotExist:
+        raise http.Http404
+    response = JsonResponse({
+        'validation': result.processed_validation,
+        'error': None,
+    })
+    # See: https://github.com/mozilla/addons-server/issues/11048
+    response['Access-Control-Allow-Origin'] = settings.CODE_MANAGER_URL
+    response['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
+    response['Access-Control-Allow-Headers'] = 'Content-Type'
+    response['Access-Control-Allow-Credentials'] = 'true'
+    return response
 
 
 @login_required
