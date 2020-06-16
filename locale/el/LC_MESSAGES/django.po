@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 08:43+0000\n"
+"PO-Revision-Date: 2020-06-16 08:51+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -174,7 +174,7 @@ msgid "My Collections"
 msgstr "Οι συλλογές μου"
 
 msgid "My Favorites"
-msgstr "Οι αγαπημένες μου"
+msgstr "Τα αγαπημένα μου"
 
 msgid "Log out"
 msgstr "Αποσύνδεση"
@@ -488,28 +488,28 @@ msgstr "Κατάσταση υπογραφής"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "Το GUID %(guid)s είναι σε εκκρεμούσα κατάσταση υποβολής"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Το μπλοκ για το GUID %(guid)s είναι μόνο για ανάγνωση - πρέπει να το επεξεργαστείτε μέσω της παλαιάς συλλογής λιστών μπλοκ"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Δεν βρέθηκε το μπλοκ με GUID %(guid)s"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Το πρόσθετο με GUID %(guid)s δεν υπάρχει"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Τα μπλοκ προς ενημέρωση είναι διαφορετικά επειδή έχει αλλάξει η ελάχιστη ή η μέγιστη έκδοση."
 
 msgid "Invalid version"
 msgstr "Μη έγκυρη έκδοση"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Η ελάχιστη έκδοση δεν μπορεί να είναι μεγαλύτερη από τη μέγιστη έκδοση"
 
 msgid "Review Listed"
 msgstr "Αναρτημένη αξιολόγηση"
@@ -518,7 +518,7 @@ msgid "Review Unlisted"
 msgstr "Μη αναρτημένη αξιολόγηση"
 
 msgid "This block was imported from a regex based legacy Block."
-msgstr ""
+msgstr "Αυτό το μπλοκ εισήχθη από ένα παλαιό μπλοκ βασισμένο σε regex."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
@@ -539,7 +539,7 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr "Δεν βρέθηκαν %(count)s GUID προσθέτου"
 
 msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr ""
+msgstr "Τα ακόλουθα μπλοκ εισήχθησαν από ένα παλαιό μπλοκ βασισμένο σε regex."
 
 msgid "Save"
 msgstr "Αποθήκευση"
@@ -583,7 +583,7 @@ msgid "versions"
 msgstr "εκδόσεις"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "Περιλαμβάνεται στη λίστα μπλοκ παλαιού τύπου."
 
 msgid "{addon} was created."
 msgstr "Δημιουργήθηκε το {addon}."
@@ -908,17 +908,16 @@ msgid "Block for {0} added to Blocklist."
 msgstr ""
 
 msgid "Block added"
-msgstr ""
+msgstr "Έγινε προσθήκη του μπλοκ"
 
 msgid "Block for {0} edited in Blocklist."
 msgstr ""
 
 msgid "Block edited"
-msgstr ""
+msgstr "Έγινε επεξεργασία του μπλοκ"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Διαγράφηκε η έκδοση {0} του {addon}."
+msgstr "Το μπλοκ για το {0} διαγράφηκε από τη λίστα μπλοκ."
 
 msgid "Block deleted"
 msgstr "Το μπλοκ διαγράφηκε"
@@ -2209,7 +2208,7 @@ msgid "Accepting the invitation will give you access to edit the add-on, and may
 msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Κάντε κλικ στο κουμπί \"Αποδοχή\" παρακάτω για να επιβεβαιώσετε ότι θέλετε να προστεθείτε ως δημιουργός του {addon_name}."
 
 msgid "Decline"
 msgstr "Απόρριψη"
@@ -2224,7 +2223,7 @@ msgid "About author roles"
 msgstr "Σχετικά με τους ρόλους των συντελεστών"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Εκκρεμεί επιβεβαίωση των δημιουργών"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
@@ -2513,7 +2512,7 @@ msgid "More information on Creative Commons licenses"
 msgstr "Περισσότερες πληροφορίες για τις άδειες Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Το πρόσθετό σας έχει οριστεί σε \"Αόρατο\"."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
@@ -3319,7 +3318,7 @@ msgid "Learn how to make an extension"
 msgstr "Μάθετε πώς να δημιουργήσετε μια επέκταση"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Είστε έτοιμοι να υποβάλετε ή να διαχειριστείτε την επέκτασή σας;"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
