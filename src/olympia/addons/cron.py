@@ -44,6 +44,7 @@ def update_addon_average_daily_users():
         counts = list(
             Addon.objects
             .exclude(type__in=amo.ADDON_TYPES_WITH_STATS)
+            .exclude(guid__isnull=True)
             .annotate(count=Sum('downloadcount__count'))
             .values_list('guid', 'count')
         )
