@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 13:58+0000\n"
+"PO-Revision-Date: 2020-06-16 14:13+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1718,7 +1718,7 @@ msgid "This add-on has an End-User License Agreement"
 msgstr "Dette tillegget har en sluttbrukerlisensavtale"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Spesifiser sluttbrukerlisensavtale for tillegget ditt:"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "Denne utvidelsen har en personvernerklæring"
@@ -1727,7 +1727,7 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Oppgi utvidelsens personvernerklæring:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Filtypen er ikke støttet, last opp en arkivfil {extensions}."
 
 #, fuzzy
 msgid "Invalid or broken archive."
@@ -1753,7 +1753,7 @@ msgid "Need to select at least one application."
 msgstr "Trenger minst ett kompatibelt program."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Du har sendt inn for mange opplastinger i det siste. Prøv igjen om en stund."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1762,14 +1762,14 @@ msgid "a blocklist entry"
 msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Versjon {version} er lastet opp tidligere og slettet."
 
 #, fuzzy
 msgid "Version {version} already exists."
 msgstr "{addon} {version} godkjent."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Fortsett med eksisterende opplasting i stedet?"
 
 msgid "Yes"
 msgstr "Ja"
@@ -1782,7 +1782,7 @@ msgid "You have not uploaded a source file."
 msgstr "Du kan ikke laste opp flere filer for denne versjonen."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "Kildefilen er lastet opp men du indikerte at ingen kilde var nødvendig."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
