@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-15 21:37+0000\n"
+"PO-Revision-Date: 2020-06-16 08:07+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1736,7 +1736,7 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "Túl sok feltöltést küldött be a közelmúltban. Próbálkozzon újra egy kicsit később."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "A(z) {version} egyezik ezzel ennék a kiegészítőnél: {block_link}. További információkért lépjen kapcsolatba az adminisztrátorokkal: {amo_admins}."
 
 msgid "a blocklist entry"
 msgstr "egy blokklistabejegyzés"
