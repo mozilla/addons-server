@@ -341,6 +341,15 @@ class AddonManager(ManagerBase):
             .distinct()
         )
 
+    def get_pending_rejection_queue(self, admin_reviewer=False):
+        filter_kwargs = {
+            '_current_version__reviewerflags__pending_rejection__isnull': False
+        }
+        return self.get_base_queryset_for_queue(
+            admin_reviewer=admin_reviewer,
+            show_pending_rejection=True,
+        ).filter(**filter_kwargs)
+
 
 class Addon(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)

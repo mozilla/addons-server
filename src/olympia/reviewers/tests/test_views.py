@@ -2597,6 +2597,43 @@ class TestScannersReviewQueue(QueueTest):
             tab_position=2, total_addons=4, total_queues=10, per_page=1)
 
 
+class TestPendingRejectionReviewQueue(QueueTest):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super().setUp()
+        self.url = reverse('reviewers.queue_pending_rejection')
+
+    def generate_files(self):
+        addon1 = addon_factory()
+        VersionReviewerFlags.objects.create(
+            version=addon1.versions.get(), pending_rejection=datetime.now())
+
+        addon2 = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        VersionReviewerFlags.objects.create(
+            version=addon2.versions.get(), pending_rejection=datetime.now())
+
+        # Extra add-ons without pending rejection on their current version,
+        # they shouldn't appear.
+        addon_factory()
+
+        addon = addon_factory(
+            name='Has a version pending rejection but it is not the current',
+            version_kw={'created': self.days_ago(1), 'version': '0.1'})
+        VersionReviewerFlags.objects.create(
+            version=addon.current_version, pending_rejection=datetime.now())
+        version_factory(addon=addon, version='0.2')
+
+        self.expected_addons = [addon1, addon2]
+
+    def test_results(self):
+        self.login_as_admin()
+        self.generate_files()
+        self._test_results()
+
+
 class TestPerformance(QueueTest):
     fixtures = ['base/users', 'base/addon_3615']
 

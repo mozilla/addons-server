@@ -29,6 +29,8 @@ urlpatterns = (
     url(r'^queue/mad', views.queue_mad, name='reviewers.queue_mad'),
     url(r'^queue/scanners', views.queue_scanners,
         name='reviewers.queue_scanners'),
+    url(r'queue/pending_rejection', views.queue_pending_rejection,
+        name='reviewers.queue_pending_rejection'),
     url(r'^queue/expired_info_requests', views.queue_expired_info_requests,
         name='reviewers.queue_expired_info_requests'),
     url(r'^unlisted_queue/all$', views.unlisted_list,

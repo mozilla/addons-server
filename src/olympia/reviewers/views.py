@@ -69,7 +69,7 @@ from olympia.reviewers.serializers import (
 )
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
-    MadReviewTable, ScannersReviewTable, ReviewHelper,
+    MadReviewTable, PendingRejectionTable, ReviewHelper, ScannersReviewTable,
     ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -268,6 +268,10 @@ def dashboard(request):
             ugettext('Expired Information Requests ({0})'.format(
                 queue_counts['expired_info_requests'])),
             reverse('reviewers.queue_expired_info_requests')
+        ), (
+            ugettext('Add-ons Pending Rejection ({0})').format(
+                queue_counts['pending_rejection']),
+            reverse('reviewers.queue_pending_rejection')
         )]
     return render(request, 'reviewers/dashboard.html', context(**{
         # base_context includes motd.
@@ -530,6 +534,9 @@ def fetch_queue_counts(admin_reviewer):
             Addon.objects.get_scanners_queue(
                 admin_reviewer=admin_reviewer).count),
         'expired_info_requests': expired.count,
+        'pending_rejection': (
+            Addon.objects.get_pending_rejection_queue(
+                admin_reviewer=admin_reviewer).count),
     }
     return {queue: count() for (queue, count) in counts.items()}
 
@@ -645,6 +652,16 @@ def queue_mad(request):
     admin_reviewer = is_admin_reviewer(request)
     qs = Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer)
     return _queue(request, MadReviewTable, 'mad', qs=qs, SearchForm=None)
+
+
+@permission_or_tools_view_required(amo.permissions.REVIEWS_ADMIN)
+def queue_pending_rejection(request):
+    admin_reviewer = is_admin_reviewer(request)
+    qs = Addon.objects.get_pending_rejection_queue(
+        admin_reviewer=admin_reviewer)
+    return _queue(
+        request, PendingRejectionTable, 'pending_rejection', qs=qs,
+        SearchForm=None)
 
 
 def determine_channel(channel_as_text):

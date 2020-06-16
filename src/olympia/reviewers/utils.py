@@ -220,6 +220,19 @@ class ExpiredInfoRequestsTable(ModernAddonQueueTable):
         return naturaltime(value) if value else ''
 
 
+class PendingRejectionTable(ModernAddonQueueTable):
+    deadline = tables.Column(
+        verbose_name=_('Pending Rejection Deadline'),
+        accessor='_current_version.reviewerflags.pending_rejection')
+
+    class Meta(ModernAddonQueueTable.Meta):
+        fields = ('addon_name', 'flags', 'last_human_review', 'weight',
+                  'deadline')
+
+    def render_deadline(self, value):
+        return naturaltime(value) if value else ''
+
+
 class AutoApprovedTable(ModernAddonQueueTable):
     pass
 
