@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 17:51+0000\n"
+"PO-Revision-Date: 2020-06-16 18:13+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1934,25 +1934,25 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 msgid "Header area background"
-msgstr ""
+msgstr "Bakgrunn for topptekstområdet"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Tekst og ikoner for topptekstområdet"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr ""
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Bakgrunn for verktøylinjeområdet"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "Bakgrunnsfargen for navigasjonslinjen, bokmerkefeltet og valgt fane.  Manifestfelt:  toolbar."
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Tekst og ikoner i verktøylinjeområdet"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr ""
