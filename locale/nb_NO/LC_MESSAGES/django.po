@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 22:50+0000\n"
+"PO-Revision-Date: 2020-06-16 22:55+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -3012,7 +3012,7 @@ msgid "Approved and recommended"
 msgstr ""
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Fullfør tillegget ditt ved å legge til en versjon eller manglende metadata."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
@@ -3028,7 +3028,7 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
-msgstr ""
+msgstr "Opprettet:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
@@ -3078,7 +3078,7 @@ msgid "Upload New Version"
 msgstr "Last opp ny versjon"
 
 msgid "View All"
-msgstr ""
+msgstr "Vis alle"
 
 #, fuzzy
 msgid "Listed Review Page"
@@ -3087,18 +3087,17 @@ msgstr "Ingen anmeldelser"
 msgid "Unlisted Review Page"
 msgstr ""
 
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Behandle"
+msgstr "Administrationsside"
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Vis statistikkoversikt"
 
 msgid "Developer News"
-msgstr ""
+msgstr "Nyheter for utviklere"
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Les bloggen &#9658;"
 
 #, fuzzy
 msgid "Pending information request:"
@@ -3119,17 +3118,17 @@ msgid "Allowed HTML: %(allowed_html)s"
 msgstr "Tillatt HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Noe HTML støttet."
 
 msgid "Remove this application"
-msgstr ""
+msgstr "Fjern denne applikasjonen"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Velg <b>opp til {0}</b> {1} kategori for dette tillegget:"
+msgstr[1] "Velg <b>opp til {0}</b> {1} kategorier for dette tillegget:"
 
 msgid "End-User License Agreement"
 msgstr "Sluttbrukerlisens"
@@ -3218,7 +3217,7 @@ msgid "Web-Ext: build & test extensions"
 msgstr ""
 
 msgid "Promote"
-msgstr ""
+msgstr "Promoter"
 
 msgid "\"Get The Add-on\" button"
 msgstr ""
