@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 00:28+0000\n"
+"PO-Revision-Date: 2020-06-16 08:43+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -484,7 +484,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Αυτό το πρόσθετο ανήκει ήδη σε άλλη συλλογή"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Κατάσταση υπογραφής"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
