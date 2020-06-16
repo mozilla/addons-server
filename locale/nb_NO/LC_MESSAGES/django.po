@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 09:09+0000\n"
+"PO-Revision-Date: 2020-06-16 09:10+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -675,6 +675,8 @@ msgstr "{addon} {version} superreview er forespurt"
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Dette tillegget har blitt flagget for administratorgjennomgang.  Den er fortsatt i vår gjennomgangskø, men den må gjennomgåes av en av våre administratorer. Gjennomgangen kan ta lengre tid en "
+"vanlig."
 
 msgid "Comment on {addon} {version}."
 msgstr "Kommentar på {addon} {version}."
@@ -694,9 +696,8 @@ msgstr "{addon} lagt til i {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} fjernet fra {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{review} for {addon} skrevet."
+msgstr "{rating} for {addon} skrevet."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
