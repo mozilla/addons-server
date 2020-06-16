@@ -1582,3 +1582,51 @@ def test_extract_version_to_git_with_error(incr_mock, extract_and_commit_mock):
         extract_version_to_git(addon.current_version.pk)
 
     incr_mock.assert_called_with('git.extraction.version.failure')
+
+
+@pytest.mark.django_db
+def test_extract_and_commit_no_dotgit_clash(settings):
+    addon = addon_factory(file_kw={'filename': 'webextension_dotgit.xpi',
+                                   'is_webextension': True})
+
+    with mock.patch('olympia.git.utils.uuid.uuid4') as uuid4_mock:
+        uuid4_mock.return_value = mock.Mock(
+            hex='b236f5994773477bbcd2d1b75ab1458f'
+        )
+        repo = AddonGitRepository.extract_and_commit_from_version(
+            addon.current_version
+        )
+
+    assert os.listdir(repo.git_repository_path) == ['.git']
+    # Verify via subprocess to make sure the repositories are properly read by
+    # the regular git client.
+    output = _run_process('git ls-tree -r --name-only listed', repo)
+    assert set(output.split()) == {'extracted/manifest.json',
+                                   'extracted/.git.b236f599/config'}
+
+
+@pytest.mark.django_db
+def test_extract_and_commit_source_from_version_rename_dotgit_files(settings):
+    addon = addon_factory(file_kw={'filename': 'webextension_dotgit_2.xpi',
+                                   'is_webextension': True})
+
+    with mock.patch('olympia.git.utils.uuid.uuid4') as uuid4_mock:
+        uuid4_mock.return_value = mock.Mock(
+            hex='b236f5994773477bbcd2d1b75ab1458f'
+        )
+        repo = AddonGitRepository.extract_and_commit_from_version(
+            addon.current_version
+        )
+
+    # Verify via subprocess to make sure the repositories are properly read by
+    # the regular git client.
+    output = _run_process('git ls-tree -r --name-only listed', repo)
+    assert set(output.split()) == {
+        'extracted/manifest.json',
+        'extracted/.gitattributes.b236f599',
+        'extracted/.gitignore.b236f599',
+        'extracted/.gitmodules.b236f599',
+        'extracted/some/directory/.gitattributes.b236f599',
+        'extracted/some/directory/.gitignore.b236f599',
+        'extracted/some/directory/.gitmodules.b236f599',
+    }
