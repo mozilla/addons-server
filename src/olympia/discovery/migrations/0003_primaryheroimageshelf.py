@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hero', '0009_primaryheroimage'),
+        ('hero', '0007_auto_20200603_0207_squashed_0010_primaryhero_select_image'),
         ('discovery', '0002_secondary_hero_shelf'),
     ]
 
