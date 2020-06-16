@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 16:06+0000\n"
+"PO-Revision-Date: 2020-06-16 17:51+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1898,20 +1898,20 @@ msgid "Icons cannot be animated."
 msgstr "Ikoner kan ikke være animerte."
 
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Bildet må være minst {0} piksler bredt og {1} piksler høy."
 
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Bilder må være enten PNG eller JPG."
 
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr ""
+msgstr "Ikonet må være minst {0} piksler bredt og høyt."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Ikonet må være kvadratisk (samme bredde og høyde)."
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Det oppstod en feil under opplasting av forhåndsvisningen din."
 
 msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
@@ -1920,7 +1920,7 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Versjon %s slått av."
 
 #, python-format
 msgid "Version %s deleted."
@@ -1928,7 +1928,7 @@ msgstr "Versjon %s slettet."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Versjon %s slått på igjen."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
