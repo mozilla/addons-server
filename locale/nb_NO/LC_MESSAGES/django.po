@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 08:37+0000\n"
+"PO-Revision-Date: 2020-06-16 09:09+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -384,10 +384,10 @@ msgid "Another Body"
 msgstr "Annet innhold"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Ugyldig autoriserings-header. Ingen autoriseringsopplysninger er spesifisert."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Ugyldig autoriserings-header. Autorasisjonsopplysninger skal ikke inneholde mellomrom."
 
 msgid "Signature has expired."
 msgstr "Signaturen har utgått."
@@ -396,37 +396,37 @@ msgid "Error decoding signature."
 msgstr "Feil ved dekoding av signatur."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Feil type for en eller flere nøkler i pakkeinnhold"
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Ugyldig JWT-symbol."
 
 #, fuzzy
 msgid "Invalid token or hash."
 msgstr "Feil versjonsområde."
 
 msgid "Email address not found."
-msgstr ""
+msgstr "Fant ikke e-postadressen."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Feltet må være minst {num} tegn langt."
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Språkkoden {lang_code} er ugyldig."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Du må oppgi et objekt med {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Ugyldig pk eller slugg «%s» - objektet finnes ikke."
 
 #, fuzzy
 msgid "Confirmation for developer API keys"
 msgstr "Mer informasjon er forespurt"
 
 msgid "Application Versions"
-msgstr "Programversjoner"
+msgstr "Applikasjonversjoner"
 
 msgid "Acceptable versions for all applications on AMO."
 msgstr "Akseptable versjoner for alle applikasjoner på AMO."
@@ -435,11 +435,11 @@ msgid "Valid Application Versions"
 msgstr "Gyldige programversjoner"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
+msgstr "Tillegg sendt inn til Mozilla Add-ons må ha en manifest-fil med støtte for minst et av programmene nedenfor. Bare versjonene som står listet nedenfor er tillatt for disse programmene."
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "Tenk på at WebExtensions ikke kommer til å godta en «*» i %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -452,10 +452,10 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
+"Om det støttede programmet ditt ikke krever en manifest-fil, må du fortsatt inkludere en med følgende egenskaper som spesifisert %(amo_manifests_mdn_link_open)sher%(amo_manifests_mdn_link_close)s."
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Denne url-en er allerede i bruk av en annen samling"
+msgstr "Denne tilpasssede nettadressen er allerede i bruk av en av dine samlinger."
 
 msgid "Name cannot be empty."
 msgstr "Navn kan ikke være tomt."
@@ -464,15 +464,13 @@ msgid "This name cannot be used."
 msgstr "Dette navnet kan ikke brukes."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Denne tilpasssede nettadressen må bestå av bokstaver, tall, understrek eller bindestrek."
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "\"{0}\" er en reservert tagg og kan ikke brukes."
+msgstr "Denne tilpasssede nettadressen kan ikke brukes."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "Denne url-en er allerede i bruk av en annen samling"
+msgstr "Dette tillegget er allerede en del av samlingen"
 
 msgid "Signoff State"
 msgstr ""
@@ -537,7 +535,7 @@ msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Lagre"
 
 msgid "Save and add more"
 msgstr ""
@@ -546,7 +544,7 @@ msgid "Delete"
 msgstr "Slett"
 
 msgid "Update"
-msgstr ""
+msgstr "Oppdater"
 
 #, fuzzy
 msgid "Reject Submission"
@@ -611,9 +609,8 @@ msgid "{addon} enabled."
 msgstr "{addon} påslått."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "{addon} sin status endret til {0}."
+msgstr "{addon} status endret til {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} lagt til på {addon}."
