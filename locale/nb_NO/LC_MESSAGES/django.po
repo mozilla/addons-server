@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 18:23+0000\n"
+"PO-Revision-Date: 2020-06-16 18:32+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2251,18 +2251,17 @@ msgstr "Eksempel: mørk, kino, noir. Høyest 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] "Reserverte tagger:"
+msgstr[0] "Reservert stikkord:"
+msgstr[1] "Reserverte stikkord:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Bidragsyter"
+msgstr "Bidrags-URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Hvis du vil be om pengebidrag fra brukerne dine, kan du sette dette til en side der de kan gjøre det."
 
 msgid "Default Locale"
-msgstr ""
+msgstr "Standardspråk"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
@@ -2275,9 +2274,8 @@ msgid ""
 "ons."
 msgstr ""
 
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Flere utvidelser"
+msgstr "Beskriv tillegg"
 
 #. {0} is the addon name
 #, fuzzy
@@ -2300,17 +2298,17 @@ msgid "Add-on URL"
 msgstr "URL for utvidelser"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Velg en kort, unik URL-slugg for tillegget ditt."
 
 msgid "View Listing"
-msgstr ""
+msgstr "Vis listning"
 
 #, fuzzy
 msgid "View Product Page"
 msgstr "Vis profil"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Denne oppsummeringen skal tydelig forklare hva tillegget ditt gjør. Den vil bli vist i lister og søk, og det vil bli brukt av de som gjennomgår tillegget for å teste det."
 
 msgid "Description"
 msgstr "Beskrivelse"
@@ -2319,24 +2317,23 @@ msgid "Experimental?"
 msgstr "Eksperimentell?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Hvis tillegget ditt er eksperimentelt eller på annen måte ikke er klart for generell bruk.  Tillegget vil bli listet, men vil ha redusert synlighet."
 
 #, fuzzy
 msgid "This add-on is experimental."
 msgstr "Denne utvidelsen er fjernet av forfatteren."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Dette tillegget er klar for generell bruk."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Ingen omstart"
+msgstr "Krever betaling?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Merk av i denne boksen hvis tilleggets kjernefunksjoner krever en form for betaling på forhånd eller etter en prøveperiode for å fungere."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Dette tillegget krever betaling, ikke-gratis tjenester eller programvare eller ekstra maskinvare."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
@@ -3123,7 +3120,7 @@ msgstr ""
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Tillatt HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr ""
