@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 10:38+0000\n"
-"Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
+"PO-Revision-Date: 2020-06-16 13:31+0000\n"
+"Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
@@ -1061,29 +1061,29 @@ msgid "Alerts & Updates"
 msgstr "Varslinger og oppdateringer"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidelser som hjelper deg å holde deg oppdatert, følge oppgaver, og forbedre effektiviteten. Finn utvidelser som oppdaterer faner, håndterer produktivitet og mer."
 
 msgid "Appearance"
 msgstr "Utseende"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Last ned utvidelser som modifiserer utseende på nettsider og nettleseren Firefox. Denne kategorien omfatter utvidelser for mørke temaer, fanehåndtering og mer."
 
 msgid "Bookmarks"
 msgstr "Bokmerke"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Last ned utvidelser som forbedrer bokmerker ved å passordbeskytte dem, søke etter duplikater, finne ødelagte bokmerker og mer."
 
 #, fuzzy
 msgid "Download Management"
 msgstr "Last ned språkpakke"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidelser som kan hjelpe til å laste ned nett-, musikk- og video-innhold. Du kan også finne utvidelser for å håndtere nedlastninger, dele filer og mer."
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "RSS-kanaler, nyheter og blogging"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
