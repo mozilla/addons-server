@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 22:48+0000\n"
-"Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
+"PO-Revision-Date: 2020-06-16 23:04+0000\n"
+"Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Marker valde misbruksrapportar som mistenkelege"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Sjå til at dette feltet ikkje har meir enn {max_length} teikn."
 
 msgid "Modified on:"
 msgstr "Endra den:"
@@ -109,7 +109,7 @@ msgstr "Utviklarar av tillegg eller tema kan ikkje slette kontoane sine. Du må 
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Varsel [%s] finst ikkje"
 
 msgid "Review"
 msgstr "Vurdering"
@@ -219,7 +219,7 @@ msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Nokre funksjonar er for tida utilgjengelege medan vi utfører rutinemessig vedlikehald av nettstaden. Vi kjem tilbake med full kapasitet om kort tid."
 
 msgid "Must contain at least one printable character."
 msgstr "Må innehalde minst eitt teikn som kan skrivast."
@@ -240,9 +240,13 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Du ser denne meldinga fordi denne HTTPS-nettstaden krev ein «Referer header» som skal sendast frå nettlesaren din, men ingen vart sende. Denne header-en vert krevd av tryggingsgrunnar for å sikre at"
+" nettlesaren din ikkje blir kapra av ein tredjepart."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
+"Dersom du har konfigurert nettlesaren din for å deaktivere «Referer headers», bør du aktivere dei på nytt, i alle fall for denne nettstaden, eller for HTTPS-tilkoplingar, eller for «same-"
+"origin»-førespurnadar."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -2883,7 +2887,7 @@ msgid "A confirmation link will be sent to your email address. After confirmatio
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr "Du har ingena API-inloggingsakkreditiv."
+msgstr "Du har ingena API-inloggingsopplysningar"
 
 msgid "Revoke"
 msgstr "Tilbakekall"
