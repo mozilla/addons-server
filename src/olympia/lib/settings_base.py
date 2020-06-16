@@ -11,6 +11,7 @@ from datetime import datetime
 
 import sentry_sdk
 from kombu import Queue
+from sentry_sdk.integrations.celery import CeleryIntegration
 from sentry_sdk.integrations.django import DjangoIntegration
 
 import olympia.core.logger
@@ -1841,7 +1842,7 @@ SENTRY_CONFIG = {
 }
 
 sentry_sdk.init(
-    integrations=[DjangoIntegration()],
+    integrations=[DjangoIntegration(), CeleryIntegration()],
     **SENTRY_CONFIG,
 )
 

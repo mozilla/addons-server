@@ -10,18 +10,14 @@ from __future__ import absolute_import
 
 import datetime
 
-from django.conf import settings
 from django.core.cache import cache
 
-import sentry_sdk
 from celery import Celery, group
 from celery.signals import task_failure, task_postrun, task_prerun
 from django_statsd.clients import statsd
 from kombu import serialization
 from post_request_task.task import (
     PostRequestTask, _start_queuing_tasks, _send_tasks_and_stop_queuing)
-from sentry_sdk.integrations.celery import CeleryIntegration
-from sentry_sdk.integrations.django import DjangoIntegration
 
 import olympia.core.logger
 
@@ -80,11 +76,6 @@ task = app.task
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
-
-# Hook up Sentry in celery.
-sentry_sdk.init(
-    integrations=[DjangoIntegration(), CeleryIntegration()],
-    dsn=settings.SENTRY_CONFIG['dsn'])
 
 
 @task_failure.connect
