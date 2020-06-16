@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 13:52+0000\n"
+"PO-Revision-Date: 2020-06-16 13:58+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1410,10 +1410,10 @@ msgid "Very Good (2)"
 msgstr "Veldig bra (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Fantastisk (3)"
 
 msgid "Manual Reviewer Points"
-msgstr "Manuelle gjennomgåerpoeng"
+msgstr "Manuelle vudererpoeng"
 
 #, fuzzy
 msgid "New Legacy Add-on Review"
@@ -1478,7 +1478,7 @@ msgid "Moderated Add-on Review"
 msgstr "Gjennomgang av moderert utvidelse"
 
 msgid "Add-on Review Moderation Reverted"
-msgstr ""
+msgstr "Tilleggsvurderingsmoderasjon tilbakestilt"
 
 #, fuzzy
 msgid "Add-on Content Review"
@@ -1622,10 +1622,10 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Siste endringer for mine utvidelser"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Foreldede utvidelser støttes ikke lenger i Firefox."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
+msgstr "Tillegg for Thunderbird og SeaMonkey er nå listet og håndtert på addons.thunderbird.net. Du kan bruke den samme kontoen for å oppdatere din utvidelse på det nye nettstedet."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
@@ -1633,9 +1633,9 @@ msgstr ""
 msgid "This slug is already in use. Please choose another."
 msgstr "Denne adresseteksten er allerede i bruk. Velg en annen."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Adresseteksten kan ikke være \"%s\". Velg en annen."
+msgstr "Slug kan ikke være «%(slug)s». Velg en annen."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1681,7 +1681,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Bør du endrer standard språk må du oppgi et navn, oppsummering og beskrivelse på det språket. Du mangler %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Brukere kan ikke legges til direkte"
 
 #, fuzzy
 msgid "An author can only be present once."
@@ -1697,7 +1697,7 @@ msgid "At least one author must be listed."
 msgstr "Minst en utvikler må være oppført."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Feil slug."
 
 msgid "Details"
 msgstr "Detaljer"
@@ -1715,7 +1715,7 @@ msgid "License text is required when choosing Other."
 msgstr "Lisensteksten er nødvendig når du velger \"Annen\"."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Dette tillegget har en sluttbrukerlisensavtale"
 
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
