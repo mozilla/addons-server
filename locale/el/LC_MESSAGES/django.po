@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-15 23:04+0000\n"
+"PO-Revision-Date: 2020-06-16 00:12+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -936,9 +936,8 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Έγινε επαναφορά του κλειδιού api του χρήστη {user}."
+msgstr "Έγινε επαναφορά της συνεδρίας(ών) του χρήστη {user}."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
@@ -2746,9 +2745,9 @@ msgstr "Το πρόσθετό σας θα κάνει μεγαλύτερη επι
 msgid "Manage Listing"
 msgstr "Διαχείριση καταχώρησης"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Μπορείτε επίσης να επεξεργαστείτε αυτή την έκδοση για να προσθέσετε σημειώσεις έκδοσης ή πηγαίο κώδικα, αν η υποβολή σας περιέχει ελαχιστοποιημένο, μπερδεμένο ή μεταγλωττισμένο κώδικα."
+msgstr ""
+"Μπορείτε επίσης να επεξεργαστείτε αυτή την έκδοση για να προσθέσετε σημειώσεις έκδοσης ή πηγαίο κώδικα, αν η υποβολή σας περιέχει ελαχιστοποιημένο, συνενωμένο ή με άλλο τρόπο δημιουργημένο κώδικα."
 
 msgid "Edit version {0}"
 msgstr "Επεξεργασία έκδοσης {0}"
@@ -2817,11 +2816,10 @@ msgstr ""
 "Λεπτομέρειες (περιλαμβάνονται η απαιτούμενη έκδοση και οι οδηγίες εγκατάστασης) των προγραμμάτων που χρησιμοποιήθηκαν στη διαδικασία ανάπτυξης (για παράδειγμα: οι εκδόσεις των <span class=\"tech-"
 "emphasis\">node</span> και <span class=\"tech-emphasis\">npm</span> που χρησιμοποιήθηκαν)."
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
 "<span class=\"instruction-emphasis\">Σημείωση:</span> Τα αρχεία πηγαίου κώδικα (εκτός από τρίτες βιβλιοθήκες ανοικτού κώδικα) δεν μπορούν να μεταγλωττιστούν σε άλλη γλώσσα προγραμματισμού "
-"(transcompilation), να κατασταθούν δύσκολα στην κατανόηση (obfuscation), να ελαχιστοποιηθούν (minification) ή να παραχθούν μηχανικά με οποιοδήποτε άλλο τρόπο."
+"(transcompilation), να συνενωθούν, να ελαχιστοποιηθούν (minification) ή να παραχθούν μηχανικά με οποιοδήποτε άλλο τρόπο."
 
 msgid "How to Submit:"
 msgstr "Τρόπος υποβολής:"
@@ -3191,9 +3189,8 @@ msgstr "Matrix"
 msgid "Add-on Developers Mailing List"
 msgstr "Κέντρο δημιουργών προσθέτων"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Ανάπτυξη επεκτάσεων"
+msgstr "Newsletter προγραμματιστών επεκτάσεων"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3270,9 +3267,8 @@ msgstr "Συμμετοχή"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Διαβάστε περισσότερα σχετικά με τη πολιτική κριτικής πηγαίου κώδικα."
+msgstr "Μάθετε περισσότερα για την κοινότητα των προγραμματιστών"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Καταχωρήθηκε σε αυτή την ιστοσελίδα αφού πέρασε την αξιολόγηση κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από αυτή την ιστοσελίδα."
@@ -3315,9 +3311,8 @@ msgstr "Φωτογραφία χρήστη"
 msgid "Profile"
 msgstr "Προφίλ"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Υποβολή νέας έκδοσης"
+msgstr "Υποβολή ή διαχείριση επεκτάσεων"
 
 msgid "Customize Firefox"
 msgstr "Προσαρμογή του Firefox"
@@ -3621,18 +3616,16 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Κάντε λήψη βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Λειτουργεί με YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope και εκατοντάδες άλλες ιστοσελίδες βίντεο."
+msgstr "Κάντε λήψη βίντεο με άνεση. Λειτουργεί με YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope και εκατοντάδες άλλες ιστοσελίδες βίντεο."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Δωδεκάδες απίθανων emojis για κάθε περίσταση—πάντα ένα μόνο κλικ μακριά."
+msgstr "Εξελίξτε τα emoji σας. Δωδεκάδες απίθανα emoji για κάθε περίσταση—πάντα ένα μόνο κλικ μακριά."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3738,9 +3731,8 @@ msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Εύκολες μεταφράσεις {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Επισημάνετε κείμενο σε οποιαδήποτε ιστοσελίδα—ή επιλέξτε ολόκληρη τη σελίδα—για άμεση μετάφραση."
+msgstr "Εύκολες μεταφράσεις. Επισημάνετε κείμενο σε οποιαδήποτε ιστοσελίδα—ή επιλέξτε ολόκληρη τη σελίδα—για άμεση μετάφραση."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6382,9 +6374,8 @@ msgstr "Άκυρος συνδυασμός των παραμέτρων \"%s\", \"
 msgid "Maximum query length exceeded."
 msgstr "Έχετε υπερβεί το μέγιστο μήκος ερωτήματος."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Αδυναμία εύρεσης προσθέτου με guid \"{}\"."
+msgstr "Αδυναμία εύρεσης προσθέτου με ID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Δεν κατέχετε αυτό το πρόσθετο."
@@ -6533,16 +6524,14 @@ msgstr "Φόρτωση των πιο πρόσφατων δεδομένων&helli
 msgid "No data available."
 msgstr "Κανένα διαθέσιμο δεδομένο."
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
 msgstr "Αυτός ο πίνακας είναι <b>ιδιωτικός</b>."
 
 msgid "Application usage by Date"
 msgstr "Χρήση εφαρμογής κατά ημερομηνία"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Γλώσσες χρηστών κατά ημερομηνία"
+msgstr "Χώρες χρηστών κατά ημερομηνία"
 
 msgid "Downloaded by Date"
 msgstr "Λήψεις κατά ημερομηνία"
@@ -6751,9 +6740,9 @@ msgstr "Οι χρήστες \"%(users)s\" έχουν αποκλειστεί."
 msgid "Ban selected users"
 msgstr "Φραγή επιλεγμένων χρηστών"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Τα κλειδιά API των χρηστών \"%(users)s\" έχουν επαναφερθεί."
+msgstr "Έγινε επαναφορά της συνεδρίας(ών) των χρηστών \"%(users)s\"."
 
 msgid "Reset session"
 msgstr "Επαναφορά συνεδρίας"
