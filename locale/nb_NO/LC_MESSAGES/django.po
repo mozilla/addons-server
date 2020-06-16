@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 09:18+0000\n"
+"PO-Revision-Date: 2020-06-16 09:35+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -793,9 +793,8 @@ msgstr "{addon} gjennomgått."
 msgid "User {user} banned."
 msgstr "Bruker {user} utestengt."
 
-#, fuzzy
 msgid "User {user} picture deleted."
-msgstr "Bruker {user} begrenset."
+msgstr "Bildet til brukeren {user} slettet."
 
 msgid "User {0.name} added to {group}."
 msgstr "Bruker {0.name} lagt til i {group}."
@@ -811,7 +810,7 @@ msgstr "{file} ble signert."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Tilleggs-ID {0} med GUID {1} har blitt slettet"
 
 #, fuzzy
 msgid "{addon} migrated from preliminary."
@@ -841,16 +840,15 @@ msgstr "Godkjenningsmerknader endret"
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Kommentar på {addon} {version}."
 
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Kildekodelisens"
+msgstr "Kildekode lastet opp"
 
 #, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr "Kommentar på {addon} {version}."
 
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "Automatisk godkjennelse bekreftet"
 
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} aktivert på nytt."
@@ -1026,7 +1024,7 @@ msgid "Plugin"
 msgstr "Programtillegg"
 
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "Foreldet LWT"
 
 msgid "Theme (Static)"
 msgstr "Tema (Statisk)"
@@ -1054,7 +1052,7 @@ msgid "Plugins"
 msgstr "Programtillegg"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "Foreldet LWT-er"
 
 msgid "Themes (Static)"
 msgstr "Temaer (statiske)"
