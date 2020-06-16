@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 20:31+0000\n"
+"PO-Revision-Date: 2020-06-16 20:32+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2641,12 +2641,11 @@ msgstr "E-postadresse for brukerstøtte"
 msgid "Support website:"
 msgstr "Brukerstøttenettsted"
 
-#, fuzzy
 msgid "License:"
-msgstr "Lisens"
+msgstr "Lisens:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Velg en lisens som er passer med rettighetene du gir."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
@@ -2659,7 +2658,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr ""
 
 msgid "Remember"
-msgstr ""
+msgstr "Husk"
 
 #, python-format
 msgid ""
@@ -2675,7 +2674,7 @@ msgid "Submit Version"
 msgstr "Send inn ny utvidelse"
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "Avbryt og deaktivere versjon"
 
 #, fuzzy
 msgid "Describe Version"
@@ -2686,19 +2685,19 @@ msgid "Release Notes:"
 msgstr "Utgivelse"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "La dine brukere får vite hva som er nytt og hvilke endringer som er i denne versjonen."
 
 msgid "These notes will appear on the detail page."
 msgstr ""
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Hvordan du distribuerer denne versjonen"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr ""
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "Innsending fullført"
 
 #, fuzzy
 msgid "Version Submitted for Review"
@@ -2754,7 +2753,7 @@ msgid "Source Code Upload"
 msgstr "Kildekodelisens"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr ""
+msgstr "Trenger du å sende inn kildekode?"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
