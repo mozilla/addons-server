@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 15:40+0000\n"
+"PO-Revision-Date: 2020-06-17 15:49+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2067,17 +2067,17 @@ msgid "Search"
 msgstr "Søk"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Bruk feltet nedenfor for å laste opp utvidelsespakken din."
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Etter opplasting, kjøres en serie med automatiserte valideringstester på filen din."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Vil du at tillegget ditt skal distribueres på dette nettstedet?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Valideringsresultat for {0}"
 
 msgid "Validation Results"
 msgstr "Valideringsresultat"
@@ -2086,7 +2086,7 @@ msgid "Validated at:"
 msgstr "Validert den:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Nylig aktivitet for mine tillegg"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
@@ -2113,10 +2113,14 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
+"Denne utvidelsen er ikke kompatibel med <b>%(app_name)s %(app_version)s</b>, den seneste versjonen av %(app_name)s. Vurder å oppdatere kompatibilitetsinfoen til din utvidelse, eller last opp en "
+"nyere versjon av utvidelsen."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Oppdater kompatibilitet</a> <a href=\"%(version_url)s\" class=\"button\">Last opp ny versjon</a> eller <a href=\"#\" "
+"class=\"close\">ignorer</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr ""
@@ -2564,13 +2568,13 @@ msgid "Statistics"
 msgstr "Statistikk"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Behandle status og versjoner"
 
 msgid "View Recent Changes"
 msgstr "Vis siste endringer"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Dette tillegget mangler noe informasjon som kreves før det kan sendes inn for publisering."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Dette tillegget har ingen andre versjoner."
