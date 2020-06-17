@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 12:04+0000\n"
+"PO-Revision-Date: 2020-06-17 12:09+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6069,9 +6069,8 @@ msgstr "Dimitte iste annuncio"
 msgid "Files in this version:"
 msgstr "Files in iste version:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Files in iste version:"
+msgstr "Folietta tote le files in iste version"
 
 msgid "Contents"
 msgstr "Contento"
@@ -6423,16 +6422,14 @@ msgstr "Cargamento del ultime datos&hellip;"
 msgid "No data available."
 msgstr "Nulle datos disponibile."
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Iste pannello de controlo es actualmente <b>private</b>."
+msgstr "Iste pannello de controlo es <b>private</b>."
 
 msgid "Application usage by Date"
 msgstr "Application per data de uso"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Linguas del usator per data"
+msgstr "Paises del usator per data"
 
 msgid "Downloaded by Date"
 msgstr "Discargate per data"
