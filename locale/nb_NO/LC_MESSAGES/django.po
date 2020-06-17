@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 19:10+0000\n"
+"PO-Revision-Date: 2020-06-17 19:23+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2689,24 +2689,20 @@ msgstr "Behandle oppføring"
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr ""
 
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Versjon {0}"
+msgstr "Rediger versjon {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Versjon"
+msgstr "Versjonsignering venter"
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
 msgstr ""
 
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "Behandle mine innsendinger"
+msgstr "Gå til mine bidrag"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Kildekodelisens"
+msgstr "Kildekode lastet opp"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr "Trenger du å sende inn kildekode?"
@@ -2775,9 +2771,8 @@ msgstr "Last opp kildekode:"
 msgid "Add-on Distribution Agreement"
 msgstr "Distribusjonsavtale for tillegg"
 
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Blokkerte utvidelser"
+msgstr "Last opp tillegg"
 
 msgid "Where to Host Version"
 msgstr "Hvor skal versjonen huses"
@@ -2785,9 +2780,8 @@ msgstr "Hvor skal versjonen huses"
 msgid "Change"
 msgstr "Endre"
 
-#, fuzzy
 msgid "Upload Version"
-msgstr "Programversjoner"
+msgstr "Last opp versjon"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
@@ -2798,21 +2792,17 @@ msgstr ""
 msgid "Administrative overrides"
 msgstr ""
 
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "Lag ditt eget tema"
+msgstr "Lag en temaversjon"
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "Lag ditt eget tema"
+msgstr "Lag et tema"
 
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "Utvidelse"
+msgstr "Signer tillegg"
 
-#, fuzzy
 msgid "Theme generate"
-msgstr "Gjennomgang av tema"
+msgstr "Generer tema"
 
 msgid "Theme generator"
 msgstr "Temagenerator"
@@ -2820,9 +2810,8 @@ msgstr "Temagenerator"
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
 msgstr ""
 
-#, fuzzy
 msgid "Theme name"
-msgstr "Gjennomgang av tema"
+msgstr "Temanavn"
 
 msgid "Select a header image for your theme"
 msgstr "Velg et toppbilde for ditt tema"
@@ -2845,21 +2834,17 @@ msgstr "Velg et annet toppbilde"
 msgid "Select colors for your theme"
 msgstr "Velg farger for temaet ditt"
 
-#, fuzzy
 msgid "optional"
-msgstr "(valgfritt)"
+msgstr "valgfri"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "Flytt pekeren over for å forhåndsvise"
+msgstr "Nettleser-forhåndsvisning"
 
-#, fuzzy
 msgid "Uploading Theme"
-msgstr "Fremgangsrike temaer"
+msgstr "Laster opp tema"
 
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s temaer"
+msgstr "Fullfør tema"
 
 msgid "Back"
 msgstr "Tilbake"
