@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 21:58+0000\n"
+"PO-Revision-Date: 2020-06-17 22:13+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -73,7 +73,7 @@ msgid "This display name cannot be used."
 msgstr "Dette visningsnavnet kan ikke brukes."
 
 msgid "This reviewer name cannot be used."
-msgstr "Dette omtaler-navnet kan ikke brukes."
+msgstr "Dette gjennomgåingspersonnavnet kan ikke brukes."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Hjemmesidefeltet kan bare brukes for å lenke til eksterne nettsider."
@@ -816,10 +816,10 @@ msgid "Developer Reply"
 msgstr "Utviklersvar"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Svar fra omtaler for {addon} {version}."
+msgstr "Svar fra gjennomgåingsperson for {addon} {version}."
 
 msgid "Reviewer Reply"
-msgstr "Svar fra omtaler"
+msgstr "Svar fra gjennomgåingsperson"
 
 #, fuzzy
 msgid "Approval notes changed for {addon} {version}."
@@ -2363,6 +2363,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Denne oppslagstavlen er for å utveksle informasjon som er relevant for tillegget ditt, uansett versjon, til gjennomgåingspersoner. Bruk denne til å gi ulike måter å teste tillegget på, og eventuelt "
+"ytterlegge informasjon som kan hjelpe til. Denne tavlen er også redigerbar av gjennomgåingspersoner."
 
 msgid "Add-on Media for {0}"
 msgstr "Utvidelsesmedia for {0}"
@@ -2616,7 +2618,7 @@ msgid "Notes to Reviewer:"
 msgstr "Ingen anmeldelser"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Er det noe våre gjennomgåingspersoner bør ha i tankene når de gjennomgår dette tillegget?"
 
 msgid "Remember"
 msgstr "Husk"
