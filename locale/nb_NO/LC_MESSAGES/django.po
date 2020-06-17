@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 19:32+0000\n"
+"PO-Revision-Date: 2020-06-17 19:42+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -5259,9 +5259,8 @@ msgstr ""
 msgid "You can't leave a review on your own add-on."
 msgstr ""
 
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Du kan ikke laste opp flere filer for denne versjonen."
+msgstr "Du kan ikke legge igjen mer enn én omtale for den samme versjonen av et tillegg."
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
@@ -5313,16 +5312,14 @@ msgid "end"
 msgstr ""
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "Manuelle gjennomgåerpoeng"
+msgstr "tillegg, omtalere eller kommentar"
 
 msgid "Search by add-on name / author email"
 msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Full gjennomgang av utvidelse"
+msgstr "Trenger administrativ kodevurdering"
 
 msgid "yes"
 msgstr ""
@@ -5372,24 +5369,20 @@ msgstr ""
 msgid "Delete review"
 msgstr "Slett vurdering"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Ingen anmeldelser"
+msgstr "Trenger administrativ innholdsvurdering"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Full gjennomgang av utvidelse"
+msgstr "Trenger administrativ vurdering av statisk tema"
 
-#, fuzzy
 msgid "Requires Restart"
-msgstr "Ingen omstart"
+msgstr "Krever omstart"
 
 msgid "More Information Requested"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Mer informasjon er forespurt"
+msgstr "Utløpt informasjonsforespørsel"
 
 msgid "Sources provided"
 msgstr ""
@@ -5421,9 +5414,8 @@ msgstr ""
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "Du kan ikke sende inn denne typen utvidelse"
+msgstr "Du kan ikke sende inn en tom kommentar."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5458,9 +5450,8 @@ msgid_plural "{0} days"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "ID"
-msgstr "GUID"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr ""
