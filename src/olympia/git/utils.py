@@ -206,7 +206,11 @@ class AddonGitRepository(object):
 
     @property
     def is_recent(self):
-        if not self.is_extracted:
+        git_description_path = os.path.join(
+            self.git_repository_path,
+            self.GIT_DESCRIPTION
+        )
+        if not self.is_extracted or not os.path.exists(git_description_path):
             return False
         # A git repository is recent when it was created less than 1 hour ago.
         an_hour_ago = datetime.utcnow() - timedelta(hours=1)
@@ -216,7 +220,7 @@ class AddonGitRepository(object):
                 # most UNIX systems, so we use a file that is created by
                 # default but never modified (GIT_DESCRIPTION) to determine
                 # whether a git repository is recent or not.
-                os.path.join(self.git_repository_path, self.GIT_DESCRIPTION)
+                git_description_path
             )
         )
         return mtime > an_hour_ago
