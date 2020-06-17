@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 22:13+0000\n"
+"PO-Revision-Date: 2020-06-17 22:21+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2363,8 +2363,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Denne oppslagstavlen er for å utveksle informasjon som er relevant for tillegget ditt, uansett versjon, til gjennomgåingspersoner. Bruk denne til å gi ulike måter å teste tillegget på, og eventuelt "
-"ytterlegge informasjon som kan hjelpe til. Denne tavlen er også redigerbar av gjennomgåingspersoner."
+"Denne oppslagstavlen er for å utveksle informasjon som er relevant for tillegget ditt, uansett versjon, til gjennomgangspersoner. Bruk denne til å gi ulike måter å teste tillegget på, og eventuelt "
+"ytterlegge informasjon som kan hjelpe til. Denne tavlen er også redigerbar av gjennomgangspersoner."
 
 msgid "Add-on Media for {0}"
 msgstr "Utvidelsesmedia for {0}"
@@ -2618,7 +2618,7 @@ msgid "Notes to Reviewer:"
 msgstr "Ingen anmeldelser"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "Er det noe våre gjennomgåingspersoner bør ha i tankene når de gjennomgår dette tillegget?"
+msgstr "Er det noe våre gjennomgangspersoner bør ha i tankene når de gjennomgår dette tillegget?"
 
 msgid "Remember"
 msgstr "Husk"
@@ -2630,7 +2630,7 @@ msgid ""
 msgstr ""
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Disse merknadene vil bare være synlige for deg og våre gjennomgangspersoner."
 
 msgid "Submit Version"
 msgstr "Send inn versjon"
@@ -3087,7 +3087,7 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Ta med instruksjoner for hvordan du kan reprodusere den endelige tilleggsfilen, enten i en README-fil eller merkander til gjennomgangspersoner for denne versjonen."
 
 msgid "Read more about the source code review policy."
 msgstr ""
@@ -3168,7 +3168,7 @@ msgid "Review Add-ons"
 msgstr "Flere utvidelser"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Frivillige gjennomgangspersoner hjelper til med å holde tillegg sikre og pålitelige å bruke. De nyter fantastiske fordeler også!"
 
 msgid "Join us!"
 msgstr "Bli med!"
@@ -3279,10 +3279,10 @@ msgid "Approval Status"
 msgstr "Godkjenningsstatus"
 
 msgid "Notes for Reviewers"
-msgstr "Merknad for gjennomgang"
+msgstr "Merknad for gjennomgangspersoner"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
+msgstr "Alternativt, skriv inn informasjon som kan være nyttig til gjennomgangspersoner for dette tillegget, som for eksempel informasjon om testkonto."
 
 msgid "Source code"
 msgstr "Kildekode"
