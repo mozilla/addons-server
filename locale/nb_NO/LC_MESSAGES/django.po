@@ -5465,10 +5465,10 @@ msgid "Last Updated"
 msgstr "Sist oppdatert"
 
 msgid "Listed versions needing human review ({0})"
-msgstr "Listede versjoner som trenger menneskelig vurdering ({0})"
+msgstr "Noen må ta en gjennomgang på listede versjoner ({0})"
 
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Ikke-listede versjoner som trenger menneskelig vurdering ({0})"
+msgstr "Noen må ta en gjennomgang på ulistede versjoner ({0})"
 
 msgid "Listed versions ({0})"
 msgstr "Listede versjoner ({0})"
