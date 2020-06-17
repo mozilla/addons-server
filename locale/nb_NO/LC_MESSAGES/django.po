@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 15:49+0000\n"
+"PO-Revision-Date: 2020-06-17 16:05+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -220,9 +220,8 @@ msgstr "CIDR"
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Noen funksjoner er midlertidig utilgjengelig mens vi utfører rutinemessig vedlikehold av nettstedet. Vi kommer tilbake med full kapasitet om kort tid."
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "Må ha minst én eier."
+msgstr "Må inneholde minst ett tegn som kan skrives."
 
 #, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
@@ -494,9 +493,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Feil versjonsområde."
+msgstr "Ugyldig versjon"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -515,13 +513,12 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Flere utvidelser"
+msgstr "Slett flere %(name)s"
 
-#, fuzzy
 msgid "Home"
-msgstr "Hjemmeside"
+msgstr "Startside"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -546,13 +543,11 @@ msgstr "Slett"
 msgid "Update"
 msgstr "Oppdater"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Behandle mine innsendinger"
+msgstr "Avvis innsending"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Behandle mine innsendinger"
+msgstr "Godkjenn innsending"
 
 #, python-format
 msgid "Add %(name)s"
@@ -928,16 +923,14 @@ msgstr ""
 msgid "Block for {0} deleted from Blocklist."
 msgstr "Versjon {0} slettet fra {addon}."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Slettet"
+msgstr "Blokk slettet"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} fjernet fra {collection}."
+msgstr "GUID for {addon} slette fra DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -2692,7 +2685,7 @@ msgid "Let your users know what's new and what's changed in this version."
 msgstr "La dine brukere får vite hva som er nytt og hvilke endringer som er i denne versjonen."
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Disse merknadene vil vises på detaljsiden."
 
 msgid "How to Distribute this Version"
 msgstr "Hvordan du distribuerer denne versjonen"
@@ -2923,10 +2916,10 @@ msgid "Keep your API keys secret and <strong>never share them with anyone</stron
 msgstr ""
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT-utsteder"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT-hemmelighet"
 
 #, python-format
 msgid ""
@@ -3218,7 +3211,7 @@ msgid "WebExtensions API"
 msgstr "Utvidelser"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: utvikle og test utvidelser"
 
 msgid "Promote"
 msgstr "Promoter"
