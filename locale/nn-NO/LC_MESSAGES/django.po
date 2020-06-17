@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 21:00+0000\n"
+"PO-Revision-Date: 2020-06-17 21:12+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1545,7 +1545,7 @@ msgid "No action"
 msgstr "Inga handling"
 
 msgid "Flag for human review"
-msgstr "Flagg for at nokon skal ta ein gjennomgang"
+msgstr "Flagg for at nokon skal ta ei gjennomgåing"
 
 #, fuzzy
 msgid "Delay auto-approval"
@@ -5659,10 +5659,10 @@ msgid "Last Updated"
 msgstr "Sist oppdatert"
 
 msgid "Listed versions needing human review ({0})"
-msgstr "Nokon må ta ein gjennomagng på lista versjonar  ({0})"
+msgstr "Nokon må ta ei gjennomgåing på lista versjonar  ({0})"
 
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Nokon må ta ein gjennomgang på lista versjonar ({0})"
+msgstr "Nokon må ta ei gjennomgåing på ulista versjonar ({0})"
 
 #, fuzzy
 msgid "Listed versions ({0})"
@@ -5755,7 +5755,7 @@ msgstr[1] ""
 
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Flagga for at nokon skal ta ein gjennomgang ({0})"
+msgstr[0] "Flagga for at nokon skal ta ei gjennomgåing ({0})"
 msgstr[1] "Flagga for at nokon skal ta ein gjennomgang ({0})"
 
 msgid "Auto-Approved Add-ons"
