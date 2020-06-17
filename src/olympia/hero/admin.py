@@ -6,7 +6,14 @@ from django.utils.safestring import mark_safe
 
 from .models import (
     PrimaryHero, SecondaryHeroModule,
-    PrimaryHeroImage, ImageChoiceField)
+    PrimaryHeroImage)
+
+
+class ImageChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return mark_safe(
+            '<img src="{}" width="150" height="120" />'.format(
+                obj.custom_image.url))
 
 
 class PrimaryHeroInline(admin.StackedInline):

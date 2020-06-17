@@ -1,6 +1,5 @@
 import os
 
-from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -104,13 +103,6 @@ class PrimaryHeroImage(models.Model):
         )
     preview_image.short_description = "Image"
     preview_image.allow_tags = True
-
-
-class ImageChoiceField(forms.ModelChoiceField):
-    def label_from_instance(self, obj):
-        return mark_safe(
-            '<img src="{}" width="150" height="120" />'.format(
-                obj.custom_image.url))
 
 
 class PrimaryHero(ModelBase):
