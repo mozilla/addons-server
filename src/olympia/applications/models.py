@@ -32,10 +32,5 @@ class AppVersion(ModelBase):
             self.version_int = compare.version_int(self.version)
         return super(AppVersion, self).save(*args, **kw)
 
-    def __init__(self, *args, **kwargs):
-        super(AppVersion, self).__init__(*args, **kwargs)
-        # Add all the major, minor, ..., version attributes to the object.
-        self.__dict__.update(compare.version_dict(self.version or ''))
-
     def __str__(self):
         return self.version

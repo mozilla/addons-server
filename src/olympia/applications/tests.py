@@ -11,30 +11,6 @@ from olympia.applications.models import AppVersion
 
 class TestAppVersion(TestCase):
 
-    def test_major_minor(self):
-        """Check that major/minor/alpha is getting set."""
-        v = AppVersion(version='3.0.12b2')
-        assert v.major == 3
-        assert v.minor1 == 0
-        assert v.minor2 == 12
-        assert v.minor3 is None
-        assert v.alpha == 'b'
-        assert v.alpha_ver == 2
-
-        v = AppVersion(version='3.6.1apre2+')
-        assert v.major == 3
-        assert v.minor1 == 6
-        assert v.minor2 == 1
-        assert v.alpha == 'a'
-        assert v.pre == 'pre'
-        assert v.pre_ver == 2
-
-        v = AppVersion(version='')
-        assert v.major is None
-        assert v.minor1 is None
-        assert v.minor2 is None
-        assert v.minor3 is None
-
     def test_unique_together_application_version(self):
         """Check that one can't add duplicate application-version pairs."""
         AppVersion.objects.create(application=1, version='123')
