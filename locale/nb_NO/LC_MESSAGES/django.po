@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 19:50+0000\n"
+"PO-Revision-Date: 2020-06-17 20:03+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -5538,40 +5538,33 @@ msgstr "Flere utvidelser"
 msgid "Recommended ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Venter på gjennomgang"
+msgstr "Annen pågående gjennomgang ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Gjennomgang er forespurt"
+msgstr "Vurderingslogg"
 
-#, fuzzy
 msgid "Add-on Review Guide"
-msgstr "Full gjennomgang av utvidelse"
+msgstr "Vurderingsretningslinjer for tillegg"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Sikkerhetstester"
+msgstr "Sikkerhetsskannere"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Venter på gjennomgang"
-msgstr[1] "Venter på gjennomgang"
+msgstr[0] "Flagget for menneskelig vurdering ({0})"
+msgstr[1] "Flagget for menneskelig vurdering ({0})"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
-msgstr "Flere utvidelser"
+msgstr "Auto-godkjente tillegg"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Utvidelser for {0}"
+msgstr "Auto-godkjente tillegg ({0})"
 
 msgid "Add-on Review Log"
 msgstr ""
@@ -5580,22 +5573,19 @@ msgstr ""
 msgid "Review Guide"
 msgstr "Retningslinjer for anmeldelser"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "Ingen anmeldelser"
+msgstr "Innholdsvurdering"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "Utvidelser for {0}"
+msgstr "Ny ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Oppdatert {0}"
+msgstr "Oppdateringer ({0})"
 
 #, fuzzy
 msgid "Theme Review Guide"
@@ -5614,9 +5604,8 @@ msgstr ""
 msgid "Moderation Guide"
 msgstr "Gjennomgang av moderert utvidelse"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "%s utvidelser"
+msgstr "Ikke-listede tillegg"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
@@ -5627,9 +5616,8 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Mer informasjon er forespurt"
+msgstr "Utløpt informasjonsforespørsel ({0})"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -5646,9 +5634,8 @@ msgstr ""
 msgid "{addon} – EULA"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "Denne utvidelsen har en personvernserklæring"
+msgstr "{addon} – personvernserklæring"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5663,9 +5650,8 @@ msgstr "Misbruksrapporter"
 msgid "Add-on Information for {0}"
 msgstr "Utvidelsesinformasjon for {0}"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Utvidelse"
+msgstr "Tilleggs-ID"
 
 msgid "Internal AMO ID"
 msgstr ""
@@ -5682,9 +5668,8 @@ msgstr "Gjennomsnittelig daglige brukere"
 msgid "View Privacy Policy"
 msgstr "Vis personvernerklæring"
 
-#, fuzzy
 msgid "Requires Payment"
-msgstr "Ingen omstart"
+msgstr "Krever betaling"
 
 msgid "EULA"
 msgstr "EULA"
@@ -5695,21 +5680,18 @@ msgstr "Se sluttbrukerlisensavtalen"
 msgid "Last Approval Date"
 msgstr ""
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Misbruksrapporter"
+msgstr "Misbruksrapporter ({num})"
 
 #, fuzzy
 msgid "Bad User Ratings ({num})"
 msgstr "Misbruksrapporter"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Gjennomgang av tema"
+msgstr "Temabilde"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Flytt pekeren over for å forhåndsvise"
+msgstr "Gjengitt forhåndsvisning"
 
 msgid "More about this add-on"
 msgstr "Mer om denne utvidelsen"
@@ -5726,9 +5708,8 @@ msgstr ""
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Gå tilbake til hjemmesiden til {0}-utvidelser"
+msgstr "Gå tilbake til oversikten for vurderingsverktøy"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
@@ -5764,9 +5745,8 @@ msgstr ""
 msgid "Log details"
 msgstr ""
 
-#, fuzzy
 msgid "Review Author"
-msgstr "Historikk over gjennomgang"
+msgstr "Vurderer"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -5848,9 +5828,8 @@ msgstr "Flere utvidelser"
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Mer informasjon er forespurt"
+msgstr "Utløpt informasjonsforespørsel – tillegg for Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -5895,9 +5874,8 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr ""
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "Ingen anmeldelser"
+msgstr "Innholdsvurdering {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5942,20 +5920,17 @@ msgstr ""
 msgid "Update whiteboards"
 msgstr ""
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Flere innstillinger"
+msgstr "Flere handlinger"
 
 msgid "Notify me about new listed versions"
 msgstr ""
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Vis alle versjoner"
+msgstr "Tillat gjeninnsending"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Behandle mine innsendinger"
+msgstr "Ikke tillat gjeninnsending"
 
 msgid "Force-disable add-on"
 msgstr ""
@@ -5967,9 +5942,8 @@ msgstr ""
 msgid "View Blocklist Submission"
 msgstr "Vis alle versjoner"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "QR-kode for utvidelse"
+msgstr "Blokker tillegg"
 
 msgid "Update add-on block"
 msgstr ""
@@ -6040,13 +6014,11 @@ msgstr ""
 msgid "Method:"
 msgstr ""
 
-#, fuzzy
 msgid "Source:"
-msgstr "Vise kildekode?"
+msgstr "Kilde:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Vise kildekode?"
+msgstr "Kildeadresse:"
 
 msgid "Dismiss this announcement"
 msgstr "Avvis denne kunngjøringen"
@@ -6054,9 +6026,8 @@ msgstr "Avvis denne kunngjøringen"
 msgid "Files in this version:"
 msgstr "Filer i denne versjonen:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Filer i denne versjonen:"
+msgstr "Bla gjennom alle filer i denne versjonen"
 
 msgid "Contents"
 msgstr "Innhold"
@@ -6067,9 +6038,8 @@ msgstr ""
 msgid "Compare"
 msgstr "Sammenlign"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Versjoner"
+msgstr "Tillatelser:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
