@@ -1476,6 +1476,18 @@ def test_is_recent(settings):
     assert repo.is_recent
 
 
+def test_is_recent_with_no_description_file(settings):
+    addon_pk = 123
+    repo = AddonGitRepository(addon_pk)
+    # Force the creation of the git repository.
+    repo.git_repository
+    # We should have a description file but we noticed errors about missing
+    # files in production so let's protect against those errors.
+    Path(os.path.join(repo.git_repository_path, repo.GIT_DESCRIPTION)).unlink()
+
+    assert not repo.is_recent
+
+
 def test_is_recent_with_relatively_recent_repo(settings):
     addon_pk = 123
     repo = AddonGitRepository(addon_pk)
