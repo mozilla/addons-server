@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 22:21+0000\n"
+"PO-Revision-Date: 2020-06-17 22:33+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -5528,7 +5528,7 @@ msgid "Request super-review"
 msgstr ""
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "Hvis du har spørsmål om denne utvidelsen som en administrativ gjennomgåingsperson bør undersøke i, skriv inn kommentarer i feltet nedenfor. De vil ikke bli sent til utvikleren."
 
 msgid "Comment"
 msgstr "Kommentar"
@@ -5917,10 +5917,10 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Denne oppslagstavlen er for å utveksle informasjon som er relevant for tillegget ditt (uansett versjon), mellom utvikler og gjennomgangspersoner. Denne tavlen er redigerbar av begge."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Denne private oppslagstavlen er brukt for å dele informasjon mellom gjennomgangspersoner som er uavhengig av versjonen. Hold språkbruken objektiv. Den er bare synlig for gjennomgangspersoner."
 
 msgid "Update whiteboards"
 msgstr ""
@@ -6066,10 +6066,10 @@ msgid "No points awarded yet."
 msgstr "Ingen poeng utdelt ennå."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Beste gjennomgangspersoner (siste 7 dager)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Ingen beste gjennomgangspersoner enda."
 
 msgid "All Time"
 msgstr ""
@@ -6693,7 +6693,7 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr "mitt tillegg er gjennomgått av en gjennomgåingsperson"
+msgstr "mitt tillegg er gjennomgått av en gjennomgangsperson"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
