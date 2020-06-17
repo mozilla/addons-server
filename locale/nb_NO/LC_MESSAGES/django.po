@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2018-09-20 17:18+0000\n"
-"Last-Translator: Roger Lennes <roger.lennes@hotmail.com>\n"
+"PO-Revision-Date: 2020-06-17 06:48+0000\n"
+"Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
@@ -3242,17 +3242,17 @@ msgid "Write Some Code"
 msgstr "Skriv litt kode"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Hjelp til med å gjøre tillegg bedre med å bidra med kodeferdighetene dine."
 
 msgid "Get started"
-msgstr ""
+msgstr "Kom i gang"
 
 #, fuzzy
 msgid "More Ways to Participate"
 msgstr "Mer av denne artisten"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Du trenger ikke programmeringsferdigheter for å gjøre Firefox til den mest tilpassbare nettleseren!"
 
 msgid "See how"
 msgstr "Se hvordan"
@@ -3295,9 +3295,8 @@ msgstr "Støtte"
 msgid "Blog"
 msgstr "Blogg"
 
-#, fuzzy
 msgid "Sign Out"
-msgstr "Utvidelse"
+msgstr "Logg ut"
 
 msgid "No Photo"
 msgstr "Ingen foto"
@@ -3332,25 +3331,27 @@ msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Behandle versjon {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "Behandle {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "Filer"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Versjonsnotater"
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Informasjon om forandringer i denne utgaven, nye funksjoner, kjente feil, og annen nyttig informasjon spesifikt for denne utgivelsen/versjon. Denne informasjoner er også vist i tilleggsbehandleren "
+"når du oppdaterer."
 
 msgid "Approval Status"
-msgstr ""
+msgstr "Godkjenningsstatus"
 
 msgid "Notes for Reviewers"
 msgstr ""
