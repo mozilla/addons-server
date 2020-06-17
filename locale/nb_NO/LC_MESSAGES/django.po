@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 16:05+0000\n"
+"PO-Revision-Date: 2020-06-17 16:08+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1025,9 +1025,8 @@ msgstr "Tema (Statisk)"
 msgid "Extensions"
 msgstr "Utvidelser"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Fullstendige temaer"
+msgstr "Foreldete fullstendige temaer"
 
 msgid "Dictionaries"
 msgstr "Ordbøker"
@@ -1068,9 +1067,8 @@ msgstr "Bokmerke"
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
 msgstr "Last ned utvidelser som forbedrer bokmerker ved å passordbeskytte dem, søke etter duplikater, finne ødelagte bokmerker og mer."
 
-#, fuzzy
 msgid "Download Management"
-msgstr "Last ned språkpakke"
+msgstr "Nedlastingsbehandling"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr "Last ned Firefox-utvidelser som kan hjelpe til å laste ned nett-, musikk- og video-innhold. Du kan også finne utvidelser for å håndtere nedlastninger, dele filer og mer."
@@ -1126,9 +1124,8 @@ msgstr "Faner"
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Web Development"
-msgstr "Vis utviklingsversjon"
+msgstr "Nettutvikling"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
@@ -1273,9 +1270,8 @@ msgstr "Landskap"
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Seasonal"
-msgstr "Persona"
+msgstr "Sesongbestemt"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
 msgstr ""
@@ -1377,9 +1373,8 @@ msgstr "Android"
 msgid "Add-on"
 msgstr "Utvidelse"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Rediger tema"
+msgstr "Statisk tema"
 
 msgid "Persona"
 msgstr "Persona"
@@ -1584,9 +1579,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "Nyere"
+msgstr "Ny"
 
 msgid "Running"
 msgstr ""
@@ -1597,9 +1591,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Uferdig"
+msgstr "Fullført"
 
 msgid "Scheduled"
 msgstr ""
