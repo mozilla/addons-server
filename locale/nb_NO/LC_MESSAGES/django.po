@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 21:22+0000\n"
+"PO-Revision-Date: 2020-06-17 21:32+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -262,7 +262,7 @@ msgid "Firefox Add-ons"
 msgstr "Firefox-utvidelser"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "Beklager, men vi kunne ikke finne noe på addressen du har skrevet inn. Hvis du fulgte en lenke til et tillegg så er det mulig at tillegget har blitt fjernet av opphavsmennen."
+msgstr "Beklager, men vi kunne ikke finne noe på addressen du har skrevet inn. Hvis du fulgte en lenke til et tillegg så er det mulig at tillegget har blitt fjernet av opphavsmannen."
 
 msgid "Suggested Pages"
 msgstr "Foreslåtte sider"
@@ -1667,10 +1667,10 @@ msgid "Users can not be added directly"
 msgstr "Brukere kan ikke legges til direkte"
 
 msgid "An author can only be present once."
-msgstr "En opphavsmann kan bare vises en gang."
+msgstr "En opphavsmann kan bare forekomme en gang."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Kontoen trenger et visningsnavn før den kan legges til som opphavsmann."
 
 msgid "Must have at least one owner."
 msgstr "Må ha minst én eier."
@@ -1783,7 +1783,7 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "Utvikler-API-nøkkel av en medopphavsmann ble funnet i den innsendte filen. For å beskytte dit tillegg vil nøkkelen bli inndratt."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla sikkerhetsmelding: Din AMO API-innloggingsopplysninger har blitt tilbakekalt"
@@ -5511,7 +5511,7 @@ msgid "This will confirm approval of the selected versions without notifying the
 msgstr ""
 
 msgid "Reviewer reply"
-msgstr "Svar fra vurderer"
+msgstr "Svar fra gjennomgåingsperson"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
