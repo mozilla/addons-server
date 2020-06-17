@@ -35,7 +35,7 @@ class Command(BaseCommand):
                 min_appversion_str)['major']
             log.warn(
                 'Version %s for addon %s min version is %s for %s app, '
-                'max should be changed to %s instead of *',
+                'max will be changed to %s instead of *',
                 version, version.addon, min_appversion_str, app.pretty,
                 max_appversion_str)
             max_appversion = AppVersion.objects.get(
