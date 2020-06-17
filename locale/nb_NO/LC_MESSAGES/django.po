@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 16:08+0000\n"
+"PO-Revision-Date: 2020-06-17 17:40+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1669,9 +1669,8 @@ msgstr "Bør du endrer standard språk må du oppgi et navn, oppsummering og bes
 msgid "Users can not be added directly"
 msgstr "Brukere kan ikke legges til direkte"
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "En utvikler kan kun føres opp én gang."
+msgstr "En opphavsmann kan bare vises en gang."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
@@ -1715,9 +1714,8 @@ msgstr "Oppgi utvidelsens personvernerklæring:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Filtypen er ikke støttet, last opp en arkivfil {extensions}."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Feil versjonsområde."
+msgstr "Ugyldig eller ødelagt arkiv."
 
 msgid "View current"
 msgstr "Vis gjeldende"
@@ -1734,9 +1732,8 @@ msgstr "Det oppstod en feil med opplastingen. Prøv igjen."
 msgid "Override failed validation"
 msgstr "Overstyringen feilet validering"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Trenger minst ett kompatibelt program."
+msgstr "Velg minst ett program."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Du har sendt inn for mange opplastinger i det siste. Prøv igjen om en stund."
@@ -1750,9 +1747,8 @@ msgstr ""
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versjon {version} er lastet opp tidligere og slettet."
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "{addon} {version} godkjent."
+msgstr "Versjon {version} finnes allerede."
 
 msgid "Continue with existing upload instead?"
 msgstr "Fortsett med eksisterende opplasting i stedet?"
@@ -1763,9 +1759,8 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nei"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Du kan ikke laste opp flere filer for denne versjonen."
+msgstr "Du har ikke lastet opp en kildekodefil."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Kildefilen er lastet opp men du indikerte at ingen kilde var nødvendig."
@@ -1784,9 +1779,8 @@ msgstr ""
 msgid "Display Name"
 msgstr "Visningsnavn"
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Feil versjonsområde."
+msgstr "Ugyldig eller skadet tilleggsfil."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -1858,9 +1852,8 @@ msgstr "Invitasjon avvist."
 msgid "An author has been added to your add-on"
 msgstr "En opphavsmann har blitt lagt til i tillegget ditt"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Bidrag for {addon}."
+msgstr "Opphavsmanninvitasjon for {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "En bekreftelsesepost har blitt sendt til {email}"
@@ -1886,9 +1879,8 @@ msgstr "Ikoner kan ikke være animerte."
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Bildet må være minst {0} piksler bredt og {1} piksler høy."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Bilder må være enten PNG eller JPG."
+msgstr "Bildets dimensjoner må være i forholdet 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Ikonet må være minst {0} piksler bredt og høyt."
@@ -1955,9 +1947,8 @@ msgstr "Tekst på feltområdet i verktøylinjen"
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "Review requested."
-msgstr "Gjennomgang er forespurt"
+msgstr "Vurdering forespurt."
 
 msgid "You must provide further details to proceed."
 msgstr "Du må spesifisere ytterligere informasjon for å fortsette."
@@ -1977,9 +1968,8 @@ msgstr "Utvidelsen passer ikke i noen av kategoriene"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox distribusjonsavtale for utvidelser"
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Gjennomgang er forespurt"
+msgstr "Vurderingspraksis og regler"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Jeg har lest og godtatt denne avtalen, reglene og retningslinjene"
