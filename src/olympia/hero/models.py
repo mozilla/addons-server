@@ -91,7 +91,7 @@ class WidgetCharField(models.CharField):
 
 class PrimaryHeroImage(models.Model):
     custom_image = models.ImageField(
-        upload_to='static/img/hero/featured',
+        upload_to='code/storage/homepage/hero-featured-image',
         blank=True)
 
     def __str__(self):
