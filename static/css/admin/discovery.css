@@ -88,3 +88,17 @@
 .dynamic-modules .field-icon li:first-child div label {
     color: black;
 }
+
+.select-image-noimage {
+    display: inline-block;
+    width: 147px;
+}
+
+.select-image-preview {
+    width: 150px;
+    height: 120px;
+}
+
+.primaryhero-preview {
+    width: 150px;
+}

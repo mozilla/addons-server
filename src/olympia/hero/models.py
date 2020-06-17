@@ -98,7 +98,7 @@ class PrimaryHeroImage(models.Model):
         return f'{self.custom_image}'
 
     def preview_image(self):
-        return mark_safe('<img src="{}" width="150" />'.format(
+        return mark_safe('<img class="primaryhero-preview" src="{}" />'.format(
             self.custom_image.url)
         )
     preview_image.short_description = "Image"

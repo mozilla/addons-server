@@ -12,11 +12,15 @@ from .models import (
 class ImageChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
         return mark_safe(
-            '<img src="{}" width="150" height="120" />'.format(
+            '<img class="select-image-preview" src="{}" />'.format(
                 obj.custom_image.url))
 
 
 class PrimaryHeroInline(admin.StackedInline):
+    class Media:
+        css = {
+            'all': ('css/admin/discovery.css',)
+        }
     model = PrimaryHero
     fields = (
         'select_image',
@@ -35,7 +39,7 @@ class PrimaryHeroInline(admin.StackedInline):
             })
             kwargs['queryset'] = PrimaryHeroImage.objects
             kwargs['empty_label'] = mark_safe("""
-                <div style="width: 147px; display: inline-block">
+                <div class="select-image-noimage">
                     No image selected
                 </div>
                 """)
@@ -45,6 +49,10 @@ class PrimaryHeroInline(admin.StackedInline):
 
 
 class PrimaryHeroImageAdmin(admin.ModelAdmin):
+    class Media:
+        css = {
+            'all': ('css/admin/discovery.css',)
+        }
     list_display = ('preview_image',)
     actions = ['delete_selected']
     readonly_fields = ('preview_image',)
