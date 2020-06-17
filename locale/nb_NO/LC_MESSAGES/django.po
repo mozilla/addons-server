@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 15:29+0000\n"
+"PO-Revision-Date: 2020-06-17 15:40+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1977,13 +1977,13 @@ msgid "You must provide further details to proceed."
 msgstr "Du må spesifisere ytterligere informasjon for å fortsette."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "De gamle innloggingsopplysningene dine er tilbakekalt og er ikke lenger gyldig."
 
 msgid "New API key created"
-msgstr ""
+msgstr "Ny API-nøkkel laget"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "API-nøkkel tilbakekalt"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Utvidelsen passer ikke i noen av kategoriene"
@@ -1996,7 +1996,7 @@ msgid "Review Policies and Rules"
 msgstr "Gjennomgang er forespurt"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Jeg har lest og godtatt denne avtalen, reglene og retningslinjene"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
 msgstr ""
@@ -2005,7 +2005,7 @@ msgid "Accept"
 msgstr "Godta"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "eller <a href=\"{0}\">Avbryt</a>"
 
 #, fuzzy
 msgid "More information on Developer Accounts"
@@ -2020,7 +2020,7 @@ msgstr "Gå tilbake til DevHub-hjemmesiden"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Utviklersenter for <small>tillegg</small>"
 
 msgid "more add-ons..."
 msgstr "flere utvidelser..."
@@ -2043,7 +2043,7 @@ msgid "Developer Policies"
 msgstr "Utviklerkommentarer"
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Tilleggsvalidator"
 
 msgid "Development Add-ons"
 msgstr "Utviklingsutvidelser"
@@ -2061,7 +2061,7 @@ msgid "More Resources"
 msgstr "Flere ressurser"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Søk i utviklerdokumentasjon"
 
 msgid "Search"
 msgstr "Søk"
@@ -3689,7 +3689,7 @@ msgstr "Send nyhetsartikler, historier, blogginnlegg og mer til din Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Fargekode dine faner {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
