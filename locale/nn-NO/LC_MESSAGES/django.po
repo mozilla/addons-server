@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 22:31+0000\n"
+"PO-Revision-Date: 2020-06-17 23:04+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1059,19 +1059,19 @@ msgid "Bookmarks"
 msgstr "Bokmerke"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Last ned utvidingar som forbetrar bokmerke ved å passordbeskytte dei, søk etter duplikat, finn øydelagde bokmerke og meir."
 
 msgid "Download Management"
 msgstr "Nerladdningshandsaming"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar som kan hjelpe til med å laste ned nett-, musikk- og video-innhald. Du kan også finne utvidingar for å handtere nedlastningar, dele filer og meir."
 
 msgid "Feeds, News & Blogging"
 msgstr "RSS-kjelder, nyheiter og blogging"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar som fjernar kaos slik at du kan vere oppdatert på sosiale medium, følgje med i bloggar, RSS-kjelder, redusere belastninga på augene med meir."
 
 msgid "Games & Entertainment"
 msgstr "Spel og underhaldning"
