@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 11:57+0000\n"
+"PO-Revision-Date: 2020-06-17 15:21+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1809,7 +1809,7 @@ msgid "The developer API key of a coauthor was found in the submitted file. To p
 msgstr ""
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozilla sikkerhetsmelding: Din AMO API-innloggingsopplysninger har blitt tilbakekalt"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -1849,7 +1849,7 @@ msgid "User Reviews"
 msgstr "Brukervurderinger"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Tillegget kan ikke slettes. Deaktiver dette tillegget i stedet."
 
 msgid "Theme deleted."
 msgstr "Tema slettet."
@@ -1858,10 +1858,10 @@ msgid "Add-on deleted."
 msgstr "Tillegg slettet."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL-navnet er feil. Temaet ble ikke slettet."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL-navnet er feil. Tillegget ble ikke slettet."
 
 msgid "Invitation accepted."
 msgstr "Invitasjon godkjent."
