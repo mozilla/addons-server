@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 21:05+0000\n"
+"PO-Revision-Date: 2020-06-17 21:22+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -498,13 +498,11 @@ msgstr "Ugyldig versjon"
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Gjennomgang er forespurt"
+msgstr "Gjennomgang listet"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Gjennomgang er forespurt"
+msgstr "Gjennomgang listet"
 
 msgid "This block was imported from a regex based legacy Block."
 msgstr ""
@@ -6687,7 +6685,7 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "mitt tillegg er gjennomgått av en gjennomgåingsperson"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
