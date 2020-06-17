@@ -10,15 +10,18 @@ from unittest import mock
 import pytest
 
 from olympia import amo
-from olympia.addons.management.commands import process_addons
+from olympia.addons.management.commands import (
+    fix_langpacks_with_max_version_star, process_addons)
 from olympia.addons.models import Addon
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
+from olympia.applications.models import AppVersion
 from olympia.files.models import FileValidation, WebextPermission
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
-from olympia.versions.models import VersionPreview
+from olympia.versions.models import (
+    ApplicationsVersions, Version, VersionPreview)
 
 
 def id_function(fixture_value):
@@ -547,3 +550,52 @@ class TestDeleteOpenSearchAddons(TestCase):
         assert Addon.unfiltered.count() == 2
         assert Addon.objects.get(id=self.extension.id)
         assert Addon.objects.get(id=self.dictionary.id)
+
+
+class TestFixLangpacksWithMaxVersionStar(TestCase):
+    def setUp(self):
+        addon = addon_factory(  # Should autocreate the AppVersions for Firefox
+            type=amo.ADDON_LPAPP, version_kw={
+                'min_app_version': '77.0',
+                'max_app_version': '*',
+            }
+        )
+        # Add the missing AppVersions for Android, and assign them to the addon
+        min_android = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='77.0')[0]
+        max_android_star = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='*')[0]
+        ApplicationsVersions.objects.create(
+            application=amo.ANDROID.id, version=addon.current_version,
+            min=min_android, max=max_android_star)
+
+        addon_factory(  # Same kind of langpack, but without android compat.
+            type=amo.ADDON_LPAPP, version_kw={
+                'min_app_version': '77.0',
+                'max_app_version': '*',
+            }
+        )
+        addon = addon_factory(  # Shouldn't be touched, its max is not '*'.
+            type=amo.ADDON_LPAPP, version_kw={
+                'min_app_version': '77.0',
+                'max_app_version': '77.*',
+            }
+        )
+        max_android = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='77.*')[0]
+        ApplicationsVersions.objects.create(
+            application=amo.ANDROID.id, version=addon.current_version,
+            min=min_android, max=max_android)
+
+    def test_find_affected_langpacks(self):
+        command = fix_langpacks_with_max_version_star.Command()
+        qs = command.find_affected_langpacks()
+        assert qs.count() == 2
+
+    def test_basic(self):
+        call_command('fix_langpacks_with_max_version_star')
+        # Each versions should still have valid ApplicationsVersions, and they
+        # should all point to 77.* - all '*' have been converted.
+        for version in Version.objects.all():
+            for app in version.compatible_apps:
+                assert version.compatible_apps[app].max.version == '77.*'
