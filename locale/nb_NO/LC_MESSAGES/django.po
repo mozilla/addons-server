@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 21:32+0000\n"
+"PO-Revision-Date: 2020-06-17 21:42+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1783,7 +1783,7 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "Utvikler-API-nøkkel av en medopphavsmann ble funnet i den innsendte filen. For å beskytte dit tillegg vil nøkkelen bli inndratt."
+msgstr "Utvikler-API-nøkkel av en medopphavsmann ble funnet i den innsendte filen. For å beskytte ditt tillegg vil nøkkelen bli tilbakekalt."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla sikkerhetsmelding: Din AMO API-innloggingsopplysninger har blitt tilbakekalt"
@@ -1856,7 +1856,7 @@ msgid "A confirmation email has been sent to {email}"
 msgstr "En bekreftelsesepost har blitt sendt til {email}"
 
 msgid "An author role has been changed on your add-on"
-msgstr "En rolle for opphavsmann har blitt endret i ditt tillegg"
+msgstr "En rolle for opphavsmann har blitt endret i tillegget ditt"
 
 msgid "An author has been removed from your add-on"
 msgstr "En opphavsmann har blitt fjernet fra tillegget ditt"
@@ -2166,13 +2166,13 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Du har blitt invitert til å bli opphavsmann av {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Godtagelse av invitasjonen vil gi deg tilgang til å redigere tillegget, og det kan vises navnet ditt i listen over opphavsmenn på nettstedet."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Klikk på Godta-knappen nedenfor for å bekrefte at du vil bli lagt til som opphavsmann for {addon_name}."
 
 msgid "Decline"
 msgstr ""
@@ -2187,15 +2187,17 @@ msgid "About author roles"
 msgstr "Om roller for opphavsmenn"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Opphavsmenn som venter på bekreftelse"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Opphavsmenn som har blitt lagt til dette tillegget, men ikke har bekreftet."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+"<p>Tillegg kan ha mange opphavsmenmn med 2 mulige roller:</p> <ul> <li><b>Eier:</b> Kan håndtere alle aspekter av listingen av tillegget, inkludert å legge til og fjerne andre opphavsmenn</li> "
+"<li><b>Utvikler:</b> Kan håndtere alle aspekter av listingen av tillegget, foruten å legge til og fjerne andre opphavsmenn</li> </ul>"
 
 msgid "Additional Details"
 msgstr "Ytterligere detaljer"
