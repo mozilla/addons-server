@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 15:21+0000\n"
+"PO-Revision-Date: 2020-06-17 15:29+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -263,7 +263,7 @@ msgid "Firefox Add-ons"
 msgstr "Firefox-utvidelser"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "Beklager, men vi kunne ikke finne noe på addressen du har skrevet inn. Hvis du fulgte en lenke til et tillegg så er det mulig at tillegget har blitt fjernet av utvikleren."
+msgstr "Beklager, men vi kunne ikke finne noe på addressen du har skrevet inn. Hvis du fulgte en lenke til et tillegg så er det mulig at tillegget har blitt fjernet av opphavsmennen."
 
 msgid "Suggested Pages"
 msgstr "Foreslåtte sider"
@@ -746,10 +746,10 @@ msgid "Application max version for {version} updated."
 msgstr "Maksversjon for applikasjon for {version} oppdatert."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "E-post sendt til forfattere om kompatibilitet til {version}."
+msgstr "E-post sendt til opphavsmann om kompatibilitet til {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr "E-post sendt til utvikleren om utvidelsens kompatibilitet."
+msgstr "E-post sendt til opphavsmann om tilleggskompatibilitet."
 
 msgid "Password changed."
 msgstr "Passord endret."
@@ -1694,7 +1694,7 @@ msgid "Must have at least one owner."
 msgstr "Må ha minst én eier."
 
 msgid "At least one author must be listed."
-msgstr "Minst en utvikler må være oppført."
+msgstr "Minst en opphavsmann må være oppført."
 
 msgid "Slug incorrect."
 msgstr "Feil slug."
@@ -1870,7 +1870,7 @@ msgid "Invitation declined."
 msgstr "Invitasjon avvist."
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "En opphavsmann har blitt lagt til i tillegget ditt"
 
 #, fuzzy
 msgid "Author invitation for {addon_name}"
@@ -1880,10 +1880,10 @@ msgid "A confirmation email has been sent to {email}"
 msgstr "En bekreftelsesepost har blitt sendt til {email}"
 
 msgid "An author role has been changed on your add-on"
-msgstr ""
+msgstr "En rolle for opphavsmann har blitt endret i ditt tillegg"
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "En opphavsmann har blitt fjernet fra tillegget ditt"
 
 msgid "Changes successfully saved."
 msgstr "Endringene ble lagret."
@@ -1964,7 +1964,7 @@ msgid "The background color for fields in the toolbar, such as the URL bar. Mani
 msgstr ""
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Tekst på feltområdet i verktøylinjen"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
@@ -1974,7 +1974,7 @@ msgid "Review requested."
 msgstr "Gjennomgang er forespurt"
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Du må spesifisere ytterligere informasjon for å fortsette."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
