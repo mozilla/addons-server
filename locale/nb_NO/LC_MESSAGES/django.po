@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 19:42+0000\n"
+"PO-Revision-Date: 2020-06-17 19:50+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -5459,29 +5459,23 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Mer informasjon er forespurt"
+msgstr "Frist for informasjonsforespørsel"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Sist oppdatert:"
+msgstr "Sist oppdatert"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Venter på gjennomgang"
+msgstr "Listede versjoner som trenger menneskelig vurdering ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Venter på gjennomgang"
+msgstr "Ikke-listede versjoner som trenger menneskelig vurdering ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Vis andre versjoner"
+msgstr "Listede versjoner ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Vis andre versjoner"
+msgstr "Ikke-listede versjoner ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5489,44 +5483,38 @@ msgstr ""
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "Godta / Avvis"
+msgstr "Godkjenn innhold"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "Venter på godkjenning"
+msgstr "Bekreft godkjenning"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "Flere utvidelser"
+msgstr "Avvis flere versjoner"
 
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Flere utvidelser"
+msgstr "Blokker flere versjoner"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Flere utvidelser"
+msgstr "Bekreft flere versjoner"
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "Utvikler"
+msgstr "Svar fra vurderer"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
