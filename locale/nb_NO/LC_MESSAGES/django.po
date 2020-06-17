@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 10:13+0000\n"
+"PO-Revision-Date: 2020-06-17 10:41+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -3416,14 +3416,13 @@ msgid "by"
 msgstr "av"
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "Legg igjen et svar"
 
 msgid "Reply"
 msgstr "Svar"
 
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Kompatibilitetssenter for utvidelser"
+msgstr "Synlighet i oppføring"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr ""
@@ -3437,19 +3436,19 @@ msgid "Listed versions"
 msgstr "Vis andre versjoner"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "For tiden på AMO"
 
 msgid "Status"
 msgstr "Status"
 
 msgid "Validation"
-msgstr ""
+msgstr "Validering"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Slett/Slå av"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Neste versjon av dette tillegget"
 
 #, fuzzy
 msgid "Other versions"
@@ -3460,20 +3459,20 @@ msgid "All versions"
 msgstr "Vis alle versjoner"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Last opp en ny versjon"
 
 msgid "Version"
 msgstr "Versjon"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Slett versjon {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Hvis du sletter denne versjonen vil du permanent slette:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr ""
@@ -3482,13 +3481,13 @@ msgid "Are you sure you wish to delete this version?"
 msgstr ""
 
 msgid "Delete Version"
-msgstr ""
+msgstr "Slett versjonen"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Slå av versjonen"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Skjul tillegg"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -3497,13 +3496,13 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr ""
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Er du sikker på at du vil skjule tillegget ditt?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Er du sikker på at du vil avbryte vurderingsforespørselen?"
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr ""
@@ -3522,11 +3521,11 @@ msgstr[1] "{0} advarsler"
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Stopp lumske sporere {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blokker usynlige sporere og spionannonser som følger deg rundt på nettet."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
