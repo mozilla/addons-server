@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 15:38+0000\n"
+"PO-Revision-Date: 2020-06-17 19:41+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5559,7 +5559,7 @@ msgid "Delete review"
 msgstr "Slett vurderinga"
 
 msgid "Needs Admin Content Review"
-msgstr "Treng administrativ Innhaldsvurdering"
+msgstr "Treng administrativ innhaldsvurdering"
 
 #, fuzzy
 msgid "Needs Admin Static Theme Review"
