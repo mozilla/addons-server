@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 20:03+0000\n"
+"PO-Revision-Date: 2020-06-17 20:05+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -6125,11 +6125,10 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Oppdatert {0}"
-msgstr[1] "Oppdatert {0}"
+msgstr[0] "Oppdatering ({0})"
+msgstr[1] "Oppdateringer ({0})"
 
 #, fuzzy
 msgid "Rating Review ({0})"
@@ -6137,11 +6136,10 @@ msgid_plural "Rating Reviews ({0})"
 msgstr[0] "Venter på gjennomgang"
 msgstr[1] "Venter på gjennomgang"
 
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Utvidelser for {0}"
-msgstr[1] "Utvidelser for {0}"
+msgstr[0] "Automatisk godkjent ({0})"
+msgstr[1] "Automatisk godkjent ({0})"
 
 #, fuzzy
 msgid "Expired Info Request ({0})"
@@ -6162,13 +6160,11 @@ msgstr ""
 msgid "presence of a version"
 msgstr "Vis andre versjoner"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Versjon"
+msgstr "versjonskanal"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Tilleggsoppdateringer"
+msgstr "status for tillegg"
 
 #, fuzzy
 msgid "add-on listing visibility"
@@ -6177,9 +6173,8 @@ msgstr "Kompatibilitetssenter for utvidelser"
 msgid "file status"
 msgstr ""
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} ble signert."
+msgstr "filsignatur"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6518,13 +6513,11 @@ msgstr "Om"
 msgid "Forum"
 msgstr "Forum"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "Last ned nå"
+msgstr "Last ned Firefox"
 
-#, fuzzy
 msgid "Android Browser"
-msgstr "Android"
+msgstr "Nettleser for Android"
 
 msgid "iOS Browser"
 msgstr ""
@@ -6613,9 +6606,8 @@ msgstr "Siste versjon:"
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr ""
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Administrer API nøkler"
+msgstr "Tilbakestill API-nøkkel"
 
 msgid "Profile Photo"
 msgstr ""
@@ -6635,9 +6627,8 @@ msgstr ""
 msgid "No user with that email."
 msgstr ""
 
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox for Android"
+msgstr "Firefox-bruker {id}"
 
 msgid "My Mobile Add-ons"
 msgstr ""
@@ -6675,9 +6666,8 @@ msgstr ""
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Historikk over gjennomgang"
+msgstr "Brukerbegrensningshistorikk"
 
 msgid "an add-on developer replies to my review"
 msgstr ""
@@ -6712,9 +6702,8 @@ msgstr ""
 msgid "Reset session(s)"
 msgstr ""
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Slett vurdering"
+msgstr "Slett bilde"
 
 #, python-format
 msgid ""
