@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 21:42+0000\n"
+"PO-Revision-Date: 2020-06-17 21:49+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2196,7 +2196,7 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Tillegg kan ha mange opphavsmenmn med 2 mulige roller:</p> <ul> <li><b>Eier:</b> Kan håndtere alle aspekter av listingen av tillegget, inkludert å legge til og fjerne andre opphavsmenn</li> "
+"<p>Tillegg kan ha mange opphavsmenn med 2 mulige roller:</p> <ul> <li><b>Eier:</b> Kan håndtere alle aspekter av listingen av tillegget, inkludert å legge til og fjerne andre opphavsmenn</li> "
 "<li><b>Utvikler:</b> Kan håndtere alle aspekter av listingen av tillegget, foruten å legge til og fjerne andre opphavsmenn</li> </ul>"
 
 msgid "Additional Details"
@@ -2869,6 +2869,8 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"For å gjøre API-forandringer, send en <a href=\"%(jwt_url)s\">JSON Web token (JWT)</a> som authorization-header. Du må lage en JWT for hver forespørsel som beskrevet i <a href=\"%(docs_url)s\">API-"
+"dokumentasjonen</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -5186,7 +5188,7 @@ msgid "Include HTML, links, source code or code snippets. Reviews are meant to b
 msgstr ""
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Gi falske uttaleleser, rakke ned på opphavsmennene til et tillegg eller komme med personlige fornærmelser."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
 msgstr ""
@@ -5208,14 +5210,16 @@ msgid ""
 msgstr ""
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Jeg er en opphavsmann for et tillegg, kan jeg svare på omtaler?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr ""
+"Ja, en opphavsmann for et tillegg kan gi ett svar på en omtale. Du kan sette opp en diskusjonstråd i vårt <a href=\"%(forum_url)s\">forum</a> for å engasjere deg i ytterligere diskusjon eller "
+"oppfølgning."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "Jeg er en opphavsmann for et tillegg, kan jeg slette negative omtaler og vurderinger?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
