@@ -23,6 +23,7 @@ class PrimaryHeroInline(admin.StackedInline):
         }
     model = PrimaryHero
     fields = (
+        'image',
         'select_image',
         'gradient_color',
         'is_external',
