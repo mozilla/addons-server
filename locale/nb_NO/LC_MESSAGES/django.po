@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 06:48+0000\n"
+"PO-Revision-Date: 2020-06-17 10:12+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -3354,39 +3354,39 @@ msgid "Approval Status"
 msgstr "Godkjenningsstatus"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Merkand for gjennomgang"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr ""
 
 msgid "Source code"
-msgstr ""
+msgstr "Kildekode"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Fil {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Opprettet den %(created)s og endret til %(status)s den %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Opprettet den %(created)s og endret til %(status)s"
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "Status og versjoner"
 
 msgid "Edit this version"
-msgstr ""
+msgstr "Rediger denne versjonen"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 filer"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Aktiver versjonen på nytt"
 
 msgid "Review History"
 msgstr "Historikk over gjennomgang"
@@ -3400,14 +3400,14 @@ msgid "Request Review"
 msgstr "Gjennomgang av tema"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Avbryt forespørsel om vurdering"
 
 #, fuzzy
 msgid "Loading Review History..."
 msgstr "Historikk over gjennomgang"
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Vi hadde et problem med å hente vurderingsmerknader"
 
 msgid "Load older..."
 msgstr ""
