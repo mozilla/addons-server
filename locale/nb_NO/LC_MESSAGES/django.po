@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 19:05+0000\n"
+"PO-Revision-Date: 2020-06-17 19:10+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2594,17 +2594,14 @@ msgstr "Dette tillegget er eksperimentelt"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "Se alle anmeldelser til denne utvidelsen"
+msgstr "Velg en kategori for dette tillegget:"
 
-#, fuzzy
 msgid "Support email:"
-msgstr "E-postadresse for brukerstøtte"
+msgstr "E-postadresse for brukerstøtte:"
 
-#, fuzzy
 msgid "Support website:"
-msgstr "Brukerstøttenettsted"
+msgstr "Nettsted for brukerstøtte:"
 
 msgid "License:"
 msgstr "Lisens:"
@@ -2634,20 +2631,17 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "Submit Version"
-msgstr "Send inn ny utvidelse"
+msgstr "Send inn versjon"
 
 msgid "Cancel and Disable Version"
 msgstr "Avbryt og deaktivere versjon"
 
-#, fuzzy
 msgid "Describe Version"
-msgstr "Flere utvidelser"
+msgstr "Beskriv versjon"
 
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Utgivelse"
+msgstr "Versjonsnotat:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr "La dine brukere får vite hva som er nytt og hvilke endringer som er i denne versjonen."
@@ -2668,16 +2662,14 @@ msgstr "Innsending fullført"
 msgid "Version Submitted for Review"
 msgstr "Send anmeldelse"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Versjon"
+msgstr "Forhåndsvisning av innsendt versjon"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Versjon"
+msgstr "Versjon sendt inn"
 
 msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
@@ -2691,9 +2683,8 @@ msgstr ""
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
 
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Behandle mine innsendinger"
+msgstr "Behandle oppføring"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr ""
