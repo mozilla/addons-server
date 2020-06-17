@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 20:51+0000\n"
+"PO-Revision-Date: 2020-06-17 21:00+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5658,13 +5658,11 @@ msgstr "Meir informasjon er påkravd"
 msgid "Last Updated"
 msgstr "Sist oppdatert"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Innhaldsvurdering({0})"
+msgstr "Nokon må ta ein gjennomagng på lista versjonar  ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Innhaldsvurdering({0})"
+msgstr "Nokon må ta ein gjennomgang på lista versjonar ({0})"
 
 #, fuzzy
 msgid "Listed versions ({0})"
@@ -5755,11 +5753,10 @@ msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Innhaldsvurdering({0})"
-msgstr[1] "Innhaldsvurderingar ({0})"
+msgstr[0] "Flagga for at nokon skal ta ein gjennomgang ({0})"
+msgstr[1] "Flagga for at nokon skal ta ein gjennomgang ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Auto-godkjende utvidingar"
