@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-17 17:40+0000\n"
+"PO-Revision-Date: 2020-06-17 19:05+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1983,9 +1983,8 @@ msgstr "Godta"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "eller <a href=\"{0}\">Avbryt</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Mer informasjon er forespurt"
+msgstr "Mer informasjon om utviklerkontoer"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2001,9 +2000,8 @@ msgstr "Utviklersenter for <small>tillegg</small>"
 msgid "more add-ons..."
 msgstr "flere utvidelser..."
 
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Utvidelser"
+msgstr "Utvidelsesverksted"
 
 msgid "Documentation"
 msgstr "Dokumentasjon"
@@ -2014,9 +2012,8 @@ msgstr "Utvidelsesutvikling"
 msgid "Themes"
 msgstr "Temaer"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Utviklerkommentarer"
+msgstr "Utviklerpraksis"
 
 msgid "Add-on Validator"
 msgstr "Tilleggsvalidator"
@@ -2165,9 +2162,8 @@ msgstr "Ingen"
 msgid "Preview"
 msgstr "Forhåndsvis"
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Vis andre versjoner"
+msgstr "Forhåndsvisning av listede versjoner"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -2204,16 +2200,14 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Utvidelsesdetaljer"
+msgstr "Ytterligere detaljer"
 
 msgid "Edit"
 msgstr "Rediger"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Tekniske detaljer for {0}"
+msgstr "Ytterligere detaljer for {0}"
 
 msgid "Tags"
 msgstr "Stikkord"
@@ -2258,13 +2252,11 @@ msgid "Describe Add-on"
 msgstr "Beskriv tillegg"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Flere utvidelser"
+msgstr "Beskriv {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Sammendrag"
+msgstr "Navn og sammendrag"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2283,9 +2275,8 @@ msgstr "Velg en kort, unik URL-slugg for tillegget ditt."
 msgid "View Listing"
 msgstr "Vis listning"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Vis profil"
+msgstr "Vis produktside"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Denne oppsummeringen skal tydelig forklare hva tillegget ditt gjør. Den vil bli vist i lister og søk, og det vil bli brukt av de som gjennomgår tillegget for å teste det."
@@ -2299,9 +2290,8 @@ msgstr "Eksperimentell?"
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr "Hvis tillegget ditt er eksperimentelt eller på annen måte ikke er klart for generell bruk.  Tillegget vil bli listet, men vil ha redusert synlighet."
 
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "Denne utvidelsen er fjernet av forfatteren."
+msgstr "Dette tillegget er eksperimentelt."
 
 msgid "This add-on is ready for general use."
 msgstr "Dette tillegget er klar for generell bruk."
@@ -2467,9 +2457,8 @@ msgstr "Tillegget ditt blir utgitt under følgende lisens:"
 msgid "Select a different license."
 msgstr "Velg en annen lisens."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Mer informasjon er forespurt"
+msgstr "Mer informasjon om Creative Commons-lisenser"
 
 msgid "Your add-on is currently set to \"Invisible\"."
 msgstr ""
@@ -2530,9 +2519,8 @@ msgstr "Slett denne utvidelsen."
 msgid "Edit details on this add-on's product page"
 msgstr ""
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Last opp en ny versjon av denne utvidelsen."
+msgstr "Last opp en ny versjon av dette tillegget"
 
 msgid "New Version"
 msgstr "Ny versjon"
@@ -2570,9 +2558,8 @@ msgstr[1] "<strong>{0}</strong> aktive brukere"
 msgid "Submit a New Version"
 msgstr "Send inn en ny versjon"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Oppsummering:"
+msgstr "Navn og sammendrag:"
 
 msgid "required"
 msgstr "påkrevd"
@@ -2598,13 +2585,11 @@ msgstr ""
 msgid "Summary:"
 msgstr "Oppsummering:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Beskrivelse"
+msgstr "Beskrivelse:"
 
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "Denne utvidelsen har en personvernserklæring"
+msgstr "Dette tillegget er eksperimentelt"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
@@ -3117,7 +3102,7 @@ msgid "Please note that a EULA is not the same as a code license, such as the GP
 msgstr ""
 
 msgid "Privacy Policy"
-msgstr "Personvernbestemmelser"
+msgstr "Personvernerklæring"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -5766,7 +5751,7 @@ msgid "Average Daily Users"
 msgstr "Gjennomsnittelig daglige brukere"
 
 msgid "View Privacy Policy"
-msgstr "Vis personvernbestemmelser"
+msgstr "Vis personvernerklæring"
 
 #, fuzzy
 msgid "Requires Payment"
