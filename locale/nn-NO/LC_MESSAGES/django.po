@@ -5756,7 +5756,7 @@ msgstr[1] ""
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
 msgstr[0] "Flagga for at nokon skal ta ei gjennomgåing ({0})"
-msgstr[1] "Flagga for at nokon skal ta ein gjennomgang ({0})"
+msgstr[1] "Flagga for at nokon skal ta ei gjennomgåing ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Auto-godkjende utvidingar"
