@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 07:35+0000\n"
+"PO-Revision-Date: 2020-06-18 19:31+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2589,9 +2589,8 @@ msgstr "Velg en lisens som er passer med rettighetene du gir."
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
 
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Ingen anmeldelser"
+msgstr "Merknader for gjennomgangsperson:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Er det noe våre gjennomgangspersoner bør ha i tankene når de gjennomgår dette tillegget?"
@@ -2635,9 +2634,8 @@ msgstr ""
 msgid "Submission Complete"
 msgstr "Innsending fullført"
 
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Send anmeldelse"
+msgstr "Versjon sendt til gjennomgang"
 
 msgid "Preview of the version submitted"
 msgstr "Forhåndsvisning av innsendt versjon"
@@ -3019,9 +3017,8 @@ msgstr "Last opp ny versjon"
 msgid "View All"
 msgstr "Vis alle"
 
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Ingen anmeldelser"
+msgstr "Gjennomgangsside for listede"
 
 msgid "Unlisted Review Page"
 msgstr ""
@@ -3116,9 +3113,8 @@ msgstr ""
 msgid "Add-on Developers Mailing List"
 msgstr "E-postliste for tilleggsutviklere"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Utvidelsesutvikling"
+msgstr "Nyhetsbrev for tilleggsutviklere"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3160,9 +3156,8 @@ msgstr ""
 msgid "Contribute"
 msgstr "Bidra"
 
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "Flere utvidelser"
+msgstr "Gjennomgå tillegg"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr "Frivillige gjennomgangspersoner hjelper til med å holde tillegg sikre og pålitelige å bruke. De nyter fantastiske fordeler også!"
@@ -3313,20 +3308,17 @@ msgstr "Aktiver versjonen på nytt"
 msgid "Review History"
 msgstr "Historikk over gjennomgang"
 
-#, fuzzy
 msgid "Close Review History"
-msgstr "Historikk over gjennomgang"
+msgstr "Lukk gjennomgangshistorikk"
 
-#, fuzzy
 msgid "Request Review"
-msgstr "Gjennomgang av tema"
+msgstr "Be om gjennomgang"
 
 msgid "Cancel Review Request"
 msgstr "Avbryt forespørsel om vurdering"
 
-#, fuzzy
 msgid "Loading Review History..."
-msgstr "Historikk over gjennomgang"
+msgstr "Laster inn gjennomgangshistorikk…"
 
 msgid "We had a problem retrieving review notes"
 msgstr "Vi hadde et problem med å hente vurderingsmerknader"
@@ -5533,9 +5525,8 @@ msgstr "Kommentar"
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Flere utvidelser"
+msgstr "Forhånds-gjennomgå tillegg"
 
 msgid "Recommended ({0})"
 msgstr ""
