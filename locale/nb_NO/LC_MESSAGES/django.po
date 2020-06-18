@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 22:00+0000\n"
+"PO-Revision-Date: 2020-06-18 22:17+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -5811,9 +5811,8 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Flere utvidelser"
+msgstr "Auto-godkjente tillegg – Tillegg for Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
@@ -5856,9 +5855,8 @@ msgstr ""
 msgid "Add-on Policy"
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer's Guide"
-msgstr "Retningslinjer for anmeldelser"
+msgstr "Retningslinjer for gjennomgang"
 
 msgid "{addon} – Add-ons for Firefox"
 msgstr ""
@@ -6146,9 +6144,8 @@ msgstr ""
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Vis andre versjoner"
+msgstr "tilstedeværelse av en versjon"
 
 msgid "version channel"
 msgstr "versjonskanal"
