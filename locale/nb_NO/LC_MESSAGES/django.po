@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 19:31+0000\n"
+"PO-Revision-Date: 2020-06-18 22:00+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -5562,12 +5562,11 @@ msgstr "Auto-godkjente tillegg ({0})"
 msgid "Add-on Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Review Guide"
-msgstr "Retningslinjer for anmeldelser"
+msgstr "Retningslinjer for gjennomgang"
 
 msgid "Content Review"
-msgstr "Innholdsvurdering"
+msgstr "Innholdsgjennomgang"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
@@ -5580,9 +5579,8 @@ msgstr "Ny ({0})"
 msgid "Updates ({0})"
 msgstr "Oppdateringer ({0})"
 
-#, fuzzy
 msgid "Theme Review Guide"
-msgstr "Gjennomgang av tema"
+msgstr "Retningslinjer for temagjennomgang"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -5593,12 +5591,11 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Gjennomgang av moderert utvidelse"
+msgstr "Retningslinjer for moderasjoner"
 
 msgid "Unlisted Add-ons"
-msgstr "Ikke-listede tillegg"
+msgstr "Ulistede tillegg"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
