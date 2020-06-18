@@ -2607,11 +2607,12 @@ class TestPendingRejectionReviewQueue(QueueTest):
         self.url = reverse('reviewers.queue_pending_rejection')
 
     def generate_files(self):
-        addon1 = addon_factory()
+        addon1 = addon_factory(created=self.days_ago(5))
         VersionReviewerFlags.objects.create(
             version=addon1.versions.get(), pending_rejection=datetime.now())
 
         addon2 = addon_factory(
+            created=self.days_ago(4),
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         VersionReviewerFlags.objects.create(
