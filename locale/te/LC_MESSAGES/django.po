@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 13:37+0000\n"
+"PO-Revision-Date: 2020-06-18 13:43+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -125,17 +125,14 @@ msgstr "పొడగింతల సరికొత్త వెర్షన్�
 msgid "Ratings"
 msgstr "రేటింగులు"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "సమీక్షకుని పనిముట్లు"
+msgstr "సమీక్షకుల పనిముట్లు (చూపిస్తున్నవి)"
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "సమీక్షకుని పనిముట్లు"
+msgstr "సమీక్షకుల పనిముట్లు (చూపించబడనివి)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "సమీక్షకుని పనిముట్లు"
+msgstr "సమీక్షకుల లంకెలు"
 
 msgid "- Add-on not on AMO -"
 msgstr "- AMOలో పొడిగింత లేదు -"

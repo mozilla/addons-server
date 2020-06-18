@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:01+0000\n"
-"PO-Revision-Date: 2020-06-18 13:41+0000\n"
+"PO-Revision-Date: 2020-06-18 13:42+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -450,9 +450,8 @@ msgid "Countries, last {0} days"
 msgstr "దేశాలు, గత {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "{0} నుండి {1} వరకు సహాయములు"
+msgstr "{0} నుండి {1} వరకు దేశాలు"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
