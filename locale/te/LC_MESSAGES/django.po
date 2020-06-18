@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 13:32+0000\n"
+"PO-Revision-Date: 2020-06-18 13:37+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -5726,7 +5726,7 @@ msgid "More details."
 msgstr "మరిన్ని వివరాలు."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "ఈ కాలానికి ఎటువంటి సంఘటనలు కనబడలేదు."
 
 msgid "Log details"
 msgstr "చిట్టా వివరాలు"
@@ -5991,7 +5991,7 @@ msgid "Hide Comments"
 msgstr "వ్యాఖ్యలను దాచు"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "ఈ కాలానికి సమీక్షలేమీ కనబడలేదు."
 
 msgid "Origin:"
 msgstr ""
@@ -6058,7 +6058,7 @@ msgstr "అన్ని సమయాలలో"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "మీకు <span>{0}</span> పాయింట్లు ఉన్నాయి."
 
 msgid "Theme"
 msgstr "అలంకారం"
