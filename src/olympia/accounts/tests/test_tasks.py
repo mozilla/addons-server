@@ -70,9 +70,9 @@ class TestDeleteUserEvent(TestCase):
             self.fxa_id,
             totimestamp(datetime(2017, 10, 11)))
         self.user.reload()
-        assert self.user.email is None
+        assert self.user.email is not None
         assert self.user.deleted
-        assert self.user.fxa_id is None
+        assert self.user.fxa_id is not None
 
     @mock.patch('olympia.users.models.UserProfile.delete_picture')
     def test_success_basic(self, delete_picture_mock):

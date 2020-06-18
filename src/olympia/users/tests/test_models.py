@@ -99,10 +99,10 @@ class TestUserProfile(TestCase):
         old_auth_id = user.auth_id
         user.delete()
         user = UserProfile.objects.get(pk=4043307)
-        assert user.email is None
+        assert user.email == 'jbalogh@mozilla.com'
         assert user.auth_id
         assert user.auth_id != old_auth_id
-        assert user.fxa_id is None
+        assert user.fxa_id == '0824087ad88043e2a52bd41f51bbbe79'
         assert user.display_name is None
         assert user.homepage == ''
         assert user.picture_type is None
@@ -1033,7 +1033,7 @@ class TestUserManager(TestCase):
     fixtures = ('users/test_backends', )
 
     def test_create_user(self):
-        user = UserProfile.objects.create_user("test", "test@test.com", 'xxx')
+        user = UserProfile.objects.create_user("test@test.com", 'xxx')
         assert user.pk is not None
 
     def test_create_superuser(self):
