@@ -348,7 +348,7 @@ class AddonManager(ManagerBase):
         return self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
             show_pending_rejection=True,
-        ).filter(**filter_kwargs)
+        ).filter(**filter_kwargs).order_by('created')
 
 
 class Addon(OnChangeMixin, ModelBase):
