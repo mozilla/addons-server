@@ -430,9 +430,12 @@ class AddonGitRepository(object):
             files_to_rename = (
                 '.git',
                 '.gitattributes',
+                '.gitconfig',
                 '.gitignore',
                 '.gitmodules',
             )
+            # Sort files by path length to rename the deepest files first.
+            files.sort(key=len, reverse=True)
             for filename in files:
                 if os.path.basename(filename) in files_to_rename:
                     renamed = '{}.{}'.format(filename, uuid.uuid4().hex[:8])
