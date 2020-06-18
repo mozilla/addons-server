@@ -688,6 +688,7 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_expired_info_requests'),
+            reverse('reviewers.queue_pending_rejection'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -739,6 +740,7 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_expired_info_requests'),
+            reverse('reviewers.queue_pending_rejection'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -2160,11 +2162,11 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(26):
-            # 26 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(27):
+            # 27 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 11 for various queue counts, including current one
+            # - 12 for various queue counts, including current one
             #      (unfortunately duplicated because it appears in two
             #       completely different places)
             # - 3 for the addons in the queues and their files (regardless of
@@ -2431,11 +2433,11 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(26):
-            # 26 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(27):
+            # 27 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 11 for various queue counts, including current one
+            # - 12 for various queue counts, including current one
             #      (unfortunately duplicated because it appears in two
             #       completely different places)
             # - 3 for the addons in the queues and their files (regardless of
