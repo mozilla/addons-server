@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-13 18:09+0000\n"
+"PO-Revision-Date: 2020-06-18 08:19+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -487,7 +487,7 @@ msgstr "GUID-ja %(guid)s gjendet në Parashtrim pezull"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Blloku për GUID %(guid)s është vetëm për lexim - duhet përpunuar përmes koleksionit të dikurshëm të listës së blloqeve"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -1722,7 +1722,7 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr "Versioni {version} përputhet me {block_link} për këtë shtesë. Për më tepër informacion, mund të lidheni me {amo_admins}."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "zë liste blloqesh"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versioni {version} qe ngarkuar më herët dhe është fshirë."
@@ -6226,7 +6226,7 @@ msgid "result state"
 msgstr "gjendje përfundim"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "krejt rregullat hiq këtë"
 
 msgid "presence of a version"
 msgstr "prani e një versioni"
@@ -6676,10 +6676,10 @@ msgstr "Dëboni përdorues të përzgjedhur"
 
 #, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
+msgstr "Sesioni(et) e përdoruesve \"%(users)s\" u rifilluan."
 
 msgid "Reset session"
-msgstr ""
+msgstr "Rifillo sesion"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6785,7 +6785,7 @@ msgid "Ban"
 msgstr "Dëboje"
 
 msgid "Reset session(s)"
-msgstr ""
+msgstr "Rifillo sesion(s)"
 
 msgid "Delete picture"
 msgstr "Fshije foton"
