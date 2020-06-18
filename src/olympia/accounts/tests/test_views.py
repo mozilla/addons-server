@@ -1486,7 +1486,7 @@ class TestAccountViewSetDelete(TestCase):
         assert views.API_TOKEN_COOKIE not in response.cookies
         assert self.client.cookies[views.API_TOKEN_COOKIE].value == 'something'
 
-    def test_developers_cant_delete(self):
+    def test_developers_can_delete(self):
         self.client.login_api(self.user)
         addon = addon_factory(users=[self.user])
         assert self.user.is_developer and self.user.is_addon_developer
@@ -1496,32 +1496,20 @@ class TestAccountViewSetDelete(TestCase):
         self.client.cookies[views.API_TOKEN_COOKIE] = 'something'
 
         response = self.client.delete(self.url)
-        assert response.status_code == 400
-        assert b'You must delete all add-ons and themes' in response.content
-        assert not self.user.reload().deleted
-        assert views.API_TOKEN_COOKIE not in response.cookies
-        assert self.client.cookies[views.API_TOKEN_COOKIE].value == 'something'
-
-        addon.delete()
-        response = self.client.delete(self.url)
         assert response.status_code == 204
         assert self.user.reload().deleted
-        # Account was deleted so the cookies should have been cleared this time
+        assert addon.reload().is_deleted
+        # Account was deleted so the cookies should have been cleared
         assert response.cookies[views.API_TOKEN_COOKIE].value == ''
         assert self.client.cookies[views.API_TOKEN_COOKIE].value == ''
 
-    def test_theme_developers_cant_delete(self):
+    def test_theme_developers_can_delete(self):
         self.client.login_api(self.user)
         addon = addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
         assert self.user.is_developer and self.user.is_artist
 
         response = self.client.delete(self.url)
-        assert response.status_code == 400
-        assert b'You must delete all add-ons and themes' in response.content
-        assert not self.user.reload().deleted
-
-        addon.delete()
-        response = self.client.delete(self.url)
+        assert addon.reload().is_deleted
         assert response.status_code == 204
         assert self.user.reload().deleted
 
