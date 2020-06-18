@@ -199,7 +199,7 @@ class TestUserProfile(TestCase):
         AddonUser.objects.create(addon=addon, user=user_factory())
 
         # Now that everything is set up, disable/delete related content.
-        user.delete(related_content=True)
+        user.delete()
 
         # The add-on should not have been touched, it has another dev.
         assert not user.addons.exists()
@@ -233,7 +233,7 @@ class TestUserProfile(TestCase):
         Collection.objects.create(author=user)
 
         # Now that everything is set up, delete related content.
-        user.delete(related_content=True)
+        user.delete()
 
         assert not user.addons.exists()
 

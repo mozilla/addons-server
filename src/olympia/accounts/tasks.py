@@ -48,8 +48,6 @@ def primary_email_change_event(profile, changed_date, email):
 @user_profile_from_uid
 def delete_user_event(user, deleted_date):
     """Process the delete user event."""
-    user.delete(
-        related_content=True,
-        addon_msg='Deleted via FxA account deletion')
+    user.delete(addon_msg='Deleted via FxA account deletion')
     log.info(
         'Account pk [%s] deleted from FxA on %s' % (user.id, deleted_date))

@@ -438,6 +438,7 @@ class TestReviewerSubscription(TestCase):
 
     def test_no_email_for_ex_reviewers(self):
         self.user_one.delete()
+        mail.outbox = []  # deleting the user sends an email for the addon
         # Remove user_one from reviewers.
         GroupUser.objects.get(
             group=self.reviewer_group, user=self.user_one).delete()
