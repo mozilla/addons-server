@@ -515,15 +515,14 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             'picture_type', 'banned', 'biography', 'display_name', 'homepage',
             'location', 'deleted', 'auth_id', 'username'))
 
-    def delete(self, hard=False, related_content=False, addon_msg=''):
+    def delete(self, hard=False, addon_msg=''):
         if hard:
             # this is done in _anonymize() for soft deletes
             self.picture_type = None
             self.delete_picture()
             super(UserProfile, self).delete()
         else:
-            if related_content:
-                self._delete_related_content(addon_msg=addon_msg)
+            self._delete_related_content(addon_msg=addon_msg)
             log.info(f'User ({self}: <{self.email}>) is being anonymized.')
             self._anonymize()
             self.save()
