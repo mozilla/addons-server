@@ -496,6 +496,54 @@ class TestReviewHelper(TestReviewHelperBase):
         expected = ['public', 'reject', 'reject_multiple_versions', 'reply',
                     'super', 'comment']
         del self.addon.block
+
+    def test_actions_pending_rejection(self):
+        # An addon having versions pending rejection won't be reviewable by
+        # regular reviewers (actual pending rejection date doesn't matter) ...
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        VersionReviewerFlags.objects.create(
+            version=self.version, pending_rejection=datetime.now())
+        expected = ['reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED).keys()) == expected
+
+        # ... unless there is a more recent version posted.
+        expected = [
+            'public', 'reject', 'reject_multiple_versions', 'reply', 'super',
+            'comment'
+        ]
+        self.version = version_factory(addon=self.addon)
+        self.file = self.version.all_files[0]
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+    def test_actions_pending_rejection_admin(self):
+        # Admins can still do everything when there is a version pending
+        # rejection.
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        VersionReviewerFlags.objects.create(
+            version=self.version, pending_rejection=datetime.now())
+        expected = ['reject_multiple_versions', 'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED).keys()) == expected
+
+        # a more recent version posted does not change anything for admins.
+        expected = [
+            'public', 'reject', 'reject_multiple_versions', 'reply', 'super',
+            'comment'
+        ]
+        self.version = version_factory(addon=self.addon)
+        self.file = self.version.all_files[0]
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected

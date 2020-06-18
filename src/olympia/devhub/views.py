@@ -320,6 +320,7 @@ def edit(request, addon_id, addon):
     data = {
         'page': 'edit',
         'addon': addon,
+        'link_to_old_stats': addon.type not in amo.ADDON_TYPES_WITH_STATS,
         'whiteboard': whiteboard,
         'editable': False,
         'show_listed_fields': addon.has_listed_versions(),
@@ -677,7 +678,9 @@ def file_validation(request, addon_id, addon, file_id):
 
 
 @csrf_exempt
-@dev_required(allow_reviewers_for_read=True)
+# This allows read-only access to deleted add-ons for reviewers
+# but not developers.
+@dev_required(allow_reviewers_for_read=True, qs=Addon.unfiltered.all)
 def json_file_validation(request, addon_id, addon, file_id):
     file = get_object_or_404(File, version__addon=addon, id=file_id)
     try:

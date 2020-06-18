@@ -64,6 +64,15 @@
               </td>
             </tr>
           {% endif %}
+          {% if addon.support_url %}
+            <tr>
+              <th>{{ _('Support Website') }}</th>
+              <td>
+                <strong><a href="{{ addon.support_url|external_url }}">{{
+                  addon.support_url }}</a></strong>
+              </td>
+            </tr>
+          {% endif %}
           {% if addon.has_listed_versions() %}
           <tr>
             <th>{{ _('Visibility') }}</th>

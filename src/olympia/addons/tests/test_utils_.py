@@ -9,8 +9,6 @@ from django.conf import settings
 from django.forms import ValidationError
 from django.utils.encoding import force_text
 
-from waffle.testutils import override_switch
-
 from olympia import amo
 from olympia.addons.utils import (
     build_webext_dictionary_from_legacy,
@@ -25,70 +23,43 @@ from olympia.amo.tests import AMOPaths, TestCase, addon_factory, user_factory
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('name, allowed, email, content_optmzn_waffle', (
-    # First with the content optimization waffle off:
+@pytest.mark.parametrize('name, allowed, email', (
     # Regular name, obviously always allowed
-    ('Fancy new Add-on', True, 'foo@bar.com', False),
-    # We allow the 'for ...' postfix to be used
-    ('Fancy new Add-on for Firefox', True, 'foo@bar.com', False),
-    ('Fancy new Add-on for Mozilla', True, 'foo@bar.com', False),
-    # But only the postfix
-    ('Fancy new Add-on for Firefox Browser', False, 'foo@bar.com', False),
-    ('For Firefox fancy new add-on', False, 'foo@bar.com', False),
-    # But users with @mozilla.com or @mozilla.org email addresses
-    # are allowed
-    ('Firefox makes everything better', False, 'bar@baz.com', False),
-    ('Firefox makes everything better', True, 'foo@mozilla.com', False),
-    ('Firefox makes everything better', True, 'foo@mozilla.org', False),
-    ('Mozilla makes everything better', True, 'foo@mozilla.com', False),
-    ('Mozilla makes everything better', True, 'foo@mozilla.org', False),
-    # A few more test-cases...
-    ('Firefox add-on for Firefox', False, 'foo@bar.com', False),
-    ('Firefox add-on for Firefox', True, 'foo@mozilla.com', False),
-    ('Foobarfor Firefox', False, 'foo@bar.com', False),
-    ('Better Privacy for Firefox!', True, 'foo@bar.com', False),
-    ('Firefox awesome for Mozilla', False, 'foo@bar.com', False),
-    ('Firefox awesome for Mozilla', True, 'foo@mozilla.org', False),
-
-    # And with the content optimization waffle onL
-    # Regular name, obviously always allowed
-    ('Fancy new Add-on', True, 'foo@bar.com', True),
+    ('Fancy new Add-on', True, 'foo@bar.com'),
     # We don't allow the 'for ...' postfix to be used anymore
-    ('Fancy new Add-on for Firefox', False, 'foo@bar.com', True),
-    ('Fancy new Add-on for Mozilla', False, 'foo@bar.com', True),
-    # Or the postfix
-    ('Fancy new Add-on for Firefox Browser', False, 'foo@bar.com', True),
-    ('For Firefox fancy new add-on', False, 'foo@bar.com', True),
+    ('Fancy new Add-on for Firefox', False, 'foo@bar.com'),
+    ('Fancy new Add-on for Mozilla', False, 'foo@bar.com'),
+    ('Fancy new Add-on for Firefox Browser', False, 'foo@bar.com'),
+    ('For Firefox fancy new add-on', False, 'foo@bar.com'),
     # But users with @mozilla.com or @mozilla.org email addresses
     # are allowed
-    ('Firefox makes everything better', False, 'bar@baz.com', True),
-    ('Firefox makes everything better', True, 'foo@mozilla.com', True),
-    ('Firefox makes everything better', True, 'foo@mozilla.org', True),
-    ('Mozilla makes everything better', True, 'foo@mozilla.com', True),
-    ('Mozilla makes everything better', True, 'foo@mozilla.org', True),
-    ('Fancy new Add-on for Firefox', True, 'foo@mozilla.org', True),
-    ('Fancy new Add-on for Mozilla', True, 'foo@mozilla.org', True),
+    ('Firefox makes everything better', False, 'bar@baz.com'),
+    ('Firefox makes everything better', True, 'foo@mozilla.com'),
+    ('Firefox makes everything better', True, 'foo@mozilla.org'),
+    ('Mozilla makes everything better', True, 'foo@mozilla.com'),
+    ('Mozilla makes everything better', True, 'foo@mozilla.org'),
+    ('Fancy new Add-on for Firefox', True, 'foo@mozilla.org'),
+    ('Fancy new Add-on for Mozilla', True, 'foo@mozilla.org'),
     # A few more test-cases...
-    ('Firefox add-on for Firefox', False, 'foo@bar.com', True),
-    ('Firefox add-on for Firefox', True, 'foo@mozilla.com', True),
-    ('Foobarfor Firefox', False, 'foo@bar.com', True),
-    ('Better Privacy for Firefox!', False, 'foo@bar.com', True),
-    ('Firefox awesome for Mozilla', False, 'foo@bar.com', True),
-    ('Firefox awesome for Mozilla', True, 'foo@mozilla.org', True),
+    ('Firefox add-on for Firefox', False, 'foo@bar.com'),
+    ('Firefox add-on for Firefox', True, 'foo@mozilla.com'),
+    ('Foobarfor Firefox', False, 'foo@bar.com'),
+    ('Better Privacy for Firefox!', False, 'foo@bar.com'),
+    ('Firefox awesome for Mozilla', False, 'foo@bar.com'),
+    ('Firefox awesome for Mozilla', True, 'foo@mozilla.org'),
 ))
-def test_verify_mozilla_trademark(name, allowed, email, content_optmzn_waffle):
+def test_verify_mozilla_trademark(name, allowed, email):
     user = user_factory(email=email)
 
-    with override_switch('content-optimization', active=content_optmzn_waffle):
-        if not allowed:
-            with pytest.raises(ValidationError) as exc:
-                verify_mozilla_trademark(name, user)
-            assert exc.value.message == (
-                'Add-on names cannot contain the Mozilla or Firefox '
-                'trademarks.'
-            )
-        else:
+    if not allowed:
+        with pytest.raises(ValidationError) as exc:
             verify_mozilla_trademark(name, user)
+        assert exc.value.message == (
+            'Add-on names cannot contain the Mozilla or Firefox '
+            'trademarks.'
+        )
+    else:
+        verify_mozilla_trademark(name, user)
 
 
 class TestGetAddonRecommendations(TestCase):

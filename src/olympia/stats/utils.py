@@ -107,4 +107,4 @@ GROUP BY addon_id"""
 
     rows = client.query(query).result()
 
-    return [(row['addon_id'], row['count']) for row in rows]
+    return [(row['addon_id'], row['count']) for row in rows if row['count']]

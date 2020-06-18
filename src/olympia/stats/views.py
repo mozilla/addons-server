@@ -330,14 +330,15 @@ def check_stats_permission(request, addon, beta):
     Raises Http404 if user cannot access the beta mode (only if enabled).
     """
     user = request.user
-    if beta and (
-        not user.is_authenticated or (
-            user.is_authenticated and not (
-                user.email.endswith('@mozilla.com') or
-                waffle.flag_is_active(request, 'beta-stats')
-            )
+    user_cannot_access_beta = not user.is_authenticated or (
+        user.is_authenticated and not (
+            user.email.endswith('@mozilla.com') or
+            waffle.flag_is_active(request, 'beta-stats')
         )
-    ):
+    )
+    addon_has_no_beta = addon.type not in amo.ADDON_TYPES_WITH_STATS
+
+    if beta and (user_cannot_access_beta or addon_has_no_beta):
         raise http.Http404
 
     can_view = user.is_authenticated and (
@@ -355,12 +356,15 @@ def stats_report(request, addon, report, beta=False):
     stats_base_url = reverse('stats.overview.beta' if beta else
                              'stats.overview', args=[addon.slug])
     view = get_report_view(request)
+    hide_beta = addon.type not in amo.ADDON_TYPES_WITH_STATS
+
     return render(
         request,
         'stats/reports/%s.html' % report,
         {
             'addon': addon,
             'beta': beta,
+            'hide_beta': hide_beta,
             'report': report,
             'stats_base_url': stats_base_url,
             'view': view,

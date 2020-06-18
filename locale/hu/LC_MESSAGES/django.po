@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-11 07:58+0000\n"
+"PO-Revision-Date: 2020-06-16 09:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -477,7 +477,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Ez a kiegészítő már egy másik gyűjtemény része"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Jóváhagyási állapot"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -485,7 +485,7 @@ msgstr "A(z) %(guid)s GUID szerepel egy függőben lévő beküldésben"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "A(z) %(guid)s GUID azonosítóhoz tartozó blokkolás csak olvasható – azt a régi blokklista-gyűjteményen keresztül lehet szerkeszteni."
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -1736,7 +1736,7 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "Túl sok feltöltést küldött be a közelmúltban. Próbálkozzon újra egy kicsit később."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "A(z) {version} egyezik ezzel ennék a kiegészítőnél: {block_link}. További információkért lépjen kapcsolatba az adminisztrátorokkal: {amo_admins}."
 
 msgid "a blocklist entry"
 msgstr "egy blokklistabejegyzés"
@@ -3011,6 +3011,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Kedves kiegészítőfejlesztő!\n"
+"\n"
+"Megállapítottuk, hogy az Ön titkos AMO API-hitelesítő adatai szerepelnek az addons.mozilla.org oldalon beküldött kiegészítőben. Fiókja és kiegészítői védelme érdekében visszavontuk a kiszivárgott hitelesítő adatokat.\n"
+"Új API-hitelesítő adatokat állíthat elő itt: %(api_keys_url)s\n"
+"\n"
+"Ügyeljen arra, hogy soha ne ossza meg senkivel a hitelesítő adatait. Soha ne használja őket nyilvános tárolóban, kiegészítőben vagy más nyilvános helyen. Javasoljuk, hogy vizsgálja felül a kódtárolóit és kiegészítőit, és távolítsa el az AMO hitelesítő adataira vonatkozó hivatkozásokat.\n"
+"\n"
+"Köszönjük,\n"
+"A Mozilla kiegészítők csapata"
 
 msgid "Invisible"
 msgstr "Láthatatlan"
@@ -3164,6 +3173,8 @@ msgstr "Készítse el a legjobb kiegészítőket és témákat"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Függetlenül attól, hogy csak most kezdte el a kiegészítőfejlesztést, egy meglévő kiegészítőt vagy témát csiszolt tovább vagy portol, vagy egyéni vállalati megoldásokat hoz létre, nálunk elérhetők az"
+" Önt támogató erőforrások."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
@@ -3323,7 +3334,7 @@ msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr "Jelentkezzen be a fejlesztőközpontba a kiegészítők és témák benyújtásához vagy kezeléséhez."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Regisztráljon egy fejlesztői fiókot, vagy jelentkezzen be a Fejlesztőközpontba"
 
 msgid "Manage Version {0}"
 msgstr "{0} verzió kezelése"
@@ -3809,7 +3820,7 @@ msgstr "Hagyjon tiszta digitális lábnyomot. Felejtesse el a Firefoxszal a webh
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Nem kell újra és újra megírnia ugyanazt a dolgot. Mentse el a gyakran beírt szövegeket, és illessze be bármikor."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4913,7 +4924,7 @@ msgstr "Néhány weboldalon nehezen játszhatóak le a videók az androidos Fire
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Válassza ki, rendezze és futtassa a letöltéseket gyorsabban."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4957,11 +4968,11 @@ msgstr "Nézzen bárhol közvetített médiatartalmakat barátaival és családj
 
 #. editorial content for the discovery pane.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Hagyja ki a YouTube-videók szponzorált részeit."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Olvastassa fel hangosan a weboldalakat. 40+ támogatott nyelv."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -6121,7 +6132,7 @@ msgid "Contents"
 msgstr "Tartalom"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "E verzió összehasonlítása az utolsó felülvizsgált verzióval"
 
 msgid "Compare"
 msgstr "Összehasonlítás"
@@ -6140,7 +6151,7 @@ msgid "Newer"
 msgstr "Újabb"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} verziót jelöltek meg az átvizsgálók más lapokon."
 
 msgid "Recent Points"
 msgstr "Legutóbbi pontok"
@@ -6191,7 +6202,7 @@ msgid "Weight:"
 msgstr "Súly:"
 
 msgid "Flagged by automated scanners"
-msgstr ""
+msgstr "Automatizált átvizsgálók által megjelölve"
 
 msgid "Download"
 msgstr "Letöltés"
@@ -6233,13 +6244,13 @@ msgstr[0] "Lejárt információkérés ({0})"
 msgstr[1] "Lejárt információkérések ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "megfelelő szabályok jelenléte"
 
 msgid "result state"
 msgstr "eredmény állapota"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "ezt a szabályt kivéve mindegyik"
 
 msgid "presence of a version"
 msgstr "verzió jelenléte"
@@ -6260,16 +6271,16 @@ msgid "file signature"
 msgstr "fájl aláírása"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Ez az átvizsgáló által használt szabály pontos neve."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Ha nincs bejelölve, akkor az átvizsgáló találatait nem köti ez a szabály, és a művelet nem kerül végrehajtásra."
 
 msgid "Yara rules should have a definition"
 msgstr "A Yara szabályoknak definícióval kell rendelkezniük"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "A definícióban szereplő szabály nevének egyeznie kell a átvizsgálószabály nevével"
 
 msgid "Only one Yara rule is allowed in the definition"
 msgstr "Csak egy Yara-szabály lehet a definícióban"
@@ -6291,7 +6302,7 @@ msgid "Run"
 msgstr "Futtatás"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Hasznos, ha az átvizsgáló eredménye valódi pozitív, de a kiegészítő nem rosszindulatú"
 
 msgid "Revert report"
 msgstr "Jelentés visszaállítása"
@@ -6380,7 +6391,7 @@ msgid "by Platform"
 msgstr "Platform szerint"
 
 msgid "by Country"
-msgstr ""
+msgstr "ország szerint"
 
 msgid "by Add-on Status"
 msgstr "kiegészítő státusza szerint"
@@ -6452,11 +6463,11 @@ msgstr "Egyéni…"
 
 #, python-format
 msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr ""
+msgstr "Ön egy béta funkciót néz. Az elavult statisztikai oldalt még elérheti <a href=\"%(stats_overview_url)s\">itt</a>."
 
 #, python-format
 msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
-msgstr ""
+msgstr "Új statisztikai oldalakat vezetünk be, és hozzáférhet az előnézethez! <a href=\"%(beta_stats_overview_url)s\">Vigyen a műszerfalra.</a>"
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "A statisztikai feldolgozás le van tiltva, így a legfrissebb adatok nem érhetőek el. A statisztikák továbbra is gyűlnek, és ez az oldal hamarosan frissülni fog a hiányzó adatokkal."
@@ -6809,6 +6820,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"A következő szerző hozzá lett adva a(z) %(addon_name)s (%(addon_url)s) kiegészítőhöz:\n"
+"\n"
+"%(author_name)s (%(author_url)s): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6825,6 +6839,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Üdvözöljük %(author_name)s,\n"
+"\n"
+"Meghívták, hogy a(z) %(addon_name)s szerzője legyen itt: %(domain)s. A meghívó elfogadásával hozzáférést kaphat a kiegészítő szerkesztéséhez, és megjelenítheti a nevét a weboldal szerzőinek listájában.\n"
+"\n"
+"Kattintson az alábbi hivatkozásra, hogy válaszoljon, ha szerzőként szeretne szerepelni a(z) %(addon_name)s kiegészítőnél.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Ha nem számított erre a meghívásra, akkor küldjön egy e-mailt az amo-admins@mozilla.com címre.\n"
+"\n"
+"Üdvözlettel,\n"
+"A Mozilla kiegészítők csapata"
 
 #, python-format
 msgid ""
@@ -6832,6 +6858,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"A következő szerző megváltozott a(z) %(addon_name)s (%(addon_url)s) kiegészítőnél:\n"
+"\n"
+"%(author_name)s (%(author_url)s): %(author_role)s"
 
 #, python-format
 msgid ""

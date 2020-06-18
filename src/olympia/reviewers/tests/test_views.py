@@ -3458,6 +3458,61 @@ class TestReview(ReviewBase):
         assert doc('th').eq(1).text() == 'Commented'
         assert doc('.history-comment').text() == 'hello sailor'
 
+    def test_item_history_pending_rejection(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('#versions-history .review-files')
+        assert doc('.pending-rejection') == []
+        VersionReviewerFlags.objects.create(
+            version=self.version,
+            pending_rejection=datetime.now() + timedelta(hours=1, minutes=1))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('#versions-history .review-files')
+        assert doc('.pending-rejection').text() == (
+            '· Scheduled for rejection in 1\xa0hour'
+        )
+
+    def test_item_history_pending_rejection_other_pages(self):
+        self.addon.current_version.update(created=self.days_ago(366))
+        for i in range(0, 10):
+            # Add versions 1.0 to 1.9. Schedule a couple for future rejection
+            # (the date doesn't matter).
+            version = version_factory(
+                addon=self.addon, version=f'1.{i}',
+                created=self.days_ago(365 - i))
+            if not bool(i % 5):
+                VersionReviewerFlags.objects.create(
+                    version=version, pending_rejection=datetime.now())
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        ths = doc('#versions-history tr.listing-header th')
+        assert ths.length == 10
+        # Original version should not be there any more, it's on the second
+        # page. Versions on the page should be displayed in chronological order
+        # Versions 1.0, and 1.5 are pending rejection.
+        assert 'Scheduled for rejection in' in ths.eq(0).text()
+        assert 'Scheduled for rejection in' in ths.eq(5).text()
+
+        # Make sure the message doesn't appear on the rest of the versions.
+        for num in [1, 2, 3, 4, 6, 7, 8, 9]:
+            assert 'Scheduled for rejection in' not in ths.eq(num).text()
+
+        # There are no other versions pending rejection in other pages.
+        span = doc('#review-files-header .other-pending-rejection')
+        assert span.length == 0
+
+        # Load the second page. This time there should be a message indicating
+        # there are flagged versions in other pages.
+        response = self.client.get(self.url, {'page': 2})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        span = doc('#review-files-header .other-pending-rejection')
+        assert span.length == 1
+        assert span.text() == '2 versions pending rejection on other pages.'
+
     def test_files_in_item_history(self):
         data = {'action': 'public', 'operating_systems': 'win',
                 'applications': 'something', 'comments': 'something'}
@@ -6211,12 +6266,12 @@ class AddonReviewerViewSetPermissionMixin(object):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
-    def test_disabled_version_author(self):
+    def test_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
-        self._test_url()
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
@@ -6225,7 +6280,7 @@ class AddonReviewerViewSetPermissionMixin(object):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
-    def test_disabled_version_user_but_not_author(self):
+    def test_disabled_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
@@ -6240,14 +6295,6 @@ class AddonReviewerViewSetPermissionMixin(object):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-    def test_deleted_version_author(self):
-        user = UserProfile.objects.create(username='author')
-        AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login_api(user)
-        self.version.delete()
-        response = self.client.get(self.url)
-        assert response.status_code == 404
-
     def test_deleted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
@@ -6255,7 +6302,7 @@ class AddonReviewerViewSetPermissionMixin(object):
         self.version.delete()
         self._test_url()
 
-    def test_deleted_version_user_but_not_author(self):
+    def test_deleted_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.delete()
@@ -6277,13 +6324,6 @@ class AddonReviewerViewSetPermissionMixin(object):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url()
 
-    def test_unlisted_version_author(self):
-        user = UserProfile.objects.create(username='author')
-        AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self._test_url()
-
     def test_unlisted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
@@ -6291,7 +6331,7 @@ class AddonReviewerViewSetPermissionMixin(object):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url()
 
-    def test_unlisted_version_user_but_not_author(self):
+    def test_unlisted_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -6499,6 +6539,18 @@ class TestReviewAddonVersionViewSetDetail(
         # make sure we returned more than just the `id` and `file` properties
         assert len(result.keys()) > 2
 
+    def test_deleted_addon(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, 'Addons:ViewDeleted')
+        self.client.login_api(user)
+
+        self.addon.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.version.pk
+
 
 class TestReviewAddonVersionViewSetList(TestCase):
     client_class = APITestClient
@@ -6542,12 +6594,12 @@ class TestReviewAddonVersionViewSetList(TestCase):
         self.client.login_api(user)
         self._test_url()
 
-    def test_permissions_disabled_version_author(self):
+    def test_permissions_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
-        self.version.files.update(status=amo.STATUS_DISABLED)
-        self._test_url()
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
     def test_permissions_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
@@ -6556,7 +6608,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url()
 
-    def test_permissions_disabled_version_user_but_not_author(self):
+    def test_permissions_disabled_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
@@ -6999,7 +7051,7 @@ class TestDraftCommentViewSet(TestCase):
         response = self.client.delete(url)
         assert response.status_code == 404
 
-    def test_disabled_version_user_but_not_author(self):
+    def test_disabled_version_user(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
@@ -7085,7 +7137,7 @@ class TestDraftCommentViewSet(TestCase):
 
         assert DraftComment.objects.count() == 1
 
-    def test_deleted_version_user_but_not_author(self):
+    def test_deleted_version_user(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.delete()
@@ -7124,7 +7176,7 @@ class TestDraftCommentViewSet(TestCase):
         response = self.client.post(url, data)
         assert response.status_code == 403
 
-    def test_unlisted_version_user_but_not_author(self):
+    def test_unlisted_version_user(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -7142,6 +7194,70 @@ class TestDraftCommentViewSet(TestCase):
 
         response = self.client.post(url, data)
         assert response.status_code == 403
+
+    def test_not_reviewer_or_admin(self):
+        reviewer_user = user_factory(username='reviewer')
+        self.grant_permission(reviewer_user, 'Addons:Review')
+        # Create a comment from a reviewer.
+        comment = DraftComment.objects.create(
+            version=self.version, comment='test1', user=reviewer_user,
+            lineno=0, filename='manifest.json')
+
+        user = user_factory(username='simpleuser')
+        self.client.login_api(user)
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk
+        })
+
+        # Should not be able to retrieve comments.
+        response = self.client.get(url)
+        assert response.status_code == 403
+
+        # Should not be able to add comments.
+        data = {
+            'comment': 'Some really fancy comment',
+            'lineno': 20,
+            'filename': 'manifest.json',
+        }
+        response = self.client.post(url, data)
+        assert response.status_code == 403
+
+        # Should not be able to edit comments.
+        url = reverse_ns('reviewers-versions-draft-comment-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': comment.pk
+        })
+
+        response = self.client.patch(url, {
+            'comment': 'Updated comment!'
+        })
+        assert response.status_code == 403
+
+        # Should not be able to delete comments.
+        response = self.client.delete(url)
+        assert response.status_code == 403
+
+    def test_deleted_addon(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, 'Addons:ViewDeleted')
+        self.client.login_api(user)
+
+        DraftComment.objects.create(
+            version=self.version, comment='test', user=user,
+            lineno=0, filename='manifest.json')
+
+        url = reverse_ns('reviewers-versions-draft-comment-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk
+        })
+
+        self.addon.delete()
+        response = self.client.get(url)
+        assert response.status_code == 200
+        assert response.json()['count'] == 1
 
 
 class TestReviewAddonVersionCompareViewSet(

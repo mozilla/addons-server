@@ -45,7 +45,7 @@ from olympia.amo.decorators import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowAnyKindOfReviewer, AllowReviewer,
+    AllowAnyKindOfReviewer, AllowReviewer,
     AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
@@ -739,6 +739,7 @@ def review(request, addon, channel=None):
         addon.versions(manager='unfiltered_for_relations')
              .filter(channel=channel)
              .select_related('autoapprovalsummary')
+             .select_related('versionreviewerflags')
         # Add activity transformer to prefetch all related activity logs on
         # top of the regular transformers.
              .transform(Version.transformer_activity)
@@ -880,6 +881,9 @@ def review(request, addon, channel=None):
     # paginated).
     versions_flagged_by_scanners = versions_qs.filter(
         needs_human_review=True).exclude(pk__in=version_ids).count()
+    versions_pending_rejection = versions_qs.filter(
+        versionreviewerflags__pending_rejection__isnull=False).exclude(
+        pk__in=version_ids).count()
 
     flags = get_flags(addon, version) if version else []
 
@@ -921,6 +925,7 @@ def review(request, addon, channel=None):
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
         user_changes_log=user_changes_log, user_ratings=user_ratings,
         versions_flagged_by_scanners=versions_flagged_by_scanners,
+        versions_pending_rejection=versions_pending_rejection,
         version=version, whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url)
     return render(request, 'reviewers/review.html', ctx)
@@ -1290,9 +1295,7 @@ class AddonReviewerViewSet(GenericViewSet):
 
 
 class ReviewAddonVersionMixin(object):
-    permission_classes = [AnyOf(
-        AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
-    )]
+    permission_classes = [AnyOf(AllowReviewer, AllowReviewerUnlisted)]
 
     def get_queryset(self):
         # Permission classes disallow access to non-public/unlisted add-ons
@@ -1329,7 +1332,7 @@ class ReviewAddonVersionMixin(object):
         if not hasattr(self, 'addon_object'):
             # We only need translations on the add-on, no other transforms.
             self.addon_object = get_object_or_404(
-                Addon.objects.get_queryset().only_translations(),
+                Addon.unfiltered.all().only_translations(),
                 pk=self.kwargs.get('addon_pk'))
         return self.addon_object
 
@@ -1393,9 +1396,7 @@ class ReviewAddonVersionDraftCommentViewSet(
         RetrieveModelMixin, ListModelMixin, CreateModelMixin,
         DestroyModelMixin, UpdateModelMixin, GenericViewSet):
 
-    permission_classes = [AnyOf(
-        AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
-    )]
+    permission_classes = [AnyOf(AllowReviewer, AllowReviewerUnlisted)]
 
     queryset = DraftComment.objects.all()
     serializer_class = DraftCommentSerializer
@@ -1443,7 +1444,7 @@ class ReviewAddonVersionDraftCommentViewSet(
                 # The serializer will not need to return much info about the
                 # addon, so we can use just the translations transformer and
                 # avoid the rest.
-                Addon.objects.get_queryset().only_translations(),
+                Addon.unfiltered.all().only_translations(),
                 pk=self.kwargs['addon_pk'])
         return self.addon_object
 

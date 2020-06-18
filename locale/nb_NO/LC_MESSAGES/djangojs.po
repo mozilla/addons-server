@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:01+0000\n"
-"PO-Revision-Date: 2020-05-30 18:25+0000\n"
+"PO-Revision-Date: 2020-06-17 22:08+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -118,7 +118,7 @@ msgid "Add-on submission checklist"
 msgstr "Sjekkliste for å sende inn utvidelser"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Verifiser de følgende punktene før du fullfører innsendingen din. Dette vil minimalisere forsinkelser og misforståelser under gjennomgangsprosessen:"
+msgstr "Bekreft de følgende punktene før du fullfører innsendingen din. Dette vil minimalisere forsinkelser og misforståelser under gjennomgangsprosessen:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -317,7 +317,7 @@ msgid "Often Used With"
 msgstr "Ofte brukt sammen med"
 
 msgid "Others By Author"
-msgstr "Andre av forfatteren"
+msgstr "Andre av opphavsmann"
 
 msgid "Dependencies"
 msgstr "Avhengigheter"
@@ -450,14 +450,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Programmer fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Bidrag, siste {0} dager"
+msgstr "Land, de siste {0} dagene"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Bidrag fra {0} til {1}"
+msgstr "Land fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -629,13 +627,13 @@ msgstr "Velg en applikasjon først"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Sett {0} utvidelse til maksversjon {1} og send e-post til forfatteren."
-msgstr[1] "Sett {0} utvidelser til maksversjon {1} og send e-post til forfatterne."
+msgstr[0] "Sett {0} tillegg til maksversjon {1} og send e-post til opphavsmann."
+msgstr[1] "Sett {0} tillegg til maksversjon {1} og send e-post til opphavsmennene."
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Send e-post til utvikleren av {2} utvidelse som feilet valideringen."
-msgstr[1] "Send e-post til utvikleren av {2} utvidelser som feilet valideringen."
+msgstr[0] "Send e-post til opphavsmann av {2} tilleg som feilet valideringen."
+msgstr[1] "Send e-post til opphavsmennene av {2} tillegene som feilet valideringen."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -677,7 +675,7 @@ msgid "Changes Saved"
 msgstr "Endringer lagret"
 
 msgid "Enter a new author's email address"
-msgstr "Skriv inn forfatterens nye e-postadresse"
+msgstr "Skriv inn en ny e-postadresse til opphavsmannen"
 
 msgid "There was an error uploading your file."
 msgstr "En feil oppstod under opplasting av fil."
@@ -769,7 +767,7 @@ msgid "Theme"
 msgstr "Tema"
 
 msgid "Reviewer"
-msgstr "Omtaler"
+msgstr "Gjennomgåingsperson"
 
 msgid "Status"
 msgstr "Status"

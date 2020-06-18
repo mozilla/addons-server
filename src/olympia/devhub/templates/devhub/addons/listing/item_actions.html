@@ -47,7 +47,7 @@
       </li>
     {% endif %}
   {% endif %}
-  {% if addon.status != amo.STATUS_DISABLED and waffle.flag('beta-stats') %}
+  {% if addon.type in amo.ADDON_TYPES_WITH_STATS and addon.status != amo.STATUS_DISABLED and waffle.flag('beta-stats') %}
     <li>
       <a href="{{ url('stats.overview.beta', addon.slug) }}" class="tooltip"
         title="{{ _('Daily statistics on downloads and users') }}">

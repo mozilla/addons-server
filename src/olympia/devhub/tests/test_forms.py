@@ -435,7 +435,7 @@ class TestDescribeForm(TestCase):
             u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
 
     @override_switch('content-optimization', active=False)
-    def test_name_trademark_allowed_for_prefix(self):
+    def test_name_trademark_not_allowed_for_prefix(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(
             {'name': u'Delicious for Mozilla', 'summary': u'foø',
@@ -443,7 +443,7 @@ class TestDescribeForm(TestCase):
             request=self.request,
             instance=delicious)
 
-        assert form.is_valid()
+        assert not form.is_valid()
 
     def test_name_no_trademark(self):
         delicious = Addon.objects.get()

@@ -312,12 +312,88 @@ class TestAvgDailyUserCountTestCase(TestCase):
         addon.update(average_daily_users=0)
         count = 56789
         get_mock.return_value = [(addon.guid, count)]
+        # We use download counts for langpacks.
+        langpack = addon_factory(type=amo.ADDON_LPAPP, average_daily_users=0)
+        langpack_count = 12345
+        DownloadCount.objects.update_or_create(
+            addon=langpack,
+            date=datetime.date.today(),
+            defaults={'count': langpack_count}
+        )
+        # We use download counts for dictionaries.
+        dictionary = addon_factory(type=amo.ADDON_DICT, average_daily_users=0)
+        dictionary_count = 5567
+        DownloadCount.objects.update_or_create(
+            addon=dictionary,
+            date=datetime.date.today(),
+            defaults={'count': dictionary_count}
+        )
+        addon_without_count = addon_factory(type=amo.ADDON_DICT,
+                                            average_daily_users=2)
+        assert addon.average_daily_users == 0
+        assert langpack.average_daily_users == 0
+        assert dictionary.average_daily_users == 0
+        assert addon_without_count.average_daily_users == 2
 
         cron.update_addon_average_daily_users()
         addon.refresh_from_db()
+        langpack.refresh_from_db()
+        dictionary.refresh_from_db()
+        addon_without_count.refresh_from_db()
 
         get_mock.assert_called
         assert addon.average_daily_users == count
+        assert langpack.average_daily_users == langpack_count
+        assert dictionary.average_daily_users == dictionary_count
+        # The value is 0 because the add-on does not have download counts.
+        assert addon_without_count.average_daily_users == 0
+
+    @override_switch('use-bigquery-for-addon-adu', active=True)
+    @mock.patch('olympia.addons.cron.chunked')
+    @mock.patch(
+        'olympia.addons.cron.get_addons_and_average_daily_users_from_bigquery'
+    )
+    def test_update_addon_average_daily_users_values_with_bigquery(
+        self, get_mock, chunked_mock
+    ):
+        chunked_mock.return_value = []
+        addon = Addon.objects.get(pk=3615)
+        addon.update(average_daily_users=0)
+        count = 56789
+        get_mock.return_value = [(addon.guid, count)]
+        # We use download counts for langpacks.
+        langpack = addon_factory(type=amo.ADDON_LPAPP, average_daily_users=0)
+        langpack_count = 12345
+        DownloadCount.objects.update_or_create(
+            addon=langpack,
+            date=datetime.date.today(),
+            defaults={'count': langpack_count}
+        )
+        # We use download counts for dictionaries.
+        dictionary = addon_factory(type=amo.ADDON_DICT, average_daily_users=0)
+        dictionary_count = 5567
+        DownloadCount.objects.update_or_create(
+            addon=dictionary,
+            date=datetime.date.today(),
+            defaults={'count': dictionary_count}
+        )
+        # This one should be ignored.
+        addon_without_guid = addon_factory(guid=None, type=amo.ADDON_LPAPP)
+        DownloadCount.objects.update_or_create(
+            addon=addon_without_guid,
+            date=datetime.date.today(),
+            defaults={'count': 123}
+        )
+        # This one should be ignored as well.
+        addon_factory(guid='', type=amo.ADDON_LPAPP)
+
+        cron.update_addon_average_daily_users()
+
+        chunked_mock.assert_called_with([
+            (langpack.guid, langpack_count),
+            (dictionary.guid, dictionary_count),
+            (addon.guid, count),
+        ], 250)
 
     def test_adu_flag(self):
         addon = Addon.objects.get(pk=3615)

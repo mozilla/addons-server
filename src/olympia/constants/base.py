@@ -195,6 +195,8 @@ ADDON_TYPE_CHOICES_API = {
     ADDON_STATICTHEME: 'statictheme',
 }
 
+ADDON_TYPES_WITH_STATS = [ADDON_EXTENSION, ADDON_STATICTHEME]
+
 # Edit addon information
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
@@ -207,6 +209,7 @@ VALID_CONTRIBUTION_DOMAINS = (
     'buymeacoffee.com',
     'donate.mozilla.org',
     'flattr.com',
+    'ko-fi.com',
     'liberapay.com',
     'micropayment.de',
     'opencollective.com',

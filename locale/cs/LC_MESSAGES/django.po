@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-09 22:31+0000\n"
-"Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
+"PO-Revision-Date: 2020-06-14 13:31+0000\n"
+"Last-Translator: Jakub Hanzlík <kuskus265@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -538,7 +538,7 @@ msgid "Save"
 msgstr "Uložit"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Uložit a přidat další"
 
 msgid "Delete"
 msgstr "Smazat"
@@ -972,7 +972,7 @@ msgid "Unlisted"
 msgstr "Není v seznamu"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1540,7 +1540,7 @@ msgid "No action"
 msgstr "Více akcí"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Označit pro kontrolu člověkem"
 
 msgid "Delay auto-approval"
 msgstr "Zpozdit automatické schvalování"

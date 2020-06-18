@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 
 from django.db import connections
 from django.db.models import Avg, F, Q, Sum
+from django.db.models.functions import Coalesce
 
 import multidb
 import waffle
@@ -38,7 +39,18 @@ def update_addon_average_daily_users():
 
     kwargs = {'id_field': 'pk'}
     if waffle.switch_is_active('use-bigquery-for-addon-adu'):
-        d = get_addons_and_average_daily_users_from_bigquery()
+        # BigQuery does not have data for add-ons with type other than those in
+        # `ADDON_TYPES_WITH_STATS` so we use download counts instead.
+        # See: https://github.com/mozilla/addons-server/issues/14609
+        counts = list(
+            Addon.objects
+            .exclude(type__in=amo.ADDON_TYPES_WITH_STATS)
+            .exclude(guid__isnull=True)
+            .exclude(guid__exact='')
+            .annotate(count=Coalesce(Sum('downloadcount__count'), 0))
+            .values_list('guid', 'count')
+        )
+        counts += get_addons_and_average_daily_users_from_bigquery()
         # BigQuery stores GUIDs, not AMO primary keys.
         kwargs['id_field'] = 'guid'
     else:
@@ -50,13 +62,13 @@ def update_addon_average_daily_users():
             GROUP BY addon_id
             ORDER BY addon_id"""
         cursor.execute(q)
-        d = cursor.fetchall()
+        counts = cursor.fetchall()
         cursor.close()
 
     ts = [
         _update_addon_average_daily_users.subtask(
             args=[chunk], kwargs=kwargs
-        ) for chunk in chunked(d, 250)
+        ) for chunk in chunked(counts, 250)
     ]
     group(ts).apply_async()
 

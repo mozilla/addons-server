@@ -28,6 +28,9 @@
     {% endfor %}
   </ol>
   {% if versions_flagged_by_scanners %}
-    <strong class="risk-high">{{ _('{num} versions flagged by scanners on other pages.')|format_html(num=versions_flagged_by_scanners) }}</strong>
+    <strong class="other-needs-human-review risk-high">{{ _('{num} versions flagged by scanners on other pages.')|format_html(num=versions_flagged_by_scanners) }}</strong>
+  {% endif %}
+  {% if versions_pending_rejection %}
+    <strong class="other-pending-rejection risk-high">{{ _('{num} versions pending rejection on other pages.')|format_html(num=versions_pending_rejection) }}</strong>
   {% endif %}
 {% endif %}

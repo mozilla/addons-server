@@ -348,7 +348,8 @@ class ReviewHelper(object):
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED and
             self.addon.current_version and
-            self.addon.current_version.was_auto_approved)
+            self.addon.current_version.was_auto_approved and not
+            self.addon.current_version.pending_rejection)
 
         if is_recommendable:
             is_admin_needed = (
@@ -374,6 +375,21 @@ class ReviewHelper(object):
                 self.addon.needs_admin_content_review or
                 self.addon.needs_admin_code_review)
             permission = amo.permissions.ADDONS_REVIEW
+
+        # Unless there’s a new version that needs reviewing, regular reviewers
+        # can’t perform approval or rejection actions on add-ons that have a
+        # pending rejection in the same channel.
+        if self.version and not is_admin_needed:
+            most_recent_version_pending_rejection = self.addon.versions.filter(
+                channel=self.version.channel,
+                versionreviewerflags__pending_rejection__isnull=False).last()
+            # self.version is always the latest version available in this
+            # channel, so if it's the same as the last one pending rejection,
+            # that means no new version were posted and only admins can perform
+            # reviews at this time.
+            if (most_recent_version_pending_rejection and
+                    most_recent_version_pending_rejection == self.version):
+                is_admin_needed = True
 
         assert permission is not None
 

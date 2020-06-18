@@ -412,12 +412,12 @@ class AddonBrowseVersionSerializer(
 
     def get_validation_url_json(self, obj):
         return absolutify(reverse('devhub.json_file_validation', args=[
-            obj.addon.slug, obj.current_file.id
+            obj.addon.pk, obj.current_file.id
         ]))
 
     def get_validation_url(self, obj):
         return absolutify(reverse('devhub.file_validation', args=[
-            obj.addon.slug, obj.current_file.id
+            obj.addon.pk, obj.current_file.id
         ]))
 
     def get_has_been_validated(self, obj):
