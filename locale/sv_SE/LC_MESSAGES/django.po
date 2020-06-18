@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 18:46+0000\n"
+"PO-Revision-Date: 2020-06-18 02:02+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -511,7 +511,7 @@ msgstr "Alla ändringar som görs kommer INTE att uppdateras i den gamla blockli
 
 #, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "Ta bort dubbla %(name)s"
+msgstr "Ta bort flera %(name)s"
 
 msgid "Home"
 msgstr "Hem"
