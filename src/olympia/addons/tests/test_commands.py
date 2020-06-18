@@ -12,7 +12,7 @@ import pytest
 from olympia import amo
 from olympia.addons.management.commands import (
     fix_langpacks_with_max_version_star, process_addons)
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, DeniedGuid
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
@@ -486,15 +486,22 @@ class TestDeleteObsoleteAddons(TestCase):
         self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
         self.dictionary = addon_factory(type=amo.ADDON_DICT)
         # And some obsolete ones
-        addon_factory(type=2)  # _ADDON_THEME
-        addon_factory().update(type=amo.ADDON_LPADDON)
-        addon_factory().update(type=amo.ADDON_PLUGIN)
-        addon_factory(type=9)  # _ADDON_PERSONA
-        addon_factory().update(type=11)  # webapp
+        self.xul_theme = addon_factory(type=2)  # _ADDON_THEME
+        self.lpaddon = addon_factory()
+        self.lpaddon.update(type=amo.ADDON_LPADDON)
+        self.plugin = addon_factory()
+        self.plugin.update(type=amo.ADDON_PLUGIN)
+        self.lwt = addon_factory(type=9, guid=None)  # _ADDON_PERSONA
+        self.webapp = addon_factory()
+        self.webapp.update(type=11)  # webapp
 
         assert Addon.unfiltered.count() == 8
 
     def test_hard(self):
+        # add it already to check that the conflict is ignored
+        DeniedGuid.objects.create(guid=self.xul_theme.guid)
+        DeniedGuid.objects.all().count() == 1
+
         call_command(
             'process_addons', task='delete_obsolete_addons', with_deleted=True)
 
@@ -502,6 +509,14 @@ class TestDeleteObsoleteAddons(TestCase):
         assert Addon.unfiltered.get(id=self.extension.id)
         assert Addon.unfiltered.get(id=self.static_theme.id)
         assert Addon.unfiltered.get(id=self.dictionary.id)
+
+        # check the guids have been added to DeniedGuid
+        DeniedGuid.objects.all().count() == 4
+        assert DeniedGuid.objects.get(guid=self.xul_theme.guid)
+        assert DeniedGuid.objects.get(guid=self.lpaddon.guid)
+        assert DeniedGuid.objects.get(guid=self.plugin.guid)
+        # no self.lwt as it didn't have a guid
+        assert DeniedGuid.objects.get(guid=self.webapp.guid)
 
     def test_hard_with_already_deleted(self):
         Addon.unfiltered.update(status=amo.STATUS_DELETED)
