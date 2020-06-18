@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 06:21+0000\n"
+"PO-Revision-Date: 2020-06-18 07:05+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -418,9 +418,8 @@ msgstr "Du må oppgi et objekt med {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Ugyldig pk eller slugg «%s» - objektet finnes ikke."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Mer informasjon er forespurt"
+msgstr "Bekreftelse for API-nøkler for utviklere"
 
 msgid "Application Versions"
 msgstr "Applikasjonversjoner"
@@ -803,13 +802,11 @@ msgstr "{file} ble signert."
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "Tilleggs-ID {0} med GUID {1} er slettet"
 
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} er foreløpig gjennomgått."
+msgstr "{addon} migrert fra foreløpig."
 
-#, fuzzy
 msgid "Reply by developer on {addon} {version}."
-msgstr "Kommentar på {addon} {version}."
+msgstr "Svar fra utvikler på {addon} {version}."
 
 msgid "Developer Reply"
 msgstr "Utviklersvar"
@@ -820,16 +817,14 @@ msgstr "Svar fra gjennomgåingsperson for {addon} {version}."
 msgid "Reviewer Reply"
 msgstr "Svar fra gjennomgåingsperson"
 
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Kommentar på {addon} {version}."
+msgstr "Godkjenningsmerknader er endret for {addon} {version}."
 
 msgid "Approval notes changed"
 msgstr "Godkjenningsmerknader endret"
 
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Kommentar på {addon} {version}."
+msgstr "Kildekode lastet opp for {addon} {version}."
 
 msgid "Source code uploaded"
 msgstr "Kildekode lastet opp"
