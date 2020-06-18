@@ -414,8 +414,10 @@ class AddonGitRepository(object):
 
             # Fetch all files and strip the absolute path but keep the
             # `extracted/` prefix
-            files = get_all_files(worktree.extraction_target_path,
-                                  worktree.path, '')
+            files = get_all_files(
+                worktree.extraction_target_path,
+                worktree.path,
+                '')
 
             # Make sure the index is up to date
             worktree.repo.index.read()
