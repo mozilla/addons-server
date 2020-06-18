@@ -1407,7 +1407,10 @@ class TestQueueBasics(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
-        expected.append(reverse('reviewers.queue_expired_info_requests'))
+        expected.extend([
+            reverse('reviewers.queue_expired_info_requests'),
+            reverse('reviewers.queue_pending_rejection'),
+        ])
         assert links == expected
 
     @override_settings(DEBUG=True, LESS_PREPROCESS=False)
@@ -2462,7 +2465,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=0, total_addons=5, total_queues=2)
+            'Content Review', tab_position=0, total_addons=5, total_queues=3)
 
     def test_pending_rejection_filtered_out(self):
         self.login_with_permission()
@@ -2596,7 +2599,7 @@ class TestScannersReviewQueue(QueueTest):
 
         self._test_queue_layout(
             'Flagged By Scanners',
-            tab_position=2, total_addons=4, total_queues=10, per_page=1)
+            tab_position=2, total_addons=4, total_queues=11, per_page=1)
 
 
 class TestPendingRejectionReviewQueue(QueueTest):
@@ -8012,4 +8015,4 @@ class TestMadQueue(QueueTest):
         self.grant_permission(self.user, 'Reviews:Admin')
 
         self._test_queue_layout('Flagged for Human Review', tab_position=2,
-                                total_addons=3, total_queues=4, per_page=1)
+                                total_addons=3, total_queues=5, per_page=1)
