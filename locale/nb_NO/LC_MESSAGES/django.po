@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 07:16+0000\n"
+"PO-Revision-Date: 2020-06-18 07:33+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -919,9 +919,8 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Bruker {user} begrenset."
+msgstr "Økt(er) tilbakestilt for bruker {user}."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
@@ -978,9 +977,8 @@ msgstr "Utvikler"
 msgid "Extension"
 msgstr "Utvidelse"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Oppdatert gjennomgang av komplett tema"
+msgstr "Foreldet fullstendig tema"
 
 msgid "Dictionary"
 msgstr "Ordbok"
