@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 07:05+0000\n"
+"PO-Revision-Date: 2020-06-18 07:13+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -829,9 +829,8 @@ msgstr "Kildekode lastet opp for {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Kildekode lastet opp"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Kommentar på {addon} {version}."
+msgstr "Auto-godkjenning bekreftet for {addon} {version}."
 
 msgid "Auto-Approval confirmed"
 msgstr "Automatisk godkjennelse bekreftet"
@@ -860,43 +859,35 @@ msgstr "{addon} informasjonsforespørsel endert eller tatt vekk av admin."
 msgid "Information request altered"
 msgstr "Informasjonsforespørsel endert"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Kommentar på {addon} {version}."
+msgstr "Informasjonsforespørsel fjernet av utvikleren for {addon} {version}."
 
 msgid "Information request removed"
 msgstr "Informasjonsforespørsel fjernet"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} tillegsgjennomgang av admin er forespurt."
+msgstr "{addon} {version} tillegsgjennomgang av admin forespurt."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Superreview er forespurt"
+msgstr "Tillegsgjennomgang av admin er forespurt"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "{addon} {version} gjennomgang er forespurt."
+msgstr "{addon} {version} innholdsegjennomgang av admin forespurt."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Superreview er forespurt"
+msgstr "Innholdsegjennomgang av admin forespurt"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "{addon} {version} gjennomgang er forespurt."
+msgstr "{addon} {version} temagjennomgang av admin forespurt."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Gjennomgang er forespurt"
+msgstr "Temagjennomgang av admin forespurt"
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} {version} er foreløpig gjennomgått."
+msgstr "{addon} ble migrert fra et lettvektstema."
 
-#, fuzzy
 msgid "User {user} api key reset."
-msgstr "Bruker {user} begrenset."
+msgstr "Tilbakestilling av API-nøkkel for bruker {user}."
 
 msgid "Block for {0} added to Blocklist."
 msgstr ""
@@ -910,9 +901,8 @@ msgstr ""
 msgid "Block edited"
 msgstr ""
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Versjon {0} slettet fra {addon}."
+msgstr "Blokkering for {0} slettet fra blokkeringslisten."
 
 msgid "Block deleted"
 msgstr "Blokk slettet"
