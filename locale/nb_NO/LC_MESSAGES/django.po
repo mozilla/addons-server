@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 07:33+0000\n"
+"PO-Revision-Date: 2020-06-18 07:35+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1116,9 +1116,8 @@ msgstr "Annet"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
 
-#, fuzzy
 msgid "Device Features & Location"
-msgstr "Redaktør-eskalering"
+msgstr "Enhetsfunksjoner og plassering"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
 msgstr ""
@@ -1451,21 +1450,17 @@ msgstr "Tilleggsvurderingsmoderasjon tilbakestilt"
 msgid "Add-on Content Review"
 msgstr "Ingen anmeldelser"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "Full gjennomgang av utvidelse"
+msgstr "Tillegsgjennomgang (høyest risiko)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Full gjennomgang av utvidelse"
+msgstr "Tillegsgjennomgang (høy risiko)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Full gjennomgang av utvidelse"
+msgstr "Tillegsgjennomgang (middels risiko)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Full gjennomgang av utvidelse"
+msgstr "Tillegsgjennomgang (lav risiko)"
 
 msgid "Level 1"
 msgstr "Level 1"
@@ -1536,9 +1531,8 @@ msgstr "Lavkvalitet, strukket eller tomt bilde"
 msgid "Header image alignment problem"
 msgstr "Justeringsproblem med toppbilde"
 
-#, fuzzy
 msgid "No action"
-msgstr "Flere innstillinger"
+msgstr "Ingen handling"
 
 msgid "Flag for human review"
 msgstr "Flagg for at noen skal ta en gjennomgang"
