@@ -91,7 +91,7 @@ class WidgetCharField(models.CharField):
 
 class PrimaryHeroImage(models.Model):
     custom_image = models.ImageField(
-        upload_to='code/storage/homepage/hero-featured-image',
+        upload_to='hero-featured-image/',
         blank=True)
 
     def __str__(self):
@@ -107,7 +107,7 @@ class PrimaryHeroImage(models.Model):
 
 class PrimaryHero(ModelBase):
     select_image = models.ForeignKey(
-        PrimaryHeroImage, blank=True, null=True, on_delete=models.SET_NULL)
+        PrimaryHeroImage, null=True, on_delete=models.SET_NULL)
     image = WidgetCharField(
         choices=DirImageChoices(path=FEATURED_IMAGE_PATH), max_length=255,
         widget=ImageChoiceWidget, blank=True)
