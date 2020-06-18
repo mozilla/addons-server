@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 13:43+0000\n"
+"PO-Revision-Date: 2020-06-18 14:02+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -475,9 +475,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "చెల్లని వెర్షను అవధి."
+msgstr "చెల్లని వెర్షను"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -555,7 +554,6 @@ msgstr "వాడుకరులు"
 msgid "Edit Block"
 msgstr ""
 
-#, fuzzy
 msgid "versions"
 msgstr "వెర్షన్లు"
 
@@ -4869,7 +4867,6 @@ msgid "They add features to Firefox to make browsing faster, safer, or just plai
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
 msgstr "పొడగింతలన్నీ చూడండి"
 
