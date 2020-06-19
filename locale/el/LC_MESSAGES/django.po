@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-19 13:30+0000\n"
+"PO-Revision-Date: 2020-06-19 13:51+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3156,10 +3156,12 @@ msgid "Read more about the source code review policy."
 msgstr "Διαβάστε περισσότερα σχετικά με τη πολιτική κριτικής πηγαίου κώδικα."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Αναπτύξτε τις καλύτερες επεκτάσεις και θέματα"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Είτε δημιουργείτε μια επέκταση για πρώτη φορά, είτε τελειοποιείτε, είτε μεταφέρετε μια υπάρχουσα επέκταση ή θέμα, είτε αναπτύσσετε μια ειδική εταιρική λύση, έχουμε τους πόρους για να σας "
+"υποστηρίξουμε."
 
 # Plural in this context means many of the add-on type
 #, fuzzy
