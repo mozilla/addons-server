@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-19 13:21+0000\n"
+"PO-Revision-Date: 2020-06-19 13:30+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1139,7 +1139,7 @@ msgstr ""
 "αυτές και πολλά άλλα."
 
 msgid "Web Development"
-msgstr "Προγραμματισμός ιστού"
+msgstr "Προγραμματισμός web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
@@ -1255,7 +1255,7 @@ msgid "Download Firefox themes that celebrate style of all forms—patterns, flo
 msgstr "Κάντε λήψη θεμάτων για το Firefox, που εκφράζουν όλα τα είδη του στυλ — μοτίβα, φλοράλ, υφές, μοντέλα και πολλά άλλα."
 
 msgid "Film and TV"
-msgstr "Κινηματογράφος & τηλεόραση"
+msgstr "Ταινίες & τηλεόραση"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
@@ -3744,9 +3744,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Προσαρμογή κινήσεων ποντικιού {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Ανακαλύψτε ένα νέο τρόπο για πλοήγηση με 50+ χρήσιμες κινήσεις ποντικιού."
+msgstr "Προσαρμογή κινήσεων ποντικιού. Ανακαλύψτε νέους τρόπους πλοήγησης με 50+ ρυθμίσεις."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4991,7 +4990,7 @@ msgstr "Οι επεκτάσεις είναι σαν εφαρμογές για τ
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Προσθέτουν λειτουργίες στο Firefox για ταχύτερη, ασφαλέστερη και πιο διασκεδιαστική περιήγηση."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -4999,15 +4998,15 @@ msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Εργαλεία οργάνωσης καρτελών"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Απόρρητο πέρα από επεκτάσεις"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Βελτίωση μέσων στο Firefox"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
