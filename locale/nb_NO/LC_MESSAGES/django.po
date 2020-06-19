@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 22:17+0000\n"
+"PO-Revision-Date: 2020-06-19 16:12+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -6096,9 +6096,8 @@ msgstr ""
 msgid "Download"
 msgstr "Last ned"
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Flere utvidelser"
+msgstr "Ikke autogodkjent fordi"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
@@ -6129,11 +6128,10 @@ msgid_plural "Auto Approved ({0})"
 msgstr[0] "Automatisk godkjent ({0})"
 msgstr[1] "Automatisk godkjent ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Mer informasjon er forespurt"
-msgstr[1] "Mer informasjon er forespurt"
+msgstr[0] "Utløpt informasjonsforespørsel ({0})"
+msgstr[1] "Utløpte informasjonsforespørsler ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6197,13 +6195,12 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Utvikler"
+msgstr "Tilbakestill rapport"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Feil versjonsområde."
+msgstr "Ugyldig parameter «%s»."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
@@ -6469,9 +6466,8 @@ msgstr ""
 msgid "Legal Notices"
 msgstr ""
 
-#, fuzzy
 msgid "Report Trademark Abuse"
-msgstr "Rapporter misbruk"
+msgstr "Rapporter misbruk av varemerker"
 
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
@@ -6482,9 +6478,8 @@ msgstr ""
 msgid "Site Status"
 msgstr ""
 
-#, fuzzy
 msgid "Report a bug"
-msgstr "Rapporter misbruk"
+msgstr "Rapporter en feil"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
@@ -6585,9 +6580,8 @@ msgstr ""
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr ""
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Siste versjon:"
+msgstr "Tilbakestill økten"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
