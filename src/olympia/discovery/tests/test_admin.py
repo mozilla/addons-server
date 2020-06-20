@@ -4,7 +4,7 @@ from pyquery import PyQuery as pq
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import django_reverse, reverse
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.models import PrimaryHero, SecondaryHero, SecondaryHeroModule
+from olympia.hero.models import PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule
 
 
 class TestDiscoveryAdmin(TestCase):
@@ -269,6 +269,7 @@ class TestDiscoveryAdmin(TestCase):
     def test_can_add_primary_hero_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
         item = DiscoveryItem.objects.create(addon=addon)
+        image = PrimaryHeroImage.objects.create(custom_image='foo.jpg')
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
         )
@@ -291,6 +292,7 @@ class TestDiscoveryAdmin(TestCase):
                 'recommendable': True,
                 'primaryhero-0-gradient_color': '#054096',
                 'primaryhero-0-image': 'Ubo@2x.jpg',
+                'primaryhero-0-select_image': image.pk,
             }),
             follow=True)
         assert response.status_code == 200
@@ -301,7 +303,9 @@ class TestDiscoveryAdmin(TestCase):
         assert item.custom_addon_name == 'Xäxâxàxaxaxa !'
         assert item.recommendable is True
         hero = PrimaryHero.objects.last()
+        hero.select_image == PrimaryHeroImage.objects.last()
         assert hero.image == 'Ubo@2x.jpg'
+        assert hero.select_image.pk == image.pk
         assert hero.gradient_color == '#054096'
         assert hero.disco_addon == item
 
