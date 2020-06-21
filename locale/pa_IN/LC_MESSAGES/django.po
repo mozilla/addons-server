@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-21 19:57+0000\n"
+"PO-Revision-Date: 2020-06-21 20:37+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4175,9 +4175,8 @@ msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ਦੇ ਨਾਲ {end_sub_heading} ਆਪਣੀ ਪਰਦੇਦਾਰੀ ਨੂੰ ਬਦਲੋ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr "Firefox ਵਿਚ ਬਿਲਟ-ਇਨ ਗੋਪਨੀਯਤਾ ਸੈਟਿੰਗ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਅਨੁਕੂਲਿਤ ਕਰੋ।"
+msgstr "Firefox ਵਿਚ ਮੌਜਦਾ ਪਰਦੇਦਾਰੀ ਸੈਟਿੰਗਾਂ ਨੂੰ ਕਸਟਮਾਈਜ਼ ਕਰਨ ਲਈ ਸਿੱਧਾ ਮਾਰਗ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6793,14 +6792,13 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਸਵੀਕਾਰ ਕਰੋ। ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ ਵੀ ਸਾਡੇ ਗੋਪਨੀਯਤਾ ਨੋਟਿਸ ਨਾਲ "
-"ਜੁੜਦਾ ਹੈ ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
+"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਸਵੀਕਾਰ ਕਰੋ। ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ ਵੀ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ "
+"ਜੁੜਦਾ ਹੈ, ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
 
-#, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
-"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਸਵੀਕਾਰ ਕਰੋ। ਫਾਇਰਫਾਕਸ ਐਡਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ ਵੀ ਸਾਡੇ ਗੋਪਨੀਯਤਾ ਨੋਟਿਸ ਨਾਲ "
-"ਜੁੜਦਾ ਹੈ ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
+"ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਸਵੀਕਾਰ ਕਰੋ। ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ ਵੀ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ "
+"ਜੁੜਦਾ ਹੈ, ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
 
 msgid "User Restriction History"
 msgstr "ਉਪਭੋਗਤਾ ਪ੍ਰਤੀਬੰਧਨ ਅਤੀਤ"
