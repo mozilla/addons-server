@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-22 21:03+0000\n"
+"PO-Revision-Date: 2020-06-22 22:33+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -3705,19 +3705,19 @@ msgstr "Juster sidestørrelse {start_sub_heading}med {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "En enkel måte å justere størrelsen på sidens tekst—eller til og med forstørre selve siden."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Blokker usynlige sporere {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Stopp sporere og lær mer om dem."
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Legg igjen få digitale spor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
@@ -3729,23 +3729,23 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Blokker e-postannonser {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Få mer skjermplass ved å fjerne annonser fra din nettbaserte innboks."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Finn dine faner {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Håndtere dine åpne faner i en ryddig sidestolpe."
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Unngå lumske sporere og begrensninger {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
@@ -3753,15 +3753,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Oppdater faner {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Oppdater automatisk faner basert på tidsintervaller du angir."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Separer dine liv på nettet {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
@@ -3769,15 +3769,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Stopp sporere {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Få et ytterlige lag av sporingsbeskyttelse når du surfer på nettet."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Les ePub-filer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
@@ -3785,7 +3785,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Forbedre din YouTube-opplevelse {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
@@ -3793,7 +3793,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Spor sporere {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
@@ -3801,7 +3801,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Endre din proxyserver {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
@@ -3809,15 +3809,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Kontroller videoavspilling {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Forbedre seeropplevelsen din ved å justere videohastigheten og mer."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Surf sikkert {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
@@ -3825,19 +3825,19 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Handle og spar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Få de beste kupongene, som automatisk blir brukt på handlekurven din i kassen."
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Forbedre Reddit {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Forandre måten du surfer Reddit på ved å bruke tagger og mer."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
