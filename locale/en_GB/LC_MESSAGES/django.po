@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-12 21:37+0000\n"
-"Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
+"PO-Revision-Date: 2020-06-20 17:36+0000\n"
+"Last-Translator: goddard.lewis <goddard.lewis@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
@@ -6066,9 +6066,8 @@ msgstr "Dismiss this announcement"
 msgid "Files in this version:"
 msgstr "Files in this version:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Files in this version:"
+msgstr "Browse all files in this version"
 
 msgid "Contents"
 msgstr "Contents"
@@ -6420,16 +6419,14 @@ msgstr "Loading the latest data&hellip;"
 msgid "No data available."
 msgstr "No data available."
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "This dashboard is currently <b>private</b>."
+msgstr "This dashboard is <b>private</b>."
 
 msgid "Application usage by Date"
 msgstr "Application usage by Date"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "User languages by Date"
+msgstr "User countries by Date"
 
 msgid "Downloaded by Date"
 msgstr "Downloaded by Date"
