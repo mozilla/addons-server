@@ -12,9 +12,9 @@ watchdog[watchmedo]==0.10.2 \
 parso==0.7.0 \
     --hash=sha256:158c140fc04112dc45bca311633ae5033c2c2a7b732fa33d0955bad8152a8dd0 \
     --hash=sha256:908e9fae2144a076d72ae4e25539143d40b8e3eafbaeae03c1bfe226f4cdf12c
-jedi==0.17.0 \
-    --hash=sha256:cd60c93b71944d628ccac47df9a60fec53150de53d42dc10a7fc4b5ba6aae798 \
-    --hash=sha256:df40c97641cb943661d2db4c33c2e1ff75d491189423249e989bcea4464f3030
+jedi==0.17.1 \
+    --hash=sha256:1ddb0ec78059e8e27ec9eb5098360b4ea0a3dd840bedf21415ea820c21b40a22 \
+    --hash=sha256:807d5d4f96711a2bcfdd5dfa3b1ae6d09aa53832b182090b222b5efb81f52f63
 backcall==0.2.0 \
     --hash=sha256:fbbce6a29f263178a1f7915c1940bde0ec2b2a967566fe1c65c1dfb7422bd255 \
     --hash=sha256:5cbdbf27be5e7cfadb448baf0aa95508f91f2bbc6c6437cd9cd06e2a4c215e1e
