@@ -4,7 +4,8 @@ from pyquery import PyQuery as pq
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import django_reverse, reverse
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.models import PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule
+from olympia.hero.models import (
+    PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
 
 
 class TestDiscoveryAdmin(TestCase):
