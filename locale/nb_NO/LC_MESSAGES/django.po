@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-20 14:52+0000\n"
+"PO-Revision-Date: 2020-06-22 13:20+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -3146,7 +3146,7 @@ msgid "Promote"
 msgstr "Promoter"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Knappen «Last ned tillegget»"
 
 msgid "Recommended Extensions program"
 msgstr ""
@@ -3191,14 +3191,14 @@ msgid "Learn more about the developer community"
 msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Oppført på denne siden etter å ha passert kodegjennomgang. Automatiske oppdateringer er håndtert av denne siden."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Vis alle bidrag"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Her kan du se og håndtere dine tillegg og tema. For å publisere ditt første tillegg, klikk «Send inn ditt første tillegg» eller «Send inn ditt første tema»."
 
 msgid "Submit Your First Add-on"
 msgstr "Send inn ditt første tillegg"
