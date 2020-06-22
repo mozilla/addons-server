@@ -140,7 +140,7 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         return super().has_delete_permission(request=request, obj=obj)
 
 
-class PrimaryHeroImageShelf(PrimaryHeroImage):
+class PrimaryHeroImageUpload(PrimaryHeroImage):
     """Just a proxy class to have all the hero related objects in one
     place under Discovery in django admin."""
 
@@ -159,5 +159,5 @@ class SecondaryHeroShelf(SecondaryHero):
 
 
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
-admin.site.register(PrimaryHeroImageShelf, PrimaryHeroImageAdmin)
+admin.site.register(PrimaryHeroImageUpload, PrimaryHeroImageAdmin)
 admin.site.register(SecondaryHeroShelf, SecondaryHeroAdmin)

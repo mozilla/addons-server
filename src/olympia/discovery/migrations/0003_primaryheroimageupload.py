@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='PrimaryHeroImageShelf',
+            name='PrimaryHeroImageUpload',
             fields=[
             ],
             options={
