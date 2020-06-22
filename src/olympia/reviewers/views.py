@@ -1156,8 +1156,10 @@ def theme_background_images(request, version_id):
 
 
 @any_reviewer_required
-def json_file_validation(request, addon_id, file_id):
-    addon = get_object_or_404(Addon.unfiltered.id_or_slug(addon_id))
+@reviewer_addon_view_factory
+def json_file_validation(request, addon, file_id):
+    if not acl.is_reviewer(request, addon):
+        raise PermissionDenied
     file = get_object_or_404(File, version__addon=addon, id=file_id)
     try:
         result = file.validation

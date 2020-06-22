@@ -25,6 +25,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
+from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.accounts.serializers import BaseUserSerializer
@@ -7950,13 +7951,8 @@ class TestValidationJson(TestCase):
         self.file_validation = FileValidation.objects.get(pk=1)
         self.file = self.file_validation.file
         self.addon = self.file.version.addon
-        args = [self.addon.pk, self.file.id]
+        args = [self.addon.slug, self.file.id]
         self.url = reverse('reviewers.json_file_validation', args=args)
-
-    def test_non_reviewer_cannot_see_json_results(self):
-        self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
-        assert self.client.head(self.url, follow=False).status_code == 403
 
     def test_reviewer_can_see_json_results(self):
         self.client.logout()
@@ -7983,4 +7979,24 @@ class TestValidationJson(TestCase):
             'Addons:ReviewUnlisted')
 
         self.addon.delete()
-        assert self.client.head(self.url, follow=False).status_code == 200
+        # Must use pk for a deleted add-on as it has no slug.
+        args = [self.addon.pk, self.file.id]
+        url = reverse('reviewers.json_file_validation', args=args)
+        assert self.client.head(url, follow=False).status_code == 200
+
+    def test_non_reviewer_cannot_see_json_results(self):
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        assert self.client.head(self.url, follow=False).status_code == 403
+
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
+    def test_wrong_type_of_reviewer_cannot_see_json_results(self):
+        self.client.logout()
+        assert self.client.login(email='reviewer@mozilla.com')
+        assert self.client.head(self.url, follow=False).status_code == 403
+
+    def test_non_unlisted_reviewer_cannot_see_results_for_unlisted(self):
+        self.client.logout()
+        assert self.client.login(email='reviewer@mozilla.com')
+        self.make_addon_unlisted(self.addon)
+        assert self.client.head(self.url, follow=False).status_code == 404
