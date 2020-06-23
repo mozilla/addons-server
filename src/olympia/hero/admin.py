@@ -54,7 +54,7 @@ class PrimaryHeroImageAdmin(admin.ModelAdmin):
         css = {
             'all': ('css/admin/discovery.css',)
         }
-    list_display = ('preview_image',)
+    list_display = ('preview_image', 'custom_image')
     actions = ['delete_selected']
     readonly_fields = ('preview_image',)
 

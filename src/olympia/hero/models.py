@@ -92,15 +92,18 @@ class WidgetCharField(models.CharField):
 class PrimaryHeroImage(models.Model):
     custom_image = models.ImageField(
         upload_to='hero-featured-image/',
-        blank=True)
+        blank=True, verbose_name='custom image path')
 
     def __str__(self):
         return f'{self.custom_image}'
 
     def preview_image(self):
-        return mark_safe('<img class="primaryhero-preview" src="{}" />'.format(
-            self.custom_image.url)
-        )
+        if self.custom_image:
+            return mark_safe('<img class="primaryhero-preview" src="{}" />'.format(
+                self.custom_image.url)
+            )
+        else: 
+            return None
     preview_image.short_description = "Image"
     preview_image.allow_tags = True
 
