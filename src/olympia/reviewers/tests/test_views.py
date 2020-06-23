@@ -7951,7 +7951,7 @@ class TestValidationJson(TestCase):
         self.file_validation = FileValidation.objects.get(pk=1)
         self.file = self.file_validation.file
         self.addon = self.file.version.addon
-        args = [self.addon.slug, self.file.id]
+        args = [self.addon.pk, self.file.id]
         self.url = reverse('reviewers.json_file_validation', args=args)
 
     def test_reviewer_can_see_json_results(self):
@@ -7979,10 +7979,7 @@ class TestValidationJson(TestCase):
             'Addons:ReviewUnlisted')
 
         self.addon.delete()
-        # Must use pk for a deleted add-on as it has no slug.
-        args = [self.addon.pk, self.file.id]
-        url = reverse('reviewers.json_file_validation', args=args)
-        assert self.client.head(url, follow=False).status_code == 200
+        assert self.client.head(self.url, follow=False).status_code == 200
 
     def test_non_reviewer_cannot_see_json_results(self):
         self.client.logout()
@@ -7999,4 +7996,4 @@ class TestValidationJson(TestCase):
         self.client.logout()
         assert self.client.login(email='reviewer@mozilla.com')
         self.make_addon_unlisted(self.addon)
-        assert self.client.head(self.url, follow=False).status_code == 404
+        assert self.client.head(self.url, follow=False).status_code == 403

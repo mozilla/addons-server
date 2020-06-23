@@ -1156,11 +1156,14 @@ def theme_background_images(request, version_id):
 
 
 @any_reviewer_required
-@reviewer_addon_view_factory
-def json_file_validation(request, addon, file_id):
-    if not acl.is_reviewer(request, addon):
-        raise PermissionDenied
+def json_file_validation(request, addon_id, file_id):
+    addon = get_object_or_404(Addon.unfiltered.id_or_slug(addon_id))
     file = get_object_or_404(File, version__addon=addon, id=file_id)
+    if file.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if not acl.check_unlisted_addons_reviewer(request):
+            raise PermissionDenied
+    elif not acl.is_reviewer(request, addon):
+        raise PermissionDenied
     try:
         result = file.validation
     except File.validation.RelatedObjectDoesNotExist:
