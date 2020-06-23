@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 import base64
+import datetime
 import json
 from unittest import mock
 
@@ -214,13 +214,13 @@ class TestLoginUserAndRegisterUser(TestCase):
         assert self.user.auth_id
 
     def test_register_user(self):
+        identity = {'email': 'new@yeahoo.com', 'uid': '424242'}
         with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
-            views.register_user(self.__class__, self.request,
-                                {'email': 'new@yeahoo.com', 'uid': '424242'})
+            views.register_user(identity)
         assert UserProfile.objects.count() == 2
         user = UserProfile.objects.get(email='new@yeahoo.com')
         assert user.fxa_id == '424242'
-        self.login_mock.assert_called_with(self.request, user)
+        views.login_user(self.__class__, self.request, user, identity)
         self.assertCloseToNow(user.last_login)
         assert user.last_login_ip == '8.8.8.8'
         incr_mock.assert_called_with('accounts.account_created_from_fxa')
@@ -233,6 +233,18 @@ class TestLoginUserAndRegisterUser(TestCase):
         assert self.user.last_login_ip != user.last_login_ip
         assert self.user.fxa_id != user.fxa_id
         assert self.user.email != user.email
+
+    def test_reregister_user(self):
+        self.user.update(deleted=True)
+        with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
+            views.reregister_user(self.user)
+        assert UserProfile.objects.count() == 1
+        user = self.user.reload()
+        assert not user.deleted
+        views.login_user(self.__class__, self.request, user, self.identity)
+        self.assertCloseToNow(user.last_login)
+        assert user.last_login_ip == '8.8.8.8'
+        incr_mock.assert_called_with('accounts.account_created_from_fxa')
 
 
 class TestFindUser(TestCase):
@@ -260,11 +272,17 @@ class TestFindUser(TestCase):
         with self.assertRaises(UserProfile.MultipleObjectsReturned):
             views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
 
-    def test_find_user_deleted(self):
+    def test_find_user_banned(self):
         UserProfile.objects.create(
-            fxa_id='abc', email='me@amo.ca', deleted=True)
+            fxa_id='abc', email='me@amo.ca', deleted=True,
+            banned=datetime.datetime.now())
         with self.assertRaises(PermissionDenied):
             views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
+
+    def test_find_user_deleted(self):
+        user = UserProfile.objects.create(
+            fxa_id='abc', email='me@amo.ca', deleted=True)
+        assert views.find_user({'uid': 'abc', 'email': 'you@amo.ca'}) == user
 
     def test_find_user_mozilla(self):
         task_user = user_factory(
@@ -764,6 +782,8 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         self.initialize_session({'fxa_state': self.fxa_state})
         self.login_user = self.patch('olympia.accounts.views.login_user')
         self.register_user = self.patch('olympia.accounts.views.register_user')
+        self.reregister_user = self.patch(
+            'olympia.accounts.views.reregister_user')
 
     def test_write_is_used(self, **params):
         with mock.patch('olympia.amo.models.use_primary_db') as use_primary_db:
@@ -778,6 +798,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert_url_equal(response['location'], '/')
         assert not self.login_user.called
         assert not self.register_user.called
+        assert not self.reregister_user.called
 
     def test_wrong_state(self):
         response = self.client.get(
@@ -787,6 +808,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         assert_url_equal(response['location'], '/')
         assert not self.login_user.called
         assert not self.register_user.called
+        assert not self.reregister_user.called
 
     def test_no_fxa_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
@@ -799,6 +821,28 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         assert not self.register_user.called
+        assert not self.reregister_user.called
+
+    def test_success_deleted_account_reregisters(self):
+        user = UserProfile.objects.create(
+            email='real@yeahoo.com', fxa_id='10', deleted=True)
+        identity = {u'email': u'real@yeahoo.com', u'uid': u'10'}
+        self.fxa_identify.return_value = identity
+        self.reregister_user.side_effect = (
+            lambda user: user.update(deleted=False))
+        response = self.client.get(
+            self.url, {'code': 'codes!!', 'state': self.fxa_state})
+        self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
+        assert self.login_user.called
+        assert not self.register_user.called
+        self.reregister_user.assert_called_with(user)
+        token = response.cookies['frontend_auth_token'].value
+        verify = WebTokenAuthentication().authenticate_token(token)
+        assert verify[0] == UserProfile.objects.get(fxa_id='10')
+
+    def test_success_deleted_account_reregisters_with_force_2fa_waffle(self):
+        self.create_switch('2fa-for-developers', active=True)
+        self.test_success_deleted_account_reregisters()
 
     def test_success_no_account_registers(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
@@ -806,14 +850,14 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
         self.register_user.side_effect = (
-            lambda sender, request, identity: UserProfile.objects.create(
+            lambda identity: UserProfile.objects.create(
                 username='foo', email='me@yeahoo.com', fxa_id='e0b6f'))
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state})
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.login_user.called
-        self.register_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, identity)
+        assert self.login_user.called
+        self.register_user.assert_called_with(identity)
+        assert not self.reregister_user.called
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == UserProfile.objects.get(username='foo')
@@ -841,9 +885,9 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 reverse('users.edit') + '?to=/go/here',
                 target_status_code=200)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.login_user.called
-        self.register_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, identity)
+        assert self.login_user.called
+        self.register_user.assert_called_with(identity)
+        assert not self.reregister_user.called
 
     def test_register_redirects_edit_absolute_to(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
@@ -866,9 +910,9 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 reverse('users.edit') + '?to=https://supersafe.com/go/here',
                 target_status_code=200)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.login_user.called
-        self.register_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, identity)
+        assert self.login_user.called
+        self.register_user.assert_called_with(identity)
+        assert not self.reregister_user.called
 
     def test_register_redirects_edit_ignores_to_when_unsafe(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
@@ -890,9 +934,9 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
                 reverse('users.edit'),  # No '?to=...'
                 target_status_code=200)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.login_user.called
-        self.register_user.assert_called_with(
-            views.AuthenticateView, mock.ANY, identity)
+        assert self.login_user.called
+        self.register_user.assert_called_with(identity)
+        assert not self.reregister_user.called
 
     def test_success_with_account_logs_in(self):
         user = UserProfile.objects.create(
@@ -909,11 +953,12 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         self.login_user.assert_called_with(
             views.AuthenticateView, mock.ANY, user, identity)
         assert not self.register_user.called
+        assert not self.reregister_user.called
 
     def test_banned_user_cant_log_in(self):
         UserProfile.objects.create(
             username='foobar', email='real@yeahoo.com', fxa_id='10',
-            deleted=True)
+            deleted=True, banned=datetime.datetime.now())
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
         response = self.client.get(
@@ -936,6 +981,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         self.login_user.assert_called_with(
             views.AuthenticateView, mock.ANY, user, identity)
         assert not self.register_user.called
+        assert not self.reregister_user.called
 
     def test_log_in_sets_fxa_data_and_redirects(self):
         user = UserProfile.objects.create(email='real@yeahoo.com')
@@ -953,6 +999,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
         self.login_user.assert_called_with(
             views.AuthenticateView, mock.ANY, user, identity)
         assert not self.register_user.called
+        assert not self.reregister_user.called
 
     def test_log_in_redirects_to_absolute_url(self):
         email = 'real@yeahoo.com'
@@ -1439,7 +1486,7 @@ class TestAccountViewSetDelete(TestCase):
         assert views.API_TOKEN_COOKIE not in response.cookies
         assert self.client.cookies[views.API_TOKEN_COOKIE].value == 'something'
 
-    def test_developers_cant_delete(self):
+    def test_developers_can_delete(self):
         self.client.login_api(self.user)
         addon = addon_factory(users=[self.user])
         assert self.user.is_developer and self.user.is_addon_developer
@@ -1449,32 +1496,20 @@ class TestAccountViewSetDelete(TestCase):
         self.client.cookies[views.API_TOKEN_COOKIE] = 'something'
 
         response = self.client.delete(self.url)
-        assert response.status_code == 400
-        assert b'You must delete all add-ons and themes' in response.content
-        assert not self.user.reload().deleted
-        assert views.API_TOKEN_COOKIE not in response.cookies
-        assert self.client.cookies[views.API_TOKEN_COOKIE].value == 'something'
-
-        addon.delete()
-        response = self.client.delete(self.url)
         assert response.status_code == 204
         assert self.user.reload().deleted
-        # Account was deleted so the cookies should have been cleared this time
+        assert addon.reload().is_deleted
+        # Account was deleted so the cookies should have been cleared
         assert response.cookies[views.API_TOKEN_COOKIE].value == ''
         assert self.client.cookies[views.API_TOKEN_COOKIE].value == ''
 
-    def test_theme_developers_cant_delete(self):
+    def test_theme_developers_can_delete(self):
         self.client.login_api(self.user)
         addon = addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
         assert self.user.is_developer and self.user.is_artist
 
         response = self.client.delete(self.url)
-        assert response.status_code == 400
-        assert b'You must delete all add-ons and themes' in response.content
-        assert not self.user.reload().deleted
-
-        addon.delete()
-        response = self.client.delete(self.url)
+        assert addon.reload().is_deleted
         assert response.status_code == 204
         assert self.user.reload().deleted
 

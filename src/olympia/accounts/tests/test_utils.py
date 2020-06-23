@@ -290,9 +290,9 @@ class TestProcessFxAEventDelete(TestCase):
         user = user_factory(fxa_id=self.fxa_id)
         process_fxa_event(self.body)
         user.reload()
-        assert user.email is None
+        assert user.email is not None
         assert user.deleted
-        assert user.fxa_id is None
+        assert user.fxa_id is not None
 
     @override_switch('fxa-account-delete', active=True)
     @mock.patch('olympia.accounts.utils.delete_user_event.delay')

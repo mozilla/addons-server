@@ -90,21 +90,18 @@ class UserEmailBoundField(forms.BoundField):
 
 class UserManager(BaseUserManager, ManagerBase):
 
-    def create_user(self, username, email, fxa_id=None, **kwargs):
-        # We'll send username=None when registering through FxA to generate
-        # an anonymous username.
+    def create_user(self, email, fxa_id=None, **kwargs):
         now = timezone.now()
         user = self.model(
-            username=username,
             email=email,
             fxa_id=fxa_id,
             last_login=now,
             **kwargs
         )
-        if username is None:
+        if not user.username:
             user.anonymize_username()
         log.info('Creating user with email {} and username {}'.format(
-            email, username))
+            email, user.username))
         user.save(using=self._db)
         return user
 
@@ -150,9 +147,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     banned = models.DateTimeField(null=True, editable=False)
 
     # Is the profile page for this account publicly viewable?
-    # Note: this is only used for API responses (thus addons-frontend) - all
-    # users's profile pages are publicly viewable on legacy frontend.
-    # TODO: Remove this note once legacy profile pages are removed.
     is_public = models.BooleanField(default=False, db_column='public')
 
     fxa_id = models.CharField(blank=True, null=True, max_length=128)
@@ -445,6 +439,20 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         if self.picture_type:
             self.update(picture_type=None)
 
+    def _anonymize(self):
+        self.picture_type = None
+        self.delete_picture()
+        # last_login_ip is kept, to be deleted later,
+        # in line with our data retention policies:
+        # https://github.com/mozilla/addons-server/issues/14494
+        self.biography = ''
+        self.display_name = None
+        self.homepage = ''
+        self.location = ''
+        self.deleted = True
+        self.auth_id = generate_auth_id()
+        self.anonymize_username()
+
     @classmethod
     def ban_and_disable_related_content_bulk(cls, users, move_files=False):
         """Admin method to ban users and disable the content they produced.
@@ -498,47 +506,25 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             user_responsible=core.get_user())
         # And then delete the users.
         for user in users:
-            user.picture_type = None
-            user.delete_picture()
             log.info(
-                f'User ({user}: <{user.email}>) is being partially '
+                f'User ({user}: <{user.email}>) is being '
                 'anonymized and banned.')
-            # We don't clear email or fxa_id when banning
             user.banned = datetime.now()
-            # last_login_ip is kept, deleted by clear_old_last_login_ip
-            # command after 6 months.
-            user.biography = ''
-            user.display_name = None
-            user.homepage = ''
-            user.location = ''
-            user.deleted = True
-            user.auth_id = generate_auth_id()
-            user.anonymize_username()
+            user._anonymize()
         cls.objects.bulk_update(users, fields=(
             'picture_type', 'banned', 'biography', 'display_name', 'homepage',
             'location', 'deleted', 'auth_id', 'username'))
 
-    def delete(self, hard=False, related_content=False, addon_msg=''):
-        self.picture_type = None
-        self.delete_picture()
-
+    def delete(self, hard=False, addon_msg=''):
         if hard:
+            # this is done in _anonymize() for soft deletes
+            self.picture_type = None
+            self.delete_picture()
             super(UserProfile, self).delete()
         else:
-            if related_content:
-                self._delete_related_content(addon_msg=addon_msg)
+            self._delete_related_content(addon_msg=addon_msg)
             log.info(f'User ({self}: <{self.email}>) is being anonymized.')
-            self.email = None
-            self.fxa_id = None
-            # last_login_ip is kept, deleted by clear_old_last_login_ip
-            # command after 6 months.
-            self.biography = ''
-            self.display_name = None
-            self.homepage = ''
-            self.location = ''
-            self.deleted = True
-            self.auth_id = generate_auth_id()
-            self.anonymize_username()
+            self._anonymize()
             self.save()
 
     def set_unusable_password(self):

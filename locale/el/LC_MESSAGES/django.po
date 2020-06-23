@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-16 09:02+0000\n"
+"PO-Revision-Date: 2020-06-22 09:42+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1078,7 +1078,7 @@ msgstr ""
 " και πολλά άλλα."
 
 msgid "Feeds, News & Blogging"
-msgstr "Ροές, ειδήσεις & ιστολόγια"
+msgstr "Ροές, ειδήσεις & blog"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
@@ -1139,7 +1139,7 @@ msgstr ""
 "αυτές και πολλά άλλα."
 
 msgid "Web Development"
-msgstr "Προγραμματισμός ιστού"
+msgstr "Προγραμματισμός web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
@@ -1255,7 +1255,7 @@ msgid "Download Firefox themes that celebrate style of all forms—patterns, flo
 msgstr "Κάντε λήψη θεμάτων για το Firefox, που εκφράζουν όλα τα είδη του στυλ — μοτίβα, φλοράλ, υφές, μοντέλα και πολλά άλλα."
 
 msgid "Film and TV"
-msgstr "Κινηματογράφος & τηλεόραση"
+msgstr "Ταινίες & τηλεόραση"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
@@ -1345,7 +1345,7 @@ msgid "Multiple Search"
 msgstr "Πολλαπλή αναζήτηση"
 
 msgid "News & Blogs"
-msgstr "Ειδήσεις & ιστολόγια"
+msgstr "Ειδήσεις & blogs"
 
 msgid "Photos & Images"
 msgstr "Φωτογραφίες & εικόνες"
@@ -1594,13 +1594,13 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Καθυστέρηση αυτόματης έγκρισης επ 'αόριστον"
 
 msgid "True positive"
-msgstr ""
+msgstr "Αληθινά θετικό"
 
 msgid "False positive"
-msgstr ""
+msgstr "Ψευδώς θετικό"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Ασαφές"
 
 msgid "New"
 msgstr "Νέο"
@@ -1639,7 +1639,7 @@ msgstr ""
 "ιστοσελίδα."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Τα πρόσθετα Open Search {blog_link_open}δεν υποστηρίζονται πλέον στο AMO{blog_link_close}. Μπορείτε να δημιουργήσετε μια {doc_link_open}επέκταση αναζήτησης{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλώ διαλέξτε κάποιο άλλο."
@@ -1824,7 +1824,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Η επικύρωση παρήγαγε πάρα πολλά λάθη/προειδοποιήσεις έτσι %s μηνύματα περικόπηκαν. Αφού εντοπίσετε τα ορατά μηνύματα, θα μπορείτε να δείτε τα υπόλοιπα."
 
 msgid "Updated"
-msgstr "Ενημερωμένα"
+msgstr "Ενημερώσεις"
 
 msgid "Name"
 msgstr "Όνομα"
@@ -2054,7 +2054,7 @@ msgid "Community & Support"
 msgstr "Κοινότητα & Υποστήριξη"
 
 msgid "Add-ons Blog"
-msgstr "Ιστολόγιο πρόσθετων"
+msgstr "Blog πρόσθετων"
 
 msgid "Add-ons Forum"
 msgstr "Φόρουμ πρόσθετων"
@@ -3101,7 +3101,7 @@ msgid "Developer News"
 msgstr "Ειδήσεις προγραμματιστών"
 
 msgid "View the blog &#9658;"
-msgstr "Προβολή ιστολογίου &#9658;"
+msgstr "Προβολή του blog &#9658;"
 
 msgid "Pending information request:"
 msgstr "Εκκρεμές αίτημα πληροφοριών:"
@@ -3156,15 +3156,16 @@ msgid "Read more about the source code review policy."
 msgstr "Διαβάστε περισσότερα σχετικά με τη πολιτική κριτικής πηγαίου κώδικα."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Αναπτύξτε τις καλύτερες επεκτάσεις και θέματα"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Είτε δημιουργείτε μια επέκταση για πρώτη φορά, είτε τελειοποιείτε, είτε μεταφέρετε μια υπάρχουσα επέκταση ή θέμα, είτε αναπτύσσετε μια ειδική εταιρική λύση, έχουμε τους πόρους για να σας "
+"υποστηρίξουμε."
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "Εργαστήριο επεκτάσεων"
+msgstr "Επίσκεψη στο εργαστήριο επεκτάσεων"
 
 msgid "Connect with us"
 msgstr "Συνδεθείτε μαζί μας"
@@ -3294,7 +3295,7 @@ msgstr "Υποστήριξη"
 
 # Link text to the AMO blog.
 msgid "Blog"
-msgstr "Ιστολόγιο"
+msgstr "Blog"
 
 msgid "Sign Out"
 msgstr "Αποσύνδεση"
@@ -3688,7 +3689,7 @@ msgstr "Διαβάστε παντού {start_sub_heading}με το {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr "Αποστολή άρθρων ειδήσεων, ιστοριών, αναρτήσεων ιστολογίου και άλλων στο Kindle σας."
+msgstr "Αποστολή άρθρων, ειδήσεων, αναρτήσεων blog και άλλων στο Kindle σας."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3744,9 +3745,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Προσαρμογή κινήσεων ποντικιού {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Ανακαλύψτε ένα νέο τρόπο για πλοήγηση με 50+ χρήσιμες κινήσεις ποντικιού."
+msgstr "Προσαρμογή κινήσεων ποντικιού. Ανακαλύψτε νέους τρόπους πλοήγησης με 50+ ρυθμίσεις."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4991,7 +4991,7 @@ msgstr "Οι επεκτάσεις είναι σαν εφαρμογές για τ
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Προσθέτουν λειτουργίες στο Firefox για ταχύτερη, ασφαλέστερη και πιο διασκεδιαστική περιήγηση."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -4999,15 +4999,15 @@ msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Εργαλεία οργάνωσης καρτελών"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Απόρρητο πέρα από επεκτάσεις"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Βελτίωση μέσων στο Firefox"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type

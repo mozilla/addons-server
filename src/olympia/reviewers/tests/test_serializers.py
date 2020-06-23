@@ -420,7 +420,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
 
         # Custom fields
         validation_url_json = absolutify(reverse(
-            'devhub.json_file_validation', args=[
+            'reviewers.json_file_validation', args=[
                 self.addon.pk, self.version.current_file.id]))
         validation_url = absolutify(reverse('devhub.file_validation', args=[
             self.addon.pk, self.version.current_file.id]))

@@ -70,4 +70,7 @@ urlpatterns = (
     url(r'^download-git-file/(?P<version_id>\d+)/(?P<filename>.*)/',
         views.download_git_stored_file,
         name='reviewers.download_git_file'),
+    url(r'^addon/%s/file/(?P<file_id>[^/]+)/validation\.json$' % ADDON_ID,
+        views.json_file_validation,
+        name='reviewers.json_file_validation'),
 )

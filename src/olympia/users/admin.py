@@ -142,7 +142,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         # Deleting a user through the admin also deletes related content
         # produced by that user.
         ActivityLog.create(amo.LOG.ADMIN_USER_ANONYMIZED, obj)
-        obj.delete(related_content=True)
+        obj.delete()
 
     def save_model(self, request, obj, form, change):
         changes = {k: (form.initial.get(k), form.cleaned_data.get(k))
