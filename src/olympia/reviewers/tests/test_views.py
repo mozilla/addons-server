@@ -25,6 +25,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
+from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.accounts.serializers import BaseUserSerializer
@@ -7938,3 +7939,61 @@ class TestMadQueue(QueueTest):
 
         self._test_queue_layout('Flagged for Human Review', tab_position=2,
                                 total_addons=3, total_queues=4, per_page=1)
+
+
+class TestValidationJson(TestCase):
+    fixtures = ['base/users', 'devhub/addon-validation-1']
+
+    def setUp(self):
+        super(TestValidationJson, self).setUp()
+        assert self.client.login(email='del@icio.us')
+        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.file_validation = FileValidation.objects.get(pk=1)
+        self.file = self.file_validation.file
+        self.addon = self.file.version.addon
+        args = [self.addon.pk, self.file.id]
+        self.url = reverse('reviewers.json_file_validation', args=args)
+
+    def test_reviewer_can_see_json_results(self):
+        self.client.logout()
+        assert self.client.login(email='reviewer@mozilla.com')
+        assert self.client.head(self.url, follow=False).status_code == 200
+
+    def test_cors_headers_are_sent(self):
+        self.client.logout()
+        assert self.client.login(email='reviewer@mozilla.com')
+        code_manager_url = 'https://my-code-manager-url.example.org'
+        with override_settings(CODE_MANAGER_URL=code_manager_url):
+            response = self.client.get(self.url)
+
+        assert response['Access-Control-Allow-Origin'] == code_manager_url
+        assert response['Access-Control-Allow-Methods'] == 'GET, OPTIONS'
+        assert response['Access-Control-Allow-Headers'] == 'Content-Type'
+        assert response['Access-Control-Allow-Credentials'] == 'true'
+
+    def test_deleted_addon(self):
+        self.client.logout()
+        assert self.client.login(email='reviewer@mozilla.com')
+        self.grant_permission(
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
+            'Addons:ReviewUnlisted')
+
+        self.addon.delete()
+        assert self.client.head(self.url, follow=False).status_code == 200
+
+    def test_non_reviewer_cannot_see_json_results(self):
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        assert self.client.head(self.url, follow=False).status_code == 403
+
+    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
+    def test_wrong_type_of_reviewer_cannot_see_json_results(self):
+        self.client.logout()
+        assert self.client.login(email='reviewer@mozilla.com')
+        assert self.client.head(self.url, follow=False).status_code == 403
+
+    def test_non_unlisted_reviewer_cannot_see_results_for_unlisted(self):
+        self.client.logout()
+        assert self.client.login(email='reviewer@mozilla.com')
+        self.make_addon_unlisted(self.addon)
+        assert self.client.head(self.url, follow=False).status_code == 403

@@ -2,7 +2,6 @@
 import json
 
 from django.core.files.storage import default_storage as storage
-from django.test.utils import override_settings
 
 from unittest import mock
 import waffle
@@ -243,16 +242,6 @@ class TestFileValidation(TestCase):
         assert msg['description'][0] == '&lt;iframe&gt;'
         assert msg['context'] == (
             [u'<em:description>...', u'<foo/>'])
-
-    def test_cors_headers_are_sent(self):
-        code_manager_url = 'https://my-code-manager-url.example.org'
-        with override_settings(CODE_MANAGER_URL=code_manager_url):
-            response = self.client.get(self.json_url)
-
-        assert response['Access-Control-Allow-Origin'] == code_manager_url
-        assert response['Access-Control-Allow-Methods'] == 'GET, OPTIONS'
-        assert response['Access-Control-Allow-Headers'] == 'Content-Type'
-        assert response['Access-Control-Allow-Credentials'] == 'true'
 
     def test_linkify_validation_messages(self):
         self.file_validation.update(validation=json.dumps({
