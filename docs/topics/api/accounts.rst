@@ -184,9 +184,13 @@ Delete
     This API requires :doc:`authentication <auth>` and `Users:Edit`
     permission to delete accounts other than your own.
 
-This endpoint allows the account to be deleted. The reviews and ratings
-created by the user will be deleted and all the user's details are
-cleared.
+This endpoint allows the account to be deleted. The data will be permanently
+removed, including profile details (picture, user name, display name, location,
+home page, biography, occupation), notification preferences, reviews, and
+collections. If the user authored any add-ons they will also be deleted,
+unless ownership is shared with other authors. In that case, the user will be
+removed as an author and the remaining authors will maintain ownership of the
+add-on.
 
 .. http:delete:: /api/v4/accounts/account/(int:user_id|string:username)/
 
