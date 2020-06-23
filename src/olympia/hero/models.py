@@ -99,10 +99,10 @@ class PrimaryHeroImage(models.Model):
 
     def preview_image(self):
         if self.custom_image:
-            return mark_safe('<img class="primaryhero-preview" src="{}" />'.format(
+            return mark_safe('<img class="prmhero-preview" src="{}" />'.format(
                 self.custom_image.url)
             )
-        else: 
+        else:
             return None
     preview_image.short_description = "Image"
     preview_image.allow_tags = True
