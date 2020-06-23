@@ -48,6 +48,12 @@ def generate_auth_id():
     return random.SystemRandom().randint(1, 4294967295)
 
 
+def get_anonymized_username():
+    """Gets an anonymized username."""
+    return 'anonymous-{}'.format(
+        force_text(binascii.b2a_hex(os.urandom(16))))
+
+
 class UserEmailField(forms.ModelChoiceField):
     """
     Field to use for ForeignKeys to UserProfile, to use email instead of pk.
@@ -99,8 +105,6 @@ class UserManager(BaseUserManager, ManagerBase):
             last_login=now,
             **kwargs
         )
-        if not user.username:
-            user.anonymize_username()
         log.info('Creating user with email {} and username {}'.format(
             email, user.username))
         user.save(using=self._db)
@@ -120,7 +124,27 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     objects = UserManager()
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
-    username = models.CharField(max_length=255, default='', unique=True)
+    # These are the fields that will be cleared on UserProfile.delete()
+    # last_login_ip is kept, to be deleted later, in line with our data
+    # retention policies: https://github.com/mozilla/addons-server/issues/14494
+    ANONYMIZED_FIELDS = (
+        'auth_id',
+        'averagerating',
+        'biography',
+        'bypass_upload_restrictions',
+        'display_name',
+        'homepage',
+        'is_public',
+        'location',
+        'occupation',
+        'picture_type',
+        'read_dev_agreement',
+        'reviewer_name',
+        'username',
+    )
+
+    username = models.CharField(
+        max_length=255, default=get_anonymized_username, unique=True)
     display_name = models.CharField(
         max_length=50, default='', null=True, blank=True,
         validators=[validators.MinLengthValidator(2),
@@ -392,16 +416,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def get_short_name(self):
         return self.name
 
-    def anonymize_username(self):
-        """Set an anonymous username."""
-        if self.pk:
-            log.info('Anonymizing username for {}'.format(self.pk))
-        else:
-            log.info('Generating username for {}'.format(self.email))
-        self.username = 'anonymous-{}'.format(
-            force_text(binascii.b2a_hex(os.urandom(16))))
-        return self.username
-
     @property
     def has_anonymous_username(self):
         return re.match('^anonymous-[0-9a-f]{32}$', self.username) is not None
@@ -441,18 +455,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.update(picture_type=None)
 
     def _anonymize(self):
-        self.picture_type = None
+        log.info('Anonymizing username for {}'.format(self.pk))
+        for field in self.ANONYMIZED_FIELDS:
+            setattr(self, field, self._meta.get_field(field).get_default())
         self.delete_picture()
-        # last_login_ip is kept, to be deleted later,
-        # in line with our data retention policies:
-        # https://github.com/mozilla/addons-server/issues/14494
-        self.biography = ''
-        self.display_name = None
-        self.homepage = ''
-        self.location = ''
-        self.deleted = True
-        self.auth_id = generate_auth_id()
-        self.anonymize_username()
 
     @classmethod
     def ban_and_disable_related_content_bulk(cls, users, move_files=False):
@@ -511,10 +517,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                 f'User ({user}: <{user.email}>) is being '
                 'anonymized and banned.')
             user.banned = datetime.now()
+            user.deleted = True
             user._anonymize()
-        cls.objects.bulk_update(users, fields=(
-            'picture_type', 'banned', 'biography', 'display_name', 'homepage',
-            'location', 'deleted', 'auth_id', 'username'))
+        cls.objects.bulk_update(
+            users, fields=('banned', 'deleted') + cls.ANONYMIZED_FIELDS)
 
     def _prepare_delete_email(self):
         email_to = [self.email]
@@ -537,6 +543,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         if send_delete_email:
             email = self._prepare_delete_email()
         self._anonymize()
+        self.deleted = True
         self.save()
         if send_delete_email:
             send_mail(**email)

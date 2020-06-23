@@ -27,6 +27,7 @@ from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, DisposableEmailDomainRestriction, generate_auth_id,
+    get_anonymized_username,
     EmailReputationRestriction, EmailUserRestriction, IPNetworkUserRestriction,
     IPReputationRestriction, UserEmailField, UserProfile)
 from olympia.zadmin.models import set_config
@@ -105,7 +106,7 @@ class TestUserProfile(TestCase):
         assert user.auth_id
         assert user.auth_id != old_auth_id
         assert user.fxa_id == '0824087ad88043e2a52bd41f51bbbe79'
-        assert user.display_name is None
+        assert user.display_name == ''
         assert user.homepage == ''
         assert user.picture_type is None
         # last_login_ip is kept during deletion, deleted 6 months later via
@@ -297,12 +298,12 @@ class TestUserProfile(TestCase):
 
     def test_welcome_name_anonymous_with_display(self):
         user = UserProfile.objects.create(display_name='John Connor')
-        user.anonymize_username()
+        user.username = get_anonymized_username()
         assert user.welcome_name == 'John Connor'
 
     def test_has_anonymous_username_no_names(self):
         user = UserProfile.objects.create(display_name=None)
-        user.anonymize_username()
+        user.username = get_anonymized_username()
         assert user.has_anonymous_username
 
     def test_has_anonymous_username_username_set(self):
@@ -311,7 +312,7 @@ class TestUserProfile(TestCase):
 
     def test_has_anonymous_username_display_name_set(self):
         user = UserProfile.objects.create(display_name='Bob Bobbertson')
-        user.anonymize_username()
+        user.username = get_anonymized_username()
         assert user.has_anonymous_username
 
     def test_has_anonymous_username_both_names_set(self):
@@ -321,7 +322,7 @@ class TestUserProfile(TestCase):
 
     def test_has_anonymous_display_name_no_names(self):
         user = UserProfile.objects.create(display_name=None)
-        user.anonymize_username()
+        user.username = get_anonymized_username()
         assert user.has_anonymous_display_name
 
     def test_has_anonymous_display_name_username_set(self):
@@ -330,7 +331,7 @@ class TestUserProfile(TestCase):
 
     def test_has_anonymous_display_name_display_name_set(self):
         user = UserProfile.objects.create(display_name='Bob Bobbertson')
-        user.anonymize_username()
+        user.username = get_anonymized_username()
         assert not user.has_anonymous_display_name
 
     def test_has_anonymous_display_name_both_names_set(self):
