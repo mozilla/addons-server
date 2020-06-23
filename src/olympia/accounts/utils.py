@@ -4,7 +4,6 @@ import os
 
 from base64 import urlsafe_b64encode
 from urllib.parse import urlencode, urlparse
-from waffle import switch_is_active
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
@@ -132,7 +131,7 @@ def process_fxa_event(raw_body):
                           event_type)
             else:
                 primary_email_change_event.delay(uid, timestamp, email)
-        elif event_type == 'delete' and switch_is_active('fxa-account-delete'):
+        elif event_type == 'delete':
             delete_user_event.delay(uid, timestamp)
         else:
             log.info('Dropping unknown event type %r', event_type)

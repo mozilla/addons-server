@@ -1,6 +1,8 @@
 from datetime import datetime
 from unittest import mock
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.accounts.tasks import (
     delete_user_event, primary_email_change_event)
@@ -75,6 +77,7 @@ class TestDeleteUserEvent(TestCase):
         assert self.user.fxa_id is not None
 
     @mock.patch('olympia.users.models.UserProfile.delete_picture')
+    @override_switch('fxa-account-delete', active=True)
     def test_success_basic(self, delete_picture_mock):
         collection = collection_factory(author=self.user)
         another_addon = addon_factory()
@@ -86,12 +89,14 @@ class TestDeleteUserEvent(TestCase):
         assert not another_addon.ratings.all().exists()
         delete_picture_mock.assert_called()
 
+    @override_switch('fxa-account-delete', active=True)
     def test_success_addons(self):
         addon = addon_factory(users=[self.user])
         self._fire_event()
         addon.reload()
         assert addon.status == amo.STATUS_DELETED
 
+    @override_switch('fxa-account-delete', active=True)
     def test_success_addons_other_owners(self):
         other_owner = user_factory()
         addon = addon_factory(users=[self.user, other_owner])
@@ -99,3 +104,11 @@ class TestDeleteUserEvent(TestCase):
         addon.reload()
         assert addon.status != amo.STATUS_DELETED
         assert list(addon.authors.all()) == [other_owner]
+
+    @override_switch('fxa-account-delete', active=False)
+    def test_waffle_off(self):
+        delete_user_event(
+            self.fxa_id,
+            totimestamp(datetime(2017, 10, 11)))
+        self.user.reload()
+        assert not self.user.deleted
