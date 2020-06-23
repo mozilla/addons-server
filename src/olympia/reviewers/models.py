@@ -180,6 +180,8 @@ class ViewQueue(RawSQLModel):
                 LEFT JOIN addons_addonreviewerflags ON (
                     addons.id = addons_addonreviewerflags.addon_id)
                 LEFT JOIN versions ON (addons.id = versions.addon_id)
+                LEFT JOIN versions_versionreviewerflags ON (
+                    versions.id = versions_versionreviewerflags.version_id)
                 LEFT JOIN files ON (files.version_id = versions.id)
                 LEFT JOIN discovery_discoveryitem AS discoitem ON (
                     addons.id = discoitem.addon_id)
@@ -193,6 +195,7 @@ class ViewQueue(RawSQLModel):
                 'NOT addons.inactive',  # disabled_by_user
                 'versions.channel = %s' % amo.RELEASE_CHANNEL_LISTED,
                 'files.status = %s' % amo.STATUS_AWAITING_REVIEW,
+                'versions_versionreviewerflags.pending_rejection IS NULL',
                 ('NOT ' if not self.recommendable_addons else '') +
                 '(discoitem.recommendable = True AND '
                 'discoitem.recommendable IS NOT NULL)',

@@ -689,6 +689,7 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_expired_info_requests'),
+            reverse('reviewers.queue_pending_rejection'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -740,6 +741,7 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_expired_info_requests'),
+            reverse('reviewers.queue_pending_rejection'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -1406,7 +1408,10 @@ class TestQueueBasics(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
-        expected.append(reverse('reviewers.queue_expired_info_requests'))
+        expected.extend([
+            reverse('reviewers.queue_expired_info_requests'),
+            reverse('reviewers.queue_pending_rejection'),
+        ])
         assert links == expected
 
     @override_settings(DEBUG=True, LESS_PREPROCESS=False)
@@ -1669,6 +1674,17 @@ class TestExtensionQueue(QueueTest):
 
         # search extensions are filtered out from the queue since auto_approve
         # is taking care of them.
+        self.expected_addons = [
+            self.addons['Nominated One'], self.addons['Pending One']]
+        self._test_results()
+
+    def test_pending_rejection_filtered_out(self):
+        VersionReviewerFlags.objects.create(
+            version=self.addons['Nominated Two'].current_version,
+            pending_rejection=datetime.now())
+        VersionReviewerFlags.objects.create(
+            version=self.addons['Pending Two'].current_version,
+            pending_rejection=datetime.now())
         self.expected_addons = [
             self.addons['Nominated One'], self.addons['Pending One']]
         self._test_results()
@@ -2150,11 +2166,11 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(26):
-            # 26 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(27):
+            # 27 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 11 for various queue counts, including current one
+            # - 12 for various queue counts, including current one
             #      (unfortunately duplicated because it appears in two
             #       completely different places)
             # - 3 for the addons in the queues and their files (regardless of
@@ -2205,6 +2221,18 @@ class TestAutoApprovedQueue(QueueTest):
         self._test_queue_layout(
             'Auto Approved', tab_position=0, total_addons=4, total_queues=1,
             per_page=1)
+
+    def test_pending_rejection_filtered_out(self):
+        self.login_with_permission()
+        self.generate_files()
+        VersionReviewerFlags.objects.create(
+            version=self.expected_addons[0].current_version,
+            pending_rejection=datetime.now())
+        VersionReviewerFlags.objects.create(
+            version=self.expected_addons[1].current_version,
+            pending_rejection=datetime.now())
+        self.expected_addons = self.expected_addons[2:]
+        self._test_results()
 
 
 class TestExpiredInfoRequestsQueue(QueueTest):
@@ -2409,11 +2437,11 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(26):
-            # 26 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(27):
+            # 27 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 11 for various queue counts, including current one
+            # - 12 for various queue counts, including current one
             #      (unfortunately duplicated because it appears in two
             #       completely different places)
             # - 3 for the addons in the queues and their files (regardless of
@@ -2438,7 +2466,19 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=0, total_addons=5, total_queues=2)
+            'Content Review', tab_position=0, total_addons=5, total_queues=3)
+
+    def test_pending_rejection_filtered_out(self):
+        self.login_with_permission()
+        self.generate_files()
+        VersionReviewerFlags.objects.create(
+            version=self.expected_addons[0].current_version,
+            pending_rejection=datetime.now())
+        VersionReviewerFlags.objects.create(
+            version=self.expected_addons[1].current_version,
+            pending_rejection=datetime.now())
+        self.expected_addons = self.expected_addons[2:]
+        self._test_results()
 
 
 class TestScannersReviewQueue(QueueTest):
@@ -2560,7 +2600,45 @@ class TestScannersReviewQueue(QueueTest):
 
         self._test_queue_layout(
             'Flagged By Scanners',
-            tab_position=2, total_addons=4, total_queues=10, per_page=1)
+            tab_position=2, total_addons=4, total_queues=11, per_page=1)
+
+
+class TestPendingRejectionReviewQueue(QueueTest):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super().setUp()
+        self.url = reverse('reviewers.queue_pending_rejection')
+
+    def generate_files(self):
+        addon1 = addon_factory(created=self.days_ago(5))
+        VersionReviewerFlags.objects.create(
+            version=addon1.versions.get(), pending_rejection=datetime.now())
+
+        addon2 = addon_factory(
+            created=self.days_ago(4),
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        VersionReviewerFlags.objects.create(
+            version=addon2.versions.get(), pending_rejection=datetime.now())
+
+        # Extra add-ons without pending rejection on their current version,
+        # they shouldn't appear.
+        addon_factory()
+
+        addon = addon_factory(
+            name='Has a version pending rejection but it is not the current',
+            version_kw={'created': self.days_ago(1), 'version': '0.1'})
+        VersionReviewerFlags.objects.create(
+            version=addon.current_version, pending_rejection=datetime.now())
+        version_factory(addon=addon, version='0.2')
+
+        self.expected_addons = [addon1, addon2]
+
+    def test_results(self):
+        self.login_as_admin()
+        self.generate_files()
+        self._test_results()
 
 
 class TestPerformance(QueueTest):
@@ -7938,7 +8016,7 @@ class TestMadQueue(QueueTest):
         self.grant_permission(self.user, 'Reviews:Admin')
 
         self._test_queue_layout('Flagged for Human Review', tab_position=2,
-                                total_addons=3, total_queues=4, per_page=1)
+                                total_addons=3, total_queues=5, per_page=1)
 
 
 class TestValidationJson(TestCase):

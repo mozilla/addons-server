@@ -2773,8 +2773,13 @@ class TestGetMadQueue(TestCase):
                                             needs_human_review_by_mad=True)
         other_addon = addon_factory()
         version = version_factory(addon=other_addon)
+        addon_pending_rejection = addon_factory()
+        VersionReviewerFlags.objects.create(
+            version=addon_pending_rejection.current_version,
+            needs_human_review_by_mad=True, pending_rejection=datetime.now())
 
         addons = Addon.objects.get_mad_queue().all()
 
         assert flagged_addon in addons
         assert other_addon not in addons
+        assert addon_pending_rejection not in addons

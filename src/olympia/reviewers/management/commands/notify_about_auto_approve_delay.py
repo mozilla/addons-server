@@ -25,8 +25,7 @@ class Command(BaseCommand):
         versions will be returned.
         """
         exclude_kwargs = {
-            'addon__addonreviewerflags__notified_about_auto_approval_delay':
-                True
+            'addon__reviewerflags__notified_about_auto_approval_delay': True
         }
         qs = (
             # Base queryset with auto-approvable versions. Default ordering

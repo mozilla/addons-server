@@ -139,6 +139,13 @@ def queue_tabnav(context):
                             counts['expired_info_requests'])
                   .format(counts['expired_info_requests']))),
             )
+            tabnav.append(
+                ('pending_rejection', 'queue_pending_rejection',
+                 (ungettext('Pending Rejection ({0})',
+                            'Pending Rejection ({0})',
+                            counts['pending_rejection'])
+                  .format(counts['pending_rejection']))),
+            )
     else:
         tabnav = [
             ('all', 'unlisted_queue_all', ugettext('All Unlisted Add-ons'))

@@ -210,7 +210,8 @@ class AddonManager(ManagerBase):
         return self.get_queryset().not_disabled_by_mozilla()
 
     def get_base_queryset_for_queue(self, admin_reviewer=False,
-                                    admin_content_review=False):
+                                    admin_content_review=False,
+                                    show_pending_rejection=False):
         qs = (
             self.get_queryset()
             # We don't want the default transformer, it does too much, and
@@ -223,21 +224,25 @@ class AddonManager(ManagerBase):
             # queries.
             .select_related(
                 'addonapprovalscounter',
-                'addonreviewerflags',
+                'reviewerflags',
                 '_current_version__autoapprovalsummary',
             )
             .prefetch_related(
                 '_current_version__files'
             )
         )
+        if not show_pending_rejection:
+            qs = qs.filter(
+                _current_version__reviewerflags__pending_rejection__isnull=True
+            )
         if not admin_reviewer:
             if admin_content_review:
                 qs = qs.exclude(
-                    addonreviewerflags__needs_admin_content_review=True
+                    reviewerflags__needs_admin_content_review=True
                 )
             else:
                 qs = qs.exclude(
-                    addonreviewerflags__needs_admin_code_review=True
+                    reviewerflags__needs_admin_code_review=True
                 )
         return qs
 
@@ -328,13 +333,22 @@ class AddonManager(ManagerBase):
                 versions__files__status__in=[
                     amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
                 ],
-                versions__versionreviewerflags__needs_human_review_by_mad=True
+                versions__reviewerflags__needs_human_review_by_mad=True
             )
             .order_by('created')
             # There could be several versions matching for a single add-on so
             # we need a distinct.
             .distinct()
         )
+
+    def get_pending_rejection_queue(self, admin_reviewer=False):
+        filter_kwargs = {
+            '_current_version__reviewerflags__pending_rejection__isnull': False
+        }
+        return self.get_base_queryset_for_queue(
+            admin_reviewer=admin_reviewer,
+            show_pending_rejection=True,
+        ).filter(**filter_kwargs).order_by('created')
 
 
 class Addon(OnChangeMixin, ModelBase):
@@ -1415,7 +1429,7 @@ class Addon(OnChangeMixin, ModelBase):
                 (not version.all_files[0].is_webextension or
                  version.all_files[0].webext_permissions_list))
 
-    # Aliases for addonreviewerflags below are not just useful in case
+    # Aliases for reviewerflags below are not just useful in case
     # AddonReviewerFlags does not exist for this add-on: they are also used
     # by reviewer tools get_flags() function to return flags shown to reviewers
     # in both the review queues and the review page.
@@ -1423,42 +1437,42 @@ class Addon(OnChangeMixin, ModelBase):
     @property
     def needs_admin_code_review(self):
         try:
-            return self.addonreviewerflags.needs_admin_code_review
+            return self.reviewerflags.needs_admin_code_review
         except AddonReviewerFlags.DoesNotExist:
             return None
 
     @property
     def needs_admin_content_review(self):
         try:
-            return self.addonreviewerflags.needs_admin_content_review
+            return self.reviewerflags.needs_admin_content_review
         except AddonReviewerFlags.DoesNotExist:
             return None
 
     @property
     def needs_admin_theme_review(self):
         try:
-            return self.addonreviewerflags.needs_admin_theme_review
+            return self.reviewerflags.needs_admin_theme_review
         except AddonReviewerFlags.DoesNotExist:
             return None
 
     @property
     def auto_approval_disabled(self):
         try:
-            return self.addonreviewerflags.auto_approval_disabled
+            return self.reviewerflags.auto_approval_disabled
         except AddonReviewerFlags.DoesNotExist:
             return None
 
     @property
     def auto_approval_delayed_until(self):
         try:
-            return self.addonreviewerflags.auto_approval_delayed_until
+            return self.reviewerflags.auto_approval_delayed_until
         except AddonReviewerFlags.DoesNotExist:
             return None
 
     @property
     def pending_info_request(self):
         try:
-            return self.addonreviewerflags.pending_info_request
+            return self.reviewerflags.pending_info_request
         except AddonReviewerFlags.DoesNotExist:
             return None
 
@@ -1681,7 +1695,8 @@ def attach_tags(addons):
 
 class AddonReviewerFlags(ModelBase):
     addon = models.OneToOneField(
-        Addon, primary_key=True, on_delete=models.CASCADE)
+        Addon, primary_key=True, on_delete=models.CASCADE,
+        related_name='reviewerflags')
     needs_admin_code_review = models.BooleanField(default=False)
     needs_admin_content_review = models.BooleanField(default=False)
     needs_admin_theme_review = models.BooleanField(default=False)

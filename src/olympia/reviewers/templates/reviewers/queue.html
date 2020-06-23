@@ -9,8 +9,12 @@
     {{ _('Review Moderation – Add-ons for Firefox') }}
   {% elif tab == "expired_info_requests" %}
     {{ _('Expired Information Requests – Add-ons for Firefox') }}
-  {% elif unlisted %}
+  {% elif tab == "unlisted_queue_all" %}
     {{ _('Unlisted Add-ons – Add-ons for Firefox') }}
+  {% elif tab == "pending_rejection" %}
+    {{ _('Pending Rejection – Add-ons for Firefox') }}
+  {% else %}
+    {{ super() }}
   {% endif %}
 {% endblock %}
 
