@@ -1150,31 +1150,6 @@ def theme_background_images(request, version_id):
     return version.get_background_images_encoded(header_only=False)
 
 
-@any_reviewer_required
-def json_file_validation(request, addon_id, file_id):
-    addon = get_object_or_404(Addon.unfiltered.id_or_slug(addon_id))
-    file = get_object_or_404(File, version__addon=addon, id=file_id)
-    if file.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
-        if not acl.check_unlisted_addons_reviewer(request):
-            raise PermissionDenied
-    elif not acl.is_reviewer(request, addon):
-        raise PermissionDenied
-    try:
-        result = file.validation
-    except File.validation.RelatedObjectDoesNotExist:
-        raise http.Http404
-    response = JsonResponse({
-        'validation': result.processed_validation,
-        'error': None,
-    })
-    # See: https://github.com/mozilla/addons-server/issues/11048
-    response['Access-Control-Allow-Origin'] = settings.CODE_MANAGER_URL
-    response['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
-    response['Access-Control-Allow-Headers'] = 'Content-Type'
-    response['Access-Control-Allow-Credentials'] = 'true'
-    return response
-
-
 @login_required
 @set_csp(**settings.RESTRICTED_DOWNLOAD_CSP)
 def download_git_stored_file(request, version_id, filename):
@@ -1314,6 +1289,36 @@ class AddonReviewerViewSet(GenericViewSet):
         except RuntimeError:
             status_code = status.HTTP_409_CONFLICT
         return Response(status=status_code)
+
+    @action(
+        detail=True,
+        methods=['get'],
+        permission_classes=[AllowAnyKindOfReviewer],
+        url_path=r'file/(?P<file_id>[^/]+)/validation\.json')
+    def json_file_validation(self, request, **kwargs):
+        addon = get_object_or_404(
+            Addon.unfiltered.id_or_slug(kwargs['pk']))
+        file = get_object_or_404(
+            File, version__addon=addon, id=kwargs['file_id'])
+        if file.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
+            if not acl.check_unlisted_addons_reviewer(request):
+                raise PermissionDenied
+        elif not acl.is_reviewer(request, addon):
+            raise PermissionDenied
+        try:
+            result = file.validation
+        except File.validation.RelatedObjectDoesNotExist:
+            raise http.Http404
+        response = JsonResponse({
+            'validation': result.processed_validation,
+            'error': None,
+        })
+        # See: https://github.com/mozilla/addons-server/issues/11048
+        response['Access-Control-Allow-Origin'] = settings.CODE_MANAGER_URL
+        response['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
+        response['Access-Control-Allow-Headers'] = 'Content-Type'
+        response['Access-Control-Allow-Credentials'] = 'true'
+        return response
 
 
 class ReviewAddonVersionMixin(object):

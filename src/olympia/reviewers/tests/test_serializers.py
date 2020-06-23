@@ -4,12 +4,14 @@ import json
 from django.core.cache import cache
 
 from rest_framework.exceptions import NotFound
+from rest_framework.settings import api_settings
+from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.activity.models import DraftComment
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    TestCase, addon_factory, user_factory, version_factory)
+    TestCase, addon_factory, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import FileValidation
 from olympia.git.utils import AddonGitRepository, extract_version_to_git
@@ -403,7 +405,16 @@ class TestAddonBrowseVersionSerializer(TestCase):
         assert self.addon.current_version.release_notes
         self.version = self.addon.current_version
 
+        # Set up the request to support dnf_reverse
+        api_version = api_settings.DEFAULT_VERSION
+        self.request = APIRequestFactory().get('/api/%s/' % api_version)
+        self.request.versioning_scheme = (
+            api_settings.DEFAULT_VERSIONING_CLASS()
+        )
+        self.request.version = api_version
+
     def get_serializer(self, **extra_context):
+        extra_context['request'] = self.request
         return AddonBrowseVersionSerializer(
             instance=self.version, context=extra_context)
 
@@ -419,9 +430,12 @@ class TestAddonBrowseVersionSerializer(TestCase):
             self.version.reviewed.replace(microsecond=0).isoformat() + 'Z')
 
         # Custom fields
-        validation_url_json = absolutify(reverse(
-            'reviewers.json_file_validation', args=[
-                self.addon.pk, self.version.current_file.id]))
+        validation_url_json = absolutify(reverse_ns(
+            'reviewers-addon-json-file-validation',
+            kwargs={
+                'pk': self.addon.pk,
+                'file_id': self.version.current_file.id
+            }))
         validation_url = absolutify(reverse('devhub.file_validation', args=[
             self.addon.pk, self.version.current_file.id]))
 
