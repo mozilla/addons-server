@@ -294,7 +294,6 @@ class TestProcessFxAEventDelete(TestCase):
         assert user.deleted
         assert user.fxa_id is not None
 
-    @override_switch('fxa-account-delete', active=True)
     @mock.patch('olympia.accounts.utils.delete_user_event.delay')
     def test_success(self, delete_user_event_mock):
         process_fxa_event(self.body)
@@ -302,9 +301,3 @@ class TestProcessFxAEventDelete(TestCase):
         delete_user_event_mock.assert_called_with(
             self.fxa_id,
             totimestamp(self.email_changed_date))
-
-    @override_switch('fxa-account-delete', active=False)
-    @mock.patch('olympia.accounts.utils.delete_user_event.delay')
-    def test_waffle_off(self, delete_user_event_mock):
-        process_fxa_event(self.body)
-        delete_user_event_mock.assert_not_called()

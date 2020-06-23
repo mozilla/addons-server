@@ -1,6 +1,8 @@
 import functools
 from datetime import datetime
 
+from waffle import switch_is_active
+
 import olympia.core.logger
 
 from olympia.amo.celery import task
@@ -48,6 +50,11 @@ def primary_email_change_event(profile, changed_date, email):
 @user_profile_from_uid
 def delete_user_event(user, deleted_date):
     """Process the delete user event."""
-    user.delete(addon_msg='Deleted via FxA account deletion')
-    log.info(
-        'Account pk [%s] deleted from FxA on %s' % (user.id, deleted_date))
+    if switch_is_active('fxa-account-delete'):
+        user.delete(addon_msg='Deleted via FxA account deletion')
+        log.info(
+            'Account pk [%s] deleted from FxA on %s' % (user.id, deleted_date))
+    else:
+        log.info(
+            f'Skipping deletion from FxA for account [{user.id}] because '
+            'waffle inactive')
