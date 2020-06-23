@@ -18,6 +18,7 @@ from django.core import validators
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db import models
+from django.template import loader
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
 from django.utils.encoding import force_text
@@ -515,17 +516,30 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             'picture_type', 'banned', 'biography', 'display_name', 'homepage',
             'location', 'deleted', 'auth_id', 'username'))
 
-    def delete(self, hard=False, addon_msg=''):
-        if hard:
-            # this is done in _anonymize() for soft deletes
-            self.picture_type = None
-            self.delete_picture()
-            super(UserProfile, self).delete()
-        else:
-            self._delete_related_content(addon_msg=addon_msg)
-            log.info(f'User ({self}: <{self.email}>) is being anonymized.')
-            self._anonymize()
-            self.save()
+    def _prepare_delete_email(self):
+        email_to = [self.email]
+        site_url = settings.EXTERNAL_SITE_URL
+        template = loader.get_template('users/emails/user_deleted.ltxt')
+        email_msg = template.render(context={
+            'site_url': site_url,
+            'name': self.name})
+        return {
+            'subject': f'Your account on {site_url} has been deleted',
+            'message': email_msg,
+            'recipient_list': email_to,
+        }
+
+    def delete(self, addon_msg='', send_delete_email=True):
+        from olympia.amo.utils import send_mail
+
+        self._delete_related_content(addon_msg=addon_msg)
+        log.info(f'User ({self}: <{self.email}>) is being anonymized.')
+        if send_delete_email:
+            email = self._prepare_delete_email()
+        self._anonymize()
+        self.save()
+        if send_delete_email:
+            send_mail(**email)
 
     def set_unusable_password(self):
         raise NotImplementedError('cannot set unusable password')
