@@ -304,7 +304,7 @@ class TestUserProfileBasketSyncSerializer(TestCase):
         serializer = UserProfileBasketSyncSerializer(self.user)
         assert serializer.data == {
             'deleted': True,
-            'display_name': None,
+            'display_name': '',
             'fxa_id': self.user.fxa_id,
             'homepage': '',
             'id': self.user.pk,
