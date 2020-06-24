@@ -7,6 +7,7 @@ from django import forms
 from django.db import models
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
+from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
@@ -95,6 +96,7 @@ class TestUserProfile(TestCase):
         assert user.picture_type
         assert user.last_login_ip
         assert not user.has_anonymous_username
+        name = user.display_name
 
         old_auth_id = user.auth_id
         user.delete()
@@ -112,6 +114,10 @@ class TestUserProfile(TestCase):
         assert user.has_anonymous_username
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        assert email.to == [user.email]
+        assert f'message because your user account {name}' in email.body
 
     @mock.patch.object(File, 'hide_disabled_file')
     def test_ban_and_disable_related_content_bulk(self, hide_disabled_mock):

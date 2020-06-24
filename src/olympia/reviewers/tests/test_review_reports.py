@@ -112,6 +112,7 @@ class TestReviewReports(object):
                                              review_action[3])
 
             self.reviewer5.delete()
+            mail.outbox = []
 
             # Search plugin (submitted before auto-approval was implemented)
             search_plugin = addon_factory(type=4)
