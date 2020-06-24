@@ -1294,7 +1294,7 @@ class AddonReviewerViewSet(GenericViewSet):
         detail=True,
         methods=['get'],
         permission_classes=[AllowAnyKindOfReviewer],
-        url_path=r'file/(?P<file_id>[^/]+)/validation\.json')
+        url_path=r'file/(?P<file_id>[^/]+)/validation')
     def json_file_validation(self, request, **kwargs):
         addon = get_object_or_404(
             Addon.unfiltered.id_or_slug(kwargs['pk']))

@@ -43,8 +43,17 @@ class TestFileInfoSerializer(TestCase):
         self.version = self.addon.current_version
         self.file = self.addon.current_version.current_file
 
+        # Set up the request to support drf_reverse
+        api_version = api_settings.DEFAULT_VERSION
+        self.request = APIRequestFactory().get('/api/%s/' % api_version)
+        self.request.versioning_scheme = (
+            api_settings.DEFAULT_VERSIONING_CLASS()
+        )
+        self.request.version = api_version
+
     def get_serializer(self, **extra_context):
         extra_context.setdefault('version', self.version)
+        extra_context['request'] = self.request
 
         return FileInfoSerializer(
             instance=self.file, context=extra_context)
@@ -60,16 +69,9 @@ class TestFileInfoSerializer(TestCase):
             serializer.data
 
     def test_can_access_version_from_parent(self):
-        # Set up the request to support drf_reverse
-        api_version = api_settings.DEFAULT_VERSION
-        request = APIRequestFactory().get('/api/%s/' % api_version)
-        request.versioning_scheme = (
-            api_settings.DEFAULT_VERSIONING_CLASS()
-        )
-        request.version = api_version
-
         serializer = AddonBrowseVersionSerializer(
-            instance=self.addon.current_version, context={'request': request})
+            instance=self.addon.current_version,
+            context={'request': self.request})
         file = serializer.data['file']
         assert file['id'] == self.addon.current_version.current_file.pk
 
@@ -166,8 +168,17 @@ class TestFileInfoDiffSerializer(TestCase):
         self.version = self.addon.current_version
         self.file = self.addon.current_version.current_file
 
+        # Set up the request to support drf_reverse
+        api_version = api_settings.DEFAULT_VERSION
+        self.request = APIRequestFactory().get('/api/%s/' % api_version)
+        self.request.versioning_scheme = (
+            api_settings.DEFAULT_VERSIONING_CLASS()
+        )
+        self.request.version = api_version
+
     def get_serializer(self, **extra_context):
         extra_context.setdefault('version', self.version)
+        extra_context['request'] = self.request
 
         return FileInfoDiffSerializer(
             instance=self.file, context=extra_context)
@@ -183,14 +194,6 @@ class TestFileInfoDiffSerializer(TestCase):
             serializer.data
 
     def test_can_access_version_from_parent(self):
-        # Set up the request to support drf_reverse
-        api_version = api_settings.DEFAULT_VERSION
-        request = APIRequestFactory().get('/api/%s/' % api_version)
-        request.versioning_scheme = (
-            api_settings.DEFAULT_VERSIONING_CLASS()
-        )
-        request.version = api_version
-
         parent_version = self.addon.current_version
 
         new_version = version_factory(
@@ -204,7 +207,9 @@ class TestFileInfoDiffSerializer(TestCase):
 
         serializer = AddonCompareVersionSerializer(
             instance=new_version,
-            context={'parent_version': parent_version, 'request': request})
+            context={
+                'parent_version': parent_version, 'request': self.request
+            })
         file = serializer.data['file']
         assert file['id'] == new_version.current_file.pk
 
