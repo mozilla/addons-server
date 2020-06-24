@@ -9,6 +9,7 @@ import pygit2
 
 from rest_framework import serializers
 from rest_framework.exceptions import NotFound
+from rest_framework.reverse import reverse as drf_reverse
 
 from django.core.cache import cache
 from django.utils.functional import cached_property
@@ -411,9 +412,12 @@ class AddonBrowseVersionSerializer(
                 ) if key in entry}
 
     def get_validation_url_json(self, obj):
-        return absolutify(reverse('reviewers.json_file_validation', args=[
-            obj.addon.pk, obj.current_file.id
-        ]))
+        return absolutify(drf_reverse(
+            'reviewers-addon-json-file-validation',
+            request=self.context.get('request'),
+            args=[
+                obj.addon.pk, obj.current_file.id
+            ]))
 
     def get_validation_url(self, obj):
         return absolutify(reverse('devhub.file_validation', args=[

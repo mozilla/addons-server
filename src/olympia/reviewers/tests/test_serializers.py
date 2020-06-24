@@ -4,12 +4,14 @@ import json
 from django.core.cache import cache
 
 from rest_framework.exceptions import NotFound
+from rest_framework.settings import api_settings
+from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.activity.models import DraftComment
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    TestCase, addon_factory, user_factory, version_factory)
+    TestCase, addon_factory, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import FileValidation
 from olympia.git.utils import AddonGitRepository, extract_version_to_git
@@ -41,8 +43,17 @@ class TestFileInfoSerializer(TestCase):
         self.version = self.addon.current_version
         self.file = self.addon.current_version.current_file
 
+        # Set up the request to support drf_reverse
+        api_version = api_settings.DEFAULT_VERSION
+        self.request = APIRequestFactory().get('/api/%s/' % api_version)
+        self.request.versioning_scheme = (
+            api_settings.DEFAULT_VERSIONING_CLASS()
+        )
+        self.request.version = api_version
+
     def get_serializer(self, **extra_context):
         extra_context.setdefault('version', self.version)
+        extra_context['request'] = self.request
 
         return FileInfoSerializer(
             instance=self.file, context=extra_context)
@@ -59,7 +70,8 @@ class TestFileInfoSerializer(TestCase):
 
     def test_can_access_version_from_parent(self):
         serializer = AddonBrowseVersionSerializer(
-            instance=self.addon.current_version)
+            instance=self.addon.current_version,
+            context={'request': self.request})
         file = serializer.data['file']
         assert file['id'] == self.addon.current_version.current_file.pk
 
@@ -156,8 +168,17 @@ class TestFileInfoDiffSerializer(TestCase):
         self.version = self.addon.current_version
         self.file = self.addon.current_version.current_file
 
+        # Set up the request to support drf_reverse
+        api_version = api_settings.DEFAULT_VERSION
+        self.request = APIRequestFactory().get('/api/%s/' % api_version)
+        self.request.versioning_scheme = (
+            api_settings.DEFAULT_VERSIONING_CLASS()
+        )
+        self.request.version = api_version
+
     def get_serializer(self, **extra_context):
         extra_context.setdefault('version', self.version)
+        extra_context['request'] = self.request
 
         return FileInfoDiffSerializer(
             instance=self.file, context=extra_context)
@@ -186,7 +207,9 @@ class TestFileInfoDiffSerializer(TestCase):
 
         serializer = AddonCompareVersionSerializer(
             instance=new_version,
-            context={'parent_version': parent_version})
+            context={
+                'parent_version': parent_version, 'request': self.request
+            })
         file = serializer.data['file']
         assert file['id'] == new_version.current_file.pk
 
@@ -403,7 +426,16 @@ class TestAddonBrowseVersionSerializer(TestCase):
         assert self.addon.current_version.release_notes
         self.version = self.addon.current_version
 
+        # Set up the request to support drf_reverse
+        api_version = api_settings.DEFAULT_VERSION
+        self.request = APIRequestFactory().get('/api/%s/' % api_version)
+        self.request.versioning_scheme = (
+            api_settings.DEFAULT_VERSIONING_CLASS()
+        )
+        self.request.version = api_version
+
     def get_serializer(self, **extra_context):
+        extra_context['request'] = self.request
         return AddonBrowseVersionSerializer(
             instance=self.version, context=extra_context)
 
@@ -419,9 +451,12 @@ class TestAddonBrowseVersionSerializer(TestCase):
             self.version.reviewed.replace(microsecond=0).isoformat() + 'Z')
 
         # Custom fields
-        validation_url_json = absolutify(reverse(
-            'reviewers.json_file_validation', args=[
-                self.addon.pk, self.version.current_file.id]))
+        validation_url_json = absolutify(reverse_ns(
+            'reviewers-addon-json-file-validation',
+            kwargs={
+                'pk': self.addon.pk,
+                'file_id': self.version.current_file.id
+            }))
         validation_url = absolutify(reverse('devhub.file_validation', args=[
             self.addon.pk, self.version.current_file.id]))
 
@@ -551,6 +586,14 @@ class TestAddonCompareVersionSerializer(TestCase):
         self.addon.current_version.refresh_from_db()
         self.version = self.addon.current_version
 
+        # Set up the request to support drf_reverse
+        api_version = api_settings.DEFAULT_VERSION
+        self.request = APIRequestFactory().get('/api/%s/' % api_version)
+        self.request.versioning_scheme = (
+            api_settings.DEFAULT_VERSIONING_CLASS()
+        )
+        self.request.version = api_version
+
     def create_new_version_for_addon(self, xpi_filename):
         addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
@@ -573,6 +616,7 @@ class TestAddonCompareVersionSerializer(TestCase):
         return addon, repo, parent_version, new_version
 
     def get_serializer(self, **extra_context):
+        extra_context['request'] = self.request
         return AddonCompareVersionSerializer(
             instance=self.version, context=extra_context)
 
