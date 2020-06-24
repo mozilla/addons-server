@@ -9,8 +9,10 @@ import socket
 
 from datetime import datetime
 
-import raven
+import sentry_sdk
 from kombu import Queue
+from sentry_sdk.integrations.celery import CeleryIntegration
+from sentry_sdk.integrations.django import DjangoIntegration
 
 import olympia.core.logger
 
@@ -491,7 +493,6 @@ INSTALLED_APPS = (
     'csp',
     'aesfield',
     'django_extensions',
-    'raven.contrib.django',
     'rest_framework',
     'waffle',
     'django_jinja',
@@ -1346,7 +1347,7 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': False,
         },
-        'raven': {
+        'sentry_sdk': {
             'handlers': ['mozlog'],
             'level': logging.WARNING,
             'propagate': False
@@ -1799,7 +1800,7 @@ REST_FRAMEWORK = {
 }
 
 
-def get_raven_release():
+def get_sentry_release():
     version_json = os.path.join(ROOT, 'version.json')
     version = None
 
@@ -1814,20 +1815,36 @@ def get_raven_release():
 
     if not version or version == 'origin/master':
         try:
-            version = raven.fetch_git_sha(ROOT)
-        except raven.exceptions.InvalidGitRepository:
+            head_path = os.path.join(ROOT, '.git', 'HEAD')
+            with open(head_path, 'r') as fp:
+                head = str(fp.read()).strip()
+
+            if head.startswith('ref: '):
+                head = head[5:]
+                revision_file = os.path.join(ROOT, '.git', *head.split('/'))
+            else:
+                return head
+            with open(revision_file) as fh:
+                version = str(fh.read()).strip()
+        except IOError:
             version = None
     return version
 
 
 # This is the DSN to the Sentry service.
-RAVEN_CONFIG = {
+SENTRY_CONFIG = {
     'dsn': env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN')),
     # Automatically configure the release based on git information.
     # This uses our `version.json` file if possible or tries to fetch
     # the current git-sha.
-    'release': get_raven_release(),
+    'release': get_sentry_release(),
+    'send_default_pii': True,
 }
+
+sentry_sdk.init(
+    integrations=[DjangoIntegration(), CeleryIntegration()],
+    **SENTRY_CONFIG,
+)
 
 # Automatically do 'from olympia import amo' when running shell_plus.
 SHELL_PLUS_POST_IMPORTS = (

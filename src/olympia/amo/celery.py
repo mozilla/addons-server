@@ -10,7 +10,6 @@ from __future__ import absolute_import
 
 import datetime
 
-from django.conf import settings
 from django.core.cache import cache
 
 from celery import Celery, group
@@ -19,8 +18,6 @@ from django_statsd.clients import statsd
 from kombu import serialization
 from post_request_task.task import (
     PostRequestTask, _start_queuing_tasks, _send_tasks_and_stop_queuing)
-from raven import Client
-from raven.contrib.celery import register_logger_signal, register_signal
 
 import olympia.core.logger
 
@@ -79,19 +76,6 @@ task = app.task
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
-
-# Hook up Sentry in celery.
-raven_client = Client(settings.RAVEN_CONFIG['dsn'])
-
-# register a custom filter to filter out duplicate logs
-register_logger_signal(raven_client)
-
-# hook into the Celery error handler
-register_signal(raven_client)
-
-# After upgrading raven we can specify loglevel=logging.INFO to override
-# the default (which is ERROR).
-register_logger_signal(raven_client)
 
 
 @task_failure.connect
