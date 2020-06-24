@@ -6357,18 +6357,6 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
         self.client.login_api(self.user)
         assert self.client.get(self.url).status_code == 200
 
-    def test_cors_headers_are_sent(self):
-        self.grant_permission(self.user, 'Addons:Review')
-        self.client.login_api(self.user)
-        code_manager_url = 'https://my-code-manager-url.example.org'
-        with override_settings(CODE_MANAGER_URL=code_manager_url):
-            response = self.client.get(self.url)
-
-        assert response['Access-Control-Allow-Origin'] == code_manager_url
-        assert response['Access-Control-Allow-Methods'] == 'GET, OPTIONS'
-        assert response['Access-Control-Allow-Headers'] == 'Content-Type'
-        assert response['Access-Control-Allow-Credentials'] == 'true'
-
     def test_deleted_addon(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)

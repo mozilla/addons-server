@@ -414,7 +414,7 @@ class AddonBrowseVersionSerializer(
     def get_validation_url_json(self, obj):
         return absolutify(drf_reverse(
             'reviewers-addon-json-file-validation',
-            request=self._context.get('request'),
+            request=self.context.get('request'),
             args=[
                 obj.addon.pk, obj.current_file.id
             ]))

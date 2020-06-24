@@ -1309,16 +1309,9 @@ class AddonReviewerViewSet(GenericViewSet):
             result = file.validation
         except File.validation.RelatedObjectDoesNotExist:
             raise http.Http404
-        response = JsonResponse({
+        return JsonResponse({
             'validation': result.processed_validation,
-            'error': None,
         })
-        # See: https://github.com/mozilla/addons-server/issues/11048
-        response['Access-Control-Allow-Origin'] = settings.CODE_MANAGER_URL
-        response['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
-        response['Access-Control-Allow-Headers'] = 'Content-Type'
-        response['Access-Control-Allow-Credentials'] = 'true'
-        return response
 
 
 class ReviewAddonVersionMixin(object):
