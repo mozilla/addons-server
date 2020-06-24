@@ -454,11 +454,16 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         if self.picture_type:
             self.update(picture_type=None)
 
-    def _anonymize(self):
-        log.info('Anonymizing username for {}'.format(self.pk))
-        for field in self.ANONYMIZED_FIELDS:
-            setattr(self, field, self._meta.get_field(field).get_default())
-        self.delete_picture()
+    @classmethod
+    def anonymize_users(cls, users):
+        fields = {
+            field_name: cls._meta.get_field(field_name)
+            for field_name in cls.ANONYMIZED_FIELDS}
+        for user in users:
+            log.info('Anonymizing username for {}'.format(user.pk))
+            for field_name, field in fields.items():
+                setattr(user, field_name, field.get_default())
+            user.delete_picture()
 
     @classmethod
     def ban_and_disable_related_content_bulk(cls, users, move_files=False):
@@ -518,7 +523,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                 'anonymized and banned.')
             user.banned = datetime.now()
             user.deleted = True
-            user._anonymize()
+        cls.anonymize_users(users)
         cls.objects.bulk_update(
             users, fields=('banned', 'deleted') + cls.ANONYMIZED_FIELDS)
 
@@ -542,7 +547,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         log.info(f'User ({self}: <{self.email}>) is being anonymized.')
         if send_delete_email:
             email = self._prepare_delete_email()
-        self._anonymize()
+        self.anonymize_users((self, ))
         self.deleted = True
         self.save()
         if send_delete_email:
