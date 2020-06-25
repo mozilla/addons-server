@@ -198,7 +198,10 @@ class TestUserProfile(TestCase):
             reply_to=rating)
         Collection.objects.create(author=user)
 
-    def test_delete_with_related_content_exclude_addons_with_other_devs(self):
+    @mock.patch('olympia.addons.tasks.index_addons.delay', spec=True)
+    def test_delete_with_related_content_exclude_addons_with_other_devs(
+            self, index_addons_mock
+    ):
         user = UserProfile.objects.get(pk=55021)
         addon = user.addons.last()
         self.setup_user_to_be_have_content_disabled(user)
@@ -217,6 +220,7 @@ class TestUserProfile(TestCase):
 
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
+        index_addons_mock.assert_called_with([addon.id])
 
     def test_delete_with_related_content_actually_delete(self):
         addon = Addon.objects.latest('pk')
