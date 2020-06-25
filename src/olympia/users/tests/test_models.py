@@ -221,7 +221,9 @@ class TestUserProfile(TestCase):
         AddonUser.objects.create(addon=addon, user=user_factory())
 
         # Now that everything is set up, disable/delete related content.
-        user.delete()
+        with mock.patch('olympia.addons.tasks.index_addons.delay') as idx_mock:
+            user.delete()
+            idx_mock.assert_called_with([addon.id])
 
         # The add-on should not have been touched, it has another dev.
         assert not user.addons.exists()

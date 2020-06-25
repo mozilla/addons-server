@@ -436,7 +436,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             if not addon.authors.exclude(pk=self.pk).exists():
                 addon.delete(msg=addon_msg)
             else:
-                addon.addonuser_set.filter(user=self).delete()
+                addon.addonuser_set.get(user=self).delete()
         user_responsible = core.get_user()
         self._ratings_all.all().delete(user_responsible=user_responsible)
 
