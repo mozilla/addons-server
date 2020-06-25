@@ -2,6 +2,7 @@
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.models import (
@@ -557,11 +558,6 @@ class TestPrimaryHeroImageAdmin(TestCase):
             'admin:discovery_primaryheroimageupload_changelist')
         self.detail_url_name = 'admin:discovery_primaryheroimageupload_change'
 
-    def _get_heroform(self, item_id):
-        return {
-            "custom_image": "",
-        }
-
     def test_can_see_primary_hero_image_in_admin_with_discovery_edit(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -601,16 +597,15 @@ class TestPrimaryHeroImageAdmin(TestCase):
         content = response.content.decode('utf-8')
         assert u'föo.jpg' in content
 
+        updated_photo = get_uploaded_file('transparent.png')
         response = self.client.post(
             self.detail_url,
-            dict(self._get_heroform(str(item.id)), **{
-                'custom_image': 'föo.jpg',
-            }),
+            dict(custom_image=updated_photo),
             follow=True)
         assert response.status_code == 200
-        # item.reload()
+        item.reload()
         assert PrimaryHeroImage.objects.count() == 1
-        assert item.custom_image == 'föo.jpg'
+        assert item.custom_image == 'hero-featured-image/transparent.png'
 
     def test_can_delete_with_discovery_edit_permission(self):
         item = PrimaryHeroImage.objects.create()
@@ -628,9 +623,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
 
         # And can actually delete.
         response = self.client.post(
-            delete_url,
-            dict(self._get_heroform(str(item.id)), post='yes'),
-            follow=True)
+            delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 200
         assert not PrimaryHeroImage.objects.filter(pk=item.pk).exists()
 
@@ -643,16 +636,15 @@ class TestPrimaryHeroImageAdmin(TestCase):
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.count() == 0
+        photo = get_uploaded_file('transparent.png')
         response = self.client.post(
             add_url,
-            dict(self._get_heroform(''), **{
-                'custom_image': '',
-            }),
+            dict(custom_image=photo),
             follow=True)
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.count() == 1
         item = PrimaryHeroImage.objects.get()
-        assert item.custom_image == ''
+        assert item.custom_image == 'hero-featured-image/transparent.png'
 
     def test_can_not_add_without_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_primaryheroimageupload_add')
@@ -661,10 +653,10 @@ class TestPrimaryHeroImageAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 403
+        photo = get_uploaded_file('transparent.png')
         response = self.client.post(
-            add_url, {
-                'custom_image': 'föo.jpg',
-            },
+            add_url,
+            dict(custom_image=photo),
             follow=True)
         assert response.status_code == 403
         assert PrimaryHeroImage.objects.count() == 0
@@ -679,13 +671,14 @@ class TestPrimaryHeroImageAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 403
+        updated_photo = get_uploaded_file('transparent.png')
 
         response = self.client.post(
-            detail_url, {
-                'custom_image': 'foo.jpg',
-            }, follow=True)
+            detail_url,
+            dict(custom_image=updated_photo),
+            follow=True)
         assert response.status_code == 403
-        # item.reload()
+        item.reload()
         assert PrimaryHeroImage.objects.count() == 1
         assert item.custom_image == ''
 
