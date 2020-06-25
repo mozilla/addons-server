@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from pyquery import PyQuery as pq
 
+import os
+
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
+from django.conf import settings
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.models import (
     PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
@@ -645,6 +648,8 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert PrimaryHeroImage.objects.count() == 1
         item = PrimaryHeroImage.objects.get()
         assert item.custom_image == 'hero-featured-image/transparent.png'
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
 
     def test_can_not_add_without_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_primaryheroimageupload_add')
