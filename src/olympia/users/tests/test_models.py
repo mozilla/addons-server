@@ -198,17 +198,16 @@ class TestUserProfile(TestCase):
             reply_to=rating)
         Collection.objects.create(author=user)
 
-    @mock.patch('olympia.addons.tasks.index_addons.delay', spec=True)
-    def test_delete_with_related_content_exclude_addons_with_other_devs(
-            self, index_addons_mock
-    ):
+    def test_delete_with_related_content_exclude_addons_with_other_devs(self):
         user = UserProfile.objects.get(pk=55021)
         addon = user.addons.last()
         self.setup_user_to_be_have_content_disabled(user)
         AddonUser.objects.create(addon=addon, user=user_factory())
 
         # Now that everything is set up, disable/delete related content.
-        user.delete()
+        with mock.patch('olympia.addons.tasks.index_addons.delay') as idx_mock:
+            user.delete()
+            idx_mock.assert_called_with([addon.id])
 
         # The add-on should not have been touched, it has another dev.
         assert not user.addons.exists()
@@ -220,7 +219,6 @@ class TestUserProfile(TestCase):
 
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
-        index_addons_mock.assert_called_with([addon.id])
 
     def test_delete_with_related_content_actually_delete(self):
         addon = Addon.objects.latest('pk')
