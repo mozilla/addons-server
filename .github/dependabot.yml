@@ -1,0 +1,26 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/requirements"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 99
+  ignore:
+  - dependency-name: billiard
+    versions:
+    - ">= 4.0"
+  - dependency-name: Django
+    versions:
+    - ">= 3.0"
+  - dependency-name: django-tables2
+    versions:
+    - ">= 2"
+  - dependency-name: elasticsearch
+    versions:
+    - ">= 7"
+  - dependency-name: elasticsearch-dsl
+    versions:
+    - ">= 7"
+  - dependency-name: pygit2
+    versions:
+    - ">= 1.2.0"
