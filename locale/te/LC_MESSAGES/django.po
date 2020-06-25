@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-18 14:04+0000\n"
+"PO-Revision-Date: 2020-06-25 18:00+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -403,9 +403,8 @@ msgstr "మీరు తప్పనిసరిగా {lang-code:value} వం�
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "చెల్లని pk లేదా స్లగ్ \"%s\" - వస్తువు ఉనికిలో లేదు."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "డెవలపర్ ఖాతాలపై మరింత సమాచారం"
+msgstr ""
 
 msgid "Application Versions"
 msgstr "అనువర్తనపు వెర్షన్లు"
@@ -525,13 +524,11 @@ msgstr "తొలగించు"
 msgid "Update"
 msgstr "తాజాకరించు"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "నా సమర్పణలకు వెళ్ళండి"
+msgstr ""
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "నా సమర్పణలకు వెళ్ళండి"
+msgstr ""
 
 #, python-format
 msgid "Add %(name)s"
@@ -540,9 +537,8 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "వెర్షనును సమర్పించు"
+msgstr "సమర్పించు"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
@@ -874,9 +870,8 @@ msgstr "నిర్వాహక అలంకారం-సమీక్ష అభ
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} తేలికపాటి అలంకారం నుండి వలస వచ్చింది."
 
-#, fuzzy
 msgid "User {user} api key reset."
-msgstr "వాడుకరి {user} బొమ్మ తొలగించబడింది."
+msgstr ""
 
 msgid "Block for {0} added to Blocklist."
 msgstr ""
@@ -890,13 +885,11 @@ msgstr ""
 msgid "Block edited"
 msgstr ""
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "{addon} నుండి వెర్షన్ {0} తొలగించబడింది."
+msgstr ""
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "పొడిగింత తొలగించబడింది."
+msgstr ""
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -4883,9 +4876,8 @@ msgid "Media enhancers for Firefox"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Explore extensions"
-msgstr "పొడిగింతలు"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
@@ -5442,17 +5434,14 @@ msgstr "చివరిగా తాజాకరణ"
 msgid "Listed versions needing human review ({0})"
 msgstr "ఇతర వేచివున్న సమీక్ష ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "ఇతర వేచివున్న సమీక్ష ({0})"
+msgstr ""
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "జాబితా చేసిన వెర్షన్లు"
+msgstr ""
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "జాబితా చేసిన వెర్షన్లు"
+msgstr ""
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5478,9 +5467,8 @@ msgstr ""
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "అనువర్తనపు వెర్షన్లు"
+msgstr ""
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
