@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms.widgets import RadioSelect
+from django.utils.safestring import mark_safe
 
 from olympia.amo.models import LongNameIndex, ModelBase
 from olympia.discovery.models import DiscoveryItem
@@ -88,7 +89,28 @@ class WidgetCharField(models.CharField):
         return super().get_choices(*args, **kwargs)
 
 
+class PrimaryHeroImage(ModelBase):
+    custom_image = models.ImageField(
+        upload_to='hero-featured-image/',
+        blank=False, verbose_name='custom image path')
+
+    def __str__(self):
+        return f'{self.custom_image}'
+
+    def preview_image(self):
+        if self.custom_image:
+            return mark_safe('<img class="prmhero-preview" src="{}" />'.format(
+                self.custom_image.url)
+            )
+        else:
+            return None
+    preview_image.short_description = "Image"
+    preview_image.allow_tags = True
+
+
 class PrimaryHero(ModelBase):
+    select_image = models.ForeignKey(
+        PrimaryHeroImage, null=True, on_delete=models.SET_NULL)
     image = WidgetCharField(
         choices=DirImageChoices(path=FEATURED_IMAGE_PATH), max_length=255,
         widget=ImageChoiceWidget, blank=True)

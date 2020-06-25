@@ -8,8 +8,9 @@ from django.db.models import Prefetch
 
 from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.admin import PrimaryHeroInline, SecondaryHeroAdmin
-from olympia.hero.models import PrimaryHero, SecondaryHero
+from olympia.hero.admin import (
+    PrimaryHeroInline, SecondaryHeroAdmin, PrimaryHeroImageAdmin)
+from olympia.hero.models import PrimaryHero, SecondaryHero, PrimaryHeroImage
 
 
 # Popular locales, we typically don't want to show a string if it's not
@@ -139,6 +140,15 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         return super().has_delete_permission(request=request, obj=obj)
 
 
+class PrimaryHeroImageUpload(PrimaryHeroImage):
+    """Just a proxy class to have all the hero related objects in one
+    place under Discovery in django admin."""
+
+    class Meta:
+        proxy = True
+        verbose_name_plural = 'primary hero images'
+
+
 class SecondaryHeroShelf(SecondaryHero):
     """Just a proxy class to have all the hero shelf related objects in one
     place under Discovery in django admin."""
@@ -149,4 +159,5 @@ class SecondaryHeroShelf(SecondaryHero):
 
 
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
+admin.site.register(PrimaryHeroImageUpload, PrimaryHeroImageAdmin)
 admin.site.register(SecondaryHeroShelf, SecondaryHeroAdmin)

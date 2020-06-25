@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 from pyquery import PyQuery as pq
 
+import os
+
 from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
+from django.conf import settings
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.models import PrimaryHero, SecondaryHero, SecondaryHeroModule
+from olympia.hero.models import (
+    PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
 
 
 class TestDiscoveryAdmin(TestCase):
@@ -269,6 +274,7 @@ class TestDiscoveryAdmin(TestCase):
     def test_can_add_primary_hero_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
         item = DiscoveryItem.objects.create(addon=addon)
+        image = PrimaryHeroImage.objects.create(custom_image='foo.jpg')
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
         )
@@ -291,6 +297,7 @@ class TestDiscoveryAdmin(TestCase):
                 'recommendable': True,
                 'primaryhero-0-gradient_color': '#054096',
                 'primaryhero-0-image': 'Ubo@2x.jpg',
+                'primaryhero-0-select_image': image.pk,
             }),
             follow=True)
         assert response.status_code == 200
@@ -301,7 +308,9 @@ class TestDiscoveryAdmin(TestCase):
         assert item.custom_addon_name == 'Xäxâxàxaxaxa !'
         assert item.recommendable is True
         hero = PrimaryHero.objects.last()
+        hero.select_image == PrimaryHeroImage.objects.last()
         assert hero.image == 'Ubo@2x.jpg'
+        assert hero.select_image.pk == image.pk
         assert hero.gradient_color == '#054096'
         assert hero.disco_addon == item
 
@@ -544,6 +553,158 @@ class TestDiscoveryAdmin(TestCase):
             response = self.client.get(self.list_url, follow=True)
 
         assert response.status_code == 200
+
+
+class TestPrimaryHeroImageAdmin(TestCase):
+    def setUp(self):
+        self.list_url = reverse(
+            'admin:discovery_primaryheroimageupload_changelist')
+        self.detail_url_name = 'admin:discovery_primaryheroimageupload_change'
+
+    def test_can_see_primary_hero_image_in_admin_with_discovery_edit(self):
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        url = reverse('admin:index')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        # Use django's reverse, since that's what the admin will use. Using our
+        # own would fail the assertion because of the locale that gets added.
+        self.list_url = django_reverse(
+            'admin:discovery_primaryheroimageupload_changelist')
+        assert self.list_url in response.content.decode('utf-8')
+
+    def test_can_list_with_discovery_edit_permission(self):
+        PrimaryHeroImage.objects.create(custom_image='föo.jpg')
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200
+        assert 'föo.jpg' in response.content.decode('utf-8')
+
+    def test_can_edit_with_discovery_edit_permission(self):
+        item = PrimaryHeroImage.objects.create(custom_image='föo.jpg')
+        self.detail_url = reverse(
+            'admin:discovery_primaryheroimageupload_change', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert u'föo.jpg' in content
+
+        updated_photo = get_uploaded_file('transparent.png')
+        response = self.client.post(
+            self.detail_url,
+            dict(custom_image=updated_photo),
+            follow=True)
+        assert response.status_code == 200
+        item.reload()
+        assert PrimaryHeroImage.objects.count() == 1
+        assert item.custom_image == 'hero-featured-image/transparent.png'
+
+    def test_can_delete_with_discovery_edit_permission(self):
+        item = PrimaryHeroImage.objects.create()
+        delete_url = reverse(
+            'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        # Can access delete confirmation page.
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 200
+        assert PrimaryHeroImage.objects.filter(pk=item.pk).exists()
+
+        # And can actually delete.
+        response = self.client.post(
+            delete_url, data={'post': 'yes'}, follow=True)
+        assert response.status_code == 200
+        assert not PrimaryHeroImage.objects.filter(pk=item.pk).exists()
+
+    def test_can_add_with_discovery_edit_permission(self):
+        add_url = reverse('admin:discovery_primaryheroimageupload_add')
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(add_url, follow=True)
+        assert response.status_code == 200
+        assert PrimaryHeroImage.objects.count() == 0
+        photo = get_uploaded_file('transparent.png')
+        response = self.client.post(
+            add_url,
+            dict(custom_image=photo),
+            follow=True)
+        assert response.status_code == 200
+        assert PrimaryHeroImage.objects.count() == 1
+        item = PrimaryHeroImage.objects.get()
+        assert item.custom_image == 'hero-featured-image/transparent.png'
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+
+    def test_can_not_add_without_discovery_edit_permission(self):
+        add_url = reverse('admin:discovery_primaryheroimageupload_add')
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        response = self.client.get(add_url, follow=True)
+        assert response.status_code == 403
+        photo = get_uploaded_file('transparent.png')
+        response = self.client.post(
+            add_url,
+            dict(custom_image=photo),
+            follow=True)
+        assert response.status_code == 403
+        assert PrimaryHeroImage.objects.count() == 0
+
+    def test_can_not_edit_without_discovery_edit_permission(self):
+        item = PrimaryHeroImage.objects.create()
+        detail_url = reverse(
+            'admin:discovery_primaryheroimageupload_change', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        response = self.client.get(detail_url, follow=True)
+        assert response.status_code == 403
+        updated_photo = get_uploaded_file('transparent.png')
+
+        response = self.client.post(
+            detail_url,
+            dict(custom_image=updated_photo),
+            follow=True)
+        assert response.status_code == 403
+        item.reload()
+        assert PrimaryHeroImage.objects.count() == 1
+        assert item.custom_image == ''
+
+    def test_can_not_delete_without_discovery_edit_permission(self):
+        item = PrimaryHeroImage.objects.create()
+        delete_url = reverse(
+            'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.client.login(email=user.email)
+        # Can not access delete confirmation page.
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 403
+        assert PrimaryHeroImage.objects.filter(pk=item.pk).exists()
+
+        # Can not actually delete either.
+        response = self.client.post(
+            delete_url, data={'post': 'yes'}, follow=True)
+        assert response.status_code == 403
+        assert PrimaryHeroImage.objects.filter(pk=item.pk).exists()
 
 
 class TestSecondaryHeroShelfAdmin(TestCase):
