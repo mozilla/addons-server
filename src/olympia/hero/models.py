@@ -89,10 +89,10 @@ class WidgetCharField(models.CharField):
         return super().get_choices(*args, **kwargs)
 
 
-class PrimaryHeroImage(models.Model):
+class PrimaryHeroImage(ModelBase):
     custom_image = models.ImageField(
         upload_to='hero-featured-image/',
-        blank=True, verbose_name='custom image path')
+        blank=False, verbose_name='custom image path')
 
     def __str__(self):
         return f'{self.custom_image}'
