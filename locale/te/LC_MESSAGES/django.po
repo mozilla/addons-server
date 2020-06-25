@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-25 18:00+0000\n"
+"PO-Revision-Date: 2020-06-25 18:13+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -484,9 +484,8 @@ msgstr ""
 msgid "Review Listed"
 msgstr "సమీక్ష అభ్యర్థించబడింది"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "గమనికను సమీక్షించండి"
+msgstr ""
 
 msgid "This block was imported from a regex based legacy Block."
 msgstr ""
@@ -894,9 +893,8 @@ msgstr ""
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} {collection} నుండి తొలగించబడింది."
+msgstr ""
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -904,13 +902,11 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "వాడుకరి {user} బొమ్మ తొలగించబడింది."
+msgstr ""
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "వాడుకరి {user}‌ని మార్చారు, కారణం: {1}"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1509,9 +1505,8 @@ msgstr "తక్కువ నాణ్యత, సాగదీసిన లే�
 msgid "Header image alignment problem"
 msgstr "శీర్షిక చిత్రం అమరిక సమస్య"
 
-#, fuzzy
 msgid "No action"
-msgstr "మరిన్ని చర్యలు"
+msgstr "చర్యలు లేవు"
 
 msgid "Flag for human review"
 msgstr ""
@@ -1531,9 +1526,8 @@ msgstr ""
 msgid "Inconclusive"
 msgstr ""
 
-#, fuzzy
 msgid "New"
-msgstr "సరికొత్తవి"
+msgstr "కొత్తది"
 
 msgid "Running"
 msgstr ""
@@ -1812,9 +1806,8 @@ msgstr ""
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "మీ పొడిగింతలో ఒక రచయిత పాత్ర మార్చబడింది"
+msgstr "మీ పొడగింతలో ఒక రచయిత పాత్ర మార్చబడింది"
 
 msgid "An author has been removed from your add-on"
 msgstr "మీ పొడిగింత నుండి ఒక రచయిత తొలగించబడ్డారు"
@@ -5596,13 +5589,11 @@ msgstr ""
 msgid "Review lock limit reached"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr ""
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: గోప్యతా విధానం"
+msgstr "{addon} – గోప్యతా విధానం"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5668,9 +5659,8 @@ msgstr "బొమ్మల సేకరణ"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "ద్వారా పొడిగింత వెర్షన్"
+msgstr "పొడగింత పేరు అనువాదాలు"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5892,13 +5882,11 @@ msgstr "మరిన్ని చర్యలు"
 msgid "Notify me about new listed versions"
 msgstr ""
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "అన్ని సమర్పణలను వీక్షించండి"
+msgstr ""
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "నా సమర్పణలను నిర్వహించండి"
+msgstr ""
 
 msgid "Force-disable add-on"
 msgstr ""
@@ -5906,13 +5894,11 @@ msgstr ""
 msgid "Force-enable add-on"
 msgstr ""
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "అన్ని సమర్పణలను వీక్షించండి"
+msgstr ""
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "పొడిగింతకు తిరిగి వెళ్ళు"
+msgstr ""
 
 msgid "Update add-on block"
 msgstr ""
@@ -5983,9 +5969,8 @@ msgstr ""
 msgid "Source:"
 msgstr "మూలం:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "మూలం:"
+msgstr "మూల చిరునామా:"
 
 msgid "Dismiss this announcement"
 msgstr "ఈ ప్రకటనను తీసివేయండి"
@@ -5993,9 +5978,8 @@ msgstr "ఈ ప్రకటనను తీసివేయండి"
 msgid "Files in this version:"
 msgstr "ఈ వెర్షను లోని ఫైళ్ళు:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "ఈ వెర్షను లోని ఫైళ్ళు:"
+msgstr "ఈ వెర్షను లోని ఫైళ్ళనీ చూడండి"
 
 msgid "Contents"
 msgstr "విషయాలు"
@@ -6115,9 +6099,8 @@ msgstr[1] "కాలంచెల్లిన సమాచార అభ్యర�
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "మొదలుపెట్టండి"
+msgstr ""
 
 msgid "all but this rule"
 msgstr ""
@@ -6125,21 +6108,17 @@ msgstr ""
 msgid "presence of a version"
 msgstr ""
 
-#, fuzzy
 msgid "version channel"
-msgstr "వెర్షన్ సంతకం చేయబడింది"
+msgstr ""
 
-#, fuzzy
 msgid "add-on status"
-msgstr "పొడిగింత స్థితి"
+msgstr "పొడగింత స్థితి"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "ప్రత్యక్షత జాబితా"
+msgstr ""
 
-#, fuzzy
 msgid "file status"
-msgstr "సైటు స్థితి"
+msgstr "ఫైలు స్థితి"
 
 #, fuzzy
 msgid "file signature"
@@ -6179,9 +6158,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "సమీక్షకుల ప్రత్యుత్తరం"
+msgstr ""
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6362,9 +6340,8 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr ""
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "తేదీవారీ వాడుకరుల భాషలు"
+msgstr "తేదీవారీ వాడుకరుల దేశాలు"
 
 msgid "Downloaded by Date"
 msgstr "తేదీ ద్వారా దింపుకోండి"
@@ -6576,9 +6553,8 @@ msgstr "వెర్షన్ను తొలగించండి"
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr "ఈ వాడుకరులు \"%(users)s\" నిషేధించబడ్డారు."
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "API కీలను నిర్వహించండి"
+msgstr ""
 
 msgid "Profile Photo"
 msgstr "ప్రొఫైల్ ఫోటో"
@@ -6670,9 +6646,8 @@ msgstr "వాడుకరి గమనింపులు"
 msgid "Ban"
 msgstr "నిషేధించు"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "వెర్షన్ను తొలగించండి"
+msgstr ""
 
 msgid "Delete picture"
 msgstr "బొమ్మను తొలగించు"
