@@ -98,6 +98,14 @@ class TestUserProfile(TestCase):
         assert user.last_login_ip
         assert not user.has_anonymous_username
         name = user.display_name
+        user.update(
+            averagerating=4.4,
+            biography='some life',
+            bypass_upload_restrictions=True,
+            location='some where',
+            occupation='some job',
+            read_dev_agreement=datetime.now(),
+            reviewer_name='QA')
 
         old_auth_id = user.auth_id
         user.delete()
@@ -113,6 +121,13 @@ class TestUserProfile(TestCase):
         # clear_old_last_login_ip command
         assert user.last_login_ip
         assert user.has_anonymous_username
+        assert user.averagerating is None
+        assert user.biography is None
+        assert user.bypass_upload_restrictions is False
+        assert user.location == ''
+        assert user.occupation == ''
+        assert user.read_dev_agreement is None
+        assert user.reviewer_name == ''
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
         assert len(mail.outbox) == 1
