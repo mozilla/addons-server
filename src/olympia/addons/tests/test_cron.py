@@ -376,13 +376,23 @@ class TestAvgDailyUserCountTestCase(TestCase):
             date=datetime.date.today(),
             defaults={'count': langpack_count}
         )
+        DownloadCount.objects.update_or_create(
+            addon=langpack,
+            date=self.days_ago(3),
+            defaults={'count': 0}
+        )
         # We use download counts for dictionaries.
         dictionary = addon_factory(type=amo.ADDON_DICT, average_daily_users=0)
-        dictionary_count = 5567
+        dictionary_count = 6789
         DownloadCount.objects.update_or_create(
             addon=dictionary,
             date=datetime.date.today(),
-            defaults={'count': dictionary_count}
+            defaults={'count': 6780}
+        )
+        DownloadCount.objects.update_or_create(
+            addon=dictionary,
+            date=self.days_ago(2),
+            defaults={'count': 9}
         )
         # This one should be ignored.
         addon_without_guid = addon_factory(guid=None, type=amo.ADDON_LPAPP)
