@@ -349,7 +349,6 @@ class ReviewHelper(object):
         # - A more specific check for each action, done below, restricting
         #   their availability while not affecting whether the user can see
         #   the review page or not.
-        permission = None
         version_is_unlisted = (
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_UNLISTED)
@@ -361,53 +360,59 @@ class ReviewHelper(object):
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED and
             self.addon.current_version and
-            self.addon.current_version.was_auto_approved and not
+            self.addon.current_version.was_auto_approved
+        )
+        latest_version_is_pending_rejection = (
+            self.version and
+            self.version.pending_rejection)
+        current_version_is_pending_rejection = (
+            self.addon.current_version and
             self.addon.current_version.pending_rejection)
 
+        # Default permissions / admin needed values if it's just a regular
+        # code review, nothing fancy.
+        permission = amo.permissions.ADDONS_REVIEW
+        permission_post_review = amo.permissions.ADDONS_POST_REVIEW
+        is_admin_needed = (
+            self.addon.needs_admin_content_review or
+            self.addon.needs_admin_code_review or
+            latest_version_is_pending_rejection)
+        is_admin_needed_post_review = (
+            self.addon.needs_admin_content_review or
+            self.addon.needs_admin_code_review or
+            current_version_is_pending_rejection)
+
+        # More complex cases.
         if is_recommendable:
             is_admin_needed = (
                 self.addon.needs_admin_content_review or
-                self.addon.needs_admin_code_review)
+                self.addon.needs_admin_code_review or
+                latest_version_is_pending_rejection)
             permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
+            permission_post_review = permission
         elif self.content_review:
-            is_admin_needed = self.addon.needs_admin_content_review
+            is_admin_needed = (
+                self.addon.needs_admin_content_review or
+                latest_version_is_pending_rejection)
             permission = amo.permissions.ADDONS_CONTENT_REVIEW
         elif version_is_unlisted:
-            is_admin_needed = self.addon.needs_admin_code_review
+            is_admin_needed = (
+                self.addon.needs_admin_code_review or
+                latest_version_is_pending_rejection)
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED
+            permission_post_review = permission
         elif self.addon.type == amo.ADDON_STATICTHEME:
-            is_admin_needed = self.addon.needs_admin_theme_review
+            is_admin_needed = (
+                self.addon.needs_admin_theme_review or
+                latest_version_is_pending_rejection)
             permission = amo.permissions.STATIC_THEMES_REVIEW
-        elif current_version_is_listed_and_auto_approved:
-            is_admin_needed = (
-                self.addon.needs_admin_content_review or
-                self.addon.needs_admin_code_review)
-            permission = amo.permissions.ADDONS_POST_REVIEW
-        else:
-            is_admin_needed = (
-                self.addon.needs_admin_content_review or
-                self.addon.needs_admin_code_review)
-            permission = amo.permissions.ADDONS_REVIEW
+            permission_post_review = permission
 
-        # Unless there’s a new version that needs reviewing, regular reviewers
-        # can’t perform approval or rejection actions on add-ons that have a
-        # pending rejection in the same channel.
-        if self.version and not is_admin_needed:
-            most_recent_version_pending_rejection = self.addon.versions.filter(
-                channel=self.version.channel,
-                reviewerflags__pending_rejection__isnull=False).last()
-            # self.version is always the latest version available in this
-            # channel, so if it's the same as the last one pending rejection,
-            # that means no new version were posted and only admins can perform
-            # reviews at this time.
-            if (most_recent_version_pending_rejection and
-                    most_recent_version_pending_rejection == self.version):
-                is_admin_needed = True
-
-        assert permission is not None
-
+        # Whatever permission values we set, we override if an admin is needed.
         if is_admin_needed:
             permission = amo.permissions.REVIEWS_ADMIN
+        if is_admin_needed_post_review:
+            permission_post_review = amo.permissions.REVIEWS_ADMIN
 
         # Is the current user a reviewer for this kind of add-on ?
         is_reviewer = acl.is_reviewer(request, self.addon)
@@ -417,6 +422,8 @@ class ReviewHelper(object):
         # impactful actions).
         is_appropriate_reviewer = acl.action_allowed_user(
             request.user, permission)
+        is_appropriate_reviewer_post_review = acl.action_allowed_user(
+            request.user, permission_post_review)
 
         addon_is_complete = self.addon.status not in (
             amo.STATUS_NULL, amo.STATUS_DELETED)
@@ -453,9 +460,7 @@ class ReviewHelper(object):
             # needing admin review.
             can_reject_multiple = addon_is_valid_and_version_is_listed and (
                 is_appropriate_reviewer or
-                (acl.action_allowed_user(
-                    request.user, amo.permissions.ADDONS_POST_REVIEW) and
-                 not is_admin_needed)
+                is_appropriate_reviewer_post_review
             )
 
         # Definitions for all actions.
@@ -518,7 +523,7 @@ class ReviewHelper(object):
                 not self.content_review and
                 addon_is_valid_and_version_is_listed and
                 current_version_is_listed_and_auto_approved and
-                is_appropriate_reviewer
+                is_appropriate_reviewer_post_review
             ),
         }
         actions['reject_multiple_versions'] = {
@@ -994,11 +999,18 @@ class ReviewBase(object):
                 if self.version.needs_human_review:
                     self.version.update(needs_human_review=False)
 
-            # Clear the "needs_human_review" scanner flags too, if any, and
-            # only for the specified version.
+            # Clear the "needs_human_review_by_mad" and "pending_rejection"
+            # flags too, if any, only for the specified version.
             VersionReviewerFlags.objects.filter(
                 version=self.version
-            ).update(needs_human_review_by_mad=False)
+            ).update(needs_human_review_by_mad=False, pending_rejection=None)
+
+            # For other versions, we also clear pending_rejection (Note that
+            # the action should only be accessible to admins if the current
+            # version is pending rejection).
+            VersionReviewerFlags.objects.filter(
+                version__addon=self.addon
+            ).update(pending_rejection=None)
 
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(

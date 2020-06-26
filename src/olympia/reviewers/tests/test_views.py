@@ -6038,6 +6038,9 @@ class TestAddonReviewerViewSet(TestCase):
             'reviewers-addon-deny-resubmission', kwargs={'pk': self.addon.pk})
         self.allow_resubmission_url = reverse_ns(
             'reviewers-addon-allow-resubmission', kwargs={'pk': self.addon.pk})
+        self.clear_pending_rejections_url = reverse_ns(
+            'reviewers-addon-clear-pending-rejections',
+            kwargs={'pk': self.addon.pk})
 
     def test_subscribe_not_logged_in(self):
         response = self.client.post(self.subscribe_url)
@@ -6333,6 +6336,20 @@ class TestAddonReviewerViewSet(TestCase):
         response = self.client.post(self.allow_resubmission_url)
         assert response.status_code == 409
         assert DeniedGuid.objects.count() == 0
+
+    def test_clear_pending_rejections(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        version_factory(addon=self.addon)
+        for version in self.addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(days=7))
+        response = self.client.post(self.clear_pending_rejections_url)
+        assert response.status_code == 202
+        assert not VersionReviewerFlags.objects.filter(
+            version__addon=self.addon,
+            pending_rejection__isnull=False).exists()
 
 
 class TestAddonReviewerViewSetJsonValidation(TestCase):

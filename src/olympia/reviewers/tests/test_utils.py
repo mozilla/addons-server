@@ -498,8 +498,8 @@ class TestReviewHelper(TestReviewHelperBase):
         del self.addon.block
 
     def test_actions_pending_rejection(self):
-        # An addon having versions pending rejection won't be reviewable by
-        # regular reviewers (actual pending rejection date doesn't matter) ...
+        # An addon having its latest version pending rejection won't be
+        # reviewable by regular reviewers...
         self.grant_permission(self.request.user, 'Addons:Review')
         self.grant_permission(self.request.user, 'Addons:PostReview')
         AutoApprovalSummary.objects.create(
@@ -518,6 +518,7 @@ class TestReviewHelper(TestReviewHelperBase):
         ]
         self.version = version_factory(addon=self.addon)
         self.file = self.version.all_files[0]
+
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
@@ -532,15 +533,25 @@ class TestReviewHelper(TestReviewHelperBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         VersionReviewerFlags.objects.create(
             version=self.version, pending_rejection=datetime.now())
-        expected = ['reject_multiple_versions', 'reply', 'super', 'comment']
+        expected = [
+            'confirm_auto_approved',
+            'reject_multiple_versions',
+            'reply',
+            'super',
+            'comment'
+        ]
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED).keys()) == expected
 
         # a more recent version posted does not change anything for admins.
+        # confirm_auto_approved is still available since that version is still
+        # the current_version, hasn't been rejected yet.
+        # they have public/reject actions too, since the new version is
+        # awaiting review.
         expected = [
-            'public', 'reject', 'reject_multiple_versions', 'reply', 'super',
-            'comment'
+            'public', 'reject', 'confirm_auto_approved',
+            'reject_multiple_versions', 'reply', 'super', 'comment'
         ]
         self.version = version_factory(addon=self.addon)
         self.file = self.version.all_files[0]
@@ -1149,6 +1160,50 @@ class TestReviewHelper(TestReviewHelperBase):
                                .get())
         assert activity.arguments == [self.addon, self.current_version]
         assert activity.details['comments'] == ''
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+
+    def test_addon_with_versions_pending_rejection_confirm_auto_approval(self):
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.version = version_factory(
+            addon=self.addon, version='3.0',
+            file_kw={'status': amo.STATUS_APPROVED})
+        self.file = self.version.files.all()[0]
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=153)
+
+        for version in self.addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(days=7))
+
+        self.helper = self.get_helper()  # To make it pick up the new version.
+        self.helper.set_data(self.get_data())
+
+        # We're an admin, so we can confirm auto approval even if the current
+        # version is pending rejection.
+        assert 'confirm_auto_approved' in self.helper.actions
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed is True
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
+                               .get())
+        assert activity.arguments == [self.addon, self.version]
+        assert activity.details['comments'] == ''
+
+        # None of the versions should be pending rejection anymore.
+        assert not VersionReviewerFlags.objects.filter(
+            version__addon=self.addon,
+            pending_rejection__isnull=False).exists()
 
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
