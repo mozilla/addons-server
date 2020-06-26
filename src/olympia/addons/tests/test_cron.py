@@ -311,7 +311,6 @@ class TestAvgDailyUserCountTestCase(TestCase):
         addon = Addon.objects.get(pk=3615)
         addon.update(average_daily_users=0)
         count = 56789
-        get_mock.return_value = [(addon.guid, count)]
         # We use download counts for langpacks.
         langpack = addon_factory(type=amo.ADDON_LPAPP, average_daily_users=0)
         langpack_count = 12345
@@ -334,6 +333,14 @@ class TestAvgDailyUserCountTestCase(TestCase):
         assert langpack.average_daily_users == 0
         assert dictionary.average_daily_users == 0
         assert addon_without_count.average_daily_users == 2
+
+        # Pretend bigquery is returning correct data for the extension, but
+        # also incorrect data for langpacks and dicts - we should ignore those.
+        get_mock.return_value = [
+            (addon.guid, count),
+            (dictionary.guid, 42),
+            (langpack.guid, 42),
+        ]
 
         cron.update_addon_average_daily_users()
         addon.refresh_from_db()
@@ -390,9 +397,9 @@ class TestAvgDailyUserCountTestCase(TestCase):
         cron.update_addon_average_daily_users()
 
         chunked_mock.assert_called_with([
+            (addon.guid, count),
             (langpack.guid, langpack_count),
             (dictionary.guid, dictionary_count),
-            (addon.guid, count),
         ], 250)
 
     def test_adu_flag(self):
