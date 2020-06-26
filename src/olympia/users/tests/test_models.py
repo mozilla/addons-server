@@ -117,8 +117,8 @@ class TestUserProfile(TestCase):
         assert user.display_name == ''
         assert user.homepage == ''
         assert user.picture_type is None
-        # last_login_ip is kept during deletion, deleted 6 months later via
-        # clear_old_last_login_ip command
+        # last_login_ip is kept during deletion and later via
+        # clear_old_user_data command
         assert user.last_login_ip
         assert user.has_anonymous_username
         assert user.averagerating is None
