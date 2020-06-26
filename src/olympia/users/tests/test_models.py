@@ -249,7 +249,7 @@ class TestUserProfile(TestCase):
         update_search_index.reset_mock()
         user.delete()
         update_search_index.assert_called_with(
-            sender=AddonUser, instance=addon, signal=mock.ANY, using=mock.ANY)
+            sender=AddonUser, instance=addon)
 
         # The add-on should not have been touched, it has another dev.
         assert not user.addons.exists()

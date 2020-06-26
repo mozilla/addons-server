@@ -29,8 +29,8 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
-    BasePreview, BaseQuerySet, LongNameIndex, ManagerBase, ModelBase,
-    OnChangeMixin, SaveUpdateMixin, SlugField)
+    BasePreview, BaseQuerySet, FilterableManyToManyField, LongNameIndex,
+    ManagerBase, ModelBase, OnChangeMixin, SaveUpdateMixin, SlugField)
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
@@ -409,8 +409,9 @@ class Addon(OnChangeMixin, ModelBase):
 
     contributions = models.URLField(max_length=255, blank=True)
 
-    authors = models.ManyToManyField(
-        'users.UserProfile', through='AddonUser', related_name='addons')
+    authors = FilterableManyToManyField(
+        'users.UserProfile', through='AddonUser', related_name='addons',
+        q_filter=~Q(addonuser__role=amo.AUTHOR_ROLE_DELETED))
     categories = models.ManyToManyField('Category', through='AddonCategory')
 
     _current_version = models.ForeignKey(Version, db_column='current_version',
@@ -1742,6 +1743,22 @@ class AddonCategory(models.Model):
         ]
 
 
+class AddonUserManager(ManagerBase):
+
+    def __init__(self, include_deleted=False):
+        # DO NOT change the default value of include_deleted unless you've read
+        # through the comment just above the Addon managers
+        # declaration/instantiation and understand the consequences.
+        super().__init__()
+        self.include_deleted = include_deleted
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        if not self.include_deleted:
+            qs = qs.exclude(role=amo.AUTHOR_ROLE_DELETED)
+        return qs
+
+
 class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
@@ -1751,11 +1768,16 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     listed = models.BooleanField(_(u'Listed'), default=True)
     position = models.IntegerField(default=0)
 
+    unfiltered = AddonUserManager(include_deleted=True)
+    objects = AddonUserManager()
+
     def __init__(self, *args, **kwargs):
-        super(AddonUser, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self._original_role = self.role
 
     class Meta:
+        # see Addon.Meta for details of why this base_manager_name is important
+        base_manager_name = 'unfiltered'
         db_table = 'addons_users'
         indexes = [
             models.Index(fields=('listed',),
@@ -1770,6 +1792,14 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
                                     name='addon_id'),
         ]
 
+    def delete(self):
+        # soft-delete
+        self.update(role=amo.AUTHOR_ROLE_DELETED)
+
+    @property
+    def is_deleted(self):
+        return self.role == amo.AUTHOR_ROLE_DELETED
+
 
 @AddonUser.on_change
 def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
@@ -1782,7 +1812,7 @@ def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
 def addon_user_sync(sender=None, instance=None, **kwargs):
     # Basket doesn't care what role authors have or whether they are listed
     # or not, it just needs to be updated whenever an author is added/removed.
-    created_or_deleted = 'created' not in kwargs or kwargs.get('created')
+    created_or_deleted = kwargs.get('created', True) or instance.is_deleted
     if created_or_deleted and instance.addon.status != amo.STATUS_DELETED:
         from olympia.amo.tasks import sync_object_to_basket
         log.info(

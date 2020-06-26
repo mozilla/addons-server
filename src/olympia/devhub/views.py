@@ -428,10 +428,13 @@ def invitation(request, addon_id):
             last_position = AddonUser.objects.filter(
                 addon=invitation.addon).order_by('position').values_list(
                 'position', flat=True).last() or 0
-            AddonUser.objects.create(
-                addon=invitation.addon, user=invitation.user,
-                role=invitation.role, listed=invitation.listed,
-                position=last_position + 1)
+            AddonUser.unfiltered.update_or_create(
+                addon=invitation.addon,
+                user=invitation.user,
+                defaults={
+                    'role': invitation.role,
+                    'listed': invitation.listed,
+                    'position': last_position + 1})
             messages.success(request, ugettext('Invitation accepted.'))
             redirect_url = addon.get_dev_url()
         else:

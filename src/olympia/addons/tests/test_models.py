@@ -1730,6 +1730,29 @@ class TestAddonModels(TestCase):
         assert addon.blocklistsubmission == submission
 
 
+class TestAddonUser(TestCase):
+    def test_delete(self):
+        addon = addon_factory()
+        user = user_factory()
+        addonuser = AddonUser.objects.create(addon=addon, user=user)
+        assert AddonUser.objects.count() == 1
+        assert addonuser.role == amo.AUTHOR_ROLE_OWNER
+        assert list(addon.authors.all()) == [user]
+
+        addonuser.delete()
+        addonuser.reload()
+        addon.reload()
+        user.reload()
+
+        assert AddonUser.objects.count() == 0
+        assert AddonUser.unfiltered.count() == 1
+        assert addonuser.role == amo.AUTHOR_ROLE_DELETED
+        assert addonuser.addon == addon
+        assert addonuser.user == user
+        assert user.addons.count() == 0
+        assert addon.authors.count() == 0
+
+
 class TestShouldRedirectToSubmitFlow(TestCase):
     fixtures = ['base/addon_3615']
 

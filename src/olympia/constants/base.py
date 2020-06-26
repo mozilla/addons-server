@@ -87,10 +87,12 @@ UPLOAD_SOURCE_CHOICES = (
 # Add-on author roles.
 AUTHOR_ROLE_DEV = 4
 AUTHOR_ROLE_OWNER = 5
+AUTHOR_ROLE_DELETED = 6
 
 AUTHOR_CHOICES = (
-    (AUTHOR_ROLE_OWNER, _(u'Owner')),
-    (AUTHOR_ROLE_DEV, _(u'Developer')),
+    (AUTHOR_ROLE_OWNER, _('Owner')),
+    (AUTHOR_ROLE_DEV, _('Developer')),
+    (AUTHOR_ROLE_DELETED, _('(Deleted)')),
 )
 
 # Addon types

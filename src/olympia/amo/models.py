@@ -7,9 +7,11 @@ from urllib.parse import urljoin
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
+from django.db.models.fields.related_descriptors import ManyToManyDescriptor
 from django.db.models.query import ModelIterable
 from django.urls.exceptions import Resolver404
 from django.utils import timezone, translation
+from django.utils.functional import cached_property
 
 import elasticsearch
 import multidb.pinning
@@ -505,3 +507,50 @@ class LongNameIndex(models.Index):
     """Django's Index, but with a longer allowed name since we don't care about
     compatibility with Oracle."""
     max_name_length = 64  # Django default is 30, but MySQL can go up to 64.
+
+
+class FilterableManyToManyDescriptor(ManyToManyDescriptor):
+
+    def __init__(self, *args, **kwargs):
+        self.q_filter = kwargs.pop('q_filter', None)
+        super().__init__(*args, **kwargs)
+
+    @classmethod
+    def _get_manager_with_default_filtering(cls, manager, q_filter):
+        class ManagerWithFiltering(manager):
+            def get_queryset(self):
+                qs = super().get_queryset()
+                return qs.filter(q_filter or models.Q())
+
+        return ManagerWithFiltering
+
+    @cached_property
+    def related_manager_cls(self):
+        cls = super().related_manager_cls
+        return self._get_manager_with_default_filtering(cls, self.q_filter)
+
+
+class FilterableManyToManyField(models.fields.related.ManyToManyField):
+
+    def __init__(self, *args, **kwargs):
+        self.q_filter = kwargs.pop('q_filter', None)
+        super().__init__(*args, **kwargs)
+
+    def contribute_to_class(self, cls, name, **kwargs):
+        super().contribute_to_class(cls, name, **kwargs)
+        # Add the descriptor for the m2m relation.
+        setattr(
+            cls, self.name,
+            FilterableManyToManyDescriptor(
+                self.remote_field, reverse=False, q_filter=self.q_filter))
+
+    def contribute_to_related_class(self, cls, related):
+        super().contribute_to_related_class(cls, related)
+        if (
+            not self.remote_field.is_hidden() and
+            not related.related_model._meta.swapped
+        ):
+            setattr(
+                cls, related.get_accessor_name(),
+                FilterableManyToManyDescriptor(
+                    self.remote_field, reverse=True, q_filter=self.q_filter))

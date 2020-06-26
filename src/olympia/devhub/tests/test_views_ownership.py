@@ -757,9 +757,30 @@ class TestAuthorInvitation(TestCase):
         self.test_invited()
 
     def test_post_accept(self):
+        assert not AddonUser.objects.filter(
+            addon=self.addon, user=self.user).exists()
+
         response = self.client.post(self.url, {'accept': 'yes'})
         self.assert3xx(response, self.addon.get_dev_url(), status_code=302)
         author = AddonUser.objects.get(addon=self.addon, user=self.user)
+        assert author.role == self.invitation.role
+        assert author.listed == self.invitation.listed
+        assert not AddonUserPendingConfirmation.objects.filter(
+            pk=self.invitation.pk).exists()
+        return author
+
+    def test_post_accept_deleted_before(self):
+        deleted_addonuser = AddonUser.objects.create(
+            addon=self.addon, user=self.user, role=amo.AUTHOR_ROLE_DELETED)
+        assert not AddonUser.objects.filter(
+            addon=self.addon, user=self.user).exists()
+        assert AddonUser.unfiltered.filter(
+            addon=self.addon, user=self.user).exists()
+
+        response = self.client.post(self.url, {'accept': 'yes'})
+        self.assert3xx(response, self.addon.get_dev_url(), status_code=302)
+        author = AddonUser.objects.get(addon=self.addon, user=self.user)
+        assert author == deleted_addonuser
         assert author.role == self.invitation.role
         assert author.listed == self.invitation.listed
         assert not AddonUserPendingConfirmation.objects.filter(
