@@ -311,7 +311,6 @@ class TestAvgDailyUserCountTestCase(TestCase):
         addon = Addon.objects.get(pk=3615)
         addon.update(average_daily_users=0)
         count = 56789
-        get_mock.return_value = [(addon.guid, count)]
         # We use download counts for langpacks.
         langpack = addon_factory(type=amo.ADDON_LPAPP, average_daily_users=0)
         langpack_count = 12345
@@ -334,6 +333,14 @@ class TestAvgDailyUserCountTestCase(TestCase):
         assert langpack.average_daily_users == 0
         assert dictionary.average_daily_users == 0
         assert addon_without_count.average_daily_users == 2
+
+        # Pretend bigquery is returning correct data for the extension, but
+        # also incorrect data for langpacks and dicts - we should ignore those.
+        get_mock.return_value = [
+            (addon.guid, count),
+            (dictionary.guid, 42),
+            (langpack.guid, 42),
+        ]
 
         cron.update_addon_average_daily_users()
         addon.refresh_from_db()
@@ -369,13 +376,23 @@ class TestAvgDailyUserCountTestCase(TestCase):
             date=datetime.date.today(),
             defaults={'count': langpack_count}
         )
+        DownloadCount.objects.update_or_create(
+            addon=langpack,
+            date=self.days_ago(3),
+            defaults={'count': 0}
+        )
         # We use download counts for dictionaries.
         dictionary = addon_factory(type=amo.ADDON_DICT, average_daily_users=0)
-        dictionary_count = 5567
+        dictionary_count = 6789
         DownloadCount.objects.update_or_create(
             addon=dictionary,
             date=datetime.date.today(),
-            defaults={'count': dictionary_count}
+            defaults={'count': 6780}
+        )
+        DownloadCount.objects.update_or_create(
+            addon=dictionary,
+            date=self.days_ago(2),
+            defaults={'count': 9}
         )
         # This one should be ignored.
         addon_without_guid = addon_factory(guid=None, type=amo.ADDON_LPAPP)
@@ -390,9 +407,9 @@ class TestAvgDailyUserCountTestCase(TestCase):
         cron.update_addon_average_daily_users()
 
         chunked_mock.assert_called_with([
+            (addon.guid, count),
             (langpack.guid, langpack_count),
             (dictionary.guid, dictionary_count),
-            (addon.guid, count),
         ], 250)
 
     def test_adu_flag(self):

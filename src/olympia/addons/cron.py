@@ -42,15 +42,20 @@ def update_addon_average_daily_users():
         # BigQuery does not have data for add-ons with type other than those in
         # `ADDON_TYPES_WITH_STATS` so we use download counts instead.
         # See: https://github.com/mozilla/addons-server/issues/14609
-        counts = list(
+        amo_counts = dict(
             Addon.objects
             .exclude(type__in=amo.ADDON_TYPES_WITH_STATS)
             .exclude(guid__isnull=True)
             .exclude(guid__exact='')
             .annotate(count=Coalesce(Sum('downloadcount__count'), 0))
             .values_list('guid', 'count')
+            # Just to make order predictable in tests, we order by id. This
+            # matches the GROUP BY being generated so it should be safe.
+            .order_by('id')
         )
-        counts += get_addons_and_average_daily_users_from_bigquery()
+        counts = dict(get_addons_and_average_daily_users_from_bigquery())
+        counts.update(amo_counts)
+        counts = list(counts.items())
         # BigQuery stores GUIDs, not AMO primary keys.
         kwargs['id_field'] = 'guid'
     else:
