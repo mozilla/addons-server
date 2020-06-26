@@ -86,7 +86,7 @@ Pillow==7.1.2 \
 PyJWT==1.7.1 \
     --hash=sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e \
     --hash=sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96
-SQLAlchemy==1.3.17 \
+SQLAlchemy==1.3.18 \
     --hash=sha256:156a27548ba4e1fed944ff9fcdc150633e61d350d673ae7baaf6c25c04ac1f71
 # amqp is required by kombu
 amqp==2.6.0 \
