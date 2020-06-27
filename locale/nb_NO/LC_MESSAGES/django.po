@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 10:22+0000\n"
+"PO-Revision-Date: 2020-06-27 10:26+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -5917,9 +5917,8 @@ msgstr ""
 msgid "Force-enable add-on"
 msgstr ""
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Vis alle versjoner"
+msgstr "Vis blokkeringslisteinnsending"
 
 msgid "Block add-on"
 msgstr "Blokker tillegg"
@@ -5948,9 +5947,8 @@ msgstr ""
 msgid "Clear Admin Content Review Flag"
 msgstr "Fjern flagg for administrativ innholdsgjennomgang"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Ingen anmeldelser"
+msgstr "Fjern flagg for administrativ gjennomgang av statisk tema"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6106,11 +6104,10 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Oppdatering ({0})"
 msgstr[1] "Oppdateringer ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Venter på gjennomgang"
-msgstr[1] "Venter på gjennomgang"
+msgstr[0] "Vurderingsgjennomgang ({0})"
+msgstr[1] "Vurderingsgjennomgang ({0})"
 
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
