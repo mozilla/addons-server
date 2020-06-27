@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 13:39+0000\n"
+"PO-Revision-Date: 2020-06-27 13:47+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2979,10 +2979,10 @@ msgid "Next Listed Version:"
 msgstr "Neste oppførte versjon:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Dette er den nyeste opplastede versjonen, men den er ikke live på nettstedet ennå"
+msgstr "Dette er den nyeste opplastede versjonen, men den er ikke på nettstedet ennå"
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Køer er ikke vurdert i streng rekkefølge"
 
 msgid "Queue Position:"
 msgstr "Køplass:"
@@ -2992,13 +2992,13 @@ msgid "%(position)s of %(total)s"
 msgstr "%(position)s av %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Signert for selvdistribusjon. Oppdateringer blir håndtert av deg."
 
 msgid "Latest Version:"
 msgstr "Siste versjon:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr ""
+msgstr "Dette er den nyeste opplastede ikke-oppførte versjonen"
 
 msgid "Upload New Version"
 msgstr "Last opp ny versjon"
