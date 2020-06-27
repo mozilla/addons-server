@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:01+0000\n"
-"PO-Revision-Date: 2019-12-05 21:19+0000\n"
+"PO-Revision-Date: 2020-06-27 16:23+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -118,12 +118,11 @@ msgstr "Eklenti gönderimi kontrol listesi"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Gönderimi tamamlamadan önce lütfen aşağıdaki noktaları doğrulayın. Böylece inceleme sürecindeki gecikmeleri ve yanlış anlamaları en aza indirmiş olursunuz:"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
+"Minify edilmiş, concatenate edilmiş veya makineyle oluşturulmuş betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
 "çevrilmesini önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
 
 msgid "The validation process found these issues that can lead to rejections:"
@@ -449,14 +448,12 @@ msgid "Applications from {0} to {1}"
 msgstr "{0} - {1} Arası Uygulamalar"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Katkılar, son {0} gün"
+msgstr "Ülkeler, son {0} gün"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "{0} - {1} Arası Katkılar"
+msgstr "{0} - {1} arası ülkeler"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
