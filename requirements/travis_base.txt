@@ -49,5 +49,6 @@ appdirs==1.4.4 \
 importlib_resources==2.0.1 \
     --hash=sha256:83985739b3a6679702f9ab33f0ad016ad564664d0568a31ac14d7c64789453e6 \
     --hash=sha256:f5edfcece1cc9435d0979c19e08739521f4cf1aa1adaf6e571f732df6f568962
-distlib==0.3.0 \
-    --hash=sha256:2e166e231a26b36d6dfe35a48c4464346620f8645ed0ace01ee31822b288de21
+distlib==0.3.1 \
+    --hash=sha256:8c09de2c67b3e7deef7184574fc060ab8a793e7adbb183d942c389c8b13c52fb \
+    --hash=sha256:edf6116872c863e1aa9d5bb7cb5e05a022c519a4594dc703843343a9ddd9bff1
