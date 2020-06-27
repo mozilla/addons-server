@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 08:48+0000\n"
+"PO-Revision-Date: 2020-06-27 06:09+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -3346,9 +3346,8 @@ msgstr "ملفي الشخصي"
 msgid "Submit or Manage Extensions"
 msgstr "تقديم إضافة جديدة"
 
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "أضِف إلى فيرفُكس"
+msgstr "خصّص فَيَرفُكس"
 
 #, fuzzy
 msgid "Learn how to make an extension"
@@ -5016,7 +5015,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr "تُشبه الامتدادات التطبيقات، ولكنّها لمتصفّح Firefox."
+msgstr "تُشبه الامتدادات التطبيقات، ولكنّها لمتصفّح فيرفُكس."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
