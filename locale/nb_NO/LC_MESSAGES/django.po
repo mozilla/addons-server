@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 11:08+0000\n"
+"PO-Revision-Date: 2020-06-27 11:13+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -205,7 +205,7 @@ msgid "This field can only be used to link to external websites. URLs on %(domai
 msgstr "Dette feltet kan bare brukes for å lenke til eksterne nettsteder. Nettadresser på %(domain)s er ikke tillatt."
 
 msgid "Incorrect, please try again."
-msgstr "Feil, vennligst prøv igjen."
+msgstr "Feil, prøv igjen."
 
 msgid "Error verifying input, please try again."
 msgstr "Feil ved kontroll av input, prøv på nytt."
@@ -276,7 +276,7 @@ msgstr "Startside for tillegg"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "Hvis du fulgte linken fra et sted, %(open_bug_link)ssend inn en feilrapport%(close_bug_link)s. Fortell oss hor du kom fra og hva du så etter, og vi vil gjøre vårt beste for å rette på feilen."
 
 msgid "Not Found"
 msgstr "Ikke funnet"
@@ -493,7 +493,7 @@ msgid "Invalid version"
 msgstr "Ugyldig versjon"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Min-versjon kan ikke være større enn Max-versjon"
 
 msgid "Review Listed"
 msgstr "Gjennomgang listet"
@@ -529,7 +529,7 @@ msgid "Save"
 msgstr "Lagre"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Lagre og legg til mer"
 
 msgid "Delete"
 msgstr "Slett"
@@ -545,7 +545,7 @@ msgstr "Godkjenn innsending"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Legg til %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
@@ -964,7 +964,7 @@ msgid "Unlisted"
 msgstr "Ikke oppført"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "Owner"
 msgstr "Eier"
@@ -1066,7 +1066,7 @@ msgid "Language Support"
 msgstr "Språkstøtte"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidelser som tilbyr språkstøtte som grammatikkontroll, oppslag av ord, oversette tekst, tilby tekst-til-tale og mer."
 
 msgid "Photos, Music & Videos"
 msgstr "Foto, musikk og videoer"
