@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 11:32+0000\n"
+"PO-Revision-Date: 2020-06-27 11:36+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -2361,7 +2361,7 @@ msgstr "Brukes i detaljoversikt for tillegg."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr ""
@@ -2370,13 +2370,13 @@ msgid "Upload a Custom Icon..."
 msgstr "Last opp et egendefinert ikon…"
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG og JPG er støttet."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Ikoner må være kvadratisk og en minstestørrelse på 128x128 piksler."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr ""
+msgstr "Ikoner blir forminsket til 128x128 piksler hvis de er større."
 
 msgid "Screenshots"
 msgstr "Skjermbilde"
@@ -2391,10 +2391,10 @@ msgid "Add a Screenshot..."
 msgstr "Legg til et skjermbilde…"
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG og JPG støttet, PNG anbefalt. Den maksimale og anbefalte størrelsen for skjermbilder er 2400x1800 piksler."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Minimumsstørrelse er 1000x750, og et forhold på 4:3 er påkrevd."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
 msgstr ""
@@ -2754,7 +2754,7 @@ msgid "Which applications is this version compatible with?"
 msgstr ""
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Administrative overstyringer"
 
 msgid "Create a Theme Version"
 msgstr "Lag en temaversjon"
@@ -2973,7 +2973,7 @@ msgid "Listed Version:"
 msgstr "Oppført versjon:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr ""
+msgstr "Dette er versjonen av tillegget ditt som blir installert hvis noen klikker på Installer-knappen på addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Neste oppførte versjon:"
