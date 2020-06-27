@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 13:47+0000\n"
+"PO-Revision-Date: 2020-06-27 17:47+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -3085,19 +3085,19 @@ msgid "Visit the Extension Workshop"
 msgstr "Besøk utvidelsesverkstedet"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Kontakt oss"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "For utviklere"
 
 msgid "For end users"
-msgstr ""
+msgstr "For sluttbrukere"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 msgid "Add-on Developers Mailing List"
 msgstr "E-postliste for tilleggsutviklere"
@@ -3109,20 +3109,20 @@ msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
 msgid "Email Address"
-msgstr ""
+msgstr "E-postadresse"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Jeg er forstått med hvordan Mozilla behandler mine personlige data, som forklart i denne %(link_open)spersonvernerklæringen%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Registrer deg"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Takk!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "Om du ikke tidligere har bekreftet et abonnement på et Mozilla-relatert nyhetsbrev, må du kanskje gjøre det nå. Se etter en e-post fra oss i innboksen din eller i søppelpostfilteret ditt."
 
 msgid "Resources"
 msgstr "Resurser"
@@ -3140,7 +3140,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Knappen «Last ned tillegget»"
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Anbefalte utvidelsesprogram"
 
 msgid "Contribute"
 msgstr "Bidra"
@@ -3173,13 +3173,13 @@ msgid "See how"
 msgstr "Se hvordan"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Bli involvert"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Ta kontakt med tusenvis av utviklere og oppdag flere måter du kan bidra til utvidelsesøkosystemet."
 
 msgid "Learn more about the developer community"
-msgstr ""
+msgstr "Les mer om utviklermiljøet"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Oppført på denne siden etter å ha passert kodegjennomgang. Automatiske oppdateringer er håndtert av denne siden."
@@ -3228,7 +3228,7 @@ msgid "Learn how to make an extension"
 msgstr "Lær hvordan du lager en utvidelse"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Klar til å sende inn eller behandle utvidelsen din?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
@@ -3680,7 +3680,7 @@ msgstr "Forstørr bilder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hover over an image to magnify it."
-msgstr ""
+msgstr "Hold musepekeren over et bilde for å forstørre det."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
