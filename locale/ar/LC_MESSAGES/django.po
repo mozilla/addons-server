@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 06:11+0000\n"
+"PO-Revision-Date: 2020-06-27 06:17+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -1044,13 +1044,13 @@ msgid "Alerts & Updates"
 msgstr "التنبيهات والتحديثات"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr "نزّل امتدادات Firefox تساعدك لتعرف الجديد وتتابع مهامك وتزيد كفائتك. ابحث عن الامتدادات التي تُعيد تحميل الألسنة وتضبط الإنتاجية وأكثر."
+msgstr "نزّل امتدادات فيرفكس التي تساعدك لتعرف الجديد وتتابع مهامك وتزيد كفائتك. ابحث عن الامتدادات التي تُعيد تحميل الألسنة وتضبط الإنتاجية وأكثر من ذلك."
 
 msgid "Appearance"
 msgstr "المظهر"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "نزّل امتدادات تُعدّل مظهر المواقع ومتصفّح Firefox. تشمل هذه الفئة امتدادات السمات الداكنة وإدارة الألسنة وأكثر."
+msgstr "نزّل امتدادات تُعدّل مظهر المواقع ومتصفّح فيرفكس. تشمل هذه الفئة امتدادات السمات الداكنة وإدارة الألسنة وأكثر."
 
 msgid "Bookmarks"
 msgstr "العلامات المرجعية"
@@ -1062,52 +1062,52 @@ msgid "Download Management"
 msgstr "إدارة التنزيلات"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "نزّل امتدادات Firefox تساعدك في تنزيل المحتوى الموسيقي والڤديوي في الوِب. يمكنك أن تجد امتدادات تُدير التنزيلات وتُشارك الملفات وأكثر."
+msgstr "نزّل امتدادات فيرفكس التي تساعدك في تنزيل المحتوى الموسيقي والفيديوي في الوِب. يمكنك أن تجد امتدادات تُدير التنزيلات وتُشارك الملفات وأكثر."
 
 msgid "Feeds, News & Blogging"
 msgstr "التلقيمات والأخبار والمدوّنات"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "نزّل امتدادات Firefox ترمي بالفوضى من المتصفّح لتبقى على اطّلاع دائم بوسائل التواصل وتتفقّد ما فاتك من المدوّنات وتلقيمات RSS، كما وتقليل الإجهاد على العين وأكثر."
+msgstr "نزّل امتدادات فيرفكس التي تزيل الفوضى من المتصفّح لتبقى على اطّلاع دائم بوسائل التواصل وتتفقّد ما فاتك من المدوّنات وتلقيمات RSS، وتقليل الإجهاد على العين وأكثر."
 
 msgid "Games & Entertainment"
 msgstr "ألعاب وتسلية"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr "نزّل امتدادات Firefox تحسّن من تجربتك الترفيهية. تشمل هذه الفئة امتدادات تحسّن الألعبا وتتحكّم بتشغيل الڤديو وأكثر."
+msgstr "نزّل امتدادات فيرفكس التي تحسّن من تجربتك الترفيهية. تشمل هذه الفئة امتدادات تحسين الألعاب والتحكم بتشغيل الفيديو وأكثر."
 
 msgid "Language Support"
 msgstr "دعم اللغات"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr "نزّل امتدادات Firefox تتيح دعم اللغات مثل التدقيقي النحوي والبحث عن الكلمات وترجمة النصوص ونطق النصوص وأكثر."
+msgstr "نزّل امتدادات فيرفكس التي تتيح دعم اللغات مثل التدقيقي النحوي والبحث عن الكلمات وترجمة النصوص ونطق النصوص وأكثر."
 
 msgid "Photos, Music & Videos"
 msgstr "الصور والموسيقى والفيديو"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr "نزّل امتدادات Firefox تحسّن تجربة عرض الصور والموسيقى والڤديو. تُعدّل الامتدادات في هذه الفئة الصوت والڤديو، وتبحث عن الصور وأكثر."
+msgstr "نزّل امتدادات فيرفكس التي تحسّن تجربة عرض الصور والموسيقى والفيديو. تُعدّل الامتدادات في هذه الفئة الصوت والفيديو، وتبحث عن الصور وأكثر."
 
 msgid "Privacy & Security"
 msgstr "الخصوصية والسريّة"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr "نزّل امتدادات Firefox لتتصفّح تصفّحًا آمنًا وخاصًا. تشمل هذه الفئة امتدادات تحجب الإعلانات المزعجة وتمنع التعقّب وتُدير التحويلات وأكثر."
+msgstr "نزّل امتدادات فيرفكس لتتصفّح تصفّحًا آمنًا وخاصًا. تشمل هذه الفئة امتدادات تحجب الإعلانات المزعجة وتمنع التعقّب وتُدير التحويلات وأكثر."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "نزّل امتدادات Firefox للبحث. تشمل هذه الفئة الامتدادات التي تُبرز النص وتبحث فيه، وتبحث عن عناوين IP والنطاقات، وأكثر."
+msgstr "نزّل امتدادات فيرفكس للبحث. تشمل هذه الفئة الامتدادات التي تُبرز النص وتبحث فيه، وتبحث عن عناوين IP والنطاقات، وأكثر."
 
 msgid "Shopping"
 msgstr "تسوّق"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "نزّل امتدادات Firefox تحسّن من تجربة الشراء على الإنترنت بالبحث عن القسائم والعروض وتحليل المراجعات وأكثر."
+msgstr "نزّل امتدادات فيرفكس التي تحسّن من تجربة الشراء على الإنترنت بالبحث عن القسائم والعروض وتحليل المراجعات وأكثر."
 
 msgid "Social & Communication"
 msgstr "اجتماعيات وتواصل"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "نزّل امتدادات Firefox تحسّن وسائل التواصل والتراسل الآني. تشمل هذه الفئة تنبيهات ألسنة محسّنة وأدوات تنزيل الڤديوهات وأكثر."
+msgstr "نزّل امتدادات فيرفكس التي تحسّن وسائل التواصل والتراسل اللحظي. تشمل هذه الفئة تنبيهات ألسنة محسّنة وأدوات تنزيل الفيديوهات وأكثر."
 
 msgid "Tabs"
 msgstr "الألسنة"
