@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-26 22:28+0000\n"
+"PO-Revision-Date: 2020-06-27 10:22+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -131,9 +131,8 @@ msgstr "Gjennomgangsverktøy (listet)"
 msgid "Reviewer Tools (unlisted)"
 msgstr "Gjennomgangsverktøy (ulistet)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Utvikler"
+msgstr "Gjennomgangslenker"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Utvidelsen finnes ikke på AMO -"
@@ -1381,20 +1380,17 @@ msgstr "Fantastisk (3)"
 msgid "Manual Reviewer Points"
 msgstr "Manuelle vudererpoeng"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Full gjennomgang av utvidelse"
+msgstr "Ny gjennomgang av foreldete tillegg"
 
 msgid "Preliminary Add-on Review"
 msgstr "Foreløpig gjennomgang av utvidelse"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Oppdatert gjennomgang av utvidelse"
+msgstr "Oppdater gjennomgang av foreldete tillegg"
 
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Full gjennomgang av ordbok"
+msgstr "Ny gjennomgang av ordliste"
 
 msgid "Preliminary Dictionary Review"
 msgstr "Foreløpig gjennomgang av ordbok"
@@ -1402,9 +1398,8 @@ msgstr "Foreløpig gjennomgang av ordbok"
 msgid "Updated Dictionary Review"
 msgstr "Oppdatert gjennomgang av ordbok"
 
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Full gjennomgang av språkpakke"
+msgstr "Ny gjennomgang av språkpakke"
 
 msgid "Preliminary Language Pack Review"
 msgstr "Foreløpig gjennomgang av språkpakke"
@@ -1415,13 +1410,11 @@ msgstr "Oppdatert gjennomgang av språkpakke"
 msgid "Theme Review"
 msgstr "Gjennomgang av tema"
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Gjennomgang av tema"
+msgstr "Tema (statisk) gjennomgang"
 
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Full gjennomgang av søketilbyder"
+msgstr "Ny gjennomgang av søketilbyder"
 
 msgid "Preliminary Search Provider Review"
 msgstr "Foreløpig gjennomgang av søketilbyder"
@@ -1438,9 +1431,8 @@ msgstr "Foreløpig gjennomgang av tema"
 msgid "Updated Complete Theme Review"
 msgstr "Oppdatert gjennomgang av komplett tema"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Gjennomgang av moderert utvidelse"
+msgstr "Moderert tilleggsgjennomgang"
 
 msgid "Add-on Review Moderation Reverted"
 msgstr "Tilleggsvurderingsmoderasjon tilbakestilt"
@@ -5673,9 +5665,8 @@ msgstr ""
 msgid "Abuse Reports ({num})"
 msgstr "Misbruksrapporter ({num})"
 
-#, fuzzy
 msgid "Bad User Ratings ({num})"
-msgstr "Misbruksrapporter"
+msgstr "Negative brukervurderinger ({num})"
 
 msgid "Theme Images"
 msgstr "Temabilde"
@@ -5948,16 +5939,14 @@ msgstr ""
 msgid "Clear Auto-Approval Extra Delay"
 msgstr ""
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Mer informasjon er forespurt"
+msgstr "Fjern informasjonsforespørsel"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Ingen anmeldelser"
+msgstr "Fjern flagg for administrativ innholdsgjennomgang"
 
 #, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
