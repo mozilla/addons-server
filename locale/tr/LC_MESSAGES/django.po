@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 16:33+0000\n"
+"PO-Revision-Date: 2020-06-27 16:37+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4941,9 +4941,8 @@ msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Extensions are like apps for Firefox."
-msgstr "Eski teknoloji eklentiler artık Firefox'ta desteklenmemektedir."
+msgstr "Eklentiler, Firefox'ta çalışan uygulamalardır."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
@@ -4952,9 +4951,8 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 # 95%
 # 100%
-#, fuzzy
 msgid "See all extensions"
-msgstr "Tüm eklentilere göz atın"
+msgstr "Tüm eklentilere bak"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
@@ -4970,9 +4968,8 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Eklentiler"
+msgstr "Eklentileri keşfet"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
@@ -5008,9 +5005,8 @@ msgstr ""
 msgid "Could not parse the manifest file."
 msgstr "Manifest dosyası ayrıştırılamadı."
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "GUID Firefox 47 ve altı için gereklidir."
+msgstr "Firefox 47 ve önceki sürümler için eklenti kimliği gerekir."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "En düşük desteklenen \"strict_min_version\" 42.0."
@@ -5073,20 +5069,18 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr "Bu türden eklenti gönderemezsiniz"
 
-#, fuzzy, python-format
+#, python-format
 msgid "You cannot submit an add-on using an ID ending with %s"
-msgstr "\"@mozilla.org\" ile biten bir GUID ile eklenti gönderemezsiniz"
+msgstr "%s ile biten bir ID ile eklenti gönderemezsiniz"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Mozilla imzalı bir eklenti gönderemezsiniz"
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Mozilla imzalı bir eklenti gönderemezsiniz"
+msgstr "Dil paketi gönderemezsiniz"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "Desteklenmeyen dosya türü. Lütfen bir {extensions} arşiv dosyası yükleyin."
+msgstr "Desteklenmeyen dosya türü. Lütfen desteklenen bir {extensions} dosyası yükleyin."
 
 msgid "Unexpected error."
 msgstr "Beklenmeyen hata."
@@ -5292,13 +5286,11 @@ msgid ""
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 
-#, fuzzy
 msgid "User"
-msgstr "Kullanıcı Adı"
+msgstr "Kullanıcı"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "E-posta Adresi"
+msgstr "IP adresi"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam veya inceleme olmayan içerik"
@@ -5538,9 +5530,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} gün"
 msgstr[1] "{0} gün"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "İD"
 
 msgid "Last Review"
 msgstr "Son inceleme"
@@ -5552,17 +5543,14 @@ msgstr ""
 msgid "Information Request Deadline"
 msgstr "Daha fazla bilgi istendi"
 
-#, fuzzy
 msgid "Last Updated"
-msgstr "Son güncellenme:"
+msgstr "Son güncelleme"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "İnceleme:"
+msgstr ""
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "İnceleme:"
+msgstr ""
 
 #, fuzzy
 msgid "Listed versions ({0})"
@@ -5655,9 +5643,8 @@ msgstr "İnceleme Günlüğü"
 msgid "Add-on Review Guide"
 msgstr "Eklenti İnceleme Rehberi"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Güvenlik testleri"
+msgstr "Güvenlik tarayıcıları"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
@@ -5670,9 +5657,8 @@ msgid_plural "Flagged for Human Review ({0})"
 msgstr[0] "İnceleme:"
 msgstr[1] ""
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
-msgstr "Engellenen Eklentiler"
+msgstr ""
 
 #, fuzzy
 msgid "Auto Approved Add-ons ({0})"
@@ -5822,9 +5808,8 @@ msgstr "Resim Galerisi"
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Burda bir şey yok!  Geliştirici herhangi bir ayrıntı vermemiş."
 
-#, fuzzy
 msgid "Add-on name translations"
-msgstr "Eklenti sürümüne göre"
+msgstr "Eklenti adı çevirileri"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6050,9 +6035,8 @@ msgstr ""
 msgid "Update whiteboards"
 msgstr "Beyaz tahtayı güncelle"
 
-#, fuzzy
 msgid "More Actions"
-msgstr "Diğer eylemler:"
+msgstr "Diğer eylemler"
 
 msgid "Notify me about new listed versions"
 msgstr "Yeni listelenen sürümler hakkında beni bilgilendir"
@@ -6076,20 +6060,17 @@ msgstr "Sürümü yeniden etkinleştir"
 msgid "View Blocklist Submission"
 msgstr "Tüm gönderileri göster"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Eklentiye dön"
+msgstr "Eklentiyi engelle"
 
 msgid "Update add-on block"
 msgstr ""
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Otomatik onaylamayı devre dışı bırak"
+msgstr "Listelenmiş otomatik onaylamayı devre dışı bırak"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Otomatik onay doğrulandı"
+msgstr "Listelenmiş otomatik onaylamayı etkinleştir"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
@@ -6157,13 +6138,11 @@ msgstr ""
 msgid "Method:"
 msgstr "Yöntem:"
 
-#, fuzzy
 msgid "Source:"
-msgstr "Kaynağa göre"
+msgstr "Kaynak:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "Kaynağa göre"
+msgstr "Kaynak adresi:"
 
 msgid "Dismiss this announcement"
 msgstr "Bu duyuruyu geç"
@@ -6171,9 +6150,8 @@ msgstr "Bu duyuruyu geç"
 msgid "Files in this version:"
 msgstr "Bu sürümdeki dosyalar:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Bu sürümdeki dosyalar:"
+msgstr "Bu sürümdeki tüm dosyalara göz at"
 
 msgid "Contents"
 msgstr "İçindekiler"
@@ -6301,36 +6279,30 @@ msgstr[1] ""
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Başlarken"
+msgstr "sonuç durumu"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Listelenen sürümün ön izlemesi"
+msgstr "bir sürümün varlığı"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Sürüm imzalandı"
+msgstr "sürüm kanalı"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Eklenti durumu"
+msgstr "eklenti durumu"
 
 #, fuzzy
 msgid "add-on listing visibility"
 msgstr "Görünürlük"
 
-#, fuzzy
 msgid "file status"
-msgstr "Site durumu"
+msgstr "dosya durumu"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} imzalandı."
+msgstr "dosya imzası"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6366,9 +6338,8 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "İnceleyenin yanıtı"
+msgstr "Raporu geri al"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6552,13 +6523,11 @@ msgstr "Veri yok."
 msgid "This dashboard is <b>private</b>."
 msgstr ""
 
-#, fuzzy
 msgid "Application usage by Date"
-msgstr "Uygulama Yapısı"
+msgstr "Tarihe göre uygulama kullanımı"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Tarihe göre kullanıcı dilleri"
+msgstr "Tarihe göre kullanıcı ülkeleri"
 
 msgid "Downloaded by Date"
 msgstr "Tarihe göre indirmeler"
@@ -6773,9 +6742,8 @@ msgstr ""
 
 # 78%
 # 100%
-#, fuzzy
 msgid "Reset session"
-msgstr "Sürümü sil"
+msgstr "Oturumu sıfırla"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6841,9 +6809,8 @@ msgstr ""
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "İnceleme geçmişini kapat"
+msgstr "Kullanıcı kısıtlama geçmişi"
 
 #, fuzzy
 msgid "an add-on developer replies to my review"
@@ -6881,9 +6848,8 @@ msgstr "Engelle"
 
 # 78%
 # 100%
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Sürümü sil"
+msgstr "Oturumları sıfırla"
 
 msgid "Delete picture"
 msgstr "Resmi sil"
