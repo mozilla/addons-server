@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 17:47+0000\n"
+"PO-Revision-Date: 2020-06-27 19:12+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -3712,7 +3712,7 @@ msgstr "Legg igjen få digitale spor {start_sub_heading}med {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Legg igjen få digitale spor. Få Firefox til å glemme nettstedsdata som infokapsler og lokal lagring, men bare for domener du velger."
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
