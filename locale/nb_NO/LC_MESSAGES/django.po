@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 11:13+0000\n"
+"PO-Revision-Date: 2020-06-27 11:20+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1533,31 +1533,31 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "True positive"
-msgstr ""
+msgstr "Sann positiv"
 
 msgid "False positive"
-msgstr ""
+msgstr "Falsk positiv"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Mangelfull"
 
 msgid "New"
 msgstr "Ny"
 
 msgid "Running"
-msgstr ""
+msgstr "Kjører"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Avbrutt"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Avbryter"
 
 msgid "Completed"
 msgstr "Fullført"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Planlagt"
 
 msgid "Core"
 msgstr "Kjerne"
@@ -1576,7 +1576,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Tillegg for Thunderbird og SeaMonkey er nå listet og håndtert på addons.thunderbird.net. Du kan bruke den samme kontoen for å oppdatere din utvidelse på det nye nettstedet."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open Search-tillegg støttes ikke lenger {blog_link_open}på AMO{blog_link_close}. Du kan opprette en {doc_link_open}søkeutvidelse i stedet{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Denne adresseteksten er allerede i bruk. Velg en annen."
@@ -1728,7 +1728,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Kildefilen er lastet opp men du indikerte at ingen kilde var nødvendig."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Forsikre deg om at navn og sammendrag er på maksimalt {limit_value} tegn (de har {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
