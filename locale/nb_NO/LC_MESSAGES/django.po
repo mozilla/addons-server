@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 11:20+0000\n"
+"PO-Revision-Date: 2020-06-27 11:32+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1745,17 +1745,17 @@ msgid "Invalid or corrupt add-on file."
 msgstr "Ugyldig eller skadet tilleggsfil."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "Utvikler-API-nøkkelen din ble funnet i den innsendte filen. For å beskytte kontoen din vil nøkkelen bli tilbakekalt."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "Utvikler-API-nøkkel av en medopphavsmann ble funnet i den innsendte filen. For å beskytte ditt tillegg vil nøkkelen bli tilbakekalt."
+msgstr "Utvikler-API-nøkkelen til en medopphavsmann ble funnet i den innsendte filen. For å beskytte ditt tillegg vil nøkkelen bli tilbakekalt."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla sikkerhetsmelding: Din AMO API-innloggingsopplysninger har blitt tilbakekalt"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "Validering genererte for mange feil/advarsler slik at %s meldinger ble avkortet. Etter å ha adressert de synlige meldingene, vil du kunne se de andre."
 
 msgid "Updated"
 msgstr "Oppdatert"
@@ -1877,7 +1877,7 @@ msgid "Header area background"
 msgstr "Bakgrunn for topptekstområdet"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr ""
+msgstr "Fargen på bakgrunnen for topptekstområdet vises i den delen av toppteksten som ikke er dekket eller synlig gjennom toppteksten. Manifestfelt:  frame."
 
 msgid "Header area text and icons"
 msgstr "Tekst og ikoner for topptekstområdet"
@@ -2116,7 +2116,7 @@ msgstr[0] "<b>{0}</b> tema"
 msgstr[1] "<b>{0}</b> temaer"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Rediger produktside"
 
 msgid "None"
 msgstr "Ingen"
@@ -2140,7 +2140,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr "Klikk på Godta-knappen nedenfor for å bekrefte at du vil bli lagt til som opphavsmann for {addon_name}."
 
 msgid "Decline"
-msgstr ""
+msgstr "Avvis"
 
 msgid "Manage Authors & License"
 msgstr "Håndtere opphavsmenn og lisens"
