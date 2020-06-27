@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 06:17+0000\n"
+"PO-Revision-Date: 2020-06-27 08:07+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -5031,7 +5031,7 @@ msgstr "أدوات التحكم في الألسنة وتنظيمها"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr "الخصوصية خارج امتدادات المتصفح"
+msgstr "الخصوصية وراء امتدادات المتصفح"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
