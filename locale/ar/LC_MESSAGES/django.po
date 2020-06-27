@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 06:09+0000\n"
+"PO-Revision-Date: 2020-06-27 06:11+0000\n"
 "Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -103,7 +103,7 @@ msgid "Your login attempt could not be parsed. Please try again."
 msgstr "تعذّر على النظام فهم جلسة الولوج. من فضلك أعِد المحاولة."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr "تعذّر علينا أن نجد حسابك على Firefox. من فضلك أعِد المحاولة."
+msgstr "تعذّر علينا أن نجد حسابك على فيرفكس. من فضلك أعِد المحاولة."
 
 msgid "You could not be logged in. Please try again."
 msgstr "تعذّر الولوج. من فضلك أعِد المحاولة."
@@ -5077,7 +5077,7 @@ msgid "Could not parse the manifest file."
 msgstr ""
 
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr ""
+msgstr "مطلوب الرقم المُعرّف للإضافة لفيرفكس 47 وما دونه."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
@@ -6766,9 +6766,8 @@ msgstr "حول"
 msgid "Forum"
 msgstr "المنتدى"
 
-#, fuzzy
 msgid "Download Firefox"
-msgstr "نزّلها الآن"
+msgstr "نزِّل فَيَرفُكس"
 
 #, fuzzy
 msgid "Android Browser"
@@ -6883,9 +6882,8 @@ msgstr ""
 msgid "No user with that email."
 msgstr "ما من مستخدم بهذا البريد الإلكتروني."
 
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "فَيَرفُكس للأندرويد"
+msgstr "مستخدم فيرفكس {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "إضافات هاتفي الذكي"
