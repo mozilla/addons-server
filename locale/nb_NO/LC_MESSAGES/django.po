@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 10:26+0000\n"
+"PO-Revision-Date: 2020-06-27 10:34+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -921,9 +921,8 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr "Økt(er) tilbakestilt for bruker {user}."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Bruker {user} redigerte, årsak: {1}"
+msgstr "Begrenset bruker {user} fra å nå «{0}»"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2466,10 +2465,10 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Skriv inn følgende tekst for å bekrefte din avgjørelse: {slug}"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Fortell oss hvorfor du sletter tillegget ditt:"
 
 msgid "Actions"
 msgstr "Handlinger"
@@ -2547,7 +2546,7 @@ msgid "Name:"
 msgstr "Navn:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Navn på oppføringen på dette nettstedet. Kan være forskjellig fra navnet inne i tillegget, som vises i Firefox"
 
 msgid "Summary:"
 msgstr "Oppsummering:"
