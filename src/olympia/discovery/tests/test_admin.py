@@ -7,6 +7,7 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
 from django.conf import settings
+from django.core.files.images import get_image_dimensions
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.models import (
     PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
@@ -274,7 +275,8 @@ class TestDiscoveryAdmin(TestCase):
     def test_can_add_primary_hero_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
         item = DiscoveryItem.objects.create(addon=addon)
-        image = PrimaryHeroImage.objects.create(custom_image='foo.jpg')
+        uploaded_photo = get_uploaded_file('transparent.png')
+        image = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
         )
@@ -577,17 +579,19 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_discovery_edit_permission(self):
-        PrimaryHeroImage.objects.create(custom_image='föo.jpg')
+        uploaded_photo = get_uploaded_file('transparent.png')
+        PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
-        assert 'föo.jpg' in response.content.decode('utf-8')
+        assert 'transparent.png' in response.content.decode('utf-8')
 
     def test_can_edit_with_discovery_edit_permission(self):
-        item = PrimaryHeroImage.objects.create(custom_image='föo.jpg')
+        uploaded_photo = get_uploaded_file('transparent.png')
+        item = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         self.detail_url = reverse(
             'admin:discovery_primaryheroimageupload_change', args=(item.pk,)
         )
@@ -598,9 +602,9 @@ class TestPrimaryHeroImageAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
-        assert u'föo.jpg' in content
+        assert u'transparent.png' in content
 
-        updated_photo = get_uploaded_file('transparent.png')
+        updated_photo = get_uploaded_file('non-animated.png')
         response = self.client.post(
             self.detail_url,
             dict(custom_image=updated_photo),
@@ -608,10 +612,23 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 200
         item.reload()
         assert PrimaryHeroImage.objects.count() == 1
-        assert item.custom_image == 'hero-featured-image/transparent.png'
+        assert item.custom_image == 'hero-featured-image/non-animated.png'
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'non-animated.png'))
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image',
+            'thumbs', 'non-animated.png'))
+        width, height = get_image_dimensions(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'non-animated.png'))
+        t_width, t_height = get_image_dimensions(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image',
+            'thumbs', 'non-animated.png'))
+        assert width <= 960 and height <= 640
+        assert t_width <= 150 and t_height <= 120
 
     def test_can_delete_with_discovery_edit_permission(self):
-        item = PrimaryHeroImage.objects.create()
+        uploaded_photo = get_uploaded_file('transparent.png')
+        item = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         delete_url = reverse(
             'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
         )
@@ -650,6 +667,16 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert item.custom_image == 'hero-featured-image/transparent.png'
         assert os.path.exists(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image',
+            'thumbs', 'transparent.png'))
+        width, height = get_image_dimensions(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+        t_width, t_height = get_image_dimensions(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image',
+            'thumbs', 'transparent.png'))
+        assert width <= 960 and height <= 640
+        assert t_width <= 150 and t_height <= 120
 
     def test_can_not_add_without_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_primaryheroimageupload_add')
@@ -667,7 +694,8 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert PrimaryHeroImage.objects.count() == 0
 
     def test_can_not_edit_without_discovery_edit_permission(self):
-        item = PrimaryHeroImage.objects.create()
+        uploaded_photo = get_uploaded_file('transparent.png')
+        item = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         detail_url = reverse(
             'admin:discovery_primaryheroimageupload_change', args=(item.pk,)
         )
@@ -676,7 +704,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 403
-        updated_photo = get_uploaded_file('transparent.png')
+        updated_photo = get_uploaded_file('non-animated.png')
 
         response = self.client.post(
             detail_url,
@@ -685,10 +713,11 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 403
         item.reload()
         assert PrimaryHeroImage.objects.count() == 1
-        assert item.custom_image == ''
+        assert item.custom_image == 'hero-featured-image/transparent.png'
 
     def test_can_not_delete_without_discovery_edit_permission(self):
-        item = PrimaryHeroImage.objects.create()
+        uploaded_photo = get_uploaded_file('transparent.png')
+        item = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         delete_url = reverse(
             'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
         )
