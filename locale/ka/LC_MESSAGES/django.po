@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-20 14:56+0000\n"
+"PO-Revision-Date: 2020-06-28 21:50+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -988,9 +988,8 @@ msgstr "შემმუშავებელი"
 msgid "Extension"
 msgstr "გაფართოება"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "განახლებული სრული თემის მიმოხილვა"
+msgstr "მოძველებული სრული თემა"
 
 msgid "Dictionary"
 msgstr "ლექსიკონი"
@@ -1016,9 +1015,8 @@ msgstr "თემა (უცვლელი)"
 msgid "Extensions"
 msgstr "გაფართოებები"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "სრული თემები"
+msgstr "მოძველებული სრული თემები"
 
 msgid "Dictionaries"
 msgstr "ლექსიკონები"
