@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-28 12:35+0000\n"
+"PO-Revision-Date: 2020-06-28 12:48+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -4576,7 +4576,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Jobb lettere {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4612,19 +4612,19 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Følg prisutviklingen på Amazon {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Følg prisutviklingen på Amazon. Ta smarte kjøpsbeslutninger ved å motta varsler om prisendringer på Amazon-produkter du er interessert i."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Håndter lyd {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Juster nettleserens lydinnstillinger veldig presist."
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
