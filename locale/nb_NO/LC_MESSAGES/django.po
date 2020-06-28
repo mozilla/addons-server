@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-28 11:57+0000\n"
+"PO-Revision-Date: 2020-06-28 12:35+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -4930,20 +4930,20 @@ msgid "Cannot diff a version against itself"
 msgstr ""
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Kunne ikke analysere manifestfilen."
 
 msgid "Add-on ID is required for Firefox 47 and below."
 msgstr "Tilleggs-ID er nødvendig for Firefox 47 og nyere."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Laveste støttede \"strict_min_version\" er 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "Ukjent \"strict_min_version\" {appver} for {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr ""
+msgstr "Kunne ikke analysere opplastet fil, manglende eller tomt <%s>-element"
 
 msgid "OpenSearch: XML Security error."
 msgstr ""
