@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-28 13:25+0000\n"
+"PO-Revision-Date: 2020-06-28 13:44+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -4848,7 +4848,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "Lagre en hel nettside — inkludert grafikk og stilsett — som en enkelt HTML-fil."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
