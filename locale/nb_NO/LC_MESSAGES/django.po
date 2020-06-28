@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-28 11:51+0000\n"
+"PO-Revision-Date: 2020-06-28 11:57+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -664,7 +664,7 @@ msgstr "{addon} {version} superreview er forespurt"
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"Dette tillegget har blitt flagget for administratorgjennomgang.  Det er fortsatt i vår gjennomgangskø, men den må gjennomgåes av en av våre administratorer. Gjennomgangen kan ta lengre tid en "
+"Dette tillegget har blitt flagget for administratorgjennomgang.  Det er fortsatt i vår gjennomgangskø, men det må gjennomgåes av en av våre administratorer. Gjennomgangen kan ta lengre tid en "
 "vanlig."
 
 msgid "Comment on {addon} {version}."
@@ -4388,15 +4388,15 @@ msgstr "Uthev tekst fra ethvert nettsted, og høyreklikk for å søke på YouTub
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Få fordeler på Amazon {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Få fordeler på Amazon. Hvis du viser produktsider i andre nettbutikker, kan du se Amazon-oppføringen med ett klikk om produktet er tilgjengelig der."
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Total fanekontroll {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
@@ -4404,11 +4404,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Dra nytte av en merkelig utdanning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Dra nytte av en merkelig utdanning. Last inn en tilfeldig Wikipedia-artikkel hver gang du åpner en ny fane."
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4933,7 +4933,7 @@ msgid "Could not parse the manifest file."
 msgstr ""
 
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Tilleggs-ID er nødvendig for Firefox 47 og nyere."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
