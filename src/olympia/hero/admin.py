@@ -13,7 +13,7 @@ class ImageChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
         return mark_safe(
             '<img class="select-image-preview" src="{}" />'.format(
-                obj.custom_image.url))
+                obj.preview_url))
 
 
 class PrimaryHeroInline(admin.StackedInline):
