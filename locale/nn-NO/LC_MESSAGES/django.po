@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-28 10:41+0000\n"
+"PO-Revision-Date: 2020-06-28 12:00+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5831,13 +5831,11 @@ msgstr "Vurdering behandla."
 msgid "Review lock limit reached"
 msgstr "Grensa for granskingslås er nådd"
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
+msgstr "{addon} – EULA"
 
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Personvernpraksis"
+msgstr "{addon} – personvernerklæring"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
