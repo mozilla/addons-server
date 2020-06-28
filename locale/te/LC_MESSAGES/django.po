@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-28 11:00+0000\n"
+"PO-Revision-Date: 2020-06-28 11:27+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -40,7 +40,7 @@ msgid "Reporter's country"
 msgstr ""
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "సందేశ సారాంశం"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -515,7 +515,7 @@ msgid "Save"
 msgstr "భద్రపరచు"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "ప్రపంచం చుట్టుపక్కలనుండి తక్షణ వాతావరణ సమాచారం"
 
 msgid "Delete"
 msgstr "తొలగించు"
