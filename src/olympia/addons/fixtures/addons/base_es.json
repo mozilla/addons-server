@@ -5,7 +5,6 @@
   "fields": {
     "eula": null,
     "last_updated": "2011-07-06T13:29:18",
-    "view_source": true,
     "total_downloads": 0,
     "developer_comments": null,
     "_current_version": 1,
@@ -40,7 +39,6 @@
   "fields": {
     "eula": null,
     "last_updated": "2011-04-28T07:38:27",
-    "view_source": true,
     "total_downloads": 0,
     "developer_comments": null,
     "_current_version": 2,
@@ -75,7 +73,6 @@
   "fields": {
     "eula": null,
     "last_updated": "2011-02-15T11:33:40",
-    "view_source": true,
     "total_downloads": 0,
     "developer_comments": null,
     "_current_version": 3,
@@ -110,7 +107,6 @@
   "fields": {
     "eula": null,
     "last_updated": "2011-05-22T11:06:50",
-    "view_source": true,
     "total_downloads": 0,
     "developer_comments": null,
     "_current_version": 4,
@@ -145,7 +141,6 @@
   "fields": {
     "eula": null,
     "last_updated": "2011-11-25T07:59:20",
-    "view_source": true,
     "total_downloads": 0,
     "developer_comments": null,
     "_current_version": 5,
@@ -180,7 +175,6 @@
   "fields": {
     "eula": null,
     "last_updated": "2011-10-13T15:26:57",
-    "view_source": true,
     "total_downloads": 0,
     "developer_comments": null,
     "_current_version": 6,

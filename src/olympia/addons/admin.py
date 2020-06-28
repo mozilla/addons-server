@@ -153,7 +153,7 @@ class AddonAdmin(admin.ModelAdmin):
                        'average_daily_users'),
         }),
         ('Flags', {
-            'fields': ('disabled_by_user', 'view_source', 'requires_payment',
+            'fields': ('disabled_by_user', 'requires_payment',
                        'is_experimental', 'reputation'),
         }),
         ('Dictionaries and Language Packs', {

@@ -104,20 +104,7 @@ class FilesBase(object):
         self.client.logout()
         self.check_urls(403)
 
-    def test_view_access_anon_view_source(self):
-        # This is disallowed for now, see Bug 1353788 for more details.
-        self.addon.update(view_source=True)
-        self.file_viewer.extract()
-        self.client.logout()
-        self.check_urls(403)
-
     def test_view_access_reviewer(self):
-        self.file_viewer.extract()
-        self.check_urls(200)
-
-    def test_view_access_reviewer_view_source(self):
-        # This is disallowed for now, see Bug 1353788 for more details.
-        self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.check_urls(200)
 
@@ -129,7 +116,6 @@ class FilesBase(object):
 
     def test_view_access_reviewed(self):
         # This is disallowed for now, see Bug 1353788 for more details.
-        self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.client.logout()
 
@@ -141,24 +127,9 @@ class FilesBase(object):
             self.addon.update(status=status)
             self.check_urls(403)
 
-    def test_view_access_developer_view_source(self):
-        self.client.logout()
-        assert self.client.login(email=self.dev.email)
-        self.addon.update(view_source=True)
-        self.file_viewer.extract()
-        self.check_urls(200)
-
     def test_view_access_another_developer(self):
         self.client.logout()
         assert self.client.login(email=self.regular.email)
-        self.file_viewer.extract()
-        self.check_urls(403)
-
-    def test_view_access_another_developer_view_source(self):
-        # This is disallowed for now, see Bug 1353788 for more details.
-        self.client.logout()
-        assert self.client.login(email=self.regular.email)
-        self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.check_urls(403)
 
@@ -241,7 +212,6 @@ class FilesBase(object):
         # This is disallowed for now, see Bug 1353788 for more details.
         self.file_viewer.extract()
         self.client.logout()
-        self.addon.update(view_source=True)
         res = self.client.get(self.file_url(not_binary))
         assert res.status_code == 403
 

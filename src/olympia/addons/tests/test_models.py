@@ -1251,11 +1251,6 @@ class TestAddonModels(TestCase):
         assert 'Deleting EXTENSION a3615 (3615)' in admin_mail.subject
         assert 'The following EXTENSION was deleted' in admin_mail.body
 
-    def test_view_source(self):
-        # view_source should default to True.
-        a = Addon.objects.create(type=1)
-        assert a.view_source
-
     @patch('olympia.files.models.File.hide_disabled_file')
     def test_admin_disabled_file_hidden(self, hide_mock):
         a = Addon.objects.get(id=3615)

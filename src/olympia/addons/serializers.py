@@ -586,7 +586,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 'slug',
                 'status',
                 'type',
-                'view_source',
                 'weekly_downloads'
             )
         )

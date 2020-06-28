@@ -27,7 +27,7 @@ class TestAddonIndexer(TestCase):
         'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type', 'id',
         'is_disabled', 'is_experimental', 'is_recommended', 'last_updated',
         'modified', 'requires_payment', 'slug', 'status', 'type',
-        'view_source', 'weekly_downloads',
+        'weekly_downloads',
     ]
 
     def setUp(self):
