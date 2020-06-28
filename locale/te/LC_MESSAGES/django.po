@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-25 18:16+0000\n"
+"PO-Revision-Date: 2020-06-28 11:00+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1538,9 +1538,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "అసంపూర్తి"
+msgstr "పూర్తయింది"
 
 msgid "Scheduled"
 msgstr ""
@@ -3180,14 +3179,12 @@ msgstr "వాడుకరి చిత్రం"
 msgid "Profile"
 msgstr "ప్రొఫైలు"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "కొత్త వెర్షనును సమర్పించండి"
+msgstr ""
 
 msgid "Customize Firefox"
 msgstr "Firefox‌ను తీర్చిదిద్దుకోండి"
 
-#, fuzzy
 msgid "Learn how to make an extension"
 msgstr "పొడగింతలు ఎలా చేయాలో తెలుసుకోండి"
 
