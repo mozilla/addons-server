@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-29 16:07+0000\n"
+"PO-Revision-Date: 2020-06-29 16:23+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3182,9 +3182,8 @@ msgid "Matrix"
 msgstr "Matrix"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Κέντρο δημιουργών προσθέτων"
+msgstr "Λίστα αλληλογραφίας δημιουργών προσθέτων"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Newsletter προγραμματιστών επεκτάσεων"
@@ -4857,9 +4856,8 @@ msgid "Customize shades of light and dark to make web pages more visually pleasi
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Μείωση αποσπάσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Φραγή ενοχλητικών ιστοσελίδων {start_sub_heading} με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
@@ -5491,10 +5489,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Έγινε προσωρινή καθυστέρηση της αυτόματης έγκρισης"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Έγινε επ' αόριστον καθυστέρηση της αυτόματης έγκρισης"
 
 msgid "Is locked by a reviewer"
 msgstr "Κλειδωμένο από αξιολογητή"
@@ -6002,9 +6000,8 @@ msgstr "Προηγουμένως διαγραμμένες καταχωρήσει
 msgid "This is a recommended extension."
 msgstr "Αυτή είναι μια προτεινόμενη επέκταση."
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Δεν έχετε κανένα διαπιστευτήριο API."
+msgstr "Δεν έχετε άδεια για κριτική."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Παρακαλούμε επιλέξτε μία ή περισσότερες εκδόσεις στην παραπάνω λίστα."
