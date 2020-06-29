@@ -13,6 +13,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.constants.scanners import (
     CUSTOMS,
     LABEL_BAD,
@@ -354,6 +355,21 @@ class TestScannerResultViewInternal(TestCase):
         response = self.client.get('{}?label=good'.format(self.url))
         results = self.assert_json_results(response, expected_results=2)
         assert results[0]['id'] != results[1]['id']
+
+
+@pytest.mark.internal_routes_allowed
+class TestScannerResultViewInternalWithJWT(APIKeyAuthTestMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.create_api_user()
+        self.grant_permission(self.user, 'Admin:ScannersResultsView')
+        self.url = reverse_ns('scanner-results', api_version='v5')
+
+    def test_accepts_jwt_auth(self):
+        response = self.get(self.url)
+
+        assert response.status_code == 200
 
 
 class TestScannerResultView(TestCase):

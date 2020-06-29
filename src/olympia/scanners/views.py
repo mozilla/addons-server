@@ -5,6 +5,10 @@ from rest_framework.exceptions import ParseError
 from rest_framework.generics import ListAPIView
 
 from olympia import amo
+from olympia.api.authentication import (
+    JWTKeyAuthentication,
+    WebTokenAuthentication,
+)
 from olympia.constants.scanners import (
     LABEL_BAD,
     LABEL_GOOD,
@@ -18,6 +22,8 @@ from .serializers import ScannerResultSerializer
 
 
 class ScannerResultView(ListAPIView):
+    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
+
     permission_classes = [
         GroupPermission(amo.permissions.ADMIN_SCANNERS_RESULTS_VIEW)
     ]
