@@ -87,7 +87,23 @@ def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
     Refs https://github.com/mozilla/addons-server/issues/8760
     """
     settings.MINIFY_BUNDLES = {
-        'css': {'zamboni/css': ['css/legacy/main.css']}}
+        'css': {'zamboni/_test_css': ['css/legacy/main.css']}}
+
+    css_all = os.path.join(
+        settings.STATIC_ROOT, 'css', 'zamboni', '_test_css-all.css')
+
+    css_min = os.path.join(
+        settings.STATIC_ROOT, 'css', 'zamboni', '_test_css-min.css')
+
+    # Delete the files if they exist - they are specific to tests.
+    try:
+        os.remove(css_all)
+    except FileNotFoundError:
+        pass
+    try:
+        os.remove(css_min)
+    except FileNotFoundError:
+        pass
 
     # Capture output to avoid it being logged and allow us to validate it
     # later if needed
@@ -96,12 +112,6 @@ def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
     # Now run compress and collectstatic
     call_command('compress_assets', force=True, stdout=out)
     call_command('collectstatic', interactive=False, stdout=out)
-
-    css_all = os.path.join(
-        settings.STATIC_ROOT, 'css', 'zamboni', 'css-all.css')
-
-    css_min = os.path.join(
-        settings.STATIC_ROOT, 'css', 'zamboni', 'css-min.css')
 
     with open(css_all, 'r') as fobj:
         expected = 'background-image: url(../../img/icons/stars.png'
@@ -113,6 +123,43 @@ def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
         data = fobj.read()
         assert 'background-image:url(' in data
         assert 'img/icons/stars.png' in data
+
+
+@pytest.mark.static_assets
+def test_compress_assets_correctly_compresses_js(settings, tmpdir):
+    """
+    Make sure that `compress_assets` correctly calls uglifyjs and that it
+    generates a minified file.
+    """
+    settings.MINIFY_BUNDLES = {
+        'js': {'zamboni/_test_js': ['js/zamboni/global.js']}}
+
+    js_all = os.path.join(
+        settings.STATIC_ROOT, 'js', 'zamboni', '_test_js-all.js')
+    js_min = os.path.join(
+        settings.STATIC_ROOT, 'js', 'zamboni', '_test_js-min.js')
+
+    # Delete the files if they exist - they are specific to tests.
+    try:
+        os.remove(js_all)
+    except FileNotFoundError:
+        pass
+    try:
+        os.remove(js_min)
+    except FileNotFoundError:
+        pass
+
+    # Capture output to avoid it being logged and allow us to validate it
+    # later if needed
+    out = io.StringIO()
+
+    # Now run compress and collectstatic
+    call_command('compress_assets', force=True, stdout=out)
+    call_command('collectstatic', interactive=False, stdout=out)
+
+    # Files should exist now.
+    assert os.path.getsize(js_all)
+    assert os.path.getsize(js_min)
 
 
 @pytest.mark.needs_locales_compilation
