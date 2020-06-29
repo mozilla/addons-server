@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-29 16:03+0000\n"
+"PO-Revision-Date: 2020-06-29 16:07+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2936,7 +2936,7 @@ msgstr ""
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Παρακαλούμε κάντε κλικ στο κουμπί επιβεβαίωσης παρακάτω για να δημιουργήσετε διαπιστευτήρια API για το χρήστη <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr ""
