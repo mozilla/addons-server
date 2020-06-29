@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-22 09:42+0000\n"
+"PO-Revision-Date: 2020-06-29 16:03+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -532,7 +532,7 @@ msgstr "Αρχική"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s GUID προσθέτου έχουν ήδη αποκλειστεί για τις εκδόσεις %(v_min)s έως %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
@@ -2226,7 +2226,7 @@ msgid "Authors pending confirmation"
 msgstr "Εκκρεμεί επιβεβαίωση των δημιουργών"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Δημιουργοί που έχουν προστεθεί σε αυτό το πρόσθετο αλλά δεν έχουν επιβεβαιωθεί."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2432,9 +2432,8 @@ msgstr "Επιλογή εικονιδίου για το πρόσθετο σας:
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Χρησιμοποιείται στις καταχωρήσεις προσθέτων όπως πχ στα αποτελέσματα αναζήτησης και στα προβεβλημένα πρόσθετα."
+msgstr "Χρησιμοποιείται στις καταχωρήσεις προσθέτων, όπως αποτελέσματα αναζήτησης."
 
 #. The size of the icon
 msgid "64x64px"
