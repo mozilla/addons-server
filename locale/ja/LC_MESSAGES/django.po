@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-29 07:41+0000\n"
+"PO-Revision-Date: 2020-06-29 07:43+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -509,9 +509,9 @@ msgstr ""
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "複数のバージョンを却下"
+msgstr "重複した %(name)s を削除"
 
 msgid "Home"
 msgstr "ホーム"
@@ -539,13 +539,11 @@ msgstr "削除"
 msgid "Update"
 msgstr "更新"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "自分の登録アイテムを見る"
+msgstr "登録を却下"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "自分の登録アイテムを見る"
+msgstr "登録を承認"
 
 #, python-format
 msgid "Add %(name)s"
@@ -554,9 +552,8 @@ msgstr ""
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
-#, fuzzy
 msgid "Submit"
-msgstr "バージョンを登録"
+msgstr "登録"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
