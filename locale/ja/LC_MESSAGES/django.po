@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-29 07:33+0000\n"
+"PO-Revision-Date: 2020-06-29 07:41+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -489,9 +489,8 @@ msgstr ""
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "不正なバージョン範囲です。"
+msgstr "不正なバージョン"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -1065,7 +1064,7 @@ msgid "Download Management"
 msgstr "ダウンロード管理"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "ウェブサイトや音楽、動画のダウンロードに役立つ Firefox の拡張機能をダウンロードしましょう。ダウンロードの管理やファイル共有を行うための拡張機能などもあります。"
 
 msgid "Feeds, News & Blogging"
 msgstr "フィード／ニュース／ブログ"
@@ -1083,7 +1082,7 @@ msgid "Language Support"
 msgstr "言語サポート"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "スペルチェック、単語辞書、テキスト翻訳、テキスト読み上げなどの言語サポートを提供する Firefox の拡張機能をダウンロードしましょう。"
 
 msgid "Photos, Music & Videos"
 msgstr "写真／音楽／動画"
@@ -1098,7 +1097,7 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "検索のための Firefox の拡張機能をダウンロードしましょう。このカテゴリには、テキストを強調表示して検索したり、IP アドレス/ドメインを検索する拡張機能などが含まれます。"
 
 msgid "Shopping"
 msgstr "ショッピング"
@@ -2237,7 +2236,7 @@ msgstr "名前と概要"
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
-msgstr ""
+msgstr "概要では、あなたのアドオンが何をするのか、明確かつ簡潔に説明してください。名前と概要の両方が製品ページと検索結果に表示されます。それらは合わせて最大 70 文字、最少 2 文字です。"
 
 msgid "Summary"
 msgstr "概要"
@@ -3521,9 +3520,8 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウンロード"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope、その他数多くの動画サイトに対応。"
+msgstr "YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope など数多くの動画サイトで簡単に動画のダウンロードができます。"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3548,9 +3546,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "軽量で効果的な広告ブロッカー。uBlock Origin は、多くのメモリーを占拠することなく、何千ものコンテンツフィルターを実行します。"
+msgstr "効果的で軽量な広告ブロッカー。 uBlock Origin は、大量のメモリを消費することなく、何千ものコンテンツフィルターを適用します。"
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3694,9 +3691,8 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を拡大表示しましょう"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Hover over an image to magnify it."
-msgstr "画像の上にマウスを置くだけで、画像を拡大できます。"
+msgstr "画像にマウスカーソルを合わせるだけで、画像を拡大できます。"
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3944,9 +3940,8 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を検索しましょう"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "検索結果と並んでサムネイル画像をお楽しみください。"
+msgstr "検索結果にサムネイル画像を並べてお楽しみください。"
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4722,7 +4717,7 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Cookie を管理"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "不要な Cookie を自動的に削除します。ホワイトリストとブラックリストをサポートします。"
 
 #. editorial content for the discovery pane.
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5455,7 +5450,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "自動承認無効フラグが設定されています"
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "お勧めです"
 
 msgid "Delayed because it's the first listed version"
 msgstr ""
