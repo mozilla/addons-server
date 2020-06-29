@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-29 16:23+0000\n"
+"PO-Revision-Date: 2020-06-29 16:26+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5571,13 +5571,11 @@ msgstr "Άλλη εκκρεμούσα κριτική ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Άλλη εκκρεμούσα κριτική ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Καταχωρημένες εκδόσεις"
+msgstr "Καταχωρημένες εκδόσεις ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Καταχωρημένες εκδόσεις"
+msgstr "Μη καταχωρημένες εκδόσεις ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Αυτό θα εγκρίνει, υπογράψει και δημοσιεύσει αυτή την έκδοση. Τα σχόλια θα αποσταλούν στον προγραμματιστή."
@@ -5600,9 +5598,8 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "Απόρριψη πολλαπλών εκδόσεων"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Αυτό θα εγκρίνει, υπογράψει και δημοσιεύσει αυτή την έκδοση. Τα σχόλια θα αποσταλούν στον προγραμματιστή."
+msgstr "Αυτό θα απορρίψει τις επιλεγμένες εκδόσεις. Τα σχόλια θα αποσταλούν στον προγραμματιστή."
 
 msgid "Block Multiple Versions"
 msgstr "Φραγή πολλαπλών εκδόσεων"
@@ -5935,9 +5932,8 @@ msgstr "Αυτόματα εγκεκριμένα πρόσθετα"
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Ληγμένο αίτημα πληροφοριών"
+msgstr "Αιτήματα πληροφοριών που έχουν λήξει – Πρόσθετα για το Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
