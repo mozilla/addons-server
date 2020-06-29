@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-29 13:52+0000\n"
+"PO-Revision-Date: 2020-06-29 14:02+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1256,10 +1256,10 @@ msgid "Solid"
 msgstr "Fast"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Last ned Firefox-temaer med farger og graderinger for å tilpasse nettleseren din. Denne kategorien inkluderer dristig rød, pastell, myke gråtoner og mye mer."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Last ned Firefox-temaer som inneholder en mengde ulike sporter. Denne kategorien inkluderer landsflagg, idrettslag, fotball, hockey og mer."
 
 msgid "Websites"
 msgstr "Nettsteder"
@@ -1527,10 +1527,10 @@ msgid "Flag for human review"
 msgstr "Flagg for at noen skal ta en gjennomgang"
 
 msgid "Delay auto-approval"
-msgstr ""
+msgstr "Forsink automatisk godkjenning"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Forsink automatisk godkjenning på ubestemt tid"
 
 msgid "True positive"
 msgstr "Sann positiv"
@@ -1701,10 +1701,10 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "Du har sendt inn for mange opplastinger i det siste. Prøv igjen om en stund."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "Versjon {version} samsvarer med {block_link} for dette tillegget. Du kan kontakte {amo_admins} for mer informasjon."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "en blokkeringslisteoppføring"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versjon {version} er lastet opp tidligere og slettet."
