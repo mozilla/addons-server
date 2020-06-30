@@ -356,18 +356,6 @@ class ReviewHelper(object):
             is_recommendable = self.addon.discoveryitem.recommendable
         except DiscoveryItem.DoesNotExist:
             is_recommendable = False
-        current_version_is_listed_and_auto_approved = (
-            self.version and
-            self.version.channel == amo.RELEASE_CHANNEL_LISTED and
-            self.addon.current_version and
-            self.addon.current_version.was_auto_approved
-        )
-        latest_version_is_pending_rejection = (
-            self.version and
-            self.version.pending_rejection)
-        current_version_is_pending_rejection = (
-            self.addon.current_version and
-            self.addon.current_version.pending_rejection)
 
         # Default permissions / admin needed values if it's just a regular
         # code review, nothing fancy.
@@ -375,38 +363,32 @@ class ReviewHelper(object):
         permission_post_review = amo.permissions.ADDONS_POST_REVIEW
         is_admin_needed = (
             self.addon.needs_admin_content_review or
-            self.addon.needs_admin_code_review or
-            latest_version_is_pending_rejection)
-        is_admin_needed_post_review = (
-            self.addon.needs_admin_content_review or
-            self.addon.needs_admin_code_review or
-            current_version_is_pending_rejection)
+            self.addon.needs_admin_code_review)
+        is_admin_needed_post_review = is_admin_needed
 
-        # More complex cases.
+        # More complex/specific cases.
         if is_recommendable:
-            is_admin_needed = (
-                self.addon.needs_admin_content_review or
-                self.addon.needs_admin_code_review or
-                latest_version_is_pending_rejection)
             permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
             permission_post_review = permission
         elif self.content_review:
-            is_admin_needed = (
-                self.addon.needs_admin_content_review or
-                latest_version_is_pending_rejection)
+            is_admin_needed = self.addon.needs_admin_content_review
             permission = amo.permissions.ADDONS_CONTENT_REVIEW
         elif version_is_unlisted:
-            is_admin_needed = (
-                self.addon.needs_admin_code_review or
-                latest_version_is_pending_rejection)
+            is_admin_needed = self.addon.needs_admin_code_review
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED
             permission_post_review = permission
         elif self.addon.type == amo.ADDON_STATICTHEME:
-            is_admin_needed = (
-                self.addon.needs_admin_theme_review or
-                latest_version_is_pending_rejection)
+            is_admin_needed = self.addon.needs_admin_theme_review
             permission = amo.permissions.STATIC_THEMES_REVIEW
             permission_post_review = permission
+
+        # In addition, if the latest (or current for post-review) version is
+        # pending rejection, an admin is needed.
+        if self.version and self.version.pending_rejection:
+            is_admin_needed = True
+        if (self.addon.current_version and
+                self.addon.current_version.pending_rejection):
+            is_admin_needed_post_review = True
 
         # Whatever permission values we set, we override if an admin is needed.
         if is_admin_needed:
@@ -440,7 +422,12 @@ class ReviewHelper(object):
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED
         )
-
+        current_version_is_listed_and_auto_approved = (
+            self.version and
+            self.version.channel == amo.RELEASE_CHANNEL_LISTED and
+            self.addon.current_version and
+            self.addon.current_version.was_auto_approved
+        )
         version_is_blocked = self.version and self.version.is_blocked
 
         # Special logic for availability of reject multiple action:
