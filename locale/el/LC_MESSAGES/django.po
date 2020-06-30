@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-29 16:26+0000\n"
+"PO-Revision-Date: 2020-06-30 14:54+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -937,9 +937,8 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr "Έγινε επαναφορά της συνεδρίας(ών) του χρήστη {user}."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Ο χρήστης {user} επεξεργάστηκε, αιτία: {1}"
+msgstr "Ο χρήστης {user} περιορίζεται από το πεδίο \"{0}\""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2939,7 +2938,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Παρακαλούμε κάντε κλικ στο κουμπί επιβεβαίωσης παρακάτω για να δημιουργήσετε διαπιστευτήρια API για το χρήστη <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Θα αποσταλεί ένας σύνδεσμος επιβεβαίωσης στη διεύθυνση email σας. Μετά την επιβεβαίωση, θα βρείτε τα κλειδιά API σε αυτή τη σελίδα."
 
 msgid "You don't have any API credentials."
 msgstr "Δεν έχετε κανένα διαπιστευτήριο API."
