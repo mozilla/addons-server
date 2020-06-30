@@ -921,10 +921,12 @@ class TestRenderCSV(TestCase):
             {'data': {'a': 4}, 'count': 4, 'date': '2020-01-02'},
         ]
 
+        # Simulates how other views are rendering CSV content.
         stats, fields = views.csv_fields(series)
         response = views.render_csv(request=RequestFactory().get('/'),
                                     addon=addon_factory(),
                                     stats=stats,
                                     fields=fields)
 
-        assert '\n,a\r\n1,2\r\n0,4\r\n' in force_text(response.content)
+        assert ('\r\n'.join([',a', '1,2', '0,4']) in
+                force_text(response.content))
