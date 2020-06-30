@@ -215,15 +215,17 @@ class TestUserProfile(TestCase):
         Collection.objects.create(author=user)
 
     def test_delete_with_related_content_exclude_addons_with_other_devs(self):
+        from olympia.addons.models import update_search_index
+
         user = UserProfile.objects.get(pk=55021)
         addon = user.addons.last()
         self.setup_user_to_be_have_content_disabled(user)
         AddonUser.objects.create(addon=addon, user=user_factory())
 
         # Now that everything is set up, disable/delete related content.
-        with mock.patch('olympia.addons.tasks.index_addons.delay') as idx_mock:
-            user.delete()
-            idx_mock.assert_called_with([addon.id])
+        update_search_index.reset_mock()
+        user.delete()
+        update_search_index.assert_called_with(sender=Addon, instance=addon)
 
         # The add-on should not have been touched, it has another dev.
         assert not user.addons.exists()
@@ -235,6 +237,24 @@ class TestUserProfile(TestCase):
 
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
+
+    def test_delete_with_just_addon_with_other_devs(self):
+        from olympia.addons.models import update_search_index
+
+        user = UserProfile.objects.get(pk=55021)
+        addon = user.addons.last()
+        AddonUser.objects.create(addon=addon, user=user_factory())
+
+        # Now that everything is set up, disable/delete related content.
+        update_search_index.reset_mock()
+        user.delete()
+        update_search_index.assert_called_with(
+            sender=AddonUser, instance=addon, signal=mock.ANY, using=mock.ANY)
+
+        # The add-on should not have been touched, it has another dev.
+        assert not user.addons.exists()
+        addon.reload()
+        assert addon.status == amo.STATUS_APPROVED
 
     def test_delete_with_related_content_actually_delete(self):
         addon = Addon.objects.latest('pk')
