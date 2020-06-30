@@ -15,6 +15,10 @@ Scanner Results
 
 This endpoint returns a list of labelled scanner results.
 
+    .. note::
+        Requires authentication and the current user to have read access to the
+        scanner results.
+
 .. http:get:: /api/v4/scanner/results/
 
     :query string label: Filter by label.
