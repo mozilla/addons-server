@@ -84,7 +84,7 @@ def csv_fields(series):
         row['data'].update(count=row['count'], date=row['date'])
     # Sort the fields before returning them - we don't care much about column
     # ordering, but it helps make the tests stable.
-    return rv, sorted(fields)
+    return rv, sorted(fields, key=lambda field: '' if not field else field)
 
 
 def extract(dicts):
