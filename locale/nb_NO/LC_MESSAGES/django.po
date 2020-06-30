@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-29 14:02+0000\n"
+"PO-Revision-Date: 2020-06-30 16:46+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -468,7 +468,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Dette tillegget er allerede en del av samlingen"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Aktiveringsstatus"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -2058,7 +2058,7 @@ msgstr ""
 "class=\"close\">ignorer</a>"
 
 msgid "View and update application compatibility ranges"
-msgstr ""
+msgstr "Se og rediger programkompatibilitetsområder"
 
 msgid "Compatibility"
 msgstr "Kompatibilitet"
