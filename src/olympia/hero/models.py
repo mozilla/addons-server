@@ -107,6 +107,15 @@ class PrimaryHeroImage(ModelBase):
     preview_image.short_description = "Image"
     preview_image.allow_tags = True
 
+    def delete(self, *args, **kwargs):
+        (path, fn) = os.path.split(self.custom_image.path)
+        image_thumb = path + b'/thumbs/' + fn
+
+        os.remove(image_thumb)
+        os.remove(self.custom_image.path)
+
+        super().delete(*args, **kwargs)
+
 
 class PrimaryHero(ModelBase):
     select_image = models.ForeignKey(

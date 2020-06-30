@@ -58,6 +58,10 @@ class PrimaryHeroImageAdmin(admin.ModelAdmin):
     actions = ['delete_selected']
     readonly_fields = ('preview_image',)
 
+    def delete_queryset(self, request, queryset):
+        for obj in queryset:
+            obj.delete()
+
 
 class HeroModuleInlineFormSet(BaseInlineFormSet):
     def clean(self):
