@@ -1791,6 +1791,9 @@ def addon_user_sync(sender=None, instance=None, **kwargs):
         sync_object_to_basket.delay('addon', instance.addon.pk)
 
 
+models.signals.post_delete.connect(watch_addon_user,
+                                   sender=AddonUser,
+                                   dispatch_uid='delete_addon_user')
 models.signals.post_delete.connect(addon_user_sync,
                                    sender=AddonUser,
                                    dispatch_uid='delete_addon_user_sync')
