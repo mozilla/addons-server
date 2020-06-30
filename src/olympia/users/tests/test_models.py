@@ -134,6 +134,7 @@ class TestUserProfile(TestCase):
         email = mail.outbox[0]
         assert email.to == [user.email]
         assert f'message because your user account {name}' in email.body
+        assert email.reply_to == ['amo-admins+deleted@mozilla.com']
 
     @mock.patch.object(File, 'hide_disabled_file')
     def test_ban_and_disable_related_content_bulk(self, hide_disabled_mock):
