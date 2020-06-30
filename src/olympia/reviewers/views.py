@@ -74,7 +74,7 @@ from olympia.reviewers.utils import (
     MadReviewTable, PendingRejectionTable, ReviewHelper, ScannersReviewTable,
     ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version
+from olympia.versions.models import Version, VersionReviewerFlags
 from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
@@ -1288,6 +1288,17 @@ class AddonReviewerViewSet(GenericViewSet):
             addon.allow_resubmission()
         except RuntimeError:
             status_code = status.HTTP_409_CONFLICT
+        return Response(status=status_code)
+
+    @action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
+    def clear_pending_rejections(self, request, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        status_code = status.HTTP_202_ACCEPTED
+        VersionReviewerFlags.objects.filter(
+            version__addon=addon).update(pending_rejection=None)
         return Response(status=status_code)
 
     @action(
