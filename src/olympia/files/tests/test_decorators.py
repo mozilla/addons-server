@@ -91,10 +91,10 @@ class AllowedTest(TestCase):
     def test_listed_public_disallowed(self):
         self.assertRaises(PermissionDenied, allowed, self.request, self.file)
 
-        self.addon.update(view_source=True)
+        self.addon.update(disabled_by_user=True)
 
         self.assertRaises(PermissionDenied, allowed, self.request, self.file)
 
-        self.addon.update(view_source=True, status=amo.STATUS_APPROVED)
+        self.addon.update(disabled_by_user=True, status=amo.STATUS_APPROVED)
 
         self.assertRaises(PermissionDenied, allowed, self.request, self.file)

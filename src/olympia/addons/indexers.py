@@ -279,7 +279,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'summary': {'type': 'text', 'analyzer': 'snowball'},
                     'tags': {'type': 'keyword'},
                     'type': {'type': 'byte'},
-                    'view_source': {'type': 'boolean', 'index': False},
                     'weekly_downloads': {'type': 'long'},
                 },
             },
@@ -383,7 +382,7 @@ class AddonIndexer(BaseSearchIndexer):
                  'is_disabled', 'is_experimental', 'is_recommended',
                  'last_updated',
                  'modified', 'requires_payment', 'slug',
-                 'status', 'type', 'view_source', 'weekly_downloads')
+                 'status', 'type', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         data['colors'] = None

@@ -54,7 +54,6 @@
         "model": "addons.addon",
         "fields": {
             "last_updated": "2010-08-27 21:15:32",
-            "view_source": false,
             "total_downloads": 9,
             "developer_comments": 1277089,
             "_current_version": 116367,
