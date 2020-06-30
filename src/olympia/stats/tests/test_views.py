@@ -912,3 +912,21 @@ class TestProcessLocales(TestCase):
         series = views.process_locales(series)
 
         assert len(next(series)['data']) == 0
+
+
+class TestRenderCSV(TestCase):
+    def test_handles_null_keys(self):
+        series = [
+            {'data': {None: 1, 'a': 2}, 'count': 3, 'date': '2020-01-01'},
+            {'data': {'a': 4}, 'count': 4, 'date': '2020-01-02'},
+        ]
+
+        # Simulates how other views are rendering CSV content.
+        stats, fields = views.csv_fields(series)
+        response = views.render_csv(request=RequestFactory().get('/'),
+                                    addon=addon_factory(),
+                                    stats=stats,
+                                    fields=fields)
+
+        assert ('\r\n'.join([',a', '1,2', '0,4']) in
+                force_text(response.content))
