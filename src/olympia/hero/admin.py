@@ -1,8 +1,15 @@
+import os
+import tempfile
+
 from django import forms
+from django.conf import settings
 from django.contrib import admin
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
 from django.utils.safestring import mark_safe
+
+from olympia.amo.storage_utils import copy_stored_file
+from olympia.amo.utils import resize_image
 
 from .models import (
     PrimaryHero, SecondaryHeroModule,
@@ -13,7 +20,7 @@ class ImageChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
         return mark_safe(
             '<img class="select-image-preview" src="{}" />'.format(
-                obj.custom_image.url))
+                obj.preview_url))
 
 
 class PrimaryHeroInline(admin.StackedInline):
@@ -57,6 +64,19 @@ class PrimaryHeroImageAdmin(admin.ModelAdmin):
     list_display = ('preview_image', 'custom_image')
     actions = ['delete_selected']
     readonly_fields = ('preview_image',)
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        (path, fn) = os.path.split(obj.custom_image.path)
+        dest_thumb = path + b'/thumbs/' + fn
+
+        size_thumb = (150, 120)
+        size_full = (960, 640)
+
+        resize_image(obj.custom_image.path, dest_thumb, size_thumb)
+        with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as tmp:
+            resize_image(obj.custom_image.path, tmp.name, size_full)
+            copy_stored_file(tmp.name, obj.custom_image.path)
 
 
 class HeroModuleInlineFormSet(BaseInlineFormSet):

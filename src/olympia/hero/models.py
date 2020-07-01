@@ -27,6 +27,7 @@ MODULE_ICON_PATH = os.path.join(
     settings.ROOT, 'static', 'img', 'hero', 'icons')
 FEATURED_IMAGE_URL = f'{settings.STATIC_URL}img/hero/featured/'
 MODULE_ICON_URL = f'{settings.STATIC_URL}img/hero/icons/'
+HERO_PREVIEW_URL = f'{settings.MEDIA_URL}hero-featured-image/thumbs/'
 
 
 class GradientChoiceWidget(RadioSelect):
@@ -97,10 +98,15 @@ class PrimaryHeroImage(ModelBase):
     def __str__(self):
         return f'{self.custom_image}'
 
+    @property
+    def preview_url(self):
+        fn = os.path.basename(self.custom_image.path).decode('utf-8')
+        return f'{HERO_PREVIEW_URL}{fn}'
+
     def preview_image(self):
         if self.custom_image:
             return mark_safe('<img class="prmhero-preview" src="{}" />'.format(
-                self.custom_image.url)
+                self.preview_url)
             )
         else:
             return None
