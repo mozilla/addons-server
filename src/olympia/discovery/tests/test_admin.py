@@ -656,7 +656,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.count() == 0
-        photo = get_uploaded_file('transparent.png')
+        photo = get_uploaded_file('preview_4x3.jpg')
         response = self.client.post(
             add_url,
             dict(custom_image=photo),
@@ -664,17 +664,17 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.count() == 1
         item = PrimaryHeroImage.objects.get()
-        assert item.custom_image == 'hero-featured-image/transparent.png'
+        assert item.custom_image == 'hero-featured-image/preview_4x3.jpg'
         assert os.path.exists(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.jpg'))
         assert os.path.exists(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'transparent.png'))
+            'thumbs', 'preview_4x3.jpg'))
         width, height = get_image_dimensions(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.jpg'))
         t_width, t_height = get_image_dimensions(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'transparent.png'))
+            'thumbs', 'preview_4x3.jpg'))
         assert width <= 960 and height <= 640
         assert t_width <= 150 and t_height <= 120
 
