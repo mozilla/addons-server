@@ -3,7 +3,7 @@ import json
 import time
 import itertools
 
-from datetime import timedelta, datetime
+from datetime import timedelta
 
 from dateutil.parser import parse
 from django import http

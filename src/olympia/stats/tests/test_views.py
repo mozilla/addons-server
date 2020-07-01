@@ -2,7 +2,7 @@
 import csv
 import json
 
-from datetime import date, datetime
+from datetime import date
 from unittest import mock
 
 from django.http import Http404
@@ -312,8 +312,8 @@ class TestViews(ESStatsTestCase):
 
     def test_usage_json(self):
         self.get_updates_series_mock.return_value = [
-            {'date': '2009-06-02', 'end': '2009-06-02', 'count': 1500},
-            {'date': '2009-06-01', 'end': '2009-06-01', 'count': 1000},
+            {'date': date(2009, 6, 2), 'end': date(2009, 6, 2), 'count': 1500},
+            {'date': date(2009, 6, 1), 'end': date(2009, 6, 1), 'count': 1000},
         ]
 
         response = self.get_view_response(
@@ -331,8 +331,8 @@ class TestViews(ESStatsTestCase):
 
     def test_usage_csv(self):
         self.get_updates_series_mock.return_value = [
-            {'date': '2009-06-02', 'end': '2009-06-02', 'count': 1500},
-            {'date': '2009-06-01', 'end': '2009-06-01', 'count': 1000},
+            {'date': date(2009, 6, 2), 'end': date(2009, 6, 2), 'count': 1500},
+            {'date': date(2009, 6, 1), 'end': date(2009, 6, 1), 'count': 1000},
         ]
 
         response = self.get_view_response(
@@ -350,14 +350,14 @@ class TestViews(ESStatsTestCase):
     def test_usage_by_app_json(self):
         self.get_updates_series_mock.return_value = [
             {
-                'date': '2009-06-02',
-                'end': '2009-06-02',
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
                 'count': 1500,
                 'data': {FIREFOX.guid: {'4.0': 1500}},
             },
             {
-                'date': '2009-06-01',
-                'end': '2009-06-01',
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
                 'count': 1000,
                 'data': {FIREFOX.guid: {'4.0': 1000}},
             },
@@ -393,14 +393,14 @@ class TestViews(ESStatsTestCase):
     def test_usage_by_app_csv(self):
         self.get_updates_series_mock.return_value = [
             {
-                'date': '2009-06-02',
-                'end': '2009-06-02',
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
                 'count': 1500,
                 'data': {FIREFOX.guid: {'4.0': 1500}},
             },
             {
-                'date': '2009-06-01',
-                'end': '2009-06-01',
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
                 'count': 1000,
                 'data': {FIREFOX.guid: {'4.0': 1000}},
             },
@@ -421,14 +421,14 @@ class TestViews(ESStatsTestCase):
     def test_usage_by_locale_json(self):
         self.get_updates_series_mock.return_value = [
             {
-                'date': '2009-06-02',
-                'end': '2009-06-02',
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
                 'count': 1500,
                 'data': {'el': 800, 'es-mx': 400, 'en-us': 300},
             },
             {
-                'date': '2009-06-01',
-                'end': '2009-06-01',
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
                 'count': 1000,
                 'data': {'el': 400, 'es-mx': 300, 'en-us': 300},
             },
@@ -468,14 +468,14 @@ class TestViews(ESStatsTestCase):
     def test_usage_by_locale_csv(self):
         self.get_updates_series_mock.return_value = [
             {
-                'date': '2009-06-02',
-                'end': '2009-06-02',
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
                 'count': 1500,
                 'data': {'el': 800, 'es-mx': 400, 'en-us': 300},
             },
             {
-                'date': '2009-06-01',
-                'end': '2009-06-01',
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
                 'count': 1000,
                 'data': {'el': 400, 'es-mx': 300, 'en-us': 300},
             },
@@ -496,14 +496,14 @@ class TestViews(ESStatsTestCase):
     def test_usage_by_os_json(self):
         self.get_updates_series_mock.return_value = [
             {
-                'date': '2009-06-02',
-                'end': '2009-06-02',
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
                 'count': 1500,
                 'data': {'Linux': 400, 'Windows': 500},
             },
             {
-                'date': '2009-06-01',
-                'end': '2009-06-01',
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
                 'count': 1000,
                 'data': {'Linux': 300, 'Windows': 400},
             },
@@ -535,14 +535,14 @@ class TestViews(ESStatsTestCase):
     def test_usage_by_os_csv(self):
         self.get_updates_series_mock.return_value = [
             {
-                'date': '2009-06-02',
-                'end': '2009-06-02',
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
                 'count': 1500,
                 'data': {'Linux': 400, 'Windows': 500},
             },
             {
-                'date': '2009-06-01',
-                'end': '2009-06-01',
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
                 'count': 1000,
                 'data': {'Linux': 300, 'Windows': 400},
             },
@@ -563,14 +563,14 @@ class TestViews(ESStatsTestCase):
     def test_usage_by_version_json(self):
         self.get_updates_series_mock.return_value = [
             {
-                'date': '2009-06-02',
-                'end': '2009-06-02',
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
                 'count': 1500,
                 'data': {'1.0': 550, '2.0': 950},
             },
             {
-                'date': '2009-06-01',
-                'end': '2009-06-01',
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
                 'count': 1000,
                 'data': {'1.0': 200, '2.0': 800},
             },
@@ -602,14 +602,14 @@ class TestViews(ESStatsTestCase):
     def test_usage_by_version_csv(self):
         self.get_updates_series_mock.return_value = [
             {
-                'date': '2009-06-02',
-                'end': '2009-06-02',
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
                 'count': 1500,
                 'data': {'1.0': 550, '2.0': 950},
             },
             {
-                'date': '2009-06-01',
-                'end': '2009-06-01',
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
                 'count': 1000,
                 'data': {'1.0': 200, '2.0': 800},
             },
@@ -629,16 +629,8 @@ class TestViews(ESStatsTestCase):
 
     def test_overview(self):
         self.get_updates_series_mock.return_value = [
-            {
-                'date': datetime(2009, 6, 2),
-                'end': datetime(2009, 6, 2),
-                'count': 1500,
-            },
-            {
-                'date': datetime(2009, 6, 1),
-                'end': datetime(2009, 6, 1),
-                'count': 1000,
-            },
+            {'date': date(2009, 6, 2), 'end': date(2009, 6, 2), 'count': 1500},
+            {'date': date(2009, 6, 1), 'end': date(2009, 6, 1), 'count': 1000},
         ]
 
         response = self.get_view_response(
