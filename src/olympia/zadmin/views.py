@@ -20,7 +20,7 @@ from olympia.amo.decorators import (
     json_view, permission_required, post_required)
 from olympia.amo.utils import HttpResponseXSendFile, render
 from olympia.files.models import File, FileUpload
-from olympia.stats.indexers import DownloadCountIndexer, UpdateCountIndexer
+from olympia.stats.indexers import DownloadCountIndexer
 from olympia.versions.models import Version
 
 from .decorators import admin_required
@@ -72,8 +72,6 @@ def elastic(request):
                 AddonIndexer.get_mapping()),
             (settings.ES_INDEXES['stats_download_counts'],
                 DownloadCountIndexer.get_mapping()),
-            (settings.ES_INDEXES['stats_update_counts'],
-                UpdateCountIndexer.get_mapping()),
         ),
     }
     return render(request, 'zadmin/elastic.html', ctx)

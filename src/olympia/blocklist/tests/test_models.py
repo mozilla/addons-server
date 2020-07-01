@@ -141,11 +141,7 @@ class TestBlocklistSubmission(TestCase):
 
         submission.to_block = submission._serialize_blocks()
         # 0 adu is safe when we have unlisted adu
-        with override_switch('use-bigquery-for-addon-adu', active=True):
-            assert submission.all_adu_safe()
-        # but isn't safe when we only have listed adu to decide on
-        with override_switch('use-bigquery-for-addon-adu', active=False):
-            assert not submission.all_adu_safe()
+        assert submission.all_adu_safe()
 
         # safe because just normal adu
         submission.update(input_guids='normal@adu')

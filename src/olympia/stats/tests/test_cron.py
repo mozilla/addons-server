@@ -7,7 +7,7 @@ from unittest import mock
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.stats import cron
-from olympia.stats.models import DownloadCount, UpdateCount
+from olympia.stats.models import DownloadCount
 
 
 @mock.patch('olympia.stats.management.commands.index_stats.group')
@@ -18,8 +18,6 @@ class TestIndexStats(TestCase):
         super(TestIndexStats, self).setUp()
         self.downloads = (DownloadCount.objects.order_by('-date')
                           .values_list('id', flat=True))
-        self.updates = (UpdateCount.objects.order_by('-date')
-                        .values_list('id', flat=True))
 
     def test_by_date(self, group_mock):
         call_command('index_stats', addons=None, date='2009-06-01')
@@ -48,6 +46,12 @@ class TestIndexStats(TestCase):
         assert calls[0].task == 'olympia.stats.tasks.index_download_counts'
         assert calls[0].args == (list(qs), None)
 
+    def test_by_addon_and_date(self, group_mock):
+        call_command('index_stats', addons='4', date='2009-06-01')
+        qs = self.downloads.filter(addon=4, date='2009-06-01')
+        calls = group_mock.call_args[0][0]
+        assert calls[0].args == (list(qs), None)
+
     def test_multiple_addons_and_date(self, group_mock):
         call_command('index_stats', addons='4, 5', date='2009-10-03')
         qs = self.downloads.filter(addon__in=[4, 5], date='2009-10-03')
@@ -74,8 +78,8 @@ class TestIndexLatest(amo.tests.ESTestCase):
     def test_index_latest(self):
         self.create_switch('local-statistics-processing')
         latest = datetime.date.today() - datetime.timedelta(days=5)
-        UpdateCount.index({'date': latest})
-        self.refresh('stats_update_counts')
+        DownloadCount.index({'date': latest})
+        self.refresh('stats_download_counts')
 
         start = latest.strftime('%Y-%m-%d')
         finish = datetime.date.today().strftime('%Y-%m-%d')

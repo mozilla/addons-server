@@ -7,7 +7,7 @@ import waffle
 import olympia.core.logger
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 
-from .models import UpdateCount
+from .models import DownloadCount
 
 
 log = olympia.core.logger.getLogger('z.cron')
@@ -21,7 +21,7 @@ def index_latest_stats(index=None):
         return d.strftime('%Y-%m-%d')
 
     raise_if_reindex_in_progress('amo')
-    latest = UpdateCount.search(index).order_by('-date').values_dict('date')
+    latest = DownloadCount.search(index).order_by('-date').values_dict('date')
     if latest:
         latest = latest[0]['date']
     else:

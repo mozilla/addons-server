@@ -1233,7 +1233,6 @@ CELERY_TASK_ROUTES = {
 
     # Stats
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
-    'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
 
     # Tags
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
@@ -1540,7 +1539,6 @@ ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {
     'default': 'addons',
     'stats_download_counts': 'addons_stats_download_counts',
-    'stats_update_counts': 'addons_stats_update_counts',
 }
 
 ES_TIMEOUT = 30

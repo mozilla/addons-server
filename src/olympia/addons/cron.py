@@ -1,12 +1,6 @@
-import time
-
-from datetime import datetime, timedelta
-
-from django.db import connections
-from django.db.models import Avg, F, Q, Sum
+from django.db.models import F, Q, Sum
 from django.db.models.functions import Coalesce
 
-import multidb
 import waffle
 
 from celery import group
@@ -14,7 +8,7 @@ from celery import group
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon, FrozenAddon
+from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_download_totals as _update_addon_download_totals,
@@ -22,8 +16,6 @@ from olympia.addons.tasks import (
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked
 from olympia.files.models import File
-from olympia.lib.es.utils import raise_if_reindex_in_progress
-from olympia.stats.models import UpdateCount
 from olympia.stats.utils import (
     get_addons_and_average_daily_users_from_bigquery)
 
@@ -37,43 +29,27 @@ def update_addon_average_daily_users():
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    kwargs = {'id_field': 'pk'}
-    if waffle.switch_is_active('use-bigquery-for-addon-adu'):
-        # BigQuery does not have data for add-ons with type other than those in
-        # `ADDON_TYPES_WITH_STATS` so we use download counts instead.
-        # See: https://github.com/mozilla/addons-server/issues/14609
-        amo_counts = dict(
-            Addon.objects
-            .exclude(type__in=amo.ADDON_TYPES_WITH_STATS)
-            .exclude(guid__isnull=True)
-            .exclude(guid__exact='')
-            .annotate(count=Coalesce(Sum('downloadcount__count'), 0))
-            .values_list('guid', 'count')
-            # Just to make order predictable in tests, we order by id. This
-            # matches the GROUP BY being generated so it should be safe.
-            .order_by('id')
-        )
-        counts = dict(get_addons_and_average_daily_users_from_bigquery())
-        counts.update(amo_counts)
-        counts = list(counts.items())
-        # BigQuery stores GUIDs, not AMO primary keys.
-        kwargs['id_field'] = 'guid'
-    else:
-        raise_if_reindex_in_progress('amo')
-        cursor = connections[multidb.get_replica()].cursor()
-        q = """SELECT addon_id, AVG(`count`)
-            FROM update_counts
-            WHERE `date` > DATE_SUB(CURDATE(), INTERVAL 13 DAY)
-            GROUP BY addon_id
-            ORDER BY addon_id"""
-        cursor.execute(q)
-        counts = cursor.fetchall()
-        cursor.close()
+    # BigQuery does not have data for add-ons with type other than those in
+    # `ADDON_TYPES_WITH_STATS` so we use download counts instead.
+    # See: https://github.com/mozilla/addons-server/issues/14609
+    amo_counts = dict(
+        Addon.objects
+        .exclude(type__in=amo.ADDON_TYPES_WITH_STATS)
+        .exclude(guid__isnull=True)
+        .exclude(guid__exact='')
+        .annotate(count=Coalesce(Sum('downloadcount__count'), 0))
+        .values_list('guid', 'count')
+        # Just to make order predictable in tests, we order by id. This
+        # matches the GROUP BY being generated so it should be safe.
+        .order_by('id')
+    )
+    counts = dict(get_addons_and_average_daily_users_from_bigquery())
+    counts.update(amo_counts)
+    counts = list(counts.items())
 
     ts = [
-        _update_addon_average_daily_users.subtask(
-            args=[chunk], kwargs=kwargs
-        ) for chunk in chunked(counts, 250)
+        _update_addon_average_daily_users.subtask(args=[chunk])
+        for chunk in chunked(counts, 250)
     ]
     group(ts).apply_async()
 
@@ -199,33 +175,5 @@ def deliver_hotness():
     threshold = 250 if addon type is theme, else 1000
     hotness = (a-b) / b if a > threshold and b > 1 else 0
     """
-    frozen = set(f.id for f in FrozenAddon.objects.all())
-    all_ids = list((Addon.objects.filter(status__in=amo.REVIEWED_STATUSES)
-                   .values_list('id', flat=True)))
-    now = datetime.now()
-    one_week = now - timedelta(days=7)
-    four_weeks = now - timedelta(days=28)
-
-    for ids in chunked(all_ids, 300):
-        addons = Addon.objects.filter(id__in=ids).no_transforms()
-        ids = [a.id for a in addons if a.id not in frozen]
-        qs = (UpdateCount.objects.filter(addon__in=ids)
-              .values_list('addon').annotate(Avg('count')))
-        thisweek = dict(qs.filter(date__gte=one_week))
-        threeweek = dict(qs.filter(date__range=(four_weeks, one_week)))
-        for addon in addons:
-            this, three = thisweek.get(addon.id, 0), threeweek.get(addon.id, 0)
-
-            # Update the hotness score but only update hotness if necessary.
-            # We don't want to cause unnecessary re-indexes
-            threshold = 250 if addon.type == amo.ADDON_STATICTHEME else 1000
-            if this > threshold and three > 1:
-                hotness = (this - three) / float(three)
-                if addon.hotness != hotness:
-                    addon.update(hotness=(this - three) / float(three))
-            else:
-                if addon.hotness != 0:
-                    addon.update(hotness=0)
-
-        # Let the database catch its breath.
-        time.sleep(10)
+    # See: https://github.com/mozilla/addons-server/issues/14815
+    pass

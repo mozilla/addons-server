@@ -171,17 +171,6 @@ class TestIndexCommand(ESTestCase):
         self.check_results(self.expected)
         self._test_reindexation(wipe=True)
 
-    def test_stats_update_counts(self):
-        old_indices = self.get_indices_aliases()
-        stdout = io.StringIO()
-        management.call_command(
-            'reindex', key='stats_update_counts', stdout=stdout)
-        stdout.seek(0)
-        buf = stdout.read()
-        new_indices = self.get_indices_aliases()
-        assert len(new_indices)
-        assert old_indices != new_indices, (buf, old_indices, new_indices)
-
     def test_stats_download_counts(self):
         old_indices = self.get_indices_aliases()
         stdout = io.StringIO()
@@ -258,10 +247,3 @@ class TestIndexCommand(ESTestCase):
         for stats_download_counts.
         """
         self._test_workflow('stats_download_counts')
-
-    def test_create_workflow_stats_update_counts(self):
-        """
-        Test tasks returned by create_workflow() as used by reindex command,
-        for stats_update_counts.
-        """
-        self._test_workflow('stats_update_counts')
