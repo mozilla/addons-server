@@ -1,0 +1,46 @@
+from datetime import datetime, timedelta
+
+from django.core.management.base import BaseCommand
+from django.db.models import Q
+
+import olympia.core.logger
+from olympia import amo
+from olympia.addons.models import Addon
+from olympia.addons.tasks import delete_addons
+from olympia.users.models import UserProfile
+
+
+log = olympia.core.logger.getLogger('z.users')
+
+
+class Command(BaseCommand):
+    help = (
+        'Clear user data on addon developers deleted more than 7 years ago, '
+        'and non addon-developers after 24 hours')
+
+    def handle(self, *args, **options):
+        profile_clear = {
+            'last_login_ip': '',
+            'email': None,
+            'fxa_id': None,
+        }
+        one_day_ago = datetime.now() - timedelta(days=1)
+        seven_years_ago = datetime.now() - timedelta(days=365 * 7)
+
+        users = list(
+            UserProfile.objects.filter(
+                Q(modified__lt=seven_years_ago) |
+                Q(addons=None, modified__lt=one_day_ago, banned=None),
+                deleted=True,
+            ).exclude(**profile_clear))
+
+        addons_qs = Addon.unfiltered.filter(
+            status=amo.STATUS_DELETED, authors__in=users)
+        addon_ids = list(addons_qs.values_list('id', flat=True))
+
+        log.info('Clearing %s for %d users', profile_clear.keys(), len(users))
+        for user in users:
+            user.update(**profile_clear, _signal=False)
+
+        if addon_ids:
+            delete_addons.delay(addon_ids, with_deleted=True)

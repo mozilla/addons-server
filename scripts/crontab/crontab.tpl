@@ -25,7 +25,7 @@ HOME=/tmp
 35 18,12,6,0 * * * %(z_cron)s upload_mlbf_to_remote_settings
 
 # Once per day
-1 6 * * * %(django)s clear_old_last_login_ip
+1 6 * * * %(django)s clear_old_user_data
 30 6 * * * %(z_cron)s deliver_hotness
 30 9 * * * %(z_cron)s update_user_ratings
 30 14 * * * %(z_cron)s category_totals
