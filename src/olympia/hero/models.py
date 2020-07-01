@@ -8,7 +8,6 @@ from django.forms.widgets import RadioSelect
 from django.utils.safestring import mark_safe
 
 from olympia.amo.models import LongNameIndex, ModelBase
-from olympia.amo.utils import resize_image
 from olympia.discovery.models import DiscoveryItem
 
 
@@ -101,8 +100,7 @@ class PrimaryHeroImage(ModelBase):
 
     @property
     def preview_url(self):
-        (path, fn) = os.path.split(self.custom_image.path)
-        fn = fn.decode('utf-8')
+        fn = os.path.basename(self.custom_image.path).decode('utf-8')
         return f'{HERO_PREVIEW_URL}{fn}'
 
     def preview_image(self):
@@ -114,17 +112,6 @@ class PrimaryHeroImage(ModelBase):
             return None
     preview_image.short_description = "Image"
     preview_image.allow_tags = True
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        (path, fn) = os.path.split(self.custom_image.path)
-        dest_thumb = path + b'/thumbs/' + fn
-
-        size_full = (960, 640)
-        size_thumb = (150, 120)
-
-        resize_image(self.custom_image, self.custom_image.path, size_full)
-        resize_image(self.custom_image, dest_thumb, size_thumb)
 
 
 class PrimaryHero(ModelBase):
