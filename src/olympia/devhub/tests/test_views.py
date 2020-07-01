@@ -17,7 +17,7 @@ import pytest
 import responses
 
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch, override_flag
+from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.accounts.views import API_TOKEN_COOKIE
@@ -155,10 +155,9 @@ class TestDashboard(HubTest):
         assert 'Statistics' in links, ('Unexpected: %r' % links)
         assert 'New Version' in links, ('Unexpected: %r' % links)
 
-        # Disabled (user): hide statistics and new version links.
+        # Disabled (user): hide new version link.
         self.addon.update(disabled_by_user=True)
         links = self.get_action_links(self.addon.pk)
-        assert 'Statistics' not in links, ('Unexpected: %r' % links)
         assert 'New Version' not in links, ('Unexpected: %r' % links)
 
         # Disabled (admin): hide statistics and new version links.
@@ -1989,47 +1988,28 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
         self.url = reverse('devhub.addons')
         self.client.login(email=self.user.email)
 
-    @override_flag('beta-stats', active=False)
-    def test_no_link_when_not_listed(self):
-        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        response = self.client.get(self.url)
-
-        assert not (reverse('stats.overview', args=[self.addon.slug]) in
-                    str(response.content))
-
-    @override_flag('beta-stats', active=False)
-    def test_link_to_old_stats_when_flag_is_inactive(self):
+    def test_link_to_stats(self):
         response = self.client.get(self.url)
 
         assert (reverse('stats.overview', args=[self.addon.slug]) in
                 str(response.content))
 
-    @override_flag('beta-stats', active=True)
-    def test_link_to_beta_stats_when_flag_is_active(self):
-        response = self.client.get(self.url)
-
-        assert (reverse('stats.overview.beta', args=[self.addon.slug]) in
-                str(response.content))
-
-    @override_flag('beta-stats', active=True)
-    def test_link_to_beta_stats_for_addon_disabled_by_user(self):
+    def test_link_to_stats_for_addon_disabled_by_user(self):
         self.addon.update(disabled_by_user=True)
 
         response = self.client.get(self.url)
 
-        assert (reverse('stats.overview.beta', args=[self.addon.slug]) in
+        assert (reverse('stats.overview', args=[self.addon.slug]) in
                 str(response.content))
 
-    @override_flag('beta-stats', active=True)
-    def test_link_to_beta_stats_for_unlisted_addon(self):
+    def test_link_to_stats_for_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
 
         response = self.client.get(self.url)
 
-        assert (reverse('stats.overview.beta', args=[self.addon.slug]) in
+        assert (reverse('stats.overview', args=[self.addon.slug]) in
                 str(response.content))
 
-    @override_flag('beta-stats', active=True)
     def test_no_link_for_addon_disabled_by_mozilla(self):
         self.addon.update(status=amo.STATUS_DISABLED)
 
@@ -2037,27 +2017,21 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
 
         response = self.client.get(self.url)
 
-        assert (reverse('stats.overview.beta', args=[self.addon.slug]) not in
+        assert (reverse('stats.overview', args=[self.addon.slug]) not in
                 str(response.content))
 
-    @override_flag('beta-stats', active=True)
-    def test_no_beta_for_langpacks(self):
+    def test_no_link_for_langpacks(self):
         self.addon.update(type=amo.ADDON_LPAPP)
 
         response = self.client.get(self.url)
 
-        assert (reverse('stats.overview.beta', args=[self.addon.slug]) not in
-                str(response.content))
-        assert (reverse('stats.overview', args=[self.addon.slug]) in
+        assert (reverse('stats.overview', args=[self.addon.slug]) not in
                 str(response.content))
 
-    @override_flag('beta-stats', active=True)
-    def test_no_beta_for_dictionaries(self):
+    def test_no_link_for_dictionaries(self):
         self.addon.update(type=amo.ADDON_DICT)
 
         response = self.client.get(self.url)
 
-        assert (reverse('stats.overview.beta', args=[self.addon.slug]) not in
-                str(response.content))
-        assert (reverse('stats.overview', args=[self.addon.slug]) in
+        assert (reverse('stats.overview', args=[self.addon.slug]) not in
                 str(response.content))

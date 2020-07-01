@@ -5,19 +5,10 @@ z.StatsManager = (function() {
 
     // The version of the stats localStorage we are using.
     // If you increment this number, you cache-bust everyone!
-    var STATS_VERSION = '2011-12-12';
+    var STATS_VERSION = '2020-07-01';
     var PRECISION = 2;
 
     var $primary = $(".primary");
-
-    // Users can navigate between "old" and "beta" stats pages. Data isn't
-    // strictly the same and the cache might contain mixed data so we
-    // cache-bust the (session) cache when users switch between the two stats
-    // features.
-    var isBeta = $primary.data("is-beta") === 'True';
-    if (isBeta) {
-        STATS_VERSION += '-beta';
-    }
 
     var storage         = z.Storage("stats"),
         storageCache    = z.SessionStorage("statscache"),

@@ -7,7 +7,7 @@ from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_text
 
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch, override_flag
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -287,6 +287,7 @@ class BaseTestEditDescribe(BaseTestEdit):
                 self.addon.get_dev_url('owner'),  # Manage Authors
                 self.addon.get_dev_url('versions'),  # Manage Status & Versions
                 reverse('devhub.feed', args=[self.addon.slug]),  # View Recent
+                reverse('stats.overview', args=[self.addon.slug]),  # Stats
             ]
 
         response = self.client.get(self.url)
@@ -1607,36 +1608,22 @@ class TestStatsLinkInSidePanel(TestCase):
         self.url = reverse('devhub.addons.edit', args=[self.addon.slug])
         self.client.login(email=self.user.email)
 
-    @override_flag('beta-stats', active=False)
-    def test_link_to_old_stats_when_flag_is_inactive(self):
+    def test_link_to_stats(self):
         response = self.client.get(self.url)
 
         assert (reverse('stats.overview', args=[self.addon.slug]) in
                 str(response.content))
 
-    @override_flag('beta-stats', active=True)
-    def test_link_to_beta_stats_when_flag_is_active(self):
-        response = self.client.get(self.url)
-
-        assert (reverse('stats.overview.beta', args=[self.addon.slug]) in
-                str(response.content))
-
-    @override_flag('beta-stats', active=True)
-    def test_no_link_to_beta_stats_when_flag_is_active_but_langpack(self):
+    def test_no_link_to_stats_for_langpacks(self):
         self.addon.update(type=amo.ADDON_LPAPP)
         response = self.client.get(self.url)
 
-        assert (reverse('stats.overview.beta', args=[self.addon.slug]) not in
-                str(response.content))
-        assert (reverse('stats.overview', args=[self.addon.slug]) in
+        assert (reverse('stats.overview', args=[self.addon.slug]) not in
                 str(response.content))
 
-    @override_flag('beta-stats', active=True)
-    def test_no_link_to_beta_stats_when_flag_is_active_but_dictionary(self):
+    def test_no_link_to_stats_for_dicts(self):
         self.addon.update(type=amo.ADDON_DICT)
         response = self.client.get(self.url)
 
-        assert (reverse('stats.overview.beta', args=[self.addon.slug]) not in
-                str(response.content))
-        assert (reverse('stats.overview', args=[self.addon.slug]) in
+        assert (reverse('stats.overview', args=[self.addon.slug]) not in
                 str(response.content))

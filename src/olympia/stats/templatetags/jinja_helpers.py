@@ -2,7 +2,6 @@ from django.template import loader
 
 import jinja2
 
-from django.urls import reverse
 from django_jinja import library
 
 from olympia import amo
@@ -25,13 +24,5 @@ def report_menu(context, request, report, obj):
         ctx = {
             'addon': obj,
             'has_privs': has_privs,
-            'beta': context.get('beta', False),
         }
         return jinja2.Markup(tpl.render(ctx))
-
-
-@library.global_function
-@jinja2.contextfunction
-def stats_url(context, name, *args):
-    url_name = f'{name}.beta' if context.get('beta', False) else name
-    return reverse(url_name, args=args)
