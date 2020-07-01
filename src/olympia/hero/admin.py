@@ -8,9 +8,8 @@ from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
 from django.utils.safestring import mark_safe
 
+from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.utils import resize_image
-
-from PIL import Image
 
 from .models import (
     PrimaryHero, SecondaryHeroModule,
@@ -74,12 +73,10 @@ class PrimaryHeroImageAdmin(admin.ModelAdmin):
         size_thumb = (150, 120)
         size_full = (960, 640)
 
-        img = Image.open(obj.custom_image)
-        f = tempfile.NamedTemporaryFile(dir=settings.TMP_PATH)
-        img.save(f, 'png')
-
-        resize_image(f.name, dest_thumb, size_thumb)
-        resize_image(f.name, obj.custom_image.path, size_full)
+        resize_image(obj.custom_image.path, dest_thumb, size_thumb)
+        with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as tmp:
+            resize_image(obj.custom_image.path, tmp.name, size_full)
+            copy_stored_file(tmp.name, obj.custom_image.path)
 
 
 class HeroModuleInlineFormSet(BaseInlineFormSet):
