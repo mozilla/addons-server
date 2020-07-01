@@ -4,7 +4,7 @@
 {% endif %}
 
 <span class="rating">
-  {% with num=addon.text_ratings_count %}
+  {% with num=addon.total_ratings %}
     {% if num %}
       {{ addon.average_rating|float|stars }}
       <a href="{{ base|absolutify }}">({{ num|numberfmt }})</a>

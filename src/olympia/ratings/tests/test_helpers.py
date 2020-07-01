@@ -35,7 +35,7 @@ class HelpersTest(TestCase):
 
     def test_reviews_link(self):
         addon = addon_factory(
-            average_rating=4, text_ratings_count=37, id=1, slug='xx')
+            average_rating=4, total_ratings=37, id=1, slug='xx')
         content = self.render(
             '{{ reviews_link(myaddon) }}', {'myaddon': addon})
         assert pq(content)('strong').text() == '37 reviews'
@@ -66,7 +66,7 @@ class HelpersTest(TestCase):
 
     def test_impala_reviews_link(self):
         addon = addon_factory(
-            average_rating=4, text_ratings_count=37, id=1, slug='xx')
+            average_rating=4, total_ratings=37, id=1, slug='xx')
         content = self.render(
             '{{ impala_reviews_link(myaddon) }}', {'myaddon': addon})
         assert pq(content)('a').text() == '(37)'
