@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-28 11:27+0000\n"
+"PO-Revision-Date: 2020-07-01 17:37+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -480,9 +480,8 @@ msgstr "చెల్లని వెర్షను"
 msgid "Min version can not be greater than Max version"
 msgstr ""
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "సమీక్ష అభ్యర్థించబడింది"
+msgstr ""
 
 msgid "Review Unlisted"
 msgstr ""
@@ -959,9 +958,8 @@ msgstr "డెవలపర్"
 msgid "Extension"
 msgstr "పొడిగింత"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "పూర్తి అలంకారం"
+msgstr ""
 
 msgid "Dictionary"
 msgstr "నిఘంటువు"
@@ -987,9 +985,8 @@ msgstr "అలంకారం (అచలం)"
 msgid "Extensions"
 msgstr "పొడిగింతలు"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "పూర్తి అలంకారాలు"
+msgstr ""
 
 msgid "Dictionaries"
 msgstr "నిఘంటువులు"
@@ -2633,9 +2630,8 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "వెర్షన్ను సవరించండి {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "వెర్షన్ సంతకం చేయబడింది"
+msgstr ""
 
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
 msgstr ""
@@ -3036,9 +3032,8 @@ msgstr ""
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
 
-#, fuzzy
 msgid "Visit the Extension Workshop"
-msgstr "పొడగింతల కార్యశాల"
+msgstr "పొడగింతల కార్యశాలను సందర్శించండి"
 
 msgid "Connect with us"
 msgstr ""
@@ -3046,9 +3041,8 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#, fuzzy
 msgid "For developers"
-msgstr "డెవలపర్"
+msgstr "డెవలపర్ల కొరకు"
 
 msgid "For end users"
 msgstr ""
@@ -3056,13 +3050,11 @@ msgstr ""
 msgid "Matrix"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "పొడిగింతల డెవలపర్ హబ్"
+msgstr ""
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "పొడగింతల డెవలప్‌మెంట్"
+msgstr "పొడగింతల డెవలపర్ల వార్తాలేఖ"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -3086,9 +3078,8 @@ msgstr ""
 msgid "Resources"
 msgstr "వనరులు"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3138,9 +3129,8 @@ msgstr ""
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "మూల సంకేత పరిభాష సమీక్ష విధానాన్ని గురించి మరింత చదవండి."
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -4604,9 +4594,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "మీకు చాలా ట్యాబుల తెరిచివుంటే వాటిని నిలువు పక్కపట్టీలో నిర్వహించుకోండి."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4669,27 +4658,24 @@ msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4700,54 +4686,48 @@ msgid "Enjoy the benefits of strong password management."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
@@ -4763,27 +4743,24 @@ msgid "Track products and get notified when prices drop on items you're interest
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుకీలను మాయం చేసేయండి"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
