@@ -47,13 +47,7 @@
       {% endif %}
       <li><a href="{{ url('devhub.feed', addon.slug) }}">
         {{ _('View Recent Changes') }}</a></li>
-      {% if waffle.flag('beta-stats') and not link_to_old_stats %}
-        <li class="view-stats">
-          <a href="{{ url('stats.overview.beta', addon.slug) }}">
-            {{ _('View Statistics Dashboard') }}
-          </a>
-        </li>
-      {% elif show_listed_fields %}
+      {% if addon.type in amo.ADDON_TYPES_WITH_STATS %}
         <li class="view-stats">
           <a href="{{ url('stats.overview', addon.slug) }}">
             {{ _('View Statistics Dashboard') }}

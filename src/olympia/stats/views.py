@@ -3,9 +3,7 @@ import json
 import time
 import itertools
 
-from datetime import timedelta
-
-import waffle
+from datetime import timedelta, datetime
 
 from dateutil.parser import parse
 from django import http
@@ -26,7 +24,7 @@ from olympia.core.languages import ALL_LANGUAGES
 from olympia.stats.decorators import addon_view_stats
 from olympia.stats.forms import DateForm
 
-from .models import DownloadCount, UpdateCount
+from .models import DownloadCount
 from .utils import get_updates_series
 
 
@@ -36,9 +34,8 @@ logger = olympia.core.logger.getLogger('z.apps.stats.views')
 SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
-SERIES = ('downloads', 'usage', 'overview', 'sources', 'os',
-          'locales', 'statuses', 'versions', 'apps')
-BETA_SERIES = SERIES + ('countries',)
+SERIES = ('downloads', 'usage', 'overview', 'sources', 'os', 'locales',
+          'versions', 'apps', 'countries',)
 
 
 storage = get_storage_class()()
@@ -131,20 +128,16 @@ def extract(dicts):
 
 @addon_view_stats
 @non_atomic_requests
-def overview_series(request, addon, group, start, end, format, beta=False):
+def overview_series(request, addon, group, start, end, format):
     """Combines downloads_series and updates_series into one payload."""
     date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon, beta)
+    check_stats_permission(request, addon)
 
     dls = get_series(DownloadCount, addon=addon.id, date__range=date_range)
 
-    if beta:
-        updates = get_updates_series(addon=addon,
-                                     start_date=date_range[0],
-                                     end_date=date_range[1])
-    else:
-        updates = get_series(UpdateCount, addon=addon.id,
-                             date__range=date_range)
+    updates = get_updates_series(addon=addon,
+                                 start_date=date_range[0],
+                                 end_date=date_range[1])
 
     series = zip_overview(dls, updates)
 
@@ -162,6 +155,8 @@ def zip_overview(downloads, updates):
         start_date = downloads[0]['date']
     if updates:
         d = updates[0]['date']
+        if isinstance(d, str):
+            d = datetime.strptime(d, '%Y-%m-%d').date()
         start_date = max(start_date, d) if start_date else d
     downloads, updates = iter(downloads), iter(updates)
 
@@ -170,7 +165,10 @@ def zip_overview(downloads, updates):
             item = next(series)
             next_date = start_date
             while True:
-                if item['date'] == next_date:
+                date = item['date']
+                if isinstance(date, str):
+                    date = datetime.strptime(date, '%Y-%m-%d').date()
+                if date == next_date:
                     yield item['count']
                     item = next(series)
                 else:
@@ -187,10 +185,10 @@ def zip_overview(downloads, updates):
 
 @addon_view_stats
 @non_atomic_requests
-def downloads_series(request, addon, group, start, end, format, beta=False):
+def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon, beta)
+    check_stats_permission(request, addon)
 
     series = get_series(DownloadCount, addon=addon.id, date__range=date_range)
 
@@ -202,10 +200,10 @@ def downloads_series(request, addon, group, start, end, format, beta=False):
 
 @addon_view_stats
 @non_atomic_requests
-def sources_series(request, addon, group, start, end, format, beta=False):
+def sources_series(request, addon, group, start, end, format):
     """Generate download source breakdown."""
     date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon, beta)
+    check_stats_permission(request, addon)
 
     series = get_series(DownloadCount, source='sources',
                         addon=addon.id, date__range=date_range)
@@ -220,19 +218,14 @@ def sources_series(request, addon, group, start, end, format, beta=False):
 
 @addon_view_stats
 @non_atomic_requests
-def usage_series(request, addon, group, start, end, format, beta=False):
+def usage_series(request, addon, group, start, end, format):
     """Generate ADU counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon, beta)
+    check_stats_permission(request, addon)
 
-    if beta:
-        series = get_updates_series(addon=addon,
-                                    start_date=date_range[0],
-                                    end_date=date_range[1])
-    else:
-        series = get_series(
-            UpdateCount,
-            addon=addon.id, date__range=date_range)
+    series = get_updates_series(addon=addon,
+                                start_date=date_range[0],
+                                end_date=date_range[1])
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])
@@ -242,11 +235,10 @@ def usage_series(request, addon, group, start, end, format, beta=False):
 
 @addon_view_stats
 @non_atomic_requests
-def usage_breakdown_series(request, addon, group, start, end, format, field,
-                           beta=False):
+def usage_breakdown_series(request, addon, group, start, end, format, field):
     """Generate ADU breakdown of ``field``."""
     date_range = check_series_params_or_404(group, start, end, format)
-    check_stats_permission(request, addon, beta)
+    check_stats_permission(request, addon)
 
     fields = {
         'applications': 'apps',
@@ -258,13 +250,9 @@ def usage_breakdown_series(request, addon, group, start, end, format, field,
     }
     source = fields[field]
 
-    if beta:
-        series = get_updates_series(addon=addon,
-                                    start_date=date_range[0],
-                                    end_date=date_range[1], source=source)
-    else:
-        series = get_series(UpdateCount, source=source, addon=addon.id,
-                            date__range=date_range)
+    series = get_updates_series(addon=addon,
+                                start_date=date_range[0],
+                                end_date=date_range[1], source=source)
 
     if field == 'locales':
         series = process_locales(series)
@@ -321,24 +309,17 @@ def check_series_params_or_404(group, start, end, format):
     return get_daterange_or_404(start, end)
 
 
-def check_stats_permission(request, addon, beta):
+def check_stats_permission(request, addon):
     """
-    Check if user is allowed to view stats/beta stats for ``addon``.
+    Check if user is allowed to view stats for ``addon``.
 
     Raises PermissionDenied if user is not allowed.
 
-    Raises Http404 if user cannot access the beta mode (only if enabled).
+    Raises Http404 if ``addon`` does not have stats pages.
     """
     user = request.user
-    user_cannot_access_beta = not user.is_authenticated or (
-        user.is_authenticated and not (
-            user.email.endswith('@mozilla.com') or
-            waffle.flag_is_active(request, 'beta-stats')
-        )
-    )
-    addon_has_no_beta = addon.type not in amo.ADDON_TYPES_WITH_STATS
 
-    if beta and (user_cannot_access_beta or addon_has_no_beta):
+    if addon.type not in amo.ADDON_TYPES_WITH_STATS:
         raise http.Http404
 
     can_view = user.is_authenticated and (
@@ -351,20 +332,16 @@ def check_stats_permission(request, addon, beta):
 
 @addon_view_stats
 @non_atomic_requests
-def stats_report(request, addon, report, beta=False):
-    check_stats_permission(request, addon, beta)
-    stats_base_url = reverse('stats.overview.beta' if beta else
-                             'stats.overview', args=[addon.slug])
+def stats_report(request, addon, report):
+    check_stats_permission(request, addon)
+    stats_base_url = reverse('stats.overview', args=[addon.slug])
     view = get_report_view(request)
-    hide_beta = addon.type not in amo.ADDON_TYPES_WITH_STATS
 
     return render(
         request,
         'stats/reports/%s.html' % report,
         {
             'addon': addon,
-            'beta': beta,
-            'hide_beta': hide_beta,
             'report': report,
             'stats_base_url': stats_base_url,
             'view': view,

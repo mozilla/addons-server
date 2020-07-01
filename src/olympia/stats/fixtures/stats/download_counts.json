@@ -135,47 +135,5 @@
             "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-10-03"
         }
-    },
-    {
-        "pk": 1,
-        "model": "stats.updatecount",
-        "fields": {
-            "addon": 4,
-            "count": 1000,
-            "versions": "{\"2.0\": 800, \"1.0\": 200}",
-            "statuses": "{\"userEnabled\": 950, \"userDisabled\": 50}",
-            "applications": "{\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\": {\"4.0\": 1000}}",
-            "oses": "{\"WINNT\": 400, \"Linux\": 300}",
-            "locales": "{\"el\": 400, \"es-MX\": 400, \"en-US\": 300}",
-            "date": "2009-06-01"
-        }
-    },
-    {
-        "pk": 2,
-        "model": "stats.updatecount",
-        "fields": {
-            "addon": 4,
-            "count": 1500,
-            "versions": "{\"2.0\": 950, \"1.0\": 550}",
-            "statuses": "{\"userEnabled\": 1370, \"userDisabled\": 130}",
-            "applications": "{\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\": {\"4.0\": 1500}}",
-            "oses": "{\"WINNT\": 500, \"Linux\": 400}",
-            "locales": "{\"el\": 400, \"es-MX\": 400, \"en-US\": 300}",
-            "date": "2009-06-02"
-        }
-    },
-    {
-        "pk": 3,
-        "model": "stats.updatecount",
-        "fields": {
-            "addon": 4,
-            "count": 10,
-            "versions": "{\"2.0\": 800, \"1.0\": 200}",
-            "statuses": "{\"userEnabled\": 950, \"userDisabled\": 50}",
-            "applications": "{\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\": {\"4.0\": 1500}}",
-            "oses": "{\"WINNT\": 500, \"Linux\": 400}",
-            "locales": "{\"el\": 400, \"es-MX\": 400, \"en-US\": 300}",
-            "date": "2007-01-01"
-        }
     }
 ]

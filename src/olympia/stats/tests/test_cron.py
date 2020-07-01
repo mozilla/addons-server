@@ -12,7 +12,7 @@ from olympia.stats.models import DownloadCount, UpdateCount
 
 @mock.patch('olympia.stats.management.commands.index_stats.group')
 class TestIndexStats(TestCase):
-    fixtures = ['stats/test_models']
+    fixtures = ['stats/download_counts']
 
     def setUp(self):
         super(TestIndexStats, self).setUp()
@@ -25,9 +25,8 @@ class TestIndexStats(TestCase):
         call_command('index_stats', addons=None, date='2009-06-01')
         qs = self.downloads.filter(date='2009-06-01')
         calls = group_mock.call_args[0][0]
-        assert calls[0].task == 'olympia.stats.tasks.index_update_counts'
-        assert calls[1].task == 'olympia.stats.tasks.index_download_counts'
-        assert calls[0].args == calls[1].args == (list(qs), None)
+        assert calls[0].task == 'olympia.stats.tasks.index_download_counts'
+        assert calls[0].args == (list(qs), None)
 
     def test_by_addon_and_date_no_match(self, group_mock):
         call_command('index_stats', addons='5', date='2009-06-01')
@@ -39,22 +38,14 @@ class TestIndexStats(TestCase):
                      date='2009-06-01:2009-06-07')
         qs = self.downloads.filter(date__range=('2009-06-01', '2009-06-07'))
         calls = group_mock.call_args[0][0]
-        assert calls[0].task == 'olympia.stats.tasks.index_update_counts'
-        assert calls[1].task == 'olympia.stats.tasks.index_download_counts'
-        assert calls[0].args == calls[1].args == (list(qs), None)
+        assert calls[0].task == 'olympia.stats.tasks.index_download_counts'
+        assert calls[0].args == (list(qs), None)
 
     def test_by_addon(self, group_mock):
         call_command('index_stats', addons='5', date=None)
         qs = self.downloads.filter(addon=5)
         calls = group_mock.call_args[0][0]
         assert calls[0].task == 'olympia.stats.tasks.index_download_counts'
-        assert calls[0].args == (list(qs), None)
-
-    def test_by_addon_and_date(self, group_mock):
-        call_command('index_stats', addons='4', date='2009-06-01')
-        qs = self.downloads.filter(addon=4, date='2009-06-01')
-        calls = group_mock.call_args[0][0]
-        assert calls[0].task == 'olympia.stats.tasks.index_update_counts'
         assert calls[0].args == (list(qs), None)
 
     def test_multiple_addons_and_date(self, group_mock):
@@ -67,15 +58,6 @@ class TestIndexStats(TestCase):
     def test_no_addon_or_date(self, group_mock):
         call_command('index_stats', addons=None, date=None)
         calls = group_mock.call_args[0][0]
-
-        # There should be 3 updates, but 2 of them have a date close enough
-        # together that they'll be indexed in the same chunk, so we should have
-        # 2 calls.
-        update_counts_calls = [
-            call.args for call in calls
-            if call.task == 'olympia.stats.tasks.index_update_counts'
-        ]
-        assert len(update_counts_calls) == 2
 
         # There should be 10 downloads, but 2 of them have a date close enough
         # together that they'll be indexed in the same chunk, so we should have
