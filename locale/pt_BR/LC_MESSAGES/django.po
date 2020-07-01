@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 20:39+0000\n"
+"PO-Revision-Date: 2020-07-01 13:41+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5017,7 +5017,7 @@ msgstr "Extensões são como aplicativos no Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "Elas adicionam funcionalidades ao Firefox para tornar a navegação mais rápida, mais segura ou simplesmente divertida."
+msgstr "Elas adicionam funcionalidades ao Firefox para tornar a navegação mais rápida, mais segura, ou simplesmente mais divertida."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -5033,7 +5033,7 @@ msgstr "Privacidade além das extensões do navegador"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr "Aprimoradores de mídia para o Firefox"
+msgstr "Aprimoradores de mídia no Firefox"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
