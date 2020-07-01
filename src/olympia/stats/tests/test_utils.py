@@ -69,15 +69,6 @@ class TestRowsToSeries(BigQueryTestMixin, TestCase):
         # By default there should be no 'data' attribute.
         assert 'data' not in series
 
-    def test_returns_python_dates(self):
-        submission_date = '2020-05-04'
-        rows = [self.create_fake_bigquery_row(submission_date=submission_date)]
-
-        series = list(rows_to_series(rows))
-
-        assert isinstance(series[0]['date'], date)
-        assert series[0]['date'] == date(2020, 5, 4)
-
     def test_ignores_other_columns(self):
         dau = 456
         submission_date = date(2020, 5, 24)

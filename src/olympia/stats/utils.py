@@ -1,5 +1,3 @@
-from datetime import datetime, date
-
 from django.conf import settings
 from django_statsd.clients import statsd
 from google.cloud import bigquery
@@ -23,15 +21,10 @@ def rows_to_series(rows, filter_by=None):
     """Transforms BigQuery rows into series items suitable for the rest of the
     AMO stats logic."""
     for row in rows:
-        submission_date = (
-            datetime.strptime(row['submission_date'], '%Y-%m-%d').date()
-            if not isinstance(row['submission_date'], date)
-            else row['submission_date']
-        )
         item = {
             'count': row['dau'],
-            'date': submission_date,
-            'end': submission_date,
+            'date': row['submission_date'],
+            'end': row['submission_date'],
         }
         if filter_by:
             item['data'] = {
