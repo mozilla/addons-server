@@ -2,7 +2,7 @@
 import csv
 import json
 
-from datetime import date
+from datetime import date, datetime
 from unittest import mock
 
 from django.http import Http404
@@ -629,8 +629,16 @@ class TestViews(ESStatsTestCase):
 
     def test_overview(self):
         self.get_updates_series_mock.return_value = [
-            {'date': '2009-06-02', 'end': '2009-06-02', 'count': 1500},
-            {'date': '2009-06-01', 'end': '2009-06-01', 'count': 1000},
+            {
+                'date': datetime(2009, 6, 2),
+                'end': datetime(2009, 6, 2),
+                'count': 1500,
+            },
+            {
+                'date': datetime(2009, 6, 1),
+                'end': datetime(2009, 6, 1),
+                'count': 1000,
+            },
         ]
 
         response = self.get_view_response(

@@ -155,8 +155,6 @@ def zip_overview(downloads, updates):
         start_date = downloads[0]['date']
     if updates:
         d = updates[0]['date']
-        if isinstance(d, str):
-            d = datetime.strptime(d, '%Y-%m-%d').date()
         start_date = max(start_date, d) if start_date else d
     downloads, updates = iter(downloads), iter(updates)
 
@@ -165,10 +163,7 @@ def zip_overview(downloads, updates):
             item = next(series)
             next_date = start_date
             while True:
-                date = item['date']
-                if isinstance(date, str):
-                    date = datetime.strptime(date, '%Y-%m-%d').date()
-                if date == next_date:
+                if item['date'] == next_date:
                     yield item['count']
                     item = next(series)
                 else:
