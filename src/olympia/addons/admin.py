@@ -127,7 +127,7 @@ class AddonAdmin(admin.ModelAdmin):
     search_fields = ('id', '^guid', '^slug')
     inlines = (AddonUserInline, FileInline)
     readonly_fields = ('id', 'created', 'status_with_admin_manage_link',
-                       'average_rating', 'bayesian_rating',
+                       'average_rating', 'bayesian_rating', 'guid',
                        'total_ratings_link', 'text_ratings_count',
                        'weekly_downloads', 'total_downloads',
                        'average_daily_users')

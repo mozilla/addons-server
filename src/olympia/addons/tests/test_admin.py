@@ -168,11 +168,11 @@ class TestAddonAdmin(TestCase):
             'slug': addon.slug,
             'status': addon.status,
         }
-        post_data['guid'] = '@bar'
+        post_data['guid'] = '@bar'  # it's readonly
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         addon.reload()
-        assert addon.guid == '@bar'
+        assert addon.guid == '@foo'  # no change
 
     def test_show_link_to_reviewer_tools_listed(self):
         addon = addon_factory(guid='@foo')
@@ -355,14 +355,14 @@ class TestAddonAdmin(TestCase):
         assert addon.guid in response.content.decode('utf-8')
         post_data = self._get_full_post_data(addon, addonuser)
         post_data.update(**{
-            'guid': '@bar',  # update it.
+            'type': amo.ADDON_STATICTHEME,  # update it.
             'addonuser_set-0-user': user.pk,  # Different user than initial.
             'files-0-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
         })
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         addon.reload()
-        assert addon.guid == '@bar'
+        assert addon.type == amo.ADDON_STATICTHEME
         addonuser.reload()
         assert addonuser.user == user
         file.reload()
@@ -385,14 +385,14 @@ class TestAddonAdmin(TestCase):
 
         post_data = self._get_full_post_data(addon, addonuser)
         post_data.update(**{
-            'guid': '@bar',  # update it.
+            'type': amo.ADDON_STATICTHEME,  # update it.
             'addonuser_set-0-user': user.pk,  # Different user than initial.
             'files-0-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
         })
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         addon.reload()
-        assert addon.guid == '@bar'
+        assert addon.type == amo.ADDON_STATICTHEME
         addonuser.reload()
         assert addonuser.user != user
         file.reload()
