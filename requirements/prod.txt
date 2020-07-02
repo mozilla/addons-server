@@ -41,11 +41,11 @@ MarkupSafe==1.1.1 \
 # maxminddb is required by geoip2
 maxminddb==1.5.4 \
     --hash=sha256:f4d28823d9ca23323d113dc7af8db2087aa4f657fafc64ff8f7a8afda871425b
-mysqlclient==1.4.6 \
-    --hash=sha256:4c82187dd6ab3607150fbb1fa5ef4643118f3da122b8ba31c3149ddd9cf0cb39 \
-    --hash=sha256:9e6080a7aee4cc6a06b58b59239f20f1d259c1d2fddf68ddeed242d2311c7087 \
-    --hash=sha256:f3fdaa9a38752a3b214a6fe79d7cae3653731a53e577821f9187e67cbecb2e16 \
-    --hash=sha256:f646f8d17d02be0872291f258cce3813497bc7888cd4712a577fd1e719b2f213
+mysqlclient==2.0.0 \
+    --hash=sha256:ee6de1a7a1c85b02b297c05e5466eff9be92671eb4f3ae1083cde22a3f5ae8c3 \
+    --hash=sha256:083ea81950dcd1051891d9dbeeea946ada92d2c8f61ae5625e36357cc8357530 \
+    --hash=sha256:136220b87f6e0f1cbb9dcaa83b184715f41fafee899efd67ab60fbc9a8a1dcf7 \
+    --hash=sha256:201dfcc2a3c8a0859ea399947f1af8abe74b706beba0ebac149180d9d7b0f6e8
 scandir==1.10.0 \
     --hash=sha256:2586c94e907d99617887daed6c1d102b5ca28f1085f90446554abf1faf73123e \
     --hash=sha256:2ae41f43797ca0c11591c0c35f2f5875fa99f8797cb1a1fd440497ec0ae4b022 \
