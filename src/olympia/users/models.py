@@ -528,7 +528,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             users, fields=('banned', 'deleted') + cls.ANONYMIZED_FIELDS)
 
     def _prepare_delete_email(self):
-        email_to = [self.email]
         site_url = settings.EXTERNAL_SITE_URL
         template = loader.get_template('users/emails/user_deleted.ltxt')
         email_msg = template.render(context={
@@ -537,7 +536,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return {
             'subject': f'Your account on {site_url} has been deleted',
             'message': email_msg,
-            'recipient_list': email_to,
+            'recipient_list': [str(self.email)],
+            'reply_to': ['amo-admins+deleted@mozilla.com'],
         }
 
     def delete(self, addon_msg='', send_delete_email=True):
