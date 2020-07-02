@@ -27,12 +27,14 @@ class Command(BaseCommand):
         one_day_ago = datetime.now() - timedelta(days=1)
         seven_years_ago = datetime.now() - timedelta(days=365 * 7)
 
+        seven_year_q = Q(modified__lt=seven_years_ago)
+        one_day_q = Q(
+            ~Q(**profile_clear),
+            addons=None,
+            modified__lt=one_day_ago,
+            banned=None)
         users = list(
-            UserProfile.objects.filter(
-                Q(modified__lt=seven_years_ago) |
-                Q(addons=None, modified__lt=one_day_ago, banned=None),
-                deleted=True,
-            ).exclude(**profile_clear))
+            UserProfile.objects.filter(seven_year_q | one_day_q, deleted=True))
 
         addons_qs = Addon.unfiltered.filter(
             status=amo.STATUS_DELETED, authors__in=users)
