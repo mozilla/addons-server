@@ -4574,9 +4574,8 @@ msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਭਰੋਸੇ ਨਾਲ ਖਰੀਦੋ"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਇੱਕ ਅਤਿਰਿਕਤ ਚੈੱਕ, ਕਿ ਤੁਸੀਂ ਅਜਿਹੀ ਸਾਈਟ ਤੇ ਖਰੀਦਦਾਰੀ ਕਰ ਰਹੇ ਹੋ ਜੋ ਭਰੋਸੇਯੋਗਤਾ ਲਈ ਪੜਤਾਲ ਕੀਤੀ ਗਈ ਹੈ।"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
