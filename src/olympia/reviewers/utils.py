@@ -1011,13 +1011,16 @@ class ReviewBase(object):
         # modify in this action, so set them to None before finding the right
         # versions.
         status = self.addon.status
-        channel = self.version.channel
         latest_version = self.version
         self.version = None
         self.files = None
         action_id = (amo.LOG.REJECT_CONTENT if self.content_review
                      else amo.LOG.REJECT_VERSION)
         timestamp = datetime.now()
+        log.info(
+            u'Making %s versions %s disabled' % (
+                self.addon,
+                u', '.join(str(v.pk) for v in self.data['versions'])))
         for version in self.data['versions']:
             files = version.files.all()
             self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
@@ -1030,31 +1033,30 @@ class ReviewBase(object):
                     version.update(needs_human_review=False)
 
         self.addon.update_status()
-        self.data['version_numbers'] = u', '.join(
-            str(v.version) for v in self.data['versions'])
 
-        # Send the email to the developer. We need to pass the latest version
-        # of the add-on instead of one of the versions we rejected, it will be
-        # used to generate a token allowing the developer to reply, and that
-        # only works with the latest version.
-        if (self.addon.status != amo.STATUS_APPROVED and
-                channel == amo.RELEASE_CHANNEL_LISTED):
-            template = u'reject_multiple_versions_disabled_addon'
-            subject = (u'Mozilla Add-ons: %s%s has been disabled on '
-                       u'addons.mozilla.org')
-        else:
-            template = u'reject_multiple_versions'
-            subject = u'Mozilla Add-ons: Versions disabled for %s%s'
-        self.notify_email(template, subject, version=latest_version)
-
-        log.info(
-            u'Making %s versions %s disabled' % (
-                self.addon,
-                u', '.join(str(v.pk) for v in self.data['versions'])))
-        log.info(u'Sending email for %s' % (self.addon))
-
-        # Assign reviewer incentive scores.
+        # Assign reviewer incentive scores and send email, if it's an human
+        # reviewer: if it's not, it's coming from some automation where we
+        # don't need to notify the developer (we should already have done that
+        # before) and don't need to award points.
         if self.human_review:
+            channel = self.version.channel
+            # Send the email to the developer. We need to pass the latest
+            # version of the add-on instead of one of the versions we rejected,
+            # it will be used to generate a token allowing the developer to
+            # reply, and that only works with the latest version.
+            self.data['version_numbers'] = u', '.join(
+                str(v.version) for v in self.data['versions'])
+            if (self.addon.status != amo.STATUS_APPROVED and
+                    channel == amo.RELEASE_CHANNEL_LISTED):
+                template = u'reject_multiple_versions_disabled_addon'
+                subject = (u'Mozilla Add-ons: %s%s has been disabled on '
+                           u'addons.mozilla.org')
+            else:
+                template = u'reject_multiple_versions'
+                subject = u'Mozilla Add-ons: Versions disabled for %s%s'
+            log.info(u'Sending email for %s' % (self.addon))
+            self.notify_email(template, subject, version=latest_version)
+
             ReviewerScore.award_points(
                 self.user, self.addon, status, version=latest_version,
                 post_review=True, content_review=self.content_review)
