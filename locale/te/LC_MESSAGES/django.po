@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-07-01 18:07+0000\n"
+"PO-Revision-Date: 2020-07-02 20:02+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -44,11 +44,11 @@ msgstr "సందేశ సారాంశం"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "ఎంచుకున్న%d నివేదికలు సరైనవిగా గుర్తించబడ్డాయి."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "ఎంచుకున్న%d నివేదికలు అనుమానాస్పదంగా గుర్తించబడ్డాయి."
 
 msgid "Mark selected abuse reports as suspicious"
 msgstr ""
