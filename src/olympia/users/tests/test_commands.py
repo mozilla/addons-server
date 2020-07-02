@@ -178,6 +178,13 @@ class TestClearOldUserData(TestCase):
         not_deleted_addon = addon_factory(
             users=[old_user, user_factory()])
 
+        # Old, has addons, but already has other data cleared
+        old_data_cleared = user_factory(
+            deleted=True, last_login_ip='', email=None, fxa_id=None)
+        old_data_cleared.update(modified=old_date)
+        old_data_cleared_addon = addon_factory(
+            users=[old_data_cleared], status=amo.STATUS_DELETED)
+
         call_command('clear_old_user_data')
 
         old_not_deleted.reload()
@@ -203,3 +210,6 @@ class TestClearOldUserData(TestCase):
         assert old_user.modified == old_date
         assert not Addon.unfiltered.filter(id=old_user_addon.id).exists()
         assert not_deleted_addon.reload()
+
+        assert not Addon.unfiltered.filter(
+            id=old_data_cleared_addon.id).exists()
