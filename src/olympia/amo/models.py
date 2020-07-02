@@ -519,6 +519,11 @@ class FilterableManyToManyDescriptor(ManyToManyDescriptor):
     def _get_manager_with_default_filtering(cls, manager, q_filter):
         class ManagerWithFiltering(manager):
             def get_queryset(self):
+                try:
+                    return self.instance._prefetched_objects_cache[
+                        self.prefetch_cache_name]
+                except (AttributeError, KeyError):
+                    pass
                 qs = super().get_queryset()
                 return qs.filter(q_filter or models.Q())
 
