@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-07-03 12:53+0000\n"
+"PO-Revision-Date: 2020-07-03 13:03+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5502,7 +5502,7 @@ msgid "You can't submit an empty comment."
 msgstr "Jo kinne gjin lege opmerking yntsjinje."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Jo kinne gjin rigelnûmer yntsjinje sûnder it oan in bestânsnamme te keppeljen."
 
 msgid "Type"
 msgstr "Type"
@@ -5589,7 +5589,7 @@ msgid "Block Multiple Versions"
 msgstr "Mear ferzjes blokkearje"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Hjirtroch wurde de selektearre goedkarre ferzjes stiloan útskeakele en wurdt de behearside foar it meitsjen fan blokkearringen iepene."
 
 msgid "Confirm Multiple Versions"
 msgstr "Mear ferzjes befêstigje"
@@ -5635,8 +5635,8 @@ msgstr "Befeiligingscanners"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Markearre troch scanner ({0})"
+msgstr[1] "Markearre troch scanners ({0})"
 
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
@@ -5720,7 +5720,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Privacybelied"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Misbrûkrapporten – {addon} – Add-ons foar Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Misbrûkmeldingen foar {addon} en de ûntwikkelers derfan ({num})"
@@ -6222,13 +6222,13 @@ msgstr[0] "Ferrûn fersyk om ynformaasje ({0})"
 msgstr[1] "Ferrûne fersiken om ynformaasje ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "oanwêzichheid fan oerienkommende rigels"
 
 msgid "result state"
 msgstr "resultearjende steat"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "alles útsein dizze rigel"
 
 msgid "presence of a version"
 msgstr "oanwêzichheid fan in ferzje"
@@ -6249,26 +6249,26 @@ msgid "file signature"
 msgstr "bestânsûndertekening"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Dit is de eksakte namme fan de rigel dy't troch in scanner brûkt is."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Wannear net oanfinkt, binne de scannerresultaten net bûn oan dizze rigel en wurdt de aksje net útfierd."
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara-rigels moatte in definysje hawwe"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "De namme fan de rigel yn de definysje moat oerienkomme mei de namme fan de scannerrigel"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Yn de definysje is mar ien Yara-rigel tastien"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "De definysje is net jildich: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Der is in flater bard by it kompilearjen fan de definysje"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
