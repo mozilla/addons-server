@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-07-03 12:53+0000\n"
+"PO-Revision-Date: 2020-07-03 12:55+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -6509,13 +6509,12 @@ msgstr "ఈ వాడుకరులు \"%(users)s\" నిషేధించ�
 msgid "Ban selected users"
 msgstr "ఎంచుకున్న వాడుకరులను నిషేధించు"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "ఈ వాడుకరులు \"%(users)s\" నిషేధించబడ్డారు."
+msgstr "\"%(users)s\" వాడుకరుల సెషను(లు) పునరుద్ధరించబడ్డాయి."
 
-#, fuzzy
 msgid "Reset session"
-msgstr "వెర్షన్ను తొలగించండి"
+msgstr "సెషనుని పునరుద్ధరించు"
 
 #, fuzzy, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
