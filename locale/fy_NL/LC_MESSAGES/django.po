@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-10 15:24+0000\n"
+"PO-Revision-Date: 2020-07-03 12:32+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -489,7 +489,7 @@ msgstr "GUID %(guid)s is yn behanneling"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "De blokkearring foar GUID %(guid)s is allinnich-lêzen – dizze moat fia de ferâldere blokkearringslistkolleksje bewurke wurde"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -1725,7 +1725,7 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "Jo hawwe koartlyn te folle oplaads yntsjinne. Probearje it nei in skoft opnij."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "Ferzje {version} komt oerien mei {block_link} foar dizze add-on. Jo kinne kontakt opnimme mei {amo_admins} foar oanfoljende ynformaasje."
 
 msgid "a blocklist entry"
 msgstr "in blokkearringslistitem"
@@ -2956,6 +2956,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"De folgjende API-kaai is tafoege oan jo account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"As jo tinke dat dizze kaai mei fersin makke is, dan kinne jo de kaai fuortsmite\n"
+"en de tagong hjir útskeakelje:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -2968,6 +2976,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"De API-kaai is ynlutsen foar jo account:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"As jo tinke dat dizze kaai mei fersin ynlutsen is, dan kinne jo hjir\n"
+"in nije meitsje:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
