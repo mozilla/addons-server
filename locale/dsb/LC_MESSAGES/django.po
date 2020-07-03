@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-07-03 17:23+0000\n"
+"PO-Revision-Date: 2020-07-03 17:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5922,9 +5922,8 @@ msgstr "Awtomatiski pśizwólone dodanki – Dodanki za Firefox"
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr "Moderacija pśeglědowanjow - Dodanki za Firefox"
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Pšosba wó Informacije jo spadnuła"
+msgstr "Spadnjone pominanja informacijow – Dodanki za Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr "Njenalicone dodanki – Dodanki za Firefox"
@@ -5987,9 +5986,8 @@ msgstr "Do togo wulašowane zapiski"
 msgid "This is a recommended extension."
 msgstr "To jo dopórucone rozšyrjenje."
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Njamaśo pśizjawjeńske daty API."
+msgstr "Njamaśo pšawo to pśeglědowaś."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Pšosym wubjeŕśo jadnu wersiju abo někotare wersije z górneje lisćiny."
@@ -6034,9 +6032,8 @@ msgstr "Znjemóžnjanje dodanka wunuźiś"
 msgid "Force-enable add-on"
 msgstr "Zmóžnjanje dodanka wunuźiś"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Wšykne zapódaśa pokazaś"
+msgstr "Zapódaśe za lisćinu blokěrowanjow pokazaś"
 
 msgid "Block add-on"
 msgstr "Dodank blokěrowaś"
@@ -6044,21 +6041,17 @@ msgstr "Dodank blokěrowaś"
 msgid "Update add-on block"
 msgstr "Blokěrowanje dodanka aktualizěrowaś"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Awtomatiske pśizwólenje znjemóžniś"
+msgstr "Awtomatiske pśizwólenje naliconych dodankow znjemóžniś"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Awtomatiske pśizwólenje zmóžniś"
+msgstr "Awtomatiske pśizwólenje naliconych dodankow zmóžniś"
 
-#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
-msgstr "Jo marku „awotmatiske pśizwólenje znjemóžnjone“ stajił"
+msgstr "Awtomatiske pśizwólenje je tuchylu až do {date} znjemóžnjone"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Awtomatiske pśizwólenje zmóžniś"
+msgstr "Pśidatne zaźaržanje awtomatiskego pśizwólenja wótwónoźeś"
 
 msgid "Clear information request"
 msgstr "Pšosbu wó informacije wulašowaś"
@@ -6360,9 +6353,8 @@ msgstr "Wersija južo eksistěrujo. Nejnowša wersija jo: %s."
 msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr "Jano WebExtensions směju ID dodanka wuwóstajiś"
 
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Pšosym pódajśo GUID swójogo dodanka w manifesće, jolic jo dlešy ako 64 znamuškow."
+msgstr "Pšosym pódajśo ID swójogo dodanka w manifesće, jolic jo dlešy ako 64 znamuškow."
 
 msgid "Invalid Add-on ID in URL or package"
 msgstr "Njepłaśiwy dodankowy ID w URL abo pakeśe"
@@ -6778,11 +6770,8 @@ msgstr ""
 "Nježli až zachopijośo, cytajśo a akceptěrujśo pšosym našo dojadnanje wó rozdźělowanju a naše pśeglědowańske zasady a pšawidła. Dojadnanje wó rozdźělowanju Firefox teke wótkazujo k našomu pokazoju "
 "priwatnosći, kótaraž wujasnjujo, kak z wašymi informacijami wobchadamy."
 
-#, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Nježli až zachopijośo, cytajśo a akceptěrujśo pšosym našo dojadnanje wó rozdźělowanju a naše pśeglědowańske zasady a pšawidła. Dojadnanje wó rozdźělowanju Firefox teke wótkazujo k našomu pokazoju "
-"priwatnosći, kótaraž wujasnjujo, kak z wašymi informacijami wobchadamy."
+msgstr "Woglědajśo se k {url} a cytajśo a akceptěrujśo pšosym našo dojadnanje wó rozdźělowanju dodankow Firefox a naše pśeglědowańske směrnice a pšawidła."
 
 msgid "User Restriction History"
 msgstr "Historija wužywarskich wobgranicowanjow"
@@ -6823,18 +6812,17 @@ msgstr "Pósejźenja slědk stajiś"
 msgid "Delete picture"
 msgstr "Wobraz wulašowaś"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
-"\n"
 "Slědujucy awtor jo se pśidał swójemu dodankojuj %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
@@ -6849,7 +6837,6 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
-"\n"
 "Witajśo %(author_name)s,\n"
 "\n"
 "su was pśepšosyli awtor dodanka  %(addon_name)s na %(domain)s byś. Gaž pśepšosenje pśiwzejośo, dostanjośo pśistup, aby dodank wobźěłował a wašo mě se w lisćinje awtorow na websydle pokažo.\n"
@@ -6862,7 +6849,7 @@ msgstr ""
 "\n"
 "Z pśijaśelskimi póstrowami,\n"
 "\n"
-"Team dodankow Mozilla\n"
+"Team dodankow Mozilla"
 
 #, python-format
 msgid ""
