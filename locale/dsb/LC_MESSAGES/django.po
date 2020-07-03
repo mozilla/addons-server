@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-09 21:19+0000\n"
+"PO-Revision-Date: 2020-07-03 16:37+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5570,13 +5570,11 @@ msgstr "Druge njedocynjone pśeglědanje ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Druge njedocynjone pśeglědanje ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Nalicone wersije"
+msgstr "Nalicone wersije ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Nalicone wersije"
+msgstr "Njenalicone wersije ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "To pśizwólijo, signěrujo a wózjawijo toś tu. wersiju. Komentary pósćelu se wuwijarjeju."
@@ -5649,9 +5647,8 @@ msgstr "Protokol pśeglědanjow"
 msgid "Add-on Review Guide"
 msgstr "Rozpokazanje za pśeglědowanje dodankow"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Wěstotne testy"
+msgstr "Wěstotne skannery"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
@@ -6379,9 +6376,8 @@ msgstr "Pšosym pódajśo GUID swójogo dodanka w manifesće, jolic jo dlešy ak
 msgid "Invalid Add-on ID in URL or package"
 msgstr "Njepłaśiwy dodankowy ID w URL abo pakeśe"
 
-#, fuzzy
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "Njamóžośo dodankoju wersije pśidaś, kótary ma status: %s."
+msgstr "Njamóžośo dodankoju nalicone wersije pśidaś, kótaryž ma status „Njewidobny“."
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Njamóžośo toś tomu dodankoju naliconu wersiju pśez API pśidaś, dokulaž metadaty feluju. Pšosym pósćelśo je pśez websedło"
