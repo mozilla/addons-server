@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-07-03 12:42+0000\n"
+"PO-Revision-Date: 2020-07-03 12:53+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3311,13 +3311,13 @@ msgid "Learn how to make an extension"
 msgstr "Lear hoe't jo in útwreiding meitsje kinne"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Klear om jo útwreiding yn te tsjinjen of te behearen?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Meld jo oan by de Untwikkelershub om útwreidingen en tema’s yn te tsjinjen of te behearen."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Skriuw jo yn foar in ûntwikkelersaccount of meld jo oan by de Untwikkelershub"
 
 msgid "Manage Version {0}"
 msgstr "Ferzje {0} beheare"
@@ -3805,7 +3805,7 @@ msgstr "Lit in skjin digitaal spoar efter. Lit Firefox websitegegevens lykas coo
 
 #. editorial content for the discovery pane.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "It is net nedich om hieltyd itselde te skriuwen. Bewarje faaks ynfierde tekst om op elk winske momint te plakken."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4911,7 +4911,7 @@ msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo's op Firefox foar
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Selektearje, oardenje en fier jo downloads flugger út."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4919,23 +4919,23 @@ msgstr "Untfang waarupdates streekrjocht yn de browser."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Smyt cookies, browserskiednis en buffere bestannen mei mar ien klik fuort."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Smyt trackingeleminten út webkeppelingen fuort."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Krij automatysk folle blêdwizermappen mei RSS-feeds."
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organisearje ienfâldich in enoarme hoemannichte iepen ljepblêden."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Meitsje ljepblêdgroepen en pas se oan."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4947,19 +4947,19 @@ msgstr "Ferfang automatysk denigrearjende wurden op ynternet."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blokkearje alle advertinsjes – fideo, pop-ups, banners en mear."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Besjoch oeral streaming media mei freonen en famylje."
 
 #. editorial content for the discovery pane.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Slach sponsore dielen fan YouTube-fideo’s oer."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Lit websiden hurdop foarlêze. Mear as 40 stipe talen."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4975,7 +4975,7 @@ msgstr "Alle útwreidingen besjen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Ljepblêdorganisearders en helpmiddelen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5475,10 +5475,10 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Automatyske goedkarring is tydlik útsteld"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Automatyske goedkarring is foar ûnbepaalde tiid útsteld"
 
 msgid "Is locked by a reviewer"
 msgstr "Is beskoattele troch in beoardieler"
