@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-07-02 20:02+0000\n"
+"PO-Revision-Date: 2020-07-03 12:53+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4734,9 +4734,8 @@ msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckD
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track product pricing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading} {addon_name}తో {end_sub_heading} ప్రకటనల నిరోధం & గోప్యతా సంరక్షణ"
+msgstr "{start_sub_heading}{addon_name}తో{end_sub_heading} ఉత్పత్తుల ధరలను గమనిస్తూండండి"
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
@@ -4951,9 +4950,8 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "మీరు ఈ పొడిగింతపు రకాన్ని సమర్పించలేరు"
+msgstr ""
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
@@ -5397,9 +5395,8 @@ msgstr "సమాచార అభ్యర్ధన కాలపరిమిత�
 msgid "Last Updated"
 msgstr "చివరిగా తాజాకరణ"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "ఇతర వేచివున్న సమీక్ష ({0})"
+msgstr ""
 
 msgid "Unlisted versions needing human review ({0})"
 msgstr ""
@@ -5489,11 +5486,10 @@ msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "రేటింగు సమీక్ష ({0})"
-msgstr[1] "రేటింగు సమీక్షలు ({0})"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Auto-Approved Add-ons"
 msgstr ""
@@ -5758,9 +5754,8 @@ msgstr ""
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "కాలంచెల్లిన సమాచార అభ్యర్థన"
+msgstr "కాలంచెల్లిన సమాచార అభ్యర్థనలు – Firefox కొరకు పొడగింతలు"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6094,9 +6089,8 @@ msgstr ""
 msgid "file status"
 msgstr "ఫైలు స్థితి"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} సంతకం చేయబడింది."
+msgstr "ఫైలు సంతకం"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
