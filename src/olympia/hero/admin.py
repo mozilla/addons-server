@@ -78,6 +78,10 @@ class PrimaryHeroImageAdmin(admin.ModelAdmin):
             resize_image(obj.custom_image.path, tmp.name, size_full)
             copy_stored_file(tmp.name, obj.custom_image.path)
 
+    def delete_queryset(self, request, queryset):
+        for obj in queryset:
+            obj.delete()
+
 
 class HeroModuleInlineFormSet(BaseInlineFormSet):
     def clean(self):
