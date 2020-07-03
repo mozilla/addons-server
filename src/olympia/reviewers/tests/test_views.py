@@ -3789,6 +3789,9 @@ class TestReview(ReviewBase):
             needs_admin_content_review=True,
             needs_admin_theme_review=True,
             auto_approval_delayed_until=datetime.now() + timedelta(hours=1))
+        VersionReviewerFlags.objects.create(
+            version=self.addon.current_version,
+            pending_rejection=datetime.now())
         self.login_as_reviewer()
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3804,6 +3807,7 @@ class TestReview(ReviewBase):
         assert not doc('#enable_auto_approval')
         assert not doc('#clear_auto_approval_delayed_until')
         assert not doc('#clear_pending_info_request')
+        assert not doc('#clear_pending_rejections')
         assert not doc('#deny_resubmission')
         assert not doc('#allow_resubmission')
 
@@ -4034,6 +4038,21 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#clear_pending_info_request')
+
+    def test_clear_pending_rejections_as_admin(self):
+        self.login_as_admin()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#clear_pending_rejections')
+
+        VersionReviewerFlags.objects.create(
+            version=self.addon.current_version,
+            pending_rejection=datetime.now())
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#clear_pending_rejections')
 
     def test_info_request_checkbox(self):
         self.login_as_reviewer()

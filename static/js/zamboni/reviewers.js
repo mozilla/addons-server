@@ -222,7 +222,7 @@ function initExtraReviewActions() {
     }));
 
     // One-off-style buttons.
-    $('#clear_admin_code_review, #clear_admin_content_review, #clear_admin_theme_review, #clear_pending_info_request, #clear_auto_approval_delayed_until').click(_pd(function() {
+    $('.more-actions button.oneoff[data-api-url]').click(_pd(function() {
         var $button = $(this).prop('disabled', true);  // Prevent double-send.
         var apiUrl = $button.data('api-url');
         var data = $button.data('api-data') || null;
@@ -233,14 +233,7 @@ function initExtraReviewActions() {
     }));
 
     // Toggle-style buttons.
-    $([
-        '#force_disable_addon',
-        '#force_enable_addon',
-        '#disable_auto_approval',
-        '#enable_auto_approval',
-        '#allow_resubmission',
-        '#deny_resubmission'
-    ].join(',')).click(_pd(function() {
+    $('.more-actions button.toggle[data-api-url]').click(_pd(function() {
         var $button = $(this).prop('disabled', true);  // Prevent double-send.
         var $other_button = $($button.data('toggle-button-selector'));
         var apiUrl = $button.data('api-url');
