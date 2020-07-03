@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-07-03 16:37+0000\n"
+"PO-Revision-Date: 2020-07-03 17:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3349,9 +3349,8 @@ msgstr "Opcionalnje móžośo informacije zapisowaś, kótarež su wužytne za p
 msgid "Source code"
 msgstr "Žrědłowy kod"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Jolic waš dodank wopśimujo binarny abo zamazany kod, stajśo how pśeglědowarjam žrědłowy tekst k dispoziciji."
+msgstr "Jolic waš dodank minificěrowany, zwězany abo hynac mašinelnje napórany kod wopśimujo, stajśo how pśeglědowarjam žrědłowy tekst k dispoziciji."
 
 msgid "File {file_id} ({platform})"
 msgstr "Dataja {file_id} ({platform})"
@@ -3730,9 +3729,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Pśiměŕśo gesty myški {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Pśiměrśo gesty myški. Namakajśo nowu móžnosć, aby z wěcej ako 50 wužytnymi gestami myški nawigěrował."
+msgstr "Pśiměrśo gesty myški. Namakajśo nowu móžnosć, aby z wěcej ako 50 konfiguracijami nawigěrował."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4941,9 +4939,8 @@ msgid "Create and customize tab groups."
 msgstr "Napórajśo a pśiměrśo rejtarikowe kupki."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Dopołne boki - abo jano źele z nich - ako jadnučku HTML-dataju składowaś."
+msgstr "Składujśo ceły webbok - mjazy nimi wobraze a stile - ako jadnučku HTML-dataju."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
@@ -5562,13 +5559,11 @@ msgstr "Termin za pšosbu wó informacije"
 msgid "Last Updated"
 msgstr "Slědna aktualizacija"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Druge njedocynjone pśeglědanje ({0})"
+msgstr "Nalicone wersije, kótarež se cłowjeske pśeglědanje pominaju ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Druge njedocynjone pśeglědanje ({0})"
+msgstr "Njenalicone wersije, kótarež se cłowjeske pśeglědanje pominaju ({0})"
 
 msgid "Listed versions ({0})"
 msgstr "Nalicone wersije ({0})"
@@ -5597,9 +5592,8 @@ msgstr "Nejnowša zjawna wersija toś togo dodanka jo se awtomatiski pśizwóli�
 msgid "Reject Multiple Versions"
 msgstr "Někotare wersije wótpokazaś"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "To wubrane zjawne wersije wótpokazajo. Komentary se na wuwijarja pósćelu."
+msgstr "To wubrane wersije wótpokazajo. Komentary se na wuwijarja pósćelu."
 
 msgid "Block Multiple Versions"
 msgstr "Někotare wersije blokěrowaś"
@@ -5610,9 +5604,8 @@ msgstr "To wubrane pśizwólone wersije kšajźu znjemóžnijo a administraciski
 msgid "Confirm Multiple Versions"
 msgstr "Někotare wersije wobkšuśiś"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "To wašo pśizwólenje wopśimjeśe nejnowšeje zjawneje wersije registrěrujo, mimo aby se wuwijaŕ informěrował."
+msgstr "To pśizwólenje wubranych wersijow wobkšuśijo, bźeztogo aby se wuwijaŕ informěrował."
 
 msgid "Reviewer reply"
 msgstr "Wótegrono pśeglědarja"
@@ -5657,13 +5650,12 @@ msgstr[1] "Pśez scannery markěrowane ({0})"
 msgstr[2] "Pśez scannery markěrowane ({0})"
 msgstr[3] "Pśez scannery markěrowane ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Za cłowjeske pśěglědanje markěrowaś"
-msgstr[1] "Za cłowjeske pśěglědanje markěrowaś"
-msgstr[2] "Za cłowjeske pśěglědanje markěrowaś"
-msgstr[3] "Za cłowjeske pśěglědanje markěrowaś"
+msgstr[0] "Za cłowjeske pśěglědanje markěrowany ({0})"
+msgstr[1] "Za cłowjeske pśěglědanje markěrowanej ({0})"
+msgstr[2] "Za cłowjeske pśěglědanje markěrowane ({0})"
+msgstr[3] "Za cłowjeske pśěglědanje markěrowane ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatiski pśizwólone dodanki"
@@ -5924,9 +5916,8 @@ msgstr "– Rědy za pśeglědowarjow – Dodanki za Firefox"
 msgid "Content Review – Add-ons for Firefox"
 msgstr "Pśeglědowanje wopśimjeśa – Dodanki za Firefox"
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Awtomatiski pśizwólone dodanki"
+msgstr "Awtomatiski pśizwólone dodanki – Dodanki za Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr "Moderacija pśeglědowanjow - Dodanki za Firefox"
