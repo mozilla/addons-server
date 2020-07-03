@@ -3,6 +3,7 @@ from pyquery import PyQuery as pq
 
 import os
 
+from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
@@ -629,6 +630,12 @@ class TestPrimaryHeroImageAdmin(TestCase):
     def test_can_delete_with_discovery_edit_permission(self):
         uploaded_photo = get_uploaded_file('transparent.png')
         item = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
+        src = os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png')
+        dest = os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs',
+            'transparent.png')
+        copy_stored_file(src, dest)
         delete_url = reverse(
             'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
         )
@@ -640,12 +647,22 @@ class TestPrimaryHeroImageAdmin(TestCase):
         response = self.client.get(delete_url, follow=True)
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.filter(pk=item.pk).exists()
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs',
+            'transparent.png'))
 
         # And can actually delete.
         response = self.client.post(
             delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 200
         assert not PrimaryHeroImage.objects.filter(pk=item.pk).exists()
+        assert not os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+        assert not os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image',
+            'thumbs', 'transparent.png'))
 
     def test_can_add_with_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_primaryheroimageupload_add')
@@ -718,6 +735,12 @@ class TestPrimaryHeroImageAdmin(TestCase):
     def test_can_not_delete_without_discovery_edit_permission(self):
         uploaded_photo = get_uploaded_file('transparent.png')
         item = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
+        src = os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png')
+        dest = os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs',
+            'transparent.png')
+        copy_stored_file(src, dest)
         delete_url = reverse(
             'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
         )
@@ -728,12 +751,22 @@ class TestPrimaryHeroImageAdmin(TestCase):
         response = self.client.get(delete_url, follow=True)
         assert response.status_code == 403
         assert PrimaryHeroImage.objects.filter(pk=item.pk).exists()
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs',
+            'transparent.png'))
 
         # Can not actually delete either.
         response = self.client.post(
             delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 403
         assert PrimaryHeroImage.objects.filter(pk=item.pk).exists()
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+        assert os.path.exists(os.path.join(
+            settings.MEDIA_ROOT, 'hero-featured-image',
+            'thumbs', 'transparent.png'))
 
 
 class TestSecondaryHeroShelfAdmin(TestCase):
