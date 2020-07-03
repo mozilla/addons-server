@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-07-02 14:32+0000\n"
+"PO-Revision-Date: 2020-07-03 02:17+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -6721,9 +6721,8 @@ msgstr "ਚੁਣੇ ਹੋਏ ਵਰਤੋਂਕਾਰਾਂ ਉੱਤੇ ਪ�
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr "ਉਪਭੋਗੀ \"%(users)s\" ਤੇ ਪਾਬੰਦੀ ਲਗਾ ਦਿੱਤੀ ਗਈ ਹੈ।"
 
-#, fuzzy
 msgid "Reset session"
-msgstr "ਵਰਜਨ ਹਟਾਓ"
+msgstr "ਸ਼ੈਸ਼ਨ ਮੁੜ-ਸੈੱਟ ਕਰੋ"
 
 #, fuzzy, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
