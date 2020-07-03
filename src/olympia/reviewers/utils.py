@@ -1039,7 +1039,7 @@ class ReviewBase(object):
         # don't need to notify the developer (we should already have done that
         # before) and don't need to award points.
         if self.human_review:
-            channel = self.version.channel
+            channel = latest_version.channel
             # Send the email to the developer. We need to pass the latest
             # version of the add-on instead of one of the versions we rejected,
             # it will be used to generate a token allowing the developer to
