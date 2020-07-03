@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-07-03 12:32+0000\n"
+"PO-Revision-Date: 2020-07-03 12:42+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2997,6 +2997,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Bêste add-on-ûntwikkeler,\n"
+"\n"
+"Wy hawwe murken dat jo geheime AMO API-oanmeldgegevens opnommen binne yn in add-on dy't yntsjinne is by addons.mozilla.org. Om jo account en jo add-on(s) te beskermjen, hawwe wy de lekte oanmeldgegevens ynlutsen.\n"
+"Jo kinne nije API-oanmeldgegevens oanmeitsje op %(api_keys_url)s\n"
+"\n"
+"Soargje derfoar dat jo jo oanmeldgegevens nea mei ien diele. Nim se nea op yn in iepenbiere repository, add-on of in oar iepenbier plak. Wy riede jo oan jo koade-repositories en jo útwreidingen te kontrolearjen om ferwizingen nei jo AMO-oanmeldgegevens fuort te smiten.\n"
+"\n"
+"Tank,\n"
+"It Mozilla Add-ons-team"
 
 msgid "Invisible"
 msgstr "Net sichtber"
@@ -3145,10 +3154,11 @@ msgid "Read more about the source code review policy."
 msgstr "Lês mear oer it belied oangeande boarnekoadebeoardieling."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Bou de alderbêste útwreidingen en tema’s"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Oft jo no pas begjinne mei de ûntwikkeling fan útwreidingen, in besteande útwreiding of tema bywurkje of oersette, of in bedriuwsoplossing op maat meitsje, wy hawwe de middelen om jo te stypjen."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
@@ -3176,14 +3186,14 @@ msgid "Extensions Developers Newsletter"
 msgstr "Nijsbrief foar útwreidingsûntwikkelers"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Bliuw op de hichte fan nijs en eveneminten foar ûntwikkelers fan Firefox-útwreidingen."
 
 msgid "Email Address"
 msgstr "E-mailadres"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Ik gean akkoard mei hoe't Mozilla omgiet mei myn gegevens, lykas útlein yn dizze %(link_open)sPrivacyferklearring%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Registrearje"
@@ -3193,6 +3203,8 @@ msgstr "Tank!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"As jo noch nee earder in ynskriuwing foar in Mozilla-relatearre nijsbrief befêstige hawwe, moatte jo dit mooglik noch dwaan. Kontrolearje jo Postfek YN of jo spamfilter foar in e-mailberjocht fan "
+"ús."
 
 msgid "Resources"
 msgstr "Helpboarnen"
@@ -3246,7 +3258,7 @@ msgid "Get involved"
 msgstr "Meiwurkje"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Kom yn kontakt mei tûzenen ûntwikkelers en ûntdek mear manieren wêrop jo bydrage kinne oan it útwreidings-ekosysteem."
 
 msgid "Learn more about the developer community"
 msgstr "Mear ynfo oer de ûntwikkelersmienskip"
