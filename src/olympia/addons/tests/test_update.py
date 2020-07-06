@@ -6,12 +6,13 @@ from datetime import datetime, timedelta
 from email import utils
 
 from django.db import connection
+from django.test.testcases import TransactionTestCase
 
 from services import update
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 from olympia.versions.models import ApplicationsVersions, Version
@@ -406,37 +407,6 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
                     expected['-'.join([version, mode])]
                 )
 
-    def test_application(self):
-        # Basic test making sure application() is returning the output of
-        # Update.get_output(). Have to mock Update(): otherwise, the real
-        # database would be hit, not the test one, because of how services
-        # use a different setting and database connection APIs.
-        environ = {
-            'QUERY_STRING': ''
-        }
-        self.start_response_call_count = 0
-
-        expected_headers = [
-            ('FakeHeader', 'FakeHeaderValue')
-        ]
-
-        expected_output = b'{"fake": "output"}'
-
-        def start_response_inspector(status, headers):
-            self.start_response_call_count += 1
-            assert status == '200 OK'
-            assert headers == expected_headers
-
-        with mock.patch('services.update.Update') as UpdateMock:
-            update_instance = UpdateMock.return_value
-            update_instance.get_headers.return_value = expected_headers
-            update_instance.get_output.return_value = expected_output
-            output = update.application(environ, start_response_inspector)
-        assert self.start_response_call_count == 1
-        # Output is an array with a single string containing the body of the
-        # response.
-        assert output == [expected_output]
-
     def test_baseline(self):
         # Tests simple add-on (non-binary-components, non-strict).
         self.check(self.expected)
@@ -651,3 +621,98 @@ class TestResponse(VersionCheckMixin, TestCase):
         assert (
             json.loads(instance.get_output()) ==
             instance.get_no_updates_output())
+
+    def test_application(self):
+        # Basic test making sure application() is returning the output of
+        # Update.get_output(). Have to mock Update(): otherwise, even though
+        # we're setting SERVICES_DATABASE to point to the test database in
+        # settings_test.py, we wouldn't see results because the data wouldn't
+        # exist with the cursor the update service is using, which is different
+        # from the one used by django tests.
+        environ = {
+            'QUERY_STRING': ''
+        }
+        self.start_response_call_count = 0
+
+        expected_headers = [
+            ('FakeHeader', 'FakeHeaderValue')
+        ]
+
+        expected_output = b'{"fake": "output"}'
+
+        def start_response_inspector(status, headers):
+            self.start_response_call_count += 1
+            assert status == '200 OK'
+            assert headers == expected_headers
+
+        with mock.patch('services.update.Update') as UpdateMock:
+            update_instance = UpdateMock.return_value
+            update_instance.get_headers.return_value = expected_headers
+            update_instance.get_output.return_value = expected_output
+            output = update.application(environ, start_response_inspector)
+        assert self.start_response_call_count == 1
+        # Output is an array with a single string containing the body of the
+        # response.
+        assert output == [expected_output]
+
+    @mock.patch('services.update.log')
+    @mock.patch('services.update.Update')
+    def test_exception_handling(self, UpdateMock, log_mock):
+        """Test ensuring exceptions are raised and logged properly."""
+        class CustomException(Exception):
+            pass
+
+        self.inspector_call_count = 0
+        update_instance = UpdateMock.return_value
+        update_instance.get_output.side_effect = CustomException('Boom!')
+
+        def inspector(status, headers):
+            self.inspector_call_count += 1
+
+        with self.assertRaises(CustomException):
+            update.application({'QUERY_STRING': ''}, inspector)
+        assert self.inspector_call_count == 0
+
+        # The log should be present.
+        assert log_mock.exception.call_count == 1
+        log_mock.exception.assert_called_with(
+            update_instance.get_output.side_effect)
+
+
+# This test needs to be a TransactionTestCase because we want to test the
+# behavior of database cursor created by the update service. Since the data is
+# written by a different cursor, it needs to be committed for the update
+# service to see it (Other tests above that aren't explicitly mocking the
+# service and care about the output cheat and override the cursor to use
+# django's).
+class TestUpdateConnectionEncoding(TransactionTestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+
+    def test_mypool_encoding(self):
+        from services.utils import mypool
+
+        connection = mypool.connect()
+        assert connection.connection.encoding == 'utf8'
+        connection.close()
+
+    def test_unicode_data(self):
+        # To trigger the error this test is trying to cover, we need 2 things:
+        # - An update request that would be considered 'valid', i.e. the
+        #   necessary parameters are presentTestUpdateConnectionEncoding and
+        #   the add-on exists.
+        # - A database cursor instantiated from the update service, not by
+        #   django tests.
+        # Note that this test would hang before the fix to pass charset when
+        # connecting in services.utils.getconn().
+        data = {
+            'id': self.addon.guid,
+            'reqVersion': '2鎈',
+            'appID': amo.FIREFOX.guid,
+            'appVersion': '78.0',
+        }
+        instance = update.Update(data)
+        output = instance.get_output()
+        update_data = json.loads(output)
+        import ipdb
+        ipdb.set_trace()

@@ -24,7 +24,7 @@ import olympia.core.logger
 # Go configure the log.
 log_configure()
 
-error_log = olympia.core.logger.getLogger('z.services')
+log = olympia.core.logger.getLogger('z.services')
 
 
 class Update(object):
@@ -155,7 +155,6 @@ class Update(object):
             sql.append('AND appmax.version_int >= %(version_int)s ')
 
         sql.append('ORDER BY versions.id DESC LIMIT 1;')
-
         self.cursor.execute(''.join(sql), data)
         result = self.cursor.fetchone()
 
@@ -237,11 +236,6 @@ class Update(object):
                 ('Content-Length', str(length))]
 
 
-def log_exception(data):
-    (typ, value, traceback) = sys.exc_info()
-    error_log.error(u'Type: %s, %s. Query: %s' % (typ, value, data))
-
-
 def application(environ, start_response):
     status = '200 OK'
     with statsd.timer('services.update'):
@@ -251,7 +245,7 @@ def application(environ, start_response):
             update = Update(data, compat_mode)
             output = force_bytes(update.get_output())
             start_response(status, update.get_headers(len(output)))
-        except Exception:
-            log_exception(data)
+        except Exception as e:
+            log.exception(e)
             raise
     return [output]

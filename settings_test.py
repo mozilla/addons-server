@@ -48,6 +48,11 @@ CACHES = {
     },
 }
 
+# Cheat and change SERVICES_DATABASE['NAME'] to the test database name. Our
+# update service doesn't use django database connections so we need to override
+# that setting so that it points to the correct database.
+SERVICES_DATABASE['NAME'] = 'test_%s' % SERVICES_DATABASE['NAME']
+
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
