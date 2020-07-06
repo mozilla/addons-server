@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-06-27 08:16+0000\n"
-"Last-Translator: ibraheem5000 <ibraheem5000@hotmail.com>\n"
+"PO-Revision-Date: 2020-07-06 16:45+0000\n"
+"Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -2401,7 +2401,7 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr ""
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "اللوحة البيضاء"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
@@ -3276,7 +3276,7 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 msgid "Get started"
-msgstr ""
+msgstr "ابدأ"
 
 #, fuzzy
 msgid "More Ways to Participate"
@@ -3480,7 +3480,7 @@ msgid "Validation"
 msgstr "Validation"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "احذف/عطّل"
 
 msgid "Next version of this add-on"
 msgstr ""
