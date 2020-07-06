@@ -5,6 +5,7 @@ from unittest import mock
 from datetime import datetime, timedelta
 from email import utils
 
+from django.conf import settings
 from django.db import connection
 from django.test.testcases import TransactionTestCase
 
@@ -688,6 +689,19 @@ class TestResponse(VersionCheckMixin, TestCase):
 class TestUpdateConnectionEncoding(TransactionTestCase):
     def setUp(self):
         self.addon = addon_factory()
+
+    def test_service_database_setting(self):
+        from services.utils import mypool
+
+        expected_name = settings.DATABASES['default']['NAME']
+        assert 'test' in expected_name
+        assert settings.SERVICES_DATABASE['NAME'] == expected_name
+
+        connection = mypool.connect()
+        cursor = connection.cursor()
+        cursor.execute('SELECT DATABASE();')
+        assert cursor.fetchone()[0] == expected_name
+        connection.close()
 
     def test_mypool_encoding(self):
         from services.utils import mypool
