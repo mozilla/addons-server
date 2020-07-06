@@ -9,7 +9,7 @@ from unittest import mock
 
 from olympia import amo
 from olympia.addons import cron
-from olympia.addons.models import Addon, AppSupport
+from olympia.addons.models import Addon, AppSupport, FrozenAddon
 from olympia.amo.tests import addon_factory, file_factory, TestCase
 from olympia.files.models import File
 from olympia.stats.models import DownloadCount
@@ -419,5 +419,79 @@ class TestAvgDailyUserCountTestCase(TestCase):
 
 
 class TestDeliverHotness(TestCase):
-    def test_does_nothing(self):
+    def setUp(self):
+        super().setUp()
+
+        self.extension = addon_factory()
+        self.unpopular_extension = addon_factory()
+        self.barely_popular_extension = addon_factory()
+        self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.unpopular_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.barely_popular_theme = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.awaiting_review = addon_factory(status=amo.STATUS_NOMINATED)
+        self.frozen_extension = addon_factory()
+
+        FrozenAddon.objects.create(addon=self.frozen_extension)
+
+    @mock.patch('olympia.addons.cron.time.sleep', lambda *a, **kw: None)
+    @mock.patch('olympia.addons.cron.get_averages_by_addon_from_bigquery')
+    def test_basic(self, get_averages_mock):
+        get_averages_mock.return_value = {
+            self.extension.guid: {
+                'avg_this_week': 827080,
+                'avg_three_weeks_before': 787930,
+            },
+            self.static_theme.guid: {
+                'avg_this_week': 827080,
+                'avg_three_weeks_before': 787930,
+            },
+            self.unpopular_extension.guid: {
+                'avg_this_week': 0,
+                'avg_three_weeks_before': 0,
+            },
+            self.unpopular_theme.guid: {
+                'avg_this_week': 1,
+                'avg_three_weeks_before': 1.5,
+            },
+            self.barely_popular_extension.guid: {
+                'avg_this_week': 400,
+                'avg_three_weeks_before': 300,
+            },
+            self.barely_popular_theme.guid: {
+                'avg_this_week': 400,
+                'avg_three_weeks_before': 300,
+            },
+            'unknown@guid': {
+                'avg_this_week': 10000,
+                'avg_three_weeks_before': 10000,
+            },
+            self.awaiting_review.guid: {
+                'avg_this_week': 827080,
+                'avg_three_weeks_before': 787930,
+            },
+            self.frozen_extension.guid: {
+                'avg_this_week': 827080,
+                'avg_three_weeks_before': 787930,
+            },
+        }
+
         cron.deliver_hotness()
+
+        assert self.extension.reload().hotness == 0.049687154950312847
+        assert self.static_theme.reload().hotness == 0.049687154950312847
+
+        # Unpopular extensions and static themes have a hotness of 0.
+        assert self.unpopular_extension.reload().hotness == 0
+        assert self.unpopular_theme.reload().hotness == 0
+
+        # A barely popular static theme should have a hotness value > 0 but
+        # when the same stats are applied to an extension, it should have a
+        # hotness of 0.
+        assert self.barely_popular_theme.reload().hotness == 0.3333333333333333
+        assert self.barely_popular_extension.reload().hotness == 0
+
+        # Only public add-ons get hotness calculated.
+        assert self.awaiting_review.reload().hotness == 0
+
+        # Exclude frozen add-ons too.
+        assert self.frozen_extension.reload().hotness == 0

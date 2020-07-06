@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.conf import settings
 from django_statsd.clients import statsd
 from google.cloud import bigquery
@@ -15,6 +17,16 @@ AMO_TO_BIGQUERY_COLUMN_MAPPING = {
 
 
 AMO_STATS_DAU_VIEW = 'amo_stats_dau'
+
+
+def get_amo_stats_dau_view_name():
+    return '.'.join(
+        [
+            settings.BIGQUERY_PROJECT,
+            settings.BIGQUERY_AMO_DATASET,
+            AMO_STATS_DAU_VIEW,
+        ]
+    )
 
 
 def rows_to_series(rows, filter_by=None):
@@ -61,17 +73,9 @@ def get_updates_series(addon, start_date, end_date, source=None):
     if filter_by:
         select_clause = f'{select_clause}, {filter_by}'
 
-    fully_qualified_table_name = '.'.join(
-        [
-            settings.BIGQUERY_PROJECT,
-            settings.BIGQUERY_AMO_DATASET,
-            AMO_STATS_DAU_VIEW,
-        ]
-    )
-
     query = f"""
 {select_clause}
-FROM `{fully_qualified_table_name}`
+FROM `{get_amo_stats_dau_view_name()}`
 WHERE addon_id = @addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
@@ -100,20 +104,15 @@ LIMIT 365"""
 
 
 def get_addons_and_average_daily_users_from_bigquery():
+    """This function is used to compute the 'average_daily_users' value of each
+    add-on (see `update_addon_average_daily_users()` cron task)."""
     client = bigquery.Client.from_service_account_json(
         settings.GOOGLE_APPLICATION_CREDENTIALS
     )
 
-    fully_qualified_table_name = '.'.join(
-        [
-            settings.BIGQUERY_PROJECT,
-            settings.BIGQUERY_AMO_DATASET,
-            AMO_STATS_DAU_VIEW,
-        ]
-    )
     query = f"""
 SELECT addon_id, AVG(dau) AS count
-FROM `{fully_qualified_table_name}`
+FROM `{get_amo_stats_dau_view_name()}`
 WHERE submission_date > DATE_SUB(CURRENT_DATE(), INTERVAL 13 DAY)
 GROUP BY addon_id"""
 
@@ -123,3 +122,69 @@ GROUP BY addon_id"""
         (row['addon_id'], row['count'])
         for row in rows if row['addon_id'] and row['count']
     ]
+
+
+def get_averages_by_addon_from_bigquery(today):
+    """This function is used to compute the 'hotness' score of each add-on (see
+    also `deliver_hotness()` cron task). It returns a dict with top-level keys
+    being add-on GUIDs and values being dicts containing average values."""
+    client = bigquery.Client.from_service_account_json(
+        settings.GOOGLE_APPLICATION_CREDENTIALS
+    )
+
+    one_week_date = today - timedelta(days=7)
+    four_weeks_date = today - timedelta(days=28)
+
+    query = f"""
+WITH
+  this_week AS (
+  SELECT
+    addon_id,
+    AVG(dau) AS avg_this_week
+  FROM
+    `{get_amo_stats_dau_view_name()}`
+  WHERE
+    submission_date >= @one_week_date
+  GROUP BY
+    addon_id),
+  three_weeks_before_this_week AS (
+  SELECT
+    addon_id,
+    AVG(dau) AS avg_three_weeks_before
+  FROM
+    `{get_amo_stats_dau_view_name()}`
+  WHERE
+    submission_date BETWEEN @four_weeks_date AND @one_week_date
+  GROUP BY
+    addon_id)
+SELECT
+  *
+FROM
+  this_week
+JOIN
+  three_weeks_before_this_week
+USING
+  (addon_id)
+"""
+
+    rows = client.query(
+        query,
+        job_config=bigquery.QueryJobConfig(
+            query_parameters=[
+                bigquery.ScalarQueryParameter(
+                    'one_week_date', 'DATE', one_week_date
+                ),
+                bigquery.ScalarQueryParameter(
+                    'four_weeks_date', 'DATE', four_weeks_date
+                ),
+            ]
+        ),
+    ).result()
+
+    return {
+        row['addon_id']: {
+            'avg_this_week': row['avg_this_week'],
+            'avg_three_weeks_before': row['avg_three_weeks_before'],
+        }
+        for row in rows if row['addon_id']
+    }
