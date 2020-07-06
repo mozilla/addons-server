@@ -1,4 +1,3 @@
-import os
 import tempfile
 
 from django import forms
