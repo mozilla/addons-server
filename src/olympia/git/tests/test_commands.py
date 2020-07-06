@@ -100,12 +100,14 @@ class TestGitExtraction(TestCase):
     def test_handle_entries_with_same_created_date(self):
         create_switch(SWITCH_NAME, active=True)
         created = datetime.datetime(2020, 7, 5)
-        e1_1 = GitExtractionEntry.objects.create(
-            addon=self.addon, created=created
-        )
-        e1_2 = GitExtractionEntry.objects.create(
-            addon=self.addon, created=created
-        )
+        # First entry inserted for the add-on.
+        GitExtractionEntry.objects.create(addon=self.addon, created=created)
+        # Second entry inserted for the add-on.
+        GitExtractionEntry.objects.create(addon=self.addon, created=created)
+        # Third entry inserted for the add-on but this one has
+        # `in_progress=False` to simulate a previous execution of the task.
+        # Without the right `order` value, other entries might be processed
+        # instead of this one.
         e1_3 = GitExtractionEntry.objects.create(
             addon=self.addon, created=created, in_progress=False
         )
