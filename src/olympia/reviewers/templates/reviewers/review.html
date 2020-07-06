@@ -304,7 +304,7 @@
           </li>
         {% endif %}
 
-        {% if addon.versions.filter(reviewerflags__pending_rejection__isnull=False) %}
+        {% if has_versions_pending_rejection %}
           <li>
               <button data-api-url="{{ drf_url('reviewers-addon-clear-pending-rejections', addon.pk) }}"
                       id="clear_pending_rejections" class="oneoff" type="button">{{ _('Clear pending rejections') }}</button>
