@@ -52,7 +52,7 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
         if response.status_code != 200:
             raise requests.exceptions.RequestException()
     except requests.exceptions.RequestException as e:
-        log.exception('Calling recommendation engine failed: %s' % e)
+        log.exception('Calling recommendation engine failed: %s', e)
         statsd.incr('services.recommendations.fail')
         return None
     else:
