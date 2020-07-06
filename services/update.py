@@ -1,5 +1,4 @@
 import json
-import sys
 
 from django.utils.encoding import force_bytes
 from email.utils import formatdate
