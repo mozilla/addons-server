@@ -714,5 +714,4 @@ class TestUpdateConnectionEncoding(TransactionTestCase):
         instance = update.Update(data)
         output = instance.get_output()
         update_data = json.loads(output)
-        import ipdb
-        ipdb.set_trace()
+        assert update_data
