@@ -175,5 +175,4 @@ def deliver_hotness():
     threshold = 250 if addon type is theme, else 1000
     hotness = (a-b) / b if a > threshold and b > 1 else 0
     """
-    # See: https://github.com/mozilla/addons-server/issues/14815
     pass
