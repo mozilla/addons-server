@@ -97,6 +97,27 @@ class TestGitExtraction(TestCase):
         )
         assert self.command.extract_addon.call_count == 2
 
+    def test_handle_entries_with_same_created_date(self):
+        create_switch(SWITCH_NAME, active=True)
+        created = datetime.datetime(2020, 7, 5)
+        e1_1 = GitExtractionEntry.objects.create(
+            addon=self.addon, created=created
+        )
+        e1_2 = GitExtractionEntry.objects.create(
+            addon=self.addon, created=created
+        )
+        e1_3 = GitExtractionEntry.objects.create(
+            addon=self.addon, created=created, in_progress=False
+        )
+        self.command.extract_addon = mock.Mock()
+
+        self.command.handle(None, limit=2)
+
+        self.command.extract_addon.assert_has_calls(
+            [mock.call(e1_3), mock.call(mock.ANY)]
+        )
+        assert self.command.extract_addon.call_count == 2
+
     @mock.patch('olympia.git.management.commands.git_extraction.chain')
     def test_extract_addon_aborts_when_addon_is_already_being_extracted(
         self, chain_mock
