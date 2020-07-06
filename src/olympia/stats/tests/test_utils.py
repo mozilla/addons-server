@@ -5,7 +5,7 @@ from django.test.utils import override_settings
 from google.cloud import bigquery
 
 from olympia.amo.tests import TestCase, addon_factory
-from olympia.constants.applications import FIREFOX
+from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.stats.utils import (
     AMO_STATS_DAU_VIEW,
     AMO_TO_BIGQUERY_COLUMN_MAPPING,
@@ -96,19 +96,48 @@ class TestRowsToSeries(BigQueryTestMixin, TestCase):
         assert 'data' in series[0]
         assert series[0]['data'] == {'k1': 123, 'k2': 678}
 
-    def test_filter_by_dau_by_app_version(self):
-        filter_by = 'dau_by_app_version'
-        data = [
+    def test_filter_by_dau_by_app_version_and_fenix_build(self):
+        filter_by = AMO_TO_BIGQUERY_COLUMN_MAPPING.get('apps')
+        android_data = [{'key': '79.0.0', 'value': 987}]
+        firefox_data = [
             {'key': '77.0.0', 'value': 123},
             {'key': '76.0.1', 'value': 678},
         ]
-        rows = [self.create_fake_bigquery_row(dau_by_app_version=data)]
+        rows = [
+            self.create_fake_bigquery_row(
+                dau_by_app_version=firefox_data,
+                dau_by_fenix_build=android_data,
+            )
+        ]
 
         series = list(rows_to_series(rows, filter_by=filter_by))
 
         assert 'data' in series[0]
         assert series[0]['data'] == {
-            FIREFOX.guid: {'77.0.0': 123, '76.0.1': 678}
+            ANDROID.guid: {'79.0.0': 987},
+            FIREFOX.guid: {'77.0.0': 123, '76.0.1': 678},
+        }
+
+    def test_filter_by_dau_by_app_version_and_no_fenix_data(self):
+        filter_by = AMO_TO_BIGQUERY_COLUMN_MAPPING.get('apps')
+        android_data = []
+        firefox_data = [
+            {'key': '77.0.0', 'value': 123},
+            {'key': '76.0.1', 'value': 678},
+        ]
+        rows = [
+            self.create_fake_bigquery_row(
+                dau_by_app_version=firefox_data,
+                dau_by_fenix_build=android_data,
+            )
+        ]
+
+        series = list(rows_to_series(rows, filter_by=filter_by))
+
+        assert 'data' in series[0]
+        assert series[0]['data'] == {
+            ANDROID.guid: {},
+            FIREFOX.guid: {'77.0.0': 123, '76.0.1': 678},
         }
 
 

@@ -2,11 +2,11 @@ from django.conf import settings
 from django_statsd.clients import statsd
 from google.cloud import bigquery
 
-from olympia.constants.applications import FIREFOX
+from olympia.constants.applications import ANDROID, FIREFOX
 
 # This is the mapping between the AMO stats `sources` and the BigQuery columns.
 AMO_TO_BIGQUERY_COLUMN_MAPPING = {
-    'apps': 'dau_by_app_version',
+    'apps': 'dau_by_app_version, dau_by_fenix_build',
     'countries': 'dau_by_country',
     'locales': 'dau_by_locale',
     'os': 'dau_by_app_os',
@@ -27,13 +27,25 @@ def rows_to_series(rows, filter_by=None):
             'end': row['submission_date'],
         }
         if filter_by:
-            item['data'] = {
-                d['key']: d['value'] for d in row.get(filter_by, [])
-            }
-
+            # This filter is special because we have two columns instead of
+            # one.
             # See: https://github.com/mozilla/addons-server/issues/14411
+            # See: https://github.com/mozilla/addons-server/issues/14832
             if filter_by == AMO_TO_BIGQUERY_COLUMN_MAPPING['apps']:
-                item['data'] = {FIREFOX.guid: item['data']}
+                item['data'] = {
+                    ANDROID.guid: {
+                        d['key']: d['value']
+                        for d in row.get('dau_by_fenix_build', [])
+                    },
+                    FIREFOX.guid: {
+                        d['key']: d['value']
+                        for d in row.get('dau_by_app_version', [])
+                    },
+                }
+            else:
+                item['data'] = {
+                    d['key']: d['value'] for d in row.get(filter_by, [])
+                }
 
         yield item
 
