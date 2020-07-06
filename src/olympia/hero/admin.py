@@ -1,4 +1,3 @@
-import os
 import tempfile
 
 from django import forms
@@ -67,16 +66,21 @@ class PrimaryHeroImageAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-        (path, fn) = os.path.split(obj.custom_image.path)
-        dest_thumb = path + b'/thumbs/' + fn
 
         size_thumb = (150, 120)
         size_full = (960, 640)
 
-        resize_image(obj.custom_image.path, dest_thumb, size_thumb)
+        with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as tmp:
+            resize_image(obj.custom_image.path, tmp.name, size_thumb)
+            copy_stored_file(tmp.name, obj.thumbnail_path)
+
         with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as tmp:
             resize_image(obj.custom_image.path, tmp.name, size_full)
             copy_stored_file(tmp.name, obj.custom_image.path)
+
+    def delete_queryset(self, request, queryset):
+        for obj in queryset:
+            obj.delete()
 
 
 class HeroModuleInlineFormSet(BaseInlineFormSet):

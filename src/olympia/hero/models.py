@@ -2,6 +2,7 @@ import os
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms.widgets import RadioSelect
@@ -99,6 +100,11 @@ class PrimaryHeroImage(ModelBase):
         return f'{self.custom_image}'
 
     @property
+    def thumbnail_path(self):
+        (path, fn) = os.path.split(self.custom_image.path)
+        return path + b'/thumbs/' + fn
+
+    @property
     def preview_url(self):
         fn = os.path.basename(self.custom_image.path).decode('utf-8')
         return f'{HERO_PREVIEW_URL}{fn}'
@@ -112,6 +118,15 @@ class PrimaryHeroImage(ModelBase):
             return None
     preview_image.short_description = "Image"
     preview_image.allow_tags = True
+
+    def delete(self, *args, **kwargs):
+        if storage.exists(self.thumbnail_path):
+            storage.delete(self.thumbnail_path)
+
+        if storage.exists(self.custom_image.path):
+            storage.delete(self.custom_image.path)
+
+        super().delete(*args, **kwargs)
 
 
 class PrimaryHero(ModelBase):
