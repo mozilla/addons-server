@@ -242,6 +242,7 @@ GROUP BY addon_id"""
         results = [
             self.create_bigquery_row({'addon_id': 1, 'count': 123}),
             self.create_bigquery_row({'addon_id': 2, 'count': None}),
+            self.create_bigquery_row({'addon_id': None, 'count': 456}),
         ]
         client = self.create_mock_client(results=results)
         bigquery_client_mock.from_service_account_json.return_value = client
