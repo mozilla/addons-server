@@ -93,7 +93,7 @@ class Command(BaseCommand):
             # Don't auto-reject something that has been locked, even by the
             # task user - wait until it's free to avoid any conflicts.
             log.info(
-                'Skipping rejections for add-on %s until lock from %s '
+                'Skipping rejections for add-on %s until lock from user %s '
                 'has expired', addon.pk, locked_by)
             return
             set_reviewing_cache(addon.pk, settings.TASK_USER_ID)
