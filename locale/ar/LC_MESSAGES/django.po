@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-06-09 18:00+0000\n"
-"PO-Revision-Date: 2020-07-06 16:45+0000\n"
+"PO-Revision-Date: 2020-07-07 16:50+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -3112,7 +3112,7 @@ msgid "Unlisted Review Page"
 msgstr "تعليقات المستخدمين"
 
 msgid "Admin Manage"
-msgstr ""
+msgstr "إدارة المشرفين"
 
 msgid "View Statistics Dashboard"
 msgstr ""
@@ -3286,7 +3286,7 @@ msgid "You don't need coding skills to help keep Firefox the most customizable b
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "اطّلع على الطرق"
 
 msgid "Get involved"
 msgstr ""
@@ -6025,7 +6025,7 @@ msgid "Year"
 msgstr "العام الماضي"
 
 msgid "All-Time"
-msgstr ""
+msgstr "كل الأوقات"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -6262,7 +6262,7 @@ msgid "Compare this version to the last reviewed version"
 msgstr ""
 
 msgid "Compare"
-msgstr ""
+msgstr "مقارنة"
 
 #, fuzzy
 msgid "Permissions:"
@@ -6273,16 +6273,16 @@ msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
 
 msgid "Older"
-msgstr ""
+msgstr "الأقدم"
 
 msgid "Newer"
-msgstr ""
+msgstr "الأحدث"
 
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
 msgid "Recent Points"
-msgstr ""
+msgstr "أحدث النقاط"
 
 msgid "No points awarded yet."
 msgstr ""
@@ -6295,7 +6295,7 @@ msgid "No top reviewers yet."
 msgstr "لا تعليقات على الإضافة بعد."
 
 msgid "All Time"
-msgstr ""
+msgstr "كل الأوقات"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
@@ -6583,7 +6583,7 @@ msgid "Statistics Dashboard"
 msgstr "لوحة الإحصائيات"
 
 msgid "Controls:"
-msgstr ""
+msgstr "التحكم:"
 
 msgid "reset zoom"
 msgstr ""
@@ -6812,7 +6812,7 @@ msgstr "وطّن إلى: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
 msgstr "المحليّات الموجودة"
