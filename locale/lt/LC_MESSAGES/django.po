@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 18:00+0000\n"
+"POT-Creation-Date: 2020-07-07 23:26+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,9 +107,6 @@ msgstr ""
 
 msgid "Need help?"
 msgstr "Reikia pagalbos?"
-
-msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
 
 #, python-format
 msgid "Notification [%s] does not exist"
@@ -5473,6 +5470,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "Version string and guid match a blocklist Block"
+msgstr ""
+
 msgid "Risk breakdown not available."
 msgstr ""
 
@@ -5528,6 +5528,9 @@ msgid "Weight"
 msgstr ""
 
 msgid "Information Request Deadline"
+msgstr ""
+
+msgid "Pending Rejection Deadline"
 msgstr ""
 
 #, fuzzy
@@ -5712,6 +5715,10 @@ msgstr ""
 msgid "Expired Information Requests ({0})"
 msgstr " Priedo {0} indormacija"
 
+#, fuzzy
+msgid "Add-ons Pending Rejection ({0})"
+msgstr "Neperžiūrėtas"
+
 msgid "An unknown error occurred"
 msgstr ""
 
@@ -5750,6 +5757,10 @@ msgstr "Priedai"
 
 msgid "Internal AMO ID"
 msgstr ""
+
+#, fuzzy
+msgid "Support Website"
+msgstr "Svetainė"
 
 msgid "Visibility"
 msgstr "Matomumas"
@@ -5935,6 +5946,10 @@ msgstr " Priedo {0} indormacija"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection – Add-ons for Firefox"
+msgstr " Priedo {0} indormacija"
+
 msgid "Advanced Search"
 msgstr ""
 
@@ -5998,7 +6013,7 @@ msgstr ""
 msgid "You don't have permission to review it."
 msgstr ""
 
-msgid "Please select one or more versions in the list above."
+msgid "Please select one or more versions in the list below."
 msgstr ""
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -6067,6 +6082,9 @@ msgid "Clear Auto-Approval Extra Delay"
 msgstr ""
 
 msgid "Clear information request"
+msgstr ""
+
+msgid "Clear pending rejections"
 msgstr ""
 
 msgid "Clear Admin Code Review Flag"
@@ -6159,6 +6177,9 @@ msgid "Newer"
 msgstr ""
 
 msgid "{num} versions flagged by scanners on other pages."
+msgstr ""
+
+msgid "{num} versions pending rejection on other pages."
 msgstr ""
 
 msgid "Recent Points"
@@ -6259,6 +6280,13 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] " Priedo {0} indormacija"
 msgstr[1] " Priedo {0} indormacija"
 msgstr[2] " Priedo {0} indormacija"
+
+#, fuzzy
+msgid "Pending Rejection ({0})"
+msgid_plural "Pending Rejection ({0})"
+msgstr[0] "Neperžiūrėtas"
+msgstr[1] "Neperžiūrėtas"
+msgstr[2] "Neperžiūrėtas"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6415,9 +6443,6 @@ msgstr ""
 msgid "by Country"
 msgstr ""
 
-msgid "by Add-on Status"
-msgstr ""
-
 msgid "Custom Date Range"
 msgstr ""
 
@@ -6481,14 +6506,6 @@ msgid "365 days"
 msgstr ""
 
 msgid "Custom..."
-msgstr ""
-
-#, python-format
-msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr ""
-
-#, python-format
-msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
 msgstr ""
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
@@ -6858,6 +6875,19 @@ msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 msgctxt "user_list_others"

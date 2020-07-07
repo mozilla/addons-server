@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 18:00+0000\n"
+"POT-Creation-Date: 2020-07-07 23:26+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -113,9 +113,6 @@ msgstr "Níorbh fhéidir leat logáil isteach. Bain triail eile as."
 
 msgid "Need help?"
 msgstr "Cabhair uait?"
-
-msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
 
 #, python-format
 msgid "Notification [%s] does not exist"
@@ -5622,6 +5619,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "Version string and guid match a blocklist Block"
+msgstr ""
+
 msgid "Risk breakdown not available."
 msgstr ""
 
@@ -5684,6 +5684,9 @@ msgid "Weight"
 msgstr ""
 
 msgid "Information Request Deadline"
+msgstr ""
+
+msgid "Pending Rejection Deadline"
 msgstr ""
 
 #, fuzzy
@@ -5882,6 +5885,10 @@ msgstr ""
 msgid "Expired Information Requests ({0})"
 msgstr "Cuir an tEolas in Eagar"
 
+#, fuzzy
+msgid "Add-ons Pending Rejection ({0})"
+msgstr "Ag feitheamh le Réamhscrúdú"
+
 msgid "An unknown error occurred"
 msgstr ""
 
@@ -5920,6 +5927,10 @@ msgstr "Breiseán"
 
 msgid "Internal AMO ID"
 msgstr ""
+
+#, fuzzy
+msgid "Support Website"
+msgstr "Suíomh tacaíochta:"
 
 msgid "Visibility"
 msgstr "Infheictheacht"
@@ -6108,6 +6119,10 @@ msgstr "Cuir an tEolas in Eagar"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection – Add-ons for Firefox"
+msgstr "Cuir an tEolas in Eagar"
+
 msgid "Advanced Search"
 msgstr "Cuardach Casta"
 
@@ -6172,7 +6187,7 @@ msgstr ""
 msgid "You don't have permission to review it."
 msgstr ""
 
-msgid "Please select one or more versions in the list above."
+msgid "Please select one or more versions in the list below."
 msgstr ""
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -6248,6 +6263,9 @@ msgstr "Stádas Ceadaithe"
 #, fuzzy
 msgid "Clear information request"
 msgstr "Eolas le haghaidh Forbróirí"
+
+msgid "Clear pending rejections"
+msgstr ""
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
@@ -6341,6 +6359,9 @@ msgid "Newer"
 msgstr "Níos nuaí"
 
 msgid "{num} versions flagged by scanners on other pages."
+msgstr ""
+
+msgid "{num} versions pending rejection on other pages."
 msgstr ""
 
 msgid "Recent Points"
@@ -6451,6 +6472,15 @@ msgstr[1] "Ag Iarraidh Tuilleadh Eolais: {0}"
 msgstr[2] "Ag Iarraidh Tuilleadh Eolais: {0}"
 msgstr[3] "Ag Iarraidh Tuilleadh Eolais: {0}"
 msgstr[4] "Ag Iarraidh Tuilleadh Eolais: {0}"
+
+#, fuzzy
+msgid "Pending Rejection ({0})"
+msgid_plural "Pending Rejection ({0})"
+msgstr[0] "Ag feitheamh le Réamhscrúdú"
+msgstr[1] "Ag feitheamh le Réamhscrúdú"
+msgstr[2] "Ag feitheamh le Réamhscrúdú"
+msgstr[3] "Ag feitheamh le Réamhscrúdú"
+msgstr[4] "Ag feitheamh le Réamhscrúdú"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6610,9 +6640,6 @@ msgstr "de réir Ardáin"
 msgid "by Country"
 msgstr ""
 
-msgid "by Add-on Status"
-msgstr "de réir Stádas an Bhreiseáin"
-
 msgid "Custom Date Range"
 msgstr "Raon Saincheaptha Dátaí"
 
@@ -6678,14 +6705,6 @@ msgstr "365 lá"
 
 msgid "Custom..."
 msgstr "Saincheap..."
-
-#, python-format
-msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr ""
-
-#, python-format
-msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
-msgstr ""
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -7068,6 +7087,19 @@ msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 msgctxt "user_list_others"
