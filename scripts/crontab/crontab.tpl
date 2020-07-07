@@ -33,7 +33,6 @@ HOME=/tmp
 
 
 # Update ADI metrics from S3 once per day
-30 11 * * * %(django)s update_counts_from_file
 00 12 * * * %(django)s download_counts_from_file
 
 # Once per day after metrics import is done

@@ -305,14 +305,9 @@ class BlocklistSubmission(ModelBase):
 
     def all_adu_safe(self):
         threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
-        listed_adu_only = (
-            not waffle.switch_is_active('use-bigquery-for-addon-adu'))
 
-        return all(
-            (lambda du: du <= threshold and du)(block['average_daily_users'])
-            if listed_adu_only else
-            (lambda du: du <= threshold)(block['average_daily_users'])
-            for block in self.to_block)
+        return all((lambda du: du <= threshold)(block['average_daily_users'])
+                   for block in self.to_block)
 
     def has_version_changes(self):
         block_ids = [block['id'] for block in self.to_block]

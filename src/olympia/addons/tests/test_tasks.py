@@ -85,27 +85,13 @@ def test_create_missing_theme_previews(parse_addon_mock):
 
 @pytest.mark.django_db
 @override_switch('local-statistics-processing', active=True)
-def test_update_addon_average_daily_users_with_guid():
+def test_update_addon_average_daily_users():
     addon = addon_factory(average_daily_users=0)
     count = 123
     data = [(addon.guid, count)]
     assert addon.average_daily_users == 0
 
-    update_addon_average_daily_users(data, id_field='guid')
-    addon.refresh_from_db()
-
-    assert addon.average_daily_users == count
-
-
-@pytest.mark.django_db
-@override_switch('local-statistics-processing', active=True)
-def test_update_addon_average_daily_users_with_pk():
-    addon = addon_factory(average_daily_users=0)
-    count = 123
-    data = [(addon.id, count)]
-    assert addon.average_daily_users == 0
-
-    update_addon_average_daily_users(data, id_field='pk')
+    update_addon_average_daily_users(data)
     addon.refresh_from_db()
 
     assert addon.average_daily_users == count

@@ -3,9 +3,7 @@ import datetime
 import os
 
 from django.core.files.storage import default_storage as storage
-from django.core.management.base import CommandError
 from django.test.utils import override_settings
-from waffle.testutils import override_switch
 
 from unittest import mock
 
@@ -14,8 +12,7 @@ from olympia.addons import cron
 from olympia.addons.models import Addon, AppSupport
 from olympia.amo.tests import addon_factory, file_factory, TestCase
 from olympia.files.models import File
-from olympia.lib.es.utils import flag_reindexing_amo, unflag_reindexing_amo
-from olympia.stats.models import DownloadCount, UpdateCount
+from olympia.stats.models import DownloadCount
 from olympia.versions.models import Version
 
 
@@ -265,45 +262,10 @@ class TestAvgDailyUserCountTestCase(TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
-        super(TestAvgDailyUserCountTestCase, self).setUp()
+        super().setUp()
+
         self.create_switch('local-statistics-processing')
 
-    def test_13_day_window(self):
-        addon = Addon.objects.get(pk=3615)
-
-        # can't use a fixed date since we are relying on
-        # mysql to get us the `CURDATE()`
-        today = datetime.date.today()
-
-        # data is coming from `tab groups` add-on from
-        # jun 11 till may 29th 2017
-        stats = [
-            (today - datetime.timedelta(days=days_in_past), update_count)
-            for days_in_past, update_count in (
-                (1, 82708), (2, 78793), (3, 99586), (4, 104426), (5, 105431),
-                (6, 106065), (7, 98093), (8, 81710), (9, 78843), (10, 99383),
-                (11, 104431), (12, 105943), (13, 105039), (14, 100183),
-                (15, 82265)
-            )]
-
-        UpdateCount.objects.bulk_create([
-            UpdateCount(addon=addon, date=date, count=count)
-            for date, count in stats
-        ])
-
-        addon.update(average_daily_users=0)
-
-        cron.update_addon_average_daily_users()
-
-        addon.refresh_from_db()
-
-        assert (
-            82708 + 78793 + 99586 + 104426 + 105431 + 106065 + 98093 +
-            81710 + 78843 + 99383 + 104431 + 105943) / 12 == 95451
-
-        assert addon.average_daily_users == 95451
-
-    @override_switch('use-bigquery-for-addon-adu', active=True)
     @mock.patch(
         'olympia.addons.cron.get_addons_and_average_daily_users_from_bigquery'
     )
@@ -355,7 +317,6 @@ class TestAvgDailyUserCountTestCase(TestCase):
         # The value is 0 because the add-on does not have download counts.
         assert addon_without_count.average_daily_users == 0
 
-    @override_switch('use-bigquery-for-addon-adu', active=True)
     @mock.patch('olympia.addons.cron.chunked')
     @mock.patch(
         'olympia.addons.cron.get_addons_and_average_daily_users_from_bigquery'
@@ -412,35 +373,6 @@ class TestAvgDailyUserCountTestCase(TestCase):
             (dictionary.guid, dictionary_count),
         ], 250)
 
-    def test_adu_flag(self):
-        addon = Addon.objects.get(pk=3615)
-
-        now = datetime.datetime.now()
-        counter = UpdateCount.objects.create(addon=addon, date=now,
-                                             count=1234)
-        counter.save()
-
-        assert \
-            addon.average_daily_users > addon.total_downloads + 10000, \
-            ('Unexpected ADU count. ADU of %d not greater than %d' % (
-                addon.average_daily_users, addon.total_downloads + 10000))
-
-        adu = cron.update_addon_average_daily_users
-        flag_reindexing_amo('new', 'old', 'alias')
-        try:
-            # Should fail.
-            self.assertRaises(CommandError, adu)
-
-            # Should work with the environ flag.
-            os.environ['FORCE_INDEXING'] = '1'
-            adu()
-        finally:
-            unflag_reindexing_amo()
-            os.environ.pop('FORCE_INDEXING', None)
-
-        addon = Addon.objects.get(pk=3615)
-        assert addon.average_daily_users == 1234
-
     def test_total_and_average_downloads(self):
         addon = Addon.objects.get(pk=3615)
         old_total_downloads = addon.total_downloads
@@ -487,103 +419,5 @@ class TestAvgDailyUserCountTestCase(TestCase):
 
 
 class TestDeliverHotness(TestCase):
-    def setUp(self):
-        self.extension = addon_factory()
-        self.static_theme = addon_factory(type=amo.ADDON_STATICTHEME)
-        self.unpopular_extension = addon_factory()
-        self.unpopular_theme = addon_factory(type=amo.ADDON_STATICTHEME)
-        self.barely_popular_theme = addon_factory(
-            type=amo.ADDON_STATICTHEME)
-        self.same_stats_as_barely_popular_theme = addon_factory()
-        self.awaiting_review = addon_factory(status=amo.STATUS_NOMINATED)
-
-        today = datetime.date.today()
-
-        stats = [
-            (today - datetime.timedelta(days=days_in_past), update_count)
-            for days_in_past, update_count in (
-                (1, 827080), (2, 787930), (3, 995860), (4, 1044260),
-                (5, 105431), (6, 106065), (7, 980930), (8, 817100), (9, 78843),
-                (10, 993830), (11, 104431), (12, 105943), (13, 105039),
-                (14, 100183), (15, 82265), (16, 100183), (17, 82265),
-                (18, 100183), (19, 82265), (20, 100183), (21, 82265),
-
-            )]
-
-        unpopular_stats = [
-            (today - datetime.timedelta(days=days_in_past), update_count)
-            for days_in_past, update_count in (
-                (1, 99), (2, 76), (3, 25), (4, 32),
-                (5, 289), (6, 34), (7, 45), (8, 25), (9, 78),
-                (10, 36), (11, 25), (12, 100), (13, 156),
-                (14, 24), (15, 9), (16, 267), (17, 176),
-                (18, 16), (19, 156), (20, 187), (21, 149),
-
-            )]
-
-        barely_popular_stats = [
-            (today - datetime.timedelta(days=days_in_past), update_count)
-            for days_in_past, update_count in (
-                (1, 399), (2, 276), (3, 215), (4, 312),
-                (5, 289), (6, 234), (7, 345), (8, 205), (9, 178),
-                (10, 336), (11, 325), (12, 400), (13, 456),
-                (14, 324), (15, 290), (16, 267), (17, 276),
-                (18, 216), (19, 256), (20, 287), (21, 249),
-
-            )]
-
-        for obj in (self.extension, self.static_theme,
-                    self.awaiting_review):
-            UpdateCount.objects.bulk_create([
-                UpdateCount(addon=obj, date=date, count=count)
-                for date, count in stats
-            ])
-
-        for obj in (self.unpopular_extension, self.unpopular_theme):
-            UpdateCount.objects.bulk_create([
-                UpdateCount(addon=obj, date=date, count=count)
-                for date, count in unpopular_stats
-            ])
-
-        for obj in (self.barely_popular_theme,
-                    self.same_stats_as_barely_popular_theme):
-            UpdateCount.objects.bulk_create([
-                UpdateCount(addon=obj, date=date, count=count)
-                for date, count in barely_popular_stats
-            ])
-
-    @mock.patch('olympia.addons.cron.time.sleep', lambda *a, **kw: None)
-    def test_basic(self):
+    def test_does_nothing(self):
         cron.deliver_hotness()
-
-        assert self.extension.reload().hotness == 1.652672126445855
-        assert self.static_theme.reload().hotness == 1.652672126445855
-
-        # Unpopular extensions and static themes have a hotness of 0
-        assert self.unpopular_extension.reload().hotness == 0
-        assert self.unpopular_theme.reload().hotness == 0
-
-        # A barely popular static theme should have a hotness value > 0
-        # but when the same stats are applied to an extension,
-        # it should have a hotness of 0
-        assert (
-            self.barely_popular_theme.reload().hotness ==
-            0.0058309523809523135)
-        assert (
-            self.same_stats_as_barely_popular_theme.reload().hotness ==
-            0)
-
-        # Only public add-ons get hotness calculated
-        assert self.awaiting_review.reload().hotness == 0
-
-    @mock.patch('olympia.addons.cron.time.sleep', lambda *a, **kw: None)
-    def test_avoid_overwriting_values(self):
-        cron.deliver_hotness()
-
-        assert self.extension.reload().hotness == 1.652672126445855
-
-        # Make sure we don't update add-ons if nothing changed
-        with mock.patch('olympia.addons.cron.Addon.update') as mocked_update:
-            cron.deliver_hotness()
-
-        assert not mocked_update.called

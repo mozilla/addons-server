@@ -87,14 +87,14 @@ def update_addon_average_daily_users(data, **kw):
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    for addon_id, count in data:
+    for addon_guid, count in data:
         try:
-            addon = Addon.objects.get(**{kw['id_field']: addon_id})
+            addon = Addon.objects.get(guid=addon_guid)
         except Addon.DoesNotExist:
             # The processing input comes from metrics which might be out of
             # date in regards to currently existing add-ons
             m = "Got an ADU update (%s) but the add-on doesn't exist (%s)"
-            log.info(m % (count, addon_id))
+            log.info(m % (count, addon_guid))
             continue
 
         addon.update(average_daily_users=int(float(count)))

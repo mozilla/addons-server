@@ -54,7 +54,7 @@ from olympia.constants.categories import CATEGORIES
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.lib.es.utils import timestamp_index
-from olympia.stats.indexers import DownloadCountIndexer, UpdateCountIndexer
+from olympia.stats.indexers import DownloadCountIndexer
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.versions.models import ApplicationsVersions, License, Version
@@ -126,8 +126,6 @@ def setup_es_test_data(es):
         actual_indices['default'])
     DownloadCountIndexer.create_new_index(
         actual_indices['stats_download_counts'])
-    UpdateCountIndexer.create_new_index(
-        actual_indices['stats_update_counts'])
 
     # Alias it to the name the code is going to use (which is suffixed by
     # pytest to avoid clashing with the real thing).
@@ -136,8 +134,6 @@ def setup_es_test_data(es):
                  'alias': settings.ES_INDEXES['default']}},
         {'add': {'index': actual_indices['stats_download_counts'],
                  'alias': settings.ES_INDEXES['stats_download_counts']}},
-        {'add': {'index': actual_indices['stats_update_counts'],
-                 'alias': settings.ES_INDEXES['stats_update_counts']}},
     ]
 
     es.indices.update_aliases({'actions': actions})

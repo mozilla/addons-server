@@ -1,13 +1,9 @@
-import collections
 from datetime import timedelta
-
-import six
 
 from django.db.models import Max, Min
 
 from celery import group
 
-from olympia import amo
 from olympia.lib.es.utils import create_index
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.indexers import BaseSearchIndexer
@@ -141,89 +137,3 @@ class DownloadCountIndexer(StatsIndexer):
             'id': obj.id,
             '_id': '{0}-{1}'.format(obj.addon_id, obj.date)
         }
-
-
-class UpdateCountIndexer(StatsIndexer):
-    @classmethod
-    def get_model(cls):
-        from olympia.stats.models import UpdateCount
-        return UpdateCount
-
-    @classmethod
-    def get_indexing_task(cls):
-        from olympia.stats.tasks import index_update_counts
-        return index_update_counts
-
-    @classmethod
-    def extract_document(cls, obj):
-        # We index all the key/value pairs as lists of {'k': key, 'v': value}
-        # dicts so that ES doesn't include every single key in the
-        # update_counts mapping.
-        """
-        {'addon': addon id,
-         'date': date,
-         'count': total count,
-         'id': some unique id,
-         'versions': [{'k': addon version, 'v': count}]
-         'os': [{'k': amo.PLATFORM.name, 'v': count}]
-         'locales': [{'k': locale, 'v': count}  # (all locales lower case)
-         'apps': {amo.APP.guid: [{'k': app version, 'v': count}}]
-         'status': [{'k': status, 'v': count}
-        """
-        doc = {'addon': obj.addon_id,
-               'date': obj.date,
-               'count': obj.count,
-               'id': obj.id,
-               '_id': '{0}-{1}'.format(obj.addon_id, obj.date),
-               'versions': cls.es_dict(obj.versions),
-               'os': [],
-               'locales': [],
-               'apps': [],
-               'status': []}
-
-        # Only count platforms we know about.
-        if obj.oses:
-            os = collections.defaultdict(int)
-            for key, count in obj.oses.items():
-                platform = None
-
-                if six.text_type(key).lower() in amo.PLATFORM_DICT:
-                    platform = amo.PLATFORM_DICT[six.text_type(key).lower()]
-                elif key in amo.PLATFORMS:
-                    platform = amo.PLATFORMS[key]
-
-                if platform is not None:
-                    os[platform.name] += count
-                    doc['os'] = cls.es_dict((six.text_type(k), v)
-                                            for k, v in os.items())
-
-        # Case-normalize locales.
-        if obj.locales:
-            locales = collections.defaultdict(int)
-            for locale, count in obj.locales.items():
-                try:
-                    locales[locale.lower()] += int(count)
-                except ValueError:
-                    pass
-            doc['locales'] = cls.es_dict(locales)
-
-        # Only count app/version combos we know about.
-        if obj.applications:
-            apps = collections.defaultdict(dict)
-            for guid, version_counts in obj.applications.items():
-                if guid not in amo.APP_GUIDS:
-                    continue
-                app = amo.APP_GUIDS[guid]
-                for version, count in version_counts.items():
-                    try:
-                        apps[app.guid][version] = int(count)
-                    except ValueError:
-                        pass
-            doc['apps'] = {
-                app: cls.es_dict(vals) for app, vals in apps.items()
-            }
-
-        if obj.statuses:
-            doc['status'] = cls.es_dict((k, v) for k, v in obj.statuses.items()
-                                        if k != 'null')
-        return doc
