@@ -873,13 +873,15 @@ def review(request, addon, channel=None):
         verdict_info = summary.calculate_verdict(pretty=True)
         auto_approval_info[a_version.pk] = verdict_info
 
+    versions_pending_rejection_qs = versions_qs.filter(
+        reviewerflags__pending_rejection__isnull=False)
+    has_versions_pending_rejection = versions_pending_rejection_qs.exists()
     # We want to notify the reviewer if there are versions needing extra
     # attention that are not present in the versions history (which is
     # paginated).
-    versions_flagged_by_scanners = versions_qs.filter(
+    versions_flagged_by_scanners_other = versions_qs.filter(
         needs_human_review=True).exclude(pk__in=version_ids).count()
-    versions_pending_rejection = versions_qs.filter(
-        reviewerflags__pending_rejection__isnull=False).exclude(
+    versions_pending_rejection_other = versions_pending_rejection_qs.exclude(
         pk__in=version_ids).count()
 
     flags = get_flags(addon, version) if version else []
@@ -907,24 +909,38 @@ def review(request, addon, channel=None):
     )
 
     ctx = context(
-        actions=actions, actions_comments=actions_comments,
-        actions_full=actions_full, addon=addon,
+        actions=actions,
+        actions_comments=actions_comments,
+        actions_full=actions_full,
+        addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
-        approvals_info=approvals_info, auto_approval_info=auto_approval_info,
-        content_review=content_review, count=count,
-        deleted_addon_ids=deleted_addon_ids, flags=flags,
-        form=form, is_admin=is_admin, is_recommendable=is_recommendable,
-        name_translations=name_translations, now=datetime.now(),
-        num_pages=num_pages, pager=pager, reports=reports,
+        approvals_info=approvals_info,
+        auto_approval_info=auto_approval_info,
         base_version=base_version,
+        content_review=content_review,
+        count=count,
+        deleted_addon_ids=deleted_addon_ids,
+        flags=flags,
+        form=form,
+        has_versions_pending_rejection=has_versions_pending_rejection,
+        is_admin=is_admin,
+        is_recommendable=is_recommendable,
+        name_translations=name_translations,
+        now=datetime.now(),
+        num_pages=num_pages,
+        pager=pager,
+        reports=reports,
         subscribed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon).exists(),
         unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
-        user_changes_log=user_changes_log, user_ratings=user_ratings,
-        versions_flagged_by_scanners=versions_flagged_by_scanners,
-        versions_pending_rejection=versions_pending_rejection,
-        version=version, whiteboard_form=whiteboard_form,
-        whiteboard_url=whiteboard_url)
+        user_changes_log=user_changes_log,
+        user_ratings=user_ratings,
+        version=version,
+        versions_flagged_by_scanners_other=versions_flagged_by_scanners_other,
+        versions_pending_rejection_other=versions_pending_rejection_other,
+        whiteboard_form=whiteboard_form,
+        whiteboard_url=whiteboard_url,
+    )
     return render(request, 'reviewers/review.html', ctx)
 
 
