@@ -56,9 +56,9 @@ class Command(BaseCommand):
             # If an add-on ID is present more than once, the `extract_addon()`
             # method will skip all but the first occurrence because the add-on
             # will be locked for git extraction.
-            entries = GitExtractionEntry.objects.order_by('-created').all()[
-                : options.get('limit', LIMIT)
-            ]
+            entries = GitExtractionEntry.objects.order_by(
+                '-created', '-in_progress'
+            ).all()[: options.get('limit', LIMIT)]
             for entry in entries:
                 self.extract_addon(entry)
 
