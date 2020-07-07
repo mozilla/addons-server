@@ -10,6 +10,7 @@ from olympia.stats.utils import (
     AMO_STATS_DAU_VIEW,
     AMO_TO_BIGQUERY_COLUMN_MAPPING,
     get_addons_and_average_daily_users_from_bigquery,
+    get_averages_by_addon_from_bigquery,
     get_updates_series,
     rows_to_series,
 )
@@ -278,3 +279,99 @@ GROUP BY addon_id"""
 
         returned_results = get_addons_and_average_daily_users_from_bigquery()
         assert returned_results == [(1, 123)]
+
+
+@override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
+class TestGetAveragesByAddonFromBigQuery(BigQueryTestMixin, TestCase):
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_client(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+
+        credentials = 'path/to/credentials.json'
+        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
+            get_averages_by_addon_from_bigquery(today=date.today())
+
+        bigquery_client_mock.from_service_account_json.assert_called_once_with(
+            credentials
+        )
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_query(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+        expected_query = f"""
+WITH
+  this_week AS (
+  SELECT
+    addon_id,
+    AVG(dau) AS avg_this_week
+  FROM
+    `project.dataset.{AMO_STATS_DAU_VIEW}`
+  WHERE
+    submission_date >= @one_week_date
+  GROUP BY
+    addon_id),
+  three_weeks_before_this_week AS (
+  SELECT
+    addon_id,
+    AVG(dau) AS avg_three_weeks_before
+  FROM
+    `project.dataset.{AMO_STATS_DAU_VIEW}`
+  WHERE
+    submission_date BETWEEN @four_weeks_date AND @one_week_date
+  GROUP BY
+    addon_id)
+SELECT
+  *
+FROM
+  this_week
+JOIN
+  three_weeks_before_this_week
+USING
+  (addon_id)
+"""
+
+        get_averages_by_addon_from_bigquery(today=date(2020, 5, 31))
+
+        client.query.assert_called_once_with(
+            expected_query, job_config=mock.ANY
+        )
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_returned_values(self, bigquery_client_mock):
+        results = [
+            self.create_bigquery_row(
+                {
+                    'addon_id': 'guid',
+                    'avg_this_week': 123,
+                    'avg_three_weeks_before': 456,
+                }
+            ),
+            self.create_bigquery_row(
+                {
+                    'addon_id': 'guid2',
+                    'avg_this_week': 45,
+                    'avg_three_weeks_before': 40,
+                }
+            ),
+            # This should be skipped because `addon_id` is `None`.
+            self.create_bigquery_row(
+                {
+                    'addon_id': None,
+                    'avg_this_week': 123,
+                    'avg_three_weeks_before': 456,
+                }
+            ),
+        ]
+        client = self.create_mock_client(results=results)
+        bigquery_client_mock.from_service_account_json.return_value = client
+
+        returned_results = get_averages_by_addon_from_bigquery(
+            today=date(2020, 5, 6)
+        )
+
+        assert returned_results == {
+            'guid': {'avg_this_week': 123, 'avg_three_weeks_before': 456},
+            'guid2': {'avg_this_week': 45, 'avg_three_weeks_before': 40},
+        }

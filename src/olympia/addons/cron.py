@@ -1,3 +1,7 @@
+import time
+
+from datetime import date
+
 from django.db.models import F, Q, Sum
 from django.db.models.functions import Coalesce
 
@@ -8,7 +12,7 @@ from celery import group
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_download_totals as _update_addon_download_totals,
@@ -17,7 +21,8 @@ from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked
 from olympia.files.models import File
 from olympia.stats.utils import (
-    get_addons_and_average_daily_users_from_bigquery)
+    get_addons_and_average_daily_users_from_bigquery,
+    get_averages_by_addon_from_bigquery)
 
 
 log = olympia.core.logger.getLogger('z.cron')
@@ -175,5 +180,29 @@ def deliver_hotness():
     threshold = 250 if addon type is theme, else 1000
     hotness = (a-b) / b if a > threshold and b > 1 else 0
     """
-    # See: https://github.com/mozilla/addons-server/issues/14815
-    pass
+    frozen = set(f.addon_id for f in FrozenAddon.objects.all())
+    averages = get_averages_by_addon_from_bigquery(today=date.today())
+    addons = (
+        Addon.objects.filter(guid__in=averages.keys())
+        .filter(status__in=amo.REVIEWED_STATUSES)
+        .exclude(id__in=frozen)
+    )
+
+    for addon in addons:
+        average = averages.get(addon.guid)
+        this = average['avg_this_week']
+        three = average['avg_three_weeks_before']
+
+        # Update the hotness score but only update hotness if necessary. We
+        # don't want to cause unnecessary re-indexes.
+        threshold = 250 if addon.type == amo.ADDON_STATICTHEME else 1000
+        if this > threshold and three > 1:
+            hotness = (this - three) / float(three)
+            if addon.hotness != hotness:
+                addon.update(hotness=hotness)
+        else:
+            if addon.hotness != 0:
+                addon.update(hotness=0)
+
+        # Let the database catch its breath.
+        time.sleep(10)
