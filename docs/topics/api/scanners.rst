@@ -27,3 +27,4 @@ This endpoint returns a list of labelled scanner results.
     :>json string scanner: The scanner name.
     :>json string label: Either ``good`` or ``bad``.
     :>json object results: The scanner (raw) results.
+    :>json string created: The date the result was created, formatted with `this format <http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15>`_.
