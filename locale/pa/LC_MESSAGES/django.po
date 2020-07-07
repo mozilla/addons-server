@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 18:00+0000\n"
+"POT-Creation-Date: 2020-07-07 23:26+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,9 +104,6 @@ msgid "You could not be logged in. Please try again."
 msgstr ""
 
 msgid "Need help?"
-msgstr ""
-
-msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
 
 #, python-format
@@ -5655,6 +5652,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "Version string and guid match a blocklist Block"
+msgstr ""
+
 msgid "Risk breakdown not available."
 msgstr ""
 
@@ -5709,6 +5709,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Information Request Deadline"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
+
+#, fuzzy
+msgid "Pending Rejection Deadline"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
 #, fuzzy
@@ -5899,6 +5903,10 @@ msgstr "ਅੱਜ ਦਾ ਸੁਨੇਹਾ ਅੱਪਡੇਟ ਕਰੋ"
 msgid "Expired Information Requests ({0})"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
+#, fuzzy
+msgid "Add-ons Pending Rejection ({0})"
+msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
+
 msgid "An unknown error occurred"
 msgstr "ਅਣਜਾਣ ਖਾਮੀ ਆਈ"
 
@@ -5939,6 +5947,10 @@ msgstr "ਐਡ-ਆਨ"
 
 msgid "Internal AMO ID"
 msgstr ""
+
+#, fuzzy
+msgid "Support Website"
+msgstr "ਸਹਿਯੋਗ ਸਾਈਟ"
 
 msgid "Visibility"
 msgstr "ਪ੍ਰਤੱਖਤਾ"
@@ -6130,6 +6142,10 @@ msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection – Add-ons for Firefox"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
+
 msgid "Advanced Search"
 msgstr "ਤਕਨੀਕੀ ਖੋਜ"
 
@@ -6195,7 +6211,7 @@ msgstr ""
 msgid "You don't have permission to review it."
 msgstr "ਮੇਰੇ ਕੋਲ ਖਾਤਾ ਨਹੀਂ ਹੈ।"
 
-msgid "Please select one or more versions in the list above."
+msgid "Please select one or more versions in the list below."
 msgstr ""
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -6272,6 +6288,9 @@ msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
 #, fuzzy
 msgid "Clear information request"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
+
+msgid "Clear pending rejections"
+msgstr ""
 
 #, fuzzy
 msgid "Clear Admin Code Review Flag"
@@ -6368,6 +6387,9 @@ msgstr "ਨਵਾਂ"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
+msgid "{num} versions pending rejection on other pages."
+msgstr ""
+
 msgid "Recent Points"
 msgstr "ਤਾਜ਼ੇ ਅੰਕ"
 
@@ -6462,6 +6484,12 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਕਰੋ: {0}"
 msgstr[1] "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਕਰੋ: {0}"
+
+#, fuzzy
+msgid "Pending Rejection ({0})"
+msgid_plural "Pending Rejection ({0})"
+msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
+msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6620,9 +6648,6 @@ msgstr "ਪਲੇਟਫ਼ਾਰਮ ਦੁਆਰਾ"
 msgid "by Country"
 msgstr ""
 
-msgid "by Add-on Status"
-msgstr "ਐਡ-ਆਨ ਦਰਜੇ ਦੁਆਰਾ"
-
 msgid "Custom Date Range"
 msgstr "ਪਸੰਦੀਦਾ ਮਿਤੀ ਸੀਮਾ"
 
@@ -6687,14 +6712,6 @@ msgstr "365 ਦਿਨਾਂ"
 
 msgid "Custom..."
 msgstr "ਪਸੰਦੀਦਾ..."
-
-#, python-format
-msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr ""
-
-#, python-format
-msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
-msgstr ""
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -7084,6 +7101,19 @@ msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 msgctxt "user_list_others"

@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 18:00+0000\n"
+"POT-Creation-Date: 2020-07-07 23:26+0000\n"
 "PO-Revision-Date: 2020-06-11 03:01+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,11 +104,6 @@ msgstr "Man xatikïr ta xatok. Tatojtob'ej chik."
 
 msgid "Need help?"
 msgstr "¿La nawajo' ato'ik?"
-
-msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
-"Man yetikïr ta nikiyüj ri rub'i' ataqoya'l ri rub'anonela' tz'aqat o wachinel. K'o chi ye'ayüj ronojel ri taq tz'aqat chuqa' ximon taq wachinel rik'in re rub'i' taqoya'l re' o ye'aq'axaj chi ke "
-"ch'aqa' chik okisanela'."
 
 #, python-format
 msgid "Notification [%s] does not exist"
@@ -292,10 +287,10 @@ msgstr "Man Xilitäj ta"
 #, fuzzy, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Kojakuyu', man xqïl ta ri nakanoj.</h1> <p> Ri ruxaq o Yakb'äl xak'utuj man k'o ta pa ruxaq qak'amaya'l. Rik'in jub'a' xapïtz' pa ruwi' jun ojer ximonel o man ütz ta xatz'ib'aj ri ochochib'äl. "
 "</p> <ul> <li>We xatz'ib'aj ri ochochib'äl tanik'oj chik.</li> <li> We xawojqaj jun ximonel pa jun ruxaq k'amaya'l <a href=\"https://github.com/mozilla/addons-server/issues/new/\">tayaka' jun "
@@ -454,11 +449,11 @@ msgstr "Taq ruwäch"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Estape' ri chokoy k'ulun ruma ri atz'aqat man nuk'utuj ta jun tzijoxïk yakb'äl, k'o chi natz'aqatisaj jun rik'in ri taq richinil najowäx, achi'el nichol "
-"%(amo_manifests_mdn_link_open)swawe%(amo_manifests_mdn_link_close)s."
+"Estape' ri chokoy k'ulun ruma ri atz'aqat man nuk'utuj ta jun tzijoxïk yakb'äl, k'o chi natz'aqatisaj jun rik'in ri taq richinil najowäx, achi'el nichol %(amo_manifests_mdn_link_open)swawe"
+"%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Re ichinan URL re' nokisäx chik pa jun chi ke ri amol."
@@ -1786,7 +1781,8 @@ msgstr ""
 "Pa re ruxaq re'. <span class=\"helptext\">Chi rij ninik'öx ri b'itz'ib', t'ijtäq okisanela' xketikïr xkekitz'ët ri taq atzijol pa re ruxaq re' chuqa' pa ri Kinuk'samajel Kitz'aqat Firefox. Ja ri "
 "ruxaq xkesamajin ri yonil taq k'exoj. Ri t'zaqat xtichap chuqa' richin kitalunem chuqa' ch'akoj kimoloj ri Mozilla. Chuqa' ri taq yakb'äl enik'on xketalüx achi'el kichin.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Awuma rat. <span class=\"helptext\">Re ruwäch re' xtijuch' richin nitalüx awuma. Ri taq k'exoj xkesamajïx chi q'ab'aj rik'in jun updateURL o chi kij taq ruk'exoj ri chokoy.</span>"
 
 msgid "Display Name"
@@ -2110,7 +2106,9 @@ msgstr ""
 "ruwäch re tz'aqat re'."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Tik'ex ri K'amonem</a> <a href=\"%(version_url)s\" class=\"button\">Tijotob'äx K'ak'a' Ruwäch</a> o <a href=\"#\" "
 "class=\"close\">Tirepüx kan</a>"
@@ -2342,8 +2340,8 @@ msgid "Email"
 msgstr "Taqoya'l"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "We nawajo' nak'üt ri taqoya'l richin ye'asöl taq k'utunïk, tatz'ib'aj wawe'. We jalajöj taq ataqoya'l pa jujun ch'ab'äl, tikirel yetz'aqatisäx kitzalq'omen kichin jujun ch'ab'äl, tikirel "
 "yetz'aqatisäx taq tzalq'omanem richin re k'ojlib'äl re'. Okel xa xe pa cholajin taq tz'aqat."
@@ -2791,8 +2789,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
@@ -2910,8 +2908,8 @@ msgstr "JWT jask'um"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "Richin ye'ab'än API taq k'utunïk, tataqa' jun <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> achi'el rub'anikil b'i'aj richin niya' q'ij. K'o chi nab'än jun JWT toq natäq jun k'utunïk, achi'el "
 "nitzijöx pa <a href=\"%(docs_url)s\">API wujinem</a>."
@@ -2986,7 +2984,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -5277,8 +5276,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Junelïk taq K'utunïk pa kiwi' taq Tzijoxïk"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Ri kejqalem taq tz'aqat jun rub'anikil richin ye'akomonij ri taq ana'oj chi kij ri taq tz'aqat e'ayakon chuqa' e'awokisan. Pa kiq'a' ri qamolaj k'o richin yekipäj ri taq ejqalem richin yekixutuj o "
 "nikiyüj xab'achike ejqalem man rojqan ta xab'achike chi ke re taq rucholajil re'."
@@ -5569,6 +5568,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "Version string and guid match a blocklist Block"
+msgstr ""
+
 msgid "Risk breakdown not available."
 msgstr ""
 
@@ -5623,6 +5625,10 @@ msgid "Weight"
 msgstr "Ralal"
 
 msgid "Information Request Deadline"
+msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
+
+#, fuzzy
+msgid "Pending Rejection Deadline"
 msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
 
 #, fuzzy
@@ -5791,6 +5797,10 @@ msgstr "Tik'ex ri tzijol wakami"
 msgid "Expired Information Requests ({0})"
 msgstr "Xk'is Ruq'ijul ri Etamab'äl Xek'utüx ({0})"
 
+#, fuzzy
+msgid "Add-ons Pending Rejection ({0})"
+msgstr "Runik'oxik Rajil ({0})"
+
 msgid "An unknown error occurred"
 msgstr "Xk'ulwachitäj jun man etaman ta ruwäch chi sachoj."
 
@@ -5830,6 +5840,10 @@ msgstr "Tz'aqat"
 
 msgid "Internal AMO ID"
 msgstr ""
+
+#, fuzzy
+msgid "Support Website"
+msgstr "Ruxaq Ruk'amaya'l Tob'äl:"
 
 msgid "Visibility"
 msgstr "Wachel"
@@ -6010,6 +6024,10 @@ msgstr "Xk'is Ruq'ijul ri Etamab'äl Xk'utüx"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection – Add-ons for Firefox"
+msgstr "Xk'is Ruq'ijul ri Etamab'äl Xk'utüx"
+
 msgid "Advanced Search"
 msgstr "Q'axinäq Kanoxïk"
 
@@ -6073,7 +6091,8 @@ msgstr ""
 msgid "You don't have permission to review it."
 msgstr "Man k'o ta API awujil."
 
-msgid "Please select one or more versions in the list above."
+#, fuzzy
+msgid "Please select one or more versions in the list below."
 msgstr "Tacha' jun o ch'aqa' chik ruwäch pa ri rucholb'äl ajsik."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -6146,6 +6165,9 @@ msgstr "Titzij Ruyon-Ütz-Nitz'et"
 
 msgid "Clear information request"
 msgstr "Tijosq'ïx ruk'utuxik etamab'äl"
+
+msgid "Clear pending rejections"
+msgstr ""
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Tijosq'ïx Retal Runik'oxik Rub'itz'ib' Nuk'samajel"
@@ -6238,6 +6260,9 @@ msgstr "K'ak'a'"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
+msgid "{num} versions pending rejection on other pages."
+msgstr ""
+
 msgid "Recent Points"
 msgstr "K'ak'a' Rajil"
 
@@ -6327,6 +6352,12 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Xk'is Ruq'ijul Ruk'utuxik Etamab'äl ({0})"
 msgstr[1] "Xk'is Ruq'ijul ri Etamab'äl Xek'utüx ({0})"
+
+#, fuzzy
+msgid "Pending Rejection ({0})"
+msgid_plural "Pending Rejection ({0})"
+msgstr[0] "Runik'oxik Rajil ({0})"
+msgstr[1] "Runik'oxik Rajil ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6491,9 +6522,6 @@ msgstr "chi Nuk'uche'el"
 msgid "by Country"
 msgstr ""
 
-msgid "by Add-on Status"
-msgstr "chi Kib'anikilTz'aqat"
-
 msgid "Custom Date Range"
 msgstr "Kajlab'al Ichinan Q'ijul"
 
@@ -6558,14 +6586,6 @@ msgstr "365 taq q'ij"
 
 msgid "Custom..."
 msgstr "Ichinan..."
-
-#, python-format
-msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr ""
-
-#, python-format
-msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
-msgstr ""
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "Wakami chupül ri rub'eyal molob'a', ruma ri' toq ri k'ak'a' taq tzij man e wachel ta. K'a yeqamöl taq molob'a' chuqa' xtuk'ëx ri' ri ruxaq rik'in ri taq tzij k'a nrajo' na."
@@ -6641,11 +6661,11 @@ msgstr "Chi rij rojqaxik ch rij kixe'el..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -6698,8 +6718,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Man keta ri' we <a href=\"https://www.mozilla.org/about/legal/\">jun wi ri nitzijöx</a>, ri rupam re ruxaq re' ya'on q'ij chi re rik'in ri ajilab'äl <br /> <a "
-"href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons Atribution Share-Alike License v3.0 </a> o jun chik ruwäch nipe."
+"Man keta ri' we <a href=\"https://www.mozilla.org/about/legal/\">jun wi ri nitzijöx</a>, ri rupam re ruxaq re' ya'on q'ij chi re rik'in ri ajilab'äl <br /> <a href=\"https://creativecommons.org/"
+"licenses/by-sa/3.0/\"> Creative Commons Atribution Share-Alike License v3.0 </a> o jun chik ruwäch nipe."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "tawetamaj kiwäch <b>tz'aqat</b>"
@@ -6857,8 +6877,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Chuwäch natikirisaj, tasik'ij chuqa' tak'ulu' ri Qajunamil richin Kitaluxik Kitz'aqat Firefox chuqa' ri taq Qab'eyal chuqa' taq Qana'ojil richin Nik'oxïk. Pa ri Junamil chuqa' xtawïl jun ximonel "
 "yaruk'waj pa ri Qatzijol richin Ichinanem, chi ri' nitzijöx rub'eyal xtiqanuk'samajij ri awetamab'al."
@@ -6921,7 +6941,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6945,6 +6966,19 @@ msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 msgctxt "user_list_others"

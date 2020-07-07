@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 18:00+0000\n"
+"POT-Creation-Date: 2020-07-07 23:26+0000\n"
 "PO-Revision-Date: 2019-03-21 16:17+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,9 +108,6 @@ msgid "You could not be logged in. Please try again."
 msgstr ""
 
 msgid "Need help?"
-msgstr ""
-
-msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
 
 #, python-format
@@ -5468,6 +5465,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "Version string and guid match a blocklist Block"
+msgstr ""
+
 msgid "Risk breakdown not available."
 msgstr ""
 
@@ -5533,6 +5533,9 @@ msgid "Weight"
 msgstr ""
 
 msgid "Information Request Deadline"
+msgstr ""
+
+msgid "Pending Rejection Deadline"
 msgstr ""
 
 #, fuzzy
@@ -5716,6 +5719,10 @@ msgstr ""
 msgid "Expired Information Requests ({0})"
 msgstr "Ceisiadau Gwybodaeth wedi Dod i Ben ({0})"
 
+#, fuzzy
+msgid "Add-ons Pending Rejection ({0})"
+msgstr "Review"
+
 msgid "An unknown error occurred"
 msgstr ""
 
@@ -5752,6 +5759,10 @@ msgstr "Enw'r Ychwanegyn"
 
 msgid "Internal AMO ID"
 msgstr ""
+
+#, fuzzy
+msgid "Support Website"
+msgstr "Gwefan cefnogi:"
 
 msgid "Visibility"
 msgstr ""
@@ -5932,6 +5943,10 @@ msgstr "Cais am Wybodaeth sydd Wedi Dod i Ben"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection – Add-ons for Firefox"
+msgstr "Cais am Wybodaeth sydd Wedi Dod i Ben"
+
 msgid "Advanced Search"
 msgstr ""
 
@@ -5993,7 +6008,7 @@ msgstr ""
 msgid "You don't have permission to review it."
 msgstr ""
 
-msgid "Please select one or more versions in the list above."
+msgid "Please select one or more versions in the list below."
 msgstr ""
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -6064,6 +6079,9 @@ msgstr "Galluogi Auto-Cymeradwyo"
 
 msgid "Clear information request"
 msgstr "Clirio cais am wybodaeth"
+
+msgid "Clear pending rejections"
+msgstr ""
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
@@ -6153,6 +6171,9 @@ msgid "Newer"
 msgstr ""
 
 msgid "{num} versions flagged by scanners on other pages."
+msgstr ""
+
+msgid "{num} versions pending rejection on other pages."
 msgstr ""
 
 msgid "Recent Points"
@@ -6266,6 +6287,16 @@ msgstr[2] "Developer Information"
 msgstr[3] "Developer Information"
 msgstr[4] ""
 msgstr[5] ""
+
+#, fuzzy
+msgid "Pending Rejection ({0})"
+msgid_plural "Pending Rejection ({0})"
+msgstr[0] "Review"
+msgstr[1] "Review"
+msgstr[2] "Review"
+msgstr[3] "Review"
+msgstr[4] "Review"
+msgstr[5] "Review"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6420,9 +6451,6 @@ msgstr ""
 msgid "by Country"
 msgstr ""
 
-msgid "by Add-on Status"
-msgstr ""
-
 msgid "Custom Date Range"
 msgstr ""
 
@@ -6486,14 +6514,6 @@ msgid "365 days"
 msgstr ""
 
 msgid "Custom..."
-msgstr ""
-
-#, python-format
-msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr ""
-
-#, python-format
-msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
 msgstr ""
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
@@ -6860,6 +6880,19 @@ msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 msgctxt "user_list_others"

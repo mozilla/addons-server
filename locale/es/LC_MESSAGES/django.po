@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 18:00+0000\n"
+"POT-Creation-Date: 2020-07-07 23:26+0000\n"
 "PO-Revision-Date: 2019-12-22 17:56+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -109,9 +109,6 @@ msgstr "No pudiste conectar. Inténtalo de nuevo."
 
 msgid "Need help?"
 msgstr "¿Necesitas ayuda?"
-
-msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr "Los desarrolladores de complementos o temas no pueden eliminar su cuenta. Tienes que eliminar todos los complementos y temas enlazados a esta cuenta o transferirlos a otros usuarios."
 
 #, python-format
 msgid "Notification [%s] does not exist"
@@ -5595,6 +5592,9 @@ msgstr "Se recomienda"
 msgid "Delayed because it's the first listed version"
 msgstr "Se retrasó al sr la primera versión listada"
 
+msgid "Version string and guid match a blocklist Block"
+msgstr ""
+
 msgid "Risk breakdown not available."
 msgstr "Desglose del riesgo no disponible."
 
@@ -5649,6 +5649,10 @@ msgid "Weight"
 msgstr "Tamaño"
 
 msgid "Information Request Deadline"
+msgstr "Plazo máximo de la solicitud de información"
+
+#, fuzzy
+msgid "Pending Rejection Deadline"
 msgstr "Plazo máximo de la solicitud de información"
 
 msgid "Last Updated"
@@ -5816,6 +5820,10 @@ msgstr "Actualizar mensaje del día"
 msgid "Expired Information Requests ({0})"
 msgstr "Solicitudes de información expiradas ({0})"
 
+#, fuzzy
+msgid "Add-ons Pending Rejection ({0})"
+msgstr "Otras revisiones pendientes ({0})"
+
 msgid "An unknown error occurred"
 msgstr "Ha sucedido un error desconocido"
 
@@ -5854,6 +5862,10 @@ msgstr "ID del complemento"
 
 msgid "Internal AMO ID"
 msgstr "ID interno de AMO"
+
+#, fuzzy
+msgid "Support Website"
+msgstr "Página de ayuda:"
 
 msgid "Visibility"
 msgstr "Visibilidad"
@@ -6036,6 +6048,10 @@ msgstr "La solicitud de información ha expirado"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection – Add-ons for Firefox"
+msgstr "La solicitud de información ha expirado"
+
 msgid "Advanced Search"
 msgstr "Búsqueda avanzada"
 
@@ -6098,7 +6114,8 @@ msgstr ""
 msgid "You don't have permission to review it."
 msgstr "No tienes credenciales API."
 
-msgid "Please select one or more versions in the list above."
+#, fuzzy
+msgid "Please select one or more versions in the list below."
 msgstr "Selecciona una o más versiones de la lista de más arriba."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -6173,6 +6190,9 @@ msgstr "Habilitar autoaprobación"
 
 msgid "Clear information request"
 msgstr "Limpiar solicitud de información"
+
+msgid "Clear pending rejections"
+msgstr ""
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Limpiar la etiqueta de revisión de código de administrador"
@@ -6264,6 +6284,9 @@ msgstr "Recientes"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
+msgid "{num} versions pending rejection on other pages."
+msgstr ""
+
 msgid "Recent Points"
 msgstr "Puntos recientes"
 
@@ -6353,6 +6376,12 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Solicitud de información expirada ({0})"
 msgstr[1] "Solicitudes de información expiradas ({0})"
+
+#, fuzzy
+msgid "Pending Rejection ({0})"
+msgid_plural "Pending Rejection ({0})"
+msgstr[0] "Otras revisiones pendientes ({0})"
+msgstr[1] "Otras revisiones pendientes ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6517,9 +6546,6 @@ msgstr "por plataforma"
 msgid "by Country"
 msgstr ""
 
-msgid "by Add-on Status"
-msgstr "por estado del complemento"
-
 msgid "Custom Date Range"
 msgstr "Rango de fechas personalizado"
 
@@ -6584,14 +6610,6 @@ msgstr "365 días"
 
 msgid "Custom..."
 msgstr "Personalizar..."
-
-#, python-format
-msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr ""
-
-#, python-format
-msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
-msgstr ""
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -6984,6 +7002,19 @@ msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 msgctxt "user_list_others"

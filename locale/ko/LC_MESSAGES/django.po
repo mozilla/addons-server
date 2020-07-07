@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 18:00+0000\n"
+"POT-Creation-Date: 2020-07-07 23:26+0000\n"
 "PO-Revision-Date: 2020-05-30 08:25+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -111,9 +111,6 @@ msgstr "로그인에 실패하였습니다. 다시 시도 하십시오."
 
 msgid "Need help?"
 msgstr "도움이 필요하십니까?"
-
-msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
 
 #, python-format
 msgid "Notification [%s] does not exist"
@@ -5508,6 +5505,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "Version string and guid match a blocklist Block"
+msgstr ""
+
 msgid "Risk breakdown not available."
 msgstr ""
 
@@ -5560,6 +5560,10 @@ msgstr "무게"
 
 #, fuzzy
 msgid "Information Request Deadline"
+msgstr "추가 정보 필요"
+
+#, fuzzy
+msgid "Pending Rejection Deadline"
 msgstr "추가 정보 필요"
 
 #, fuzzy
@@ -5740,6 +5744,10 @@ msgstr "오늘의 메시지 업데이트"
 msgid "Expired Information Requests ({0})"
 msgstr "추가 정보 필요"
 
+#, fuzzy
+msgid "Add-ons Pending Rejection ({0})"
+msgstr "심사 조정 ({0})"
+
 msgid "An unknown error occurred"
 msgstr "알 수 없는 오류 발생"
 
@@ -5780,6 +5788,10 @@ msgstr "부가 기능"
 
 msgid "Internal AMO ID"
 msgstr ""
+
+#, fuzzy
+msgid "Support Website"
+msgstr "기술 지원 사이트:"
 
 msgid "Visibility"
 msgstr "표시"
@@ -5971,6 +5983,10 @@ msgstr "추가 정보 필요"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection – Add-ons for Firefox"
+msgstr "추가 정보 필요"
+
 msgid "Advanced Search"
 msgstr "고급 검색"
 
@@ -6035,7 +6051,7 @@ msgstr ""
 msgid "You don't have permission to review it."
 msgstr "API 자격 증명이 없습니다."
 
-msgid "Please select one or more versions in the list above."
+msgid "Please select one or more versions in the list below."
 msgstr ""
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -6113,6 +6129,9 @@ msgstr "승인 상태"
 #, fuzzy
 msgid "Clear information request"
 msgstr "추가 정보 필요"
+
+msgid "Clear pending rejections"
+msgstr ""
 
 msgid "Clear Admin Code Review Flag"
 msgstr "관리자 코드 검토 플래그 지우기"
@@ -6204,6 +6223,9 @@ msgstr "다음 목록"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
+msgid "{num} versions pending rejection on other pages."
+msgstr ""
+
 msgid "Recent Points"
 msgstr "최근 포인트"
 
@@ -6293,6 +6315,11 @@ msgstr[0] "내가 제작한 모든 부가 기능"
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "추가 정보 제공 요청: {0}"
+
+#, fuzzy
+msgid "Pending Rejection ({0})"
+msgid_plural "Pending Rejection ({0})"
+msgstr[0] "심사 조정 ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6452,9 +6479,6 @@ msgstr "플랫폼별"
 msgid "by Country"
 msgstr ""
 
-msgid "by Add-on Status"
-msgstr "부가 기능 상태별"
-
 msgid "Custom Date Range"
 msgstr "사용자 지정 날짜 범위"
 
@@ -6530,14 +6554,6 @@ msgstr "365일"
 
 msgid "Custom..."
 msgstr "사용자 지정..."
-
-#, python-format
-msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr ""
-
-#, python-format
-msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
-msgstr ""
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
@@ -6927,6 +6943,19 @@ msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 msgctxt "user_list_others"

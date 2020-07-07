@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 18:01+0000\n"
+"POT-Creation-Date: 2020-07-07 23:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -799,12 +799,12 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: static/js/impala/stats/topchart.js:96
+#: static/js/impala/stats/topchart.js:100
 msgid "Other"
 msgstr ""
 
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1163
-#: static/js/zamboni/reviewers.js:437
+#: static/js/zamboni/reviewers.js:430
 msgid "Select an application first"
 msgstr ""
 
@@ -927,39 +927,39 @@ msgstr ""
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:365
+#: static/js/zamboni/reviewers.js:358
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:376 static/js/zamboni/reviewers.js:398
+#: static/js/zamboni/reviewers.js:369 static/js/zamboni/reviewers.js:391
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:381
+#: static/js/zamboni/reviewers.js:374
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:386
+#: static/js/zamboni/reviewers.js:379
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:391
+#: static/js/zamboni/reviewers.js:384
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:403
+#: static/js/zamboni/reviewers.js:396
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:408
+#: static/js/zamboni/reviewers.js:401
 msgid "Review notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:472
+#: static/js/zamboni/reviewers.js:465
 msgid "Average Reviews"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:527
+#: static/js/zamboni/reviewers.js:520
 msgid "Number of Reviews"
 msgstr ""
 

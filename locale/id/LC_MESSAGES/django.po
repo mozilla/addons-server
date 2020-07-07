@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-06-09 18:00+0000\n"
+"POT-Creation-Date: 2020-07-07 23:26+0000\n"
 "PO-Revision-Date: 2020-04-07 13:55+0000\n"
 "Last-Translator: romi <romihardiyanto@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -106,9 +106,6 @@ msgstr "Anda bisa tidak bisa masuk. Silakan coba lagi."
 
 msgid "Need help?"
 msgstr "Perlu bantuan?"
-
-msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr "Pengembang pengaya atau tema tidak dapat menghapus akun mereka. Anda harus menghapus semua pengaya dan tema yang terhubung ke akun ini, atau mentransfernya ke pengguna lain."
 
 #, python-format
 msgid "Notification [%s] does not exist"
@@ -5532,6 +5529,9 @@ msgstr ""
 msgid "Delayed because it's the first listed version"
 msgstr ""
 
+msgid "Version string and guid match a blocklist Block"
+msgstr ""
+
 msgid "Risk breakdown not available."
 msgstr "Perincian risiko tidak tersedia."
 
@@ -5583,6 +5583,10 @@ msgid "Weight"
 msgstr "Berat"
 
 msgid "Information Request Deadline"
+msgstr "Tenggat Permintaan Informasi"
+
+#, fuzzy
+msgid "Pending Rejection Deadline"
 msgstr "Tenggat Permintaan Informasi"
 
 msgid "Last Updated"
@@ -5745,6 +5749,10 @@ msgstr "Perbarui pesan hari ini"
 msgid "Expired Information Requests ({0})"
 msgstr "Permintaan Informasi Kedaluwarsa ({0})"
 
+#, fuzzy
+msgid "Add-ons Pending Rejection ({0})"
+msgstr "Ulasan Tertunda Lainnya ({0})"
+
 msgid "An unknown error occurred"
 msgstr "Terjadi masalah yang tidak diketahui"
 
@@ -5783,6 +5791,10 @@ msgstr "ID Pengaya"
 
 msgid "Internal AMO ID"
 msgstr "ID AMO Internal"
+
+#, fuzzy
+msgid "Support Website"
+msgstr "Situs dukungan:"
 
 msgid "Visibility"
 msgstr "Visibilitas"
@@ -5963,6 +5975,10 @@ msgstr "Permintaan Informasi Kedaluwarsa"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection – Add-ons for Firefox"
+msgstr "Permintaan Informasi Kedaluwarsa"
+
 msgid "Advanced Search"
 msgstr "Pencarian Lanjut"
 
@@ -6026,7 +6042,8 @@ msgstr ""
 msgid "You don't have permission to review it."
 msgstr "Anda tidak memiliki kredensial API apapun."
 
-msgid "Please select one or more versions in the list above."
+#, fuzzy
+msgid "Please select one or more versions in the list below."
 msgstr "Silakan pilih satu atau beberapa versi dalam daftar di atas."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -6099,6 +6116,9 @@ msgstr "Persetujuan Otomatis Diaktifkan"
 
 msgid "Clear information request"
 msgstr "Bersihkan permintaan informasi"
+
+msgid "Clear pending rejections"
+msgstr ""
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Bersihkan Penandaan Kode Tinjauan Admin"
@@ -6190,6 +6210,9 @@ msgstr "Lebih Baru"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
+msgid "{num} versions pending rejection on other pages."
+msgstr ""
+
 msgid "Recent Points"
 msgstr "Poin Terbaru"
 
@@ -6275,6 +6298,11 @@ msgstr[0] "Disetujui Otomatis ({0})"
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Permintaan Info Kedaluwarsa: {0}"
+
+#, fuzzy
+msgid "Pending Rejection ({0})"
+msgid_plural "Pending Rejection ({0})"
+msgstr[0] "Ulasan Tertunda Lainnya ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6439,9 +6467,6 @@ msgstr "berdasarkan Platform"
 msgid "by Country"
 msgstr ""
 
-msgid "by Add-on Status"
-msgstr "berdasarkan Status Pengaya"
-
 msgid "Custom Date Range"
 msgstr "Rentang Tanggal Khusus"
 
@@ -6506,14 +6531,6 @@ msgstr "365 hari"
 
 msgid "Custom..."
 msgstr "Khusus..."
-
-#, python-format
-msgid "You are viewing a beta feature. You can still access the deprecated statistics pages <a href=\"%(stats_overview_url)s\">here</a>."
-msgstr ""
-
-#, python-format
-msgid "We are rolling out new statistics pages and you have access to the preview! <a href=\"%(beta_stats_overview_url)s\">Take me to the new dashboard.</a>"
-msgstr ""
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr "Pemrosesan statistik saat ini dimatikan, sehingga data baru tidak tersedia. Statistik masih tetap dikumpulkan dan laman ini akan diperbarui segera dengan data yang hilang."
@@ -6899,6 +6916,19 @@ msgid ""
 "The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 msgctxt "user_list_others"
