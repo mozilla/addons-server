@@ -20,12 +20,13 @@ from olympia.files.models import FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.management.commands import (
-    auto_approve, notify_about_auto_approve_delay
+    auto_approve, auto_reject, notify_about_auto_approve_delay
 )
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary, get_reviewing_cache)
+    AutoApprovalSummary, get_reviewing_cache, set_reviewing_cache)
 from olympia.scanners.models import ScannerResult, ScannerRule
+from olympia.versions.models import VersionReviewerFlags
 
 
 class AutoApproveTestsMixin(object):
@@ -117,7 +118,7 @@ class AutoApproveTestsMixin(object):
             created=self.days_ago(5), nomination=self.days_ago(5))
 
         # Some recommended add-ons - one nominated and one update.
-        # They should be considered by fetch_candidate(), so that they get a
+        # They should be considered by fetch_candidates(), so that they get a
         # weight assigned etc - they will not be auto-approved but that's
         # handled at a later stage, when calculating the verdict.
         recommendable_addon_nominated = addon_factory(
@@ -868,3 +869,281 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         )
 
         assert addon.reviewerflags.notified_about_auto_approval_delay
+
+
+class TestAutoReject(TestCase):
+    def setUp(self):
+        user_factory(
+            id=settings.TASK_USER_ID, username='taskuser',
+            email='taskuser@mozilla.com')
+        self.addon = addon_factory(
+            version_kw={'version': '1.0', 'created': self.days_ago(2)})
+        self.version = self.addon.current_version
+        self.file = self.version.all_files[0]
+        self.yesterday = self.days_ago(1)
+        VersionReviewerFlags.objects.create(
+            version=self.version, pending_rejection=self.yesterday)
+
+    def test_prevent_multiple_runs_in_parallel(self):
+        # Create a lock manually, the command should exit immediately without
+        # doing anything.
+        with lock(settings.TMP_PATH, auto_reject.LOCK_NAME):
+            call_command('auto_reject')
+
+        self.addon.refresh_from_db()
+        self.version.refresh_from_db()
+        assert self.version.reviewerflags.pending_rejection
+        assert self.version.is_public()
+        assert self.addon.is_public()
+
+    def test_fetch_addon_candidates_distinct(self):
+        version = version_factory(
+            addon=self.addon, version='0.9',
+            created=self.days_ago(42))
+        VersionReviewerFlags.objects.create(
+            version=version, pending_rejection=self.yesterday)
+        qs = auto_reject.Command().fetch_addon_candidates(now=datetime.now())
+        assert list(qs) == [self.addon]
+
+    def test_fetch_addon_candidates(self):
+        pending_future_rejection = addon_factory()
+        VersionReviewerFlags.objects.create(
+            version=pending_future_rejection.current_version,
+            pending_rejection=datetime.now() + timedelta(days=7))
+        addon_factory()
+        other_addon_with_pending_rejection = addon_factory(
+            version_kw={'version': '10.0'})
+        version_factory(
+            addon=other_addon_with_pending_rejection, version='11.0')
+        VersionReviewerFlags.objects.create(
+            version=other_addon_with_pending_rejection.current_version,
+            pending_rejection=self.yesterday)
+        qs = auto_reject.Command().fetch_addon_candidates(now=datetime.now())
+        assert list(qs) == [self.addon, other_addon_with_pending_rejection]
+
+    def test_fetch_fetch_versions_candidates_for_addon(self):
+        # self.version is already pending rejection, let's add more versions:
+        # One that is also pending rejection.
+        awaiting_review_pending_rejection = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            version='2.0')
+        VersionReviewerFlags.objects.create(
+            version=awaiting_review_pending_rejection,
+            pending_rejection=self.yesterday)
+        # One that is pending rejection in the future (it shouldn't be picked
+        # up).
+        future_pending_rejection = version_factory(
+            addon=self.addon, version='3.0')
+        VersionReviewerFlags.objects.create(
+            version=future_pending_rejection,
+            pending_rejection=datetime.now() + timedelta(days=7))
+        # One that is just approved (it shouldn't be picked up).
+        version_factory(addon=self.addon, version='4.0')
+
+        qs = auto_reject.Command().fetch_version_candidates_for_addon(
+            addon=self.addon, now=datetime.now())
+        assert list(qs) == [
+            self.version,
+            awaiting_review_pending_rejection
+        ]
+
+    def test_deleted_addon(self):
+        self.addon.delete()
+        call_command('auto_reject')
+
+        # Add-on stays deleted, version is rejected
+        self.addon.refresh_from_db()
+        self.file.refresh_from_db()
+        assert self.addon.is_deleted
+        assert self.file.status == amo.STATUS_DISABLED
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection__isnull=False).exists()
+
+    def test_deleted_version(self):
+        self.version.delete()
+        call_command('auto_reject')
+
+        # Version stays deleted & disabled
+        self.addon.refresh_from_db()
+        self.file.refresh_from_db()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.version.deleted
+        assert self.file.status == amo.STATUS_DISABLED
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection__isnull=False).exists()
+
+    def test_unlisted_version(self):
+        self.make_addon_unlisted(self.addon)
+        call_command('auto_reject')
+
+        # Version stays unlisted, is disabled (even if that doesn't make much
+        # sense to delay rejection of an unlisted version)
+        self.addon.refresh_from_db()
+        self.version.refresh_from_db()
+        self.file.refresh_from_db()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.file.status == amo.STATUS_DISABLED
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection__isnull=False).exists()
+
+    def test_reject_versions(self):
+        another_pending_rejection = version_factory(
+            addon=self.addon, version='2.0')
+        VersionReviewerFlags.objects.create(
+            version=another_pending_rejection,
+            pending_rejection=self.yesterday)
+
+        command = auto_reject.Command()
+        command.dry_run = False
+        command.reject_versions(
+            addon=self.addon,
+            versions=[self.version, another_pending_rejection],
+            latest_version=another_pending_rejection)
+
+        # The versions should be rejected now.
+        self.version.refresh_from_db()
+        assert not self.version.is_public()
+        another_pending_rejection.refresh_from_db()
+        assert not self.version.is_public()
+
+        # There should be an activity log for each version with the rejection.
+        logs = ActivityLog.objects.for_addons(self.addon)
+        assert len(logs) == 2
+        assert logs[0].action == amo.LOG.REJECT_VERSION.id
+        assert logs[0].arguments == [self.addon, self.version]
+        assert logs[1].action == amo.LOG.REJECT_VERSION.id
+        assert logs[1].arguments == [self.addon, another_pending_rejection]
+
+        # All pending rejections flags in the past should have been dropped
+        # when the rejection was applied (there are no other pending rejections
+        # in this test).
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection__isnull=False).exists()
+
+        # No mail should have gone out.
+        assert len(mail.outbox) == 0
+
+    def test_addon_locked(self):
+        set_reviewing_cache(self.addon.pk, 42)
+        call_command('auto_reject')
+
+        self.addon.refresh_from_db()
+        self.version.refresh_from_db()
+        assert self.version.reviewerflags.pending_rejection
+        assert self.version.is_public()
+        assert self.addon.is_public()
+
+    def test_addon_has_latest_version_unreviewed(self):
+        version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            version='2.0')
+        call_command('auto_reject')
+
+        # Nothing should have been done: since there is a new version awaiting
+        # review we consider the reviewer has fixed the issues from past
+        # version(s) and are waiting on a reviewer decision before proceeding,
+        # the old pending rejection is on hold.
+
+        self.addon.refresh_from_db()
+        self.version.refresh_from_db()
+        assert self.version.reviewerflags.pending_rejection
+        assert self.version.is_public()
+        assert self.addon.is_public()
+
+    def test_full_dry_run(self):
+        call_command('auto_reject', '--dry-run')
+
+        self.addon.refresh_from_db()
+        self.version.refresh_from_db()
+        assert self.version.reviewerflags.pending_rejection
+        assert self.version.is_public()
+        assert self.addon.is_public()
+
+    def test_full_run(self):
+        # Addon with a couple versions including its current_version pending
+        # rejection, the add-on should be rejected with the versions
+        all_pending_rejection = self.addon
+        version = version_factory(
+            addon=all_pending_rejection, version='0.9',
+            created=self.days_ago(42))
+        VersionReviewerFlags.objects.create(
+            version=version, pending_rejection=self.yesterday)
+        # Add-on with an old version pending rejection, but a newer one
+        # approved: only the old one should be rejected.
+        old_pending_rejection = addon_factory(
+            version_kw={'version': '10.0', 'created': self.days_ago(2)})
+        VersionReviewerFlags.objects.create(
+            version=old_pending_rejection.current_version,
+            pending_rejection=self.yesterday)
+        new_version_old_pending_rejection = version_factory(
+            addon=old_pending_rejection, version='11.0')
+        # One with an old version approved, but a newer one pending
+        # rejection: only the newer one should be rejected.
+        new_pending_rejection = addon_factory(
+            version_kw={'version': '20.0', 'created': self.days_ago(3)})
+        new_pending_rejection_new_version = version_factory(
+            addon=new_pending_rejection, version='21.0',
+            created=self.days_ago(2))
+        VersionReviewerFlags.objects.create(
+            version=new_pending_rejection_new_version,
+            pending_rejection=self.yesterday)
+        # Add-on with a version pending rejection in the future, it shouldn't
+        # be touched yet.
+        future_pending_rejection = addon_factory()
+        VersionReviewerFlags.objects.create(
+            version=future_pending_rejection.current_version,
+            pending_rejection=datetime.now() + timedelta(days=2))
+        # Add-on not pending rejection, shouldn't be affected
+        regular_addon = addon_factory()
+
+        # Trigger the command!
+        now = datetime.now()
+        call_command('auto_reject')
+
+        # First add-on and all its versions should have been rejected.
+        all_pending_rejection.refresh_from_db()
+        assert not all_pending_rejection.is_public()
+        for version in all_pending_rejection.versions.all():
+            assert not version.is_public()
+
+        # Second one should still be public, only its old version rejected.
+        old_pending_rejection.refresh_from_db()
+        new_version_old_pending_rejection.refresh_from_db()
+        assert old_pending_rejection.is_public()
+        assert (
+            old_pending_rejection.current_version ==
+            new_version_old_pending_rejection)
+        assert new_version_old_pending_rejection.is_public()
+        assert not old_pending_rejection.versions.filter(
+            version='10.0').get().is_public()
+
+        # Third one should still be public, only its newer version rejected.
+        new_pending_rejection.refresh_from_db()
+        assert new_pending_rejection.is_public()
+        assert (
+            new_pending_rejection.current_version !=
+            new_pending_rejection_new_version)
+        assert not new_pending_rejection_new_version.is_public()
+        assert new_pending_rejection.versions.filter(
+            version='20.0').get().is_public()
+
+        # Fourth one shouldn't have been touched because the pending rejection
+        # for its version is in the future.
+        future_pending_rejection.refresh_from_db()
+        assert future_pending_rejection.is_public()
+        assert future_pending_rejection.current_version
+        assert future_pending_rejection.current_version.is_public()
+
+        # Fifth one shouldn't have been touched.
+        regular_addon.refresh_from_db()
+        assert regular_addon.is_public()
+        assert regular_addon.current_version
+        assert regular_addon.current_version.is_public()
+
+        # All pending rejections flags in the past should have been dropped
+        # when the rejection was applied.
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection__lt=now).exists()
+
+        # No mail should have gone out.
+        assert len(mail.outbox) == 0
