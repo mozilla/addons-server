@@ -517,14 +517,19 @@ class FilterableManyToManyDescriptor(ManyToManyDescriptor):
 
     @classmethod
     def _get_manager_with_default_filtering(cls, manager, q_filter):
+        """This is wrapping the manager class so we can add an extra
+        filter to the queryset returned via get_queryset."""
         class ManagerWithFiltering(manager):
             def get_queryset(self):
+                # Hook into the queryset caching django uses during these
+                # lookups, or otherwise we get a lot more queries performed.
                 try:
                     return self.instance._prefetched_objects_cache[
                         self.prefetch_cache_name]
                 except (AttributeError, KeyError):
                     pass
                 qs = super().get_queryset()
+                # Here is where we add the filter.
                 return qs.filter(q_filter or models.Q())
 
         return ManagerWithFiltering
@@ -536,12 +541,33 @@ class FilterableManyToManyDescriptor(ManyToManyDescriptor):
 
 
 class FilterableManyToManyField(models.fields.related.ManyToManyField):
+    """This class builds on ManyToManyField to allow us to filter the relation
+    to a subset, similar to how we use the unfiltered manager to filter out
+    deleted instances of other foreign keys.
+
+    It takes an additional Q object arg (q_filter) which will be applied to the
+    queryset on *both* sides of the many-to-many relation.  Because it's
+    applied to both sides the filter will typically be on the ManyToManyField
+    itself.
+
+    For example, class A and class B have a ManyToMany relation between them,
+    via class M (so M would have a foreign key to both A and B).
+    For an instance a of A, a.m would be:
+    `B.objects.filter(a__in=a.id, q_filter)`,
+    and for an instance b of B, b.m would be:
+    `A.objects.filter(b__in=b.id, q_filter)`.
+    If `q_filter` was `Q(m__deleted=False)` it would filter out all soft
+    deleted instances of M.
+    """
 
     def __init__(self, *args, **kwargs):
         self.q_filter = kwargs.pop('q_filter', None)
         super().__init__(*args, **kwargs)
 
     def contribute_to_class(self, cls, name, **kwargs):
+        """All we're doing here is overriding the `setattr` so it creates an
+        instance of FilterableManyToManyDescriptor rather than
+        ManyToManyDescriptor, and pass down the q_filter property."""
         super().contribute_to_class(cls, name, **kwargs)
         # Add the descriptor for the m2m relation.
         setattr(
@@ -550,6 +576,9 @@ class FilterableManyToManyField(models.fields.related.ManyToManyField):
                 self.remote_field, reverse=False, q_filter=self.q_filter))
 
     def contribute_to_related_class(self, cls, related):
+        """All we're doing here is overriding the `setattr` so it creates an
+        instance of FilterableManyToManyDescriptor rather than
+        ManyToManyDescriptor, and pass down the q_filter property."""
         super().contribute_to_related_class(cls, related)
         if (
             not self.remote_field.is_hidden() and

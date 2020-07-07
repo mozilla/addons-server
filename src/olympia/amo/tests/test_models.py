@@ -11,6 +11,7 @@ from olympia.addons.models import Addon
 from olympia.amo import models as amo_models
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests import TestCase
+from olympia.core.tests.m2m_testapp.models import Artist, Singer, Song
 from olympia.users.models import UserProfile
 from olympia.zadmin.models import Config
 
@@ -273,3 +274,45 @@ class BaseQuerysetTestCase(TestCase):
         # Check that each transform function was hit correctly, once.
         assert seen_by_first_transform == [first, second]
         assert seen_by_second_transform == [second, first]
+
+
+class TestFilterableManyToManyField(TestCase):
+    def setUp(self):
+        self.bob = Artist.objects.create()
+        self.sue = Artist.objects.create()
+        self.joe = Artist.objects.create()
+        self.twinkle_twinkle = Song.objects.create()
+        self.humpty_dumpty = Song.objects.create()
+        self.twinkle_twinkle.performers.add(self.bob)
+        self.twinkle_twinkle.performers.add(self.joe)
+        self.sue.songs.add(self.humpty_dumpty)
+        self.humpty_dumpty.performers.add(self.joe)
+
+    def test_basic(self):
+        assert Singer.objects.count() == 4
+        assert list(self.bob.songs.all()) == [self.twinkle_twinkle]
+        assert list(self.sue.songs.all()) == [self.humpty_dumpty]
+        assert list(self.joe.songs.all()) == [
+            self.twinkle_twinkle, self.humpty_dumpty]
+        assert list(self.twinkle_twinkle.performers.all()) == [
+            self.bob, self.joe]
+        assert list(self.humpty_dumpty.performers.all()) == [
+            self.sue, self.joe]
+
+    def test_through_filtered_out(self):
+        twinkle_joe_collab = Singer.objects.get(
+            song=self.twinkle_twinkle, artist=self.joe)
+        twinkle_joe_collab.credited = False
+        twinkle_joe_collab.save()
+        # the relation still exists
+        assert Singer.objects.count() == 4
+
+        # but now doesn't show up in the field querysets - on the Song side
+        assert list(self.joe.songs.all()) == [
+            self.humpty_dumpty]
+        # and the reverse too
+        assert list(self.twinkle_twinkle.performers.all()) == [
+            self.bob]
+        # But Joe is still on the other song
+        assert list(self.humpty_dumpty.performers.all()) == [
+            self.sue, self.joe]
