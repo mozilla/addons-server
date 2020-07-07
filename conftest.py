@@ -81,6 +81,11 @@ def mock_basket(settings):
         json={'status': 'ok', 'token': USER_TOKEN})
 
 
+@pytest.fixture(autouse=True)
+def update_services_db_name_to_follow_test_db_name(db, settings, request):
+    settings.SERVICES_DATABASE['NAME'] = settings.DATABASES['default']['NAME']
+
+
 def pytest_configure(config):
     import django
     # Forcefully call `django.setup`, pytest-django tries to be very lazy
