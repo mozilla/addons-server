@@ -45,10 +45,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kw):
         addons, dates, index = kw['addons'], kw['date'], kw['index']
-        tasks = []
-        for indexer in (DownloadCountIndexer,):
-            index_data_tasks = DownloadCountIndexer.reindex_tasks_group(
-                index_name=index, addons=addons, dates=dates)
-            # Unwrap task group to return and execute a single one at the end.
-            tasks.extend(index_data_tasks.tasks)
-        group(tasks).apply_async()
+        index_data_tasks = DownloadCountIndexer.reindex_tasks_group(
+            index_name=index, addons=addons, dates=dates)
+        group(index_data_tasks.tasks).apply_async()
