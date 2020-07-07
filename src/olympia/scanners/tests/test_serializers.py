@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from olympia.amo.tests import TestCase
 from olympia.constants.scanners import CUSTOMS
 from olympia.scanners.models import ScannerResult
@@ -13,4 +15,7 @@ class TestScannerResultSerializer(TestCase):
             'scanner': result.get_scanner_name(),
             'label': None,
             'results': result.results,
+            'created': result.created.strftime(
+                settings.REST_FRAMEWORK['DATETIME_FORMAT']
+            ),
         }
