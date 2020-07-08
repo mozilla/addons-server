@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 05:47+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2020-07-08 21:00+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -5471,7 +5471,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Försenad eftersom det är den första listade versionen"
 
 msgid "Version string and guid match a blocklist Block"
-msgstr ""
+msgstr "Versionssträng och guid matchar ett blocklistblock"
 
 msgid "Risk breakdown not available."
 msgstr "Risknedbrytning inte tillgänglig."
@@ -5527,9 +5527,8 @@ msgstr "Vikt"
 msgid "Information Request Deadline"
 msgstr "Informationsgäran deadline"
 
-#, fuzzy
 msgid "Pending Rejection Deadline"
-msgstr "Informationsgäran deadline"
+msgstr "Deadline för väntande avslag"
 
 msgid "Last Updated"
 msgstr "Senast uppdaterad"
@@ -5684,9 +5683,8 @@ msgstr "Uppdatera meddelande för dagen"
 msgid "Expired Information Requests ({0})"
 msgstr "Upphörd informationsbegäran ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Annan pågående granskning ({0})"
+msgstr "Tillägg med väntande avslag ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Ett okänt fel uppstod"
@@ -5904,9 +5902,8 @@ msgstr "Upphörd informationsbegäran – Tillägg för Firefox"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr "Olistade tillägg - Tillägg för Firefox"
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Granska moderering – Tillägg för Firefox"
+msgstr "Väntande avslag – Tillägg för Firefox"
 
 msgid "Advanced Search"
 msgstr "Avancerad sökning"
@@ -5969,9 +5966,8 @@ msgstr "Detta är en rekommenderad utökning."
 msgid "You don't have permission to review it."
 msgstr "Du har inte behörighet att granska det."
 
-#, fuzzy
 msgid "Please select one or more versions in the list below."
-msgstr "Vänligen välj en eller flera versioner i listan ovan."
+msgstr "Välj en eller flera versioner i listan nedan."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Du kan fortfarande skicka in formuläret, men endast om du vet att det inte kommer skapa en konflikt."
@@ -6037,7 +6033,7 @@ msgid "Clear information request"
 msgstr "Rensa informationsbegäran"
 
 msgid "Clear pending rejections"
-msgstr ""
+msgstr "Rensa väntande avslag"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Rensa flagga för administrativ kodgranskning"
@@ -6127,9 +6123,8 @@ msgstr "Nyare"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versioner som flaggas av skannrar på andra sidor."
 
-#, fuzzy
 msgid "{num} versions pending rejection on other pages."
-msgstr "{num} versioner som flaggas av skannrar på andra sidor."
+msgstr "{num} versioner i väntan på avslag på andra sidor."
 
 msgid "Recent Points"
 msgstr "Senaste poäng"
@@ -6221,11 +6216,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Upphörd informationsbegäran ({0})"
 msgstr[1] "Upphörd informationsbegäran ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Annan pågående granskning ({0})"
-msgstr[1] "Annan pågående granskning ({0})"
+msgstr[0] "Väntande avslag ({0})"
+msgstr[1] "Väntande avslag ({0})"
 
 msgid "presence of matched rules"
 msgstr "närvaro av matchade regler"
@@ -6856,6 +6850,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Hej,\n"
+"\n"
+"Du får det här meddelandet eftersom ditt användarkonto %(name)s på %(site_url)s har tagits bort.\n"
+"\n"
+"Om du inte gjorde det eller tror att en obehörig person har åtkomst till ditt konto, svara på det här e-postmeddelandet. Annars finns det inga ytterligare åtgärder att vidta.\n"
+"\n"
+"Hälsningar,\n"
+"\n"
+"Firefox-tilläggsteamet"
 
 msgctxt "user_list_others"
 msgid "others"
