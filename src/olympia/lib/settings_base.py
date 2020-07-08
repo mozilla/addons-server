@@ -478,6 +478,7 @@ INSTALLED_APPS = (
     'olympia.lib.es',
     'olympia.lib.akismet',
     'olympia.pages',
+    'olympia.promoted',
     'olympia.ratings',
     'olympia.reviewers',
     'olympia.scanners',

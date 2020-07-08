@@ -1306,6 +1306,17 @@ class Addon(OnChangeMixin, ModelBase):
         return recommended
 
     @cached_property
+    def promoted_group(self):
+        """If the addon is promoted then return the Promoted group details."""
+        from olympia.promoted.models import PromotedAddon
+
+        try:
+            promoted = self.promotedaddon
+        except PromotedAddon.DoesNotExist:
+            return None
+        return promoted.group if promoted.is_addon_promoted(self) else None
+
+    @cached_property
     def tags_partitioned_by_developer(self):
         """Returns a tuple of developer tags and user tags for this addon."""
         tags = self.tags.not_denied()
