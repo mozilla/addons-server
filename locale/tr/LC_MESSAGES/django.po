@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 18:49+0000\n"
+"PO-Revision-Date: 2020-07-08 18:52+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3725,7 +3725,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading}  kayıp web içeriğini bulun"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
@@ -3789,7 +3789,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} sekmelerinizi bulun"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
@@ -3829,7 +3829,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} ePub dosyalarını okuyun"
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
@@ -3853,7 +3853,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} vekil sunucunuzu değiştirin"
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
@@ -4393,15 +4393,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} parolaları güvenli bir şekilde yönetin"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Parolaları güvenli bir şekilde saklayın ve bilinen web sitelerinde otomatik olarak oturum açın."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} formları otomatik doldurun"
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
@@ -4413,7 +4413,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Tek tıkla gizli arama yapın."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4425,7 +4425,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} Vikipedi’ye kolayca erişin"
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
@@ -4441,7 +4441,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} videoları bulun"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
@@ -4522,7 +4522,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Tüm parola alanlarına gösterme/gizleme özelliği ekler."
 
 #. editorial content for the discovery pane.
 msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4534,7 +4534,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} yer imlerini yönetin"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
@@ -4542,7 +4542,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile {end_sub_heading} parolaları güvende tutun"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
@@ -4800,7 +4800,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "Güçlü parola yönetiminin avantajlarından yararlanın."
 
 #. editorial content for the discovery pane.
 msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4820,19 +4820,19 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} ölü sayfaları yeniden canlandırın"
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Arşivlenmiş, ölü veya başka bir şekilde kaybolan web sayfalarını bulun."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} Firefox'un görünümünü değiştirin"
 
 #. editorial content for the discovery pane.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Tarayıcınızın görünümünü değiştirin. Firefox'un istediğiniz gibi görünmesini sağlamak için görsel temalarınızı kolayca tasarlayın."
 
 #. editorial content for the discovery pane.
 msgid "Keep notes {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4904,11 +4904,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Çok sayıda açık sekmeyi kolayca düzenleyin."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Sekme grupları oluşturun ve özelleştirin."
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
@@ -4951,11 +4951,11 @@ msgstr "Tüm eklentilere bak"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Sekme düzenleyicileri ve araçları"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Tarayıcı eklentilerinin ötesinde gizlilik"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
@@ -4976,7 +4976,7 @@ msgstr ""
 
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "%s dosyasına erişilirken bir hata oluştu."
 
 msgid "That file no longer exists."
 msgstr "Bu dosya artık mevcut değil."
@@ -5037,7 +5037,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Arşivde boyut sınırını aşan dosya: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Sıkıştırılmamış boyut çok büyük"
 
 msgid "Invalid archive."
 msgstr "Geçersiz arşiv."
@@ -5059,7 +5059,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Sürüm numaralarında sadece harfler, numaralar ve bu noktalama işaretleri olmalı: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "WebExtension temaları için maksimum boyut {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Bu türden eklenti gönderemezsiniz"
@@ -5345,7 +5345,7 @@ msgstr "5 üzerinden {0} yıldız"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "5 üzerinden %(rating)s yıldız"
 
 msgid "Approved reviews"
 msgstr "Onaylanmış incelemeler"
@@ -5456,9 +5456,8 @@ msgstr "Daha fazla bilgi istendi"
 msgid "Expired Information Request"
 msgstr "Daha fazla bilgi istendi"
 
-#, fuzzy
 msgid "Sources provided"
-msgstr "Kaynak kodu"
+msgstr ""
 
 msgid "WebExtension"
 msgstr "WebExtension"
@@ -5477,7 +5476,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
 msgid "Is recommendable"
-msgstr ""
+msgstr "Önerilir"
 
 msgid "Delayed because it's the first listed version"
 msgstr ""
@@ -5535,7 +5534,7 @@ msgid "Last Review"
 msgstr "Son inceleme"
 
 msgid "Weight"
-msgstr ""
+msgstr "Ağırlık"
 
 #, fuzzy
 msgid "Information Request Deadline"
@@ -5633,7 +5632,7 @@ msgid "Pre-Review Add-ons"
 msgstr "Eklentileri inceleyin"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Önerilen ({0})"
 
 #, fuzzy
 msgid "Other Pending Review ({0})"
@@ -5967,9 +5966,8 @@ msgstr "aramayı temizle"
 msgid "Process Reviews"
 msgstr "İncelemeleri işle"
 
-#, fuzzy
 msgid "Moderation actions:"
-msgstr "Diğer Seçenekler:"
+msgstr ""
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5996,7 +5994,7 @@ msgid "Reviewer's Guide"
 msgstr "İnceleme Yönergesi"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Firefox Eklentileri"
 
 #. "Content Review [add-on name]"
 #, fuzzy
@@ -6013,12 +6011,11 @@ msgstr "Eklenti kullanıcısı değişiklik geçmişi"
 msgid "Add-on History"
 msgstr "Eklenti geçmişi"
 
-#, fuzzy
 msgid "Previously deleted entries"
-msgstr "Önceki not"
+msgstr "Önceden silinen girdiler"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Bu önerilen bir eklentidir."
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -6031,7 +6028,7 @@ msgid "You can still submit this form, however only do so if you know it won't c
 msgstr ""
 
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Hazır yanıt ekleyin..."
 
 msgid "Tested on:"
 msgstr "Test platformu:"
@@ -6045,9 +6042,8 @@ msgstr ""
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "Update whiteboards"
-msgstr "Beyaz tahtayı güncelle"
+msgstr "Beyaz tahtaları güncelle"
 
 msgid "More Actions"
 msgstr "Diğer eylemler"
@@ -6064,7 +6060,7 @@ msgid "Deny resubmission"
 msgstr "Başvurularımı Yönet"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Eklentiyi zorla devre dışı bırak"
 
 #, fuzzy
 msgid "Force-enable add-on"
@@ -6150,7 +6146,7 @@ msgid "No reviews found for this period."
 msgstr ""
 
 msgid "Origin:"
-msgstr ""
+msgstr "Köken:"
 
 msgid "Method:"
 msgstr "Yöntem:"
@@ -6303,13 +6299,13 @@ msgstr[0] "İnceleme:"
 msgstr[1] "İnceleme:"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "eşleşen kuralların varlığı"
 
 msgid "result state"
 msgstr "sonuç durumu"
 
 msgid "all but this rule"
-msgstr ""
+msgstr "bu kural hariç hepsi"
 
 msgid "presence of a version"
 msgstr "bir sürümün varlığı"
@@ -6347,19 +6343,19 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Tanım geçerli değil: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Tanım derlenirken bir hata oluştu"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Durdur"
 
 msgid "Run"
-msgstr ""
+msgstr "Çalıştır"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
@@ -6472,7 +6468,7 @@ msgstr "Dışa aktar"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: İstatistik Panosu :: {1} eklentileri"
 
 msgid "{0} :: Statistics Dashboard"
 msgstr "{0} :: İstatistik Panosu"
@@ -6738,15 +6734,15 @@ msgstr "Dili Sil"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "\"%(user)s\" kullanıcısı engellendi."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "\"%(user)s\" kullanıcısına ait resim silindi."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "\"%(users)s\" kullanıcıları engellendi."
 
 msgid "Ban selected users"
 msgstr "Seçilen kullanıcıları engelle"
@@ -6786,7 +6782,7 @@ msgid "No user with that email."
 msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
 
 msgid "Firefox user {id}"
-msgstr ""
+msgstr "Firefox kullanıcısı {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Mobil eklentilerim"
@@ -6795,13 +6791,13 @@ msgid "My Favorite Add-ons"
 msgstr "Favori Eklentilerim"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Geçerli bir IPv6 veya IPv6 CIDR ağ aralığı girin, örn. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Konumunuzdan politikalarımızı ihlal eden birden fazla eklenti gönderildi. IP adresi engellendi."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "E-posta deseni"
 
 msgid ""
 "Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
@@ -6809,7 +6805,7 @@ msgid ""
 msgstr ""
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr ""
+msgstr "Hesabınız için kullanılan e-posta adresine eklenti gönderimi için izin verilmiyor."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
