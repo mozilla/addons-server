@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 11:13+0000\n"
+"PO-Revision-Date: 2020-07-08 11:23+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1016,9 +1016,8 @@ msgstr "Tema (Statis)"
 msgid "Extensions"
 msgstr "Ekstensi"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Tema Komplet"
+msgstr "Tema Lengkap Usang"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1544,16 +1543,14 @@ msgstr "Gambar berkualitas rendah, meregang atau kosong"
 msgid "Header image alignment problem"
 msgstr "Masalah gambar di bagian atas yang sejajar"
 
-#, fuzzy
 msgid "No action"
-msgstr "Tindakan Lainnya:"
+msgstr "Tidak ada tindakan"
 
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Nonaktifkan Persetujuan Otomatis"
+msgstr "Tunda persetujuan otomatis"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
