@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:27+0000\n"
-"PO-Revision-Date: 2019-12-14 07:30+0000\n"
-"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
+"PO-Revision-Date: 2020-07-08 09:27+0000\n"
+"Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -115,13 +115,12 @@ msgstr "Daftar cek pendaftaran pengaya"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Tolong verifikasi poin berikut sebelum benar-benar mengirimkan. Ini mengurangi penundaan atau salah pengertian dalam proses ulasan:"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Digit Biner terkompilasi, sekaligus skrip yang dikecilkan atau dikaburkan (tidak termasuk pustaka yang dikenali) , sumbernya harus diajukan terpisah untuk peninjauan. Pastikan Anda menggunakan "
-"bidang pengunggah kode sumber agar pengajuan Anda tidak ditolak."
+"Skrip yang diperkecil, digabung, atau dihasilkan mesin (tidak termasuk perpustakaan yang dikenal) harus meminta sumbernya dikirimkan secara terpisah untuk ditinjau. Pastikan Anda menggunakan bidang "
+"unggah kode sumber untuk menghindari kiriman Anda ditolak."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proses validasi menemukan sejumlah masalah yang dapat mengakibatkan penolakan:"
@@ -438,14 +437,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Aplikasi dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Kontribusi, {0} hari terakhir"
+msgstr "Negara, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Kontribusi dari tanggal {0} hingga tanggal {1}"
+msgstr "Negara-negara dari {0} hingga {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
