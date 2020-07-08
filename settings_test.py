@@ -6,6 +6,7 @@ from settings import *  # noqa
 INSTALLED_APPS += (
     'olympia.translations.tests.testapp',
     'olympia.core.tests.db_tests_testapp',
+    'olympia.core.tests.m2m_testapp',
 )
 # Make sure the debug toolbar isn't used during the tests.
 INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
