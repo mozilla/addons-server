@@ -1676,6 +1676,23 @@ class TestAddonModels(TestCase):
 
         sync_object_to_basket_mock.reset_mock()
         extra_author.delete()
+        extra_author.reload()
+        assert extra_author.role == amo.AUTHOR_ROLE_DELETED
+        assert AddonUser.unfiltered.filter(id=extra_author.id).exists()
+        assert sync_object_to_basket_mock.delay.call_count == 1
+        assert sync_object_to_basket_mock.delay.called_with(
+            'addon', 3615)
+
+    @patch('olympia.amo.tasks.sync_object_to_basket')
+    def test_addon_author_hard_delete_synced_to_basket(
+            self, sync_object_to_basket_mock):
+        addon = Addon.objects.get(id=3615)
+        user = UserProfile.objects.get(pk=999)
+        extra_author = AddonUser.objects.create(addon=addon, user=user)
+
+        sync_object_to_basket_mock.reset_mock()
+        AddonUser.objects.filter(id=extra_author.id).delete()
+        assert not AddonUser.unfiltered.filter(id=extra_author.id).exists()
         assert sync_object_to_basket_mock.delay.call_count == 1
         assert sync_object_to_basket_mock.delay.called_with(
             'addon', 3615)
