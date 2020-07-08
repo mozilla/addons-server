@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 01:09+0000\n"
+"PO-Revision-Date: 2020-07-08 15:40+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5606,9 +5606,8 @@ msgstr "Peso"
 msgid "Information Request Deadline"
 msgstr "Prazo para solicitação de informação"
 
-#, fuzzy
 msgid "Pending Rejection Deadline"
-msgstr "Prazo para solicitação de informação"
+msgstr "Prazo de rejeição pendente"
 
 msgid "Last Updated"
 msgstr "Última atualização"
@@ -5772,9 +5771,8 @@ msgid "Expired Information Requests ({0})"
 msgstr "Solicitação de informação expirada ({0})"
 
 # %1 is the review count
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Outras revisões pendentes ({0})"
+msgstr "Rejeições pendentes de extensões ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Ocorreu um erro desconhecido"
@@ -5813,9 +5811,8 @@ msgstr "ID da extensão"
 msgid "Internal AMO ID"
 msgstr "ID AMO interno"
 
-#, fuzzy
 msgid "Support Website"
-msgstr "Página de suporte:"
+msgstr "Site de suporte"
 
 msgid "Visibility"
 msgstr "Visibilidade"
@@ -5999,9 +5996,8 @@ msgstr "Solicitação de informação expirada – Extensões do Firefox"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr "Extensões não listadas – Extensões do Firefox"
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Moderação de revisores – Extensões do Firefox"
+msgstr "Rejeição pendente – Extensões do Firefox"
 
 msgid "Advanced Search"
 msgstr "Pesquisa avançada"
@@ -6065,9 +6061,8 @@ msgstr "Esta é uma extensão recomendada."
 msgid "You don't have permission to review it."
 msgstr "Você não tem permissão para revisar."
 
-#, fuzzy
 msgid "Please select one or more versions in the list below."
-msgstr "Selecione uma ou mais versões na lista acima."
+msgstr "Selecione uma ou mais versões na lista abaixo."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Você ainda pode submeter este formulário; no entanto, faça isso apenas se tiver certeza de que não haverá conflitos."
@@ -6226,9 +6221,8 @@ msgstr "Recentes"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versões sinalizadas por verificadores em outras páginas."
 
-#, fuzzy
 msgid "{num} versions pending rejection on other pages."
-msgstr "{num} versões sinalizadas por verificadores em outras páginas."
+msgstr "{num} versões com rejeição pendente em outras páginas."
 
 msgid "Recent Points"
 msgstr "Pontuação recente"
@@ -6322,11 +6316,10 @@ msgstr[0] "Solicitação de informação expirada ({0})"
 msgstr[1] "Solicitação de informações expiradas ({0})"
 
 # %1 is the review count
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Outras revisões pendentes ({0})"
-msgstr[1] "Outras revisões pendentes ({0})"
+msgstr[0] "Rejeição pendente ({0})"
+msgstr[1] "Rejeições pendentes ({0})"
 
 msgid "presence of matched rules"
 msgstr "presença de regras que correspondem"
@@ -6965,6 +6958,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Olá,\n"
+"\n"
+"Você recebeu esta mensagem porque sua conta de usuário %(name)s em %(site_url)s foi excluída.\n"
+"\n"
+"Se você não fez isso ou acredita que uma pessoa não autorizada acessou sua conta, responda a este e-mail. Caso contrário, não precisa fazer mais nada.\n"
+"\n"
+"Saudações,\n"
+"\n"
+"Equipe de extensões do Firefox"
 
 # In a user list: user 1, user 2, "others"
 msgctxt "user_list_others"
