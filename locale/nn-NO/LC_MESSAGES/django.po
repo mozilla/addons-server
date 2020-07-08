@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 11:23+0000\n"
+"PO-Revision-Date: 2020-07-08 23:28+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -496,7 +496,7 @@ msgid "Invalid version"
 msgstr "Ugyldig versjon"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Min-versjon kan ikkje vere større enn Max-versjon"
 
 #, fuzzy
 msgid "Review Listed"
