@@ -6084,11 +6084,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "కాలంచెల్లిన సమాచార అభ్యర్థన ({0})"
 msgstr[1] "కాలంచెల్లిన సమాచార అభ్యర్థనలు ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "ఇతర వేచివున్న సమీక్ష ({0})"
-msgstr[1] "ఇతర వేచివున్న సమీక్ష ({0})"
+msgstr[0] "వేచివున్న తిరస్కరణ ({0})"
+msgstr[1] ""
 
 msgid "presence of matched rules"
 msgstr ""
