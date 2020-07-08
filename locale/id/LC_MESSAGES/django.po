@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 09:38+0000\n"
+"PO-Revision-Date: 2020-07-08 11:13+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -930,13 +930,11 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Reset kunci api pengguna {user}."
+msgstr "Reset pengguna {user} sesi."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Pengguna {user} diedit, alasan: {1}"
+msgstr "Pengguna {user} dibatasi untuk ruang lingkup \"{0}\""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -990,9 +988,8 @@ msgstr "Pengembang"
 msgid "Extension"
 msgstr "Ekstensi"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Ulasan Tema Komplet yang Diperbarui"
+msgstr "Tema Lengkap Usang"
 
 msgid "Dictionary"
 msgstr "Словник"
