@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-09 18:41+0000\n"
+"PO-Revision-Date: 2020-07-09 18:56+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5630,9 +5630,8 @@ msgstr "შედეგად, მითითებული დამოწმ
 msgid "Confirm Multiple Versions"
 msgstr "რამდენიმე ვერსიის უარყოფა"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "შედეგად, თქვენ მიერ ამ ვერსიის შიგთავსის დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
+msgstr "შედეგად, დადასტურდება შერჩეული ვერსიები, შემმუშავებლის შეუტყობინებლად."
 
 msgid "Reviewer reply"
 msgstr "მიმომხილველის პასუხი"
