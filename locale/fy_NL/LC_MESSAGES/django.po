@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-09 10:36+0000\n"
+"PO-Revision-Date: 2020-07-09 11:32+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -6146,9 +6146,8 @@ msgstr "Nijer"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} ferzjes troch scanners op oare siden markearre."
 
-#, fuzzy
 msgid "{num} versions pending rejection on other pages."
-msgstr "{num} ferzjes troch scanners op oare siden markearre."
+msgstr "{num} ferzjes wachtsje op oare siden op ôfwizing."
 
 msgid "Recent Points"
 msgstr "Resinte punten"
@@ -6240,11 +6239,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Ferrûn fersyk om ynformaasje ({0})"
 msgstr[1] "Ferrûne fersiken om ynformaasje ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Oare wachtsjend op beoardieling ({0})"
-msgstr[1] "Oare wachtsjend op beoardieling ({0})"
+msgstr[0] "Wachtsjend op ôfwizing ({0})"
+msgstr[1] "Wachtsjend op ôfwizing ({0})"
 
 msgid "presence of matched rules"
 msgstr "oanwêzichheid fan oerienkommende rigels"
