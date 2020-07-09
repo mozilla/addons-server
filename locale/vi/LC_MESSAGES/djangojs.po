@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:27+0000\n"
-"PO-Revision-Date: 2020-05-25 00:58+0000\n"
-"Last-Translator: minh.duplo <minh.duplo@gmail.com>\n"
+"PO-Revision-Date: 2020-07-09 14:45+0000\n"
+"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -438,14 +438,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Ứng dụng từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Khoản Đóng góp, {0} ngày trước"
+msgstr "Quốc gia, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Khoảng Đóng góp từ {0} đến {1}"
+msgstr "Quốc gia từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
