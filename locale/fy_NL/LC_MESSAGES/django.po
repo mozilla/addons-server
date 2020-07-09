@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-09 10:32+0000\n"
+"PO-Revision-Date: 2020-07-09 10:36+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5546,9 +5546,8 @@ msgstr "Gewicht"
 msgid "Information Request Deadline"
 msgstr "Deadline foar fersyk om ynformaasje"
 
-#, fuzzy
 msgid "Pending Rejection Deadline"
-msgstr "Deadline foar fersyk om ynformaasje"
+msgstr "Deadline foar wachtrige foar ôfwizing"
 
 msgid "Last Updated"
 msgstr "Lêst bywurke"
@@ -5705,9 +5704,8 @@ msgstr "Berjocht fan de dei bywurkje"
 msgid "Expired Information Requests ({0})"
 msgstr "Ferrûne fersiken om ynformaasje ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Oare wachtsjend op beoardieling ({0})"
+msgstr "Add-ons wachtsjend op ôfwizing ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Der is in ûnbekende flater bard"
@@ -5746,9 +5744,8 @@ msgstr "Add-on-ID"
 msgid "Internal AMO ID"
 msgstr "Ynterne AMO-ID"
 
-#, fuzzy
 msgid "Support Website"
-msgstr "Stipewebsite:"
+msgstr "Stipewebsite"
 
 msgid "Visibility"
 msgstr "Sichtberheid"
@@ -5926,9 +5923,8 @@ msgstr "Ferrûn fersyk om ynformaasje – Add-ons foar Firefox"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr "Net-fermelde add-ons – Add-ons foar Firefox"
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Beoardielingsmoderaasje – Add-ons foar Firefox"
+msgstr "Wachtsjend op ôfwizing – Add-ons foar Firefox"
 
 msgid "Advanced Search"
 msgstr "Avansearre sykje"
@@ -5991,9 +5987,8 @@ msgstr "Dit is in oanrekommandearre útwreiding."
 msgid "You don't have permission to review it."
 msgstr "Jo hawwe gjin rjochten om dit te beoardielen."
 
-#, fuzzy
 msgid "Please select one or more versions in the list below."
-msgstr "Selektearje ien of mear ferzjes yn de boppesteande list."
+msgstr "Selektearje ien of mear ferzjes yn de ûndersteande list."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Jo kinne dit formulier noch hieltyd yntsjinje, mar doch dit allinnich as jo witte dat der gjin konflikten barre sille."
@@ -6883,6 +6878,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Hallo,\n"
+"\n"
+"Jo ûntfange dit berjocht, omdat jo brûkersaccount %(name)s fan %(site_url)s fuortsmiten is.\n"
+"\n"
+"As jo dit net dien hawwe of as jo tinke dat ien sûnder tastimming tagong hân hat ta jo account, beäntwurdzje dan dit berjocht. Yn oare gefallen hoege jo neat te dwaan.\n"
+"\n"
+"Mei freonlike groet,\n"
+"\n"
+"It Firefox Add-ons-team"
 
 msgctxt "user_list_others"
 msgid "others"
