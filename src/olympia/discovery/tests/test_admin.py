@@ -605,7 +605,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         content = response.content.decode('utf-8')
         assert u'transparent.png' in content
 
-        updated_photo = get_uploaded_file('non-animated.png')
+        updated_photo = get_uploaded_file('preview_4x3.jpg')
         response = self.client.post(
             self.detail_url,
             dict(custom_image=updated_photo),
@@ -613,17 +613,17 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 200
         item.reload()
         assert PrimaryHeroImage.objects.count() == 1
-        assert item.custom_image == 'hero-featured-image/non-animated.png'
+        assert item.custom_image == 'hero-featured-image/preview_4x3.png'
         assert os.path.exists(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'non-animated.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.png'))
         assert os.path.exists(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'non-animated.png'))
+            'thumbs', 'preview_4x3.png'))
         width, height = get_image_dimensions(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'non-animated.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.png'))
         t_width, t_height = get_image_dimensions(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'non-animated.png'))
+            'thumbs', 'preview_4x3.png'))
         assert width <= 960 and height <= 640
         assert t_width <= 150 and t_height <= 120
 
@@ -681,17 +681,17 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.count() == 1
         item = PrimaryHeroImage.objects.get()
-        assert item.custom_image == 'hero-featured-image/preview_4x3.jpg'
+        assert item.custom_image == 'hero-featured-image/preview_4x3.png'
         assert os.path.exists(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.jpg'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.png'))
         assert os.path.exists(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'preview_4x3.jpg'))
+            'thumbs', 'preview_4x3.png'))
         width, height = get_image_dimensions(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.jpg'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.png'))
         t_width, t_height = get_image_dimensions(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'preview_4x3.jpg'))
+            'thumbs', 'preview_4x3.png'))
         assert width <= 960 and height <= 640
         assert t_width <= 150 and t_height <= 120
 

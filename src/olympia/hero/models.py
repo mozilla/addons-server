@@ -91,9 +91,14 @@ class WidgetCharField(models.CharField):
         return super().get_choices(*args, **kwargs)
 
 
+def hero_image_directory(instance, filename):
+    prefix = os.path.splitext(filename)[0]
+    return f'hero-featured-image/{prefix}.png'
+
+
 class PrimaryHeroImage(ModelBase):
     custom_image = models.ImageField(
-        upload_to='hero-featured-image/',
+        upload_to=hero_image_directory,
         blank=False, verbose_name='custom image path')
 
     def __str__(self):
