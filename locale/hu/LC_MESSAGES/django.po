@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-09 09:13+0000\n"
+"PO-Revision-Date: 2020-07-09 09:24+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5564,9 +5564,8 @@ msgstr "Súly"
 msgid "Information Request Deadline"
 msgstr "Információkérés határideje"
 
-#, fuzzy
 msgid "Pending Rejection Deadline"
-msgstr "Információkérés határideje"
+msgstr "Függőben lévő elutasítás határideje"
 
 msgid "Last Updated"
 msgstr "Utoljára frissítve"
@@ -5723,9 +5722,8 @@ msgstr "A nap üzenetének frissítése"
 msgid "Expired Information Requests ({0})"
 msgstr "Lejárt információkérések ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Egyéb értékelésre várók ({0})"
+msgstr "Elutasításra váró kiegészítők ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Ismeretlen hiba történt"
@@ -6263,11 +6261,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Lejárt információkérés ({0})"
 msgstr[1] "Lejárt információkérések ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Egyéb értékelésre várók ({0})"
-msgstr[1] "Egyéb értékelésre várók ({0})"
+msgstr[0] "Elutasításra vár ({0})"
+msgstr[1] "Elutasításra vár ({0})"
 
 msgid "presence of matched rules"
 msgstr "megfelelő szabályok jelenléte"
