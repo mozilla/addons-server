@@ -5,7 +5,6 @@ class PromotedClass():
     id = 0
     name = 'Not Promoted'
     search_ranking_bump = 0
-    badge = None
     warning = True
     pre_review = False
     admin_review = False
@@ -19,7 +18,6 @@ class RECOMMENDED(PromotedClass):
     id = 1
     name = _('Recommended')
     search_ranking_bump = 1000  # TODO: confirm this bump
-    badge = 'badge'  # TODO: define what the badge is
     warning = False
     pre_review = True
 
@@ -28,7 +26,6 @@ class VERIFIED_ONE(PromotedClass):
     id = 2
     name = _('Verified - Tier 1')
     search_ranking_bump = 500  # TODO: confirm this bump
-    badge = 'badge'  # TODO: define what the badge is
     warning = False
     pre_review = True
     admin_review = True
@@ -37,7 +34,6 @@ class VERIFIED_ONE(PromotedClass):
 class VERIFIED_TWO(PromotedClass):
     id = 3
     name = _('Verified - Tier 2')
-    badge = 'badge'  # TODO: define what the badge is
     warning = False
     pre_review = True
 
@@ -45,7 +41,6 @@ class VERIFIED_TWO(PromotedClass):
 class LINE(PromotedClass):
     id = 4
     name = _('Line')
-    badge = 'badge'  # TODO: define what the badge is
     warning = False
     pre_review = True
     admin_review = True
