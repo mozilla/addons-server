@@ -703,6 +703,39 @@ class TestEditAuthor(TestOwnership):
         assert response.context['user_form'].non_form_errors() == (
             ['Must have at least one owner.'])
 
+    def test_deleted_role_not_available(self):
+        au = AddonUser.objects.create(
+            addon=self.addon,
+            user=UserProfile.objects.get(email='regular@mozilla.com'),
+            role=amo.AUTHOR_ROLE_DEV,
+            listed=True,
+            position=1,
+        )
+        au.delete()
+        response = self.client.get(self.url)
+        assert 'Deleted' not in response.content.decode('utf-8')
+
+        second_author = AddonUser.objects.create(
+            addon=self.addon,
+            user=user_factory(),
+            listed=False,
+            role=amo.AUTHOR_ROLE_DEV,
+            position=1)
+        # Try to edit the user we just added to make them deleted.
+        data = self.build_form_data({
+            'user_form-1-listed': False,
+            'user_form-1-role': amo.AUTHOR_ROLE_DELETED,
+        })
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        user_form = response.context['user_form']
+        assert {
+            'role': [
+                'Select a valid choice. 6 is not one of the available choices.'
+            ]} in user_form.errors
+        second_author.reload()
+        assert second_author.role == amo.AUTHOR_ROLE_DEV
+
 
 class TestEditAuthorStaticTheme(TestEditAuthor):
     def setUp(self):

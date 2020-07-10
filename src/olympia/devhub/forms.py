@@ -412,6 +412,11 @@ class AddonFormTechnicalUnlisted(AddonFormBase):
 
 class AuthorForm(forms.ModelForm):
     user = UserEmailField(required=True, queryset=UserProfile.objects.all())
+    role = forms.TypedChoiceField(
+        required=True,
+        choices=amo.AUTHOR_CHOICES,
+        initial=amo.AUTHOR_ROLE_OWNER,
+        coerce=int)
 
     class Meta:
         model = AddonUser

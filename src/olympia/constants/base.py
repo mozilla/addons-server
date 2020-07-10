@@ -92,6 +92,9 @@ AUTHOR_ROLE_DELETED = 6
 AUTHOR_CHOICES = (
     (AUTHOR_ROLE_OWNER, _('Owner')),
     (AUTHOR_ROLE_DEV, _('Developer')),
+)
+
+AUTHOR_CHOICES_UNFILTERED = AUTHOR_CHOICES + (
     (AUTHOR_ROLE_DELETED, _('(Deleted)')),
 )
 
