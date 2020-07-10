@@ -37,7 +37,8 @@ class Command(BaseCommand):
             UserProfile.objects.filter(seven_year_q | one_day_q, deleted=True))
 
         addons_qs = Addon.unfiltered.filter(
-            status=amo.STATUS_DELETED, authors__in=users)
+            status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED),
+            authors__in=users)
         addon_ids = list(addons_qs.values_list('id', flat=True))
 
         log.info('Clearing %s for %d users', profile_clear.keys(), len(users))

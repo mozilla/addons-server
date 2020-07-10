@@ -185,6 +185,13 @@ class TestClearOldUserData(TestCase):
         old_data_cleared_addon = addon_factory(
             users=[old_data_cleared], status=amo.STATUS_DELETED)
 
+        old_banned_user = user_factory(
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde',
+            banned=old_date)
+        old_banned_user.update(modified=old_date)
+        old_banned_user_addon = addon_factory(
+            users=[old_banned_user], status=amo.STATUS_DISABLED)
+
         call_command('clear_old_user_data')
 
         old_not_deleted.reload()
@@ -213,3 +220,13 @@ class TestClearOldUserData(TestCase):
 
         assert not Addon.unfiltered.filter(
             id=old_data_cleared_addon.id).exists()
+
+        old_banned_user.reload()
+        assert old_banned_user.last_login_ip == ''
+        assert old_banned_user.deleted is True
+        assert not old_banned_user.email
+        assert not old_banned_user.fxa_id
+        assert old_banned_user.modified == old_date
+        assert old_banned_user.banned
+        assert not Addon.unfiltered.filter(
+            id=old_banned_user_addon.id).exists()
