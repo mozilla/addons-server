@@ -10,6 +10,7 @@ from unittest import mock
 from olympia import amo
 from olympia.addons import cron
 from olympia.addons.models import Addon, AppSupport, FrozenAddon
+from olympia.addons.tasks import update_addon_hotness
 from olympia.amo.tests import addon_factory, file_factory, TestCase
 from olympia.files.models import File
 from olympia.stats.models import DownloadCount
@@ -495,3 +496,48 @@ class TestDeliverHotness(TestCase):
 
         # Exclude frozen add-ons too.
         assert self.frozen_extension.reload().hotness == 0
+
+    @mock.patch('olympia.addons.cron.time.sleep', lambda *a, **kw: None)
+    @mock.patch('olympia.addons.cron.group')
+    @mock.patch('olympia.addons.cron.get_averages_by_addon_from_bigquery')
+    def test_chunks(self, get_averages_mock, group_mock):
+        get_averages_mock.return_value = {
+            'guid-1': {'avg_this_week': 1, 'avg_three_weeks_before': 4561},
+            'guid-2': {'avg_this_week': 2, 'avg_three_weeks_before': 4562},
+            'guid-3': {'avg_this_week': 3, 'avg_three_weeks_before': 4563},
+            'guid-4': {'avg_this_week': 4, 'avg_three_weeks_before': 4564},
+        }
+        frozen_ids = [self.frozen_extension.id]
+
+        cron.deliver_hotness(chunk_size=2)
+
+        group_mock.assert_called_with(
+            [
+                update_addon_hotness.si(
+                    averages={
+                        'guid-1': {
+                            'avg_this_week': 1,
+                            'avg_three_weeks_before': 4561,
+                        },
+                        'guid-2': {
+                            'avg_this_week': 2,
+                            'avg_three_weeks_before': 4562,
+                        },
+                    },
+                    frozen_ids=frozen_ids,
+                ),
+                update_addon_hotness.si(
+                    averages={
+                        'guid-3': {
+                            'avg_this_week': 3,
+                            'avg_three_weeks_before': 4563,
+                        },
+                        'guid-4': {
+                            'avg_this_week': 4,
+                            'avg_three_weeks_before': 4564,
+                        },
+                    },
+                    frozen_ids=frozen_ids,
+                ),
+            ]
+        )

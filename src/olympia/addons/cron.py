@@ -1,5 +1,3 @@
-import time
-
 from datetime import date
 
 from django.db.models import F, Q, Sum
@@ -16,7 +14,7 @@ from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_download_totals as _update_addon_download_totals,
-    update_appsupport)
+    update_appsupport, update_addon_hotness)
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked
 from olympia.files.models import File
@@ -171,7 +169,7 @@ def unhide_disabled_files():
             file_.unhide_disabled_file()
 
 
-def deliver_hotness():
+def deliver_hotness(chunk_size=300):
     """
     Calculate hotness of all add-ons.
 
@@ -180,29 +178,15 @@ def deliver_hotness():
     threshold = 250 if addon type is theme, else 1000
     hotness = (a-b) / b if a > threshold and b > 1 else 0
     """
-    frozen = set(f.addon_id for f in FrozenAddon.objects.all())
+    frozen_ids = list(set(f.addon_id for f in FrozenAddon.objects.all()))
     averages = get_averages_by_addon_from_bigquery(today=date.today())
-    addons = (
-        Addon.objects.filter(guid__in=averages.keys())
-        .filter(status__in=amo.REVIEWED_STATUSES)
-        .exclude(id__in=frozen)
-    )
 
-    for addon in addons:
-        average = averages.get(addon.guid)
-        this = average['avg_this_week']
-        three = average['avg_three_weeks_before']
-
-        # Update the hotness score but only update hotness if necessary. We
-        # don't want to cause unnecessary re-indexes.
-        threshold = 250 if addon.type == amo.ADDON_STATICTHEME else 1000
-        if this > threshold and three > 1:
-            hotness = (this - three) / float(three)
-            if addon.hotness != hotness:
-                addon.update(hotness=hotness)
-        else:
-            if addon.hotness != 0:
-                addon.update(hotness=0)
-
-        # Let the database catch its breath.
-        time.sleep(10)
+    group(
+        [
+            update_addon_hotness.si(
+                averages={key: averages.get(key) for key in keys},
+                frozen_ids=frozen_ids,
+            )
+            for keys in chunked(averages.keys(), chunk_size)
+        ]
+    ).apply_async()

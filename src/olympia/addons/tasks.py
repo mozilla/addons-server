@@ -281,3 +281,32 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
     else:
         for addon in addons:
             addon.delete(send_delete_email=False)
+
+
+@task
+@use_primary_db
+def update_addon_hotness(averages, frozen_ids):
+    log.info("[%s] Updating add-ons hotness scores.", (len(averages)))
+
+    addons = (
+        Addon.objects.filter(guid__in=averages.keys())
+        .filter(status__in=amo.REVIEWED_STATUSES)
+        .exclude(id__in=frozen_ids)
+        .no_transforms()
+    )
+
+    for addon in addons:
+        average = averages.get(addon.guid)
+        this = average['avg_this_week']
+        three = average['avg_three_weeks_before']
+
+        # Update the hotness score but only update hotness if necessary. We
+        # don't want to cause unnecessary re-indexes.
+        threshold = 250 if addon.type == amo.ADDON_STATICTHEME else 1000
+        if this > threshold and three > 1:
+            hotness = (this - three) / float(three)
+            if addon.hotness != hotness:
+                addon.update(hotness=hotness)
+        else:
+            if addon.hotness != 0:
+                addon.update(hotness=0)
