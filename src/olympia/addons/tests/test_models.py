@@ -450,6 +450,10 @@ class TestAddonModels(TestCase):
         new_author = AddonUser.objects.create(
             addon_id=3615, user=UserProfile.objects.create(username='abda'),
             listed=True).user
+        # Deleted, so shouldn't show up below.
+        AddonUser.objects.create(
+            addon_id=3615, user=user_factory(),
+            listed=True, role=amo.AUTHOR_ROLE_DELETED).user
 
         addon = Addon.objects.get(pk=3615)
 
