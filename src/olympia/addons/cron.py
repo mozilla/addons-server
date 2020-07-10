@@ -192,7 +192,6 @@ def deliver_hotness(chunk_size=300):
         Addon.objects.filter(status__in=amo.REVIEWED_STATUSES)
         .filter(hotness__gt=0)
         .exclude(guid__in=averages.keys())
-        .no_transforms()
         .values_list('id', flat=True)
     )
     create_chunked_tasks_signatures(
