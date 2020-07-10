@@ -36,6 +36,7 @@ def update_user_ratings():
                 AND reviews.rating > 0
                 AND reviews.deleted = False
                 AND addons.status IN (%s)
+                AND addons.inactive = 0
               GROUP BY addons_users.user_id
               """ % (",".join(map(str, VALID_ADDON_STATUSES)))
 
