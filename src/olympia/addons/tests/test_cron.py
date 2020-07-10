@@ -434,7 +434,6 @@ class TestDeliverHotness(TestCase):
 
         FrozenAddon.objects.create(addon=self.frozen_extension)
 
-    @mock.patch('olympia.addons.cron.time.sleep', lambda *a, **kw: None)
     @mock.patch('olympia.addons.cron.get_averages_by_addon_from_bigquery')
     def test_basic(self, get_averages_mock):
         get_averages_mock.return_value = {
@@ -497,7 +496,6 @@ class TestDeliverHotness(TestCase):
         # Exclude frozen add-ons too.
         assert self.frozen_extension.reload().hotness == 0
 
-    @mock.patch('olympia.addons.cron.time.sleep', lambda *a, **kw: None)
     @mock.patch('olympia.addons.cron.group')
     @mock.patch('olympia.addons.cron.get_averages_by_addon_from_bigquery')
     def test_chunks(self, get_averages_mock, group_mock):
