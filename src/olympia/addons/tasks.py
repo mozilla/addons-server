@@ -311,6 +311,7 @@ def update_addon_hotness(averages):
             if addon.hotness != 0:
                 addon.update(hotness=0)
 
+
 @task
 @use_primary_db
 def reset_addon_hotness(addon_ids):
