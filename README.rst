@@ -1,5 +1,5 @@
 .. image:: https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg
-    :target: https://github.com/mozilla/addons-server/blob/master/CODE_OF_CONDUCT.md
+    :target: https://github.com/mozilla/addons-server/blob/master/.github/CODE_OF_CONDUCT.md
     :alt: Code of conduct
 
 .. image:: https://travis-ci.org/mozilla/addons-server.svg?branch=master
