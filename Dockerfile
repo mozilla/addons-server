@@ -105,6 +105,7 @@ ENV SWIG_FEATURES="-D__x86_64__"
 USER olympia
 
 RUN ln -s /code/package.json /deps/package.json && \
+    ln -s /code/package-lock.json /deps/package-lock.json && \
     make update_deps && \
     rm -rf /deps/build/ /deps/cache/
 
