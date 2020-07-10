@@ -310,3 +310,12 @@ def update_addon_hotness(averages):
         else:
             if addon.hotness != 0:
                 addon.update(hotness=0)
+
+@task
+@use_primary_db
+def reset_addon_hotness(addon_ids):
+    log.info("[%s] Resetting add-ons hotness scores.", (len(addon_ids)))
+    addons = Addon.objects.filter(id__in=addon_ids).all().no_transforms()
+
+    for addon in addons:
+        addon.update(hotness=0)

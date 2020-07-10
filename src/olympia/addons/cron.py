@@ -14,7 +14,7 @@ from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_download_totals as _update_addon_download_totals,
-    update_appsupport, update_addon_hotness)
+    update_appsupport, update_addon_hotness, reset_addon_hotness)
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked
@@ -183,12 +183,18 @@ def deliver_hotness(chunk_size=300):
     averages = get_averages_by_addon_from_bigquery(
         today=date.today(), exclude=frozen_guids
     )
-
-    # Reset add-ons that won't be returned by BigQuery.
-    Addon.objects.filter(status__in=amo.REVIEWED_STATUSES).filter(
-        hotness__gt=0
-    ).exclude(guid__in=averages.keys()).update(hotness=0)
-
     create_chunked_tasks_signatures(
         update_addon_hotness, averages.items(), chunk_size
+    ).apply_async()
+
+    # Reset add-ons that won't be returned by BigQuery.
+    addon_ids = (
+        Addon.objects.filter(status__in=amo.REVIEWED_STATUSES)
+        .filter(hotness__gt=0)
+        .exclude(guid__in=averages.keys())
+        .no_transforms()
+        .values_list('id', flat=True)
+    )
+    create_chunked_tasks_signatures(
+        reset_addon_hotness, addon_ids, chunk_size
     ).apply_async()

@@ -8,7 +8,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.addons.tasks import (recreate_theme_previews,
                                   update_addon_average_daily_users,
-                                  update_addon_hotness)
+                                  update_addon_hotness, reset_addon_hotness)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory
 from olympia.versions.models import VersionPreview
@@ -130,3 +130,16 @@ def test_update_addon_hotness():
     assert addon2.hotness == 0
     # We shouldn't have processed this add-on.
     assert addon3.hotness == 123
+
+
+@pytest.mark.django_db
+def test_reset_addon_hotness():
+    addon1 = addon_factory(hotness=1)
+    addon2 = addon_factory(hotness=2)
+
+    reset_addon_hotness(addon_ids=[addon1.id, addon2.id])
+    addon1.refresh_from_db()
+    addon2.refresh_from_db()
+
+    assert addon1.hotness == 0
+    assert addon2.hotness == 0

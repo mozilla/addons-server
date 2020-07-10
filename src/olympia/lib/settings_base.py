@@ -1191,6 +1191,7 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.recreate_theme_previews': {'queue': 'addons'},
 
     # Crons
+    'olympia.addons.tasks.reset_addon_hotness': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_download_totals': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
