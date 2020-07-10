@@ -429,11 +429,12 @@ class TestDeliverHotness(TestCase):
         self.unpopular_theme = addon_factory(type=amo.ADDON_STATICTHEME)
         self.barely_popular_theme = addon_factory(type=amo.ADDON_STATICTHEME)
         self.awaiting_review = addon_factory(status=amo.STATUS_NOMINATED)
-        self.frozen_extension = addon_factory()
 
+        self.frozen_extension = addon_factory()
         FrozenAddon.objects.create(addon=self.frozen_extension)
 
-    @mock.patch('olympia.addons.cron.time.sleep', lambda *a, **kw: None)
+        self.not_in_bigquery = addon_factory(hotness=123)
+
     @mock.patch('olympia.addons.cron.get_averages_by_addon_from_bigquery')
     def test_basic(self, get_averages_mock):
         get_averages_mock.return_value = {
@@ -469,10 +470,6 @@ class TestDeliverHotness(TestCase):
                 'avg_this_week': 827080,
                 'avg_three_weeks_before': 787930,
             },
-            self.frozen_extension.guid: {
-                'avg_this_week': 827080,
-                'avg_three_weeks_before': 787930,
-            },
         }
 
         cron.deliver_hotness()
@@ -495,3 +492,8 @@ class TestDeliverHotness(TestCase):
 
         # Exclude frozen add-ons too.
         assert self.frozen_extension.reload().hotness == 0
+        get_averages_mock.assert_called_once_with(
+            today=mock.ANY, exclude=[self.frozen_extension.guid]
+        )
+
+        assert self.not_in_bigquery.reload().hotness == 0

@@ -7,7 +7,8 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.tasks import (recreate_theme_previews,
-                                  update_addon_average_daily_users)
+                                  update_addon_average_daily_users,
+                                  update_addon_hotness, reset_addon_hotness)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory
 from olympia.versions.models import VersionPreview
@@ -95,3 +96,50 @@ def test_update_addon_average_daily_users():
     addon.refresh_from_db()
 
     assert addon.average_daily_users == count
+
+
+@pytest.mark.django_db
+def test_update_addon_hotness():
+    addon1 = addon_factory(hotness=0, status=amo.STATUS_APPROVED)
+    addon2 = addon_factory(hotness=123,
+                           status=amo.STATUS_APPROVED)
+    addon3 = addon_factory(hotness=123,
+                           status=amo.STATUS_AWAITING_REVIEW)
+    averages = {
+        addon1.guid: {
+            'avg_this_week': 213467,
+            'avg_three_weeks_before': 123467
+        },
+        addon2.guid: {
+            'avg_this_week': 1,
+            'avg_three_weeks_before': 1,
+        },
+        addon3.guid: {
+            'avg_this_week': 213467,
+            'avg_three_weeks_before': 123467
+        },
+    }
+
+    update_addon_hotness(averages=averages.items())
+    addon1.refresh_from_db()
+    addon2.refresh_from_db()
+    addon3.refresh_from_db()
+
+    assert addon1.hotness > 0
+    # Too low averages so we set the hotness to 0.
+    assert addon2.hotness == 0
+    # We shouldn't have processed this add-on.
+    assert addon3.hotness == 123
+
+
+@pytest.mark.django_db
+def test_reset_addon_hotness():
+    addon1 = addon_factory(hotness=1)
+    addon2 = addon_factory(hotness=2)
+
+    reset_addon_hotness(addon_ids=[addon1.id, addon2.id])
+    addon1.refresh_from_db()
+    addon2.refresh_from_db()
+
+    assert addon1.hotness == 0
+    assert addon2.hotness == 0

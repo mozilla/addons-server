@@ -30,6 +30,14 @@ class BigQueryTestMixin(object):
             {key: idx for idx, key in enumerate(data.keys())},
         )
 
+    def get_job_config_named_parameters(self, query):
+        # We execute `client.query()` with the actual SQL query as first arg
+        # and a `job_config` as second arg.
+        assert len(query.call_args) == 2
+        assert 'job_config' in query.call_args[1]
+        job_config = query.call_args[1]['job_config'].to_api_repr()
+        return job_config['query']['queryParameters']
+
 
 class TestRowsToSeries(BigQueryTestMixin, TestCase):
     def create_fake_bigquery_row(
@@ -283,24 +291,7 @@ GROUP BY addon_id"""
 
 @override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
 class TestGetAveragesByAddonFromBigQuery(BigQueryTestMixin, TestCase):
-    @mock.patch('google.cloud.bigquery.Client')
-    def test_create_client(self, bigquery_client_mock):
-        client = self.create_mock_client()
-        bigquery_client_mock.from_service_account_json.return_value = client
-
-        credentials = 'path/to/credentials.json'
-        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
-            get_averages_by_addon_from_bigquery(today=date.today())
-
-        bigquery_client_mock.from_service_account_json.assert_called_once_with(
-            credentials
-        )
-
-    @mock.patch('google.cloud.bigquery.Client')
-    def test_create_query(self, bigquery_client_mock):
-        client = self.create_mock_client()
-        bigquery_client_mock.from_service_account_json.return_value = client
-        expected_query = f"""
+    expected_base_query = f"""
 WITH
   this_week AS (
   SELECT
@@ -332,11 +323,80 @@ USING
   (addon_id)
 """
 
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_client(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+
+        credentials = 'path/to/credentials.json'
+        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
+            get_averages_by_addon_from_bigquery(today=date.today())
+
+        bigquery_client_mock.from_service_account_json.assert_called_once_with(
+            credentials
+        )
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_query(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+
         get_averages_by_addon_from_bigquery(today=date(2020, 5, 31))
+
+        client.query.assert_called_once_with(
+            self.expected_base_query, job_config=mock.ANY
+        )
+        parameters = self.get_job_config_named_parameters(client.query)
+        assert parameters == [
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': '2020-05-24'},
+                'name': 'one_week_date',
+            },
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': '2020-05-03'},
+                'name': 'four_weeks_date',
+            },
+        ]
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_query_with_excluded_guids(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+        guids = ['guid-1', 'guid-2']
+        expected_query = f'{self.expected_base_query} WHERE addon_id NOT IN UNNEST(@excluded_addon_ids)'  # noqa
+
+        get_averages_by_addon_from_bigquery(
+            today=date(2020, 5, 31), exclude=guids
+        )
 
         client.query.assert_called_once_with(
             expected_query, job_config=mock.ANY
         )
+        parameters = self.get_job_config_named_parameters(client.query)
+        assert parameters == [
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': '2020-05-24'},
+                'name': 'one_week_date',
+            },
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': '2020-05-03'},
+                'name': 'four_weeks_date',
+            },
+            {
+                'parameterType': {
+                    'type': 'ARRAY',
+                    'arrayType': {'type': 'STRING'},
+                },
+                'parameterValue': {
+                    'arrayValues': [{'value': guid} for guid in guids]
+                },
+                'name': 'excluded_addon_ids',
+            },
+        ]
 
     @mock.patch('google.cloud.bigquery.Client')
     def test_returned_values(self, bigquery_client_mock):
