@@ -43,21 +43,25 @@ def addon_with_files(db):
     [
         # New addon request full.
         # scenario0: should succeed, files approved.
-        ('process_public', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
+        ('approve_latest_version',
+         amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
          ReviewAddon, 'extension_nominated', amo.STATUS_APPROVED,
          amo.STATUS_APPROVED),
         # scenario1: should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
+        ('reject_latest_version',
+         amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
          ReviewAddon, 'extension_nominated', amo.STATUS_NULL,
          amo.STATUS_DISABLED),
 
         # Approved addon with a new file.
         # scenario2: should succeed, files approved.
-        ('process_public', amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
+        ('approve_latest_version',
+         amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
          ReviewFiles, 'extension_pending', amo.STATUS_APPROVED,
          amo.STATUS_APPROVED),
         # scenario3: should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
+        ('reject_latest_version',
+         amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
          ReviewFiles, 'extension_pending', amo.STATUS_NULL,
          amo.STATUS_DISABLED),
     ])
@@ -76,7 +80,7 @@ def test_review_scenario(mock_request, addon_with_files, review_action,
     helper.set_review_handler(mock_request)
     assert helper.handler.review_type == review_type
     helper.set_data({'comments': 'testing review scenarios'})
-    # Run the action (process_public, process_sandbox).
+    # Run the action (approve_latest_version, reject_latest_version).
     try:
         getattr(helper.handler, review_action)()
     except AssertionError:

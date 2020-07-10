@@ -452,7 +452,7 @@ class ReviewHelper(object):
 
         # Definitions for all actions.
         actions['public'] = {
-            'method': self.handler.process_public,
+            'method': self.handler.approve_latest_version,
             'minimal': False,
             'details': _('This will approve, sign, and publish this '
                          'version. The comments will be sent to the '
@@ -467,7 +467,7 @@ class ReviewHelper(object):
             )
         }
         actions['reject'] = {
-            'method': self.handler.process_sandbox,
+            'method': self.handler.reject_latest_version,
             'label': _('Reject'),
             'details': _('This will reject this version and remove it '
                          'from the queue. The comments will be sent '
@@ -476,7 +476,7 @@ class ReviewHelper(object):
             'available': (
                 not self.content_review and
                 # We specifically don't let the individual reject action be
-                # available for unlisted review. `process_sandbox` isn't
+                # available for unlisted review. `reject_latest_version` isn't
                 # currently implemented for unlisted.
                 addon_is_valid_and_version_is_listed and
                 version_is_unreviewed and
@@ -805,8 +805,9 @@ class ReviewBase(object):
         if update_reviewed:
             self.version.update(reviewed=datetime.now())
 
-    def process_public(self):
-        """Set an add-on or a version to public."""
+    def approve_latest_version(self):
+        """Approve the add-on latest version (potentially setting the add-on to
+        approved if it was awaiting its first review)."""
         # Safeguard to force implementation for unlisted add-ons to completely
         # override this method.
         assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
@@ -828,21 +829,26 @@ class ReviewBase(object):
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_APPROVED)
 
-        # Clear needs_human_review flags on past listed versions.
         if self.human_review:
+            # No need for a human review anymore.
             self.unset_past_needs_human_review()
-            # Clear the "needs_human_review" scanner flags too, if any, and
-            # only for the specified version.
             VersionReviewerFlags.objects.filter(
                 version=self.version
             ).update(needs_human_review_by_mad=False)
 
-        # Increment approvals counter if we have a request (it means it's a
-        # human doing the review) otherwise reset it as it's an automatic
-        # approval.
-        if self.human_review:
+            # An approval took place so we can reset this.
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon,
+                defaults={'auto_approval_disabled_until_next_approval': False})
+
+            # The counter can be incremented.
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
+
+            # Assign reviewer incentive scores.
+            ReviewerScore.award_points(
+                self.user, self.addon, status, version=self.version)
         else:
+            # Automatic approval, reset the counter.
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
@@ -856,13 +862,9 @@ class ReviewBase(object):
         self.log_public_message()
         log.info(u'Sending email for %s' % (self.addon))
 
-        # Assign reviewer incentive scores.
-        if self.human_review:
-            ReviewerScore.award_points(
-                self.user, self.addon, status, version=self.version)
-
-    def process_sandbox(self):
-        """Set an addon or a version back to sandbox."""
+    def reject_latest_version(self):
+        """Reject the add-on latest version (potentially setting the add-on
+        back to incomplete if it was awaiting its first review)."""
         # Safeguard to force implementation for unlisted add-ons to completely
         # override this method.
         assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
@@ -879,10 +881,14 @@ class ReviewBase(object):
         self.set_files(amo.STATUS_DISABLED, self.files,
                        hide_disabled_file=True)
 
-        # Unset needs_human_review on the latest version - it's the only
-        # version we can be certain that the reviewer looked at.
         if self.human_review:
+            # Unset needs_human_review on the latest version - it's the only
+            # version we can be certain that the reviewer looked at.
             self.version.update(needs_human_review=False)
+
+            # Assign reviewer incentive scores.
+            ReviewerScore.award_points(
+                self.user, self.addon, status, version=self.version)
 
         self.log_action(amo.LOG.REJECT_VERSION)
         template = u'%s_to_rejected' % self.review_type
@@ -891,11 +897,6 @@ class ReviewBase(object):
 
         self.log_sandbox_message()
         log.info(u'Sending email for %s' % (self.addon))
-
-        # Assign reviewer incentive scores.
-        if self.human_review:
-            ReviewerScore.award_points(
-                self.user, self.addon, status, version=self.version)
 
     def process_super_review(self):
         """Mark an add-on as needing admin code, content, or theme review."""
@@ -999,6 +1000,7 @@ class ReviewBase(object):
                 version__addon=self.addon
             ).update(pending_rejection=None)
 
+            # Assign reviewer incentive scores.
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
             ReviewerScore.award_points(
                 self.user, self.addon, self.addon.status,
@@ -1103,7 +1105,7 @@ class ReviewFiles(ReviewBase):
 
 class ReviewUnlisted(ReviewBase):
 
-    def process_public(self):
+    def approve_latest_version(self):
         """Set an unlisted addon version files to public."""
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 

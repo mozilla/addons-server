@@ -221,6 +221,7 @@ class Version(OnChangeMixin, ModelBase):
         We can't check for that here because an admin may have overridden the
         validation results.
         """
+        from olympia.addons.models import AddonReviewerFlags
         from olympia.git.utils import create_git_extraction_entry
 
         assert parsed_data is not None
@@ -330,6 +331,20 @@ class Version(OnChangeMixin, ModelBase):
                 channel == amo.RELEASE_CHANNEL_LISTED):
             theme_data = parsed_data.get('theme', {})
             generate_static_theme_preview(theme_data, version.pk)
+
+        # Reset add-on reviewer flags to disable auto-approval and require
+        # admin code review if the package has already been signed by mozilla.
+        reviewer_flags_defaults = {}
+        is_mozilla_signed = parsed_data.get('is_mozilla_signed_extension')
+        if upload.validation_timeout:
+            reviewer_flags_defaults['needs_admin_code_review'] = True
+        if is_mozilla_signed and addon.type != amo.ADDON_LPAPP:
+            reviewer_flags_defaults['needs_admin_code_review'] = True
+            reviewer_flags_defaults['auto_approval_disabled'] = True
+
+        if reviewer_flags_defaults:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=addon, defaults=reviewer_flags_defaults)
 
         # Authors need to be notified about auto-approval delay again since
         # they are submitting a new version.

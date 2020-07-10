@@ -732,18 +732,6 @@ class Addon(OnChangeMixin, ModelBase):
         addon = cls.initialize_addon_from_upload(
             parsed_data, upload, channel, user)
 
-        reviewer_flags_defaults = {}
-        is_mozilla_signed = parsed_data.get('is_mozilla_signed_extension')
-        if upload.validation_timeout:
-            reviewer_flags_defaults['needs_admin_code_review'] = True
-        if is_mozilla_signed and addon.type != amo.ADDON_LPAPP:
-            reviewer_flags_defaults['needs_admin_code_review'] = True
-            reviewer_flags_defaults['auto_approval_disabled'] = True
-
-        if reviewer_flags_defaults:
-            AddonReviewerFlags.objects.update_or_create(
-                addon=addon, defaults=reviewer_flags_defaults)
-
         Version.from_upload(
             upload=upload, addon=addon, selected_apps=selected_apps,
             channel=channel, parsed_data=parsed_data)
@@ -1475,6 +1463,15 @@ class Addon(OnChangeMixin, ModelBase):
             return None
 
     @property
+    def auto_approval_disabled_until_next_approval(self):
+        try:
+            return (
+                self.reviewerflags.auto_approval_disabled_until_next_approval
+            )
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
     def auto_approval_delayed_until(self):
         try:
             return self.reviewerflags.auto_approval_delayed_until
@@ -1713,6 +1710,8 @@ class AddonReviewerFlags(ModelBase):
     needs_admin_content_review = models.BooleanField(default=False)
     needs_admin_theme_review = models.BooleanField(default=False)
     auto_approval_disabled = models.BooleanField(default=False)
+    auto_approval_disabled_until_next_approval = models.NullBooleanField(
+        default=None)
     auto_approval_delayed_until = models.DateTimeField(
         default=None, null=True)
     pending_info_request = models.DateTimeField(default=None, null=True)

@@ -283,6 +283,20 @@
                     data-toggle-button-selector="#disable_auto_approval"
                     id="enable_auto_approval" class="toggle" type="button">{{ _('Enable Listed Auto-Approval') }}</button>
           </li>
+          <li {% if addon.auto_approval_disabled_until_next_approval %}class="hidden"{% endif %}>
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled_until_next_approval&quot;: true}"
+                    data-toggle-button-selector="#enable_auto_approval_until_next_approval"
+                    id="disable_auto_approval_until_next_approval" class="toggle" type="button">{{ _('Disable Listed Auto-Approval Until Next Manual Approval') }}</button>
+          </li>
+          <li {% if not addon.auto_approval_disabled_until_next_approval %}class="hidden"{% endif %}>
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled_until_next_approval&quot;: false}"
+                    data-toggle-button-selector="#disable_auto_approval_until_next_approval"
+                    id="enable_auto_approval_until_next_approval" class="toggle" type="button">{{ _('Enable Listed Auto-Approval Before Next Manual Approval') }}</button>
+          </li>
           {% if addon.auto_approval_delayed_until and addon.auto_approval_delayed_until > now %}
             {# This flag is only meant to be enabled by scanners, but admins can still unset it. #}
             <li>

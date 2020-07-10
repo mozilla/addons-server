@@ -39,8 +39,9 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AddonReviewerFlags
         fields = (
-            'auto_approval_disabled',
             'auto_approval_delayed_until',
+            'auto_approval_disabled',
+            'auto_approval_disabled_until_next_approval',
             'needs_admin_code_review',
             'needs_admin_content_review',
             'needs_admin_theme_review',
