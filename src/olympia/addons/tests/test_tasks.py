@@ -104,8 +104,6 @@ def test_update_addon_hotness():
     addon2 = addon_factory(hotness=123,
                            status=amo.STATUS_APPROVED)
     addon3 = addon_factory(hotness=123,
-                           status=amo.STATUS_APPROVED)
-    addon4 = addon_factory(hotness=123,
                            status=amo.STATUS_AWAITING_REVIEW)
     averages = {
         addon1.guid: {
@@ -120,22 +118,15 @@ def test_update_addon_hotness():
             'avg_this_week': 213467,
             'avg_three_weeks_before': 123467
         },
-        addon4.guid: {
-            'avg_this_week': 213467,
-            'avg_three_weeks_before': 123467
-        },
     }
-    frozen_ids = [addon3.id]
 
-    update_addon_hotness(averages, frozen_ids=frozen_ids)
+    update_addon_hotness(averages=averages.items())
     addon1.refresh_from_db()
     addon2.refresh_from_db()
     addon3.refresh_from_db()
-    addon4.refresh_from_db()
 
     assert addon1.hotness > 0
     # Too low averages so we set the hotness to 0.
     assert addon2.hotness == 0
-    # We shouldn't have processed these add-ons.
+    # We shouldn't have processed this add-on.
     assert addon3.hotness == 123
-    assert addon4.hotness == 123

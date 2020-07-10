@@ -285,13 +285,13 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
 
 @task
 @use_primary_db
-def update_addon_hotness(averages, frozen_ids):
+def update_addon_hotness(averages):
     log.info("[%s] Updating add-ons hotness scores.", (len(averages)))
 
+    averages = dict(averages)
     addons = (
         Addon.objects.filter(guid__in=averages.keys())
         .filter(status__in=amo.REVIEWED_STATUSES)
-        .exclude(id__in=frozen_ids)
         .no_transforms()
     )
 

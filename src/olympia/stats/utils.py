@@ -124,7 +124,7 @@ GROUP BY addon_id"""
     ]
 
 
-def get_averages_by_addon_from_bigquery(today):
+def get_averages_by_addon_from_bigquery(today, exclude=None):
     """This function is used to compute the 'hotness' score of each add-on (see
     also `deliver_hotness()` cron task). It returns a dict with top-level keys
     being add-on GUIDs and values being dicts containing average values."""
@@ -166,19 +166,24 @@ JOIN
 USING
   (addon_id)
 """
+    query_parameters = [
+        bigquery.ScalarQueryParameter('one_week_date', 'DATE', one_week_date),
+        bigquery.ScalarQueryParameter(
+            'four_weeks_date', 'DATE', four_weeks_date
+        ),
+    ]
+
+    if exclude and len(exclude) > 0:
+        query = f'{query} WHERE addon_id NOT IN UNNEST(@excluded_addon_ids)'
+        query_parameters.append(
+            bigquery.ArrayQueryParameter(
+                'excluded_addon_ids', 'STRING', exclude
+            )
+        )
 
     rows = client.query(
         query,
-        job_config=bigquery.QueryJobConfig(
-            query_parameters=[
-                bigquery.ScalarQueryParameter(
-                    'one_week_date', 'DATE', one_week_date
-                ),
-                bigquery.ScalarQueryParameter(
-                    'four_weeks_date', 'DATE', four_weeks_date
-                ),
-            ]
-        ),
+        job_config=bigquery.QueryJobConfig(query_parameters=query_parameters),
     ).result()
 
     return {
