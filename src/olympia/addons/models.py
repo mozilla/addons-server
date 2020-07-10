@@ -1314,7 +1314,7 @@ class Addon(OnChangeMixin, ModelBase):
             promoted = self.promotedaddon
         except PromotedAddon.DoesNotExist:
             return None
-        return promoted.group if promoted.is_addon_promoted(self) else None
+        return promoted.group if promoted.is_addon_currently_promoted else None
 
     @cached_property
     def tags_partitioned_by_developer(self):

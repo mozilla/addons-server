@@ -18,25 +18,14 @@ class PromotedAddon(ModelBase):
     def group(self):
         return PROMOTED_GROUPS_BY_ID.get(self.group_id, NOT_PROMOTED)
 
-    def __getattr__(self, name):
-        # magic to return the fixed properties of the promoted group too
-        try:
-            super().__getattribute__(name)
-        except AttributeError as parent_attr_error:
-            try:
-                return getattr(self.group, name)
-            except AttributeError:
-                raise parent_attr_error
-
-    def is_addon_promoted(self, addon=None):
-        """Is the addon approved for promotion within the *current* promoted
-        group."""
-        addon = addon or self.addon  # the caller might already have the addon
-        if not addon or not addon.current_version:
-            return False
+    @property
+    def is_addon_currently_promoted(self):
+        """Is the current_version of the addon approved for promotion within
+        the *current* promoted group."""
         return bool(
+            self.addon.current_version and
             self.group != NOT_PROMOTED.id and
-            addon.current_version.promoted_approvals.filter(
+            self.addon.current_version.promoted_approvals.filter(
                 group_id=self.group_id).exists())
 
 
