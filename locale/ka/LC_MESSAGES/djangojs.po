@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:27+0000\n"
-"PO-Revision-Date: 2020-01-27 19:44+0000\n"
+"PO-Revision-Date: 2020-07-12 02:21+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -122,13 +122,12 @@ msgstr "საკონტროლო სია დამატების წ
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "გთხოვთ გადაამოწმოთ მოცემული პუნქტები, წარდგენის დასასრულებლად. ეს შეამცირებს განხილვის დროს შეფერხების ან გაუგებრობის წარმოშობას:"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"შედგენილი ბინარები, ისევე როგორც გამარტივებული ან ფორმაშეცვლილი კოდები (ცნობილი ბიბლიოთეკების გარდა) განსახილველად უნდა გადაიგზავნოს სათითაოდ. დარწმუნდით, რომ სარგებლობთ პირველწყარო კოდის ასატვირთი "
-"ველით, რომ თავიდან აიცილოთ უარი მიღებაზე."
+"შეკუმშული, შერწყმული ან სხვა მანქანური გზით შედგენილი სკრიპტები (ცნობილი ბიბლიოთეკების გარდა) განსახილველად უნდა გადაიგზავნოს სათითაოდ. დარწმუნდით, რომ სარგებლობთ პირველწყარო კოდის ასატვირთი ველით, "
+"რომ თავიდან აიცილოთ უარი მიღებაზე."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "გადამოწმებისას აღმოჩენილია გარკვეული საკითხები, რაც შეიძლება უარყოფის საფუძველი გახდეს."
@@ -453,14 +452,12 @@ msgid "Applications from {0} to {1}"
 msgstr "პროგრამები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "შემოწირულობა, ბოლო {0} დღეში"
+msgstr "ქვეყნები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "შემოწირულობა {0}-დან {1}-მდე"
+msgstr "ქვეყნები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
