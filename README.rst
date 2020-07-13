@@ -9,7 +9,7 @@
 Addons-Server
 =============
 
-Welcome to the Addons Server repository!  Please feel free to visit the web page of the current project hosted on `addons.10allday.com`_. If you want to install it follow our guide located in `install docs`_.  We'd love your help!  You can come talk to us on `Matrix #amo:mozilla.org`_ if you have any questions.
+Welcome to the Addons Server repository!  Please feel free to visit the web page of the current project hosted on `addons.10allday.com`_. If you want to install it follow our guide located in `install docs`_.  We'd love your help!  You can come talk to us on `Matrix #amo:10allday.com`_ if you have any questions.
 
 Please report bugs here: https://github.com/10allday-Software/addons/issues or https://github.com/10allday-Software/addons-server/issues
 You can access the AMO dev environment at https://addons-dev.10allday.com/ and the AMO stage environment at https://addons-stage.10allday.com/
