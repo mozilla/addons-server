@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-13 00:51+0000\n"
+"PO-Revision-Date: 2020-07-13 01:04+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -5513,9 +5513,8 @@ msgstr "Weight"
 msgid "Information Request Deadline"
 msgstr "Information Request Deadline"
 
-#, fuzzy
 msgid "Pending Rejection Deadline"
-msgstr "Information Request Deadline"
+msgstr "Pending Rejection Deadline"
 
 msgid "Last Updated"
 msgstr "Last Updated"
@@ -5670,9 +5669,8 @@ msgstr "Update message of the day"
 msgid "Expired Information Requests ({0})"
 msgstr "Expired Information Requests ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Other Pending Review ({0})"
+msgstr "Add-ons Pending Rejection ({0})"
 
 msgid "An unknown error occurred"
 msgstr "An unknown error occurred"
@@ -5711,9 +5709,8 @@ msgstr "Add-on ID"
 msgid "Internal AMO ID"
 msgstr "Internal AMO ID"
 
-#, fuzzy
 msgid "Support Website"
-msgstr "Support web site:"
+msgstr "Support Web Site"
 
 msgid "Visibility"
 msgstr "Visibility"
@@ -5891,9 +5888,8 @@ msgstr "Expired Information Requests – Add-ons for Firefox"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr "Unlisted Add-ons – Add-ons for Firefox"
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Review Moderation – Add-ons for Firefox"
+msgstr "Pending Rejection – Add-ons for Firefox"
 
 msgid "Advanced Search"
 msgstr "Advanced Search"
@@ -5956,9 +5952,8 @@ msgstr "This is a recommended extension."
 msgid "You don't have permission to review it."
 msgstr "You don't have permission to review it."
 
-#, fuzzy
 msgid "Please select one or more versions in the list below."
-msgstr "Please select one or more versions in the list above."
+msgstr "Please select one or more versions in the list below."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "You can still submit this form, however only do so if you know it won't conflict."
@@ -6114,9 +6109,8 @@ msgstr "Newer"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versions flagged by scanners on other pages."
 
-#, fuzzy
 msgid "{num} versions pending rejection on other pages."
-msgstr "{num} versions flagged by scanners on other pages."
+msgstr "{num} versions pending rejection on other pages."
 
 msgid "Recent Points"
 msgstr "Recent Points"
@@ -6208,11 +6202,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Expired Info Request ({0})"
 msgstr[1] "Expired Info Requests ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Other Pending Review ({0})"
-msgstr[1] "Other Pending Review ({0})"
+msgstr[0] "Pending Rejection ({0})"
+msgstr[1] "Pending Rejection ({0})"
 
 msgid "presence of matched rules"
 msgstr "presence of matched rules"
