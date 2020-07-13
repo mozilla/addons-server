@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-13 23:29+0000\n"
+"PO-Revision-Date: 2020-07-13 23:43+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4885,7 +4885,7 @@ msgstr "Některé stránky mají potíže s přehráváním videí ve Firefoxu p
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Vybírejte, seřazujte a zahajujte svá stahování rychleji."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4894,11 +4894,11 @@ msgstr "Aktuální informace o počasí z celého světa."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Vymažte cookies, historii prohlížení a mezipaměť jediným kliknutím."
 
 #. editorial content for the discovery pane.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Odstraňte sledovací prvky z webových odkazů."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
@@ -4906,7 +4906,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Snadno organizujte haldy otevřených panelů."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
