@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-13 23:43+0000\n"
+"PO-Revision-Date: 2020-07-13 23:51+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4910,7 +4910,7 @@ msgstr "Snadno organizujte haldy otevřených panelů."
 
 #. editorial content for the discovery pane.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Vytvářejte a přizpůsobte si skupiny panelů."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4924,15 +4924,15 @@ msgstr "Automaticky vymažte cookies po zavření panelu."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blokujte všechny reklamy – videa, vyskakovací okna, bannery aj."
 
 #. editorial content for the discovery pane.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Sledujte streamovaná média s přáteli a rodinou kdekoli."
 
 #. editorial content for the discovery pane.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Přeskočte sponzorované části videí na YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
