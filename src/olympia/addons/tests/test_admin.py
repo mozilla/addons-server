@@ -10,6 +10,7 @@ from olympia.addons.models import ReplacementAddon
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, user_factory, version_factory)
 from olympia.amo.urlresolvers import django_reverse, reverse
+from olympia.blocklist.models import Block
 
 
 class TestReplacementAddonForm(TestCase):
@@ -478,6 +479,33 @@ class TestAddonAdmin(TestCase):
         file.reload()
         assert file.status != amo.STATUS_AWAITING_REVIEW
 
+    def test_block_status(self):
+        addon = addon_factory(guid='@foo', users=[user_factory()])
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, 'Admin:Advanced')
+
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert 'Blocked' not in response.content.decode('utf-8')
+
+        block = Block.objects.create(
+            addon=addon,
+            min_version=addon.current_version.version,
+            updated_by=user)
+
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert f'Blocked ({addon.current_version.version} - *)' in (
+            response.content.decode('utf-8'))
+        link = pq(response.content)('.field-version__is_blocked a')[0]
+        assert link.attrib['href'] == block.get_admin_url_path()
+
     def test_query_count(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
         user = user_factory()
@@ -487,7 +515,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
-        with self.assertNumQueries(24):
+        with self.assertNumQueries(26):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             response = self.client.get(self.detail_url, follow=True)
@@ -495,7 +523,7 @@ class TestAddonAdmin(TestCase):
         assert addon.guid in response.content.decode('utf-8')
 
         version_factory(addon=addon)
-        with self.assertNumQueries(24):
+        with self.assertNumQueries(26):
             # confirm it scales
             response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200

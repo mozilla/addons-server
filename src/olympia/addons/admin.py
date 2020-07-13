@@ -58,7 +58,7 @@ class FileInline(admin.TabularInline):
     max_num = 0
     fields = (
         'created', 'version__version', 'version__channel', 'platform',
-        'status', 'hash_link')
+        'status', 'version__is_blocked', 'hash_link')
     editable_fields = ('status',)
     readonly_fields = tuple(set(fields) - set(editable_fields))
     can_delete = False
@@ -74,6 +74,15 @@ class FileInline(admin.TabularInline):
     def version__channel(self, obj):
         return obj.version.get_channel_display()
     version__channel.short_description = 'Channel'
+
+    def version__is_blocked(self, obj):
+        block = self.instance.block
+        if not (block and block.is_version_blocked(obj.version.version)):
+            return ''
+        url = block.get_admin_url_path()
+        template = '<a href="{}">Blocked ({} - {})</a>'
+        return format_html(template, url, block.min_version, block.max_version)
+    version__is_blocked.short_description = 'Block status'
 
     def hash_link(self, obj):
         url = reverse('zadmin.recalc_hash', args=(obj.id,))
