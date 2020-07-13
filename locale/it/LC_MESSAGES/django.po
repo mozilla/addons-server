@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-13 12:07+0000\n"
+"PO-Revision-Date: 2020-07-13 12:11+0000\n"
 "Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -6218,9 +6218,8 @@ msgstr "Più recente"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versioni contrassegnate dagli scanner su altre pagine."
 
-#, fuzzy
 msgid "{num} versions pending rejection on other pages."
-msgstr "{num} versioni contrassegnate dagli scanner su altre pagine."
+msgstr "{num} versioni in attesa di rifiuto su altre pagine."
 
 msgid "Recent Points"
 msgstr "Punti recenti"
@@ -6312,11 +6311,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Richiesta informazioni scaduta ({0})"
 msgstr[1] "Richieste informazioni scadute ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Altre revisioni in attesa ({0})"
-msgstr[1] "Altre revisioni in attesa ({0})"
+msgstr[0] "In attesa di rifiuto ({0})"
+msgstr[1] ""
 
 msgid "presence of matched rules"
 msgstr "presenza di regole corrispondenti"
