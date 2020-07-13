@@ -1,62 +1,21 @@
 version: 2.1
 
-commands:
-  build_and_push_container_image:
-    description: "Builds and pushes a Docker image"
-    parameters:
-      dockerfile:
-        type: string
-        default: "Dockerfile.deploy"
-      image_tag:
-        type: string
-        default: "latest"
-    steps:
-      - run: >
-          printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n'
-          "$CIRCLE_SHA1"
-          "$CIRCLE_TAG"
-          "$CIRCLE_PROJECT_USERNAME"
-          "$CIRCLE_PROJECT_REPONAME"
-          "$CIRCLE_BUILD_URL"
-          > version.json
-      - run:
-          name: Build docker image and push to repo
-          command: |
-            docker version
-            docker build -t app:build -f << parameters.dockerfile >> --label git.commit="$CIRCLE_SHA1" .
-            docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
-            docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
-jobs:
-  build:
-    machine: true
-    working_directory: ~/addons-server
-    steps:
-      - checkout
-      - build_and_push_container_image:
-          image_tag: latest
-          dockerfile: "Dockerfile.deploy"
+orbs:
+  python: circleci/python@0.2.1
 
-  build-tag:
-    machine: true
-    working_directory: ~/addons-server
+jobs:
+  build-and-test:
+    executor: python/default
     steps:
       - checkout
-      - build_and_push_container_image:
-          image_tag: "${CIRCLE_TAG}"
-          dockerfile: "Dockerfile.deploy"
+      - python/load-cache
+      - python/install-deps
+      - python/save-cache
+      - run:
+          command: ./manage.py test
+          name: Test
 
 workflows:
-  version: 2
-  build_test_deploy_release:
+  main:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: master
-      - build-tag:
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              ignore: /.*/
+      - build-and-test
