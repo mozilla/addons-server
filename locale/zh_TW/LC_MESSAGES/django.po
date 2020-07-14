@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-14 14:22+0000\n"
+"PO-Revision-Date: 2020-07-14 14:30+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1699,10 +1699,10 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "您最近上傳了太多項目，請稍候再試。"
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "版本 {version} 與此附加元件 {block_link} 相符。若需更多資訊，請聯絡 {amo_admins}。"
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "封鎖清單項目"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 之前已上傳過，且已刪除。"
@@ -3049,7 +3049,7 @@ msgid "Build best-in-class extensions and themes"
 msgstr "打造一流的擴充套件與佈景主題"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "不論您是剛開始開發，還是在加強功能或移植現有的擴充套件與佈景主題，抑或是要開發企業客製化功能，我們都有相關的資源能幫得上忙。"
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
