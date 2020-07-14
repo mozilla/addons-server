@@ -521,11 +521,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             log.info(
                 f'User ({user}: <{user.email}>) is being '
                 'anonymized and banned.')
-            user.banned = datetime.now()
+            user.banned = user.modified = datetime.now()
             user.deleted = True
         cls.anonymize_users(users)
         cls.objects.bulk_update(
-            users, fields=('banned', 'deleted') + cls.ANONYMIZED_FIELDS)
+            users,
+            fields=('banned', 'deleted', 'modified') + cls.ANONYMIZED_FIELDS)
 
     def _prepare_delete_email(self):
         site_url = settings.EXTERNAL_SITE_URL

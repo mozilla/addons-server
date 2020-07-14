@@ -135,6 +135,7 @@ class TestUserProfile(TestCase):
         assert email.to == [user.email]
         assert f'message because your user account {name}' in email.body
         assert email.reply_to == ['amo-admins+deleted@mozilla.com']
+        self.assertCloseToNow(user.modified)
 
     @mock.patch.object(File, 'hide_disabled_file')
     def test_ban_and_disable_related_content_bulk(self, hide_disabled_mock):
@@ -182,12 +183,14 @@ class TestUserProfile(TestCase):
 
         assert user_sole.deleted
         self.assertCloseToNow(user_sole.banned)
+        self.assertCloseToNow(user_sole.modified)
         assert user_sole.email == 'sole@foo.baa'
         assert user_sole.auth_id
         assert user_sole.fxa_id == '13579'
         assert user_sole.last_login_ip == '127.0.0.1'
         assert user_multi.deleted
         self.assertCloseToNow(user_multi.banned)
+        self.assertCloseToNow(user_multi.modified)
         assert user_multi.email == 'multi@foo.baa'
         assert user_multi.auth_id
         assert user_multi.fxa_id == '24680'
