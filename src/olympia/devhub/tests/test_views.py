@@ -57,6 +57,11 @@ class HubTest(TestCase):
         assert self.client.login(email='regular@mozilla.com')
         assert self.client.get(self.url).status_code == 200
         self.user_profile = UserProfile.objects.get(id=999)
+        not_their_addon = addon_factory(users=[user_factory()])
+        AddonUser.unfiltered.create(
+            addon=not_their_addon,
+            user=self.user_profile,
+            role=amo.AUTHOR_ROLE_DELETED)
 
     def clone_addon(self, num, addon_id=3615):
         addons = []

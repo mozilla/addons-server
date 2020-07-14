@@ -810,7 +810,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @cached_property
     def listed_authors(self):
-        return UserProfile.objects.filter(
+        return self.authors.filter(
             addons=self,
             addonuser__listed=True).order_by('addonuser__position')
 
@@ -1108,7 +1108,9 @@ class Addon(OnChangeMixin, ModelBase):
             addon_dict = {addon.id: addon for addon in addons}
 
         qs = (UserProfile.objects
-              .filter(addons__in=addons, addonuser__listed=True)
+              .filter(addons__in=addons,
+                      addonuser__listed=True)
+              .exclude(addonuser__role=amo.AUTHOR_ROLE_DELETED)
               .extra(select={'addon_id': 'addons_users.addon_id',
                              'position': 'addons_users.position'}))
         qs = sorted(qs, key=lambda u: (u.addon_id, u.position))

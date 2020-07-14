@@ -93,12 +93,11 @@ class ThemeFilter(BaseFilter):
 def addon_listing(request, theme=False):
     """Set up the queryset and filtering for addon listing for Dashboard."""
     if theme:
-        qs = Addon.objects.filter(
-            authors=request.user, type=amo.ADDON_STATICTHEME)
+        qs = request.user.addons.filter(type=amo.ADDON_STATICTHEME)
         filter_cls = ThemeFilter
         default = 'created'
     else:
-        qs = Addon.objects.filter(authors=request.user).exclude(
+        qs = request.user.addons.exclude(
             type=amo.ADDON_STATICTHEME)
         filter_cls = AddonFilter
         default = 'updated'
@@ -111,8 +110,7 @@ def addon_listing(request, theme=False):
 def index(request):
     ctx = {}
     if request.user.is_authenticated:
-        user_addons = Addon.objects.filter(authors=request.user)
-        recent_addons = user_addons.order_by('-modified')[:3]
+        recent_addons = request.user.addons.order_by('-modified')[:3]
         ctx['recent_addons'] = []
         for addon in recent_addons:
             ctx['recent_addons'].append({'addon': addon,
@@ -123,8 +121,7 @@ def index(request):
 
 @login_required
 def dashboard(request, theme=False):
-    addon_items = _get_items(
-        None, Addon.objects.filter(authors=request.user))[:4]
+    addon_items = _get_items(None, request.user.addons.all())[:4]
 
     data = dict(rss=_get_rss_feed(request), blog_posts=_get_posts(),
                 timestamp=int(time.time()), addon_tab=not theme,
@@ -268,7 +265,7 @@ def feed(request, addon_id=None):
     if not request.user.is_authenticated:
         return redirect_for_login(request)
     else:
-        addons_all = Addon.objects.filter(authors=request.user)
+        addons_all = request.user.addons.all()
 
         if addon_id:
             addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))

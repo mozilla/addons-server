@@ -521,16 +521,16 @@ class FilterableManyToManyDescriptor(ManyToManyDescriptor):
         filter to the queryset returned via get_queryset."""
         class ManagerWithFiltering(manager):
             def get_queryset(self):
-                # Hook into the queryset caching django uses during these
-                # lookups, or otherwise we get a lot more queries performed.
-                try:
-                    return self.instance._prefetched_objects_cache[
-                        self.prefetch_cache_name]
-                except (AttributeError, KeyError):
-                    pass
+                # Check the queryset caching django uses during these lookups -
+                # we only want to add the q_filter the first time.
+                from_cache = (
+                    self.prefetch_cache_name in
+                    getattr(self.instance, '_prefetched_objects_cache', {}))
                 qs = super().get_queryset()
-                # Here is where we add the filter.
-                return qs.filter(q_filter or models.Q())
+                if not from_cache and q_filter:
+                    # Here is where we add the filter.
+                    qs = qs.filter(q_filter)
+                return qs
 
         return ManagerWithFiltering
 
