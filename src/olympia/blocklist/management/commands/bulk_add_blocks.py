@@ -35,7 +35,6 @@ class Command(BaseCommand):
             if options.get(prop)
         }
         block_args['updated_by'] = get_task_user()
-        block_args['include_in_legacy'] = False
         submission = BlocklistSubmission(**block_args)
 
         for guids_chunk in chunked(guids, 100):

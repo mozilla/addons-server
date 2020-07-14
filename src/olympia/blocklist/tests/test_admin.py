@@ -145,7 +145,7 @@ class TestBlockAdmin(TestCase):
         self.assertRedirects(response, self.submission_url, status_code=307)
 
         # but not if it's imported from a legacy record
-        block.update(include_in_legacy=True, legacy_id='343545')
+        block.update(legacy_id='343545')
         response = self.client.post(
             self.add_url, post_data, follow=True)
         assert b'Add-on GUIDs (one per line)' in response.content
@@ -310,7 +310,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert f'Included in legacy blocklist' not in content
 
     @override_switch('blocklist_legacy_submit', active=False)
-    def test_include_in_legacy_property_readonly(self):
+    def test_legacy_id_property_readonly(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
@@ -319,10 +319,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         addon = addon_factory()
         response = self.client.get(
             self.submission_url + f'?guids={addon.guid}', follow=True)
-        assert not pq(response.content)('#id_include_in_legacy')
+        assert not pq(response.content)('#id_legacy_id')
         assert b'_save' in response.content
 
-        # Try to set include_in_legacy
+        # Try to set legacy_id
         response = self.client.post(
             self.submission_url, {
                 'input_guids': addon.guid,
@@ -332,7 +332,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'existing_min_version': addon.current_version.version,
                 'existing_max_version': addon.current_version.version,
                 'url': '',
-                'include_in_legacy': True,
+                'legacy_id': True,
                 'reason': 'Added!',
                 '_save': 'Save',
             },
@@ -342,11 +342,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert Block.objects.exists()
         block = Block.objects.get()
         assert block.reason == 'Added!'
-        assert block.include_in_legacy is False
+        assert block.in_legacy_blocklist is False
+        assert BlocklistSubmission.objects.get().in_legacy_blocklist is False
 
     @override_switch('blocklist_legacy_submit', active=True)
+    @mock.patch('olympia.blocklist.models.legacy_delete_blocks')
     @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
-    def test_include_in_legacy_enabled_with_legacy_submit_waffle_on(self, pbm):
+    def test_legacy_id_enabled_with_legacy_submit_waffle_on(self, publish_mock,
+                                                            delete_mock):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
@@ -355,10 +358,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         addon = addon_factory()
         response = self.client.get(
             self.submission_url + f'?guids={addon.guid}', follow=True)
-        assert pq(response.content)('#id_include_in_legacy')
+        assert pq(response.content)('#id_legacy_id')
         assert b'_save' in response.content
 
-        # Try to set include_in_legacy
+        # Try to set legacy_id
         response = self.client.post(
             self.submission_url, {
                 'input_guids': addon.guid,
@@ -368,7 +371,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'existing_min_version': addon.current_version.version,
                 'existing_max_version': addon.current_version.version,
                 'url': '',
-                'include_in_legacy': True,
+                'legacy_id': True,
                 'reason': 'Added!',
                 '_save': 'Save',
             },
@@ -378,10 +381,11 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert Block.objects.exists()
         block = Block.objects.get()
         assert block.reason == 'Added!'
-        assert block.include_in_legacy is True
-        pbm.assert_called_once()
+        publish_mock.assert_called_once()
+        delete_mock.assert_not_called()
 
         # And again with the opposite
+        publish_mock.reset_mock()
         addon = addon_factory()
         response = self.client.post(
             self.submission_url, {
@@ -397,7 +401,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert response.status_code == 200
         block = Block.objects.latest()
         assert block.reason == 'Added again!'
-        assert block.include_in_legacy is False
+        publish_mock.assert_not_called()
+        delete_mock.assert_called_once()
 
     def _test_add_multiple_submit(self, addon_adu):
         """addon_adu is important because whether dual signoff is needed is
@@ -500,7 +505,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert existing_and_partial.max_version == '*'
         assert existing_and_partial.reason == 'some reason'
         assert existing_and_partial.url == 'dfd'
-        assert existing_and_partial.include_in_legacy is False
+        assert existing_and_partial.in_legacy_blocklist is False
         edit_log = ActivityLog.objects.for_addons(partial_addon).last()
         assert edit_log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
         assert edit_log.arguments == [
@@ -684,7 +689,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert existing_zero_to_max.max_version == '10'
         assert existing_zero_to_max.reason == 'some reason'
         assert existing_zero_to_max.url == 'dfd'
-        assert existing_zero_to_max.include_in_legacy is False
+        assert existing_zero_to_max.in_legacy_blocklist is False
         log = ActivityLog.objects.for_addons(existing_zero_to_max.addon).get()
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
         assert log.arguments == [
@@ -705,7 +710,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # confirm properties *were not* updated.
         assert existing_one_to_ten.reason != 'some reason'
         assert existing_one_to_ten.url != 'dfd'
-        assert existing_one_to_ten.include_in_legacy is False
+        assert existing_one_to_ten.in_legacy_blocklist is False
         assert not ActivityLog.objects.for_addons(
             existing_one_to_ten.addon).exists()
         assert not ActivityLog.objects.for_version(
@@ -741,7 +746,6 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             min_version='0',
             max_version='*',
-            include_in_legacy=True,
             legacy_id='34345',
             updated_by=user_factory())
         partial_addon = addon_factory(
@@ -750,14 +754,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            include_in_legacy=True,
             legacy_id='75456',
             updated_by=user_factory())
         Block.objects.create(
             addon=addon_factory(guid='regex@legacy'),
             min_version='23',
             max_version='567',
-            include_in_legacy=True,
             legacy_id='*regexlegacy',
             updated_by=user_factory())
         response = self.client.post(
@@ -799,7 +801,6 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             min_version='0',
             max_version='*',
-            include_in_legacy=True,
             legacy_id='5656',
             updated_by=user_factory())
         partial_addon = addon_factory(
@@ -808,14 +809,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            include_in_legacy=True,
             legacy_id='74356',
             updated_by=user_factory())
         Block.objects.create(
             addon=addon_factory(guid='regex@legacy'),
             min_version='23',
             max_version='567',
-            include_in_legacy=True,
             legacy_id='*regexlegacy',
             updated_by=user_factory())
         response = self.client.post(
@@ -1161,7 +1160,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         addon = addon_factory(guid='guid@', name='Danger Danger')
         mbs = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@',
-            updated_by=user_factory())
+            updated_by=user_factory(),
+            legacy_id=True)
         assert mbs.to_block == [
             {'guid': 'guid@',
              'id': None,
@@ -1533,7 +1533,6 @@ class TestBlockAdminEdit(TestCase):
                 'max_version': self.addon.current_version.version,
                 'url': 'https://foo.baa',
                 'reason': 'some other reason',
-                'include_in_legacy': True,
                 '_continue': 'Save and continue editing',
             },
             follow=True)
@@ -1640,7 +1639,6 @@ class TestBlockAdminEdit(TestCase):
             'action': '0',
             'url': 'https://foo.baa',
             'reason': 'some other reason',
-            'include_in_legacy': True,
             '_save': 'Update',
         }
         # Try saving the form with the same min_version
@@ -1801,7 +1799,7 @@ class TestBlockAdminEdit(TestCase):
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
-        self.block.update(legacy_id='123456', include_in_legacy=True)
+        self.block.update(legacy_id='123456')
 
         response = self.client.get(self.change_url, follow=True)
         content = response.content.decode('utf-8')
@@ -1829,12 +1827,12 @@ class TestBlockAdminEdit(TestCase):
 
     @override_switch('blocklist_legacy_submit', active=True)
     @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
-    def test_can_edit_imported_block_if_legacy_submit_waffle_on(self, pb_mock):
+    def test_can_edit_imported_block_if_legacy_submit_waffle_on(self, pub_mck):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
-        self.block.update(legacy_id='123456', include_in_legacy=True)
+        self.block.update(legacy_id='123456')
 
         response = self.client.get(self.change_url, follow=True)
         content = response.content.decode('utf-8')
@@ -1844,6 +1842,7 @@ class TestBlockAdminEdit(TestCase):
         assert 'Close' not in content
         assert '_save' in content
         assert 'deletelink' in content
+        assert self.block.in_legacy_blocklist is True
 
         # We can edit the block
         assert not BlocklistSubmission.objects.exists()
@@ -1855,6 +1854,7 @@ class TestBlockAdminEdit(TestCase):
                 'max_version': self.addon.current_version.version,
                 'url': 'dfd',
                 'reason': 'some reason',
+                'legacy_id': '123456',
                 '_save': 'Save',
             },
             follow=True)
@@ -1862,21 +1862,23 @@ class TestBlockAdminEdit(TestCase):
         assert BlocklistSubmission.objects.exists()
         BlocklistSubmission.objects.get(
             input_guids=self.block.guid)
-        pb_mock.assert_called_with([self.block])
+        pub_mck.assert_called_with([self.block])
+        self.block.reload()
+        assert self.block.in_legacy_blocklist is True
 
     @override_switch('blocklist_legacy_submit', active=False)
-    def test_include_in_legacy_property_is_readonly(self):
+    def test_legacy_id_property_is_readonly(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
-        self.block.update(include_in_legacy=True)
+        self.block.update(legacy_id='')
 
         response = self.client.get(self.change_url, follow=True)
-        assert pq(response.content)('.field-include_in_legacy .readonly')
+        assert pq(response.content)('.field-legacy_id .readonly')
         assert b'_save' in response.content
 
-        assert self.block.include_in_legacy is True
+        assert self.block.in_legacy_blocklist is False
         # Try to edit the block
         response = self.client.post(
             self.change_url, {
@@ -1886,44 +1888,27 @@ class TestBlockAdminEdit(TestCase):
                 'max_version': self.block.max_version,
                 'url': '',
                 'reason': 'Changed!',
+                'legacy_id': '34344545',
                 '_save': 'Save',
             },
             follow=True)
         assert response.status_code == 200
-        assert BlocklistSubmission.objects.exists()
         self.block.reload()
         assert self.block.reason == 'Changed!'
-        assert self.block.include_in_legacy is True
-
-        # And again with the opposite
-        self.block.update(include_in_legacy=False)
-        response = self.client.post(
-            self.change_url, {
-                'input_guids': self.block.guid,
-                'action': '0',
-                'min_version': self.block.min_version,
-                'max_version': self.block.max_version,
-                'url': '',
-                'reason': 'Changed again!',
-                'include_in_legacy': True,
-                '_save': 'Save',
-            },
-            follow=True)
-        assert response.status_code == 200
-        self.block.reload()
-        assert self.block.reason == 'Changed again!'
-        assert self.block.include_in_legacy is False
+        assert self.block.in_legacy_blocklist is False
 
     @override_switch('blocklist_legacy_submit', active=True)
-    def test_include_in_legacy_is_enabled_with_legacy_submit_waffle_on(self):
+    @mock.patch('olympia.blocklist.models.legacy_delete_blocks')
+    def test_legacy_id_is_enabled_with_legacy_submit_waffle_on(self, del_mock):
+        del_mock.side_effect = lambda blocks: blocks[0].update(legacy_id='')
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Blocklist:Create')
         self.client.login(email=user.email)
-        self.block.update(include_in_legacy=True)
+        self.block.update(legacy_id='3467635')
 
         response = self.client.get(self.change_url, follow=True)
-        assert pq(response.content)('.field-include_in_legacy input')
+        assert pq(response.content)('.field-legacy_id input')
         assert b'_save' in response.content
 
         # Try to edit the block
@@ -1935,6 +1920,7 @@ class TestBlockAdminEdit(TestCase):
                 'max_version': self.block.max_version,
                 'url': '',
                 'reason': 'Changed!',
+                # no legacy_id so clearing it
                 '_save': 'Save',
             },
             follow=True)
@@ -1942,7 +1928,8 @@ class TestBlockAdminEdit(TestCase):
         assert BlocklistSubmission.objects.exists()
         self.block.reload()
         assert self.block.reason == 'Changed!'
-        assert self.block.include_in_legacy is False
+        del_mock.assert_called_with([self.block])
+        assert self.block.in_legacy_blocklist is False
 
 
 class TestBlockAdminDelete(TestCase):
@@ -2006,11 +1993,14 @@ class TestBlockAdminDelete(TestCase):
             updated_by=user_factory())
         block_no_addon = Block.objects.create(
             guid='{12345-6789}',
-            updated_by=user_factory())  #
+            updated_by=user_factory())
+        block_legacy = Block.objects.create(
+            addon=addon_factory(guid='legacy@'),
+            legacy_id='123456', updated_by=user_factory())
 
         response = self.client.post(
             self.submission_url, {
-                'guids': 'guid@\n{12345-6789}',
+                'guids': 'guid@\n{12345-6789}\nlegacy@',
                 'action': '1',
             },
             follow=True)
@@ -2026,25 +2016,25 @@ class TestBlockAdminDelete(TestCase):
         assert '"min_version"' not in content
         assert '"max_version"' not in content
         assert 'reason' not in content
-        assert 'include_in_legacy' not in content
+        assert 'legacy_id' not in content
         # Check we didn't delete the blocks already
-        assert Block.objects.count() == 2
+        assert Block.objects.count() == 3
         assert BlocklistSubmission.objects.count() == 0
 
         # Create the block submission
         response = self.client.post(
             self.submission_url, {
                 'input_guids': (
-                    'guid@\n{12345-6789}'),
+                    'guid@\n{12345-6789}\nlegacy@'),
                 'action': '1',
                 '_save': 'Save',
             },
             follow=True)
         assert response.status_code == 200
-        return block_normal, block_no_addon
+        return block_normal, block_no_addon, block_legacy
 
     def _test_delete_verify(self, block_with_addon, block_no_addon,
-                            has_signoff=True):
+                            block_legacy, has_signoff=True):
         block_from_addon = block_with_addon.addon
         assert Block.objects.count() == 0
         assert BlocklistSubmission.objects.count() == 1
@@ -2065,13 +2055,15 @@ class TestBlockAdminDelete(TestCase):
         assert vlog == add_log
 
         assert submission.input_guids == (
-            'guid@\n{12345-6789}')
+            'guid@\n{12345-6789}\nlegacy@')
 
         assert submission.to_block == [
             {'guid': 'guid@', 'id': block_with_addon.id,
              'average_daily_users': block_from_addon.average_daily_users},
+            {'guid': 'legacy@', 'id': block_legacy.id,
+             'average_daily_users': block_legacy.addon.average_daily_users},
             {'guid': '{12345-6789}', 'id': block_no_addon.id,
-             'average_daily_users': -1}
+             'average_daily_users': -1},
         ]
         assert not submission.block_set.all().exists()
 
@@ -2079,23 +2071,26 @@ class TestBlockAdminDelete(TestCase):
     @mock.patch('olympia.blocklist.models.legacy_delete_blocks')
     def test_submit_no_dual_signoff(self, legacy_delete_blocks_mock):
         addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
-        block_with_addon, block_no_addon = self._test_delete_multiple_submit(
-            addon_adu=addon_adu)
+        block_with_addon, block_no_addon, block_legacy = (
+            self._test_delete_multiple_submit(addon_adu=addon_adu))
         self._test_delete_verify(
             block_with_addon,
             block_no_addon,
+            block_legacy,
             has_signoff=False)
-        legacy_delete_blocks_mock.assert_called_with(
-            [block_with_addon, block_no_addon])
+        legacy_delete_blocks_mock.assert_called_with([
+            block_with_addon,
+            block_no_addon,
+            block_legacy])
 
     @override_switch('blocklist_legacy_submit', active=True)
     @mock.patch('olympia.blocklist.models.legacy_delete_blocks')
     def test_submit_dual_signoff(self, legacy_delete_blocks_mock):
         addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1
-        block_with_addon, block_no_addon = self._test_delete_multiple_submit(
-            addon_adu=addon_adu)
+        block_with_addon, block_no_addon, block_legacy = (
+            self._test_delete_multiple_submit(addon_adu=addon_adu))
         # Blocks shouldn't have been deleted yet
-        assert Block.objects.count() == 2, Block.objects.all()
+        assert Block.objects.count() == 3, Block.objects.all()
 
         submission = BlocklistSubmission.objects.get()
         submission.update(
@@ -2106,9 +2101,12 @@ class TestBlockAdminDelete(TestCase):
         self._test_delete_verify(
             block_with_addon,
             block_no_addon,
+            block_legacy,
             has_signoff=True)
-        legacy_delete_blocks_mock.assert_called_with(
-            [block_with_addon, block_no_addon])
+        legacy_delete_blocks_mock.assert_called_with([
+            block_with_addon,
+            block_no_addon,
+            block_legacy])
 
     def test_edit_with_delete_submission(self):
         threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD

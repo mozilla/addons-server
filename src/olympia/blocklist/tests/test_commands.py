@@ -83,7 +83,7 @@ class TestImportBlocklist(TestCase):
             assert block.max_version == (
                 this_block['versionRange'][0]['maxVersion'])
             assert block.legacy_id == '*' + this_block['id']
-            assert block.include_in_legacy
+            assert block.in_legacy_blocklist
             assert block.modified == datetime(2019, 11, 29, 22, 22, 46, 785000)
             assert block.is_imported_from_legacy_regex
         assert LegacyImport.objects.count() == 8
@@ -135,7 +135,7 @@ class TestImportBlocklist(TestCase):
         assert blocks[0].max_version == (
             blocklist_json['data'][1]['versionRange'][0]['maxVersion'])
         assert blocks[0].legacy_id == blocklist_json['data'][1]['id']
-        assert blocks[0].include_in_legacy
+        assert blocks[0].in_legacy_blocklist
         assert blocks[0].modified == datetime(2019, 11, 29, 15, 32, 56, 477000)
         assert not blocks[0].is_imported_from_legacy_regex
 
@@ -147,7 +147,7 @@ class TestImportBlocklist(TestCase):
         assert blocks[1].max_version == (
             blocklist_json['data'][2]['versionRange'][0]['maxVersion'])
         assert blocks[1].legacy_id == blocklist_json['data'][2]['id']
-        assert blocks[1].include_in_legacy
+        assert blocks[1].in_legacy_blocklist
         assert blocks[1].modified == datetime(2019, 11, 22, 16, 49, 58, 416000)
         assert not blocks[1].is_imported_from_legacy_regex
 
@@ -227,7 +227,7 @@ class TestImportBlocklist(TestCase):
             assert block.max_version == (
                 this_block['versionRange'][0]['maxVersion'])
             assert block.legacy_id == '*' + this_block['id']
-            assert block.include_in_legacy
+            assert block.in_legacy_blocklist
 
     def test_regex_syntax_changed_to_mysql(self):
         """mysql doesn't support /d special charactor, only [:digit:]."""

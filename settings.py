@@ -29,6 +29,7 @@ for logger in list(LOGGING['loggers'].keys()):
         # so we only update the level below:
         LOGGING['loggers'][logger]['level'] = logging.DEBUG
 
+
 # django-debug-doolbar middleware needs to be inserted as high as possible
 # but after GZip middleware
 def insert_debug_toolbar_middleware(middlewares):
@@ -145,7 +146,7 @@ CUSTOMS_API_KEY = 'customssecret'
 WAT_API_URL = 'http://wat:10102/'
 WAT_API_KEY = 'watsecret'
 
-KINTO_API_IS_TEST_SERVER = True
+REMOTE_SETTINGS_IS_TEST_SERVER = True
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
