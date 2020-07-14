@@ -881,6 +881,9 @@ def review(request, addon, channel=None):
     # paginated).
     versions_flagged_by_scanners_other = versions_qs.filter(
         needs_human_review=True).exclude(pk__in=version_ids).count()
+    versions_flagged_for_human_review_other = versions_qs.filter(
+        reviewerflags__needs_human_review_by_mad=True
+    ).exclude(pk__in=version_ids).count()
     versions_pending_rejection_other = versions_pending_rejection_qs.exclude(
         pk__in=version_ids).count()
 
@@ -937,6 +940,7 @@ def review(request, addon, channel=None):
         user_ratings=user_ratings,
         version=version,
         versions_flagged_by_scanners_other=versions_flagged_by_scanners_other,
+        versions_flagged_for_human_review_other=versions_flagged_for_human_review_other,  # noqa
         versions_pending_rejection_other=versions_pending_rejection_other,
         whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url,

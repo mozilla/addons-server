@@ -1,3 +1,6 @@
+@flagged-by-scanners-color: orange;
+@flagged-for-human-review-color: green;
+
 .site-title {
     padding-top: 27px;
     max-width: 530px;
@@ -153,11 +156,11 @@ table.data-grid tr th a:visited {
 }
 table.data-grid tr th.ordered {
     background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        from(#FFFFFF),
-        to(#BCE0FF)
+    linear,
+    left bottom,
+    left top,
+    from(#FFFFFF),
+    to(#BCE0FF)
     );
     background: linear-gradient(#FFFFFF, #BCE0FF);
 }
@@ -559,11 +562,11 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     font-weight: normal;
 }
 .log-filter-outside input::-webkit-input-placeholder {
-   color: #BBB;
+    color: #BBB;
 }
 
 .log-filter-outside input:-moz-placeholder {
-   color: #BBB;
+    color: #BBB;
 }
 
 .log-filter-outside div.date_range {
@@ -648,7 +651,7 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
 }
 
 .scroll_sidebar_parent #scroll_sidebar li a {
-     font-weight: normal;
+    font-weight: normal;
 }
 
 #scroll_sidebar {
@@ -702,8 +705,8 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     width: 100%;
 }
 .review-files table.activity th {
-  width: 25%;
-  padding-right: 1em;
+    width: 25%;
+    padding-right: 1em;
 }
 .review-files table.activity tr {
     border-top: 1px dotted #ccc;
@@ -713,33 +716,50 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
 }
 .review-files .listing-header span.light {
     font-weight: normal;
-    color: #999;
+    color: #000;
 }
 .review-files tr.listing-header:first-child {
     border-top: none;
 }
 .review-files tr.listing-header {
-     border-top: 1px solid #A5BFCE;
+    border-top: 1px solid #A5BFCE;
 }
-.review-files tr.listing-header.needs-human-review {
-    background-color: #ffeec5;
-    border-top: 1px solid #fede94;
+
+.review-files tr.listing-header.flagged-by-scanners {
+    background-color: lighten(@flagged-by-scanners-color, 20%);
+    border-top: 1px solid lighten(@flagged-by-scanners-color, 5%);
+
+    &:hover {
+        background: linear-gradient(lighten(@flagged-by-scanners-color, 20%), @flagged-by-scanners-color);
+    }
+
+    &:active {
+        background: linear-gradient(@flagged-by-scanners-color, lighten(@flagged-by-scanners-color, 20%));
+    }
 }
-.review-files tr.listing-header.needs-human-review:hover {
-    background: linear-gradient(#FFFFFF, #ffcf5d);
+
+.review-files tr.listing-header.flagged-for-human-review {
+    background-color: lighten(@flagged-for-human-review-color, 20%);
+    border-top: 1px solid lighten(@flagged-for-human-review-color, 5%);
+
+    &:hover {
+        background: linear-gradient(lighten(@flagged-for-human-review-color, 20%), @flagged-for-human-review-color);
+    }
+
+    &:active {
+        background: linear-gradient(@flagged-for-human-review-color, lighten(@flagged-for-human-review-color, 20%));
+    }
 }
-.review-files tr.listing-header.needs-human-review:active {
-    background: linear-gradient(#ffcf5d, #FFF);
-}
+
 .review-files tr.listing-header:hover {
     cursor: pointer;
     background-color: #CCE6FF;
     background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        from(#FFFFFF),
-        to(#CCE6FF)
+    linear,
+    left bottom,
+    left top,
+    from(#FFFFFF),
+    to(#CCE6FF)
     );
     background: linear-gradient(#FFFFFF, #CCE6FF);
 }
@@ -747,11 +767,11 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     cursor: pointer;
     background-color: #FFF;
     background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        from(#CCE6FF),
-        to(#FFFFFF)
+    linear,
+    left bottom,
+    left top,
+    from(#CCE6FF),
+    to(#FFFFFF)
     );
     background: linear-gradient(#E0EFFD, #FFF);
 }
@@ -1006,21 +1026,21 @@ span.currently_viewing_warning {
 
 
 .paginator {
-     margin: 0pt;
-     overflow: auto;
+    margin: 0pt;
+    overflow: auto;
 }
 
 .paginator li {
-     float: left;
-     width: 33%;
+    float: left;
+    width: 33%;
 }
 
 .paginator .next {
-     text-align: right;
+    text-align: right;
 }
 
 .paginator .page {
-     text-align: center;
+    text-align: center;
 }
 
 h2.addon {
@@ -1036,24 +1056,24 @@ p.is_recommendable {
 }
 
 #reviewers-score-bar {
-  background: #FCFDFE;
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#fcfdfe), to(#f4f8fc));
-  background-image: linear-gradient(#fcfdfe, #f4f8fc);
-  background-image: -webkit-linear-gradient(#fcfdfe, #f4f8fc);
-  border: 1px solid #c9ddf2;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
-  display: block;
-  margin-bottom: 15px;
-  padding: 14px 14px 16px;
-  width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+    background: #FCFDFE;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#fcfdfe), to(#f4f8fc));
+    background-image: linear-gradient(#fcfdfe, #f4f8fc);
+    background-image: -webkit-linear-gradient(#fcfdfe, #f4f8fc);
+    border: 1px solid #c9ddf2;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-bottom: 15px;
+    padding: 14px 14px 16px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #reviewers-score-bar p.total {
@@ -1118,8 +1138,8 @@ p.is_recommendable {
     -webkit-border-radius: 7px;
     border-radius: 7px;
     &.private {
-      background-color: #FFE4E4;
-      margin: 1em 0 1em 0;
+        background-color: #FFE4E4;
+        margin: 1em 0 1em 0;
     }
     .whiteboard-inner {
         padding: 10px;
@@ -1148,7 +1168,7 @@ p.is_recommendable {
     }
 
     li {
-      margin: 0 0 1em 0;
+        margin: 0 0 1em 0;
     }
 
     #force_disable_addon, #force_enable_addon,
@@ -1172,28 +1192,28 @@ p.is_recommendable {
 }
 
 #addon-theme-previews-wrapper {
-  .all-backgrounds {
-    .background {
-        display: block;
-        height: 100px;
-        margin: 13px 0;
-        border: 2px solid #C9DDF2;
-        background: rgba(201,221,242,.1);
-    }
-    .zoombox {
-        overflow: hidden;
-        position: relative;
+    .all-backgrounds {
+        .background {
+            display: block;
+            height: 100px;
+            margin: 13px 0;
+            border: 2px solid #C9DDF2;
+            background: rgba(201,221,242,.1);
+        }
+        .zoombox {
+            overflow: hidden;
+            position: relative;
 
-        img {
-            position: absolute;
-            right: 0;
-        }
-        span {
-            position: absolute;
-            background-color: rgba(255,255,255,.75);
+            img {
+                position: absolute;
+                right: 0;
+            }
+            span {
+                position: absolute;
+                background-color: rgba(255,255,255,.75);
+            }
         }
     }
-  }
 }
 
 table.abuse_reports {

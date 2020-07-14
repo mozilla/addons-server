@@ -704,6 +704,13 @@ class Version(OnChangeMixin, ModelBase):
         except VersionReviewerFlags.DoesNotExist:
             return None
 
+    @property
+    def needs_human_review_by_mad(self):
+        try:
+            return self.reviewerflags.needs_human_review_by_mad
+        except VersionReviewerFlags.DoesNotExist:
+            return False
+
 
 class VersionReviewerFlags(ModelBase):
     version = models.OneToOneField(

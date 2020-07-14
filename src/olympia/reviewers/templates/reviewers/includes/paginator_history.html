@@ -28,7 +28,9 @@
     {% endfor %}
   </ol>
   {% if versions_flagged_by_scanners_other %}
-    <strong class="other-needs-human-review risk-high">{{ _('{num} versions flagged by scanners on other pages.')|format_html(num=versions_flagged_by_scanners_other) }}</strong>
+    <strong class="other-flagged-by-scanners risk-high">{{ _('{num} versions flagged by scanners on other pages.')|format_html(num=versions_flagged_by_scanners_other) }}</strong>
+  {% elif versions_flagged_for_human_review_other %}
+    <strong class="other-flagged-for-human-review risk-medium">{{ _('{num} versions flagged for human review on other pages.')|format_html(num=versions_flagged_for_human_review_other) }}</strong>
   {% endif %}
   {% if versions_pending_rejection_other %}
     <strong class="other-pending-rejection risk-high">{{ _('{num} versions pending rejection on other pages.')|format_html(num=versions_pending_rejection_other) }}</strong>
