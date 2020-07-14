@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-13 23:51+0000\n"
+"PO-Revision-Date: 2020-07-13 23:58+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4952,7 +4952,7 @@ msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Organizátory a nástroje pro panely."
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
@@ -5972,7 +5972,7 @@ msgid "Reviewer's Guide"
 msgstr "Příručka recenzenta"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Doplňky pro Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5992,7 +5992,7 @@ msgid "Previously deleted entries"
 msgstr "Dříve smazané položky"
 
 msgid "This is a recommended extension."
-msgstr ""
+msgstr "Toto je doporučené rozšíření."
 
 #, fuzzy
 msgid "You don't have permission to review it."
