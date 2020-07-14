@@ -8,6 +8,8 @@ import waffle
 import yara
 
 from django_statsd.clients import statsd
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util import Retry
 
 import olympia.core.logger
 
@@ -438,13 +440,25 @@ def call_mad_api(all_results, upload_pk):
             return results
 
         with statsd.timer('devhub.mad'):
-            json_payload = {'scanners': {'customs': customs_results.results}}
-            response = requests.post(
-                url=settings.MAD_API_URL,
-                json=json_payload,
-                timeout=settings.MAD_API_TIMEOUT,
-                headers={'x-request-id': request_id},
-            )
+            with requests.Session() as http:
+                adapter = HTTPAdapter(
+                    max_retries=Retry(
+                        total=1,
+                        method_whitelist=['POST'],
+                        status_forcelist=[500, 502, 503, 504],
+                    )
+                )
+                http.mount(settings.MAD_API_URL, adapter)
+
+                json_payload = {
+                    'scanners': {'customs': customs_results.results}
+                }
+                response = http.post(
+                    url=settings.MAD_API_URL,
+                    json=json_payload,
+                    timeout=settings.MAD_API_TIMEOUT,
+                    headers={'x-request-id': request_id},
+                )
 
         try:
             data = response.json()
