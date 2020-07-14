@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 09:57+0000\n"
+"PO-Revision-Date: 2020-07-14 14:22+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3046,7 +3046,7 @@ msgid "Read more about the source code review policy."
 msgstr "了解完整的原始碼審查政策。"
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "打造一流的擴充套件與佈景主題"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
@@ -3078,14 +3078,14 @@ msgid "Extensions Developers Newsletter"
 msgstr "擴充套件開發者電子報"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "獲得 Firefox 擴充套件開發者的第一手新聞與活動資訊。"
 
 msgid "Email Address"
 msgstr "電子郵件信箱"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "我同意 Mozilla 依照%(link_open)s隱私權公告%(link_close)s當中描述的方式處理我的資訊。"
 
 msgid "Sign Up"
 msgstr "註冊"
@@ -3094,7 +3094,7 @@ msgid "Thanks!"
 msgstr "感謝您！"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "若您還沒有確認過要訂閱 Mozilla 相關電子報，可能會收到我們的確認郵件。請檢查您的信箱收件匣或垃圾信件匣當中有沒有來自我們的郵件。"
 
 msgid "Resources"
 msgstr "資源"
@@ -3148,7 +3148,7 @@ msgid "Get involved"
 msgstr "參與我們"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "與幾千位開發者連結起來，探索能貢獻到擴充套件生態系的更多方式。"
 
 msgid "Learn more about the developer community"
 msgstr "了解開發者社群的更多資訊"
@@ -3202,13 +3202,13 @@ msgid "Learn how to make an extension"
 msgstr "了解如何打造附加元件"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "準備好要上架或管理您的擴充套件了嗎？"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "請登入開發者交流中心來上架或管理擴充套件與佈景主題。"
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "註冊開發者帳號或登入開發者交流中心"
 
 msgid "Manage Version {0}"
 msgstr "管理版本 {0}"
