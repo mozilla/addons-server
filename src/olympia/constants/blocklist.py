@@ -1,5 +1,5 @@
 # How many guids should there be in the stashes before we make a new base.
-BASE_REPLACE_THRESHOLD = 6_000
+BASE_REPLACE_THRESHOLD = 5_000
 
 # Config keys used to track recent mlbf ids
 MLBF_TIME_CONFIG_KEY = 'blocklist_mlbf_generation_time'
