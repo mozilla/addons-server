@@ -3,6 +3,8 @@ import shutil
 from decimal import Decimal
 from unittest import mock
 
+import requests
+
 from django.conf import settings
 from django.test.utils import override_settings
 
@@ -798,7 +800,7 @@ class TestCallMadApi(UploadTest, TestCase):
     @mock.patch('olympia.scanners.tasks.uuid.uuid4')
     @mock.patch('olympia.scanners.tasks.statsd.timer')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock,
                              uuid4_mock):
         ml_results = {
@@ -840,7 +842,7 @@ class TestCallMadApi(UploadTest, TestCase):
         assert mad_result.score == Decimal('0.56')
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_handles_non_200_http_responses(self, requests_mock, incr_mock):
         requests_mock.return_value = self.create_response(
             status_code=504, data={'message': 'http timeout'}
@@ -856,7 +858,7 @@ class TestCallMadApi(UploadTest, TestCase):
         incr_mock.assert_has_calls([mock.call('devhub.mad.failure')])
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_handles_non_json_responses(self, requests_mock, incr_mock):
         response = mock.Mock(status_code=200)
         response.json.side_effect = ValueError('not json')
@@ -871,7 +873,7 @@ class TestCallMadApi(UploadTest, TestCase):
         assert incr_mock.call_count == 1
         incr_mock.assert_has_calls([mock.call('devhub.mad.failure')])
 
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_does_not_run_when_switch_is_off(self, requests_mock):
         self.create_switch('enable-mad', active=False)
 
@@ -879,7 +881,7 @@ class TestCallMadApi(UploadTest, TestCase):
 
         assert not requests_mock.called
 
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_does_not_run_when_results_contain_errors(self, requests_mock):
         self.create_switch('enable-mad', active=True)
         self.results[0].update({'errors': 1})
@@ -889,7 +891,7 @@ class TestCallMadApi(UploadTest, TestCase):
         assert not requests_mock.called
         assert returned_results == self.results[0]
 
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_does_not_run_when_scan_map_is_empty(self, requests_mock):
         self.create_switch('enable-mad', active=True)
         self.customs_result.update(results={'scanMap': {}})
@@ -899,7 +901,7 @@ class TestCallMadApi(UploadTest, TestCase):
         assert not requests_mock.called
         assert returned_results == self.results[0]
 
-    @mock.patch('olympia.scanners.tasks.requests.post')
+    @mock.patch.object(requests.Session, 'post')
     def test_does_not_run_when_scan_map_is_small(self, requests_mock):
         self.create_switch('enable-mad', active=True)
         self.customs_result.update(results={'scanMap': {'a': 1}})
