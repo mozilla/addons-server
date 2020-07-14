@@ -395,7 +395,8 @@ SYSTEM_ADDON_GUIDS = (
     '@mozilla.org',
     '@pioneer.mozilla.org',
     '@search.mozilla.org',
-    '@shield.mozilla.org'
+    '@shield.mozilla.org',
+    '@mozillaonline.com'
 )
 
 MOZILLA_TRADEMARK_SYMBOLS = (
