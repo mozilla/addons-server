@@ -448,7 +448,8 @@ def call_mad_api(all_results, upload_pk):
                         status_forcelist=[500, 502, 503, 504],
                     )
                 )
-                http.mount(settings.MAD_API_URL, adapter)
+                http.mount("http://", adapter)
+                http.mount("https://", adapter)
 
                 json_payload = {
                     'scanners': {'customs': customs_results.results}
