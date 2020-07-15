@@ -44,9 +44,9 @@
           </div>
       {% endif %}
 
-      <div class="mad-score">
-        <strong>MAD score:</strong> {{ version.mad_score }}
-        <span class="tip tooltip" title="{{ _('The MAD score represents the likelihood of this version being malicious, based on the scanners findings.') }}">?</span>
+      <div class="scanners-score">
+        <strong>{{ _('Scanners score:') }}</strong> {{ version.scanners_score }}
+        <span class="tip tooltip" title="{{ _('The Scanners score represents the likelihood of this version being malicious, based on the scanners findings.') }}">?</span>
       </div>
 
       {% if version.autoapprovalsummary %}

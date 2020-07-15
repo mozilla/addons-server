@@ -682,13 +682,13 @@ class TestVersion(TestCase):
         flags.update(needs_human_review_by_mad=True)
         assert version.needs_human_review_by_mad
 
-    def test_mad_score(self):
+    def test_scanners_score(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
-        assert version.mad_score == 'n/a'
+        assert version.scanners_score == 'n/a'
         score = 0.15
         ScannerResult.objects.create(version=version, scanner=MAD, score=score)
-        assert version.mad_score == '15%'
+        assert version.scanners_score == '15%'
 
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [

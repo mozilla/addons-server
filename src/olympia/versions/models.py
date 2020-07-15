@@ -713,7 +713,7 @@ class Version(OnChangeMixin, ModelBase):
             return False
 
     @property
-    def mad_score(self):
+    def scanners_score(self):
         try:
             # We use the score of the MAD scanner because it is the 'ensemble'
             # score (i.e. score computed using all other scanner scores).

@@ -3503,23 +3503,23 @@ class TestReview(ReviewBase):
         assert risk.text() == "Weight: 284"
         assert risk.attr['title'] == 'bär: 84\nfôo: 200'
 
-    def test_mad_score(self):
+    def test_scanners_score(self):
         self.grant_permission(self.reviewer, 'Addons:PostReview')
         url = reverse('reviewers.review', args=[self.addon.slug])
         # Without a score.
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
-        score = doc('.listing-body .mad-score')
-        assert score.text() == "MAD score: n/a ?"
+        score = doc('.listing-body .scanners-score')
+        assert score.text() == "Scanners score: n/a ?"
         # With a score.
         ScannerResult.objects.create(version=self.version, scanner=MAD,
                                      score=0.1)
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
-        score = doc('.listing-body .mad-score')
-        assert score.text() == "MAD score: 10% ?"
+        score = doc('.listing-body .scanners-score')
+        assert score.text() == "Scanners score: 10% ?"
 
     def test_item_history_notes(self):
         version = self.addon.versions.all()[0]
