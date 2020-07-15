@@ -346,9 +346,9 @@ python-dateutil==2.8.1 \
 pytz==2020.1 \
     --hash=sha256:a494d53b6d39c3c6e44c3bec237336e14305e4f29bbf800b599253057fbb79ed \
     --hash=sha256:c35965d010ce31b23eeb663ed3cc8c906275d6be1a34393a1d73a41febf4a048
-sentry_sdk==0.16.0 \
-    --hash=sha256:e80d61af85d99a1222c1a3e2a24023618374cd50a99673aa7fa3cf920e7d813b \
-    --hash=sha256:da06bc3641e81ec2c942f87a0676cd9180044fa3d1697524a0005345997542e2
+sentry_sdk==0.16.1 \
+    --hash=sha256:2f023ff348359ec5f0b73a840e8b08e6a8d3b2613a98c57d11c222ef43879237 \
+    --hash=sha256:380a280cfc7c4ade5912294e6d9aa71ce776b5fca60a3782e9331b0bcd2866bf
 # rdflib is required by amo-validator
 rdflib==5.0.0 \
     --hash=sha256:78149dd49d385efec3b3adfbd61c87afaf1281c30d3fcaf1b323b34f603fb155 \
