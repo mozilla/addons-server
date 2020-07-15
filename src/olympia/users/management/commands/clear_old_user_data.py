@@ -5,7 +5,7 @@ from django.db.models import Q
 
 import olympia.core.logger
 from olympia import amo
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonUser
 from olympia.addons.tasks import delete_addons
 from olympia.users.models import UserProfile
 
@@ -36,8 +36,12 @@ class Command(BaseCommand):
         users = list(
             UserProfile.objects.filter(seven_year_q | one_day_q, deleted=True))
 
-        addons_qs = Addon.unfiltered.filter(
-            status=amo.STATUS_DELETED, authors__in=users)
+        addonuser_qs = AddonUser.objects.filter(user__in=users)
+        addons_qs = (
+            Addon.unfiltered.filter(
+                status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED),
+                addonuser__in=addonuser_qs)
+        )
         addon_ids = list(addons_qs.values_list('id', flat=True))
 
         log.info('Clearing %s for %d users', profile_clear.keys(), len(users))
