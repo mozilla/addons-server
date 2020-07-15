@@ -22,7 +22,8 @@ class Shelf(ModelBase):
     footerText = models.CharField(
         max_length=200, default="See more", verbose_name="footer text")
     footerPathname = models.CharField(
-        max_length=1000, verbose_name="footer pathname")
+        max_length=1000, verbose_name="footer pathname",
+        help_text="e.g., collections/4757633/privacy-matters")
 
     class Meta:
         verbose_name_plural = 'shelves'
