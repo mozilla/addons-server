@@ -25,8 +25,8 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
-from olympia.discovery.models import DiscoveryItem
 from olympia.lib.crypto import signing, tasks
+from olympia.promoted.models import PromotedAddon
 from olympia.versions.compare import version_int
 
 
@@ -342,7 +342,7 @@ class TestSigning(TestCase):
     def test_call_signing_recommended(self):
         # This is the usual process for recommended add-ons, they're
         # in "pending recommendation" and only *after* we approve and sign
-        # them they will become "recommended". Once the `recommendable`
+        # them they will become "recommended". If their promoted group changes
         # flag is turned off we won't sign further versions as recommended.
         self.make_addon_recommended(
             self.file_.version.addon)
@@ -367,8 +367,8 @@ class TestSigning(TestCase):
         assert recommendation_data['states'] == ['recommended']
 
     def test_call_signing_recommendable_unlisted(self):
-        # Unlisted versions, even when the add-on is recommendable, should
-        # never be recommended.
+        # Unlisted versions, even when the add-on is in the recommended
+        # promoted group, should never be signed as recommended.
         self.make_addon_recommended(
             self.file_.version.addon)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -385,9 +385,7 @@ class TestSigning(TestCase):
         assert 'Name: mozilla-recommendation.json' not in manifest
 
     def test_call_signing_not_recommendable(self):
-        DiscoveryItem.objects.create(
-            addon=self.file_.version.addon,
-            recommendable=False)
+        PromotedAddon.objects.create(addon=self.file_.version.addon)
 
         assert signing.sign_file(self.file_)
 

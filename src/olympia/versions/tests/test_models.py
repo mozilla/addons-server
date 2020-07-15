@@ -24,10 +24,12 @@ from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
+from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
 from olympia.constants.scanners import CUSTOMS, WAT, YARA, MAD
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
+from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
@@ -570,8 +572,8 @@ class TestVersion(TestCase):
     def test_version_field_changes_synced_to_basket(
             self, sync_object_to_basket_mock):
         addon = Addon.objects.get(id=3615)
-        version = addon.current_version
-        version.update(recommendation_approved=True)
+        PromotedApproval.objects.create(
+            version=addon.current_version, group_id=RECOMMENDED.id)
         assert sync_object_to_basket_mock.delay.call_count == 1
         sync_object_to_basket_mock.delay.assert_called_with('addon', addon.pk)
 
@@ -613,16 +615,18 @@ class TestVersion(TestCase):
         version_factory(addon=addon, recommendation_approved=True)
         addon = addon.reload()
         assert previous_version != addon.current_version
-        assert addon.current_version.recommendation_approved
-        assert previous_version.recommendation_approved
-        # unless the previous version is also recommendation_approved
+        assert addon.current_version.promoted_approvals.filter(
+            group_id=RECOMMENDED.id).exists()
+        assert previous_version.promoted_approvals.filter(
+            group_id=RECOMMENDED.id).exists()
+        # unless the previous version is also recommendation approved
         assert addon.current_version.can_be_disabled_and_deleted()
         assert previous_version.can_be_disabled_and_deleted()
 
-        previous_version.update(recommendation_approved=False)
-        # double-check by removing the recommendation_approved from previous
+        # double-check by removing the recommendation approved from previous
+        previous_version.promoted_approvals.update(group_id=NOT_PROMOTED.id)
         assert not addon.current_version.can_be_disabled_and_deleted()
-        previous_version.update(recommendation_approved=True)  # reset status
+        previous_version.promoted_approvals.update(group_id=RECOMMENDED.id)
 
         # Check the scenario when some of the previous versions are approved
         # but not the most recent previous - i.e. the one that would become the
@@ -635,22 +639,38 @@ class TestVersion(TestCase):
         addon = addon.reload()
         version_b = version_b.reload()
         assert version_d == addon.current_version
-        assert version_a.recommendation_approved
-        assert version_b.recommendation_approved
-        assert not version_c.recommendation_approved  # ignored cuz disabled
-        assert version_d.recommendation_approved
+        assert version_a.promoted_approvals.filter(
+            group_id=RECOMMENDED.id).exists()
+        assert version_b.promoted_approvals.filter(
+            group_id=RECOMMENDED.id).exists()
+        # ignored because disabled
+        assert not version_c.promoted_approvals.filter(
+            group_id=RECOMMENDED.id).exists()
+        assert version_d.promoted_approvals.filter(
+            group_id=RECOMMENDED.id).exists()
         assert version_a.can_be_disabled_and_deleted()
         assert version_b.can_be_disabled_and_deleted()
         assert version_c.can_be_disabled_and_deleted()
         assert version_d.can_be_disabled_and_deleted()
         assert addon.is_recommended
         # now un-approve version_b
-        version_b.update(recommendation_approved=False)
+        version_b.promoted_approvals.update(group_id=NOT_PROMOTED.id)
         assert version_a.can_be_disabled_and_deleted()
         assert version_b.can_be_disabled_and_deleted()
         assert version_c.can_be_disabled_and_deleted()
         assert not version_d.can_be_disabled_and_deleted()
         assert addon.is_recommended
+
+    def test_can_be_disabled_and_deleted_querycount(self):
+        addon = Addon.objects.get(id=3615)
+        version_factory(addon=addon)
+        self.make_addon_recommended(addon, approve_version=True)
+        addon.reload()
+        with self.assertNumQueries(3):
+            # 1. check the addon's promoted group
+            # 2. check addon.current_version is approved for that group
+            # 3. check the previous version is approved for that group
+            assert not addon.current_version.can_be_disabled_and_deleted()
 
     def test_is_blocked(self):
         addon = Addon.objects.get(id=3615)

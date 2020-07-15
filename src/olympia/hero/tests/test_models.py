@@ -1,14 +1,15 @@
 from django.core.exceptions import ValidationError
 
 from olympia.amo.tests import addon_factory, TestCase
+from olympia.constants.promoted import RECOMMENDED
 from olympia.hero.models import PrimaryHero, SecondaryHero, SecondaryHeroModule
-from olympia.discovery.models import DiscoveryItem
+from olympia.promoted.models import PromotedAddon, PromotedApproval
 
 
 class TestPrimaryHero(TestCase):
     def test_image_url(self):
         ph = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
             image='foo.png')
         assert ph.image_url == (
             'http://testserver/static/img/hero/featured/foo.png')
@@ -17,13 +18,14 @@ class TestPrimaryHero(TestCase):
 
     def test_gradiant(self):
         ph = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
             gradient_color='#C60084')
         assert ph.gradient == {'start': 'color-ink-80', 'end': 'color-pink-70'}
 
     def test_clean_requires_recommended(self):
         ph = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(), group_id=RECOMMENDED.id),
             gradient_color='#C60184', image='foo.png')
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
@@ -31,16 +33,16 @@ class TestPrimaryHero(TestCase):
         with self.assertRaises(ValidationError):
             ph.clean()
 
-        assert ph.disco_addon.recommended_status != ph.disco_addon.RECOMMENDED
-        ph.disco_addon.update(recommendable=True)
-        ph.disco_addon.addon.current_version.update(
-            recommendation_approved=True)
-        assert ph.disco_addon.recommended_status == ph.disco_addon.RECOMMENDED
+        assert not ph.promoted_addon.addon.is_promoted(group=RECOMMENDED)
+        PromotedApproval.objects.create(
+            version=ph.promoted_addon.addon.current_version,
+            group_id=RECOMMENDED.id)
+        assert ph.promoted_addon.addon.is_promoted(group=RECOMMENDED)
         ph.clean()  # it raises if there's an error
 
     def test_clean_external_requires_homepage(self):
         ph = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
             is_external=True, gradient_color='#C60184', image='foo.png')
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
@@ -48,17 +50,18 @@ class TestPrimaryHero(TestCase):
         with self.assertRaises(ValidationError):
             ph.clean()
 
-        ph.disco_addon.addon.homepage = 'https://foobar.com/'
-        ph.disco_addon.addon.save()
+        ph.promoted_addon.addon.homepage = 'https://foobar.com/'
+        ph.promoted_addon.addon.save()
         ph.clean()  # it raises if there's an error
 
     def test_clean_gradient_and_image(self):
         # Currently, gradient is required and image isn't.
         ph = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()))
-        ph.disco_addon.update(recommendable=True)
-        ph.disco_addon.addon.current_version.update(
-            recommendation_approved=True)
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(), group_id=RECOMMENDED.id))
+        PromotedApproval.objects.create(
+            version=ph.promoted_addon.addon.current_version,
+            group_id=RECOMMENDED.id)
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
         ph.enabled = True
@@ -78,11 +81,12 @@ class TestPrimaryHero(TestCase):
 
     def test_clean_only_enabled(self):
         hero = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(), group_id=RECOMMENDED.id),
             gradient_color='#C60184', image='foo.png')
-        hero.disco_addon.update(recommendable=True)
-        hero.disco_addon.addon.current_version.update(
-            recommendation_approved=True)
+        PromotedApproval.objects.create(
+            version=hero.promoted_addon.addon.current_version,
+            group_id=RECOMMENDED.id)
         assert not hero.enabled
         assert not PrimaryHero.objects.filter(enabled=True).exists()
         # It should still validate even if there are no other enabled shelves,
@@ -101,7 +105,7 @@ class TestPrimaryHero(TestCase):
 
         # But if there's another shelf enabled, then it's fine to disable.
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
             enabled=True)
         hero.clean()
 

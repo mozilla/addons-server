@@ -1,7 +1,7 @@
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase
-from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import DiscoveryAddonSerializer
+from olympia.promoted.models import PromotedAddon
 
 from ..models import (
     GRADIENT_START_COLOR, PrimaryHero, SecondaryHero, SecondaryHeroModule)
@@ -14,8 +14,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
     def test_basic(self):
         addon = addon_factory()
         hero = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
-                addon=addon),
+            promoted_addon=PromotedAddon.objects.create(addon=addon),
             description='Déscription',
             image='foo.png',
             gradient_color='#008787')
@@ -36,7 +35,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             summary='Summary', homepage='https://foo.baa', version_kw={
                 'channel': amo.RELEASE_CHANNEL_UNLISTED})
         hero = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon),
+            promoted_addon=PromotedAddon.objects.create(addon=addon),
             image='foo.png',
             gradient_color='#008787',
             is_external=True)

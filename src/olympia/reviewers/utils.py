@@ -19,8 +19,9 @@ from olympia.addons.models import (
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
-from olympia.discovery.models import DiscoveryItem
+from olympia.constants.promoted import RECOMMENDED
 from olympia.lib.crypto.signing import sign_file
+from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ReviewerSubscription,
     ViewUnlistedAllList, get_flags, get_flags_for_row)
@@ -351,10 +352,8 @@ class ReviewHelper(object):
         version_is_unlisted = (
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_UNLISTED)
-        try:
-            is_recommendable = self.addon.discoveryitem.recommendable
-        except DiscoveryItem.DoesNotExist:
-            is_recommendable = False
+        is_recommendable = self.addon.is_promoted(
+            group=RECOMMENDED, currently_approved=False)
 
         # Default permissions / admin needed values if it's just a regular
         # code review, nothing fancy.
@@ -641,15 +640,12 @@ class ReviewBase(object):
             file.save()
 
     def set_recommended(self):
-        try:
-            item = self.addon.discoveryitem
-        except DiscoveryItem.DoesNotExist:
-            return
-        if item.recommendable:
+        if self.addon.is_promoted(group=RECOMMENDED, currently_approved=False):
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
-            self.version.update(recommendation_approved=True)
+            PromotedApproval.objects.update_or_create(
+                version=self.version, group_id=RECOMMENDED.id)
 
     def unset_past_needs_human_review(self):
         """Clear needs_human_review flag on past listed versions.

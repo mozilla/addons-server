@@ -9,7 +9,8 @@ from django.forms.widgets import RadioSelect
 from django.utils.safestring import mark_safe
 
 from olympia.amo.models import LongNameIndex, ModelBase
-from olympia.discovery.models import DiscoveryItem
+from olympia.constants.promoted import RECOMMENDED
+from olympia.promoted.models import PromotedAddon
 
 
 GRADIENT_START_COLOR = ('#20123A', 'color-ink-80')
@@ -148,12 +149,12 @@ class PrimaryHero(ModelBase):
         help_text='Text used to describe an add-on. Should not contain any '
                   'HTML or special tags. Will be translated.')
     enabled = models.BooleanField(db_index=True, default=False)
-    disco_addon = models.OneToOneField(
-        DiscoveryItem, on_delete=models.CASCADE, null=False)
+    promoted_addon = models.OneToOneField(
+        PromotedAddon, on_delete=models.CASCADE, null=False)
     is_external = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.disco_addon)
+        return str(self.promoted_addon.addon)
 
     @property
     def image_url(self):
@@ -173,13 +174,14 @@ class PrimaryHero(ModelBase):
                 error_dict['gradient_color'] = ValidationError(
                     'Gradient color is required for enabled shelves')
 
-            if self.is_external and not self.disco_addon.addon.homepage:
+            if self.is_external and not self.promoted_addon.addon.homepage:
                 error_dict['is_external'] = ValidationError(
                     'External primary shelves need a homepage defined in '
                     'addon details.')
             elif not self.is_external:
-                recommended = (self.disco_addon.recommended_status ==
-                               self.disco_addon.RECOMMENDED)
+                recommended = (
+                    self.promoted_addon.group == RECOMMENDED and
+                    self.promoted_addon.is_addon_currently_promoted)
                 if not recommended:
                     error_dict['enabled'] = ValidationError(
                         'Only recommended add-ons can be enabled for '

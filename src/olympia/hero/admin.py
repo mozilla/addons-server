@@ -22,7 +22,7 @@ class ImageChoiceField(forms.ModelChoiceField):
                 obj.preview_url))
 
 
-class PrimaryHeroInline(admin.StackedInline):
+class PrimaryHeroAdmin(admin.ModelAdmin):
     class Media:
         css = {
             'all': ('css/admin/discovery.css',)
@@ -30,6 +30,7 @@ class PrimaryHeroInline(admin.StackedInline):
     model = PrimaryHero
     fields = (
         'description',
+        'promoted_addon',
         'image',
         'select_image',
         'gradient_color',

@@ -1,14 +1,14 @@
 from django.db import models
 
 from olympia.addons.models import Addon
-from olympia.amo.models import ModelBase
+from olympia.amo.models import ModelBase, OnChangeMixin
 from olympia.constants.applications import APP_IDS, APPS_CHOICES
 from olympia.constants.promoted import (
     NOT_PROMOTED, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID)
 from olympia.versions.models import Version
 
 
-class PromotedAddon(ModelBase):
+class PromotedAddon(OnChangeMixin, ModelBase):
     GROUP_CHOICES = [(group.id, group.name) for group in PROMOTED_GROUPS]
     APPLICATION_CHOICES = ((None, 'All'),) + APPS_CHOICES
     group_id = models.SmallIntegerField(
@@ -49,7 +49,7 @@ class PromotedAddon(ModelBase):
                 group_id=self.group_id).exists())
 
 
-class PromotedApproval(ModelBase):
+class PromotedApproval(OnChangeMixin, ModelBase):
     GROUP_CHOICES = [
         (g.id, g.name) for g in PROMOTED_GROUPS if g != NOT_PROMOTED]
     group_id = models.SmallIntegerField(
@@ -69,3 +69,30 @@ class PromotedApproval(ModelBase):
         return (
             f'{self.get_group_id_display()} - '
             f'{self.version.addon}: {self.version}')
+
+
+@PromotedAddon.on_change
+def watch_addon_changes(old_attr=None, new_attr=None, instance=None,
+                        sender=None, **kwargs):
+    from olympia.addons.models import update_search_index
+    from olympia.amo.tasks import sync_object_to_basket
+
+    # Update ES because Addon.is_recommended depends on it.
+    update_search_index(sender=sender, instance=instance.addon, **kwargs)
+
+    # Sync the related add-on to basket when promoted groups is changed
+    sync_object_to_basket.delay('addon', instance.addon.pk)
+
+
+@PromotedApproval.on_change
+def watch_version_changes(old_attr=None, new_attr=None, instance=None,
+                          sender=None, **kwargs):
+    from olympia.addons.models import update_search_index
+    from olympia.amo.tasks import sync_object_to_basket
+
+    # Update ES because Addon.is_recommended depends on it.
+    update_search_index(
+        sender=sender, instance=instance.version.addon, **kwargs)
+
+    # Sync the related add-on to basket when promoted groups is changed
+    sync_object_to_basket.delay('addon', instance.version.addon.pk)

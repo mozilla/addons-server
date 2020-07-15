@@ -51,9 +51,10 @@ from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.discovery.models import DiscoveryItem
+from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import File
 from olympia.lib.es.utils import timestamp_index
+from olympia.promoted.models import PromotedAddon, PromotedApproval
 from olympia.stats.indexers import DownloadCountIndexer
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
@@ -586,10 +587,11 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             version.update(channel=channel)
 
     def make_addon_recommended(self, addon, approve_version=False):
-        DiscoveryItem.objects.update_or_create(
-            addon=addon, defaults={'recommendable': True})
+        PromotedAddon.objects.update_or_create(
+            addon=addon, defaults={'group_id': RECOMMENDED.id})
         if approve_version:
-            addon.current_version.update(recommendation_approved=True)
+            PromotedApproval.objects.create(
+                version=addon.current_version, group_id=RECOMMENDED.id)
 
     def _add_fake_throttling_action(
             self, view_class, verb='post', url=None, user=None,
@@ -732,7 +734,7 @@ def addon_factory(
         AddonCategory.objects.create(addon=addon, category=category)
 
     if should_be_recommended:
-        DiscoveryItem.objects.create(addon=addon, recommendable=True)
+        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -880,6 +882,7 @@ def version_factory(file_kw=None, **kw):
             license_kw = {'builtin': 99}
             license_kw.update(kw.get('license_kw', {}))
             kw['license'] = license_factory(**license_kw)
+    recommendation_approved = kw.pop('recommendation_approved', False)
     ver = Version.objects.create(version=version_str, **kw)
     ver.created = ver.last_updated = _get_created(kw.pop('created', 'now'))
     ver.save()
@@ -894,6 +897,8 @@ def version_factory(file_kw=None, **kw):
     if file_kw is not False:
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
+    if recommendation_approved:
+        PromotedApproval.objects.create(version=ver, group_id=RECOMMENDED.id)
     return ver
 
 

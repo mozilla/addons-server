@@ -20,9 +20,11 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
     _get_recommendation_data, _get_signature_details)
+from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ReviewerSubscription,
     ViewExtensionQueue)
@@ -345,8 +347,8 @@ class TestReviewHelper(TestReviewHelperBase):
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED).keys()) == expected
 
-        # Now make it recommendable. The user should lose all approve/reject
-        # actions.
+        # Now make add a recommended promoted addon. The user should lose all
+        # approve/reject actions.
         self.make_addon_recommended(self.addon)
         expected = ['reply', 'super', 'comment']
         assert list(self.get_review_actions(
@@ -1884,7 +1886,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not self.addon.is_recommended
         self.test_nomination_to_public()
         del self.addon.is_recommended
-        assert self.addon.current_version.recommendation_approved is True
+        assert self.addon.current_version.promoted_approvals.filter(
+            group_id=RECOMMENDED.id).exists()
         assert self.addon.is_recommended
 
     def test_approved_update_recommended(self):
@@ -1892,7 +1895,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not self.addon.is_recommended
         self.test_public_addon_with_version_awaiting_review_to_public()
         del self.addon.is_recommended
-        assert self.addon.current_version.recommendation_approved is True
+        assert self.addon.current_version.promoted_approvals.filter(
+            group_id=RECOMMENDED.id).exists()
         assert self.addon.is_recommended is True
 
     def test_autoapprove_fails_for_recommended(self):
@@ -1901,7 +1905,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.request.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
         with self.assertRaises(AssertionError):
             self.test_nomination_to_public()
-        assert self.addon.current_version.recommendation_approved is False
+        assert not PromotedApproval.objects.filter(
+            version=self.addon.current_version).exists()
         assert not self.addon.is_recommended
 
     def _test_block_multiple_unlisted_versions(self, redirect_url):
@@ -2043,7 +2048,8 @@ class TestReviewHelperSigning(TestReviewHelperBase):
             amo.STATUS_APPROVED)
 
         del self.addon.is_recommended
-        assert self.addon.current_version.recommendation_approved is True
+        assert self.addon.current_version.promoted_approvals.filter(
+            group_id=RECOMMENDED.id).exists()
         assert self.addon.is_recommended
 
         signature_info, manifest = _get_signature_details(self.file.file_path)

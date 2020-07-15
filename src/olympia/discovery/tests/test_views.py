@@ -9,8 +9,10 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
+from olympia.constants.promoted import RECOMMENDED
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.utils import replace_extensions
+from olympia.promoted.models import PromotedAddon, PromotedApproval
 
 
 class DiscoveryTestMixin(object):
@@ -391,12 +393,16 @@ class TestDiscoveryItemViewSet(TestCase):
         assert response.status_code == 200
         assert len(response.data['results']) == 0
 
-        self.items[0].update(recommendable=True)
-        self.items[0].addon.current_version.update(
-            recommendation_approved=True)
-        self.items[2].update(recommendable=True)
-        self.items[2].addon.current_version.update(
-            recommendation_approved=True)
+        PromotedAddon.objects.create(
+            addon=self.items[0].addon, group_id=RECOMMENDED.id)
+        PromotedApproval.objects.create(
+            version=self.items[0].addon.current_version,
+            group_id=RECOMMENDED.id)
+        PromotedAddon.objects.create(
+            addon=self.items[2].addon, group_id=RECOMMENDED.id)
+        PromotedApproval.objects.create(
+            version=self.items[2].addon.current_version,
+            group_id=RECOMMENDED.id)
         with self.assertNumQueries(1):
             response = self.client.get(self.url + '?recommended=true')
         assert response.status_code == 200

@@ -5,7 +5,7 @@ from django.utils.html import conditional_escape, format_html
 from django.utils.translation import ugettext
 
 from olympia import amo
-from olympia.addons.models import Addon, update_search_index
+from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase, OnChangeMixin
 from olympia.amo.templatetags.jinja_helpers import absolutify
 
@@ -54,10 +54,6 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
         help_text='Position in the discovery pane when telemetry-aware '
                   'recommendations are on but we want to override them.'
                   '(See position field above).')
-    recommendable = models.BooleanField(
-        db_index=True, null=False, default=False,
-        help_text="Should this add-on's versions be recommended. When enabled "
-                  'new versions will be reviewed for recommended status.')
 
     def __str__(self):
         return str(self.addon)
@@ -164,30 +160,3 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
         be returned by the disco pane API.
         """
         return self._build_description(html=False)
-
-    @property
-    def recommended_status(self):
-        return (
-            self.RECOMMENDED if (
-                self.recommendable and
-                self.addon.current_version and
-                self.addon.current_version.recommendation_approved) else
-            self.PENDING_RECOMMENDATION if self.recommendable else
-            self.NOT_RECOMMENDED)
-
-    def primary_hero_shelf(self):
-        return (self.primaryhero.enabled if hasattr(self, 'primaryhero')
-                else None)
-    primary_hero_shelf.boolean = True
-
-
-@DiscoveryItem.on_change
-def watch_recommendable_changes(old_attr=None, new_attr=None, instance=None,
-                                sender=None, **kwargs):
-    if 'recommendable' in old_attr or 'recommendable' in new_attr:
-        old_value = old_attr.get('recommendable')
-        new_value = new_attr.get('recommendable')
-        if old_value != new_value:
-            # Update ES because is_recommended depends on it.
-            update_search_index(
-                sender=sender, instance=instance.addon, **kwargs)

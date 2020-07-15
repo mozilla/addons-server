@@ -44,9 +44,9 @@ class PrimaryHeroShelfViewSet(ShelfViewSet):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        qs = (qs.select_related('disco_addon')
+        qs = (qs.select_related('promoted_addon')
                 .prefetch_related(
-                    'disco_addon__addon___current_version__previews'))
+                    'promoted_addon__addon___current_version__previews'))
         return qs
 
 

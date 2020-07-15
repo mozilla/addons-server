@@ -101,7 +101,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 user=user_factory(), addon=addon)
 
             PrimaryHero.objects.create(
-                disco_addon=addon.discoveryitem,
+                promoted_addon=addon.promotedaddon,
                 enabled=True)
             SecondaryHero.objects.create(
                 enabled=True,
@@ -155,8 +155,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 users=[UserProfile.objects.get(username=author.username)],
                 name=u'{}'.format(name),
                 slug=u'{}'.format(name),
+                recommended=True,
                 version_kw={
-                    'recommendation_approved': True,
                     'nomination': days_ago(6)
                 }
             )
