@@ -1382,6 +1382,9 @@ class TestAddonModels(TestCase):
         # Flag present, value is True: True.
         flags.update(auto_approval_disabled_until_next_approval=True)
         assert addon.auto_approval_disabled_until_next_approval is True
+        # Flag present, value is False: False.
+        flags.update(auto_approval_disabled_until_next_approval=False)
+        assert addon.auto_approval_disabled_until_next_approval is False
 
     def test_auto_approval_delayed_until_property(self):
         addon = Addon.objects.get(pk=3615)
