@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-15 19:00+0000\n"
+"PO-Revision-Date: 2020-07-15 19:10+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -5479,9 +5479,8 @@ msgstr "సమీక్షల చిట్టా"
 msgid "Add-on Review Guide"
 msgstr "యాడ్-ఆన్ సమీక్ష గైడు"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "భద్రతా పరీక్షలు"
+msgstr "భద్రతా స్కానర్లు"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
@@ -5549,9 +5548,8 @@ msgstr "రోజు యొక్క సందేశాన్ని నవీక
 msgid "Expired Information Requests ({0})"
 msgstr "కాలంచెల్లిన సమాచార అభ్యర్థనలు ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "ఇతర వేచివున్న సమీక్ష ({0})"
+msgstr "తిరస్కరణకై వేచివున్న పొడగింతలు ({0})"
 
 msgid "An unknown error occurred"
 msgstr "ఒక తెలియని దోషం ఎదురైంది"
