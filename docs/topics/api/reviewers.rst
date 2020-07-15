@@ -80,9 +80,12 @@ add-on.
 .. http:patch:: /api/v4/reviewers/addon/(int:addon_id)/flags/
 
     :>json boolean auto_approval_disabled: Boolean indicating whether auto approval are disabled on an add-on or not. When it's ``true``, new versions for this add-on will make it appear in the regular reviewer queues instead of being auto-approved.
-    :>json string|null pending_info_request: Deadline date for the pending info request as a string, or ``null``.
+    :>json boolean auto_approval_disabled_until_next_approval: Boolean indicating whether auto approval are disabled on an add-on until the next version is approved or not. Has the same effect as ``auto_approval_disabled`` but is automatically reset to ``false`` when the latest version of the add-on is manually approved by a human reviewer.
+    :>json string|null auto_approval_delayed_until: Date until the add-on auto-approval is delayed.
     :>json boolean needs_admin_code_review: Boolean indicating whether the add-on needs its code to be reviewed by an admin or not.
     :>json boolean needs_admin_content_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not.
+    :>json boolean needs_admin_theme_review: Boolean indicating whether the theme needs to be reviewed by an admin or not.
+    :>json string|null pending_info_request: Deadline date for the pending info request as a string, or ``null``.
 
 ------------------
 Allow resubmission

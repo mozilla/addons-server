@@ -1153,17 +1153,22 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_has_auto_approval_disabled(cls, version):
-        """Check whether the add-on has auto approval disabled by a reviewer
-        (only applies to listed) or automated scanners
-        (applies to every channel).
+        """Check whether the add-on has auto approval fully disabled by a
+        reviewer (only applies to listed) or disabled temporarily because they
+        had their previous version on a delayed rejection (only applies to
+        listed) or automated scanners (applies to every channel).
         """
         addon = version.addon
         is_listed = version.channel == amo.RELEASE_CHANNEL_LISTED
-        return (
-            (is_listed and bool(addon.auto_approval_disabled)) or
-            bool(addon.auto_approval_delayed_until and
-                 datetime.now() < addon.auto_approval_delayed_until)
+        auto_approval_disabled = is_listed and bool(
+            addon.auto_approval_disabled or
+            addon.auto_approval_disabled_until_next_approval
         )
+        auto_approval_delayed = bool(
+            addon.auto_approval_delayed_until and
+            datetime.now() < addon.auto_approval_delayed_until
+        )
+        return auto_approval_disabled or auto_approval_delayed
 
     @classmethod
     def check_is_recommendable(cls, version):

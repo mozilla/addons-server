@@ -325,7 +325,9 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert review_helper_mock.call_args == (
             (), {'addon': self.addon, 'version': self.version}
         )
-        assert review_helper_mock().handler.process_public.call_count == 1
+        assert (
+            review_helper_mock().handler.approve_latest_version.call_count == 1
+        )
         assert statsd_incr_mock.call_count == 1
         assert statsd_incr_mock.call_args == (
             ('reviewers.auto_approve.approve.success',), {}

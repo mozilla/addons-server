@@ -161,7 +161,7 @@ class Command(BaseCommand):
             helper.handler.data = {
                 'comments': 'automatic validation'
             }
-        helper.handler.process_public()
+        helper.handler.approve_latest_version()
         statsd.incr('reviewers.auto_approve.approve.success')
 
     def log_final_summary(self, stats):

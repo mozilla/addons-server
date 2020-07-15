@@ -715,7 +715,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.setup_data(amo.STATUS_NOMINATED)
         with translation.override('es'):
             assert translation.get_language() == 'es'
-            self.helper.handler.process_public()
+            self.helper.handler.approve_latest_version()
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -729,7 +729,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.name.delete()
         self.addon.refresh_from_db()
         self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -739,7 +739,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_nomination_to_public_no_files(self):
         self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         assert self.addon.versions.all()[0].files.all()[0].status == (
             amo.STATUS_APPROVED)
@@ -750,7 +750,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.update(_current_version=None)
         assert not self.addon.current_version
 
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
         self.addon = Addon.objects.get(pk=3615)
         assert self.addon.current_version
 
@@ -763,7 +763,7 @@ class TestReviewHelper(TestReviewHelperBase):
         for version in self.addon.versions.all():
             version.files.update(status=amo.STATUS_AWAITING_REVIEW)
 
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         # Re-fetch the add-on
         addon = Addon.objects.get(pk=3615)
@@ -791,7 +791,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_nomination_to_public_need_human_review(self):
         self.setup_data(amo.STATUS_NOMINATED)
         self.version.update(needs_human_review=True)
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
         self.addon.reload()
         self.version.reload()
         self.file.reload()
@@ -803,7 +803,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.request = None
         self.setup_data(amo.STATUS_NOMINATED)
         self.version.update(needs_human_review=True)
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
         self.addon.reload()
         self.version.reload()
         self.file.reload()
@@ -819,7 +819,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert flags.needs_human_review_by_mad
 
         self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         flags.refresh_from_db()
         assert not flags.needs_human_review_by_mad
@@ -829,7 +829,7 @@ class TestReviewHelper(TestReviewHelperBase):
         sign_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
 
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.versions.all()[0].files.all()[0].status == (
@@ -857,7 +857,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.setup_data(amo.STATUS_NOMINATED)
         self.version.update(nomination=self.days_ago(9))
 
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.versions.all()[0].files.all()[0].status == (
@@ -887,7 +887,7 @@ class TestReviewHelper(TestReviewHelperBase):
         sign_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
 
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.versions.all()[0].files.all()[0].status == (
@@ -937,7 +937,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.files.all()[0].status == (
             amo.STATUS_APPROVED)
 
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_APPROVED
@@ -963,6 +963,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
         self._check_score(amo.REVIEWED_ADDON_UPDATE)
+        self.addon.reviewerflags.reload()
+        assert not (
+            self.addon.reviewerflags.auto_approval_disabled_until_next_approval
+        )
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_public_addon_with_version_need_human_review_to_public(
@@ -978,7 +982,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.file = self.version.files.all()[0]
         self.setup_data(amo.STATUS_APPROVED)
 
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_APPROVED
@@ -987,6 +991,30 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_APPROVED)
         self.old_version.reload()
         assert not self.old_version.needs_human_review
+
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_public_addon_with_auto_approval_temporarily_disabled_to_public(
+            self, sign_file_mock):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled_until_next_approval=True)
+        self.version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            version='3.0.42',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.file = self.version.files.all()[0]
+        self.setup_data(amo.STATUS_APPROVED)
+
+        self.helper.handler.approve_latest_version()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.reload().status == amo.STATUS_APPROVED
+        assert self.addon.current_version.files.all()[0].status == (
+            amo.STATUS_APPROVED)
+        self.addon.reviewerflags.reload()
+        assert not (
+            self.addon.reviewerflags.auto_approval_disabled_until_next_approval
+        )
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_public_addon_with_version_awaiting_review_to_sandbox(
@@ -1010,7 +1038,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.files.all()[0].status == (
             amo.STATUS_APPROVED)
 
-        self.helper.handler.process_sandbox()
+        self.helper.handler.reject_latest_version()
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_APPROVED
@@ -1047,7 +1075,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.file = self.version.files.all()[0]
         self.setup_data(amo.STATUS_APPROVED)
 
-        self.helper.handler.process_sandbox()
+        self.helper.handler.reject_latest_version()
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_APPROVED
@@ -1317,7 +1345,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.setup_data(amo.STATUS_NULL,
                         channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.versions.all()[0].files.all()[0].status == (
@@ -1347,7 +1375,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.setup_data(amo.STATUS_NOMINATED)
 
         with self.assertRaises(Exception):
-            self.helper.handler.process_public()
+            self.helper.handler.approve_latest_version()
 
         # AddonApprovalsCounter was not touched since we failed signing.
         assert not AddonApprovalsCounter.objects.filter(
@@ -1364,7 +1392,7 @@ class TestReviewHelper(TestReviewHelperBase):
     @patch('olympia.reviewers.utils.sign_file')
     def test_nomination_to_sandbox(self, sign_mock):
         self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_sandbox()
+        self.helper.handler.reject_latest_version()
 
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.versions.all()[0].files.all()[0].status == (
@@ -1388,7 +1416,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.name = u'TaobaoShopping淘宝网导航按钮'
         self.addon.save()
         self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_sandbox()
+        self.helper.handler.reject_latest_version()
         assert u'TaobaoShopping淘宝网导航按钮' in mail.outbox[0].subject
 
     def test_nomination_to_super_review(self):
@@ -1438,7 +1466,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_operating_system_present(self):
         self.setup_data(amo.STATUS_APPROVED)
-        self.helper.handler.process_sandbox()
+        self.helper.handler.reject_latest_version()
 
         assert 'Tested on osx with Firefox' in mail.outbox[0].body
 
@@ -1447,7 +1475,7 @@ class TestReviewHelper(TestReviewHelperBase):
         data = self.get_data().copy()
         data['operating_systems'] = ''
         self.helper.set_data(data)
-        self.helper.handler.process_sandbox()
+        self.helper.handler.reject_latest_version()
 
         assert 'Tested with Firefox' in mail.outbox[0].body
 
@@ -1456,7 +1484,7 @@ class TestReviewHelper(TestReviewHelperBase):
         data = self.get_data().copy()
         data['applications'] = ''
         self.helper.set_data(data)
-        self.helper.handler.process_sandbox()
+        self.helper.handler.reject_latest_version()
 
         assert 'Tested on osx' in mail.outbox[0].body
 
@@ -1466,7 +1494,7 @@ class TestReviewHelper(TestReviewHelperBase):
         data['applications'] = ''
         data['operating_systems'] = ''
         self.helper.set_data(data)
-        self.helper.handler.process_sandbox()
+        self.helper.handler.reject_latest_version()
 
         assert 'Tested' not in mail.outbox[0].body
 
@@ -1477,28 +1505,28 @@ class TestReviewHelper(TestReviewHelperBase):
 
             assert self.addon.needs_admin_code_review
 
-    def test_nominated_review_time_set_version_process_public(self):
+    def test_nominated_review_time_set_version_approve_latest_version(self):
         self.version.update(reviewed=None)
         self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
         assert self.version.reload().reviewed
 
-    def test_nominated_review_time_set_version_process_sandbox(self):
+    def test_nominated_review_time_set_version_reject_latest_version(self):
         self.version.update(reviewed=None)
         self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_sandbox()
+        self.helper.handler.reject_latest_version()
         assert self.version.reload().reviewed
 
-    def test_nominated_review_time_set_file_process_public(self):
+    def test_nominated_review_time_set_file_approve_latest_version(self):
         self.file.update(reviewed=None)
         self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
         assert File.objects.get(pk=self.file.pk).reviewed
 
-    def test_nominated_review_time_set_file_process_sandbox(self):
+    def test_nominated_review_time_set_file_reject_latest_version(self):
         self.file.update(reviewed=None)
         self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_sandbox()
+        self.helper.handler.reject_latest_version()
         assert File.objects.get(pk=self.file.pk).reviewed
 
     def test_review_unlisted_while_a_listed_version_is_awaiting_review(self):
@@ -1855,13 +1883,13 @@ class TestReviewHelper(TestReviewHelperBase):
             '?min=%s&max=%s')
         self._test_block_multiple_unlisted_versions(redirect_url)
 
-    def test_process_public_fails_for_blocked_version(self):
+    def test_approve_latest_version_fails_for_blocked_version(self):
         Block.objects.create(addon=self.addon, updated_by=user_factory())
         self.setup_data(amo.STATUS_NOMINATED)
         del self.addon.block
 
         with self.assertRaises(AssertionError):
-            self.helper.handler.process_public()
+            self.helper.handler.approve_latest_version()
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
@@ -1887,7 +1915,7 @@ class TestReviewHelperSigning(TestReviewHelperBase):
     def test_nomination_to_public(self):
         self.setup_data(amo.STATUS_NOMINATED)
 
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.versions.all()[0].files.all()[0].status == (
@@ -1921,7 +1949,7 @@ class TestReviewHelperSigning(TestReviewHelperBase):
             addon=self.addon, recommendable=True)
         assert not self.addon.is_recommended
 
-        self.helper.handler.process_public()
+        self.helper.handler.approve_latest_version()
 
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.versions.all()[0].files.all()[0].status == (
