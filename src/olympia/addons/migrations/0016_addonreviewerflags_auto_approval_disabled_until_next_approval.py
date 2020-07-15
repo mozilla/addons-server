@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('addons', '0014_remove_addon_view_source'),
+        ('addons', '0015_auto_20200710_0859'),
     ]
 
     operations = [
