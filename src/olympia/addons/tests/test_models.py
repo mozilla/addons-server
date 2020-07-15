@@ -1592,42 +1592,58 @@ class TestAddonModels(TestCase):
         # but not when it's removed.
         assert not addon.is_recommended
 
-    def test_promoted_group(self):
+    def test_is_promoted(self):
         addon = addon_factory()
         # default case - no group so not recommended
-        assert not addon.promoted_group
+        assert not addon.is_promoted()
+        assert not addon.is_promoted(currently=False)
 
-        PromotedApproval.objects.create(
-            version=addon.current_version, group_id=SPOTLIGHT.id)
+        # It's promoted but nothing has been approved
         promoted = PromotedAddon.objects.create(
             addon=addon, group_id=SPOTLIGHT.id)
-        del addon.promoted_group
-        # It's promoted; and the latest version is approved for the same group.
-        assert addon.promoted_group == SPOTLIGHT
+        assert addon.is_promoted(currently=False)
+        assert not addon.is_promoted()
+        assert addon.is_promoted(currently=False, group=SPOTLIGHT)
+        assert not addon.is_promoted(group=SPOTLIGHT)
 
+        # The latest version is approved for the same group.
+        PromotedApproval.objects.create(
+            version=addon.current_version, group_id=SPOTLIGHT.id)
+        assert addon.is_promoted()
+        assert addon.is_promoted(group=SPOTLIGHT)
+        # not for other groups though
+        assert not addon.is_promoted(group=VERIFIED_ONE)
+
+        # if the group has changes the approval for the current version isn't
+        # valid
         promoted.update(group_id=VERIFIED_ONE.id)
-        del addon.promoted_group
-        # the group has changed, but the approval for the current version isn't
-        # valid for that group
-        assert not addon.promoted_group
+        assert not addon.is_promoted()
+        assert addon.is_promoted(currently=False)
+        assert not addon.is_promoted(group=SPOTLIGHT)
+        assert not addon.is_promoted(group=VERIFIED_ONE)
+        assert addon.is_promoted(currently=False, group=VERIFIED_ONE)
+        assert not addon.is_promoted(currently=False, group=SPOTLIGHT)
 
         PromotedApproval.objects.create(
             version=addon.current_version, group_id=VERIFIED_ONE.id)
-        # But if it's been approved for that group too, it's okay.
-        del addon.promoted_group
-        assert addon.promoted_group == VERIFIED_ONE
+        assert addon.is_promoted(group=VERIFIED_ONE)
 
-        PromotedApproval.objects.all().delete()
-        del addon.promoted_group
-        # if there aren't any approvals there's no group returned
-        assert not addon.promoted_group
+        # Application specific group membership should work too
+        # if no app is specifed in the PromotedAddon everything should match
+        assert addon.is_promoted()
+        assert addon.is_promoted(application=amo.FIREFOX)
+        # update to mobile app
+        promoted.update(application_id=amo.ANDROID.id)
+        assert addon.is_promoted()
+        assert not addon.is_promoted(application=amo.FIREFOX)
+        assert addon.is_promoted(application=amo.ANDROID)
 
+        # check it doesn't error if there's no current_version
         addon.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
         addon.update_version()
         assert not addon.current_version
-        del addon.promoted_group
-        # check it doesn't error if there's no current_version
-        assert not addon.promoted_group
+        assert not addon.is_promoted()
+        assert addon.is_promoted(currently=False)
 
     @patch('olympia.amo.tasks.sync_object_to_basket')
     def test_addon_field_changes_not_synced_to_basket(

@@ -1307,16 +1307,30 @@ class Addon(OnChangeMixin, ModelBase):
                 addon=self).exists()
         return recommended
 
-    @cached_property
-    def promoted_group(self):
-        """If the addon is promoted then return the Promoted group details."""
+    def is_promoted(self, group=None, application=None, currently=True):
+        """Is the addon currently promoted for the specified group and
+        application.
+
+        `group` is the PromotedClass class; if group=None (default) then all
+        promotion groups are considered;
+        `application` is the App class; if application=None (default) then all
+        applications are considered;
+        `currently=True` means only returns True if self.current_version is
+        approved for the current promotion (where needed). If currently=False
+        then promotions where there isn't approval currently are returned too.
+        """
         from olympia.promoted.models import PromotedAddon
 
         try:
             promoted = self.promotedaddon
         except PromotedAddon.DoesNotExist:
-            return None
-        return promoted.group if promoted.is_addon_currently_promoted else None
+            return False
+        group_match = not group or promoted.group == group
+        app_match = (
+            not application or not promoted.application or
+            promoted.application == application)
+        cur_match = not currently or promoted.is_addon_currently_promoted
+        return group_match and app_match and cur_match
 
     @cached_property
     def tags_partitioned_by_developer(self):
