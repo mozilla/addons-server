@@ -11,6 +11,8 @@ from olympia.discovery.models import DiscoveryItem
 from olympia.hero.admin import (
     PrimaryHeroInline, SecondaryHeroAdmin, PrimaryHeroImageAdmin)
 from olympia.hero.models import PrimaryHero, SecondaryHero, PrimaryHeroImage
+from olympia.shelves.admin import ShelfAdmin
+from olympia.shelves.models import Shelf
 
 
 # Popular locales, we typically don't want to show a string if it's not
@@ -158,6 +160,13 @@ class SecondaryHeroShelf(SecondaryHero):
         verbose_name_plural = 'secondary hero shelves'
 
 
+class ShelfModule(Shelf):
+    class Meta:
+        proxy = True
+        verbose_name_plural = 'shelves'
+
+
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
 admin.site.register(PrimaryHeroImageUpload, PrimaryHeroImageAdmin)
 admin.site.register(SecondaryHeroShelf, SecondaryHeroAdmin)
+admin.site.register(ShelfModule, ShelfAdmin)
