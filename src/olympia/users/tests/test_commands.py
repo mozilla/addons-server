@@ -174,9 +174,16 @@ class TestClearOldUserData(TestCase):
         old_user.update(modified=old_date)
         old_user_addon = addon_factory(
             users=[old_user], status=amo.STATUS_DELETED)
-        # this shouldn't happen but lets be safe
-        not_deleted_addon = addon_factory(
-            users=[old_user, user_factory()])
+        # Include an add-on that old_user _was_ an owner of, but now isn't.
+        # Even if the addon is now deleted it shouldn't be hard-deleted with
+        # old_user.
+        no_longer_owner_addon = addon_factory(
+            users=[old_user, old_not_deleted])
+        no_longer_owner_addon.addonuser_set.get(user=old_user).delete()
+        assert old_user not in list(no_longer_owner_addon.authors.all())
+        assert UserProfile.objects.filter(
+            addons=no_longer_owner_addon, id=old_user.id).exists()
+        no_longer_owner_addon.delete()
 
         # Old, has addons, but already has other data cleared
         old_data_cleared = user_factory(
@@ -216,7 +223,7 @@ class TestClearOldUserData(TestCase):
         assert not old_user.fxa_id
         assert old_user.modified == old_date
         assert not Addon.unfiltered.filter(id=old_user_addon.id).exists()
-        assert not_deleted_addon.reload()
+        assert no_longer_owner_addon.reload()
 
         assert not Addon.unfiltered.filter(
             id=old_data_cleared_addon.id).exists()
@@ -230,3 +237,13 @@ class TestClearOldUserData(TestCase):
         assert old_banned_user.banned
         assert not Addon.unfiltered.filter(
             id=old_banned_user_addon.id).exists()
+
+        # But check that no_longer_owner_addon is deleted eventually
+        old_not_deleted.update(deleted=True)
+        call_command('clear_old_user_data')
+        old_not_deleted.reload()
+        assert not old_not_deleted.email
+        assert not Addon.unfiltered.filter(
+            id=old_not_deleted_addon.id).exists()
+        assert not Addon.unfiltered.filter(
+            id=no_longer_owner_addon.id).exists()
