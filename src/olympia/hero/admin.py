@@ -22,7 +22,7 @@ class ImageChoiceField(forms.ModelChoiceField):
                 obj.preview_url))
 
 
-class PrimaryHeroAdmin(admin.ModelAdmin):
+class PrimaryHeroInline(admin.StackedInline):
     class Media:
         css = {
             'all': ('css/admin/discovery.css',)

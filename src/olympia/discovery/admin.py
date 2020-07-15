@@ -9,7 +9,7 @@ from django.db.models import Prefetch
 from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.admin import SecondaryHeroAdmin, PrimaryHeroImageAdmin
-from olympia.hero.models import PrimaryHero, SecondaryHero, PrimaryHeroImage
+from olympia.hero.models import SecondaryHero, PrimaryHeroImage
 from olympia.shelves.admin import ShelfAdmin
 from olympia.shelves.models import Shelf
 
@@ -131,12 +131,6 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
                 translations.append(
                     conditional_escape(self.build_preview(obj, locale)))
         return mark_safe(''.join(translations))
-
-    def has_delete_permission(self, request, obj=None):
-        qs = PrimaryHero.objects.filter(enabled=True)
-        if obj and list(qs) == [getattr(obj, 'primaryhero', None)]:
-            return False
-        return super().has_delete_permission(request=request, obj=obj)
 
 
 class PrimaryHeroImageUpload(PrimaryHeroImage):

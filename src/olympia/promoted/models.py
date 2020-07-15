@@ -11,7 +11,7 @@ from olympia.versions.models import Version
 
 class PromotedAddon(ModelBase):
     GROUP_CHOICES = [(group.id, group.name) for group in PROMOTED_GROUPS]
-    APPLICATION_CHOICES = ((None, 'All'),) + APPS_CHOICES
+    APPLICATION_CHOICES = ((None, 'All Applications'),) + APPS_CHOICES
     group_id = models.SmallIntegerField(
         choices=GROUP_CHOICES, default=NOT_PROMOTED.id, verbose_name='Group',
         help_text='Can be set to Not Promoted to disable promotion without '

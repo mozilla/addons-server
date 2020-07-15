@@ -1,8 +1,10 @@
 from django.contrib import admin
+from django.db.models import Prefetch
 from django.forms.models import modelformset_factory
 
 from olympia.addons.models import Addon
 from olympia.discovery.admin import SlugOrPkChoiceField
+from olympia.hero.admin import PrimaryHeroInline
 
 from .forms import AdminBasePromotedApprovalFormSet
 from .models import PromotedAddon, PromotedApproval
@@ -56,12 +58,33 @@ class PromotedApprovalInline(admin.TabularInline):
 
 @admin.register(PromotedAddon)
 class PromotedAddonAdmin(admin.ModelAdmin):
-    list_display = ('addon__name', 'group_id', 'application_id', 'is_approved')
+    list_display = (
+        'addon__name', 'group_id', 'application_id', 'is_approved',
+        'primary_hero_shelf')
     view_on_site = False
     raw_id_fields = ('addon',)
     fields = ('addon', 'group_id', 'application_id')
-    list_filter = ('group_id',)
-    inlines = (PromotedApprovalInline,)
+    list_filter = ('group_id', 'application_id')
+    inlines = (PromotedApprovalInline, PrimaryHeroInline)
+
+    def get_queryset(self, request):
+        # Select `primaryhero`, `addon` and it's `_current_version`.
+        # We are forced to use `prefetch_related` to ensure transforms
+        # are being run, though, we only care about translations
+        #
+        # TODO: optimize this query to preload the PromotedApprovals fk'd to
+        # versions.
+        qset = (
+            self.model.objects.all()
+            .select_related('primaryhero')
+            .prefetch_related(
+                Prefetch(
+                    'addon',
+                    queryset=(
+                        Addon.unfiltered.all()
+                        .select_related('_current_version')
+                        .only_translations()))))
+        return qset
 
     def addon__name(self, obj):
         return str(obj.addon)
@@ -70,6 +93,11 @@ class PromotedAddonAdmin(admin.ModelAdmin):
     def is_approved(self, obj):
         return obj.is_addon_currently_promoted
     is_approved.boolean = True
+
+    def primary_hero_shelf(self, obj):
+        return (obj.primaryhero.enabled if hasattr(obj, 'primaryhero')
+                else None)
+    primary_hero_shelf.boolean = True
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         if db_field.name == 'addon':
@@ -81,3 +109,9 @@ class PromotedAddonAdmin(admin.ModelAdmin):
             return SlugOrPkChoiceField(**kwargs)
         return super().formfield_for_foreignkey(
             db_field, request, **kwargs)
+
+    def has_delete_permission(self, request, obj=None):
+        qs = PrimaryHeroInline.model.objects.filter(enabled=True)
+        if obj and list(qs) == [getattr(obj, 'primaryhero', None)]:
+            return False
+        return super().has_delete_permission(request=request, obj=obj)

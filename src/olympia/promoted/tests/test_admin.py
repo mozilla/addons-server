@@ -1,7 +1,9 @@
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
+from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
 from olympia.constants.promoted import LINE, RECOMMENDED
+from olympia.hero.models import PrimaryHero, PrimaryHeroImage
 from olympia.promoted.models import PromotedAddon, PromotedApproval
 
 
@@ -28,6 +30,22 @@ class TestPromotedAddonAdmin(TestCase):
             })
         return out
 
+    def _get_heroform(self, item_id):
+        return {
+            "primaryhero-TOTAL_FORMS": "1",
+            "primaryhero-INITIAL_FORMS": "0",
+            "primaryhero-MIN_NUM_FORMS": "0",
+            "primaryhero-MAX_NUM_FORMS": "1",
+            "primaryhero-0-image": "",
+            "primaryhero-0-gradient_color": "",
+            "primaryhero-0-id": "",
+            "primaryhero-0-promoted_addon": item_id,
+            "primaryhero-__prefix__-image": "",
+            "primaryhero-__prefix__-gradient_color": "",
+            "primaryhero-__prefix__-id": "",
+            "primaryhero-__prefix__-promoted_addon": item_id,
+        }
+
     def test_can_see_in_admin_with_discovery_edit(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -44,7 +62,8 @@ class TestPromotedAddonAdmin(TestCase):
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_discovery_edit_permission(self):
-        PromotedAddon.objects.create(addon=addon_factory(name='FooBâr'))
+        pro = PromotedAddon.objects.create(addon=addon_factory(name='FooBâr'))
+        PrimaryHero.objects.create(promoted_addon=pro)
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
@@ -74,6 +93,7 @@ class TestPromotedAddonAdmin(TestCase):
                 version=ver3, group_id=RECOMMENDED.id),
         ]
         approvals.reverse()  # we order by -version_id so match it.
+        item.reload()
         assert item.is_addon_currently_promoted
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory()
@@ -89,7 +109,8 @@ class TestPromotedAddonAdmin(TestCase):
 
         response = self.client.post(
             detail_url,
-            dict(self._get_approval_form(item, approvals), **{
+            dict(self._get_approval_form(item, approvals),
+                 **self._get_heroform(''), **{
                 'group_id': LINE.id,  # change the group
             }), follow=True)
         assert response.status_code == 200
@@ -106,7 +127,8 @@ class TestPromotedAddonAdmin(TestCase):
         # Try to delete one of the approvals
         response = self.client.post(
             detail_url,
-            dict(self._get_approval_form(item, approvals), **{
+            dict(self._get_approval_form(item, approvals),
+                 **self._get_heroform(''), **{
                 'form-0-DELETE': 'on',  # delete the latest approval
             }), follow=True)
         assert response.status_code == 200
@@ -114,6 +136,7 @@ class TestPromotedAddonAdmin(TestCase):
             response.context_data['errors'])
         assert PromotedAddon.objects.count() == 1
         assert PromotedApproval.objects.count() == 3
+        assert PrimaryHero.objects.count() == 0  # check we didn't add
 
     def test_cannot_add_or_change_approval(self):
         addon = addon_factory()
@@ -131,7 +154,8 @@ class TestPromotedAddonAdmin(TestCase):
         # try to change the approval group
         response = self.client.post(
             detail_url,
-            dict(self._get_approval_form(item, [approval]), **{
+            dict(self._get_approval_form(item, [approval]),
+                 **self._get_heroform(''), **{
                 "form-0-group_id": str(LINE.id),
             }), follow=True)
         approval.reload()
@@ -142,7 +166,8 @@ class TestPromotedAddonAdmin(TestCase):
         # try to add another approval
         response = self.client.post(
             detail_url,
-            dict(self._get_approval_form(item, [approval]), **{
+            dict(self._get_approval_form(item, [approval]),
+                 **self._get_heroform(''), **{
                 "form-1-id": '',
                 "form-1-group_id": str(LINE.id),
                 "form-1-version": str(ver1.id),
@@ -161,6 +186,7 @@ class TestPromotedAddonAdmin(TestCase):
                 version=ver1, group_id=RECOMMENDED.id),
         ]
         approvals.reverse()
+        addon.reload()
         assert item.is_addon_currently_promoted
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory()
@@ -254,7 +280,8 @@ class TestPromotedAddonAdmin(TestCase):
         assert PromotedAddon.objects.count() == 0
         response = self.client.post(
             add_url,
-            dict(self._get_approval_form(None, []), **{
+            dict(self._get_approval_form(None, []),
+                 **self._get_heroform(''), **{
                 'addon': str(addon.id),
                 'group_id': str(RECOMMENDED.id),
             }),
@@ -286,3 +313,127 @@ class TestPromotedAddonAdmin(TestCase):
             follow=True)
         assert response.status_code == 403
         assert PromotedAddon.objects.count() == 0
+
+    def test_can_edit_primary_hero(self):
+        addon = addon_factory(name=u'BarFöo')
+        item = PromotedAddon.objects.create(addon=addon)
+        hero = PrimaryHero.objects.create(
+            promoted_addon=item, gradient_color='#592ACB')
+        self.detail_url = reverse(
+            self.detail_url_name, args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'BarFöo' in content
+        assert '#592ACB' in content
+
+        response = self.client.post(
+            self.detail_url,
+            dict(self._get_heroform(item.pk),
+                 **self._get_approval_form(item, []), **{
+                'primaryhero-INITIAL_FORMS': '1',
+                'primaryhero-0-id': str(hero.pk),
+                'primaryhero-0-gradient_color': '#054096',
+                'primaryhero-0-description': 'primary descriptíon',
+            }), follow=True)
+        assert response.status_code == 200
+        item.reload()
+        hero.reload()
+        assert PromotedAddon.objects.count() == 1
+        assert PrimaryHero.objects.count() == 1
+        assert item.addon == addon
+        assert hero.gradient_color == '#054096'
+        assert hero.description == 'primary descriptíon'
+
+    def test_can_add_primary_hero(self):
+        addon = addon_factory(name=u'BarFöo')
+        item = PromotedAddon.objects.create(addon=addon)
+        uploaded_photo = get_uploaded_file('transparent.png')
+        image = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
+        self.detail_url = reverse(
+            self.detail_url_name, args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'BarFöo' in content
+        assert 'No image selected' in content
+        assert PrimaryHero.objects.count() == 0
+
+        response = self.client.post(
+            self.detail_url,
+            dict(self._get_heroform(item.pk),
+                 **self._get_approval_form(item, []), **{
+                'primaryhero-0-gradient_color': '#054096',
+                'primaryhero-0-select_image': image.pk,
+                'primaryhero-0-description': 'primary descriptíon',
+            }), follow=True)
+        assert response.status_code == 200
+        item.reload()
+        assert PromotedAddon.objects.count() == 1
+        assert PrimaryHero.objects.count() == 1
+        assert item.addon == addon
+        hero = PrimaryHero.objects.last()
+        hero.select_image == image
+        assert hero.select_image.pk == image.pk
+        assert hero.gradient_color == '#054096'
+        assert hero.promoted_addon == item
+        assert hero.description == 'primary descriptíon'
+
+    def test_can_delete_when_primary_hero_too(self):
+        addon = addon_factory()
+        item = PromotedAddon.objects.create(addon=addon)
+        PromotedApproval.objects.create(version=addon.current_version)
+        shelf = PrimaryHero.objects.create(promoted_addon=item)
+        delete_url = reverse(
+            'admin:promoted_promotedaddon_delete', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        # Can access delete confirmation page.
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 200
+        assert PromotedAddon.objects.filter(pk=item.pk).exists()
+        assert PrimaryHero.objects.filter(pk=shelf.id).exists()
+
+        # But not if the primary hero shelf is the only enabled shelf.
+        shelf.update(enabled=True)
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 403
+
+        # And can't actually delete either
+        response = self.client.post(
+            delete_url,
+            {'post': 'yes'},
+            follow=True)
+        assert response.status_code == 403
+        assert PromotedAddon.objects.filter(pk=item.pk).exists()
+
+        # But if there's another enabled shelf we can now access the page.
+        PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            enabled=True)
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 200
+
+        # And can actually delete.
+        response = self.client.post(
+            delete_url,
+            {'post': 'yes'},
+            follow=True)
+        assert response.status_code == 200
+        assert not PromotedAddon.objects.filter(pk=item.pk).exists()
+        assert not PrimaryHero.objects.filter(pk=shelf.id).exists()
+        # The approval *won't* have been deleted though
+        assert PromotedApproval.objects.filter().exists()
