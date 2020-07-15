@@ -24,12 +24,14 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.categories import CATEGORIES
+from olympia.constants.promoted import SPOTLIGHT, VERIFIED_ONE
 from olympia.devhub.models import RssKey
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import Extractor, parse_addon
 from olympia.git.models import GitExtractionEntry
+from olympia.promoted.models import PromotedAddon, PromotedApproval
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.translations.models import (
     Translation, TranslationSequence, delete_translation)
@@ -1589,6 +1591,43 @@ class TestAddonModels(TestCase):
         del addon.is_recommended
         # but not when it's removed.
         assert not addon.is_recommended
+
+    def test_promoted_group(self):
+        addon = addon_factory()
+        # default case - no group so not recommended
+        assert not addon.promoted_group
+
+        PromotedApproval.objects.create(
+            version=addon.current_version, group_id=SPOTLIGHT.id)
+        promoted = PromotedAddon.objects.create(
+            addon=addon, group_id=SPOTLIGHT.id)
+        del addon.promoted_group
+        # It's promoted; and the latest version is approved for the same group.
+        assert addon.promoted_group == SPOTLIGHT
+
+        promoted.update(group_id=VERIFIED_ONE.id)
+        del addon.promoted_group
+        # the group has changed, but the approval for the current version isn't
+        # valid for that group
+        assert not addon.promoted_group
+
+        PromotedApproval.objects.create(
+            version=addon.current_version, group_id=VERIFIED_ONE.id)
+        # But if it's been approved for that group too, it's okay.
+        del addon.promoted_group
+        assert addon.promoted_group == VERIFIED_ONE
+
+        PromotedApproval.objects.all().delete()
+        del addon.promoted_group
+        # if there aren't any approvals there's no group returned
+        assert not addon.promoted_group
+
+        addon.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
+        addon.update_version()
+        assert not addon.current_version
+        del addon.promoted_group
+        # check it doesn't error if there's no current_version
+        assert not addon.promoted_group
 
     @patch('olympia.amo.tasks.sync_object_to_basket')
     def test_addon_field_changes_not_synced_to_basket(
