@@ -41,6 +41,7 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
+from olympia.constants.scanners import MAD
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.git.utils import AddonGitRepository, extract_version_to_git
@@ -53,6 +54,7 @@ from olympia.reviewers.templatetags.jinja_helpers import code_manager_url
 from olympia.reviewers.utils import ContentReviewTable
 from olympia.reviewers.views import _queue
 from olympia.reviewers.serializers import CannedResponseSerializer
+from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions, AppVersion, VersionReviewerFlags)
@@ -3500,6 +3502,24 @@ class TestReview(ReviewBase):
         risk = doc('.listing-body .file-weight')
         assert risk.text() == "Weight: 284"
         assert risk.attr['title'] == 'bär: 84\nfôo: 200'
+
+    def test_mad_score(self):
+        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        url = reverse('reviewers.review', args=[self.addon.slug])
+        # Without a score.
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        score = doc('.listing-body .mad-score')
+        assert score.text() == "MAD score: n/a ?"
+        # With a score.
+        ScannerResult.objects.create(version=self.version, scanner=MAD,
+                                     score=0.1)
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        score = doc('.listing-body .mad-score')
+        assert score.text() == "MAD score: 10% ?"
 
     def test_item_history_notes(self):
         version = self.addon.versions.all()[0]
