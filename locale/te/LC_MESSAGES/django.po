@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-15 19:10+0000\n"
+"PO-Revision-Date: 2020-07-15 19:21+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -527,7 +527,7 @@ msgstr ""
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "%(name)s‌ను చేర్చు"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
