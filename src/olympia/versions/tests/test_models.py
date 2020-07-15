@@ -670,6 +670,18 @@ class TestVersion(TestCase):
         flags.update(pending_rejection=in_the_past)
         assert version.pending_rejection == in_the_past
 
+    def test_needs_human_review_by_mad(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        # No flags: False
+        assert not version.needs_human_review_by_mad
+        # Flag present, value is None (default): False.
+        flags = VersionReviewerFlags.objects.create(version=version)
+        assert not version.needs_human_review_by_mad
+        # Flag present.
+        flags.update(needs_human_review_by_mad=True)
+        assert version.needs_human_review_by_mad
+
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
     (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, True),

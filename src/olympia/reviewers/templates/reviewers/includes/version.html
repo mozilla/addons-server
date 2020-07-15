@@ -1,4 +1,4 @@
-<tr class="listing-header {% if version.needs_human_review %}needs-human-review{% endif %}">
+<tr class="listing-header{% if version.needs_human_review %} flagged-by-scanners{% elif version.needs_human_review_by_mad %} flagged-for-human-review{%endif %}">
   <th colspan="2">
     {% trans version = version.version, created = version.created|date, version_status = version_status(addon, version) %}
     Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
@@ -46,7 +46,9 @@
         <div class="file-weight" title="{{ version.autoapprovalsummary.get_pretty_weight_info()|join('\n') }}"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
       {% endif %}
       {% if version.needs_human_review %}
-        <div><strong class="risk-high">{{ _('Flagged by automated scanners') }}</strong></div>
+        <div><strong class="risk-high">{{ _('Flagged by scanners') }}</strong></div>
+      {% elif version.needs_human_review_by_mad %}
+        <div><strong class="risk-medium">{{ _('Flagged for human review') }}</strong></div>
       {% endif %}
     {% else %}
       <ul>
