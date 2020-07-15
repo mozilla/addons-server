@@ -31,6 +31,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
@@ -725,6 +726,18 @@ class Version(OnChangeMixin, ModelBase):
             return self.reviewerflags.needs_human_review_by_mad
         except VersionReviewerFlags.DoesNotExist:
             return False
+
+    @property
+    def scanners_score(self):
+        try:
+            # We use the score of the MAD scanner because it is the 'ensemble'
+            # score (i.e. score computed using all other scanner scores).
+            score = ScannerResult.objects.filter(
+                version=self, scanner=MAD
+            ).get().score
+        except ScannerResult.DoesNotExist:
+            score = None
+        return '{:0.0f}%'.format(score * 100) if score else 'n/a'
 
 
 class VersionReviewerFlags(ModelBase):

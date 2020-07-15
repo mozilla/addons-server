@@ -24,7 +24,7 @@ from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
-from olympia.constants.scanners import CUSTOMS, WAT, YARA
+from olympia.constants.scanners import CUSTOMS, WAT, YARA, MAD
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
@@ -681,6 +681,14 @@ class TestVersion(TestCase):
         # Flag present.
         flags.update(needs_human_review_by_mad=True)
         assert version.needs_human_review_by_mad
+
+    def test_scanners_score(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        assert version.scanners_score == 'n/a'
+        score = 0.15
+        ScannerResult.objects.create(version=version, scanner=MAD, score=score)
+        assert version.scanners_score == '15%'
 
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
