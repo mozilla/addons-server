@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
@@ -101,7 +101,7 @@ msgid "WebExtension upgrade"
 msgstr "WebExtension నవీకరణ"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "మేము నవీకరణను అనుమతించి, ప్రోత్సహిస్తున్నాము కాని ఈ ప్రక్రియను మీరు వెనుకభాగము చేయలేరు. మీ వాడుకరి ఒకసారి WebExtension వ్యవస్థాపించిన, వారు ఒక లెగసీ పొడిగింతను స్థాపించలేరు."
+msgstr ""
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "ఒక లెగసీ Firefox పొడిగింతను MDNకు పోర్ట్ చేస్తున్నాము"
