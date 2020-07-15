@@ -20,8 +20,8 @@ class TestPrimaryHeroShelfViewSet(TestCase):
 
         hero_a = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory(),
-                custom_description='Its a déscription!'),
+                addon=addon_factory()),
+            description='Its a déscription!',
             image='foo.png',
             gradient_color='#123456')
         hero_b = PrimaryHero.objects.create(
@@ -249,7 +249,6 @@ class TestHeroShelvesView(TestCase):
             enabled=True)
         response = self.client.get(
             self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
-        print(response.json())
         assert 'outgoing.' in json.dumps(response.json()['primary'])
         assert 'outgoing.' in json.dumps(response.json()['secondary'])
 

@@ -262,6 +262,7 @@ class TestDiscoveryAdmin(TestCase):
                 'primaryhero-0-disco_addon': str(item.pk),
                 'primaryhero-0-gradient_color': '#054096',
                 'primaryhero-0-image': 'Ubo@2x.jpg',
+                'primaryhero-0-description': 'primary descriptíon',
             }, follow=True)
         assert response.status_code == 200
         item.reload()
@@ -272,6 +273,7 @@ class TestDiscoveryAdmin(TestCase):
         assert item.custom_addon_name == 'Xäxâxàxaxaxa !'
         assert item.recommendable is True
         assert hero.gradient_color == '#054096'
+        assert hero.description == 'primary descriptíon'
 
     def test_can_add_primary_hero_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
@@ -301,6 +303,7 @@ class TestDiscoveryAdmin(TestCase):
                 'primaryhero-0-gradient_color': '#054096',
                 'primaryhero-0-image': 'Ubo@2x.jpg',
                 'primaryhero-0-select_image': image.pk,
+                'primaryhero-0-description': 'primary descriptíon',
             }),
             follow=True)
         assert response.status_code == 200
@@ -316,6 +319,7 @@ class TestDiscoveryAdmin(TestCase):
         assert hero.select_image.pk == image.pk
         assert hero.gradient_color == '#054096'
         assert hero.disco_addon == item
+        assert hero.description == 'primary descriptíon'
 
     def test_change_addon_errors(self):
         addon = addon_factory(name=u'BarFöo')

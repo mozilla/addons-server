@@ -15,7 +15,8 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         addon = addon_factory()
         hero = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon, custom_description='Déscription'),
+                addon=addon),
+            description='Déscription',
             image='foo.png',
             gradient_color='#008787')
         data = PrimaryHeroShelfSerializer(instance=hero).data

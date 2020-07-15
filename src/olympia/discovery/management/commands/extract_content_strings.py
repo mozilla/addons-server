@@ -72,6 +72,12 @@ class DiscoItemAPIParser(BaseAPIParser):
     fields = ('custom_heading', 'custom_description')
 
 
+class PrimaryHeroShelfAPIParser(BaseAPIParser):
+    api = settings.PRIMARY_HERO_EDITORIAL_CONTENT_API
+    l10n_comment = 'editorial content for the primary hero shelves.'
+    fields = ('description',)
+
+
 class SecondaryHeroShelfAPIParser(BaseAPIParser):
     api = settings.SECONDARY_HERO_EDITORIAL_CONTENT_API
     l10n_comment = 'editorial content for the secondary hero shelves.'
@@ -80,14 +86,16 @@ class SecondaryHeroShelfAPIParser(BaseAPIParser):
 
 
 class Command(BaseCommand):
-    help = ('Extract editorial disco pane and secondary hero shelf content '
-            'that need to be translated.')
+    help = ('Extract editorial disco pane, primary, and secondary hero shelf '
+            'content that need to be translated.')
 
     def handle(self, *args, **options):
         disco = DiscoItemAPIParser()
+        primary_hero = PrimaryHeroShelfAPIParser()
         secondary_hero = SecondaryHeroShelfAPIParser()
         results_content = (
             disco.get_results_content() + '\n' +
+            primary_hero.get_results_content() +
             secondary_hero.get_results_content())
         self.generate_file_from_api_results(results_content)
 

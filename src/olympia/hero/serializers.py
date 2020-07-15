@@ -2,6 +2,7 @@ from django.utils.translation import ugettext
 
 from rest_framework import serializers
 
+from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -18,7 +19,7 @@ class ExternalAddonSerializer(AddonSerializer):
 
 
 class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
-    description = serializers.CharField(source='disco_addon.description_text')
+    description = serializers.SerializerMethodField()
     featured_image = serializers.CharField(source='image_url')
     addon = DiscoveryAddonSerializer(source='disco_addon.addon')
     external = ExternalAddonSerializer(source='disco_addon.addon')
@@ -32,6 +33,15 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
         rep = super().to_representation(instance)
         rep.pop('addon' if instance.is_external else 'external')
         return rep
+
+    def get_description(self, obj):
+        if obj.description:
+            return ugettext(obj.description)
+        else:
+            addon = obj.disco_addon.addon
+            return (str(addon.summary)
+                    if addon.summary and addon.type == amo.ADDON_EXTENSION
+                    else '')
 
 
 class CTAMixin():

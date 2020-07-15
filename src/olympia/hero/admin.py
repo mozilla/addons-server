@@ -29,6 +29,7 @@ class PrimaryHeroInline(admin.StackedInline):
         }
     model = PrimaryHero
     fields = (
+        'description',
         'image',
         'select_image',
         'gradient_color',
