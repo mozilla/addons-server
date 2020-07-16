@@ -121,7 +121,7 @@
       {{ form.versions.errors }}
 
       <div class="review-actions-section data-toggle review-comments"
-           data-value="{{ actions_comments|join("|") }}|">
+           data-value="{{ actions_comments|join('|') }}|">
         <label for="id_comments">{{ form.comments.label }}</label>
         {{ form.comments }}
         {{ form.comments.errors }}
@@ -132,7 +132,7 @@
       </div>
 
       <div class="review-actions-section review-actions-files data-toggle review-files"
-           data-value="{{ actions_full|join("|") }}|">
+           data-value="{{ actions_full|join('|') }}|">
         <label><strong>{{ _('Files:') }}</strong></label>
         <ul>
           {% for file in form.unreviewed_files %}
@@ -146,7 +146,7 @@
       </div>
 
       <div class="review-actions-section review-actions-tested data-toggle review-tested"
-           data-value="{{ actions_full|join("|") }}|">
+           data-value="{{ actions_full|join('|') }}|">
         <strong>{{ _('Tested on:') }}</strong>
         <label>
           {{ form.operating_systems.label }}
@@ -159,19 +159,20 @@
         {{ form.operating_systems.errors }}
         {{ form.applications.errors }}
       </div>
-      <div class="review-actions-section data-toggle review-info-request"
-           data-value="reply|">
-        {{ form.info_request }}
-        <label for="{{ form.info_request.auto_id }}">
-          {{ form.info_request.label }}
-        </label>
-        {{ form.info_request.errors }}
+      <div class="review-actions-section data-toggle review-delayed-rejection"
+           data-value="{{ actions_delayable|join('|') }}|">
+        <div class="review-delayed-rejection-inner">
+          {{ form.delayed_rejection }}
+          {{ form.delayed_rejection.errors }}
 
-        {{ form.info_request_deadline }}
-        <label for="{{ form.info_request_deadline.auto_id }}">
-          {{ form.info_request_deadline.label }}
-        </label>
-        {{ form.info_request_deadline.errors }}
+          <div class="review-delayed-rejection-deadline">
+            {{ form.delayed_rejection_days }}
+            <label for="{{ form.delayed_rejection_days.auto_id }}">
+              {{ form.delayed_rejection_days.label }}
+            </label>
+            {{ form.delayed_rejection_days.errors }}
+          </div>
+        </div>
       </div>
       <div class="review-actions-section review-actions-save">
         <span class="currently_viewing_warning">

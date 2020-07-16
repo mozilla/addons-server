@@ -949,8 +949,37 @@ form.review-form .data-toggle {
     padding-left: 20px;
 }
 
-#id_info_request_deadline {
-    width: 2.5em;
+.review-delayed-rejection-inner {
+    display: inline-grid;
+    grid-template-areas:
+        "a b"
+        "c c";
+    grid-template-columns: max-content 1fr;
+
+    input[type="number"] {
+        width: 2.5em;
+    }
+
+    .review-delayed-rejection-deadline {
+        grid-area: b;
+    }
+
+    ul {
+        display: contents;
+    }
+
+    li {
+        list-style-type: none
+    }
+
+    li:nth-child(1) {
+        grid-area: a;
+    }
+
+    li:nth-child(2) {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
 }
 
 .history-comment {

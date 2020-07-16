@@ -14,7 +14,9 @@ from olympia import amo, ratings
 from olympia.access import acl
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
-from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
+from olympia.constants.reviewers import (
+    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+)
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import CannedResponse, Whiteboard
@@ -346,12 +348,22 @@ class ReviewForm(forms.Form):
                                         label=_(u'Operating systems:'))
     applications = forms.CharField(required=False,
                                    label=_(u'Applications:'))
-    info_request = forms.BooleanField(
-        required=False, label=_(u'Require developer to respond in less than…'))
-    info_request_deadline = forms.IntegerField(
+    delayed_rejection = forms.BooleanField(
+        initial=True,
+        required=False,
+        widget=forms.RadioSelect(
+            choices=(
+                (True, _('Delay rejection, requiring developer to correct in '
+                         'less than…')),
+                (False, _('Reject immediately. Only use in case of serious '
+                          'security issues.')),
+            )
+        ),
+    )
+    delayed_rejection_days = forms.IntegerField(
         required=False, widget=NumberInput,
-        initial=REVIEWER_NEED_INFO_DAYS_DEFAULT, label=_(u'days'),
-        min_value=1, max_value=99)
+        initial=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
+        label=_(u'days'), min_value=1, max_value=99)
 
     def is_valid(self):
         # Some actions do not require comments.
@@ -370,19 +382,19 @@ class ReviewForm(forms.Form):
         self.helper = kw.pop('helper')
         super(ReviewForm, self).__init__(*args, **kw)
 
-        # Info request deadline needs to be readonly unless we're an admin.
+        # Delayed rejection period needs to be readonly unless we're an admin
         user = self.helper.handler.user
-        deadline_widget_attributes = {}
-        info_request_deadline = self.fields['info_request_deadline']
+        rejection_period_widget_attributes = {}
+        rejection_period = self.fields['delayed_rejection_days']
         if not acl.action_allowed_user(user, amo.permissions.REVIEWS_ADMIN):
-            info_request_deadline.min_value = info_request_deadline.initial
-            info_request_deadline.max_value = info_request_deadline.initial
-            deadline_widget_attributes['readonly'] = 'readonly'
-        deadline_widget_attributes.update({
-            'min': info_request_deadline.min_value,
-            'max': info_request_deadline.max_value,
-        })
-        info_request_deadline.widget.attrs.update(deadline_widget_attributes)
+            rejection_period.min_value = rejection_period.initial
+            rejection_period.max_value = rejection_period.initial
+            rejection_period_widget_attributes['readonly'] = 'readonly'
+        rejection_period_widget_attributes['min'] = rejection_period.min_value
+        rejection_period_widget_attributes['max'] = rejection_period.max_value
+        rejection_period.widget.attrs.update(
+            rejection_period_widget_attributes
+        )
 
         # With the helper, we now have the add-on and can set queryset on the
         # versions field correctly. Small optimization: we only need to do this

@@ -27,7 +27,6 @@ from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -310,8 +309,7 @@ class TestLogAndNotify(TestCase):
     def test_reviewer_request_for_information(self, send_mail_mock):
         AddonReviewerFlags.objects.create(
             addon=self.addon,
-            pending_info_request=datetime.now() + timedelta(
-                days=REVIEWER_NEED_INFO_DAYS_DEFAULT))
+            pending_info_request=datetime.now() + timedelta(days=14))
         self._create(amo.LOG.REQUEST_INFORMATION, self.reviewer)
         log_and_notify(
             amo.LOG.REQUEST_INFORMATION, 'blah', self.reviewer, self.version)

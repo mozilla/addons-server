@@ -22,7 +22,7 @@ import pygit2
 
 from csp.decorators import csp as set_csp
 from rest_framework import status
-from rest_framework.decorators import action
+from rest_framework.decorators import action as drf_action
 from rest_framework.exceptions import NotFound
 from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (
@@ -742,16 +742,11 @@ def review(request, addon, channel=None):
              .transform(Version.transformer_activity)
     )
 
-    form_initial = {
-        # Get the current info request state to set as the default.
-        'info_request': addon.pending_info_request,
-    }
-
     form_helper = ReviewHelper(
         request=request, addon=addon, version=version,
         content_review=content_review)
     form = ReviewForm(request.POST if request.method == 'POST' else None,
-                      helper=form_helper, initial=form_initial)
+                      helper=form_helper)
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
 
     approvals_info = None
@@ -837,13 +832,21 @@ def review(request, addon, channel=None):
         base_version = None
 
     # The actions we shouldn't show a minimal form for.
-    actions_full = [
-        k for (k, a) in actions if not (is_static_theme or a.get('minimal'))]
-
+    actions_full = []
     # The actions we should show the comments form for (contrary to minimal
     # form above, it defaults to True, because most actions do need to have
     # the comments form).
-    actions_comments = [k for (k, a) in actions if a.get('comments', True)]
+    actions_comments = []
+    # The actions for which we should display the delayed rejection fields.
+    actions_delayable = []
+
+    for key, action in actions:
+        if not (is_static_theme or action.get('minimal')):
+            actions_full.append(key)
+        if action.get('comments', True):
+            actions_comments.append(key)
+        if action.get('delayable', False):
+            actions_delayable.append(key)
 
     deleted_addon_ids = (
         AddonGUID.objects.filter(guid=addon.guid)
@@ -914,6 +917,7 @@ def review(request, addon, channel=None):
     ctx = context(
         actions=actions,
         actions_comments=actions_comments,
+        actions_delayable=actions_delayable,
         actions_full=actions_full,
         addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
@@ -1232,7 +1236,7 @@ def download_git_stored_file(request, version_id, filename):
 class AddonReviewerViewSet(GenericViewSet):
     log = olympia.core.logger.getLogger('z.reviewers')
 
-    @action(
+    @drf_action(
         detail=True,
         methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
     def subscribe(self, request, **kwargs):
@@ -1241,7 +1245,7 @@ class AddonReviewerViewSet(GenericViewSet):
             user=request.user, addon=addon)
         return Response(status=status.HTTP_202_ACCEPTED)
 
-    @action(
+    @drf_action(
         detail=True,
         methods=['post'], permission_classes=[AllowAnyKindOfReviewer])
     def unsubscribe(self, request, **kwargs):
@@ -1250,7 +1254,7 @@ class AddonReviewerViewSet(GenericViewSet):
             user=request.user, addon=addon).delete()
         return Response(status=status.HTTP_202_ACCEPTED)
 
-    @action(
+    @drf_action(
         detail=True,
         methods=['post'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
@@ -1259,7 +1263,7 @@ class AddonReviewerViewSet(GenericViewSet):
         addon.force_disable()
         return Response(status=status.HTTP_202_ACCEPTED)
 
-    @action(
+    @drf_action(
         detail=True,
         methods=['post'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
@@ -1268,7 +1272,7 @@ class AddonReviewerViewSet(GenericViewSet):
         addon.force_enable()
         return Response(status=status.HTTP_202_ACCEPTED)
 
-    @action(
+    @drf_action(
         detail=True,
         methods=['patch'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
@@ -1284,7 +1288,7 @@ class AddonReviewerViewSet(GenericViewSet):
         serializer.save()
         return Response(serializer.data)
 
-    @action(
+    @drf_action(
         detail=True,
         methods=['post'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
@@ -1297,7 +1301,7 @@ class AddonReviewerViewSet(GenericViewSet):
             status_code = status.HTTP_409_CONFLICT
         return Response(status=status_code)
 
-    @action(
+    @drf_action(
         detail=True,
         methods=['post'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
@@ -1310,7 +1314,7 @@ class AddonReviewerViewSet(GenericViewSet):
             status_code = status.HTTP_409_CONFLICT
         return Response(status=status_code)
 
-    @action(
+    @drf_action(
         detail=True,
         methods=['post'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)])
@@ -1321,7 +1325,7 @@ class AddonReviewerViewSet(GenericViewSet):
             version__addon=addon).update(pending_rejection=None)
         return Response(status=status_code)
 
-    @action(
+    @drf_action(
         detail=True,
         methods=['get'],
         permission_classes=[AllowAnyKindOfReviewer],

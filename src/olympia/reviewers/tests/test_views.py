@@ -40,7 +40,9 @@ from olympia.amo.tests import (
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block, BlocklistSubmission
-from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
+from olympia.constants.reviewers import (
+    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+)
 from olympia.constants.scanners import MAD
 from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
@@ -4074,40 +4076,6 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#clear_pending_rejections')
 
-    def test_info_request_checkbox(self):
-        self.login_as_reviewer()
-        assert not self.addon.pending_info_request
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert 'checked' not in doc('#id_info_request')[0].attrib
-        elm = doc('#id_info_request_deadline')[0]
-        assert elm.attrib['readonly'] == 'readonly'
-        assert elm.attrib['min'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
-        assert elm.attrib['max'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
-        assert elm.attrib['value'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
-
-        AddonReviewerFlags.objects.create(
-            addon=self.addon,
-            pending_info_request=datetime.now() + timedelta(days=7))
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#id_info_request')[0].attrib['checked'] == 'checked'
-
-    def test_info_request_checkbox_admin(self):
-        self.login_as_admin()
-        assert not self.addon.pending_info_request
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert 'checked' not in doc('#id_info_request')[0].attrib
-        elm = doc('#id_info_request_deadline')[0]
-        assert 'readonly' not in elm.attrib
-        assert elm.attrib['min'] == '1'
-        assert elm.attrib['max'] == '99'
-        assert elm.attrib['value'] == str(REVIEWER_NEED_INFO_DAYS_DEFAULT)
-
     def test_no_public(self):
         has_public = self.version.files.filter(
             status=amo.STATUS_APPROVED).exists()
@@ -4948,6 +4916,67 @@ class TestReview(ReviewBase):
             assert not version.needs_human_review
             file_ = version.files.all().get()
             assert file_.status == amo.STATUS_DISABLED
+            assert not version.pending_rejectionqa
+
+    def test_reject_multiple_versions_with_no_delay(self):
+        old_version = self.version
+        old_version.update(needs_human_review=True)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:PostReview')
+
+        response = self.client.post(self.url, {
+            'action': 'reject_multiple_versions',
+            'comments': 'multireject!',
+            'versions': [old_version.pk, self.version.pk],
+            'delayed_rejection': 'False',
+            'delayed_rejection_days': (  # Should be ignored.
+                REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+            ),
+        })
+
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            assert not version.needs_human_review
+            file_ = version.files.all().get()
+            assert file_.status == amo.STATUS_DISABLED
+            assert not version.pending_rejection
+
+    def test_reject_multiple_versions_with_delay(self):
+        old_version = self.version
+        old_version.update(needs_human_review=True)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:PostReview')
+
+        response = self.client.post(self.url, {
+            'action': 'reject_multiple_versions',
+            'comments': 'multireject with delay!',
+            'versions': [old_version.pk, self.version.pk],
+            'delayed_rejection': 'True',
+            'delayed_rejection_days': (
+                REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+            ),
+        })
+
+        in_the_future = datetime.now() + timedelta(
+            days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT)
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            # The versions no longer need human review...
+            assert not version.needs_human_review
+            file_ = version.files.all().get()
+            # ... But their status shouldn't have changed yet ...
+            assert file_.status == amo.STATUS_APPROVED
+            # ... Because they are now pending rejection.
+            assert version.pending_rejection
+            self.assertCloseToNow(version.pending_rejection, now=in_the_future)
 
     def test_block_multiple_versions(self):
         self.url = reverse(
@@ -5257,10 +5286,49 @@ class TestReview(ReviewBase):
             doc('.data-toggle.review-files')[0].attrib['data-value'] == '|')
         assert (
             doc('.data-toggle.review-tested')[0].attrib['data-value'] == '|')
+        elm = doc('.data-toggle.review-delayed-rejection')[0]
+        assert elm.attrib['data-value'] == 'reject_multiple_versions|'
+
+    def test_data_value_attributes_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version)
+        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        unlisted_url = reverse(
+            'reviewers.review', args=['unlisted', self.addon.slug]
+        )
+        response = self.client.get(unlisted_url)
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        expected_actions_values = [
+            'reject_multiple_versions|', 'block_multiple_versions|',
+            'confirm_multiple_versions|', 'reply|', 'super|', 'comment|',
+        ]
+        assert [
+            act.attrib['data-value'] for act in
+            doc('.data-toggle.review-actions-desc')] == expected_actions_values
 
         assert (
-            doc('.data-toggle.review-info-request')[0].attrib['data-value'] ==
-            'reply|')
+            doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
+            'reject_multiple_versions|'
+            'block_multiple_versions|'
+            'confirm_multiple_versions|')
+
+        assert (
+            doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
+            'reject_multiple_versions|reply|super|comment|')
+        # We don't have approve/reject actions so these have an empty
+        # data-value.
+        assert (
+            doc('.data-toggle.review-files')[0].attrib['data-value'] == '|')
+        assert (
+            doc('.data-toggle.review-tested')[0].attrib['data-value'] == '|')
+        # Unlisted versions can't be rejected with a delay so the data-value of
+        # the field is empty as well.
+        elm = doc('.data-toggle.review-delayed-rejection')[0]
+        assert elm.attrib['data-value'] == '|'
 
     def test_data_value_attributes_unreviewed(self):
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)

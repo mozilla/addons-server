@@ -19,12 +19,11 @@ from olympia.addons.models import (
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
-from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.discovery.models import DiscoveryItem
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
-    AutoApprovalSummary, ReviewerScore, ViewUnlistedAllList, get_flags,
-    get_flags_for_row)
+    AutoApprovalSummary, ReviewerScore, ReviewerSubscription,
+    ViewUnlistedAllList, get_flags, get_flags_for_row)
 from olympia.users.models import UserProfile
 from olympia.versions.compare import addon_version_int
 from olympia.versions.models import VersionReviewerFlags
@@ -517,6 +516,7 @@ class ReviewHelper(object):
             'method': self.handler.reject_multiple_versions,
             'label': _('Reject Multiple Versions'),
             'minimal': True,
+            'delayable': not version_is_unlisted,
             'versions': True,
             'details': _('This will reject the selected versions. '
                          'The comments will be sent to the developer.'),
@@ -755,31 +755,6 @@ class ReviewBase(object):
             if (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
                     not self.version.reviewed):
                 self.version.update(reviewed=datetime.now())
-            if self.data.get('info_request'):
-                # It's an information request and not just a simple reply.
-                # The ActivityLog will be different...
-                action = amo.LOG.REQUEST_INFORMATION
-                # And the deadline for the info request will be created or
-                # updated x days in the future.
-                info_request_deadline_days = int(
-                    self.data.get('info_request_deadline',
-                                  REVIEWER_NEED_INFO_DAYS_DEFAULT))
-                info_request_deadline = (
-                    datetime.now() + timedelta(days=info_request_deadline_days)
-                )
-                # Update or create the reviewer flags, overwriting
-                # self.addon.reviewerflags with the one we
-                # create/update so that we don't use an older version of it
-                # later when notifying. Also, since this is a new request,
-                # clear out the notified_about_expiring_info_request field.
-                self.addon.reviewerflags = (
-                    AddonReviewerFlags.objects.update_or_create(
-                        addon=self.addon, defaults={
-                            'pending_info_request': info_request_deadline,
-                            'notified_about_expiring_info_request': False,
-                        }
-                    )[0]
-                )
 
         log.info(u'Sending reviewer reply for %s to authors and other'
                  u'recipients' % self.addon)
@@ -1016,25 +991,65 @@ class ReviewBase(object):
         latest_version = self.version
         self.version = None
         self.files = None
-        action_id = (amo.LOG.REJECT_CONTENT if self.content_review
-                     else amo.LOG.REJECT_VERSION)
-        timestamp = datetime.now()
-        log.info(
-            u'Making %s versions %s disabled' % (
-                self.addon,
-                u', '.join(str(v.pk) for v in self.data['versions'])))
+        now = datetime.now()
+        if self.data.get('delayed_rejection'):
+            pending_rejection_deadline = now + timedelta(
+                days=int(self.data['delayed_rejection_days'])
+            )
+        else:
+            pending_rejection_deadline = None
+        if pending_rejection_deadline:
+            action_id = (amo.LOG.REJECT_CONTENT_DELAYED if self.content_review
+                         else amo.LOG.REJECT_VERSION_DELAYED)
+            log.info(
+                'Marking %s versions %s for delayed rejection' % (
+                    self.addon,
+                    ', '.join(str(v.pk) for v in self.data['versions'])))
+        else:
+            action_id = (amo.LOG.REJECT_CONTENT if self.content_review
+                         else amo.LOG.REJECT_VERSION)
+            log.info(
+                'Making %s versions %s disabled' % (
+                    self.addon,
+                    ', '.join(str(v.pk) for v in self.data['versions'])))
+
         for version in self.data['versions']:
             files = version.files.all()
-            self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
+            if not pending_rejection_deadline:
+                self.set_files(
+                    amo.STATUS_DISABLED, files, hide_disabled_file=True)
             self.log_action(action_id, version=version, files=files,
-                            timestamp=timestamp)
+                            timestamp=now)
             if self.human_review:
                 # Unset needs_human_review on rejected versions, we consider
                 # that the reviewer looked at them before rejecting.
                 if version.needs_human_review:
                     version.update(needs_human_review=False)
+                # (Re)set pending_rejection. Could be reset to None if doing an
+                # immediate rejection.
+                VersionReviewerFlags.objects.update_or_create(
+                    version=version,
+                    defaults={
+                        'pending_rejection': pending_rejection_deadline
+                    }
+                )
 
-        self.addon.update_status()
+        if pending_rejection_deadline:
+            # A delayed rejection implies the next version should be manually
+            # reviewed.
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon,
+                defaults={
+                    'auto_approval_disabled_until_next_approval': True
+                }
+            )
+            # The reviewer should be automatically subscribed to any new listed
+            # versions posted.
+            ReviewerSubscription.objects.get_or_create(
+                user=self.user, addon=self.addon)
+        else:
+            # An immediate one might require the add-on status to change.
+            self.addon.update_status()
 
         # Assign reviewer incentive scores and send email, if it's an human
         # reviewer: if it's not, it's coming from some automation where we
@@ -1048,15 +1063,19 @@ class ReviewBase(object):
             # reply, and that only works with the latest version.
             self.data['version_numbers'] = u', '.join(
                 str(v.version) for v in self.data['versions'])
-            if (self.addon.status != amo.STATUS_APPROVED and
+            if pending_rejection_deadline:
+                template = 'reject_multiple_versions_with_delay'
+                subject = ('Mozilla Add-ons: %s%s will be disabled on '
+                           'addons.mozilla.org')
+            elif (self.addon.status != amo.STATUS_APPROVED and
                     channel == amo.RELEASE_CHANNEL_LISTED):
-                template = u'reject_multiple_versions_disabled_addon'
-                subject = (u'Mozilla Add-ons: %s%s has been disabled on '
-                           u'addons.mozilla.org')
+                template = 'reject_multiple_versions_disabled_addon'
+                subject = ('Mozilla Add-ons: %s%s has been disabled on '
+                           'addons.mozilla.org')
             else:
-                template = u'reject_multiple_versions'
-                subject = u'Mozilla Add-ons: Versions disabled for %s%s'
-            log.info(u'Sending email for %s' % (self.addon))
+                template = 'reject_multiple_versions'
+                subject = 'Mozilla Add-ons: Versions disabled for %s%s'
+            log.info('Sending email for %s' % (self.addon))
             self.notify_email(template, subject, version=latest_version)
 
             ReviewerScore.award_points(

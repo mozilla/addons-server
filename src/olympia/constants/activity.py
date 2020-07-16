@@ -723,6 +723,29 @@ class THROTTLED(_LOG):
     admin_event = True
 
 
+class REJECT_CONTENT_DELAYED(_LOG):
+    id = 164
+    action_class = 'reject'
+    format = _('{addon} {version} content reject scheduled.')
+    short = _('Content reject scheduled')
+    keep = True
+    review_email_user = True
+    review_queue = True
+    reviewer_review_action = True
+
+
+class REJECT_VERSION_DELAYED(_LOG):
+    # takes add-on, version, reviewtype
+    id = 165
+    action_class = 'reject'
+    format = _('{addon} {version} reject scheduled.')
+    short = _('Rejection scheduled')
+    keep = True
+    review_email_user = True
+    review_queue = True
+    reviewer_review_action = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.

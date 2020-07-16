@@ -6,6 +6,9 @@ from olympia import amo
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, version_factory)
+from olympia.constants.reviewers import (
+    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+)
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import AutoApprovalSummary, CannedResponse
 from olympia.reviewers.utils import ReviewHelper
@@ -284,4 +287,22 @@ class TestReviewForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {
             'versions': [u'This field is required.']
+        }
+
+    def test_delayed_rejection_days_widget_attributes(self):
+        # Regular reviewers can't customize the delayed rejection period.
+        form = self.get_form()
+        widget = form.fields['delayed_rejection_days'].widget
+        assert widget.attrs == {
+            'min': REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
+            'max': REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
+            'readonly': 'readonly',
+        }
+        # Admin reviewers can customize the delayed rejection period.
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        form = self.get_form()
+        widget = form.fields['delayed_rejection_days'].widget
+        assert widget.attrs == {
+            'min': 1,
+            'max': 99,
         }
