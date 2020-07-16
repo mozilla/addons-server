@@ -585,6 +585,12 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
                 manager='unfiltered_for_relations').all():
             version.update(channel=channel)
 
+    def make_addon_recommended(self, addon, approve_version=False):
+        DiscoveryItem.objects.update_or_create(
+            addon=addon, defaults={'recommendable': True})
+        if approve_version:
+            addon.current_version.update(recommendation_approved=True)
+
     def _add_fake_throttling_action(
             self, view_class, verb='post', url=None, user=None,
             remote_addr=None):
@@ -703,7 +709,7 @@ def addon_factory(
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
-    if should_be_recommended:
+    if should_be_recommended and 'recommendation_approved' not in version_kw:
         version_kw['recommendation_approved'] = True
     version = version_factory(file_kw, addon=addon, **version_kw)
 

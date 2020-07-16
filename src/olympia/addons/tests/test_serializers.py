@@ -23,7 +23,6 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
-from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import WebextPermission
 from olympia.versions.models import (
     ApplicationsVersions, AppVersion, License, VersionPreview)
@@ -447,9 +446,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['has_privacy_policy'] is True
 
     def test_is_featured(self):
-        self.addon = addon_factory()
         # As we've dropped featuring, we're faking it with recommended status
-        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
+        self.addon = addon_factory(recommended=True)
         result = self.serialize()
 
         assert 'is_featured' not in result
@@ -458,15 +456,13 @@ class AddonSerializerOutputTestMixin(object):
         gates = {None: ('is-featured-addon-shim',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
-            assert result['is_featured'] is False
-            self.addon.current_version.update(recommendation_approved=True)
-            result = self.serialize()
             assert result['is_featured'] is True
+            self.addon.current_version.update(recommendation_approved=False)
+            result = self.serialize()
+            assert result['is_featured'] is False
 
     def test_is_recommended(self):
-        self.addon = addon_factory()
-        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
-        self.addon.current_version.update(recommendation_approved=True)
+        self.addon = addon_factory(recommended=True)
         assert self.addon.is_recommended
 
         result = self.serialize()

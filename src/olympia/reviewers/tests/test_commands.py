@@ -15,7 +15,6 @@ from olympia.addons.models import (
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.amo.utils import days_ago
-from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
@@ -124,8 +123,8 @@ class AutoApproveTestsMixin(object):
         recommendable_addon_nominated = addon_factory(
             name='Recommendable Addon',
             status=amo.STATUS_NOMINATED,
+            recommended=True,
             version_kw={
-                'recommendation_approved': True,
                 'nomination': self.days_ago(6),
                 'created': self.days_ago(6),
             },
@@ -133,10 +132,11 @@ class AutoApproveTestsMixin(object):
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True},
         )
-        DiscoveryItem.objects.create(
-            recommendable=True, addon=recommendable_addon_nominated)
 
-        recommended_addon = addon_factory(name='Recommended Addon',)
+        recommended_addon = addon_factory(
+            name='Recommended Addon',
+            recommended=True,
+            version_kw={'recommendation_approved': False})
         recommended_addon_version = version_factory(
             addon=recommended_addon,
             recommendation_approved=True,
@@ -146,8 +146,6 @@ class AutoApproveTestsMixin(object):
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True
             })
-        DiscoveryItem.objects.create(
-            recommendable=True, addon=recommended_addon)
 
         # Add-on with 3 versions:
         # - one webext, listed, public.
