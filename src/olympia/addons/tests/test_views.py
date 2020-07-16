@@ -1212,10 +1212,9 @@ class TestAddonSearchView(ESTestCase):
         assert sorted(result_ids) == [addon.pk, theme.pk]
 
     def test_filter_by_featured_no_app_no_lang(self):
-        addon = addon_factory(slug='my-addon', name=u'Featured Addôn')
+        addon = addon_factory(
+            slug='my-addon', name=u'Featured Addôn', recommended=True)
         addon_factory(slug='other-addon', name=u'Other Addôn')
-        DiscoveryItem.objects.create(addon=addon, recommendable=True)
-        addon.current_version.update(recommendation_approved=True)
         assert addon.is_recommended
         self.reindex(Addon)
 
@@ -1225,10 +1224,9 @@ class TestAddonSearchView(ESTestCase):
         assert data['results'][0]['id'] == addon.pk
 
     def test_filter_by_recommended(self):
-        addon = addon_factory(slug='my-addon', name=u'Recomménded Addôn')
+        addon = addon_factory(
+            slug='my-addon', name=u'Recomménded Addôn', recommended=True)
         addon_factory(slug='other-addon', name=u'Other Addôn')
-        DiscoveryItem.objects.create(addon=addon, recommendable=True)
-        addon.current_version.update(recommendation_approved=True)
         assert addon.is_recommended
         self.reindex(Addon)
 
@@ -1780,12 +1778,8 @@ class TestAddonSearchView(ESTestCase):
         assert ids == [addon1.id, addon2.id, addon3.id, addon4.id, addon5.id]
 
         # Now made some of the add-ons recommended
-        DiscoveryItem.objects.create(addon=addon2, recommendable=True)
-        addon2.current_version.update(recommendation_approved=True)
-        # del addon2.is_recommended
-        DiscoveryItem.objects.create(addon=addon4, recommendable=True)
-        addon4.current_version.update(recommendation_approved=True)
-        # del addon4.is_recommended
+        self.make_addon_recommended(addon2, approve_version=True)
+        self.make_addon_recommended(addon4, approve_version=True)
         self.refresh()
 
         data = self.perform_search(self.url)  # No query.
@@ -1973,12 +1967,8 @@ class TestAddonFeaturedView(ESTestCase):
         self.refresh()
 
     def test_basic(self):
-        addon1 = addon_factory()
-        DiscoveryItem.objects.create(addon=addon1, recommendable=True)
-        addon1.current_version.update(recommendation_approved=True)
-        addon2 = addon_factory()
-        DiscoveryItem.objects.create(addon=addon2, recommendable=True)
-        addon2.current_version.update(recommendation_approved=True)
+        addon1 = addon_factory(recommended=True)
+        addon2 = addon_factory(recommended=True)
         assert addon1.is_recommended
         assert addon2.is_recommended
         addon_factory()  # not recommended so shouldn't show up
@@ -1995,9 +1985,7 @@ class TestAddonFeaturedView(ESTestCase):
 
     def test_page_size(self):
         for _ in range(0, 15):
-            addon = addon_factory()
-            DiscoveryItem.objects.create(addon=addon, recommendable=True)
-            addon.current_version.update(recommendation_approved=True)
+            addon_factory(recommended=True)
 
         self.refresh()
 

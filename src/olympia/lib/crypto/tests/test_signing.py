@@ -344,9 +344,8 @@ class TestSigning(TestCase):
         # in "pending recommendation" and only *after* we approve and sign
         # them they will become "recommended". Once the `recommendable`
         # flag is turned off we won't sign further versions as recommended.
-        DiscoveryItem.objects.create(
-            addon=self.file_.version.addon,
-            recommendable=True)
+        self.make_addon_recommended(
+            self.file_.version.addon)
 
         assert signing.sign_file(self.file_)
 
@@ -370,9 +369,8 @@ class TestSigning(TestCase):
     def test_call_signing_recommendable_unlisted(self):
         # Unlisted versions, even when the add-on is recommendable, should
         # never be recommended.
-        DiscoveryItem.objects.create(
-            addon=self.file_.version.addon,
-            recommendable=True)
+        self.make_addon_recommended(
+            self.file_.version.addon)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         assert signing.sign_file(self.file_)

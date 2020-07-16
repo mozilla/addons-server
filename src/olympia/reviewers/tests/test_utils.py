@@ -21,7 +21,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
-from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
     _get_recommendation_data, _get_signature_details)
@@ -349,7 +348,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # Now make it recommendable. The user should lose all approve/reject
         # actions.
-        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.make_addon_recommended(self.addon)
         expected = ['reply', 'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
@@ -409,7 +408,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_recommended(self):
         # Having Addons:PostReview or Addons:Review is not enough to review
         # recommended extensions.
-        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.make_addon_recommended(self.addon)
         self.grant_permission(self.request.user, 'Addons:PostReview')
         expected = ['reply', 'super', 'comment']
         assert list(self.get_review_actions(
@@ -433,7 +432,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_recommended_content_review(self):
         # Having Addons:ContentReview is not enough to content review
         # recommended extensions.
-        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.make_addon_recommended(self.addon)
         self.grant_permission(self.request.user, 'Addons:ContentReview')
         expected = ['reply', 'super', 'comment']
         assert list(self.get_review_actions(
@@ -1789,8 +1788,7 @@ class TestReviewHelper(TestReviewHelperBase):
             reverse('devhub.addons.versions', args=[self.addon.id]))
 
     def test_nominated_to_approved_recommended(self):
-        DiscoveryItem.objects.create(
-            addon=self.addon, recommendable=True)
+        self.make_addon_recommended(self.addon)
         assert not self.addon.is_recommended
         self.test_nomination_to_public()
         del self.addon.is_recommended
@@ -1798,8 +1796,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.is_recommended
 
     def test_approved_update_recommended(self):
-        DiscoveryItem.objects.create(
-            addon=self.addon, recommendable=True)
+        self.make_addon_recommended(self.addon)
         assert not self.addon.is_recommended
         self.test_public_addon_with_version_awaiting_review_to_public()
         del self.addon.is_recommended
@@ -1807,8 +1804,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.is_recommended is True
 
     def test_autoapprove_fails_for_recommended(self):
-        DiscoveryItem.objects.create(
-            addon=self.addon, recommendable=True)
+        self.make_addon_recommended(self.addon)
         assert not self.addon.is_recommended
         self.request.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
         with self.assertRaises(AssertionError):
@@ -1945,8 +1941,7 @@ class TestReviewHelperSigning(TestReviewHelperBase):
     def test_nominated_to_public_recommended(self):
         self.setup_data(amo.STATUS_NOMINATED)
 
-        DiscoveryItem.objects.create(
-            addon=self.addon, recommendable=True)
+        self.make_addon_recommended(self.addon)
         assert not self.addon.is_recommended
 
         self.helper.handler.approve_latest_version()

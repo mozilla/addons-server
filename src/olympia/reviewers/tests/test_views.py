@@ -42,7 +42,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.constants.scanners import MAD
-from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.git.tests.test_utils import apply_changes
@@ -542,18 +541,16 @@ class TestDashboard(TestCase):
     def test_admin_all_permissions(self):
         # Create a lot of add-ons to test the queue counts.
         # Recommended extensions
-        DiscoveryItem.objects.create(
-            recommendable=True,
+        addon_factory(
+            recommended=True,
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
             addon=addon_factory(
-                status=amo.STATUS_NOMINATED,
-                version_kw={'recommendation_approved': True},
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW}))
-        DiscoveryItem.objects.create(
-            recommendable=True,
-            addon=version_factory(
-                addon=addon_factory(),
-                recommendation_approved=True,
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW}).addon)
+                recommended=True,
+                version_kw={'recommendation_approved': False}),
+            recommendation_approved=True,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         # Nominated and pending themes, not being counted
         # as per https://github.com/mozilla/addons-server/issues/11796
         addon_factory(
@@ -1770,7 +1767,7 @@ class TestRecommendedQueue(QueueTest):
         self.expected_addons = self.get_expected_addons_by_names(
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'])
         for addon in self.expected_addons:
-            DiscoveryItem.objects.create(addon=addon, recommendable=True)
+            self.make_addon_recommended(addon)
         self.url = reverse('reviewers.queue_recommended')
 
     def test_results(self):
@@ -3204,7 +3201,7 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_need_recommended_reviewer_for_recommendable_addon(self):
-        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
+        self.make_addon_recommended(self.addon)
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4629,7 +4626,7 @@ class TestReview(ReviewBase):
     def test_approve_recommended_addon(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
-        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
+        self.make_addon_recommended(self.addon)
         self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
         response = self.client.post(self.url, {
             'action': 'public',
