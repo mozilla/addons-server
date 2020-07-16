@@ -317,6 +317,7 @@ class ScannerResult(AbstractScannerResult):
     score = models.DecimalField(
         null=True, blank=True, max_digits=6, decimal_places=5, default=-1
     )
+    model_version = models.CharField(max_length=30, null=True)
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_results'

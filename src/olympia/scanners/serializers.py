@@ -10,7 +10,14 @@ class ScannerResultSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ScannerResult
-        fields = ('id', 'scanner', 'label', 'results', 'created')
+        fields = (
+            'id',
+            'scanner',
+            'label',
+            'results',
+            'created',
+            'model_version',
+        )
 
     def get_scanner(self, obj):
         return obj.get_scanner_name()
