@@ -36,7 +36,6 @@ from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.devhub.views import get_next_version_number
-from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.ratings.models import Rating
@@ -531,7 +530,7 @@ class TestHome(TestCase):
             '.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
 
     def test_my_addons_recommended(self):
-        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
+        self.make_addon_recommended(self.addon)
         latest_version = self.addon.find_latest_version(
             amo.RELEASE_CHANNEL_LISTED)
         latest_file = latest_version.files.all()[0]
@@ -1409,7 +1408,8 @@ class TestUploadDetail(BaseUploadTest):
              'message': 'You cannot submit an add-on using an ID ending with '
                         '"@mozilla.com" or "@mozilla.org" or '
                         '"@pioneer.mozilla.org" or "@search.mozilla.org" or '
-                        '"@shield.mozilla.org" or "@mozillaonline.com"',
+                        '"@shield.mozilla.com" or "@shield.mozilla.org" or '
+                        '"@mozillaonline.com"',
              'fatal': True, 'type': 'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')

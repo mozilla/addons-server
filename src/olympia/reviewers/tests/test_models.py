@@ -244,16 +244,19 @@ class TestRecommendedQueue(TestQueue):
                   file_status=amo.STATUS_AWAITING_REVIEW):
         addon = addon_factory(
             name=name, status=addon_status,
-            version_kw={'version': version, 'channel': self.channel},
+            recommended=True,
+            version_kw={
+                'version': version,
+                'channel': self.channel,
+                'recommendation_approved': False},
             file_kw={'status': file_status})
-        DiscoveryItem.objects.create(addon=addon, recommendable=True)
         return addon
 
     def new_search_ext(self, name, version, **kw):
         addon = create_search_ext(
             name, version, amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
             channel=self.channel, **kw)
-        DiscoveryItem.objects.create(addon=addon, recommendable=True)
+        self.make_addon_recommended(addon)
         return addon
 
     def test_new_submissions_and_updates_present(self):
