@@ -624,7 +624,7 @@ def pngcrush_image(src, **kw):
     return False
 
 
-def resize_image(source, destination, size=None):
+def resize_image(source, destination, size=None, hero_image=False):
     """Resizes and image from src, to dst.
     Returns a tuple of new width and height, original width and height.
 
@@ -641,11 +641,17 @@ def resize_image(source, destination, size=None):
         original_size = im.size
         if size:
             im = processors.scale_and_crop(im, size)
-    with storage.open(destination, 'wb') as fp:
-        # Save the image to PNG in destination file path. Don't keep the ICC
-        # profile as it can mess up pngcrush badly (mozilla/addons/issues/697).
-        im.save(fp, 'png', icc_profile=None)
-    pngcrush_image(destination)
+    if hero_image:
+        with storage.open(destination, 'wb') as fp:
+            im = im.convert('RGB')
+            im.save(fp, 'JPEG')
+    else:
+        with storage.open(destination, 'wb') as fp:
+            # Save the image to PNG in destination file path.
+            # Don't keep the ICC profile as it can mess up pngcrush badly
+            # (mozilla/addons/issues/697).
+            im.save(fp, 'png', icc_profile=None)
+        pngcrush_image(destination)
     return (im.size, original_size)
 
 

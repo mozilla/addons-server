@@ -93,7 +93,7 @@ class WidgetCharField(models.CharField):
 
 def hero_image_directory(instance, filename):
     prefix = os.path.splitext(filename)[0]
-    return f'hero-featured-image/{prefix}.png'
+    return f'hero-featured-image/{prefix}.jpg'
 
 
 class PrimaryHeroImage(ModelBase):
