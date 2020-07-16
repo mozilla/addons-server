@@ -1409,7 +1409,8 @@ class TestUploadDetail(BaseUploadTest):
              'message': 'You cannot submit an add-on using an ID ending with '
                         '"@mozilla.com" or "@mozilla.org" or '
                         '"@pioneer.mozilla.org" or "@search.mozilla.org" or '
-                        '"@shield.mozilla.org" or "@mozillaonline.com"',
+                        '"@shield.mozilla.com" or "@shield.mozilla.org" or '
+                        '"@mozillaonline.com"',
              'fatal': True, 'type': 'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')

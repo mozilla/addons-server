@@ -395,6 +395,7 @@ SYSTEM_ADDON_GUIDS = (
     '@mozilla.org',
     '@pioneer.mozilla.org',
     '@search.mozilla.org',
+    '@shield.mozilla.com',
     '@shield.mozilla.org',
     '@mozillaonline.com'
 )
