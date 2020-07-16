@@ -168,7 +168,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string validation_url_json: The absolute url to the addons-linter validation report, rendered as JSON.
     :>json string validation_url: The absolute url to the addons-linter validation report, rendered as HTML.
     :>json boolean has_been_validated: ``True`` if the version has been validated through addons-linter.
-    :>json object addon: A simplified :ref:`add-on <addon-detail-object>` object that contains only a few properties: ``id``, ``name``, ``icon_url`` and ``slug``.
+    :>json object addon: A simplified :ref:`add-on <addon-detail-object>` object that contains only a few properties: ``id``, ``name``, ``icon_url`` and ``slug``. ``slug`` can be null.
     :>json array file_entries[]: The complete file-tree of the extracted XPI.
     :>json int file_entries[].depth: Level of folder-tree depth, starting with 0.
     :>json string file_entries[].filename: The filename of the file.
