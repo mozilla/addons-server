@@ -1075,10 +1075,10 @@ class TestShelfAdmin(TestCase):
     def test_can_edit_with_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Recommended extensions',
-            shelfType='extension',
+            shelf_type='extension',
             criteria='/this/is/the/criteria',
-            footerText='See more',
-            footerPathname='/this/is/the/pathname')
+            footer_text='See more',
+            footer_pathname='/this/is/the/pathname')
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -1093,10 +1093,10 @@ class TestShelfAdmin(TestCase):
             detail_url,
             {
                 'title': 'Popular extensions',
-                'shelfType': 'extension',
+                'shelf_type': 'extension',
                 'criteria': '/this/is/the/criteria',
-                'footerText': 'See more',
-                'footerPathname': '/this/is/the/pathname'
+                'footer_text': 'See more',
+                'footer_pathname': '/this/is/the/pathname'
             }, follow=True)
         assert response.status_code == 200
         item.reload()
@@ -1106,10 +1106,10 @@ class TestShelfAdmin(TestCase):
     def test_can_delete_with_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Recommended extensions',
-            shelfType='extension',
+            shelf_type='extension',
             criteria='/this/is/the/criteria',
-            footerText='See more',
-            footerPathname='/this/is/the/pathname')
+            footer_text='See more',
+            footer_pathname='/this/is/the/pathname')
         delete_url = reverse(
             'admin:discovery_shelfmodule_delete', args=(item.pk,)
         )
@@ -1141,10 +1141,10 @@ class TestShelfAdmin(TestCase):
             add_url,
             {
                 'title': 'Recommended extensions',
-                'shelfType': 'extension',
+                'shelf_type': 'extension',
                 'criteria': '/this/is/the/criteria',
-                'footerText': 'See more',
-                'footerPathname': '/this/is/the/pathname'
+                'footer_text': 'See more',
+                'footer_pathname': '/this/is/the/pathname'
             },
             follow=True)
         assert response.status_code == 200
@@ -1152,7 +1152,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.get()
         assert item.title == 'Recommended extensions'
 
-    def test_can_not_add_with_discovery_edit_permission(self):
+    def test_can_not_add_without_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_shelfmodule_add')
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -1163,10 +1163,10 @@ class TestShelfAdmin(TestCase):
             add_url,
             {
                 'title': 'Recommended extensions',
-                'shelfType': 'extension',
+                'shelf_type': 'extension',
                 'criteria': '/this/is/the/criteria',
-                'footerText': 'See more',
-                'footerPathname': '/this/is/the/pathname'
+                'footer_text': 'See more',
+                'footer_pathname': '/this/is/the/pathname'
             },
             follow=True)
         assert response.status_code == 403
@@ -1175,10 +1175,10 @@ class TestShelfAdmin(TestCase):
     def test_can_not_edit_without_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Recommended extensions',
-            shelfType='extension',
+            shelf_type='extension',
             criteria='/this/is/the/criteria',
-            footerText='See more',
-            footerPathname='/this/is/the/pathname')
+            footer_text='See more',
+            footer_pathname='/this/is/the/pathname')
         detail_url = reverse(
             'admin:discovery_shelfmodule_change', args=(item.pk,)
         )
@@ -1192,10 +1192,10 @@ class TestShelfAdmin(TestCase):
             detail_url,
             {
                 'title': 'Popular extensions',
-                'shelfType': 'extension',
+                'shelf_type': 'extension',
                 'criteria': '/this/is/the/criteria',
-                'footerText': 'See more',
-                'footerPathname': '/this/is/the/pathname'
+                'footer_text': 'See more',
+                'footer_pathname': '/this/is/the/pathname'
             }, follow=True)
         assert response.status_code == 403
         item.reload()
@@ -1205,10 +1205,10 @@ class TestShelfAdmin(TestCase):
     def test_can_not_delete_without_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Recommended extensions',
-            shelfType='extension',
+            shelf_type='extension',
             criteria='/this/is/the/criteria',
-            footerText='See more',
-            footerPathname='/this/is/the/pathname')
+            footer_text='See more',
+            footer_pathname='/this/is/the/pathname')
         delete_url = reverse(
             'admin:discovery_shelfmodule_delete', args=(item.pk,)
         )

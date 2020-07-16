@@ -2,27 +2,24 @@ from django.db import models
 
 from olympia.amo.models import ModelBase
 
-CHOICE_TYPES = (
-    ('category', 'category'),
-    ('collection', 'collection'),
-    ('extension', 'extension'),
-    ('recommended', 'recommended'),
-    ('search', 'search'),
-    ('theme', 'theme'),
-)
+SHELF_TYPES = (
+    'category', 'collection', 'extension', 'recommended', 'search', 'theme')
+
+SHELF_TYPE_CHOICES = tuple((ty, ty) for ty in SHELF_TYPES)
 
 
 class Shelf(ModelBase):
-    title = models.CharField(max_length=200, unique=True)
-    shelfType = models.CharField(
-        max_length=200, choices=CHOICE_TYPES, verbose_name='type')
+    title = models.CharField(max_length=200)
+    shelf_type = models.CharField(
+        max_length=200, choices=SHELF_TYPE_CHOICES, verbose_name='type')
     criteria = models.CharField(
-        max_length=200,
+        max_length=200, blank=True,
         help_text="e.g., search/?recommended=true&sort=random&type=extension")
-    footerText = models.CharField(
-        max_length=200, default="See more", verbose_name="footer text")
-    footerPathname = models.CharField(
-        max_length=1000, verbose_name="footer pathname",
+    footer_text = models.CharField(
+        max_length=200, blank=True,
+        help_text="e.g., See more recommended extensions")
+    footer_pathname = models.CharField(
+        max_length=255, blank=True,
         help_text="e.g., collections/4757633/privacy-matters")
 
     class Meta:
