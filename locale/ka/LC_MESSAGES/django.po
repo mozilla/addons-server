@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-16 08:42+0000\n"
+"PO-Revision-Date: 2020-07-16 08:52+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3162,9 +3162,8 @@ msgstr "დაგვიკავშირდით"
 msgid "Twitter"
 msgstr "Twitter"
 
-#, fuzzy
 msgid "For developers"
-msgstr "შემმუშავებელი"
+msgstr "შემმუშავებლებისთვის"
 
 msgid "For end users"
 msgstr "მომხმარებლებისთვის"
@@ -3172,28 +3171,24 @@ msgstr "მომხმარებლებისთვის"
 msgid "Matrix"
 msgstr "Matrix"
 
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "დამატებების შემმუშავებლები"
+msgstr "დამატებების შემმუშავებლების საფოსტო ჯგუფი"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "გაფართოების შემუშავება"
+msgstr "გაფართოების შემმუშავებელთა სიახლეების ცნობარი"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "მუდმივად გაეცანით ბოლო სიახლეებსა და ღონისძიებებს Firefox-ის გაფართოებების შემმუშავებლებისთვის."
 
-#, fuzzy
 msgid "Email Address"
-msgstr "IP-მისამართი"
+msgstr "ელფოსტის მისამართი"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr "თანახმა ვარ, რომ Mozilla-მ ჩემი მონაცემები გამოიყენოს, %(link_open)sპირადულობის დაცვის განაცხადის%(link_close)s შესაბამისად."
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "გამოსვლა"
+msgstr "გამოწერა"
 
 msgid "Thanks!"
 msgstr "გმადლობთ!"
@@ -3204,9 +3199,8 @@ msgstr "თუ ჯერ არ დაგიმოწმებიათ Mozilla-
 msgid "Resources"
 msgstr "სასარგებლო ბმულები"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: შექმენით და გამოცადეთ გაფართოებები"
@@ -3256,9 +3250,8 @@ msgstr "ჩაერთეთ"
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr "შემოუერთდით ათასობით შემმუშავებელს და მონახეთ მეტი გზა, გაფართოებების ეკოსისტემაში წვლილის შესატანად."
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "გაეცანით პირველწყარო კოდის მიმოხილვის დებულებას."
+msgstr "გაიცანით უკეთ შემმუშავებლების ერთობა"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "საიტზე გამოქვეყნდება კოდის მიმოხილვის გავლის შემდეგ. თვითგანახლებები იმართება ამ საიტით."
@@ -3294,20 +3287,17 @@ msgstr "ფოტო არაა"
 msgid "User Photo"
 msgstr "მომხმარებლის სურათი"
 
-#, fuzzy
 msgid "Profile"
-msgstr "ჩემი პროფილი"
+msgstr "პროფილი"
 
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "ახალი ვერსიის წარდგენა"
+msgstr "წარდგენა ან მართვა გაფართოებების"
 
 msgid "Customize Firefox"
 msgstr "Firefox-ის მორგება"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "გაიგეთ, თუ როგორ იქმნება დამატებები"
+msgstr "იხილეთ, თუ როგორ იქმნება გაფართოება"
 
 msgid "Ready to submit or manage your extension?"
 msgstr "მზად ხართ თქვენი გაფართოების წარდგენის ან მართვისთვის?"
@@ -3350,9 +3340,8 @@ msgstr "ამასთან, შეგიძლიათ მიუთითო
 msgid "Source code"
 msgstr "პირველწყარო კოდი"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "თუ თქვენი დამატება შეიცავს ორობით ან ცნობილი ბიბლიოთეკებისგან განსხვავებულ კოდს, განსახილველად განათავსეთ წყაროს კოდი აქ."
+msgstr "თუ თქვენი დამატება შეიცავს შეკუმშულ, შერწყმულ ან სხვა მანქანური გზით წარმოებულ კოდს, განსახილველად განათავსეთ წყარო აქ."
 
 msgid "File {file_id} ({platform})"
 msgstr "ფაილი {file_id} ({platform})"
@@ -3725,9 +3714,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "მოირგეთ თაგვის ჟესტები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "მოირგეთ თაგვის ჟესტები. აღმოაჩინეთ გვერდებზე გადაადგილების ახალი შესაძლებლობები 50-ზე მეტი გამოსადეგი თაგვის მოძრაობით."
+msgstr "მოირგეთ თაგვის ჟესტები. აღმოაჩინეთ გვერდებზე გადაადგილების 50+ საშუალება."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3991,9 +3979,8 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "გვერდებზე მოქნილი გადაადგილება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "თაგვის ჟესტების გამოყენება ჩანართების დასახურად, წინა გვერდზე გადასასვლელად, გვერდის ხელახლა გასახსნელად და ა. შ."
+msgstr "თაგვის ჟესტების გამოყენება ჩანართების დასახურად, გვერდებზე გადასასვლელად და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4909,9 +4896,8 @@ msgid "Select, sort, and run your downloads faster."
 msgstr "შეარჩიეთ, დაალაგეთ და წამოიწყეთ თქვენი ჩამოტვირთვები სწრაფად."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get weather updates right in the browser."
-msgstr "ამინდის პროგნოზის მყისიერი განახლებები, მთელი მსოფლიოდან."
+msgstr "ამინდის პროგნოზის სიახლეები, პირდაპირ ბრაუზერში."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4934,14 +4920,12 @@ msgid "Create and customize tab groups."
 msgstr "შექმენით და მოირგეთ ჩანართების ჯგუფები."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "შეინახეთ სრული გვერდები — ან მისი ნაწილები — ერთიან HTML-ფაილად."
+msgstr "შეინახეთ სრული გვერდები — სურათებითა და გაფორმებით — ერთიან HTML-ფაილად."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "ფუნთუშების ავტომატურად წაშლა ჩანართის დახურვისთანავე."
+msgstr "შეურაცხმყოფელი სიტყვების ავტომატური ჩანაცვლება ვებსივრცეში."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -5499,9 +5483,8 @@ msgstr "დაზიანების საშიშროება არა�
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "გამოხმაურების გაგზავნას ვერ შეძლებთ, როცა „წინასწარ განსაზღვრული პასუხია“ მითითებული."
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "ენის პაკეტის წარდგენა არ შეგიძლიათ"
+msgstr "ცარიელ გამოხმაურებას ვერ გაგზავნით."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "თქვენ ვერ წარადგენთ ხაზის ნომერს, დაკავშირებული ფაილის სახელის გარეშე."
@@ -5536,9 +5519,8 @@ msgid_plural "{0} days"
 msgstr[0] "{0} დღე"
 msgstr[1] "{0} დღე"
 
-#, fuzzy
 msgid "ID"
-msgstr "CIDR"
+msgstr "ID"
 
 msgid "Last Review"
 msgstr "ბოლო მიმოხილვა"
@@ -5555,13 +5537,11 @@ msgstr "უარყოფის ვადის მომლოდინე"
 msgid "Last Updated"
 msgstr "ბოლოს განახლდა"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "სხვა დაყოვნებული განხილვა ({0})"
+msgstr "გამოქვეყნებული ვერსიები საჭიროებს ადამიანის მიერ განხილვას ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "სხვა დაყოვნებული განხილვა ({0})"
+msgstr "გამოუქვეყნებელი ვერსიები საჭიროებს ადამიანის მიერ განხილვას ({0})"
 
 #, fuzzy
 msgid "Listed versions ({0})"
