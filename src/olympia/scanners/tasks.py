@@ -478,13 +478,13 @@ def call_mad_api(all_results, upload_pk):
             score=data.get('ensemble', default_score),
         )
 
-        # Update the individual scanner results scores.
-        customs_score = (
-            data.get('scanners', {})
-            .get('customs', {})
-            .get('score', default_score)
+        # Update the individual scanner results with some info from MAD.
+        customs_data = data.get('scanners', {}).get('customs', {})
+        customs_score = customs_data.get('score', default_score)
+        customs_model_version = customs_data.get('model_version')
+        customs_results.update(
+            score=customs_score, model_version=customs_model_version
         )
-        customs_results.update(score=customs_score)
 
         statsd.incr('devhub.mad.success')
         log.info('Ending scanner "mad" task for FileUpload %s.', upload_pk)

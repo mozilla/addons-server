@@ -8,7 +8,9 @@ from olympia.scanners.serializers import ScannerResultSerializer
 
 class TestScannerResultSerializer(TestCase):
     def test_serialize(self):
-        result = ScannerResult.objects.create(scanner=CUSTOMS)
+        result = ScannerResult.objects.create(
+            scanner=CUSTOMS, model_version='some.version'
+        )
         data = ScannerResultSerializer(instance=result).data
         assert data == {
             'id': result.id,
@@ -18,4 +20,5 @@ class TestScannerResultSerializer(TestCase):
             'created': result.created.strftime(
                 settings.REST_FRAMEWORK['DATETIME_FORMAT']
             ),
+            'model_version': result.model_version,
         }

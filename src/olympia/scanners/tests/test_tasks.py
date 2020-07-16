@@ -803,15 +803,19 @@ class TestCallMadApi(UploadTest, TestCase):
     @mock.patch.object(requests.Session, 'post')
     def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock,
                              uuid4_mock):
+        model_version = 'x.y.z'
         ml_results = {
             'ensemble': 0.56,
-            'scanners': {'customs': {'score': 0.123}},
+            'scanners': {
+                'customs': {'score': 0.123, 'model_version': model_version},
+            },
         }
         requests_mock.return_value = self.create_response(data=ml_results)
         requestId = 'some request id'
         uuid4_mock.return_value.hex = requestId
         assert len(ScannerResult.objects.all()) == self.default_results_count
         assert self.customs_result.score == -1.0
+        assert self.customs_result.model_version is None
 
         returned_results = call_mad_api(self.results, self.upload.pk)
 
@@ -839,7 +843,9 @@ class TestCallMadApi(UploadTest, TestCase):
         # returned in the ML response.
         self.customs_result.refresh_from_db()
         assert self.customs_result.score == Decimal('0.123')
+        assert self.customs_result.model_version == model_version
         assert mad_result.score == Decimal('0.56')
+        assert mad_result.model_version is None
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch.object(requests.Session, 'post')
