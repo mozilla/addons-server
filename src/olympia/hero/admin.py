@@ -71,11 +71,11 @@ class PrimaryHeroImageAdmin(admin.ModelAdmin):
         size_full = (960, 640)
 
         with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as tmp:
-            resize_image(obj.custom_image.path, tmp.name, size_thumb, True)
+            resize_image(obj.custom_image.path, tmp.name, size_thumb, 'jpg')
             copy_stored_file(tmp.name, obj.thumbnail_path)
 
         with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as tmp:
-            resize_image(obj.custom_image.path, tmp.name, size_full, True)
+            resize_image(obj.custom_image.path, tmp.name, size_full, 'jpg')
             copy_stored_file(tmp.name, obj.custom_image.path)
 
     def delete_queryset(self, request, queryset):
