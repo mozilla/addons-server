@@ -32,7 +32,6 @@ from olympia.files.tests.test_file_viewer import get_file
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.devhub.tasks import create_version_for_upload
-from olympia.discovery.models import DiscoveryItem
 from olympia.hero.models import PrimaryHero, SecondaryHero
 
 from .version import generate_version
@@ -94,36 +93,32 @@ class GenerateAddonsSerializer(serializers.Serializer):
         for _ in range(10):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
+                recommended=True,
                 version_kw={
-                    'recommendation_approved': True,
                     'nomination': days_ago(6)
                 })
             AddonUser.objects.create(
                 user=user_factory(), addon=addon)
-            item = DiscoveryItem.objects.create(
-                addon=addon, recommendable=True)
 
-            PrimaryHero.objects.create(disco_addon=item)
+            PrimaryHero.objects.create(
+                disco_addon=addon.discoveryitem,
+                enabled=True)
             SecondaryHero.objects.create(
                 enabled=True,
                 headline="This is a headline",
                 description="Hero Description")
-            item.addon.current_version.update(recommendation_approved=True)
-            item.primaryhero.update(enabled=True)
 
     def create_generic_featured_themes(self):
         for _ in range(10):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 type=ADDON_STATICTHEME,
+                recommended=True,
                 version_kw={
-                    'recommendation_approved': True,
                     'nomination': days_ago(6)
                 })
             generate_version(addon=addon)
             addon.update_version()
-            DiscoveryItem.objects.create(
-                recommendable=True, addon=addon)
 
     def create_named_addon_with_author(self, name, author=None):
         """Create a generic addon and a user.
@@ -147,8 +142,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 users=[UserProfile.objects.get(username=author)],
                 name=u'{}'.format(name),
                 slug=u'{}'.format(name),
+                recommended=True,
                 version_kw={
-                    'recommendation_approved': True,
                     'nomination': days_ago(6)
                 }
             )
@@ -166,7 +161,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 }
             )
             addon.save()
-        DiscoveryItem.objects.create(recommendable=True, addon=addon)
         return addon
 
     def create_featured_addon_with_version(self):
@@ -193,6 +187,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             guid=generate_addon_guid(),
             icon_type=random.choice(default_icons),
             name=u'Ui-Addon',
+            recommended=True,
             slug='ui-test-2',
             summary=u'My Addon summary',
             tags=['some_tag', 'another_tag', 'ui-testing',
@@ -201,7 +196,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             weekly_downloads=9999999,
             developer_comments='This is a testing addon.',
             version_kw={
-                'recommendation_approved': True,
                 'nomination': days_ago(6)
             }
         )
@@ -217,8 +211,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
         AddonUser.objects.create(user=user_factory(username='ui-tester2'),
                                  addon=addon, listed=True)
         addon.save()
-        DiscoveryItem.objects.create(
-            recommendable=True, addon=addon)
         generate_collection(addon, app=FIREFOX)
         print(
             'Created addon {0} for testing successfully'
@@ -249,6 +241,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             guid=generate_addon_guid(),
             icon_type=random.choice(default_icons),
             name=u'Ui-Addon-Android',
+            recommended=True,
             slug='ui-test-addon-android',
             summary=u'My Addon summary for Android',
             tags=['some_tag', 'another_tag', 'ui-testing',
@@ -257,7 +250,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             weekly_downloads=9999999,
             developer_comments='This is a testing addon for Android.',
             version_kw={
-                'recommendation_approved': True,
                 'nomination': days_ago(6)
             }
         )
@@ -267,8 +259,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
         AddonUser.objects.create(user=user_factory(username='ui-tester2'),
                                  addon=addon, listed=True)
         addon.save()
-        DiscoveryItem.objects.create(
-            recommendable=True, addon=addon)
         generate_collection(addon, app=FIREFOX)
         print(
             'Created addon {0} for testing successfully'
@@ -297,6 +287,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 guid='@webextension-guid',
                 icon_type=random.choice(default_icons),
                 name=u'Ui-Addon-Install',
+                recommended=True,
                 slug='ui-test-install',
                 summary=u'My Addon summary',
                 tags=['some_tag', 'another_tag', 'ui-testing',
@@ -304,14 +295,11 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 weekly_downloads=9999999,
                 developer_comments='This is a testing addon.',
                 version_kw={
-                    'recommendation_approved': True,
                     'nomination': days_ago(6)
                 },
             )
             addon.save()
             generate_collection(addon, app=FIREFOX)
-            DiscoveryItem.objects.create(
-                recommendable=True, addon=addon)
             print(
                 'Created addon {0} for testing successfully'
                 .format(addon.name))
@@ -338,6 +326,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             guid=generate_addon_guid(),
             homepage=u'https://www.example.org/',
             name=u'Ui-Test Theme',
+            recommended=True,
             slug='ui-test',
             summary=u'My UI theme summary',
             support_email=u'support@example.org',
@@ -348,7 +337,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             weekly_downloads=123456,
             developer_comments='This is a testing theme, used within pytest.',
             version_kw={
-                'recommendation_approved': True,
                 'nomination': days_ago(6)
             }
         )
@@ -357,8 +345,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon,
             app=FIREFOX,
             type=amo.COLLECTION_RECOMMENDED)
-        DiscoveryItem.objects.create(
-            recommendable=True, addon=addon)
         print('Created Theme {0} for testing successfully'.format(addon.name))
 
     def create_featured_collections(self):
@@ -382,17 +368,16 @@ class GenerateAddonsSerializer(serializers.Serializer):
         """
         for _ in range(6):
             addon = addon_factory(
+                recommended=True,
                 status=amo.STATUS_APPROVED,
                 type=ADDON_STATICTHEME,
                 file_kw={
                     'is_webextension': True
                 },
                 version_kw={
-                    'recommendation_approved': True,
                     'nomination': days_ago(6)
                 }
             )
-            DiscoveryItem.objects.create(recommendable=True, addon=addon)
             generate_collection(addon, type=amo.COLLECTION_RECOMMENDED)
 
     def create_a_named_collection_and_addon(self, name, author):

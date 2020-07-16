@@ -102,15 +102,16 @@ FXA_CONFIG = {
         # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  # noqa
     },
 }
-FXA_CONTENT_HOST = 'https://stable.dev.lcip.org'
-FXA_OAUTH_HOST = 'https://oauth-stable.dev.lcip.org/v1'
-FXA_PROFILE_HOST = 'https://stable.dev.lcip.org/profile/v1'
+FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'
+FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
+FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
+
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'local']
 
 FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-east-1.amazonaws.com/927034868273/'
-    'amo-account-change-dev')
+    'https://sqs.us-east-1.amazonaws.com/927034868273/amo-account-change-dev'
+)
 
 VAMO_URL = 'https://versioncheck-dev.allizom.org'
 

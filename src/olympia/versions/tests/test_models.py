@@ -25,7 +25,6 @@ from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
 from olympia.constants.scanners import CUSTOMS, WAT, YARA, MAD
-from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
@@ -593,8 +592,7 @@ class TestVersion(TestCase):
         # A non-recommended addon can have it's versions disabled.
         assert addon.current_version.can_be_disabled_and_deleted()
 
-        DiscoveryItem.objects.create(recommendable=True, addon=addon)
-        addon.current_version.update(recommendation_approved=True)
+        self.make_addon_recommended(addon, approve_version=True)
         addon = addon.reload()
         assert addon.is_recommended
         # But a recommended one can't be disabled

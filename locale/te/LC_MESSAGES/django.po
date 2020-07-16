@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 21:13+0000\n"
+"PO-Revision-Date: 2020-07-15 19:21+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -527,7 +527,7 @@ msgstr ""
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "%(name)s‌ను చేర్చు"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
@@ -1730,7 +1730,7 @@ msgid "The developer API key of a coauthor was found in the submitted file. To p
 msgstr ""
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "మొజిల్లా భద్రతా నోటీసు: మీ AMO API యోగ్యతలు ఉపసంహరించబడ్డాయి"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2356,7 +2356,7 @@ msgid "Please provide at least one screen shot of your add-on:"
 msgstr ""
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "ఈ తెరపట్లు కోసం ఒక వ్యాఖ్యను ఇవ్వండి:"
 
 msgid "Add a Screenshot..."
 msgstr "తెరపట్టుని జోడించండి..."
@@ -2457,7 +2457,7 @@ msgid "Edit details on this add-on's product page"
 msgstr ""
 
 msgid "Upload a new version of this add-on"
-msgstr ""
+msgstr "ఈ పొడగింతకి కొత్త వెర్షనును ఎక్కించండి"
 
 msgid "New Version"
 msgstr "కొత్త వెర్షన్"
@@ -3296,7 +3296,7 @@ msgid "Delete/Disable"
 msgstr "తొలగించు/Disable"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "ఈ పొడగింతకి తదుపరి వెర్షను"
 
 msgid "Other versions"
 msgstr "ఇతర వెర్షనులు"
@@ -4862,7 +4862,7 @@ msgid "File size is over the limit of {0}."
 msgstr "ఫైలు పరిమాణం {0} పరిమితి కంటే పెద్దగా ఉంది."
 
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "{0}‌ని డీకోడు చేయడంలో సమస్యలు."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr ""
@@ -5479,9 +5479,8 @@ msgstr "సమీక్షల చిట్టా"
 msgid "Add-on Review Guide"
 msgstr "యాడ్-ఆన్ సమీక్ష గైడు"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "భద్రతా పరీక్షలు"
+msgstr "భద్రతా స్కానర్లు"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
@@ -5549,9 +5548,8 @@ msgstr "రోజు యొక్క సందేశాన్ని నవీక
 msgid "Expired Information Requests ({0})"
 msgstr "కాలంచెల్లిన సమాచార అభ్యర్థనలు ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "ఇతర వేచివున్న సమీక్ష ({0})"
+msgstr "తిరస్కరణకై వేచివున్న పొడగింతలు ({0})"
 
 msgid "An unknown error occurred"
 msgstr "ఒక తెలియని దోషం ఎదురైంది"
@@ -6319,7 +6317,7 @@ msgid "This dashboard is <b>private</b>."
 msgstr ""
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "తేదీ వారీగా అనువర్తనపు వాడకం"
 
 msgid "User countries by Date"
 msgstr "తేదీవారీ వాడుకరుల దేశాలు"
@@ -6488,7 +6486,7 @@ msgid "%(title)s <em>&middot; %(lang)s</em>"
 msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "ఉన్న లోకేల్స్"
 
 msgid "New Locales"
 msgstr "కొత్ స్థానికీకరణలు"

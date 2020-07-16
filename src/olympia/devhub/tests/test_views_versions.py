@@ -18,7 +18,6 @@ from olympia.amo.tests import (
     TestCase, formset, initial, reverse_ns, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
-from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
@@ -163,8 +162,7 @@ class TestVersion(TestCase):
     def test_cant_disable_or_delete_current_version_recommended(self):
         # If the add-on is recommended you can't disable or delete the current
         # version.
-        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
-        self.version.update(recommendation_approved=True)
+        self.make_addon_recommended(self.addon, approve_version=True)
         assert self.version == self.addon.current_version
         self.client.post(self.delete_url, self.delete_data)
         assert Version.objects.filter(pk=81551).exists()
@@ -186,7 +184,7 @@ class TestVersion(TestCase):
     def test_can_disable_or_delete_current_ver_if_previous_recommended(self):
         # If the add-on is recommended you *can* disable or delete the current
         # version if the previous version is approved for recommendation too.
-        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.make_addon_recommended(self.addon)
         previous_version = self.version
         previous_version.update(recommendation_approved=True)
         self.version = version_factory(
@@ -221,7 +219,7 @@ class TestVersion(TestCase):
     def test_can_still_disable_or_delete_old_version_recommended(self):
         # If the add-on is recommended, you can still disable or delete older
         # versions than the current one.
-        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.make_addon_recommended(self.addon)
         self.version.update(recommendation_approved=True)
         version_factory(addon=self.addon, recommendation_approved=True)
         self.addon.reload()
@@ -247,7 +245,7 @@ class TestVersion(TestCase):
     def test_can_still_disable_or_delete_current_version_recommendable(self):
         # If the add-on is recommendable but hasn't been recommended yet, then
         # deleting the current version is fine.
-        DiscoveryItem.objects.create(recommendable=True, addon=self.addon)
+        self.make_addon_recommended(self.addon)
         assert self.version == self.addon.current_version
 
         self.delete_data['disable_version'] = ''
