@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-16 08:24+0000\n"
+"PO-Revision-Date: 2020-07-16 08:34+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -470,7 +470,7 @@ msgstr "დამოწმების მდგომარეობა"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s მზადაა წარსადგენად"
+msgstr "GUID %(guid)s ელოდება წარდგენას"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
@@ -2181,7 +2181,7 @@ msgid "About author roles"
 msgstr "ავტორის მოვალეობის შესახებ"
 
 msgid "Authors pending confirmation"
-msgstr "ავტორობის დადასტურების დაყოვნებული მოთხოვნა"
+msgstr "დამოწმების მომლოდინე ავტორები"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "ავტორები, რომლებიც დაემატნენ ამ დამატებას დადასტურების გარეშე."
@@ -2437,9 +2437,8 @@ msgstr "PNG და JPG მხარდაჭერილია, PNG მეტა
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "უმცირესი ზომაა 1000x750, ხოლო ფარდობა უნდა იყოს 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "თქვენი ნამუშევრის გვერდზე სურათის დამატება მნიშვნელოვნად გაზრდის მისი გამოყენების მსურველთა რაოდენობას და მთავარ გვერდზე მოხვედრის ალბათობას."
+msgstr "თქვენი ნამუშევრის გვერდზე სურათის დამატება მნიშვნელოვნად გაზრდის მისი დაყენების მსურველთა რაოდენობას."
 
 msgid "Continue"
 msgstr "გაგრძელება"
@@ -2700,16 +2699,14 @@ msgstr "თქვენი დამატებები იქნება მ
 msgid "Manage Listing"
 msgstr "ნამუშევრების მართვა"
 
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "თქვენ ასევე შეგიძლიათ ამ ვერსიის ჩასწორება შენიშვნების დასამატებლად, ან წყაროს კოდის ჩასასწორებლად, თუ წარდგენილი დამატების კოდი არის გამარტივებული, ფორმაშეცვლილი ან კომპილირებული."
+msgstr "თქვენ ასევე შეგიძლიათ ამ ვერსიის ჩასწორება შენიშვნების დასამატებლად, ან წყაროს კოდის ჩასასწორებლად, თუ წარდგენილი დამატების კოდი არის შეკუმშული, შერწყმული ან სხვა მანქანური გზით შედგენილი."
 
 msgid "Edit version {0}"
 msgstr "{0} ვერსიის ჩასწორება"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "ვერსია დამოწმებულია"
+msgstr "ხელმოწერის მომლოდინე ვერსია"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
@@ -3099,7 +3096,7 @@ msgid "View the blog &#9658;"
 msgstr "ეწვიეთ სვეტს &#9658;"
 
 msgid "Pending information request:"
-msgstr "მონაცემების დაყოვნებული მოთხოვნა:"
+msgstr "ინფორმაციის მოთხოვნის მომლოდინე:"
 
 msgid "This request for information has been resolved"
 msgstr "მონაცემების ეს მოთხოვნები დაკმაყოფილებულია"
@@ -5556,9 +5553,8 @@ msgstr "წონა"
 msgid "Information Request Deadline"
 msgstr "მონაცემების მოთხოვნის ვადა"
 
-#, fuzzy
 msgid "Pending Rejection Deadline"
-msgstr "მონაცემების მოთხოვნის ვადა"
+msgstr "უარყოფის ვადის მომლოდინე"
 
 msgid "Last Updated"
 msgstr "ბოლოს განახლდა"
@@ -5643,7 +5639,7 @@ msgid "Recommended ({0})"
 msgstr "სასურველი ({0})"
 
 msgid "Other Pending Review ({0})"
-msgstr "სხვა დაყოვნებული განხილვა ({0})"
+msgstr "სხვა მომლოდინე განხილვა ({0})"
 
 msgid "Review Log"
 msgstr "მიმოხილვის ჩანაწერები"
@@ -5721,9 +5717,8 @@ msgstr "დღის შეტყობინების განახლე�
 msgid "Expired Information Requests ({0})"
 msgstr "მონაცემების ვადაგასული მოთხოვნა ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "სხვა დაყოვნებული განხილვა ({0})"
+msgstr "უარყოფის მომლოდინე დამატებები ({0})"
 
 msgid "An unknown error occurred"
 msgstr "უცნობი შეცდომა"
@@ -5948,7 +5943,7 @@ msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr "გამოუქვეყნებელი დამატებები – Firefox-ის დამატებები"
 
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "დაყოვნებული უარყოფა – Firefox-ის დამატებები"
+msgstr "უარყოფის მომლოდინე – Firefox-ის დამატებები"
 
 msgid "Advanced Search"
 msgstr "გაფართოებული ძებნა"
@@ -6087,7 +6082,7 @@ msgid "Clear information request"
 msgstr "მონაცემების მოთხოვნის წაშლა"
 
 msgid "Clear pending rejections"
-msgstr "დაყოვნებული უარყოფების გასუფთავება"
+msgstr "უარყოფის მომლოდინეების გასუფთავება"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "მმართველის მიმოხილვის მონიშვნის მოხსნა"
