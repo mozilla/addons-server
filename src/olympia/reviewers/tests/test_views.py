@@ -4916,7 +4916,7 @@ class TestReview(ReviewBase):
             assert not version.needs_human_review
             file_ = version.files.all().get()
             assert file_.status == amo.STATUS_DISABLED
-            assert not version.pending_rejectionqa
+            assert not version.pending_rejection
 
     def test_reject_multiple_versions_with_no_delay(self):
         old_version = self.version
