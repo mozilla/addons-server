@@ -382,7 +382,7 @@ class ReviewForm(forms.Form):
         self.helper = kw.pop('helper')
         super(ReviewForm, self).__init__(*args, **kw)
 
-        # Delayed rejection period needs to be readonly unless we're an admin
+        # Delayed rejection period needs to be readonly unless we're an admin.
         user = self.helper.handler.user
         rejection_period_widget_attributes = {}
         rejection_period = self.fields['delayed_rejection_days']
