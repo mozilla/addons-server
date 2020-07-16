@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-16 08:34+0000\n"
+"PO-Revision-Date: 2020-07-16 08:42+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -917,9 +917,8 @@ msgstr "შეზღუდვის მოქმედების დამო�
 msgid "User {user} session(s) reset."
 msgstr "{user} მომხმარებლის სეანს(ებ)ი ხელახლა გაიმართა."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "მომხმარებელი {user} ჩასწორებულია, მიზეზი: {1}"
+msgstr "მომხმარებელი {user} რეგულირებული არესთვის „{0}“"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2700,7 +2699,7 @@ msgid "Manage Listing"
 msgstr "ნამუშევრების მართვა"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "თქვენ ასევე შეგიძლიათ ამ ვერსიის ჩასწორება შენიშვნების დასამატებლად, ან წყაროს კოდის ჩასასწორებლად, თუ წარდგენილი დამატების კოდი არის შეკუმშული, შერწყმული ან სხვა მანქანური გზით შედგენილი."
+msgstr "თქვენ ასევე შეგიძლიათ ამ ვერსიის ჩასწორება შენიშვნების დასამატებლად, ან წყაროს კოდის ჩასასწორებლად, თუ წარდგენილი დამატების კოდი არის შეკუმშული, შერწყმული ან სხვა მანქანური გზით წარმოებული."
 
 msgid "Edit version {0}"
 msgstr "{0} ვერსიის ჩასწორება"
@@ -2708,9 +2707,8 @@ msgstr "{0} ვერსიის ჩასწორება"
 msgid "Version Signature Pending"
 msgstr "ხელმოწერის მომლოდინე ვერსია"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "მზადაა! ეს ვერსია საიტზე ხელმისაწვდომი გახდება მიმოხილვის გავლის შემდგომ. გეცნობებათ, მიმოხილვის დასრულებისთანავე."
+msgstr "მზადაა! ეს ვერსია მალე ხელმოწერილი იქნება თვითგავრცელებისთვის. გეცნობებათ, როცა ხელმოწერის ფაილი მზად იქნება ჩამოსატვირთად."
 
 msgid "Go to My Submissions"
 msgstr "წარდგენილ ნამუშევრებზე გადასვლა"
@@ -2769,11 +2767,10 @@ msgstr ""
 "ვრცლად (მათ შორის მოთხოვნილ ვერსიასა და დაყენების მითითებებს) აწყობის პროცესში გამოყენებულ ყველა პროგრამაზე (მაგალითად: <span class=\"tech-emphasis\">node</span> და <span class=\"tech-"
 "emphasis\">npm</span> ვერსიებზე)."
 
-#, fuzzy
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">შენიშვნა:</span> წყაროს ფაილები (გარდა ღია წყაროს მქონე ცალკეული ბიბლიოთეკებისა) არ უნდა იყოს ერთი ენიდან სხვაზე გადმოტანილი, ფორმაშეცვლილი, გამარტივებული ან "
-"სხვა სახით დამუშავებული მექანიკურად."
+"<span class=\"instruction-emphasis\">შენიშვნა:</span> წყაროს ფაილები (გარდა ღია წყაროს მქონე ცალკეული ბიბლიოთეკებისა) არ უნდა იყოს ერთი ენიდან სხვაზე გადმოტანილი, შერწყმული, შეკუმშული ან სხვა "
+"მანქანური გზით წარმოებული."
 
 msgid "How to Submit:"
 msgstr "როგორ ხდება წარდგენა:"
@@ -3139,9 +3136,8 @@ msgstr ""
 "თუ თქვენი დამატება მონაცემებს იღებს და აგზავნის მომხმარებლის კომპიუტერიდან, აუცილებელია პირადი მონაცემების დაცვის დებულება, სადაც განმარტებული იქნება, რა ინფორმაცია იგზავნება და როგორ ხდება მისი "
 "გამოყენება. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "თუ თქვენი დამატება შეიცავს ორობით ან ცნობილი ბიბლიოთეკებისგან განსხვავებულ კოდს, განსახილველად ატვირთეთ მისი წყაროები."
+msgstr "თუ თქვენი დამატება შეიცავს შეკუმშულ, შერწყმულ ან სხვა მანქანური გზით წარმოებულ, ცნობილი ბიბლიოთეკებისგან განსხვავებულ კოდს, განსახილველად ატვირთეთ მისი წყაროები."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "გთხოვთ მიუთითოთ, დამატების საბოლოო ფაილის კვლავწარმოების სახელმძღვანელო, ან README ფაილის, ან შენიშვნების სახით მიმომხილველებისთვის, არსებულ ვერსიაში."
@@ -6173,9 +6169,8 @@ msgstr "უფრო ახალი"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} ვერსიები მონიშნულია სკანერების მიერ სხვა გვერდებზე."
 
-#, fuzzy
 msgid "{num} versions pending rejection on other pages."
-msgstr "{num} ვერსიები მონიშნულია სკანერების მიერ სხვა გვერდებზე."
+msgstr "{num} ვერსიები ელოდება უარყოფას სხვა გვერდებზე."
 
 msgid "Recent Points"
 msgstr "ბოლო ქულები"
@@ -6267,11 +6262,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "მონაცემების ვადაგასული მოთხოვნა ({0})"
 msgstr[1] "მონაცემების ვადაგასული მოთხოვნა ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "სხვა დაყოვნებული განხილვა ({0})"
-msgstr[1] "სხვა დაყოვნებული განხილვა ({0})"
+msgstr[0] "უარყოფის მომლოდინე ({0})"
+msgstr[1] "უარყოფის მომლოდინე ({0})"
 
 msgid "presence of matched rules"
 msgstr "შესაბამისი წესების არსებობა"
