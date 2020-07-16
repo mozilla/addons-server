@@ -36,10 +36,11 @@ from olympia.scanners.models import (
     ScannerRule,
 )
 from olympia.scanners.tasks import (
+    _run_yara,
     call_mad_api,
     mark_yara_query_rule_as_completed_or_aborted,
-    run_scanner,
     run_customs,
+    run_scanner,
     run_wat,
     run_yara,
     run_yara_query_rule,
@@ -135,6 +136,7 @@ class TestRunScanner(UploadTest, TestCase):
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
     @mock.patch('olympia.scanners.tasks.requests.post')
     def test_handles_scanner_errors_with_mocks(self, requests_mock):
+        self.create_switch('ignore-exceptions-in-scanner-tasks', active=True)
         scanner_data = {'error': 'some error'}
         requests_mock.return_value = self.create_response(data=scanner_data)
         assert len(ScannerResult.objects.all()) == 0
@@ -152,8 +154,28 @@ class TestRunScanner(UploadTest, TestCase):
         assert returned_results == self.results
 
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
+    @mock.patch('olympia.scanners.tasks.requests.post')
+    def test_throws_errors_with_mocks(self, requests_mock):
+        scanner_data = {'error': 'some error'}
+        requests_mock.return_value = self.create_response(data=scanner_data)
+        assert len(ScannerResult.objects.all()) == 0
+
+        with self.assertRaises(ValueError):
+            run_scanner(
+                self.results,
+                self.upload.pk,
+                scanner=self.FAKE_SCANNER,
+                api_url=self.API_URL,
+                api_key=self.API_KEY,
+            )
+
+        assert requests_mock.called
+        assert len(ScannerResult.objects.all()) == 0
+
+    @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_does_not_raise(self, incr_mock):
+        self.create_switch('ignore-exceptions-in-scanner-tasks', active=True)
         # This call should not raise even though there will be an error because
         # `api_url` is `None`.
         returned_results = run_scanner(
@@ -191,6 +213,7 @@ class TestRunScanner(UploadTest, TestCase):
     @mock.patch('olympia.scanners.tasks.SCANNERS', MOCK_SCANNERS)
     @mock.patch('olympia.scanners.tasks.requests.post')
     def test_handles_http_errors_with_mock(self, requests_mock):
+        self.create_switch('ignore-exceptions-in-scanner-tasks', active=True)
         requests_mock.return_value = self.create_response(
             status_code=504, data={'message': 'http timeout'}
         )
@@ -548,14 +571,30 @@ class TestRunYara(UploadTest, TestCase):
     @mock.patch('yara.compile')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_does_not_raise(self, incr_mock, yara_compile_mock):
+        self.create_switch('ignore-exceptions-in-scanner-tasks', active=True)
         yara_compile_mock.side_effect = Exception()
 
-        received_results = run_yara(self.results, self.upload.pk)
+        # We use `_run_yara()` because `run_yara()` is decorated with
+        # `@validation_task`, which gracefully handles exceptions.
+        received_results = _run_yara(self.results, self.upload.pk)
 
         assert incr_mock.called
         incr_mock.assert_called_with('devhub.yara.failure')
         # The task should always return the results.
         assert received_results == self.results
+
+    @mock.patch('yara.compile')
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_throws_errors(self, incr_mock, yara_compile_mock):
+        yara_compile_mock.side_effect = Exception()
+
+        # We use `_run_yara()` because `run_yara()` is decorated with
+        # `@validation_task`, which gracefully handles exceptions.
+        with self.assertRaises(Exception):
+            _run_yara(self.results, self.upload.pk)
+
+        assert incr_mock.called
+        incr_mock.assert_called_with('devhub.yara.failure')
 
     @mock.patch('olympia.scanners.tasks.statsd.timer')
     def test_calls_statsd_timer(self, timer_mock):
@@ -910,3 +949,14 @@ class TestCallMadApi(UploadTest, TestCase):
 
         assert not requests_mock.called
         assert returned_results == self.results[0]
+
+    @mock.patch.object(requests.Session, 'post')
+    def test_does_not_run_when_other_results_have_errors(self, requests_mock):
+        self.create_switch('enable-mad', active=True)
+        self.results.append({**amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT})
+        assert len(self.results) == 2
+
+        returned_results = call_mad_api(self.results, self.upload.pk)
+
+        assert not requests_mock.called
+        assert returned_results == self.results[1]
