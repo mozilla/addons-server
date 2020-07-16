@@ -151,6 +151,9 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'discovery.add_secondaryheroshelf': DISCOVERY_EDIT,
     'discovery.change_secondaryheroshelf': DISCOVERY_EDIT,
     'discovery.delete_secondaryheroshelf': DISCOVERY_EDIT,
+    'discovery.add_shelfmodule': DISCOVERY_EDIT,
+    'discovery.change_shelfmodule': DISCOVERY_EDIT,
+    'discovery.delete_shelfmodule': DISCOVERY_EDIT,
 
     'files.change_file': ADMIN_ADVANCED,
 
