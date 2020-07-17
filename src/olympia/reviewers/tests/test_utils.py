@@ -20,12 +20,12 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
-from olympia.constants.reviewers import REVIEWER_NEED_INFO_DAYS_DEFAULT
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
     _get_recommendation_data, _get_signature_details)
 from olympia.reviewers.models import (
-    AutoApprovalSummary, ReviewerScore, ViewExtensionQueue)
+    AutoApprovalSummary, ReviewerScore, ReviewerSubscription,
+    ViewExtensionQueue)
 from olympia.reviewers.utils import (
     ReviewAddon, ReviewFiles, ReviewHelper, ReviewUnlisted,
     ViewUnlistedAllListTable, view_table_factory)
@@ -216,7 +216,6 @@ class TestReviewHelperBase(TestCase):
             'action': 'public',
             'operating_systems': 'osx',
             'applications': 'Firefox',
-            'info_request': self.addon.pending_info_request
         }
 
     def get_helper(self, content_review=False):
@@ -592,8 +591,9 @@ class TestReviewHelper(TestReviewHelperBase):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
-            assert base_fragment in mail.outbox[0].body
-            assert mail.outbox[0].reply_to == [reply_email]
+            message = mail.outbox[0]
+            assert base_fragment in message.body
+            assert message.reply_to == [reply_email]
 
         mail.outbox = []
         # This one does not inherit from base.txt because it's for unlisted
@@ -602,8 +602,9 @@ class TestReviewHelper(TestReviewHelperBase):
         template = 'unlisted_to_reviewed_auto'
         self.helper.handler.notify_email(template, 'Sample subject %s, %s')
         assert len(mail.outbox) == 1
-        assert base_fragment not in mail.outbox[0].body
-        assert mail.outbox[0].reply_to == [reply_email]
+        message = mail.outbox[0]
+        assert base_fragment not in message.body
+        assert message.reply_to == [reply_email]
 
     def test_email_links(self):
         expected = {
@@ -628,84 +629,19 @@ class TestReviewHelper(TestReviewHelperBase):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
+            message = mail.outbox[0]
             assert context_key in context_data
-            assert context_data.get(context_key) in mail.outbox[0].body
+            assert context_data.get(context_key) in message.body
 
     def test_send_reviewer_reply(self):
-        assert not self.addon.pending_info_request
         self.setup_data(amo.STATUS_APPROVED)
         self.helper.handler.reviewer_reply()
 
-        assert not self.addon.pending_info_request
-
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == self.preamble
+        message = mail.outbox[0]
+        assert message.subject == self.preamble
 
         assert self.check_log_count(amo.LOG.REVIEWER_REPLY_VERSION.id) == 1
-
-    def test_request_more_information(self):
-        self.setup_data(amo.STATUS_APPROVED)
-        self.helper.handler.data['info_request'] = True
-        self.helper.handler.reviewer_reply()
-
-        self.assertCloseToNow(
-            self.addon.pending_info_request,
-            now=datetime.now() + timedelta(
-                days=REVIEWER_NEED_INFO_DAYS_DEFAULT))
-
-        assert len(mail.outbox) == 1
-        assert (
-            mail.outbox[0].subject ==
-            'Mozilla Add-ons: Action Required for Delicious Bookmarks 2.1.072')
-
-        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
-
-    def test_request_more_information_custom_deadline(self):
-        self.setup_data(amo.STATUS_APPROVED)
-        self.helper.handler.data['info_request'] = True
-        self.helper.handler.data['info_request_deadline'] = 42
-        self.helper.handler.reviewer_reply()
-
-        self.assertCloseToNow(
-            self.addon.pending_info_request,
-            now=datetime.now() + timedelta(days=42))
-
-        assert len(mail.outbox) == 1
-        assert (
-            mail.outbox[0].subject ==
-            'Mozilla Add-ons: Action Required for Delicious Bookmarks 2.1.072')
-
-        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
-
-    def test_request_more_information_reset_notified_flag(self):
-        self.setup_data(amo.STATUS_APPROVED)
-
-        flags = AddonReviewerFlags.objects.create(
-            addon=self.addon,
-            pending_info_request=datetime.now() - timedelta(days=1),
-            notified_about_expiring_info_request=True)
-
-        self.helper.handler.data['info_request'] = True
-        self.helper.handler.reviewer_reply()
-
-        flags.reload()
-
-        self.assertCloseToNow(
-            flags.pending_info_request,
-            now=datetime.now() + timedelta(
-                days=REVIEWER_NEED_INFO_DAYS_DEFAULT))
-        assert not flags.notified_about_expiring_info_request
-
-        assert len(mail.outbox) == 1
-        assert (
-            mail.outbox[0].subject ==
-            'Mozilla Add-ons: Action Required for Delicious Bookmarks 2.1.072')
-
-        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
-
-    def test_request_more_information_deleted_addon(self):
-        self.addon.delete()
-        self.test_request_more_information()
 
     def test_email_no_locale(self):
         self.addon.name = {
@@ -717,12 +653,13 @@ class TestReviewHelper(TestReviewHelperBase):
             self.helper.handler.approve_latest_version()
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.subject == (
             u'Mozilla Add-ons: Delicious Bookmarks 2.1.072 Approved')
-        assert '/en-US/firefox/addon/a3615' not in mail.outbox[0].body
-        assert '/es/firefox/addon/a3615' not in mail.outbox[0].body
-        assert '/addon/a3615' in mail.outbox[0].body
-        assert 'Your add-on, Delicious Bookmarks ' in mail.outbox[0].body
+        assert '/en-US/firefox/addon/a3615' not in message.body
+        assert '/es/firefox/addon/a3615' not in message.body
+        assert '/addon/a3615' in message.body
+        assert 'Your add-on, Delicious Bookmarks ' in message.body
 
     def test_email_no_name(self):
         self.addon.name.delete()
@@ -731,10 +668,11 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.approve_latest_version()
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.subject == (
             u'Mozilla Add-ons: None 2.1.072 Approved')
-        assert '/addon/a3615' in mail.outbox[0].body
-        assert 'Your add-on, None ' in mail.outbox[0].body
+        assert '/addon/a3615' in message.body
+        assert 'Your add-on, None ' in message.body
 
     def test_nomination_to_public_no_files(self):
         self.setup_data(amo.STATUS_NOMINATED)
@@ -773,7 +711,8 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == '%s Approved' % self.preamble
+        message = mail.outbox[0]
+        assert message.subject == '%s Approved' % self.preamble
 
         # AddonApprovalsCounter counter is now at 1 for this addon since there
         # was a human review.
@@ -835,9 +774,10 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.subject == (
             '%s Approved' % self.preamble)
-        assert 'has been approved' in mail.outbox[0].body
+        assert 'has been approved' in message.body
 
         # AddonApprovalsCounter counter is now at 1 for this addon.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
@@ -863,9 +803,10 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.subject == (
             '%s Approved' % self.preamble)
-        assert 'has been approved' in mail.outbox[0].body
+        assert 'has been approved' in message.body
 
         # AddonApprovalsCounter counter is now at 1 for this addon.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
@@ -893,9 +834,10 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.subject == (
             '%s Approved' % self.preamble)
-        assert 'has been approved' in mail.outbox[0].body
+        assert 'has been approved' in message.body
 
         # AddonApprovalsCounter counter is now at 0 for this addon since there
         # was an automatic approval.
@@ -945,9 +887,10 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.subject == (
             '%s Updated' % self.preamble)
-        assert 'has been updated' in mail.outbox[0].body
+        assert 'has been updated' in message.body
 
         # AddonApprovalsCounter counter is now at 2 for this addon since there
         # was another human review. The last human review date should have been
@@ -1046,9 +989,10 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.subject == (
             "%s didn't pass review" % self.preamble)
-        assert 'reviewed and did not meet the criteria' in mail.outbox[0].body
+        assert 'reviewed and did not meet the criteria' in message.body
 
         # AddonApprovalsCounter counter is still at 1 for this addon.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
@@ -1356,11 +1300,12 @@ class TestReviewHelper(TestReviewHelperBase):
             addon=self.addon).exists()
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.subject == (
             '%s signed and ready to download' % self.preamble)
         assert ('%s is now signed and ready for you to download' %
-                self.version.version in mail.outbox[0].body)
-        assert 'You received this email because' not in mail.outbox[0].body
+                self.version.version in message.body)
+        assert 'You received this email because' not in message.body
 
         sign_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file_path)
@@ -1398,9 +1343,10 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_DISABLED)
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.subject == (
             '%s didn\'t pass review' % self.preamble)
-        assert 'did not meet the criteria' in mail.outbox[0].body
+        assert 'did not meet the criteria' in message.body
 
         # AddonApprovalsCounter was not touched since we didn't approve.
         assert not AddonApprovalsCounter.objects.filter(
@@ -1416,7 +1362,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.save()
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.reject_latest_version()
-        assert u'TaobaoShopping淘宝网导航按钮' in mail.outbox[0].subject
+        message = mail.outbox[0]
+        assert u'TaobaoShopping淘宝网导航按钮' in message.subject
 
     def test_nomination_to_super_review(self):
         self.setup_data(amo.STATUS_NOMINATED)
@@ -1466,8 +1413,8 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_operating_system_present(self):
         self.setup_data(amo.STATUS_APPROVED)
         self.helper.handler.reject_latest_version()
-
-        assert 'Tested on osx with Firefox' in mail.outbox[0].body
+        message = mail.outbox[0]
+        assert 'Tested on osx with Firefox' in message.body
 
     def test_operating_system_not_present(self):
         self.setup_data(amo.STATUS_APPROVED)
@@ -1475,8 +1422,8 @@ class TestReviewHelper(TestReviewHelperBase):
         data['operating_systems'] = ''
         self.helper.set_data(data)
         self.helper.handler.reject_latest_version()
-
-        assert 'Tested with Firefox' in mail.outbox[0].body
+        message = mail.outbox[0]
+        assert 'Tested with Firefox' in message.body
 
     def test_application_not_present(self):
         self.setup_data(amo.STATUS_APPROVED)
@@ -1484,8 +1431,8 @@ class TestReviewHelper(TestReviewHelperBase):
         data['applications'] = ''
         self.helper.set_data(data)
         self.helper.handler.reject_latest_version()
-
-        assert 'Tested on osx' in mail.outbox[0].body
+        message = mail.outbox[0]
+        assert 'Tested on osx' in message.body
 
     def test_both_not_present(self):
         self.setup_data(amo.STATUS_APPROVED)
@@ -1494,8 +1441,8 @@ class TestReviewHelper(TestReviewHelperBase):
         data['operating_systems'] = ''
         self.helper.set_data(data)
         self.helper.handler.reject_latest_version()
-
-        assert 'Tested' not in mail.outbox[0].body
+        message = mail.outbox[0]
+        assert 'Tested' not in message.body
 
     def test_pending_to_super_review(self):
         for status in (amo.STATUS_DISABLED, amo.STATUS_NULL):
@@ -1565,14 +1512,15 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_DISABLED
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert message.subject == (
             u'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
             u'addons.mozilla.org')
         assert ('your add-on Delicious Bookmarks has been disabled'
-                in mail.outbox[0].body)
+                in message.body)
         log_token = ActivityLogToken.objects.get()
-        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+        assert log_token.uuid.hex in message.reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
@@ -1583,6 +1531,73 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+
+    def test_reject_multiple_versions_with_delay(self):
+        old_version = self.version
+        self.version = version_factory(addon=self.addon, version='3.0')
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=101)
+        # An extra file should not change anything.
+        file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+
+        in_the_future = datetime.now() + timedelta(days=14)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewFiles)
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.addon.current_version.is_public()
+
+        data = self.get_data().copy()
+        data.update({
+            'versions': self.addon.versions.all(),
+            'delayed_rejection': True,
+            'delayed_rejection_days': 14,
+        })
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        # File/addon status didn't change.
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.addon.current_version == self.version
+        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert self.file.status == amo.STATUS_APPROVED
+
+        # The versions are now pending rejection.
+        for version in self.addon.versions.all():
+            assert version.pending_rejection
+            self.assertCloseToNow(version.pending_rejection, now=in_the_future)
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert message.subject == (
+            u'Mozilla Add-ons: Delicious Bookmarks will be disabled on '
+            u'addons.mozilla.org')
+        assert ('your add-on Delicious Bookmarks will be disabled'
+                in message.body)
+        log_token = ActivityLogToken.objects.get()
+        assert log_token.uuid.hex in message.reply_to[0]
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT_DELAYED.id) == 0
+        assert self.check_log_count(amo.LOG.REJECT_VERSION_DELAYED.id) == 2
+
+        logs = ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.REJECT_VERSION_DELAYED.id)
+        assert logs[0].created == logs[1].created
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+
+        # The reviewer should have been automatically subscribed to new listed
+        # versions.
+        assert ReviewerSubscription.objects.filter(
+            addon=self.addon, user=self.request.user).exists()
 
     def test_reject_multiple_versions_except_latest(self):
         old_version = self.version
@@ -1615,14 +1630,15 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_DISABLED
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert message.subject == (
             u'Mozilla Add-ons: Versions disabled for Delicious Bookmarks')
         assert ('Version(s) affected and disabled:\n3.1, 2.1.072'
-                in mail.outbox[0].body)
+                in message.body)
         log_token = ActivityLogToken.objects.filter(
             version=self.version).get()
-        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+        assert log_token.uuid.hex in message.reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
@@ -1678,17 +1694,92 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_DISABLED
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert message.subject == (
             u'Mozilla Add-ons: Delicious Bookmarks has been disabled on '
             u'addons.mozilla.org')
         assert ('your add-on Delicious Bookmarks has been disabled'
-                in mail.outbox[0].body)
+                in message.body)
         log_token = ActivityLogToken.objects.get()
-        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+        assert log_token.uuid.hex in message.reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 2
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_CONTENT_REVIEW)
+
+    def test_reject_multiple_versions_content_review_with_delay(self):
+        self.grant_permission(self.request.user, 'Addons:ContentReview')
+        old_version = self.version
+        self.version = version_factory(addon=self.addon, version='3.0')
+        self.setup_data(
+            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
+            content_review=True)
+
+        # Pre-subscribe the user to new listed versions of this add-on, it
+        # shouldn't matter.
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.request.user)
+
+        in_the_future = datetime.now() + timedelta(days=14)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewFiles)
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.addon.current_version.is_public()
+
+        data = self.get_data().copy()
+        data.update({
+            'versions': self.addon.versions.all(),
+            'delayed_rejection': True,
+            'delayed_rejection_days': 14,
+        })
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        # File/addon status didn't change.
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.addon.current_version == self.version
+        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert self.file.status == amo.STATUS_APPROVED
+
+        # The versions are now pending rejection.
+        for version in self.addon.versions.all():
+            assert version.pending_rejection
+            self.assertCloseToNow(version.pending_rejection, now=in_the_future)
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert message.subject == (
+            u'Mozilla Add-ons: Delicious Bookmarks will be disabled on '
+            u'addons.mozilla.org')
+        assert ('your add-on Delicious Bookmarks will be disabled'
+                in message.body)
+        log_token = ActivityLogToken.objects.get()
+        assert log_token.uuid.hex in message.reply_to[0]
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT_DELAYED.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_VERSION_DELAYED.id) == 0
+
+        logs = ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.REJECT_CONTENT_DELAYED.id)
+        assert logs[0].created == logs[1].created
+
+        # Check points awarded.
+        self._check_score(amo.REVIEWED_CONTENT_REVIEW)
+
+        # The reviewer was already subscribed to new listed versions for this
+        # addon, nothing has changed.
+        assert ReviewerSubscription.objects.filter(
+            addon=self.addon, user=self.request.user).exists()
 
     def test_reject_multiple_versions_unlisted(self):
         old_version = self.version
@@ -1722,15 +1813,16 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_DISABLED
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
-        assert mail.outbox[0].subject == (
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert message.subject == (
             'Mozilla Add-ons: Versions disabled for Delicious Bookmarks')
         assert (
             'versions of your add-on Delicious Bookmarks have been disabled'
-            in mail.outbox[0].body
+            in message.body
         )
         log_token = ActivityLogToken.objects.get()
-        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+        assert log_token.uuid.hex in message.reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
@@ -1980,4 +2072,5 @@ def test_send_email_autoescape():
               from_email='nobody@mozilla.org',
               use_deny_list=False)
     assert len(mail.outbox) == 1
-    assert mail.outbox[0].body == s
+    message = mail.outbox[0]
+    assert message.body == s
