@@ -85,12 +85,12 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
         statsd.incr('devhub.{}.success'.format(scanner_name))
         log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name,
                  upload_pk)
-    except Exception:
+    except Exception as exc:
         statsd.incr('devhub.{}.failure'.format(scanner_name))
-        # We log the exception but we do not raise to avoid perturbing the
-        # submission flow.
         log.exception('Error in scanner "%s" task for FileUpload %s.',
                       scanner_name, upload_pk)
+        if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
+            raise exc
 
     return results
 
@@ -182,6 +182,10 @@ def run_yara(results, upload_pk):
        results as first argument.
     - `upload_pk` is the FileUpload ID.
     """
+    return _run_yara(results, upload_pk)
+
+
+def _run_yara(results, upload_pk):
     log.info('Starting yara task for FileUpload %s.', upload_pk)
 
     if not results['metadata']['is_webextension']:
@@ -204,12 +208,12 @@ def run_yara(results, upload_pk):
 
         statsd.incr('devhub.yara.success')
         log.info('Ending scanner "yara" task for FileUpload %s.', upload_pk)
-    except Exception:
+    except Exception as exc:
         statsd.incr('devhub.yara.failure')
-        # We log the exception but we do not raise to avoid perturbing the
-        # submission flow.
         log.exception('Error in scanner "yara" task for FileUpload %s.',
                       upload_pk, exc_info=True)
+        if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
+            raise exc
 
     return results
 
@@ -395,17 +399,16 @@ def call_mad_api(all_results, upload_pk):
     - `all_results` are the results returned by all the tasks in the chord.
     - `upload_pk` is the FileUpload ID.
     """
-    # This task is the callback of a Celery chord and receives all the results
-    # returned by all the tasks in this chord. The first task registered in the
-    # chord is `forward_linter_results()`:
-    results = all_results[0]
+    # In case of a validation error (linter or scanner), we do want to skip
+    # this task. This is similar to the behavior of all other tasks decorated
+    # with `@validation_task` but, because this task is the callback of a
+    # Celery chord, we cannot use this decorator.
+    for results in all_results:
+        if results['errors'] > 0:
+            return results
 
-    # In case of a validation (linter) error, we do want to skip this task.
-    # This is similar to the behavior of all other tasks decorated with
-    # `@validation_task` but, because this task is the callback of a Celery
-    # chord, we cannot use this decorator.
-    if results['errors'] > 0:
-        return results
+    # The first task registered in the chord is `forward_linter_results()`:
+    results = all_results[0]
 
     if not waffle.switch_is_active('enable-mad'):
         log.info('Skipping scanner "mad" task, switch is off')
