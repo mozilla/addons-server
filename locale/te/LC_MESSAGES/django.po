@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-17 11:21+0000\n"
+"PO-Revision-Date: 2020-07-17 11:23+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2580,7 +2580,7 @@ msgid "Release Notes:"
 msgstr "విడుదల విశేషాలు:"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "ఈ వెర్షనులో కొత్తవి ఏమిటి, ఏవి మారాయో మీ వాడుకరులకు తెలియజేయండి."
 
 msgid "These notes will appear on the detail page."
 msgstr "ఈ గమనికలు వివరాల పేజీలో కనిపిస్తాయి."
@@ -5767,9 +5767,8 @@ msgstr "కాలంచెల్లిన సమాచార అభ్యర్�
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "కాలంచెల్లిన సమాచార అభ్యర్థనలు – Firefox కొరకు పొడగింతలు"
+msgstr "తిరస్కరణకు వేచివున్నవి – Firefox కొరకు పొడగింతలు"
 
 msgid "Advanced Search"
 msgstr "అధునాతన శోధన"
