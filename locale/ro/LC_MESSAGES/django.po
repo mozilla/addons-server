@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-17 05:52+0000\n"
+"PO-Revision-Date: 2020-07-17 06:53+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -476,7 +476,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Acest supliment deja face parte din colecție"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Starea aprobării"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -484,7 +484,7 @@ msgstr "GUID %(guid)s este o propunere în așteptare"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Blocajul pentru %(guid)s este numai cu posibilitate de citire - trebuie editat prin intermediul colecției moștenite de liste de blocare."
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -924,7 +924,7 @@ msgid "Block {1} action for {0} signed off."
 msgstr "Blochează {1} acțiune pentru {0} aprobate."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Validarea acțiunii de blocare"
 
 msgid "User {user} session(s) reset."
 msgstr "Resetare sesiune(i) {user}."
@@ -1733,10 +1733,10 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "Ai realizat prea multe încărcări în ultimul timp. Te rugăm să încerci din nou mai târziu."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "Versiunea {version} corespunde cu {block_link} pentru acest supliment. Contactează {amo_admins} pentru informații suplimentare."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "o intrare în lista de blocaje"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versiunea {version} a mai fost încărcată și apoi ștearsă."
@@ -4978,11 +4978,11 @@ msgstr "Urmărești fluxuri media cu prietenii și familia oriunde."
 
 #. editorial content for the discovery pane.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Sari peste porțiunile sponsorizate ale videoclipurilor YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Ascultă conținutul paginilor web. Suport pentru peste 40 de limbi."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5520,7 +5520,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Întârziere din cauză că este prima versiune listată"
 
 msgid "Version string and guid match a blocklist Block"
-msgstr ""
+msgstr "Șirul și GUID-ul versiunii corespund unui blocaj din lista de blocaje"
 
 msgid "Risk breakdown not available."
 msgstr "Analiza riscurilor nu este disponibilă."
@@ -5673,9 +5673,9 @@ msgstr "Scanere de securitate"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Marcat de scanere ({0})"
+msgstr[1] "Marcate de scanere ({0})"
+msgstr[2] "Marcate de scanere ({0})"
 
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
@@ -6097,7 +6097,7 @@ msgid "Clear information request"
 msgstr "Șterge cererea de informații"
 
 msgid "Clear pending rejections"
-msgstr ""
+msgstr "Șterge respingerile în așteptare"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Șterge marcajul de recenzie a codului de către un administrator"
@@ -6166,7 +6166,7 @@ msgid "Contents"
 msgstr "Conținuturi"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "Compară această versiune cu ultima versiune recenzată"
 
 msgid "Compare"
 msgstr "Compară"
@@ -6441,7 +6441,7 @@ msgid "by Platform"
 msgstr "după platformă"
 
 msgid "by Country"
-msgstr ""
+msgstr "după țară"
 
 msgid "Custom Date Range"
 msgstr "Interval de perioadă personalizat"
@@ -6924,6 +6924,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Salut,\n"
+"\n"
+"Primești acest mesaj deoarece contul tău de utilizator %(name)s de pe %(site_url)s a fost șters.\n"
+"\n"
+"Dacă nu este opțiunea ta sau crezi că o persoană neautorizată ți-a accesat contul, trimite un răspuns la acest mesaj. În caz contrar, nu este nevoie să faci nimic.\n"
+"\n"
+"Numai bine,\n"
+"\n"
+"Echipa de suplimente Firefox"
 
 msgctxt "user_list_others"
 msgid "others"
