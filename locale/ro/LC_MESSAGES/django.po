@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-17 05:21+0000\n"
+"PO-Revision-Date: 2020-07-17 05:51+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -530,9 +530,8 @@ msgstr "%(count)s GUID-urile de suplimente sunt deja blocate de la %(v_min)s pâ
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUID-uri de suplimente negăsite"
 
-#, fuzzy
 msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "Următoarele blocaje au fost importate dintr-un blocaj kinto moștenit pe bază de regex."
+msgstr "Următorul/Următoarele blocaj(e) a(u) fost importat(e) dintr-un blocaj moștenit pe bază de regex."
 
 msgid "Save"
 msgstr "Salvează"
@@ -5580,9 +5579,8 @@ msgstr "Greutate"
 msgid "Information Request Deadline"
 msgstr "Termen-limită pentru solicitări de informații"
 
-#, fuzzy
 msgid "Pending Rejection Deadline"
-msgstr "Termen-limită pentru solicitări de informații"
+msgstr "În termenul-limită pentru respingere"
 
 msgid "Last Updated"
 msgstr "Ultima actualizare"
@@ -5593,13 +5591,11 @@ msgstr "Versiuni listate care necesită o recenzie de către un om ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Versiuni nelistate care necesită o recenzie de către un om ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Versiunile listate"
+msgstr "Versiunile listate ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Versiunile listate"
+msgstr "Versiunile nelistate ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Această acțiune va aproba, semna și publica această versiune. Comentariile vor fi trimise dezvoltatorului."
@@ -5624,9 +5620,8 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "Respinge multiple versiuni"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Această acțiune va respinge versiunile publice selectate. Comentariile vor fi trimise dezvoltatorului."
+msgstr "Această acțiune va respinge versiunile selectate. Comentariile vor fi trimise dezvoltatorului."
 
 msgid "Block Multiple Versions"
 msgstr "Blochează mai multe versiuni"
@@ -5673,9 +5668,8 @@ msgstr "Jurnal de recenzii"
 msgid "Add-on Review Guide"
 msgstr "Ghid de recenzare pentru suplimente"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Teste de securitate"
+msgstr "Scanere de securitate"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
@@ -5683,12 +5677,11 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Marcat pentru recenzare de către o persoană"
-msgstr[1] "Marcat pentru recenzare de către o persoană"
-msgstr[2] "Marcat pentru recenzare de către o persoană"
+msgstr[0] "Marcat pentru recenzare de către o persoană ({0})"
+msgstr[1] "Marcate pentru recenzare de către o persoană ({0})"
+msgstr[2] "Marcate pentru recenzare de către o persoană ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Suplimente aprobate automat"
@@ -5753,9 +5746,8 @@ msgstr "Actualizează mesajul zilei"
 msgid "Expired Information Requests ({0})"
 msgstr "Solicitări de informații expirate ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "O altă recenzie în așteptare ({0})"
+msgstr "Suplimente în așteptarea respingerii ({0})"
 
 msgid "An unknown error occurred"
 msgstr "A apărut o eroare necunoscută"
@@ -5794,9 +5786,8 @@ msgstr "ID supliment"
 msgid "Internal AMO ID"
 msgstr "ID AMO intern"
 
-#, fuzzy
 msgid "Support Website"
-msgstr "Site de asistență:"
+msgstr "Site de asistență"
 
 msgid "Visibility"
 msgstr "Vizibilitate"
@@ -5975,9 +5966,8 @@ msgstr "Cereri expirate de informații - Suplimente pentru Firefox"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr "Suplimente nelistate – Suplimente pentru Firefox"
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Moderarea recenziilor – Suplimente pentru Firefox"
+msgstr "În așteptarea respingerii – Suplimente pentru Firefox"
 
 msgid "Advanced Search"
 msgstr "Căutare avansată"
@@ -6040,9 +6030,8 @@ msgstr "Este o extensie recomandată."
 msgid "You don't have permission to review it."
 msgstr "Nu ai permisiune de recenzare."
 
-#, fuzzy
 msgid "Please select one or more versions in the list below."
-msgstr "Te rugăm să selectezi una sau mai multe versiuni din lista de mai sus."
+msgstr "Te rugăm să selectezi una sau mai multe versiuni din lista de mai jos."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Încă mai poți trimite formularul, dar trimite-l numai dacă sigur nu va crea conflicte."
@@ -6170,9 +6159,8 @@ msgstr "Respinge acest anunț"
 msgid "Files in this version:"
 msgstr "Fișiere în această versiune:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Fișiere în această versiune:"
+msgstr "Derulează toate fișierele din această versiune"
 
 msgid "Contents"
 msgstr "Conținuturi"
