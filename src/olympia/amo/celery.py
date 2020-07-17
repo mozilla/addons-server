@@ -160,10 +160,16 @@ def create_chunked_tasks_signatures(
     if task_kwargs is None:
         task_kwargs = {}
 
-    return group([
+    tasks = [
         task.si(chunk, *task_args, **task_kwargs)
         for chunk in chunked(items, chunk_size)
-    ])
+    ]
+    log.info(
+        'Created a group of %s tasks for task "%s".',
+        len(tasks),
+        str(task.name)
+    )
+    return group(tasks)
 
 
 def pause_all_tasks():
