@@ -180,9 +180,13 @@ def deliver_hotness(chunk_size=300):
     hotness = (a-b) / b if a > threshold and b > 1 else 0
     """
     frozen_guids = list(set(fa.addon.guid for fa in FrozenAddon.objects.all()))
+    log.info('Found %s frozen add-on GUIDs.', len(frozen_guids))
+
     averages = get_averages_by_addon_from_bigquery(
         today=date.today(), exclude=frozen_guids
     )
+    log.info('Found %s add-on GUIDs with averages in BigQuery.', len(averages))
+
     create_chunked_tasks_signatures(
         update_addon_hotness, averages.items(), chunk_size
     ).apply_async()
@@ -194,6 +198,8 @@ def deliver_hotness(chunk_size=300):
         .exclude(guid__in=averages.keys())
         .values_list('id', flat=True)
     )
+    log.info('Found %s add-on IDs to reset.', len(addon_ids))
+
     create_chunked_tasks_signatures(
         reset_addon_hotness, addon_ids, chunk_size
     ).apply_async()
