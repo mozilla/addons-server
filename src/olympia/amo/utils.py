@@ -641,17 +641,17 @@ def resize_image(source, destination, size=None, format='png'):
         original_size = im.size
         if size:
             im = processors.scale_and_crop(im, size)
-    if not format:
-        with storage.open(destination, 'wb') as fp:
-            im = im.convert('RGB')
-            im.save(fp, 'JPEG')
-    else:
+    if format == 'png':
         with storage.open(destination, 'wb') as fp:
             # Save the image to PNG in destination file path.
             # Don't keep the ICC profile as it can mess up pngcrush badly
             # (mozilla/addons/issues/697).
             im.save(fp, 'png', icc_profile=None)
         pngcrush_image(destination)
+    else:
+        with storage.open(destination, 'wb') as fp:
+            im = im.convert('RGB')
+            im.save(fp, 'JPEG', quality=80)
     return (im.size, original_size)
 
 
