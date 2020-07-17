@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-17 05:51+0000\n"
+"PO-Revision-Date: 2020-07-17 05:52+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -6187,9 +6187,8 @@ msgstr "Mai noi"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} (de) versiuni marcate de scanere pe alte pagini."
 
-#, fuzzy
 msgid "{num} versions pending rejection on other pages."
-msgstr "{num} (de) versiuni marcate de scanere pe alte pagini."
+msgstr "{num} (de) versiuni în așteptarea respingerii pe alte pagini."
 
 msgid "Recent Points"
 msgstr "Puncte recente"
@@ -6288,12 +6287,11 @@ msgstr[0] "Solicitare de informații expirată ({0})"
 msgstr[1] "Solicitări de informații expirate ({0})"
 msgstr[2] "Solicitări de informații expirate ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "O altă recenzie în așteptare ({0})"
-msgstr[1] "O altă recenzie în așteptare ({0})"
-msgstr[2] "O altă recenzie în așteptare ({0})"
+msgstr[0] "În așteptarea respingerii ({0})"
+msgstr[1] "În așteptarea respingerii ({0})"
+msgstr[2] "În așteptarea respingerii ({0})"
 
 msgid "presence of matched rules"
 msgstr "există reguli corelate"
@@ -6520,16 +6518,14 @@ msgstr "Se încarcă cele mai recente date&hellip;"
 msgid "No data available."
 msgstr "Nu există date disponibile."
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Acest tablou de bord este în prezent <b>privat</b>."
+msgstr "Acest tablou de bord este <b>privat</b>."
 
 msgid "Application usage by Date"
 msgstr "Utilizarea aplicației în funcție de dată"
 
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Limbile utilizatorilor în funcție de dată"
+msgstr "Țările utilizatorilor după dată"
 
 msgid "Downloaded by Date"
 msgstr "Descărcări în funcție de dată"
@@ -6816,7 +6812,6 @@ msgstr ""
 "Înainte de a începe, te rugăm să citești și să accepți Acordul de distribuție pentru suplimente Firefox, precum și Politicile și regulile noastre pentru recenzii. Acordul de distribuție pentru "
 "suplimente Firefox trimite și la Declarația noastră de confidențialitate, care explică modul în care îți gestionăm informațiile."
 
-#, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Te rugăm să citești și să accepți Acordul de distribuție Firefox, precum și Politicile și regulile noastre pentru recenzii intrând pe {url}"
 
