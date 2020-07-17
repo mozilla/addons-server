@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-15 19:21+0000\n"
+"PO-Revision-Date: 2020-07-17 11:13+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -25,7 +25,7 @@ msgid "Addons"
 msgstr "పొడగింతలు"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "కనీస నివేదికల సంఖ్య (guid ద్వారా సమూహించి)"
 
 msgid "creation date"
 msgstr "సృష్టించిన తేదీ"
@@ -51,7 +51,7 @@ msgid "The %d selected reports have been marked as suspicious."
 msgstr "ఎంచుకున్న%d నివేదికలు అనుమానాస్పదంగా గుర్తించబడ్డాయి."
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "ఎంచుకున్న దుర్వినియోగ నివేదికలను అనుమానాస్పదంగా గుర్తించు"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
@@ -208,7 +208,7 @@ msgid "Error verifying input, please try again."
 msgstr "ఇన్పుట్ను ధృవీకరించడంలో లోపం, దయచేసి మళ్లీ ప్రయత్నించండి."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "సరియైన IP4 లేదా IP6 నెట్‌వర్క్‌ను ఇవ్వండి."
 
 msgid "CIDR"
 msgstr "CIDR"
@@ -217,10 +217,10 @@ msgid "Some features are temporarily disabled while we perform website maintenan
 msgstr ""
 
 msgid "Must contain at least one printable character."
-msgstr ""
+msgstr "కనీసం ఒక ముద్రించదగిన అక్షరాన్ని కలిగి ఉండాలి."
 
 msgid "Ensure this field contains at least one letter or number character."
-msgstr ""
+msgstr "ఈ ఖాళీలో కనీసం ఒక అక్షరం లేదా అంకె ఉండేట్లు నిర్ధారించుకోండి."
 
 msgid "Not allowed"
 msgstr "అనుమతి లేదు"
@@ -712,7 +712,7 @@ msgid "{user} deleted {rating} for {addon}."
 msgstr "{addon} కోసం {user} {rating}ను తొలగించారు."
 
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "{version} కోసం అనువర్తనం గరిష్ట వెర్షన్ నవీకరించబడింది."
 
 msgid "Authors emailed about compatibility of {version}."
 msgstr "{version} యొక్క అనుకూలత గురించి రచయితలు ఇమెయిల్ చేశారు."
@@ -1794,10 +1794,10 @@ msgid "An author has been added to your add-on"
 msgstr "మీ పొడిగింతకు ఒక రచయిత జోడించబడ్డారు"
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "{addon_name} కోసం రచయిత ఆహ్వానం"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "నిర్ధారణ సందేశం {email} కు పంపబడింది"
 
 msgid "An author role has been changed on your add-on"
 msgstr "మీ పొడగింతలో ఒక రచయిత పాత్ర మార్చబడింది"
