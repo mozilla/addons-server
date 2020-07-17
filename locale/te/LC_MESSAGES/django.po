@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-17 11:13+0000\n"
+"PO-Revision-Date: 2020-07-17 11:21+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1821,13 +1821,13 @@ msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "బొమ్మ ఖచ్చితంగా {0} పిక్సెళ్ళ వెడల్పు, {1} పిక్సెళ్ళ పొడవు ఉండాలి."
 
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr ""
+msgstr "బొమ్మ కొలతలు తప్పనిసరిగా 4:3 నిష్పత్తిలో ఉండాలి."
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "ప్రతీకం ఖచ్చితంగా {0} పిక్సెళ్ళ వెడల్పు, ఎత్తు ఉండాలి."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "ప్రతీకం చదరంగా (ఒకే వెడల్పు, ఎత్తు) ఉండాలి."
 
 msgid "There was an error uploading your preview."
 msgstr "మీ మునుజూపును ఎక్కించడంలో పొరపాటు జరిగింది."
@@ -1859,7 +1859,7 @@ msgid "The color of the header area background, displayed in the part of the hea
 msgstr ""
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "శీర్షిక ప్రాంతంలో పాఠ్యం, ప్రతీకాలు"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr ""
@@ -2389,7 +2389,7 @@ msgid "The licensor permits others to distribute derivativeworks only under the 
 msgstr ""
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "మీ పొడగింత కింది లైసెన్సు ప్రకారం విడుదల అవుతుంది:"
 
 msgid "Select a different license."
 msgstr "వేరే లైసెన్స్ని ఎంచుకోండి."
@@ -2419,10 +2419,10 @@ msgid "Compatibility Tests"
 msgstr "అనుకూలత పరీక్షలు"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "స్వయంచాలక సంతకం కోసం అవసరంలేని సందేశాలను దాచు"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "మునుపటి వెర్షనులో ఉంది, విస్మరించిన సందేశాలను దాచు"
 
 msgid "Top"
 msgstr "పైన"
