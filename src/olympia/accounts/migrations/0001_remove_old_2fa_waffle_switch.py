@@ -13,6 +13,10 @@ def remove_waffle_switch(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    dependencies = []
+    dependencies = [
+        # This is needed otherwise `apps.get_model('waffle', 'Switch')` will
+        # raise a Django app LookupError.
+        ('waffle', '0001_initial'),
+    ]
 
     operations = [migrations.RunPython(remove_waffle_switch)]
