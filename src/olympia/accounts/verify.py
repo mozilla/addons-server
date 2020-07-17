@@ -12,21 +12,30 @@ IdentificationError = LookupError
 
 
 def fxa_identify(code, config=None):
-    """Get an FxA profile for an access token. If identification fails an
-    IdentificationError is raised."""
+    """Given an FxA access code, return a tuple with the FxA profile dict and a
+    OpenID token (which can be None if somehow it wasn't present in FxA
+    response). If identification fails an IdentificationError is raised.
+
+    The OpenID token returned is short-lived, meant to be used with
+    `prompt=none` if we need to redirect the user back to FxA immediately and
+    don't want them to have to re-authenticate there again."""
     try:
         with statsd.timer('accounts.fxa.identify.all'):
-            token = get_fxa_token(code, config)['access_token']
-            profile = get_fxa_profile(token, config)
+            data = get_fxa_token(code, config)
+            profile = get_fxa_profile(data['access_token'], config)
     except Exception:
         statsd.incr('accounts.fxa.identify.all.fail')
         raise
     else:
         statsd.incr('accounts.fxa.identify.all.success')
-        return profile
+        return profile, data.get('id_token')
 
 
 def get_fxa_token(code, config):
+    """Given an FxA access code, return dict from FxA /token endpoint
+    (https://git.io/JJZww). Should at least contain `access_token` and
+    `id_token` keys.
+    """
     log.info('Getting token [{code}]'.format(code=code))
     with statsd.timer('accounts.fxa.identify.token'):
         response = requests.post(settings.FXA_OAUTH_HOST + '/token', data={
@@ -52,6 +61,8 @@ def get_fxa_token(code, config):
 
 
 def get_fxa_profile(token, config):
+    """Given a FxA access token, return profile information for the
+    corresponding user."""
     with statsd.timer('accounts.fxa.identify.profile'):
         response = requests.get(
             settings.FXA_PROFILE_HOST + '/profile', headers={

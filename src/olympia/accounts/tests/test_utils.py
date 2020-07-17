@@ -39,7 +39,7 @@ def test_fxa_config_anonymous():
         'oauthHost': 'https://oauth-stable.dev.lcip.org/v1',
         'contentHost': 'https://stable.dev.lcip.org',
         'profileHost': 'https://stable.dev.lcip.org/profile/v1',
-        'scope': 'profile',
+        'scope': 'profile openid',
     }
 
 
@@ -55,14 +55,14 @@ def test_fxa_config_logged_in():
         'oauthHost': 'https://oauth-stable.dev.lcip.org/v1',
         'contentHost': 'https://stable.dev.lcip.org',
         'profileHost': 'https://stable.dev.lcip.org/profile/v1',
-        'scope': 'profile',
+        'scope': 'profile openid',
     }
 
 
 @override_settings(FXA_CONFIG=FXA_CONFIG)
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_default_fxa_login_url_with_state():
-    path = u'/en-US/addons/abp/?source=ddg'
+    path = '/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
     request.session = {'fxa_state': 'myfxastate'}
     raw_url = utils.default_fxa_login_url(request)
@@ -75,7 +75,7 @@ def test_default_fxa_login_url_with_state():
     assert query == {
         'action': ['signin'],
         'client_id': ['foo'],
-        'scope': ['profile'],
+        'scope': ['profile openid'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],
     }
@@ -97,7 +97,7 @@ def test_default_fxa_register_url_with_state():
     assert query == {
         'action': ['signup'],
         'client_id': ['foo'],
-        'scope': ['profile'],
+        'scope': ['profile openid'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],
     }
@@ -124,7 +124,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
     assert query == {
         'action': ['signin'],
         'client_id': ['foo'],
-        'scope': ['profile'],
+        'scope': ['profile openid'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],
     }
@@ -133,7 +133,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
 @override_settings(FXA_CONFIG=FXA_CONFIG)
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_fxa_login_url_requiring_two_factor_auth():
-    path = u'/en-US/addons/abp/?source=ddg'
+    path = '/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
     request.session = {'fxa_state': 'myfxastate'}
 
@@ -143,7 +143,7 @@ def test_fxa_login_url_requiring_two_factor_auth():
         force_two_factor=True)
 
     url = urlparse(raw_url)
-    base = u'{scheme}://{netloc}{path}'.format(
+    base = '{scheme}://{netloc}{path}'.format(
         scheme=url.scheme, netloc=url.netloc, path=url.path)
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
@@ -152,14 +152,44 @@ def test_fxa_login_url_requiring_two_factor_auth():
         'acr_values': ['AAL2'],
         'action': ['signin'],
         'client_id': ['foo'],
-        'scope': ['profile'],
+        'scope': ['profile openid'],
+        'state': ['myfxastate:{next_path}'.format(
+            next_path=force_text(next_path))],
+    }
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
+def test_fxa_login_url_requiring_two_factor_auth_passing_token():
+    path = '/en-US/addons/abp/?source=ddg'
+    request = RequestFactory().get(path)
+    request.session = {'fxa_state': 'myfxastate'}
+
+    raw_url = utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'], next_path=path, action='signin',
+        force_two_factor=True, id_token='YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=')
+
+    url = urlparse(raw_url)
+    base = '{scheme}://{netloc}{path}'.format(
+        scheme=url.scheme, netloc=url.netloc, path=url.path)
+    assert base == 'https://accounts.firefox.com/oauth/authorization'
+    query = parse_qs(url.query)
+    next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
+    assert query == {
+        'acr_values': ['AAL2'],
+        'action': ['signin'],
+        'client_id': ['foo'],
+        'id_token_hint': ['YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo='],
+        'prompt': ['none'],
+        'scope': ['profile openid'],
         'state': ['myfxastate:{next_path}'.format(
             next_path=force_text(next_path))],
     }
 
 
 def test_unicode_next_path():
-    path = u'/en-US/føø/bãr'
+    path = '/en-US/føø/bãr'
     request = RequestFactory().get(path)
     request.session = {}
     url = utils.default_fxa_login_url(request)
