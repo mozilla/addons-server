@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-18 21:57+0000\n"
+"PO-Revision-Date: 2020-07-18 22:22+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2473,9 +2473,8 @@ msgstr "Υποστηρίζονται PNG και JPG, προτείνεται PNG.
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Το ελάχιστο μέγεθος είναι 1000x750 και απαιτείται αναλογία 4:3."
 
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Τα στιγμιότυπα της σελίδας προϊόντος σας αυξάνουν σημαντικά τις πιθανότητες εγκατάστασης και εμφάνισης στην αρχική σελίδα."
+msgstr "Προσθέτοντας στιγμιότυπα οθόνης στη σελίδα του προϊόντος σας, αυξάνετε σημαντικά τις πιθανότητες εγκατάστασής του."
 
 msgid "Continue"
 msgstr "Συνέχεια"
