@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 16:12+0000\n"
+"PO-Revision-Date: 2020-07-18 06:38+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3890,7 +3890,7 @@ msgstr "Issin ineḍfaṛen-ik {start_sub_heading}s {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr "Af-d anwa i yeṭṭafaṛen armud-ik deg web daɣen issin amek zemren ad suffɣen talɣut-ik."
+msgstr "Af-d anwa i yeṭṭafaren armud-ik·im deg web daɣen issin amek zemren ad suffɣen talɣut-ik·im."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
