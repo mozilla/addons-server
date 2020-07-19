@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-19 06:22+0000\n"
+"PO-Revision-Date: 2020-07-19 06:23+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2668,7 +2668,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr ""
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "మీ సమర్పణకు మూల కోడ్ అవసరం."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
@@ -3085,7 +3085,7 @@ msgid "Promote"
 msgstr "దోహదం చేయు"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "\"పొడగింతను పొందండి\" బొత్తం"
 
 msgid "Recommended Extensions program"
 msgstr ""
