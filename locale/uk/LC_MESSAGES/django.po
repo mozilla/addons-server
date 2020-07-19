@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-13 22:11+0000\n"
+"PO-Revision-Date: 2020-07-19 22:49+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4808,11 +4808,11 @@ msgstr "Легко зберігайте зображення — просто з
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Вимірюйте веб-сторінки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Вимірюйте вебсторінки {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Вимірюйте веб-сторінки. Додайте цифрову лінійку на будь-яких веб-сторінках, щоб перевіряти висоту, ширину та вирівнювання елементів сторінки."
+msgstr "Вимірюйте вебсторінки. Додайте цифрову лінійку на будь-яких вебсторінках, щоб перевіряти висоту, ширину та вирівнювання елементів сторінки."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
@@ -4824,7 +4824,7 @@ msgstr "Приємні для очей сторінки {start_sub_heading}за 
 
 #. editorial content for the discovery pane.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr "Налаштуйте відтінки світла і тіні, щоб надати веб-сторінкам приємнішого вигляду."
+msgstr "Налаштуйте відтінки світла і тіні, щоб надати вебсторінкам приємнішого вигляду."
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4840,7 +4840,7 @@ msgstr "Оживіть мертві сторінки {start_sub_heading}за д�
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Знаходьте заархівовані, мертві, або іншим чином зниклі веб-сторінки."
+msgstr "Знаходьте заархівовані, мертві, або іншим чином зниклі вебсторінки."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4856,7 +4856,7 @@ msgstr "Зберігайте нотатки {start_sub_heading}за допомо
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr "Зберігайте особисті примітки будь-де в Інтернеті. Просто скористайтеся бічною панеллю для прикріплення приміток для окремих веб-сторінок."
+msgstr "Зберігайте особисті примітки будь-де в Інтернеті. Просто скористайтеся бічною панеллю для прикріплення приміток для окремих вебсторінок."
 
 #. editorial content for the discovery pane.
 msgid "Voice-activated search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4880,7 +4880,7 @@ msgstr "Зробіть Інтернет темним {start_sub_heading}за д�
 
 #. editorial content for the discovery pane.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr "Увімкніть темну тему в Інтернеті, чи оберіть власну колірну схему, щоб надати веб-вмісту особливого стилю."
+msgstr "Увімкніть темну тему в Інтернеті, чи оберіть власну колірну схему, щоб надати вебвмісту особливого стилю."
 
 #. editorial content for the discovery pane.
 msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_heading}"
