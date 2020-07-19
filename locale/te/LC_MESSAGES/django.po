@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-17 11:23+0000\n"
+"PO-Revision-Date: 2020-07-19 06:22+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1877,13 +1877,13 @@ msgid "The color of the text and icons in the toolbar and the active tab. Manife
 msgstr ""
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "పనిముట్లపట్టీ ప్రాంతపు వెనుతలం"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "పనిముట్లపట్టీ ప్రాంతపు పాఠ్యం"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
@@ -2100,7 +2100,7 @@ msgid "Preview"
 msgstr "ముందస్తు వీక్షణం"
 
 msgid "Preview of listed version"
-msgstr ""
+msgstr "చూపిస్తున్న వెర్షను మునుజూపు"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -2127,7 +2127,7 @@ msgid "About author roles"
 msgstr "రచయిత పాత్రల గురించి"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "నిర్ధారణకై వేచివున్న రచయితలు"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
