@@ -593,7 +593,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
-        assert 'transparent.png' in response.content.decode('utf-8')
+        assert 'transparent.jpg' in response.content.decode('utf-8')
 
     def test_can_edit_with_discovery_edit_permission(self):
         uploaded_photo = get_uploaded_file('transparent.png')
@@ -608,7 +608,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
-        assert u'transparent.png' in content
+        assert u'transparent.jpg' in content
 
         updated_photo = get_uploaded_file('preview_4x3.jpg')
         response = self.client.post(
@@ -618,17 +618,17 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 200
         item.reload()
         assert PrimaryHeroImage.objects.count() == 1
-        assert item.custom_image == 'hero-featured-image/preview_4x3.png'
+        assert item.custom_image == 'hero-featured-image/preview_4x3.jpg'
         assert os.path.exists(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.jpg'))
         assert os.path.exists(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'preview_4x3.png'))
+            'thumbs', 'preview_4x3.jpg'))
         width, height = get_image_dimensions(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.jpg'))
         t_width, t_height = get_image_dimensions(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'preview_4x3.png'))
+            'thumbs', 'preview_4x3.jpg'))
         assert width <= 960 and height <= 640
         assert t_width <= 150 and t_height <= 120
 
@@ -636,10 +636,10 @@ class TestPrimaryHeroImageAdmin(TestCase):
         uploaded_photo = get_uploaded_file('transparent.png')
         item = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         src = os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png')
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.jpg')
         dest = os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs',
-            'transparent.png')
+            'transparent.jpg')
         copy_stored_file(src, dest)
         delete_url = reverse(
             'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
@@ -653,10 +653,10 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.filter(pk=item.pk).exists()
         assert os.path.exists(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.jpg'))
         assert os.path.exists(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs',
-            'transparent.png'))
+            'transparent.jpg'))
 
         # And can actually delete.
         response = self.client.post(
@@ -664,10 +664,10 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 200
         assert not PrimaryHeroImage.objects.filter(pk=item.pk).exists()
         assert not os.path.exists(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.jpg'))
         assert not os.path.exists(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'transparent.png'))
+            'thumbs', 'transparent.jpg'))
 
     def test_can_add_with_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_primaryheroimageupload_add')
@@ -678,7 +678,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.count() == 0
-        photo = get_uploaded_file('preview_4x3.jpg')
+        photo = get_uploaded_file('transparent.png')
         response = self.client.post(
             add_url,
             dict(custom_image=photo),
@@ -686,17 +686,17 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.count() == 1
         item = PrimaryHeroImage.objects.get()
-        assert item.custom_image == 'hero-featured-image/preview_4x3.png'
+        assert item.custom_image == 'hero-featured-image/transparent.jpg'
         assert os.path.exists(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.jpg'))
         assert os.path.exists(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'preview_4x3.png'))
+            'thumbs', 'transparent.jpg'))
         width, height = get_image_dimensions(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'preview_4x3.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.jpg'))
         t_width, t_height = get_image_dimensions(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'preview_4x3.png'))
+            'thumbs', 'transparent.jpg'))
         assert width <= 960 and height <= 640
         assert t_width <= 150 and t_height <= 120
 
@@ -735,16 +735,16 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 403
         item.reload()
         assert PrimaryHeroImage.objects.count() == 1
-        assert item.custom_image == 'hero-featured-image/transparent.png'
+        assert item.custom_image == 'hero-featured-image/transparent.jpg'
 
     def test_can_not_delete_without_discovery_edit_permission(self):
         uploaded_photo = get_uploaded_file('transparent.png')
         item = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         src = os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png')
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.jpg')
         dest = os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs',
-            'transparent.png')
+            'transparent.jpg')
         copy_stored_file(src, dest)
         delete_url = reverse(
             'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
@@ -757,10 +757,10 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 403
         assert PrimaryHeroImage.objects.filter(pk=item.pk).exists()
         assert os.path.exists(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.jpg'))
         assert os.path.exists(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs',
-            'transparent.png'))
+            'transparent.jpg'))
 
         # Can not actually delete either.
         response = self.client.post(
@@ -768,10 +768,10 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 403
         assert PrimaryHeroImage.objects.filter(pk=item.pk).exists()
         assert os.path.exists(os.path.join(
-            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.png'))
+            settings.MEDIA_ROOT, 'hero-featured-image', 'transparent.jpg'))
         assert os.path.exists(os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image',
-            'thumbs', 'transparent.png'))
+            'thumbs', 'transparent.jpg'))
 
 
 class TestSecondaryHeroShelfAdmin(TestCase):
