@@ -28,7 +28,12 @@ def verify_mozilla_trademark(name, user, form=None):
         name = normalize_string(name, strip_punctuation=True).lower()
 
         for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
-            if symbol in name:
+            violates_trademark = (
+                name.count(symbol) > 1 or (
+                    name.count(symbol) >= 1 and not
+                    name.endswith(' for {}'.format(symbol))))
+
+            if violates_trademark:
                 raise forms.ValidationError(ugettext(
                     u'Add-on names cannot contain the Mozilla or '
                     u'Firefox trademarks.'))
