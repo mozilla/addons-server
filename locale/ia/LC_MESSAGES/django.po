@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-20 14:50+0000\n"
+"PO-Revision-Date: 2020-07-20 15:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5512,11 +5512,10 @@ msgid "Weight"
 msgstr "Peso"
 
 msgid "Information Request Deadline"
-msgstr "Data limite del demanda de informationes"
+msgstr "Data expiration del demanda de informationes"
 
-#, fuzzy
 msgid "Pending Rejection Deadline"
-msgstr "Data limite del demanda de informationes"
+msgstr "Data expiration del rejection pendente"
 
 msgid "Last Updated"
 msgstr "Ultime actualisation"
