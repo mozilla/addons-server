@@ -20,8 +20,8 @@ class TestPrimaryHeroShelfViewSet(TestCase):
 
         hero_a = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(
-                addon=addon_factory(),
-                custom_description='Its a déscription!'),
+                addon=addon_factory()),
+            description='Its a déscription!',
             image='foo.png',
             gradient_color='#123456')
         hero_b = PrimaryHero.objects.create(
@@ -120,6 +120,43 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         response = self.client.get(self.url + '?all=true')
         assert response.status_code == 200
         assert len(response.json()['results']) == 3
+
+    def test_raw_param(self):
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory(summary='addon')),
+            image='wah.png',
+            gradient_color='#989898',
+            enabled=True)
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory()),
+            description='hero',
+            image='wah.png',
+            gradient_color='#989898',
+            enabled=True)
+        PrimaryHero.objects.create(
+            disco_addon=DiscoveryItem.objects.create(
+                addon=addon_factory(summary=None)),
+            image='wah.png',
+            gradient_color='#989898',
+            enabled=True)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        results = response.json()['results']
+        assert len(results) == 3
+        assert results[0]['description'] == 'addon'
+        assert results[1]['description'] == 'hero'
+        assert results[2]['description'] == ''
+
+        response = self.client.get(self.url + '?raw')
+        assert response.status_code == 200
+        results = response.json()['results']
+        assert len(results) == 3
+        assert results[0]['description'] == ''
+        assert results[1]['description'] == 'hero'
+        assert results[2]['description'] == ''
 
 
 class TestSecondaryHeroShelfViewSet(TestCase):
@@ -249,7 +286,6 @@ class TestHeroShelvesView(TestCase):
             enabled=True)
         response = self.client.get(
             self.url, {'lang': 'en-US', 'wrap_outgoing_links': ''})
-        print(response.json())
         assert 'outgoing.' in json.dumps(response.json()['primary'])
         assert 'outgoing.' in json.dumps(response.json()['secondary'])
 

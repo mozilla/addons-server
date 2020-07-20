@@ -22,7 +22,18 @@ disco_fake_data = {
         'custom_description': ''
     }]}
 
-hero_fake_data = {
+
+primary_hero_fake_data = {
+    'results': [{
+        'description': 'greât primary custom description'
+    }, {
+        'description': 'custom primary description is custom '
+    }, {
+        'description': ''
+    }]}
+
+
+secondary_hero_fake_data = {
     'results': [{
         'headline': 'sïïïck headline',
         'description': 'greât description',
@@ -62,6 +73,12 @@ expected_content = """{# L10n: editorial content for the discovery pane. #}
 {# L10n: editorial content for the discovery pane. #}
 {% trans %}{start_sub_heading}{addon_name}{end_sub_heading}{% endtrans %}
 
+{# L10n: editorial content for the primary hero shelves. #}
+{% trans %}greât primary custom description{% endtrans %}
+
+{# L10n: editorial content for the primary hero shelves. #}
+{% trans %}custom primary description is custom {% endtrans %}
+
 {# L10n: editorial content for the secondary hero shelves. #}
 {% trans %}sïïïck headline{% endtrans %}
 {# L10n: editorial content for the secondary hero shelves. #}
@@ -91,9 +108,13 @@ class TestExtractDiscoStringsCommand(TestCase):
             content_type='application/json',
             body=json.dumps(disco_fake_data))
         responses.add(
+            responses.GET, settings.PRIMARY_HERO_EDITORIAL_CONTENT_API,
+            content_type='application/json',
+            body=json.dumps(primary_hero_fake_data))
+        responses.add(
             responses.GET, settings.SECONDARY_HERO_EDITORIAL_CONTENT_API,
             content_type='application/json',
-            body=json.dumps(hero_fake_data))
+            body=json.dumps(secondary_hero_fake_data))
 
         with tempfile.NamedTemporaryFile() as file_, override_settings(
                 EDITORIAL_CONTENT_FILENAME=file_.name):

@@ -41,6 +41,7 @@ small number of shelves this endpoint is not paginated.
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query boolean all: return all shelves - both enabled and disabled.  To be used internally to generate .po files containing the strings defined by the content team.
+    :query string raw: If this parameter is present, don't localise description or fall-back to addon metadata.  To be used internally to generate .po files containing the strings defined by the content team.
     :query string wrap_outgoing_links: If this parameter is present, wrap outgoing links through ``outgoing.prod.mozaws.net`` (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json array results: The array containing the results for this query.
     :>json object results[].gradient: The background colors used for the gradient.

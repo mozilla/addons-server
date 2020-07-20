@@ -143,6 +143,10 @@ class PrimaryHero(ModelBase):
     gradient_color = WidgetCharField(
         choices=GRADIENT_COLORS.items(), max_length=7,
         widget=GradientChoiceWidget, blank=True)
+    description = models.TextField(
+        blank=True,
+        help_text='Text used to describe an add-on. Should not contain any '
+                  'HTML or special tags. Will be translated.')
     enabled = models.BooleanField(db_index=True, default=False)
     disco_addon = models.OneToOneField(
         DiscoveryItem, on_delete=models.CASCADE, null=False)
