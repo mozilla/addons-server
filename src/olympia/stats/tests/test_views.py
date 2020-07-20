@@ -887,21 +887,21 @@ class TestStatsWithBigQuery(TestCase):
 
         assert b'User countries by Date' in response.content
 
-    def test_no_stats_for_langpacks(self):
+    def test_stats_for_langpacks(self):
         self.addon.update(type=amo.ADDON_LPAPP)
         url = reverse('stats.overview', args=[self.addon.slug])
 
         response = self.client.get(url)
 
-        assert response.status_code == 404
+        assert response.status_code == 200
 
-    def test_no_stats_for_dictionaries(self):
+    def test_stats_for_dictionaries(self):
         self.addon.update(type=amo.ADDON_DICT)
         url = reverse('stats.overview', args=[self.addon.slug])
 
         response = self.client.get(url)
 
-        assert response.status_code == 404
+        assert response.status_code == 200
 
 
 class TestProcessLocales(TestCase):

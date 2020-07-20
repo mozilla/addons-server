@@ -2,6 +2,7 @@
 import datetime
 import os
 
+from celery import group
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
@@ -9,6 +10,7 @@ from unittest import mock
 
 from olympia import amo
 from olympia.addons import cron
+from olympia.addons.tasks import update_addon_average_daily_users
 from olympia.addons.models import Addon, AppSupport, FrozenAddon
 from olympia.amo.tests import addon_factory, file_factory, TestCase
 from olympia.files.models import File
@@ -273,22 +275,10 @@ class TestAvgDailyUserCountTestCase(TestCase):
         addon = Addon.objects.get(pk=3615)
         addon.update(average_daily_users=0)
         count = 56789
-        # We use download counts for langpacks.
         langpack = addon_factory(type=amo.ADDON_LPAPP, average_daily_users=0)
         langpack_count = 12345
-        DownloadCount.objects.update_or_create(
-            addon=langpack,
-            date=datetime.date.today(),
-            defaults={'count': langpack_count}
-        )
-        # We use download counts for dictionaries.
         dictionary = addon_factory(type=amo.ADDON_DICT, average_daily_users=0)
         dictionary_count = 5567
-        DownloadCount.objects.update_or_create(
-            addon=dictionary,
-            date=datetime.date.today(),
-            defaults={'count': dictionary_count}
-        )
         addon_without_count = addon_factory(type=amo.ADDON_DICT,
                                             average_daily_users=2)
         assert addon.average_daily_users == 0
@@ -296,12 +286,10 @@ class TestAvgDailyUserCountTestCase(TestCase):
         assert dictionary.average_daily_users == 0
         assert addon_without_count.average_daily_users == 2
 
-        # Pretend bigquery is returning correct data for the extension, but
-        # also incorrect data for langpacks and dicts - we should ignore those.
         get_mock.return_value = [
             (addon.guid, count),
-            (dictionary.guid, 42),
-            (langpack.guid, 42),
+            (dictionary.guid, dictionary_count),
+            (langpack.guid, langpack_count),
         ]
 
         cron.update_addon_average_daily_users()
@@ -314,64 +302,48 @@ class TestAvgDailyUserCountTestCase(TestCase):
         assert addon.average_daily_users == count
         assert langpack.average_daily_users == langpack_count
         assert dictionary.average_daily_users == dictionary_count
-        # The value is 0 because the add-on does not have download counts.
+        # The value is 0 because the add-on does not exist in BigQuery.
         assert addon_without_count.average_daily_users == 0
 
-    @mock.patch('olympia.addons.cron.chunked')
+    @mock.patch('olympia.addons.cron.create_chunked_tasks_signatures')
     @mock.patch(
         'olympia.addons.cron.get_addons_and_average_daily_users_from_bigquery'
     )
     def test_update_addon_average_daily_users_values_with_bigquery(
-        self, get_mock, chunked_mock
+        self, get_mock, create_chunked_mock
     ):
-        chunked_mock.return_value = []
+        create_chunked_mock.return_value = group([])
         addon = Addon.objects.get(pk=3615)
         addon.update(average_daily_users=0)
         count = 56789
-        get_mock.return_value = [(addon.guid, count)]
-        # We use download counts for langpacks.
         langpack = addon_factory(type=amo.ADDON_LPAPP, average_daily_users=0)
         langpack_count = 12345
-        DownloadCount.objects.update_or_create(
-            addon=langpack,
-            date=datetime.date.today(),
-            defaults={'count': langpack_count}
-        )
-        DownloadCount.objects.update_or_create(
-            addon=langpack,
-            date=self.days_ago(3),
-            defaults={'count': 0}
-        )
-        # We use download counts for dictionaries.
         dictionary = addon_factory(type=amo.ADDON_DICT, average_daily_users=0)
         dictionary_count = 6789
-        DownloadCount.objects.update_or_create(
-            addon=dictionary,
-            date=datetime.date.today(),
-            defaults={'count': 6780}
-        )
-        DownloadCount.objects.update_or_create(
-            addon=dictionary,
-            date=self.days_ago(2),
-            defaults={'count': 9}
-        )
+        addon_without_count = addon_factory(type=amo.ADDON_DICT,
+                                            average_daily_users=2)
         # This one should be ignored.
-        addon_without_guid = addon_factory(guid=None, type=amo.ADDON_LPAPP)
-        DownloadCount.objects.update_or_create(
-            addon=addon_without_guid,
-            date=datetime.date.today(),
-            defaults={'count': 123}
-        )
+        addon_factory(guid=None, type=amo.ADDON_LPAPP)
         # This one should be ignored as well.
         addon_factory(guid='', type=amo.ADDON_LPAPP)
-
-        cron.update_addon_average_daily_users()
-
-        chunked_mock.assert_called_with([
+        get_mock.return_value = [
             (addon.guid, count),
             (langpack.guid, langpack_count),
             (dictionary.guid, dictionary_count),
-        ], 250)
+        ]
+
+        cron.update_addon_average_daily_users()
+
+        create_chunked_mock.assert_called_with(
+            update_addon_average_daily_users,
+            [
+                (addon_without_count.guid, 0),
+                (addon.guid, count),
+                (langpack.guid, langpack_count),
+                (dictionary.guid, dictionary_count),
+            ],
+            250
+        )
 
     def test_total_and_average_downloads(self):
         addon = Addon.objects.get(pk=3615)
