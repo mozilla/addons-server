@@ -135,6 +135,17 @@ class TestIdentify(TestCase):
         self.get_token.return_value = {'access_token': 'cafe'}
         self.get_profile.return_value = {'email': 'me@em.hi'}
         identity = verify.fxa_identify('heya', self.CONFIG)
-        assert identity == {'email': 'me@em.hi'}
+        assert identity == ({'email': 'me@em.hi'}, None)
+        self.get_token.assert_called_with('heya', self.CONFIG)
+        self.get_profile.assert_called_with('cafe', self.CONFIG)
+
+    def test_with_id_token(self):
+        self.get_token.return_value = {
+            'access_token': 'cafe',
+            'id_token': 'openidisawesome'
+        }
+        self.get_profile.return_value = {'email': 'me@em.hi'}
+        identity = verify.fxa_identify('heya', self.CONFIG)
+        assert identity == ({'email': 'me@em.hi'}, 'openidisawesome')
         self.get_token.assert_called_with('heya', self.CONFIG)
         self.get_profile.assert_called_with('cafe', self.CONFIG)

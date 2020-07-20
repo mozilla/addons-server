@@ -39,7 +39,7 @@ def fxa_config(request):
         'contentHost': settings.FXA_CONTENT_HOST,
         'oauthHost': settings.FXA_OAUTH_HOST,
         'profileHost': settings.FXA_PROFILE_HOST,
-        'scope': 'profile',
+        'scope': 'profile openid',
         'state': request.session['fxa_state'],
     })
     if request.user.is_authenticated:
@@ -48,13 +48,13 @@ def fxa_config(request):
 
 
 def fxa_login_url(config, state, next_path=None, action=None,
-                  force_two_factor=False, request=None):
+                  force_two_factor=False, request=None, id_token=None):
     if next_path and _is_safe_url(next_path, request):
         state += ':' + force_text(
             urlsafe_b64encode(next_path.encode('utf-8'))).rstrip('=')
     query = {
         'client_id': config['client_id'],
-        'scope': 'profile',
+        'scope': 'profile openid',
         'state': state,
     }
     if action is not None:
@@ -63,6 +63,14 @@ def fxa_login_url(config, state, next_path=None, action=None,
         # Specifying AAL2 will require the token to have an authentication
         # assurance level >= 2 which corresponds to requiring 2FA.
         query['acr_values'] = 'AAL2'
+        # Requesting 'prompt=none' during authorization, together with passing
+        # a valid id token in 'id_token_hint', allows the user to not have to
+        # re-authenticate with FxA if they still have a valid session (which
+        # they should here: they went through FxA, back to AMO, and now we're
+        # redirecting them to FxA because we want them to have 2FA enabled).
+        if id_token:
+            query['prompt'] = 'none'
+            query['id_token_hint'] = id_token
     return '{host}/authorization?{query}'.format(
         host=settings.FXA_OAUTH_HOST, query=urlencode(query))
 
