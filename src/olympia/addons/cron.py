@@ -1,7 +1,6 @@
 from datetime import date
 
-from django.db.models import F, Q, Sum
-from django.db.models.functions import Coalesce
+from django.db.models import F, Q, Sum, Value, IntegerField
 
 import waffle
 
@@ -33,22 +32,23 @@ def update_addon_average_daily_users():
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    # BigQuery does not have data for add-ons with type other than those in
-    # `ADDON_TYPES_WITH_STATS` so we use download counts instead.
-    # See: https://github.com/mozilla/addons-server/issues/14609
-    amo_counts = dict(
+    counts = dict(
+        # In order to reset the `average_daily_users` values of add-ons that
+        # don't exist in BigQuery, we prepare a set of `(guid, 0)` for most
+        # add-ons.
         Addon.objects
-        .exclude(type__in=amo.ADDON_TYPES_WITH_STATS)
+        .filter(type__in=amo.ADDON_TYPES_WITH_STATS)
         .exclude(guid__isnull=True)
         .exclude(guid__exact='')
-        .annotate(count=Coalesce(Sum('downloadcount__count'), 0))
+        .exclude(average_daily_users=0)
+        .annotate(count=Value(0, IntegerField()))
         .values_list('guid', 'count')
         # Just to make order predictable in tests, we order by id. This
         # matches the GROUP BY being generated so it should be safe.
         .order_by('id')
     )
-    counts = dict(get_addons_and_average_daily_users_from_bigquery())
-    counts.update(amo_counts)
+    # Update the `counts` with values from BigQuery.
+    counts.update(dict(get_addons_and_average_daily_users_from_bigquery()))
     counts = list(counts.items())
 
     ts = [

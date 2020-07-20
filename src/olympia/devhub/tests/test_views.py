@@ -2025,18 +2025,18 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
         assert (reverse('stats.overview', args=[self.addon.slug]) not in
                 str(response.content))
 
-    def test_no_link_for_langpacks(self):
+    def test_link_to_stats_for_langpacks(self):
         self.addon.update(type=amo.ADDON_LPAPP)
 
         response = self.client.get(self.url)
 
-        assert (reverse('stats.overview', args=[self.addon.slug]) not in
+        assert (reverse('stats.overview', args=[self.addon.slug]) in
                 str(response.content))
 
-    def test_no_link_for_dictionaries(self):
+    def test_link_to_stats_for_dictionaries(self):
         self.addon.update(type=amo.ADDON_DICT)
 
         response = self.client.get(self.url)
 
-        assert (reverse('stats.overview', args=[self.addon.slug]) not in
+        assert (reverse('stats.overview', args=[self.addon.slug]) in
                 str(response.content))
