@@ -2,6 +2,7 @@
 import datetime
 import os
 
+from celery import group
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
@@ -9,6 +10,7 @@ from unittest import mock
 
 from olympia import amo
 from olympia.addons import cron
+from olympia.addons.tasks import update_addon_average_daily_users
 from olympia.addons.models import Addon, AppSupport, FrozenAddon
 from olympia.amo.tests import addon_factory, file_factory, TestCase
 from olympia.files.models import File
@@ -303,14 +305,14 @@ class TestAvgDailyUserCountTestCase(TestCase):
         # The value is 0 because the add-on does not exist in BigQuery.
         assert addon_without_count.average_daily_users == 0
 
-    @mock.patch('olympia.addons.cron.chunked')
+    @mock.patch('olympia.addons.cron.create_chunked_tasks_signatures')
     @mock.patch(
         'olympia.addons.cron.get_addons_and_average_daily_users_from_bigquery'
     )
     def test_update_addon_average_daily_users_values_with_bigquery(
-        self, get_mock, chunked_mock
+        self, get_mock, create_chunked_mock
     ):
-        chunked_mock.return_value = []
+        create_chunked_mock.return_value = group([])
         addon = Addon.objects.get(pk=3615)
         addon.update(average_daily_users=0)
         count = 56789
@@ -332,12 +334,16 @@ class TestAvgDailyUserCountTestCase(TestCase):
 
         cron.update_addon_average_daily_users()
 
-        chunked_mock.assert_called_with([
-            (addon_without_count.guid, 0),
-            (addon.guid, count),
-            (langpack.guid, langpack_count),
-            (dictionary.guid, dictionary_count),
-        ], 250)
+        create_chunked_mock.assert_called_with(
+            update_addon_average_daily_users,
+            [
+                (addon_without_count.guid, 0),
+                (addon.guid, count),
+                (langpack.guid, langpack_count),
+                (dictionary.guid, dictionary_count),
+            ],
+            250
+        )
 
     def test_total_and_average_downloads(self):
         addon = Addon.objects.get(pk=3615)

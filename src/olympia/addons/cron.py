@@ -27,7 +27,7 @@ log = olympia.core.logger.getLogger('z.cron')
 task_log = olympia.core.logger.getLogger('z.task')
 
 
-def update_addon_average_daily_users():
+def update_addon_average_daily_users(chunk_size=250):
     """Update add-ons ADU totals."""
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
@@ -51,11 +51,9 @@ def update_addon_average_daily_users():
     counts.update(dict(get_addons_and_average_daily_users_from_bigquery()))
     counts = list(counts.items())
 
-    ts = [
-        _update_addon_average_daily_users.subtask(args=[chunk])
-        for chunk in chunked(counts, 250)
-    ]
-    group(ts).apply_async()
+    create_chunked_tasks_signatures(
+        _update_addon_average_daily_users, counts, chunk_size
+    ).apply_async()
 
 
 def update_addon_download_totals():
