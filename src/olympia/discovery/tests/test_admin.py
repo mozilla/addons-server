@@ -920,7 +920,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             shelf_type='extension',
-            criteria='/this/is/the/criteria',
+            criteria='search/?recommended=true&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
@@ -938,7 +938,8 @@ class TestShelfAdmin(TestCase):
             {
                 'title': 'Popular extensions',
                 'shelf_type': 'extension',
-                'criteria': '/this/is/the/criteria',
+                'criteria':
+                'search/?recommended=true&sort=users&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname'
             }, follow=True)
@@ -951,7 +952,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             shelf_type='extension',
-            criteria='/this/is/the/criteria',
+            criteria='search/?recommended=true&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         delete_url = reverse(
@@ -986,7 +987,8 @@ class TestShelfAdmin(TestCase):
             {
                 'title': 'Recommended extensions',
                 'shelf_type': 'extension',
-                'criteria': '/this/is/the/criteria',
+                'criteria':
+                'search/?recommended=true&sort=random&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname'
             },
@@ -1008,7 +1010,8 @@ class TestShelfAdmin(TestCase):
             {
                 'title': 'Recommended extensions',
                 'shelf_type': 'extension',
-                'criteria': '/this/is/the/criteria',
+                'criteria':
+                'search/?recommended=true&sort=random&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname'
             },
@@ -1020,7 +1023,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             shelf_type='extension',
-            criteria='/this/is/the/criteria',
+            criteria='search/?recommended=true&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         detail_url = reverse(
@@ -1037,7 +1040,8 @@ class TestShelfAdmin(TestCase):
             {
                 'title': 'Popular extensions',
                 'shelf_type': 'extension',
-                'criteria': '/this/is/the/criteria',
+                'criteria':
+                'search/?recommended=true&sort=users&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname'
             }, follow=True)
@@ -1050,7 +1054,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             shelf_type='extension',
-            criteria='/this/is/the/criteria',
+            criteria='search/?recommended=true&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         delete_url = reverse(
