@@ -48,7 +48,7 @@ def update_addon_average_daily_users(chunk_size=250):
         .order_by('id')
     )
     # Update the `counts` with values from BigQuery.
-    counts.update(dict(get_addons_and_average_daily_users_from_bigquery()))
+    counts.update(get_addons_and_average_daily_users_from_bigquery())
     counts = list(counts.items())
 
     log.info('Preparing update of `average_daily_users` for %s add-ons.',
