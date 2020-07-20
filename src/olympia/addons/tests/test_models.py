@@ -1596,14 +1596,14 @@ class TestAddonModels(TestCase):
         addon = addon_factory()
         # default case - no group so not recommended
         assert not addon.is_promoted()
-        assert not addon.is_promoted(currently=False)
+        assert not addon.is_promoted(currently_approved=False)
 
         # It's promoted but nothing has been approved
         promoted = PromotedAddon.objects.create(
             addon=addon, group_id=SPOTLIGHT.id)
-        assert addon.is_promoted(currently=False)
+        assert addon.is_promoted(currently_approved=False)
         assert not addon.is_promoted()
-        assert addon.is_promoted(currently=False, group=SPOTLIGHT)
+        assert addon.is_promoted(currently_approved=False, group=SPOTLIGHT)
         assert not addon.is_promoted(group=SPOTLIGHT)
 
         # The latest version is approved for the same group.
@@ -1618,11 +1618,11 @@ class TestAddonModels(TestCase):
         # valid
         promoted.update(group_id=VERIFIED_ONE.id)
         assert not addon.is_promoted()
-        assert addon.is_promoted(currently=False)
+        assert addon.is_promoted(currently_approved=False)
         assert not addon.is_promoted(group=SPOTLIGHT)
         assert not addon.is_promoted(group=VERIFIED_ONE)
-        assert addon.is_promoted(currently=False, group=VERIFIED_ONE)
-        assert not addon.is_promoted(currently=False, group=SPOTLIGHT)
+        assert addon.is_promoted(currently_approved=False, group=VERIFIED_ONE)
+        assert not addon.is_promoted(currently_approved=False, group=SPOTLIGHT)
 
         PromotedApproval.objects.create(
             version=addon.current_version, group_id=VERIFIED_ONE.id)
@@ -1643,7 +1643,7 @@ class TestAddonModels(TestCase):
         addon.update_version()
         assert not addon.current_version
         assert not addon.is_promoted()
-        assert addon.is_promoted(currently=False)
+        assert addon.is_promoted(currently_approved=False)
 
     @patch('olympia.amo.tasks.sync_object_to_basket')
     def test_addon_field_changes_not_synced_to_basket(
