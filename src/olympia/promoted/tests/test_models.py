@@ -1,5 +1,5 @@
 from olympia.amo.tests import addon_factory, TestCase
-from olympia.constants import promoted
+from olympia.constants import applications, promoted
 from olympia.promoted.models import PromotedAddon, PromotedApproval
 
 
@@ -9,6 +9,10 @@ class TestPromotedAddon(TestCase):
         promoted_addon = PromotedAddon.objects.create(
             addon=addon_factory(), group_id=promoted.VERIFIED_ONE.id)
         assert promoted_addon.group == promoted.VERIFIED_ONE
+        assert promoted_addon.application is None
+
+        promoted_addon.update(application_id=applications.FIREFOX.id)
+        assert promoted_addon.application == applications.FIREFOX
 
     def test_is_addon_currently_promoted(self):
         addon = addon_factory()

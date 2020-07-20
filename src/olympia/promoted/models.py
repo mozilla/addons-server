@@ -2,6 +2,7 @@ from django.db import models
 
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
+from olympia.constants.applications import APP_IDS, APPS_CHOICES
 from olympia.constants.promoted import (
     NOT_PROMOTED, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID)
 from olympia.versions.models import Version
@@ -13,10 +14,16 @@ class PromotedAddon(ModelBase):
         choices=GROUP_CHOICES, default=NOT_PROMOTED.id)
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE, null=False)
+    application_id = models.SmallIntegerField(
+        choices=APPS_CHOICES, null=True)
 
     @property
     def group(self):
         return PROMOTED_GROUPS_BY_ID.get(self.group_id, NOT_PROMOTED)
+
+    @property
+    def application(self):
+        return APP_IDS.get(self.application_id)
 
     @property
     def is_addon_currently_promoted(self):
