@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-20 15:03+0000\n"
+"PO-Revision-Date: 2020-07-20 15:22+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5672,9 +5672,8 @@ msgstr "Actualisar le message del die"
 msgid "Expired Information Requests ({0})"
 msgstr "Requestas de informationes expirate ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Alteres que attende revision ({0})"
+msgstr "Additivos attendente rejection ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Un error incognite occurreva"
@@ -5892,9 +5891,8 @@ msgstr "Requestas informationes expirate – Additivos pro Firefox"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr "Additivos non publicate – Additivos pro Firefox"
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Moderation de revisiones – Additivos pro Firefox"
+msgstr "Attendente rejection – Additivos pro Firefox"
 
 msgid "Advanced Search"
 msgstr "Recerca avantiate"
@@ -5957,9 +5955,8 @@ msgstr "Isto es un extension recommendate."
 msgid "You don't have permission to review it."
 msgstr "Tu non ha permisso pro revider lo."
 
-#, fuzzy
 msgid "Please select one or more versions in the list below."
-msgstr "Per favor elige un o plus versiones in le lista supra."
+msgstr "Elige un o plus versiones in le lista infra."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Tu pote ancora inviar iste forma, totevia face assi solo si tu sape que illo non confligera."
