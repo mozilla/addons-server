@@ -51,6 +51,9 @@ def update_addon_average_daily_users(chunk_size=250):
     counts.update(dict(get_addons_and_average_daily_users_from_bigquery()))
     counts = list(counts.items())
 
+    log.info('Preparing update of `average_daily_users` for %s add-ons.',
+             len(counts))
+
     create_chunked_tasks_signatures(
         _update_addon_average_daily_users, counts, chunk_size
     ).apply_async()
