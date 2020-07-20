@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-20 15:22+0000\n"
+"PO-Revision-Date: 2020-07-20 15:25+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6112,9 +6112,8 @@ msgstr "Plus recente"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versiones signalate per scanditores sur altere paginas."
 
-#, fuzzy
 msgid "{num} versions pending rejection on other pages."
-msgstr "{num} versiones signalate per scanditores sur altere paginas."
+msgstr "{num} versiones attendente rejection sur altere paginas."
 
 msgid "Recent Points"
 msgstr "Punctos recente"
@@ -6206,11 +6205,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Requesta de informationes expirate ({0})"
 msgstr[1] "Requestas de informationes expirate ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Alteres que attende revision ({0})"
-msgstr[1] "Alteres que attende revision ({0})"
+msgstr[0] "Attendente rejection ({0})"
+msgstr[1] "Attendente rejection ({0})"
 
 msgid "presence of matched rules"
 msgstr "presentia de regulas concordate"
