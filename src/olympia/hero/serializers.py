@@ -35,7 +35,9 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
         return rep
 
     def get_description(self, obj):
-        if obj.description:
+        if 'request' in self.context and 'raw' in self.context['request'].GET:
+            return str(obj.description or '')
+        elif obj.description:
             return ugettext(obj.description)
         else:
             addon = obj.disco_addon.addon

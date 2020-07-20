@@ -518,7 +518,7 @@ INSTALLED_APPS = (
 DISCOVERY_EDITORIAL_CONTENT_API = (
     'https://addons.mozilla.org/api/v4/discovery/editorial/')
 PRIMARY_HERO_EDITORIAL_CONTENT_API = (
-    'https://addons.mozilla.org/api/v4/hero/primary/?all=true')
+    'https://addons.mozilla.org/api/v4/hero/primary/?all=true&raw')
 SECONDARY_HERO_EDITORIAL_CONTENT_API = (
     'https://addons.mozilla.org/api/v4/hero/secondary/?all=true')
 
