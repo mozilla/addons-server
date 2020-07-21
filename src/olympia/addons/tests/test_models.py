@@ -527,21 +527,17 @@ class TestAddonModels(TestCase):
                 version=version,
                 pending_rejection=datetime.now() + timedelta(days=1))
         assert VersionReviewerFlags.objects.filter(
-            version__in=addon.versions(
-                manager='unfiltered_for_relations').all()
-        ).exists()
+            version__addon=addon).exists()
         addon.delete()
         assert addon.versions(manager='unfiltered_for_relations').exists()
         # There shouldn't be any version reviewer flags for versions of that
         # add-on with a non-null pending rejection anymore.
         assert not VersionReviewerFlags.objects.filter(
-            version__in=addon.versions(
-                manager='unfiltered_for_relations').all(),
-            pending_rejection__isnull=False,
+            version__addon=addon, pending_rejection__isnull=False,
         ).exists()
         # There should still be one for the version of the other add-on though.
         assert VersionReviewerFlags.objects.filter(
-            version__in=other_addon.versions.all(),
+            version__addon=other_addon,
             pending_rejection__isnull=False,
         ).exists()
 
