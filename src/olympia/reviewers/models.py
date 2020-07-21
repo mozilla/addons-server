@@ -242,11 +242,13 @@ class ExtensionQueueMixin:
         query = super().base_query()
         types = _int_join(
             set(amo.GROUP_TYPE_ADDON) - {amo.ADDON_SEARCH})
+        flags_table = 'addons_addonreviewerflags'
         query['where'].append(
             f'((addons.addontype_id IN ({types}) '
             'AND files.is_webextension = 0) '
-            'OR addons_addonreviewerflags.auto_approval_disabled = 1 '
-            'OR addons_addonreviewerflags.auto_approval_delayed_until > NOW()'
+            f'OR {flags_table}.auto_approval_disabled = 1 '
+            f'OR {flags_table}.auto_approval_disabled_until_next_approval = 1 '
+            f'OR {flags_table}.auto_approval_delayed_until > NOW()'
             ')'
         )
         return query

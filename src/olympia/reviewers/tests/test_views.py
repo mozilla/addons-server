@@ -1583,7 +1583,8 @@ class TestExtensionQueue(QueueTest):
             channel=amo.RELEASE_CHANNEL_LISTED).files.update(
             is_webextension=True)
         AddonReviewerFlags.objects.create(
-            addon=self.addons['Nominated Two'], auto_approval_disabled=False)
+            addon=self.addons['Nominated Two'],
+            auto_approval_disabled_until_next_approval=False)
 
         self.expected_addons = [
             self.addons['Nominated One'], self.addons['Pending One']]
@@ -1606,7 +1607,8 @@ class TestExtensionQueue(QueueTest):
             channel=amo.RELEASE_CHANNEL_LISTED).files.update(
             is_webextension=True)
         AddonReviewerFlags.objects.create(
-            addon=self.addons['Nominated One'], auto_approval_disabled=True)
+            addon=self.addons['Nominated One'],
+            auto_approval_disabled_until_next_approval=True)
 
         self.expected_addons = [
             self.addons['Nominated One'], self.addons['Pending One']]
