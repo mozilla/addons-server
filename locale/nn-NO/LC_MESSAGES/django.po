@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 23:28+0000\n"
+"PO-Revision-Date: 2020-07-21 17:13+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -129,9 +129,8 @@ msgstr "Gjennomgangsverktøy (lista)"
 msgid "Reviewer Tools (unlisted)"
 msgstr "Gjennomgangsverktøy (ulista)"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Vurderingsverktøy"
+msgstr "Gjennomgåingslenker"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Utvidinga finst ikkje på AMO -"
@@ -399,9 +398,8 @@ msgstr "Feil type for ein eller fleire nøklar i pakkeinnhald"
 msgid "Invalid JWT Token."
 msgstr "Ugylig JWT-token."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Ugyldig arkiv."
+msgstr "Ugyldig symbol eller nøkkel."
 
 msgid "Email address not found."
 msgstr "Fann ikkje e-postadressa."
@@ -419,9 +417,8 @@ msgstr "Du må oppgi eit objekt med {lang-code:value}."
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Ugyldig pk eller slugg «%s» - objektet finst ikkje."
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Meir informasjon om Creative Commons-lisensar"
+msgstr "Stadfesting for API-nøklar for utviklarar"
 
 msgid "Application Versions"
 msgstr "Applikasjonsversjonar"
@@ -498,13 +495,11 @@ msgstr "Ugyldig versjon"
 msgid "Min version can not be greater than Max version"
 msgstr "Min-versjon kan ikkje vere større enn Max-versjon"
 
-#, fuzzy
 msgid "Review Listed"
-msgstr "Det er bedt om ei vurdering"
+msgstr "Gjennomgang lista"
 
-#, fuzzy
 msgid "Review Unlisted"
-msgstr "Vurderingsmerknad"
+msgstr "Gjennomgang lista"
 
 msgid "This block was imported from a regex based legacy Block."
 msgstr ""
@@ -542,13 +537,11 @@ msgstr "Slett"
 msgid "Update"
 msgstr "Oppdater"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Gå til bidraga mine"
+msgstr "Avvis innsending"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Gå til bidraga mine"
+msgstr "Godkjenn innsending"
 
 #, python-format
 msgid "Add %(name)s"
@@ -871,25 +864,20 @@ msgstr "Informasjonsførespurnad teken vekk av utviklaren for {addon} {version}.
 msgid "Information request removed"
 msgstr "Informasjonsførespurnad fjerna"
 
-#, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "Det er bedt om ei vurdering av {addon} {version}."
+msgstr "{addon} {version} tillegsgjennomgang av admin førespurd."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Det er bedt om ei supervurdering"
+msgstr "Det er been om ei supervurdering"
 
-#, fuzzy
 msgid "{addon} {version} admin content-review requested."
-msgstr "Det er bedt om ei vurdering av {addon} {version}."
+msgstr "{addon} {version} innhaldsegjennomgåing av admin førespurd."
 
-#, fuzzy
 msgid "Admin content-review requested"
-msgstr "Det er bedt om ei supervurdering"
+msgstr "Innhaldsegjennomgåing av admin førespurd"
 
-#, fuzzy
 msgid "{addon} {version} admin theme-review requested."
-msgstr "Det er bedt om ei vurdering av {addon} {version}."
+msgstr "{addon} {version} temagjennomgåing av admin førespurd."
 
 #, fuzzy
 msgid "Admin theme-review requested"
