@@ -13,7 +13,7 @@ from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_download_totals as _update_addon_download_totals,
-    update_appsupport, update_addon_hotness, reset_addon_hotness)
+    update_appsupport, update_addon_hotness)
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked
@@ -180,28 +180,34 @@ def deliver_hotness(chunk_size=300):
     threshold = 250 if addon type is theme, else 1000
     hotness = (a-b) / b if a > threshold and b > 1 else 0
     """
-    frozen_guids = list(set(fa.addon.guid for fa in FrozenAddon.objects.all()
-                            if fa.addon.guid))
+    frozen_guids = list(
+        set(fa.addon.guid for fa in FrozenAddon.objects.all() if fa.addon.guid)
+    )
     log.info('Found %s frozen add-on GUIDs.', len(frozen_guids))
 
-    averages = get_averages_by_addon_from_bigquery(
+    amo_guids = (
+        Addon.objects.exclude(guid__in=frozen_guids)
+        .exclude(guid__isnull=True)
+        .exclude(guid__exact='')
+        .exclude(hotness=0)
+        .values_list('guid', flat=True)
+    )
+    averages = {
+        guid: {'avg_this_week': 1, 'avg_three_weeks_before': 1}
+        for guid in amo_guids
+    }
+    log.info('Found %s add-on GUIDs in AMO DB.', len(averages))
+
+    bq_averages = get_averages_by_addon_from_bigquery(
         today=date.today(), exclude=frozen_guids
     )
-    log.info('Found %s add-on GUIDs with averages in BigQuery.', len(averages))
+    log.info(
+        'Found %s add-on GUIDs with averages in BigQuery.', len(bq_averages)
+    )
+
+    averages.update(bq_averages)
+    log.info('Preparing update of `hotness` for %s add-ons.', len(averages))
 
     create_chunked_tasks_signatures(
         update_addon_hotness, averages.items(), chunk_size
-    ).apply_async()
-
-    # Reset add-ons that won't be returned by BigQuery.
-    addon_ids = (
-        Addon.objects.filter(status__in=amo.REVIEWED_STATUSES)
-        .filter(hotness__gt=0)
-        .exclude(guid__in=averages.keys())
-        .values_list('id', flat=True)
-    )
-    log.info('Found %s add-on IDs to reset.', len(addon_ids))
-
-    create_chunked_tasks_signatures(
-        reset_addon_hotness, addon_ids, chunk_size
     ).apply_async()
