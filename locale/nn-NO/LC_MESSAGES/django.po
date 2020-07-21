@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-21 17:53+0000\n"
+"PO-Revision-Date: 2020-07-21 17:58+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -6312,50 +6312,43 @@ msgid_plural "Updates ({0})"
 msgstr[0] "Oppdatering ({0})"
 msgstr[1] "Oppdateringar ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Innhaldsvurdering({0})"
-msgstr[1] "Innhaldsvurderingar ({0})"
+msgstr[0] "Vurderingsgjennomgang ({0})"
+msgstr[1] "Vurderingsgjennomgang ({0})"
 
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
 msgstr[0] "Automatisk godkjent ({0})"
 msgstr[1] "Automatisk godkjende ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Meir info påkravd: {0}"
-msgstr[1] "Meir info påkravd: {0}"
+msgstr[0] "Utgått informasjonsførespurnad ({0})"
+msgstr[1] "Utgått informasjonsførespurnad ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Innhaldsvurdering({0})"
-msgstr[1] "Innhaldsvurdering({0})"
+msgstr[0] "Ventar på avslag ({0})"
+msgstr[1] "Ventar på avslag ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
 
-#, fuzzy
 msgid "result state"
-msgstr "Kom i gang"
+msgstr "resultattillstand"
 
 msgid "all but this rule"
 msgstr ""
 
-#, fuzzy
 msgid "presence of a version"
-msgstr "Førehandsvising av oppførte versjonar"
+msgstr "nærvær av ein versjon"
 
-#, fuzzy
 msgid "version channel"
-msgstr "Versjon signert"
+msgstr "versjonskanal"
 
-#, fuzzy
 msgid "add-on status"
-msgstr "Status for utvidingar"
+msgstr "status for tillegg"
 
 #, fuzzy
 msgid "add-on listing visibility"
