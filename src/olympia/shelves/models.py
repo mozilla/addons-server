@@ -1,28 +1,13 @@
-import requests
-
-from django.core.exceptions import ValidationError
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 
 from olympia.amo.models import ModelBase
+
+from .validators import validate_criteria
 
 SHELF_TYPES = (
     'category', 'collection', 'extension', 'recommended', 'search', 'theme')
 
 SHELF_TYPE_CHOICES = tuple((ty, ty) for ty in SHELF_TYPES)
-
-
-def validate_criteria(value):
-    url = "https://addons.mozilla.org/api/v4/addons/{}"
-    response = requests.get(url.format(value))
-    results = response.json()
-    if response.status_code == 404:
-        raise ValidationError(_("404 Not Found - Invalid criteria"))
-    if response.status_code == 400:
-        raise ValidationError(_(results[0]))
-    if response.status_code == 200 and len(results['results']) == 0:
-        raise ValidationError(_("Check parameters in criteria - e.g., 'type'"))
-    return value
 
 
 class Shelf(ModelBase):

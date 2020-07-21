@@ -8,11 +8,14 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
+
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.models import (
     PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
 from olympia.shelves.models import Shelf
+from olympia.shelves.validators import validate_criteria
 
 
 class TestDiscoveryAdmin(TestCase):
@@ -1074,3 +1077,19 @@ class TestShelfAdmin(TestCase):
         assert response.status_code == 403
         assert Shelf.objects.filter(pk=item.pk).exists()
         assert item.title == 'Recommended extensions'
+
+    def test_criteria_does_pass_validation(self):
+        criteria = 'search/?recommended=true&sort=random&type=extension'
+        try:
+            validate_criteria(criteria)
+        except ValidationError as e:
+            self.assertRaises(
+                '404 Not Found - Invalid criteria' in e.message_dict)
+
+    def test_criteria_does_not_pass_validation(self):
+        criteria = 'recommended=true&sort=users&type=extension'
+        try:
+            validate_criteria(criteria)
+        except ValidationError as e:
+            self.assertRaises(
+                '404 Not Found - Invalid criteria' in e.message_dict)

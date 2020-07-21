@@ -79,6 +79,21 @@ def mock_basket(settings):
         responses.POST,
         settings.BASKET_URL + '/news/unsubscribe/{}/'.format(USER_TOKEN),
         json={'status': 'ok', 'token': USER_TOKEN})
+    responses.add(
+        responses.GET,
+        'https://addons.mozilla.org/api/v4/addons/{}'.format(
+            'search/?recommended=true&sort=random&type=extension'),
+        json={'status': 'ok'})
+    responses.add(
+        responses.GET,
+        'https://addons.mozilla.org/api/v4/addons/{}'.format(
+            'search/?recommended=true&sort=users&type=extension'),
+        json={'status': 'ok'})
+    responses.add(
+        responses.GET,
+        'https://addons.mozilla.org/api/v4/addons/{}'.format(
+            'recommended=true&sort=users&type=extension'),
+        json={'status': 'not found'})
 
 
 @pytest.fixture(autouse=True)
