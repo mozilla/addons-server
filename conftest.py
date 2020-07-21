@@ -94,6 +94,16 @@ def mock_basket(settings):
         'https://addons.mozilla.org/api/v4/addons/{}'.format(
             'recommended=true&sort=users&type=extension'),
         json={'status': 'not found'})
+    responses.add(
+        responses.GET,
+        'https://addons.mozilla.org/api/v4/addons/{}'.format(
+            'search/?recommended=false&sort=random&type=extension'),
+        json={'status': 'bad request'})
+    responses.add(
+        responses.GET,
+        'https://addons.mozilla.org/api/v4/addons/{}'.format(
+            'search/?sort=users&type=theme'),
+        json={'status': 'ok'})
 
 
 @pytest.fixture(autouse=True)

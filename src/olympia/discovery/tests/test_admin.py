@@ -1086,10 +1086,27 @@ class TestShelfAdmin(TestCase):
             self.assertRaises(
                 '404 Not Found - Invalid criteria' in e.message_dict)
 
-    def test_criteria_does_not_pass_validation(self):
+    def test_criteria_does_not_pass_validation_returns_404(self):
         criteria = 'recommended=true&sort=users&type=extension'
         try:
             validate_criteria(criteria)
         except ValidationError as e:
             self.assertRaises(
                 '404 Not Found - Invalid criteria' in e.message_dict)
+
+    def test_criteria_does_not_pass_validation_returns_400(self):
+        criteria = 'search/?recommended=false&sort=random&type=extension'
+        try:
+            validate_criteria(criteria)
+        except ValidationError as e:
+            self.assertRaises(
+                'Invalid "recommended" parameter' in e.message_dict)
+
+    def test_criteria_does_not_pass_validation_returns_empty_results(self):
+        criteria = 'search/?sort=users&type=theme'
+        try:
+            validate_criteria(criteria)
+        except ValidationError as e:
+            self.assertRaises(
+                'Check parameters in criteria - e.g., "type"' in e.message_dict
+            )
