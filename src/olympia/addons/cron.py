@@ -180,7 +180,8 @@ def deliver_hotness(chunk_size=300):
     threshold = 250 if addon type is theme, else 1000
     hotness = (a-b) / b if a > threshold and b > 1 else 0
     """
-    frozen_guids = list(set(fa.addon.guid for fa in FrozenAddon.objects.all()))
+    frozen_guids = list(set(fa.addon.guid for fa in FrozenAddon.objects.all()
+                            if fa.addon.guid))
     log.info('Found %s frozen add-on GUIDs.', len(frozen_guids))
 
     averages = get_averages_by_addon_from_bigquery(

@@ -404,6 +404,8 @@ class TestDeliverHotness(TestCase):
 
         self.frozen_extension = addon_factory()
         FrozenAddon.objects.create(addon=self.frozen_extension)
+        # This frozen add-on should be ignored.
+        FrozenAddon.objects.create(addon=addon_factory(guid=None))
 
         self.not_in_bigquery = addon_factory(hotness=123)
 
