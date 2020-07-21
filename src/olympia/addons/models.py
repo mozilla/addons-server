@@ -48,7 +48,8 @@ from olympia.translations.hold import translation_saved
 from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
-from olympia.versions.models import Version, VersionPreview, inherit_nomination
+from olympia.versions.models import (
+    Version, VersionPreview, VersionReviewerFlags, inherit_nomination)
 
 from . import signals
 
@@ -638,6 +639,10 @@ class Addon(OnChangeMixin, ModelBase):
             file_tasks.hide_disabled_files.delay(addon_id=self.id)
 
             self.versions.all().update(deleted=True)
+            VersionReviewerFlags.objects.filter(
+                version__in=self.versions(
+                    manager='unfiltered_for_relations').all()
+            ).update(pending_rejection=None)
             # The last parameter is needed to automagically create an AddonLog.
             activity.log_create(amo.LOG.DELETE_ADDON, self.pk,
                                 str(self.guid), self)
