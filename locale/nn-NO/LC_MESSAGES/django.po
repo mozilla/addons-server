@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-21 17:42+0000\n"
+"PO-Revision-Date: 2020-07-21 17:53+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1839,13 +1839,11 @@ msgstr "Ikon kan ikkje vere animerte."
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Bildet må vere minst {0} pikslar breidt og {1} pikslar høgt."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Bilde må anten vere PNG eller JPG."
+msgstr "Bildedimensjonane må vere i proporsjonen 4:3."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Bilde må vere akkurat {0} pikslar breie og {1} pikslar høge."
+msgstr "Ikonet må vere minst {0} pikslar breidt og høgt."
 
 msgid "Icon must be square (same width and height)."
 msgstr ""
@@ -1873,31 +1871,27 @@ msgstr "Versjon %s slått på igjen."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#, fuzzy
 msgid "Header area background"
-msgstr "Bakgrunn sidehovud (accentcolor)"
+msgstr "Bakgrunn for topptekstområdet"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
-#, fuzzy
 msgid "Header area text and icons"
-msgstr "Tekst sidehovud (textcolor)"
+msgstr "Tekst og ikon for topptekstområdet"
 
 #, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Fargen på teksten som vert vist i overskriftsområdet."
 
-#, fuzzy
 msgid "Toolbar area background"
-msgstr "Bakgrunn sidehovud (accentcolor)"
+msgstr "Bakgrunn for verktøylinjeområdet"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
-#, fuzzy
 msgid "Toolbar area text and icons"
-msgstr "Bakgrunn sidehovud (accentcolor)"
+msgstr "Tekst og ikon i verktøylinjeområdet"
 
 #, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
@@ -2061,9 +2055,8 @@ msgstr ""
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Vis og oppdater applikasjonskompatibilitetsområdet."
+msgstr "Sjå og rediger programkompatibilitetsområde"
 
 msgid "Compatibility"
 msgstr "Kompatibilitet"
@@ -2382,9 +2375,8 @@ msgstr "PNG og JPG er støtta."
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG og JPG er støtta. Ikon endrar storleik til 64x64 pikslar, om dei er større."
+msgstr "Ikon vert forminska til 128x128 pikslar dersom dei er større."
 
 msgid "Screenshots"
 msgstr "Skjermbilde"
@@ -2495,9 +2487,8 @@ msgstr "Slett denne utvidinga."
 msgid "Edit details on this add-on's product page"
 msgstr "Rediger detaljar for listinga av dette temaet."
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Last opp ein ny versjon av denne utvidinga."
+msgstr "Last opp ein ny versjon av dette tillegget"
 
 msgid "New Version"
 msgstr "Ny versjon"
@@ -2668,9 +2659,8 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Rediger versjon {0}"
 
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Versjon signert"
+msgstr "Versjonsignering ventar"
 
 #, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
@@ -2792,9 +2782,8 @@ msgstr ""
 msgid "Theme name"
 msgstr "Temanamn"
 
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "Vel eit bilde for temaet ditt til sidehovudet."
+msgstr "Vel eit toppbilde for temaet ditt"
 
 msgid "Recommended height: 200 pixels"
 msgstr "Tilrådd høgde: 200 pikslar"
@@ -2971,9 +2960,8 @@ msgstr ""
 msgid "Next Listed Version:"
 msgstr "Neste oppførte versjon:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Dette er den siste opplasta ulista versjonen."
+msgstr "Dette er den nyaste opplasta versjonen, men han er ikkje på nettstaden enno"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Køar vert ikkje vurderte i streng rekkjefølgje"
@@ -2991,9 +2979,8 @@ msgstr ""
 msgid "Latest Version:"
 msgstr "Siste versjon:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Dette er den siste opplasta ulista versjonen."
+msgstr "Dette er den nyaste opplasta ikkje-oppførte versjonen"
 
 msgid "Upload New Version"
 msgstr "Last opp ny versjon"
@@ -3019,9 +3006,8 @@ msgstr "Utviklarnytt"
 msgid "View the blog &#9658;"
 msgstr "Les bloggen &#9658;"
 
-#, fuzzy
 msgid "Pending information request:"
-msgstr "Det er bedt om meir informasjon"
+msgstr "Ventar på informasjonsførespurnad:"
 
 #, fuzzy
 msgid "This request for information has been resolved"
@@ -3098,13 +3084,11 @@ msgstr ""
 msgid "Matrix"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Utviklarhubb for utvidingar"
+msgstr "E-postliste for tilleggsutviklarar"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Utvidingsutvikling"
+msgstr "Nyheitsbrev for tilleggsutviklarar"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
@@ -6210,13 +6194,11 @@ msgstr ""
 msgid "Method:"
 msgstr ""
 
-#, fuzzy
 msgid "Source:"
-msgstr "etter kjelde"
+msgstr "Kjelde:"
 
-#, fuzzy
 msgid "Source URL:"
-msgstr "etter kjelde"
+msgstr "Kjeldeadresse:"
 
 msgid "Dismiss this announcement"
 msgstr "Avvis denne kunngjeringa"
@@ -6224,9 +6206,8 @@ msgstr "Avvis denne kunngjeringa"
 msgid "Files in this version:"
 msgstr "Filer i denne versjonen:"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Filer i denne versjonen:"
+msgstr "Bla gjennom alle filer i denne versjonen"
 
 msgid "Contents"
 msgstr "Innhald"
