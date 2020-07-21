@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-21 17:44+0000\n"
+"PO-Revision-Date: 2020-07-21 17:46+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -862,10 +862,10 @@ msgid "Information request removed"
 msgstr "Informasjonsforespørsel fjernet"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "{addon} {version} tillegsgjennomgang av admin forespurt."
+msgstr "{addon} {version} tilleggsgjennomgang av admin forespurt."
 
 msgid "Admin add-on-review requested"
-msgstr "Tillegsgjennomgang av admin er forespurt"
+msgstr "Tilleggsgjennomgang av admin er forespurt"
 
 msgid "{addon} {version} admin content-review requested."
 msgstr "{addon} {version} innholdsegjennomgang av admin forespurt."
@@ -1437,16 +1437,16 @@ msgid "Add-on Content Review"
 msgstr "Innholdsgjennomgang for tillegg"
 
 msgid "Add-on Review (Highest Risk)"
-msgstr "Tillegsgjennomgang (høyest risiko)"
+msgstr "Tilleggsgjennomgang (høyest risiko)"
 
 msgid "Add-on Review (High Risk)"
-msgstr "Tillegsgjennomgang (høy risiko)"
+msgstr "Tilleggsgjennomgang (høy risiko)"
 
 msgid "Add-on Review (Medium Risk)"
-msgstr "Tillegsgjennomgang (middels risiko)"
+msgstr "Tilleggsgjennomgang (middels risiko)"
 
 msgid "Add-on Review (Low Risk)"
-msgstr "Tillegsgjennomgang (lav risiko)"
+msgstr "Tilleggsgjennomgang (lav risiko)"
 
 msgid "Level 1"
 msgstr "Level 1"
@@ -1629,7 +1629,7 @@ msgid "Users can not be added directly"
 msgstr "Brukere kan ikke legges til direkte"
 
 msgid "An author can only be present once."
-msgstr "En opphavsmann kan bare forekomme en gang."
+msgstr "En opphavsmann kan bare være oppført en gang."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Kontoen trenger et visningsnavn før den kan legges til som opphavsmann."
@@ -1836,7 +1836,7 @@ msgid "Icons cannot be animated."
 msgstr "Ikoner kan ikke være animerte."
 
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Bildet må være minst {0} piksler bredt og {1} piksler høy."
+msgstr "Bildet må være minst {0} piksler bredt og {1} piksler høyt."
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Bildets dimensjoner må være i forholdet 4:3."
