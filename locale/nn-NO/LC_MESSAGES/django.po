@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-21 17:31+0000\n"
+"PO-Revision-Date: 2020-07-21 17:42+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1524,9 +1524,8 @@ msgstr "Inga handling"
 msgid "Flag for human review"
 msgstr "Flagg for at nokon skal ta ei gjennomgåing"
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Slå på auto-godkjenning"
+msgstr "Forseink automatisk godkjenning"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -1630,9 +1629,8 @@ msgstr "Før du endrar standardspråk må du spesifisera eit namn, ei oppsummeri
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Ein utviklar kan berre førast opp ein gong."
+msgstr "Ein opphavsmann kan berre vere oppførd ein gong."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
@@ -1676,9 +1674,8 @@ msgstr "Spesifiser personvernpraksisen til utvidinga di:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Filtypen er ikkje støtta, last opp ei arkivfil {extensions}."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Ugyldig arkiv."
+msgstr "Ugyldig eller øydelagt arkiv."
 
 msgid "View current"
 msgstr "Vis gjeldande"
@@ -1695,9 +1692,8 @@ msgstr "Det oppstod ein feil med opplastinga di. Prøv på nytt."
 msgid "Override failed validation"
 msgstr "Overkøyr mislykka validering"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Treng minst eitt kompatibelt program."
+msgstr "Vel minst eitt program."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr ""
@@ -1723,9 +1719,8 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nei"
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Klarte ikkje å tolke opplasta fil."
+msgstr "Du har ikkje lasta opp ei kjeldekodefil."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -1744,9 +1739,8 @@ msgstr ""
 msgid "Display Name"
 msgstr ""
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Ugyldig arkiv."
+msgstr "Ugyldig eller skada tilleggsfil."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -1818,16 +1812,14 @@ msgstr "Invitasjon avvist."
 msgid "An author has been added to your add-on"
 msgstr "Ein opphavsmann er lagt til i utvidinga di"
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "Bidrag til {addon}."
+msgstr "Opphavsmanninvitasjon for {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Ein stadfestings e-post er sendt til {email}"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "Ein opphavsmann har ftt ei rolle endra i utvidinga di"
+msgstr "Ei rolle for opphavsmann er endra i tillegget ditt"
 
 msgid "An author has been removed from your add-on"
 msgstr "Ein opphavsmann er fjerna frå utvidinga di"
@@ -1844,9 +1836,8 @@ msgstr "Ikon må anten vera PNG eller JPG."
 msgid "Icons cannot be animated."
 msgstr "Ikon kan ikkje vere animerte."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Bilde må vere akkurat {0} pikslar breie og {1} pikslar høge."
+msgstr "Bildet må vere minst {0} pikslar breidt og {1} pikslar høgt."
 
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
