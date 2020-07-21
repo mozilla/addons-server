@@ -280,6 +280,17 @@ class TestVersion(TestCase):
         version.delete()
         assert ActivityLog.objects.count() == 2
 
+    def test_version_delete_clear_pending_rejection(self):
+        version = Version.objects.get(pk=81551)
+        VersionReviewerFlags.objects.create(
+            version=version,
+            pending_rejection=datetime.now() + timedelta(days=1))
+        flags = VersionReviewerFlags.objects.get(version=version)
+        assert flags.pending_rejection
+        version.delete()
+        flags.reload()
+        assert not flags.pending_rejection
+
     def test_version_disable_and_reenable(self):
         version = Version.objects.get(pk=81551)
         assert version.all_files[0].status == amo.STATUS_APPROVED

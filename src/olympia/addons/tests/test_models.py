@@ -518,6 +518,29 @@ class TestAddonModels(TestCase):
         hide_disabled_files_mock.delay.assert_called_with(
             addon_id=addon.id)
 
+    def test_delete_clear_pending_rejection(self):
+        addon = addon_factory()
+        version_factory(addon=addon)
+        other_addon = addon_factory()
+        for version in Version.objects.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(days=1))
+        assert VersionReviewerFlags.objects.filter(
+            version__addon=addon).exists()
+        addon.delete()
+        assert addon.versions(manager='unfiltered_for_relations').exists()
+        # There shouldn't be any version reviewer flags for versions of that
+        # add-on with a non-null pending rejection anymore.
+        assert not VersionReviewerFlags.objects.filter(
+            version__addon=addon, pending_rejection__isnull=False,
+        ).exists()
+        # There should still be one for the version of the other add-on though.
+        assert VersionReviewerFlags.objects.filter(
+            version__addon=other_addon,
+            pending_rejection__isnull=False,
+        ).exists()
+
     def _delete_url(self):
         """Test deleting addon has URL in the email."""
         a = Addon.objects.get(pk=4594)

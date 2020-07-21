@@ -391,6 +391,12 @@ class Version(OnChangeMixin, ModelBase):
             self.deleted = True
             self.save()
 
+            # Clear pending rejection flag (we have the activity log for
+            # records purposes, the flag serves no purpose anymore if the
+            # version is deleted).
+            VersionReviewerFlags.objects.filter(
+                version=self).update(pending_rejection=None)
+
             previews_pks = list(
                 VersionPreview.objects.filter(version__id=self.id)
                               .values_list('id', flat=True))
