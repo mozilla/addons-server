@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-21 17:17+0000\n"
+"PO-Revision-Date: 2020-07-21 17:31+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -908,9 +908,8 @@ msgstr "Blokkering sletta"
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} fjerna frå {collection}."
+msgstr "GUID for {addon} fjerna frå DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -918,13 +917,11 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "Bildet til brukaren {user} sletta."
+msgstr "Økt(er) tilbakestilt for brukar {user}."
 
-#, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
-msgstr "Brukar {user} redigerte, årsak: {1}"
+msgstr "Brukar {user} avgrensa frå å nå «{0}»"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -977,9 +974,8 @@ msgstr "Utviklar"
 msgid "Extension"
 msgstr "Udviding"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Oppdatert gjennomgang av komplett tema"
+msgstr "Forelda fullstendig tema"
 
 msgid "Dictionary"
 msgstr "Ordliste"
@@ -1005,9 +1001,8 @@ msgstr "Tema (Statisk)"
 msgid "Extensions"
 msgstr "Utvidingar"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Fullstendige tema"
+msgstr "Forelda fullstendige tema"
 
 msgid "Dictionaries"
 msgstr "Ordbøker"
@@ -1388,9 +1383,8 @@ msgstr "Ny gransking av eldre tillegg"
 msgid "Preliminary Add-on Review"
 msgstr "Foreløpig gjennomgang av utviding"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Oppdatert gjennomgang av utviding"
+msgstr "Oppdater gjennomgåing av forelda tillegg"
 
 msgid "New Dictionary Review"
 msgstr "Ny ordlistevurdering"
@@ -1443,21 +1437,17 @@ msgstr "Utvidingsvurderingsmoderasjon tilbakestilt"
 msgid "Add-on Content Review"
 msgstr "Innhaldsvurdering for utviding"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "Utvidingsvurdering etter godkjenning (høgst risiko)"
+msgstr "Tillegsgjennomgåing (høgast risiko)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Utvidingsvurdering etter godkjenning (høg risiko)"
+msgstr "Tilleggsgjennomgåing (høg risiko)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Utvidingsvurdering etter godkjenning (middelshøg risiko)"
+msgstr "Tillegsgjennomgåing (middels risiko)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Vurderingslogg for utvidingar"
+msgstr "Tilleggsgjennomgåing (låg risiko)"
 
 msgid "Level 1"
 msgstr "Nivå 1"
