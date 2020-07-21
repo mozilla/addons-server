@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-21 17:13+0000\n"
+"PO-Revision-Date: 2020-07-21 17:17+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -272,11 +272,10 @@ msgstr "Bla i alle tema"
 msgid "Add-ons Home Page"
 msgstr "Startside for tillegg"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
-"Om du følge ei lenke frå nokon stad, gjer vel og %(open_bug_link)ssend inn eit spørsmål%(close_bug_link)s. Fortel oss kvar du kom ifrå og kva du såg etter, og vi vil gjere vårt beste for å fikse "
-"det."
+"Dersom du følgde lenka frå ein stad, %(open_bug_link)ssend inn ein feilrapport%(close_bug_link)s. Fortel oss kvar du kom frå og kva du såg etter, og vi vil gjere vårt beste for å rette på feilen."
 
 msgid "Not Found"
 msgstr "Ikkje funne"
@@ -879,17 +878,14 @@ msgstr "Innhaldsegjennomgåing av admin førespurd"
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} temagjennomgåing av admin førespurd."
 
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Det er bedt om ei vurdering"
+msgstr "Temagjennomgåing av admin førespurd"
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} migrert frå førebuande."
+msgstr "{addon} vart migrert frå eit lettvektstema."
 
-#, fuzzy
 msgid "User {user} api key reset."
-msgstr "Bildet til brukaren {user} sletta."
+msgstr "Tilbakestilling av API-nøkkel for brukar {user}."
 
 msgid "Block for {0} added to Blocklist."
 msgstr ""
@@ -903,13 +899,11 @@ msgstr ""
 msgid "Block edited"
 msgstr "Blokk redigert"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Versjon {0} sletta frå {addon}."
+msgstr "Blokkering for {0} sletta frå blokkeringslista."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "Utvidinga sletta."
+msgstr "Blokkering sletta"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
