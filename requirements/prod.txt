@@ -255,9 +255,9 @@ filtercascade==0.4.1 \
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50
-geoip2==3.0.0 \
-    --hash=sha256:5869e987bc54c0d707264fec4710661332cc38d2dca5a7f9bb5362d0308e2ce0 \
-    --hash=sha256:99ec12d2f1271a73a0a4a2b663fe6ce25fd02289c0a6bef05c0a1c3b30ee95a4
+geoip2==4.0.1 \
+    --hash=sha256:d966dc32e33d3d16f1021b2c5c1ef13900d46e1e2af45d237d0fbae782fc91b4 \
+    --hash=sha256:95da5f6bd9c3f84face1626b56e50e90eb94742bdf131149d024b7775558e61b
 # html5lib is required by rdflib
 html5lib==1.1 \
     --hash=sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d \
