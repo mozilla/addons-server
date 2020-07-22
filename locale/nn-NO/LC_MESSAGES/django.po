@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-22 23:42+0000\n"
+"PO-Revision-Date: 2020-07-22 23:51+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1528,22 +1528,22 @@ msgid "Delay auto-approval"
 msgstr "Forseink automatisk godkjenning"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Forseink automatisk godkjenning på ubestemt tid"
 
 msgid "True positive"
-msgstr ""
+msgstr "Sann positiv"
 
 msgid "False positive"
-msgstr ""
+msgstr "Falsk positiv"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Mangelfull"
 
 msgid "New"
 msgstr "Ny"
 
 msgid "Running"
-msgstr ""
+msgstr "Køyrer"
 
 msgid "Aborted"
 msgstr "Avbroten"
@@ -1555,7 +1555,7 @@ msgid "Completed"
 msgstr "Fullført"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Planlagt"
 
 msgid "Core"
 msgstr "Kjerne"
@@ -1568,7 +1568,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Siste endringar for tillegga mine"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Forelda utvidingar er ikkje lenger støtta i Firefox."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
@@ -5856,16 +5856,14 @@ msgstr "Auto-godkjende tillegg – Tillegg for Firefox"
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Meir informasjon er påkravd"
+msgstr "Utgått informasjonsførespurnad – tillegg for Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Meir informasjon er påkravd"
+msgstr "Ventar på avslag – Tillegg for Firefox"
 
 msgid "Advanced Search"
 msgstr "Avansert søk"
@@ -5960,13 +5958,11 @@ msgstr "Fleire handlingar"
 msgid "Notify me about new listed versions"
 msgstr ""
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Vis alle bidrag"
+msgstr "Tillat ny innsending"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Handter innesndingane mine"
+msgstr "Ikkje tillat ny innsending"
 
 msgid "Force-disable add-on"
 msgstr ""
@@ -5974,13 +5970,11 @@ msgstr ""
 msgid "Force-enable add-on"
 msgstr "Tvinga aktivering av utviding"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Vis alle bidrag"
+msgstr "Vis blokkeringslisteinnsending"
 
-#, fuzzy
 msgid "Block add-on"
-msgstr "Tilbake til utvidinga"
+msgstr "Blokker tillegg"
 
 msgid "Update add-on block"
 msgstr ""
@@ -6000,9 +5994,8 @@ msgstr ""
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Slå på auto-godkjenning"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Det er bedt om meir informasjon"
+msgstr "Fjern informasjonsførespurnad"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6013,9 +6006,8 @@ msgstr "Fjern flagg for administrativ kodevurdering"
 msgid "Clear Admin Content Review Flag"
 msgstr "Fjern flagg for administrativ innhaldsvurdering"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Fjern flagg for administrativ kodevurdering"
+msgstr "Fjern flagg for administrativ gjennomgang av statisk tema"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6212,17 +6204,14 @@ msgstr "versjonskanal"
 msgid "add-on status"
 msgstr "status for tillegg"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Synlegheit i opføring"
+msgstr "synlegheita til tillegget"
 
-#, fuzzy
 msgid "file status"
-msgstr "Nettstadstatus"
+msgstr "filstatus"
 
-#, fuzzy
 msgid "file signature"
-msgstr "{file} vart signert."
+msgstr "filsignatur"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6258,13 +6247,12 @@ msgstr ""
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
 
-#, fuzzy
 msgid "Revert report"
-msgstr "Vurderarsvar"
+msgstr "Tilbakestill rapport"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Ugyldig versjonsintervall."
+msgstr "Ugyldig parameter «%s»."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
@@ -6639,17 +6627,15 @@ msgstr ""
 msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr ""
 
-#, fuzzy
 msgid "Reset session"
-msgstr "Slett versjonen"
+msgstr "Tilbakestill økta"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr ""
 
-#, fuzzy
 msgid "Reset API Key"
-msgstr "Handsam API-nøklar"
+msgstr "Tilbakestill API-nøkkel"
 
 msgid "Profile Photo"
 msgstr "Profilfoto"
@@ -6708,9 +6694,8 @@ msgstr ""
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Lat att vurderingshistorikk"
+msgstr "Brukaravgrensingshistorikk"
 
 msgid "an add-on developer replies to my review"
 msgstr ""
@@ -6742,9 +6727,8 @@ msgstr "Brukarmerknadar"
 msgid "Ban"
 msgstr "Bannlys"
 
-#, fuzzy
 msgid "Reset session(s)"
-msgstr "Slett versjonen"
+msgstr "Tilbakestill økt(er)"
 
 msgid "Delete picture"
 msgstr "Slett bildet"
