@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-22 13:13+0000\n"
+"PO-Revision-Date: 2020-07-22 13:17+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3535,54 +3535,48 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Finn enkelt bilde {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Nyt visuelle bokmerke {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Få tilgang til kunnskap {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Fjern YouTube-reklamar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Les overalt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Fargekod fanene dine {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
