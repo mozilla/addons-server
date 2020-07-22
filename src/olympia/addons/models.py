@@ -1098,16 +1098,15 @@ class Addon(OnChangeMixin, ModelBase):
         if addon_dict is None:
             addon_dict = {addon.id: addon for addon in addons}
 
-        qs = (UserProfile.objects
-              .filter(addons__in=addons,
-                      addonuser__listed=True)
-              .exclude(addonuser__role=amo.AUTHOR_ROLE_DELETED)
-              .extra(select={'addon_id': 'addons_users.addon_id',
-                             'position': 'addons_users.position'}))
-        qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
+        addonuser_qs = (
+            AddonUser.objects.filter(addon__in=addons, listed=True)
+                             .order_by('addon_id', 'position')
+                             .select_related('user'))
         seen = set()
-        for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
-            addon_dict[addon_id].listed_authors = list(users)
+        groupby = itertools.groupby(addonuser_qs, key=lambda u: u.addon_id)
+        for addon_id, addonusers in groupby:
+            addon_dict[addon_id].listed_authors = [
+                au.user for au in addonusers]
             seen.add(addon_id)
         # set listed_authors to empty list on addons without listed authors.
         [setattr(addon, 'listed_authors', []) for addon in addon_dict.values()
