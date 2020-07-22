@@ -621,6 +621,9 @@ class TestReviewHelper(TestReviewHelperBase):
             'theme_pending_to_rejected': 'dev_versions_url',
 
             'unlisted_to_reviewed_auto': 'dev_versions_url',
+
+            'reject_multiple_versions': 'dev_versions_url',
+            'reject_multiple_versions_with_delay': 'dev_versions_url',
         }
 
         self.helper.set_data(self.get_data())
