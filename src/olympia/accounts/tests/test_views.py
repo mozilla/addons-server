@@ -611,13 +611,7 @@ class TestWithUser(TestCase):
         LoginView().post(self.request)
         self.fxa_identify.assert_called_with('foo', config=fxa_config)
 
-    def test_addon_developer_should_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
-        # They have developed a theme, but also an extension, so they will need
-        # 2FA.
-        addon_factory(users=[self.user])
-        addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
+    def _test_should_redirect_for_two_factor_auth(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity, 'someopenidtoken'
         self.find_user.return_value = self.user
@@ -654,52 +648,9 @@ class TestWithUser(TestCase):
                 next_path=force_text(next_path))],
         }
 
-    def test_special_user_should_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
-        # User isn't a developer but is part of a group.
-        self.grant_permission(self.user, 'Some:Thing')
-        identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
-        self.find_user.return_value = self.user
-        self.request.data = {
-            'code': 'foo',
-            'state': u'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))),
-        }
-        # @with_user should return a redirect response directly in that case.
-        response = self.fn(self.request)
-
-        # Query params should be kept on the redirect to FxA, with
-        # acr_values=AAL2 added to force two-factor auth on FxA side and
-        # id_token_hint passed with the openid token retrieved from FxA as well
-        # as prompt=none to avoid the need for the user to re-authenticate.
-        assert response.status_code == 302
-        url = urlparse(response['Location'])
-        base = '{scheme}://{netloc}{path}'.format(
-            scheme=url.scheme, netloc=url.netloc, path=url.path)
-        fxa_config = settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
-        assert base == '{host}{path}'.format(
-            host=settings.FXA_OAUTH_HOST,
-            path='/authorization')
-        query = parse_qs(url.query)
-        next_path = base64.urlsafe_b64encode(b'/a/path/?').rstrip(b'=')
-        assert query == {
-            'acr_values': ['AAL2'],
-            'action': ['signin'],
-            'client_id': [fxa_config['client_id']],
-            'id_token_hint': ['someopenidtoken'],
-            'prompt': ['none'],
-            'scope': ['profile openid'],
-            'state': ['some-blob:{next_path}'.format(
-                next_path=force_text(next_path))],
-        }
-
-    def test_theme_developer_should_not_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
-        addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
-        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+    def _test_should_continue_without_redirect_for_two_factor_auth(
+            self, *, identity=None):
+        identity = identity or {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity, 'someopenidtoken'
         self.find_user.return_value = self.user
         self.request.data = {
@@ -714,6 +665,44 @@ class TestWithUser(TestCase):
             'identity': identity,
             'next_path': '/a/path/?',
         }
+
+    def test_addon_developer_should_redirect_for_two_factor_auth(self):
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
+        self.user = user_factory()
+        # They have developed a theme, but also an extension, so they will need
+        # 2FA.
+        addon_factory(users=[self.user])
+        addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
+        self._test_should_redirect_for_two_factor_auth()
+
+    def test_special_user_should_redirect_for_two_factor_auth(self):
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
+        self.user = user_factory()
+        # User isn't a developer but is part of a group.
+        self.grant_permission(self.user, 'Some:Thing')
+        self._test_should_redirect_for_two_factor_auth()
+
+    def test_user_should_redirect_for_two_factor_auth_flag_user_specific(self):
+        self.user = user_factory()
+        flag = self.create_flag(
+            '2fa-enforcement-for-developers-and-special-users', everyone=False)
+        flag.users.add(self.user)
+        # User isn't a developer but is part of a group.
+        self.grant_permission(self.user, 'Some:Thing')
+        # The flag is enabled for that user.
+        self._test_should_redirect_for_two_factor_auth()
+
+        # Others should be unaffected as the flag is only set for a specific
+        # user.
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Some:Thing')
+        self._test_should_continue_without_redirect_for_two_factor_auth()
+
+    def test_theme_developer_should_not_redirect_for_two_factor_auth(self):
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
+        self.user = user_factory()
+        addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
+        self._test_should_continue_without_redirect_for_two_factor_auth()
 
     def test_addon_developer_already_using_two_factor_should_continue(self):
         self.create_flag('2fa-enforcement-for-developers-and-special-users')
@@ -724,41 +713,15 @@ class TestWithUser(TestCase):
             'email': 'hey@yo.it',
             'twoFactorAuthentication': True
         }
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
-        self.find_user.return_value = self.user
-        self.request.data = {
-            'code': 'foo',
-            'state': u'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))),
-        }
-        args, kwargs = self.fn(self.request)
-        assert args == (self, self.request)
-        assert kwargs == {
-            'user': self.user,
-            'identity': identity,
-            'next_path': '/a/path/?',
-        }
+        self._test_should_continue_without_redirect_for_two_factor_auth(
+            identity=identity)
 
     def test_waffle_flag_off_developer_without_2fa_should_continue(self):
         self.create_flag(
             '2fa-enforcement-for-developers-and-special-users', everyone=False)
         self.user = user_factory()
         addon_factory(users=[self.user])
-        identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity, 'someopenidtoken'
-        self.find_user.return_value = self.user
-        self.request.data = {
-            'code': 'foo',
-            'state': u'some-blob:{next_path}'.format(
-                next_path=force_text(base64.urlsafe_b64encode(b'/a/path/?'))),
-        }
-        args, kwargs = self.fn(self.request)
-        assert args == (self, self.request)
-        assert kwargs == {
-            'user': self.user,
-            'identity': identity,
-            'next_path': '/a/path/?',
-        }
+        self._test_should_continue_without_redirect_for_two_factor_auth()
 
 
 @override_settings(FXA_CONFIG={

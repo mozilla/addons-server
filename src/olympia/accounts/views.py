@@ -269,11 +269,17 @@ def with_user(format):
                     format=format)
             else:
                 user = find_user(identity)
+                # We can't use waffle.flag_is_active() wrapper, because
+                # request.user isn't populated at this point (and we don't want
+                # it to be).
+                flag = waffle.get_waffle_flag_model().get(
+                    '2fa-enforcement-for-developers-and-special-users')
+                enforce_2fa_for_developers_and_special_users = (
+                    flag.is_active(request) or
+                    (flag.pk and flag.is_active_for_user(user)))
                 if (user and
                     not identity.get('twoFactorAuthentication') and
-                    waffle.flag_is_active(
-                        request,
-                        '2fa-enforcement-for-developers-and-special-users') and
+                    enforce_2fa_for_developers_and_special_users and
                         (user.is_addon_developer or user.groups_list)):
                     # https://github.com/mozilla/addons/issues/732
                     # The user is an add-on developer (with other types of
