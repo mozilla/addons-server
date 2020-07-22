@@ -289,6 +289,16 @@ class TestReviewForm(TestCase):
             'versions': [u'This field is required.']
         }
 
+    def test_immediate_rejection_defaults(self):
+        # When doing a listed review, the default is to reject with a delay.
+        form = self.get_form()
+        form.fields['delayed_rejection'].initial is True
+        # When doing an unlisted review, we'll hide delayed rejection inputs,
+        # so we should always default to delayed rejection being off.
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        form = self.get_form()
+        form.fields['delayed_rejection'].initial is False
+
     def test_delayed_rejection_days_widget_attributes(self):
         # Regular reviewers can't customize the delayed rejection period.
         form = self.get_form()

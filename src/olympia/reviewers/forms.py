@@ -382,6 +382,17 @@ class ReviewForm(forms.Form):
         self.helper = kw.pop('helper')
         super(ReviewForm, self).__init__(*args, **kw)
 
+        if self.helper.version:
+            channel = self.helper.version.channel
+        else:
+            channel = amo.RELEASE_CHANNEL_LISTED
+
+        # We default to delayed rejection for listed, but for unlisted the
+        # input will never be shown for any action, so it should default to
+        # False.
+        if channel == amo.RELEASE_CHANNEL_UNLISTED:
+            self.fields['delayed_rejection'].initial = False
+
         # Delayed rejection period needs to be readonly unless we're an admin.
         user = self.helper.handler.user
         rejection_period_widget_attributes = {}
@@ -405,10 +416,6 @@ class ReviewForm(forms.Form):
             if self.helper.actions[k].get('versions')
         ]
         if versions_actions:
-            if self.helper.version:
-                channel = self.helper.version.channel
-            else:
-                channel = amo.RELEASE_CHANNEL_LISTED
             statuses = (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)
             self.fields['versions'].widget.versions_actions = versions_actions
             self.fields['versions'].queryset = (
