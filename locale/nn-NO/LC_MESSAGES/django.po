@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-22 23:33+0000\n"
+"PO-Revision-Date: 2020-07-22 23:42+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4372,27 +4372,24 @@ msgid "Highlight text from any website and right-click to search YouTube for rel
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bli betre på emoji {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Få fordelar på Amazon {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Handter passord {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Total fanekontroll {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokker annonsar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Dra nytte av ei merkeleg utdanning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
@@ -4622,27 +4619,24 @@ msgid "Edit a web page before printing. Make sweeping visual changes—remove ad
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Handter passord {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Følg prisutviklinga på Amazon {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Handter lyd {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokker annonsar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ta vare på privatlivet ditt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
@@ -5489,13 +5483,11 @@ msgstr "Siste vurdering"
 msgid "Weight"
 msgstr "Vekt"
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Meir informasjon er påkravd"
+msgstr "Frist for informasjonsførespurnad"
 
-#, fuzzy
 msgid "Pending Rejection Deadline"
-msgstr "Meir informasjon er påkravd"
+msgstr "Frist for ventande avslag"
 
 msgid "Last Updated"
 msgstr "Sist oppdatert"
@@ -5506,13 +5498,11 @@ msgstr "Nokon må ta ei gjennomgåing på lista versjonar  ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Nokon må ta ei gjennomgåing på ulista versjonar ({0})"
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Oppførte versjonar"
+msgstr "Lista versjonar ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Oppførte versjonar"
+msgstr "Ikkje-lista versjonar ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5538,16 +5528,14 @@ msgstr "Avvis fleire versjonar"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Avvis fleire versjonar"
+msgstr "Blokker fleire versjonar"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Avvis fleire versjonar"
+msgstr "Stadfest fleire versjonar"
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
 msgstr ""
@@ -5570,16 +5558,14 @@ msgstr "Kommentar"
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
-#, fuzzy
 msgid "Pre-Review Add-ons"
-msgstr "Vurder utvidingar"
+msgstr "Førehandsgjennomgå tillegg"
 
 msgid "Recommended ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Other Pending Review ({0})"
-msgstr "Innhaldsvurdering({0})"
+msgstr "Annan pågåande gjennomgang ({0})"
 
 msgid "Review Log"
 msgstr "Vurderingslogg"
@@ -5653,13 +5639,11 @@ msgstr "Kunngjering"
 msgid "Update message of the day"
 msgstr "Oppdater dagens melding"
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Meir informasjon er påkravd"
+msgstr "Utgått informasjonsførespurnad ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Innhaldsvurdering({0})"
+msgstr "Tillegg med ventande avslag ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Det oppstod ein ukjend feil"
@@ -5698,9 +5682,8 @@ msgstr "Tilleggs-ID"
 msgid "Internal AMO ID"
 msgstr ""
 
-#, fuzzy
 msgid "Support Website"
-msgstr "Nettstad for brukarstøtte:"
+msgstr "Nettstad for brukarstøtte"
 
 msgid "Visibility"
 msgstr "Synlegheit"
@@ -5735,9 +5718,8 @@ msgstr "Dårlege brukarvurderingar ({num})"
 msgid "Theme Images"
 msgstr "Temabilde"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Sletta vurderingar"
+msgstr "Gjengitt førehandsvising"
 
 msgid "More about this add-on"
 msgstr "Meir om denne utvidinga"
@@ -5868,9 +5850,8 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Auto-godkjende utvidingar"
+msgstr "Auto-godkjende tillegg – Tillegg for Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
