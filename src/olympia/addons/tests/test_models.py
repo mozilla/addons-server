@@ -449,8 +449,12 @@ class TestAddonModels(TestCase):
     def test_transformer(self):
         author = UserProfile.objects.get(pk=55021)
         new_author = AddonUser.objects.create(
-            addon_id=3615, user=UserProfile.objects.create(username='abda'),
+            addon_id=3615, user=user_factory(),
             listed=True).user
+        # make the new_author a deleted author of another addon
+        AddonUser.objects.create(
+            addon=addon_factory(), user=new_author,
+            role=amo.AUTHOR_ROLE_DELETED)
         # Deleted, so shouldn't show up below.
         AddonUser.objects.create(
             addon_id=3615, user=user_factory(),
@@ -465,6 +469,12 @@ class TestAddonModels(TestCase):
             # transformer didn't attach the list directly
             assert [u.pk for u in addon.listed_authors] == [
                 author.pk, new_author.pk]
+
+        # repeat to check the position ordering works
+        author.addonuser_set.filter(addon=addon).update(position=1)
+        addon = Addon.objects.get(pk=3615)
+        assert [u.pk for u in addon.listed_authors] == [
+            new_author.pk, author.pk]
 
     def _delete(self, addon_id):
         """Test deleting add-ons."""
