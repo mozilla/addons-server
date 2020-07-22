@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-21 17:58+0000\n"
+"PO-Revision-Date: 2020-07-22 13:13+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3407,144 +3407,128 @@ msgstr[0] "{0} åtvaring"
 msgstr[1] "{0} åtvaringar"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Stopp lumske sporarar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokker annonsar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Tilpass sida ny fane {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Omsett enkelt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Søk etter bilde {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Annonseblokkering og sikring av privatliv {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Omorganiser faner {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Stopp Facebook-sporing {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Forenkle søk {start_sub_heading}med{addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Få direkte vêroppdateringar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates from around the world."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokker annonsar {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Tilpass faner {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Omvendt bildesøk {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Last ned videoar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bli betre på emoji {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Forbetre emoji-spelet ditt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Handter passord {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Blokker annonsar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gjer videoar betre {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Forbetre videoar {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
