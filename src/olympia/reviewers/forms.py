@@ -349,7 +349,13 @@ class ReviewForm(forms.Form):
     applications = forms.CharField(required=False,
                                    label=_(u'Applications:'))
     delayed_rejection = forms.BooleanField(
-        initial=True,
+        # For the moment we default to immediate rejections, but in the future
+        # this will have to be dynamically set in __init__() to default to
+        # delayed for listed review, and immediate for unlisted (the default
+        # matters especially for unlisted where we don't intend to even show
+        # the inputs, so we'll always use the initial value).
+        # See https://github.com/mozilla/addons-server/pull/15025
+        initial=False,
         required=False,
         widget=forms.RadioSelect(
             choices=(
