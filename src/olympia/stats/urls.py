@@ -50,7 +50,8 @@ stats_patterns = [
 
     url(series['usage'], views.usage_series, name='stats.usage_series'),
 
-    url(series['sources'], views.sources_series, name='stats.sources_series'),
+    url(series['sources'], views.download_breakdown_series,
+        name='stats.sources_series', kwargs={'source': 'sources'}),
 
     url(series['os'], views.usage_breakdown_series,
         name='stats.os_series', kwargs={'field': 'oses'}),

@@ -8,6 +8,7 @@ from unittest import mock
 from django.http import Http404
 from django.test.client import RequestFactory
 from django.utils.encoding import force_text
+from waffle.testutils import override_flag
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -63,10 +64,19 @@ class StatsTestCase(TestCase):
         self.get_updates_series_mock = self.get_updates_series_patcher.start()
         self.get_updates_series_mock.return_value = []
 
+        self.get_download_series_patcher = mock.patch(
+            'olympia.stats.views.get_download_series'
+        )
+        self.get_download_series_mock = (
+            self.get_download_series_patcher.start()
+        )
+        self.get_download_series_mock.return_value = []
+
     def tearDown(self):
         super().setUp()
 
         self.get_updates_series_patcher.stop()
+        self.get_download_series_patcher.stop()
 
     def login_as_admin(self):
         self.client.logout()
@@ -279,36 +289,25 @@ class ESStatsTestCase(StatsTestCase, amo.tests.ESTestCase):
 
 
 class TestViews(ESStatsTestCase):
-    def _test_no_cache(self):
-        """Test that the csv or json is not caching, due to lack of data."""
-        self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
+    def test_usage_series_no_data_json(self):
+        self.get_updates_series_mock.return_value = []
+
         response = self.get_view_response(
-            'stats.versions_series', head=True, group='day', format='csv'
-        )
-        assert response.status_code == 200
-        assert set(response['cache-control'].split(', ')) == (
-            {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'}
+            'stats.usage_series', group='day', format='json'
         )
 
-        self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
+        assert response.status_code == 200
+        self.assertListEqual(json.loads(force_text(response.content)), [])
+
+    def test_usage_series_no_data_csv(self):
+        self.get_updates_series_mock.return_value = []
+
         response = self.get_view_response(
-            'stats.versions_series', head=True, group='day', format='json'
+            'stats.usage_series', group='day', format='csv'
         )
+
         assert response.status_code == 200
-        assert set(response['cache-control'].split(', ')) == (
-            {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'}
-        )
-
-    def _test_usage_series_no_data(self):
-        url_args = [{'start': '20010101', 'end': '20010130', 'addon_id': 4}]
-        for url_arg in url_args:
-            self.url_args = url_arg
-            response = self.get_view_response(
-                'stats.usage_series', group='day', format='csv'
-            )
-
-            assert response.status_code == 200
-            self.csv_eq(response, """date,count""")
+        self.csv_eq(response, """date,count""")
 
     def test_usage_json(self):
         self.get_updates_series_mock.return_value = [
@@ -672,8 +671,9 @@ class TestViews(ESStatsTestCase):
                     next_actual['data'], {'downloads': 0, 'updates': 0}
                 )
                 next_actual = next(actual)
+        self.get_download_series_mock.no_called()
 
-    def test_downloads_json(self):
+    def test_downloads_json_legacy(self):
         response = self.get_view_response(
             'stats.downloads_series', group='day', format='json'
         )
@@ -692,8 +692,9 @@ class TestViews(ESStatsTestCase):
                 {"count": 10, "date": "2009-06-01", "end": "2009-06-01"},
             ],
         )
+        self.get_download_series_mock.no_called()
 
-    def test_downloads_csv(self):
+    def test_downloads_csv_legacy(self):
         response = self.get_view_response(
             'stats.downloads_series', group='day', format='csv'
         )
@@ -711,11 +712,68 @@ class TestViews(ESStatsTestCase):
             2009-06-07,10
             2009-06-01,10""",
         )
+        self.get_download_series_mock.no_called()
 
-    def test_downloads_sources_json(self):
+    @override_flag('bigquery-download-stats', active=True)
+    def test_downloads_json(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+            },
+            {
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
+                'count': 1000,
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.downloads_series', group='day', format='json'
+        )
+
+        assert response.status_code == 200
+        self.assertListEqual(
+            json.loads(force_text(response.content)),
+            [
+                {"date": "2009-06-02", "end": "2009-06-02", "count": 1500},
+                {"date": "2009-06-01", "end": "2009-06-01", "count": 1000},
+            ]
+        )
+
+    @override_flag('bigquery-download-stats', active=True)
+    def test_downloads_csv(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+            },
+            {
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
+                'count': 1000,
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.downloads_series', group='day', format='csv'
+        )
+
+        assert response.status_code == 200
+        self.csv_eq(
+            response,
+            """date,count
+            2009-06-02,1500
+            2009-06-01,1000""",
+        )
+
+    def test_downloads_sources_json_legacy(self):
         response = self.get_view_response(
             'stats.sources_series', group='day', format='json'
         )
+
         assert response.status_code == 200
         self.assertListEqual(
             json.loads(force_text(response.content)),
@@ -770,8 +828,9 @@ class TestViews(ESStatsTestCase):
                 },
             ],
         )
+        self.get_download_series_mock.no_called()
 
-    def test_downloads_sources_csv(self):
+    def test_downloads_sources_csv_legacy(self):
         response = self.get_view_response(
             'stats.sources_series', group='day', format='csv'
         )
@@ -787,6 +846,76 @@ class TestViews(ESStatsTestCase):
             2009-06-12,10,2,3
             2009-06-07,10,2,3
             2009-06-01,10,2,3""",
+        )
+        self.get_download_series_mock.no_called()
+
+    @override_flag('bigquery-download-stats', active=True)
+    def test_downloads_sources_json(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+                'data': {'api': 550, 'search': 950},
+            },
+            {
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
+                'count': 1000,
+                'data': {'api': 550, 'search': 450},
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.sources_series', group='day', format='json'
+        )
+
+        assert response.status_code == 200
+        self.assertListEqual(
+            json.loads(force_text(response.content)),
+            [
+                {
+                    "date": "2009-06-02",
+                    "end": "2009-06-02",
+                    "count": 1500,
+                    "data": {"api": 550, "search": 950},
+                },
+                {
+                    "date": "2009-06-01",
+                    "end": "2009-06-01",
+                    "count": 1000,
+                    "data": {"api": 550, "search": 450},
+                },
+            ]
+        )
+
+    @override_flag('bigquery-download-stats', active=True)
+    def test_downloads_sources_csv(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+                'data': {'api': 550, 'search': 950},
+            },
+            {
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
+                'count': 1000,
+                'data': {'api': 550, 'search': 450},
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.sources_series', group='day', format='csv'
+        )
+
+        assert response.status_code == 200
+        self.csv_eq(
+            response,
+            """date,count,api,search
+            2009-06-02,1500,550,950
+            2009-06-01,1000,550,450""",
         )
 
 
@@ -831,13 +960,18 @@ class TestStatsWithBigQuery(TestCase):
 
         assert b'by Country' in response.content
 
+    @override_flag('bigquery-download-stats', active=False)
     @mock.patch('olympia.stats.views.get_updates_series')
-    def test_overview_series(self, get_updates_series_mock):
+    @mock.patch('olympia.stats.views.get_download_series')
+    def test_overview_series(
+            self, get_download_series, get_updates_series_mock
+    ):
         get_updates_series_mock.return_value = []
         url = reverse('stats.overview_series', args=self.series_args)
 
         self.client.get(url)
 
+        get_download_series.not_called()
         get_updates_series_mock.assert_called_once_with(
             addon=self.addon,
             start_date=self.start_date,
@@ -902,6 +1036,24 @@ class TestStatsWithBigQuery(TestCase):
         response = self.client.get(url)
 
         assert response.status_code == 200
+
+    @override_flag('bigquery-download-stats', active=True)
+    @mock.patch('olympia.stats.views.get_updates_series')
+    @mock.patch('olympia.stats.views.get_download_series')
+    def test_overview_series_with_bigquery_download_stats(
+        self, get_download_series_mock, get_updates_series_mock
+    ):
+        get_download_series_mock.return_value = []
+        get_updates_series_mock.return_value = []
+        url = reverse('stats.overview_series', args=self.series_args)
+
+        self.client.get(url)
+
+        get_download_series_mock.assert_called_once_with(
+            addon=self.addon,
+            start_date=self.start_date,
+            end_date=self.end_date,
+        )
 
 
 class TestProcessLocales(TestCase):
