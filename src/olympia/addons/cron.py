@@ -1,9 +1,11 @@
-from datetime import date
+import itertools
 
-from django.db.models import F, Q, Sum, Value, IntegerField
+from datetime import date
 
 import waffle
 
+from django.db import connection
+from django.db.models import F, Q, Sum, Value, IntegerField
 from celery import group
 
 import olympia.core.logger
@@ -21,6 +23,7 @@ from olympia.files.models import File
 from olympia.stats.utils import (
     get_addons_and_average_daily_users_from_bigquery,
     get_averages_by_addon_from_bigquery)
+from olympia.lib.es.utils import raise_if_reindex_in_progress
 
 
 log = olympia.core.logger.getLogger('z.cron')
@@ -216,3 +219,47 @@ def update_addon_hotness(chunk_size=300):
     create_chunked_tasks_signatures(
         _update_addon_hotness, averages.items(), chunk_size
     ).apply_async()
+
+
+def update_addon_weekly_downloads():
+    """
+    Update 7-day add-on download counts.
+    """
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
+    raise_if_reindex_in_progress('amo')
+
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            SELECT addon_id, SUM(count) AS weekly_count
+            FROM download_counts
+            WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+            GROUP BY addon_id
+            ORDER BY addon_id""")
+        counts = cursor.fetchall()
+
+    addon_ids = [r[0] for r in counts]
+
+    if not addon_ids:
+        return
+
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            SELECT id, 0
+            FROM addons
+            WHERE id NOT IN %s""", (addon_ids,))
+        counts += cursor.fetchall()
+
+        cursor.execute("""
+            CREATE TEMPORARY TABLE tmp_wd
+            (addon_id INT PRIMARY KEY, count INT)""")
+        cursor.execute('INSERT INTO tmp_wd VALUES %s' %
+                       ','.join(['(%s,%s)'] * len(counts)),
+                       list(itertools.chain(*counts)))
+
+        cursor.execute("""
+            UPDATE addons INNER JOIN tmp_wd
+                ON addons.id = tmp_wd.addon_id
+            SET weeklydownloads = tmp_wd.count""")
+        cursor.execute("DROP TABLE IF EXISTS tmp_wd")

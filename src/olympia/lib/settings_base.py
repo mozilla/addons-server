@@ -1857,6 +1857,7 @@ ALLOWED_FXA_CONFIGS = ['default']
 CRON_JOBS = {
     'update_addon_average_daily_users': 'olympia.addons.cron',
     'update_addon_total_downloads': 'olympia.addons.cron',
+    'update_addon_weekly_downloads': 'olympia.addons.cron',
     'addon_last_updated': 'olympia.addons.cron',
     'update_addon_appsupport': 'olympia.addons.cron',
     'hide_disabled_files': 'olympia.addons.cron',
@@ -1865,7 +1866,6 @@ CRON_JOBS = {
 
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',
-    'weekly_downloads': 'olympia.amo.cron',
 
     'auto_import_blocklist': 'olympia.blocklist.cron',
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
