@@ -8,9 +8,9 @@ from olympia.amo.tests import TestCase, addon_factory
 from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.stats.utils import (
     AMO_STATS_DAU_VIEW,
-    AMO_STATS_INSTALLS_VIEW,
+    AMO_STATS_DOWNLOAD_VIEW,
     AMO_TO_BQ_DAU_COLUMN_MAPPING,
-    AMO_TO_BQ_INSTALLS_COLUMN_MAPPING,
+    AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING,
     get_addons_and_average_daily_users_from_bigquery,
     get_averages_by_addon_from_bigquery,
     get_updates_series,
@@ -159,7 +159,7 @@ class TestRowsToSeriesForUsageStats(BigQueryTestMixin, TestCase):
         }
 
 
-class TestRowsToSeriesForInstallStats(BigQueryTestMixin, TestCase):
+class TestRowsToSeriesForDownloadStats(BigQueryTestMixin, TestCase):
     def create_fake_bigquery_row(
         self, total_downloads=123, submission_date=date(2020, 5, 28), **kwargs
     ):
@@ -238,6 +238,24 @@ LIMIT 365"""
         client.query.assert_called_once_with(
             expected_query, job_config=mock.ANY
         )
+        parameters = self.get_job_config_named_parameters(client.query)
+        assert parameters == [
+            {
+                'parameterType': {'type': 'STRING'},
+                'parameterValue': {'value': self.addon.guid},
+                'name': 'addon_id',
+            },
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': str(start_date)},
+                'name': 'submission_date_start',
+            },
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': str(end_date)},
+                'name': 'submission_date_end',
+            },
+        ]
         timer_mock.assert_called_once_with(
             'stats.get_updates_series.bigquery.no_source'
         )
@@ -512,7 +530,7 @@ class TestGetDownloadSeries(BigQueryTestMixin, TestCase):
         end_date = date(2020, 5, 28)
         expected_query = f"""
 SELECT submission_date, total_downloads
-FROM `project.dataset.{AMO_STATS_INSTALLS_VIEW}`
+FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
 WHERE addon_id = @addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
@@ -525,6 +543,24 @@ LIMIT 365"""
         client.query.assert_called_once_with(
             expected_query, job_config=mock.ANY
         )
+        parameters = self.get_job_config_named_parameters(client.query)
+        assert parameters == [
+            {
+                'parameterType': {'type': 'STRING'},
+                'parameterValue': {'value': self.addon.guid},
+                'name': 'addon_id',
+            },
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': str(start_date)},
+                'name': 'submission_date_start',
+            },
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': str(end_date)},
+                'name': 'submission_date_end',
+            },
+        ]
         timer_mock.assert_called_once_with(
             'stats.get_download_series.bigquery.no_source'
         )
@@ -537,10 +573,10 @@ LIMIT 365"""
         start_date = date(2020, 5, 27)
         end_date = date(2020, 5, 28)
 
-        for source, column in AMO_TO_BQ_INSTALLS_COLUMN_MAPPING.items():
+        for source, column in AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING.items():
             expected_query = f"""
 SELECT submission_date, total_downloads, {column}
-FROM `project.dataset.{AMO_STATS_INSTALLS_VIEW}`
+FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
 WHERE addon_id = @addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC

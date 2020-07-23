@@ -18,12 +18,12 @@ AMO_TO_BQ_DAU_COLUMN_MAPPING = {
 
 # This is the mapping between the AMO download stats `sources` and the BigQuery
 # columns.
-AMO_TO_BQ_INSTALLS_COLUMN_MAPPING = {'sources': 'downloads_per_source'}
+AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING = {'sources': 'downloads_per_source'}
 
 AMO_STATS_DAU_VIEW = 'amo_stats_dau'
 # NOTE: We currently use the `v2` table instead of the actual view because we
 # are still experimenting with this new dataset.
-AMO_STATS_INSTALLS_VIEW = 'amo_stats_installs_v2'
+AMO_STATS_DOWNLOAD_VIEW = 'amo_stats_installs_v2'
 
 
 def make_fully_qualified_view_name(view):
@@ -36,8 +36,8 @@ def get_amo_stats_dau_view_name():
     return make_fully_qualified_view_name(AMO_STATS_DAU_VIEW)
 
 
-def get_amo_stats_installs_view_name():
-    return make_fully_qualified_view_name(AMO_STATS_INSTALLS_VIEW)
+def get_amo_stats_download_view_name():
+    return make_fully_qualified_view_name(AMO_STATS_DOWNLOAD_VIEW)
 
 
 def create_client():
@@ -121,13 +121,13 @@ def get_download_series(addon, start_date, end_date, source=None):
     client = create_client()
 
     select_clause = 'SELECT submission_date, total_downloads'
-    filter_by = AMO_TO_BQ_INSTALLS_COLUMN_MAPPING.get(source)
+    filter_by = AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING.get(source)
     if filter_by:
         select_clause = f'{select_clause}, {filter_by}'
 
     query = f"""
 {select_clause}
-FROM `{get_amo_stats_installs_view_name()}`
+FROM `{get_amo_stats_download_view_name()}`
 WHERE addon_id = @addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
