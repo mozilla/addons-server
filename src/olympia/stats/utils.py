@@ -6,8 +6,9 @@ from google.cloud import bigquery
 
 from olympia.constants.applications import ANDROID, FIREFOX
 
-# This is the mapping between the AMO stats `sources` and the BigQuery columns.
-AMO_TO_BIGQUERY_COLUMN_MAPPING = {
+# This is the mapping between the AMO usage stats `sources` and the BigQuery
+# columns.
+AMO_TO_BQ_DAU_COLUMN_MAPPING = {
     'apps': 'dau_by_app_version, dau_by_fenix_build',
     'countries': 'dau_by_country',
     'locales': 'dau_by_locale',
@@ -15,26 +16,42 @@ AMO_TO_BIGQUERY_COLUMN_MAPPING = {
     'versions': 'dau_by_addon_version',
 }
 
+# This is the mapping between the AMO download stats `sources` and the BigQuery
+# columns.
+AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING = {'sources': 'downloads_per_source'}
 
 AMO_STATS_DAU_VIEW = 'amo_stats_dau'
+# NOTE: We currently use the `v2` table instead of the actual view because we
+# are still experimenting with this new dataset.
+AMO_STATS_DOWNLOAD_VIEW = 'amo_stats_installs_v2'
 
 
-def get_amo_stats_dau_view_name():
+def make_fully_qualified_view_name(view):
     return '.'.join(
-        [
-            settings.BIGQUERY_PROJECT,
-            settings.BIGQUERY_AMO_DATASET,
-            AMO_STATS_DAU_VIEW,
-        ]
+        [settings.BIGQUERY_PROJECT, settings.BIGQUERY_AMO_DATASET, view]
     )
 
 
-def rows_to_series(rows, filter_by=None):
+def get_amo_stats_dau_view_name():
+    return make_fully_qualified_view_name(AMO_STATS_DAU_VIEW)
+
+
+def get_amo_stats_download_view_name():
+    return make_fully_qualified_view_name(AMO_STATS_DOWNLOAD_VIEW)
+
+
+def create_client():
+    return bigquery.Client.from_service_account_json(
+        settings.GOOGLE_APPLICATION_CREDENTIALS
+    )
+
+
+def rows_to_series(rows, count_column, filter_by=None):
     """Transforms BigQuery rows into series items suitable for the rest of the
     AMO stats logic."""
     for row in rows:
         item = {
-            'count': row['dau'],
+            'count': row[count_column],
             'date': row['submission_date'],
             'end': row['submission_date'],
         }
@@ -43,7 +60,7 @@ def rows_to_series(rows, filter_by=None):
             # one.
             # See: https://github.com/mozilla/addons-server/issues/14411
             # See: https://github.com/mozilla/addons-server/issues/14832
-            if filter_by == AMO_TO_BIGQUERY_COLUMN_MAPPING['apps']:
+            if filter_by == AMO_TO_BQ_DAU_COLUMN_MAPPING['apps']:
                 item['data'] = {
                     ANDROID.guid: {
                         d['key']: d['value']
@@ -63,13 +80,10 @@ def rows_to_series(rows, filter_by=None):
 
 
 def get_updates_series(addon, start_date, end_date, source=None):
-    client = bigquery.Client.from_service_account_json(
-        settings.GOOGLE_APPLICATION_CREDENTIALS
-    )
-
-    filter_by = AMO_TO_BIGQUERY_COLUMN_MAPPING.get(source)
+    client = create_client()
 
     select_clause = 'SELECT submission_date, dau'
+    filter_by = AMO_TO_BQ_DAU_COLUMN_MAPPING.get(source)
     if filter_by:
         select_clause = f'{select_clause}, {filter_by}'
 
@@ -100,15 +114,55 @@ LIMIT 365"""
             ),
         ).result()
 
-    return rows_to_series(rows, filter_by=filter_by)
+    return rows_to_series(rows, count_column='dau', filter_by=filter_by)
+
+
+def get_download_series(addon, start_date, end_date, source=None):
+    client = create_client()
+
+    select_clause = 'SELECT submission_date, total_downloads'
+    filter_by = AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING.get(source)
+    if filter_by:
+        select_clause = f'{select_clause}, {filter_by}'
+
+    query = f"""
+{select_clause}
+FROM `{get_amo_stats_download_view_name()}`
+WHERE addon_id = @addon_id
+AND submission_date BETWEEN @submission_date_start AND @submission_date_end
+ORDER BY submission_date DESC
+LIMIT 365"""
+
+    statsd_timer = (
+        f'stats.get_download_series.bigquery.{source or "no_source"}'
+    )
+    with statsd.timer(statsd_timer):
+        rows = client.query(
+            query,
+            job_config=bigquery.QueryJobConfig(
+                query_parameters=[
+                    bigquery.ScalarQueryParameter(
+                        'addon_id', 'STRING', addon.guid
+                    ),
+                    bigquery.ScalarQueryParameter(
+                        'submission_date_start', 'DATE', start_date
+                    ),
+                    bigquery.ScalarQueryParameter(
+                        'submission_date_end', 'DATE', end_date
+                    ),
+                ]
+            ),
+        ).result()
+
+    return rows_to_series(
+        rows, count_column='total_downloads', filter_by=filter_by
+    )
 
 
 def get_addons_and_average_daily_users_from_bigquery():
     """This function is used to compute the 'average_daily_users' value of each
     add-on (see `update_addon_average_daily_users()` cron task)."""
-    client = bigquery.Client.from_service_account_json(
-        settings.GOOGLE_APPLICATION_CREDENTIALS
-    )
+    client = create_client()
 
     query = f"""
 SELECT addon_id, AVG(dau) AS count
@@ -128,9 +182,7 @@ def get_averages_by_addon_from_bigquery(today, exclude=None):
     """This function is used to compute the 'hotness' score of each add-on (see
     also `deliver_hotness()` cron task). It returns a dict with top-level keys
     being add-on GUIDs and values being dicts containing average values."""
-    client = bigquery.Client.from_service_account_json(
-        settings.GOOGLE_APPLICATION_CREDENTIALS
-    )
+    client = create_client()
 
     one_week_date = today - timedelta(days=7)
     four_weeks_date = today - timedelta(days=28)

@@ -8,10 +8,13 @@ from olympia.amo.tests import TestCase, addon_factory
 from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.stats.utils import (
     AMO_STATS_DAU_VIEW,
-    AMO_TO_BIGQUERY_COLUMN_MAPPING,
+    AMO_STATS_DOWNLOAD_VIEW,
+    AMO_TO_BQ_DAU_COLUMN_MAPPING,
+    AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING,
     get_addons_and_average_daily_users_from_bigquery,
     get_averages_by_addon_from_bigquery,
     get_updates_series,
+    get_download_series,
     rows_to_series,
 )
 
@@ -39,7 +42,7 @@ class BigQueryTestMixin(object):
         return job_config['query']['queryParameters']
 
 
-class TestRowsToSeries(BigQueryTestMixin, TestCase):
+class TestRowsToSeriesForUsageStats(BigQueryTestMixin, TestCase):
     def create_fake_bigquery_row(
         self, dau=123, submission_date=date(2020, 5, 28), **kwargs
     ):
@@ -50,7 +53,7 @@ class TestRowsToSeries(BigQueryTestMixin, TestCase):
     def test_no_rows(self):
         rows = []
 
-        series = list(rows_to_series(rows))
+        series = list(rows_to_series(rows, count_column='dau'))
 
         assert series == []
 
@@ -65,7 +68,7 @@ class TestRowsToSeries(BigQueryTestMixin, TestCase):
             self.create_fake_bigquery_row(),
         ]
 
-        series = list(rows_to_series(rows))
+        series = list(rows_to_series(rows, count_column='dau'))
 
         assert len(series) == len(rows)
         item = series[0]
@@ -87,7 +90,7 @@ class TestRowsToSeries(BigQueryTestMixin, TestCase):
             )
         ]
 
-        series = list(rows_to_series(rows))
+        series = list(rows_to_series(rows, count_column='dau'))
 
         assert series[0] == {
             'count': dau,
@@ -100,13 +103,15 @@ class TestRowsToSeries(BigQueryTestMixin, TestCase):
         data = [{'key': 'k1', 'value': 123}, {'key': 'k2', 'value': 678}]
         rows = [self.create_fake_bigquery_row(column_with_data=data)]
 
-        series = list(rows_to_series(rows, filter_by=filter_by))
+        series = list(
+            rows_to_series(rows, count_column='dau', filter_by=filter_by)
+        )
 
         assert 'data' in series[0]
         assert series[0]['data'] == {'k1': 123, 'k2': 678}
 
     def test_filter_by_dau_by_app_version_and_fenix_build(self):
-        filter_by = AMO_TO_BIGQUERY_COLUMN_MAPPING.get('apps')
+        filter_by = AMO_TO_BQ_DAU_COLUMN_MAPPING.get('apps')
         android_data = [{'key': '79.0.0', 'value': 987}]
         firefox_data = [
             {'key': '77.0.0', 'value': 123},
@@ -119,7 +124,9 @@ class TestRowsToSeries(BigQueryTestMixin, TestCase):
             )
         ]
 
-        series = list(rows_to_series(rows, filter_by=filter_by))
+        series = list(
+            rows_to_series(rows, count_column='dau', filter_by=filter_by)
+        )
 
         assert 'data' in series[0]
         assert series[0]['data'] == {
@@ -128,7 +135,7 @@ class TestRowsToSeries(BigQueryTestMixin, TestCase):
         }
 
     def test_filter_by_dau_by_app_version_and_no_fenix_data(self):
-        filter_by = AMO_TO_BIGQUERY_COLUMN_MAPPING.get('apps')
+        filter_by = AMO_TO_BQ_DAU_COLUMN_MAPPING.get('apps')
         android_data = []
         firefox_data = [
             {'key': '77.0.0', 'value': 123},
@@ -141,13 +148,48 @@ class TestRowsToSeries(BigQueryTestMixin, TestCase):
             )
         ]
 
-        series = list(rows_to_series(rows, filter_by=filter_by))
+        series = list(
+            rows_to_series(rows, count_column='dau', filter_by=filter_by)
+        )
 
         assert 'data' in series[0]
         assert series[0]['data'] == {
             ANDROID.guid: {},
             FIREFOX.guid: {'77.0.0': 123, '76.0.1': 678},
         }
+
+
+class TestRowsToSeriesForDownloadStats(BigQueryTestMixin, TestCase):
+    def create_fake_bigquery_row(
+        self, total_downloads=123, submission_date=date(2020, 5, 28), **kwargs
+    ):
+        return self.create_bigquery_row(
+            {
+                'total_downloads': total_downloads,
+                'submission_date': submission_date,
+                **kwargs,
+            }
+        )
+
+    def test_returns_series(self):
+        total_downloads = 1234
+        submission_date = date(2020, 5, 24)
+        rows = [
+            self.create_fake_bigquery_row(
+                total_downloads=total_downloads,
+                submission_date=submission_date,
+            )
+        ]
+
+        series = list(rows_to_series(rows, count_column='total_downloads'))
+
+        assert series == [
+            {
+                'count': total_downloads,
+                'date': submission_date,
+                'end': submission_date,
+            }
+        ]
 
 
 @override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
@@ -196,6 +238,24 @@ LIMIT 365"""
         client.query.assert_called_once_with(
             expected_query, job_config=mock.ANY
         )
+        parameters = self.get_job_config_named_parameters(client.query)
+        assert parameters == [
+            {
+                'parameterType': {'type': 'STRING'},
+                'parameterValue': {'value': self.addon.guid},
+                'name': 'addon_id',
+            },
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': str(start_date)},
+                'name': 'submission_date_start',
+            },
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': str(end_date)},
+                'name': 'submission_date_end',
+            },
+        ]
         timer_mock.assert_called_once_with(
             'stats.get_updates_series.bigquery.no_source'
         )
@@ -208,7 +268,7 @@ LIMIT 365"""
         start_date = date(2020, 5, 27)
         end_date = date(2020, 5, 28)
 
-        for source, column in AMO_TO_BIGQUERY_COLUMN_MAPPING.items():
+        for source, column in AMO_TO_BQ_DAU_COLUMN_MAPPING.items():
             expected_query = f"""
 SELECT submission_date, dau, {column}
 FROM `project.dataset.{AMO_STATS_DAU_VIEW}`
@@ -435,3 +495,103 @@ USING
             'guid': {'avg_this_week': 123, 'avg_three_weeks_before': 456},
             'guid2': {'avg_this_week': 45, 'avg_three_weeks_before': 40},
         }
+
+
+@override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
+class TestGetDownloadSeries(BigQueryTestMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.addon = addon_factory()
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_client(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+
+        credentials = 'path/to/credentials.json'
+        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
+            get_download_series(
+                addon=self.addon,
+                start_date=date(2020, 5, 27),
+                end_date=date(2020, 5, 28),
+            )
+
+        bigquery_client_mock.from_service_account_json.assert_called_once_with(
+            credentials
+        )
+
+    @mock.patch('olympia.stats.utils.statsd.timer')
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_query(self, bigquery_client_mock, timer_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+        start_date = date(2020, 5, 27)
+        end_date = date(2020, 5, 28)
+        expected_query = f"""
+SELECT submission_date, total_downloads
+FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
+WHERE addon_id = @addon_id
+AND submission_date BETWEEN @submission_date_start AND @submission_date_end
+ORDER BY submission_date DESC
+LIMIT 365"""
+
+        get_download_series(
+            addon=self.addon, start_date=start_date, end_date=end_date
+        )
+
+        client.query.assert_called_once_with(
+            expected_query, job_config=mock.ANY
+        )
+        parameters = self.get_job_config_named_parameters(client.query)
+        assert parameters == [
+            {
+                'parameterType': {'type': 'STRING'},
+                'parameterValue': {'value': self.addon.guid},
+                'name': 'addon_id',
+            },
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': str(start_date)},
+                'name': 'submission_date_start',
+            },
+            {
+                'parameterType': {'type': 'DATE'},
+                'parameterValue': {'value': str(end_date)},
+                'name': 'submission_date_end',
+            },
+        ]
+        timer_mock.assert_called_once_with(
+            'stats.get_download_series.bigquery.no_source'
+        )
+
+    @mock.patch('olympia.stats.utils.statsd.timer')
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_query_with_source(self, bigquery_client_mock, timer_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+        start_date = date(2020, 5, 27)
+        end_date = date(2020, 5, 28)
+
+        for source, column in AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING.items():
+            expected_query = f"""
+SELECT submission_date, total_downloads, {column}
+FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
+WHERE addon_id = @addon_id
+AND submission_date BETWEEN @submission_date_start AND @submission_date_end
+ORDER BY submission_date DESC
+LIMIT 365"""
+
+            get_download_series(
+                addon=self.addon,
+                start_date=start_date,
+                end_date=end_date,
+                source=source,
+            )
+
+            client.query.assert_called_with(
+                expected_query, job_config=mock.ANY
+            )
+            timer_mock.assert_called_with(
+                f'stats.get_download_series.bigquery.{source}'
+            )
