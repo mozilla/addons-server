@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='shelf',
             name='criteria',
-            field=models.CharField(help_text='e.g., search/?recommended=true&sort=random&type=extension', max_length=200, validators=[olympia.shelves.models.validate_criteria]),
+            field=models.CharField(help_text='e.g., ?recommended=true&sort=random&type=extension', max_length=200,),
         ),
     ]

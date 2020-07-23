@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from pyquery import PyQuery as pq
+from unittest import mock
 
 import os
 
@@ -8,14 +9,12 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
 from django.conf import settings
-from django.core.exceptions import ValidationError
 from django.core.files.images import get_image_dimensions
 
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.models import (
     PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
 from olympia.shelves.models import Shelf
-from olympia.shelves.validators import validate_criteria
 
 
 class TestDiscoveryAdmin(TestCase):
@@ -919,7 +918,9 @@ class TestShelfAdmin(TestCase):
         assert response.status_code == 200
         assert 'FooBâr' in response.content.decode('utf-8')
 
-    def test_can_edit_with_discovery_edit_permission(self):
+    @mock.patch('olympia.shelves.forms.ShelfForm.clean_criteria')
+    def test_can_edit_with_discovery_edit_permission(
+            self, clean_criteria_mock):
         item = Shelf.objects.create(
             title='Recommended extensions',
             shelf_type='extension',
@@ -936,16 +937,16 @@ class TestShelfAdmin(TestCase):
         content = response.content.decode('utf-8')
         assert 'Recommended extensions' in content
 
+        clean_criteria_mock.return_value = {
+            'title': 'Popular extensions',
+            'shelf_type': 'extension',
+            'criteria': '?recommended=true&sort=users&type=extension'
+        }
+
         response = self.client.post(
             detail_url,
-            {
-                'title': 'Popular extensions',
-                'shelf_type': 'extension',
-                'criteria':
-                'search/?recommended=true&sort=users&type=extension',
-                'footer_text': 'See more',
-                'footer_pathname': '/this/is/the/pathname'
-            }, follow=True)
+            clean_criteria_mock.return_value,
+            follow=True)
         assert response.status_code == 200
         item.reload()
         assert Shelf.objects.count() == 1
@@ -976,7 +977,8 @@ class TestShelfAdmin(TestCase):
         assert response.status_code == 200
         assert not Shelf.objects.filter(pk=item.pk).exists()
 
-    def test_can_add_with_discovery_edit_permission(self):
+    @mock.patch('olympia.shelves.forms.ShelfForm.clean_criteria')
+    def test_can_add_with_discovery_edit_permission(self, clean_criteria_mock):
         add_url = reverse('admin:discovery_shelfmodule_add')
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -985,16 +987,16 @@ class TestShelfAdmin(TestCase):
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 200
         assert Shelf.objects.count() == 0
+
+        clean_criteria_mock.return_value = {
+            'title': 'Recommended extensions',
+            'shelf_type': 'extension',
+            'criteria': '?recommended=true&sort=random&type=extension'
+        }
+
         response = self.client.post(
             add_url,
-            {
-                'title': 'Recommended extensions',
-                'shelf_type': 'extension',
-                'criteria':
-                'search/?recommended=true&sort=random&type=extension',
-                'footer_text': 'See more',
-                'footer_pathname': '/this/is/the/pathname'
-            },
+            clean_criteria_mock.return_value,
             follow=True)
         assert response.status_code == 200
         assert Shelf.objects.count() == 1
@@ -1077,36 +1079,3 @@ class TestShelfAdmin(TestCase):
         assert response.status_code == 403
         assert Shelf.objects.filter(pk=item.pk).exists()
         assert item.title == 'Recommended extensions'
-
-    def test_criteria_does_pass_validation(self):
-        criteria = 'search/?recommended=true&sort=random&type=extension'
-        try:
-            validate_criteria(criteria)
-        except ValidationError as e:
-            self.assertRaises(
-                '404 Not Found - Invalid criteria' in e.message_dict)
-
-    def test_criteria_does_not_pass_validation_returns_404(self):
-        criteria = 'recommended=true&sort=users&type=extension'
-        try:
-            validate_criteria(criteria)
-        except ValidationError as e:
-            self.assertRaises(
-                '404 Not Found - Invalid criteria' in e.message_dict)
-
-    def test_criteria_does_not_pass_validation_returns_400(self):
-        criteria = 'search/?recommended=false&sort=random&type=extension'
-        try:
-            validate_criteria(criteria)
-        except ValidationError as e:
-            self.assertRaises(
-                'Invalid "recommended" parameter' in e.message_dict)
-
-    def test_criteria_does_not_pass_validation_returns_empty_results(self):
-        criteria = 'search/?sort=users&type=theme'
-        try:
-            validate_criteria(criteria)
-        except ValidationError as e:
-            self.assertRaises(
-                'Check parameters in criteria - e.g., "type"' in e.message_dict
-            )
