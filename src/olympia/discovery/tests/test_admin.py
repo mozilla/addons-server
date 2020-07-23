@@ -3,9 +3,10 @@ from pyquery import PyQuery as pq
 from unittest import mock
 
 import os
+import responses
 
 from olympia.amo.storage_utils import copy_stored_file
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import django_reverse, reverse
 from django.conf import settings
@@ -892,6 +893,15 @@ class TestShelfAdmin(TestCase):
         self.list_url = reverse(
             'admin:discovery_shelfmodule_changelist')
         self.detail_url_name = 'admin:discovery_shelfmodule_change'
+        self.success_message = (
+            '&quot;Recommended extensions&quot; was changed successfully.')
+
+        criteria_sea = '?recommended=true&sort=random&type=extension'
+        responses.add(
+            responses.GET,
+            reverse_ns('addon-search') + criteria_sea,
+            status=200,
+            json={'count': 103})
 
     def test_can_see_shelf_module_in_admin_with_discovery_edit(self):
         user = user_factory()
@@ -918,13 +928,11 @@ class TestShelfAdmin(TestCase):
         assert response.status_code == 200
         assert 'FooBâr' in response.content.decode('utf-8')
 
-    @mock.patch('olympia.shelves.forms.ShelfForm.clean_criteria')
-    def test_can_edit_with_discovery_edit_permission(
-            self, clean_criteria_mock):
+    def test_can_edit_with_discovery_edit_permission(self):
         item = Shelf.objects.create(
-            title='Recommended extensions',
+            title='Popular extensions',
             shelf_type='extension',
-            criteria='search/?recommended=true&sort=random&type=extension',
+            criteria='?sort=users&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
@@ -935,33 +943,40 @@ class TestShelfAdmin(TestCase):
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
-        assert 'Recommended extensions' in content
+        assert 'Popular extensions' in content
 
-        clean_criteria_mock.return_value = {
-            'title': 'Popular extensions',
-            'shelf_type': 'extension',
-            'criteria': '?recommended=true&sort=users&type=extension'
-        }
+        with mock.patch('olympia.shelves.forms.ShelfForm.clean') as mock_clean:
+            mock_clean.return_value = {
+                'title': 'Recommended extensions',
+                'shelf_type': 'extension',
+                'criteria': (
+                    '?recommended=true&sort=random&type=extension'),
+                'footer_text': 'See more',
+                'footer_pathname': '/this/is/the/pathname'
+            }
 
-        response = self.client.post(
-            detail_url,
-            clean_criteria_mock.return_value,
-            follow=True)
-        assert response.status_code == 200
-        item.reload()
-        assert Shelf.objects.count() == 1
-        assert item.title == 'Popular extensions'
+            response = self.client.post(
+                detail_url,
+                mock_clean.return_value,
+                follow=True)
+            assert response.status_code == 200
+            item.reload()
+            assert Shelf.objects.count() == 1
+            assert item.title == 'Recommended extensions'
+            assert item.shelf_type == 'extension'
+            assert item.criteria == (
+                '?recommended=true&sort=random&type=extension')
+            assert self.success_message in response.content.decode('utf-8')
 
     def test_can_delete_with_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Recommended extensions',
             shelf_type='extension',
-            criteria='search/?recommended=true&sort=random&type=extension',
+            criteria='?recommended=true&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         delete_url = reverse(
-            'admin:discovery_shelfmodule_delete', args=(item.pk,)
-        )
+            'admin:discovery_shelfmodule_delete', args=(item.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
@@ -977,8 +992,7 @@ class TestShelfAdmin(TestCase):
         assert response.status_code == 200
         assert not Shelf.objects.filter(pk=item.pk).exists()
 
-    @mock.patch('olympia.shelves.forms.ShelfForm.clean_criteria')
-    def test_can_add_with_discovery_edit_permission(self, clean_criteria_mock):
+    def test_can_add_with_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_shelfmodule_add')
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -988,20 +1002,29 @@ class TestShelfAdmin(TestCase):
         assert response.status_code == 200
         assert Shelf.objects.count() == 0
 
-        clean_criteria_mock.return_value = {
-            'title': 'Recommended extensions',
-            'shelf_type': 'extension',
-            'criteria': '?recommended=true&sort=random&type=extension'
-        }
+        with mock.patch('olympia.shelves.forms.ShelfForm.clean') as mock_clean:
+            mock_clean.return_value = {
+                'title': 'Recommended extensions',
+                'shelf_type': 'extension',
+                'criteria':
+                    ('?recommended=true&sort=random&type=extension'),
+                'footer_text': 'See more',
+                'footer_pathname': '/this/is/the/pathname',
+            }
 
-        response = self.client.post(
-            add_url,
-            clean_criteria_mock.return_value,
-            follow=True)
-        assert response.status_code == 200
-        assert Shelf.objects.count() == 1
-        item = Shelf.objects.get()
-        assert item.title == 'Recommended extensions'
+            response = self.client.post(
+                add_url,
+                mock_clean.return_value,
+                follow=True)
+
+            assert response.status_code == 200
+            assert Shelf.objects.count() == 1
+            item = Shelf.objects.get()
+            assert item.title == 'Recommended extensions'
+            assert item.shelf_type == 'extension'
+            assert item.criteria == (
+                '?recommended=true&sort=random&type=extension')
+            assert self.success_message in response.content.decode('utf-8')
 
     def test_can_not_add_without_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_shelfmodule_add')
@@ -1016,7 +1039,7 @@ class TestShelfAdmin(TestCase):
                 'title': 'Recommended extensions',
                 'shelf_type': 'extension',
                 'criteria':
-                'search/?recommended=true&sort=random&type=extension',
+                '?recommended=true&sort=random&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname'
             },
@@ -1028,12 +1051,11 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             shelf_type='extension',
-            criteria='search/?recommended=true&sort=random&type=extension',
+            criteria='?recommended=true&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         detail_url = reverse(
-            'admin:discovery_shelfmodule_change', args=(item.pk,)
-        )
+            'admin:discovery_shelfmodule_change', args=(item.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
@@ -1046,7 +1068,7 @@ class TestShelfAdmin(TestCase):
                 'title': 'Popular extensions',
                 'shelf_type': 'extension',
                 'criteria':
-                'search/?recommended=true&sort=users&type=extension',
+                '?recommended=true&sort=users&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname'
             }, follow=True)
@@ -1059,12 +1081,11 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             shelf_type='extension',
-            criteria='search/?recommended=true&sort=random&type=extension',
+            criteria='?recommended=true&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         delete_url = reverse(
-            'admin:discovery_shelfmodule_delete', args=(item.pk,)
-        )
+            'admin:discovery_shelfmodule_delete', args=(item.pk,))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
