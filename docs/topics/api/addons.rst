@@ -362,6 +362,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json boolean files[].is_mozilla_signed_extension: Whether the file was signed with a Mozilla internal certificate or not.
     :>json boolean files[].is_restart_required: Whether the file requires a browser restart to work once installed or not.
     :>json boolean files[].is_webextension: Whether the file is a WebExtension or not.
+    :>json array files[].optional_permissions[]: Array of the optional webextension permissions for this File, as strings.  Empty for non-webextensions.
     :>json array files[].permissions[]: Array of the webextension permissions for this File, as strings.  Empty for non-webextensions.
     :>json string files[].platform: The :ref:`platform <addon-detail-platform>` for a file.
     :>json int files[].size: The size for a file, in bytes.

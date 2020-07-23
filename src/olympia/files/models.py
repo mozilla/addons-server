@@ -174,6 +174,8 @@ class File(OnChangeMixin, ModelBase):
 
         if file_.is_webextension:
             permissions = list(parsed_data.get('permissions', []))
+            optional_permissions = list(
+                parsed_data.get('optional_permissions', []))
 
             # devtools_page isn't in permissions block but treated as one
             # if a custom devtools page is added by an addon
@@ -183,9 +185,11 @@ class File(OnChangeMixin, ModelBase):
             # Add content_scripts host matches too.
             for script in parsed_data.get('content_scripts', []):
                 permissions.extend(script.get('matches', []))
-            if permissions:
-                WebextPermission.objects.create(permissions=permissions,
-                                                file=file_)
+            if permissions or optional_permissions:
+                WebextPermission.objects.create(
+                    permissions=permissions,
+                    optional_permissions=optional_permissions,
+                    file=file_)
 
         log.info('New file: %r from %r' % (file_, upload))
 
@@ -349,6 +353,23 @@ class File(OnChangeMixin, ModelBase):
             permissions = [p for p in self._webext_permissions.permissions
                            if isinstance(p, str) and not
                            (p in permissions or permissions.add(p))]
+            return permissions
+
+        except WebextPermission.DoesNotExist:
+            return []
+
+    @cached_property
+    def optional_permissions_list(self):
+        if not self.is_webextension:
+            return []
+        try:
+            # Filter out any errant non-strings included in the manifest JSON.
+            # Remove any duplicate optional permissions.
+            permissions = set()
+            permissions = [
+                p for p in self._webext_permissions.optional_permissions
+                if isinstance(p, str) and not
+                (p in permissions or permissions.add(p))]
             return permissions
 
         except WebextPermission.DoesNotExist:
@@ -663,6 +684,7 @@ class FileValidation(ModelBase):
 class WebextPermission(ModelBase):
     NATIVE_MESSAGING_NAME = u'nativeMessaging'
     permissions = JSONField(default={})
+    optional_permissions = JSONField(default={})
     file = models.OneToOneField('File', related_name='_webext_permissions',
                                 on_delete=models.CASCADE)
 

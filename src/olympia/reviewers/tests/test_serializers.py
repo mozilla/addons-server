@@ -218,9 +218,9 @@ class TestFileInfoDiffSerializer(TestCase):
         expected_filename = 'manifest.json'
         expected_mimetype = 'application/json'
         expected_sha256 = (
-            'bf9b0744c0011cad5caa55236951eda523f17676e91353a64a32353eac798631'
+            'b634285d4b20bf6b198b2b2897c78b8e2c6eb39c92759025e338a14d18478dcb'
         )
-        expected_size = 621
+        expected_size = 698
 
         parent_version = self.addon.current_version
 
