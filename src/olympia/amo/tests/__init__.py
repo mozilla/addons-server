@@ -54,7 +54,9 @@ from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import File
 from olympia.lib.es.utils import timestamp_index
-from olympia.promoted.models import PromotedAddon, PromotedApproval
+from olympia.promoted.models import (
+    PromotedAddon, PromotedApproval, update_es_for_promoted,
+    update_es_for_promoted_approval)
 from olympia.stats.indexers import DownloadCountIndexer
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
@@ -665,8 +667,15 @@ def addon_factory(
     version_kw = version_kw or {}
 
     # Disconnect signals until the last save.
-    post_save.disconnect(addon_update_search_index, sender=Addon,
-                         dispatch_uid='addons.search.index')
+    post_save.disconnect(
+        addon_update_search_index, sender=Addon,
+        dispatch_uid='addons.search.index')
+    post_save.disconnect(
+        update_es_for_promoted, sender=PromotedAddon,
+        dispatch_uid='addons.search.index')
+    post_save.disconnect(
+        update_es_for_promoted_approval, sender=PromotedApproval,
+        dispatch_uid='addons.search.index')
 
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
@@ -737,8 +746,15 @@ def addon_factory(
         PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
 
     # Put signals back.
-    post_save.connect(addon_update_search_index, sender=Addon,
-                      dispatch_uid='addons.search.index')
+    post_save.connect(
+        addon_update_search_index, sender=Addon,
+        dispatch_uid='addons.search.index')
+    post_save.connect(
+        update_es_for_promoted, sender=PromotedAddon,
+        dispatch_uid='addons.search.index')
+    post_save.connect(
+        update_es_for_promoted_approval, sender=PromotedApproval,
+        dispatch_uid='addons.search.index')
 
     # Save 4.
     addon.save()
