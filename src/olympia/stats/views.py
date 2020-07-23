@@ -5,6 +5,8 @@ import itertools
 
 from datetime import timedelta
 
+import waffle
+
 from dateutil.parser import parse
 from django import http
 from django.core.exceptions import PermissionDenied
@@ -25,7 +27,7 @@ from olympia.stats.decorators import addon_view_stats
 from olympia.stats.forms import DateForm
 
 from .models import DownloadCount
-from .utils import get_updates_series
+from .utils import get_updates_series, get_download_series
 
 
 logger = olympia.core.logger.getLogger('z.apps.stats.views')
@@ -131,15 +133,23 @@ def extract(dicts):
 def overview_series(request, addon, group, start, end, format):
     """Combines downloads_series and updates_series into one payload."""
     date_range = check_series_params_or_404(group, start, end, format)
+    start_date, end_date = date_range
     check_stats_permission(request, addon)
 
-    dls = get_series(DownloadCount, addon=addon.id, date__range=date_range)
+    if waffle.flag_is_active(request, 'bigquery-download-stats'):
+        downloads = get_download_series(
+            addon=addon, start_date=start_date, end_date=end_date
+        )
+    else:
+        downloads = get_series(
+            DownloadCount, addon=addon.id, date__range=date_range
+        )
 
-    updates = get_updates_series(addon=addon,
-                                 start_date=date_range[0],
-                                 end_date=date_range[1])
+    updates = get_updates_series(
+        addon=addon, start_date=start_date, end_date=end_date
+    )
 
-    series = zip_overview(dls, updates)
+    series = zip_overview(downloads, updates)
 
     return render_json(request, addon, series)
 
@@ -183,9 +193,17 @@ def zip_overview(downloads, updates):
 def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
     date_range = check_series_params_or_404(group, start, end, format)
+    start_date, end_date = date_range
     check_stats_permission(request, addon)
 
-    series = get_series(DownloadCount, addon=addon.id, date__range=date_range)
+    if waffle.flag_is_active(request, 'bigquery-download-stats'):
+        series = get_download_series(
+            addon=addon, start_date=start_date, end_date=end_date
+        )
+    else:
+        series = get_series(
+            DownloadCount, addon=addon.id, date__range=date_range
+        )
 
     if format == 'csv':
         return render_csv(request, addon, series, ['date', 'count'])
@@ -195,13 +213,28 @@ def downloads_series(request, addon, group, start, end, format):
 
 @addon_view_stats
 @non_atomic_requests
-def sources_series(request, addon, group, start, end, format):
+def download_breakdown_series(
+    request, addon, group, start, end, format, source
+):
     """Generate download source breakdown."""
     date_range = check_series_params_or_404(group, start, end, format)
+    start_date, end_date = date_range
     check_stats_permission(request, addon)
 
-    series = get_series(DownloadCount, source='sources',
-                        addon=addon.id, date__range=date_range)
+    if waffle.flag_is_active(request, 'bigquery-download-stats'):
+        series = get_download_series(
+            addon=addon,
+            start_date=start_date,
+            end_date=end_date,
+            source=source,
+        )
+    else:
+        series = get_series(
+            DownloadCount,
+            addon=addon.id,
+            date__range=date_range,
+            source=source
+        )
 
     if format == 'csv':
         series, fields = csv_fields(series)
