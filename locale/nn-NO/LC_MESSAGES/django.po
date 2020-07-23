@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-22 23:51+0000\n"
+"PO-Revision-Date: 2020-07-22 23:58+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1571,10 +1571,10 @@ msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "Forelda utvidingar er ikkje lenger støtta i Firefox."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
+msgstr "Tillegg for Thunderbird og SeaMonkey er no lista og handtert på addons.thunderbird.net. Du kan bruke den samme kontoen for å oppdatere utvidinga di på den nye nettstaden."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open Search-tillegg er ikkje lenger støtta {blog_link_open}på AMO{blog_link_close}. Du kan lage ei {doc_link_open}søkjeutviding i staden{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Denne adresseteksten er allereie i bruk. Vel ein annan."
@@ -1627,13 +1627,13 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Før du endrar standardspråk må du spesifisera eit namn, ei oppsummering og og ei skildring på det språket. Du manglar %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Brukarar kan ikkje leggjast til direkte"
 
 msgid "An author can only be present once."
 msgstr "Ein opphavsmann kan berre vere oppførd ein gong."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Kontoen treng eit visingsnamn før han kan leggjast til som ein opphavsmann."
 
 msgid "Must have at least one owner."
 msgstr "Må ha minst ein eigar."
@@ -1696,13 +1696,13 @@ msgid "Need to select at least one application."
 msgstr "Vel minst eitt program."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Du har sendt inn for mange opplastingar i det siste. Prøv igjen om ei stund."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "Versjon {version} samsvarar med {block_link} for dette tillegget. Du kan kontakte {amo_admins} for meir informasjon."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "ei blokkeringslisteoppføring"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versjon {version} er lasta opp tidlegare og sletta."
@@ -1723,10 +1723,10 @@ msgid "You have not uploaded a source file."
 msgstr "Du har ikkje lasta opp ei kjeldekodefil."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "Kjeldefila er lasta opp men du indikerte at ingea kjelde var nødvendig."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Forsikre deg om at namn og samandrag er på maksimalt {limit_value} teikn (de har {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -1737,7 +1737,7 @@ msgid "On your own. <span class=\"helptext\">Your submission will be immediately
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "Visingsnamn"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Ugyldig eller skada tilleggsfil."
@@ -2138,7 +2138,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr ""
 
 msgid "Decline"
-msgstr ""
+msgstr "Avvis"
 
 msgid "Manage Authors & License"
 msgstr "Handsam opphavsmenn og lisens"
@@ -2150,7 +2150,7 @@ msgid "About author roles"
 msgstr "Om roller for opphavsmenn"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Opphavsmenn som ventar på stadfesting"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
