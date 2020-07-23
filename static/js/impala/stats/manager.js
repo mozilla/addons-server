@@ -10,6 +10,12 @@ z.StatsManager = (function() {
 
     var $primary = $(".primary");
 
+    // Make sure to use a different session cache when users have the waffle
+    // flag enabled or disabled.
+    if ($primary.data("bigquery-download-stats") === 'True') {
+        STATS_VERSION += '-preview';
+    }
+
     var storage         = z.Storage("stats"),
         storageCache    = z.SessionStorage("statscache"),
         dataStore       = {},
@@ -38,6 +44,9 @@ z.StatsManager = (function() {
         "overview": true,
         "site": true,
         "countries": true,
+        "contents": true,
+        "mediums": true,
+        "campaigns": true,
     };
 
     // is a metric an average or a sum?
@@ -52,6 +61,9 @@ z.StatsManager = (function() {
         "sources"       : "sum",
         "contributions" : "sum",
         "countries"     : "mean",
+        "contents"      : "sum",
+        "mediums"       : "sum",
+        "campaigns"     : "sum",
     };
 
     // Initialize from localStorage when dom is ready.

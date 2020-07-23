@@ -37,7 +37,7 @@ SERIES_GROUPS = ('day', 'week', 'month')
 SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
 SERIES = ('downloads', 'usage', 'overview', 'sources', 'os', 'locales',
-          'versions', 'apps', 'countries',)
+          'versions', 'apps', 'countries', 'mediums', 'contents', 'campaigns')
 
 
 storage = get_storage_class()()
@@ -229,6 +229,10 @@ def download_breakdown_series(
             source=source,
         )
     else:
+        # Legacy stats only have download stats "by source".
+        if source != 'sources':
+            raise http.Http404
+
         series = get_series(
             DownloadCount,
             addon=addon.id,
@@ -373,6 +377,9 @@ def stats_report(request, addon, report):
             'report': report,
             'stats_base_url': stats_base_url,
             'view': view,
+            'bigquery_download_stats': waffle.flag_is_active(
+                request, 'bigquery-download-stats'
+            ),
         }
     )
 

@@ -98,6 +98,9 @@
         "refunds"            : "refunds",
         "installs"           : "installs",
         "countries"          : "users",
+        "contents"           : "downloads",
+        "mediums"            : "downloads",
+        "campaigns"          : "downloads",
     };
 
     var acceptedGroups = {

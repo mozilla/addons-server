@@ -22,6 +22,15 @@ stats_patterns = [
     url(r'^downloads/sources/$', views.stats_report, name='stats.sources',
         kwargs={'report': 'sources'}),
 
+    url(r'^downloads/mediums/$', views.stats_report, name='stats.mediums',
+        kwargs={'report': 'mediums'}),
+
+    url(r'^downloads/contents/$', views.stats_report, name='stats.contents',
+        kwargs={'report': 'contents'}),
+
+    url(r'^downloads/campaigns/$', views.stats_report, name='stats.campaigns',
+        kwargs={'report': 'campaigns'}),
+
     url(r'^usage/$', views.stats_report, name='stats.usage',
         kwargs={'report': 'usage'}),
 
@@ -52,6 +61,15 @@ stats_patterns = [
 
     url(series['sources'], views.download_breakdown_series,
         name='stats.sources_series', kwargs={'source': 'sources'}),
+
+    url(series['mediums'], views.download_breakdown_series,
+        name='stats.mediums_series', kwargs={'source': 'mediums'}),
+
+    url(series['contents'], views.download_breakdown_series,
+        name='stats.contents_series', kwargs={'source': 'contents'}),
+
+    url(series['campaigns'], views.download_breakdown_series,
+        name='stats.campaigns_series', kwargs={'source': 'campaigns'}),
 
     url(series['os'], views.usage_breakdown_series,
         name='stats.os_series', kwargs={'field': 'oses'}),

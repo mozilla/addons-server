@@ -190,6 +190,24 @@ var csv_keys = {
             // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
             gettext("Download Sources from {0} to {1}")
         ],
+        "mediums"  : [
+            // L10n: {0} is an integer.
+            gettext("Download Mediums, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Download Mediums from {0} to {1}")
+        ],
+        "contents"  : [
+            // L10n: {0} is an integer.
+            gettext("Download Contents, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Download Contents from {0} to {1}")
+        ],
+        "campaigns"  : [
+            // L10n: {0} is an integer.
+            gettext("Download Campaigns, last {0} days"),
+            // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+            gettext("Download Campaigns from {0} to {1}")
+        ],
         "contributions"  : [
             // L10n: {0} is an integer.
             gettext("Contributions, last {0} days"),

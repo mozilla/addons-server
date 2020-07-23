@@ -10,6 +10,17 @@
       <li data-report="sources">
         <a href="{{ url('stats.sources', addon.slug) }}">{{ _('by Source') }}</a>
       </li>
+      {% if bigquery_download_stats %}
+        <li data-report="mediums">
+          <a href="{{ url('stats.mediums', addon.slug) }}">{{ _('by Medium') }}</a>
+        </li>
+        <li data-report="contents">
+          <a href="{{ url('stats.contents', addon.slug) }}">{{ _('by Content') }}</a>
+        </li>
+         <li data-report="campaigns">
+          <a href="{{ url('stats.campaigns', addon.slug) }}">{{ _('by Campaign') }}</a>
+        </li>
+      {% endif %}
     </ul>
     <li data-report="usage">
       <a href="{{ url('stats.usage', addon.slug) }}">{{ _('Daily Users') }}</a>
