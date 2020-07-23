@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-23 12:03+0000\n"
+"PO-Revision-Date: 2020-07-23 12:07+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3688,9 +3688,8 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} fare hareketlerini özelleştirin"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "50'den fazla fare hareketiyle gezinmenin yeni bir yolunu keşfedin."
+msgstr "Fare hareketlerini özelleştirin. 50'den fazla fare hareketiyle gezinmenin yeni yolunu keşfedin."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4454,9 +4453,8 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Yeni bir sekme açtığınızda gördüğünüz sayfayı ayarlayın."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4691,9 +4689,8 @@ msgid "Search with enhanced tracker blocking, smart encryption, and other privac
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} reklamları engelleyin"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
@@ -4732,9 +4729,8 @@ msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} sekme özelleştirme"
+msgstr "{start_sub_heading}{addon_name} ile{end_sub_heading} gereksiz şeyleri atın"
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
@@ -4901,9 +4897,8 @@ msgid "Save an entire web page—including images and styling—as a single HTML
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Sekmeyi kapattıktan sonra çerezleri otomatik olarak silin."
+msgstr "Web'deki aşağılayıcı kelimeleri otomatik olarak değiştirin."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -5085,13 +5080,11 @@ msgstr "İndir: {0}"
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 msgstr "Sürüm: %(version)s &bull; Boyut: %(size)s &bull; SHA256 hash: %(sha256)s &bull; MIME türü: %(mimetype)s"
 
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "Dosya Karşılaştırma :: Editör araçları"
+msgstr "Dosya Karşılaştırma :: İnceleme araçları"
 
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "Dosya Görüntüleyici :: Editör araçları"
+msgstr "Dosya Görüntüleyici :: İnceleme araçları"
 
 msgid "Validation failed:"
 msgstr "Doğrulama başarısız oldu:"
@@ -5300,13 +5293,11 @@ msgstr ""
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Eklentinin bu sürümü mevcut değil veya herkese açık değil."
 
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
+msgstr ""
 
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
+msgstr ""
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
@@ -5342,9 +5333,8 @@ msgstr "Silinmiş incelemeler"
 # 76%
 # 75%
 # 100%
-#, fuzzy
 msgid "View entries between"
-msgstr "Bu koleksiyonu gör"
+msgstr ""
 
 msgid "and"
 msgstr "ve"
@@ -5362,16 +5352,14 @@ msgid "end"
 msgstr "bitiş"
 
 #. L10n: Description of what can be searched for
-#, fuzzy
 msgid "add-on, reviewer or comment"
-msgstr "eklenti, editör veya yorum"
+msgstr "eklenti, inceleyen veya yorum"
 
 msgid "Search by add-on name / author email"
 msgstr "Eklenti adıyla veya yazar e-postasıyla ara"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "İnceleme Bekliyor"
+msgstr "Yönetici kod incelemesi gerekiyor"
 
 msgid "yes"
 msgstr "evet"
@@ -5411,9 +5399,8 @@ msgstr "gün"
 msgid "Choose a canned response..."
 msgstr "Hazır yanıtı seçin..."
 
-#, fuzzy
 msgid "Private Whiteboard"
-msgstr "Beyaz Tahta"
+msgstr "Özel Beyaz Tahta"
 
 msgid "Keep review; remove flags"
 msgstr ""
@@ -5424,13 +5411,11 @@ msgstr "Şimdilik geç"
 msgid "Delete review"
 msgstr "İncelemeyi sil"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Eklenti İçeriği İncelemesi"
+msgstr "Yönetici içerik incelemesi gerekiyor"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "İnceleme Bekliyor"
+msgstr "Yönetici statik tema incelemesi gerekiyor"
 
 msgid "Requires Restart"
 msgstr "Yeniden başlatma gerektirir"
@@ -5438,9 +5423,8 @@ msgstr "Yeniden başlatma gerektirir"
 msgid "More Information Requested"
 msgstr "Daha fazla bilgi istendi"
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Daha fazla bilgi istendi"
+msgstr "Bilgi isteği zaman aşımına uğramış"
 
 msgid "Sources provided"
 msgstr ""
@@ -5539,13 +5523,11 @@ msgstr ""
 msgid "Unlisted versions needing human review ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Listed versions ({0})"
-msgstr "Listelenen sürümler"
+msgstr "Listelenen sürümler ({0})"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Listelenen sürümler"
+msgstr "Listelenmeyen sürümler ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5576,18 +5558,16 @@ msgstr ""
 
 # 78%
 # 100%
-#, fuzzy
 msgid "Block Multiple Versions"
-msgstr "Koleksiyonu Sil"
+msgstr ""
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
 msgstr ""
 
 # 78%
 # 100%
-#, fuzzy
 msgid "Confirm Multiple Versions"
-msgstr "Koleksiyonu Sil"
+msgstr ""
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
 msgstr ""
@@ -5598,9 +5578,8 @@ msgstr "İnceleyenin yanıtı"
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
 
-#, fuzzy
 msgid "Request super-review"
-msgstr "Tüm kullanıcı incelemelerini gör"
+msgstr "Süper inceleme iste"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
@@ -5655,7 +5634,6 @@ msgstr "Yeni Eklentiler ({0})"
 msgid "Add-on Review Log"
 msgstr "Eklenti İnceleme Süreci"
 
-#, fuzzy
 msgid "Review Guide"
 msgstr "İnceleme Yönergesi"
 
@@ -5685,9 +5663,8 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Diğer Seçenekler:"
+msgstr "Moderasyon Yönergesi"
 
 msgid "Unlisted Add-ons"
 msgstr "Listelenmeyen Eklentiler"
@@ -5704,9 +5681,8 @@ msgstr "Günün iletisini güncelle"
 msgid "Expired Information Requests ({0})"
 msgstr "Süresi Dolan Bilgi İstekleri ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "İnceleme:"
+msgstr ""
 
 msgid "An unknown error occurred"
 msgstr "Bilinmeyen bir hata oluştu"
@@ -5720,15 +5696,13 @@ msgstr "İnceleme başarıyla işlendi."
 msgid "Review lock limit reached"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} – EULA"
-msgstr "{addon} :: Suistimal Raporları"
+msgstr "{addon} – EULA"
 
 # 89%
 # 100%
-#, fuzzy
 msgid "{addon} – Privacy Policy"
-msgstr "Bu eklentinin Gizlilik Kuralları var"
+msgstr "{addon} – Gizlilik İlkeleri"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5870,9 +5844,8 @@ msgstr "Silmeyi geri al"
 msgid "Reviewer Performance – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "Performans"
+msgstr ""
 
 msgid "View statistics for user"
 msgstr "Kullanıcı istatistiklerini göster"
@@ -5975,7 +5948,6 @@ msgstr "İşe Yarar Bağlantılar:"
 msgid "Add-on Policy"
 msgstr "Eklenti Politikası"
 
-#, fuzzy
 msgid "Reviewer's Guide"
 msgstr "İnceleme Yönergesi"
 
@@ -5983,9 +5955,8 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr "{addon} – Firefox Eklentileri"
 
 #. "Content Review [add-on name]"
-#, fuzzy
 msgid "Content Review {0}"
-msgstr "İnceleme:"
+msgstr "İçerik İncelemesi {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -6003,9 +5974,8 @@ msgstr "Önceden silinen girdiler"
 msgid "This is a recommended extension."
 msgstr "Bu önerilen bir eklentidir."
 
-#, fuzzy
 msgid "You don't have permission to review it."
-msgstr "Hiçbir API kimlik bilginiz yok."
+msgstr "İnceleme izniniz yok."
 
 msgid "Please select one or more versions in the list below."
 msgstr ""
@@ -6037,20 +6007,17 @@ msgstr "Diğer eylemler"
 msgid "Notify me about new listed versions"
 msgstr "Yeni listelenen sürümler hakkında beni bilgilendir"
 
-#, fuzzy
 msgid "Allow resubmission"
-msgstr "Tüm gönderileri göster"
+msgstr "Tekrar gönderime izin ver"
 
-#, fuzzy
 msgid "Deny resubmission"
-msgstr "Başvurularımı Yönet"
+msgstr "Tekrar göndermeyi reddet"
 
 msgid "Force-disable add-on"
 msgstr "Eklentiyi zorla devre dışı bırak"
 
-#, fuzzy
 msgid "Force-enable add-on"
-msgstr "Sürümü yeniden etkinleştir"
+msgstr "Eklentiyi zorla etkinleştir"
 
 #, fuzzy
 msgid "View Blocklist Submission"
@@ -6302,9 +6269,8 @@ msgstr "sürüm kanalı"
 msgid "add-on status"
 msgstr "eklenti durumu"
 
-#, fuzzy
 msgid "add-on listing visibility"
-msgstr "Görünürlük"
+msgstr "eklenti listeleme görünürlüğü"
 
 msgid "file status"
 msgstr "dosya durumu"
