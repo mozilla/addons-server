@@ -13,7 +13,7 @@ def add_promoted_for_each_recommended(apps, schema_editor):
     for disco in DiscoveryItem.objects.all():
         group = RECOMMENDED if disco.recommendable else NOT_PROMOTED
         promoted = PromotedAddon.objects.create(
-            addon=disco_addon.addon, group_id=group.id)
+            addon=disco.addon, group_id=group.id)
         if hasattr(disco, 'primaryhero'):
             disco.primaryhero.promoted_addon = promoted
 
