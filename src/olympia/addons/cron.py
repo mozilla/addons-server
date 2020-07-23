@@ -14,14 +14,17 @@ from olympia import amo
 from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
+    update_addon_hotness as _update_addon_hotness,
     update_addon_total_downloads as _update_addon_total_downloads,
-    update_appsupport, update_addon_hotness as _update_addon_hotness)
+    update_addon_weekly_downloads as _update_addon_weekly_downloads,
+    update_appsupport)
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked
 from olympia.files.models import File
 from olympia.stats.utils import (
     get_addons_and_average_daily_users_from_bigquery,
+    get_addons_and_weekly_downloads_from_bigquery,
     get_averages_by_addon_from_bigquery)
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 
@@ -221,45 +224,69 @@ def update_addon_hotness(chunk_size=300):
     ).apply_async()
 
 
-def update_addon_weekly_downloads():
+def update_addon_weekly_downloads(chunk_size=250):
     """
     Update 7-day add-on download counts.
     """
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    raise_if_reindex_in_progress('amo')
+    if waffle.switch_is_active('use-bigquery-for-download-stats-cron'):
+        counts = dict(
+            # In order to reset the `weekly_downloads` values of add-ons that
+            # don't exist in BigQuery, we prepare a set of `(guid, 0)` for most
+            # add-ons.
+            Addon.objects
+            .filter(type__in=amo.ADDON_TYPES_WITH_STATS)
+            .exclude(guid__isnull=True)
+            .exclude(guid__exact='')
+            .exclude(weekly_downloads=0)
+            .annotate(count=Value(0, IntegerField()))
+            .values_list('guid', 'count')
+        )
+        # Update the `counts` with values from BigQuery.
+        counts.update(get_addons_and_weekly_downloads_from_bigquery())
+        counts = list(counts.items())
 
-    with connection.cursor() as cursor:
-        cursor.execute("""
-            SELECT addon_id, SUM(count) AS weekly_count
-            FROM download_counts
-            WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-            GROUP BY addon_id
-            ORDER BY addon_id""")
-        counts = cursor.fetchall()
+        log.info('Preparing update of `weekly_downloads` for %s add-ons.',
+                 len(counts))
 
-    addon_ids = [r[0] for r in counts]
+        create_chunked_tasks_signatures(
+            _update_addon_weekly_downloads, counts, chunk_size
+        ).apply_async()
+    else:
+        raise_if_reindex_in_progress('amo')
 
-    if not addon_ids:
-        return
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                SELECT addon_id, SUM(count) AS weekly_count
+                FROM download_counts
+                WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+                GROUP BY addon_id
+                ORDER BY addon_id""")
+            counts = cursor.fetchall()
 
-    with connection.cursor() as cursor:
-        cursor.execute("""
-            SELECT id, 0
-            FROM addons
-            WHERE id NOT IN %s""", (addon_ids,))
-        counts += cursor.fetchall()
+        addon_ids = [r[0] for r in counts]
 
-        cursor.execute("""
-            CREATE TEMPORARY TABLE tmp_wd
-            (addon_id INT PRIMARY KEY, count INT)""")
-        cursor.execute('INSERT INTO tmp_wd VALUES %s' %
-                       ','.join(['(%s,%s)'] * len(counts)),
-                       list(itertools.chain(*counts)))
+        if not addon_ids:
+            return
 
-        cursor.execute("""
-            UPDATE addons INNER JOIN tmp_wd
-                ON addons.id = tmp_wd.addon_id
-            SET weeklydownloads = tmp_wd.count""")
-        cursor.execute("DROP TABLE IF EXISTS tmp_wd")
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                SELECT id, 0
+                FROM addons
+                WHERE id NOT IN %s""", (addon_ids,))
+            counts += cursor.fetchall()
+
+            cursor.execute("""
+                CREATE TEMPORARY TABLE tmp_wd
+                (addon_id INT PRIMARY KEY, count INT)""")
+            cursor.execute('INSERT INTO tmp_wd VALUES %s' %
+                           ','.join(['(%s,%s)'] * len(counts)),
+                           list(itertools.chain(*counts)))
+
+            cursor.execute("""
+                UPDATE addons INNER JOIN tmp_wd
+                    ON addons.id = tmp_wd.addon_id
+                SET weeklydownloads = tmp_wd.count""")
+            cursor.execute("DROP TABLE IF EXISTS tmp_wd")

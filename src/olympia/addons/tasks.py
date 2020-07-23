@@ -310,3 +310,20 @@ def update_addon_hotness(averages):
         else:
             if addon.hotness != 0:
                 addon.update(hotness=0)
+
+
+@task
+def update_addon_weekly_downloads(data):
+    log.info('[%s] Updating add-ons weekly downloads.', len(data))
+
+    for addon_guid, count in data:
+        try:
+            addon = Addon.objects.get(guid=addon_guid)
+        except Addon.DoesNotExist:
+            # The processing input comes from metrics which might be out of
+            # date in regards to currently existing add-ons.
+            log.info('Got a weekly_downloads update (%s) but the add-on '
+                     'doesn\'t exist (%s).', count, addon_guid)
+            continue
+
+        addon.update(weekly_downloads=int(float(count)))

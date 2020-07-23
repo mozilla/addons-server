@@ -1198,6 +1198,7 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_total_downloads': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
+    'olympia.addons.tasks.update_addon_weekly_downloads': {'queue': 'cron'},
     'olympia.addons.tasks.update_appsupport': {'queue': 'cron'},
 
     # Bandwagon
