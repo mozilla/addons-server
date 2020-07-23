@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-08 18:52+0000\n"
+"PO-Revision-Date: 2020-07-23 12:03+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -737,9 +737,8 @@ msgstr "{addon} için {rating} onaylandı."
 msgid "{user} approved {rating} for {addon}."
 msgstr "{user}, {addon} için {rating} değerlendirmesini onayladı."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "{addon} için inceleme {review} silindi."
+msgstr ""
 
 #, fuzzy
 msgid "{user} deleted {rating} for {addon}."
@@ -936,9 +935,8 @@ msgstr ""
 msgid "Block action signoff"
 msgstr ""
 
-#, fuzzy
 msgid "User {user} session(s) reset."
-msgstr "{user} adlı kullanıcı kısıtlandı."
+msgstr "{user} oturumları sıfırlandı."
 
 #, fuzzy
 msgid "User {user} throttled for scope \"{0}\""
@@ -1411,16 +1409,14 @@ msgstr "Mükemmel (3)"
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Yeni Eklenti İncelemesi"
+msgstr "Yeni Eski Teknoloji Eklenti İncelemesi"
 
 msgid "Preliminary Add-on Review"
 msgstr "Eklenti Ön İncelemesi"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Güncellenmiş Eklenti İncelemesi"
+msgstr "Güncellenmiş Eski Eklenti İncelemesi"
 
 # Plural in this context means many of the add-on type
 msgid "New Dictionary Review"
@@ -1465,9 +1461,8 @@ msgstr ""
 msgid "Updated Complete Theme Review"
 msgstr "Güncellenmiş Tam Tema İncelemesi"
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Güncellenmiş Eklenti İncelemesi"
+msgstr ""
 
 msgid "Add-on Review Moderation Reverted"
 msgstr ""
@@ -1766,9 +1761,8 @@ msgstr "Bir kaynak dosya yüklemediniz."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Kaynak dosya yüklendi fakat hiçbir kaynağın gerekmediğini belirttiniz."
 
-#, fuzzy
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr "İsim ve özetin toplamda en fazla 70 karakter olduğundan emin olun (şu an {0})."
+msgstr "İsim ve özetin toplamda en fazla {limit_value} karakter olduğundan emin olun (şu an {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -1936,9 +1930,8 @@ msgstr ""
 msgid "Toolbar area text and icons"
 msgstr "Araç çubuğu alanı metni ve simgeleri"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Bu renk, sekme metninin rengidir."
+msgstr ""
 
 msgid "Toolbar field area background"
 msgstr "Araç çubuğu alanı arka planı"
@@ -1988,9 +1981,8 @@ msgstr "Kabul et"
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "veya <a href=\"{0}\">vazgeç</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Creative Commons lisansları hakkında daha fazla bilgi"
+msgstr "Geliştirici hesapları hakkında daha fazla bilgi"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2107,9 +2099,8 @@ msgstr ""
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Uygulama uygunluğu sınırlarına bak ve güncelle."
+msgstr "Uygulama uygunluğu sınırlarına bak ve güncelle"
 
 msgid "Compatibility"
 msgstr "Uyumluluk"
@@ -2729,9 +2720,8 @@ msgstr "{0} sürümünü düzenle"
 msgid "Version Signature Pending"
 msgstr "Sürüm imzası bekleniyor"
 
-#, fuzzy
 msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Hepsi bu kadar! Bu sürüm, incelemeyi geçtikten sonra yayımlanacak. İncelendiğinde size bildirilecektir."
+msgstr ""
 
 msgid "Go to My Submissions"
 msgstr "Gönderilerime git"
@@ -2923,9 +2913,8 @@ msgstr "İptal Et"
 msgid "Revoke and regenerate credentials"
 msgstr "Kimlik bilgilerini iptal et ve yeniden oluştur"
 
-#, fuzzy
 msgid "Confirm and generate new credentials"
-msgstr "Yeni kimlik bilgileri oluştur"
+msgstr "Onayla ve yeni kimlik bilgilerini oluştur"
 
 msgid "Generate new credentials"
 msgstr "Yeni kimlik bilgileri oluştur"
@@ -3079,9 +3068,8 @@ msgstr "Blogu görüntüle ►"
 msgid "Pending information request:"
 msgstr "Bekleyen bilgi isteği:"
 
-#, fuzzy
 msgid "This request for information has been resolved"
-msgstr "Bu sürüm henüz incelenmemiş."
+msgstr "Bu bilgi talebi çözüldü"
 
 msgid "License"
 msgstr "Lisans"
@@ -3121,9 +3109,8 @@ msgstr ""
 "Eklentiniz kullanıcı bilgisayarından herhangi bir veriyi iletiyorsa, hangi verilerin gönderildiğini ve nasıl kullanıldığını açıklayan bir gizlilik ilkesi gereklidir. Yalnızca listelenen eklentiler "
 "için geçerlidir."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Eklentiniz bilinen kütüphaneler dışında ikili veya karmaşık kodlar içeriyorsa gözden geçirilmesi için kaynaklarını yüklemelisiniz."
+msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr ""
@@ -3693,9 +3680,8 @@ msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "10 milyondan fazla araştırma makalesine ücretsiz erişimin tadını çıkarın."
+msgstr "Akademik bilgelik. 10 milyondan fazla araştırma makalesine ücretsiz erişim."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
