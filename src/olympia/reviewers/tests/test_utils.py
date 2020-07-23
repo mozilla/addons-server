@@ -740,8 +740,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert not self.version.needs_human_review
 
-    def test_nomination_to_public_need_human_review_no_request(self):
-        self.request = None
+    def test_nomination_to_public_need_human_review_not_human(self):
+        self.request = None  # Not a human review
         self.setup_data(amo.STATUS_NOMINATED)
         self.version.update(needs_human_review=True)
         self.helper.handler.approve_latest_version()
@@ -751,6 +751,37 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
         assert self.version.needs_human_review
+
+    def test_unlisted_approve_latest_version_need_human_review(self):
+        self.setup_data(amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(needs_human_review=True)
+        flags = VersionReviewerFlags.objects.create(
+            version=self.version, needs_human_review_by_mad=True)
+        self.helper.handler.approve_latest_version()
+        self.addon.reload()
+        self.version.reload()
+        self.file.reload()
+        flags.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.file.status == amo.STATUS_APPROVED
+        assert not self.version.needs_human_review
+        assert not flags.needs_human_review_by_mad
+
+    def test_unlisted_approve_latest_version_need_human_review_not_human(self):
+        self.request = None  # Not a human review
+        self.setup_data(amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(needs_human_review=True)
+        flags = VersionReviewerFlags.objects.create(
+            version=self.version, needs_human_review_by_mad=True)
+        self.helper.handler.approve_latest_version()
+        self.addon.reload()
+        self.version.reload()
+        self.file.reload()
+        flags.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.version.needs_human_review
+        assert flags.needs_human_review_by_mad
 
     def test_nomination_to_public_with_version_scanner_flags(self):
         flags = VersionReviewerFlags.objects.create(

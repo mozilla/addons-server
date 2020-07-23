@@ -1139,6 +1139,14 @@ class ReviewUnlisted(ReviewBase):
         subject = u'Mozilla Add-ons: %s %s signed and ready to download'
         self.log_action(amo.LOG.APPROVE_VERSION)
 
+        if self.human_review:
+            if self.version.needs_human_review:
+                self.version.update(needs_human_review=False)
+
+            VersionReviewerFlags.objects.filter(
+                version=self.version
+            ).update(needs_human_review_by_mad=False)
+
         self.notify_email(template, subject, perm_setting=None)
 
         log.info(u'Making %s files %s public' %
