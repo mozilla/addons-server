@@ -89,4 +89,4 @@ def update_es_for_promoted(sender, instance, **kw):
           dispatch_uid='addons.search.index')
 def update_es_for_promoted_approval(sender, instance, **kw):
     update_es_for_promoted(
-        sender=sender, instance=instance.version.addon, **kw)
+        sender=sender, instance=instance.version, **kw)
