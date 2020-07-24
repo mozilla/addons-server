@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 12:02+0000\n"
+"PO-Revision-Date: 2020-07-24 12:20+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4896,7 +4896,7 @@ msgstr "某些網站無法在 Firefox for Android 上正常播放影片。此擴
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "更快選擇、排序、執行您的下載項目。"
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -4904,7 +4904,7 @@ msgstr "在瀏覽器中直接取得世界各地的最新天氣資訊。"
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "只要輕鬆一點，就可以刪除 Cookie、瀏覽紀錄、快取檔案。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4936,24 +4936,24 @@ msgstr "自動取代網頁上的貶義詞。"
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "封鎖所有廣告 — 不論是影片、彈出型視窗，或是其他類型的廣告內容。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "與朋友和家人在任何地方觀看串流媒體內容。"
 
 #. editorial content for the discovery pane.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "跳過 YouTube 影片的廣告贊助部分。"
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "讓網頁自動朗讀，支援超過 40 種語言。"
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "雙擊任何字，馬上看到解釋與定義。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5425,7 +5425,7 @@ msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "延後退回，並要求開發者在多少時間內回覆修正…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "立即拒絕。僅在發現嚴重安全性問題時使用。"
 
 msgid "days"
 msgstr "天"
@@ -6191,10 +6191,10 @@ msgid "The developer has provided source code."
 msgstr "開發者提供了原始碼。"
 
 msgid "Scanners score:"
-msgstr ""
+msgstr "掃描器評分:"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "掃描器評分代表根據掃描結果，此版本有多可能是惡意版本的分數。"
 
 msgid "Weight:"
 msgstr "權重:"
