@@ -18,7 +18,12 @@ AMO_TO_BQ_DAU_COLUMN_MAPPING = {
 
 # This is the mapping between the AMO download stats `sources` and the BigQuery
 # columns.
-AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING = {'sources': 'downloads_per_source'}
+AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING = {
+    'campaigns': 'downloads_per_campaign',
+    'contents': 'downloads_per_content',
+    'mediums': 'downloads_per_medium',
+    'sources': 'downloads_per_source',
+}
 
 AMO_STATS_DAU_VIEW = 'amo_stats_dau'
 # NOTE: We currently use the `v2` table instead of the actual view because we

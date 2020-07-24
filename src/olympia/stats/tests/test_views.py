@@ -26,6 +26,7 @@ from olympia.stats.models import DownloadCount
 from olympia.users.models import UserProfile
 
 
+@override_flag('bigquery-download-stats', active=True)
 class StatsTestCase(TestCase):
     fixtures = [
         # Create two configured users:
@@ -288,7 +289,7 @@ class ESStatsTestCase(StatsTestCase, amo.tests.ESTestCase):
         assert tuple(content_csv) == tuple(expected_csv)
 
 
-class TestViews(ESStatsTestCase):
+class TestCsvAndJsonViews(ESStatsTestCase):
     def test_usage_series_no_data_json(self):
         self.get_updates_series_mock.return_value = []
 
@@ -626,6 +627,7 @@ class TestViews(ESStatsTestCase):
             2009-06-01,1000,200,800""",
         )
 
+    @override_flag('bigquery-download-stats', active=False)
     def test_overview(self):
         self.get_updates_series_mock.return_value = [
             {'date': date(2009, 6, 2), 'end': date(2009, 6, 2), 'count': 1500},
@@ -673,6 +675,7 @@ class TestViews(ESStatsTestCase):
                 next_actual = next(actual)
         self.get_download_series_mock.no_called()
 
+    @override_flag('bigquery-download-stats', active=False)
     def test_downloads_json_legacy(self):
         response = self.get_view_response(
             'stats.downloads_series', group='day', format='json'
@@ -694,6 +697,7 @@ class TestViews(ESStatsTestCase):
         )
         self.get_download_series_mock.no_called()
 
+    @override_flag('bigquery-download-stats', active=False)
     def test_downloads_csv_legacy(self):
         response = self.get_view_response(
             'stats.downloads_series', group='day', format='csv'
@@ -714,7 +718,6 @@ class TestViews(ESStatsTestCase):
         )
         self.get_download_series_mock.no_called()
 
-    @override_flag('bigquery-download-stats', active=True)
     def test_downloads_json(self):
         self.get_download_series_mock.return_value = [
             {
@@ -742,7 +745,6 @@ class TestViews(ESStatsTestCase):
             ]
         )
 
-    @override_flag('bigquery-download-stats', active=True)
     def test_downloads_csv(self):
         self.get_download_series_mock.return_value = [
             {
@@ -769,6 +771,7 @@ class TestViews(ESStatsTestCase):
             2009-06-01,1000""",
         )
 
+    @override_flag('bigquery-download-stats', active=False)
     def test_downloads_sources_json_legacy(self):
         response = self.get_view_response(
             'stats.sources_series', group='day', format='json'
@@ -830,6 +833,7 @@ class TestViews(ESStatsTestCase):
         )
         self.get_download_series_mock.no_called()
 
+    @override_flag('bigquery-download-stats', active=False)
     def test_downloads_sources_csv_legacy(self):
         response = self.get_view_response(
             'stats.sources_series', group='day', format='csv'
@@ -849,8 +853,7 @@ class TestViews(ESStatsTestCase):
         )
         self.get_download_series_mock.no_called()
 
-    @override_flag('bigquery-download-stats', active=True)
-    def test_downloads_sources_json(self):
+    def test_download_by_source_json(self):
         self.get_download_series_mock.return_value = [
             {
                 'date': date(2009, 6, 2),
@@ -889,8 +892,7 @@ class TestViews(ESStatsTestCase):
             ]
         )
 
-    @override_flag('bigquery-download-stats', active=True)
-    def test_downloads_sources_csv(self):
+    def test_download_by_source_csv(self):
         self.get_download_series_mock.return_value = [
             {
                 'date': date(2009, 6, 2),
@@ -917,6 +919,234 @@ class TestViews(ESStatsTestCase):
             2009-06-02,1500,550,950
             2009-06-01,1000,550,450""",
         )
+
+    def test_download_by_content_json(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+                'data': {'content-1': 550, 'content-2': 950},
+            },
+            {
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
+                'count': 1000,
+                'data': {'content-1': 550, 'content-3': 450},
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.contents_series', group='day', format='json'
+        )
+
+        assert response.status_code == 200
+        self.assertListEqual(
+            json.loads(force_text(response.content)),
+            [
+                {
+                    'data': {'content-1': 550, 'content-2': 950},
+                    'date': '2009-06-02',
+                    'end': '2009-06-02',
+                    'count': 1500,
+                },
+                {
+                    'data': {'content-1': 550, 'content-3': 450},
+                    'date': '2009-06-01',
+                    'end': '2009-06-01',
+                    'count': 1000,
+                },
+            ],
+        )
+
+    def test_download_by_content_csv(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+                'data': {'content-1': 550, 'content-2': 950},
+            },
+            {
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
+                'count': 1000,
+                'data': {'content-1': 550, 'content-3': 450},
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.contents_series', group='day', format='csv'
+        )
+
+        assert response.status_code == 200
+        self.csv_eq(
+            response,
+            """date,count,content-1,content-2,content-3
+            2009-06-02,1500,550,950,0
+            2009-06-01,1000,550,0,450""",
+        )
+
+    def test_download_by_medium_json(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+                'data': {'medium-1': 550, 'medium-2': 950},
+            },
+            {
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
+                'count': 1000,
+                'data': {'medium-1': 550, 'medium-3': 450},
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.mediums_series', group='day', format='json'
+        )
+
+        assert response.status_code == 200
+        self.assertListEqual(
+            json.loads(force_text(response.content)),
+            [
+                {
+                    'data': {'medium-1': 550, 'medium-2': 950},
+                    'date': '2009-06-02',
+                    'end': '2009-06-02',
+                    'count': 1500,
+                },
+                {
+                    'data': {'medium-1': 550, 'medium-3': 450},
+                    'date': '2009-06-01',
+                    'end': '2009-06-01',
+                    'count': 1000,
+                },
+            ],
+        )
+
+    def test_download_by_medium_csv(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+                'data': {'medium-1': 550, 'medium-2': 950},
+            },
+            {
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
+                'count': 1000,
+                'data': {'medium-1': 550, 'medium-3': 450},
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.mediums_series', group='day', format='csv'
+        )
+
+        assert response.status_code == 200
+        self.csv_eq(
+            response,
+            """date,count,medium-1,medium-2,medium-3
+            2009-06-02,1500,550,950,0
+            2009-06-01,1000,550,0,450""",
+        )
+
+    def test_download_by_campaign_json(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+                'data': {'campaign-1': 550, 'campaign-2': 950},
+            },
+            {
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
+                'count': 1000,
+                'data': {'campaign-1': 550, 'campaign-3': 450},
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.campaigns_series', group='day', format='json'
+        )
+
+        assert response.status_code == 200
+        self.assertListEqual(
+            json.loads(force_text(response.content)),
+            [
+                {
+                    'data': {'campaign-1': 550, 'campaign-2': 950},
+                    'date': '2009-06-02',
+                    'end': '2009-06-02',
+                    'count': 1500,
+                },
+                {
+                    'data': {'campaign-1': 550, 'campaign-3': 450},
+                    'date': '2009-06-01',
+                    'end': '2009-06-01',
+                    'count': 1000,
+                },
+            ],
+        )
+
+    def test_download_by_campaign_csv(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+                'data': {'campaign-1': 550, 'campaign-2': 950},
+            },
+            {
+                'date': date(2009, 6, 1),
+                'end': date(2009, 6, 1),
+                'count': 1000,
+                'data': {'campaign-1': 550, 'campaign-3': 450},
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.campaigns_series', group='day', format='csv'
+        )
+
+        assert response.status_code == 200
+        self.csv_eq(
+            response,
+            """date,count,campaign-1,campaign-2,campaign-3
+            2009-06-02,1500,550,950,0
+            2009-06-01,1000,550,0,450""",
+        )
+
+    @override_flag('bigquery-download-stats', active=False)
+    def test_no_download_by_content_if_not_bigquery(self):
+        response = self.get_view_response(
+            'stats.contents_series', group='day', format='csv'
+        )
+
+        assert response.status_code == 404
+        self.get_download_series_mock.not_called()
+
+    @override_flag('bigquery-download-stats', active=False)
+    def test_no_download_by_campaign_if_not_bigquery(self):
+        response = self.get_view_response(
+            'stats.campaigns_series', group='day', format='csv'
+        )
+
+        assert response.status_code == 404
+        self.get_download_series_mock.not_called()
+
+    @override_flag('bigquery-download-stats', active=False)
+    def test_no_download_by_medium_if_not_bigquery(self):
+        response = self.get_view_response(
+            'stats.mediums_series', group='day', format='csv'
+        )
+
+        assert response.status_code == 404
+        self.get_download_series_mock.not_called()
 
 
 class TestXss(amo.tests.TestXss):
@@ -1054,6 +1284,60 @@ class TestStatsWithBigQuery(TestCase):
             start_date=self.start_date,
             end_date=self.end_date,
         )
+
+    @override_flag('bigquery-download-stats', active=False)
+    def test_overview_does_not_show_some_links_when_flag_is_disabled(self):
+        url = reverse('stats.overview', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'by Source' in response.content
+        assert b'by Medium' not in response.content
+        assert b'by Content' not in response.content
+        assert b'by Campaign' not in response.content
+
+    @override_flag('bigquery-download-stats', active=True)
+    def test_overview_shows_links_to_bigquery_download_stats(self):
+        url = reverse('stats.overview', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'by Source' in response.content
+        assert b'by Medium' in response.content
+        assert b'by Content' in response.content
+        assert b'by Campaign' in response.content
+
+    @override_flag('bigquery-download-stats', active=True)
+    def test_download_stats_by_source(self):
+        url = reverse('stats.sources', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'Download sources by Date' in response.content
+
+    @override_flag('bigquery-download-stats', active=True)
+    def test_download_stats_by_medium(self):
+        url = reverse('stats.mediums', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'Download mediums by Date' in response.content
+
+    @override_flag('bigquery-download-stats', active=True)
+    def test_download_stats_by_content(self):
+        url = reverse('stats.contents', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'Download contents by Date' in response.content
+
+    @override_flag('bigquery-download-stats', active=True)
+    def test_download_stats_by_campaign(self):
+        url = reverse('stats.campaigns', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'Download campaigns by Date' in response.content
 
 
 class TestProcessLocales(TestCase):
