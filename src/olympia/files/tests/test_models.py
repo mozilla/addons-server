@@ -281,7 +281,8 @@ class TestFile(TestCase, amo.tests.AMOPaths):
                        u'laststring!',
                        u'iamstring',
                        u'iamnutherstring',
-                       u'laststring!']
+                       u'laststring!',
+                       None]
         WebextPermission.objects.create(permissions=permissions, file=file_)
 
         # Strings only please.No duplicates.
@@ -299,7 +300,8 @@ class TestFile(TestCase, amo.tests.AMOPaths):
                                 u'laststring!',
                                 u'iamstring',
                                 u'iamnutherstring',
-                                u'laststring!']
+                                u'laststring!',
+                                None]
         WebextPermission.objects.create(
             optional_permissions=optional_permissions, file=file_)
 

@@ -589,7 +589,6 @@ class SigningCertificateInformation(object):
     extension, so is signed already with a special certificate.  We want to
     know this so we don't write over it later, and stop unauthorised people
     from submitting them to AMO."""
-
     def __init__(self, certificate_data):
         pkcs7 = certificate_data
         self.cert_ou = get_signer_organizational_unit_name(pkcs7)
@@ -655,7 +654,6 @@ class FSyncMixin(object):
     We need this to make sure that on EFS / NFS all data is immediately
     written to avoid any data loss on the way.
     """
-
     def _fsync_dir(self, path):
         descriptor = os.open(path, os.O_DIRECTORY)
         try:
