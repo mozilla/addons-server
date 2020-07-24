@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 11:54+0000\n"
+"PO-Revision-Date: 2020-07-24 12:30+0000\n"
 "Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -923,21 +923,17 @@ msgstr "Användare {user} sessionsåterställning."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Användare {user} stängde av för omfattningen \"{0}\""
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "{addon} {version} innehåll avvisat."
+msgstr "{addon} {version} innehåll avvisat schemalagt."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Innehåll avvisat"
+msgstr "Innehåll avvisat schemalagt"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} ej godkänd."
+msgstr "{addon} {version} ej godkänd schemalagt."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Deadline för väntande avslag"
+msgstr "Avslag schemalagt"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -5048,7 +5044,7 @@ msgstr "Få webbsidor upplästa högt för dig. Över 40 språk stöds."
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Dubbelklicka på valfritt ord för att omedelbart se dess definition."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5528,7 +5524,7 @@ msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "Kräv utvecklare att svara på mindre än…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Avvisa omedelbart. Använd endast vid allvarliga säkerhetsproblem."
 
 msgid "days"
 msgstr "dagar"
