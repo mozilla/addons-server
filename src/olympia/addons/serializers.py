@@ -519,7 +519,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             status=data['status'],
             strict_compatibility=data.get('strict_compatibility', False),
             version=obj)
-        file_.permissions = data.get('permissions', [])
+        file_.permissions = data.get(
+            'permissions', data.get('webext_permissions_list', []))
         file_.optional_permissions = data.get(
             'optional_permissions', [])
         return file_
