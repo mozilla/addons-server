@@ -3,10 +3,13 @@
 {% set title = _('Download sources by Date') %}
 
 {% block stats_note_link %}
-<a href="#" id="stats-note-link">{{ _('About tracking external sources...') }}</a>
+{% if not bigquery_download_stats %}
+  <a href="#" id="stats-note-link">{{ _('About tracking external sources...') }}</a>
+{% endif %}
 {% endblock %}
 
 {% block stats_note %}
+{% if not bigquery_download_stats %}
   {% trans slug=addon.slug, id=addon.id %}
     <h2>Tracking external sources</h2>
     <p>
@@ -26,4 +29,5 @@
       source, such as "external-blog", "external-sidebar", "external-campaign225",
       etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ % +</code>
   {% endtrans %}
+{% endif %}
 {% endblock %}
