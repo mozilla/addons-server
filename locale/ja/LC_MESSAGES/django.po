@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-07 23:26+0000\n"
+"POT-Creation-Date: 2020-07-24 11:29+0000\n"
 "PO-Revision-Date: 2020-06-29 07:43+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -937,6 +937,22 @@ msgstr "ユーザー {user} の API キーをリセットしました。"
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "ユーザー {user} が編集されました。理由: {1}"
 
+#, fuzzy
+msgid "{addon} {version} content reject scheduled."
+msgstr "{addon} {version} のコンテンツが却下されました。"
+
+#, fuzzy
+msgid "Content reject scheduled"
+msgstr "コンテンツが却下されました"
+
+#, fuzzy
+msgid "{addon} {version} reject scheduled."
+msgstr "{addon} {version} の審査が却下されました。"
+
+#, fuzzy
+msgid "Rejection scheduled"
+msgstr "情報請求期限"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -985,6 +1001,10 @@ msgstr "オーナー"
 
 msgid "Developer"
 msgstr "開発者"
+
+#, fuzzy
+msgid "(Deleted)"
+msgstr "削除済み"
 
 msgid "Extension"
 msgstr "拡張機能"
@@ -1363,6 +1383,25 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Recommended"
+msgstr "おすすめ ({0})"
+
+msgid "Verified - Tier 1"
+msgstr ""
+
+msgid "Verified - Tier 2"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Spotlight"
+msgstr ""
+
+msgid "Strategic"
+msgstr ""
 
 msgid "Add-on"
 msgstr "アドオン"
@@ -3467,6 +3506,7 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}しつこい追跡を阻止しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "ウェブ上であなたを追跡する、目に見えないトラッカーやスパイ広告をブロック。"
 
@@ -3475,6 +3515,7 @@ msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}新しいタブページをカスタマイズしましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "カスタマイズできる背景や地元の気象情報などを備えた、新しくて美しいページをお楽しみください。"
 
@@ -3483,6 +3524,7 @@ msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}簡単に翻訳しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "テキストを強調表示して右クリックすれば、すぐに翻訳できます。"
 
@@ -3491,6 +3533,7 @@ msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を検索しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
 msgstr "一連の検索エンジンで逆画像検索を実行。"
 
@@ -3499,6 +3542,7 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}広告をブロックし、プライバシーを保護しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "シンプルな設定で、表示される広告やインターネット上で追跡される方法をコントロール。"
@@ -3508,6 +3552,7 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}タブを想い描きましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "開いているタブが多すぎて困っていませんか？サイドバーですっきり整頓しましょう。"
 
@@ -3516,6 +3561,7 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Facebook のトラッキングを停止しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Facebook ID を別の「コンテナー」に隔離することで、Facebook にウェブ上の動きを追跡されにくくできます。"
@@ -3525,6 +3571,7 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}検索をシンプルにしましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "ウェブページのテキストを強調表示するだけで、検索エンジンでフレーズ検索。"
@@ -3534,6 +3581,7 @@ msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}気象情報をチェックしましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
 msgstr ""
 
@@ -3550,6 +3598,7 @@ msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像から検索しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "ネットで見つけた面白い写真について、もっと情報を知りたくないですか？この画像検索ツールをお試しください。"
 
@@ -3558,6 +3607,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画をダウンロード"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope など数多くの動画サイトで簡単に動画のダウンロードができます。"
 
@@ -3584,6 +3634,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "効果的で軽量な広告ブロッカー。 uBlock Origin は、大量のメモリを消費することなく、何千ものコンテンツフィルターを適用します。"
 
@@ -3592,6 +3643,7 @@ msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}動画を見ましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "シネマモード、広告ブロック、自動再生コントロールなど、YouTube の新機能をお楽しみください。"
 
@@ -3657,6 +3709,7 @@ msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}文法チェックを自動化しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "ソーシャルメディア、メール、ドキュメントなど、ウェブ上で文章を書くときにどこでも役立つ文法サポート。"
 
@@ -3665,6 +3718,7 @@ msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}世界の時間を確認しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "世界の現地時間を Firefox のステータスバーに表示。"
 
@@ -3691,6 +3745,7 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}マウスジェスチャーをカスタマイズしましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "50 種類以上の便利なマウスジェスチャーで操作する新しい方法を体験してください。"
@@ -3700,6 +3755,7 @@ msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}動画を最適化しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "動画に集中できるよう、動画プレーヤーの周囲のページを暗くします。"
 
@@ -3729,6 +3785,7 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を拡大表示しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Hover over an image to magnify it."
 msgstr "画像にマウスカーソルを合わせるだけで、画像を拡大できます。"
 
@@ -3737,6 +3794,7 @@ msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Cookie をなくしましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
 msgstr "タブを閉じると Cookie が自動的に消去されます。"
 
@@ -3745,6 +3803,7 @@ msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}ページの表示サイズを調整しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "どんなページのテキストサイズも簡単に調整。ページ自体を拡大することも可能です。"
 
@@ -3753,6 +3812,7 @@ msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}見えないトラッカーをブロックしましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "追跡中のトラッカーを停止させ、その詳細を確認。"
 
@@ -3761,11 +3821,13 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} きれいなデジタルの足跡を残す"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Firefox が Cookie やローカルストレージのようなウェブサイトデータを忘れて、選択したドメインのみを記憶するようにします。"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr ""
 
@@ -3774,6 +3836,7 @@ msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}メール広告をブロックしましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "ウェブベースの受信トレイから広告を消して、広々とした画面スペースを確保。"
 
@@ -3790,6 +3853,7 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}しつこいトラッカーを阻止して制限しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "ブラウザーと OS の ID を隠すことで、あなたの行動を隠しましょう。"
@@ -3799,6 +3863,7 @@ msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}タブを更新しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "設定した時間間隔で、タブを自動的に再読み込み。"
 
@@ -3816,6 +3881,7 @@ msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}トラッカーを阻止しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "ウェブを閲覧するときのトラッキング防止にさらなる保護を追加しましょう。"
 
@@ -3824,6 +3890,7 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} ePub ファイルを読めます"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "フォントサイズやページサイズなどを増やして、ePub ファイルを Firefox で楽しもう。"
@@ -3833,6 +3900,7 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} YouTube 体験を高めましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "初期設定で最高品質の動画を再生、注釈を無効化など。"
@@ -3868,6 +3936,7 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}安全なブラウジングができます"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "どんなサイトにも HTTPS 対応の暗号化セキュリティを追加。"
@@ -3935,6 +4004,7 @@ msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}タブを一覧表示できます"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "開いているすべてのタブを簡単に管理できるリストに変換して、Firefox を高速化します。"
 
@@ -3943,6 +4013,7 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}ダウンロード管理を強化しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "ステータスバー、ダウンロード履歴ページなどでダウンロードの状態を確認。"
@@ -3969,6 +4040,7 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}動的なナビゲーションができます"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "マウスジェスチャーでタブを閉じたり、ページを戻ったり、再読み込みしたりできます。"
@@ -3978,6 +4050,7 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を検索しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "検索結果にサムネイル画像を並べてお楽しみください。"
 
@@ -3994,6 +4067,7 @@ msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}ポップアップを止めましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "初期設定ですべてのポップアップをブロックして、開くものを決められます。"
 
@@ -4002,6 +4076,7 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}お気に入りのウェブサイトをカスタマイズ"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "色やページの背景などを変えて、好きなウェブサイトの外観を一新しましょう！"
@@ -4046,6 +4121,7 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 複数のリンクを開く"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "新しいタブで開きたいリンクを右クリックしてドラッグします。"
@@ -4112,6 +4188,7 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} YouTube をカスタマイズ"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "ポップアウトウィンドウで動画を再生、登録済みチャンネル内の広告のみを表示、動画のスクリーンショットを撮影などの機能。"
@@ -4256,6 +4333,7 @@ msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name}{end_sub_heading} で目の疲れを和らげましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enable night mode for a better viewing experience."
 msgstr "夜間モードを有効にして、目に優しく閲覧しましょう。"
 
@@ -4328,6 +4406,7 @@ msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 閲覧資料を収集"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "RSS/Atom/RDF すべてのソースを集約する高度なリーダー。"
 
@@ -4344,6 +4423,7 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 携帯に似たスクロール操作"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr ""
 
@@ -4352,6 +4432,7 @@ msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} データを削除"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "クリックまたはキーを押してブラウザーのキャッシュを消去。"
 
@@ -4368,6 +4449,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 世界中の音楽を楽しむ"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "世界中の 30,000 局以上のラジオ局にアクセスできます。"
@@ -4377,6 +4459,7 @@ msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を視聴"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "YouTube のクリップからオーディオをストリーミングするだけで、帯域幅を節約。"
 
@@ -4393,6 +4476,7 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 安全にネットサーフィン"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "セキュリティで保護されたバージョンのウェブサイトがあれば、そのサイトに移動します。"
@@ -4402,6 +4486,7 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 移動履歴を削除"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "ブラウザーの履歴が自動消去される前に、履歴を保持する日数を指定。"
@@ -4444,6 +4529,7 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} タブのハイジャックを阻止"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "クリックしたリンクが現在のタブをコントロールして、頼んでもいないコンテンツを読み込むことを阻止しましょう。"
@@ -4487,6 +4573,7 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 高度なタブ制御を実現"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "豊富なタブコントロールオプション - 重複したタブを閉じる、ウィンドウの統合、タブタイトルのコピーなどが可能です。"
@@ -4521,6 +4608,7 @@ msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 生産性を低下"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "For those moments when you need to fire lasers out of a cat."
 msgstr "猫からレーザー光線を発射する必要がある瞬間に。"
 
@@ -4617,6 +4705,7 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 安全にネットサーフィン"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "信頼できるサイトのみのウェブコンテンツを実行。"
@@ -4626,6 +4715,7 @@ msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Cookie を管理"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "閲覧中に蓄積した Cookie を完全管理。"
 
@@ -4642,6 +4732,7 @@ msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} ブックマークを保護"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
 msgstr "個人的なブックマークをパスワードで保護。"
 
@@ -4666,6 +4757,7 @@ msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 画像を調査"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "ウェブ上で面白い画像を見つけた？TinEye でその発信元を調べましょう。"
 
@@ -4686,6 +4778,7 @@ msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 所在地を確認"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "ウェブサイトのサーバーの地理的所在地を確認。情報通のネットの旅人になりましょう。"
 
@@ -4703,6 +4796,7 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 印刷前に編集"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "広告や不快なコンテンツを削除すれば、印刷したウェブページに驚きの視覚的変化をもたらします。"
@@ -4720,6 +4814,7 @@ msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 音声をマスタリング"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "ブラウザーのオーディオ設定をとても鮮明に調整。"
 
@@ -4728,6 +4823,7 @@ msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} プライバシーを保護しましょう"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "最も卑劣なトラッカーから自分自身を守りましょう。"
 
@@ -4770,6 +4866,7 @@ msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 記憶を保存"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr ""
 
@@ -4798,6 +4895,7 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 快適な閲覧環境を実現"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr ""
 
@@ -4806,6 +4904,7 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr ""
 
@@ -4814,6 +4913,7 @@ msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} メディアを簡単にダウンロード"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr ""
 
@@ -4822,6 +4922,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 画像を簡単に保存"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4842,6 +4943,7 @@ msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 目に優しいページ"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr ""
 
@@ -4850,6 +4952,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 紛らわしいウェブサイトをブロック"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr ""
 
@@ -4866,6 +4969,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Firefox の見た目を変更"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
@@ -4898,6 +5002,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} ウェブをダークに"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr ""
 
@@ -4914,6 +5019,7 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Android 動画のヘルプ"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -4930,6 +5036,7 @@ msgid "Delete cookies, browsing history, and cached files with just a single cli
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
 msgstr ""
 
@@ -4938,14 +5045,17 @@ msgid "Get auto-populated RSS feed bookmark folders."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr ""
 
@@ -4959,6 +5069,7 @@ msgid "Block all ads—video, pop-ups, banners & more."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
@@ -4968,6 +5079,10 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Double-click any word to instantly see its definition."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5439,8 +5554,12 @@ msgstr "OS:"
 msgid "Applications:"
 msgstr "アプリケーション:"
 
-msgid "Require developer to respond in less than…"
+#, fuzzy
+msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "次の期限以内に開発者の応答が必要..."
+
+msgid "Reject immediately. Only use in case of serious security issues."
+msgstr ""
 
 msgid "days"
 msgstr "日"
@@ -6077,6 +6196,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "自動承認を有効化"
 
 #, fuzzy
+msgid "Disable Listed Auto-Approval Until Next Manual Approval"
+msgstr "自動承認を無効化"
+
+#, fuzzy
+msgid "Enable Listed Auto-Approval Before Next Manual Approval"
+msgstr "自動承認を有効化"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "自動承認無効フラグが設定されています"
 
@@ -6180,6 +6307,9 @@ msgstr "次へ"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
+msgid "{num} versions flagged for human review on other pages."
+msgstr ""
+
 msgid "{num} versions pending rejection on other pages."
 msgstr ""
 
@@ -6228,11 +6358,21 @@ msgstr "ファイルをダウンロード"
 msgid "The developer has provided source code."
 msgstr "開発者がソースコードを提供しています。"
 
+msgid "Scanners score:"
+msgstr ""
+
+msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr ""
+
 msgid "Weight:"
 msgstr "重み:"
 
-msgid "Flagged by automated scanners"
+msgid "Flagged by scanners"
 msgstr ""
+
+#, fuzzy
+msgid "Flagged for human review"
+msgstr "レーティング審査 ({0})"
 
 msgid "Download"
 msgstr "ダウンロード"
