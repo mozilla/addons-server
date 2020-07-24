@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 17:39+0000\n"
+"PO-Revision-Date: 2020-07-24 17:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -926,13 +926,13 @@ msgid "{addon} {version} content reject scheduled."
 msgstr "Wotpokazanje wobsaha {addon} {version} planowane."
 
 msgid "Content reject scheduled"
-msgstr "Wotpokazanje wobsaha wotpokazane"
+msgstr "Wotpokazanje wobsaha planowane"
 
 msgid "{addon} {version} reject scheduled."
 msgstr "Wotpokazanje {addon} {version} planowane."
 
 msgid "Rejection scheduled"
-msgstr "Wotpokazanje planowanje"
+msgstr "Wotpokazanje planowane"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -6331,7 +6331,7 @@ msgid "Scanners score:"
 msgstr "Skenowanski wuslědk:"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "Skenowanski wuslědk prawdźepodobnosć zwuraznja, z kajkejž je wersija na zakładźe namakankow skenera złóstna ."
 
 msgid "Weight:"
 msgstr "Wažnosć:"
