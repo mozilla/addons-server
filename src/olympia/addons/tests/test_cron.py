@@ -369,7 +369,7 @@ class TestAvgDailyUserCountTestCase(TestCase):
 
         addon_factory()  # No downloads for this add-on
 
-        cron.update_addon_download_totals()
+        cron.update_addon_total_downloads()
 
         addon.reload()
         assert addon.total_downloads != old_total_downloads
@@ -387,7 +387,15 @@ class TestAvgDailyUserCountTestCase(TestCase):
         get_mock.side_effect = Addon.DoesNotExist()
 
         # Make sure that we don't raise an error when logging
-        cron.update_addon_download_totals()
+        cron.update_addon_total_downloads()
+
+    @mock.patch('olympia.addons.cron._update_addon_total_downloads')
+    def test_skips_cron_when_switch_is_enabled(self, update_task_mock):
+        self.create_switch('use-bigquery-for-download-stats-cron')
+
+        cron.update_addon_total_downloads()
+
+        update_task_mock.assert_not_called()
 
 
 class TestDeliverHotness(TestCase):

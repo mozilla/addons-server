@@ -91,10 +91,11 @@
             <td>{{ reviews_link(addon) }}</td>
           </tr>
           <tr class="meta-stats">
-            <th>{{ _('Downloads') }}</th>
+            <th>{{ _('Weekly Downloads') }}</th>
             <td>
-              <strong class="downloads">{{
-                addon.total_downloads|numberfmt }}</strong>
+              <strong class="downloads">
+                {{ addon.weekly_downloads|numberfmt }}
+              </strong>
             </td>
           </tr>
           {% if addon.average_daily_users %}

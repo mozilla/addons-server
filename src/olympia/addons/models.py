@@ -560,7 +560,7 @@ class Addon(OnChangeMixin, ModelBase):
             'reason': reason,
             'name': self.name,
             'slug': self.slug,
-            'total_downloads': self.total_downloads,
+            'weekly_downloads': self.weekly_downloads,
             'url': jinja_helpers.absolutify(self.get_url_path()),
             'user_str': (
                 "%s, %s (%s)" % (user.name, user.email, user.id) if user
@@ -575,7 +575,7 @@ class Addon(OnChangeMixin, ModelBase):
         ID: %(id)s
         GUID: %(guid)s
         AUTHORS: %(authors)s
-        TOTAL DOWNLOADS: %(total_downloads)s
+        WEEKLY DOWNLOADS: %(weekly_downloads)s
         AVERAGE DAILY USERS: %(adu)s
         NOTES: %(msg)s
         REASON GIVEN BY USER FOR DELETION: %(reason)s

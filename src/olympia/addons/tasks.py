@@ -101,7 +101,7 @@ def update_addon_average_daily_users(data, **kw):
 
 
 @task
-def update_addon_download_totals(data, **kw):
+def update_addon_total_downloads(data, **kw):
     log.info('[%s] Updating add-ons download+average totals.' % (len(data)))
 
     if not waffle.switch_is_active('local-statistics-processing'):

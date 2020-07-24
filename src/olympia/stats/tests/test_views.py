@@ -1166,6 +1166,7 @@ class TestXss(amo.tests.TestXss):
         assert views.get_report_view(req) == {}
 
 
+@override_flag('bigquery-download-stats', active=True)
 class TestStatsWithBigQuery(TestCase):
     def setUp(self):
         super().setUp()
@@ -1267,7 +1268,6 @@ class TestStatsWithBigQuery(TestCase):
 
         assert response.status_code == 200
 
-    @override_flag('bigquery-download-stats', active=True)
     @mock.patch('olympia.stats.views.get_updates_series')
     @mock.patch('olympia.stats.views.get_download_series')
     def test_overview_series_with_bigquery_download_stats(
@@ -1296,18 +1296,17 @@ class TestStatsWithBigQuery(TestCase):
         assert b'by Content' not in response.content
         assert b'by Campaign' not in response.content
 
-    @override_flag('bigquery-download-stats', active=True)
     def test_overview_shows_links_to_bigquery_download_stats(self):
         url = reverse('stats.overview', args=[self.addon.slug])
 
         response = self.client.get(url)
 
+        assert b'Weekly Downloads' in response.content
         assert b'by Source' in response.content
         assert b'by Medium' in response.content
         assert b'by Content' in response.content
         assert b'by Campaign' in response.content
 
-    @override_flag('bigquery-download-stats', active=True)
     def test_download_stats_by_source(self):
         url = reverse('stats.sources', args=[self.addon.slug])
 
@@ -1315,7 +1314,6 @@ class TestStatsWithBigQuery(TestCase):
 
         assert b'Download sources by Date' in response.content
 
-    @override_flag('bigquery-download-stats', active=True)
     def test_download_stats_by_medium(self):
         url = reverse('stats.mediums', args=[self.addon.slug])
 
@@ -1323,7 +1321,6 @@ class TestStatsWithBigQuery(TestCase):
 
         assert b'Download mediums by Date' in response.content
 
-    @override_flag('bigquery-download-stats', active=True)
     def test_download_stats_by_content(self):
         url = reverse('stats.contents', args=[self.addon.slug])
 
@@ -1331,7 +1328,6 @@ class TestStatsWithBigQuery(TestCase):
 
         assert b'Download contents by Date' in response.content
 
-    @override_flag('bigquery-download-stats', active=True)
     def test_download_stats_by_campaign(self):
         url = reverse('stats.campaigns', args=[self.addon.slug])
 

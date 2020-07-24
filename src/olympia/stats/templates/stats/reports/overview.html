@@ -5,7 +5,13 @@
 {% block stats %}
     <section class="island two-up">
       <div>
-        <a href="downloads/">{{ _('<b>{0}</b> Downloads')|format_html(addon.total_downloads|numberfmt) }}</a>
+        <a href="downloads/">
+        {% if waffle.flag('bigquery-download-stats') %}
+          {{ _('<b>{0}</b> Weekly Downloads')|format_html(addon.weekly_downloads|numberfmt) }}
+        {% else %}
+          {{ _('<b>{0}</b> Downloads')|format_html(addon.total_downloads|numberfmt) }}
+        {% endif %}
+        </a>
         <small id="downloads-in-range">{{ _('Loading...') }}</small>
       </div>
       <div>

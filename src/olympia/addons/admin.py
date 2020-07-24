@@ -138,8 +138,7 @@ class AddonAdmin(admin.ModelAdmin):
     readonly_fields = ('id', 'created', 'status_with_admin_manage_link',
                        'average_rating', 'bayesian_rating', 'guid',
                        'total_ratings_link', 'text_ratings_count',
-                       'weekly_downloads', 'total_downloads',
-                       'average_daily_users')
+                       'weekly_downloads', 'average_daily_users')
 
     fieldsets = (
         (None, {
@@ -158,8 +157,7 @@ class AddonAdmin(admin.ModelAdmin):
         ('Stats', {
             'fields': ('total_ratings_link', 'average_rating',
                        'bayesian_rating', 'text_ratings_count',
-                       'weekly_downloads', 'total_downloads',
-                       'average_daily_users'),
+                       'weekly_downloads', 'average_daily_users'),
         }),
         ('Flags', {
             'fields': ('disabled_by_user', 'requires_payment',
