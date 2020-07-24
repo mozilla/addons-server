@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 17:53+0000\n"
+"PO-Revision-Date: 2020-07-24 17:57+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -934,21 +934,17 @@ msgstr "Sitzung(en) von Benutzer {user} zurückgesetzt."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Benutzer {user} für Bereich „{0}“ gedrosselt"
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "{addon} {version} Inhalt zurückgewiesen."
+msgstr "{addon} {version} Inhaltsablehnung geplant."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Inhalt zurückgewiesen"
+msgstr "Inhaltsablehnung geplant"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} zurückgewiesen."
+msgstr "{addon} {version} Ablehnung geplant."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Ausstehende Ablehnungsfrist"
+msgstr "Ablehnung geplant"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -999,9 +995,8 @@ msgstr "Eigentümer"
 msgid "Developer"
 msgstr "Entwickler"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Gelöscht"
+msgstr "(Gelöscht)"
 
 msgid "Extension"
 msgstr "Erweiterung"
@@ -1399,9 +1394,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Empfohlen ({0})"
+msgstr "Empfohlen"
 
 msgid "Verified - Tier 1"
 msgstr "Bestätigt – Gruppe 1"
@@ -1410,7 +1404,7 @@ msgid "Verified - Tier 2"
 msgstr "Bestätigt – Gruppe 2"
 
 msgid "Line"
-msgstr ""
+msgstr "Zeile"
 
 msgid "Spotlight"
 msgstr "Spotlight"
@@ -5563,9 +5557,8 @@ msgstr "Betriebssysteme:"
 msgid "Applications:"
 msgstr "Anwendungen:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Informationen durch Entwickler sollten vorliegen nach weniger als …"
+msgstr "Ablehnung zurückstellen, Korrektur durch Entwickler erforderlich in weniger als…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr "Sofort ablehnen. Nur bei schwerwiegenden Sicherheitsproblemen verwenden."
@@ -6180,13 +6173,11 @@ msgstr "Automatische Freischaltung gelisteter Add-ons deaktivieren"
 msgid "Enable Listed Auto-Approval"
 msgstr "Automatische Freischaltung gelisteter Add-ons aktivieren"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Automatische Freischaltung gelisteter Add-ons deaktivieren"
+msgstr "Automatische gelistete Freischaltung bis zur nächsten manuellen Freischaltung deaktivieren"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Automatische Freischaltung gelisteter Add-ons aktivieren"
+msgstr "Automatische gelistete Freischaltung vor nächster manueller Freischaltung aktivieren"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Die automatische Freischaltung ist derzeit bis zum {date} deaktiviert"
@@ -6288,9 +6279,8 @@ msgstr "Neuer"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} Versionen wurden von Scannern auf anderen Seiten markiert."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} Versionen wurden von Scannern auf anderen Seiten markiert."
+msgstr "{num} Versionen wurden auf anderen Seiten zur Überprüfung durch Menschen markiert."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} Versionen mit ausstehender Ablehnung auf anderen Seiten."
@@ -6349,13 +6339,11 @@ msgstr "Die Scanner-Bewertung gibt die Wahrscheinlichkeit an, dass diese Version
 msgid "Weight:"
 msgstr "Gewicht:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Von automatisierten Scannern markiert"
+msgstr "Von Scannern markiert"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Für menschliche Überprüfung vorlegen"
+msgstr "Für menschliche Überprüfung vorgelegt"
 
 msgid "Download"
 msgstr "Herunterladen"
