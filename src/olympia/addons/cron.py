@@ -12,7 +12,7 @@ from olympia import amo
 from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
-    update_addon_download_totals as _update_addon_download_totals,
+    update_addon_total_downloads as _update_addon_total_downloads,
     update_appsupport, update_addon_hotness)
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
@@ -59,10 +59,15 @@ def update_addon_average_daily_users(chunk_size=250):
     ).apply_async()
 
 
-def update_addon_download_totals():
+def update_addon_total_downloads():
     """Update add-on total and average downloads."""
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
+
+    if waffle.switch_is_active('use-bigquery-for-download-stats-cron'):
+        log.info('Not running `update_addon_total_downloads()` because waffle '
+                 'switch is active.')
+        return
 
     qs = (
         Addon.objects
@@ -70,7 +75,7 @@ def update_addon_download_totals():
              .values_list('id', 'sum_download_count')
              .order_by('id')
     )
-    ts = [_update_addon_download_totals.subtask(args=[chunk])
+    ts = [_update_addon_total_downloads.subtask(args=[chunk])
           for chunk in chunked(qs, 250)]
     group(ts).apply_async()
 
