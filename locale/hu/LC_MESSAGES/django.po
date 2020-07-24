@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 16:11+0000\n"
-"Last-Translator: kemia051 <kemia051@gmail.com>\n"
+"PO-Revision-Date: 2020-07-24 19:37+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -1395,19 +1395,19 @@ msgid "Recommended"
 msgstr "Ajánlott"
 
 msgid "Verified - Tier 1"
-msgstr ""
+msgstr "Ellenőrzött – 1. szint"
 
 msgid "Verified - Tier 2"
-msgstr ""
+msgstr "Ellenőrzött – 2. szint"
 
 msgid "Line"
-msgstr ""
+msgstr "Sor"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Reflektorfény"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Stratégiai"
 
 msgid "Add-on"
 msgstr "Kiegészítő"
@@ -5078,7 +5078,7 @@ msgstr "Olvastassa fel hangosan a weboldalakat. 40+ támogatott nyelv."
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Kattintson duplán bármelyik szóra, hogy azonnal megnézze annak meghatározását."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5556,12 +5556,11 @@ msgstr "Operációs rendszerek:"
 msgid "Applications:"
 msgstr "Alkalmazások:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "A fejlesztőnek ennyi ideje lesz reagálnia: kevesebb mint…"
+msgstr "Elutasítás késleltetése, a fejlesztőnek ennyi ideje lesz reagálnia: kevesebb mint…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Azonnali elutasítás. Csak komoly biztonsági problémák esetén használja."
 
 msgid "days"
 msgstr "nap"
@@ -6181,13 +6180,11 @@ msgstr "Listázottak automatikus jóváhagyásának letiltása"
 msgid "Enable Listed Auto-Approval"
 msgstr "Listázottak automatikus jóváhagyásának engedélyezése"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Listázottak automatikus jóváhagyásának letiltása"
+msgstr "Automatikus jóváhagyás letiltása a következő kézi jóváhagyásig"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Listázottak automatikus jóváhagyásának engedélyezése"
+msgstr "Automatikus jóváhagyás engedélyezése a következő kézi jóváhagyás előtt"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Az automatikus jóváhagyás eddig tiltott: {date}"
@@ -6289,9 +6286,8 @@ msgstr "Újabb"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} verziót jelöltek meg az átvizsgálók más lapokon."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} verziót jelöltek meg az átvizsgálók más lapokon."
+msgstr "{num} verziót jelöltek emberi elemzésre más oldalakon."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} verzió vár elutasításra más oldalakon."
@@ -6342,21 +6338,19 @@ msgid "The developer has provided source code."
 msgstr "A fejlesztő biztosított forráskódot."
 
 msgid "Scanners score:"
-msgstr ""
+msgstr "Átvizsgáló pontszáma:"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "Az Átvizsgáló pontszáma annak a valószínűségét jelenti, hogy az átvizsgáló megállapításai alapján ez a verzió rosszindulatú-e."
 
 msgid "Weight:"
 msgstr "Súly:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Automatizált átvizsgálók által megjelölve"
+msgstr "Átvizsgálók által megjelölve"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Emberi felülvizsgálatra jelölés"
+msgstr "Emberi felülvizsgálatra jelölve"
 
 msgid "Download"
 msgstr "Letöltés"
