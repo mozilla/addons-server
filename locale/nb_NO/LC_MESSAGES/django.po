@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-07 23:26+0000\n"
-"PO-Revision-Date: 2020-07-23 10:05+0000\n"
+"PO-Revision-Date: 2020-07-24 10:23+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -273,7 +273,7 @@ msgstr "Startside for tillegg"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr "Hvis du fulgte linken fra et sted, %(open_bug_link)ssend inn en feilrapport%(close_bug_link)s. Fortell oss hor du kom fra og hva du så etter, og vi vil gjøre vårt beste for å rette på feilen."
+msgstr "Hvis du fulgte lenken fra et sted, %(open_bug_link)ssend inn en feilrapport%(close_bug_link)s. Fortell oss hor du kom fra og hva du så etter, og vi vil gjøre vårt beste for å rette på feilen."
 
 msgid "Not Found"
 msgstr "Ikke funnet"
