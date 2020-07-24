@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 13:19+0000\n"
+"PO-Revision-Date: 2020-07-24 13:40+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5064,7 +5064,7 @@ msgstr "Dajće sej webstrony předčitać. Přez 40 rěčow so podpěruje."
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Klikńće dwójce na někajke słowo, zo byšće hnydom jeho definiciju widźał."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5545,7 +5545,7 @@ msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "Wotpokazanje wotstorčić, wuwiwar je trěbny, kotryž koriguje za mjenej hač …"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Hnydom wotpokazać. Wužiwajće to jenož w padźe ćežkich wěstotnych problemow."
 
 msgid "days"
 msgstr "dnjow"
