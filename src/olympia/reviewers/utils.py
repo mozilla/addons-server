@@ -651,8 +651,8 @@ class ReviewBase(object):
             assert not self.user.id == settings.TASK_USER_ID
             self.version.update(recommendation_approved=True)
 
-    def unset_past_needs_human_review(self):
-        """Clear needs_human_review flag on past listed versions.
+    def clear_all_needs_human_review_flags_in_channel(self):
+        """Clear needs_human_review flags on all versions in the same channel.
 
         To be called when approving a listed version: For listed, the version
         reviewers are approving is always the latest listed one, and then users
@@ -664,8 +664,20 @@ class ReviewBase(object):
             needs_human_review=True,
             channel=self.version.channel).update(
             needs_human_review=False)
+        # Another one for the needs_human_review_by_mad flag.
+        VersionReviewerFlags.objects.filter(
+            version__addon=self.addon,
+            version__channel=self.version.channel,
+        ).update(needs_human_review_by_mad=False)
         # Also reset it on self.version in case this instance is saved later.
         self.version.needs_human_review = False
+
+    def clear_specific_needs_human_review_flags(self, version):
+        """Clear needs_human_review flags on a specific version."""
+        if version.needs_human_review:
+            version.update(needs_human_review=False)
+        if version.needs_human_review_by_mad:
+            version.reviewerflags.update(needs_human_review_by_mad=False)
 
     def log_action(self, action, version=None, files=None,
                    timestamp=None):
@@ -805,11 +817,8 @@ class ReviewBase(object):
             self.set_addon(status=amo.STATUS_APPROVED)
 
         if self.human_review:
-            # No need for a human review anymore.
-            self.unset_past_needs_human_review()
-            VersionReviewerFlags.objects.filter(
-                version=self.version
-            ).update(needs_human_review_by_mad=False)
+            # No need for a human review anymore in this channel.
+            self.clear_all_needs_human_review_flags_in_channel()
 
             # An approval took place so we can reset this.
             AddonReviewerFlags.objects.update_or_create(
@@ -857,9 +866,10 @@ class ReviewBase(object):
                        hide_disabled_file=True)
 
         if self.human_review:
-            # Unset needs_human_review on the latest version - it's the only
-            # version we can be certain that the reviewer looked at.
-            self.version.update(needs_human_review=False)
+            # Clear needs human review flags, but only on the latest version:
+            # it's the only version we can be certain that the reviewer looked
+            # at.
+            self.clear_specific_needs_human_review_flags(self.version)
 
             # Assign reviewer incentive scores.
             ReviewerScore.award_points(
@@ -953,26 +963,20 @@ class ReviewBase(object):
                 pass
 
             if channel == amo.RELEASE_CHANNEL_LISTED:
-                # Clear needs_human_review flags on past versions in channel.
-                self.unset_past_needs_human_review()
+                # Clear needs human review flags on past versions in channel.
+                self.clear_all_needs_human_review_flags_in_channel()
                 AddonApprovalsCounter.increment_for_addon(addon=self.addon)
             else:
-                # For now, for unlisted versions, only drop the
-                # needs_human_review flag on the latest version.
-                if self.version.needs_human_review:
-                    self.version.update(needs_human_review=False)
+                # For unlisted versions, only drop the needs_human_review flag
+                # on the latest version.
+                self.clear_specific_needs_human_review_flags(self.version)
 
-            # Clear the "needs_human_review_by_mad" and "pending_rejection"
-            # flags too, if any, only for the specified version.
-            VersionReviewerFlags.objects.filter(
-                version=self.version
-            ).update(needs_human_review_by_mad=False, pending_rejection=None)
-
-            # For other versions, we also clear pending_rejection (Note that
+            # Clear the "pending_rejection" flag for all versions (Note that
             # the action should only be accessible to admins if the current
             # version is pending rejection).
             VersionReviewerFlags.objects.filter(
-                version__addon=self.addon
+                version__addon=self.addon,
+                version__channel=channel,
             ).update(pending_rejection=None)
 
             # Assign reviewer incentive scores.
@@ -1021,10 +1025,9 @@ class ReviewBase(object):
             self.log_action(action_id, version=version, files=files,
                             timestamp=now)
             if self.human_review:
-                # Unset needs_human_review on rejected versions, we consider
-                # that the reviewer looked at them before rejecting.
-                if version.needs_human_review:
-                    version.update(needs_human_review=False)
+                # Clear needs human review flags on rejected versions, we
+                # consider that the reviewer looked at them before rejecting.
+                self.clear_specific_needs_human_review_flags(version)
                 # (Re)set pending_rejection. Could be reset to None if doing an
                 # immediate rejection.
                 VersionReviewerFlags.objects.update_or_create(
@@ -1124,6 +1127,11 @@ class ReviewFiles(ReviewBase):
 
 class ReviewUnlisted(ReviewBase):
 
+    def clear_all_needs_human_review_flags(self):
+        """Clear needs_human_review flags, but unlike listed review, only do
+        it on the latest version, not all past versions."""
+        self.clear_specific_needs_human_review_flags(self.version)
+
     def approve_latest_version(self):
         """Set an unlisted addon version files to public."""
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
@@ -1140,12 +1148,7 @@ class ReviewUnlisted(ReviewBase):
         self.log_action(amo.LOG.APPROVE_VERSION)
 
         if self.human_review:
-            if self.version.needs_human_review:
-                self.version.update(needs_human_review=False)
-
-            VersionReviewerFlags.objects.filter(
-                version=self.version
-            ).update(needs_human_review_by_mad=False)
+            self.clear_all_needs_human_review_flags()
 
         self.notify_email(template, subject, perm_setting=None)
 
@@ -1169,10 +1172,9 @@ class ReviewUnlisted(ReviewBase):
             self.log_action(action_id, version=version, files=files,
                             timestamp=timestamp)
             if self.human_review:
-                # Unset needs_human_review on rejected versions, we consider
+                # Clear needs_human_review on rejected versions, we consider
                 # that the reviewer looked at them before disabling.
-                if version.needs_human_review:
-                    version.update(needs_human_review=False)
+                self.clear_specific_needs_human_review_flags(version)
             version_int = addon_version_int(version.version)
             if not min_version[1] or version_int < min_version[1]:
                 min_version = (version, version_int)
@@ -1203,13 +1205,6 @@ class ReviewUnlisted(ReviewBase):
                     version.autoapprovalsummary.update(confirmed=True)
                 except AutoApprovalSummary.DoesNotExist:
                     pass
-                # Unset needs_human_review on rejected versions, we consider
+                # Clear needs_human_review on rejected versions, we consider
                 # that the reviewer looked at all versions they are approving.
-                if version.needs_human_review:
-                    version.update(needs_human_review=False)
-
-                # Clear the "needs_human_review" scanner flags too, if any, and
-                # only for the specified version.
-                VersionReviewerFlags.objects.filter(
-                    version=version
-                ).update(needs_human_review_by_mad=False)
+                self.clear_specific_needs_human_review_flags(version)

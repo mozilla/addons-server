@@ -1946,6 +1946,9 @@ class TestReviewHelper(TestReviewHelperBase):
         self.setup_data(
             amo.STATUS_NULL, file_status=amo.STATUS_APPROVED,
             channel=amo.RELEASE_CHANNEL_UNLISTED)
+        # Add a needs_human_review_by_mad flag that should be cleared later.
+        VersionReviewerFlags.objects.create(
+            version=self.version, needs_human_review_by_mad=True)
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewUnlisted)
         assert self.addon.status == amo.STATUS_NULL
@@ -1965,6 +1968,8 @@ class TestReviewHelper(TestReviewHelperBase):
         # We rejected all versions so there aren't any left that need human
         # review.
         assert not self.addon.versions.filter(needs_human_review=True).exists()
+        assert not VersionReviewerFlags.objects.filter(
+            version__addon=self.addon, needs_human_review_by_mad=True).exists()
 
         # No mails
         assert len(mail.outbox) == 0
