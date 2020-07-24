@@ -13,7 +13,7 @@ from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_total_downloads as _update_addon_total_downloads,
-    update_appsupport, update_addon_hotness)
+    update_appsupport, update_addon_hotness as _update_addon_hotness)
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked
@@ -176,7 +176,7 @@ def unhide_disabled_files():
             file_.unhide_disabled_file()
 
 
-def deliver_hotness(chunk_size=300):
+def update_addon_hotness(chunk_size=300):
     """
     Calculate hotness of all add-ons.
 
@@ -214,5 +214,5 @@ def deliver_hotness(chunk_size=300):
     log.info('Preparing update of `hotness` for %s add-ons.', len(averages))
 
     create_chunked_tasks_signatures(
-        update_addon_hotness, averages.items(), chunk_size
+        _update_addon_hotness, averages.items(), chunk_size
     ).apply_async()

@@ -185,7 +185,7 @@ GROUP BY addon_id"""
 
 def get_averages_by_addon_from_bigquery(today, exclude=None):
     """This function is used to compute the 'hotness' score of each add-on (see
-    also `deliver_hotness()` cron task). It returns a dict with top-level keys
+    also `update_addon_hotness()` cron task). It returns a dict with top-level keys
     being add-on GUIDs and values being dicts containing average values."""
     client = create_client()
 

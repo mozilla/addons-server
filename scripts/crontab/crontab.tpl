@@ -27,7 +27,7 @@ HOME=/tmp
 
 # Once per day
 1 6 * * * %(django)s clear_old_user_data
-30 6 * * * %(z_cron)s deliver_hotness
+30 6 * * * %(z_cron)s update_addon_hotness
 30 9 * * * %(z_cron)s update_user_ratings
 30 14 * * * %(z_cron)s category_totals
 0 22 * * * %(z_cron)s gc

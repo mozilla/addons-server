@@ -454,7 +454,7 @@ class TestDeliverHotness(TestCase):
             },
         }
 
-        cron.deliver_hotness()
+        cron.update_addon_hotness()
 
         assert self.extension.reload().hotness == 0.049687154950312847
         assert self.static_theme.reload().hotness == 0.049687154950312847
