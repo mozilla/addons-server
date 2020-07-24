@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 13:11+0000\n"
+"PO-Revision-Date: 2020-07-24 13:19+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1378,7 +1378,7 @@ msgid "Line"
 msgstr ""
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Spotlight"
 
 msgid "Strategic"
 msgstr ""
@@ -5541,9 +5541,8 @@ msgstr "Dźěłowe systemy:"
 msgid "Applications:"
 msgstr "Nałoženja:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Wuwiwarjej kazać wotmołwić za mjenje hač…"
+msgstr "Wotpokazanje wotstorčić, wuwiwar je trěbny, kotryž koriguje za mjenej hač …"
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr ""
@@ -6174,9 +6173,8 @@ msgstr "Awtomatiske schwalenje nalistowanych přidatkow zmóžnić"
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
 msgstr "Awtomatiske nalistowane awtomatiske schwalenje hač do přichodneho manuelneho schwalenja znjemóžnić"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Awtomatiske schwalenje nalistowanych přidatkow zmóžnić"
+msgstr "Awtomatiske nalistowane awtomatiske schwalenje před přichodnym manuelnym schwalenjom zmóžnić"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Awtomatiske schwalenje je tuchwilu hač do {date} znjemóžnjene"
