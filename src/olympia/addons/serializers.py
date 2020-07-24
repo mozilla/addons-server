@@ -36,7 +36,7 @@ class FileSerializer(serializers.ModelSerializer):
         choices=list(amo.PLATFORM_CHOICES_API.items()))
     status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     permissions = serializers.ListField(
-        source='webext_permissions_list',
+        source='permissions',
         child=serializers.CharField())
     optional_permissions = serializers.ListField(
         source='optional_permissions_list',
@@ -521,7 +521,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             status=data['status'],
             strict_compatibility=data.get('strict_compatibility', False),
             version=obj)
-        file_.webext_permissions_list = data.get('webext_permissions_list', [])
+        file_.permissions = data.get('permissions', [])
         file_.optional_permissions_list = data.get(
             'optional_permissions_list', [])
         return file_

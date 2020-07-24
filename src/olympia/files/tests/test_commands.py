@@ -48,14 +48,14 @@ class TestWebextExtractPermissions(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parsed_data)
         assert WebextPermission.objects.count() == 0
-        assert file_.webext_permissions_list == []
+        assert file_.permissions == []
         assert file_.optional_permissions_list == []
 
         call_command('extract_permissions')
 
         file_ = File.objects.get(id=file_.id)
         assert WebextPermission.objects.get(file=file_)
-        permissions_list = file_.webext_permissions_list
+        permissions_list = file_.permissions
         assert len(permissions_list) == 8
         assert permissions_list == [
             # first 5 are 'permissions'
@@ -81,12 +81,12 @@ class TestWebextExtractPermissions(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parsed_data)
         assert WebextPermission.objects.count() == 1
-        assert len(file_.webext_permissions_list) == 7
+        assert len(file_.permissions) == 7
         assert len(file_.optional_permissions_list) == 1
 
         call_command('extract_permissions', force=True)
 
         file_ = File.objects.get(id=file_.id)
         assert WebextPermission.objects.get(file=file_)
-        assert len(file_.webext_permissions_list) == 8
+        assert len(file_.permissions) == 8
         assert len(file_.optional_permissions_list) == 2

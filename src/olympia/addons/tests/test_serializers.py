@@ -31,6 +31,7 @@ from olympia.versions.models import (
 class AddonSerializerOutputTestMixin(object):
     """Mixin containing tests to execute on both the regular and the ES Addon
     serializer."""
+
     def setUp(self):
         super(AddonSerializerOutputTestMixin, self).setUp()
         self.request = APIRequestFactory().get('/')
@@ -89,7 +90,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['size'] == file_.size
         assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
         assert result_file['url'] == file_.get_absolute_url(src='')
-        assert result_file['permissions'] == file_.webext_permissions_list
+        assert result_file['permissions'] == file_.permissions
         assert (
             result_file['optional_permissions'] ==
             file_.optional_permissions_list)

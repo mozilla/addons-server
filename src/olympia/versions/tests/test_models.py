@@ -1314,7 +1314,7 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
         )
         file = version.all_files[0]
 
-        permissions = file.webext_permissions_list
+        permissions = file.permissions
 
         assert 'devtools' in permissions
 

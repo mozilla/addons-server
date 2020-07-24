@@ -63,7 +63,7 @@ class TestAddonIndexer(TestCase):
         _indexed_translated_fields = ('name', 'description', 'summary')
         analyzer_fields = list(chain.from_iterable(
             [['%s_l10n_%s' % (field, lang) for lang, analyzer
-             in SEARCH_LANGUAGE_TO_ANALYZER.items()]
+              in SEARCH_LANGUAGE_TO_ANALYZER.items()]
              for field in _indexed_translated_fields]))
 
         # It'd be annoying to hardcode `analyzer_fields`, so we generate it,
@@ -115,7 +115,7 @@ class TestAddonIndexer(TestCase):
             'id', 'created', 'filename', 'hash', 'is_webextension',
             'is_restart_required', 'is_mozilla_signed_extension', 'platform',
             'size', 'status', 'strict_compatibility',
-            'webext_permissions_list', 'optional_permissions_list')
+            'permissions', 'optional_permissions_list')
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
     def test_index_setting_boolean(self):
@@ -265,7 +265,7 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
             assert (
-                extracted_file['webext_permissions_list'] ==
+                extracted_file['permissions'] ==
                 permissions)
             assert (
                 extracted_file['optional_permissions_list'] ==

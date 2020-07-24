@@ -196,7 +196,7 @@ def add_dynamic_theme_tag(ids, **kw):
     addons = Addon.objects.filter(id__in=ids)
     for addon in addons:
         files = addon.current_version.all_files
-        if any('theme' in file_.webext_permissions_list for file_ in files):
+        if any('theme' in file_.permissions for file_ in files):
             Tag(tag_text='dynamic theme').save_tag(addon)
             index_addons.delay([addon.id])
 

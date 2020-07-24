@@ -286,7 +286,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         WebextPermission.objects.create(permissions=permissions, file=file_)
 
         # Strings only please.No duplicates.
-        assert file_.webext_permissions_list == [
+        assert file_.permissions == [
             u'iamstring', u'iamnutherstring', u'laststring!']
 
     def test_optional_permissions_list_string_only(self):
@@ -1342,7 +1342,7 @@ class TestFileFromUpload(UploadTest):
         assert len(parsed_data['content_scripts'][1]['matches']) == 2
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parsed_data)
-        permissions_list = file_.webext_permissions_list
+        permissions_list = file_.permissions
         # 5 + 2 + 1 = 8
         assert len(permissions_list) == 8
         assert permissions_list == [

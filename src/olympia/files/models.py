@@ -343,7 +343,7 @@ class File(OnChangeMixin, ModelBase):
             src, dst, 'Moving undisabled file: {source} => {destination}')
 
     @cached_property
-    def webext_permissions_list(self):
+    def permissions(self):
         if not self.is_webextension:
             return []
         try:
