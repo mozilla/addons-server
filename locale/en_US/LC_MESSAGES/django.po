@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-07 23:26+0000\n"
+"POT-Creation-Date: 2020-07-24 11:29+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1006,6 +1006,22 @@ msgstr "User {user} restricted."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "User {user} edited, reason: {1}"
 
+#, fuzzy
+msgid "{addon} {version} content reject scheduled."
+msgstr "{addon} {version} rejected."
+
+#, fuzzy
+msgid "Content reject scheduled"
+msgstr "rejected"
+
+#, fuzzy
+msgid "{addon} {version} reject scheduled."
+msgstr "{addon} {version} rejected."
+
+#, fuzzy
+msgid "Rejection scheduled"
+msgstr "More Information Requested"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1054,6 +1070,10 @@ msgstr "Owner"
 
 msgid "Developer"
 msgstr "Developer"
+
+#, fuzzy
+msgid "(Deleted)"
+msgstr "Deleted"
 
 msgid "Extension"
 msgstr "Extension"
@@ -1453,6 +1473,25 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Recommended"
+msgstr "Recommended ({0})"
+
+msgid "Verified - Tier 1"
+msgstr "Verified - Tier 1"
+
+msgid "Verified - Tier 2"
+msgstr "Verified - Tier 2"
+
+msgid "Line"
+msgstr "Line"
+
+msgid "Spotlight"
+msgstr "Spotlight"
+
+msgid "Strategic"
+msgstr "Strategic"
 
 msgid "Add-on"
 msgstr "Add-on"
@@ -3788,6 +3827,7 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Block invisible trackers and spying ads that follow you around the web."
 
@@ -3797,6 +3837,7 @@ msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 
@@ -3806,6 +3847,7 @@ msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Highlight any text, right-click, and translate instantly."
 
@@ -3815,6 +3857,7 @@ msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Perform reverse image searches from an array of engines."
 
@@ -3824,6 +3867,7 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
@@ -3834,6 +3878,7 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 
@@ -3843,6 +3888,7 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -3853,6 +3899,7 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Just highlight text on any web page to search the phrase from an array of engines."
@@ -3863,6 +3910,7 @@ msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
 msgstr "Instant weather updates from around the world."
 
@@ -3882,6 +3930,7 @@ msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 
@@ -3891,6 +3940,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
@@ -3921,6 +3971,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a lot of memory."
@@ -3931,6 +3982,7 @@ msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play, and more."
@@ -4005,6 +4057,7 @@ msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 
@@ -4014,6 +4067,7 @@ msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Display current worldwide times in Firefox's status bar."
 
@@ -4043,6 +4097,7 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "Discover a new way to navigate with 50+ helpful mouse gestures."
@@ -4053,6 +4108,7 @@ msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Darken the page around video players for a focused viewing experience."
 
@@ -4086,6 +4142,7 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Hover over an image to magnify it."
 msgstr "Simply hover over an image to magnify it."
@@ -4096,6 +4153,7 @@ msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Automatically erase cookies after you close a tab."
 
@@ -4105,6 +4163,7 @@ msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 
@@ -4114,6 +4173,7 @@ msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Stop trackers in their tracks and learn more about them."
 
@@ -4123,11 +4183,13 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 
@@ -4137,6 +4199,7 @@ msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Get more screen space by removing ads from your web-based inbox."
 
@@ -4155,6 +4218,7 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Disguise your navigation by cloaking the identity of your browser and operating system."
@@ -4165,6 +4229,7 @@ msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Automatically reload tabs based on time intervals you set."
 
@@ -4184,6 +4249,7 @@ msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Gain an additional layer of tracking protection as you browse the web."
 
@@ -4193,6 +4259,7 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
@@ -4203,6 +4270,7 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Play videos by default in the highest quality, turn off annotations, and more."
@@ -4242,6 +4310,7 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Add encrypted security to any site that supprts HTTPS."
@@ -4316,6 +4385,7 @@ msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 
@@ -4325,6 +4395,7 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Check the state of your downloads through a status bar, download history page, and more."
@@ -4354,6 +4425,7 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Use mouse gestures to close tabs, go back one page, reload, and more."
@@ -4364,6 +4436,7 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Enjoy thumbnail images alongside your search returns."
@@ -4383,6 +4456,7 @@ msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Block all pop-ups by default, then decide which ones you'd like to open."
 
@@ -4392,6 +4466,7 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Change the look of any website! Shift colors, page backgrounds, and more."
@@ -4441,6 +4516,7 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Right-click and drag over links you want open in new tabs."
@@ -4515,6 +4591,7 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
@@ -4676,6 +4753,7 @@ msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enable night mode for a better viewing experience."
 msgstr "Enable night mode for a better viewing experience."
 
@@ -4756,6 +4834,7 @@ msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 
@@ -4774,6 +4853,7 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 
@@ -4783,6 +4863,7 @@ msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Clear your browser cache with a click or keystroke."
 
@@ -4801,6 +4882,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Access 20,000+ radio stations from all over the globe."
@@ -4811,6 +4893,7 @@ msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Save bandwidth by just streaming the audio from YouTube clips."
 
@@ -4829,6 +4912,7 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Navigate to the secure version of a website if it's available."
@@ -4839,6 +4923,7 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Specify a custom number of days to retain browser history before it's automatically cleared."
@@ -4886,6 +4971,7 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Don't let clicked links take control of your current tab and load content you didn't ask for."
@@ -4934,6 +5020,7 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
@@ -4972,6 +5059,7 @@ msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "For those moments when you need to fire lasers out of a cat."
 msgstr "For those moments when you need to fire lasers out of a cat."
 
@@ -5078,6 +5166,7 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Only allow web content to run from sites you trust."
@@ -5088,6 +5177,7 @@ msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Take full control of the cookies you've accumulated while browsing."
 
@@ -5106,6 +5196,7 @@ msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
 msgstr "Password-protect your personal bookmarks."
 
@@ -5133,6 +5224,7 @@ msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Find an interesting image on the web? Use TinEye to explore its origins."
 
@@ -5155,6 +5247,7 @@ msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Learn where any website's server is geographically located. Be an informed web traveler."
 
@@ -5174,6 +5267,7 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
@@ -5193,6 +5287,7 @@ msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Adjust browser audio settings with extreme clarity."
 
@@ -5202,6 +5297,7 @@ msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Defend yourself against the sneakiest trackers."
 
@@ -5250,6 +5346,7 @@ msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Stop wasting valuable memory space with inactive tabs."
 
@@ -5283,6 +5380,7 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Read with more clarity and ease. Remove the clutter around text on web pages."
 
@@ -5292,6 +5390,7 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "Not only block annoying ads, but protect yourself against malware and ad tracking."
@@ -5302,6 +5401,7 @@ msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 
@@ -5311,6 +5411,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Grab just images from your current tab."
@@ -5336,6 +5437,7 @@ msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Customize shades of light and dark to make web pages more visually pleasing."
 
@@ -5345,6 +5447,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr "List the websites you want the extension to block. Instant discipline!"
@@ -5364,6 +5467,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Easily design your own visual themes to make Firefox look as you please."
@@ -5402,6 +5506,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 
@@ -5420,6 +5525,7 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 
@@ -5437,6 +5543,7 @@ msgid "Delete cookies, browsing history, and cached files with just a single cli
 msgstr "Delete cookies, browsing history, and cached files with just a single click."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
 msgstr "Remove tracking elements from web links."
 
@@ -5445,14 +5552,17 @@ msgid "Get auto-populated RSS feed bookmark folders."
 msgstr "Get auto-populated RSS feed bookmark folders."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
 msgstr "Easily organize tons of open tabs."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
 msgstr "Create and customize tab groups."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Save complete pages—or just portions—as a single HTML file."
@@ -5467,6 +5577,7 @@ msgid "Block all ads—video, pop-ups, banners & more."
 msgstr "Block all ads—video, pop-ups, banners & more."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Watch streaming media with friends and family anywhere."
 
@@ -5477,6 +5588,10 @@ msgstr "Skip over sponsored portions of YouTube videos."
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Have web pages read aloud to you. 40+ languages supported."
+
+#. editorial content for the discovery pane.
+msgid "Double-click any word to instantly see its definition."
+msgstr "Double-click any word to instantly see its definition."
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -5969,8 +6084,12 @@ msgstr "Operating systems:"
 msgid "Applications:"
 msgstr "Applications:"
 
-msgid "Require developer to respond in less than…"
+#, fuzzy
+msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "Require developer to respond in less than…"
+
+msgid "Reject immediately. Only use in case of serious security issues."
+msgstr "Reject immediately. Only use in case of serious security issues."
 
 #, fuzzy
 msgid "days"
@@ -6669,6 +6788,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Approval Status"
 
 #, fuzzy
+msgid "Disable Listed Auto-Approval Until Next Manual Approval"
+msgstr "Disable Auto-Approval"
+
+#, fuzzy
+msgid "Enable Listed Auto-Approval Before Next Manual Approval"
+msgstr "Approval Status"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Has auto-approval disabled flag set."
 
@@ -6779,6 +6906,10 @@ msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versions flagged by scanners on other pages."
 
 #, fuzzy
+msgid "{num} versions flagged for human review on other pages."
+msgstr "{num} versions flagged by scanners on other pages."
+
+#, fuzzy
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versions flagged by scanners on other pages."
 
@@ -6827,12 +6958,23 @@ msgstr "Download files"
 msgid "The developer has provided source code."
 msgstr "The developer has provided source code."
 
+msgid "Scanners score:"
+msgstr "Scanners score:"
+
+msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+
 #, fuzzy
 msgid "Weight:"
 msgstr "Weight"
 
-msgid "Flagged by automated scanners"
+#, fuzzy
+msgid "Flagged by scanners"
 msgstr "Flagged by automated scanners"
+
+#, fuzzy
+msgid "Flagged for human review"
+msgstr "flag for human review"
 
 msgid "Download"
 msgstr "Download"

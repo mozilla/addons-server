@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-07 23:26+0000\n"
+"POT-Creation-Date: 2020-07-24 11:29+0000\n"
 "PO-Revision-Date: 2020-06-09 09:15+0000\n"
 "Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -940,6 +940,22 @@ msgstr "Ključ api uporabnika {user} ponastavljen."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Uredil uporabnik {user}, razlog: {1}"
 
+#, fuzzy
+msgid "{addon} {version} content reject scheduled."
+msgstr "Vsebina dodatka {addon} {version} zavrnjena."
+
+#, fuzzy
+msgid "Content reject scheduled"
+msgstr "Vsebina zavrnjena"
+
+#, fuzzy
+msgid "{addon} {version} reject scheduled."
+msgstr "{addon} {version} zavrnjen."
+
+#, fuzzy
+msgid "Rejection scheduled"
+msgstr "Rok zahteve za informacije"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -989,6 +1005,11 @@ msgstr "Lastnik"
 
 msgid "Developer"
 msgstr "Razvijalec"
+
+# 85%
+#, fuzzy
+msgid "(Deleted)"
+msgstr "Izbrisano"
 
 msgid "Extension"
 msgstr "Dodatek"
@@ -1367,6 +1388,25 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Recommended"
+msgstr "Priporočeno ({0})"
+
+msgid "Verified - Tier 1"
+msgstr ""
+
+msgid "Verified - Tier 2"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Spotlight"
+msgstr ""
+
+msgid "Strategic"
+msgstr ""
 
 msgid "Add-on"
 msgstr "Dodatek"
@@ -3510,6 +3550,7 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Ustavite zahrbtne sledilce {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Blokirajte nevidne sledilce in vohunske oglase, ki vam sledijo po spletu."
 
@@ -3518,6 +3559,7 @@ msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Prilagodite strani novega zavihka {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Čudovita nova stran s prilagodljivimi ozadji, lokalnimi podatki o vremenu in drugimi možnostmi."
 
@@ -3526,6 +3568,7 @@ msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Preprosto prevajanje {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Označite katerokoli besedilo, kliknite z desno miškino tipko in ga v trenutku prevedite."
 
@@ -3534,6 +3577,7 @@ msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Iščite slike {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Obrnjeno iskanje slik z naborom iskalnikov."
 
@@ -3542,6 +3586,7 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Zavračanje oglasov in zaščita pred sledenjem {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Blokiranje oglasov in zaščita zasebnosti. Preprosto orodje, ki vam omogoča nadzor nad prikazanimi oglasi in sledenjem po internetu."
 
@@ -3550,6 +3595,7 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ponovno si zamislite zavihke {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Imate brezštevilno množico odprtih zavihkov? Organizirajte jih v urejeni stranski vrstici."
 
@@ -3558,6 +3604,7 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Preprečite Facebooku sledenje {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Zaustavite sledenje Facebooka. Izolirajte svojo identiteto na Facebooku od preostalega spletnega življenja z ločenim \"vsebnikom\", ki Facebooku prepreči sledenje vaši dejavnosti po spletu."
 
@@ -3566,6 +3613,7 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Poenostavite iskanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Poenostavite iskanje z označevanjem besedila na katerikoli spletni strani in iščite z vrsto iskalnikov."
 
@@ -3574,6 +3622,7 @@ msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Priročni podatki o vremenu {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
 msgstr "Trenutne vremenske posodobitve z vsega sveta."
 
@@ -3590,6 +3639,7 @@ msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Obrnjeno slikovno iskanje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "Ste na spletu našli zanimivo sliko, o kateri želite izvedeti več? Preskusite to orodje za iskanje slik."
 
@@ -3598,6 +3648,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Enostavno prenašajte videoposnetke. Deluje z YouTubom, Facebookom, Vimeom, Twitchem, Dailymotionom, Periscopom in stotinami drugih strani."
 
@@ -3622,6 +3673,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Učinkovito in lahko blokiranje oglasov. uBlock Origin uporablja tisoče filtrov vsebin brez prekomerne porabe pomnilnika."
 
@@ -3630,6 +3682,7 @@ msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Izboljšajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Razširite YouTube z naborom novih funkcij, kot so način kina, zavračanje oglasov, nadzor samodejnega predvajanja in več."
 
@@ -3694,6 +3747,7 @@ msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Samodejno preverite slovnico {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Pomočnik za slovnico, ki vam je na voljo povsod, kjer pišete na spletu — na družbenih omrežjih, v e-pošti, dokumentih in več."
 
@@ -3702,6 +3756,7 @@ msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Oglejte si čase po svetu {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "V Firefoxovi vrstici stanja prikaži trenutne čase po svetu."
 
@@ -3726,6 +3781,7 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Prilagodite poteze z miško {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "Prilagodite miškine kretnje. Odkrijte nov način za krmarjenje z več kot 50 nastavitvami."
 
@@ -3734,6 +3790,7 @@ msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Optimizirajte videoposnetke {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Zatemnite spletno stran okoli predvajalnika videoposnetka za boljše osredotočanje na posnetek."
 
@@ -3763,6 +3820,7 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Povečajte slike {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Hover over an image to magnify it."
 msgstr "Pridržite miškin kazalec na sliki, da jo povečate."
 
@@ -3771,6 +3829,7 @@ msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Izbrišite svoje piškotke {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Samodejno izbrišite piškotke, ko zaprete zavihek."
 
@@ -3779,6 +3838,7 @@ msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Prikagodite velikost strani {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Preprost način, da nastavite velikost besedila na katerikoli spletni strani – ali celo povečate stran samo."
 
@@ -3787,6 +3847,7 @@ msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Blokirajte nevidne sledilce {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Ustavite sledilce na sledi in jih spoznajte."
 
@@ -3795,10 +3856,12 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Zabrišite sledi svojega brskanja {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Pustite čisto digitalno sled. Naj Firefox pozabi podatke spletnih mest, kot so piškotki in krajevna shramba, vendar samo za domene, ki jih določite."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr "Ni potrebe pisati iste stvari znova in znova. Pogosto uporabljena besedila shranite, da jih lahko kadarkoli prilepite."
 
@@ -3807,6 +3870,7 @@ msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Odstranite oglase iz svoje e-pošte {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Pridobite prostor na zaslonu in odstranite oglase iz spletne e-pošte."
 
@@ -3823,6 +3887,7 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Izognite se zahrbtnim sledilcem in omejitvam {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Izognite se zahrbtnim sledilcem in omejitvam. Prikrijte svoje brskanje, tako da zakrijete identiteto svojega brskalnika in operacijskega sistema."
 
@@ -3831,6 +3896,7 @@ msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Osvežite zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Samodejno ponovno naloži zavihke v izbranih časovnih presledkih."
 
@@ -3847,6 +3913,7 @@ msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ustavite sledilce {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Uporabljajte dodatno plast zaščite med brskanjem po spletu."
 
@@ -3855,6 +3922,7 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Berite datoteke ePub {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Berite datoteke ePub neposredno v Firefoxu – povečajte velikost pisave, dimenzije strani in več."
 
@@ -3863,6 +3931,7 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "Izboljšajte svojo izkušnjo na YouTubu {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Samodejno predvajajte videoposnetke Youtube v najvišji kakovosti, izklopite pripombe in drugo."
 
@@ -3896,6 +3965,7 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Brskajte varno {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Dodajte šifrirano varnost stranem, ki podpirajo HTTPS. Brskajte varno."
 
@@ -3960,6 +4030,7 @@ msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Seznam zavihkov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "Pretvorite vse odprte zavihke v seznam, na katerem jih lahko preprosto upravljate, in pospešite Firefox."
 
@@ -3968,6 +4039,7 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Zmogljivo upravljanje prenosov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Zmogljivo upravljanje prenosov. Preverite stanje svojih prenosov prek vrstice stanja, strani zgodovine prenosov in več."
 
@@ -3992,6 +4064,7 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dinamična navigacija {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Uporabljajte poteze z miško za zapiranje zavihkov, krmarjenje po straneh in drugo."
 
@@ -4000,6 +4073,7 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Dodajte slike zadetkom iskanja {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Opremite zadetke iskanja s predoglednimi ploščicami spletnih strani."
 
@@ -4016,6 +4090,7 @@ msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ustavite pojavna okna {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Privzeto zavrnite vsa pojavna okna in se nato odločite, katera bi želeli odpreti."
 
@@ -4024,6 +4099,7 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Prilagodite svoje najljubše strani {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Prilagodite videz katerekoli spletne strani! Zamenjajte barve, ozadja in še veliko več."
 
@@ -4064,6 +4140,7 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Odprite več povezav {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Pritisnite desno miškino tipko in povlecite povezave, ki bi jih radi odprli v novih zavihkih."
 
@@ -4128,6 +4205,7 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Naredite YouTube povsem svoj {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "Naj bo YouTube vaš. Predvajajte videoposnetke v ločenem okencu, skrijte oglase povsod razen v naročenih kanalih, zajemajte sličice videov in veliko več."
 
@@ -4265,6 +4343,7 @@ msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zmanjšajte obremenjenost oči {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enable night mode for a better viewing experience."
 msgstr "Omogočite nočni način za boljšo izkušnjo ogleda."
 
@@ -4334,6 +4413,7 @@ msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Zbirajte vsebino za branje {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "Napreden bralnik, ki združuje vse vaše vire RSS/Atom/RDF."
 
@@ -4350,6 +4430,7 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Pomikanje kot na telefonu {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr ""
 
@@ -4358,6 +4439,7 @@ msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Izbrišite podatke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Počistite predpomnilnik brskalnika s klikom ali pritiskom tipke."
 
@@ -4374,6 +4456,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Uživajte v glasbi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Uživajte v glasbi iz več kot 30&thinsp;000 radijskih postaj širom sveta."
 
@@ -4382,6 +4465,7 @@ msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Poslušajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Zmanjšajte prenos podatkov in iz posnetkov na YouTube prenašajte samo zvok."
 
@@ -4398,6 +4482,7 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Brskajte varno {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Samodejno obiščite varno različico spletnega mesta, če obstaja."
 
@@ -4406,6 +4491,7 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "Izbrišite zgodovino brskanja {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Izbrišite zgodovino brskanja. Določite, koliko dni naj se zgodovina brskanja obdrži v brskalniku, preden se samodejno izbriše."
 
@@ -4446,6 +4532,7 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Preprečite ugrabitve zavihkov {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Zaustavite ugrabitev zavihkov. Ne dovolite, da bi se kliknjene povezave polastile trenutnega zavihka in naložile vsebino, ki je niste želeli."
 
@@ -4487,6 +4574,7 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Popoln nadzor nad zavihki {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Imejte popoln nadzor nad zavihki – zapiranje podvojenih zavihkov, združevanje oken, kopiranje naslova zavihka in še mnogo več."
 
@@ -4519,6 +4607,7 @@ msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Zmanjšajte produktivnost {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "For those moments when you need to fire lasers out of a cat."
 msgstr "Za tiste trenutke, ko morate iz mačka izstreljevati laserje."
 
@@ -4613,6 +4702,7 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Brskajte varno {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Dovolite zagon spletne vsebine samo s spletnih mest, ki jim zaupate. Brskajte varno."
 
@@ -4621,6 +4711,7 @@ msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Upravljajte piškotke{start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Imejte popoln nadzor nad piškotki, ki ste jih nabrali med brskanjem."
 
@@ -4637,6 +4728,7 @@ msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Zavarujte zaznamke {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
 msgstr "Zaščitite osebne zaznamke z geslom."
 
@@ -4661,6 +4753,7 @@ msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Preiščite katerokoli sliko {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Ste na spletu našli zanimivo sliko? Uporabite TinEye in raziščite njen izvor."
 
@@ -4681,6 +4774,7 @@ msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Podatki o lokaciji {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Ugotovite, kje se nahaja strežnik kateregakoli spletnega mesta. Bodite obveščen spletni popotnik."
 
@@ -4697,6 +4791,7 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Najprej uredite, nato natisnite {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Uredite spletne strani – odstranite oglase ali neželeno vsebino – preden jih natisnete."
@@ -4714,6 +4809,7 @@ msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Obvladajte zvok {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Nastavite zvok brskalnika z izjemno natančnostjo."
 
@@ -4722,6 +4818,7 @@ msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zaščitite svojo zasebnost {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Zaščitite se pred najzahrbtnejšimi sledilci."
 
@@ -4762,6 +4859,7 @@ msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Prihranite pomnilnik {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Ne tratite dragocenega pomnilnika za nedejavne zavihke."
 
@@ -4790,6 +4888,7 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Olajšajte si branje {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Berite z več jasnosti in enostavnosti. Odstranite nered okoli besedila na spletnih straneh."
 
@@ -4798,6 +4897,7 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Znebite se oglasov in drugih nadlog {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "Zavrnite oglase in si zagotovite izboljšano zaščito pred zlonamerno programsko opremo in sledilci oglasov."
 
@@ -4806,6 +4906,7 @@ msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Preprostejše prenašanje predstavnosti {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr ""
 
@@ -4814,6 +4915,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Preprosto shranjevanje slik {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Enostavno shranjevanje slik – prenesite jih s trenutnega zavihka."
 
@@ -4834,6 +4936,7 @@ msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Očem prijazne strani {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Prilagodite svetle in temne odtenke, da bodo spletne strani bolj vizualno prijetne."
 
@@ -4842,6 +4945,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Blokirajte moteča spletna mesta {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr ""
 
@@ -4858,6 +4962,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Spremenite videz Firefoxa {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Spremenite videz brskalnika. Preprosto oblikujte svoje vizualne teme, tako da bo Firefox izgledal tako, kot želite."
 
@@ -4890,6 +4995,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zatemnite splet {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr "Zavijte splet v temno barvo ali izberite barvno shemo po meri in vizualno prilagodite internet po svojem okusu."
 
@@ -4906,6 +5012,7 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pomoč z videoposnetki na Androidu {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v Firefoxu za Android. Ta razširitev odpravlja težave."
 
@@ -4922,6 +5029,7 @@ msgid "Delete cookies, browsing history, and cached files with just a single cli
 msgstr "Z enim klikom izbrišite piškotke, zgodovino brskanja in datoteke v predpomnilniku."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
 msgstr "Odstranite elemente za sledenje iz spletnih povezav."
 
@@ -4930,14 +5038,17 @@ msgid "Get auto-populated RSS feed bookmark folders."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
 msgstr "Preprosto organizirajte veliko število odprtih zavihkov."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
 msgstr "Ustvarite in prilagodite skupine zavihkov."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Shranite celotne strani – vključno s slikami in slogi – kot eno datoteko HTML."
 
@@ -4951,6 +5062,7 @@ msgid "Block all ads—video, pop-ups, banners & more."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Glejte pretočne medije s prijatelji in družino kjerkoli."
 
@@ -4960,6 +5072,10 @@ msgstr "Preskočite sponzorirane dele videoposnetkov YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Double-click any word to instantly see its definition."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5439,8 +5555,12 @@ msgstr "Operacijski sistemi:"
 msgid "Applications:"
 msgstr "Programi:"
 
-msgid "Require developer to respond in less than…"
+#, fuzzy
+msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "Zahtevaj razvijalčev odziv v manj kot …"
+
+msgid "Reject immediately. Only use in case of serious security issues."
+msgstr ""
 
 # 83%
 # 100%
@@ -6091,6 +6211,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Omogoči samodejno odobritev"
 
 #, fuzzy
+msgid "Disable Listed Auto-Approval Until Next Manual Approval"
+msgstr "Onemogoči samodejno odobritev"
+
+#, fuzzy
+msgid "Enable Listed Auto-Approval Before Next Manual Approval"
+msgstr "Omogoči samodejno odobritev"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Nastavljena zastavica „samodejna odobritev onemogočena“"
 
@@ -6195,6 +6323,9 @@ msgstr "Novejše"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
+msgid "{num} versions flagged for human review on other pages."
+msgstr ""
+
 msgid "{num} versions pending rejection on other pages."
 msgstr ""
 
@@ -6243,11 +6374,21 @@ msgstr "Prenos datotek"
 msgid "The developer has provided source code."
 msgstr "Razvijalec je priskrbel izvorno kodo."
 
+msgid "Scanners score:"
+msgstr ""
+
+msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr ""
+
 msgid "Weight:"
 msgstr "Teža:"
 
-msgid "Flagged by automated scanners"
+msgid "Flagged by scanners"
 msgstr ""
+
+#, fuzzy
+msgid "Flagged for human review"
+msgstr "Označi za človeški pregled"
 
 msgid "Download"
 msgstr "Prenesi"

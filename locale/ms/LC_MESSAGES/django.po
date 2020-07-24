@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-07 23:26+0000\n"
+"POT-Creation-Date: 2020-07-24 11:29+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -949,6 +949,22 @@ msgstr "Gambar pengguna {user} dibuang."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Pengguna {user} mengedit, alasan: {1}"
 
+#, fuzzy
+msgid "{addon} {version} content reject scheduled."
+msgstr "Kandungan {addon} {version} ditolak."
+
+#, fuzzy
+msgid "Content reject scheduled"
+msgstr "Kandungan ditolak"
+
+#, fuzzy
+msgid "{addon} {version} reject scheduled."
+msgstr "{addon} {version} ditolak."
+
+#, fuzzy
+msgid "Rejection scheduled"
+msgstr "Tarikh Akhir Permintaan Maklumat"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -996,6 +1012,10 @@ msgstr "Pemilik"
 
 msgid "Developer"
 msgstr "Pembangun"
+
+#, fuzzy
+msgid "(Deleted)"
+msgstr "Dibuang"
 
 msgid "Extension"
 msgstr "Ekstensi"
@@ -1372,6 +1392,25 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Recommended"
+msgstr "Komen"
+
+msgid "Verified - Tier 1"
+msgstr ""
+
+msgid "Verified - Tier 2"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Spotlight"
+msgstr ""
+
+msgid "Strategic"
+msgstr ""
 
 msgid "Add-on"
 msgstr "Add-on"
@@ -3503,6 +3542,7 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Sekat penjejak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Sekat penjejak halimunan dan iklan pengintip yang mengikuti anda di seluruh web."
 
@@ -3511,6 +3551,7 @@ msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Sesuaikan halaman tab baru {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Alami halaman baru dengan penyesuaian latar belakang, info cuaca tempatan, dan banyak lagi."
 
@@ -3519,6 +3560,7 @@ msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Terjemahan mudah {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Serlahkan teks, klik kanan dan diterjemahkan serta-merta."
 
@@ -3527,6 +3569,7 @@ msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Cari imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Laksanakan carian imej songsang daripada susunan enjin."
 
@@ -3535,6 +3578,7 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Sekat iklan & perlindungan privasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Tetapan mudah yang membolehkan anda mengawal iklan dan cara anda dijejaki dalam internet."
@@ -3544,6 +3588,7 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ubah suai tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Anda ada banyak tab terbuka? Susun dengan kemas dalam bar sisi."
 
@@ -3552,6 +3597,7 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Sekat penjejakan Facebook {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Asingkan identiti Facebook anda ke dalam “penyimpan” berasingan yang menyukarkan Facebook untuk menjejaki pergerakan anda dalam web."
@@ -3561,6 +3607,7 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Memudahkan carian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Serlahkan sahaja teks dalam halaman web untuk mencari frasa dari tatasusunan enjin."
@@ -3570,6 +3617,7 @@ msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Keadaan cuaca semasa {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
 msgstr ""
 
@@ -3586,6 +3634,7 @@ msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Carian imej songsang {start_sub_heading}dengan {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "Nampak gambar yang menarik dalam web dan mahu mengetahuinya lebih lanjut? Cuba alatan carian imej ini."
 
@@ -3594,6 +3643,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Berfungsi dalam YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, dan ratusan laman video lain."
@@ -3621,6 +3671,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Penyekat iklan yang ringkas dan efektif. uBlock Origin melaksanakan ribuan tapisan kandungan tanpa menggunakan banyak memori."
@@ -3630,6 +3681,7 @@ msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan video {start_sub_heading}dengan {addon_name} {end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Nikmati set ciri YouTube yang baru, seperti mod pawagam, menyekat iklan, kawalan auto-main dan banyak lagi."
 
@@ -3695,6 +3747,7 @@ msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Semakan automatik tatabahasa {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Dapatkan bantuan tatabahasa apabila menulis dalam web—media sosial, e-mel, dokumen dan selainnya."
 
@@ -3703,6 +3756,7 @@ msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Semak waktu global {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Paparkan waktu semasa di seluruh dunia dalam bar status Firefox."
 
@@ -3729,6 +3783,7 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Penyesuaian gerak isyarat tetikus {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "Alami cara baru menavigasi dengan 50+ gerak isyarat tetikus."
@@ -3738,6 +3793,7 @@ msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Optimumkan video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Persekitaran pemain video yang gelap untuk pengalaman menonton yang lebih fokus."
 
@@ -3767,6 +3823,7 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Besarkan imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Hover over an image to magnify it."
 msgstr "Hanya legar atas imej untuk membesarkannya."
@@ -3776,6 +3833,7 @@ msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Hilangkan kuki {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Buang kuki secara automatik selepas anda tutup tab."
 
@@ -3784,6 +3842,7 @@ msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Sesuaikan saiz paparan halaman {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Cara mudah untuk mengubah saiz teks halaman—atau membesarkan halaman itu sendiri."
 
@@ -3792,6 +3851,7 @@ msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Sekat penjejak tersembunyi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Sekat penjejak di laluannya dan ketahui lanjut mengenainya."
 
@@ -3800,11 +3860,13 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Tinggalkan jejak digital yang bersih {start_sub_heading}dengan{addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Jadikan Firefox lupa akan maklumat laman web seperti kuki dan storan lokal, cuma domain yang anda pilih."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr ""
 
@@ -3813,6 +3875,7 @@ msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sekat iklan e-mel {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Dapatkan lebih ruang skrin dengan membuang iklan dalam peti masuk berasaskan web."
 
@@ -3829,6 +3892,7 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Elakkan penjejak dan sekatan tersembunyi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Samarkan navigasi dengan menyembunyikan identiti pelayar dan sistem operasi anda."
@@ -3838,6 +3902,7 @@ msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Muat semula tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Muatkan tab secara automatik berdasarkan selang masa yang anda tetapkan."
 
@@ -3855,6 +3920,7 @@ msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Hentikan penjejak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Tambahkan lapisan perlindungan penjejakan apabila anda melayari web."
 
@@ -3863,6 +3929,7 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Baca fail ePub {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Buka fail ePub dalam Firefox—tambah saiz fon, dimensi halaman dan banyak lagi."
@@ -3872,6 +3939,7 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "Tingkatkan pengalaman YouTube {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Main video secara piawai dalam kualiti tertinggi, tutup anotasi dan banyak lagi."
@@ -3907,6 +3975,7 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pelayaran selamat {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Tambah keselamatan yang dienkripsi dalam mana-mana laman yang menyokong HTTPS."
@@ -3974,6 +4043,7 @@ msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Senaraikan tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "Tukar semua tab terbuka menjadi senarai supaya mudah diuruskan dan memantaskan Firefox."
 
@@ -3982,6 +4052,7 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Pengurusan muat turun {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Semak perkembangan muat turun melalui bar status, halaman sejarah muat turun dan banyak lagi."
@@ -4008,6 +4079,7 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Navigasi dinamik {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Gunakan gerak isyarat tetikus untuk menutup tab, undur satu halaman, muat semula dan banyak lagi."
@@ -4017,6 +4089,7 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Letak imej pada hasil carian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Sertakan imej kecil bersama hasil carian anda."
@@ -4034,6 +4107,7 @@ msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Hentikan popup {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Sekat semua popup secara piawai, kemudian tentukan yang anda mahu buka."
 
@@ -4042,6 +4116,7 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Penyesuaian laman web kegemaran {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Tukar penampilan laman web! Ubah warna, latar belakang halaman dan banyak lagi."
@@ -4086,6 +4161,7 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Buka berbilang tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Klik kanan dan seret pautan yang anda mahu buka dalam tab baru."
@@ -4152,6 +4228,7 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Jadikan YouTube milik anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "Mainkan video dalam tetingkap pop keluar, lihat iklan hanya dalam saluran langganan, ambil skrinsyot video dan banyak lagi."
@@ -4296,6 +4373,7 @@ msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Redakan tekanan mata {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enable night mode for a better viewing experience."
 msgstr "Aktifkan mod malam untuk pengalaman yang lebih baik."
 
@@ -4368,6 +4446,7 @@ msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Himpunkan bahan bacaan {start_sub_heading}dengan{addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "Pembaca unggul yang menggabungkan semua sumber RSS/Atom/RDF."
 
@@ -4384,6 +4463,7 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Menatal bak telefon {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr ""
 
@@ -4392,6 +4472,7 @@ msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Buang data {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Buang cache pelayar dengan satu klik atau kekunci."
 
@@ -4408,6 +4489,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Nikmati muzik dari serata dunia {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Akses 30,000+ stesyen radio dari serata dunia."
@@ -4417,6 +4499,7 @@ msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Dengar video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Jimat jalur lebar dengan hanya menstrim audio klip YouTube."
 
@@ -4433,6 +4516,7 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pelayaran selamat {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Navigasi ke laman web versi yang selamat jika ada tersedia."
@@ -4442,6 +4526,7 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "Buang sejarah navigasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Tetapkan bilangan hari untuk menyimpan sejarah pelayar sebelum dibuang secara automatik."
@@ -4484,6 +4569,7 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Hentikan rampasan tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Jangan biarkan pautan yang diklik mengawal tab semasa dan memuatkan kandungan yang anda tidak mahu."
@@ -4527,6 +4613,7 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Kawalan jitu tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Pelbagai pilihan kawalan tab—tutup tab duplikasi, menghimpun tetingkap, salin tajuk tab dan banyak lagi."
@@ -4561,6 +4648,7 @@ msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Kurangkan produktiviti {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "For those moments when you need to fire lasers out of a cat."
 msgstr "Untuk detik penting apabila anda perlu tembak laser daripada kucing."
 
@@ -4657,6 +4745,7 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Melayar secara selamat {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Izinkan perlaksanaan kandungan web dari laman yang anda percayai sahaja."
@@ -4666,6 +4755,7 @@ msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Urus kuki {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Ambil kawalan penuh ke atas kuki yang dihimpun semasa pelayaran."
 
@@ -4682,6 +4772,7 @@ msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Keselamatan Tandabuku {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
 msgstr "Perlindungan-kata laluan untuk tandabuku peribadi."
 
@@ -4706,6 +4797,7 @@ msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Siasat imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Terjumpa imej yang menarik dalam web? Gunakan TinEye untuk mengetahui asalnya."
 
@@ -4726,6 +4818,7 @@ msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ketahui lokasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Ketahui lokasi geografi pelayan laman web. Jadilah pengembara web yang bermaklumat."
 
@@ -4743,6 +4836,7 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Edit sebelum cetak {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Buat perubahan visual yang menakjubkan—buang iklan atau kandungan menjengkelkan—dalam halaman web yang anda mahu cetak."
@@ -4760,6 +4854,7 @@ msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Master audio {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Ubah tetapan audio pelayar dengan ketelitian jitu."
 
@@ -4768,6 +4863,7 @@ msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Perlindungan privasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Lindungi diri anda daripada penjejak tersembunyi."
 
@@ -4814,6 +4910,7 @@ msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Simpan teks {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr ""
 
@@ -4846,6 +4943,7 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Tingkatkan pengalaman membaca {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr ""
 
@@ -4855,6 +4953,7 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Sekat iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr ""
 
@@ -4864,6 +4963,7 @@ msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Muat turun video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr ""
 
@@ -4873,6 +4973,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Cari imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4895,6 +4996,7 @@ msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Besarkan imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr ""
 
@@ -4904,6 +5006,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Kurangkan gangguan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr ""
 
@@ -4922,6 +5025,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Carian Firefox {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
 
@@ -4958,6 +5062,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Rakamkan web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr ""
 
@@ -4976,6 +5081,7 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Cari video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -4992,6 +5098,7 @@ msgid "Delete cookies, browsing history, and cached files with just a single cli
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
 msgstr ""
 
@@ -5000,14 +5107,17 @@ msgid "Get auto-populated RSS feed bookmark folders."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr ""
 
@@ -5021,6 +5131,7 @@ msgid "Block all ads—video, pop-ups, banners & more."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
@@ -5030,6 +5141,10 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Double-click any word to instantly see its definition."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5512,8 +5627,12 @@ msgstr "Sistem pengoperasian:"
 msgid "Applications:"
 msgstr "Aplikasi:"
 
-msgid "Require developer to respond in less than…"
+#, fuzzy
+msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "Menghendaki pembangun untuk respons dalam tempoh kurang daripada…"
+
+msgid "Reject immediately. Only use in case of serious security issues."
+msgstr ""
 
 msgid "days"
 msgstr "hari"
@@ -6156,6 +6275,14 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Dayakan Auto-Kelulusan"
 
 #, fuzzy
+msgid "Disable Listed Auto-Approval Until Next Manual Approval"
+msgstr "Nyahdaya Auto-Kelulusan"
+
+#, fuzzy
+msgid "Enable Listed Auto-Approval Before Next Manual Approval"
+msgstr "Dayakan Auto-Kelulusan"
+
+#, fuzzy
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Ada tetapan auto-kelulusan nyahdaya."
 
@@ -6260,6 +6387,9 @@ msgstr "Lebih baru"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
+msgid "{num} versions flagged for human review on other pages."
+msgstr ""
+
 msgid "{num} versions pending rejection on other pages."
 msgstr ""
 
@@ -6308,11 +6438,21 @@ msgstr "Muat turun fail"
 msgid "The developer has provided source code."
 msgstr "Pembangun menyediakan kod sumber."
 
+msgid "Scanners score:"
+msgstr ""
+
+msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr ""
+
 msgid "Weight:"
 msgstr "Pertimbangkan:"
 
-msgid "Flagged by automated scanners"
+msgid "Flagged by scanners"
 msgstr ""
+
+#, fuzzy
+msgid "Flagged for human review"
+msgstr "Ulasan Penilaian ({0})"
 
 msgid "Download"
 msgstr "Muat turun"

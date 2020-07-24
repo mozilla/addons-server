@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-07 23:26+0000\n"
+"POT-Creation-Date: 2020-07-24 11:29+0000\n"
 "PO-Revision-Date: 2020-07-21 08:47+0000\n"
 "Last-Translator: kounty2rolen <kounty2rolen@cock.li>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -285,10 +285,10 @@ msgstr "Не найдено"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Извините, но мы не можем найти то, что вы ищете.</h1> <p>Страница или файл, который вы запросили, не найдены на нашем сайте. Вполне возможно, что вы щёлкнули по ссылке, которая устарела, или "
 "неправильно набрали адрес.</p><ul><li> Если вы набрали адрес, пожалуйста, проверьте правильность его написания.</li> <li> Если вы откуда-либо проследовали по ссылке, пожалуйста, "
@@ -341,8 +341,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Пожалуйста, введите ниже <strong>все слова</strong>, <strong>при необходимости разделяя их пробелом</strong>. </p> <p> Если их трудно прочесть, вы можете <a href=\"#\" "
-"id=\"recaptcha_different\">попробовать другие слова</a> или вместо слов <a href=\"#\" id=\"recaptcha_audio\">попробовать другой тип проверки</a>. </p>"
+"<p> Пожалуйста, введите ниже <strong>все слова</strong>, <strong>при необходимости разделяя их пробелом</strong>. </p> <p> Если их трудно прочесть, вы можете <a href=\"#\" id=\"recaptcha_different"
+"\">попробовать другие слова</a> или вместо слов <a href=\"#\" id=\"recaptcha_audio\">попробовать другой тип проверки</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -452,8 +452,8 @@ msgstr "Версии"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 "Даже если поддерживаемое вами приложение не требует файл манифеста, вы всё же должны включить его с указанными %(amo_manifests_mdn_link_open)sздесь%(amo_manifests_mdn_link_close)s требуемыми "
 "свойствами."
@@ -931,6 +931,22 @@ msgstr "Сброс сессии пользователя {user}."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Пользователь {user} регулируется для области \"{0}\""
 
+#, fuzzy
+msgid "{addon} {version} content reject scheduled."
+msgstr "Содержимое {addon} {version} отвергнуто."
+
+#, fuzzy
+msgid "Content reject scheduled"
+msgstr "Содержимое отвергнуто"
+
+#, fuzzy
+msgid "{addon} {version} reject scheduled."
+msgstr "{addon} {version} отвергнуто."
+
+#, fuzzy
+msgid "Rejection scheduled"
+msgstr "Ожидания срока отклонения"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -979,6 +995,10 @@ msgstr "Владелец"
 
 msgid "Developer"
 msgstr "Разработчик"
+
+#, fuzzy
+msgid "(Deleted)"
+msgstr "Удалено"
 
 msgid "Extension"
 msgstr "Расширение"
@@ -1366,6 +1386,25 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Recommended"
+msgstr "Рекомендуемые ({0})"
+
+msgid "Verified - Tier 1"
+msgstr ""
+
+msgid "Verified - Tier 2"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Spotlight"
+msgstr ""
+
+msgid "Strategic"
+msgstr ""
 
 msgid "Add-on"
 msgstr "Дополнение"
@@ -1763,7 +1802,8 @@ msgstr ""
 "На этом сайте. <span class=\"helptext\">Ваше представление будет отображаться на этом сайте и в менеджере дополнений Firefox для миллионов пользователей, после того, как пройдёт проверку. "
 "Автоматические обновления будут обрабатываться этим сайтом. Это дополнение будет участвовать в акциях и конкурсах Mozilla. Возможно самостоятельное распространение проверенных файлов.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Самостоятельно. <span class=\"helptext\">Ваше представление будет немедленно подписано для самостоятельного распространения. Обновления должны будут распространяться вами через updateURL или через "
 "обновления внешнего приложения.</span>"
@@ -2081,11 +2121,13 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Это дополнение несовместимо с <b>%(app_name)s %(app_version)s</b>, последней версией %(app_name)s. Просьба рассмотреть вопрос об обновлении информации о совместимости вашего дополнения, или загрузки"
-" новой версии этого дополнения."
+"Это дополнение несовместимо с <b>%(app_name)s %(app_version)s</b>, последней версией %(app_name)s. Просьба рассмотреть вопрос об обновлении информации о совместимости вашего дополнения, или "
+"загрузки новой версии этого дополнения."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Обновить совместимость</a> <a href=\"%(version_url)s\" class=\"button\">Загрузить новую версию</a> или <a href=\"#\" "
 "class=\"close\">Игнорировать</a>"
@@ -2272,8 +2314,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
-"Описание должно объяснять, что делает ваше дополнение, чётко и кратко. И имя, и описание появятся на странице вашего продукта и в результатах поиска. Они имеют общую максимальную длину 70 символов и"
-" минимальную длину 2 символа по отдельности."
+"Описание должно объяснять, что делает ваше дополнение, чётко и кратко. И имя, и описание появятся на странице вашего продукта и в результатах поиска. Они имеют общую максимальную длину 70 символов "
+"и минимальную длину 2 символа по отдельности."
 
 msgid "Summary"
 msgstr "Сводка"
@@ -2330,8 +2372,8 @@ msgid "Email"
 msgstr "Адрес эл. почты"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Если вы хотите отобразить адрес электронной почты для поддержки,\n"
 "                          введите его здесь. Если у вас есть различные адреса\n"
@@ -2526,8 +2568,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
-"При удалении вашего дополнения будут навсегда удалены все версии и файлы, которые вы для него загружали, и опубликованные и нет. ID дополнения останется привязанным к вашему аккаунту, так что другие"
-" не смогут отправить новые версии, используя тот же ID."
+"При удалении вашего дополнения будут навсегда удалены все версии и файлы, которые вы для него загружали, и опубликованные и нет. ID дополнения останется привязанным к вашему аккаунту, так что "
+"другие не смогут отправить новые версии, используя тот же ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Введите следующий текст, чтобы подтвердить ваше решение: {slug}"
@@ -2788,16 +2830,16 @@ msgid "Operating system and build environment requirements."
 msgstr "Требования к операционной системе и среде сборки."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
-"Сведения (включая требуемые версии и инструкции по установке) о любых программных продуктах, используемых в процессе сборки (например, используемые версии <span class=\"tech-emphasis\">node</span> и"
-" <span class=\"tech-emphasis\">npm</span>)."
+"Сведения (включая требуемые версии и инструкции по установке) о любых программных продуктах, используемых в процессе сборки (например, используемые версии <span class=\"tech-emphasis\">node</span> "
+"и <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">Примечание:</span> Исходные файлы (кроме сторонних библиотек с открытым исходных кодом) не могут быть транспайлированы, объединены, минифицированы или каким-либо"
-" другим образом сгенерированы машиной."
+"<span class=\"instruction-emphasis\">Примечание:</span> Исходные файлы (кроме сторонних библиотек с открытым исходных кодом) не могут быть транспайлированы, объединены, минифицированы или каким-"
+"либо другим образом сгенерированы машиной."
 
 msgid "How to Submit:"
 msgstr "Как отправить:"
@@ -2910,11 +2952,11 @@ msgstr "Секрет JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"Чтобы делать запросы к API, отправьте <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> как авторизационный заголовок. Вам нужно будет сгенерировать JWT для каждого запроса, как в <a "
-"href=\"%(docs_url)s\">документации по API</a>."
+"Чтобы делать запросы к API, отправьте <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> как авторизационный заголовок. Вам нужно будет сгенерировать JWT для каждого запроса, как в <a href="
+"\"%(docs_url)s\">документации по API</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -2985,7 +3027,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3309,8 +3352,8 @@ msgstr "Зарегистрируйте аккаунт разработчика �
 msgid "Manage Version {0}"
 msgstr "Управление версией {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Управлять {0}"
 
@@ -3483,16 +3526,16 @@ msgstr "Вы уверены, что хотите отменить свой за�
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Документация по дополнениям :: Центр разработки"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ошибка"
 msgstr[1] "{0} ошибки"
 msgstr[2] "{0} ошибок"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} предупреждение"
@@ -3504,6 +3547,7 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Создайте проблемы следящим за вами трекерам {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Блокируйте невидимые трекеры и шпионскую рекламу, которая следит за вами в Интернете."
 
@@ -3512,6 +3556,7 @@ msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Настраивайте страницы новых вкладок {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Насладитесь красивой страницей новой вкладки с настраиваемым фоном, прогнозом погоды и многим другим."
 
@@ -3520,6 +3565,7 @@ msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Переводите без затруднений {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Выделите любой текст, щелкните правой кнопкой мыши и мгновенно получите перевод."
 
@@ -3528,6 +3574,7 @@ msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ищите изображения {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Выполняйте поиск по картинке в множестве поисковых систем."
 
@@ -3536,6 +3583,7 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Блокировка рекламы и защита приватности {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Блокировка рекламы и защита приватности. Простая настройка позволит вам взять под контроль рекламу, которую вы видите, а также отслеживание вас в Интернете."
 
@@ -3544,6 +3592,7 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Запоминайте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "У вас множество открытых вкладок? Организуйте их в удобной боковой панели."
 
@@ -3552,6 +3601,7 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Остановите отслеживание Фейсбуком {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Остановите отслеживание Фейсбуком. Изолируйте свою деятельность в Фейсбуке в отдельном «контейнере», таким образом затрудняя для Фейсбука возможность отслеживания вас на других сайтах."
 
@@ -3560,6 +3610,7 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Упростите поиск {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Легко выполняйте поиск во множестве поисковых систем, выделив текст на любой веб-странице."
 
@@ -3568,6 +3619,7 @@ msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Мгновенный прогноз погоды {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
 msgstr "Актуальная информация о погоде во всём мире."
 
@@ -3584,6 +3636,7 @@ msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Поиск по изображениям {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "Нашли интересное изображение в Интернете и хотите узнать о нем больше? Попробуйте этот инструмент поиска изображений."
 
@@ -3592,6 +3645,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Загружайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "С лёгкостью загружайте видео. Работает с YouTube, Фейсбуком, Vimeo, Twitch, Dailymotion, Periscope и сотнями других сайтов с видео."
 
@@ -3616,6 +3670,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокируйте рекламу {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Эффективный и лёгкий блокировщик рекламы. uBlock Origin применяет тысячи фильтров к веб-содержимому без «съедания» большого количества памяти."
 
@@ -3624,6 +3679,7 @@ msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Улучшайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Наслаждайтесь набором новых возможностей YouTube — режимом кино, блокировкой рекламы, автовоспроизведением и многим другим."
 
@@ -3688,6 +3744,7 @@ msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Автоматическая проверка правописания {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Получайте справку по грамматике, когда пишете где-нибудь в Интернете — в социальных сетях, почте, документах и т. д."
 
@@ -3696,6 +3753,7 @@ msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Узнайте время во всём мире {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Узнавайте время по всему миру в строке состояния Firefox."
 
@@ -3720,6 +3778,7 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Настраивайте жесты мышью {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "Настройте жесты мыши. Откройте для себя новый способ навигации с более чем 50 конфигурациями."
 
@@ -3728,6 +3787,7 @@ msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Оптимизируйте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Затемняйте страницу вокруг видеоплеера для более удобного просмотра."
 
@@ -3757,6 +3817,7 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Увеличивайте изображения {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Hover over an image to magnify it."
 msgstr "Наведите курсор на изображение, чтобы увеличить его."
 
@@ -3765,6 +3826,7 @@ msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Убирайте куки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Автоматическое удаление куки при закрытии вкладки."
 
@@ -3773,6 +3835,7 @@ msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Регулируйте отображение страниц {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Простой способ подобрать размер текста любой страницы или даже увеличить саму страницу."
 
@@ -3781,6 +3844,7 @@ msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Блокируйте невидимые трекеры {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Помешайте трекерам следить за вами и узнайте о них больше."
 
@@ -3789,10 +3853,12 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Не оставляйте цифрового следа {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "«Сотрите» цифровой след. Заставьте Firefox забыть такие данные веб-сайтов, как куки и локальное хранилище, но только для выбранных вами доменов."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr "Не нужно писать одно и то же снова и снова. Сохраняйте часто вводимый текст для вставки в любое время."
 
@@ -3801,6 +3867,7 @@ msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокируйте рекламу по почте {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Удалите рекламу из веб-интерфейса почты и получите больше свободного места."
 
@@ -3817,6 +3884,7 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Избегайте трекеров и ограничений {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Избегайте трекеров и ограничений. Скройте свои действия в Интернете, замаскировав браузер и операционную систему."
 
@@ -3825,6 +3893,7 @@ msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Обновляйте вкладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Автоматическая перезагрузка вкладок по установленному вами графику."
 
@@ -3843,6 +3912,7 @@ msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Перекройте дорогу трекерам {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Добавьте еще уровень защиты от отслеживания ваших действий в сети."
 
@@ -3851,6 +3921,7 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Читайте файлы ePub {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Читайте ePub-файлы прямо в Firefox — увеличивайте шрифт, размеры страницы и многое другое."
 
@@ -3859,6 +3930,7 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "Сделайте YouTube удобнее {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Проигрывайте видео на YouTube в самом высоком качестве по умолчанию, отключайте аннотации и многое другое."
 
@@ -3891,6 +3963,7 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Безопасно гуляйте в Интернете {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Укрепите безопасность, зашифровав соединение с любым сайтом, поддерживающим HTTPS. Безопасный веб-сёрфинг."
 
@@ -3955,6 +4028,7 @@ msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Составьте список вкладок {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "Превратите все свои открытые вкладки в список, чтобы удобнее управлять ими и ускорить Firefox."
 
@@ -3963,6 +4037,7 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Грамотное управление загрузками {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Надёжное управление загрузками. Проверяйте, как идёт загрузка, в строке состояния, загружайте историю страниц и многое другое."
 
@@ -3987,6 +4062,7 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Динамическая навигация {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Используйте жесты мышью для закрытия вкладок, перемещения по страницам и других действий."
 
@@ -3995,6 +4071,7 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Добавляйте изображения в результаты поиска {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Наслаждайтесь эскизами веб-сайтов в результатах поиска."
 
@@ -4011,6 +4088,7 @@ msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Больше нет всплывающих окон {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Заблокируйте по умолчанию все всплывающие окна, а потом выберите те из них, которые можно открывать."
 
@@ -4019,6 +4097,7 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Переделайте свои любимые веб-сайты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Измените вид любого веб-сайта. Меняйте цвета, фон страниц и многое другое."
 
@@ -4059,6 +4138,7 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Открывайте несколько ссылок сразу {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Щелкните правой кнопкой мыши и перетащите ссылки, которые вы хотите открыть в новых вкладках."
 
@@ -4123,6 +4203,7 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Перестройте YouTube под себя {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr ""
 "Сделайте YouTube своим. Открывайте видео во всплывающих окнах, смотрите рекламу только на каналах, на которые вы подписаны, делайте скриншоты видео и пользуйтесь множеством других возможностей."
@@ -4260,6 +4341,7 @@ msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Меньше утомляйте глаза {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enable night mode for a better viewing experience."
 msgstr "Включите ночной режим для удобства просмотра."
 
@@ -4328,6 +4410,7 @@ msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Собирайте материалы для чтения {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "Мощный инструмент чтения, объединяющий все ваши источники новостей RSS/Atom/RDF."
 
@@ -4344,6 +4427,7 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Прокручивание, как в телефоне, {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr "Прокрутка страниц на компьютере как на телефоне. «grab-n-drag» с помощью мыши."
 
@@ -4352,6 +4436,7 @@ msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Удаляйте данные {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Очистите кэш браузера щелчком мыши или нажатием клавиши."
 
@@ -4368,6 +4453,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Наслаждайтесь музыкой со всего мира {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Наслаждайтесь музыкой с более чем 30000 радиостанций со всего мира."
 
@@ -4376,6 +4462,7 @@ msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Слушайте видео {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Не загружайте канал — включите воспроизведение только звука из клипов YouTube."
 
@@ -4392,6 +4479,7 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Безопасный просмотр {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Автоматически переходите на безопасную версию веб-сайта, если она есть."
 
@@ -4400,6 +4488,7 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "Удалите историю навигации {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Удаляйте историю просмотра страниц. Укажите, как долго браузер должен сохранять историю до её автоматического удаления."
 
@@ -4440,6 +4529,7 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Запретите захват вкладок {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Положите конец угону вкладок. Не позволяйте открываемым ссылкам захватывать контроль над текущей вкладкой и загружать непрошеный контент."
 
@@ -4480,6 +4570,7 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Полный контроль над вкладками {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Наслаждайтесь полным контролем над управлением вкладками — закрытие дубликатов, объединение окон, копирование заголовков вкладок и многое другое."
 
@@ -4512,6 +4603,7 @@ msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Отвлекитесь на минутку {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "For those moments when you need to fire lasers out of a cat."
 msgstr "Для тех моментов, когда вам нужно сжечь что-нибудь лазерами из глаз кота."
 
@@ -4604,6 +4696,7 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Безопасно ходите по Интернету {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Разрешите запуск веб-содержимого только на сайтах, которым вы доверяете. Сёрфите безопасно."
 
@@ -4612,6 +4705,7 @@ msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Управляйте куками {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Полностью контролируйте свои куки, накопленные в ходе просмотра веб-страниц."
 
@@ -4628,6 +4722,7 @@ msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Защитите свои закладки {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
 msgstr "Защитите свои личные закладки паролем."
 
@@ -4652,6 +4747,7 @@ msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Исследуйте любое изображение {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Нашли в Интернете интересную картинку? Проследите ее происхождение с помощью TinEye."
 
@@ -4672,6 +4768,7 @@ msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ориентируйтесь на месте {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Узнавайте, в какой стране расположен сервер любого веб-сайта, — будьте информированным веб-путешественником."
 
@@ -4688,6 +4785,7 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Редактируйте перед печатью {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Отредактируйте веб-страницу перед печатью. Вносите радикальные визуальные изменения — удаляйте рекламу или неприятный контент — на любой веб-странице, которую хотите распечатать."
 
@@ -4704,6 +4802,7 @@ msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Управляйте звуком {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Отрегулируйте звуковые настройки браузера с чрезвычайной точностью."
 
@@ -4712,6 +4811,7 @@ msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Защита приватности {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Защитите себя от самых коварных трекеров."
 
@@ -4752,6 +4852,7 @@ msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Экономьте память {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Остановите потребление ценной памяти неактивными вкладками."
 
@@ -4780,6 +4881,7 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Улучшите чтение {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Читайте с лёгкостью и ясностью. Удалите лишнее вокруг текста на веб-страницах."
 
@@ -4788,6 +4890,7 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокируйте рекламу и многое другое {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "Блокируйте рекламу и получайте улучшенную защиту от вредоносного ПО и рекламного отслеживания."
 
@@ -4796,6 +4899,7 @@ msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Легко загружайте медиа {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Наслаждайтесь поддержкой многопоточной загрузки. Автоматически определяйте различные форматы медиа для загрузки."
 
@@ -4804,6 +4908,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Легко сохраняйте изображения {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Легко сохраняйте изображения — просто берите их с текущей вкладки."
 
@@ -4824,6 +4929,7 @@ msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Приятные глазу страницы {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Настраивайте оттенки светлого и тёмного, чтобы сделать веб-страницы визуально более приятными."
 
@@ -4832,6 +4938,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Заблокируйте отвлекающие сайты {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr "Блокируйте отвлекающие сайты. Просто укажите список веб-сайтов, которые хотите заблокировать. Моментальная дисциплина!"
 
@@ -4848,6 +4955,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Измените внешний вид Firefox {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Изменяйте внешний вид вашего браузера. Легко создавайте свои собственные визуальные темы, чтобы Firefox выглядел так, как вам хочется."
 
@@ -4880,6 +4988,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Сделайте Интернет тёмным {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr "Сделайте Интернет тёмным или выберите собственную цветовую схему, чтобы визуально настроить его по своему вкусу."
 
@@ -4896,6 +5005,7 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Исправьте воспроизведение видео на Android {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Некоторые веб-сайты испытывают затруднения при воспроизведении видео в Firefox для Android. Это расширение исправляет эту проблему."
 
@@ -4912,6 +5022,7 @@ msgid "Delete cookies, browsing history, and cached files with just a single cli
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
 msgstr ""
 
@@ -4920,14 +5031,17 @@ msgid "Get auto-populated RSS feed bookmark folders."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Сохраните всю веб-страницу, включая изображения и стили, в виде одного файла HTML."
 
@@ -4940,6 +5054,7 @@ msgid "Block all ads—video, pop-ups, banners & more."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Смотрите потоковые видео с друзьями и семьёй где угодно."
 
@@ -4949,6 +5064,10 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Double-click any word to instantly see its definition."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4975,8 +5094,8 @@ msgstr "Приватность за пределами расширений бр
 msgid "Media enhancers for Firefox"
 msgstr "Улучшатели медиа для Firefox"
 
-#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
 msgstr "Откройте для себя расширения"
 
@@ -5197,8 +5316,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Часто задаваемые вопросы об отзывах"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Отзывы на дополнения являются для вас способом поделиться своим мнением о дополнениях, которые вы установили и использовали. Наша команда модерации отзывов оставляет за собой право отказать или "
 "удалить любой отзыв, который не соответствует этим принципам."
@@ -5426,8 +5545,12 @@ msgstr "Операционные системы:"
 msgid "Applications:"
 msgstr "Приложения:"
 
-msgid "Require developer to respond in less than…"
+#, fuzzy
+msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "Требует ответа разработчика в течение максимум…"
+
+msgid "Reject immediately. Only use in case of serious security issues."
+msgstr ""
 
 msgid "days"
 msgstr "дней"
@@ -6045,6 +6168,14 @@ msgstr "Отключить автоодобрение опубликованны
 msgid "Enable Listed Auto-Approval"
 msgstr "Включить автоодобрение опубликованных"
 
+#, fuzzy
+msgid "Disable Listed Auto-Approval Until Next Manual Approval"
+msgstr "Отключить автоодобрение опубликованных"
+
+#, fuzzy
+msgid "Enable Listed Auto-Approval Before Next Manual Approval"
+msgstr "Включить автоодобрение опубликованных"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "В настоящее время автоодобрение отключено до {date}"
 
@@ -6145,6 +6276,9 @@ msgstr "Новее"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
 
+msgid "{num} versions flagged for human review on other pages."
+msgstr ""
+
 msgid "{num} versions pending rejection on other pages."
 msgstr ""
 
@@ -6193,11 +6327,21 @@ msgstr "Загрузить файлы"
 msgid "The developer has provided source code."
 msgstr "Разработчик предоставил исходный код."
 
+msgid "Scanners score:"
+msgstr ""
+
+msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr ""
+
 msgid "Weight:"
 msgstr "Вес:"
 
-msgid "Flagged by automated scanners"
+msgid "Flagged by scanners"
 msgstr ""
+
+#, fuzzy
+msgid "Flagged for human review"
+msgstr "Отметить для проверки человеком"
 
 msgid "Download"
 msgstr "Загрузить"
@@ -6535,18 +6679,18 @@ msgstr "Об отслеживании внешних источников..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Отслеживание внешних источников</h2> <p> Если вы дали ссылку на страницу информации о вашем дополнении или непосредственно на его файл с внешнего сайта, такого как ваш блог или веб-сайт, вы "
 "можете добавить параметр для отслеживания дополнительных источников загрузки на этой странице. Например, следующие ссылки появятся как исходящие с вашего блога: <dl> <dt>Страница информации о "
-"дополнении</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Прямая ссылка на файл</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Будут отслеживаться только параметры src начинающиеся с \"external-\", длиной "
-"до 61 дополнительного символа. Любой текст после \"external-\" может быть использован для описания источника, например \"external-blog\", \"external-sidebar\", \"external-campaign225\", и т.д. "
-"Разрешены следующие безопасные для создания URL символы: <code>a-z A-Z - . _ ~ %% +</code>"
+"дополнении</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Прямая ссылка на файл</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest."
+"xpi?src=<b>external-blog</b></dd> </dl> <p> Будут отслеживаться только параметры src начинающиеся с \"external-\", длиной до 61 дополнительного символа. Любой текст после \"external-\" может быть "
+"использован для описания источника, например \"external-blog\", \"external-sidebar\", \"external-campaign225\", и т.д. Разрешены следующие безопасные для создания URL символы: <code>a-z A-Z - . _ ~ "
+"%% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Статус дополнения по дате"
@@ -6598,8 +6742,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"За исключением случаев, <a href=\"https://www.mozilla.org/about/legal/\">описанных здесь</a>, содержимое этого сайта лицензировано на условиях <br /> <a "
-"href=\"https://creativecommons.org/licenses/by-sa/3.0/\">лицензии Creative Commons «Атрибуция — На тех же условиях» версии 3.0</a> или любой более поздней версии."
+"За исключением случаев, <a href=\"https://www.mozilla.org/about/legal/\">описанных здесь</a>, содержимое этого сайта лицензировано на условиях <br /> <a href=\"https://creativecommons.org/licenses/"
+"by-sa/3.0/\">лицензии Creative Commons «Атрибуция — На тех же условиях» версии 3.0</a> или любой более поздней версии."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "узнайте о <b>дополнениях</b>"
@@ -6760,8 +6904,8 @@ msgstr ""
 "используйте «Ограничение пользовательских адресов электронной почты»."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Перед началом, пожалуйста прочтите и примите наше Соглашение по распространению дополнений Firefox, а также наши Политики и Правила проверки. Соглашение по распространению дополнений Firefox также "
 "ссылается на Уведомление об использовании конфиденциальной информации, которое объясняет, как мы обрабатываем вашу информацию."
@@ -6822,7 +6966,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

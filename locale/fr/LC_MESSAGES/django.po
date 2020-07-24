@@ -5,12 +5,12 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-07 23:26+0000\n"
+"POT-Creation-Date: 2020-07-24 11:29+0000\n"
 "PO-Revision-Date: 2020-07-13 07:04+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -291,17 +291,17 @@ msgstr "Non trouvé"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Nous sommes désolés, mais nous ne pouvons pas trouver ce que vous cherchez.</h1> <p> La page ou le fichier que vous vouliez n’a pas été trouvé sur notre site. Il est possible que vous ayez "
-"cliqué sur un lien mort, ou que l’adresse entrée soit erronée. </p> <ul> <li>Si vous avez saisi l’adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de <a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\">renseigner un bogue</a>. Dites-nous d’où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger"
-" le problème. </li> </ul> <p>Vous pouvez aussi faire un tour sur nos pages populaires.</p> <ul> <li>Est-ce qu’une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-"
-"ce que vous voulez <a href=\"%(search)s\">rechercher des modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champ de recherche ci-dessus. "
-"</li> <li> Si vous préférez recommencer, rendez-vous sur <a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
+"cliqué sur un lien mort, ou que l’adresse entrée soit erronée. </p> <ul> <li>Si vous avez saisi l’adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de <a href=\"https://github.com/"
+"mozilla/addons-server/issues/new/\">renseigner un bogue</a>. Dites-nous d’où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger le problème. </li> </ul> "
+"<p>Vous pouvez aussi faire un tour sur nos pages populaires.</p> <ul> <li>Est-ce qu’une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-ce que vous voulez <a href="
+"\"%(search)s\">rechercher des modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champ de recherche ci-dessus. </li> <li> Si vous préférez "
+"recommencer, rendez-vous sur <a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Oups"
@@ -311,9 +311,9 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Oups, une erreur est survenue.</h1> <p>Nous allons la corriger rapidement.</p> <p> Vous pouvez essayer de recharger la page ou retourner sur <a href=\"%(home)s\">la page d’accueil des "
-"modules</a>. Vous pouvez également nous aider à la résoudre en <a href=\"https://github.com/mozilla/addons/issues/new\">signalant un problème</a> détaillant la manière dont vous êtes arrivé·e sur "
-"cette page. </p>"
+"<h1>Oups, une erreur est survenue.</h1> <p>Nous allons la corriger rapidement.</p> <p> Vous pouvez essayer de recharger la page ou retourner sur <a href=\"%(home)s\">la page d’accueil des modules</"
+"a>. Vous pouvez également nous aider à la résoudre en <a href=\"https://github.com/mozilla/addons/issues/new\">signalant un problème</a> détaillant la manière dont vous êtes arrivé·e sur cette "
+"page. </p>"
 
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
@@ -350,8 +350,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Veuillez saisir <strong>tous les mots</strong> ci-après, <strong>séparés par des espaces si nécessaire</strong>. </p> <p> Si cela est trop dur à lire, vous pouvez <a href=\"#\" "
-"id=\"recaptcha_different\">essayer différents mots</a> ou <a href=\"#\" id=\"recaptcha_audio\">essayer un autre type de défi</a> à la place. </p>"
+"<p> Veuillez saisir <strong>tous les mots</strong> ci-après, <strong>séparés par des espaces si nécessaire</strong>. </p> <p> Si cela est trop dur à lire, vous pouvez <a href=\"#\" id="
+"\"recaptcha_different\">essayer différents mots</a> ou <a href=\"#\" id=\"recaptcha_audio\">essayer un autre type de défi</a> à la place. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -461,11 +461,11 @@ msgstr "Versions"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Même si votre logiciel ne requiert pas un fichier manifeste, vous devez toujours en inclure un avec les propriétés idoines comme spécifié "
-"%(amo_manifests_mdn_link_open)sici%(amo_manifests_mdn_link_close)s."
+"Même si votre logiciel ne requiert pas un fichier manifeste, vous devez toujours en inclure un avec les propriétés idoines comme spécifié %(amo_manifests_mdn_link_open)sici"
+"%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Cette adresse personnalisée est déjà utilisée par une autre de vos collections."
@@ -942,6 +942,22 @@ msgstr "Réinitialisation des sessions de l’utilisateur {user}."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Utilisateur {user} limité pour le scope « {0} »"
 
+#, fuzzy
+msgid "{addon} {version} content reject scheduled."
+msgstr "Contenu rejeté pour {addon} {version}."
+
+#, fuzzy
+msgid "Content reject scheduled"
+msgstr "Contenu rejeté"
+
+#, fuzzy
+msgid "{addon} {version} reject scheduled."
+msgstr "{addon} {version} rejeté."
+
+#, fuzzy
+msgid "Rejection scheduled"
+msgstr "En attente de date limite de rejet"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -990,6 +1006,10 @@ msgstr "Propriétaire"
 
 msgid "Developer"
 msgstr "Développeur"
+
+#, fuzzy
+msgid "(Deleted)"
+msgstr "Supprimé"
 
 msgid "Extension"
 msgstr "Extension"
@@ -1399,6 +1419,25 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+#, fuzzy
+msgid "Recommended"
+msgstr "Recommandés ({0})"
+
+msgid "Verified - Tier 1"
+msgstr ""
+
+msgid "Verified - Tier 2"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Spotlight"
+msgstr ""
+
+msgid "Strategic"
+msgstr ""
+
 msgid "Add-on"
 msgstr "Module"
 
@@ -1794,7 +1833,8 @@ msgstr ""
 "effectuée. Les mises à jour automatiques seront gérées par ce site. Ce module sera également pris en considération pour que Mozilla en fasse la promotion et pour les concours. La distribution "
 "personnelle des fichiers revus est aussi possible.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Gestion personnelle. <span class=\"helptext\">Votre envoi sera immédiatement signé pour une distribution personnelle. Vous devrez gérer les mises à jour via une updateURL ou des mises à jour "
 "d’application externe.</span>"
@@ -2116,7 +2156,9 @@ msgstr ""
 "envoyer une nouvelle version."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Mettre à jour la compatibilité</a> <a href=\"%(version_url)s\" class=\"button\">Envoyer une nouvelle version</a> ou <a "
 "href=\"#\" class=\"close\">Ignorer</a>"
@@ -2278,8 +2320,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Si vous avez une autre page pour votre module, saisissez son adresse ici. Si votre site web est localisé en plusieurs langues, les différentes traductions de ce champ peuvent être ajoutées. Ce champ"
-" n’est utile que pour les modules répertoriés."
+"Si vous avez une autre page pour votre module, saisissez son adresse ici. Si votre site web est localisé en plusieurs langues, les différentes traductions de ce champ peuvent être ajoutées. Ce "
+"champ n’est utile que pour les modules répertoriés."
 
 msgid "Describe Add-on"
 msgstr "Décrivez votre module :"
@@ -2357,8 +2399,8 @@ msgid "Email"
 msgstr "Courriel"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Si vous souhaitez afficher une adresse électronique pour les demandes d’assistance, saisissez-la ici. Si vous avez différentes adresses pour chaque langue, vous pouvez ajouter les différentes "
 "traductions de ce champ. Ce champ n’est utile que pour les modules répertoriés."
@@ -2422,8 +2464,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Envoyez une icône pour votre module ou choisissez-en une parmi les nôtres. L’icône est affichée à presque tous les endroits où apparaît votre module. Le type de l’image transférée doit être .png ou "
-".jpg. L’envoi d’icône ne s’applique qu’aux modules répertoriés."
+"Envoyez une icône pour votre module ou choisissez-en une parmi les nôtres. L’icône est affichée à presque tous les endroits où apparaît votre module. Le type de l’image transférée doit être .png "
+"ou .jpg. L’envoi d’icône ne s’applique qu’aux modules répertoriés."
 
 msgid "Select an icon for your add-on:"
 msgstr "Sélectionnez une icône pour votre module :"
@@ -2806,11 +2848,11 @@ msgid "Operating system and build environment requirements."
 msgstr "Système d’exploitation et environnement d’installation requis."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
-"Des informations (ce qui comprend la version requise et les instructions d’installation) sur tous les programmes utilisés dans le processus de compilation (par exemple : les versions de <span "
-"class=\"tech-emphasis\">node</span> et de <span class=\"tech-emphasis\">npm</span> utilisées)."
+"Des informations (ce qui comprend la version requise et les instructions d’installation) sur tous les programmes utilisés dans le processus de compilation (par exemple : les versions de <span class="
+"\"tech-emphasis\">node</span> et de <span class=\"tech-emphasis\">npm</span> utilisées)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
 msgstr ""
@@ -2928,8 +2970,8 @@ msgstr "Secret JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "Pour effectuer des requêtes sur l’API, envoyez un <a href=\"%(jwt_url)s\">jeton web JSON (JWT pour <i>JSON Web Token</i>)</a> dans l’en-tête d’autorisation. Vous devrez générer un JWT pour chaque "
 "requête, comme indiqué dans <a href=\"%(docs_url)s\">la documentation d’API</a>."
@@ -3029,17 +3071,20 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
 "Cher développeur de modules complémentaires,\n"
 "\n"
-"Nous avons remarqué que vos informations d’authentification sont présentes dans un module complémentaire soumis à addons.mozilla.org. Afin de protéger votre compte et votre (vos) module(s) complémentaire(s), nous avons supprimé les informations d’authentification divulguées.\n"
+"Nous avons remarqué que vos informations d’authentification sont présentes dans un module complémentaire soumis à addons.mozilla.org. Afin de protéger votre compte et votre (vos) module(s) "
+"complémentaire(s), nous avons supprimé les informations d’authentification divulguées.\n"
 "Vous pouvez générer de nouveaux identifiants d’API à l’adresse %(api_keys_url)s\n"
 "\n"
-"Veuillez ne jamais partager vos identifiants de connexion avec qui que ce soit. Ne les ajoutez jamais dans un dépôt public, dans un module complémentaire ou à n’importe quel autre endroit. Nous vous encourageons à vérifier vos dépôts de code source et vos extensions afin de retirer toute référence à vos identifiants AMO.\n"
+"Veuillez ne jamais partager vos identifiants de connexion avec qui que ce soit. Ne les ajoutez jamais dans un dépôt public, dans un module complémentaire ou à n’importe quel autre endroit. Nous "
+"vous encourageons à vérifier vos dépôts de code source et vos extensions afin de retirer toute référence à vos identifiants AMO.\n"
 "\n"
 "Merci,\n"
 "L’équipe des modules complémentaires de Mozilla"
@@ -3197,8 +3242,8 @@ msgstr "Concevez des extensions et des thèmes de premier ordre"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
-"Que vous soyez novice dans le développement d’extensions, que vous peaufiniez ou adaptiez une extension ou un thème existants, ou que vous créiez une solution d’entreprise spécifique, nous avons les"
-" ressources pour vous soutenir."
+"Que vous soyez novice dans le développement d’extensions, que vous peaufiniez ou adaptiez une extension ou un thème existants, ou que vous créiez une solution d’entreprise spécifique, nous avons "
+"les ressources pour vous soutenir."
 
 # Plural in this context means many of the add-on type
 msgid "Visit the Extension Workshop"
@@ -3364,8 +3409,8 @@ msgstr "Inscrivez-vous pour un compte développeur ou connectez-vous au Pôle d�
 msgid "Manage Version {0}"
 msgstr "Gérer la version {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Gérer {0}"
 
@@ -3538,15 +3583,15 @@ msgstr "Voulez-vous vraiment annuler votre requête de revue ?"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Documentation Module :: Pôle développeurs"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} erreur"
 msgstr[1] "{0} erreurs"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} avertissement"
@@ -3557,6 +3602,7 @@ msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Bloquez les traqueurs sournois {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Bloquez les traqueurs invisibles et les publicités espionnes qui vous suivent sur le Web."
 
@@ -3565,6 +3611,7 @@ msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Personnalisez votre page nouvel onglet {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Créez une page séduisante avec le fond de votre choix, la météo locale, etc."
 
@@ -3573,6 +3620,7 @@ msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Traduisez facilement {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Sélectionnez n’importe quel texte, puis effectuez un clic droit pour en obtenir la traduction immédiatement."
 
@@ -3581,6 +3629,7 @@ msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Cherchez des images {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Effectuez des recherches inversées d’images depuis un ensemble de moteurs de recherche."
 
@@ -3589,6 +3638,7 @@ msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end
 msgstr "Bloquez les publicités et protégez votre vie privée {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Blocage des publicités et protection de la vie privée. Une simple configuration vous permet de contrôler les publicités que vous voyez et les traces que vous laissez sur Internet."
 
@@ -3597,6 +3647,7 @@ msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Réinventez vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Vous avez ouvert un grand nombre d’onglets ? Organisez-les dans une barre latérale."
 
@@ -3605,6 +3656,7 @@ msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Empêchez Facebook de vous pister {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Empêchez le pistage par Facebook. Isolez votre identité Facebook dans un « conteneur » distinct pour empêcher Facebook de vous suivre sur le Web."
 
@@ -3613,6 +3665,7 @@ msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Simplifiez vos recherches {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Simplifiez vos recherches en surlignant du texte dans une page web, puis recherchez ce texte sur différents moteurs."
 
@@ -3621,6 +3674,7 @@ msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Soyez informé en temps réel de la météo {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
 msgstr "Mises à jour météorologiques instantanées du monde entier."
 
@@ -3637,6 +3691,7 @@ msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Effectuez une recherche à partir d’images {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "Vous aimeriez en savoir plus sur une image dénichée sur le Web ? Demandez à cet outil de recherche d’images !"
 
@@ -3645,6 +3700,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Téléchargez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Télécharger des vidéos facilement. Fonctionne avec YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope et des centaines d'autres sites de vidéos."
 
@@ -3669,6 +3725,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloquez les publicités {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Bloqueur de publicités poids plume et très efficace, uBlock Origin applique des milliers de filtres de contenu tout en consommant très peu de mémoire."
 
@@ -3677,6 +3734,7 @@ msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Améliorez les vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Profitez des nouvelles fonctionnalités YouTube : mode Cinéma, blocage des publicités, lecture automatique, etc."
 
@@ -3741,6 +3799,7 @@ msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Vérifiez automatiquement la grammaire {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Bénéficiez d’une assistance grammaticale chaque fois que vous écrivez sur le Web : réseaux sociaux, courriels, documents, etc."
 
@@ -3749,6 +3808,7 @@ msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Jetez un œil sur l’heure partout dans le monde {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Affichez l’heure des pays de votre choix dans la barre d’état de Firefox."
 
@@ -3773,6 +3833,7 @@ msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Personnalisez les mouvements de votre souris {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "Personnalisez les gestes de la souris. Découvrez une nouvelle façon de naviguer avec plus de 50 configurations."
 
@@ -3781,6 +3842,7 @@ msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Optimisez les vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Pour améliorer l’expérience visuelle de vos vidéos, réduisez la luminosité de l’affichage qui entoure votre lecteur vidéo."
 
@@ -3811,6 +3873,7 @@ msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Agrandissez les images {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Hover over an image to magnify it."
 msgstr "Survolez une image pour l’agrandir."
 
@@ -3819,6 +3882,7 @@ msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Faites disparaître les cookies {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Effacez automatiquement les cookies dès la fermeture d’un onglet."
 
@@ -3827,6 +3891,7 @@ msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Ajustez la taille de la page {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Solution simple pour ajuster la taille du texte sur une page — ou même pour agrandir la page entière."
 
@@ -3835,6 +3900,7 @@ msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Bloquez les traqueurs invisibles {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Bloquez les traqueurs et apprenez-en davantage à leur sujet."
 
@@ -3843,11 +3909,13 @@ msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Laissez une empreinte numérique propre {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr ""
 "Ne laissez aucune trace numérique. Demandez à Firefox de ne pas mémoriser les données des sites web à l’aide de cookies ou du stockage local, mais seulement pour les domaines que vous sélectionnez."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr "Pas besoin d’écrire la même chose encore et encore. Enregistrez du texte fréquemment saisi pour le coller à tout moment."
 
@@ -3856,6 +3924,7 @@ msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloquez les publicités dans les courriels {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Augmentez l’espace disponible sur votre écran en supprimant les publicités qui s’affichent automatiquement dans la boîte de réception de votre messagerie web."
 
@@ -3872,6 +3941,7 @@ msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_nam
 msgstr "Évitez les traqueurs et les restrictions {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Évitez les traqueurs sournois et les restrictions. Déguisez votre navigation en masquant l'identité de votre navigateur et de votre système d'exploitation."
 
@@ -3880,6 +3950,7 @@ msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Actualisez vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Rechargez automatiquement le contenu des onglets ouverts en fonction des intervalles de temps de votre choix."
 
@@ -3898,6 +3969,7 @@ msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Empêchez les traqueurs de vous pister {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Bénéficiez d’une couche supplémentaire de protection contre le pistage lorsque vous naviguez sur le Web."
 
@@ -3906,6 +3978,7 @@ msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Lisez des fichiers ePub {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Lisez les fichiers ePub directement dans Firefox et adaptez-les à vos préférences : augmentez la taille de la police, les dimensions de la page, etc."
 
@@ -3914,6 +3987,7 @@ msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_
 msgstr "Faites évoluer votre expérience utilisateur YouTube {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Lisez toujours les vidéos YouTube dans les meilleures conditions : qualité la plus élevée, annotations désactivées, etc."
 
@@ -3946,6 +4020,7 @@ msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Naviguez en toute sécurité {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Ajoutez une couche de sécurité chiffrée aux sites qui prennent en charge le protocole HTTPS. Naviguez en toute sécurité."
 
@@ -4010,6 +4085,7 @@ msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Listez vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "En convertissant vos onglets ouverts en liste, vous pourrez les gérer plus facilement (et vous constaterez que Firefox est plus rapide !)."
 
@@ -4018,6 +4094,7 @@ msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Gérez efficacement vos téléchargements {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Gestion des téléchargements robuste. Gérez vos téléchargements à l’aide d’une barre d’état, d’une page d’historique, etc."
 
@@ -4042,6 +4119,7 @@ msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Naviguez de façon dynamique {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Utilisez les gestes de la souris pour fermer les onglets, parcourir les pages, etc."
 
@@ -4050,6 +4128,7 @@ msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub
 msgstr "Ajoutez des images à vos résultats de recherche {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Associez les vignettes des sites web à vos résultats de recherche."
 
@@ -4066,6 +4145,7 @@ msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloquez les fenêtres popup {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Bloquez toutes les fenêtres pop-up par défaut, puis sélectionnez celles que vous souhaitez ouvrir."
 
@@ -4074,6 +4154,7 @@ msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end
 msgstr "Personnalisez vos sites web favoris {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Personnalisez l’apparence de n’importe quel site web. Changez les couleurs, le fond des pages, etc."
 
@@ -4114,6 +4195,7 @@ msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Ouvrez plusieurs liens {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Ouvrez des liens dans un nouvel onglet en les faisant glisser après un clic droit."
 
@@ -4178,6 +4260,7 @@ msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Personnalisez YouTube {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "Affichez les vidéos dans une fenêtre popup, limitez les publicités aux chaînes dont vous êtes abonné·e, prenez des captures d’écran et bien plus encore."
 
@@ -4314,6 +4397,7 @@ msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Réduisez la fatigue oculaire {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enable night mode for a better viewing experience."
 msgstr "Activez le mode Nuit pour une expérience visuelle plus confortable."
 
@@ -4382,6 +4466,7 @@ msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Trouvez du contenu à lire {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "Un lecteur avancé pour agréger toutes vos sources RSS/Atom/RDF."
 
@@ -4398,6 +4483,7 @@ msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Faites défiler comme sur votre mobile {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr "Défilement semblable à celui d’un téléphone pour votre ordinateur de bureau. Mouvements de la souris de type « glisser-déposer »."
 
@@ -4406,6 +4492,7 @@ msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Supprimez des données {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Videz le cache d’un clic ou avec un raccourci-clavier."
 
@@ -4422,6 +4509,7 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Profitez de musiques provenant du monde entier {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Écoutez plus de 30 000 stations de radio du monde entier."
 
@@ -4430,6 +4518,7 @@ msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Profitez des vidéos {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Économisez de la bande passante en diffusant uniquement l’audio des clips YouTube."
 
@@ -4446,6 +4535,7 @@ msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Surfez en toute sérénité {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Lorsqu’elle est disponible, utilisez automatiquement la version sécurisée des sites web."
 
@@ -4454,6 +4544,7 @@ msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_s
 msgstr "Supprimez votre historique de navigation {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Spécifiez le nombre de jours pendant lequel votre historique de navigation web sera conservé (au-delà de cette limite, l’historique sera automatiquement effacé)."
 
@@ -4494,6 +4585,7 @@ msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Empêchez le détournement de vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Mettez un terme au détournement d’onglets. Ne laissez pas les liens cliqués prendre le contrôle de votre onglet actuel et charger des contenus que vous n’avez pas demandés."
 
@@ -4536,6 +4628,7 @@ msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Prenez le contrôle total de vos onglets {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Profitez d’un contrôle total sur les onglets : fermez les onglets en double, fusionnez les fenêtres, copiez le titre de l’onglet, etc."
 
@@ -4568,6 +4661,7 @@ msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Diminuez votre productivité {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "For those moments when you need to fire lasers out of a cat."
 msgstr "Quand vous êtes excédé et que vous avez envie de tirer au laser avec un chat…"
 
@@ -4662,6 +4756,7 @@ msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Surfez en toute sécurité {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Autorisez l’affichage de contenus web seulement s’ils viennent de sites auxquels vous faites confiance. Surfez en sécurité."
 
@@ -4670,6 +4765,7 @@ msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gérez les cookies {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Exercez un contrôle total sur les cookies que vous avez accumulés pendant votre navigation."
 
@@ -4686,6 +4782,7 @@ msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Sauvegardez vos marque-pages {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
 msgstr "Protégez vos marque-pages personnels à l’aide d’un mot de passe."
 
@@ -4710,6 +4807,7 @@ msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Analysez chaque image {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Vous avez déniché une photo sympa sur le Web ? Utilisez TinEye pour déterminer son origine, son auteur, sa date de publication en ligne, etc."
 
@@ -4730,6 +4828,7 @@ msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Déterminez les emplacements {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Soyez un internaute informé : déterminez l’emplacement géographique des serveurs des sites web que vous visitez. "
 
@@ -4746,6 +4845,7 @@ msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading
 msgstr "Modifiez avant d’imprimer {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Modifiez radicalement une page web avant de l’imprimer : supprimez les publicités, les contenus peu recommandables, etc. "
 
@@ -4762,6 +4862,7 @@ msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Maîtrisez l’audio {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Ajustez les paramètres audio du navigateur avec une précision extrême."
 
@@ -4770,6 +4871,7 @@ msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Protégez votre vie privée {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Défendez-vous contre les traqueurs les plus sournois."
 
@@ -4810,6 +4912,7 @@ msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Réduisez la consommation mémoire {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Arrêtez de gaspiller un espace mémoire précieux avec des onglets inactifs."
 
@@ -4838,6 +4941,7 @@ msgid "A better reading experience {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Améliorez votre expérience de lecture {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Lisez avec plus de clarté et de facilité. Supprimez le superflu autour du texte sur les pages web."
 
@@ -4846,6 +4950,7 @@ msgid "Block ads & more {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloquez les publicités et bien d’autres choses {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "Bloquez non seulement les publicités ennuyeuses, mais protégez-vous contre les logiciels malveillants et le pistage publicitaire."
 
@@ -4854,6 +4959,7 @@ msgid "Download media easier {start_sub_heading}with {addon_name}{end_sub_headin
 msgstr "Téléchargez des fichiers multimédia {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Profitez de la prise en charge du téléchargement en multithreading et de la détection automatique des différents types de médias disponibles au téléchargement."
 
@@ -4862,6 +4968,7 @@ msgid "Save images easily {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Enregistrez facilement des images {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Enregistrez facilement les images : récupérez simplement des images dans votre onglet actuel."
 
@@ -4882,6 +4989,7 @@ msgid "Eye-pleasing pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Des pages agréables à regarder {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Personnalisez les teintes claires et sombres pour rendre les pages web plus agréables visuellement."
 
@@ -4890,6 +4998,7 @@ msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Réduisez les distractions {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr "Bloquez les sites qui vous déconcentrent. Répertoriez les sites web que vous souhaitez voir bloqués par l’extension. Apprentissage instantané !"
 
@@ -4906,6 +5015,7 @@ msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub
 msgstr "Changez l’apparence de Firefox {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Modifiez l’apparence de votre navigateur. Créez facilement vos propres thèmes visuels pour que Firefox soit à votre image."
 
@@ -4938,6 +5048,7 @@ msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Rendez le web plus sombre {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr "Parcourez le Web avec un thème sombre ou sélectionnez votre jeu de couleurs préféré pour personnaliser Internet à votre goût."
 
@@ -4954,6 +5065,7 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Aide vidéo sous Android {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Certains sites rencontrent des difficultés à lire des vidéos dans Firefox pour Android. Cette extension fournit une solution."
 
@@ -4970,6 +5082,7 @@ msgid "Delete cookies, browsing history, and cached files with just a single cli
 msgstr "Supprimez les cookies, l’historique de navigation, et les fichiers en cache en un seul clic."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
 msgstr "Supprimez des liens web les éléments qui servent à vous surveiller."
 
@@ -4978,14 +5091,17 @@ msgid "Get auto-populated RSS feed bookmark folders."
 msgstr "Remplissez automatiquement des dossiers de marque-pages avec vos flux RSS."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
 msgstr "Organisez facilement un grand nombre d’onglets ouverts."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
 msgstr "Créez et personnalisez des groupes d’onglets."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Enregistrez une page web entière, y compris les images et le style, dans un seul fichier HTML."
 
@@ -4998,6 +5114,7 @@ msgid "Block all ads—video, pop-ups, banners & more."
 msgstr "Bloquez toutes les pubs — vidéos, popups, bannières, etc."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Regardez des médias en streaming avec vos amis et votre famille où que vous soyez."
 
@@ -5008,6 +5125,10 @@ msgstr "Ignorez les portions sponsorisées des vidéos YouTube."
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Demandez la lecture de pages web à haute voix. Plus de 40 langues prises en charge."
+
+#. editorial content for the discovery pane.
+msgid "Double-click any word to instantly see its definition."
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5033,8 +5154,8 @@ msgstr "La vie privée au-delà des extensions de navigateur"
 msgid "Media enhancers for Firefox"
 msgstr "Améliorer la lecture de médias dans Firefox"
 
-#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
 msgstr "Parcourir les extensions"
 
@@ -5255,8 +5376,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Foire aux questions à propos des commentaires"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Les commentaires vous permettent de partager votre opinion sur les modules que vous avez installés et utilisés. Notre équipe de modération se réserve le droit de refuser ou de supprimer tout "
 "commentaire qui ne respecterait pas ces règles."
@@ -5301,8 +5422,8 @@ msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
-"Postez des questions techniques, des demandes d’aide ou des suggestions de fonctionnalité. Utilisez les options d’aide disponibles pour chaque module, le cas échéant. Vous pouvez les trouver dans la"
-" colonne à côté de la section À propos du module."
+"Postez des questions techniques, des demandes d’aide ou des suggestions de fonctionnalité. Utilisez les options d’aide disponibles pour chaque module, le cas échéant. Vous pouvez les trouver dans "
+"la colonne à côté de la section À propos du module."
 
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "Écrire des commentaires sur des modules que vous n’avez pas utilisé personnellement."
@@ -5326,8 +5447,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Critiquez un module pour quelque chose qu’il est censé faire. Par exemple, laissez une critique négative d’un module pour afficher des publicités ou nécessitant la collecte de données, lorsque c’est"
-" l’objectif visé par le module, ou si le module nécessite la collecte de données pour fonctionner."
+"Critiquez un module pour quelque chose qu’il est censé faire. Par exemple, laissez une critique négative d’un module pour afficher des publicités ou nécessitant la collecte de données, lorsque "
+"c’est l’objectif visé par le module, ou si le module nécessite la collecte de données pour fonctionner."
 
 msgid "How can I report a problematic review?"
 msgstr "Comment puis-je rapporter un commentaire problématique ?"
@@ -5483,8 +5604,12 @@ msgstr "Systèmes d’exploitation :"
 msgid "Applications:"
 msgstr "Applications :"
 
-msgid "Require developer to respond in less than…"
+#, fuzzy
+msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "Demander une réponse du développeur sous…"
+
+msgid "Reject immediately. Only use in case of serious security issues."
+msgstr ""
 
 msgid "days"
 msgstr "jours"
@@ -6098,6 +6223,14 @@ msgstr "Désactiver l’approbation automatique de module publié"
 msgid "Enable Listed Auto-Approval"
 msgstr "Activer l’approbation automatique de module publié"
 
+#, fuzzy
+msgid "Disable Listed Auto-Approval Until Next Manual Approval"
+msgstr "Désactiver l’approbation automatique de module publié"
+
+#, fuzzy
+msgid "Enable Listed Auto-Approval Before Next Manual Approval"
+msgstr "Activer l’approbation automatique de module publié"
+
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "L’approbation automatique est actuellement désactivée jusqu’au {date}"
 
@@ -6198,6 +6331,10 @@ msgstr "Plus récent"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versions signalées par des scanners sur d’autres pages."
 
+#, fuzzy
+msgid "{num} versions flagged for human review on other pages."
+msgstr "{num} versions signalées par des scanners sur d’autres pages."
+
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versions sont en attente de rejet sur d’autres pages."
 
@@ -6246,11 +6383,22 @@ msgstr "Télécharger les fichiers"
 msgid "The developer has provided source code."
 msgstr "Le développeur a fourni le code source."
 
+msgid "Scanners score:"
+msgstr ""
+
+msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
+msgstr ""
+
 msgid "Weight:"
 msgstr "Poids :"
 
-msgid "Flagged by automated scanners"
+#, fuzzy
+msgid "Flagged by scanners"
 msgstr "Marqué par des scanners automatisés"
+
+#, fuzzy
+msgid "Flagged for human review"
+msgstr "Demander un examen manuel"
 
 msgid "Download"
 msgstr "Téléchargement"
@@ -6585,17 +6733,17 @@ msgstr "À propos du suivi des sources externes…"
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Suivi des sources externes</h2> <p> Si vous faites un lien vers la page de détails de votre module ou directement sur le fichier depuis un site externe, comme votre blog, vous pouvez ajouter un "
 "paramètre à suivre comme source additionnelle de téléchargements. Par exemple, les liens suivants apparaitront comme étant sourcés depuis votre blog : <dl> <dt>Page de détails du module</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Lien direct</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Seuls les paramètres src qui commencent avec « external- » seront suivi, avec un maximum de 61 caractères supplémentaires. Tout texte après « external- » peut être utilisé "
-"pour décrire la source, comme par exemple « external-blog », « external-sidebar », « external-campaign225 », etc. Les caractères suivants sont autorisés : <code>a-z A-Z - . _ ~ %% +</code>"
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Lien direct</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</"
+"b></dd> </dl> <p> Seuls les paramètres src qui commencent avec « external- » seront suivi, avec un maximum de 61 caractères supplémentaires. Tout texte après « external- » peut être utilisé pour "
+"décrire la source, comme par exemple « external-blog », « external-sidebar », « external-campaign225 », etc. Les caractères suivants sont autorisés : <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "État du module par Date"
@@ -6610,9 +6758,9 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>Que sont les utilisateurs journaliers ?</h2> <p> Les modules téléchargés depuis ce site vérifient l’existence de mises à jour une fois par jour. Le nombre total de ces notifications est utilisé"
-" pour former ce qui est appelé Utilisateurs journaliers actifs. Ces utilisateurs peuvent être classifiés suivant la version du module, le système d’exploitation, l’état du module, l’application et"
-" la langue.</p>"
+"<h2>Que sont les utilisateurs journaliers ?</h2> <p> Les modules téléchargés depuis ce site vérifient l’existence de mises à jour une fois par jour. Le nombre total de ces notifications est utilisé "
+"pour former ce qui est appelé Utilisateurs journaliers actifs. Ces utilisateurs peuvent être classifiés suivant la version du module, le système d’exploitation, l’état du module, l’application et "
+"la langue.</p>"
 
 msgid "Application versions by Date"
 msgstr "Versions de l’application par date"
@@ -6810,11 +6958,11 @@ msgstr ""
 "l’adresse électronique entière et pas seulement la partie de domaine, utilisez plutôt « Restrictions relatives aux usages du courrier électronique »."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
-"Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox ainsi que notre politique et nos règles de révision. L’accord de distribution pour les"
-" modules complémentaires Firefox possède un lien vers notre politique de confidentialité qui explique comment nous gérons les informations vous concernant."
+"Avant de commencer, veuillez lire et accepter l’accord de distribution pour les modules complémentaires Firefox ainsi que notre politique et nos règles de révision. L’accord de distribution pour "
+"les modules complémentaires Firefox possède un lien vers notre politique de confidentialité qui explique comment nous gérons les informations vous concernant."
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Veuillez lire et accepter notre accord de distribution de modules complémentaires Firefox ainsi que nos politiques et règles d’examen en visitant {url}"
@@ -6873,7 +7021,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6886,7 +7035,8 @@ msgid ""
 msgstr ""
 "Bienvenue %(author_name)s,\n"
 "\n"
-"Vous avez été invité·e à faire partie des auteurs de %(addon_name)s sur %(domain)s. En acceptant cette invitation, vous aurez accès à la modification du module complémentaire, et vous pourrez afficher votre nom dans la liste des auteurs sur le site web.\n"
+"Vous avez été invité·e à faire partie des auteurs de %(addon_name)s sur %(domain)s. En acceptant cette invitation, vous aurez accès à la modification du module complémentaire, et vous pourrez "
+"afficher votre nom dans la liste des auteurs sur le site web.\n"
 "\n"
 "Cliquez sur le lien ci-dessous si vous acceptez votre ajout aux auteurs de %(addon_name)s.\n"
 "\n"
@@ -6933,7 +7083,8 @@ msgstr ""
 "\n"
 "Vous recevez ce message parce que votre compte utilisateur %(name)s pour le site %(site_url)s a été supprimé.\n"
 "\n"
-"Si vous n’êtes pas à l’origine de cette suppression ou si vous pensez qu’une personne non autorisée a accédé à votre compte, veuillez répondre à ce message. Sinon, aucune action n’est nécessaire de votre part.\n"
+"Si vous n’êtes pas à l’origine de cette suppression ou si vous pensez qu’une personne non autorisée a accédé à votre compte, veuillez répondre à ce message. Sinon, aucune action n’est nécessaire de "
+"votre part.\n"
 "\n"
 "Cordialement.\n"
 "\n"
