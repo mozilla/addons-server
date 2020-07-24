@@ -2,8 +2,8 @@ from django.db import models
 
 from olympia.amo.models import ModelBase
 
-SHELF_TYPES = (
-    'category', 'collection', 'extension', 'recommended', 'search', 'theme')
+SHELF_TYPES = ('categories', 'collections', 'extension',
+               'recommendations', 'search', 'theme')
 
 SHELF_TYPE_CHOICES = tuple((ty, ty) for ty in SHELF_TYPES)
 

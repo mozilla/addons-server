@@ -16,4 +16,9 @@ class Migration(migrations.Migration):
             name='criteria',
             field=models.CharField(help_text='e.g., ?recommended=true&sort=random&type=extension', max_length=200,),
         ),
+        migrations.AlterField(
+            model_name='shelf',
+            name='shelf_type',
+            field=models.CharField(choices=[('categories', 'categories'), ('collections', 'collections'), ('extension', 'extension'), ('recommendations', 'recommendations'), ('search', 'search'), ('theme', 'theme')], max_length=200, verbose_name='type'),
+        ),
     ]
