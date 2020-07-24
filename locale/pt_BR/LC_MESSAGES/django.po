@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 15:32+0000\n"
-"Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
+"PO-Revision-Date: 2020-07-24 14:22+0000\n"
+"Last-Translator: Mateus Generoso <mtsgeneroso@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -6232,13 +6232,11 @@ msgstr "Desativar a aprovação automática de listados"
 msgid "Enable Listed Auto-Approval"
 msgstr "Ativar a aprovação automática de listados"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Desativar a aprovação automática de listados"
+msgstr "Desativar a aprovação automática de listados até a próxima aprovação manual"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Ativar a aprovação automática de listados"
+msgstr "Ativar a aprovação automática de listados antes da próxima aprovação manual"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Aprovação automática desativada no momento, até {date}"
@@ -6341,9 +6339,8 @@ msgstr "Recentes"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versões sinalizadas por verificadores em outras páginas."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} versões sinalizadas por verificadores em outras páginas."
+msgstr "{num} versões sinalizadas por revisão humana em outras páginas."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versões com rejeição pendente em outras páginas."
@@ -6402,13 +6399,11 @@ msgstr "A pontuação dos verificadores representa a probabilidade desta versão
 msgid "Weight:"
 msgstr "Peso:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Sinalizado por verificadores automatizados"
+msgstr "Sinalizado por verificadores"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Sinalizar para revisão humana"
+msgstr "Sinalizado por revisão humana"
 
 msgid "Download"
 msgstr "Baixar"
