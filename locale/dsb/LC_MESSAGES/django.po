@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 17:51+0000\n"
+"PO-Revision-Date: 2020-07-24 18:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1371,19 +1371,19 @@ msgid "Recommended"
 msgstr "Dopórucony"
 
 msgid "Verified - Tier 1"
-msgstr ""
+msgstr "Pśeglědany - rownina 1"
 
 msgid "Verified - Tier 2"
-msgstr ""
+msgstr "Pśeglědany - rownina 2"
 
 msgid "Line"
-msgstr ""
+msgstr "Smužka"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Spotlight"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Strategiski"
 
 msgid "Add-on"
 msgstr "Dodank"
@@ -5066,7 +5066,7 @@ msgstr "Dajśo se webboki pśedcytaś. Pśez 40 rěcow se pódpěra."
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Klikniśo dwójcy na někake słowo, aby ned jogo definiciju wiźeł."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5542,12 +5542,11 @@ msgstr "Źěłowe systemy:"
 msgid "Applications:"
 msgstr "Nałoženja:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Wuwijarja napominás wótegroniś za wěcej ako…"
+msgstr "Wótpokazanje wótstarcyś, wuwijaŕ jo trjebny, kótaryž korigěrujo za mjenjej ako …"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Ned wótpokazaś. Wužywajśo to jano w paźe śěžkich wěstotnych problemow."
 
 msgid "days"
 msgstr "dnjow"
@@ -6172,13 +6171,11 @@ msgstr "Awtomatiske pśizwólenje naliconych dodankow znjemóžniś"
 msgid "Enable Listed Auto-Approval"
 msgstr "Awtomatiske pśizwólenje naliconych dodankow zmóžniś"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Awtomatiske pśizwólenje naliconych dodankow znjemóžniś"
+msgstr "Awtomatiske nalicone awtomatiske pśizwólenje až do pśiducego manuelnego pśizwólenja znjemóžniś"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Awtomatiske pśizwólenje naliconych dodankow zmóžniś"
+msgstr "Awtomatiske nalicone awtomatiske pśizwólenje pśed pśiducym manuelnym pśizwólenim zmóžniś"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Awtomatiske pśizwólenje je tuchylu až do {date} znjemóžnjone"
@@ -6332,21 +6329,19 @@ msgid "The developer has provided source code."
 msgstr "Wuwijaŕ jo žrědłowy kod k dispoziciji stajił."
 
 msgid "Scanners score:"
-msgstr ""
+msgstr "Skannowański wuslědk:"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "Skannowański wuslědk wěrjepódobnosć zwuraznja, z kakejuž jo wersija na zakłaźe namakankow skannera złosna ."
 
 msgid "Weight:"
 msgstr "Wažnosć:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Pśez awtomatizěrowane skannery markěrowany"
+msgstr "Pśez scannery markěrowane"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Za cłowjeske pśěglědanje markěrowaś"
+msgstr "Za cłowjeske pśěglědanje markěrowany"
 
 msgid "Download"
 msgstr "Ześěgnuś"
