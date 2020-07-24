@@ -93,7 +93,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['permissions'] == file_.permissions
         assert (
             result_file['optional_permissions'] ==
-            file_.optional_permissions_list)
+            file_.optional_permissions)
 
         assert data['edit_url'] == absolutify(
             self.addon.get_dev_url(

@@ -49,7 +49,7 @@ class TestWebextExtractPermissions(UploadTest):
                                  parsed_data=parsed_data)
         assert WebextPermission.objects.count() == 0
         assert file_.permissions == []
-        assert file_.optional_permissions_list == []
+        assert file_.optional_permissions == []
 
         call_command('extract_permissions')
 
@@ -67,10 +67,10 @@ class TestWebextExtractPermissions(UploadTest):
         assert permissions_list[0:5] == pdata_permissions
         assert permissions_list[5:8] == [x for y in [
             cs['matches'] for cs in pdata_cscript] for x in y]
-        optional_permissions_list = file_.optional_permissions_list
-        assert len(optional_permissions_list) == len(
+        optional_permissions = file_.optional_permissions
+        assert len(optional_permissions) == len(
             pdata_optional_permissions)
-        assert optional_permissions_list == pdata_optional_permissions
+        assert optional_permissions == pdata_optional_permissions
 
     def test_force_extract(self):
         upload = self.get_upload('webextension_no_id.xpi')
@@ -82,11 +82,11 @@ class TestWebextExtractPermissions(UploadTest):
                                  parsed_data=parsed_data)
         assert WebextPermission.objects.count() == 1
         assert len(file_.permissions) == 7
-        assert len(file_.optional_permissions_list) == 1
+        assert len(file_.optional_permissions) == 1
 
         call_command('extract_permissions', force=True)
 
         file_ = File.objects.get(id=file_.id)
         assert WebextPermission.objects.get(file=file_)
         assert len(file_.permissions) == 8
-        assert len(file_.optional_permissions_list) == 2
+        assert len(file_.optional_permissions) == 2

@@ -359,7 +359,7 @@ class File(OnChangeMixin, ModelBase):
             return []
 
     @cached_property
-    def optional_permissions_list(self):
+    def optional_permissions(self):
         if not self.is_webextension:
             return []
         try:

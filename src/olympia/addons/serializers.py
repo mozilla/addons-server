@@ -36,10 +36,8 @@ class FileSerializer(serializers.ModelSerializer):
         choices=list(amo.PLATFORM_CHOICES_API.items()))
     status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     permissions = serializers.ListField(
-        source='permissions',
         child=serializers.CharField())
     optional_permissions = serializers.ListField(
-        source='optional_permissions_list',
         child=serializers.CharField())
     is_restart_required = serializers.BooleanField()
 
@@ -522,8 +520,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             strict_compatibility=data.get('strict_compatibility', False),
             version=obj)
         file_.permissions = data.get('permissions', [])
-        file_.optional_permissions_list = data.get(
-            'optional_permissions_list', [])
+        file_.optional_permissions = data.get(
+            'optional_permissions', [])
         return file_
 
     def fake_version_object(self, obj, data, channel):

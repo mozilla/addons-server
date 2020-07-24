@@ -115,7 +115,7 @@ class TestAddonIndexer(TestCase):
             'id', 'created', 'filename', 'hash', 'is_webextension',
             'is_restart_required', 'is_mozilla_signed_extension', 'platform',
             'size', 'status', 'strict_compatibility',
-            'permissions', 'optional_permissions_list')
+            'permissions', 'optional_permissions')
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
     def test_index_setting_boolean(self):
@@ -268,7 +268,7 @@ class TestAddonIndexer(TestCase):
                 extracted_file['permissions'] ==
                 permissions)
             assert (
-                extracted_file['optional_permissions_list'] ==
+                extracted_file['optional_permissions'] ==
                 optional_permissions)
 
         assert set(extracted['platforms']) == set([PLATFORM_MAC.id,

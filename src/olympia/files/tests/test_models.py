@@ -306,7 +306,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             optional_permissions=optional_permissions, file=file_)
 
         # Strings only please.No duplicates.
-        assert file_.optional_permissions_list == [
+        assert file_.optional_permissions == [
             u'iamstring', u'iamnutherstring', u'laststring!']
 
     def test_current_file_path(self):
@@ -1362,7 +1362,7 @@ class TestFileFromUpload(UploadTest):
         assert len(parsed_data['optional_permissions']) == 2
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parsed_data)
-        permissions_list = file_.optional_permissions_list
+        permissions_list = file_.optional_permissions
         assert len(permissions_list) == 2
         assert permissions_list == parsed_data['optional_permissions']
 
