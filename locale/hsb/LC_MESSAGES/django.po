@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 13:07+0000\n"
+"PO-Revision-Date: 2020-07-24 13:11+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1365,9 +1365,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Doporučene ({0})"
+msgstr "Doporučeny"
 
 msgid "Verified - Tier 1"
 msgstr ""
@@ -6172,9 +6171,8 @@ msgstr "Awtomatiske schwalenje nalistowanych přidatkow znjemóžnić"
 msgid "Enable Listed Auto-Approval"
 msgstr "Awtomatiske schwalenje nalistowanych přidatkow zmóžnić"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Awtomatiske schwalenje nalistowanych přidatkow znjemóžnić"
+msgstr "Awtomatiske nalistowane awtomatiske schwalenje hač do přichodneho manuelneho schwalenja znjemóžnić"
 
 #, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
@@ -6340,13 +6338,11 @@ msgstr ""
 msgid "Weight:"
 msgstr "Wažnosć:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Přez awtomatizowane skenery markěrowany"
+msgstr "Přez skenery markěrowany"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Za čłowjeske přepruwowanje markěrować"
+msgstr "Za čłowjeske přepruwowanje markěrowany"
 
 msgid "Download"
 msgstr "Sćahnyć"
