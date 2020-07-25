@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 11:52+0000\n"
+"PO-Revision-Date: 2020-07-25 01:51+0000\n"
 "Last-Translator: πάθοςγιατηζωή <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4970,7 +4970,7 @@ msgstr "朗读网页给您听，支持 40 多种语言。"
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "双击任何单词，立刻看到解释和定义。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5438,7 +5438,7 @@ msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "要求开发者响应小于…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "立即驳回。仅在发现严重安全性问题时使用。"
 
 msgid "days"
 msgstr "天"
