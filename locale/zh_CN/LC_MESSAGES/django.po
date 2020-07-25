@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-25 01:51+0000\n"
+"PO-Revision-Date: 2020-07-25 01:56+0000\n"
 "Last-Translator: πάθοςγιατηζωή <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -911,17 +911,14 @@ msgstr "已重置用户 {user} 的会话。"
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "用户 {user} 在 \"{0}\" 范围内受限"
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "{addon} {version} 内容被驳回。"
+msgstr "已计划驳回 {addon} {version} 内容。"
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "内容被驳回"
+msgstr "已计划驳回内容"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} 已被驳回。"
+msgstr "已计划驳回 {addon} {version}。"
 
 #, fuzzy
 msgid "Rejection scheduled"
