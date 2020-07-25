@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-25 14:55+0000\n"
+"PO-Revision-Date: 2020-07-25 15:02+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -933,21 +933,17 @@ msgstr "Sessões do utilizador {user} repostas."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Utilizador {user} limitado para o âmbito \"{0}\""
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "{addon} {version} conteúdo rejeitado."
+msgstr "Rejeição do conteúdo de {addon} {version} agendada."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Conteúdo rejeitado"
+msgstr "Agendamento da rejeição do conteúdo"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} rejeitado."
+msgstr "Rejeição de {addon} {version} agendada."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Prazo limite da rejeição"
+msgstr "Agendamento da rejeição"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1000,9 +996,8 @@ msgid "Developer"
 msgstr "Programador"
 
 # 85%
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Eliminado"
+msgstr "(Eliminado)"
 
 msgid "Extension"
 msgstr "Extensão"
@@ -1394,9 +1389,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Recomendado ({0})"
+msgstr "Recomendado"
 
 msgid "Verified - Tier 1"
 msgstr "Verificado - Nível 1"
@@ -6338,10 +6332,10 @@ msgid "The developer has provided source code."
 msgstr "O programador forneceu o código fonte."
 
 msgid "Scanners score:"
-msgstr ""
+msgstr "Pontuação dos analisadores:"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "A pontuação dos analisadores representa a probabilidade desta versão ser maliciosa, com base nas descobertas dos analisadores."
 
 msgid "Weight:"
 msgstr "Peso:"
