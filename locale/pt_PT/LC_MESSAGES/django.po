@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-25 15:02+0000\n"
+"PO-Revision-Date: 2020-07-25 15:06+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5553,9 +5553,8 @@ msgstr "Sistemas operativos:"
 msgid "Applications:"
 msgstr "Aplicações:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Requerer ao programador responder em menos de…"
+msgstr "Atrasar rejeição, obrigando a uma correção por parte do programador em menos de…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr "Rejeitar imediatamente. Utilize apenas no caso de graves problemas de segurança."
@@ -6171,13 +6170,11 @@ msgstr "Desativar Aprovação Automática Listada"
 msgid "Enable Listed Auto-Approval"
 msgstr "Ativar Aprovação Automática Listada"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Desativar Aprovação Automática Listada"
+msgstr "Desativar a aprovação automática para listagem até à próxima aprovação manual"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Ativar Aprovação Automática Listada"
+msgstr "Ativar aprovação automática para listagem antes da próxima aprovação manual"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "A aprovação automática está atualmente desativada até {date}"
@@ -6279,9 +6276,8 @@ msgstr "Mais recente"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versões sinalizadas pelos pesquisadores em outras páginas."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} versões sinalizadas pelos pesquisadores em outras páginas."
+msgstr "{num} versões sinalizadas para revisão humana em outras páginas."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versões com rejeições pendentes noutras páginas."
@@ -6340,13 +6336,11 @@ msgstr "A pontuação dos analisadores representa a probabilidade desta versão 
 msgid "Weight:"
 msgstr "Peso:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Sinalizado por pesquisadores automatizados"
+msgstr "Sinalizado pelos analisadores"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Sinalizar para revisão humana"
+msgstr "Sinalizado para revisão humana"
 
 msgid "Download"
 msgstr "Transferir"
