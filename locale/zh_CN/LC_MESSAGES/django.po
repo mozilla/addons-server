@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-25 01:56+0000\n"
+"PO-Revision-Date: 2020-07-25 02:11+0000\n"
 "Last-Translator: πάθοςγιατηζωή <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -920,9 +920,8 @@ msgstr "已计划驳回内容"
 msgid "{addon} {version} reject scheduled."
 msgstr "已计划驳回 {addon} {version}。"
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "待驳回期限"
+msgstr "已计划驳回"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1352,9 +1351,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "推荐（{0}）"
+msgstr "推荐"
 
 msgid "Verified - Tier 1"
 msgstr ""
@@ -5430,9 +5428,8 @@ msgstr "操作系统："
 msgid "Applications:"
 msgstr "应用程序："
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "要求开发者响应小于…"
+msgstr "推迟驳回，并要求开发者在多少时间内回复修正…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr "立即驳回。仅在发现严重安全性问题时使用。"
@@ -6041,13 +6038,11 @@ msgstr "禁用上架项目自动批准"
 msgid "Enable Listed Auto-Approval"
 msgstr "启用上架项目自动批准"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "禁用上架项目自动批准"
+msgstr "禁用上架项目自动通过审核，直到下次人工审核通过"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "启用上架项目自动批准"
+msgstr "启用上架项目自动通过审核，在下次人工审核通过"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "已禁用“自动批准”到 {date} 为止"
@@ -6149,9 +6144,8 @@ msgstr "较新"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} 版本由扫描器标记于其他页面。"
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} 版本由扫描器标记于其他页面。"
+msgstr "{num} 版本由人工审查标记于其他页面。"
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "在其他页面有 {num} 个待驳回的版本。"
@@ -6202,10 +6196,10 @@ msgid "The developer has provided source code."
 msgstr "开发者已提供源代码。"
 
 msgid "Scanners score:"
-msgstr ""
+msgstr "扫描器得分："
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "扫描器得分表示基于扫描结果，此版本是恶意版本的可能性。"
 
 msgid "Weight:"
 msgstr "加权："
