@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 11:50+0000\n"
+"PO-Revision-Date: 2020-07-26 12:04+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1379,7 +1379,7 @@ msgid "Spotlight"
 msgstr ""
 
 msgid "Strategic"
-msgstr ""
+msgstr "Strategisk"
 
 msgid "Add-on"
 msgstr "Utviding"
@@ -2710,35 +2710,35 @@ msgid "Source Code Upload"
 msgstr "Kjeldekodeopplasting"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr ""
+msgstr "Treng du å sende inn kjeldekode?"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr ""
+msgstr "Du må kanskje sende inn kjedekode. Om du ikkje gjer det kan tillegget ditt bli fjerna frå nettstaden!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr ""
+msgstr "Les <a %(a_attrs)s>retningslinjene for innsending av kjedekode</a>."
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "Brukar du eitt av følgjande?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Kodgeneratorar eller minifiserarar"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "Verktøy som kombinerer fleire filer i ei enkelt fil, til dømes <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Motorar for webmalar, for både HTML og CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "Andre verktøy som handterer kode eller filer, brukar prosessering og genererer kode eller fil(er) som vert inkludert i tillegget"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Du treng ikkje å sende inn kjedekode, og du er klar for neste steg."
 
 msgid "Your Submission Requires Source Code."
-msgstr ""
+msgstr "Du treng å sende inn kijedekode."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
@@ -2751,7 +2751,7 @@ msgid "A build script that executes all necessary technical steps."
 msgstr ""
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "Operativsystem og byggemiljøkrav."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
@@ -2765,10 +2765,10 @@ msgid "How to Submit:"
 msgstr "Korleis sende inn:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "Ta med instruksjonar i ei README-fil i kjeldekoden,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "eller i vurderingsnotat på neste side (dersom aktuelt)."
 
 msgid "Upload source code:"
 msgstr "Last opp kjeldekode:"
@@ -2876,6 +2876,8 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"For å gjere API-forandringar, send eit <a href=\"%(jwt_url)s\">JSON Web token (JWT)</a> som authorization-header. Du må lage ein JWT for kvar førespurnad som beskrive i <a href=\"%(docs_url)s\">API-"
+"dokumentasjonen</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
