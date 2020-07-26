@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 12:31+0000\n"
+"PO-Revision-Date: 2020-07-26 12:36+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -919,21 +919,17 @@ msgstr "User {user} session(s) reset."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "User {user} throttled for scope \"{0}\""
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "{addon} {version} content rejected."
+msgstr "{addon} {version} content reject scheduled."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Content rejected"
+msgstr "Content reject scheduled"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} rejected."
+msgstr "{addon} {version} reject scheduled."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Pending Rejection Deadline"
+msgstr "Rejection scheduled"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -983,9 +979,8 @@ msgstr "Owner"
 msgid "Developer"
 msgstr "Developer"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Deleted"
+msgstr "(Deleted)"
 
 msgid "Extension"
 msgstr "Extension"
@@ -1360,9 +1355,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Recommended ({0})"
+msgstr "Recommended"
 
 msgid "Verified - Tier 1"
 msgstr "Verified - Tier 1"
@@ -5511,9 +5505,8 @@ msgstr "Operating systems:"
 msgid "Applications:"
 msgstr "Applications:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Require developer to respond in less than…"
+msgstr "Delay rejection, requiring developer to correct in less than…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr "Reject immediately. Only use in case of serious security issues."
@@ -6128,13 +6121,11 @@ msgstr "Disable Listed Auto-Approval"
 msgid "Enable Listed Auto-Approval"
 msgstr "Enable Listed Auto-Approval"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Disable Listed Auto-Approval"
+msgstr "Disable Listed Auto-Approval Until Next Manual Approval"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Enable Listed Auto-Approval"
+msgstr "Enable Listed Auto-Approval Before Next Manual Approval"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Auto-Approval currently disabled until {date}"
@@ -6236,9 +6227,8 @@ msgstr "Newer"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versions flagged by scanners on other pages."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} versions flagged by scanners on other pages."
+msgstr "{num} versions flagged for human review on other pages."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versions pending rejection on other pages."
@@ -6297,13 +6287,11 @@ msgstr "The Scanners score represents the likelihood of this version being malic
 msgid "Weight:"
 msgstr "Weight:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Flagged by automated scanners"
+msgstr "Flagged by scanners"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Flag for human review"
+msgstr "Flagged for human review"
 
 msgid "Download"
 msgstr "Download"
