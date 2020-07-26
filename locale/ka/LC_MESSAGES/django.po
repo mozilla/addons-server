@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 15:09+0000\n"
+"PO-Revision-Date: 2020-07-26 15:22+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -920,21 +920,17 @@ msgstr "{user} მომხმარებლის სეანს(ებ)ი �
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "მომხმარებელი {user} რეგულირებული არესთვის „{0}“"
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "{addon} {version} შიგთავსი უარყოფილია."
+msgstr "{addon} {version} შიგთავსის უარყოფა დაგეგმილია."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "შიგთავსი უარყოფილია"
+msgstr "შიგთავსი უარყოფა დაგეგმილია"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} უარყოფილია."
+msgstr "{addon} {version} უარყოფა დაგეგმილია."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "უარყოფის ვადის მომლოდინე"
+msgstr "უარყოფის დაგეგმილია"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -984,9 +980,8 @@ msgstr "მფლობელი"
 msgid "Developer"
 msgstr "შემმუშავებელი"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "წაიშალა"
+msgstr "(წაშლილია)"
 
 msgid "Extension"
 msgstr "გაფართოება"
@@ -1389,9 +1384,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "სასურველი ({0})"
+msgstr "სასურველი"
 
 msgid "Verified - Tier 1"
 msgstr "დამოწმებული – ხარისხი 1"
@@ -1403,7 +1397,7 @@ msgid "Line"
 msgstr "ხაზი"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "საყურადღებო"
 
 msgid "Strategic"
 msgstr "სტრატეგიული"
@@ -5529,12 +5523,11 @@ msgstr "საოპერაციო სისტემები:"
 msgid "Applications:"
 msgstr "პროგრამები:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "შემმუშავებელმა მოთხოვნას უნდა უპასუხოს მოცემულ დროში…"
+msgstr "უარყოფის გადადება, შემმუშავებელს გასასწორებლად აქვს არაუმეტეს…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "უარყავით დაუყოვნებლივ. გამოიყენეთ, მხოლოდ უსაფრთხოების გადაუდებელი შემთხვევებისას."
 
 msgid "days"
 msgstr "დღე"
@@ -6146,13 +6139,11 @@ msgstr "გამოქვეყნებულების ავტომა�
 msgid "Enable Listed Auto-Approval"
 msgstr "გამოქვეყნებულების ავტომატური მიღების ჩართვა"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "გამოქვეყნებულების ავტომატური მიღების გამორთვა"
+msgstr "გამოქვეყნებულების ავტომატური მიღების გამორთვა, ხელით მომდევნო მიღებამდე"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "გამოქვეყნებულების ავტომატური მიღების ჩართვა"
+msgstr "გამოქვეყნებულების ავტომატური მიღების ჩართვა, ხელით მომდევნო მიღებამდე"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "ავტომატური დადასტურება გამორთულია თარიღამდე {date}"
@@ -6254,9 +6245,8 @@ msgstr "უფრო ახალი"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} ვერსიები მონიშნულია სკანერების მიერ სხვა გვერდებზე."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} ვერსიები მონიშნულია სკანერების მიერ სხვა გვერდებზე."
+msgstr "{num} ვერსიები მონიშნულია ადამიანის მიერ მიმოხილვისთვის სხვა გვერდებზე."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} ვერსიები ელოდება უარყოფას სხვა გვერდებზე."
@@ -6315,9 +6305,8 @@ msgstr "სკანერების ქულა აჩვენებს, �
 msgid "Weight:"
 msgstr "წონა:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "მონიშნულია ავტომატური სკანერების მიერ"
+msgstr "მონიშნულია სკანერების მიერ"
 
 #, fuzzy
 msgid "Flagged for human review"
