@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 01:04+0000\n"
+"PO-Revision-Date: 2020-07-26 01:11+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -3252,7 +3252,7 @@ msgstr "Adrese de e-mail"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr "Sunt de acord ca Mozilla să îmi gestioneze informațiile conform explicațiilor din această %(link_open)sDeclarație de confidențialitate%(link_close)s."
+msgstr "Sunt de acord ca Mozilla să îmi gestioneze informațiile, conform explicațiilor din această %(link_open)sNotificare privind confidențialitatea%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Înscriere"
