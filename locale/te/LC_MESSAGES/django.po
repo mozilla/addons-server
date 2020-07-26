@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 20:02+0000\n"
+"PO-Revision-Date: 2020-07-26 20:04+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4179,7 +4179,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "నిర్ణీత సమయాలలో పనిచేయడం ద్వారా మీ ఉత్పాదకతను సంభాళించుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4196,7 +4196,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "మెరుగైన వీక్షణ అనుభవం కోసం రాత్రి రీతిని చేతనించుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
