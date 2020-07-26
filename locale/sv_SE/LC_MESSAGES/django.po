@@ -5519,9 +5519,8 @@ msgstr "Operativsystem:"
 msgid "Applications:"
 msgstr "Applikationer:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Kräv utvecklare att svara på mindre än…"
+msgstr ""
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr "Avvisa omedelbart. Använd endast vid allvarliga säkerhetsproblem."
@@ -6136,13 +6135,11 @@ msgstr "Inaktivera listad automatisk godkännande"
 msgid "Enable Listed Auto-Approval"
 msgstr "Aktivera listad automatisk godkännande"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Inaktivera listad automatisk godkännande"
+msgstr ""
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Aktivera listad automatisk godkännande"
+msgstr ""
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Automatisk godkännande är för närvarande inaktiverad till {date}"
@@ -6244,9 +6241,8 @@ msgstr "Nyare"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versioner som flaggas av skannrar på andra sidor."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} versioner som flaggas av skannrar på andra sidor."
+msgstr ""
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versioner i väntan på avslag på andra sidor."
