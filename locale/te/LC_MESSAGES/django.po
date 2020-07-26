@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 19:53+0000\n"
+"PO-Revision-Date: 2020-07-26 20:02+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -904,16 +904,14 @@ msgstr ""
 msgid "User {user} throttled for scope \"{0}\""
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "{addon} {version} విషయం తిరస్కరించబడింది."
+msgstr ""
 
 msgid "Content reject scheduled"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} తిరస్కరించబడింది."
+msgstr ""
 
 msgid "Rejection scheduled"
 msgstr ""
@@ -2579,7 +2577,7 @@ msgid "License:"
 msgstr "లైసెన్స్:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "మీరు ఇచ్చే హక్కులకు తగ్గ లైసెన్సును ఎంచుకోండి."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
@@ -2588,7 +2586,7 @@ msgid "Notes to Reviewer:"
 msgstr "సమీక్షకులకు గమనికలు:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "ఈ పొడగింతని సమీక్షించేటప్పుడు మా సమీక్షకులు మనసులో ఉంచుకోవాల్సినది ఏమైనా ఉందా?"
 
 msgid "Remember"
 msgstr "గుర్తుంచుకో"
@@ -3845,11 +3843,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "జాలపేజీల తెరపట్లు తీసుకోండి, మార్పులు చేసుకోండి, పంచుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "ఉత్తమమైన విండోస్-మాత్రమే దింపుకోలు పనిముట్లు."
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
