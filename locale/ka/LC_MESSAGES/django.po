@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 15:22+0000\n"
+"PO-Revision-Date: 2020-07-26 15:23+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6246,7 +6246,7 @@ msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} ვერსიები მონიშნულია სკანერების მიერ სხვა გვერდებზე."
 
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} ვერსიები მონიშნულია ადამიანის მიერ მიმოხილვისთვის სხვა გვერდებზე."
+msgstr "{num} ვერსიები მონიშნულია ადამიანის მონაწილეობით განხილვისთვის სხვა გვერდებზე."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} ვერსიები ელოდება უარყოფას სხვა გვერდებზე."
@@ -6308,9 +6308,8 @@ msgstr "წონა:"
 msgid "Flagged by scanners"
 msgstr "მონიშნულია სკანერების მიერ"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "მონიშვნა ადამიანის მონაწილეობით განხილვისთვის"
+msgstr "მონიშნულია ადამიანის მონაწილეობით განხილვისთვის"
 
 msgid "Download"
 msgstr "ჩამოტვირთვა"
