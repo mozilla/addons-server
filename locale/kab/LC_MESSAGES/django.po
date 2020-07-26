@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 19:40+0000\n"
+"PO-Revision-Date: 2020-07-26 19:44+0000\n"
 "Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5026,7 +5026,7 @@ msgstr "Err isebtar n web ad ak-d-ɣren s yimesli εlayen. Ugar n 40 tutlayin i 
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Sit snat n tikkal ɣef wawal tebɣiḍ din din ad teẓreḍ tabadut-is."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
