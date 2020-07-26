@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 20:04+0000\n"
+"PO-Revision-Date: 2020-07-26 21:05+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -76,7 +76,7 @@ msgid "This reviewer name cannot be used."
 msgstr "ఈ సమీక్షకుని పేరును వాడలేరు."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "హోమ్‌పేజీ ఫీల్డు బయటి వెబ్‌సైట్లకు లంకె చేయడానికి మాత్రమే వాడగలరు."
 
 msgid "Images must be either PNG or JPG."
 msgstr "చిత్రాలు తప్పనిసరిగా PNG లేదా JPG లో ఉండాలి."
@@ -199,7 +199,7 @@ msgstr "ధన పూర్ణాంకం"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "ఈ ఖాళీని బయటి వెబ్‌సైట్లకు లంకె చేయడానికి మాత్రమే వాడాలి. %(domain)s లోని URLలు అనుమతించబడవు."
 
 msgid "Incorrect, please try again."
 msgstr "సరికాదు, దయచేసి మళ్లీ ప్రయత్నించండి."
@@ -751,7 +751,7 @@ msgid "User {user} restricted."
 msgstr "వాడుకరి {user} పరిమితం చేయబడ్డాడు."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "నిర్వాహకులు {0} {user} కార్యాచరణ చిట్టాను చూసారు."
 
 msgid "{rating} for {addon} updated."
 msgstr "{addon} కోసం {rating} తాజాకరించబడింది."
@@ -1904,7 +1904,7 @@ msgid "The background color for the navigation bar, the bookmarks bar, and the s
 msgstr ""
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "పనిముట్లపట్టీ ప్రాంతంలో పాఠ్యం, ప్రతీకాలు"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr ""
