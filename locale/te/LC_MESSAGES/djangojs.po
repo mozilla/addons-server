@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-20 13:38+0000\n"
+"PO-Revision-Date: 2020-07-26 19:51+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -349,7 +349,7 @@ msgid "Category Landing Most Popular"
 msgstr ""
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "ఇటీవల చేర్చబడిన వర్గపు ముంగిలి"
 
 msgid "Browse Listing Featured Sort"
 msgstr ""
