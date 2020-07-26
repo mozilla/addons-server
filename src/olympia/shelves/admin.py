@@ -1,7 +1,3 @@
-import requests
-
-from rest_framework.reverse import reverse as drf_reverse
-
 from django.contrib import admin, messages
 
 from .forms import ShelfForm
@@ -12,28 +8,24 @@ class ShelfAdmin(admin.ModelAdmin):
     actions = ['delete_selected']
     form = ShelfForm
 
+    # Disables automated Django success message
+    def message_user(self, request, message, level=messages.INFO,
+                     extra_tags='', fail_silently=False):
+        pass
+
     def save_model(self, request, obj, form, change):
-        baseUrl = "https://addons.mozilla.org"
+        if obj.results:
+            if 'count' in obj.results:
+                total = obj.results['count']
+            else:
+                total = len(obj.results)
 
-        if obj.shelf_type in ('extension', 'search', 'theme'):
-            api = drf_reverse('v4:addon-search')
-        elif obj.shelf_type == 'categories':
-            api = drf_reverse('v4:category-list')
-        elif obj.shelf_type == 'collections':
-            api = drf_reverse('v4:collection-list')
-        elif obj.shelf_type == 'recommendations':
-            api = drf_reverse('v4:addon-recommendations')
-
-        url = baseUrl + api + obj.criteria.lower()
-        response = requests.get(url)
-        results = response.json()
-
-        if 'count' in results:
-            messages.add_message(
-                request, messages.INFO, 'Add-ons count for "%s" shelf: %s' % (
-                    obj.title, results['count']))
+            messages.success(
+                request,
+                'The shelf "%s" was changed successfully. Add-ons count: %s' %
+                (obj.title, total))
         else:
-            messages.add_message(
-                request, messages.INFO, 'Add-ons count for "%s" shelf: %s' % (
-                    obj.title, len(results)))
+            messages.success(
+                request,
+                'The shelf "%s" was changed successfully.' % obj.title)
         super().save_model(request, obj, form, change)
