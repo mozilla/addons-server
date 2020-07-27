@@ -1127,11 +1127,6 @@ class ReviewFiles(ReviewBase):
 
 class ReviewUnlisted(ReviewBase):
 
-    def clear_all_needs_human_review_flags(self):
-        """Clear needs_human_review flags, but unlike listed review, only do
-        it on the latest version, not all past versions."""
-        self.clear_specific_needs_human_review_flags(self.version)
-
     def approve_latest_version(self):
         """Set an unlisted addon version files to public."""
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
@@ -1148,7 +1143,7 @@ class ReviewUnlisted(ReviewBase):
         self.log_action(amo.LOG.APPROVE_VERSION)
 
         if self.human_review:
-            self.clear_all_needs_human_review_flags()
+            self.clear_specific_needs_human_review_flags(self.version)
 
         self.notify_email(template, subject, perm_setting=None)
 
