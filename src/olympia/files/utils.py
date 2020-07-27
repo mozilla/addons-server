@@ -863,6 +863,7 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
     :returns: Extraction target directory, if `dest` is `None` it'll be a
               temporary directory.
     :raises FileNotFoundError: if the source file is not found on the filestem
+    :raises forms.ValidationError: if the zip is invalid
     """
     target, tempdir = None, None
 
@@ -887,14 +888,17 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
             shutil.copy(source, target)
             if force_fsync:
                 FSyncMixin()._fsync_file(target)
-    except (zipfile.BadZipfile, tarfile.ReadError, IOError) as e:
+    except (zipfile.BadZipfile, tarfile.ReadError, IOError,
+            forms.ValidationError) as e:
         if tempdir is not None:
             rm_local_tmp_dir(tempdir)
-        if isinstance(e, FileNotFoundError):
+        if isinstance(e, (FileNotFoundError, forms.ValidationError)):
             # We let FileNotFoundError (which are a subclass of IOError, or
-            # rather OSError but that's an alias) be raised, the caller will
-            # have to deal with it.
+            # rather OSError but that's an alias) and ValidationError be
+            # raised, the caller will have to deal with it.
             raise
+        # Any other exceptions we caught, we raise a generic ValidationError
+        # instead.
         raise forms.ValidationError(
             ugettext('Invalid or broken archive.'))
     return target
