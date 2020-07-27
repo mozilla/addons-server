@@ -2,6 +2,16 @@
 
 from django.db import migrations, models
 
+from olympia.constants.promoted import RECOMMENDED
+
+
+def add_promoted_approval_for_each_recommended(apps, schema_editor):
+    Version = apps.get_model('versions', 'Version')
+    PromotedApproval = apps.get_model('promoted', 'PromotedApproval')
+    for version in Version.unfiltered.filter(recommendation_approved=True):
+        PromotedApproval.objects.create(
+            version=version, group_id=RECOMMENDED.id)
+
 
 class Migration(migrations.Migration):
 
@@ -10,6 +20,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(add_promoted_approval_for_each_recommended),
         migrations.AlterField(
             model_name='version',
             name='recommendation_approved',
