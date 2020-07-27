@@ -10,7 +10,10 @@ from unittest import mock
 
 from olympia import amo
 from olympia.addons import cron
-from olympia.addons.tasks import update_addon_average_daily_users
+from olympia.addons.tasks import (
+    update_addon_average_daily_users,
+    update_addon_weekly_downloads,
+)
 from olympia.addons.models import Addon, AppSupport, FrozenAddon
 from olympia.amo.tests import addon_factory, file_factory, TestCase
 from olympia.files.models import File
@@ -332,7 +335,8 @@ class TestAvgDailyUserCountTestCase(TestCase):
             (dictionary.guid, dictionary_count),
         ]
 
-        cron.update_addon_average_daily_users()
+        chunk_size = 123
+        cron.update_addon_average_daily_users(chunk_size)
 
         create_chunked_mock.assert_called_with(
             update_addon_average_daily_users,
@@ -342,7 +346,7 @@ class TestAvgDailyUserCountTestCase(TestCase):
                 (langpack.guid, langpack_count),
                 (dictionary.guid, dictionary_count),
             ],
-            250
+            chunk_size
         )
 
     def test_total_and_average_downloads(self):
@@ -479,3 +483,64 @@ class TestUpdateAddonHotness(TestCase):
         )
 
         assert self.not_in_bigquery.reload().hotness == 0
+
+
+class TestUpdateAddonWeeklyDownloads(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.create_switch('local-statistics-processing')
+        self.create_switch('use-bigquery-for-download-stats-cron')
+
+    @mock.patch('olympia.addons.cron.create_chunked_tasks_signatures')
+    @mock.patch(
+        'olympia.addons.cron.get_addons_and_weekly_downloads_from_bigquery'
+    )
+    def test_calls_create_chunked_tasks_signatures(
+        self, get_mock, create_chunked_mock
+    ):
+        create_chunked_mock.return_value = group([])
+        addon = addon_factory(weekly_downloads=0)
+        count = 56789
+        langpack = addon_factory(type=amo.ADDON_LPAPP, weekly_downloads=0)
+        langpack_count = 12345
+        dictionary = addon_factory(type=amo.ADDON_DICT, weekly_downloads=0)
+        dictionary_count = 6789
+        addon_without_count = addon_factory(type=amo.ADDON_DICT,
+                                            weekly_downloads=2)
+        # This one should be ignored.
+        addon_factory(guid=None, type=amo.ADDON_LPAPP)
+        # This one should be ignored as well.
+        addon_factory(guid='', type=amo.ADDON_LPAPP)
+        get_mock.return_value = [
+            (addon.guid, count),
+            (langpack.guid, langpack_count),
+            (dictionary.guid, dictionary_count),
+        ]
+
+        chunk_size = 123
+        cron.update_addon_weekly_downloads(chunk_size)
+
+        create_chunked_mock.assert_called_with(
+            update_addon_weekly_downloads,
+            [
+                (addon_without_count.guid, 0),
+                (addon.guid, count),
+                (langpack.guid, langpack_count),
+                (dictionary.guid, dictionary_count),
+            ],
+            chunk_size
+        )
+
+    @mock.patch(
+        'olympia.addons.cron.get_addons_and_weekly_downloads_from_bigquery'
+    )
+    def test_update_weekly_downloads(self, get_mock):
+        addon = addon_factory(weekly_downloads=0)
+        count = 56789
+        get_mock.return_value = [(addon.guid, count)]
+
+        cron.update_addon_weekly_downloads()
+        addon.refresh_from_db()
+
+        assert addon.weekly_downloads == count

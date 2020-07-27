@@ -1,10 +1,6 @@
-import itertools
-
 from datetime import datetime, timedelta
 from django.core.files.storage import default_storage as storage
 from django.db import connection
-
-import waffle
 
 import olympia.core.logger
 
@@ -16,7 +12,6 @@ from olympia.amo.utils import chunked
 from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
 from olympia.files.models import FileUpload
-from olympia.lib.es.utils import raise_if_reindex_in_progress
 from olympia.scanners.models import ScannerResult
 
 from . import tasks
@@ -100,48 +95,3 @@ def category_totals():
         SET t.count = j.ct
         """ % (file_statuses, addon_statuses),
             VALID_FILE_STATUSES + VALID_ADDON_STATUSES)
-
-
-def weekly_downloads():
-    """
-    Update 7-day add-on download counts.
-    """
-
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
-    raise_if_reindex_in_progress('amo')
-
-    with connection.cursor() as cursor:
-        cursor.execute("""
-            SELECT addon_id, SUM(count) AS weekly_count
-            FROM download_counts
-            WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-            GROUP BY addon_id
-            ORDER BY addon_id""")
-        counts = cursor.fetchall()
-
-    addon_ids = [r[0] for r in counts]
-
-    if not addon_ids:
-        return
-
-    with connection.cursor() as cursor:
-        cursor.execute("""
-            SELECT id, 0
-            FROM addons
-            WHERE id NOT IN %s""", (addon_ids,))
-        counts += cursor.fetchall()
-
-        cursor.execute("""
-            CREATE TEMPORARY TABLE tmp_wd
-            (addon_id INT PRIMARY KEY, count INT)""")
-        cursor.execute('INSERT INTO tmp_wd VALUES %s' %
-                       ','.join(['(%s,%s)'] * len(counts)),
-                       list(itertools.chain(*counts)))
-
-        cursor.execute("""
-            UPDATE addons INNER JOIN tmp_wd
-                ON addons.id = tmp_wd.addon_id
-            SET weeklydownloads = tmp_wd.count""")
-        cursor.execute("DROP TABLE IF EXISTS tmp_wd")
