@@ -104,10 +104,10 @@
     </div>
     <div class="form-row">
       <div class="checkbox-row">
-        {{ form.include_in_legacy }}
-        {{ form.include_in_legacy.label_tag }}
-        {{ form.include_in_legacy.errors }}
-        <div class="help">{{ form.include_in_legacy.help_text }}</div>
+        {{ form.legacy_id }}
+        {{ form.legacy_id.label_tag }}
+        {{ form.legacy_id.errors }}
+        <div class="help">{{ form.legacy_id.help_text }}</div>
       </div>
     </div>
     {% block submit_buttons_bottom %}

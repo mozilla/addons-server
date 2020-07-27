@@ -89,7 +89,6 @@ def import_block_from_blocklist(record):
         'url': record.get('details', {}).get('bug') or '',
         'reason': record.get('details', {}).get('why') or '',
         'legacy_id': legacy_id,
-        'include_in_legacy': True,
         'updated_by': get_task_user(),
     }
     modified_date = datetime.fromtimestamp(

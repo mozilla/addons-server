@@ -17,7 +17,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 from olympia.versions.models import Version
 
-from .forms import BlocklistSubmissionForm, MultiAddForm, MultiDeleteForm
+from .forms import (
+    BlockForm, BlocklistSubmissionForm, MultiAddForm, MultiDeleteForm)
 from .models import Block, BlocklistSubmission
 from .tasks import process_blocklistsubmission
 from .utils import splitlines
@@ -293,7 +294,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
                     'reason',
                     'updated_by',
                     'signoff_by',
-                    'include_in_legacy',
+                    'legacy_id',
                     'submission_logs',
                 ),
             })
@@ -326,7 +327,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
             'submission_logs',
         ]
         if not waffle.switch_is_active('blocklist_legacy_submit'):
-            ro_fields.append('include_in_legacy')
+            ro_fields.append('legacy_id')
         if obj:
             ro_fields += [
                 'input_guids',
@@ -586,6 +587,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     list_select_related = ('updated_by',)
     change_list_template = 'admin/blocklist/block_change_list.html'
     change_form_template = 'admin/blocklist/block_change_form.html'
+    form = BlockForm
 
     class Media:
         css = {
@@ -644,7 +646,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
                     'max_version',
                     ('url', 'url_link'),
                     'reason',
-                    'include_in_legacy'),
+                    'legacy_id'),
             })
 
         return (details, history, edit)
@@ -652,7 +654,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         fields = list(self._readonly_fields)
         if not waffle.switch_is_active('blocklist_legacy_submit'):
-            fields.append('include_in_legacy')
+            fields.append('legacy_id')
         return fields
 
     def has_change_permission(self, request, obj=None):

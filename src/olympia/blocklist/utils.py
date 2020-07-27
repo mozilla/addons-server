@@ -27,13 +27,16 @@ def block_activity_log_save(obj, change, submission_obj=None):
     action = (
         amo.LOG.BLOCKLIST_BLOCK_EDITED if change else
         amo.LOG.BLOCKLIST_BLOCK_ADDED)
+    legacy_inclusion = getattr(
+        submission_obj if submission_obj else obj,
+        'in_legacy_blocklist')
     details = {
         'guid': obj.guid,
         'min_version': obj.min_version,
         'max_version': obj.max_version,
         'url': obj.url,
         'reason': obj.reason,
-        'include_in_legacy': obj.include_in_legacy,
+        'include_in_legacy': legacy_inclusion,
         'comments': f'Versions {obj.min_version} - {obj.max_version} blocked.',
     }
     if submission_obj:
@@ -69,7 +72,7 @@ def block_activity_log_delete(obj, *, submission_obj=None, delete_user=None):
         'max_version': obj.max_version,
         'url': obj.url,
         'reason': obj.reason,
-        'include_in_legacy': obj.include_in_legacy,
+        'include_in_legacy': obj.in_legacy_blocklist,
         'comments': f'Versions {obj.min_version} - {obj.max_version} blocked.',
     }
     if submission_obj:
@@ -104,44 +107,33 @@ def legacy_publish_blocks(blocks):
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = RemoteSettings(bucket, REMOTE_SETTINGS_COLLECTION_LEGACY)
     for block in blocks:
-        needs_updating = block.include_in_legacy and block.legacy_id
-        needs_creating = block.include_in_legacy and not block.legacy_id
-        needs_deleting = block.legacy_id and not block.include_in_legacy
+        needs_creating = not block.legacy_id
 
-        if needs_updating or needs_creating:
-            if block.is_imported_from_legacy_regex:
-                log.info(
-                    f'Block [{block.guid}] was imported from a regex guid so '
-                    'can\'t be safely updated.  Skipping.')
-                continue
-            data = {
-                'guid': block.guid,
-                'details': {
-                    'bug': block.url,
-                    'why': block.reason,
-                    'name': str(block.reason).partition('.')[0],  # required
-                },
-                'enabled': True,
-                'versionRange': [{
-                    'severity': 3,  # Always high severity now.
-                    'minVersion': block.min_version,
-                    'maxVersion': block.max_version,
-                }],
-            }
-            if needs_creating:
-                record = server.publish_record(data)
-                block.update(legacy_id=record.get('id', ''))
-            else:
-                server.publish_record(data, block.legacy_id)
-        elif needs_deleting:
-            if block.is_imported_from_legacy_regex:
-                log.info(
-                    f'Block [{block.guid}] was imported from a regex guid so '
-                    'can\'t be safely deleted.  Skipping.')
-            else:
-                server.delete_record(block.legacy_id)
-            block.update(legacy_id='')
-        # else no existing legacy record and it shouldn't be in legacy so skip
+        if block.is_imported_from_legacy_regex:
+            log.info(
+                f'Block [{block.guid}] was imported from a regex guid so '
+                'can\'t be safely updated.  Skipping.')
+            continue
+        data = {
+            'guid': block.guid,
+            'details': {
+                'bug': block.url,
+                'why': block.reason,
+                'name': str(block.reason).partition('.')[0],  # required
+            },
+            'enabled': True,
+            'versionRange': [{
+                'severity': 3,  # Always high severity now.
+                'minVersion': block.min_version,
+                'maxVersion': block.max_version,
+            }],
+        }
+        if needs_creating:
+            record = server.publish_record(data)
+            block.update(legacy_id=record.get('id', ''))
+        else:
+            server.publish_record(data, block.legacy_id)
+
     server.complete_session()
 
 
@@ -149,7 +141,7 @@ def legacy_delete_blocks(blocks):
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = RemoteSettings(bucket, REMOTE_SETTINGS_COLLECTION_LEGACY)
     for block in blocks:
-        if block.legacy_id and block.include_in_legacy:
+        if block.legacy_id:
             if block.is_imported_from_legacy_regex:
                 log.info(
                     f'Block [{block.guid}] was imported from a regex guid so '

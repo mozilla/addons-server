@@ -124,3 +124,10 @@ class BlocklistSubmissionForm(forms.ModelForm):
                       'Max version has changed.')))
         if errors:
             raise ValidationError(errors)
+
+
+class BlockForm(forms.ModelForm):
+    legacy_id = forms.fields.BooleanField(
+        label='In legacy blocklist',
+        required=False,
+        help_text='Include in legacy xml blocklist too, as well as new v3')

@@ -171,7 +171,9 @@ Legacy Blocklist
 
 To populate the blocklist on AMO the legacy blocklist on Remote Settings was imported; all guids that matched addons on AMO (and that had at least one webextension version) were added; any guids that were :ref:`regular expressions<blocklist-doc-regex>` were "expanded" to individual records for each addon present in the AMO database.
 
-If the `include_in_legacy` is selected in AMO's admin tool the block will also be saved to the legacy blocklist.  Edits to Blocks will propagate to the legacy blocklist too (apart from :ref:`regular expression based blocks<blocklist-doc-regex>`). An existing Block can be edited to deselect `include_in_legacy` which would delete it from the legacy blocklist; or edited to add select which would add it to the legacy blocklist.
+If the `In legacy blocklist` checkbox is selected in AMO's admin tool the block will also be saved to the legacy blocklist.
+Edits to Blocks will propagate to the legacy blocklist too (apart from :ref:`regular expression based blocks<blocklist-doc-regex>`).
+An existing Block in the legacy blocklist can be removed (while keeping it in the current v3 blocklist) by deselecting the `In legacy blocklist` checkbox; or added to the legacy blocklist too by enabling the `In legacy blocklist` checkbox.
 
 
 ------------------
@@ -188,4 +190,4 @@ So Blocks imported from a regular expression in the legacy blocklist can be view
 A warning message is displayed and the user must manually make the changes to the legacy blocklist via the kinto admin tool.
 
 .. note::
-    Blocks with a `kinto-id` property starting with `*` were imported from regular expression based Remote Setting records.
+    Blocks with a `legacy_id` property starting with `*` were imported from regular expression based Remote Setting records.
