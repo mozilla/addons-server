@@ -1907,8 +1907,6 @@ FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
 AWS_STATS_S3_PREFIX = env('AWS_STATS_S3_PREFIX', default='amo_stats')
 
-MIGRATED_LWT_UPDATES_ENABLED = True
-
 BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
