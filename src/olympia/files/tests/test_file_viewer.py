@@ -469,7 +469,6 @@ class TestSafeZipFile(TestCase, amo.tests.AMOPaths):
 
     def test_read(self):
         zip_file = SafeZip(self.xpi_path('langpack-localepicker'))
-        assert zip_file.is_valid
         assert b'locale browser de' in zip_file.read('chrome.manifest')
 
     def test_not_secure(self):
