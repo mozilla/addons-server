@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 21:07+0000\n"
+"PO-Revision-Date: 2020-07-27 14:52+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1647,7 +1647,7 @@ msgid "An author can only be present once."
 msgstr "ఒక రచయిత ఒకసారి మాత్రమే ఉండగలరు."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "ఖాతాను రచయితగా చేర్చే ముందు చూపించే పేరు తప్పనిసరి."
 
 msgid "Must have at least one owner."
 msgstr "కనీసం ఒక యజమాని ఉండాలి."
@@ -2368,7 +2368,7 @@ msgid "128x128px"
 msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
-msgstr ""
+msgstr "భవిష్యత్తులో ఇది పొడగింత వివరాల పేజీలలో ప్రమాణంగా ఉంటుంది."
 
 msgid "Upload a Custom Icon..."
 msgstr "అభిమత ప్రతీకాన్ని ఎక్కించండి..."
@@ -2377,16 +2377,16 @@ msgid "PNG and JPG supported."
 msgstr "PNG, JPG లకు కోడ్పాటు ఉంది."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "ప్రతీకాలు చదరంగా, కనీస పరిమాణం 128x128 పిక్సెళ్ళగా ఉండాలి."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr ""
+msgstr "పెద్దగా ఉన్న ప్రతీకాలు 128x128 పిక్సెళ్ళకు తగ్గించబడతాయి."
 
 msgid "Screenshots"
 msgstr "తెరపట్లు"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "దయచేసి కనీసం ఒక్కటైనా మీ పొడగింత తెరపట్టును ఇవ్వండి:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "ఈ తెరపట్లు కోసం ఒక వ్యాఖ్యను ఇవ్వండి:"
