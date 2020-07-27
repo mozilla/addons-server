@@ -25,7 +25,7 @@ class TestDiscoveryAdmin(TestCase):
             "primaryhero-INITIAL_FORMS": "0",
             "primaryhero-MIN_NUM_FORMS": "0",
             "primaryhero-MAX_NUM_FORMS": "1",
-            "primaryhero-0-select_image": "",
+            "primaryhero-0-image": "",
             "primaryhero-0-gradient_color": "",
             "primaryhero-0-id": "",
             "primaryhero-0-disco_addon": item_id,
@@ -237,8 +237,6 @@ class TestDiscoveryAdmin(TestCase):
         item = DiscoveryItem.objects.create(addon=addon)
         hero = PrimaryHero.objects.create(
             disco_addon=item, gradient_color='#592ACB')
-        uploaded_photo = get_uploaded_file('transparent.png')
-        image = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         self.detail_url = reverse(
             'admin:discovery_discoveryitem_change', args=(item.pk,)
         )
@@ -264,7 +262,7 @@ class TestDiscoveryAdmin(TestCase):
                 'primaryhero-0-id': str(hero.pk),
                 'primaryhero-0-disco_addon': str(item.pk),
                 'primaryhero-0-gradient_color': '#054096',
-                'primaryhero-0-select_image': image.pk,
+                'primaryhero-0-image': 'Ubo@2x.jpg',
                 'primaryhero-0-description': 'primary descriptíon',
             }, follow=True)
         assert response.status_code == 200
@@ -277,7 +275,6 @@ class TestDiscoveryAdmin(TestCase):
         assert item.recommendable is True
         assert hero.gradient_color == '#054096'
         assert hero.description == 'primary descriptíon'
-        assert hero.select_image.pk == image.pk
 
     def test_can_add_primary_hero_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
@@ -305,6 +302,7 @@ class TestDiscoveryAdmin(TestCase):
                 'custom_addon_name': 'Xäxâxàxaxaxa !',
                 'recommendable': True,
                 'primaryhero-0-gradient_color': '#054096',
+                'primaryhero-0-image': 'Ubo@2x.jpg',
                 'primaryhero-0-select_image': image.pk,
                 'primaryhero-0-description': 'primary descriptíon',
             }),
@@ -318,6 +316,7 @@ class TestDiscoveryAdmin(TestCase):
         assert item.recommendable is True
         hero = PrimaryHero.objects.last()
         hero.select_image == PrimaryHeroImage.objects.last()
+        assert hero.image == 'Ubo@2x.jpg'
         assert hero.select_image.pk == image.pk
         assert hero.gradient_color == '#054096'
         assert hero.disco_addon == item
