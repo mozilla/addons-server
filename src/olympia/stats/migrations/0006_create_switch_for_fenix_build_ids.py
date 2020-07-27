@@ -17,7 +17,7 @@ def create_waffle_switch(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("stats", "0004_delete_updatecount"),
+        ("stats", "0005_create_switch_bigquery_download_stats_cron_tasks"),
     ]
 
     operations = [migrations.RunPython(create_waffle_switch)]
