@@ -1861,7 +1861,7 @@ CRON_JOBS = {
     'update_addon_appsupport': 'olympia.addons.cron',
     'hide_disabled_files': 'olympia.addons.cron',
     'unhide_disabled_files': 'olympia.addons.cron',
-    'deliver_hotness': 'olympia.addons.cron',
+    'update_addon_hotness': 'olympia.addons.cron',
 
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',

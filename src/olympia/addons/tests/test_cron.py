@@ -398,7 +398,7 @@ class TestAvgDailyUserCountTestCase(TestCase):
         update_task_mock.assert_not_called()
 
 
-class TestDeliverHotness(TestCase):
+class TestUpdateAddonHotness(TestCase):
     def setUp(self):
         super().setUp()
 
@@ -454,7 +454,7 @@ class TestDeliverHotness(TestCase):
             },
         }
 
-        cron.deliver_hotness()
+        cron.update_addon_hotness()
 
         assert self.extension.reload().hotness == 0.049687154950312847
         assert self.static_theme.reload().hotness == 0.049687154950312847
