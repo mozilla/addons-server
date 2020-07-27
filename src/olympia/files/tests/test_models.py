@@ -281,11 +281,32 @@ class TestFile(TestCase, amo.tests.AMOPaths):
                        u'laststring!',
                        u'iamstring',
                        u'iamnutherstring',
-                       u'laststring!']
+                       u'laststring!',
+                       None]
         WebextPermission.objects.create(permissions=permissions, file=file_)
 
         # Strings only please.No duplicates.
-        assert file_.webext_permissions_list == [
+        assert file_.permissions == [
+            u'iamstring', u'iamnutherstring', u'laststring!']
+
+    def test_optional_permissions_list_string_only(self):
+        file_ = File.objects.get(pk=67442)
+        file_.update(is_webextension=True)
+        optional_permissions = [u'iamstring',
+                                u'iamnutherstring',
+                                {u'iamadict': u'hmm'},
+                                [u'iamalistinalist', u'indeedy'],
+                                13,
+                                u'laststring!',
+                                u'iamstring',
+                                u'iamnutherstring',
+                                u'laststring!',
+                                None]
+        WebextPermission.objects.create(
+            optional_permissions=optional_permissions, file=file_)
+
+        # Strings only please.No duplicates.
+        assert file_.optional_permissions == [
             u'iamstring', u'iamnutherstring', u'laststring!']
 
     def test_current_file_path(self):
@@ -495,6 +516,13 @@ class TestParseXpi(TestCase):
         assert parsed['permissions'] == [
             u'http://*/*', u'https://*/*', u'bookmarks', u'made up permission',
             u'https://google.com/']
+
+    def test_parse_optional_permissions(self):
+        parsed = self.parse(filename='webextension_no_id.xpi')
+        print(parsed)
+        assert len(parsed['optional_permissions'])
+        assert parsed['optional_permissions'] == [
+            u'cookies', u'https://optional.com/']
 
     def test_parse_apps(self):
         expected = [Extractor.App(
@@ -1314,7 +1342,7 @@ class TestFileFromUpload(UploadTest):
         assert len(parsed_data['content_scripts'][1]['matches']) == 2
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parsed_data)
-        permissions_list = file_.webext_permissions_list
+        permissions_list = file_.permissions
         # 5 + 2 + 1 = 8
         assert len(permissions_list) == 8
         assert permissions_list == [
@@ -1327,6 +1355,16 @@ class TestFileFromUpload(UploadTest):
         assert permissions_list[0:5] == parsed_data['permissions']
         assert permissions_list[5:8] == [x for y in [
             cs['matches'] for cs in parsed_data['content_scripts']] for x in y]
+
+    def test_optional_permissions(self):
+        upload = self.upload('webextension_no_id.xpi')
+        parsed_data = parse_addon(upload, user=user_factory())
+        assert len(parsed_data['optional_permissions']) == 2
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parsed_data=parsed_data)
+        permissions_list = file_.optional_permissions
+        assert len(permissions_list) == 2
+        assert permissions_list == parsed_data['optional_permissions']
 
     def test_file_is_copied_to_current_path_at_upload(self):
         upload = self.upload('webextension')

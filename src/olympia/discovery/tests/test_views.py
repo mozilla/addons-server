@@ -42,7 +42,7 @@ class DiscoveryTestMixin(object):
         assert result_file['size'] == file_.size
         assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
         assert result_file['url'] == file_.get_absolute_url(src='')
-        assert result_file['permissions'] == file_.webext_permissions_list
+        assert result_file['permissions'] == file_.permissions
 
     def _check_disco_addon(self, result, item, flat_name=False):
         addon = item.addon

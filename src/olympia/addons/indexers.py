@@ -170,7 +170,9 @@ class AddonIndexer(BaseSearchIndexer):
                         'strict_compatibility': {
                             'type': 'boolean', 'index': False},
                         'status': {'type': 'byte'},
-                        'webext_permissions_list': {
+                        'permissions': {
+                            'type': 'keyword', 'index': False},
+                        'optional_permissions': {
                             'type': 'keyword', 'index': False},
                     }
                 },
@@ -321,7 +323,8 @@ class AddonIndexer(BaseSearchIndexer):
                 'size': file_.size,
                 'status': file_.status,
                 'strict_compatibility': file_.strict_compatibility,
-                'webext_permissions_list': file_.webext_permissions_list,
+                'permissions': file_.permissions,
+                'optional_permissions': file_.optional_permissions,
             } for file_ in version_obj.all_files],
             'reviewed': version_obj.reviewed,
             'version': version_obj.version,

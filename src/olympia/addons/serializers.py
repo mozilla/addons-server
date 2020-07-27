@@ -36,7 +36,8 @@ class FileSerializer(serializers.ModelSerializer):
         choices=list(amo.PLATFORM_CHOICES_API.items()))
     status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     permissions = serializers.ListField(
-        source='webext_permissions_list',
+        child=serializers.CharField())
+    optional_permissions = serializers.ListField(
         child=serializers.CharField())
     is_restart_required = serializers.BooleanField()
 
@@ -44,7 +45,8 @@ class FileSerializer(serializers.ModelSerializer):
         model = File
         fields = ('id', 'created', 'hash', 'is_restart_required',
                   'is_webextension', 'is_mozilla_signed_extension',
-                  'platform', 'size', 'status', 'url', 'permissions')
+                  'platform', 'size', 'status', 'url', 'permissions',
+                  'optional_permissions')
 
     def get_url(self, obj):
         return obj.get_absolute_url(src='')
@@ -517,7 +519,10 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             status=data['status'],
             strict_compatibility=data.get('strict_compatibility', False),
             version=obj)
-        file_.webext_permissions_list = data.get('webext_permissions_list', [])
+        file_.permissions = data.get(
+            'permissions', data.get('webext_permissions_list', []))
+        file_.optional_permissions = data.get(
+            'optional_permissions', [])
         return file_
 
     def fake_version_object(self, obj, data, channel):

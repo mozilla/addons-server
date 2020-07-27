@@ -568,6 +568,8 @@ class ManifestJSONExtractor(object):
             if self.type == amo.ADDON_EXTENSION:
                 # Only extensions have permissions and content scripts
                 data.update({
+                    'optional_permissions':
+                        self.get('optional_permissions', []),
                     'permissions': self.get('permissions', []),
                     'content_scripts': self.get('content_scripts', []),
                 })

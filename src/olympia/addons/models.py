@@ -1445,7 +1445,9 @@ class Addon(OnChangeMixin, ModelBase):
         return (self.type == amo.ADDON_EXTENSION and
                 version and version.all_files[0] and
                 (not version.all_files[0].is_webextension or
-                 version.all_files[0].webext_permissions_list))
+                 version.all_files[0].permissions or
+                 version.all_files[0].optional_permissions
+                 ))
 
     # Aliases for reviewerflags below are not just useful in case
     # AddonReviewerFlags does not exist for this add-on: they are also used

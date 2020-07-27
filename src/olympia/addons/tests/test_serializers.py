@@ -89,7 +89,10 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['size'] == file_.size
         assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
         assert result_file['url'] == file_.get_absolute_url(src='')
-        assert result_file['permissions'] == file_.webext_permissions_list
+        assert result_file['permissions'] == file_.permissions
+        assert (
+            result_file['optional_permissions'] ==
+            file_.optional_permissions)
 
         assert data['edit_url'] == absolutify(
             self.addon.get_dev_url(
@@ -505,10 +508,13 @@ class AddonSerializerOutputTestMixin(object):
 
     def test_webextension(self):
         self.addon = addon_factory(file_kw={'is_webextension': True})
+        permissions = ['bookmarks', 'random permission']
+        optional_permissions = ['cookies', 'optional permission']
         # Give one of the versions some webext permissions to test that.
         WebextPermission.objects.create(
             file=self.addon.current_version.all_files[0],
-            permissions=['bookmarks', 'random permission']
+            permissions=permissions,
+            optional_permissions=optional_permissions,
         )
 
         result = self.serialize()
@@ -516,8 +522,12 @@ class AddonSerializerOutputTestMixin(object):
         self._test_version(
             self.addon.current_version, result['current_version'])
         # Double check the permissions got correctly set.
-        assert result['current_version']['files'][0]['permissions'] == ([
-            'bookmarks', 'random permission'])
+        assert (
+            result['current_version']['files'][0]['permissions'] ==
+            permissions)
+        assert (
+            result['current_version']['files'][0]['optional_permissions'] ==
+            optional_permissions)
 
     def test_is_restart_required(self):
         self.addon = addon_factory(file_kw={'is_restart_required': True})
@@ -1055,6 +1065,22 @@ class TestVersionSerializerOutput(TestCase):
             permissions=permissions, file=self.version.all_files[0])
         result = self.serialize()
         assert result['files'][0]['permissions'] == permissions
+
+    def test_file_optional_permissions(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        # No permissions.
+        assert result['files'][0]['optional_permissions'] == []
+
+        self.version = addon_factory(
+            file_kw={'is_webextension': True}).current_version
+        optional_permissions = ['dangerdanger', 'high', 'voltage']
+        WebextPermission.objects.create(
+            optional_permissions=optional_permissions,
+            file=self.version.all_files[0])
+        result = self.serialize()
+        assert result['files'][0]['optional_permissions'] == (
+            optional_permissions)
 
 
 class TestSimpleVersionSerializerOutput(TestCase):

@@ -115,7 +115,7 @@ class TestAddonIndexer(TestCase):
             'id', 'created', 'filename', 'hash', 'is_webextension',
             'is_restart_required', 'is_mozilla_signed_extension', 'platform',
             'size', 'status', 'strict_compatibility',
-            'webext_permissions_list')
+            'permissions', 'optional_permissions')
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
     def test_index_setting_boolean(self):
@@ -203,6 +203,8 @@ class TestAddonIndexer(TestCase):
         assert extracted['current_version'] is None
 
     def test_extract_version_and_files(self):
+        permissions = ['bookmarks', 'random permission']
+        optional_permissions = ['cookies', 'optional permission']
         version = self.addon.current_version
         # Make the version a webextension and add a bunch of things to it to
         # test different scenarios.
@@ -215,7 +217,8 @@ class TestAddonIndexer(TestCase):
             url='http://example.com/',
             builtin=0)
         [WebextPermission.objects.create(
-            file=file_, permissions=['bookmarks', 'random permission']
+            file=file_, permissions=permissions,
+            optional_permissions=optional_permissions
         ) for file_ in version.all_files]
         version.save()
 
@@ -261,8 +264,12 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
-            assert extracted_file['webext_permissions_list'] == [
-                'bookmarks', 'random permission']
+            assert (
+                extracted_file['permissions'] ==
+                permissions)
+            assert (
+                extracted_file['optional_permissions'] ==
+                optional_permissions)
 
         assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
                                                    PLATFORM_ALL.id])

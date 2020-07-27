@@ -35,14 +35,17 @@ def extract_webext_permissions(ids, **kw):
                      (file_.pk, file_.current_file_path))
             parsed_data = parse_xpi(file_.current_file_path, user=user)
             permissions = parsed_data.get('permissions', [])
+            optional_permissions = parsed_data.get('optional_permissions', [])
             # Add content_scripts host matches too.
             for script in parsed_data.get('content_scripts', []):
                 permissions.extend(script.get('matches', []))
-            if permissions:
+            if permissions or optional_permissions:
                 log.info('Found %s permissions for: %s' %
                          (len(permissions), file_.pk))
                 WebextPermission.objects.update_or_create(
-                    defaults={'permissions': permissions}, file=file_)
+                    defaults={'permissions': permissions,
+                              'optional_permissions': optional_permissions},
+                    file=file_)
         except Exception as err:
             log.error('Failed to extract: %s, error: %s' % (file_.pk, err))
 

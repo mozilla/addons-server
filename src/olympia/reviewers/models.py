@@ -1137,7 +1137,7 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_uses_native_messaging(cls, version):
-        return any('nativeMessaging' in file_.webext_permissions_list
+        return any('nativeMessaging' in file_.permissions
                    for file_ in version.all_files)
 
     @classmethod

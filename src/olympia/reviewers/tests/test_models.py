@@ -1563,12 +1563,12 @@ class TestAutoApprovalSummary(TestCase):
 
         webext_permissions = WebextPermission.objects.create(
             file=self.file, permissions=['foobar'])
-        del self.file.webext_permissions_list
+        del self.file.permissions
         assert (
             AutoApprovalSummary.check_uses_native_messaging(self.version) == 0)
 
         webext_permissions.update(permissions=['nativeMessaging', 'foobar'])
-        del self.file.webext_permissions_list
+        del self.file.permissions
         assert (
             AutoApprovalSummary.check_uses_native_messaging(self.version) == 1)
 
