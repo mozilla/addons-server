@@ -12,9 +12,10 @@ from olympia.stats.utils import (
     AMO_TO_BQ_DAU_COLUMN_MAPPING,
     AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING,
     get_addons_and_average_daily_users_from_bigquery,
+    get_addons_and_weekly_downloads_from_bigquery,
     get_averages_by_addon_from_bigquery,
-    get_updates_series,
     get_download_series,
+    get_updates_series,
     rows_to_series,
 )
 
@@ -595,3 +596,60 @@ LIMIT 365"""
             timer_mock.assert_called_with(
                 f'stats.get_download_series.bigquery.{source}'
             )
+
+
+@override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
+class TestGetAddonsAndWeeklyDownloadsFromBigQuery(
+    BigQueryTestMixin, TestCase
+):
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_client(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+
+        credentials = 'path/to/credentials.json'
+        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
+            get_addons_and_weekly_downloads_from_bigquery()
+
+        bigquery_client_mock.from_service_account_json.assert_called_once_with(
+            credentials
+        )
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_query(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+        expected_query = f"""
+SELECT addon_id, SUM(total_downloads) AS count
+FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
+WHERE submission_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)
+GROUP BY addon_id"""
+
+        get_addons_and_weekly_downloads_from_bigquery()
+
+        client.query.assert_called_once_with(expected_query)
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_returned_results(self, bigquery_client_mock):
+        results = [
+            self.create_bigquery_row({'addon_id': 1, 'count': 123}),
+            self.create_bigquery_row({'addon_id': 2, 'count': 456}),
+        ]
+        client = self.create_mock_client(results=results)
+        bigquery_client_mock.from_service_account_json.return_value = client
+
+        returned_results = get_addons_and_weekly_downloads_from_bigquery()
+        assert returned_results == [(1, 123), (2, 456)]
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_skips_null_values(self, bigquery_client_mock):
+        results = [
+            self.create_bigquery_row({'addon_id': 1, 'count': 123}),
+            self.create_bigquery_row({'addon_id': 2, 'count': None}),
+            self.create_bigquery_row({'addon_id': None, 'count': 456}),
+        ]
+        client = self.create_mock_client(results=results)
+        bigquery_client_mock.from_service_account_json.return_value = client
+
+        returned_results = get_addons_and_weekly_downloads_from_bigquery()
+        assert returned_results == [(1, 123)]

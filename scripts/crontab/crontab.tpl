@@ -38,7 +38,7 @@ HOME=/tmp
 
 # Once per day after metrics import is done
 30 12 * * * %(z_cron)s update_addon_total_downloads
-35 12 * * * %(z_cron)s weekly_downloads
+35 12 * * * %(z_cron)s update_addon_weekly_downloads
 30 13 * * * %(z_cron)s update_addon_average_daily_users
 00 14 * * * %(z_cron)s index_latest_stats
 

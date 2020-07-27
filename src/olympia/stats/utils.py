@@ -251,3 +251,22 @@ USING
         }
         for row in rows if row['addon_id']
     }
+
+
+def get_addons_and_weekly_downloads_from_bigquery():
+    """This function is used to compute the 'weekly_downloads' value of each
+    add-on (see `update_addon_weekly_downloads()` cron task)."""
+    client = create_client()
+
+    query = f"""
+SELECT addon_id, SUM(total_downloads) AS count
+FROM `{get_amo_stats_download_view_name()}`
+WHERE submission_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)
+GROUP BY addon_id"""
+
+    rows = client.query(query).result()
+
+    return [
+        (row['addon_id'], row['count'])
+        for row in rows if row['addon_id'] and row['count']
+    ]

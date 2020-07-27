@@ -8,7 +8,8 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.addons.tasks import (recreate_theme_previews,
                                   update_addon_average_daily_users,
-                                  update_addon_hotness)
+                                  update_addon_hotness,
+                                  update_addon_weekly_downloads)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory
 from olympia.versions.models import VersionPreview
@@ -130,3 +131,30 @@ def test_update_addon_hotness():
     assert addon2.hotness == 0
     # We shouldn't have processed this add-on.
     assert addon3.hotness == 123
+
+
+@override_switch('local-statistics-processing', active=True)
+def test_update_addon_weekly_downloads():
+    addon = addon_factory(weekly_downloads=0)
+    count = 123
+    data = [(addon.guid, count)]
+    assert addon.weekly_downloads == 0
+
+    update_addon_weekly_downloads(data)
+    addon.refresh_from_db()
+
+    assert addon.weekly_downloads == count
+
+
+@override_switch('local-statistics-processing', active=True)
+def test_update_addon_weekly_downloads_skips_non_existent_addons():
+    addon = addon_factory(weekly_downloads=0)
+    count = 123
+    invalid_addon_guid = 'does.not@exist'
+    data = [(invalid_addon_guid, 0), (addon.guid, count)]
+    assert addon.weekly_downloads == 0
+
+    update_addon_weekly_downloads(data)
+    addon.refresh_from_db()
+
+    assert addon.weekly_downloads == count
