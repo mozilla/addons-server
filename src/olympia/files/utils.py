@@ -742,16 +742,12 @@ class SafeZip(object):
         self.info_list = None
         self.mode = mode
         self.force_fsync = force_fsync
-        self.is_valid = self.initialize_and_validate()
+        self.initialize_and_validate()
 
     def initialize_and_validate(self):
         """
         Runs some overall archive checks.
         """
-        # Shortcut to avoid expensive check over and over again
-        if getattr(self, 'is_valid', False):
-            return True
-
         if self.force_fsync:
             zip_file = FSyncedZipFile(self.source, self.mode)
         else:
@@ -770,7 +766,6 @@ class SafeZip(object):
 
         self.info_list = info_list
         self.zip_file = zip_file
-        return True
 
     def is_signed(self):
         """Tells us if an addon is signed."""
