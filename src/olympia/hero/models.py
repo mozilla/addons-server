@@ -139,7 +139,7 @@ class PrimaryHero(ModelBase):
         PrimaryHeroImage, null=True, on_delete=models.SET_NULL)
     image = WidgetCharField(
         choices=DirImageChoices(path=FEATURED_IMAGE_PATH), max_length=255,
-        widget=ImageChoiceWidget, blank=True)
+        widget=ImageChoiceWidget, blank=True, null=True)
     gradient_color = WidgetCharField(
         choices=GRADIENT_COLORS.items(), max_length=7,
         widget=GradientChoiceWidget, blank=True)
