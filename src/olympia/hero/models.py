@@ -157,10 +157,9 @@ class PrimaryHero(ModelBase):
 
     @property
     def image_url(self):
-        if self.select_image:
-            return f'{self.select_image.custom_image.url}'
-        else:
-            None
+        return (
+            f'{self.select_image.custom_image.url}'
+            if self.select_image else None)
 
     @property
     def gradient(self):
