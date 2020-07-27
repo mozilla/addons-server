@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.core.management.base import BaseCommand
 
-from celery import group
-
 from olympia import amo
-from olympia.amo.utils import chunked
+from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.files.models import File
 from olympia.files.tasks import extract_optional_permissions
 
@@ -19,10 +17,6 @@ class Command(BaseCommand):
         pks = files.values_list('pk', flat=True)
         print('pks count %s' % pks.count())
         if pks:
-            grouping = []
-            for chunk in chunked(pks, 100):
-                grouping.append(
-                    extract_optional_permissions.subtask(args=[chunk]))
-
-            ts = group(grouping)
-            ts.apply_async()
+            chunked_tasks = create_chunked_tasks_signatures(
+                extract_optional_permissions, list(pks), chunk_size=100)
+            chunked_tasks.apply_async()
