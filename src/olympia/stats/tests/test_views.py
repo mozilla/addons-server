@@ -1313,6 +1313,7 @@ class TestStatsWithBigQuery(TestCase):
         response = self.client.get(url)
 
         assert b'Download sources by Date' in response.content
+        assert b'About tracking external sources' not in response.content
 
     def test_download_stats_by_medium(self):
         url = reverse('stats.mediums', args=[self.addon.slug])
