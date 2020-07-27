@@ -8,7 +8,7 @@ from unittest import mock
 from django.http import Http404
 from django.test.client import RequestFactory
 from django.utils.encoding import force_text
-from waffle.testutils import override_flag
+from waffle.testutils import override_flag, override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -1335,6 +1335,22 @@ class TestStatsWithBigQuery(TestCase):
         response = self.client.get(url)
 
         assert b'Download campaigns by Date' in response.content
+
+    @override_switch('use-fenix-build-ids', active=True)
+    def test_fenix_build_ids(self):
+        url = reverse('stats.apps', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'data-use-fenix-build-ids="True"' in response.content
+
+    @override_switch('use-fenix-build-ids', active=False)
+    def test_no_fenix_build_ids(self):
+        url = reverse('stats.apps', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'data-use-fenix-build-ids="False"' in response.content
 
 
 class TestProcessLocales(TestCase):

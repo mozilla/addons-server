@@ -380,6 +380,9 @@ def stats_report(request, addon, report):
             'bigquery_download_stats': waffle.flag_is_active(
                 request, 'bigquery-download-stats'
             ),
+            'use_fenix_build_ids': (
+                waffle.switch_is_active('use-fenix-build-ids')
+            ),
         }
     )
 
