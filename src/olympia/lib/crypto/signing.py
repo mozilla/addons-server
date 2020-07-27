@@ -213,7 +213,7 @@ def is_signed(file_path):
     try:
         with zipfile.ZipFile(file_path, mode='r') as zf:
             filenames = set(zf.namelist())
-    except (zipfile.BadZipfile, IOError):
+    except (zipfile.BadZipFile, IOError):
         filenames = set()
     return set([u'META-INF/mozilla.rsa', u'META-INF/mozilla.sf',
                 u'META-INF/manifest.mf']).issubset(filenames)

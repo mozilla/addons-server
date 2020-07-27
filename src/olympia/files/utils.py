@@ -888,7 +888,7 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
             shutil.copy(source, target)
             if force_fsync:
                 FSyncMixin()._fsync_file(target)
-    except (zipfile.BadZipfile, tarfile.ReadError, IOError,
+    except (zipfile.BadZipFile, tarfile.ReadError, IOError,
             forms.ValidationError) as e:
         if tempdir is not None:
             rm_local_tmp_dir(tempdir)

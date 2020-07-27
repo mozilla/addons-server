@@ -9,7 +9,7 @@ import tempfile
 from copy import deepcopy
 from decimal import Decimal
 from functools import wraps
-from zipfile import BadZipfile
+from zipfile import BadZipFile
 
 from django.conf import settings
 from django.core.cache import cache
@@ -180,11 +180,12 @@ def validation_task(fn):
                 results, type_='error',
                 message=exc.message, msg_id='unsupported_filetype')
             return results
-        except BadZipfile:
+        except BadZipFile:
+            # If we raised a BadZipFile we can return a single exception with
+            # a generic message indicating the zip is invalid or corrupt.
             results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
-            annotations.insert_validation_message(
-                results, type_='error',
-                message=ugettext('Invalid or corrupt add-on file.'))
+            results['messages'][0]['message'] = ugettext(
+                'Invalid or corrupt add-on file.')
             return results
         except Exception as exc:
             log.exception('Unhandled error during validation: %r' % exc)
@@ -395,7 +396,7 @@ def check_for_api_keys_in_file(results, upload_pk):
                             revoke_api_key.apply_async(
                                 kwargs={'key_id': key.id}, countdown=120)
             zipfile.close()
-    except (ValidationError, BadZipfile, IOError):
+    except (ValidationError, BadZipFile, IOError):
         pass
 
     return results

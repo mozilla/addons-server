@@ -1211,7 +1211,7 @@ def test_id_to_path(value, expected):
 
 class TestSafeZip(TestCase):
     def test_raises_error_for_invalid_webextension_xpi(self):
-        with pytest.raises(forms.ValidationError):
+        with pytest.raises(zipfile.BadZipFile):
             utils.SafeZip(get_addon_file('invalid_webextension.xpi'))
 
     def test_raises_validation_error_when_uncompressed_size_is_too_large(self):

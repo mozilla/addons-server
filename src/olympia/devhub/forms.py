@@ -748,7 +748,7 @@ class WithSourceMixin(object):
                     zip_file = SafeZip(source)
                     # testzip() returns None if there are no broken CRCs.
                     if zip_file.zip_file.testzip() is not None:
-                        raise zipfile.BadZipfile()
+                        raise zipfile.BadZipFile()
                 elif source.name.endswith(('.tar.gz', '.tar.bz2', '.tgz')):
                     # For tar files we need to do a little more work.
                     mode = 'r:bz2' if source.name.endswith('bz2') else 'r:gz'
@@ -759,7 +759,7 @@ class WithSourceMixin(object):
                 else:
                     raise forms.ValidationError(
                         self.get_invalid_source_file_type_message())
-            except (zipfile.BadZipfile, tarfile.ReadError, IOError, EOFError):
+            except (zipfile.BadZipFile, tarfile.ReadError, IOError, EOFError):
                 raise forms.ValidationError(
                     ugettext('Invalid or broken archive.'))
         return source

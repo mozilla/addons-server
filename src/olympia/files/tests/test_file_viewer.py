@@ -464,7 +464,7 @@ class TestSafeZipFile(TestCase, amo.tests.AMOPaths):
             SafeZip(self.xpi_path('langpack-localepicker'))
 
     def test_unzip_fatal(self):
-        with pytest.raises(zipfile.BadZipfile):
+        with pytest.raises(zipfile.BadZipFile):
             SafeZip(self.xpi_path('search.xml'))
 
     def test_read(self):
