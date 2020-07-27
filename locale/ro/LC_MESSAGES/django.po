@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-27 06:16+0000\n"
+"PO-Revision-Date: 2020-07-27 06:28+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -932,21 +932,17 @@ msgstr "Resetare sesiune(i) {user}."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Utilizatorul {user} cu trafic limitat pentru domeniul „{0}”"
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "Conținut {addon} {version} respins."
+msgstr "Respingere programată a conținutului {addon} {version}."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Conținut respins"
+msgstr "Respingere programată a conținutului"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} respins."
+msgstr "Respingere programată pentru {addon} {version}."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "În termenul-limită pentru respingere"
+msgstr "Respingere programată"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -997,9 +993,8 @@ msgstr "Proprietar"
 msgid "Developer"
 msgstr "Dezvoltator"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Șters"
+msgstr "(Șters)"
 
 msgid "Extension"
 msgstr "Extensie"
@@ -1392,9 +1387,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Recomandat ({0})"
+msgstr "Recomandat"
 
 msgid "Verified - Tier 1"
 msgstr "Verificat - Nivelul 1"
@@ -5574,9 +5568,8 @@ msgstr "Sisteme de operare:"
 msgid "Applications:"
 msgstr "Aplicații:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Cere dezvoltatorului să răspundă în mai puțin de…"
+msgstr "Întârzie respingerea, cerând dezvoltatorului să aplice o corecție în mai puțin de…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr "Respinge imediat. De folosit numai în caz de probleme grave de securitate."
@@ -6206,13 +6199,11 @@ msgstr "Dezactivează aprobarea automată a versiunilor listate"
 msgid "Enable Listed Auto-Approval"
 msgstr "Activează aprobarea automată a versiunilor listate"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Dezactivează aprobarea automată a versiunilor listate"
+msgstr "Dezactivează aprobarea automată a versiunilor listate până la următoarea aprobare manuală"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Activează aprobarea automată a versiunilor listate"
+msgstr "Activează aprobarea automată a versiunilor listate înainte de următoarea aprobare manuală"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Aprobarea automată este în prezent dezactivată până la {date}"
@@ -6314,9 +6305,8 @@ msgstr "Mai noi"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} (de) versiuni marcate de scanere pe alte pagini."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} (de) versiuni marcate de scanere pe alte pagini."
+msgstr "{num} (de) versiuni marcate pentru recenzie umană pe alte pagini."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} (de) versiuni în așteptarea respingerii pe alte pagini."
@@ -6375,13 +6365,11 @@ msgstr "Scorul scanerelor reprezintă probabilitatea ca această versiune să fi
 msgid "Weight:"
 msgstr "Greutate:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Marcat de scanere automate"
+msgstr "Marcate de scanere"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Marcat pentru recenzare de către o persoană"
+msgstr "Marcate pentru recenzie umană"
 
 msgid "Download"
 msgstr "Descarcă"
