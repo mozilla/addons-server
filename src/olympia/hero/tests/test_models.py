@@ -1,18 +1,22 @@
 from django.core.exceptions import ValidationError
 
 from olympia.amo.tests import addon_factory, TestCase
-from olympia.hero.models import PrimaryHero, SecondaryHero, SecondaryHeroModule
+from olympia.amo.tests.test_helpers import get_uploaded_file
+from olympia.hero.models import (
+    PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
 from olympia.discovery.models import DiscoveryItem
 
 
 class TestPrimaryHero(TestCase):
     def test_image_url(self):
+        uploaded_photo = get_uploaded_file('transparent.png')
+        phi = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         ph = PrimaryHero.objects.create(
             disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
-            image='foo.png')
+            select_image=phi)
         assert ph.image_url == (
-            'http://testserver/static/img/hero/featured/foo.png')
-        ph.update(image='')
+            'http://testserver/user-media/hero-featured-image/transparent.jpg')
+        ph.update(select_image=None)
         assert ph.image_url is None
 
     def test_gradiant(self):
