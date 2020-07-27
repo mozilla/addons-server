@@ -398,7 +398,7 @@ class TestAvgDailyUserCountTestCase(TestCase):
         update_task_mock.assert_not_called()
 
 
-class TestDeliverHotness(TestCase):
+class TestUpdateAddonHotness(TestCase):
     def setUp(self):
         super().setUp()
 
