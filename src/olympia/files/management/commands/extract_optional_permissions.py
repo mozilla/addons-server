@@ -16,10 +16,11 @@ class Command(BaseCommand):
         files = File.objects.filter(
             is_webextension=True, version__addon__type=amo.ADDON_EXTENSION
         ).order_by('pk')
-        pks = files.values_list('pk', flat=True)
+        pks = list(files.values_list('pk', flat=True))
 
-        log.info('Using %s file pks to extract permissions' % pks.count())
+        log.info('Using %s file pks to extract permissions, max pk: %s' %
+                 (len(pks), pks[- 1]))
         if pks:
             chunked_tasks = create_chunked_tasks_signatures(
-                extract_optional_permissions, list(pks), chunk_size=100)
+                extract_optional_permissions, pks, chunk_size=100)
             chunked_tasks.apply_async()
