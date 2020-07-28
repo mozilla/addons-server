@@ -2,9 +2,10 @@ import json
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
-from olympia.promoted.models import PromotedAddon
+from olympia.amo.tests.test_helpers import get_uploaded_file
+from olympia.discovery.models import DiscoveryItem
 
-from ..models import PrimaryHero, SecondaryHero, SecondaryHeroModule
+from ..models import PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule
 from ..serializers import (
     PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer)
 
@@ -12,6 +13,15 @@ from ..serializers import (
 class TestPrimaryHeroShelfViewSet(TestCase):
     def setUp(self):
         self.url = reverse_ns('hero-primary-list', api_version='v5')
+        uploaded_photo_1 = get_uploaded_file('animated.png')
+        uploaded_photo_2 = get_uploaded_file('non-animated.png')
+        uploaded_photo_3 = get_uploaded_file('preview_4x3.jpg')
+        uploaded_photo_4 = get_uploaded_file('transparent.png')
+
+        self.phi_a = PrimaryHeroImage.objects.create(custom_image=uploaded_photo_1)
+        self.phi_b = PrimaryHeroImage.objects.create(custom_image=uploaded_photo_2)
+        self.phi_c = PrimaryHeroImage.objects.create(custom_image=uploaded_photo_3)
+        self.phi_d = PrimaryHeroImage.objects.create(custom_image=uploaded_photo_4)
 
     def test_basic(self):
         response = self.client.get(self.url)
@@ -22,23 +32,23 @@ class TestPrimaryHeroShelfViewSet(TestCase):
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
             description='Its a déscription!',
-            image='foo.png',
+            select_image=self.phi_a,
             gradient_color='#123456')
         hero_b = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(summary='fooo')),
-            image='baa.png',
+            select_image=self.phi_b,
             gradient_color='#987654')
         hero_external = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(homepage='https://mozilla.org/')),
-            image='external.png',
+            select_image=self.phi_c,
             gradient_color='#FABFAB',
             is_external=True)
         PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
-            image='wah.png',
+            select_image=self.phi_d,
             gradient_color='#989898')
 
         # The shelves aren't enabled so still won't show up
@@ -50,7 +60,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         hero_external.update(enabled=True)
         # don't enable the 3rd PrimaryHero object
         with self.assertNumQueries(11):
-            # 11 queries:
+            # 14 queries:
             # - 1 to fetch the primaryhero/discoveryitem items
             # - 1 to fetch the add-ons (can't be joined with the previous one
             #   because we want to hit the Addon transformer)
@@ -81,7 +91,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(homepage='https://mozilla.org/')),
-            image='external.png',
+            select_image=self.phi_a,
             gradient_color='#FABFAB',
             is_external=True,
             enabled=True)
@@ -97,19 +107,19 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
-            image='wah.png',
+            select_image=self.phi_a,
             gradient_color='#989898',
             enabled=True)
         PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
-            image='wah.png',
+            select_image=self.phi_b,
             gradient_color='#989898',
             enabled=True)
         PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
-            image='wah.png',
+            select_image=self.phi_c,
             gradient_color='#989898',
             enabled=False)
 
@@ -125,20 +135,20 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(summary='addon')),
-            image='wah.png',
+            select_image=self.phi_a,
             gradient_color='#989898',
             enabled=True)
         PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
             description='hero',
-            image='wah.png',
+            select_image=self.phi_b,
             gradient_color='#989898',
             enabled=True)
         PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(summary=None)),
-            image='wah.png',
+            select_image=self.phi_c,
             gradient_color='#989898',
             enabled=True)
 
