@@ -26,7 +26,7 @@ def extract_optional_permissions(ids, **kw):
         '[%s@%s] Extracting permissions from Files, from id: %s to id: %s...'
         % (
             len(ids), extract_optional_permissions.rate_limit, ids[0],
-            ids[len(ids) - 1]
+            ids[-1]
         )
     )
     files = File.objects.filter(pk__in=ids).no_transforms()
