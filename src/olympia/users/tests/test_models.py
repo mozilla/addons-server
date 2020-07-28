@@ -21,7 +21,8 @@ import olympia  # noqa
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import (
+    addon_factory, collection_factory, TestCase, user_factory)
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
@@ -136,6 +137,25 @@ class TestUserProfile(TestCase):
         assert f'message because your user account {name}' in email.body
         assert email.reply_to == ['amo-admins+deleted@mozilla.com']
         self.assertCloseToNow(user.modified)
+
+    def test__should_send_delete_email(self):
+        no_name = user_factory(email='email@moco', occupation='person')
+        assert not no_name._should_send_delete_email()
+
+        no_name.update(display_name='Steve Holt!')
+        assert no_name._should_send_delete_email()
+
+        addon_owner = user_factory()
+        addon = addon_factory(users=(addon_owner,))
+        assert addon_owner._should_send_delete_email()
+
+        collection_creator = collection_factory(author=user_factory()).author
+        assert collection_creator._should_send_delete_email()
+
+        rating_writer = user_factory()
+        Rating.objects.create(
+            user=rating_writer, addon=addon, version=addon.current_version)
+        assert rating_writer._should_send_delete_email()
 
     @mock.patch.object(File, 'hide_disabled_file')
     def test_ban_and_disable_related_content_bulk(self, hide_disabled_mock):
