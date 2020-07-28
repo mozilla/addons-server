@@ -5,7 +5,8 @@ from olympia.amo.tests import addon_factory, TestCase, reverse_ns
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.discovery.models import DiscoveryItem
 
-from ..models import PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule
+from ..models import (
+    PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
 from ..serializers import (
     PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer)
 
@@ -18,10 +19,14 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         uploaded_photo_3 = get_uploaded_file('preview_4x3.jpg')
         uploaded_photo_4 = get_uploaded_file('transparent.png')
 
-        self.phi_a = PrimaryHeroImage.objects.create(custom_image=uploaded_photo_1)
-        self.phi_b = PrimaryHeroImage.objects.create(custom_image=uploaded_photo_2)
-        self.phi_c = PrimaryHeroImage.objects.create(custom_image=uploaded_photo_3)
-        self.phi_d = PrimaryHeroImage.objects.create(custom_image=uploaded_photo_4)
+        self.phi_a = PrimaryHeroImage.objects.create(
+            custom_image=uploaded_photo_1)
+        self.phi_b = PrimaryHeroImage.objects.create(
+            custom_image=uploaded_photo_2)
+        self.phi_c = PrimaryHeroImage.objects.create(
+            custom_image=uploaded_photo_3)
+        self.phi_d = PrimaryHeroImage.objects.create(
+            custom_image=uploaded_photo_4)
 
     def test_basic(self):
         response = self.client.get(self.url)
