@@ -19,7 +19,7 @@ class Command(BaseCommand):
         pks = files.values_list('pk', flat=True)
 
         log.info('Using %s file pks to extract permissions, max pk: %s' %
-                 (pks.count(), pks[len(pks) - 1]))
+                 (pks.count(), pks[pks.count() - 1]))
         if pks:
             chunked_tasks = create_chunked_tasks_signatures(
                 extract_optional_permissions, list(pks), chunk_size=100)
