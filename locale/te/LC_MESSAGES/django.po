@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-27 14:54+0000\n"
+"PO-Revision-Date: 2020-07-28 07:31+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -5580,7 +5580,7 @@ msgid "Pre-Review Add-ons"
 msgstr "సమీక్షింపబడని పొడగింతలు"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "సిఫార్సుచేయబడినవి ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr "ఇతర వేచివున్న సమీక్ష ({0})"
@@ -5746,7 +5746,7 @@ msgid "Image Gallery"
 msgstr "బొమ్మల సేకరణ"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "ఇక్కడ చూడటానికి ఏమీ లేదు!  డెవలపర్ ఎటువంటి వివరాలను చేర్చలేదు."
 
 msgid "Add-on name translations"
 msgstr "పొడగింత పేరు అనువాదాలు"
@@ -5755,7 +5755,7 @@ msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
+msgstr "సమీక్షకుల పనిమట్లల డాష్‌బోర్డ్‌కు తిరిగి వెళ్ళు"
 
 msgid "Reviewer Leaderboard"
 msgstr "సమీక్షకుల లీడర్‌బోర్డ్"
@@ -5980,10 +5980,10 @@ msgid "Deny resubmission"
 msgstr ""
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "పొడగింతను బలవంతంగా నిలిపివేయి"
 
 msgid "Force-enable add-on"
-msgstr ""
+msgstr "పొడగింతను బలవంతంగా చేతనించు"
 
 msgid "View Blocklist Submission"
 msgstr ""
@@ -6176,13 +6176,13 @@ msgid "Download"
 msgstr "దింపుకోలు"
 
 msgid "Not Auto Approved Because"
-msgstr ""
+msgstr "స్వయంచాలకంగా అమోదించబడలేదు ఎందుకంటే"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "ఈ వెర్షను సమీక్షించబడి లేదు."
 
 msgid "Rejected or Unreviewed"
 msgstr "తిరస్కరించబడింది లేదా సమీక్షించబడలేదు"
