@@ -138,24 +138,24 @@ class TestUserProfile(TestCase):
         assert email.reply_to == ['amo-admins+deleted@mozilla.com']
         self.assertCloseToNow(user.modified)
 
-    def test__should_send_delete_email(self):
+    def test_should_send_delete_email(self):
         no_name = user_factory(email='email@moco', occupation='person')
-        assert not no_name._should_send_delete_email()
+        assert not no_name.should_send_delete_email()
 
         no_name.update(display_name='Steve Holt!')
-        assert no_name._should_send_delete_email()
+        assert no_name.should_send_delete_email()
 
         addon_owner = user_factory()
         addon = addon_factory(users=(addon_owner,))
-        assert addon_owner._should_send_delete_email()
+        assert addon_owner.should_send_delete_email()
 
         collection_creator = collection_factory(author=user_factory()).author
-        assert collection_creator._should_send_delete_email()
+        assert collection_creator.should_send_delete_email()
 
         rating_writer = user_factory()
         Rating.objects.create(
             user=rating_writer, addon=addon, version=addon.current_version)
-        assert rating_writer._should_send_delete_email()
+        assert rating_writer.should_send_delete_email()
 
     @mock.patch.object(File, 'hide_disabled_file')
     def test_ban_and_disable_related_content_bulk(self, hide_disabled_mock):

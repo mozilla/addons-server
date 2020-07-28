@@ -541,7 +541,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             'reply_to': ['amo-admins+deleted@mozilla.com'],
         }
 
-    def _should_send_delete_email(self):
+    def should_send_delete_email(self):
         return (
             self.display_name or
             self.addons.exists() or
@@ -551,7 +551,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def delete(self, addon_msg=''):
         from olympia.amo.utils import send_mail
 
-        send_delete_email = self._should_send_delete_email()
+        send_delete_email = self.should_send_delete_email()
         self._delete_related_content(addon_msg=addon_msg)
         log.info(f'User ({self}: <{self.email}>) is being anonymized.')
         if send_delete_email:
