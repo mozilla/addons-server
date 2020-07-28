@@ -21,9 +21,9 @@ log = olympia.core.logger.getLogger('z.files.task')
 
 @task
 @use_primary_db
-def extract_webext_permissions(ids, **kw):
+def extract_optional_permissions(ids, **kw):
     log.info('[%s@%s] Extracting permissions from Files, starting at id: %s...'
-             % (len(ids), extract_webext_permissions.rate_limit, ids[0]))
+             % (len(ids), extract_optional_permissions.rate_limit, ids[0]))
     files = File.objects.filter(pk__in=ids).no_transforms()
 
     # A user needs to be passed down to parse_xpi(), so we use the task user.
@@ -33,18 +33,14 @@ def extract_webext_permissions(ids, **kw):
         try:
             log.info('Parsing File.id: %s @ %s' %
                      (file_.pk, file_.current_file_path))
-            parsed_data = parse_xpi(file_.current_file_path, user=user)
-            permissions = parsed_data.get('permissions', [])
+            parsed_data = parse_xpi(file_.current_file_path,
+                                    addon=file_.addon, user=user)
             optional_permissions = parsed_data.get('optional_permissions', [])
-            # Add content_scripts host matches too.
-            for script in parsed_data.get('content_scripts', []):
-                permissions.extend(script.get('matches', []))
-            if permissions or optional_permissions:
-                log.info('Found %s permissions for: %s' %
-                         (len(permissions), file_.pk))
+            if optional_permissions:
+                log.info('Found %s optional permissions for: %s' %
+                         (len(optional_permissions), file_.pk))
                 WebextPermission.objects.update_or_create(
-                    defaults={'permissions': permissions,
-                              'optional_permissions': optional_permissions},
+                    defaults={'optional_permissions': optional_permissions},
                     file=file_)
         except Exception as err:
             log.error('Failed to extract: %s, error: %s' % (file_.pk, err))
