@@ -19,6 +19,22 @@ class TestDiscoveryAdmin(TestCase):
     def setUp(self):
         self.list_url = reverse('admin:discovery_discoveryitem_changelist')
 
+    def _get_heroform(self, item_id):
+        return {
+            "primaryhero-TOTAL_FORMS": "1",
+            "primaryhero-INITIAL_FORMS": "0",
+            "primaryhero-MIN_NUM_FORMS": "0",
+            "primaryhero-MAX_NUM_FORMS": "1",
+            "primaryhero-0-select_image": "",
+            "primaryhero-0-gradient_color": "",
+            "primaryhero-0-id": "",
+            "primaryhero-0-disco_addon": item_id,
+            "primaryhero-__prefix__-image": "",
+            "primaryhero-__prefix__-gradient_color": "",
+            "primaryhero-__prefix__-id": "",
+            "primaryhero-__prefix__-disco_addon": item_id,
+        }
+
     def test_can_see_discovery_module_in_admin_with_discovery_edit(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -203,12 +219,103 @@ class TestDiscoveryAdmin(TestCase):
         # Change add-on using the id.
         response = self.client.post(
             self.detail_url,
-            {'addon': str(addon.pk)},
+            dict(self._get_heroform(str(item.id)), **{'addon': str(addon.pk)}),
             follow=True)
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
         assert item.addon == addon
+        assert PrimaryHero.objects.count() == 0  # check we didn't add one.
+
+    def test_can_edit_primary_hero_with_discovery_edit_permission(self):
+        addon = addon_factory(name=u'BarFöo')
+        item = DiscoveryItem.objects.create(addon=addon)
+        hero = PrimaryHero.objects.create(
+            disco_addon=item, gradient_color='#592ACB')
+        uploaded_photo = get_uploaded_file('transparent.png')
+        image = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
+        self.detail_url = reverse(
+            'admin:discovery_discoveryitem_change', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'BarFöo' in content
+        assert '#592ACB' in content
+
+        response = self.client.post(
+            self.detail_url, {
+                'addon': str(addon.pk),
+                'custom_addon_name': 'Xäxâxàxaxaxa !',
+                'recommendable': True,
+                'primaryhero-TOTAL_FORMS': '1',
+                'primaryhero-INITIAL_FORMS': '1',
+                'primaryhero-MIN_NUM_FORMS': '0',
+                'primaryhero-MAX_NUM_FORMS': '1',
+                'primaryhero-0-id': str(hero.pk),
+                'primaryhero-0-disco_addon': str(item.pk),
+                'primaryhero-0-gradient_color': '#054096',
+                'primaryhero-0-select_image': image.pk,
+                'primaryhero-0-description': 'primary descriptíon',
+            }, follow=True)
+        assert response.status_code == 200
+        item.reload()
+        hero.reload()
+        assert DiscoveryItem.objects.count() == 1
+        assert PrimaryHero.objects.count() == 1
+        assert item.addon == addon
+        assert item.custom_addon_name == 'Xäxâxàxaxaxa !'
+        assert item.recommendable is True
+        assert hero.gradient_color == '#054096'
+        assert hero.description == 'primary descriptíon'
+        assert hero.select_image.pk == image.pk
+
+    def test_can_add_primary_hero_with_discovery_edit_permission(self):
+        addon = addon_factory(name=u'BarFöo')
+        item = DiscoveryItem.objects.create(addon=addon)
+        uploaded_photo = get_uploaded_file('transparent.png')
+        image = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
+        self.detail_url = reverse(
+            'admin:discovery_discoveryitem_change', args=(item.pk,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'BarFöo' in content
+        assert 'No image selected' in content
+        assert PrimaryHero.objects.count() == 0
+
+        response = self.client.post(
+            self.detail_url,
+            dict(self._get_heroform(str(item.pk)), **{
+                'addon': str(addon.pk),
+                'custom_addon_name': 'Xäxâxàxaxaxa !',
+                'recommendable': True,
+                'primaryhero-0-gradient_color': '#054096',
+                'primaryhero-0-select_image': image.pk,
+                'primaryhero-0-description': 'primary descriptíon',
+            }),
+            follow=True)
+        assert response.status_code == 200
+        item.reload()
+        assert DiscoveryItem.objects.count() == 1
+        assert item.addon == addon
+        assert item.custom_addon_name == 'Xäxâxàxaxaxa !'
+        assert item.recommendable is True
+        hero = PrimaryHero.objects.last()
+        hero.select_image == PrimaryHeroImage.objects.last()
+        assert hero.select_image.pk == image.pk
+        assert hero.gradient_color == '#054096'
+        assert hero.disco_addon == item
+        assert hero.description == 'primary descriptíon'
 
     def test_change_addon_errors(self):
         addon = addon_factory(name=u'BarFöo')
