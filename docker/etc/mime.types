@@ -71,7 +71,7 @@ application/isup
 application/java-archive			jar
 application/java-serialized-object		ser
 application/java-vm				class
-application/javascript				js
+application/javascript				js ts
 application/json				json
 application/m3g					m3g
 application/mac-binhex40			hqx
@@ -803,7 +803,6 @@ video/dv					dif dv
 video/fli					fli
 video/gl					gl
 video/mpeg					mpeg mpg mpe
-video/MP2T					ts
 video/mp4					mp4
 video/quicktime					qt mov
 video/mp4v-es
