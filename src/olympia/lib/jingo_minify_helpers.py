@@ -1,3 +1,4 @@
+import errno
 import os
 import subprocess
 import time
@@ -51,7 +52,7 @@ def ensure_path_exists(path):
         os.makedirs(os.path.dirname(path))
     except OSError as e:
         # If the directory already exists, that is fine. Otherwise re-raise.
-        if e.errno != os.errno.EEXIST:
+        if e.errno != errno.EEXIST:
             raise
 
     return path

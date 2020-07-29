@@ -1,17 +1,11 @@
 # -*- coding: utf-8 -*-
-import json
 from unittest import mock
 import pytest
-import tempfile
-import zipfile
 
 from django.conf import settings
 from django.forms import ValidationError
-from django.utils.encoding import force_text
 
-from olympia import amo
 from olympia.addons.utils import (
-    build_webext_dictionary_from_legacy,
     get_addon_recommendations, get_addon_recommendations_invalid,
     is_outcome_recommended,
     TAAR_LITE_FALLBACK_REASON_EMPTY, TAAR_LITE_FALLBACK_REASON_TIMEOUT,
@@ -19,7 +13,7 @@ from olympia.addons.utils import (
     TAAR_LITE_OUTCOME_REAL_FAIL, TAAR_LITE_OUTCOME_REAL_SUCCESS,
     TAAR_LITE_FALLBACK_REASON_INVALID,
     verify_mozilla_trademark)
-from olympia.amo.tests import AMOPaths, TestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 
 @pytest.mark.django_db
@@ -126,70 +120,3 @@ class TestGetAddonRecommendations(TestCase):
         assert not is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_FAIL)
         assert not is_outcome_recommended(TAAR_LITE_OUTCOME_CURATED)
         assert not self.recommendation_server_mock.called
-
-
-class TestBuildWebextDictionaryFromLegacy(AMOPaths, TestCase):
-    def setUp(self):
-        self.addon = addon_factory(
-            target_locale='ar', type=amo.ADDON_DICT,
-            version_kw={'version': '1.0'},
-            file_kw={'is_webextension': False})
-        self.xpi_copy_over(
-            self.addon.current_version.all_files[0], 'dictionary-test.xpi')
-
-    def check_xpi_file_contents(self, xpi_file_path, expected_version):
-        with zipfile.ZipFile(xpi_file_path, 'r', zipfile.ZIP_DEFLATED) as xpi:
-            # Check that manifest is present, contains proper version and
-            # dictionaries properties.
-            manifest = force_text(xpi.read('manifest.json'))
-            manifest_json = json.loads(manifest)
-            assert (
-                manifest_json['browser_specific_settings']['gecko']['id'] ==
-                self.addon.guid)
-            assert manifest_json['version'] == expected_version
-            expected_dict_obj = {'ar': 'dictionaries/ar.dic'}
-            assert manifest_json['dictionaries'] == expected_dict_obj
-
-            # Check that we haven't included any useless files.
-            expected_files = sorted([
-                'dictionaries/',
-                'dictionaries/ar.aff',
-                'dictionaries/ar.dic',
-                'dictionaries/license.txt',
-                'manifest.json'
-            ])
-            assert sorted([x.filename for x in xpi.filelist]) == expected_files
-
-    def test_basic(self):
-        with tempfile.NamedTemporaryFile(suffix='.xpi') as destination:
-            build_webext_dictionary_from_legacy(self.addon, destination)
-            self.check_xpi_file_contents(destination, '1.0.1webext')
-
-    def test_current_not_valid_raises(self):
-        mod = 'olympia.files.utils.SafeZip.initialize_and_validate'
-        with mock.patch(mod) as is_valid:
-            is_valid.return_value = False
-            with tempfile.NamedTemporaryFile(suffix='.xpi') as destination:
-                with self.assertRaises(ValidationError):
-                    build_webext_dictionary_from_legacy(
-                        self.addon, destination)
-
-    def test_addon_has_no_target_locale(self):
-        self.addon.update(target_locale=None)
-        with tempfile.NamedTemporaryFile(suffix='.xpi') as destination:
-            build_webext_dictionary_from_legacy(self.addon, destination)
-            self.check_xpi_file_contents(destination, '1.0.1webext')
-        self.addon.reload()
-
-    def test_invalid_dictionary_path_raises(self):
-        self.xpi_copy_over(
-            self.addon.current_version.all_files[0], 'extension.xpi')
-        with tempfile.NamedTemporaryFile(suffix='.xpi') as destination:
-            with self.assertRaises(ValidationError):
-                build_webext_dictionary_from_legacy(self.addon, destination)
-
-    def test_version_number_typefix(self):
-        self.addon.current_version.update(version='1.1-typefix')
-        with tempfile.NamedTemporaryFile(suffix='.xpi') as destination:
-            build_webext_dictionary_from_legacy(self.addon, destination)
-            self.check_xpi_file_contents(destination, '1.2webext')

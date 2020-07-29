@@ -464,12 +464,11 @@ class TestSafeZipFile(TestCase, amo.tests.AMOPaths):
             SafeZip(self.xpi_path('langpack-localepicker'))
 
     def test_unzip_fatal(self):
-        with pytest.raises(zipfile.BadZipfile):
+        with pytest.raises(zipfile.BadZipFile):
             SafeZip(self.xpi_path('search.xml'))
 
     def test_read(self):
         zip_file = SafeZip(self.xpi_path('langpack-localepicker'))
-        assert zip_file.is_valid
         assert b'locale browser de' in zip_file.read('chrome.manifest')
 
     def test_not_secure(self):
