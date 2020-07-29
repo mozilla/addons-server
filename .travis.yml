@@ -28,7 +28,6 @@ jobs:
     - { env: TOXENV=reviewers-and-zadmin }
     - { env: TOXENV=amo-lib-locales-and-signing }
     - { env: TOXENV=main }
-    - { env: TOXENV=js }
 
 env:
   global:
