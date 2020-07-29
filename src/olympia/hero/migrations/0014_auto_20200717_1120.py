@@ -16,7 +16,7 @@ def add_promoted_for_each_recommended(apps, schema_editor):
             addon=disco.addon, group_id=group.id)
         if hasattr(disco, 'primaryhero'):
             disco.primaryhero.promoted_addon = promoted
-            disco.save()
+            disco.primaryhero.save()
 
 
 class Migration(migrations.Migration):
