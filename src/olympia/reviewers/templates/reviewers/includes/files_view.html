@@ -29,6 +29,7 @@
     {% endif %}
     {% if file[0].is_webextension %}
     <div class="file-permissions"><strong>{{ _('Permissions:') }}</strong> {{ ', '.join(file[0].permissions) or _('None') }}</div>
+    <div class="file-permissions"><strong>{{ _('Optional permissions:') }}</strong> {{ ', '.join(file[0].optional_permissions) or _('None') }}</div>
     {% endif %}
   </span>
 </li>

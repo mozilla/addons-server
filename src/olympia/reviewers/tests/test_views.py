@@ -5115,8 +5115,10 @@ class TestReview(ReviewBase):
 
     def test_permissions_display(self):
         permissions = ['bookmarks', 'high', 'voltage']
+        optional_permissions = ['optional', 'high', 'voltage']
         self.file.update(is_webextension=True)
         WebextPermission.objects.create(
+            optional_permissions=optional_permissions,
             permissions=permissions,
             file=self.file)
         response = self.client.get(self.url)
@@ -5124,6 +5126,8 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         info = doc('#versions-history .file-info div')
         assert info.eq(1).text() == 'Permissions: ' + ', '.join(permissions)
+        assert info.eq(2).text() == 'Optional permissions: ' + \
+            ', '.join(optional_permissions)
 
     def test_abuse_reports(self):
         report = AbuseReport.objects.create(
