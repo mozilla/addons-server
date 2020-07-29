@@ -4,9 +4,11 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 import olympia.hero.models
+from olympia.amo.decorators import use_primary_db
 from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
 
 
+@use_primary_db
 def add_promoted_for_each_recommended(apps, schema_editor):
     DiscoveryItem = apps.get_model('discovery', 'DiscoveryItem')
     PromotedAddon = apps.get_model('promoted', 'PromotedAddon')
