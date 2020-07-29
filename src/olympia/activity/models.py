@@ -218,18 +218,13 @@ class ActivityLogManager(ManagerBase):
         if isinstance(addons, Addon):
             addons = (addons,)
 
-        vals = (AddonLog.objects.filter(addon__in=addons)
-                .values_list('activity_log', flat=True))
+        return self.filter(addonlog__addon__in=addons)
 
-        if vals:
-            return self.filter(pk__in=list(vals))
-        else:
-            return self.none()
+    def for_versions(self, versions):
+        if isinstance(versions, Version):
+            versions = (versions,)
 
-    def for_version(self, version):
-        vals = (VersionLog.objects.filter(version=version)
-                .values_list('activity_log', flat=True))
-        return self.filter(pk__in=list(vals))
+        return self.filter(versionlog__version__in=versions)
 
     def for_groups(self, groups):
         if isinstance(groups, Group):
@@ -238,19 +233,13 @@ class ActivityLogManager(ManagerBase):
         return self.filter(grouplog__group__in=groups)
 
     def for_user(self, user):
-        vals = (UserLog.objects.filter(user=user)
-                .values_list('activity_log', flat=True))
-        return self.filter(pk__in=list(vals))
+        return self.filter(userlog__user=user)
 
     def for_block(self, block):
-        vals = (BlockLog.objects.filter(block=block)
-                .values_list('activity_log', flat=True))
-        return self.filter(pk__in=list(vals))
+        return self.filter(blocklog__block=block)
 
     def for_guidblock(self, guid):
-        vals = (BlockLog.objects.filter(guid=guid)
-                .values_list('activity_log', flat=True))
-        return self.filter(pk__in=list(vals))
+        return self.filter(blocklog__block__guid=guid)
 
     def for_developer(self):
         return self.exclude(action__in=constants.activity.LOG_ADMINS +
