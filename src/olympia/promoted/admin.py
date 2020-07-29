@@ -112,6 +112,7 @@ class PromotedAddonAdmin(admin.ModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         qs = PrimaryHeroInline.model.objects.filter(enabled=True)
-        if obj and list(qs) == [getattr(obj, 'primaryhero', None)]:
+        shelf = getattr(obj, 'primaryhero', None)
+        if shelf and shelf.enabled and qs.count() == 1:
             return False
         return super().has_delete_permission(request=request, obj=obj)

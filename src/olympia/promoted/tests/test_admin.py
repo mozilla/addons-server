@@ -62,8 +62,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_discovery_edit_permission(self):
-        pro = PromotedAddon.objects.create(addon=addon_factory(name='FooBâr'))
-        PrimaryHero.objects.create(promoted_addon=pro)
+        PromotedAddon.objects.create(addon=addon_factory(name='FooBâr'))
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
