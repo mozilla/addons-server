@@ -1247,6 +1247,7 @@ def test_get_raw_diff_cache_unmodified_file():
         (MagicMock(type=_blob_type), 'bmp-v4.bmp', 'image', 'image/bmp'),
         (MagicMock(type=_blob_type), 'bmp-v5.bmp', 'image', 'image/bmp'),
         (MagicMock(type=_blob_type), 'bmp-os2-v1.bmp', 'image', 'image/bmp'),
+        (MagicMock(type=_blob_type), 'foo.ts', 'text', 'text/javascript'),
     ]
 )
 def test_get_mime_type_for_blob(entry, filename, expected_category,
