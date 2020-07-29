@@ -1,4 +1,5 @@
 from django.db import models
+from django.dispatch import receiver
 
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
@@ -69,3 +70,23 @@ class PromotedApproval(ModelBase):
         return (
             f'{self.get_group_id_display()} - '
             f'{self.version.addon}: {self.version}')
+
+
+@receiver(models.signals.post_save, sender=PromotedAddon,
+          dispatch_uid='addons.search.index')
+def update_es_for_promoted(sender, instance, **kw):
+    from olympia.addons.models import update_search_index
+    from olympia.amo.tasks import sync_object_to_basket
+
+    # Update ES because Addon.is_recommended depends on it.
+    update_search_index(sender=sender, instance=instance.addon, **kw)
+
+    # Sync the related add-on to basket when promoted groups is changed
+    sync_object_to_basket.delay('addon', instance.addon.pk)
+
+
+@receiver(models.signals.post_save, sender=PromotedApproval,
+          dispatch_uid='addons.search.index')
+def update_es_for_promoted_approval(sender, instance, **kw):
+    update_es_for_promoted(
+        sender=sender, instance=instance.version, **kw)

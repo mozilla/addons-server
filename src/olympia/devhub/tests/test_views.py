@@ -33,11 +33,13 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
+from olympia.constants.promoted import RECOMMENDED
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
+from olympia.promoted.models import PromotedApproval
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
@@ -534,7 +536,8 @@ class TestHome(TestCase):
         latest_version = self.addon.find_latest_version(
             amo.RELEASE_CHANNEL_LISTED)
         latest_file = latest_version.files.all()[0]
-        latest_version.update(recommendation_approved=True)
+        PromotedApproval.objects.create(
+            version=latest_version, group_id=RECOMMENDED.id)
         statuses = [
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                 'Awaiting Review'),

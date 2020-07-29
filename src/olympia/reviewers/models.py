@@ -23,7 +23,7 @@ from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
-from olympia.discovery.models import DiscoveryItem
+from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
 from olympia.reviewers.sql_model import RawSQLModel
@@ -183,8 +183,8 @@ class ViewQueue(RawSQLModel):
                 LEFT JOIN versions_versionreviewerflags ON (
                     versions.id = versions_versionreviewerflags.version_id)
                 LEFT JOIN files ON (files.version_id = versions.id)
-                LEFT JOIN discovery_discoveryitem AS discoitem ON (
-                    addons.id = discoitem.addon_id)
+                LEFT JOIN promoted_promotedaddon AS promoted ON (
+                    addons.id = promoted.addon_id)
 
                 JOIN translations AS tr ON (
                     tr.id = addons.name
@@ -197,8 +197,8 @@ class ViewQueue(RawSQLModel):
                 'files.status = %s' % amo.STATUS_AWAITING_REVIEW,
                 'versions_versionreviewerflags.pending_rejection IS NULL',
                 ('NOT ' if not self.recommendable_addons else '') +
-                '(discoitem.recommendable = True AND '
-                'discoitem.recommendable IS NOT NULL)',
+                '(promoted.group_id = %s AND promoted.group_id IS NOT NULL)' %
+                RECOMMENDED.id,
             ],
             'group_by': 'id'}
 
@@ -846,7 +846,7 @@ class AutoApprovalSummary(ModelBase):
         help_text=_('Has auto-approval disabled/delayed flag set'))
     is_recommendable = models.BooleanField(
         default=False,
-        help_text=_('Is recommendable'))
+        help_text=_('Is in the recommended promoted addon group'))
     should_be_delayed = models.BooleanField(
         default=False,
         help_text=_("Delayed because it's the first listed version"))
@@ -1174,18 +1174,13 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_is_recommendable(cls, version):
-        """Check whether the add-on is recommendable.
+        """Check whether the add-on is in the recommended promoted addon group.
 
         Only applies to listed versions."""
-        try:
-            item = version.addon.discoveryitem
-        except DiscoveryItem.DoesNotExist:
-            recommendable = False
-        else:
-            recommendable = item.recommendable
         return (
             version.channel == amo.RELEASE_CHANNEL_LISTED and
-            bool(recommendable)
+            version.addon.is_promoted(
+                group=RECOMMENDED, currently_approved=False)
         )
 
     @classmethod

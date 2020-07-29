@@ -460,14 +460,13 @@ class AddonSerializerOutputTestMixin(object):
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
             assert result['is_featured'] is True
-            self.addon.current_version.update(recommendation_approved=False)
+            self.addon.current_version.promoted_approvals.all().delete()
             result = self.serialize()
             assert result['is_featured'] is False
 
     def test_is_recommended(self):
         self.addon = addon_factory(recommended=True)
         assert self.addon.is_recommended
-
         result = self.serialize()
         assert result['is_recommended'] is True
 
@@ -476,6 +475,7 @@ class AddonSerializerOutputTestMixin(object):
             'en-US': u'My Addôn description in english',
             'fr': u'Description de mon Addôn',
         }
+
         translated_homepages = {
             'en-US': u'http://www.google.com/',
             'fr': u'http://www.googlé.fr/',

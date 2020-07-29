@@ -24,7 +24,7 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import SPOTLIGHT, VERIFIED_ONE
+from olympia.constants.promoted import RECOMMENDED, SPOTLIGHT, VERIFIED_ONE
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
@@ -1587,16 +1587,18 @@ class TestAddonModels(TestCase):
 
         self.make_addon_recommended(addon, approve_version=True)
         del addon.is_recommended
-        # It's recommendable; and the latest version is approved too.
+        # It's a recommended group promoted addon;
+        # and the latest version is approved too.
         assert addon.is_recommended
 
-        addon.discoveryitem.update(recommendable=False)
+        addon.promotedaddon.update(group_id=VERIFIED_ONE.id)
         del addon.is_recommended
         # we revoked the status, so now the addon shouldn't be recommended
         assert not addon.is_recommended
 
-        addon.current_version.update(recommendation_approved=False)
-        addon.discoveryitem.update(recommendable=True)
+        addon.current_version.promoted_approvals.all()[0].update(
+            group_id=SPOTLIGHT.id)
+        addon.promotedaddon.update(group_id=RECOMMENDED.id)
         del addon.is_recommended
         # similarly if the current_version wasn't reviewed for recommended
         assert not addon.is_recommended
@@ -1617,10 +1619,11 @@ class TestAddonModels(TestCase):
 
         self.make_addon_recommended(addon, approve_version=True)
         del addon.is_recommended
-        # It's recommendable; and the latest version is approved too.
+        # It's a recommended group promoted addon;
+        # and the latest version is approved too.
         assert addon.is_recommended
 
-        addon.discoveryitem.update(recommendable=False)
+        addon.promotedaddon.update(group_id=VERIFIED_ONE.id)
         del addon.is_recommended
         # we revoked the status, so now the addon shouldn't be recommended
         assert not addon.is_recommended

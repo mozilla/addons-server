@@ -37,6 +37,7 @@ from olympia.amo.utils import (
     StopWatch, attach_trans_dict,
     find_language, send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -1283,21 +1284,15 @@ class Addon(OnChangeMixin, ModelBase):
     @cached_property
     def is_recommended(self):
         from olympia.bandwagon.models import CollectionAddon
-        from olympia.discovery.models import DiscoveryItem
 
-        try:
-            item = self.discoveryitem
-        except DiscoveryItem.DoesNotExist:
-            recommended = False
-        else:
-            recommended = item.recommended_status == DiscoveryItem.RECOMMENDED
+        recommended = self.is_promoted(group=RECOMMENDED)
         if not recommended and self.type == amo.ADDON_STATICTHEME:
             recommended = CollectionAddon.objects.filter(
                 collection_id=settings.COLLECTION_FEATURED_THEMES_ID,
                 addon=self).exists()
         return recommended
 
-    def is_promoted(self, group=None, application=None,
+    def is_promoted(self, *, group=None, application=None,
                     currently_approved=True):
         """Is the addon currently promoted for the specified group and
         application?

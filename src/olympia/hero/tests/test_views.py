@@ -2,7 +2,7 @@ import json
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
-from olympia.discovery.models import DiscoveryItem
+from olympia.promoted.models import PromotedAddon
 
 from ..models import PrimaryHero, SecondaryHero, SecondaryHeroModule
 from ..serializers import (
@@ -19,24 +19,24 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         assert response.json() == {'results': []}
 
         hero_a = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
             description='Its a déscription!',
             image='foo.png',
             gradient_color='#123456')
         hero_b = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(summary='fooo')),
             image='baa.png',
             gradient_color='#987654')
         hero_external = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(homepage='https://mozilla.org/')),
             image='external.png',
             gradient_color='#FABFAB',
             is_external=True)
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
             image='wah.png',
             gradient_color='#989898')
@@ -72,14 +72,14 @@ class TestPrimaryHeroShelfViewSet(TestCase):
                 PrimaryHeroShelfSerializer(instance=hero_external).data]}
         # double check the different serializer representations
         assert response.json()['results'][0]['addon']['url'] == (
-            absolutify(hero_a.disco_addon.addon.get_detail_url()))
+            absolutify(hero_a.promoted_addon.addon.get_detail_url()))
         assert response.json()['results'][2]['external']['homepage'] == {
             'en-US': 'https://mozilla.org/'
         }
 
     def test_outgoing_wrapper(self):
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(homepage='https://mozilla.org/')),
             image='external.png',
             gradient_color='#FABFAB',
@@ -95,19 +95,19 @@ class TestPrimaryHeroShelfViewSet(TestCase):
 
     def test_all_param(self):
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
             image='wah.png',
             gradient_color='#989898',
             enabled=True)
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
             image='wah.png',
             gradient_color='#989898',
             enabled=True)
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
             image='wah.png',
             gradient_color='#989898',
@@ -123,20 +123,20 @@ class TestPrimaryHeroShelfViewSet(TestCase):
 
     def test_raw_param(self):
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(summary='addon')),
             image='wah.png',
             gradient_color='#989898',
             enabled=True)
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory()),
             description='hero',
             image='wah.png',
             gradient_color='#989898',
             enabled=True)
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(summary=None)),
             image='wah.png',
             gradient_color='#989898',
@@ -255,7 +255,7 @@ class TestHeroShelvesView(TestCase):
 
     def test_basic(self):
         phero = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
             enabled=True)
         shero = SecondaryHero.objects.create(
             headline='headline', description='description',
@@ -277,7 +277,7 @@ class TestHeroShelvesView(TestCase):
 
     def test_outgoing_wrapper(self):
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(
+            promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(homepage='http://foo.baa')),
             enabled=True, is_external=True)
         SecondaryHero.objects.create(
@@ -292,15 +292,15 @@ class TestHeroShelvesView(TestCase):
     def test_shelf_randomness(self):
         addon_1 = addon_factory()
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_1),
+            promoted_addon=PromotedAddon.objects.create(addon=addon_1),
             enabled=True)
         addon_2 = addon_factory()
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_2),
+            promoted_addon=PromotedAddon.objects.create(addon=addon_2),
             enabled=True)
         addon_3 = addon_factory()
         PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_3),
+            promoted_addon=PromotedAddon.objects.create(addon=addon_3),
             enabled=True)
         addon_ids = {addon_1.id, addon_2.id, addon_3.id}
 

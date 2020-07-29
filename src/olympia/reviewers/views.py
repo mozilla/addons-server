@@ -48,9 +48,9 @@ from olympia.amo.utils import paginate, render
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer, AllowReviewer,
     AllowReviewerUnlisted, AnyOf, GroupPermission)
+from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
-from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.forms import (
@@ -695,10 +695,8 @@ def review(request, addon, channel=None):
         channel == amo.RELEASE_CHANNEL_LISTED and
         addon.current_version and addon.current_version.was_auto_approved)
     is_static_theme = addon.type == amo.ADDON_STATICTHEME
-    try:
-        is_recommendable = addon.discoveryitem.recommendable
-    except DiscoveryItem.DoesNotExist:
-        is_recommendable = False
+    is_recommendable = addon.is_promoted(
+        group=RECOMMENDED, currently_approved=False)
 
     # Are we looking at an unlisted review page, or (weirdly) the listed
     # review page of an unlisted-only add-on?

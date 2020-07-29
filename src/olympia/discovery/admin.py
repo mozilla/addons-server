@@ -8,8 +8,7 @@ from django.db.models import Prefetch
 
 from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.admin import (
-    PrimaryHeroInline, SecondaryHeroAdmin, PrimaryHeroImageAdmin)
+from olympia.hero.admin import SecondaryHeroAdmin, PrimaryHeroImageAdmin
 from olympia.hero.models import PrimaryHero, SecondaryHero, PrimaryHeroImage
 from olympia.shelves.admin import ShelfAdmin
 from olympia.shelves.models import Shelf
@@ -78,23 +77,21 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
         css = {
             'all': ('css/admin/discovery.css',)
         }
-    inlines = [PrimaryHeroInline]
-    list_display = ('__str__', 'recommended_status', 'primary_hero_shelf',
+    list_display = ('__str__',
                     'custom_addon_name', 'custom_heading', 'position',
                     'position_china',
                     )
     list_filter = (PositionFilter, PositionChinaFilter)
     raw_id_fields = ('addon',)
-    readonly_fields = ('recommended_status', 'previews',)
+    readonly_fields = ('previews',)
     view_on_site = False
 
     def get_queryset(self, request):
-        # Select `primaryhero` and `addon` as well as it's `_current_version`.
+        # Select `addon` as well as it's `_current_version`.
         # We are forced to use `prefetch_related` to ensure transforms
         # are being run, though, we only care about translations
         qset = (
             DiscoveryItem.objects.all()
-            .select_related('primaryhero')
             .prefetch_related(
                 Prefetch(
                     'addon',

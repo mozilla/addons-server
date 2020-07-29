@@ -14,8 +14,9 @@ from olympia.addons.models import (
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.blocklist.models import Block
-from olympia.discovery.models import DiscoveryItem
+from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
 from olympia.files.models import File, FileValidation, WebextPermission
+from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
@@ -271,10 +272,10 @@ class TestRecommendedQueue(TestQueue):
         self.new_addon(
             addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
             name='No updates')
-        DiscoveryItem.objects.get(
-            addon=self.new_addon(name='Not recommendable')).update(
-            recommendable=False)
-        DiscoveryItem.objects.get(
+        PromotedAddon.objects.get(
+            addon=self.new_addon(name='Not promoted')).update(
+            group_id=NOT_PROMOTED.id)
+        PromotedAddon.objects.get(
             addon=self.new_addon(name='Not discovery item')).delete()
 
         assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
@@ -1661,11 +1662,11 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_recommendable(
             self.version) is False
 
-        disco_item = DiscoveryItem.objects.create(addon=self.addon)
+        promoted = PromotedAddon.objects.create(addon=self.addon)
         assert AutoApprovalSummary.check_is_recommendable(
             self.version) is False
 
-        disco_item.update(recommendable=True)
+        promoted.update(group_id=RECOMMENDED.id)
         assert AutoApprovalSummary.check_is_recommendable(self.version) is True
 
     def test_check_should_be_delayed(self):
@@ -1985,7 +1986,7 @@ class TestAutoApprovalSummary(TestCase):
             'Has auto-approval disabled/delayed flag set',
             'Version string and guid match a blocklist Block',
             'Is locked by a reviewer',
-            'Is recommendable',
+            'Is in the recommended promoted addon group',
             "Delayed because it's the first listed version",
         ]
 

@@ -40,9 +40,9 @@ from olympia.amo.tests import (
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.reviewers import (
-    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-)
+    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT)
 from olympia.constants.scanners import MAD
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.git.utils import AddonGitRepository, extract_version_to_git
@@ -4608,7 +4608,8 @@ class TestReview(ReviewBase):
         assert addon.status == amo.STATUS_APPROVED
         assert addon.current_version
         assert addon.current_version.all_files[0].status == amo.STATUS_APPROVED
-        assert addon.current_version.recommendation_approved
+        assert addon.current_version.promoted_approvals.filter(
+            group_id=RECOMMENDED.id).exists()
         assert mock_sign_file.called
 
     @mock.patch('olympia.reviewers.utils.sign_file')

@@ -21,8 +21,8 @@ class ExternalAddonSerializer(AddonSerializer):
 class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
     description = serializers.SerializerMethodField()
     featured_image = serializers.CharField(source='image_url')
-    addon = DiscoveryAddonSerializer(source='disco_addon.addon')
-    external = ExternalAddonSerializer(source='disco_addon.addon')
+    addon = DiscoveryAddonSerializer(source='promoted_addon.addon')
+    external = ExternalAddonSerializer(source='promoted_addon.addon')
 
     class Meta:
         model = PrimaryHero
@@ -40,7 +40,7 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
         elif obj.description:
             return ugettext(obj.description)
         else:
-            addon = obj.disco_addon.addon
+            addon = obj.promoted_addon.addon
             return (str(addon.summary)
                     if addon.summary and addon.type == amo.ADDON_EXTENSION
                     else '')

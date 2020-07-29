@@ -6,7 +6,6 @@ from django.test.utils import override_settings
 from olympia import amo
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.models import PrimaryHero
 
 
 class TestDiscoveryItem(TestCase):
@@ -250,28 +249,3 @@ class TestDiscoveryItem(TestCase):
         assert q.get('utm_medium') == 'firefox-browser'
         assert q.get('utm_content') == 'discopane-entry-link'
         assert q.get('src') == 'api'
-
-    def test_recommended_status(self):
-        item = DiscoveryItem.objects.create(addon=addon_factory())
-        assert item.recommended_status == DiscoveryItem.NOT_RECOMMENDED
-
-        item.update(recommendable=True)
-        assert item.recommended_status == DiscoveryItem.PENDING_RECOMMENDATION
-
-        item.addon.current_version.update(recommendation_approved=True)
-        assert item.recommended_status == DiscoveryItem.RECOMMENDED
-
-        item.update(recommendable=False)
-        assert item.recommended_status == DiscoveryItem.NOT_RECOMMENDED
-
-    def test_primary_hero_shelf(self):
-        item = DiscoveryItem.objects.create(
-            addon=addon_factory(), recommendable=True)
-        assert item.primary_hero_shelf() is None
-
-        PrimaryHero.objects.create(disco_addon=item)
-        assert item.primary_hero_shelf() is False
-
-        item.addon.current_version.update(recommendation_approved=True)
-        item.primaryhero.update(enabled=True)
-        assert item.primary_hero_shelf() is True

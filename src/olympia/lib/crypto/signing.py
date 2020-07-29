@@ -7,7 +7,6 @@ from base64 import b64decode, b64encode
 from django.db import transaction
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.core.exceptions import ObjectDoesNotExist
 from django.utils.encoding import force_bytes, force_text
 
 import requests
@@ -20,6 +19,8 @@ from asn1crypto import cms
 import olympia.core.logger
 
 from olympia import amo
+from olympia.constants.promoted import RECOMMENDED
+
 
 log = olympia.core.logger.getLogger('z.crypto')
 
@@ -54,14 +55,10 @@ def get_id(addon):
 
 
 def use_recommendation_signer(file_obj):
-    try:
-        return (
-            file_obj.version.channel == amo.RELEASE_CHANNEL_LISTED and
-            file_obj.version.addon.discoveryitem.recommendable)
-    except ObjectDoesNotExist:
-        pass
-
-    return False
+    return (
+        file_obj.version.channel == amo.RELEASE_CHANNEL_LISTED and
+        file_obj.version.addon.is_promoted(
+            group=RECOMMENDED, currently_approved=False))
 
 
 def call_signing(file_obj):

@@ -17,8 +17,7 @@ class VersionAdmin(admin.ModelAdmin):
         js = ('js/admin/l10n.js',)
 
     view_on_site = False
-    readonly_fields = ('id', 'created', 'version', 'channel',
-                       'recommendation_approved')
+    readonly_fields = ('id', 'created', 'version', 'channel')
 
     raw_id_fields = ('addon', 'license')
 
@@ -29,7 +28,7 @@ class VersionAdmin(admin.ModelAdmin):
                 'release_notes', 'approval_notes', 'license', 'source')
         }),
         ('Flags', {
-            'fields': ('deleted', 'recommendation_approved')
+            'fields': ('deleted',)
         }),
     )
 

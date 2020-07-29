@@ -31,6 +31,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -180,8 +181,6 @@ class Version(OnChangeMixin, ModelBase):
                                   default=amo.RELEASE_CHANNEL_LISTED)
 
     git_hash = models.CharField(max_length=40, blank=True)
-
-    recommendation_approved = models.BooleanField(null=False, default=False)
 
     # FIXME: Convert needs_human_review into a BooleanField(default=False) in
     # future push following the one where the field was introduced.
@@ -704,15 +703,19 @@ class Version(OnChangeMixin, ModelBase):
                 file_obj, theme_data=None, header_only=header_only).items()}
 
     def can_be_disabled_and_deleted(self):
-        addon = self.addon
-        if self.recommendation_approved and self == addon.current_version:
-            previous_version = addon.versions.valid().filter(
-                channel=self.channel).exclude(id=self.id).first()
-            previous_approved = (
-                previous_version and previous_version.recommendation_approved)
-            if addon.is_recommended and not previous_approved:
-                return False
-        return True
+        from olympia.promoted.models import PromotedApproval
+
+        if (self != self.addon.current_version or
+                not self.addon.is_promoted(group=RECOMMENDED)):
+            return True
+
+        previous_ver = (
+            self.addon.versions.valid().filter(channel=self.channel)
+                                       .exclude(id=self.id)
+                                       .no_transforms()[:1])
+        previous_approval = PromotedApproval.objects.filter(
+            group_id=RECOMMENDED.id, version__in=previous_ver)
+        return previous_approval.exists()
 
     @property
     def is_blocked(self):
@@ -839,28 +842,21 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None,
         if not x.startswith('_') and new_attr[x] != old_attr.get(x)
     }
 
-    if 'recommendation_approved' in changes:
-        from olympia.addons.models import update_search_index
-        # Update ES because Addon.is_recommended depends on it.
-        update_search_index(
-            sender=sender, instance=instance.addon, **kwargs)
-
     if (instance.channel == amo.RELEASE_CHANNEL_UNLISTED and
-            'deleted' in changes) or 'recommendation_approved' in changes:
-        # Sync the related add-on to basket when recommendation_approved is
-        # changed or when an unlisted version is deleted. (When a listed
-        # version is deleted, watch_changes() in olympia.addon.models should
-        # take care of it (since _current_version will change).
+            'deleted' in changes):
+        # Sync the related add-on to basket when an unlisted version is
+        # deleted. (When a listed version is deleted, watch_changes() in
+        # olympia.addon.models should take care of it (since _current_version
+        # will change).
         from olympia.amo.tasks import sync_object_to_basket
         sync_object_to_basket.delay('addon', instance.addon.pk)
 
 
 def watch_new_unlisted_version(sender=None, instance=None, **kwargs):
     # Sync the related add-on to basket when an unlisted version is uploaded.
-    # Listed version changes for `recommendation_approved` and unlisted version
-    # deletion is handled by watch_changes() above, and new version approval
-    # changes are handled by watch_changes() in olympia.addon.models (since
-    # _current_version will change).
+    # Unlisted version deletion is handled by watch_changes() above, and new
+    # version approval changes are handled by watch_changes()
+    # in olympia.addon.models (since _current_version will change).
     # What's left here is unlisted version upload.
     if instance and instance.channel == amo.RELEASE_CHANNEL_UNLISTED:
         from olympia.amo.tasks import sync_object_to_basket
