@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-30 18:39+0000\n"
+"PO-Revision-Date: 2020-07-30 19:42+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -921,21 +921,17 @@ msgstr "Økt(er) tilbakestilt for bruker {user}."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Bruker {user} begrenset fra å nå «{0}»"
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "{addon} {version} innhold avvist."
+msgstr "{addon} {version} avslag på innhold planlagt."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Innhold avvist"
+msgstr "Avslag på innhold planlagt"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} avvist."
+msgstr "{addon} {version} avslag planlagt."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Frist for ventende avslag"
+msgstr "Avslag planlagt"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1366,19 +1362,19 @@ msgid "Recommended"
 msgstr "Anbefalt"
 
 msgid "Verified - Tier 1"
-msgstr ""
+msgstr "Bekreftet - nivå 1"
 
 msgid "Verified - Tier 2"
-msgstr ""
+msgstr "Bekreftet - nivå 2"
 
 msgid "Line"
-msgstr ""
+msgstr "Linje"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Fremhevet"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Strategisk"
 
 msgid "Add-on"
 msgstr "Utvidelse"
