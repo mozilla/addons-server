@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-30 11:19+0000\n"
+"PO-Revision-Date: 2020-07-30 18:39+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -985,9 +985,8 @@ msgstr "Eier"
 msgid "Developer"
 msgstr "Utvikler"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Slettet"
+msgstr "(Slettet)"
 
 msgid "Extension"
 msgstr "Utvidelse"
@@ -1363,9 +1362,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Kommentert"
+msgstr "Anbefalt"
 
 msgid "Verified - Tier 1"
 msgstr ""
@@ -6230,9 +6228,8 @@ msgstr ""
 msgid "Flagged by scanners"
 msgstr ""
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Flagg for at noen skal ta en gjennomgang"
+msgstr "Flagget for at noen skal ta en gjennomgang"
 
 msgid "Download"
 msgstr "Last ned"
