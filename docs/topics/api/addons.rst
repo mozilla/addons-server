@@ -35,7 +35,7 @@ This endpoint allows you to search through public add-ons.
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
     :query boolean recommended: Filter to only add-ons recommended by Mozilla.  Only ``recommended=true`` is supported.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
-    :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
+    :query string type: Filter by :ref:`add-on type <addon-detail-type>`.  Multiple types can be specified, separated by comma(s), in which case add-ons that are any of the matching types are returned.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
