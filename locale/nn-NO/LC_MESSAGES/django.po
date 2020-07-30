@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-30 12:23+0000\n"
+"PO-Revision-Date: 2020-07-30 12:28+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1883,7 +1883,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Ikonet må vere minst {0} pikslar breidt og høgt."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Ikonet må vere kvadratisk (same breidde og høgde)."
 
 msgid "There was an error uploading your preview."
 msgstr "Det oppstod ein feil under opplasting av førehandsvisinga di."
@@ -1912,7 +1912,7 @@ msgid "Header area background"
 msgstr "Bakgrunn for topptekstområdet"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr ""
+msgstr "Fargen på bakgrunnen for topptekstområdet vert vist i den delen av toppteksten som ikkje er dekt eller synleg gjennom toppteksten. Manifestfelt:  frame."
 
 msgid "Header area text and icons"
 msgstr "Tekst og ikon for topptekstområdet"
@@ -1925,7 +1925,7 @@ msgid "Toolbar area background"
 msgstr "Bakgrunn for verktøylinjeområdet"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "Bakgrunnsfargen for navigasjonslinja, bokmerkefeltet og vald fane.  Manifestfelt:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Tekst og ikon i verktøylinjeområdet"
@@ -1935,13 +1935,13 @@ msgid "The color of the text and icons in the toolbar and the active tab. Manife
 msgstr "Verktøylinje-tekstfarge."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Bakgrunn for feltområdet for verktøylinja"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Tekst på feltområdet i verktøylinja"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
@@ -2091,6 +2091,8 @@ msgstr ""
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Oppdater kompatibilitet</a> <a href=\"%(version_url)s\" class=\"button\">Last opp ny versjon</a> eller <a href=\"#\" "
+"class=\"close\">ignorer</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "Sjå og rediger programkompatibilitetsområde"
@@ -2212,7 +2214,7 @@ msgid "Tags"
 msgstr "Taggar"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "Stikkord hjelper brukarar med å finne utvidinga di og bør vere korte skildringar som faner, verktøyfelt eller twitter. Du kan ha maks. {0} stikkord."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
