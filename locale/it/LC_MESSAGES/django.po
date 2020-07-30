@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-30 09:26+0000\n"
+"PO-Revision-Date: 2020-07-30 09:30+0000\n"
 "Last-Translator: Giorgio Romano <ascotwork@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -946,9 +946,8 @@ msgstr ""
 msgid "{addon} {version} reject scheduled."
 msgstr ""
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Scadenza per il rifiuto in sospeso"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1435,7 +1434,7 @@ msgid "Spotlight"
 msgstr "In evidenza"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Strategico"
 
 msgid "Add-on"
 msgstr "Componente aggiuntivo"
