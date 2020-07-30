@@ -24,7 +24,7 @@ from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
-from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
+from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED
 from olympia.constants.scanners import CUSTOMS, WAT, YARA, MAD
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
@@ -718,6 +718,46 @@ class TestVersion(TestCase):
         score = 0.15
         ScannerResult.objects.create(version=version, scanner=MAD, score=score)
         assert version.scanners_score == '15%'
+
+    def test_approved_for_groups(self):
+        version = addon_factory().current_version
+        assert version.approved_for_groups == []
+
+        # give it some promoted approvals
+        PromotedApproval.objects.create(
+            version=version, group_id=LINE.id)
+        PromotedApproval.objects.create(
+            version=version, group_id=RECOMMENDED.id)
+
+        del version.approved_for_groups
+        assert version.approved_for_groups == [LINE, RECOMMENDED]
+
+    def test_transform_promoted(self):
+        version_a = addon_factory().current_version
+        version_b = addon_factory().current_version
+        versions = (
+            Version.objects.filter(id__in=(version_a.id, version_b.id))
+                           .transform(Version.transformer_promoted))
+        list(versions)  # to evaluate the queryset
+        with self.assertNumQueries(0):
+            assert versions[0].approved_for_groups == []
+            assert versions[1].approved_for_groups == []
+
+        # give them some promoted approvals
+        PromotedApproval.objects.create(
+            version=version_a, group_id=LINE.id)
+        PromotedApproval.objects.create(
+            version=version_a, group_id=RECOMMENDED.id)
+        PromotedApproval.objects.create(
+            version=version_b, group_id=RECOMMENDED.id)
+
+        versions = (
+            Version.objects.filter(id__in=(version_a.id, version_b.id))
+                           .transform(Version.transformer_promoted))
+        list(versions)  # to evaluate the queryset
+        with self.assertNumQueries(0):
+            assert versions[1].approved_for_groups == [RECOMMENDED, LINE]
+            assert versions[0].approved_for_groups == [RECOMMENDED]
 
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [

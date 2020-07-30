@@ -5,6 +5,7 @@ from django.forms.models import modelformset_factory
 from olympia.addons.models import Addon
 from olympia.discovery.admin import SlugOrPkChoiceField
 from olympia.hero.admin import PrimaryHeroInline
+from olympia.versions.models import Version
 
 from .forms import AdminBasePromotedApprovalFormSet
 from .models import PromotedAddon, PromotedApproval
@@ -67,13 +68,16 @@ class PromotedAddonAdmin(admin.ModelAdmin):
     list_filter = ('group_id', 'application_id')
     inlines = (PromotedApprovalInline, PrimaryHeroInline)
 
+    @classmethod
+    def _transformer(self, objs):
+        Version.transformer_promoted(
+            [promo.addon._current_version for promo in objs]
+        )
+
     def get_queryset(self, request):
         # Select `primaryhero`, `addon` and it's `_current_version`.
         # We are forced to use `prefetch_related` to ensure transforms
         # are being run, though, we only care about translations
-        #
-        # TODO: optimize this query to preload the PromotedApprovals fk'd to
-        # versions.
         qset = (
             self.model.objects.all()
             .select_related('primaryhero')
@@ -83,7 +87,8 @@ class PromotedAddonAdmin(admin.ModelAdmin):
                     queryset=(
                         Addon.unfiltered.all()
                         .select_related('_current_version')
-                        .only_translations()))))
+                        .only_translations())))
+            .transform(self._transformer))
         return qset
 
     def addon__name(self, obj):
