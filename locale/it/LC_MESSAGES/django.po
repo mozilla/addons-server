@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-23 20:32+0000\n"
-"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
+"PO-Revision-Date: 2020-07-30 09:31+0000\n"
+"Last-Translator: Giorgio Romano <ascotwork@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -937,17 +937,14 @@ msgstr "Sessione/i utente {user} ripristinata/e."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Utente {user} limitato per ambito \"{0}\""
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "Contenuti di {addon} {version} respinti."
+msgstr ""
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Contenuti respinti"
+msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} respinto."
+msgstr ""
 
 #, fuzzy
 msgid "Rejection scheduled"
@@ -1422,9 +1419,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Consigliato ({0})"
+msgstr "Consigliato"
 
 msgid "Verified - Tier 1"
 msgstr ""
@@ -1433,10 +1429,10 @@ msgid "Verified - Tier 2"
 msgstr ""
 
 msgid "Line"
-msgstr ""
+msgstr "In coda"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "In evidenza"
 
 msgid "Strategic"
 msgstr ""
