@@ -11,10 +11,6 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 
 
 class DiscoveryItem(OnChangeMixin, ModelBase):
-    RECOMMENDED = 'Recommended'
-    PENDING_RECOMMENDATION = 'Pending Recommendation'
-    NOT_RECOMMENDED = 'Not Recommended'
-
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE,
         help_text='Add-on id this item will point to (If you do not know the '
