@@ -1,5 +1,5 @@
 language: python
-dist: xenial
+dist: bionic
 
 python:
   - 3.8
@@ -46,16 +46,6 @@ services:
   - redis
 
 before_install:
-  - mysql -e 'create database olympia;'
-  - export GOPATH=$HOME/go
-  - export PATH=$HOME/usr/local/go/bin:$GOPATH/bin:$PATH
-  # Unfortunately we require the most recent libmagic-dev version to make use of more recent
-  # JSON detection features which we require for the code-manager related APIs
-  - echo "deb http://archive.ubuntu.com/ubuntu eoan main" | sudo tee -a /etc/apt/sources.list
-  - sudo apt-get update -qq
-  - sudo apt-get install -t eoan libmagic-dev libmagic1 libmagic-mgc
-  - echo "text/markdown                                   md markdown" | sudo tee -a /etc/mime.types
-  - sudo cp ./docker/etc/mime.types /etc/mime.types
   - |
     if [ $TOXENV == "es" ]; then
         if [ $ES_VERSION == "6.x" ]; then
@@ -68,6 +58,16 @@ before_install:
         fi
         sudo systemctl start elasticsearch
     fi
+  - mysql -e 'create database olympia;'
+  - export GOPATH=$HOME/go
+  - export PATH=$HOME/usr/local/go/bin:$GOPATH/bin:$PATH
+  # Unfortunately we require the most recent libmagic-dev version to make use of more recent
+  # JSON detection features which we require for the code-manager related APIs
+  - echo "deb http://archive.ubuntu.com/ubuntu eoan main" | sudo tee -a /etc/apt/sources.list
+  - sudo apt-get update -qq
+  - sudo apt-get install -t eoan libmagic-dev libmagic1 libmagic-mgc
+  - echo "text/markdown                                   md markdown" | sudo tee -a /etc/mime.types
+  - sudo cp ./docker/etc/mime.types /etc/mime.types
 
 install:
   - nvm current
@@ -82,8 +82,7 @@ before_script:
   - java -version
   - |
     if [ $TOXENV == "es" ]; then
-        sleep 10;
-        curl -v http://localhost:9200/;
+        curl --retry 3 --retry-delay 10 --retry-connrefused http://localhost:9200/;
     fi
   - sudo touch /addons-server-docker-container
 
