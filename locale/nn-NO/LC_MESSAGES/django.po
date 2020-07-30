@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-30 12:28+0000\n"
+"PO-Revision-Date: 2020-07-30 12:40+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2582,13 +2582,13 @@ msgid "Add-on URL:"
 msgstr "URL for utviding:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Bruk berre bokstavar, tal, understrek og bindestrek i nettadressa di."
 
 msgid "Name:"
 msgstr "Namn:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Namn på oppføringa på denne nettstaden. Kan vere ulik namnet inne i tillegget, som vert vist i Firefox"
 
 msgid "Summary:"
 msgstr "Samandrag:"
@@ -2636,7 +2636,7 @@ msgid ""
 msgstr ""
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Desse merknadane vil berre vere synlege for deg og gjennomgåingspersonane våre."
 
 msgid "Submit Version"
 msgstr "Send inn versjonen"
