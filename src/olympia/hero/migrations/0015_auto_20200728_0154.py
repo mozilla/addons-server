@@ -7,7 +7,7 @@ import olympia.hero.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('hero', '0013_auto_20200715_1751'),
+        ('hero', '0014_auto_20200717_1120'),
     ]
 
     operations = [

@@ -2,9 +2,10 @@ from django.core.exceptions import ValidationError
 
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_uploaded_file
+from olympia.constants.promoted import RECOMMENDED
 from olympia.hero.models import (
     PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
-from olympia.discovery.models import DiscoveryItem
+from olympia.promoted.models import PromotedAddon, PromotedApproval
 
 
 class TestPrimaryHero(TestCase):
@@ -14,13 +15,14 @@ class TestPrimaryHero(TestCase):
 
     def test_image_url(self):
         ph = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
             select_image=self.phi)
         assert ph.image_url == (
             'http://testserver/user-media/hero-featured-image/transparent.jpg')
         ph.update(select_image=None)
         assert ph.image_url is None
 
+    def test_gradiant(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
             gradient_color='#C60084')
@@ -28,7 +30,8 @@ class TestPrimaryHero(TestCase):
 
     def test_clean_requires_recommended(self):
         ph = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(), group_id=RECOMMENDED.id),
             gradient_color='#C60184', select_image=self.phi)
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
@@ -45,7 +48,7 @@ class TestPrimaryHero(TestCase):
 
     def test_clean_external_requires_homepage(self):
         ph = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
             is_external=True, gradient_color='#C60184', select_image=self.phi)
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
@@ -84,11 +87,12 @@ class TestPrimaryHero(TestCase):
 
     def test_clean_only_enabled(self):
         hero = PrimaryHero.objects.create(
-            disco_addon=DiscoveryItem.objects.create(addon=addon_factory()),
+            promoted_addon=PromotedAddon.objects.create(
+                addon=addon_factory(), group_id=RECOMMENDED.id),
             gradient_color='#C60184', select_image=self.phi)
-        hero.disco_addon.update(recommendable=True)
-        hero.disco_addon.addon.current_version.update(
-            recommendation_approved=True)
+        PromotedApproval.objects.create(
+            version=hero.promoted_addon.addon.current_version,
+            group_id=RECOMMENDED.id)
         assert not hero.enabled
         assert not PrimaryHero.objects.filter(enabled=True).exists()
         # It should still validate even if there are no other enabled shelves,

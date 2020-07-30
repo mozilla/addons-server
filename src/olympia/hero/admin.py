@@ -30,6 +30,7 @@ class PrimaryHeroInline(admin.StackedInline):
     model = PrimaryHero
     fields = (
         'description',
+        'promoted_addon',
         'select_image',
         'gradient_color',
         'is_external',

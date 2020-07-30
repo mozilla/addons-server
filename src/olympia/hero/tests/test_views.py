@@ -3,7 +3,7 @@ import json
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, reverse_ns
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.discovery.models import DiscoveryItem
+from olympia.promoted.models import PromotedAddon
 
 from ..models import (
     PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
@@ -65,7 +65,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         hero_external.update(enabled=True)
         # don't enable the 3rd PrimaryHero object
         with self.assertNumQueries(11):
-            # 14 queries:
+            # 11 queries:
             # - 1 to fetch the primaryhero/discoveryitem items
             # - 1 to fetch the add-ons (can't be joined with the previous one
             #   because we want to hit the Addon transformer)
