@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-30 09:31+0000\n"
+"PO-Revision-Date: 2020-07-30 09:26+0000\n"
 "Last-Translator: Giorgio Romano <ascotwork@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -5608,12 +5608,11 @@ msgstr "Sistemi operativi:"
 msgid "Applications:"
 msgstr "Applicazioni:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Richiedi allo sviluppatore di rispondere in meno di…"
+msgstr "Rifiuto posticipato, è richiesto allo sviluppatore di effettuare la correzione in meno di…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Rifiuto immediato, solo in caso di gravi problemi di sicurezza."
 
 msgid "days"
 msgstr "giorni"
@@ -6233,13 +6232,11 @@ msgstr "Disattiva l’approvazione automatica dei componenti elencati"
 msgid "Enable Listed Auto-Approval"
 msgstr "Attiva l’approvazione automatica dei componenti elencati"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Disattiva l’approvazione automatica dei componenti elencati"
+msgstr ""
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Attiva l’approvazione automatica dei componenti elencati"
+msgstr ""
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Approvazione automatica attualmente disattivata fino al {date}"
@@ -6341,9 +6338,8 @@ msgstr "Più recente"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versioni contrassegnate dagli scanner su altre pagine."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} versioni contrassegnate dagli scanner su altre pagine."
+msgstr "{num} versioni contrassegnate per la revisione manuale su altre pagine."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versioni in attesa di rifiuto su altre pagine."
@@ -6402,13 +6398,11 @@ msgstr ""
 msgid "Weight:"
 msgstr "Dimensioni:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Contrassegnate da scanner automatici"
+msgstr ""
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Contrassegna per revisione umana"
+msgstr "Contrassegnato per la revisione manuale"
 
 msgid "Download"
 msgstr "Download"
