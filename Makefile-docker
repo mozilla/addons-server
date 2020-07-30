@@ -242,6 +242,13 @@ tdd: ## run the entire test suite, but stop on the first error
 test_failed: ## rerun the failed tests from the previous run
 	pytest --lf $(ARGS) $(APP)
 
+.PHONY: run_js_tests
+run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
+	NODE_PATH=$(NODE_MODULES) $$(npm bin $(NPM_ARGS))/jest
+
+.PHONY: watch_js_tests
+watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
+	NODE_PATH=$(NODE_MODULES) $$(npm bin $(NPM_ARGS))/jest --watch
 
 .PHONY: help_submake
 help_submake:

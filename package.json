@@ -23,5 +23,8 @@
     "uglify-js": "3.10.0",
     "underscore": "1.10.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "jest-date-mock": "^1.0.8"
+  }
 }
