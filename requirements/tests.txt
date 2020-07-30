@@ -6,6 +6,9 @@ apipkg==1.5 \
 execnet==1.7.1 \
     --hash=sha256:cacb9df31c9680ec5f95553976c4da484d407e85e41c83cb812aa014f0eddc50 \
     --hash=sha256:d4efd397930c46415f62f8a31388d6be4f27a91d7550eb79bc64a756e0056547
+# iniconfig is required by pytest
+iniconfig==1.0.0 \
+    --hash=sha256:aa0b40f50a00e72323cb5d41302f9c6165728fd764ac8822aa3fff00a40d56b4
 # pathlib2 is used by pytest and ipython
 pathlib2==2.3.5 \
     --hash=sha256:0ec8205a157c80d7acc301c0b18fbd5d44fe655968f5d947b6ecef5290fc35db \
