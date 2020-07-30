@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-30 11:18+0000\n"
+"PO-Revision-Date: 2020-07-30 12:23+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1373,7 +1373,7 @@ msgid "Verified - Tier 2"
 msgstr ""
 
 msgid "Line"
-msgstr ""
+msgstr "Linje"
 
 msgid "Spotlight"
 msgstr ""
@@ -1780,17 +1780,17 @@ msgid "Invalid or corrupt add-on file."
 msgstr "Ugyldig eller skada tilleggsfil."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "Utviklar-API-nøkkelen din vart funnen i den innsende fila. For å beskytte kontoen din vil nøkkelen bli kalla tilbake."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "Utviklar-API-nøkkelen til ein medopphavsmann vart funnen i den innsende fila. For å beskytte tillegget ditt vil nøkkelen bli kalla tilbake."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "Validering genererte for mange feil/åtvaringar slik at %s meldingar vart avkutta. Etter å ha adressert dei synlige meldingane, vil du kunne sjå dei andre."
 
 msgid "Updated"
 msgstr "Oppdatert"
