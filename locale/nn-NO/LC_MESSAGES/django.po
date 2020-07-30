@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-30 10:59+0000\n"
+"PO-Revision-Date: 2020-07-30 11:09+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1268,16 +1268,16 @@ msgid "Seasonal"
 msgstr "Sesong"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr "Last ned Firefox-tema for alle dei fire årstidene — haust, vinter, vår og sommar. Haustlauv, snødekte fjelltoppar, solfylte sommardagar og vårblomster."
+msgstr "Last ned Firefox-tema for alle dei fire årstidene—haust, vinter, vår og sommar. Haustlauv, snødekte fjelltoppar, solfylte sommardagar og vårblomster."
 
 msgid "Solid"
 msgstr "Fast"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Last ned Firefox-tema med fargar og graderingar for å tilpasse nettlesaren din. Denne kategorien inkluderer dristig raud, pastell, mjuke gråtonar og mykje meir."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Last ned Firefox-tema som inneheld ei mengde ulike sportar. Denne kategorien inkluderer landsflagg, idrettslag, fotball, hockey og meir."
 
 msgid "Websites"
 msgstr "Nettstadar"
