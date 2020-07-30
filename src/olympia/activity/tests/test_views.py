@@ -197,13 +197,12 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
         self.note4 = self.log(u'fiiiine', amo.LOG.REVIEWER_REPLY_VERSION,
                               self.days_ago(0))
         self._login_developer()
-        with self.assertNumQueries(19):
+        with self.assertNumQueries(17):
             # - 2 savepoints because of tests
             # - 2 user and groups
             # - 2 addon and its translations
             # - 1 addon author lookup (permission check)
             # - 1 version (no transforms at all)
-            # - 1 activity log version to find relevant activity logs
             # - 1 count of activity logs
             # - 1 activity logs themselves
             # - 1 user
@@ -211,7 +210,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
             #   enough yet to pass that to the activity log queryset, it's
             #   difficult since it's not a FK)
             # - 2 version and its translations (same issue)
-            # - 3 for highlighting (repeats the query to fetch the activity log
+            # - 2 for highlighting (repeats the query to fetch the activity log
             #   per version)
             response = self.client.get(self.url)
             assert response.status_code == 200

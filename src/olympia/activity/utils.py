@@ -305,7 +305,7 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
         # for automated messages), build the context for them and send them
         # their copy.
         log_users = {
-            alog.user for alog in ActivityLog.objects.for_version(version) if
+            alog.user for alog in ActivityLog.objects.for_versions(version) if
             acl.is_user_any_kind_of_reviewer(alog.user)}
         reviewers = log_users - addon_authors - task_user - {note.user}
         reviewer_context_dict = author_context_dict.copy()

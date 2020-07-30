@@ -130,6 +130,6 @@ def version_disabled(version):
 
 @library.global_function
 def pending_activity_log_count_for_developer(version):
-    alog = ActivityLog.objects.for_version(version).filter(
+    alog = ActivityLog.objects.for_versions(version).filter(
         action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
     return filter_queryset_to_pending_replies(alog).count()

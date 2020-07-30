@@ -219,9 +219,20 @@ class TestActivityLog(TestCase):
         version = Version.objects.all()[0]
         ActivityLog.create(amo.LOG.REJECT_VERSION, version.addon, version,
                            user=self.request.user)
-        entries = ActivityLog.objects.for_version(version)
+        entries = ActivityLog.objects.for_versions(version)
         assert len(entries) == 1
         assert version.get_url_path() in str(entries[0])
+
+    def test_version_log_multiple(self):
+        addon = Addon.objects.get()
+        version = version_factory(addon=addon)
+        addon_factory()  # To create an extra unrelated version
+        for version in Version.objects.all():
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION, version.addon, version,
+                user=self.request.user)
+        entries = ActivityLog.objects.for_versions(addon.versions.all())
+        assert len(entries) == 2
 
     def test_version_log_unlisted_addon(self):
         version = Version.objects.all()[0]
@@ -230,7 +241,7 @@ class TestActivityLog(TestCase):
         self.make_addon_unlisted(version.addon)
         ActivityLog.create(amo.LOG.REJECT_VERSION, version.addon, version,
                            user=self.request.user)
-        entries = ActivityLog.objects.for_version(version)
+        entries = ActivityLog.objects.for_versions(version)
         assert len(entries) == 1
         assert url_path not in str(entries[0])
 

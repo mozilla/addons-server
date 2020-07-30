@@ -291,11 +291,11 @@ class TestBlocklistSubmissionAdmin(TestCase):
             action=log.action).last()
         assert block_log_by_guid == log
 
-        assert log == ActivityLog.objects.for_version(first_version).last()
-        assert log == ActivityLog.objects.for_version(second_version).last()
-        assert log == ActivityLog.objects.for_version(
+        assert log == ActivityLog.objects.for_versions(first_version).last()
+        assert log == ActivityLog.objects.for_versions(second_version).last()
+        assert log == ActivityLog.objects.for_versions(
             deleted_addon_version).last()
-        assert not ActivityLog.objects.for_version(pending_version).exists()
+        assert not ActivityLog.objects.for_versions(pending_version).exists()
         assert [msg.message for msg in response.context['messages']] == [
             'The blocklist submission "No Sign-off: guid@; dfd; some reason" '
             'was added successfully.']
@@ -494,7 +494,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block_log = ActivityLog.objects.for_block(new_block).filter(
             action=add_log.action).last()
         assert block_log == add_log
-        vlog = ActivityLog.objects.for_version(
+        vlog = ActivityLog.objects.for_versions(
             new_addon.current_version).last()
         assert vlog == add_log
 
@@ -522,7 +522,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block_log = ActivityLog.objects.for_block(existing_and_partial).filter(
             action=edit_log.action).last()
         assert block_log == edit_log
-        vlog = ActivityLog.objects.for_version(
+        vlog = ActivityLog.objects.for_versions(
             partial_addon.current_version).last()
         assert vlog == edit_log
 
@@ -533,7 +533,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert existing_and_full.url != 'dfd'
         assert not ActivityLog.objects.for_addons(
             existing_and_full.addon).exists()
-        assert not ActivityLog.objects.for_version(
+        assert not ActivityLog.objects.for_versions(
             existing_and_full.addon.current_version).exists()
 
         assert submission.input_guids == (
@@ -678,7 +678,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block_log = ActivityLog.objects.for_block(new_block).filter(
             action=log.action).last()
         assert block_log == log
-        vlog = ActivityLog.objects.for_version(
+        vlog = ActivityLog.objects.for_versions(
             new_addon.current_version).last()
         assert vlog == log
 
@@ -701,7 +701,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block_log = ActivityLog.objects.for_block(existing_zero_to_max).filter(
             action=log.action).last()
         assert block_log == log
-        vlog = ActivityLog.objects.for_version(
+        vlog = ActivityLog.objects.for_versions(
             existing_zero_to_max.addon.current_version).last()
         assert vlog == log
 
@@ -713,7 +713,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert existing_one_to_ten.in_legacy_blocklist is False
         assert not ActivityLog.objects.for_addons(
             existing_one_to_ten.addon).exists()
-        assert not ActivityLog.objects.for_version(
+        assert not ActivityLog.objects.for_versions(
             existing_one_to_ten.addon.current_version).exists()
 
         submission = BlocklistSubmission.objects.get()
@@ -1212,7 +1212,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block_log = ActivityLog.objects.for_block(new_block).filter(
             action=add_log.action).last()
         assert block_log == add_log
-        vlog = ActivityLog.objects.for_version(addon.current_version).last()
+        vlog = ActivityLog.objects.for_versions(addon.current_version).last()
         assert vlog == add_log
 
         assert signoff_log.action == amo.LOG.BLOCKLIST_SIGNOFF.id
@@ -1557,7 +1557,7 @@ class TestBlockAdminEdit(TestCase):
         block_log_by_guid = ActivityLog.objects.for_guidblock('guid@').filter(
             action=log.action).last()
         assert block_log_by_guid == log
-        vlog = ActivityLog.objects.for_version(
+        vlog = ActivityLog.objects.for_versions(
             self.addon.current_version).last()
         assert vlog == log
 
@@ -2050,7 +2050,7 @@ class TestBlockAdminDelete(TestCase):
         else:
             assert add_log.details['signoff_state'] == 'No Sign-off'
             assert 'signoff_by' not in add_log.details
-        vlog = ActivityLog.objects.for_version(
+        vlog = ActivityLog.objects.for_versions(
             block_from_addon.current_version).last()
         assert vlog == add_log
 
