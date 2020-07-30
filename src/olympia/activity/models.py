@@ -239,7 +239,7 @@ class ActivityLogManager(ManagerBase):
         return self.filter(blocklog__block=block)
 
     def for_guidblock(self, guid):
-        return self.filter(blocklog__block__guid=guid)
+        return self.filter(blocklog__guid=guid)
 
     def for_developer(self):
         return self.exclude(action__in=constants.activity.LOG_ADMINS +
