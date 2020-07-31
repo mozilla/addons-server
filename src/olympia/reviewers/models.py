@@ -846,6 +846,7 @@ class AutoApprovalSummary(ModelBase):
         help_text=_('Has auto-approval disabled/delayed flag set'))
     is_promoted_prereview = models.BooleanField(
         default=False,
+        null=True,  # TODO: remove this once code has deployed to prod.
         help_text=_('Is in a promoted addon group that requires pre-review'))
     should_be_delayed = models.BooleanField(
         default=False,
