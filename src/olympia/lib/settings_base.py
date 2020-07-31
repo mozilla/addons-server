@@ -85,10 +85,10 @@ LESS_BIN = env(
 CLEANCSS_BIN = env(
     'CLEANCSS_BIN', default='node_modules/less/bin/lessc')
 
-# Path to uglifyjs (our JS minifier).
-# Set as None to use YUI instead (at your risk).
-UGLIFY_BIN = env(
-    'UGLIFY_BIN', default='node_modules/uglify-js/bin/uglifyjs')
+# Path to our JS minifier.
+JS_MINIFIER_BIN = env(
+    'JS_MINIFIER_BIN', default='node_modules/terser/bin/terser'
+)
 
 # rsvg-convert is used to save our svg static theme previews to png
 RSVG_CONVERT_BIN = env('RSVG_CONVERT_BIN', default='rsvg-convert')
