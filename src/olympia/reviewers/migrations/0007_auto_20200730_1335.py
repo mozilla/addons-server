@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='autoapprovalsummary',
             name='is_promoted_prereview',
-            field=models.BooleanField(default=False, help_text='Is in a promoted addon group that requires pre-review', null=True),
+            field=models.BooleanField(default=None, help_text='Is in a promoted addon group that requires pre-review', null=True),
         ),
         migrations.AlterField(
             model_name='autoapprovalsummary',
