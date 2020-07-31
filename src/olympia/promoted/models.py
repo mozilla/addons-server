@@ -46,8 +46,7 @@ class PromotedAddon(ModelBase):
         return bool(
             self.addon.current_version and
             self.group != NOT_PROMOTED.id and
-            self.addon.current_version.promoted_approvals.filter(
-                group_id=self.group_id).exists())
+            self.group in self.addon.current_version.approved_for_groups)
 
 
 class PromotedApproval(ModelBase):

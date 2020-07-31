@@ -25,6 +25,7 @@ class TestPromotedAddon(TestCase):
         # the current version needs to be approved also
         PromotedApproval.objects.create(
             version=addon.current_version, group_id=promoted.LINE.id)
+        addon.reload()
         assert addon.promotedaddon.is_addon_currently_promoted
 
         # but not if it's for a different type of promotion

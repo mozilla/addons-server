@@ -37,6 +37,7 @@ class TestPrimaryHero(TestCase):
         PromotedApproval.objects.create(
             version=ph.promoted_addon.addon.current_version,
             group_id=RECOMMENDED.id)
+        ph.reload()
         assert ph.promoted_addon.addon.is_promoted(group=RECOMMENDED)
         ph.clean()  # it raises if there's an error
 
@@ -62,6 +63,7 @@ class TestPrimaryHero(TestCase):
         PromotedApproval.objects.create(
             version=ph.promoted_addon.addon.current_version,
             group_id=RECOMMENDED.id)
+        ph.reload()
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
         ph.enabled = True
@@ -87,6 +89,7 @@ class TestPrimaryHero(TestCase):
         PromotedApproval.objects.create(
             version=hero.promoted_addon.addon.current_version,
             group_id=RECOMMENDED.id)
+        hero.reload()
         assert not hero.enabled
         assert not PrimaryHero.objects.filter(enabled=True).exists()
         # It should still validate even if there are no other enabled shelves,

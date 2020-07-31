@@ -31,7 +31,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID, RECOMMENDED
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -605,6 +605,31 @@ class Version(OnChangeMixin, ModelBase):
                 f.version = version
 
     @classmethod
+    def transformer_promoted(cls, versions):
+        """Attach the promoted approvals to the versions."""
+        if not versions:
+            return
+
+        PromotedApproval = versions[0].promoted_approvals.model
+
+        ids = set(v.id for v in versions)
+
+        approvals = list(
+            PromotedApproval.objects.filter(version_id__in=ids)
+                            .values_list('version_id', 'group_id', named=True))
+
+        promoted_dict = {
+            version_id: list(groups)
+            for version_id, groups in sorted_groupby(approvals, 'version_id')}
+        for version in versions:
+            v_id = version.id
+            groups = [
+                PROMOTED_GROUPS_BY_ID.get(pro.group_id)
+                for pro in promoted_dict.get(v_id, [])
+                if pro.group_id in PROMOTED_GROUPS_BY_ID]
+            version.approved_for_groups = groups
+
+    @classmethod
     def transformer_activity(cls, versions):
         """Attach all the activity to the versions."""
         from olympia.activity.models import VersionLog
@@ -747,6 +772,15 @@ class Version(OnChangeMixin, ModelBase):
         except ScannerResult.DoesNotExist:
             score = None
         return '{:0.0f}%'.format(score * 100) if score else 'n/a'
+
+    @cached_property
+    def approved_for_groups(self):
+        approvals = list(self.promoted_approvals.all())
+        return [
+            PROMOTED_GROUPS_BY_ID.get(pro.group_id)
+            for pro in approvals
+            if pro.group_id in PROMOTED_GROUPS_BY_ID
+        ]
 
 
 class VersionReviewerFlags(ModelBase):

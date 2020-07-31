@@ -1598,6 +1598,7 @@ class TestAddonModels(TestCase):
 
         addon.current_version.promoted_approvals.all()[0].update(
             group_id=SPOTLIGHT.id)
+        del addon.current_version.approved_for_groups
         addon.promotedaddon.update(group_id=RECOMMENDED.id)
         del addon.is_recommended
         # similarly if the current_version wasn't reviewed for recommended
@@ -1657,6 +1658,7 @@ class TestAddonModels(TestCase):
         # The latest version is approved for the same group.
         PromotedApproval.objects.create(
             version=addon.current_version, group_id=SPOTLIGHT.id)
+        del addon.current_version.approved_for_groups
         assert addon.is_promoted()
         assert addon.is_promoted(group=SPOTLIGHT)
         # not for other groups though
@@ -1674,6 +1676,7 @@ class TestAddonModels(TestCase):
 
         PromotedApproval.objects.create(
             version=addon.current_version, group_id=VERIFIED_ONE.id)
+        del addon.current_version.approved_for_groups
         assert addon.is_promoted(group=VERIFIED_ONE)
 
         # Application specific group membership should work too

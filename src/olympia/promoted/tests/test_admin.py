@@ -67,9 +67,27 @@ class TestPromotedAddonAdmin(TestCase):
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.login(email=user.email)
-        response = self.client.get(self.list_url, follow=True)
+
+        with self.assertNumQueries(10):
+            # 1. select current user
+            # 2. savepoint (because we're in tests)
+            # 3. select groups
+            # 4. pagination count
+            # 5. pagination count (double…)
+            # 6. select list of promoted addons, ordered
+            # 7. prefetch add-ons
+            # 8. select translations for add-ons from 7.
+            # 9. prefetch PromotedApprovals for add-ons current_versions
+            # 10. savepoint (because we're in tests)
+            response = self.client.get(self.list_url, follow=True)
+
         assert response.status_code == 200
         assert 'FooBâr' in response.content.decode('utf-8')
+
+        # double check it scales.
+        PromotedAddon.objects.create(addon=addon_factory(name='FooBâr'))
+        with self.assertNumQueries(10):
+            self.client.get(self.list_url, follow=True)
 
     def test_can_edit_with_discovery_edit_permission(self):
         addon = addon_factory()
