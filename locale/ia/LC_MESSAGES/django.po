@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-31 18:52+0000\n"
+"PO-Revision-Date: 2020-07-31 20:17+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -927,17 +927,14 @@ msgstr "Le session(es) de usator {user} ha essite reinitialisate."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Le usator {user} ha essite limitate pro le ambito \"{0}\""
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "Contento de {addon} {version} rejectate."
+msgstr "Contento de {addon} {version} programmate."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Contento rejectate"
+msgstr "Contento rejectate programmate"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} rejectate."
+msgstr "{addon} {version} rejectate programmate."
 
 #, fuzzy
 msgid "Rejection scheduled"
@@ -6293,7 +6290,7 @@ msgid "Scanners score:"
 msgstr "Valutation del scanditores:"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "Le valutation del scanditores representa le probabilitate de esser maligne de iste version, in base al resultatos del scanditores."
 
 msgid "Weight:"
 msgstr "Peso:"
