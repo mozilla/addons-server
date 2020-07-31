@@ -842,18 +842,11 @@ def req_factory_factory(url, user=None, post=False, data=None, session=None):
     return req
 
 
-user_factory_counter = 0
-
-
 def user_factory(**kw):
-    global user_factory_counter
-    username = kw.pop('username', u'factoryûser%d' % user_factory_counter)
-    email = kw.pop(
-        'email', u'factoryuser%d@mozîlla.com' % user_factory_counter)
+    identifier = str(uuid.uuid4())
+    username = kw.pop('username', 'factoryûser-%s' % identifier)
+    email = kw.pop('email', '%s@mozîlla.com' % identifier)
     user = UserProfile.objects.create(username=username, email=email, **kw)
-
-    if 'username' not in kw:
-        user_factory_counter = user.id + 1
     return user
 
 
