@@ -844,9 +844,10 @@ class AutoApprovalSummary(ModelBase):
     has_auto_approval_disabled = models.BooleanField(
         default=False,
         help_text=_('Has auto-approval disabled/delayed flag set'))
-    is_recommendable = models.BooleanField(
+    is_promoted_prereview = models.BooleanField(
         default=False,
-        help_text=_('Is in the recommended promoted addon group'))
+        null=True,  # TODO: remove this once code has deployed to prod.
+        help_text=_('Is in a promoted addon group that requires pre-review'))
     should_be_delayed = models.BooleanField(
         default=False,
         help_text=_("Delayed because it's the first listed version"))
@@ -872,7 +873,7 @@ class AutoApprovalSummary(ModelBase):
     auto_approval_verdict_fields = (
         'has_auto_approval_disabled',
         'is_locked',
-        'is_recommendable',
+        'is_promoted_prereview',
         'should_be_delayed',
         'is_blocked',
     )
@@ -1173,15 +1174,15 @@ class AutoApprovalSummary(ModelBase):
         return auto_approval_disabled or auto_approval_delayed
 
     @classmethod
-    def check_is_recommendable(cls, version):
-        """Check whether the add-on is in the recommended promoted addon group.
+    def check_is_promoted_prereview(cls, version):
+        """Check whether the add-on is a promoted addon group that requires
+        pre-review.
 
         Only applies to listed versions."""
-        return (
-            version.channel == amo.RELEASE_CHANNEL_LISTED and
-            version.addon.is_promoted(
-                group=RECOMMENDED, currently_approved=False)
-        )
+        if not version.channel == amo.RELEASE_CHANNEL_LISTED:
+            return False
+        promo = getattr(version.addon, 'promotedaddon', None)
+        return bool(promo and promo.group.pre_review)
 
     @classmethod
     def check_should_be_delayed(cls, version):

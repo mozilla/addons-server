@@ -14,7 +14,8 @@ from olympia.addons.models import (
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.blocklist.models import Block
-from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
+from olympia.constants.promoted import (
+    LINE, NOT_PROMOTED, RECOMMENDED, STRATEGIC)
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
@@ -1658,16 +1659,25 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(
             self.version) is True
 
-    def test_check_is_recommendable(self):
-        assert AutoApprovalSummary.check_is_recommendable(
+    def test_check_is_promoted_prereview(self):
+        assert AutoApprovalSummary.check_is_promoted_prereview(
             self.version) is False
 
         promoted = PromotedAddon.objects.create(addon=self.addon)
-        assert AutoApprovalSummary.check_is_recommendable(
+        assert AutoApprovalSummary.check_is_promoted_prereview(
             self.version) is False
 
         promoted.update(group_id=RECOMMENDED.id)
-        assert AutoApprovalSummary.check_is_recommendable(self.version) is True
+        assert AutoApprovalSummary.check_is_promoted_prereview(
+            self.version) is True
+
+        promoted.update(group_id=STRATEGIC.id)  # STRATEGIC isn't prereview
+        assert AutoApprovalSummary.check_is_promoted_prereview(
+            self.version) is False
+
+        promoted.update(group_id=LINE.id)  # LINE is though
+        assert AutoApprovalSummary.check_is_promoted_prereview(
+            self.version) is True
 
     def test_check_should_be_delayed(self):
         assert AutoApprovalSummary.check_should_be_delayed(
@@ -1859,7 +1869,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'has_auto_approval_disabled': False,
             'is_locked': False,
-            'is_recommendable': False,
+            'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
         }
@@ -1877,7 +1887,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'has_auto_approval_disabled': False,
             'is_locked': True,
-            'is_recommendable': False,
+            'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
         }
@@ -1890,7 +1900,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'has_auto_approval_disabled': False,
             'is_locked': True,
-            'is_recommendable': False,
+            'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
         }
@@ -1902,7 +1912,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'has_auto_approval_disabled': False,
             'is_locked': False,
-            'is_recommendable': False,
+            'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
         }
@@ -1914,7 +1924,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'has_auto_approval_disabled': False,
             'is_locked': False,
-            'is_recommendable': False,
+            'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
         }
@@ -1927,20 +1937,20 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'has_auto_approval_disabled': True,
             'is_locked': False,
-            'is_recommendable': False,
+            'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
-    def test_calculate_verdict_is_recommendable(self):
+    def test_calculate_verdict_is_promoted_prereview(self):
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, is_recommendable=True)
+            version=self.version, is_promoted_prereview=True)
         info = summary.calculate_verdict()
         assert info == {
             'has_auto_approval_disabled': False,
             'is_locked': False,
-            'is_recommendable': True,
+            'is_promoted_prereview': True,
             'should_be_delayed': False,
             'is_blocked': False,
         }
@@ -1953,7 +1963,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'has_auto_approval_disabled': False,
             'is_locked': False,
-            'is_recommendable': False,
+            'is_promoted_prereview': False,
             'should_be_delayed': False,
             'is_blocked': True,
         }
@@ -1966,7 +1976,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'has_auto_approval_disabled': False,
             'is_locked': False,
-            'is_recommendable': False,
+            'is_promoted_prereview': False,
             'should_be_delayed': True,
             'is_blocked': False,
         }
@@ -1976,7 +1986,7 @@ class TestAutoApprovalSummary(TestCase):
         verdict_info = {
             'has_auto_approval_disabled': True,
             'is_locked': True,
-            'is_recommendable': True,
+            'is_promoted_prereview': True,
             'should_be_delayed': True,
             'is_blocked': True,
         }
@@ -1986,7 +1996,7 @@ class TestAutoApprovalSummary(TestCase):
             'Has auto-approval disabled/delayed flag set',
             'Version string and guid match a blocklist Block',
             'Is locked by a reviewer',
-            'Is in the recommended promoted addon group',
+            'Is in a promoted addon group that requires pre-review',
             "Delayed because it's the first listed version",
         ]
 
