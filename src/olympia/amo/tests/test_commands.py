@@ -128,8 +128,8 @@ def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
 @pytest.mark.static_assets
 def test_compress_assets_correctly_compresses_js(settings, tmpdir):
     """
-    Make sure that `compress_assets` correctly calls uglifyjs and that it
-    generates a minified file.
+    Make sure that `compress_assets` correctly calls the JS minifier and that
+    it generates a minified file.
     """
     settings.MINIFY_BUNDLES = {
         'js': {'zamboni/_test_js': ['js/zamboni/global.js']}}

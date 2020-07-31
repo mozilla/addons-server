@@ -196,12 +196,15 @@ class Command(BaseCommand):
 
     def _minify(self, ftype, file_in, file_out):
         """Run the proper minifier on the file."""
-        if ftype == 'js' and hasattr(settings, 'UGLIFY_BIN'):
-            opts = {'method': 'UglifyJS', 'bin': settings.UGLIFY_BIN}
-            run_command('{uglify} -o {target} {source} -m'.format(
-                uglify=opts['bin'],
-                target=file_out,
-                source=file_in))
+        if ftype == 'js' and hasattr(settings, 'JS_MINIFIER_BIN'):
+            opts = {'method': 'terser', 'bin': settings.JS_MINIFIER_BIN}
+            run_command(
+                '{bin} --compress --mangle -o {target} {source} -m'.format(
+                    bin=opts['bin'],
+                    target=file_out,
+                    source=file_in
+                )
+            )
         elif ftype == 'css' and hasattr(settings, 'CLEANCSS_BIN'):
             opts = {'method': 'clean-css', 'bin': settings.CLEANCSS_BIN}
             run_command('{cleancss} -o {target} {source}'.format(

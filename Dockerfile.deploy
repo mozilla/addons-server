@@ -95,7 +95,7 @@ WORKDIR /data/olympia
 RUN echo "from olympia.lib.settings_base import *\n\
 LESS_BIN = 'node_modules/less/bin/lessc'\n\
 CLEANCSS_BIN = 'node_modules/clean-css-cli/bin/cleancss'\n\
-UGLIFY_BIN = 'node_modules/uglify-js/bin/uglifyjs'\n\
+JS_MINIFIER_BIN = 'node_modules/terser/bin/terser'\n\
 FXA_CONFIG = {'default': {}, 'internal': {}}\n"\
 > settings_local.py
 
