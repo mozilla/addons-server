@@ -86,7 +86,6 @@ CLEANCSS_BIN = env(
     'CLEANCSS_BIN', default='node_modules/less/bin/lessc')
 
 # Path to our JS minifier.
-# Set as None to use YUI instead (at your risk).
 JS_MINIFIER_BIN = env(
     'JS_MINIFIER_BIN', default='node_modules/terser/bin/terser'
 )
