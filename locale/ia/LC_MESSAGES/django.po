@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-31 18:28+0000\n"
+"PO-Revision-Date: 2020-07-31 18:37+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5037,7 +5037,7 @@ msgstr "Ascolta le contento del paginas web. Plus de 40 linguas supportate."
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Duple-clicca ulle parola pro vider al instante su definition."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5515,7 +5515,7 @@ msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "Requirer al disveloppator de responder in minus que…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Rejectar immediatemente. Usa solo in caso de serie problemas de securitate."
 
 msgid "days"
 msgstr "dies"
