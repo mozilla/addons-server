@@ -2,7 +2,7 @@
   'use strict';
 
   // `$` is passed by jQuery itself when calling `jQuery(stats_stats)`.
-  var stats_stats = function ($, injectedSessionStorage) {
+  const stats_stats = function ($, injectedSessionStorage) {
     var internalSessionStorage =
       injectedSessionStorage || window.sessionStorage;
 
