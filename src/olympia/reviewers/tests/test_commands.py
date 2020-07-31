@@ -25,7 +25,7 @@ from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, get_reviewing_cache, set_reviewing_cache)
 from olympia.scanners.models import ScannerResult, ScannerRule
-from olympia.versions.models import VersionReviewerFlags
+from olympia.versions.models import Version, VersionReviewerFlags
 
 
 class AutoApproveTestsMixin(object):
@@ -733,6 +733,366 @@ class TestSendInfoRequestLastWarningNotification(TestCase):
 
         flags.reload()
         assert flags.notified_about_expiring_info_request is True
+
+
+class TestSendPendingRejectionLastWarningNotification(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = user_factory(pk=settings.TASK_USER_ID)
+
+    def test_not_pending_rejection(self):
+        author = user_factory()
+        addon = addon_factory(users=[author])
+        version_factory(addon=addon)
+        for version in addon.versions.all():
+            # Add some activity logs, but no pending_rejection flag.
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+    def test_not_close_to_deadline(self):
+        author = user_factory()
+        addon = addon_factory(users=[author])
+        version_factory(addon=addon)
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(days=2))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+    def test_addon_already_not_public(self):
+        author = user_factory()
+        addon = addon_factory(users=[author])
+        version_factory(addon=addon)
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        # Disabled by user: we don't notify.
+        addon.update(disabled_by_user=True)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+        # Disabled by mozilla: we don't notify.
+        addon.update(disabled_by_user=False, status=amo.STATUS_DISABLED)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+        # Deleted: we don't notify.
+        addon.update(status=amo.STATUS_DELETED)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+    def test_versions_already_disabled(self):
+        author = user_factory()
+        addon = addon_factory(users=[author])
+        version_factory(addon=addon)
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+            # Disable files: we should be left with no versions to notify the
+            # developers about, since they have already been disabled.
+            version.files.update(status=amo.STATUS_DISABLED)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+    def test_more_recent_version_unreviewed_not_pending_rejection(self):
+        author = user_factory()
+        addon = addon_factory(users=[author])
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_DISABLED})
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        # Add another version not pending rejection but unreviewed: we should
+        # not notify developers in that case.
+        version_factory(
+            addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+    def test_more_recent_version_public_not_pending_rejection(self):
+        author = user_factory()
+        addon = addon_factory(users=[author])
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_DISABLED})
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        # Add another version public and not pending rejection: we should
+        # not notify developers in that case.
+        version_factory(addon=addon)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+    def test_notification_already_sent_for_this_addon(self):
+        author = user_factory()
+        addon = addon_factory(users=[author])
+        # Developers were already notified for this add-on, so we don't do it
+        # again.
+        AddonReviewerFlags.objects.create(
+            addon=addon, notified_about_expiring_delayed_rejections=True)
+        version_factory(addon=addon)
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+    def test_pending_rejection_close_to_deadline(self):
+        author = user_factory()
+        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        version_factory(addon=addon, version='42.1')
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version,
+                details={'comments': 'Some cômments'}, user=self.user)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 1
+        assert addon.reviewerflags.notified_about_expiring_delayed_rejections
+        message = mail.outbox[0]
+        assert message.subject == (
+            'Mozilla Add-ons: %s will be disabled on addons.mozilla.org'
+            % str(addon.name)
+        )
+        assert message.to == [author.email]
+        assert 'Some cômments' in message.body
+        for version in addon.versions.all():
+            assert version.version in message.body
+
+    def test_pending_rejection_one_version_already_disabled(self):
+        author = user_factory()
+        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        current_version = addon.current_version
+        disabled_version = version_factory(
+            addon=addon, version='42.1',
+            file_kw={'status': amo.STATUS_DISABLED})
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 1
+        assert addon.reviewerflags.notified_about_expiring_delayed_rejections
+        message = mail.outbox[0]
+        assert message.to == [author.email]
+        assert 'fôo' in message.body
+        assert current_version.version in message.body
+        assert disabled_version.version not in message.body
+
+    def test_more_recent_version_disabled(self):
+        author = user_factory()
+        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        version1 = addon.current_version
+        version2 = version_factory(addon=addon, version='42.1')
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        more_recent_version = version_factory(
+            addon=addon, file_kw={'status': amo.STATUS_DISABLED},
+            version='42.2')
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 1
+        assert addon.reviewerflags.notified_about_expiring_delayed_rejections
+        message = mail.outbox[0]
+        assert message.to == [author.email]
+        assert 'fôo' in message.body
+        assert version1.version in message.body
+        assert version2.version in message.body
+        assert more_recent_version.version not in message.body
+
+    def test_more_recent_version_deleted(self):
+        author = user_factory()
+        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        version1 = addon.current_version
+        version2 = version_factory(addon=addon, version='42.1')
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        more_recent_version = version_factory(addon=addon, version='43.0')
+        more_recent_version.delete()
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 1
+        assert addon.reviewerflags.notified_about_expiring_delayed_rejections
+        message = mail.outbox[0]
+        assert message.to == [author.email]
+        assert 'fôo' in message.body
+        assert version1.version in message.body
+        assert version2.version in message.body
+        assert more_recent_version.version not in message.body
+
+    def test_more_recent_version_pending_rejection_as_well(self):
+        author = user_factory()
+        addon = addon_factory(users=[author], version_kw={'version': '42.0'})
+        version1 = addon.current_version
+        version2 = version_factory(addon=addon, version='42.1')
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        more_recent_version = version_factory(addon=addon)
+        VersionReviewerFlags.objects.create(
+            version=more_recent_version,
+            pending_rejection=datetime.now() + timedelta(days=3))
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 1
+        assert addon.reviewerflags.notified_about_expiring_delayed_rejections
+        message = mail.outbox[0]
+        assert message.to == [author.email]
+        assert 'fôo' in message.body
+        assert version1.version in message.body
+        assert version2.version in message.body
+        assert more_recent_version.version not in message.body
+
+    def test_multiple_addons_pending_rejection_close_to_deadline(self):
+        author1 = user_factory()
+        addon1 = addon_factory(users=[author1], version_kw={'version': '42.0'})
+        version11 = addon1.current_version
+        version12 = version_factory(addon=addon1, version='42.1')
+        author2 = user_factory()
+        addon2 = addon_factory(users=[author2], version_kw={'version': '22.0'})
+        version21 = addon2.current_version
+        version22 = version_factory(addon=addon2, version='22.1')
+        for version in Version.objects.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_CONTENT_DELAYED,
+                version.addon, version,
+                details={'comments': 'fôo'}, user=self.user)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 2
+        assert addon1.reviewerflags.notified_about_expiring_delayed_rejections
+        assert addon2.reviewerflags.notified_about_expiring_delayed_rejections
+        # Addons are processed in order of their pks.
+        message = mail.outbox[0]
+        assert message.to == [author1.email]
+        assert str(addon1.name) in message.subject
+        assert 'fôo' in message.body
+        assert version11.version in message.body
+        assert version12.version in message.body
+
+        message = mail.outbox[1]
+        assert message.to == [author2.email]
+        assert str(addon2.name) in message.subject
+        assert 'fôo' in message.body
+        assert version21.version in message.body
+        assert version22.version in message.body
+
+    def test_somehow_no_activity_log_skip(self):
+        author = user_factory()
+        addon = addon_factory(users=[author])
+        version_factory(addon=addon)
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            # The ActivityLog doesn't match a pending rejection, so we should
+            # not send the notification here.
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+    def test_somehow_no_activity_log_details_skip(self):
+        author = user_factory()
+        addon = addon_factory(users=[author])
+        version_factory(addon=addon)
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            # The ActivityLog doesn't have details, so we should
+            # not send the notification here.
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, user=self.user)
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+    def test_somehow_no_activity_log_comments_skip(self):
+        author = user_factory()
+        addon = addon_factory(users=[author])
+        version_factory(addon=addon)
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            # The ActivityLog doesn't have comments, so we should
+            # not send the notification here.
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, user=self.user, details={'foo': 'bar'})
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 0
+
+    def test_multiple_developers_are_notified(self):
+        author1 = user_factory()
+        author2 = user_factory()
+        addon = addon_factory(users=[author1, author2])
+        version_factory(addon=addon)
+        for version in addon.versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(hours=23))
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon, version, details={'comments': 'fôo'}, user=self.user)
+        more_recent_version = version_factory(addon=addon)
+        VersionReviewerFlags.objects.create(
+            version=more_recent_version,
+            pending_rejection=datetime.now() + timedelta(days=3))
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 2
+        message1 = mail.outbox[0]
+        message2 = mail.outbox[1]
+        assert message1.body == message2.body
+        assert message1.subject == message2.subject
+        assert message1.to != message2.to
+        assert set(message1.to + message2.to) == {author1.email, author2.email}
 
 
 class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):

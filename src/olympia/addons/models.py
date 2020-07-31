@@ -1732,6 +1732,8 @@ class AddonReviewerFlags(ModelBase):
     pending_info_request = models.DateTimeField(default=None, null=True)
     notified_about_expiring_info_request = models.BooleanField(default=False)
     notified_about_auto_approval_delay = models.NullBooleanField(default=None)
+    notified_about_expiring_delayed_rejections = models.NullBooleanField(
+        default=None)
 
 
 class MigratedLWT(OnChangeMixin, ModelBase):
