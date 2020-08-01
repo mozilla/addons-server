@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-30 16:23+0000\n"
-"Last-Translator: TrickyFoxy <roman.deev06@gmail.com>\n"
+"PO-Revision-Date: 2020-08-01 12:15+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -2529,7 +2529,7 @@ msgid "More information on Creative Commons licenses"
 msgstr "Больше информации о лицензиях Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Ваше дополнение сейчас «Невидимое»."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
@@ -3211,7 +3211,7 @@ msgid "Extensions Developers Newsletter"
 msgstr "Новостная рассылка для разработчиков расширений"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Будьте в курсе новостей и событий для разработчиков расширений Firefox."
 
 msgid "Email Address"
 msgstr "Адрес электронной почты"
@@ -5007,7 +5007,7 @@ msgstr "Некоторые веб-сайты испытывают затрудн
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Выбирайте, сортируйте и ускоряйте загрузки."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
@@ -5015,12 +5015,12 @@ msgstr "Смотрите прогноз погоды прямо в браузе�
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Удаляйте куки, историю просмотра и кэш одним щелчком мыши."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Удаляйте элементы отслеживания из ссылок."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
@@ -5029,12 +5029,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Легко управляйте тоннами открытых вкладок."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Создавайте и настраивайте группы вкладок."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
