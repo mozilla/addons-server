@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-17 05:21+0000\n"
+"PO-Revision-Date: 2018-10-08 13:58+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -667,7 +667,7 @@ msgstr "Indisponibil pentru platforma ta"
 
 #. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "Acest supliment nu este compatibil cu versiunea ta de {0}."
+msgstr "Suplimentul nu este compatibil cu versiunea ta de {0}."
 
 msgid "View other versions"
 msgstr "Vezi alte versiuni"
