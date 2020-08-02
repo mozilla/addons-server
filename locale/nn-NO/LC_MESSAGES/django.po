@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-30 12:40+0000\n"
+"PO-Revision-Date: 2020-08-02 13:23+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -6427,7 +6427,7 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Ugyldig returnering til AMO-guid (ikkje eit innsendt tillegg)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
