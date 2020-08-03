@@ -34,30 +34,35 @@ _.template(`
 */
 
 /* The following is the above commented template, pre-compiled. */
-function syntaxhighlighter_template(obj){
-var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
-with(obj||{}){
-__p+='\n    <div class="syntaxhighlighter">\n       <table border="0" cellpadding="0" cellspacing="0">\n           <colgroup><col class="highlighter-column-line-numbers"/>\n                     <col class="highlighter-column-code"/></colgroup>\n           <tbody>\n           ';
- _.each(lines, function(line) { 
-__p+='\n               <tr class="tr-line">\n                   <td class="td-line-number">\n                       <a href="#'+
-((__t=( line.id ))==null?'':_.escape(__t))+
-'" id="'+
-((__t=( line.id ))==null?'':_.escape(__t))+
-'"\n                          class="'+
-((__t=( line.class ))==null?'':_.escape(__t))+
-' original line line-number"\n                          data-linenumber="'+
-((__t=( line.number ))==null?'':_.escape(__t))+
-'"></a>\n                   </td>\n                   <td class="'+
-((__t=( line.class ))==null?'':_.escape(__t))+
-' td-line-code alt'+
-((__t=( line.number % 2 + 1))==null?'':_.escape(__t))+
-'"><span\n                           class="original line line-code">'+
-((__t=(
-                       line.code
-                   ))==null?'':__t)+
-'</span></td>\n               </tr>\n           ';
- }) 
-__p+='\n           </tbody>\n       </table>\n    </div>\n';
-}
-return __p;
+function syntaxhighlighter_template(obj) {
+  var __t,
+    __p = '',
+    __j = Array.prototype.join,
+    print = function () {
+      __p += __j.call(arguments, '');
+    };
+  with (obj || {}) {
+    __p +=
+      '\n    <div class="syntaxhighlighter">\n       <table border="0" cellpadding="0" cellspacing="0">\n           <colgroup><col class="highlighter-column-line-numbers"/>\n                     <col class="highlighter-column-code"/></colgroup>\n           <tbody>\n           ';
+    _.each(lines, function (line) {
+      __p +=
+        '\n               <tr class="tr-line">\n                   <td class="td-line-number">\n                       <a href="#' +
+        ((__t = line.id) == null ? '' : _.escape(__t)) +
+        '" id="' +
+        ((__t = line.id) == null ? '' : _.escape(__t)) +
+        '"\n                          class="' +
+        ((__t = line.class) == null ? '' : _.escape(__t)) +
+        ' original line line-number"\n                          data-linenumber="' +
+        ((__t = line.number) == null ? '' : _.escape(__t)) +
+        '"></a>\n                   </td>\n                   <td class="' +
+        ((__t = line.class) == null ? '' : _.escape(__t)) +
+        ' td-line-code alt' +
+        ((__t = (line.number % 2) + 1) == null ? '' : _.escape(__t)) +
+        '"><span\n                           class="original line line-code">' +
+        ((__t = line.code) == null ? '' : __t) +
+        '</span></td>\n               </tr>\n           ';
+    });
+    __p += '\n           </tbody>\n       </table>\n    </div>\n';
+  }
+  return __p;
 }

@@ -34,117 +34,122 @@
     file in the upload box when the "onchange" event is fired.]
  */
 
-
 // Get an object URL across browsers.
-$.fn.objectUrl = function(offset) {
-    var files = $(this)[0].files,
-        url = false;
-    if (z.capabilities.fileAPI && files.length) {
-        offset = offset || 0;
-        var f = files[offset];
-        if (typeof window.URL !== 'undefined') {
-            url = window.URL.createObjectURL(f);
-        } else if (typeof window.webkitURL == 'function') {
-            url = window.webkitURL.createObjectURL(f);
-        } else if(typeof f.getAsDataURL == 'function') {
-            url = f.getAsDataURL();
-        }
+$.fn.objectUrl = function (offset) {
+  var files = $(this)[0].files,
+    url = false;
+  if (z.capabilities.fileAPI && files.length) {
+    offset = offset || 0;
+    var f = files[offset];
+    if (typeof window.URL !== 'undefined') {
+      url = window.URL.createObjectURL(f);
+    } else if (typeof window.webkitURL == 'function') {
+      url = window.webkitURL.createObjectURL(f);
+    } else if (typeof f.getAsDataURL == 'function') {
+      url = f.getAsDataURL();
     }
-    return url;
+  }
+  return url;
 };
 
+(function ($) {
+  var instance_id = 0;
 
-(function($) {
-    var instance_id = 0;
+  $.fn.imageUploader = function () {
+    var $upload_field = this,
+      outstanding_uploads = 0,
+      files = $upload_field[0].files,
+      url = $upload_field.attr('data-upload-url'),
+      csrf = $upload_field.closest('form').find('input[name^=csrf]').val();
 
-    $.fn.imageUploader = function() {
-        var $upload_field = this,
-            outstanding_uploads = 0,
-            files = $upload_field[0].files,
-            url = $upload_field.attr('data-upload-url'),
-            csrf = $upload_field.closest('form').find('input[name^=csrf]').val();
+    // No files? No API support? No shirt? No service.
+    if (!z.capabilities.fileAPI || files.length === 0) {
+      return false;
+    }
 
-        // No files? No API support? No shirt? No service.
-        if (!z.capabilities.fileAPI || files.length === 0) {
-            return false;
+    $upload_field.trigger('upload_start_all');
+
+    // Loop through the files.
+    $.each(files, function (v, f) {
+      var data = '',
+        file = {
+          instance: instance_id,
+          name: f.name || f.fileName,
+          size: f.size,
+          type: f.type,
+          aborted: false,
+          dataURL: false,
+        },
+        finished = function () {
+          outstanding_uploads--;
+          if (outstanding_uploads <= 0) {
+            $upload_field.trigger('upload_finished_all');
+          }
+          $upload_field.trigger('upload_finished', [file]);
+        },
+        formData = new z.FormData();
+
+      instance_id++;
+      outstanding_uploads++;
+
+      if (
+        $upload_field.attr('data-allowed-types').split('|').indexOf(file.type) <
+        0
+      ) {
+        var errors = [gettext('Images must be either PNG or JPG.')];
+        if (typeof $upload_field.attr('multiple') !== 'undefined') {
+          // If we have a `multiple` attribute, assume not an icon.
+          if ($upload_field.attr('data-allowed-types').indexOf('video') > -1) {
+            errors.push([gettext('Videos must be in WebM.')]);
+          }
         }
+        $upload_field.trigger('upload_start', [file]);
+        $upload_field.trigger('upload_errors', [file, errors]);
+        finished();
+        return;
+      }
 
-        $upload_field.trigger("upload_start_all");
+      file.dataURL = $upload_field.objectUrl(v);
 
-        // Loop through the files.
-        $.each(files, function(v, f){
-            var data = "",
-                file = {
-                    'instance': instance_id,
-                    'name': f.name || f.fileName,
-                    'size': f.size,
-                    'type': f.type,
-                    'aborted': false,
-                    'dataURL': false},
-                finished = function(){
-                    outstanding_uploads--;
-                    if(outstanding_uploads <= 0) {
-                        $upload_field.trigger("upload_finished_all");
-                    }
-                    $upload_field.trigger("upload_finished", [file]);
-                },
-                formData = new z.FormData();
+      // And we're off!
+      $upload_field.trigger('upload_start', [file]);
 
-            instance_id++;
-            outstanding_uploads++;
+      // Set things up
+      formData.open('POST', url, true);
+      formData.append('csrfmiddlewaretoken', csrf);
+      formData.append('upload_image', f);
 
-            if ($upload_field.attr('data-allowed-types').split('|').indexOf(file.type) < 0) {
-                var errors = [gettext('Images must be either PNG or JPG.')];
-                if (typeof $upload_field.attr('multiple') !== 'undefined') {
-                    // If we have a `multiple` attribute, assume not an icon.
-                    if ($upload_field.attr('data-allowed-types').indexOf('video') > -1) {
-                       errors.push([gettext('Videos must be in WebM.')]);
-                    }
-                }
-                $upload_field.trigger('upload_start', [file]);
-                $upload_field.trigger('upload_errors', [file, errors]);
-                finished();
-                return;
-            }
+      // Monitor progress and report back.
+      formData.xhr.onreadystatechange = function () {
+        if (
+          formData.xhr.readyState == 4 &&
+          formData.xhr.responseText &&
+          (formData.xhr.status == 200 || formData.xhr.status == 304)
+        ) {
+          var json = {};
+          try {
+            json = JSON.parse(formData.xhr.responseText);
+          } catch (err) {
+            var error = gettext('There was a problem contacting the server.');
+            $upload_field.trigger('upload_errors', [file, error]);
+            finished();
+            return false;
+          }
 
-            file.dataURL = $upload_field.objectUrl(v);
+          if (json.errors.length) {
+            $upload_field.trigger('upload_errors', [file, json.errors]);
+          } else {
+            $upload_field.trigger('upload_success', [file, json.upload_hash]);
+          }
+          finished();
+        }
+      };
 
-            // And we're off!
-            $upload_field.trigger("upload_start", [file]);
+      // Actually do the sending.
+      formData.send();
+    });
 
-            // Set things up
-            formData.open("POST", url, true);
-            formData.append("csrfmiddlewaretoken", csrf);
-            formData.append("upload_image", f);
-
-            // Monitor progress and report back.
-            formData.xhr.onreadystatechange = function(){
-                if (formData.xhr.readyState == 4 && formData.xhr.responseText &&
-                    (formData.xhr.status == 200 || formData.xhr.status == 304)) {
-                    var json = {};
-                    try {
-                        json = JSON.parse(formData.xhr.responseText);
-                    } catch(err) {
-                        var error = gettext("There was a problem contacting the server.");
-                        $upload_field.trigger("upload_errors", [file, error]);
-                        finished();
-                        return false;
-                    }
-
-                    if(json.errors.length) {
-                        $upload_field.trigger("upload_errors", [file, json.errors]);
-                    } else {
-                        $upload_field.trigger("upload_success", [file, json.upload_hash]);
-                    }
-                    finished();
-                }
-            };
-
-            // Actually do the sending.
-            formData.send();
-        });
-
-        // Clear out images, since we uploaded them.
-        $upload_field.val("");
-    };
+    // Clear out images, since we uploaded them.
+    $upload_field.val('');
+  };
 })(jQuery);
