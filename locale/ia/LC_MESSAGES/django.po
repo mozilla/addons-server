@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-31 20:17+0000\n"
+"PO-Revision-Date: 2020-08-03 11:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -936,9 +936,8 @@ msgstr "Contento rejectate programmate"
 msgid "{addon} {version} reject scheduled."
 msgstr "{addon} {version} rejectate programmate."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Data expiration del rejection pendente"
+msgstr "Rejection programmate"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -5507,9 +5506,8 @@ msgstr "Systemas operative:"
 msgid "Applications:"
 msgstr "Applicationes:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Requirer al disveloppator de responder in minus que…"
+msgstr "Retardar rejection, le disveloppator debe corriger in minus de…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr "Rejectar immediatemente. Usa solo in caso de serie problemas de securitate."
@@ -6234,9 +6232,8 @@ msgstr "Plus recente"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versiones signalate per scanditores sur altere paginas."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} versiones signalate per scanditores sur altere paginas."
+msgstr "{num} versiones signalate pro revision human sur altere paginas."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versiones attendente rejection sur altere paginas."
