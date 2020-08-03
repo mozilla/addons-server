@@ -269,12 +269,6 @@ class TestSendMail(TestCase):
 
     @mock.patch('olympia.amo.tasks.EmailMessage')
     def test_async_will_retry_default(self, backend):
-        # Monkeypatch Celerys ".get()" inside async task error
-        # until https://github.com/celery/celery/issues/4661 (which isn't just
-        # about retries but a general regression that manifests only in
-        # eager-mode) fixed.
-        self.patch('celery.app.task.denied_join_result')
-
         backend.side_effect = self.make_backend_class([True, True, False])
         with self.assertRaises(Retry):
             send_mail('test subject',
@@ -283,12 +277,6 @@ class TestSendMail(TestCase):
 
     @mock.patch('olympia.amo.tasks.EmailMessage')
     def test_async_will_retry(self, backend):
-        # Monkeypatch Celerys ".get()" inside async task error
-        # until https://github.com/celery/celery/issues/4661 (which isn't just
-        # about retries but a general regression that manifests only in
-        # eager-mode) fixed.
-        self.patch('celery.app.task.denied_join_result')
-
         backend.side_effect = self.make_backend_class([True, True, False])
         with self.assertRaises(Retry):
             send_mail('test subject',
@@ -298,14 +286,8 @@ class TestSendMail(TestCase):
 
     @mock.patch('olympia.amo.tasks.EmailMessage')
     def test_async_will_stop_retrying(self, backend):
-        # Monkeypatch Celerys ".get()" inside async task error
-        # until https://github.com/celery/celery/issues/4661 (which isn't just
-        # about retries but a general regression that manifests only in
-        # eager-mode) fixed.
-        self.patch('celery.app.task.denied_join_result')
-
         backend.side_effect = self.make_backend_class([True, True])
-        with self.assertRaises(RuntimeError):
+        with self.assertRaises((Retry, RuntimeError)):
             send_mail('test subject',
                       'test body',
                       max_retries=1,
