@@ -119,9 +119,9 @@ SQLAlchemy==1.3.18 \
     --hash=sha256:8619b86cb68b185a778635be5b3e6018623c0761dde4df2f112896424aa27bd8 \
     --hash=sha256:da2fb75f64792c1fc64c82313a00c728a7c301efe6a60b7a9fe35b16b4368ce7
 # amqp is required by kombu
-amqp==2.6.0 \
-    --hash=sha256:bb68f8d2bced8f93ccfd07d96c689b716b3227720add971be980accfc2952139 \
-    --hash=sha256:24dbaff8ce4f30566bb88976b398e8c4e77637171af3af6f1b9650f48890e60b
+amqp==2.6.1 \
+    --hash=sha256:aa7f313fb887c91f15474c1229907a04dac0b8135822d6603437803424c0aa59 \
+    --hash=sha256:70cdb10628468ff14e57ec2f751c7aa9e48e7e3651cfd62d431213c0c4e58f21
 # anyjson is required by kombu
 anyjson==0.3.3 \
     --hash=sha256:37812d863c9ad3e35c0734c42e0bf0320ce8c3bed82cd20ad54cb34d158157ba
