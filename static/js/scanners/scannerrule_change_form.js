@@ -35,7 +35,7 @@ const showOrHideDefinition = (select) => {
 }`;
     }
   }
-}
+};
 
 // This function changes the visibility of the `name` field in the "change
 // form". We only want to show this field when a scanner is selected and this
@@ -47,7 +47,7 @@ const showOrHideName = (select) => {
   const isNone = selectedScannerIsNone(select);
   const isYara = selectedScannerIsYara(select);
 
-  name.style.display = (isNone || isYara) ? 'none' : 'block';
+  name.style.display = isNone || isYara ? 'none' : 'block';
 
   if (isYara) {
     const nameInput = document.querySelector('#id_name');
@@ -56,7 +56,7 @@ const showOrHideName = (select) => {
       nameInput.value = DEFAULT_RULE_NAME;
     }
   }
-}
+};
 
 const scannerSelect = document.querySelector('#id_scanner');
 const definitionTextarea = document.querySelector('#id_definition');

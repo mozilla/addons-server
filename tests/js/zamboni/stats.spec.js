@@ -72,10 +72,10 @@ describe(__filename, () => {
         stats_stats(global.$);
 
         expect($('#export_data_csv').attr('href')).toEqual(
-          `${defaultBaseUrl}${report}-day-20191007-20191013.csv`
+          `${defaultBaseUrl}${report}-day-20191007-20191013.csv`,
         );
         expect($('#export_data_json').attr('href')).toEqual(
-          `${defaultBaseUrl}${report}-day-20191007-20191013.json`
+          `${defaultBaseUrl}${report}-day-20191007-20191013.json`,
         );
       });
 
@@ -86,10 +86,10 @@ describe(__filename, () => {
         stats_stats(global.$);
 
         expect($('#export_data_csv').attr('href')).toEqual(
-          `${defaultBaseUrl}${report}-day-20190914-20191013.csv`
+          `${defaultBaseUrl}${report}-day-20190914-20191013.csv`,
         );
         expect($('#export_data_json').attr('href')).toEqual(
-          `${defaultBaseUrl}${report}-day-20190914-20191013.json`
+          `${defaultBaseUrl}${report}-day-20190914-20191013.json`,
         );
       });
 
@@ -116,10 +116,10 @@ describe(__filename, () => {
         stats_stats(global.$, fakeSessionStorage);
 
         expect($('#export_data_csv').attr('href')).toEqual(
-          `${defaultBaseUrl}${report}-day-20191115-20191125.csv`
+          `${defaultBaseUrl}${report}-day-20191115-20191125.csv`,
         );
         expect($('#export_data_json').attr('href')).toEqual(
-          `${defaultBaseUrl}${report}-day-20191115-20191125.json`
+          `${defaultBaseUrl}${report}-day-20191115-20191125.json`,
         );
       });
     });

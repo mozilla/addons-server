@@ -1,0 +1,29 @@
+# exclude everything by default
+*.*
+
+# exclude these files
+Dockerfile*
+LICENSE
+Makefile*
+
+# exclude these directories
+.pytest_cache/
+.tox/
+/docker/
+/docs/
+/private/
+/scripts/
+/site-static/
+/src/
+/storage/
+__pycache__/
+i18n/
+img/
+node_lib/
+
+# safe-list files we want to process
+!*.js
+
+# exclude generated JS files
+*-all.js
+*-min.js

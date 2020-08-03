@@ -80,7 +80,7 @@
           JSON.stringify({
             range: ssView.range,
             group: ssView.group,
-          })
+          }),
         );
       });
     })();
@@ -107,7 +107,7 @@
         var url =
           baseURL +
           [metric, 'day', range.start.pretty(''), range.end.pretty('')].join(
-            '-'
+            '-',
           );
 
         $('#export_data_csv').attr('href', url + '.csv');
