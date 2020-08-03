@@ -49,7 +49,7 @@ class Command(BaseCommand):
     def fetch_version_candidates_for_addon(self, *, addon, deadline):
         """Return a queryset with the versions that that are close to being
         rejected for a given add-on and that are worth notifying the
-        developers about (public/awaiting review)"""
+        developers about (public/awaiting review)."""
         return (
             addon.versions
                  .filter(files__status__in=amo.VALID_FILE_STATUSES)
