@@ -381,24 +381,71 @@ class TestScannerResultAdmin(TestCase):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
         rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
         rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
-        with_bar_matches = ScannerResult(scanner=YARA)
-        with_bar_matches.add_yara_result(rule=rule_bar.name)
-        with_bar_matches.add_yara_result(rule=rule_hello.name)
-        with_bar_matches.save()
-        ScannerResult.objects.create(
+
+        with_bar_and_hello_matches = ScannerResult(scanner=YARA)
+        with_bar_and_hello_matches.add_yara_result(rule=rule_bar.name)
+        with_bar_and_hello_matches.add_yara_result(rule=rule_hello.name)
+        with_bar_and_hello_matches.save()
+        with_bar_and_hello_matches.update(created=self.days_ago(3))
+        with_foo_match = ScannerResult(
             scanner=CUSTOMS, results={'matchedRules': [rule_foo.name]}
         )
+        with_foo_match.save()
+        with_foo_match.update(created=self.days_ago(2))
         with_hello_match = ScannerResult(scanner=YARA)
         with_hello_match.add_yara_result(rule=rule_hello.name)
+        with_hello_match.save()
+        with_hello_match.update(created=self.days_ago(1))
 
+        # Exclude 'bar'. Because exclude excludes results that *only* match
+        # the target rule, we should still get 3 results.
         response = self.client.get(self.list_url, {
             ExcludeMatchedRuleFilter.parameter_name: rule_bar.pk,
             WithVersionFilter.parameter_name: 'all',
         })
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody > tr').length == 1
-        assert doc('.field-formatted_matched_rules').text() == 'foo'
+        assert doc('#result_list tbody > tr').length == 3
+        expected_ids = [
+            with_hello_match.pk,
+            with_foo_match.pk,
+            with_bar_and_hello_matches.pk,
+        ]
+        ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
+        assert ids == expected_ids
+
+        # Exclude 'hello'. with_bar_and_hello_matches should still be present
+        # as it matches another rule, but with_hello_match should be absent.
+        # with_foo_match should not be affected.
+        response = self.client.get(self.list_url, {
+            ExcludeMatchedRuleFilter.parameter_name: rule_hello.pk,
+            WithVersionFilter.parameter_name: 'all',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 2
+        expected_ids = [
+            with_foo_match.pk,
+            with_bar_and_hello_matches.pk,
+        ]
+        ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
+        assert ids == expected_ids
+
+        # Exclude 'foo'. with_bar_and_hello_matches and with_hello_match should
+        # still be present.
+        response = self.client.get(self.list_url, {
+            ExcludeMatchedRuleFilter.parameter_name: rule_foo.pk,
+            WithVersionFilter.parameter_name: 'all',
+        })
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 2
+        expected_ids = [
+            with_hello_match.pk,
+            with_bar_and_hello_matches.pk,
+        ]
+        ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
+        assert ids == expected_ids
 
     def test_list_default(self):
         # Create one entry without matches, it will not be shown by default
