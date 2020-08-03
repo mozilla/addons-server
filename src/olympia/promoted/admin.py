@@ -71,7 +71,8 @@ class PromotedAddonAdmin(admin.ModelAdmin):
     @classmethod
     def _transformer(self, objs):
         Version.transformer_promoted(
-            [promo.addon._current_version for promo in objs]
+            [promo.addon._current_version for promo in objs
+             if promo.addon._current_version]
         )
 
     def get_queryset(self, request):

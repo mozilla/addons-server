@@ -1,3 +1,4 @@
+from olympia import amo
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
@@ -86,6 +87,12 @@ class TestPromotedAddonAdmin(TestCase):
 
         # double check it scales.
         PromotedAddon.objects.create(addon=addon_factory(name='FooBâr'))
+        # throw in a promoted addon that doesn't have a current_version
+        unlisted = PromotedAddon.objects.create(addon=addon_factory(
+            name='FooBâr',
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}))
+        assert not unlisted.addon.current_version
+        assert not unlisted.addon._current_version
         with self.assertNumQueries(10):
             self.client.get(self.list_url, follow=True)
 
