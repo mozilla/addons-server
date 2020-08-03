@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-08-03 11:50+0000\n"
+"PO-Revision-Date: 2020-08-03 11:54+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6124,11 +6124,9 @@ msgstr "Disactivar auto-approbation de additivos publicate"
 msgid "Enable Listed Auto-Approval"
 msgstr "Activar auto-approbation de additivos publicate"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Disactivar auto-approbation de additivos publicate"
+msgstr "Disactivar in le lista de auto-approbation usque le sequente approbation del manual"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
 msgstr "Activar auto-approbation de additivos publicate"
 
