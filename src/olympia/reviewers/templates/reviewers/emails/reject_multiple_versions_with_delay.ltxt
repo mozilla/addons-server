@@ -1,5 +1,5 @@
 {% extends "reviewers/emails/base.ltxt" %}{% block content %}
-Due to issues discovered during the review process, one or more versions of your add-on {{ name }} will be disabled on addons.mozilla.org in {{ delayed_rejection_days }} days. Please see the reviewer’s comments below for more information.
+Due to issues discovered during the review process, one or more versions of your add-on {{ name }} will be disabled on addons.mozilla.org in {{ delayed_rejection_days }} day(s). Please see the reviewer’s comments below for more information.
 
 ********
 Details:
@@ -15,7 +15,7 @@ Reviewer:
 
 Please address the issues raised in the reviewer's notes and inquire about any unclear items. Afterwards, please upload a new version of your add-on at {{ dev_versions_url }}.
 
-To respond, please reply to this email or visit {{ dev_versions_url }}. If we do not hear from you within {{ delayed_rejection_days }} days of this notification, these versions will be removed from addons.mozilla.org. Current users of these versions will be unaffected.
+To respond, please reply to this email or visit {{ dev_versions_url }}. If we do not hear from you within {{ delayed_rejection_days }} day(s) of this notification, these versions will be removed from addons.mozilla.org. Current users of these versions will be unaffected.
 
 Thank you for your attention.
 {% endblock %}

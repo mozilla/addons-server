@@ -1035,10 +1035,12 @@ class ReviewBase(object):
 
         if pending_rejection_deadline:
             # A delayed rejection implies the next version should be manually
-            # reviewed.
+            # reviewed and the developers should be notified again once the
+            # deadline is close.
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon,
                 defaults={
+                    'notified_about_expiring_delayed_rejections': False,
                     'auto_approval_disabled_until_next_approval': True
                 }
             )

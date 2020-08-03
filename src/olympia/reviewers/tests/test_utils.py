@@ -1630,6 +1630,14 @@ class TestReviewHelper(TestReviewHelperBase):
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
+        # The flag to prevent the authors from being notified several times
+        # about pending rejections should have been reset, and auto approvals
+        # should have been disabled until the next manual approval.
+        flags = self.addon.reviewerflags
+        flags.reload()
+        assert not flags.notified_about_expiring_delayed_rejections
+        assert flags.auto_approval_disabled_until_next_approval
+
         # The reviewer should have been automatically subscribed to new listed
         # versions.
         assert ReviewerSubscription.objects.filter(
