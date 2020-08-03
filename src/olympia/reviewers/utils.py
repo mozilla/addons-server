@@ -816,6 +816,11 @@ class ReviewBase(object):
             # No need for a human review anymore in this channel.
             self.clear_all_needs_human_review_flags_in_channel()
 
+            # Clear pending rejection since we approved that version.
+            VersionReviewerFlags.objects.filter(
+                version=self.version,
+            ).update(pending_rejection=None)
+
             # An approval took place so we can reset this.
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon,
