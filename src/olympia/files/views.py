@@ -246,11 +246,11 @@ def serve_file_upload(request, uuid):
     access_token = request.GET.get('access_token')
 
     if not access_token:
-        log.error('Denying access to %s, no token.' % upload.id)
+        log.error('Denying access to %s, no token.', upload.id)
         raise PermissionDenied
 
     if not constant_time_compare(access_token, upload.access_token):
-        log.error('Denying access to %s, token invalid.' % upload.id)
+        log.error('Denying access to %s, token invalid.', upload.id)
         raise PermissionDenied
 
     if not upload.path:

@@ -128,7 +128,8 @@ def find_user(identity):
     except UserProfile.MultipleObjectsReturned:
         # This shouldn't happen, so let it raise.
         log.error(
-            'Found multiple users for {email} and {uid}'.format(**identity))
+            'Found multiple users for %s and %s',
+            identity['email'], identity['uid'])
         raise
 
 

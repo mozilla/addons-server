@@ -115,10 +115,10 @@ def file_view_token(func, **kwargs):
         viewer = FileViewer(get_object_or_404(File, pk=file_id))
         token = request.GET.get('token')
         if not token:
-            log.error('Denying access to %s, no token.' % viewer.file.id)
+            log.error('Denying access to %s, no token.', viewer.file.id)
             raise PermissionDenied
         if not Token.valid(token, [viewer.file.id, key]):
-            log.error('Denying access to %s, token invalid.' % viewer.file.id)
+            log.error('Denying access to %s, token invalid.', viewer.file.id)
             raise PermissionDenied
         return func(request, viewer, key, *args, **kw)
     return wrapper
