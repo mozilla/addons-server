@@ -190,6 +190,7 @@ setup-codestyle:
 .PHONY: lint
 lint: ## lint the code
 	flake8 src/ services/ tests/
+	$(shell npm $(NPM_ARGS) bin)/prettier --check '**'
 
 lint-codestyle: lint
 
@@ -249,6 +250,10 @@ run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed ass
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
 	NODE_PATH=$(NODE_MODULES) $$(npm bin $(NPM_ARGS))/jest --watch
+
+.PHONY: format
+format: ## Autoformat our codebase.
+	$(shell npm $(NPM_ARGS) bin)/prettier --write '**'
 
 .PHONY: help_submake
 help_submake:

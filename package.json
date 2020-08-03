@@ -6,16 +6,16 @@
     "node": ">= 10.13"
   },
   "dependencies": {
+    "@claviska/jquery-minicolors": "2.3.5",
     "addons-linter": "2.1.0",
     "clean-css": "4.2.3",
     "clean-css-cli": "4.3.0",
     "jqmodal": "1.4.2",
     "jquery": "3.5.1",
-    "jquery.browser": "0.1.0",
-    "jquery.cookie": "1.4.1",
-    "@claviska/jquery-minicolors": "2.3.5",
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
+    "jquery.browser": "0.1.0",
+    "jquery.cookie": "1.4.1",
     "jszip": "3.5.0",
     "less": "3.12.2",
     "source-map": "0.7.3",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "jest": "^26.1.0",
-    "jest-date-mock": "^1.0.8"
+    "jest-date-mock": "^1.0.8",
+    "prettier": "^2.0.5"
   }
 }
