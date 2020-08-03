@@ -5,7 +5,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.constants.applications import APP_IDS, APPS_CHOICES
 from olympia.constants.promoted import (
-    NOT_PROMOTED, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID)
+    NOT_PROMOTED, PRE_REVIEW_GROUPS, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID)
 from olympia.versions.models import Version
 
 
@@ -44,14 +44,14 @@ class PromotedAddon(ModelBase):
         """Is the current_version of the addon approved for promotion within
         the *current* promoted group."""
         return bool(
-            self.addon.current_version and
             self.group != NOT_PROMOTED.id and
-            self.group in self.addon.current_version.approved_for_groups)
+            self.addon.current_version and (
+                not self.group.pre_review or
+                self.group in self.addon.current_version.approved_for_groups))
 
 
 class PromotedApproval(ModelBase):
-    GROUP_CHOICES = [
-        (g.id, g.name) for g in PROMOTED_GROUPS if g != NOT_PROMOTED]
+    GROUP_CHOICES = [(g.id, g.name) for g in PRE_REVIEW_GROUPS]
     group_id = models.SmallIntegerField(
         choices=GROUP_CHOICES, null=True, verbose_name='Group')
     version = models.ForeignKey(

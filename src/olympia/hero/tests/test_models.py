@@ -33,12 +33,12 @@ class TestPrimaryHero(TestCase):
         with self.assertRaises(ValidationError):
             ph.clean()
 
-        assert not ph.promoted_addon.addon.is_promoted(group=RECOMMENDED)
+        assert not ph.promoted_addon.addon.promoted_group(group=RECOMMENDED)
         PromotedApproval.objects.create(
             version=ph.promoted_addon.addon.current_version,
             group_id=RECOMMENDED.id)
         ph.reload()
-        assert ph.promoted_addon.addon.is_promoted(group=RECOMMENDED)
+        assert ph.promoted_addon.addon.promoted_group(group=RECOMMENDED)
         ph.clean()  # it raises if there's an error
 
     def test_clean_external_requires_homepage(self):

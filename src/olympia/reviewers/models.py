@@ -1181,8 +1181,8 @@ class AutoApprovalSummary(ModelBase):
         Only applies to listed versions."""
         if not version.channel == amo.RELEASE_CHANNEL_LISTED:
             return False
-        promo = getattr(version.addon, 'promotedaddon', None)
-        return bool(promo and promo.group.pre_review)
+        promo_group = version.addon.promoted_group(currently_approved=False)
+        return bool(promo_group and promo_group.pre_review)
 
     @classmethod
     def check_should_be_delayed(cls, version):
