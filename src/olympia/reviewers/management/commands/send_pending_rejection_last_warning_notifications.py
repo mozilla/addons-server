@@ -10,7 +10,8 @@ from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.reviewers.utils import ReviewHelper
 
 
-log = olympia.core.logger.getLogger('z.reviewers.send_info_request')
+log = olympia.core.logger.getLogger(
+    'z.reviewers.send_pending_rejection_last_warning_notifications')
 
 
 class Command(BaseCommand):
