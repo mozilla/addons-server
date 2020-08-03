@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-24 20:43+0000\n"
-"Last-Translator: Onno Ekker <o.e.ekker@gmail.com>\n"
+"PO-Revision-Date: 2020-08-03 06:10+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -937,21 +937,17 @@ msgstr "Sessie(s) van gebruiker {user} geherinitialiseerd."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Gebruiker {user} beperkt voor bereik ‘{0}’"
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "Inhoud van {addon} {version} afgewezen."
+msgstr ""
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Inhoud afgewezen"
+msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} afgewezen."
+msgstr ""
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Deadline voor wachtrij voor afwijzing"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1002,9 +998,8 @@ msgstr "Eigenaar"
 msgid "Developer"
 msgstr "Ontwikkelaar"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Verwijderd"
+msgstr "(Verwijderd)"
 
 msgid "Extension"
 msgstr "Extensie"
@@ -1384,9 +1379,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "Aanbevolen ({0})"
+msgstr "Aanbevolen"
 
 msgid "Verified - Tier 1"
 msgstr "Geverifieerd - Niveau 1"
@@ -5544,9 +5538,8 @@ msgstr "Besturingssystemen:"
 msgid "Applications:"
 msgstr "Toepassingen:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Antwoord van ontwikkelaar vragen binnen …"
+msgstr ""
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr "Direct weigeren. Gebruik dit alleen in geval van ernstige beveiligingsproblemen."
@@ -6164,13 +6157,11 @@ msgstr "Automatische goedkeuring van vermeldingen uitschakelen"
 msgid "Enable Listed Auto-Approval"
 msgstr "Automatische goedkeuring van vermeldingen inschakelen"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Automatische goedkeuring van vermeldingen uitschakelen"
+msgstr ""
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Automatische goedkeuring van vermeldingen inschakelen"
+msgstr ""
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Automatische goedkeuring is momenteel tot {date} uitgeschakeld"
@@ -6272,9 +6263,8 @@ msgstr "Nieuwer"
 msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versies door scanners op andere pagina’s gemarkeerd."
 
-#, fuzzy
 msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} versies door scanners op andere pagina’s gemarkeerd."
+msgstr ""
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versies wachten op andere pagina’s op afwijzing."
@@ -6333,13 +6323,11 @@ msgstr "De Scannersscore geeft aan hoe waarschijnlijk het is dat deze versie sch
 msgid "Weight:"
 msgstr "Gewicht:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Door automatische scanners gemarkeerd"
+msgstr ""
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Markeren voor persoonlijke beoordeling"
+msgstr ""
 
 msgid "Download"
 msgstr "Downloaden"
