@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-08-03 00:52+0000\n"
+"PO-Revision-Date: 2020-08-03 00:57+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -727,7 +727,7 @@ msgid "{addon} is now licensed under {0}."
 msgstr "{addon} 부가기능이 {0} 라이선스를 채용했습니다."
 
 msgid "{addon} policy changed."
-msgstr "{addon}의 개인 정보 보호 정책이 변경되었습니다."
+msgstr "{addon}의 개인정보처리방침이 변경되었습니다."
 
 msgid "{addon} icon changed."
 msgstr "{addon} 아이콘이 변경되었습니다."
@@ -1739,7 +1739,7 @@ msgid "This add-on has a Privacy Policy"
 msgstr "이 부가 기능은 개인정보처리방침을 보유하고 있습니다"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "부가 기능의 개인 정보 보호 정책을 기입해 주세요:"
+msgstr "부가 기능의 개인정보처리방침을 기입해 주세요:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "지원하지 않는 파일 형식입니다. {extensions} 압축 파일을 업로드 해 주십시오."
@@ -3155,7 +3155,7 @@ msgid "Please note that a EULA is not the same as a code license, such as the GP
 msgstr ""
 
 msgid "Privacy Policy"
-msgstr "개인 정보 보호 정책"
+msgstr "개인정보처리방침"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -5911,7 +5911,7 @@ msgid "Average Daily Users"
 msgstr "평균 일일 사용자 수"
 
 msgid "View Privacy Policy"
-msgstr "개인 정보 보호 정책 보기"
+msgstr "개인정보처리방침 보기"
 
 #, fuzzy
 msgid "Requires Payment"
@@ -6980,7 +6980,7 @@ msgstr ""
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
-msgstr "시작하기 전에 Firefox 부가 기능 배포 계약과 검토 정책과 규칙에 대해서 읽고 동의해주세요. Firefox 부가 기능 배포 계약은 사용자의 정보를 다루는 기준이 명시된 우리의 개인정보 보호 고지와 연결되어 있습니다."
+msgstr "시작하기 전에 Firefox 부가 기능 배포 계약과 검토 정책과 규칙에 대해서 읽고 동의해주세요. Firefox 부가 기능 배포 계약은 사용자의 정보를 다루는 기준이 명시된 우리의 개인정보처리방침과 연결되어 있습니다."
 
 #, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
