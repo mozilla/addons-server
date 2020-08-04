@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-04 20:23+0000\n"
+"PO-Revision-Date: 2020-08-04 20:30+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5811,9 +5811,8 @@ msgstr "Vidljivost"
 msgid "Visible"
 msgstr "Vidljivo"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Preuzimanja"
+msgstr "Tjedna preuzimanja"
 
 msgid "Average Daily Users"
 msgstr "Prosječan broj dnevnih korisnika"
@@ -6576,13 +6575,11 @@ msgstr "Ova je ploča <b>privatna</b>."
 msgid "Application usage by Date"
 msgstr "Upotreba aplikacije po datumu"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Preuzmi izvore po datumu"
+msgstr "Preuzmi kampanje prema datumu"
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Preuzmi izvore po datumu"
+msgstr "Preuzmi sadržaje prema datumu"
 
 msgid "User countries by Date"
 msgstr "Korisničke države po datumu"
@@ -6603,9 +6600,8 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Korisnički jezici po datumu"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Preuzeto po datumu"
+msgstr "Preuzmi medije prema datumu"
 
 msgid "Platform usage by Date"
 msgstr "Upotreba platformi po datumu"
