@@ -1,9 +1,9 @@
 -r system.txt
 
 # flake8 is required by flake8-mutable
-flake8==3.7.9 \
-    --hash=sha256:45681a117ecc81e870cbf1262835ae4af5e7a8b08e40b944a8a6e6b895914cfb \
-    --hash=sha256:49356e766643ad15072a789a20915d3c91dc89fd313ccd71802303fd67e4deca
+flake8==3.8.3 \
+    --hash=sha256:15e351d19611c887e482fb960eae4d44845013cc142d42896e9862f775d8cf5c \
+    --hash=sha256:f04b9fcbac03b0a3e58c0ab3a0ecc462e023a9faf046d57794184028123aa208
 flake8-mutable==1.2.0 \
     --hash=sha256:ee9b77111b867d845177bbc289d87d541445ffcc6029a0c5c65865b42b18c6a6 \
     --hash=sha256:38fd9dadcbcda6550a916197bc40ed76908119dabb37fbcca30873666c31d2d5
