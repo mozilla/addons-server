@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-26 19:51+0000\n"
+"PO-Revision-Date: 2020-08-04 12:58+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -633,7 +633,7 @@ msgstr[1] "చెల్లుబాటు విఫలమైన {2} పొడగ
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr "ఆమోదించు మరియు సంస్థాపించు"
+msgstr "ఆంగీకరించి స్థాపించు"
 
 msgid "Add to {0}"
 msgstr "{0} కు జోడించండి"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-07-28 17:32+0000\n"
+"PO-Revision-Date: 2020-08-04 12:59+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1146,7 +1146,7 @@ msgid "Download Firefox extensions to enhance your experience on popular social 
 msgstr ""
 
 msgid "Sports & Games"
-msgstr "క్రీడలు మరియు ఆటలు"
+msgstr "క్రీడలు & ఆటలు"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
 msgstr ""
@@ -1203,7 +1203,7 @@ msgid "Download Firefox themes that celebrate style of all forms—patterns, flo
 msgstr ""
 
 msgid "Film and TV"
-msgstr "సినిమా మరియు టీవీ"
+msgstr "సినిమా, టీవీ"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
@@ -1233,7 +1233,7 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "ఆసక్తికరమైన, సృజనాత్మక, ప్రత్యేకమైన Firefox అలంకారాలను దించుకోండి."
 
 msgid "Scenery"
 msgstr "సీనరీ"
@@ -1269,7 +1269,7 @@ msgid "Business"
 msgstr "వ్యాపారం"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr "నిఘంటువులు మరియు విజ్ఞాన సర్వస్వాలు"
+msgstr "నిఘంటువులు & విజ్ఞాన సర్వస్వాలు"
 
 msgid "Kids"
 msgstr "చిన్న పిల్లలు"
