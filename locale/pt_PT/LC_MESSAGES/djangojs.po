@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-06-10 22:09+0000\n"
+"PO-Revision-Date: 2020-08-04 22:24+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -122,8 +122,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Os binários compilados, bem como os \"scripts\" reduzidos ou ofuscados (excluindo as bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente para revisão. Certifique-se que "
-"utiliza o campo de envio do código fonte para evitar que a sua submissão seja rejeitada."
+"Os binários compilados, bem como os \"scripts\" reduzidos ou ofuscados (excluindo as bibliotecas conhecidas) devem ter as suas fontes submetidas separadamente para revisão. Certifique-se que utiliza"
+" o campo de envio do código fonte para evitar que a sua submissão seja rejeitada."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "O processo de validação encontrou estes problemas que podem levar a rejeições:"
@@ -495,34 +495,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Fontes das transferências de {0} até {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Transferências, últimos {0} dias"
+msgstr "Suporte de transferências, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Transferências de {0} até {1}"
+msgstr "Suporte de transferências de {0} até {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Fontes das transferências, últimos {0} dias"
+msgstr "Conteúdos das transferências, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Transferências de {0} até {1}"
+msgstr "Conteúdos das transferências de {0} até {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Transferências, últimos {0} dias"
+msgstr "Campanhas de transferências, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Transferências de {0} até {1}"
+msgstr "Campanhas de transferências de {0} até {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
