@@ -120,3 +120,6 @@ EXTENSION_WORKSHOP_URL = env(
 REMOTE_SETTINGS_API_URL = 'https://settings.stage.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://settings-writer.stage.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
+
+INTERNAL_SITE_URL = env(
+    'INTERNAL_SITE_URL', default='https://addons.allizom.org')
