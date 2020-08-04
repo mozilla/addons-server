@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('addons', '0016_addonreviewerflags_auto_approval_disabled_until_next_approval'),
+        ('addons', '0017_addonreviewerflags_notified_about_expiring_delayed_rejections'),
     ]
 
     operations = [
