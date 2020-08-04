@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-02-20 16:53+0000\n"
 "Last-Translator: siam <iwata@mxq.mesh.ne.jp>\n"
 "Language-Team: Japanese\n"
@@ -33,7 +33,6 @@ msgstr "アドオンは .zip .xpi .crx .xml のいずれかの拡張子を持つ
 msgid "{0}% complete"
 msgstr "{0}% 完了"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
@@ -139,7 +138,6 @@ msgstr "画像は PNG か JPEG 形式でなければなりません。"
 msgid "Videos must be in WebM."
 msgstr "動画は WebM 形式でなければなりません。"
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "このテーマはお使いの {0} のバージョンと互換性がありません"
 
@@ -484,6 +482,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0} から {1} までのダウンロード参照元"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "最近 {0} 日間のダウンロード回数"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "{0} から {1} までのダウンロード回数"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "最近 {0} 日間のダウンロード参照元"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "{0} から {1} までのダウンロード回数"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "最近 {0} 日間のダウンロード回数"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "{0} から {1} までのダウンロード回数"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "最近 {0} 日間の寄付"
 
@@ -636,7 +664,6 @@ msgstr "{0} へ強制ダウンロード"
 msgid "Not available for your platform"
 msgstr "お使いの OS には対応していません"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "このアドオンはお使いのバージョンの {0} と互換性がありません。"
 
@@ -677,12 +704,10 @@ msgstr "結果が見つかりませんでした。"
 msgid "Loading..."
 msgstr "読み込み中..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> 文字"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "残り <b>{0}</b> 文字"

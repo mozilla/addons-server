@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,6 @@ msgstr "Vaš dodatak se treba završiti sa .xpi, .jar ili .xml"
 msgid "{0}% complete"
 msgstr "{0}% završeno"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} od {1}"
 
@@ -143,7 +142,6 @@ msgstr "Slike moraju biti PNG ili JPG."
 msgid "Videos must be in WebM."
 msgstr "Video snimci moraju biti u WebM formatu."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ova tema nije kompatibilna sa Vašom verzijom {0}"
 
@@ -507,6 +505,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Izvori preuzimanja od {0} do {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Preuzimanja, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Preuzimanja od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Izvori preuzimanja, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Preuzimanja od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Preuzimanja, poslednjih {0} dana"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Preuzimanja od {0} do {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Doprinosi, poslednjih {0} dana"
 
@@ -661,7 +689,6 @@ msgstr "Preuzmi za {0} u svakom slučaju"
 msgid "Not available for your platform"
 msgstr "Nije dostupno za Vašu platformu"
 
-#. L10n: {0} is an app name.
 #, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Ova tema nije kompatibilna sa Vašom verzijom {0}"
@@ -705,14 +732,12 @@ msgstr "Nema rezultata."
 msgid "Loading..."
 msgstr "Učitavanje..."
 
-#. L10n: {0} is the number of characters entered.
 #, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> karakter preostao."
 msgstr[1] "<b>{0}</b> karaktera preostala."
 
-#. L10n: {0} is the number of characters left.
 #, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"

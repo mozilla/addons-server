@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2019-03-21 16:17+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1372,6 +1372,10 @@ msgstr ""
 
 msgid "Android"
 msgstr ""
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Heb ei raddio eto"
 
 msgid "Recommended"
 msgstr ""
@@ -5572,7 +5576,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5882,6 +5886,10 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Llwythi"
 
 msgid "Average Daily Users"
 msgstr ""
@@ -6281,6 +6289,10 @@ msgstr ""
 msgid "Permissions:"
 msgstr "Caniatâd:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Caniatâd:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6438,7 +6450,7 @@ msgstr ""
 msgid "result state"
 msgstr ""
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6567,6 +6579,15 @@ msgstr ""
 msgid "by Source"
 msgstr ""
 
+msgid "by Medium"
+msgstr ""
+
+msgid "by Content"
+msgstr ""
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr ""
 
@@ -6665,6 +6686,13 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr ""
 
+#, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Rheoli Llwytho"
+
+msgid "Download contents by Date"
+msgstr ""
+
 msgid "User countries by Date"
 msgstr ""
 
@@ -6682,7 +6710,13 @@ msgstr ""
 msgid "User languages by Date"
 msgstr ""
 
+msgid "Download mediums by Date"
+msgstr ""
+
 msgid "Platform usage by Date"
+msgstr ""
+
+msgid "<b>{0}</b> Weekly Downloads"
 msgstr ""
 
 msgid "<b>{0}</b> Downloads"

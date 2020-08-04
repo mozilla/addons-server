@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-07-16 08:40+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,6 @@ msgstr "თქვენი დამატების დაბოლოებ�
 msgid "{0}% complete"
 msgstr "{0}% დასრულებულია"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
@@ -147,7 +146,6 @@ msgstr "სურათი უნდა იყოს PNG ან JPG."
 msgid "Videos must be in WebM."
 msgstr "ვიდეო უნდა იყოს WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ეს თემა {0}-ის თქვენს ვერსიასთან შეუთავსებელია"
 
@@ -500,6 +498,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "ჩამოტვირთვის წყაროები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "ჩამოტვირთვები, ბოლო {0} დღეში"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "ჩამოტვირთვები {0}-დან {1}-მდე"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "ჩამოტვირთვის წყაროები, ბოლო {0} დღეში"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "ჩამოტვირთვები {0}-დან {1}-მდე"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "ჩამოტვირთვები, ბოლო {0} დღეში"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "ჩამოტვირთვები {0}-დან {1}-მდე"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "შემოწირულობა, ბოლო {0} დღეში"
 
@@ -654,7 +682,6 @@ msgstr "მაინც ჩამოიტვირთოს {0}-ისთვი
 msgid "Not available for your platform"
 msgstr "თქვენს პლატოფმრაზე ხელმისაწვდომი არაა"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "დამატება, {0}-ის თქვენს ვერსიასთან შეუთავსებელია."
 
@@ -696,13 +723,11 @@ msgstr "შედეგები ვერ მოიძებნა."
 msgid "Loading..."
 msgstr "იტვირთება...."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> სიმბოლო"
 msgstr[1] "<b>{0}</b> სიმბოლო"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "დარჩენილია <b>{0}</b> სიმბოლო"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1473,6 +1473,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Promote"
 
 #, fuzzy
 msgid "Recommended"
@@ -6150,8 +6154,8 @@ msgstr "my add-on is reviewed by an editor"
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Has auto-approval disabled flag set."
 
-msgid "Is recommendable"
-msgstr "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
+msgstr "Is in a promoted addon group that requires pre-review"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Delayed because it's the first listed version"
@@ -6466,6 +6470,10 @@ msgstr "Visibility"
 #, fuzzy
 msgid "Visible"
 msgstr "Visibility"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Downloads"
 
 msgid "Average Daily Users"
 msgstr "Average Daily Users"
@@ -6892,6 +6900,10 @@ msgstr "Compare"
 msgid "Permissions:"
 msgstr "Versions"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Versions"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>By %(user)s on %(date)s</div>"
@@ -7033,7 +7045,8 @@ msgstr "presence of matched rules"
 msgid "result state"
 msgstr "Getting Started"
 
-msgid "all but this rule"
+#, fuzzy
+msgid "all but results matching only this rule"
 msgstr "all but this rule"
 
 #, fuzzy
@@ -7171,6 +7184,16 @@ msgstr "Overview"
 msgid "by Source"
 msgstr "by Source"
 
+msgid "by Medium"
+msgstr "by Medium"
+
+#, fuzzy
+msgid "by Content"
+msgstr "Contents"
+
+msgid "by Campaign"
+msgstr "by Campaign"
+
 msgid "Daily Users"
 msgstr "Daily Users"
 
@@ -7272,6 +7295,14 @@ msgid "Application usage by Date"
 msgstr "Application usage by Date"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Download sources by Date"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Download sources by Date"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "User languages by Date"
 
@@ -7291,8 +7322,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "User languages by Date"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Downloaded by Date"
+
 msgid "Platform usage by Date"
 msgstr "Platform usage by Date"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> Downloads"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Downloads"

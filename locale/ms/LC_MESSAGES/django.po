@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1392,6 +1392,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Mempromosi"
 
 #, fuzzy
 msgid "Recommended"
@@ -5687,7 +5691,7 @@ msgstr "Dikunci oleh penyemak."
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Ada tetapan auto-kelulusan nyahdaya."
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5969,6 +5973,10 @@ msgstr "Ketampakan"
 
 msgid "Visible"
 msgstr "Tampak"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Muat turun"
 
 msgid "Average Daily Users"
 msgstr "Purata Pengguna Harian"
@@ -6374,6 +6382,10 @@ msgstr "Banding"
 msgid "Permissions:"
 msgstr "Keizinan:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Keizinan:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Oleh %(user)s pada %(date)s</div>"
@@ -6501,7 +6513,7 @@ msgstr ""
 msgid "result state"
 msgstr "Mulakan"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6639,6 +6651,16 @@ msgstr "Intisari"
 msgid "by Source"
 msgstr "mengikut Sumber"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Kandungan"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Pengguna Harian"
 
@@ -6739,6 +6761,14 @@ msgid "Application usage by Date"
 msgstr "Penggunaan Aplikasi mengikut Tarikh"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Sumber muat turun mengikut Tarikh"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Sumber muat turun mengikut Tarikh"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "Bahasa pengguna mengikut Tarikh"
 
@@ -6758,8 +6788,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Bahasa pengguna mengikut Tarikh"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Dimuat turun mengikut Tarikh"
+
 msgid "Platform usage by Date"
 msgstr "Penggunaan platform mengikut Tarikh"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> Muat turun"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Muat turun"

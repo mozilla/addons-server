@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-06-09 19:47+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,6 @@ msgstr "התוספת שלך צריכה להסתיים ב־zip‏, xpi‏, crx‏
 msgid "{0}% complete"
 msgstr "{0}% הושלמו"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "‏‎{0}‏ מתוך ‎{1}‏"
 
@@ -142,7 +141,6 @@ msgstr "תמונות יכולות להיות בתבנית PNG או JPG."
 msgid "Videos must be in WebM."
 msgstr "וידאו חייב להיות בתבנית WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ערכת נושא זו אינה תואמת לגרסה של ה־{0} שלך"
 
@@ -495,6 +493,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "מקורות הורדה מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "הורדות, ב־{0} הימים האחרונים"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "הורדות מתאריך {0} עד {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "מקורות הורדה, ב־{0} הימים האחרונים"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "הורדות מתאריך {0} עד {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "הורדות, ב־{0} הימים האחרונים"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "הורדות מתאריך {0} עד {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "תרומות, ב־{0} הימים האחרונים"
 
@@ -649,7 +677,6 @@ msgstr "הורדה עבור {0} בכל זאת"
 msgid "Not available for your platform"
 msgstr "לא זמין לפלטפורמה שלך"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "תוספת זו אינה תואמת לגרסת ה־{0} שלך."
 
@@ -691,13 +718,11 @@ msgstr "לא נמצאו תוצאות."
 msgid "Loading..."
 msgstr "בטעינה..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "תו <b>אחד</b>"
 msgstr[1] "<b>{0}</b> תווים"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "נותר תו <b>אחד</b>"

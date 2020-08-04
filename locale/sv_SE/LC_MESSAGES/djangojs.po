@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-06-09 21:47+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -34,7 +34,6 @@ msgstr "Ditt tillägg bör sluta med .zip, .xpi, .crx eller .xml"
 msgid "{0}% complete"
 msgstr "{0}% klart"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} av {1}"
 
@@ -143,7 +142,6 @@ msgstr "Bilder måste vara antingen PNG eller JPG."
 msgid "Videos must be in WebM."
 msgstr "Videor måste vara i WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Detta tema är inte kompatibelt med din version av {0}"
 
@@ -496,6 +494,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Ladda ner källor mellan {0} och {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Nedladdningar de senaste {0} dagarna"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Nedladdningar mellan {0} och {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Ladda ner källor de senaste {0} dagarna"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Nedladdningar mellan {0} och {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Nedladdningar de senaste {0} dagarna"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Nedladdningar mellan {0} och {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Bidrag de senaste {0} dagarna"
 
@@ -650,7 +678,6 @@ msgstr "Hämta för {0} ändå"
 msgid "Not available for your platform"
 msgstr "Ej tillgänglig för din plattform"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Den här tillägget är inte kompatibel med din version av {0}."
 
@@ -692,13 +719,11 @@ msgstr "Inga träffar hittades."
 msgid "Loading..."
 msgstr "Laddar..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> tecken"
 msgstr[1] "<b>{0}</b> tecken"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> tecken kvar"

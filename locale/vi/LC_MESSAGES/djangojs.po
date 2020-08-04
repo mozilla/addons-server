@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-07-09 14:45+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,6 @@ msgstr "Tiện ích của bạn phải có đuôi là .zip, .xpi, .crx hoặc 
 msgid "{0}% complete"
 msgstr "{0}% hoàn thành"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} của {1}"
 
@@ -141,7 +140,6 @@ msgstr "Các hình ảnh phải dưới dạng PNG hoặc JPEG."
 msgid "Videos must be in WebM."
 msgstr "Các video phải dưới dạng WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Chủ đề này không tương thích với phiên bản {0} của bạn"
 
@@ -486,6 +484,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Nguồn tải xuống từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Lượt tải xuống, {0} ngày trước"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Lượt tải xuống từ {0} đến {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Nguồn tải xuống, {0} ngày trước"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Lượt tải xuống từ {0} đến {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Lượt tải xuống, {0} ngày trước"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Lượt tải xuống từ {0} đến {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Khoản Đóng góp, {0} ngày trước"
 
@@ -638,7 +666,6 @@ msgstr "Vẫn tải xuống cho {0}"
 msgid "Not available for your platform"
 msgstr "Không có sẵn cho nền của bạn"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Phiên bản này của tiện ích {0} không tương thích với phiên bản Firefox của bạn."
 
@@ -679,12 +706,10 @@ msgstr "Không tìm thấy kết quả."
 msgid "Loading..."
 msgstr "Đang tải..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> ký tự"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> ký tự còn lại"

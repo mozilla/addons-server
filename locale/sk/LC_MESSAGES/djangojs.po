@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2019-10-11 14:32+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -35,7 +35,6 @@ msgstr "Váš doplnok by mal končiť s .zip, .xpi, .crx alebo .xml"
 msgid "{0}% complete"
 msgstr "Dokončené: {0}%"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} z {1}"
 
@@ -148,7 +147,6 @@ msgstr "Obrázky musia mať formát PNG alebo JPG."
 msgid "Videos must be in WebM."
 msgstr "Videá musia byť vo formáte WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Táto téma nie je kompatibilná s vašou verziou aplikácie {0}"
 
@@ -511,6 +509,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Zdroje preberania od {0} do {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Prevzatia, posledných {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Prevzatí od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Zdroje prevzatí, posledných {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Prevzatí od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Prevzatia, posledných {0} dní"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Prevzatí od {0} do {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Príspevky, posledných {0} dní"
 
@@ -667,7 +695,6 @@ msgstr "Napriek tomu prevziať pre {0}"
 msgid "Not available for your platform"
 msgstr "Nie je dostupné pre vašu platformu."
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Tento doplnok nie je kompatibilný s vašou verziou aplikácie {0}."
 
@@ -710,14 +737,12 @@ msgstr "Neboli nájdené žiadne výsledky."
 msgid "Loading..."
 msgstr "Načítava sa..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> znak"
 msgstr[1] "<b>{0}</b> znaky"
 msgstr[2] "<b>{0}</b> znakov"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Zostáva <b>{0}</b> znak."

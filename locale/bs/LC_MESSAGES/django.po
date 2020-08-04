@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1367,6 +1367,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Unaprijedi"
 
 msgid "Recommended"
 msgstr ""
@@ -5748,7 +5752,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -6029,6 +6033,10 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Preuzimanje"
 
 msgid "Average Daily Users"
 msgstr ""
@@ -6420,6 +6428,9 @@ msgstr ""
 msgid "Permissions:"
 msgstr ""
 
+msgid "Optional permissions:"
+msgstr ""
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6555,7 +6566,7 @@ msgstr ""
 msgid "result state"
 msgstr "Započnite"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6686,6 +6697,16 @@ msgstr ""
 msgid "by Source"
 msgstr ""
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Spam sadržaj"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr ""
 
@@ -6784,6 +6805,13 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr ""
 
+#, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Menadžment preuzimanja"
+
+msgid "Download contents by Date"
+msgstr ""
+
 msgid "User countries by Date"
 msgstr ""
 
@@ -6801,7 +6829,13 @@ msgstr ""
 msgid "User languages by Date"
 msgstr ""
 
+msgid "Download mediums by Date"
+msgstr ""
+
 msgid "Platform usage by Date"
+msgstr ""
+
+msgid "<b>{0}</b> Weekly Downloads"
 msgstr ""
 
 msgid "<b>{0}</b> Downloads"

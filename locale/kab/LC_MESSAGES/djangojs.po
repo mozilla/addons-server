@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-06-10 06:11+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,6 @@ msgstr "Isem n ufaylu n uzegrir-ik issefk ad ifak s .zip, .xpi, .crx neɣ .xml"
 msgid "{0}% complete"
 msgstr "{0} % immed"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} si {1}"
 
@@ -144,7 +143,6 @@ msgstr "Tugniwin zemrent ad ilint PNG neɣ JPG."
 msgid "Videos must be in WebM."
 msgstr "Yessefk tividyutin ad ilint s WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Asentel-a ur imṣada ara akked lqem-inek n {0}"
 
@@ -497,6 +495,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Iɣbula n usader seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Isidar, {0} n wussan ineggura"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Isidar seg {0} ɣer {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Iɣbula n usader, {0} n wussan ineggura"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Isidar seg {0} ɣer {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Isidar, {0} n wussan ineggura"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Isidar seg {0} ɣer {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Attekki, {0} n wussan ineggura"
 
@@ -651,7 +679,6 @@ msgstr "Sader {0} akken yebɣu yili"
 msgid "Not available for your platform"
 msgstr "Ulac i twennaṭ-inek"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Azegrir-a ur imṣada ara akked lqem-inek n {0}."
 
@@ -693,13 +720,11 @@ msgstr "Ulac igmaḍ yettwafen."
 msgid "Loading..."
 msgstr "Asali..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> n yisekkilen"
 msgstr[1] "<b>{0}</b> n yisekkilen"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> n usekkil i d-yegran"

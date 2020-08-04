@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-06-18 08:19+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1380,6 +1380,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Promovoni"
 
 #, fuzzy
 msgid "Recommended"
@@ -5610,8 +5614,8 @@ msgstr "Është kyçur nga një shqyrtues"
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr "E ka të vendosur shenjën për çaktivizim/shtyrje vetëmiratimi"
 
-msgid "Is recommendable"
-msgstr "Është e rekomandueshme"
+msgid "Is in a promoted addon group that requires pre-review"
+msgstr ""
 
 msgid "Delayed because it's the first listed version"
 msgstr "E vonuar ngaqë është versioni i parë i shfaqur"
@@ -5880,6 +5884,10 @@ msgstr "Dukshmëri"
 
 msgid "Visible"
 msgstr "E dukshme"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Shkarkime"
 
 msgid "Average Daily Users"
 msgstr "Përdorues të Përditshëm Mesatarisht"
@@ -6269,6 +6277,10 @@ msgstr "Krahaso"
 msgid "Permissions:"
 msgstr "Leje:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Leje:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Nga %(user)s më %(date)s</div>"
@@ -6403,7 +6415,8 @@ msgstr "prani rregullash me përputhje"
 msgid "result state"
 msgstr "gjendje përfundim"
 
-msgid "all but this rule"
+#, fuzzy
+msgid "all but results matching only this rule"
 msgstr "krejt rregullat hiq këtë"
 
 msgid "presence of a version"
@@ -6529,6 +6542,16 @@ msgstr "Përmbledhje"
 msgid "by Source"
 msgstr "sipas Burimesh"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Përmbajtje"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Përdorues të Përditshëm"
 
@@ -6627,6 +6650,14 @@ msgstr "Ky pult është <b>privat</b>."
 msgid "Application usage by Date"
 msgstr "Përdorim aplikacioni sipas Datash"
 
+#, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Burime Shkarkimesh sipas Datash"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Burime Shkarkimesh sipas Datash"
+
 msgid "User countries by Date"
 msgstr "Vende përdoruesish sipas Datash"
 
@@ -6646,8 +6677,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Gjuhë përdoruesish sipas Datash"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Shtesa sipas Datash Shkarkimi"
+
 msgid "Platform usage by Date"
 msgstr "Përdorime platformash sipas Datash"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> Shkarkime"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Shkarkime"

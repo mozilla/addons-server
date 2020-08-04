@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-07-08 09:27+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,6 @@ msgstr "Pengaya Anda harus diakhiri dengan .zip, .xpi, .crx, atau .xml"
 msgid "{0}% complete"
 msgstr "{0}% komplet"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} dari {1}"
 
@@ -140,7 +139,6 @@ msgstr "Gambar harus dalam PNG atau JPG."
 msgid "Videos must be in WebM."
 msgstr "Video harus dalam WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Tema ini tidak selaras dengan versi {0} Anda"
 
@@ -485,6 +483,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Sumber Unggahan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Unduhan, {0} hari terakhir"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Unduhan dari tanggal {0} hingga tanggal {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Sumber Unggahan, {0} hari terakhir"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Unduhan dari tanggal {0} hingga tanggal {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Unduhan, {0} hari terakhir"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Unduhan dari tanggal {0} hingga tanggal {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Kontribusi, {0} hari terakhir"
 
@@ -637,7 +665,6 @@ msgstr "Unduh {0} saja"
 msgid "Not available for your platform"
 msgstr "Tidak tersedia untuk platform Anda"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Pengaya ini tidak kompatibel dengan versi {0} Anda."
 
@@ -678,12 +705,10 @@ msgstr "Tidak ditemukan hasil."
 msgid "Loading..."
 msgstr "Memuat..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> karakter"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Sisa <b>{0}</b> karakter"

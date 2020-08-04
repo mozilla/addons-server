@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2019-04-23 15:24+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,6 @@ msgstr "El vostre complement ha d'acabar amb .zip, .xpi, .crx, .jar o .xml"
 msgid "{0}% complete"
 msgstr "{0}% completat"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} de {1}"
 
@@ -142,7 +141,6 @@ msgstr "Les imatges han de ser PNG o JPG."
 msgid "Videos must be in WebM."
 msgstr ""
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Aquest tema és incompatible amb la vostra versió de {0}"
 
@@ -497,6 +495,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Fonts de baixades des del {0} al {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Baixades, darrers {0} dies"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Baixades des del {0} al {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Fonts de baixada, darrers {0} dies"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Baixades des del {0} al {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Baixades, darrers {0} dies"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Baixades des del {0} al {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Contribucions, darrers {0} dies"
 
@@ -651,7 +679,6 @@ msgstr "Baixa per al {0} de totes maneres"
 msgid "Not available for your platform"
 msgstr "No està disponible per a la vostra plataforma"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Aquest tema és incompatible amb la vostra versió de {0}."
 
@@ -693,13 +720,11 @@ msgstr "No s'ha trobat cap resultat."
 msgid "Loading..."
 msgstr "S'està carregant..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> caràcter"
 msgstr[1] "<b>{0}</b> caràcters"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> caràcter restant"

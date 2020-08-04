@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1429,6 +1429,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Puntuatu gabe oraindik"
 
 #, fuzzy
 msgid "Recommended"
@@ -5708,7 +5712,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -6021,6 +6025,10 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Deskargak"
 
 msgid "Average Daily Users"
 msgstr "Eguneko batez besteko erabiltzaileak"
@@ -6447,6 +6455,10 @@ msgstr ""
 msgid "Permissions:"
 msgstr "Bertsioak"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Bertsioak"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6589,7 +6601,7 @@ msgstr ""
 msgid "result state"
 msgstr "Hasten"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6720,6 +6732,15 @@ msgstr ""
 msgid "by Source"
 msgstr ""
 
+msgid "by Medium"
+msgstr ""
+
+msgid "by Content"
+msgstr ""
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Eguneko erabiltzaileak"
 
@@ -6819,6 +6840,13 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr ""
 
+#, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Deskargen kudeaketa"
+
+msgid "Download contents by Date"
+msgstr ""
+
 msgid "User countries by Date"
 msgstr ""
 
@@ -6836,8 +6864,15 @@ msgstr ""
 msgid "User languages by Date"
 msgstr ""
 
+msgid "Download mediums by Date"
+msgstr ""
+
 msgid "Platform usage by Date"
 msgstr ""
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "Deskarga <strong>bat</strong> asteko"
 
 msgid "<b>{0}</b> Downloads"
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-06-09 09:15+0000\n"
 "Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1388,6 +1388,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Promoviraj"
 
 #, fuzzy
 msgid "Recommended"
@@ -5616,8 +5620,8 @@ msgstr "Zaklenil pregledovalec"
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Nastavljena zastavica „samodejna odobritev onemogočena“"
 
-msgid "Is recommendable"
-msgstr "Je priporočljiv"
+msgid "Is in a promoted addon group that requires pre-review"
+msgstr ""
 
 msgid "Delayed because it's the first listed version"
 msgstr "Zakasnjeno, ker je to prva navedena različica"
@@ -5904,6 +5908,10 @@ msgstr "Vidnost"
 
 msgid "Visible"
 msgstr "Viden"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Prenosi"
 
 msgid "Average Daily Users"
 msgstr "Povprečno dnevni uporabniki"
@@ -6310,6 +6318,10 @@ msgstr "Primerjaj"
 msgid "Permissions:"
 msgstr "Dovoljenja:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Dovoljenja:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Od%(user)s dne %(date)s</div>"
@@ -6452,7 +6464,7 @@ msgstr ""
 msgid "result state"
 msgstr "Začnite"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6587,6 +6599,16 @@ msgstr "Pregled"
 msgid "by Source"
 msgstr "po izvoru"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Vsebina"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Dnevnih uporabnikov"
 
@@ -6699,6 +6721,14 @@ msgid "Application usage by Date"
 msgstr "Uporaba aplikacije po datumu"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Viri prenosa po datumu"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Viri prenosa po datumu"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "Uporabniški jeziki po datumu"
 
@@ -6718,8 +6748,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Uporabniški jeziki po datumu"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Prenosi po datumu"
+
 msgid "Platform usage by Date"
 msgstr "Uporaba platforme po datumu"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> prenosov"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> prenosov"

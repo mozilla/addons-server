@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-08-04 12:58+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -34,7 +34,6 @@ msgstr "మీ పొడగింతను .zip, .xpi, .crx, లేదా .xml �
 msgid "{0}% complete"
 msgstr "{0}% పూర్తి"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{1} యొక్క {0}"
 
@@ -141,7 +140,6 @@ msgstr "చిత్రాలు తప్పనిసరిగా PNG లేద
 msgid "Videos must be in WebM."
 msgstr "వీడియోలు తప్పనిసరిగా WebM లో ఉండాలి."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ఈ అలంకారం మీ {0} వెర్షనుతో అనుగుణ్యంగా లేదు"
 
@@ -494,6 +492,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0} నుంచి {1} వరకు వనరులను దింపుకోండి"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "గత {0} రోజుల దింపుకోళ్ళు "
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు "
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "గత {0} రోజుల దింపుకోళ్ళ మూలాలు"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు "
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "గత {0} రోజుల దింపుకోళ్ళు "
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు "
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "చివరి {0} రోజులుగా సహాయములు"
 
@@ -648,7 +676,6 @@ msgstr "ఏమైనప్పటికి {0} కోసం దింపుకో
 msgid "Not available for your platform"
 msgstr "మీ వేదికకు అందుబాటులో లేదు"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "ఈ పొడిగింత {0} యొక్క మీ వెర్షన్కు అనుకూలంగా లేదు."
 
@@ -690,13 +717,11 @@ msgstr "ఎటువంటి ఫలితాలు లభించలేదు.
 msgid "Loading..."
 msgstr "లోడవుతున్నది..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> అక్షరం"
 msgstr[1] "<b>{0}</b> అక్షరాలు"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> అక్షరం మిగిలి ఉంది"

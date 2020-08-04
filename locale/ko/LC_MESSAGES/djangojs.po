@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2019-11-11 03:00+0000\n"
 "Last-Translator: Jennie Park <jennie.sungah@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,6 @@ msgstr "부가 기능의 확장자는 .zip, .xpi, .crx, .jar, 또는 .xml을 사
 msgid "{0}% complete"
 msgstr "{0}% 완료됨"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
@@ -140,7 +139,6 @@ msgstr "이미지는 PNG나 JPG를 써야 합니다."
 msgid "Videos must be in WebM."
 msgstr "동영상은 WebM으로 된 것만 사용 가능합니다."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "이 테마는 현재 {0} 버전과 호환되지 않습니다"
 
@@ -493,6 +491,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0}부터 {1} 까지 다운로드 출처"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "최근 {0}일간 다운로드 횟수"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "{0}부터 {1} 까지 다운로드 횟수"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "최근 {0}일간 다운로드 출처"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "{0}부터 {1} 까지 다운로드 횟수"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "최근 {0}일간 다운로드 횟수"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "{0}부터 {1} 까지 다운로드 횟수"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "최근 {0}일간 기부금"
 
@@ -645,7 +673,6 @@ msgstr "{0}용 강제 다운로드"
 msgid "Not available for your platform"
 msgstr "현재 플랫폼에서 사용 불가"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "이 부가 기능은 현재 {0}버전과 호환되지 않습니다."
 
@@ -686,12 +713,10 @@ msgstr "검색한 결과가 없습니다."
 msgid "Loading..."
 msgstr "읽는 중..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b>자"
 
-#. L10n: {0} is the number of characters left.
 #, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"

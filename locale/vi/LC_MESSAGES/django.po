@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-07-09 14:54+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -1382,6 +1382,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Chưa được xếp hạng"
 
 #, fuzzy
 msgid "Recommended"
@@ -5502,7 +5506,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5776,6 +5780,10 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Tải xuống"
 
 msgid "Average Daily Users"
 msgstr "Người dùng Hàng ngày Trung bình"
@@ -6171,6 +6179,10 @@ msgstr ""
 msgid "Permissions:"
 msgstr "Quyền hạn:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Quyền hạn:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6299,7 +6311,7 @@ msgstr ""
 msgid "result state"
 msgstr "trạng thái kết quả"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6427,6 +6439,16 @@ msgstr "Tổng quan"
 msgid "by Source"
 msgstr "theo Nguồn"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Phê duyệt nội dung"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Người dùng Hàng ngày"
 
@@ -6526,6 +6548,14 @@ msgid "Application usage by Date"
 msgstr "Sử dụng ứng dụng theo Ngày"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Nguồn tải theo ngày"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Nguồn tải theo ngày"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "Ngôn ngữ người dùng theo Ngày"
 
@@ -6543,8 +6573,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Ngôn ngữ người dùng theo Ngày"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Tải xuống theo ngày"
+
 msgid "Platform usage by Date"
 msgstr "Sử dụng Nền tảng theo Ngày"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> Tải xuống"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Tải xuống"
