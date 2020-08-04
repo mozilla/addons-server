@@ -403,7 +403,9 @@ class AuthenticateView(FxAConfigMixin, APIView):
 def logout_user(request, response):
     logout(request)
     response.delete_cookie(
-        API_TOKEN_COOKIE, domain=settings.SESSION_COOKIE_DOMAIN)
+        API_TOKEN_COOKIE,
+        domain=settings.SESSION_COOKIE_DOMAIN,
+        samesite=settings.SESSION_COOKIE_SAMESITE)
 
 
 # This view is not covered by the CORS middleware, see:
