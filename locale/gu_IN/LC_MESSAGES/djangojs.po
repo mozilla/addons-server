@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-05-22 16:38+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,6 @@ msgstr "તમારુ એડ-ઓન .zip, .xpi, .crx, .jar અથવા .xml �
 msgid "{0}% complete"
 msgstr "{0}% પૂર્ણ"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} ના {1}"
 
@@ -146,7 +145,6 @@ msgstr "છબીઓ ક્યાં તો PNG અથવા JPG હોવી �
 msgid "Videos must be in WebM."
 msgstr "વિડિઓઝ WebM માં હોવી આવશ્યક છે."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "આ થીમ તમારા {0} આવૃત્તિ સાથે અસંગત છે"
 
@@ -501,6 +499,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0} થી {1} માંથી સ્ત્રોતો ડાઉનલોડ કરો"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "ડાઉનલોડ્સ, છેલ્લા {0} દિવસ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "{0} થી {1} સુધીનાં ડાઉનલોડ્સ"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "ડાઉનલોડ સ્ત્રોતો, છેલ્લા {0} દિવસો"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "{0} થી {1} સુધીનાં ડાઉનલોડ્સ"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "ડાઉનલોડ્સ, છેલ્લા {0} દિવસ"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "{0} થી {1} સુધીનાં ડાઉનલોડ્સ"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "યોગદાન, છેલ્લા {0} દિવસ"
 
@@ -655,7 +683,6 @@ msgstr "{0} માટે કોઇપણ રીતે ડાઉનલોડ ક�
 msgid "Not available for your platform"
 msgstr "તમારા પ્લેટફોર્મ માટે ઉપલબ્ધ નથી"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "આ ઍડ-ઑન {0}તમારી આવૃત્તિ સાથે સુસંગત નથી."
 
@@ -697,13 +724,11 @@ msgstr "કોઈ પરિણામો મળ્યા નથી."
 msgid "Loading..."
 msgstr "લોડ કરી રહ્યું છે..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] ""
 msgstr[1] ""
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] ""

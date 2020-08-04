@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1345,6 +1345,9 @@ msgid "Solaris"
 msgstr ""
 
 msgid "Android"
+msgstr ""
+
+msgid "Not Promoted"
 msgstr ""
 
 msgid "Recommended"
@@ -5465,7 +5468,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5742,6 +5745,9 @@ msgid "Visibility"
 msgstr ""
 
 msgid "Visible"
+msgstr ""
+
+msgid "Weekly Downloads"
 msgstr ""
 
 msgid "Average Daily Users"
@@ -6131,6 +6137,9 @@ msgstr ""
 msgid "Permissions:"
 msgstr ""
 
+msgid "Optional permissions:"
+msgstr ""
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6261,7 +6270,7 @@ msgstr ""
 msgid "result state"
 msgstr ""
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 msgid "presence of a version"
@@ -6388,6 +6397,15 @@ msgstr ""
 msgid "by Source"
 msgstr ""
 
+msgid "by Medium"
+msgstr ""
+
+msgid "by Content"
+msgstr ""
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr ""
 
@@ -6486,6 +6504,13 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr ""
 
+#, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Управување со преземања"
+
+msgid "Download contents by Date"
+msgstr ""
+
 msgid "User countries by Date"
 msgstr ""
 
@@ -6503,7 +6528,13 @@ msgstr ""
 msgid "User languages by Date"
 msgstr ""
 
+msgid "Download mediums by Date"
+msgstr ""
+
 msgid "Platform usage by Date"
+msgstr ""
+
+msgid "<b>{0}</b> Weekly Downloads"
 msgstr ""
 
 msgid "<b>{0}</b> Downloads"

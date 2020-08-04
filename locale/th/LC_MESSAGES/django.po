@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-05-27 14:52+0000\n"
 "Last-Translator: Wannaphong Phatthiyaphaibun <wannaphong@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -1371,6 +1371,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "โปรโมต"
 
 #, fuzzy
 msgid "Recommended"
@@ -5537,7 +5541,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5822,6 +5826,11 @@ msgstr "การมองเห็น"
 
 msgid "Visible"
 msgstr "มองเห็นได้"
+
+# 88%
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "การดาวน์โหลด"
 
 msgid "Average Daily Users"
 msgstr "ผู้ใช้งานเฉลี่ยต่อวัน"
@@ -6223,6 +6232,10 @@ msgstr "เปรียบเทียบ"
 msgid "Permissions:"
 msgstr "สิทธิอนุญาต:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "สิทธิอนุญาต:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>โดย %(user)s เมื่อ %(date)s</div>"
@@ -6354,7 +6367,7 @@ msgstr ""
 msgid "result state"
 msgstr "เริ่มต้นใช้งาน"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6489,6 +6502,16 @@ msgstr "ภาพรวม"
 msgid "by Source"
 msgstr ""
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "เนื้อหา"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "ผู้ใช้ต่อวัน"
 
@@ -6587,6 +6610,13 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr ""
 
+#, fuzzy
+msgid "Download campaigns by Date"
+msgstr "การจัดการการดาวน์โหลด"
+
+msgid "Download contents by Date"
+msgstr ""
+
 msgid "User countries by Date"
 msgstr ""
 
@@ -6604,8 +6634,15 @@ msgstr ""
 msgid "User languages by Date"
 msgstr ""
 
+msgid "Download mediums by Date"
+msgstr ""
+
 msgid "Platform usage by Date"
 msgstr ""
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> การดาวน์โหลด"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> การดาวน์โหลด"

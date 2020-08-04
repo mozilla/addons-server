@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-06-13 17:50+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -37,7 +37,6 @@ msgstr "Shtesa juaj do të duhej të përfundonte me .zip, .xpi, .crx, ose .xml"
 msgid "{0}% complete"
 msgstr "{0}% e plotësuar"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} nga {1}"
 
@@ -148,7 +147,6 @@ msgstr "Figurat duhet të jenë ose PNG, ose JPG."
 msgid "Videos must be in WebM."
 msgstr "Videot duhet të jenë në formatin WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Kjo temë është e papërputhshme me versionin tuaj të {0}"
 
@@ -501,6 +499,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Burime Shkarkimi nga {0} te {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Shkarkime, {0} ditët e fundit"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Shkarkime nga {0} te {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Burime Shkarkimesh, {0} ditët e fundit"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Shkarkime nga {0} te {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Shkarkime, {0} ditët e fundit"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Shkarkime nga {0} te {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Kontribute, {0} ditët e fundit"
 
@@ -655,7 +683,6 @@ msgstr "Shkarkoje për {0} sido qoftë"
 msgid "Not available for your platform"
 msgstr "Jo i passhëm për platformën tuaj"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Kjo shtesë s’është e përputhshme me versionin tuaj të {0}."
 
@@ -697,13 +724,11 @@ msgstr "S’u gjetën përfundime."
 msgid "Loading..."
 msgstr "Po ngarkohet…"
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> shenjë"
 msgstr[1] "<b>{0}</b> shenja"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Edhe <b>{0}</b> shenjë"

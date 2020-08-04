@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2019-11-13 19:27+0000\n"
 "Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -1384,6 +1384,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Ikke bedømt endnu"
 
 #, fuzzy
 msgid "Recommended"
@@ -5680,7 +5684,7 @@ msgstr "min tilføjelse er gennemgået af en redaktør"
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5978,6 +5982,10 @@ msgstr "Synlighed"
 
 msgid "Visible"
 msgstr "Synlig"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Filhentninger"
 
 msgid "Average Daily Users"
 msgstr "Gennemsnitlige daglige brugere"
@@ -6380,6 +6388,10 @@ msgstr ""
 msgid "Permissions:"
 msgstr "Tilladelser:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Tilladelser:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Af %(user)s den %(date)s</div>"
@@ -6517,7 +6529,7 @@ msgstr ""
 msgid "result state"
 msgstr "Kom i gang"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6647,6 +6659,16 @@ msgstr "Oversigt"
 msgid "by Source"
 msgstr "efter kilde"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Indhold"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Daglige brugere"
 
@@ -6748,6 +6770,14 @@ msgid "Application usage by Date"
 msgstr "Programbrug efter dato"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Filhentningskilder, efter dato"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Filhentningskilder, efter dato"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "Brugersprog efter dato"
 
@@ -6765,8 +6795,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Brugersprog efter dato"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Hentede, efter dato"
+
 msgid "Platform usage by Date"
 msgstr "Platformbrug efter dato"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> filhentninger"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> filhentninger"

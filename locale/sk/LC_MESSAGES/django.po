@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-06-04 21:34+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1365,6 +1365,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Propagácia"
 
 msgid "Recommended"
 msgstr ""
@@ -5511,7 +5515,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5791,6 +5795,10 @@ msgstr "Viditeľnosť"
 
 msgid "Visible"
 msgstr "Viditeľný"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Prevzatí"
 
 msgid "Average Daily Users"
 msgstr "Priemerný počet denných používateľov"
@@ -6178,6 +6186,10 @@ msgstr "Porovnanie"
 msgid "Permissions:"
 msgstr "Povolenia:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Povolenia:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Od %(user)s dňa %(date)s</div>"
@@ -6316,7 +6328,7 @@ msgstr ""
 msgid "result state"
 msgstr ""
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 msgid "presence of a version"
@@ -6442,6 +6454,16 @@ msgstr "Prehľad"
 msgid "by Source"
 msgstr "podľa zdroja prevzatia"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Obsah"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Denných používateľov"
 
@@ -6542,6 +6564,14 @@ msgid "Application usage by Date"
 msgstr "Používanie aplikácie podľa dátumu"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Zdroje prevzatí podľa dátumu"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Zdroje prevzatí podľa dátumu"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "Jazyky podľa dátumu"
 
@@ -6561,8 +6591,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Jazyky podľa dátumu"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Prevzatia podľa dátumu"
+
 msgid "Platform usage by Date"
 msgstr "Používané platformy podľa dátumu"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> prevzatí"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> prevzatí"

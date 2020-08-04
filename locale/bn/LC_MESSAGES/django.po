@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1360,6 +1360,10 @@ msgstr "সোলারিস"
 
 msgid "Android"
 msgstr "এনড্রয়েড"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "এখনও রেট করা হয় নি"
 
 #, fuzzy
 msgid "Recommended"
@@ -5478,7 +5482,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5753,6 +5757,10 @@ msgstr "দৃশ্যমানতা"
 
 msgid "Visible"
 msgstr "দৃশ্যমান"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "ডাউনলোডসমূহ"
 
 msgid "Average Daily Users"
 msgstr "প্রতিদিন গড় ব্যবহারকারী"
@@ -6143,6 +6151,10 @@ msgstr "তুলনা"
 msgid "Permissions:"
 msgstr ""
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "অ্যাপ্লিকেশন সংস্করণ"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6272,7 +6284,7 @@ msgstr ""
 msgid "result state"
 msgstr ""
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 msgid "presence of a version"
@@ -6402,6 +6414,16 @@ msgstr "সারসংক্ষেপ"
 msgid "by Source"
 msgstr "সোর্স দ্বারা"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "বিষয়বস্তুসমূহ"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "দৈনিক ব্যবহারকারী"
 
@@ -6500,6 +6522,13 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr ""
 
+#, fuzzy
+msgid "Download campaigns by Date"
+msgstr "ব্যবস্থাপনা ডাউনলোড করুন"
+
+msgid "Download contents by Date"
+msgstr ""
+
 msgid "User countries by Date"
 msgstr ""
 
@@ -6517,8 +6546,15 @@ msgstr ""
 msgid "User languages by Date"
 msgstr ""
 
+msgid "Download mediums by Date"
+msgstr ""
+
 msgid "Platform usage by Date"
 msgstr ""
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<strong>{0}</strong> সাপ্তাহিক ডাউনলোড"
 
 msgid "<b>{0}</b> Downloads"
 msgstr ""

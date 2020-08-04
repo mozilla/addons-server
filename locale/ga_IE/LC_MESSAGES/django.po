@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -1441,6 +1441,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Gan rátáil fós"
 
 #, fuzzy
 msgid "Recommended"
@@ -5730,7 +5734,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -6054,6 +6058,10 @@ msgstr "Infheictheacht"
 
 msgid "Visible"
 msgstr "Infheicthe"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Íoslódálacha"
 
 msgid "Average Daily Users"
 msgstr "Meánlíon na nÚsáideoirí Laethúla"
@@ -6473,6 +6481,10 @@ msgstr "Cuir i gComparáid"
 msgid "Permissions:"
 msgstr "Leaganacha"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Leaganacha"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Le %(user)s ar %(date)s</div>"
@@ -6629,7 +6641,7 @@ msgstr ""
 msgid "result state"
 msgstr "Tús Maith"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6760,6 +6772,16 @@ msgstr "Foramharc"
 msgid "by Source"
 msgstr "de réir Foinse"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Ábhar"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Úsáideoirí Laethúla"
 
@@ -6861,6 +6883,14 @@ msgid "Application usage by Date"
 msgstr "Úsáid an fheidhmchláir de réir Dáta"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Foinsí Íoslódála de réir Dáta"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Foinsí Íoslódála de réir Dáta"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "Teangacha úsáideora de réir Dáta"
 
@@ -6878,8 +6908,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Teangacha úsáideora de réir Dáta"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Foinsí Íoslódála de réir Dáta"
+
 msgid "Platform usage by Date"
 msgstr ""
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<strong>{0}</strong> íoslódáil sa tseachtain"
 
 msgid "<b>{0}</b> Downloads"
 msgstr ""

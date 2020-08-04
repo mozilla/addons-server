@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-06-11 03:01+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1402,6 +1402,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "To'ïk"
 
 #, fuzzy
 msgid "Recommended"
@@ -5681,7 +5685,7 @@ msgstr "Q'aton ruma jun nik'onel."
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Achupun retal ruyon-ütz-nitz'et."
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5969,6 +5973,10 @@ msgstr "Wachel"
 
 msgid "Visible"
 msgstr "Tz'etel"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Taq qasanïk"
 
 msgid "Average Daily Users"
 msgstr "Kipajik Okisanela' Q'ij Q'ij"
@@ -6374,6 +6382,10 @@ msgstr "Tijunamäx"
 msgid "Permissions:"
 msgstr "Taq ya'oj q'ij:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Taq ya'oj q'ij:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div> Ruma %(user)s pa %(date)s</div>"
@@ -6506,7 +6518,7 @@ msgstr ""
 msgid "result state"
 msgstr "Titikirisäx"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6644,6 +6656,16 @@ msgstr "Chijun rutzijoxkil"
 msgid "by Source"
 msgstr "chi Ruxe'el"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Taq rupam"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Q'ij chi Q'ij Okisanela'"
 
@@ -6744,6 +6766,14 @@ msgid "Application usage by Date"
 msgstr "Rokisaxik chokoy chi Q'ijul"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Kixe'el qasanïk chi Q'ijul"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Kixe'el qasanïk chi Q'ijul"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "Kich'ab'äl okisanela' chi Q'ijul"
 
@@ -6763,8 +6793,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Kich'ab'äl okisanela' chi Q'ijul"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Niqasäx chi Q'ijul"
+
 msgid "Platform usage by Date"
 msgstr "Rokisaxik nuk'uch'el chi Q'ijul"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> Taq Qasanïk"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Taq Qasanïk"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-06-09 20:20+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,6 @@ msgstr "Розширення вашого додатка повинно бути
 msgid "{0}% complete"
 msgstr "{0}% завершено"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} з {1}"
 
@@ -148,7 +147,6 @@ msgstr "Зображення повинні бути в форматі PNG аб�
 msgid "Videos must be in WebM."
 msgstr "Відео повинні бути у форматі WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ця тема несумісна з вашою версією {0}"
 
@@ -509,6 +507,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Джерел завантажень з {0} по {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Завантажень за останні {0} днів"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Завантажень з {0} по {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Джерел завантажень за останні {0} днів"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Завантажень з {0} по {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Завантажень за останні {0} днів"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Завантажень з {0} по {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Внесків за останні {0} днів"
 
@@ -665,7 +693,6 @@ msgstr "Все одно завантажити для {0}"
 msgid "Not available for your platform"
 msgstr "Недоступно для вашої платформи"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Цей додаток несумісний з вашою версією {0}."
 
@@ -708,14 +735,12 @@ msgstr "Не знайдено результатів."
 msgid "Loading..."
 msgstr "Завантажується..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> символ"
 msgstr[1] "<b>{0}</b> символи"
 msgstr[2] "<b>{0}</b> символів"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Залишився <b>{0}</b> символ"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-06-29 07:43+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -1383,6 +1383,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "宣伝"
 
 #, fuzzy
 msgid "Recommended"
@@ -5613,8 +5617,8 @@ msgstr "審査担当者によってロックされています"
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr "自動承認無効フラグが設定されています"
 
-msgid "Is recommendable"
-msgstr "お勧めです"
+msgid "Is in a promoted addon group that requires pre-review"
+msgstr ""
 
 msgid "Delayed because it's the first listed version"
 msgstr ""
@@ -5891,6 +5895,10 @@ msgstr "公開状態"
 
 msgid "Visible"
 msgstr "公開"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "ダウンロード数"
 
 msgid "Average Daily Users"
 msgstr "平均日別ユーザー数"
@@ -6294,6 +6302,10 @@ msgstr "比較"
 msgid "Permissions:"
 msgstr "許可設定:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "許可設定:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>ユーザー: %(user)s、%(date)s</div>"
@@ -6421,7 +6433,7 @@ msgstr ""
 msgid "result state"
 msgstr "ここからスタート"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6559,6 +6571,16 @@ msgstr "概要"
 msgid "by Source"
 msgstr "参照元別"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "内容"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "日別ユーザー数"
 
@@ -6659,6 +6681,14 @@ msgid "Application usage by Date"
 msgstr "日別アプリケーション使用回数"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "日別ダウンロード参照元数"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "日別ダウンロード参照元数"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "日別ユーザー使用言語数"
 
@@ -6677,8 +6707,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "日別ユーザー使用言語数"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "日別ダウンロード回数"
+
 msgid "Platform usage by Date"
 msgstr "日別プラットフォーム使用回数"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "ダウンロード数 <b>{0}</b>"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "ダウンロード数 <b>{0}</b>"

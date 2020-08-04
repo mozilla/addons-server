@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-06-14 21:27+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -34,7 +34,6 @@ msgstr "Το πρόσθετό σας πρέπει να έχει κατάληξη
 msgid "{0}% complete"
 msgstr "{0}% ολοκληρωμένο"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} από {1}"
 
@@ -147,7 +146,6 @@ msgstr "Οι εικόνες πρέπει να είναι είτε PNG είτε J
 msgid "Videos must be in WebM."
 msgstr "Τα βίντεο πρέπει να είναι τύπου WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Δεν είναι συμβατό αυτό το θέμα με την έκδοση του {0} που έχετε"
 
@@ -500,6 +498,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Λήψη κώδικα από {0} ως {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Λήψεις, τελευταίες {0} ημέρες"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Λήψεις από {0} ως {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Λήψη κώδικα, τελευταίες {0} ημέρες"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Λήψεις από {0} ως {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Λήψεις, τελευταίες {0} ημέρες"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Λήψεις από {0} ως {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Συνεισφορές, τελευταίες {0} ημέρες"
 
@@ -654,7 +682,6 @@ msgstr "Λήψη για {0} οπωσδήποτε"
 msgid "Not available for your platform"
 msgstr "Δεν διατίθεται για το λειτουργικό σας"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Αυτό το πρόσθετο δεν είναι συμβατό με την έκδοση του {0} σας."
 
@@ -696,13 +723,11 @@ msgstr "Δεν βρέθηκαν αποτελέσματα."
 msgid "Loading..."
 msgstr "Γίνεται φόρτωση..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> χαρακτήρας"
 msgstr[1] "<b>{0}</b> χαρακτήρες"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Απομένει <b>{0}</b> χαρακτήρας"

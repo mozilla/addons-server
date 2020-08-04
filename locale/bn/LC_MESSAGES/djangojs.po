@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2017-09-28 10:22+0000\n"
 "Last-Translator: Shahriar Shanto <shahriar083@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,7 +34,6 @@ msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, অথবা .x
 msgid "{0}% complete"
 msgstr "{0} % সম্পূর্ণ"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} এর {1}"
 
@@ -141,7 +140,6 @@ msgstr "চিত্রগুলি অবশ্যই PNG বা JPG হতে 
 msgid "Videos must be in WebM."
 msgstr "ভিডিও গুলো অবশ্যই WebM তে হতে হবে।"
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "এই থিমটি আপনার সংস্করণ {0} এর সাথে সামঞ্জস্যপূর্ণ নয়"
 
@@ -496,6 +494,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "ডাইনলোডের সোর্স {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "ডাউনলোডসমূহ, গত {0} দিন"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "ডাউনলোডসমূহ {0} থেকে {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "ডাউনলোডসমূহ, গত {0} দিন"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "ডাউনলোডসমূহ {0} থেকে {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "ডাউনলোডসমূহ, গত {0} দিন"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "ডাউনলোডসমূহ {0} থেকে {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "শেষ {0} দিনে অবদান"
 
@@ -650,7 +678,6 @@ msgstr "{0} এর জন্য যেকোনভাবে ডাউনলো�
 msgid "Not available for your platform"
 msgstr "আপনার প্লাটফরমের জন্য পাওয়া যায়নি"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr ""
 
@@ -692,13 +719,11 @@ msgstr "কোন ফলাফল পাওয়া যায়নি।"
 msgid "Loading..."
 msgstr "লোডিং..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] ""
 msgstr[1] ""
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b> {0} </b> টি অক্ষর বাকি আছে।"

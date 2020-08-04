@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-06-09 20:46+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1348,6 +1348,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Entá nun se valoró"
 
 msgid "Recommended"
 msgstr ""
@@ -5459,7 +5463,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5733,6 +5737,9 @@ msgstr "Visibilidá"
 
 msgid "Visible"
 msgstr "Visible"
+
+msgid "Weekly Downloads"
+msgstr ""
 
 msgid "Average Daily Users"
 msgstr ""
@@ -6122,6 +6129,10 @@ msgstr ""
 msgid "Permissions:"
 msgstr "Permisos:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Permisos:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6251,7 +6262,7 @@ msgstr ""
 msgid "result state"
 msgstr ""
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 msgid "presence of a version"
@@ -6378,6 +6389,15 @@ msgstr ""
 msgid "by Source"
 msgstr ""
 
+msgid "by Medium"
+msgstr ""
+
+msgid "by Content"
+msgstr ""
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Usuarios diarios"
 
@@ -6477,6 +6497,12 @@ msgstr "Anguaño esti panel ye <b>priváu</b>."
 msgid "Application usage by Date"
 msgstr ""
 
+msgid "Download campaigns by Date"
+msgstr ""
+
+msgid "Download contents by Date"
+msgstr ""
+
 msgid "User countries by Date"
 msgstr ""
 
@@ -6494,8 +6520,15 @@ msgstr ""
 msgid "User languages by Date"
 msgstr ""
 
+msgid "Download mediums by Date"
+msgstr ""
+
 msgid "Platform usage by Date"
 msgstr ""
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> descargues"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> descargues"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-07-17 11:45+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,6 @@ msgstr "افزودنی‌های شما باید با .xpi، .jar، یا .xml پ�
 msgid "{0}% complete"
 msgstr "‏{0}% تکمیل شده است"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} از {1}"
 
@@ -142,7 +141,6 @@ msgstr "تصاویر بایستی یکی از موارد PNG یا JPG باشد."
 msgid "Videos must be in WebM."
 msgstr "فیلم بایستی WebM باشد."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr ""
 
@@ -502,6 +500,30 @@ msgid "Download Sources from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
+msgid "Download Mediums, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+msgid "Download Mediums from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+msgid "Download Contents, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+msgid "Download Contents from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
+msgid "Download Campaigns, last {0} days"
+msgstr ""
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+msgid "Download Campaigns from {0} to {1}"
+msgstr ""
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr ""
 
@@ -656,7 +678,6 @@ msgstr ""
 msgid "Not available for your platform"
 msgstr "برای سیستم عامل شما موجود نیست"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr ""
 
@@ -698,13 +719,11 @@ msgstr ""
 msgid "Loading..."
 msgstr ""
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] ""
 msgstr[1] ""
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] ""

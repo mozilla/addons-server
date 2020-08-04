@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-04-27 13:30+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -36,7 +36,6 @@ msgstr "Končnica vašega dodatka mora biti .zip, .xpi, .crx ali .xml"
 msgid "{0}% complete"
 msgstr "{0} % dokončano"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} od {1}"
 
@@ -153,7 +152,6 @@ msgstr "Slike morajo biti PNG ali JPG."
 msgid "Videos must be in WebM."
 msgstr "Videoposnetki morajo biti WebM."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ta tema ni združljiva z vašo različico {0}a"
 
@@ -524,6 +522,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Viri prenosa od {0} do {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Prenosi zadnjih {0} dni"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Prenosi od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Viri prenosa zadnjih {0} dni"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Prenosi od {0} do {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Prenosi zadnjih {0} dni"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Prenosi od {0} do {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Prispevki zadnjih {0} dni"
 
@@ -682,7 +710,6 @@ msgstr "Vseeno prenesi za {0}"
 msgid "Not available for your platform"
 msgstr "Ni na voljo za vašo podlago"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Ta dodatek ni združljiv z vašo različico {0}a."
 
@@ -726,7 +753,6 @@ msgstr "Ni najdenih rezultatov."
 msgid "Loading..."
 msgstr "Nalaganje..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> znak"
@@ -734,7 +760,6 @@ msgstr[1] "<b>{0}</b> znaka"
 msgstr[2] "<b>{0}</b> znaki"
 msgstr[3] "<b>{0}</b> znakov"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> znak preostane"

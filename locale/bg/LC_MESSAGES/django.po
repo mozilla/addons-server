@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-07-16 13:36+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -1399,6 +1399,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Насърчаване"
 
 #, fuzzy
 msgid "Recommended"
@@ -5625,7 +5629,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5931,6 +5935,10 @@ msgstr "Видимост"
 
 msgid "Visible"
 msgstr "Публикувана"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Изтегляния"
 
 msgid "Average Daily Users"
 msgstr "Среден брой потребителя на ден"
@@ -6338,6 +6346,10 @@ msgstr ""
 msgid "Permissions:"
 msgstr "Права:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Права:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6476,7 +6488,7 @@ msgstr ""
 msgid "result state"
 msgstr "Първи стъпки"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6610,6 +6622,16 @@ msgstr "Обобщение"
 msgid "by Source"
 msgstr "по източник"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Съдържание"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Дневни потребители"
 
@@ -6710,6 +6732,14 @@ msgid "Application usage by Date"
 msgstr "Версии на приложението по дата"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Управление на изтегляния"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Езици по дата"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "Езици по дата"
 
@@ -6727,8 +6757,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Езици по дата"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Потребители дневно по дата"
+
 msgid "Platform usage by Date"
 msgstr "Платформи по дата"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> Изтегляния"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Изтегляния"

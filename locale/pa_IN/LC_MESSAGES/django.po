@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-07-03 02:17+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1360,6 +1360,10 @@ msgstr "ਸੋਲੈਰਿਸ"
 
 msgid "Android"
 msgstr "ਐਂਡਰਾਇਡ"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "ਉਤਸ਼ਾਹਿਤ"
 
 #, fuzzy
 msgid "Recommended"
@@ -5582,8 +5586,8 @@ msgstr "ਸਮੀਖਿਅਕ ਦੁਆਰਾ ਬੰਦ ਕੀਤਾ ਗਿਆ �
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਅਸਮਰਥਿਤ ਝੰਡੇ ਸੈਟ ਹੈ।"
 
-msgid "Is recommendable"
-msgstr "ਸਿਫਾਰਸ਼ ਕੀਤੀ ਜਾ ਸਕਦੀ ਹੈ"
+msgid "Is in a promoted addon group that requires pre-review"
+msgstr ""
 
 msgid "Delayed because it's the first listed version"
 msgstr "ਦੇਰੀ ਕਰਕੇ ਕਿਉਂਕਿ ਇਹ ਪਹਿਲਾ ਸੂਚੀਬੱਧ ਵਰਜਨ ਹੈ"
@@ -5863,6 +5867,10 @@ msgstr "ਪ੍ਰਤੱਖਤਾ"
 
 msgid "Visible"
 msgstr "ਪ੍ਰਤੱਖਤਾ"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "ਡਾਊਨਲੋਡ"
 
 msgid "Average Daily Users"
 msgstr "ਔਸਤ ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
@@ -6264,6 +6272,10 @@ msgstr "ਤੁਲਨਾ"
 msgid "Permissions:"
 msgstr "ਇਜਾਜ਼ਤਾਂ:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "ਇਜਾਜ਼ਤਾਂ:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>%(date)s ਨੂੰ %(user)s ਵੱਲੋਂ</div>"
@@ -6396,7 +6408,7 @@ msgstr ""
 msgid "result state"
 msgstr "ਸ਼ੁਰੂ ਕਰੋ"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6534,6 +6546,16 @@ msgstr "ਸੰਖੇਪ ਜਾਣਕਾਰੀ"
 msgid "by Source"
 msgstr "ਸੋਰਸ ਦੁਆਰਾ"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "ਸਮੱਗਰੀ"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
@@ -6634,6 +6656,14 @@ msgid "Application usage by Date"
 msgstr "ਐਪਲੀਕੇਸ਼ਨਾਂ ਦੀ ਵਰਤੋਂ ਮਿਤੀ ਅਨੁਸਾਰ"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "ਡਾਊਨਲੋਡ ਸੋਰਸ ਮਿਤੀ ਅਨੁਸਾਰ"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "ਡਾਊਨਲੋਡ ਸੋਰਸ ਮਿਤੀ ਅਨੁਸਾਰ"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "ਉਪਭੋਗੀ ਭਾਸ਼ਾਵਾਂ ਮਿਤੀ ਅਨੁਸਾਰ"
 
@@ -6651,8 +6681,16 @@ msgstr "<h2>ਡਾਊਨਲੋਡਾਂ ਦੀ ਗਿਣਤੀ ਕਿਵੇਂ �
 msgid "User languages by Date"
 msgstr "ਉਪਭੋਗੀ ਭਾਸ਼ਾਵਾਂ ਮਿਤੀ ਅਨੁਸਾਰ"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "ਡਾਊਨਲੋਡ ਕੀਤੇ ਮਿਤੀ ਅਨੁਸਾਰ"
+
 msgid "Platform usage by Date"
 msgstr "ਪਲੇਟਫ਼ਾਰਮ ਵਰਤੋਂ ਮਿਤੀ ਅਨੁਸਾਰ"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> ਡਾਊਨਲੋਡ"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> ਡਾਊਨਲੋਡ"

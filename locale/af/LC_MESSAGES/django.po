@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -1416,6 +1416,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Nog nie gegradeer nie"
 
 msgid "Recommended"
 msgstr ""
@@ -5672,7 +5676,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5977,6 +5981,11 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+# 100%
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Afgelaai"
 
 msgid "Average Daily Users"
 msgstr "Gemiddelde daaglikse gebruikers"
@@ -6403,6 +6412,10 @@ msgstr ""
 msgid "Permissions:"
 msgstr "Weergawes"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Weergawes"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6545,7 +6558,7 @@ msgstr ""
 msgid "result state"
 msgstr ""
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6675,6 +6688,15 @@ msgstr "Oorsig"
 msgid "by Source"
 msgstr ""
 
+msgid "by Medium"
+msgstr ""
+
+msgid "by Content"
+msgstr ""
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Daaglikse gebruikers"
 
@@ -6773,6 +6795,13 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr ""
 
+#, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Aflaaibestuur"
+
+msgid "Download contents by Date"
+msgstr ""
+
 msgid "User countries by Date"
 msgstr ""
 
@@ -6790,8 +6819,15 @@ msgstr ""
 msgid "User languages by Date"
 msgstr ""
 
+msgid "Download mediums by Date"
+msgstr ""
+
 msgid "Platform usage by Date"
 msgstr ""
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<strong>{0}</strong> keer afgelaai per week"
 
 msgid "<b>{0}</b> Downloads"
 msgstr ""

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-06-09 21:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,6 @@ msgstr "Waš přidatk dyrbi datajowu kóncowku .zip, .xpi, .crx abo .xml měć"
 msgid "{0}% complete"
 msgstr "{0}% dokónčene"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} z {1}"
 
@@ -154,7 +153,6 @@ msgstr "Wobrazy dyrbja pak PNG pak JPG być."
 msgid "Videos must be in WebM."
 msgstr "Wideja dyrbja we formaće WebM być."
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Tuta drasta z wašej wersiju {0} kompatibelna njeje"
 
@@ -523,6 +521,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Sćehnjenske žórła wot {0} hač do {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "Sćehnjenja, zańdźene {0} dnjow"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "Sćehnjenja wot {0} hač do {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "Sćehnjenske žórła, zańdźene {0} dnjow"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "Sćehnjenja wot {0} hač do {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "Sćehnjenja, zańdźene {0} dnjow"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "Sćehnjenja wot {0} hač do {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "Přinoški, zańdźene {0} dnjow"
 
@@ -681,7 +709,6 @@ msgstr "Najebać toho za {0} sćahnyć"
 msgid "Not available for your platform"
 msgstr "Njeje za wašu platformu k dispoziciji"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Tutón přidatk z wašej wersiju {0} kompatibelna njeje."
 
@@ -725,7 +752,6 @@ msgstr "Žane wusědki namakane."
 msgid "Loading..."
 msgstr "Začituje so..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> znamješko"
@@ -733,7 +759,6 @@ msgstr[1] "<b>{0}</b> znamješce"
 msgstr[2] "<b>{0}</b> znamješka"
 msgstr[3] "<b>{0}</b> znamješkow"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> znamješko wyše"

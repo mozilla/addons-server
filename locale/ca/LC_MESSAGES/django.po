@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-06-20 18:46+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1450,6 +1450,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Encara no s'ha valorat"
 
 #, fuzzy
 msgid "Recommended"
@@ -5743,7 +5747,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -6059,6 +6063,10 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Baixades"
 
 msgid "Average Daily Users"
 msgstr "Mitjana diària d'usuaris "
@@ -6482,6 +6490,10 @@ msgstr "Compara"
 msgid "Permissions:"
 msgstr "Versions"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Versions"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6621,7 +6633,7 @@ msgstr ""
 msgid "result state"
 msgstr "Com començar"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6752,6 +6764,16 @@ msgstr "Resum"
 msgid "by Source"
 msgstr "per font"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Contingut"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Usuaris diaris"
 
@@ -6851,6 +6873,14 @@ msgid "Application usage by Date"
 msgstr "Ús de l'aplicació per data"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Llocs de baixada per data"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Llocs de baixada per data"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "Llengües de l'usuari per data"
 
@@ -6868,8 +6898,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Llengües de l'usuari per data"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Llocs de baixada per data"
+
 msgid "Platform usage by Date"
 msgstr ""
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<strong>{0}</strong> baixada per setmana"
 
 msgid "<b>{0}</b> Downloads"
 msgstr ""

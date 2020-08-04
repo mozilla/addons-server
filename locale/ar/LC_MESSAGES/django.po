@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-07-07 16:50+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1374,6 +1374,10 @@ msgstr "سولاريس"
 
 msgid "Android"
 msgstr "أندرويد"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "بلا تقييم حتى الآن"
 
 #, fuzzy
 msgid "Recommended"
@@ -5664,8 +5668,8 @@ msgstr "عندما تراجع إضافتي بواسطة محرّر"
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
-msgstr "مُقترحة"
+msgid "Is in a promoted addon group that requires pre-review"
+msgstr ""
 
 msgid "Delayed because it's the first listed version"
 msgstr ""
@@ -5995,6 +5999,10 @@ msgstr "الرؤية"
 
 msgid "Visible"
 msgstr "ظاهرة"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "التنزيلات"
 
 msgid "Average Daily Users"
 msgstr "معدّل المستخدمين اليومين"
@@ -6414,6 +6422,10 @@ msgstr "مقارنة"
 msgid "Permissions:"
 msgstr "الإصدارات"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "الإصدارات"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6572,7 +6584,7 @@ msgstr ""
 msgid "result state"
 msgstr ""
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6704,6 +6716,16 @@ msgstr "نظرة عامة"
 msgid "by Source"
 msgstr "حسب المصدر"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "المحتويات"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "المستخدمين اليوميين"
 
@@ -6804,6 +6826,14 @@ msgid "Application usage by Date"
 msgstr "استخدام التطبيق حسب التاريخ"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "مصادر التنزيل حسب التاريخ"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "مصادر التنزيل حسب التاريخ"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "لغات المستخدم حسب التاريخ"
 
@@ -6821,8 +6851,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "لغات المستخدم حسب التاريخ"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "التنزيلات حسب التاريخ"
+
 msgid "Platform usage by Date"
 msgstr "استخدام المنصة حسب التاريخ"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> من التنزيلات"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> من التنزيلات"

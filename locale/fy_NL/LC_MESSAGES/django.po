@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-07-09 11:32+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1385,6 +1385,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Promoatsje"
 
 #, fuzzy
 msgid "Recommended"
@@ -5608,8 +5612,8 @@ msgstr "Is beskoattele troch in beoardieler"
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Hat markearring ‘automatysk goedkarre útskeakele/útsteld’"
 
-msgid "Is recommendable"
-msgstr "Is oan te rekommandearjen"
+msgid "Is in a promoted addon group that requires pre-review"
+msgstr ""
 
 msgid "Delayed because it's the first listed version"
 msgstr "Fertrage omdat it de earste ferzje yn de list is"
@@ -5877,6 +5881,10 @@ msgstr "Sichtberheid"
 
 msgid "Visible"
 msgstr "Sichtber"
+
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Downloads"
 
 msgid "Average Daily Users"
 msgstr "Gemiddeld oantal deistige brûkers"
@@ -6266,6 +6274,10 @@ msgstr "Fergelykje"
 msgid "Permissions:"
 msgstr "Tastimmingen:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Tastimmingen:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Troch %(user)s op %(date)s</div>"
@@ -6398,7 +6410,8 @@ msgstr "oanwêzichheid fan oerienkommende rigels"
 msgid "result state"
 msgstr "resultearjende steat"
 
-msgid "all but this rule"
+#, fuzzy
+msgid "all but results matching only this rule"
 msgstr "alles útsein dizze rigel"
 
 msgid "presence of a version"
@@ -6524,6 +6537,16 @@ msgstr "Oersjoch"
 msgid "by Source"
 msgstr "op boarne"
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Ynhâld"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Deistige brûkers"
 
@@ -6624,6 +6647,14 @@ msgstr "Dit dashboerd is <b>privee</b>."
 msgid "Application usage by Date"
 msgstr "Tapassingsgebrûk op datum"
 
+#, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Downloadboarnen op datum"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Downloadboarnen op datum"
+
 msgid "User countries by Date"
 msgstr "Brûkerslannen op datum"
 
@@ -6643,8 +6674,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Brûkerstalen op datum"
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Download op datum"
+
 msgid "Platform usage by Date"
 msgstr "Platfoarmgebrûk op datum"
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> downloads"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> downloads"

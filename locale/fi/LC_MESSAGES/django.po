@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2020-05-31 10:00+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -1396,6 +1396,10 @@ msgstr "Solaris"
 
 msgid "Android"
 msgstr "Android"
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Mainosta"
 
 # 87%
 # 100%
@@ -5636,7 +5640,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5953,6 +5957,11 @@ msgstr "Näkyvyys"
 
 msgid "Visible"
 msgstr "Näkyvillä"
+
+# 100%
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Lataukset"
 
 msgid "Average Daily Users"
 msgstr ""
@@ -6367,6 +6376,10 @@ msgstr ""
 msgid "Permissions:"
 msgstr "Oikeudet:"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Oikeudet:"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6509,7 +6522,7 @@ msgstr ""
 msgid "result state"
 msgstr "Aloittaminen"
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6641,6 +6654,16 @@ msgstr ""
 msgid "by Source"
 msgstr ""
 
+msgid "by Medium"
+msgstr ""
+
+#, fuzzy
+msgid "by Content"
+msgstr "Hyväksy tai hylkää"
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr "Päivittäiset käyttäjät"
 
@@ -6750,6 +6773,14 @@ msgid "Application usage by Date"
 msgstr "Sovellusversiot päivittäin"
 
 #, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Latausten hallinta"
+
+#, fuzzy
+msgid "Download contents by Date"
+msgstr "Päivittäisiä käyttäjiä"
+
+#, fuzzy
 msgid "User countries by Date"
 msgstr "Päivittäisiä käyttäjiä"
 
@@ -6767,8 +6798,16 @@ msgstr ""
 msgid "User languages by Date"
 msgstr ""
 
+#, fuzzy
+msgid "Download mediums by Date"
+msgstr "Päivittäisiä käyttäjiä"
+
 msgid "Platform usage by Date"
 msgstr ""
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> latausta"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> latausta"

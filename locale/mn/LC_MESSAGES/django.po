@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:26+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1402,6 +1402,10 @@ msgstr ""
 
 msgid "Android"
 msgstr ""
+
+#, fuzzy
+msgid "Not Promoted"
+msgstr "Одоогоор үнэлгээ аваагүй"
 
 #, fuzzy
 msgid "Recommended"
@@ -5643,7 +5647,7 @@ msgstr ""
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is recommendable"
+msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5948,6 +5952,11 @@ msgstr ""
 
 msgid "Visible"
 msgstr ""
+
+# 100%
+#, fuzzy
+msgid "Weekly Downloads"
+msgstr "Татаж авсан файлууд"
 
 msgid "Average Daily Users"
 msgstr ""
@@ -6362,6 +6371,10 @@ msgstr ""
 msgid "Permissions:"
 msgstr "Хувилбарууд"
 
+#, fuzzy
+msgid "Optional permissions:"
+msgstr "Хувилбарууд"
+
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
@@ -6500,7 +6513,7 @@ msgstr ""
 msgid "result state"
 msgstr ""
 
-msgid "all but this rule"
+msgid "all but results matching only this rule"
 msgstr ""
 
 #, fuzzy
@@ -6630,6 +6643,15 @@ msgstr ""
 msgid "by Source"
 msgstr ""
 
+msgid "by Medium"
+msgstr ""
+
+msgid "by Content"
+msgstr ""
+
+msgid "by Campaign"
+msgstr ""
+
 msgid "Daily Users"
 msgstr ""
 
@@ -6728,6 +6750,13 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr ""
 
+#, fuzzy
+msgid "Download campaigns by Date"
+msgstr "Татаж авалт ба файл зохицуулагч"
+
+msgid "Download contents by Date"
+msgstr ""
+
 msgid "User countries by Date"
 msgstr ""
 
@@ -6745,8 +6774,15 @@ msgstr ""
 msgid "User languages by Date"
 msgstr ""
 
+msgid "Download mediums by Date"
+msgstr ""
+
 msgid "Platform usage by Date"
 msgstr ""
+
+#, fuzzy
+msgid "<b>{0}</b> Weekly Downloads"
+msgstr "<b>{0}</b> Татаж авсан файлууд"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Татаж авсан файлууд"

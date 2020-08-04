@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2020-06-10 12:48+0000\n"
 "Last-Translator: πάθοςγιατηζωή <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -33,7 +33,6 @@ msgstr "您的附加组件应以 .zip、.xpi、.crx 或 .xml 结尾"
 msgid "{0}% complete"
 msgstr "已完成 {0}%"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
@@ -136,7 +135,6 @@ msgstr "图像必须为 PNG 或 JPG 格式。"
 msgid "Videos must be in WebM."
 msgstr "视频必须是 WebM 格式。"
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "这个主题与您所使用的 {0} 版本不兼容"
 
@@ -481,6 +479,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0} 至 {1} 的下载来源"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "最近 {0} 天的下载量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "从 {0} 至 {1} 的下载量"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "过去 {0} 天的下载来源"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "从 {0} 至 {1} 的下载量"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "最近 {0} 天的下载量"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "从 {0} 至 {1} 的下载量"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "最近 {0} 天的捐款"
 
@@ -633,7 +661,6 @@ msgstr "仍要下载 {0}"
 msgid "Not available for your platform"
 msgstr "不适用于您的操作系统"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "此附加组件不兼容您所使用的 {0} 版本。"
 
@@ -674,12 +701,10 @@ msgstr "找不到结果。"
 msgid "Loading..."
 msgstr "正在加载..."
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> 个字符"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "剩余 <b>{0}</b> 个字符"

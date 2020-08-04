@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-07-24 11:29+0000\n"
+"POT-Creation-Date: 2020-08-04 16:27+0000\n"
 "PO-Revision-Date: 2019-11-03 12:07+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,6 @@ msgstr "ส่วนเสริมของคุณควรลงท้าย
 msgid "{0}% complete"
 msgstr "เสร็จสมบูรณ์ {0}%"
 
-#. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} จาก {1}"
 
@@ -137,7 +136,6 @@ msgstr "ภาพจะต้องเป็น PNG หรือ JPG"
 msgid "Videos must be in WebM."
 msgstr "วิดีโอต้องเป็นแบบ WebM"
 
-#. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ชุดตกแต่งนี้เข้ากันไม่ได้กับรุ่น {0} ของคุณ"
 
@@ -484,6 +482,36 @@ msgid "Download Sources from {0} to {1}"
 msgstr "การดาวน์โหลดซอร์สจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Mediums, last {0} days"
+msgstr "การดาวน์โหลดใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Mediums from {0} to {1}"
+msgstr "การดาวน์โหลดจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Contents, last {0} days"
+msgstr "การดาวน์โหลดซอร์สใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Contents from {0} to {1}"
+msgstr "การดาวน์โหลดจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
+#, fuzzy
+msgid "Download Campaigns, last {0} days"
+msgstr "การดาวน์โหลดใน {0} วันล่าสุด"
+
+#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, fuzzy
+msgid "Download Campaigns from {0} to {1}"
+msgstr "การดาวน์โหลดจาก {0} ถึง {1}"
+
+#. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
 msgstr "การบริจาคใน {0} วันล่าสุด"
 
@@ -636,7 +664,6 @@ msgstr "ดาวน์โหลด {0} ต่อไป"
 msgid "Not available for your platform"
 msgstr "ไม่พร้อมใช้งานสำหรับแพลตฟอร์มของคุณ"
 
-#. L10n: {0} is an app name.
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "ส่วนเสริมนี้เข้ากันไม่ได้กับ {0} รุ่นของคุณ"
 
@@ -677,12 +704,10 @@ msgstr "ไม่พบผลลัพธ์"
 msgid "Loading..."
 msgstr "กำลังโหลด…"
 
-#. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> ตัวอักษร"
 
-#. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "เหลือ <b>{0}</b> ตัวอักษร"
