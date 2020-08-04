@@ -1,8 +1,11 @@
 import responses
 
+from rest_framework.reverse import reverse as drf_reverse
+
+from django.conf import settings
 from django.core.exceptions import ValidationError
 
-from olympia.amo.tests import reverse_ns, TestCase
+from olympia.amo.tests import TestCase
 from ..forms import ShelfForm
 
 
@@ -14,35 +17,42 @@ class TestShelfForm(TestCase):
         self.criteria_404 = 'sort=users&type=statictheme'
         self.criteria_not_200 = '?sort=user&type=statictheme'
         self.criteria_empty = '?sort=users&type=theme'
+        baseUrl = settings.INTERNAL_SITE_URL
 
         responses.add(
             responses.GET,
-            reverse_ns('addon-search') + self.criteria_sea,
+            baseUrl + drf_reverse('v4:addon-search') +
+            self.criteria_sea,
             status=200,
             json={'count': 103})
         responses.add(
             responses.GET,
-            reverse_ns('category-list') + self.criteria_cat,
+            baseUrl + drf_reverse('v4:category-list') +
+            self.criteria_cat,
             status=200,
             json=[{'id': 1}, {'id': 2}])
         responses.add(
             responses.GET,
-            reverse_ns('addon-recommendations') + self.criteria_rec,
+            baseUrl + drf_reverse('v4:addon-recommendations') +
+            self.criteria_rec,
             status=200,
             json={'count': 4})
         responses.add(
             responses.GET,
-            reverse_ns('addon-search') + self.criteria_404,
+            baseUrl + drf_reverse('v4:addon-search') +
+            self.criteria_404,
             status=404,
             json={"detail": "Not found."}),
         responses.add(
             responses.GET,
-            reverse_ns('addon-search') + self.criteria_not_200,
+            baseUrl + drf_reverse('v4:addon-search') +
+            self.criteria_not_200,
             status=400,
             json=['Invalid \"sort\" parameter.'])
         responses.add(
             responses.GET,
-            reverse_ns('addon-search') + self.criteria_empty,
+            baseUrl + drf_reverse('v4:addon-search') +
+            self.criteria_empty,
             status=200,
             json={'count': 0})
 

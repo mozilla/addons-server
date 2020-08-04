@@ -966,7 +966,6 @@ class TestShelfAdmin(TestCase):
             assert item.shelf_type == 'extension'
             assert item.criteria == (
                 '?recommended=true&sort=random&type=extension')
-            assert self.success_message in response.content.decode('utf-8')
 
     def test_can_delete_with_discovery_edit_permission(self):
         item = Shelf.objects.create(
@@ -1024,7 +1023,6 @@ class TestShelfAdmin(TestCase):
             assert item.shelf_type == 'extension'
             assert item.criteria == (
                 '?recommended=true&sort=random&type=extension')
-            assert self.success_message in response.content.decode('utf-8')
 
     def test_can_not_add_without_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_shelfmodule_add')
