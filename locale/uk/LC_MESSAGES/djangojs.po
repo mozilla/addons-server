@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-06-09 20:20+0000\n"
+"PO-Revision-Date: 2020-08-04 23:21+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -507,34 +507,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Джерел завантажень з {0} по {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Завантажень за останні {0} днів"
+msgstr "Завантажено медіа за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Завантажень з {0} по {1}"
+msgstr "Завантажено медіа з {0} по {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Джерел завантажень за останні {0} днів"
+msgstr "Завантажено вмісту за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Завантажень з {0} по {1}"
+msgstr "Завантажено вмісту з {0} по {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Завантажень за останні {0} днів"
+msgstr "Завантажено кампаній за останні {0} днів"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Завантажень з {0} по {1}"
+msgstr "Завантажено кампаній з {0} по {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
