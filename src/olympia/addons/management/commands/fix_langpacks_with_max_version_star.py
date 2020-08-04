@@ -33,7 +33,7 @@ class Command(BaseCommand):
             min_appversion_str = version.compatible_apps[app].min.version
             max_appversion_str = '%d.*' % version_dict(
                 min_appversion_str)['major']
-            log.warn(
+            log.warning(
                 'Version %s for addon %s min version is %s for %s app, '
                 'max will be changed to %s instead of *',
                 version, version.addon, min_appversion_str, app.pretty,
