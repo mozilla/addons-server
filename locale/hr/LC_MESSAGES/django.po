@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-08-04 14:12+0000\n"
+"PO-Revision-Date: 2020-08-04 14:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5011,7 +5011,7 @@ msgstr "Proširenja su poput programa za Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Firefoxu dodaju funkcije, kako bi pregledavanje bilo brže, pametnije ili jednostavno samo zabavno."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -5019,11 +5019,11 @@ msgstr "Pogledaj sva proširenja"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "Upravljanje karticama i alati"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "Privatnost izvan proširenja preglednika"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
