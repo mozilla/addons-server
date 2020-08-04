@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
-from django.db.models import FieldDoesNotExist, Prefetch
+from django.db.models import Count, FieldDoesNotExist, Prefetch
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -119,7 +119,7 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
 
 
 class ExcludeMatchedRuleFilter(SimpleListFilter):
-    title = ugettext('all but this rule')
+    title = ugettext('all but results matching only this rule')
     parameter_name = 'exclude_rule'
 
     def lookups(self, request, model_admin):
@@ -146,7 +146,10 @@ class ExcludeMatchedRuleFilter(SimpleListFilter):
     def queryset(self, request, queryset):
         if self.value() is None:
             return queryset
-        return queryset.exclude(matched_rules=self.value())
+        # We want to exclude results that *only* matched the given rule, so
+        # we know they'll have exactly one matched rule.
+        return queryset.annotate(num_matches=Count('matched_rules')).exclude(
+            matched_rules=self.value(), num_matches=1)
 
 
 class WithVersionFilter(PresenceFilter):
