@@ -29,7 +29,6 @@ from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login, _is_safe_url
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
-from olympia.activity.utils import log_and_notify
 from olympia.addons.models import (
     Addon, AddonReviewerFlags, AddonUser, AddonUserPendingConfirmation)
 from olympia.addons.views import BaseFilter
@@ -1038,31 +1037,19 @@ def version_edit(request, addon_id, addon, version_id):
                     _log_max_version_change(addon, version, form.instance)
 
         if 'version_form' in data:
-            # VersionForm.save() clear the pending info request if the
-            # developer specifically asked for it, but we've got additional
-            # things to do here that depend on it.
-            had_pending_info_request = bool(addon.pending_info_request)
             data['version_form'].save()
 
             if 'approval_notes' in version_form.changed_data:
-                if had_pending_info_request:
-                    log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED, None,
-                                   request.user, version)
-                else:
-                    ActivityLog.create(amo.LOG.APPROVAL_NOTES_CHANGED,
-                                       addon, version, request.user)
+                ActivityLog.create(amo.LOG.APPROVAL_NOTES_CHANGED,
+                                   addon, version, request.user)
 
             if ('source' in version_form.changed_data and
                     version_form.cleaned_data['source']):
                 AddonReviewerFlags.objects.update_or_create(
                     addon=addon, defaults={'needs_admin_code_review': True})
 
-                if had_pending_info_request:
-                    log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
-                                   request.user, version)
-                else:
-                    ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
-                                       addon, version, request.user)
+                ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
+                                   addon, version, request.user)
 
         messages.success(request, ugettext('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)

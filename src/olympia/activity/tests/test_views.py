@@ -148,7 +148,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         self.user = user_factory()
         self.version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
-        self.note = self.log(u'noôo!', amo.LOG.REQUEST_INFORMATION,
+        self.note = self.log(u'noôo!', amo.LOG.REVIEWER_REPLY_VERSION,
                              self.days_ago(0))
         self._set_tested_url()
 
@@ -157,7 +157,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['id'] == self.note.pk
-        assert result['action_label'] == amo.LOG.REQUEST_INFORMATION.short
+        assert result['action_label'] == amo.LOG.REVIEWER_REPLY_VERSION.short
         assert result['comments'] == u'noôo!'
         assert result['highlight']  # Its the first reply so highlight
 

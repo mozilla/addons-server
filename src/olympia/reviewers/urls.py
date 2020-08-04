@@ -31,8 +31,6 @@ urlpatterns = (
         name='reviewers.queue_scanners'),
     url(r'queue/pending_rejection', views.queue_pending_rejection,
         name='reviewers.queue_pending_rejection'),
-    url(r'^queue/expired_info_requests', views.queue_expired_info_requests,
-        name='reviewers.queue_expired_info_requests'),
     url(r'^unlisted_queue/all$', views.unlisted_list,
         name='reviewers.unlisted_queue_all'),
     url(r'^moderationlog$', views.ratings_moderation_log,

@@ -44,8 +44,6 @@ VIEW_QUEUE_FLAGS = (
     ('needs_admin_theme_review', 'needs-admin-theme-review',
         _('Needs Admin Static Theme Review')),
     ('is_restart_required', 'is_restart_required', _('Requires Restart')),
-    ('pending_info_request', 'info', _('More Information Requested')),
-    ('expired_info_request', 'expired-info', _('Expired Information Request')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
     ('auto_approval_delayed_temporarily', 'auto-approval-delayed-temporarily',
@@ -124,8 +122,6 @@ class ViewQueue(RawSQLModel):
     source = models.CharField(max_length=100)
     is_webextension = models.BooleanField()
     latest_version = models.CharField(max_length=255)
-    pending_info_request = models.DateTimeField()
-    expired_info_request = models.NullBooleanField()
     auto_approval_delayed_temporarily = models.NullBooleanField()
     auto_approval_delayed_indefinitely = models.NullBooleanField()
     waiting_time_days = models.IntegerField()
@@ -149,11 +145,6 @@ class ViewQueue(RawSQLModel):
                 ('needs_admin_theme_review',
                     'addons_addonreviewerflags.needs_admin_theme_review'),
                 ('latest_version', 'versions.version'),
-                ('pending_info_request',
-                    'addons_addonreviewerflags.pending_info_request'),
-                ('expired_info_request', (
-                    'TIMEDIFF(addons_addonreviewerflags.pending_info_request,'
-                    'NOW()) < 0')),
                 ('auto_approval_delayed_temporarily', (
                     'TIMEDIFF(addons_addonreviewerflags.'
                     'auto_approval_delayed_until, NOW()) > 0 AND '

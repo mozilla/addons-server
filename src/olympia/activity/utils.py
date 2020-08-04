@@ -1,12 +1,11 @@
 import re
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from email.utils import formataddr
 from html import unescape
 
 from django.conf import settings
 from django.forms import ValidationError
-from django.contrib.humanize.templatetags.humanize import apnumber
 from django.template import loader
 from django.utils import translation
 
@@ -19,7 +18,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, ActivityLogToken
-from olympia.addons.models import AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
@@ -220,14 +218,6 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
 
     notify_about_activity_log(
         version.addon, version, note, perm_setting=perm_setting)
-
-    if action == amo.LOG.DEVELOPER_REPLY_VERSION:
-        # When a developer repies by email, we automatically clear the
-        # corresponding info request.
-        AddonReviewerFlags.objects.update_or_create(
-            addon=version.addon, defaults={'pending_info_request': None}
-        )
-
     return note
 
 
@@ -256,36 +246,12 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
         'url': absolutify(addon.get_dev_url('versions')),
         'SITE_URL': settings.SITE_URL,
         'email_reason': 'you are listed as an author of this add-on',
-        'is_info_request': note.action == amo.LOG.REQUEST_INFORMATION.id,
     }
 
     # Not being localised because we don't know the recipients locale.
     with translation.override('en-US'):
-        if note.action == amo.LOG.REQUEST_INFORMATION.id:
-            if addon.pending_info_request:
-                days_left = (
-                    # We pad the time left with an extra hour so that the email
-                    # does not end up saying "6 days left" because a few
-                    # seconds or minutes passed between the datetime was saved
-                    # and the email was sent.
-                    addon.pending_info_request + timedelta(hours=1) -
-                    datetime.now()
-                ).days
-                if days_left > 9:
-                    author_context_dict['number_of_days_left'] = (
-                        '%d days' % days_left)
-                elif days_left > 1:
-                    author_context_dict['number_of_days_left'] = (
-                        '%s (%d) days' % (apnumber(days_left), days_left))
-                else:
-                    author_context_dict['number_of_days_left'] = 'one (1) day'
-            subject = u'Mozilla Add-ons: Action Required for %s %s' % (
-                addon.name, version.version)
-            reviewer_subject = u'Mozilla Add-ons: %s %s' % (
-                addon.name, version.version)
-        else:
-            subject = reviewer_subject = u'Mozilla Add-ons: %s %s' % (
-                addon.name, version.version)
+        subject = reviewer_subject = u'Mozilla Add-ons: %s %s' % (
+            addon.name, version.version)
     # Build and send the mail for authors.
     template = template_from_user(note.user, version)
     from_email = formataddr((note.author_name, NOTIFICATIONS_FROM_EMAIL))

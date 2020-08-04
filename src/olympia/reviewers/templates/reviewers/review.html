@@ -310,15 +310,6 @@
           {% endif %}
         {% endif %}
 
-        {% if addon.pending_info_request %}
-          <li>
-              <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
-                      data-api-method="patch"
-                      data-api-data="{&quot;pending_info_request&quot;: null}"
-                      id="clear_pending_info_request" class="oneoff" type="button">{{ _('Clear information request') }}</button>
-          </li>
-        {% endif %}
-
         {% if has_versions_pending_rejection %}
           <li>
               <button data-api-url="{{ drf_url('reviewers-addon-clear-pending-rejections', addon.pk) }}"

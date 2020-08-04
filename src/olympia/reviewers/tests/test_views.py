@@ -411,13 +411,6 @@ class TestReviewLog(ReviewerTest):
         assert pq(response.content)('#log-listing tr td').eq(1).text() == (
             'Add-on has been deleted.')
 
-    def test_request_info_logs(self):
-        self.make_an_approval(amo.LOG.REQUEST_INFORMATION)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert pq(response.content)('#log-listing tr td a').eq(1).text() == (
-            'More information requested')
-
     def test_super_review_logs(self):
         self.make_an_approval(amo.LOG.REQUEST_ADMIN_REVIEW_CODE)
         response = self.client.get(self.url)
@@ -610,53 +603,35 @@ class TestDashboard(TestCase):
         admins_group = Group.objects.create(name='Admins', rules='*:*')
         GroupUser.objects.create(user=self.user, group=admins_group)
 
-        # Pending addon with expired info request.
-        addon1 = addon_factory(name=u'Pending Addön 1',
-                               status=amo.STATUS_NOMINATED)
-        AddonReviewerFlags.objects.create(
-            addon=addon1,
-            pending_info_request=self.days_ago(2))
+        # Pending addon
+        addon_factory(name='Pending Addön', status=amo.STATUS_NOMINATED)
 
-        # Public addon with expired info request.
-        addon2 = addon_factory(name=u'Public Addön 2',
-                               status=amo.STATUS_APPROVED)
-        AddonReviewerFlags.objects.create(
-            addon=addon2,
-            pending_info_request=self.days_ago(42))
+        # Public addon
+        addon = addon_factory(name='Public Addön', status=amo.STATUS_APPROVED)
 
-        # Deleted addon with expired info request.
-        addon3 = addon_factory(name=u'Deleted Addön 3',
-                               status=amo.STATUS_DELETED)
-        AddonReviewerFlags.objects.create(
-            addon=addon3,
-            pending_info_request=self.days_ago(42))
+        # Deleted addon
+        addon_factory(name='Deleted Addön', status=amo.STATUS_DELETED)
 
-        # Mozilla-disabled addon with expired info request.
-        addon4 = addon_factory(name=u'Disabled Addön 4',
-                               status=amo.STATUS_DISABLED)
-        AddonReviewerFlags.objects.create(
-            addon=addon4,
-            pending_info_request=self.days_ago(42))
+        # Mozilla-disabled addon
+        addon_factory(name='Disabled Addön', status=amo.STATUS_DISABLED)
 
-        # Incomplete addon with expired info request.
-        addon5 = addon_factory(name=u'Incomplete Addön 5',
-                               status=amo.STATUS_NULL)
-        AddonReviewerFlags.objects.create(
-            addon=addon5,
-            pending_info_request=self.days_ago(42))
+        # Incomplete addon
+        addon_factory(name='Incomplete Addön', status=amo.STATUS_NULL)
 
-        # Invisible (user-disabled) addon with expired info request.
-        addon6 = addon_factory(name=u'Incomplete Addön 5',
-                               status=amo.STATUS_APPROVED,
-                               disabled_by_user=True)
-        AddonReviewerFlags.objects.create(
-            addon=addon6,
-            pending_info_request=self.days_ago(42))
+        # Invisible (user-disabled) addon
+        addon_factory(name='Invisible Addön', status=amo.STATUS_APPROVED,
+                      disabled_by_user=True)
+
+        pending_rejection = addon_factory(name='Pending Rejection Addôn')
+        VersionReviewerFlags.objects.create(
+            version=pending_rejection.current_version,
+            pending_rejection=datetime.now() + timedelta(days=4)
+        )
 
         # Rating
         rating = Rating.objects.create(
-            addon=addon1, version=addon1.current_version, user=self.user,
-            flag=True, body=u'This âdd-on sucks!!111', rating=1,
+            addon=addon, version=addon.current_version, user=self.user,
+            flag=True, body='This âdd-on sucks!!111', rating=1,
             editorreview=True)
         rating.ratingflag_set.create()
 
@@ -689,7 +664,6 @@ class TestDashboard(TestCase):
             reverse('reviewers.unlisted_queue_all'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
-            reverse('reviewers.queue_expired_info_requests'),
             reverse('reviewers.queue_pending_rejection'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -709,7 +683,7 @@ class TestDashboard(TestCase):
                 'Ratings Awaiting Moderation (1)')
         # admin tools
         assert (doc('.dashboard a')[24].text ==
-                'Expired Information Requests (2)')
+                'Add-ons Pending Rejection (1)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -741,7 +715,6 @@ class TestDashboard(TestCase):
             reverse('reviewers.unlisted_queue_all'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
-            reverse('reviewers.queue_expired_info_requests'),
             reverse('reviewers.queue_pending_rejection'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -1410,7 +1383,6 @@ class TestQueueBasics(QueueTest):
         doc = pq(response.content)
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
         expected.extend([
-            reverse('reviewers.queue_expired_info_requests'),
             reverse('reviewers.queue_pending_rejection'),
         ])
         assert links == expected
@@ -2169,11 +2141,11 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(27):
-            # 27 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(26):
+            # 26 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 12 for various queue counts, including current one
+            # - 11 for various queue counts, including current one
             #      (unfortunately duplicated because it appears in two
             #       completely different places)
             # - 3 for the addons in the queues and their files (regardless of
@@ -2235,84 +2207,6 @@ class TestAutoApprovedQueue(QueueTest):
             version=self.expected_addons[1].current_version,
             pending_rejection=datetime.now())
         self.expected_addons = self.expected_addons[2:]
-        self._test_results()
-
-
-class TestExpiredInfoRequestsQueue(QueueTest):
-
-    def setUp(self):
-        super(TestExpiredInfoRequestsQueue, self).setUp()
-        self.url = reverse('reviewers.queue_expired_info_requests')
-
-    def generate_files(self):
-        # Extra add-on with no pending info request.
-        addon_factory(name=u'Extra Addôn 1')
-
-        # Extra add-on with a non-expired pending info request.
-        extra_addon = addon_factory(name=u'Extra Addôn 2')
-        AddonReviewerFlags.objects.create(
-            addon=extra_addon,
-            pending_info_request=datetime.now() + timedelta(days=1))
-
-        # Pending addon with expired info request.
-        addon1 = addon_factory(name=u'Pending Addön 1',
-                               status=amo.STATUS_NOMINATED)
-        AddonReviewerFlags.objects.create(
-            addon=addon1,
-            pending_info_request=self.days_ago(2))
-
-        # Public addon with expired info request.
-        addon2 = addon_factory(name=u'Public Addön 2',
-                               status=amo.STATUS_APPROVED)
-        AddonReviewerFlags.objects.create(
-            addon=addon2,
-            pending_info_request=self.days_ago(42))
-
-        # Deleted addon with expired info request.
-        addon3 = addon_factory(name=u'Deleted Addön 3',
-                               status=amo.STATUS_DELETED)
-        AddonReviewerFlags.objects.create(
-            addon=addon3,
-            pending_info_request=self.days_ago(42))
-
-        # Mozilla-disabled addon with expired info request.
-        addon4 = addon_factory(name=u'Disabled Addön 4',
-                               status=amo.STATUS_DISABLED)
-        AddonReviewerFlags.objects.create(
-            addon=addon4,
-            pending_info_request=self.days_ago(42))
-
-        # Incomplete addon with expired info request.
-        addon5 = addon_factory(name=u'Incomplete Addön 5',
-                               status=amo.STATUS_NULL)
-        AddonReviewerFlags.objects.create(
-            addon=addon5,
-            pending_info_request=self.days_ago(42))
-
-        # Invisible (user-disabled) addon with expired info request.
-        addon6 = addon_factory(name=u'Incomplete Addön 5',
-                               status=amo.STATUS_APPROVED,
-                               disabled_by_user=True)
-        AddonReviewerFlags.objects.create(
-            addon=addon6,
-            pending_info_request=self.days_ago(42))
-
-        self.expected_addons = [addon2, addon1]
-
-    def test_results_no_permission(self):
-        # Addon reviewer doesn't have access.
-        response = self.client.get(self.url)
-        assert response.status_code == 403
-
-        # Regular user doesn't have access.
-        self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
-        response = self.client.get(self.url)
-        assert response.status_code == 403
-
-    def test_results(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.generate_files()
         self._test_results()
 
 
@@ -2440,11 +2334,11 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(27):
-            # 27 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(26):
+            # 26 queries is a lot, but it used to be much much worse.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 12 for various queue counts, including current one
+            # - 11 for various queue counts, including current one
             #      (unfortunately duplicated because it appears in two
             #       completely different places)
             # - 3 for the addons in the queues and their files (regardless of
@@ -2469,7 +2363,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=0, total_addons=5, total_queues=3)
+            'Content Review', tab_position=0, total_addons=5, total_queues=2)
 
     def test_pending_rejection_filtered_out(self):
         self.login_with_permission()
@@ -2603,7 +2497,7 @@ class TestScannersReviewQueue(QueueTest):
 
         self._test_queue_layout(
             'Flagged By Scanners',
-            tab_position=2, total_addons=4, total_queues=11, per_page=1)
+            tab_position=2, total_addons=4, total_queues=10, per_page=1)
 
 
 class TestPendingRejectionReviewQueue(QueueTest):
@@ -3335,7 +3229,7 @@ class TestReview(ReviewBase):
         assert ActivityLog.objects.filter(
             action=comment_version.id).count() == 1
 
-    def test_info_requested(self):
+    def test_reviewer_reply(self):
         response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
@@ -3347,7 +3241,7 @@ class TestReview(ReviewBase):
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
 
-    def test_info_requested_canned_response(self):
+    def test_reviewer_reply_canned_response(self):
         response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor',
                                                'canned_response': 'foo'})
@@ -3827,7 +3721,6 @@ class TestReview(ReviewBase):
         assert not doc('#disable_auto_approval')
         assert not doc('#enable_auto_approval')
         assert not doc('#clear_auto_approval_delayed_until')
-        assert not doc('#clear_pending_info_request')
         assert not doc('#clear_pending_rejections')
         assert not doc('#deny_resubmission')
         assert not doc('#allow_resubmission')
@@ -4045,20 +3938,6 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('#disable_auto_approval')
         assert not doc('#enable_auto_approval')
-
-    def test_clear_pending_info_request_as_admin(self):
-        self.login_as_admin()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#clear_pending_info_request')
-
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, pending_info_request=self.days_ago(1))
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#clear_pending_info_request')
 
     def test_clear_pending_rejections_as_admin(self):
         self.login_as_admin()
@@ -6432,7 +6311,6 @@ class TestAddonReviewerViewSet(TestCase):
     def test_patch_flags_change_everything(self):
         AddonReviewerFlags.objects.create(
             addon=self.addon,
-            pending_info_request=self.days_ago(1),
             auto_approval_disabled=True,
             auto_approval_delayed_until=self.days_ago(42))
         self.grant_permission(self.user, 'Reviews:Admin')
@@ -6444,7 +6322,6 @@ class TestAddonReviewerViewSet(TestCase):
             'needs_admin_code_review': True,
             'needs_admin_content_review': True,
             'needs_admin_theme_review': True,
-            'pending_info_request': None,
         }
         response = self.client.patch(self.flags_url, data)
         assert response.status_code == 200
@@ -6458,11 +6335,6 @@ class TestAddonReviewerViewSet(TestCase):
         assert reviewer_flags.needs_admin_code_review is True
         assert reviewer_flags.needs_admin_content_review is True
         assert reviewer_flags.needs_admin_theme_review is True
-        assert reviewer_flags.pending_info_request is None
-        assert ActivityLog.objects.count() == 1
-        activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.ADMIN_ALTER_INFO_REQUEST.id
-        assert activity_log.arguments[0] == self.addon
 
     def test_deny_resubmission(self):
         self.grant_permission(self.user, 'Reviews:Admin')
@@ -8245,4 +8117,4 @@ class TestMadQueue(QueueTest):
         self.grant_permission(self.user, 'Reviews:Admin')
 
         self._test_queue_layout('Flagged for Human Review', tab_position=2,
-                                total_addons=3, total_queues=5, per_page=1)
+                                total_addons=3, total_queues=4, per_page=1)

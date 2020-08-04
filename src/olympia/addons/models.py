@@ -1494,18 +1494,6 @@ class Addon(OnChangeMixin, ModelBase):
             return None
 
     @property
-    def pending_info_request(self):
-        try:
-            return self.reviewerflags.pending_info_request
-        except AddonReviewerFlags.DoesNotExist:
-            return None
-
-    @property
-    def expired_info_request(self):
-        info_request = self.pending_info_request
-        return info_request and info_request < datetime.now()
-
-    @property
     def auto_approval_delayed_indefinitely(self):
         return self.auto_approval_delayed_until == datetime.max
 
@@ -1729,8 +1717,6 @@ class AddonReviewerFlags(ModelBase):
         default=None)
     auto_approval_delayed_until = models.DateTimeField(
         default=None, null=True)
-    pending_info_request = models.DateTimeField(default=None, null=True)
-    notified_about_expiring_info_request = models.BooleanField(default=False)
     notified_about_auto_approval_delay = models.NullBooleanField(default=None)
     notified_about_expiring_delayed_rejections = models.NullBooleanField(
         default=None)

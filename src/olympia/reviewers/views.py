@@ -70,8 +70,8 @@ from olympia.reviewers.serializers import (
     DiffableVersionSerializer, DraftCommentSerializer, FileInfoSerializer,
 )
 from olympia.reviewers.utils import (
-    AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
-    MadReviewTable, PendingRejectionTable, ReviewHelper, ScannersReviewTable,
+    AutoApprovedTable, ContentReviewTable, MadReviewTable,
+    PendingRejectionTable, ReviewHelper, ScannersReviewTable,
     ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
@@ -267,10 +267,6 @@ def dashboard(request):
     if view_all or acl.action_allowed(
             request, amo.permissions.REVIEWS_ADMIN):
         sections[ugettext('Admin Tools')] = [(
-            ugettext('Expired Information Requests ({0})'.format(
-                queue_counts['expired_info_requests'])),
-            reverse('reviewers.queue_expired_info_requests')
-        ), (
             ugettext('Add-ons Pending Rejection ({0})').format(
                 queue_counts['pending_rejection']),
             reverse('reviewers.queue_pending_rejection')
@@ -507,13 +503,6 @@ def fetch_queue_counts(admin_reviewer):
             qs = filter_admin_review_for_legacy_queue(qs)
         return qs.count
 
-    expired = (
-        Addon.objects.filter(
-            reviewerflags__pending_info_request__lt=datetime.now(),
-            status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
-            disabled_by_user=False)
-        .order_by('reviewerflags__pending_info_request'))
-
     counts = {
         'extension': construct_query_from_sql_model(
             ViewExtensionQueue),
@@ -535,7 +524,6 @@ def fetch_queue_counts(admin_reviewer):
         'scanners': (
             Addon.objects.get_scanners_queue(
                 admin_reviewer=admin_reviewer).count),
-        'expired_info_requests': expired.count,
         'pending_rejection': (
             Addon.objects.get_pending_rejection_queue(
                 admin_reviewer=admin_reviewer).count),
@@ -626,18 +614,6 @@ def queue_auto_approved(request):
     qs = Addon.objects.get_auto_approved_queue(
         admin_reviewer=admin_reviewer)
     return _queue(request, AutoApprovedTable, 'auto_approved',
-                  qs=qs, SearchForm=None)
-
-
-@permission_required(amo.permissions.REVIEWS_ADMIN)
-def queue_expired_info_requests(request):
-    qs = (
-        Addon.objects.filter(
-            reviewerflags__pending_info_request__lt=datetime.now(),
-            status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
-            disabled_by_user=False)
-        .order_by('reviewerflags__pending_info_request'))
-    return _queue(request, ExpiredInfoRequestsTable, 'expired_info_requests',
                   qs=qs, SearchForm=None)
 
 
@@ -1280,9 +1256,6 @@ class AddonReviewerViewSet(GenericViewSet):
         serializer = AddonReviewerFlagsSerializer(
             instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
-        # If pending info request was modified, log it.
-        if 'pending_info_request' in serializer.initial_data:
-            ActivityLog.create(amo.LOG.ADMIN_ALTER_INFO_REQUEST, addon)
         serializer.save()
         return Response(serializer.data)
 

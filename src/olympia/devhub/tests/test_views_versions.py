@@ -606,9 +606,9 @@ class TestVersion(TestCase):
     def test_pending_activity_count(self):
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
         # Add some activity log messages
-        ActivityLog.create(amo.LOG.REQUEST_INFORMATION, v2.addon, v2,
+        ActivityLog.create(amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2,
                            user=self.user)
-        ActivityLog.create(amo.LOG.REQUEST_INFORMATION, v2.addon, v2,
+        ActivityLog.create(amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2,
                            user=self.user)
 
         response = self.client.get(self.url)
@@ -829,52 +829,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert not version.addon.needs_admin_code_review
-
-    def test_show_request_for_information(self):
-        self.user = UserProfile.objects.latest('pk')
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, pending_info_request=self.days_ago(2))
-        ActivityLog.create(
-            amo.LOG.REVIEWER_REPLY_VERSION, self.addon, self.version,
-            user=self.user, details={'comments': 'this should not be shown'})
-        ActivityLog.create(
-            amo.LOG.REQUEST_INFORMATION, self.addon, self.version,
-            user=self.user, details={'comments': 'this is an info request'})
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert b'this should not be shown' not in response.content
-        assert b'this is an info request' in response.content
-
-    def test_dont_show_request_for_information_if_none_pending(self):
-        self.user = UserProfile.objects.latest('pk')
-        ActivityLog.create(
-            amo.LOG.REVIEWER_REPLY_VERSION, self.addon, self.version,
-            user=self.user, details={'comments': 'this should not be shown'})
-        ActivityLog.create(
-            amo.LOG.REQUEST_INFORMATION, self.addon, self.version,
-            user=self.user, details={'comments': 'this is an info request'})
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert b'this should not be shown' not in response.content
-        assert b'this is an info request' not in response.content
-
-    def test_clear_request_for_information(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, pending_info_request=self.days_ago(2))
-        response = self.client.post(
-            self.url, self.formset(clear_pending_info_request=True))
-        assert response.status_code == 302
-        flags = AddonReviewerFlags.objects.get(addon=self.addon)
-        assert flags.pending_info_request is None
-
-    def test_dont_clear_request_for_information(self):
-        past_date = self.days_ago(2)
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, pending_info_request=past_date)
-        response = self.client.post(self.url, self.formset())
-        assert response.status_code == 302
-        flags = AddonReviewerFlags.objects.get(addon=self.addon)
-        assert flags.pending_info_request == past_date
 
 
 class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):
