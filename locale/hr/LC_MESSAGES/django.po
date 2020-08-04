@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-04 17:36+0000\n"
+"PO-Revision-Date: 2020-08-04 20:23+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -2018,7 +2018,7 @@ msgstr "Vrati se na DevHub-ovu naslovnicu"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Razvojni centar za <small>Dodatke</small>"
+msgstr "Centar za programere <small>dodataka</small>"
 
 msgid "more add-ons..."
 msgstr "još dodataka …"
@@ -3259,7 +3259,7 @@ msgid "Submit Your First Theme"
 msgstr "Pošalji svoj prvi motiv"
 
 msgid "Add-on Developer Hub"
-msgstr "Razvojni centar za dodatke"
+msgstr "Centar za programere dodataka"
 
 msgid "Support"
 msgstr "Podrška"
@@ -3469,7 +3469,7 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Zaista želiš otkazati zahtjev za pregled?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr "Dokumentacija dodataka :: Razvojni centar"
+msgstr "Dokumentacija dodataka :: Centar za programere"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -6201,9 +6201,8 @@ msgstr "Usporedi"
 msgid "Permissions:"
 msgstr "Dopuštenja:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Dopuštenja:"
+msgstr "Opcionalne dozvole:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6470,9 +6469,8 @@ msgstr "prema izvoru"
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "Sadržaj"
+msgstr "prema sadržaju"
 
 msgid "by Campaign"
 msgstr ""
