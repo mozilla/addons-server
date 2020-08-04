@@ -1074,6 +1074,7 @@ CELERY_IMPORTS = (
 
 CELERY_TASK_QUEUES = (
     Queue('addons', routing_key='addons'),
+    Queue('adhoc', routing_key='adhoc'),
     Queue('amo', routing_key='amo'),
     Queue('bandwagon', routing_key='bandwagon'),
     Queue('cron', routing_key='cron'),
@@ -1178,7 +1179,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.delete_addons': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
-    'olympia.files.tasks.extract_optional_permissions': {'queue': 'addons'},
     'olympia.files.tasks.hide_disabled_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.git.tasks.continue_git_extraction': {'queue': 'addons'},
@@ -1193,6 +1193,10 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'addons'},
     'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
     'olympia.addons.tasks.recreate_theme_previews': {'queue': 'addons'},
+
+    # Adhoc
+    # A queue to be used for one-off tasks that could be resource intensive.
+    'olympia.files.tasks.extract_optional_permissions': {'queue': 'adhoc'},
 
     # Crons
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
