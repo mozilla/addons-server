@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-04 20:30+0000\n"
+"PO-Revision-Date: 2020-08-04 20:50+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1374,9 +1374,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Još nije ocijenjeno"
+msgstr "Nije promaknuto"
 
 msgid "Recommended"
 msgstr "Preporučeno"
@@ -6606,9 +6605,8 @@ msgstr "Preuzmi medije prema datumu"
 msgid "Platform usage by Date"
 msgstr "Upotreba platformi po datumu"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> preuzimanja"
+msgstr "<b>{0}</b> tjednih preuzimanja"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> preuzimanja"
