@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-04 17:13+0000\n"
+"PO-Revision-Date: 2020-08-04 17:26+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -196,7 +196,7 @@ msgid "Submit a New Theme"
 msgstr "Pošalji novi motiv"
 
 msgid "Developer Hub"
-msgstr "Razvojni centar"
+msgstr "Centar za programere"
 
 msgid "Manage API Keys"
 msgstr "Upravljanje API ključevima"
@@ -422,7 +422,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Nevažeći primarni ključ ili URL naziv stranice „%s” – objekt ne postoji."
 
 msgid "Confirmation for developer API keys"
-msgstr "Potvrda za razvijateljske API ključeve"
+msgstr "Potvrda za API ključeve programera"
 
 msgid "Application Versions"
 msgstr "Verzije aplikacije"
@@ -810,11 +810,11 @@ msgid "{addon} migrated from preliminary."
 msgstr "{addon} preseljen iz preliminarnog."
 
 msgid "Reply by developer on {addon} {version}."
-msgstr "Odgovor razvijatelja o dodatku {addon} {version}."
+msgstr "Odgovor programera o dodatku {addon} {version}."
 
 # 100%
 msgid "Developer Reply"
-msgstr "Odgovor razvijatelja"
+msgstr "Odgovor programera"
 
 msgid "Reply by reviewer on {addon} {version}."
 msgstr "Odgovor recenzenta o dodatku {addon} {version}."
@@ -866,7 +866,7 @@ msgid "Information request altered"
 msgstr "Zahtjev za informacijama izmijenjen"
 
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Razvijatelj je uklonio zahtjev za informacijama o dodatku {addon} {version}."
+msgstr "Programer je uklonio zahtjev za podacima o dodatku {addon} {version}."
 
 msgid "Information request removed"
 msgstr "Zahtjev za informacijama uklonjen"
@@ -989,7 +989,7 @@ msgid "Owner"
 msgstr "Vlasnik"
 
 msgid "Developer"
-msgstr "Razvijatelj"
+msgstr "Programer"
 
 msgid "(Deleted)"
 msgstr "(Izbrisano)"
@@ -1150,8 +1150,8 @@ msgstr "Eksperimentalno"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
-"Preuzmi proširenja za Firefox koja se redovito ažuriraju i koja su spremna za javno testiranje. Tvoje povratne informacije obavještavaju razvijatelje o promjenama koje trebaju uvesti u nadolazećim "
-"verzijama."
+"Preuzmi proširenja za Firefox koja se redovito aktualiziraju i koja su spremna za javno testiranje. Tvoje povratne informacije obavještavaju programere o promjenama koje trebaju uvesti u nadolazećim"
+" verzijama."
 
 msgid "Performance"
 msgstr "Performansa"
@@ -1801,10 +1801,10 @@ msgid "Invalid or corrupt add-on file."
 msgstr "Neispravna ili oštećena datoteka dodatka."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr "Tvoj razvijateljski API ključ je pronađen u poslanoj datoteci. Kako bi se zaštitio tvoj račun, ključ će biti opozvan."
+msgstr "Tvoj API ključ programera je pronađen u poslanoj datoteci. Kako bi se zaštitio tvoj račun, ključ će se opozvati."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "Razvijateljski API ključ suatora je pronađen u poslanoj datoteci. Kako bi se zaštitio tvoj dodatak, ključ će biti opozvan."
+msgstr "API ključ programera suatora je pronađen u poslanoj datoteci. Kako bi se zaštitio tvoj dodatak, ključ će se opozvati."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozillina sigurnosna obavijest: tvoje AMO API vjerodajnice su opozvane"
@@ -2007,7 +2007,7 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ili <a href=\"{0}\">Odustani</a>"
 
 msgid "More information on Developer Accounts"
-msgstr "Više informacija o razvijateljskim računima"
+msgstr "Više informacija o računima programera"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2037,7 +2037,7 @@ msgstr "Motivi"
 
 # 100%
 msgid "Developer Policies"
-msgstr "Pravila za razvijatelje"
+msgstr "Politika za programe"
 
 msgid "Add-on Validator"
 msgstr "Provjera dodataka"
@@ -2058,7 +2058,7 @@ msgid "More Resources"
 msgstr "Daljnji resursi"
 
 msgid "Search Developer Docs"
-msgstr "Pretraži dokumente razvijatelja"
+msgstr "Pretraži dokumente programera"
 
 msgid "Search"
 msgstr "Traži"
@@ -3077,7 +3077,7 @@ msgid "View Statistics Dashboard"
 msgstr "Pregled Nadzorne ploče statistike"
 
 msgid "Developer News"
-msgstr "Vijesti za razvijatelje"
+msgstr "Vijesti za programere"
 
 msgid "View the blog &#9658;"
 msgstr "Pogledaj blog &#9658;"
@@ -3151,10 +3151,10 @@ msgid "Twitter"
 msgstr ""
 
 msgid "For developers"
-msgstr "Za razvijatelje"
+msgstr "Za programere"
 
 msgid "For end users"
-msgstr ""
+msgstr "Za krajnje korisnike"
 
 msgid "Matrix"
 msgstr ""
@@ -3166,7 +3166,7 @@ msgid "Extensions Developers Newsletter"
 msgstr "Bilten za programere proširenja"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Budi u tijeku o novostima i događajima za programere proširenja za Firefox."
 
 msgid "Email Address"
 msgstr "Adresa e-pošte"
@@ -3296,7 +3296,7 @@ msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr "Za slanje i upravljanje proširenjima i motivima, prijavi se na Centar za programere."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Registriraj se za račun programera ili se prijavi na Centar za programere"
 
 msgid "Manage Version {0}"
 msgstr "Upravljanje verzijom {0}"
