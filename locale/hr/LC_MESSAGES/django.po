@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-07-24 11:29+0000\n"
-"PO-Revision-Date: 2020-08-04 14:19+0000\n"
+"PO-Revision-Date: 2020-08-04 14:41+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -5023,11 +5023,11 @@ msgstr "Upravljanje karticama i alati"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr "Privatnost izvan proširenja preglednika"
+msgstr "Privatnost čak i bez proširenja preglednika"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "Firefox proširenja za medije"
 
 #. editorial content for the secondary hero shelves.
 msgid "Explore extensions"
@@ -5035,7 +5035,7 @@ msgstr "Istraži proširenja"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
-msgstr "Saznajte više"
+msgstr "Saznaj više"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
