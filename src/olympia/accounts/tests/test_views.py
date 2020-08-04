@@ -1476,7 +1476,15 @@ class TestAccountViewSetDelete(TestCase):
         response = self.client.delete(self.url)
         assert response.status_code == 204
         assert response.cookies[views.API_TOKEN_COOKIE].value == ''
+        assert (
+            response.cookies[views.API_TOKEN_COOKIE].get('samesite') ==
+            settings.SESSION_COOKIE_SAMESITE
+        )
         assert response.cookies[settings.SESSION_COOKIE_NAME].value == ''
+        assert (
+            response.cookies[settings.SESSION_COOKIE_NAME].get('samesite') ==
+            settings.SESSION_COOKIE_SAMESITE
+        )
         assert 'dontremoveme' not in response.cookies
         assert self.client.cookies[views.API_TOKEN_COOKIE].value == ''
         assert self.client.cookies[settings.SESSION_COOKIE_NAME].value == ''
