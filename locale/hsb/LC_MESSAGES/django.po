@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-04 18:08+0000\n"
+"PO-Revision-Date: 2020-08-04 19:10+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1365,9 +1365,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Zamołwić"
+msgstr "Njespěchowany"
 
 msgid "Recommended"
 msgstr "Doporučeny"
@@ -5882,9 +5881,8 @@ msgstr "Widźomnosć"
 msgid "Visible"
 msgstr "Widźomny"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Sćehnjenja"
+msgstr "Tydźenske sćehnjenja"
 
 msgid "Average Daily Users"
 msgstr "Přerězna ličba wšědnych wužiwarjow"
@@ -6271,9 +6269,8 @@ msgstr "Přirunać"
 msgid "Permissions:"
 msgstr "Prawa:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Prawa:"
+msgstr "Opcionalne prawa:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6544,9 +6541,8 @@ msgstr "po žórle"
 msgid "by Medium"
 msgstr "po mediju"
 
-#, fuzzy
 msgid "by Content"
-msgstr "Wobsah"
+msgstr "po wobsahu"
 
 msgid "by Campaign"
 msgstr "po kampani"
