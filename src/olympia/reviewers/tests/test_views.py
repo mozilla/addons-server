@@ -40,7 +40,7 @@ from olympia.amo.tests import (
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.blocklist.models import Block, BlocklistSubmission
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT, STRATEGIC
 from olympia.constants.reviewers import (
     REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT)
 from olympia.constants.scanners import MAD
@@ -1653,6 +1653,31 @@ class TestExtensionQueue(QueueTest):
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated One'],
             auto_approval_delayed_until=datetime.now() + timedelta(hours=24))
+
+        self.expected_addons = [
+            self.addons['Nominated One'], self.addons['Pending One']]
+        self._test_results()
+
+    def test_promoted_addon_in_pre_review_group_does_show_up(self):
+        self.addons['Pending Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED).files.update(
+            is_webextension=True)
+        self.addons['Nominated Two'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED).files.update(
+            is_webextension=True)
+        self.addons['Pending One'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED).files.update(
+            is_webextension=True)
+        self.addons['Nominated One'].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED).files.update(
+            is_webextension=True)
+
+        self.make_addon_promoted(self.addons['Pending One'], group=LINE)
+        self.make_addon_promoted(self.addons['Nominated One'], group=SPOTLIGHT)
+        # STRATEGIC isn't a pre_review group so won't show up
+        self.make_addon_promoted(self.addons['Nominated Two'], group=STRATEGIC)
+        # RECOMMENDED is pre_review, but is handled in it's own queue
+        self.make_addon_promoted(self.addons['Pending Two'], group=RECOMMENDED)
 
         self.expected_addons = [
             self.addons['Nominated One'], self.addons['Pending One']]

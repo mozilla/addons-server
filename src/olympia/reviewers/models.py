@@ -23,7 +23,7 @@ from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import RECOMMENDED, PRE_REVIEW_GROUPS
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
 from olympia.reviewers.sql_model import RawSQLModel
@@ -243,12 +243,15 @@ class ExtensionQueueMixin:
         types = _int_join(
             set(amo.GROUP_TYPE_ADDON) - {amo.ADDON_SEARCH})
         flags_table = 'addons_addonreviewerflags'
+        promoted_groups = _int_join(
+            group.id for group in PRE_REVIEW_GROUPS)
         query['where'].append(
             f'((addons.addontype_id IN ({types}) '
             'AND files.is_webextension = 0) '
             f'OR {flags_table}.auto_approval_disabled = 1 '
             f'OR {flags_table}.auto_approval_disabled_until_next_approval = 1 '
-            f'OR {flags_table}.auto_approval_delayed_until > NOW()'
+            f'OR {flags_table}.auto_approval_delayed_until > NOW() '
+            f'OR promoted.group_id IN ({promoted_groups})'
             ')'
         )
         return query

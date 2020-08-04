@@ -274,8 +274,11 @@ class TestRecommendedQueue(TestQueue):
             addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
             name='No updates')
         PromotedAddon.objects.get(
-            addon=self.new_addon(name='Not promoted')).update(
+            addon=self.new_addon(name='Not recommended')).update(
             group_id=NOT_PROMOTED.id)
+        PromotedAddon.objects.get(
+            addon=self.new_addon(name='Promoted but not recommended')).update(
+            group_id=LINE.id)
         PromotedAddon.objects.get(
             addon=self.new_addon(name='Not discovery item')).delete()
 
