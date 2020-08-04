@@ -174,7 +174,7 @@ def add_email_to_activity_log(parser):
                 'have to be a listed developer currently, or an AMO reviewer.')
     else:
         log.warning('%s tried to use an invalid activity email token for '
-                 'version %s.', user.email, version.id)
+                    'version %s.', user.email, version.id)
         reason = ('it\'s for an old version of the addon'
                   if not token.is_expired() else
                   'there have been too many replies')
