@@ -307,7 +307,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert f'<a href="dfd">{todaysdate}</a>' in content
         assert f'Block added by {user.name}:\n        guid@' in content
         assert f'versions 0 - {addon.current_version.version}' in content
-        assert f'Included in legacy blocklist' not in content
+        assert 'Included in legacy blocklist' not in content
 
     @override_switch('blocklist_legacy_submit', active=False)
     def test_legacy_id_property_readonly(self):
@@ -1569,7 +1569,7 @@ class TestBlockAdminEdit(TestCase):
         assert f'Block edited by {user.name}:\n        {self.block.guid}' in (
             content)
         assert f'versions 0 - {self.addon.current_version.version}' in content
-        assert f'Included in legacy blocklist' not in content
+        assert 'Included in legacy blocklist' not in content
 
     def test_edit_low_adu(self):
         user = user_factory()
