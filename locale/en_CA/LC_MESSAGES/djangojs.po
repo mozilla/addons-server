@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-06-09 18:06+0000\n"
+"PO-Revision-Date: 2020-08-04 18:35+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -495,34 +495,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Download Sources from {0} to {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Downloads, last {0} days"
+msgstr "Download Mediums, last {0} days"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Downloads from {0} to {1}"
+msgstr "Download Mediums from {0} to {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Download Sources, last {0} days"
+msgstr "Download Contents, last {0} days"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Downloads from {0} to {1}"
+msgstr "Download Contents from {0} to {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Downloads, last {0} days"
+msgstr "Download Campaigns, last {0} days"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Downloads from {0} to {1}"
+msgstr "Download Campaigns from {0} to {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
