@@ -785,10 +785,11 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.version.needs_human_review
         assert flags.needs_human_review_by_mad
 
-    def test_nomination_to_public_with_version_scanner_flags(self):
+    def test_nomination_to_public_with_version_reviewer_flags(self):
         flags = VersionReviewerFlags.objects.create(
             version=self.addon.current_version,
             needs_human_review_by_mad=True,
+            pending_rejection=datetime.now() + timedelta(days=2),
         )
         assert flags.needs_human_review_by_mad
 
@@ -797,6 +798,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         flags.refresh_from_db()
         assert not flags.needs_human_review_by_mad
+        assert not flags.pending_rejection
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_nomination_to_public(self, sign_mock):
