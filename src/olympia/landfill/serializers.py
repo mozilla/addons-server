@@ -28,7 +28,6 @@ from olympia.constants.base import (
 )
 from olympia.devhub.forms import icons
 from olympia.landfill.collection import generate_collection
-from olympia.files.tests.test_file_viewer import get_file
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.devhub.tasks import create_version_for_upload
@@ -407,8 +406,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
 
         # generate a proper uploaded file that simulates what django requires
         # as request.POST
+        root = os.path.join(settings.ROOT, 'src/olympia/files/fixtures/files')
         file_to_upload = 'webextension_signed_already.xpi'
-        file_path = get_file(file_to_upload)
+        file_path = os.path.join(root, file_to_upload)
 
         # make sure we are not using the file in the source-tree but a
         # temporary one to avoid the files get moved somewhere else and

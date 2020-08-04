@@ -1001,19 +1001,6 @@ def test_lock_timeout():
             assert not lock_attained
 
 
-def test_parse_search_empty_shortname():
-    from olympia.files.tests.test_file_viewer import get_file
-
-    fname = get_file('search_empty_shortname.xml')
-
-    with pytest.raises(forms.ValidationError) as excinfo:
-        utils.parse_search(fname)
-
-    assert (
-        str(excinfo.value.message) ==
-        'Could not parse uploaded file, missing or empty <ShortName> element')
-
-
 class TestResolvei18nMessage(object):
     def test_no_match(self):
         assert utils.resolve_i18n_message('foo', {}, '') == 'foo'

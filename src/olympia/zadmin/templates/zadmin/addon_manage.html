@@ -42,7 +42,7 @@
             {% if files %}
               {% for file in files %}
                 {% if not loop.first %}</tr><tr><td colspan="3">{% endif %}
-                <td><a href="{{ url('files.list', file.id) }}" title="{{ file.filename }}">{{ file.id }}</a></td>
+                <td><a href="{{ code_manager_url('browse', addon.pk, v.pk) }}" title="{{ file.filename }}">{{ file.id }}</a></td>
                 <td>{{ file.get_platform_display() }}</td>
                 <td>
                   {% if not file.version.deleted %}
