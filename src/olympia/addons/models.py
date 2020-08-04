@@ -37,7 +37,7 @@ from olympia.amo.utils import (
     StopWatch, attach_trans_dict,
     find_language, send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -1285,19 +1285,22 @@ class Addon(OnChangeMixin, ModelBase):
     def is_recommended(self):
         from olympia.bandwagon.models import CollectionAddon
 
-        recommended = self.is_promoted(group=RECOMMENDED)
+        recommended = bool(self.promoted_group(group=RECOMMENDED))
         if not recommended and self.type == amo.ADDON_STATICTHEME:
             recommended = CollectionAddon.objects.filter(
                 collection_id=settings.COLLECTION_FEATURED_THEMES_ID,
                 addon=self).exists()
         return recommended
 
-    def is_promoted(self, *, group=None, application=None,
-                    currently_approved=True):
+    def promoted_group(self, *, group=None, application=None,
+                       currently_approved=True):
         """Is the addon currently promoted for the specified group and
         application?
 
-        `group` is the PromotedClass class; if group=None (default) then all
+        Returns the group constant, or NOT_PROMOTED (which is falsey)
+        otherwise.
+
+        `group` is the PromotedClass constant; if group=None (default) then all
         promotion groups are considered;
         `application` is the App class; if application=None (default) then all
         applications are considered;
@@ -1311,13 +1314,14 @@ class Addon(OnChangeMixin, ModelBase):
         try:
             promoted = self.promotedaddon
         except PromotedAddon.DoesNotExist:
-            return False
+            return NOT_PROMOTED
         group_match = not group or promoted.group == group
         app_match = (
             not application or not promoted.application or
             promoted.application == application)
-        return group_match and app_match and (
+        is_promoted = group_match and app_match and (
             not currently_approved or promoted.is_addon_currently_promoted)
+        return promoted.group if is_promoted else NOT_PROMOTED
 
     @cached_property
     def tags_partitioned_by_developer(self):

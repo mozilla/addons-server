@@ -352,7 +352,7 @@ class ReviewHelper(object):
         version_is_unlisted = (
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_UNLISTED)
-        is_recommendable = self.addon.is_promoted(
+        is_recommendable = self.addon.promoted_group(
             group=RECOMMENDED, currently_approved=False)
 
         # Default permissions / admin needed values if it's just a regular
@@ -639,13 +639,14 @@ class ReviewBase(object):
             file.status = status
             file.save()
 
-    def set_recommended(self):
-        if self.addon.is_promoted(group=RECOMMENDED, currently_approved=False):
+    def set_promoted(self):
+        group = self.addon.promoted_group(currently_approved=False)
+        if group and group.pre_review:
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
             PromotedApproval.objects.update_or_create(
-                version=self.version, group_id=RECOMMENDED.id)
+                version=self.version, group_id=group.id)
 
     def clear_all_needs_human_review_flags_in_channel(self):
         """Clear needs_human_review flags on all versions in the same channel.
@@ -808,7 +809,7 @@ class ReviewBase(object):
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_APPROVED, self.files)
-        self.set_recommended()
+        self.set_promoted()
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_APPROVED)
 

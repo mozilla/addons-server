@@ -31,3 +31,8 @@ class TestPromotedAddon(TestCase):
         # but not if it's for a different type of promotion
         promoted_addon.update(group_id=promoted.VERIFIED_ONE.id)
         assert not addon.promotedaddon.is_addon_currently_promoted
+
+        # for promoted groups that don't require pre-review though, there isn't
+        # a per version approval, so a current_version is sufficient
+        promoted_addon.update(group_id=promoted.STRATEGIC.id)
+        assert addon.promotedaddon.is_addon_currently_promoted

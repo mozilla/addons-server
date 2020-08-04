@@ -57,7 +57,7 @@ def get_id(addon):
 def use_recommendation_signer(file_obj):
     return (
         file_obj.version.channel == amo.RELEASE_CHANNEL_LISTED and
-        file_obj.version.addon.is_promoted(
+        file_obj.version.addon.promoted_group(
             group=RECOMMENDED, currently_approved=False))
 
 
