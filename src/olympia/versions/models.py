@@ -31,7 +31,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
-from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID, RECOMMENDED
+from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -728,10 +728,14 @@ class Version(OnChangeMixin, ModelBase):
                 file_obj, theme_data=None, header_only=header_only).items()}
 
     def can_be_disabled_and_deleted(self):
+        # see https://github.com/mozilla/addons-server/issues/15121#issuecomment-667226959  # noqa
+        # "It should apply to the <groups> that require a review to be badged"
         from olympia.promoted.models import PromotedApproval
 
-        if (self != self.addon.current_version or
-                not self.addon.promoted_group(group=RECOMMENDED)):
+        if self != self.addon.current_version or (
+            not (group := self.addon.promoted_group()) or
+            not (group.badged and group.pre_review)
+        ):
             return True
 
         previous_ver = (
@@ -739,7 +743,7 @@ class Version(OnChangeMixin, ModelBase):
                                        .exclude(id=self.id)
                                        .no_transforms()[:1])
         previous_approval = PromotedApproval.objects.filter(
-            group_id=RECOMMENDED.id, version__in=previous_ver)
+            group_id=group.id, version__in=previous_ver)
         return previous_approval.exists()
 
     @property
