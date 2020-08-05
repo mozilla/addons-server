@@ -2,8 +2,7 @@
 from django.utils import translation
 from django.core.cache import cache
 
-from unittest import TestCase
-from olympia.lib.cache import Message, memoize, memoize_key, make_key
+from olympia.lib.cache import memoize, memoize_key, make_key
 
 
 def test_make_key():
@@ -52,31 +51,3 @@ def test_memcached_unicode():
     """
     cache.set(u'këy', u'Iñtërnâtiônàlizætiøn2')
     assert cache.get(u'këy') == u'Iñtërnâtiônàlizætiøn2'
-
-
-class TestMessage(TestCase):
-
-    def test_message_save(self):
-        new = Message('abc')
-        new.save('123')
-
-        new = Message('abc')
-        assert new.get() == '123'
-
-    def test_message_expires(self):
-        new = Message('abc')
-        new.save('123')
-
-        cache.delete('message:abc')
-
-        new = Message('abc')
-        assert new.get() is None
-
-    def test_message_get_delete(self):
-        new = Message('abc')
-        new.save('123')
-
-        new = Message('abc')
-        assert new.get(delete=False) == '123'
-        assert new.get(delete=True) == '123'
-        assert new.get() is None

@@ -60,26 +60,6 @@ def memoize(prefix, timeout=60):
     return decorator
 
 
-class Message(object):
-    """
-    A simple class to store an item in memcache, given a key.
-    """
-    def __init__(self, key):
-        self.key = 'message:{key}'.format(key=key)
-
-    def delete(self):
-        cache.delete(self.key)
-
-    def save(self, message, time=60 * 5):
-        cache.set(self.key, message, time)
-
-    def get(self, delete=False):
-        res = cache.get(self.key)
-        if delete:
-            cache.delete(self.key)
-        return res
-
-
 class CacheStatTracker(BaseCache):
     """A small class used to track cache calls."""
     requests_limit = 5000
