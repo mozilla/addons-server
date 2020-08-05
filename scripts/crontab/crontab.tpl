@@ -18,7 +18,6 @@ HOME=/tmp
 20 * * * * %(z_cron)s addon_last_updated
 25 * * * * %(z_cron)s hide_disabled_files
 45 * * * * %(z_cron)s update_addon_appsupport
-50 * * * * %(z_cron)s cleanup_extracted_file
 55 * * * * %(z_cron)s unhide_disabled_files
 
 # Four times per day

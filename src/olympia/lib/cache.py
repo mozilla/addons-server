@@ -1,8 +1,6 @@
 import hashlib
 import functools
 import itertools
-import re
-import uuid
 from contextlib import contextmanager
 
 from django.core.cache.backends.base import DEFAULT_TIMEOUT, BaseCache
@@ -60,73 +58,6 @@ def memoize(prefix, timeout=60):
             return cache.get_or_set(key, wrapped_func, timeout=DEFAULT_TIMEOUT)
         return wrapper
     return decorator
-
-
-class Message(object):
-    """
-    A simple class to store an item in memcache, given a key.
-    """
-    def __init__(self, key):
-        self.key = 'message:{key}'.format(key=key)
-
-    def delete(self):
-        cache.delete(self.key)
-
-    def save(self, message, time=60 * 5):
-        cache.set(self.key, message, time)
-
-    def get(self, delete=False):
-        res = cache.get(self.key)
-        if delete:
-            cache.delete(self.key)
-        return res
-
-
-class Token(object):
-    """
-    A simple token stored in the cache.
-    """
-    _well_formed = re.compile('^[a-z0-9-]+$')
-
-    def __init__(self, token=None, data=True):
-        if token is None:
-            token = str(uuid.uuid4())
-        self.token = token
-        self.data = data
-
-    def cache_key(self):
-        assert self.token, 'No token value set.'
-        return 'token:{token}'.format(token=self.token)
-
-    def save(self, time=60):
-        cache.set(self.cache_key(), self.data, time)
-
-    def well_formed(self):
-        return self._well_formed.match(self.token)
-
-    @classmethod
-    def valid(cls, key, data=True):
-        """Checks that the token is valid."""
-        token = cls(key)
-        if not token.well_formed():
-            return False
-        result = cache.get(token.cache_key())
-        if result is not None:
-            return result == data
-        return False
-
-    @classmethod
-    def pop(cls, key, data=True):
-        """Checks that the token is valid and deletes it."""
-        token = cls(key)
-        if not token.well_formed():
-            return False
-        result = cache.get(token.cache_key())
-        if result is not None:
-            if result == data:
-                cache.delete(token.cache_key())
-                return True
-        return False
 
 
 class CacheStatTracker(BaseCache):

@@ -693,10 +693,6 @@ MINIFY_BUNDLES = {
             'css/zamboni/reviewers.less',
             'css/zamboni/themes_review.less',
         ),
-        'zamboni/files': (
-            'css/lib/syntaxhighlighter/shCoreDefault.css',
-            'css/zamboni/files.css',
-        ),
         'zamboni/admin': (
             'css/zamboni/admin-django.css',
             'css/zamboni/admin-mozilla.css',
@@ -916,19 +912,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/reviewers.js',
             'js/zamboni/themes_review_templates.js',
             'js/zamboni/themes_review.js',
-        ),
-        'zamboni/files': (
-            'js/lib/diff_match_patch_uncompressed.js',
-            'js/lib/syntaxhighlighter/shCore.js',
-            'js/lib/syntaxhighlighter/shLegacy.js',
-            'js/lib/syntaxhighlighter/shBrushCss.js',
-            'js/lib/syntaxhighlighter/shBrushJava.js',
-            'js/lib/syntaxhighlighter/shBrushJScript.js',
-            'js/lib/syntaxhighlighter/shBrushPlain.js',
-            'js/lib/syntaxhighlighter/shBrushXml.js',
-            'js/zamboni/storage.js',
-            'js/zamboni/files_templates.js',
-            'js/zamboni/files.js',
         ),
         'zamboni/stats': (
             'js/lib/highcharts.src.js',
@@ -1526,9 +1509,6 @@ MOBILE_COOKIE = 'mamo'
 # Path to `ps`.
 PS_BIN = '/bin/ps'
 
-# The maximum file size that is shown inside the file viewer.
-FILE_VIEWER_SIZE_LIMIT = 1048576
-
 # The maximum file size that you can have inside a zip file.
 FILE_UNZIP_SIZE_LIMIT = 104857600
 
@@ -1876,9 +1856,6 @@ CRON_JOBS = {
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
 
     'update_blog_posts': 'olympia.devhub.cron',
-
-    'cleanup_extracted_file': 'olympia.files.cron',
-    'cleanup_validation_results': 'olympia.files.cron',
 
     'index_latest_stats': 'olympia.stats.cron',
 

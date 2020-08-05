@@ -39,8 +39,6 @@ urlpatterns = [
     # Collections.
     url(r'', include('olympia.bandwagon.urls')),
 
-    # Files
-    url(r'^files/', include('olympia.files.urls')),
     # Do not expose the `upload_patterns` under `files/` because of this issue:
     # https://github.com/mozilla/addons-server/issues/12322
     url(r'^uploads/', include(upload_patterns)),

@@ -2,9 +2,7 @@
 from django.utils import translation
 from django.core.cache import cache
 
-from unittest import TestCase
-from olympia.lib.cache import (
-    Message, Token, memoize, memoize_key, make_key)
+from olympia.lib.cache import memoize, memoize_key, make_key
 
 
 def test_make_key():
@@ -53,67 +51,3 @@ def test_memcached_unicode():
     """
     cache.set(u'këy', u'Iñtërnâtiônàlizætiøn2')
     assert cache.get(u'këy') == u'Iñtërnâtiônàlizætiøn2'
-
-
-class TestToken(TestCase):
-
-    def test_token_pop(self):
-        new = Token()
-        new.save()
-        assert Token.pop(new.token)
-        assert not Token.pop(new.token)
-
-    def test_token_valid(self):
-        new = Token()
-        new.save()
-        assert Token.valid(new.token)
-
-    def test_token_fails(self):
-        assert not Token.pop('some-random-token')
-
-    def test_token_ip(self):
-        new = Token(data='127.0.0.1')
-        new.save()
-        assert Token.valid(new.token, '127.0.0.1')
-
-    def test_token_no_ip_invalid(self):
-        new = Token()
-        assert not Token.valid(new.token, '255.255.255.0')
-
-    def test_token_bad_ip_invalid(self):
-        new = Token(data='127.0.0.1')
-        new.save()
-        assert not Token.pop(new.token, '255.255.255.0')
-        assert Token.pop(new.token, '127.0.0.1')
-
-    def test_token_well_formed(self):
-        new = Token('some badly formed token')
-        assert not new.well_formed()
-
-
-class TestMessage(TestCase):
-
-    def test_message_save(self):
-        new = Message('abc')
-        new.save('123')
-
-        new = Message('abc')
-        assert new.get() == '123'
-
-    def test_message_expires(self):
-        new = Message('abc')
-        new.save('123')
-
-        cache.delete('message:abc')
-
-        new = Message('abc')
-        assert new.get() is None
-
-    def test_message_get_delete(self):
-        new = Message('abc')
-        new.save('123')
-
-        new = Message('abc')
-        assert new.get(delete=False) == '123'
-        assert new.get(delete=True) == '123'
-        assert new.get() is None
