@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-04 12:58+0000\n"
+"PO-Revision-Date: 2020-08-05 21:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -492,34 +492,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0} నుంచి {1} వరకు వనరులను దింపుకోండి"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "గత {0} రోజుల దింపుకోళ్ళు "
+msgstr "దింపుకోలు మాధ్యమాలు, గత {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు "
+msgstr "{0} నుండి {1} వరకు దింపుకోలు మాధ్యమాలు"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "గత {0} రోజుల దింపుకోళ్ళ మూలాలు"
+msgstr "దింపుకోలు విషయాలు, గత {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు "
+msgstr "{0} నుండి {1} వరకు దింపుకోలు విషయాలు"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "గత {0} రోజుల దింపుకోళ్ళు "
+msgstr "దింపుకోలు ప్రచారాలు, గత {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు "
+msgstr "{0} నుండి {1} వరకు దింపుకోలు ప్రచారాలు"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
