@@ -26,9 +26,7 @@ AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING = {
 }
 
 AMO_STATS_DAU_VIEW = 'amo_stats_dau'
-# NOTE: We currently use the `v2` table instead of the actual view because we
-# are still experimenting with this new dataset.
-AMO_STATS_DOWNLOAD_VIEW = 'amo_stats_installs_v2'
+AMO_STATS_DOWNLOAD_VIEW = 'amo_stats_installs'
 
 
 def make_fully_qualified_view_name(view):
@@ -133,7 +131,7 @@ def get_download_series(addon, start_date, end_date, source=None):
     query = f"""
 {select_clause}
 FROM `{get_amo_stats_download_view_name()}`
-WHERE addon_id = @addon_id
+WHERE hashed_addon_id = @hashed_addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
 LIMIT 365"""
@@ -147,7 +145,9 @@ LIMIT 365"""
             job_config=bigquery.QueryJobConfig(
                 query_parameters=[
                     bigquery.ScalarQueryParameter(
-                        'addon_id', 'STRING', addon.guid
+                        'hashed_addon_id',
+                        'STRING',
+                        addon.addonguid.hashed_guid,
                     ),
                     bigquery.ScalarQueryParameter(
                         'submission_date_start', 'DATE', start_date
@@ -259,14 +259,14 @@ def get_addons_and_weekly_downloads_from_bigquery():
     client = create_client()
 
     query = f"""
-SELECT addon_id, SUM(total_downloads) AS count
+SELECT hashed_addon_id, SUM(total_downloads) AS count
 FROM `{get_amo_stats_download_view_name()}`
 WHERE submission_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)
-GROUP BY addon_id"""
+GROUP BY hashed_addon_id"""
 
     rows = client.query(query).result()
 
     return [
-        (row['addon_id'], row['count'])
-        for row in rows if row['addon_id'] and row['count']
+        (row['hashed_addon_id'], row['count'])
+        for row in rows if row['hashed_addon_id'] and row['count']
     ]

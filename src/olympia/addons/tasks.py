@@ -289,14 +289,14 @@ def update_addon_hotness(averages):
 def update_addon_weekly_downloads(data):
     log.info('[%s] Updating add-ons weekly downloads.', len(data))
 
-    for addon_guid, count in data:
+    for hashed_guid, count in data:
         try:
-            addon = Addon.objects.get(guid=addon_guid)
-        except Addon.DoesNotExist:
+            addon = AddonGUID.objects.get(hashed_guid=hashed_guid).addon
+        except AddonGUID.DoesNotExist:
             # The processing input comes from metrics which might be out of
             # date in regards to currently existing add-ons.
-            log.info('Got a weekly_downloads update (%s) but the add-on '
-                     'doesn\'t exist (%s).', count, addon_guid)
+            log.info('Got a weekly_downloads update (%s) but the add-on GUID '
+                     'doesn\'t exist (hashed_guid=%s).', count, hashed_guid)
             continue
 
         addon.update(weekly_downloads=int(float(count)))
