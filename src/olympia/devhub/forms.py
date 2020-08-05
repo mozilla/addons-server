@@ -792,10 +792,6 @@ class VersionForm(WithSourceMixin, forms.ModelForm):
         model = Version
         fields = ('release_notes', 'approval_notes', 'source',)
 
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        super(VersionForm, self).__init__(*args, **kwargs)
-
 
 class AppVersionChoiceField(forms.ModelChoiceField):
 

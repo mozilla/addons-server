@@ -1003,7 +1003,6 @@ def version_edit(request, addon_id, addon, version_id):
         request.POST or None,
         request.FILES or None,
         instance=version,
-        request=request,
     ) if not static_theme else None
 
     data = {}
@@ -1509,7 +1508,7 @@ def _submit_details(request, addon, version):
     if not static_theme:
         # Static themes don't need this form
         reviewer_form = forms.VersionForm(
-            post_data, instance=latest_version, request=request)
+            post_data, instance=latest_version)
         context.update(reviewer_form=reviewer_form)
         forms_list.append(reviewer_form)
 
