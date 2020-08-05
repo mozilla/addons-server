@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 11:53+0000\n"
+"PO-Revision-Date: 2020-08-05 11:59+0000\n"
 "Last-Translator: πάθοςγιατηζωή <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5750,9 +5750,8 @@ msgstr "可见性"
 msgid "Visible"
 msgstr "可见"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "下载次数"
+msgstr "周下载量"
 
 msgid "Average Daily Users"
 msgstr "平均每日用户量"
@@ -6138,9 +6137,8 @@ msgstr "比较"
 msgid "Permissions:"
 msgstr "权限："
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "权限："
+msgstr "可选权限："
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6266,9 +6264,8 @@ msgstr "存在命中规则"
 msgid "result state"
 msgstr "结果状态"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "此规则除外"
+msgstr "全部，但只匹配这条规则的结果"
 
 msgid "presence of a version"
 msgstr "版本存在"
@@ -6501,13 +6498,11 @@ msgstr "这个仪表盘目前<b>不公开的</b>。"
 msgid "Application usage by Date"
 msgstr "依照日期统计的应用程序使用"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "依照日期统计的下载来源"
+msgstr "依照日期统计的下载活动"
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "依照日期统计的下载来源"
+msgstr "依照日期统计的下载内容"
 
 msgid "User countries by Date"
 msgstr "依照日期显示用户国家/地区"
@@ -6532,9 +6527,8 @@ msgstr "依照日期统计的下载渠道"
 msgid "Platform usage by Date"
 msgstr "依照日期统计的使用平台"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b>次下载"
+msgstr "周下载量 <b>{0}</b>"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b>次下载"

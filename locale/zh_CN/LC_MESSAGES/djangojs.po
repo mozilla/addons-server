@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-06-10 12:48+0000\n"
+"PO-Revision-Date: 2020-08-05 12:03+0000\n"
 "Last-Translator: πάθοςγιατηζωή <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -479,34 +479,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0} 至 {1} 的下载来源"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "最近 {0} 天的下载量"
+msgstr "最近 {0} 天的渠道下载量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "从 {0} 至 {1} 的下载量"
+msgstr "从 {0} 至 {1} 的渠道下载量"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "过去 {0} 天的下载来源"
+msgstr "过去 {0} 天的下载内容"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "从 {0} 至 {1} 的下载量"
+msgstr "从 {0} 至 {1} 的下载内容"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "最近 {0} 天的下载量"
+msgstr "最近 {0} 天的下载活动"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "从 {0} 至 {1} 的下载量"
+msgstr "从 {0} 至 {1} 的下载活动"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
