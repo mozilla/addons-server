@@ -80,6 +80,9 @@ ABUSEREPORTS_EDIT = AclPermission('AbuseReports', 'Edit')
 # Can submit language packs. #11788 and #11793
 LANGPACK_SUBMIT = AclPermission('LanguagePack', 'Submit')
 
+# Can create AppVersion instances
+APPVERSIONS_CREATE = AclPermission('AppVersions', 'Create')
+
 # Can access the scanners results admin.
 ADMIN_SCANNERS_RESULTS_VIEW = AclPermission('Admin', 'ScannersResultsView')
 # Can use "actions" on the scanners results.

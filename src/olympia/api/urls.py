@@ -23,6 +23,7 @@ v4_api_urls = [
     url(r'^accounts/', include(accounts_v4)),
     url(r'^activity/', include('olympia.activity.urls')),
     url(r'^addons/', include(addons_v4)),
+    url(r'^applications/', include('olympia.applications.api_urls')),
     url(r'^blocklist/', include('olympia.blocklist.urls')),
     url(r'^', include('olympia.discovery.api_urls')),
     url(r'^hero/', include('olympia.hero.urls')),
