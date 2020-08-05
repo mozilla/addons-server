@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 21:23+0000\n"
+"PO-Revision-Date: 2020-08-05 21:32+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3771,7 +3771,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "మీరు జాలంలో విహరిస్తున్నప్పుడు ట్రాకింగు నుండి అదనపు సంరక్షణను పొందండి."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4354,7 +4354,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "మీ శోధన ఫలితాల్లో వ్యాపార ప్రకటనలు కనిపించకుండా ఆపివేసుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4362,7 +4362,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "సంకేతపదాలను భద్రంగా నిల్వచేసుకోండి, తెలిసిన వెబ్‌సైట్ల లోనికి స్వయంచాలకంగా ప్రవేశించండి."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4403,7 +4403,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "మీరు వెతుకున్న దాన్ని ఒక ప్రత్యేక రంగంలో కనుగొనండి."
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4461,7 +4461,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "పిల్లి నుండి లేజర్ కిరణాలను సంధించాల్సివచ్చే ఆ ప్రత్యేకమైన క్షణాలకోసం."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4481,7 +4481,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "దారిమార్పులను ఆపివేయండి, తద్వారా మీకు కావలసిన సైటును—వేగంగా—చేరుకోవచ్చు."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4571,7 +4571,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "మీరు ఎంచుకున్న వెబ్‌సైట్ల విహరణ చరిత్రను స్వయంచాలకంగా తొలగించుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5712,9 +5712,8 @@ msgstr "దృశ్యత"
 msgid "Visible"
 msgstr "కనిపించు"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "దింపుకోళ్ళు "
+msgstr "వారంవారం దింపుకోళ్ళు"
 
 msgid "Average Daily Users"
 msgstr "సగటు రోజువారీ వాడుకరులు"
@@ -6361,9 +6360,8 @@ msgstr "మూల ద్వారా"
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "విషయాలు"
+msgstr "విషయంవారీగా"
 
 msgid "by Campaign"
 msgstr ""
@@ -6466,13 +6464,11 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr "తేదీ వారీగా అనువర్తనపు వాడకం"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "తేదీ వారి మూలాలు దింపుకోండి"
+msgstr "తేదీవారి దింపుకోలు ప్రచారాలు"
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "తేదీ వారి మూలాలు దింపుకోండి"
+msgstr "తేదీవారి దింపుకోలు విషయాలు"
 
 msgid "User countries by Date"
 msgstr "తేదీవారీ వాడుకరుల దేశాలు"
@@ -6491,16 +6487,14 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "తేదీవారీ వాడుకరుల భాషలు"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "తేదీ ద్వారా దింపుకోండి"
+msgstr "తేదీవారి దింపుకోలు మాధ్యమాలు"
 
 msgid "Platform usage by Date"
 msgstr "తేదీ ద్వారా వేదిక వినియోగం"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> దింపుకోళ్ళు"
+msgstr "<b>{0}</b> వారంవారం దింపుకోళ్ళు"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> దింపుకోళ్ళు"
