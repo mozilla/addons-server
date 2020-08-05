@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 21:13+0000\n"
+"PO-Revision-Date: 2020-08-05 21:23+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2982,7 +2982,7 @@ msgid "Latest Version:"
 msgstr "సరికొత్త వెర్షను:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr ""
+msgstr "ఇది కొత్తగా ఎక్కించిన, జాబితాచేయబడని వెర్షను"
 
 msgid "Upload New Version"
 msgstr "కొత్త వెర్షనును ఎక్కించండి"
@@ -3665,7 +3665,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "మీరు వెతుకుతున్న పేజీ అందుబాటులో లేదా? ఆర్కయివైన/కాషె వెర్షను కోసం వెతకండి."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3687,7 +3687,7 @@ msgstr "{start_sub_heading} {addon_name}‌‌తో{end_sub_heading} కుక�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "మీరు ట్యాబును మూసివేసిన తర్వాత స్వయంచాలకంగా కుకీలను తుడిచివేసుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3696,7 +3696,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "ఏ పేజీ లోని పాఠ్య పరిమాణాన్ని అయినా హెచ్చుతగ్గులు చేసుకోడానికి—లేక పేజీనే పెద్దగా చేసుకోడానికి—ఒక తేలికైన మార్గం."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3887,7 +3887,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "తెరిచివున్న మీ ట్యాబులన్నిటినీ ఒక జాబితాగా మార్చుకొని వాటిని తేలికగా నిర్వహించుకోండి, Firefoxను వేగవంతం చేసుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3904,7 +3904,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "అంతర్జాలం నుండి సమాచారాన్ని OneNoteలో భద్రపరచుకొని, దాన్ని సవరించుకోవడం, ఉల్లేఖించడం, వంటివెన్నో చేయండి."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
