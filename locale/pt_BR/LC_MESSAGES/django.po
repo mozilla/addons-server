@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 14:13+0000\n"
+"PO-Revision-Date: 2020-08-05 14:15+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6466,9 +6466,8 @@ msgstr "presença de regras que correspondem"
 msgid "result state"
 msgstr "estado do resultado"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "tudo menos esta regra"
+msgstr "todos, exceto resultados que correspondem apenas a esta regra"
 
 msgid "presence of a version"
 msgstr "presença de uma versão"
@@ -6737,9 +6736,8 @@ msgstr "Downloads por Data"
 msgid "Platform usage by Date"
 msgstr "Plataformas por Data"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> downloads"
+msgstr "<b>{0}</b> downloads semanais"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> downloads"
