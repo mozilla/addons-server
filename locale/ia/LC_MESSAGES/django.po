@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 07:04+0000\n"
+"PO-Revision-Date: 2020-08-05 07:10+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -6223,9 +6223,8 @@ msgstr "Comparar"
 msgid "Permissions:"
 msgstr "Permissiones:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Permissiones:"
+msgstr "Permissos optional:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6356,9 +6355,8 @@ msgstr "presentia de regulas concordate"
 msgid "result state"
 msgstr "stato de resultato"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "toto salvo iste regula"
+msgstr "toto salvo le resultatos que concorda solo iste regula"
 
 msgid "presence of a version"
 msgstr "presentia de un version"
@@ -6486,9 +6484,8 @@ msgstr "per fonte"
 msgid "by Medium"
 msgstr "per medio"
 
-#, fuzzy
 msgid "by Content"
-msgstr "Contento"
+msgstr "per contento"
 
 msgid "by Campaign"
 msgstr "per campania"
@@ -6591,13 +6588,11 @@ msgstr "Iste pannello de controlo es <b>private</b>."
 msgid "Application usage by Date"
 msgstr "Application per data de uso"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Fontes de discargamento per data"
+msgstr "Campanias de discargamento per data"
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Fontes de discargamento per data"
+msgstr "Contentos de discargamento per data"
 
 msgid "User countries by Date"
 msgstr "Paises del usator per data"
@@ -6618,16 +6613,14 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Linguas del usator per data"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Discargate per data"
+msgstr "Medios de discargamento per data"
 
 msgid "Platform usage by Date"
 msgstr "Uso del systema operative per Data"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> Discargamentos"
+msgstr "<b>{0}</b> Numero de discargamentos septimanal"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Discargamentos"
