@@ -186,6 +186,7 @@ class REQUEST_VERSION(_LOG):
     review_queue = True
 
 
+# Obsolete now that we have pending rejections, kept for compatibility.
 class REQUEST_INFORMATION(_LOG):
     id = 44
     format = _(u'{addon} {version} more information requested.')

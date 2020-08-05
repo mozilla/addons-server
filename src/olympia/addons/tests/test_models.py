@@ -1506,37 +1506,6 @@ class TestAddonModels(TestCase):
         flags.update(needs_admin_theme_review=True)
         assert addon.needs_admin_theme_review is True
 
-    def test_pending_info_request_property(self):
-        addon = Addon.objects.get(pk=3615)
-        # No flags: None
-        assert addon.pending_info_request is None
-        # Flag present, value is None (default): None.
-        flags = AddonReviewerFlags.objects.create(addon=addon)
-        assert flags.pending_info_request is None
-        assert addon.pending_info_request is None
-        # Flag present, value is a date.
-        in_the_past = self.days_ago(1)
-        flags.update(pending_info_request=in_the_past)
-        assert addon.pending_info_request == in_the_past
-
-    def test_expired_info_request_property(self):
-        addon = Addon.objects.get(pk=3615)
-        # No flags: None
-        assert addon.expired_info_request is None
-        # Flag present, value is None (default): None.
-        flags = AddonReviewerFlags.objects.create(addon=addon)
-        assert flags.pending_info_request is None
-        assert addon.expired_info_request is None
-        # Flag present, value is a date in the past.
-        in_the_past = self.days_ago(1)
-        flags.update(pending_info_request=in_the_past)
-        assert addon.expired_info_request
-
-        # Flag present, value is a date in the future.
-        in_the_future = datetime.now() + timedelta(days=2)
-        flags.update(pending_info_request=in_the_future)
-        assert not addon.expired_info_request
-
     def test_reset_notified_about_auto_approval_delay(self):
         addon = Addon.objects.get(pk=3615)
         assert not AddonReviewerFlags.objects.filter(addon=addon).exists()

@@ -85,7 +85,6 @@ add-on.
     :>json boolean needs_admin_code_review: Boolean indicating whether the add-on needs its code to be reviewed by an admin or not.
     :>json boolean needs_admin_content_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not.
     :>json boolean needs_admin_theme_review: Boolean indicating whether the theme needs to be reviewed by an admin or not.
-    :>json string|null pending_info_request: Deadline date for the pending info request as a string, or ``null``.
 
 ------------------
 Allow resubmission

@@ -161,13 +161,6 @@ class TestExtensionQueueWithAwaitingReview(TestQueue):
         assert queue.flags == [
             ('needs-admin-code-review', 'Needs Admin Code Review')]
 
-    def test_flags_info_request(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.new_addon(),
-            pending_info_request=datetime.now() + timedelta(days=6))
-        queue = self.Queue.objects.get()
-        assert queue.flags == [('info', 'More Information Requested')]
-
     def test_flags_is_restart_required(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
             is_restart_required=True)

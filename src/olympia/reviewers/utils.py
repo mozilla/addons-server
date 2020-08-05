@@ -207,19 +207,6 @@ class ModernAddonQueueTable(ReviewerQueueTable):
     render_last_content_review = render_last_human_review
 
 
-class ExpiredInfoRequestsTable(ModernAddonQueueTable):
-    deadline = tables.Column(
-        verbose_name=_(u'Information Request Deadline'),
-        accessor='reviewerflags.pending_info_request')
-
-    class Meta(ModernAddonQueueTable.Meta):
-        fields = ('addon_name', 'flags', 'last_human_review', 'weight',
-                  'deadline')
-
-    def render_deadline(self, value):
-        return naturaltime(value) if value else ''
-
-
 class PendingRejectionTable(ModernAddonQueueTable):
     deadline = tables.Column(
         verbose_name=_('Pending Rejection Deadline'),

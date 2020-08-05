@@ -133,13 +133,6 @@ def queue_tabnav(context):
 
         if acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
             tabnav.append(
-                ('expired_info_requests', 'queue_expired_info_requests',
-                 (ungettext('Expired Info Request ({0})',
-                            'Expired Info Requests ({0})',
-                            counts['expired_info_requests'])
-                  .format(counts['expired_info_requests']))),
-            )
-            tabnav.append(
                 ('pending_rejection', 'queue_pending_rejection',
                  (ungettext('Pending Rejection ({0})',
                             'Pending Rejection ({0})',

@@ -25,10 +25,9 @@ from rest_framework.exceptions import Throttled
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
-from olympia.activity.utils import log_and_notify
 from olympia.addons import tasks as addons_tasks
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
+    Addon, AddonApprovalsCounter, AddonCategory, AddonUser,
     AddonUserPendingConfirmation, Category, DeniedSlug, Preview)
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
@@ -788,39 +787,10 @@ class VersionForm(WithSourceMixin, forms.ModelForm):
     approval_notes = forms.CharField(
         widget=TranslationTextarea(attrs={'rows': 4}), required=False)
     source = forms.FileField(required=False, widget=SourceFileInput)
-    clear_pending_info_request = forms.BooleanField(required=False)
 
     class Meta:
         model = Version
-        fields = ('release_notes', 'clear_pending_info_request',
-                  'approval_notes', 'source',)
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        super(VersionForm, self).__init__(*args, **kwargs)
-        # Fetch latest reviewer comment if the addon has a pending info
-        # request,  so that the template in which the form is used can display
-        # that comment.
-        if self.instance and self.instance.addon.pending_info_request:
-            try:
-                self.pending_info_request_comment = (
-                    ActivityLog.objects.for_addons(self.instance.addon)
-                               .filter(action=amo.LOG.REQUEST_INFORMATION.id)
-                               .latest('pk')).details['comments']
-            except (ActivityLog.DoesNotExist, KeyError):
-                self.pending_info_request_comment = ''
-
-    def save(self, *args, **kwargs):
-        super(VersionForm, self).save(*args, **kwargs)
-        # Clear pending info request on the addon if requested, adding an entry
-        # in the Activity Log to indicate that.
-        if self.cleaned_data.get('clear_pending_info_request'):
-            AddonReviewerFlags.objects.update_or_create(
-                addon=self.instance.addon,
-                defaults={'pending_info_request': None})
-            log_and_notify(
-                amo.LOG.DEVELOPER_CLEAR_INFO_REQUEST, None,
-                self.request.user, self.instance)
+        fields = ('release_notes', 'approval_notes', 'source',)
 
 
 class AppVersionChoiceField(forms.ModelChoiceField):

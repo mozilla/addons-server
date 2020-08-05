@@ -3,7 +3,6 @@ import copy
 import json
 import os
 
-from datetime import datetime, timedelta
 from email.utils import formataddr
 
 from django.conf import settings
@@ -23,7 +22,6 @@ from olympia.activity.utils import (
     ActivityEmailTokenError, ActivityEmailUUIDError, add_email_to_activity_log,
     add_email_to_activity_log_wrapper, log_and_notify,
     notify_about_activity_log, NOTIFICATIONS_FROM_EMAIL, send_activity_mail)
-from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import reverse
@@ -280,21 +278,6 @@ class TestLogAndNotify(TestCase):
             assert reply_to.endswith(settings.INBOUND_EMAIL_DOMAIN)
         return recipients
 
-    def _check_email_info_request(self, call, url, reason_text, days_text):
-        subject = call[0][0]
-        body = call[0][1]
-        assert subject == u'Mozilla Add-ons: Action Required for %s %s' % (
-            self.addon.name, self.version.version)
-        assert ('visit %s' % url) in body
-        assert ('receiving this email because %s' % reason_text) in body
-        if days_text is not None:
-            assert 'If we do not hear from you within' in body
-            assert days_text in body
-            assert 'reviewing version %s of the add-on %s' % (
-                self.version.version, self.addon.name) in body
-        assert self.reviewer.name not in body
-        assert self.reviewer.reviewer_name in body
-
     def _check_email(self, call, url, reason_text):
         subject = call[0][0]
         body = call[0][1]
@@ -306,117 +289,7 @@ class TestLogAndNotify(TestCase):
         assert self.reviewer.name not in body
 
     @mock.patch('olympia.activity.utils.send_mail')
-    def test_reviewer_request_for_information(self, send_mail_mock):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon,
-            pending_info_request=datetime.now() + timedelta(days=14))
-        self._create(amo.LOG.REQUEST_INFORMATION, self.reviewer)
-        log_and_notify(
-            amo.LOG.REQUEST_INFORMATION, 'blah', self.reviewer, self.version)
-
-        assert send_mail_mock.call_count == 2  # Both authors.
-        sender = formataddr(
-            (self.reviewer.reviewer_name, NOTIFICATIONS_FROM_EMAIL))
-        assert sender == send_mail_mock.call_args_list[0][1]['from_email']
-        recipients = self._recipients(send_mail_mock)
-        assert len(recipients) == 2
-        assert self.developer.email in recipients
-        assert self.developer2.email in recipients
-        # The reviewer who sent it doesn't get their email back.
-        assert self.reviewer.email not in recipients
-
-        self._check_email_info_request(
-            send_mail_mock.call_args_list[0],
-            absolutify(self.addon.get_dev_url('versions')),
-            'you are listed as an author of this add-on.',
-            '14 days of this notification')
-        self._check_email_info_request(
-            send_mail_mock.call_args_list[1],
-            absolutify(self.addon.get_dev_url('versions')),
-            'you are listed as an author of this add-on.',
-            '14 days of this notification')
-
-    @mock.patch('olympia.activity.utils.send_mail')
-    def test_reviewer_request_for_information_close_date(self, send_mail_mock):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon,
-            pending_info_request=datetime.now() + timedelta(days=1))
-        self._create(amo.LOG.REQUEST_INFORMATION, self.reviewer)
-        log_and_notify(
-            amo.LOG.REQUEST_INFORMATION, 'blah', self.reviewer, self.version)
-
-        assert send_mail_mock.call_count == 2  # Both authors.
-        sender = formataddr(
-            (self.reviewer.reviewer_name, NOTIFICATIONS_FROM_EMAIL))
-        assert sender == send_mail_mock.call_args_list[0][1]['from_email']
-        recipients = self._recipients(send_mail_mock)
-        assert len(recipients) == 2
-        assert self.developer.email in recipients
-        assert self.developer2.email in recipients
-        # The reviewer who sent it doesn't get their email back.
-        assert self.reviewer.email not in recipients
-
-        self._check_email_info_request(
-            send_mail_mock.call_args_list[0],
-            absolutify(self.addon.get_dev_url('versions')),
-            'you are listed as an author of this add-on.',
-            'one (1) day of this notification')
-        self._check_email_info_request(
-            send_mail_mock.call_args_list[1],
-            absolutify(self.addon.get_dev_url('versions')),
-            'you are listed as an author of this add-on.',
-            'one (1) day of this notification')
-
-    @mock.patch('olympia.activity.utils.send_mail')
-    def test_reviewer_request_for_information_far_date(self, send_mail_mock):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon,
-            pending_info_request=datetime.now() + timedelta(days=21))
-        self._create(amo.LOG.REQUEST_INFORMATION, self.reviewer)
-        log_and_notify(
-            amo.LOG.REQUEST_INFORMATION, 'blah', self.reviewer, self.version)
-
-        assert send_mail_mock.call_count == 2  # Both authors.
-        sender = formataddr(
-            (self.reviewer.reviewer_name, NOTIFICATIONS_FROM_EMAIL))
-        assert sender == send_mail_mock.call_args_list[0][1]['from_email']
-        recipients = self._recipients(send_mail_mock)
-        assert len(recipients) == 2
-        assert self.developer.email in recipients
-        assert self.developer2.email in recipients
-        # The reviewer who sent it doesn't get their email back.
-        assert self.reviewer.email not in recipients
-
-        self._check_email_info_request(
-            send_mail_mock.call_args_list[0],
-            absolutify(self.addon.get_dev_url('versions')),
-            'you are listed as an author of this add-on.',
-            '21 days of this notification')
-        self._check_email_info_request(
-            send_mail_mock.call_args_list[1],
-            absolutify(self.addon.get_dev_url('versions')),
-            'you are listed as an author of this add-on.',
-            '21 days of this notification')
-
-    def test_post_reviewer_request_for_information(self):
-        GroupUser.objects.filter(user=self.reviewer).delete()
-        self.grant_permission(
-            self.reviewer, 'Addons:PostReview', 'Reviewers: Foo')
-        self.test_reviewer_request_for_information()
-
-    def test_content_reviewer_request_for_information(self):
-        GroupUser.objects.filter(user=self.reviewer).delete()
-        self.grant_permission(
-            self.reviewer, 'Addons:ContentReview', 'Reviewers: Bar')
-        self.test_reviewer_request_for_information()
-
-    @mock.patch('olympia.activity.utils.send_mail')
     def test_developer_reply(self, send_mail_mock):
-        # Set pending info request flag to make sure
-        # it has been dropped after the reply.
-        AddonReviewerFlags.objects.create(
-            addon=self.addon,
-            pending_info_request=datetime.now() + timedelta(days=1))
         # One from the reviewer.
         self._create(amo.LOG.REJECT_VERSION, self.reviewer)
         # One from the developer.  So the developer is on the 'thread'
@@ -452,9 +325,6 @@ class TestLogAndNotify(TestCase):
         self._check_email(
             send_mail_mock.call_args_list[1],
             review_url, 'you reviewed this add-on.')
-
-        self.addon = Addon.objects.get(pk=self.addon.pk)
-        assert not self.addon.pending_info_request
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_reviewer_reply(self, send_mail_mock):
@@ -536,40 +406,6 @@ class TestLogAndNotify(TestCase):
         sender = formataddr(
             (self.developer.name, NOTIFICATIONS_FROM_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
-        assert len(recipients) == 2
-        # self.reviewers wasn't on the thread, but gets an email anyway.
-        assert self.reviewer.email in recipients
-        assert self.developer2.email in recipients
-        review_url = absolutify(
-            reverse('reviewers.review',
-                    kwargs={'addon_id': self.version.addon.pk,
-                            'channel': 'listed'},
-                    add_prefix=False))
-        self._check_email(send_mail_mock.call_args_list[1],
-                          review_url,
-                          'you are member of the activity email cc group.')
-
-    @mock.patch('olympia.activity.utils.send_mail')
-    def test_mail_needinfo_correct_subject(self, send_mail_mock):
-        self.grant_permission(self.reviewer, 'None:None', ACTIVITY_MAIL_GROUP)
-        action = amo.LOG.REQUEST_INFORMATION
-        comments = u'Thïs is á reply'
-        log_and_notify(action, comments, self.developer, self.version)
-
-        logs = ActivityLog.objects.filter(action=action.id)
-        assert len(logs) == 1
-
-        recipients = self._recipients(send_mail_mock)
-        sender = formataddr(
-            (self.developer.name, NOTIFICATIONS_FROM_EMAIL))
-        assert sender == send_mail_mock.call_args_list[0][1]['from_email']
-        developer_subject = send_mail_mock.call_args_list[0][0][0]
-        assert developer_subject == (
-            u'Mozilla Add-ons: Action Required for '
-            '%s %s' % (self.addon.name, self.version.version))
-        reviewer_subject = send_mail_mock.call_args_list[1][0][0]
-        assert reviewer_subject == u'Mozilla Add-ons: %s %s' % (
-            self.addon.name, self.version.version)
         assert len(recipients) == 2
         # self.reviewers wasn't on the thread, but gets an email anyway.
         assert self.reviewer.email in recipients
@@ -717,7 +553,7 @@ class TestLogAndNotify(TestCase):
     @mock.patch('olympia.activity.utils.send_mail')
     def test_notify_about_previous_activity(self, send_mail_mock):
         # Create an activity to use when notifying.
-        activity = self._create(amo.LOG.REQUEST_INFORMATION, self.reviewer)
+        activity = self._create(amo.LOG.REVIEWER_REPLY_VERSION, self.reviewer)
         notify_about_activity_log(self.addon, self.version, activity)
         assert ActivityLog.objects.count() == 1  # No new activity created.
 
@@ -732,16 +568,14 @@ class TestLogAndNotify(TestCase):
         # The reviewer who sent it doesn't get their email back.
         assert self.reviewer.email not in recipients
 
-        self._check_email_info_request(
+        self._check_email(
             send_mail_mock.call_args_list[0],
             absolutify(self.addon.get_dev_url('versions')),
-            'you are listed as an author of this add-on.',
-            days_text=None)
-        self._check_email_info_request(
+            'you are listed as an author of this add-on.')
+        self._check_email(
             send_mail_mock.call_args_list[1],
             absolutify(self.addon.get_dev_url('versions')),
-            'you are listed as an author of this add-on.',
-            days_text=None)
+            'you are listed as an author of this add-on.')
 
 
 @pytest.mark.django_db
