@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-04 18:14+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2020-08-05 01:01+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -5580,7 +5580,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Har automatisk godkännande inaktiverad/försenad flagga satt"
 
 msgid "Is in a promoted addon group that requires pre-review"
-msgstr "Är i en befordrad tillägg-grupp som kräver förhandsgranskning"
+msgstr "Är i en befordrad tilläggsgrupp som kräver förhandsgranskning"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Försenad eftersom det är den första listade versionen"
@@ -6493,13 +6493,13 @@ msgid "by Source"
 msgstr "efter källkod"
 
 msgid "by Medium"
-msgstr ""
+msgstr "efter medier"
 
 msgid "by Content"
 msgstr "efter Innehåll"
 
 msgid "by Campaign"
-msgstr "efter Kampanj"
+msgstr "efter kampanj"
 
 msgid "Daily Users"
 msgstr "Dagliga användare"
@@ -6603,7 +6603,7 @@ msgid "Download campaigns by Date"
 msgstr "Ladda ner kampanjer efter datum"
 
 msgid "Download contents by Date"
-msgstr "Ladda ner innehåll per datum"
+msgstr "Ladda ner innehåll efter datum"
 
 msgid "User countries by Date"
 msgstr "Användarländer efter datum"
@@ -6624,9 +6624,8 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Användarspråk efter datum"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Hämtade efter datum"
+msgstr "Ladda ner medier efter datum"
 
 msgid "Platform usage by Date"
 msgstr "Plattformsanvändning efter datum"
