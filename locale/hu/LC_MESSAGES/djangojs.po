@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-06-11 07:57+0000\n"
+"PO-Revision-Date: 2020-08-05 19:34+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -111,8 +111,8 @@ msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben 
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
-"a következő lépésben is megteheti)."
+"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt a"
+" következő lépésben is megteheti)."
 
 msgid "Add-on submission checklist"
 msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
@@ -497,34 +497,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Letöltési források {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Letöltések az elmúlt {0} napban"
+msgstr "Letöltési médiumok az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Letöltések {0} és {1} között"
+msgstr "Letöltési médiumok {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Letöltési források az elmúlt {0} napban"
+msgstr "Letöltési tartalmak az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Letöltések {0} és {1} között"
+msgstr "Letöltési tartalmak {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Letöltések az elmúlt {0} napban"
+msgstr "Letöltési kampányok az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Letöltések {0} és {1} között"
+msgstr "Letöltési kampányok {0} és {1} között"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
