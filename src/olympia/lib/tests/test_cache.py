@@ -3,8 +3,7 @@ from django.utils import translation
 from django.core.cache import cache
 
 from unittest import TestCase
-from olympia.lib.cache import (
-    Message, Token, memoize, memoize_key, make_key)
+from olympia.lib.cache import Message, memoize, memoize_key, make_key
 
 
 def test_make_key():
