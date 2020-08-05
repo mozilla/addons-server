@@ -79,7 +79,6 @@ class AppVersionView(APIView):
         # is passed, then we'd skip that one as they are the same) and a last
         # one for the corresponding max version with a star (if 79.0 or 79.0a1
         # is passed, then this would be 79.*)
-        # breakpoint()
         application = amo.APPS.get(kwargs.get('application'))
         if not application:
             raise ParseError('Invalid application parameter')
