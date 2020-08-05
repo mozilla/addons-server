@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-05 19:34+0000\n"
+"PO-Revision-Date: 2020-08-05 19:40+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -498,27 +498,27 @@ msgstr "Letöltési források {0} és {1} között"
 
 #. L10n: {0} is an integer.
 msgid "Download Mediums, last {0} days"
-msgstr "Letöltési médiumok az elmúlt {0} napban"
+msgstr "Médiumok letöltése az elmúlt {0} napból"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Mediums from {0} to {1}"
-msgstr "Letöltési médiumok {0} és {1} között"
+msgstr "Médiumok letöltése {0} és {1} között"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
-msgstr "Letöltési tartalmak az elmúlt {0} napban"
+msgstr "Tartalmak letöltése az elmúlt {0} napból"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Contents from {0} to {1}"
-msgstr "Letöltési tartalmak {0} és {1} között"
+msgstr "Tartalmak letöltése {0} és {1} között"
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
-msgstr "Letöltési kampányok az elmúlt {0} napban"
+msgstr "Kampányok letöltése az elmúlt {0} napból"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Letöltési kampányok {0} és {1} között"
+msgstr "Kampányok letöltése {0} és {1} között"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
