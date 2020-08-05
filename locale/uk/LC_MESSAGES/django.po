@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 18:52+0000\n"
+"PO-Revision-Date: 2020-08-05 19:01+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5593,7 +5593,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Має прапорець автосхвалення вимкнено / відкладено"
 
 msgid "Is in a promoted addon group that requires pre-review"
-msgstr ""
+msgstr "Перебуває в рекламній групі, яка потребує попереднього розгляду"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Затримка, тому що це перша оприлюднена версія"
@@ -6253,9 +6253,8 @@ msgstr "Порівняння"
 msgid "Permissions:"
 msgstr "Дозволи:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Дозволи:"
+msgstr "Необов’язкові дозволи:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6391,9 +6390,8 @@ msgstr "наявність відповідних правил"
 msgid "result state"
 msgstr "результат"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "все, крім цього правила"
+msgstr "всі, крім результатів які відповідають лише цьому правилу"
 
 msgid "presence of a version"
 msgstr "наявність версії"
@@ -6519,14 +6517,13 @@ msgid "by Source"
 msgstr "за джерелом"
 
 msgid "by Medium"
-msgstr ""
+msgstr "за медіа"
 
-#, fuzzy
 msgid "by Content"
-msgstr "Зміст"
+msgstr "за змістом"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "за кампаніями"
 
 msgid "Daily Users"
 msgstr "Щоденних користувачів"
@@ -6626,13 +6623,11 @@ msgstr "Ця панель є <b>приватною</b>."
 msgid "Application usage by Date"
 msgstr "Використання програм за датою"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Джерела завантажень за датою"
+msgstr "Завантажити кампанії за датою"
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Джерела завантажень за датою"
+msgstr "Завантажити вміст за датою"
 
 msgid "User countries by Date"
 msgstr "Країни користувачів за датою"
@@ -6653,16 +6648,14 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Мови користувача за датою"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Завантажено за датою"
+msgstr "Завантажити медіа за датою"
 
 msgid "Platform usage by Date"
 msgstr "Використання платформи за датою"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> завантажень"
+msgstr "<b>{0}</b> завантажень на тиждень"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> завантажень"
