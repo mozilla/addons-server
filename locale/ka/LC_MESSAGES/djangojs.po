@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-07-16 08:40+0000\n"
+"PO-Revision-Date: 2020-08-05 12:50+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -125,8 +125,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"შეკუმშული, შერწყმული ან სხვა მანქანური გზით წარმოებული სკრიპტები (ცნობილი ბიბლიოთეკების გარდა) განსახილველად უნდა გადაიგზავნოს სათითაოდ. დარწმუნდით, რომ სარგებლობთ პირველწყარო კოდის ასატვირთი "
-"ველით, რომ თავიდან აიცილოთ უარი მიღებაზე."
+"შეკუმშული, შერწყმული ან სხვა მანქანური გზით წარმოებული სკრიპტები (ცნობილი ბიბლიოთეკების გარდა) განსახილველად უნდა გადაიგზავნოს სათითაოდ. დარწმუნდით, რომ სარგებლობთ პირველწყარო კოდის ასატვირთი ველით,"
+" რომ თავიდან აიცილოთ უარი მიღებაზე."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "გადამოწმებისას აღმოჩენილია გარკვეული საკითხები, რაც შეიძლება უარყოფის საფუძველი გახდეს."
@@ -498,14 +498,12 @@ msgid "Download Sources from {0} to {1}"
 msgstr "ჩამოტვირთვის წყაროები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "ჩამოტვირთვები, ბოლო {0} დღეში"
+msgstr "ჩამოტვირთვები მედიაფაილების, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "ჩამოტვირთვები {0}-დან {1}-მდე"
+msgstr "ჩამოტვირთვები მედიაფაილების, {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 #, fuzzy
