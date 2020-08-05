@@ -284,6 +284,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
         assert result['weekly_downloads'] == self.addon.weekly_downloads
+        assert result['promoted'] == self.addon.promoted
 
         return result
 
@@ -1233,7 +1234,8 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         result = self.serialize()
         assert (
             set(result.keys()) ==
-            {'id', 'name', 'icon_url', 'is_recommended', 'type', 'url'}
+            {'id', 'name', 'icon_url', 'is_recommended', 'type', 'url',
+             'promoted'}
         )
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': str(self.addon.name)}
@@ -1241,6 +1243,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert result['is_recommended'] == self.addon.is_recommended is False
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
+        assert result['promoted'] == self.addon.promoted
 
     def test_translations(self):
         translated_name = {

@@ -36,6 +36,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     StopWatch, attach_trans_dict,
     find_language, send_mail, slugify, sorted_groupby, timer, to_language)
+from olympia.constants.applications import APP_USAGE
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
@@ -1322,6 +1323,28 @@ class Addon(OnChangeMixin, ModelBase):
         is_promoted = group_match and app_match and (
             not currently_approved or promoted.is_addon_currently_promoted)
         return promoted.group if is_promoted else NOT_PROMOTED
+
+    def promoted_applications(self):
+        """Returns a list of applications for which the addon is currently
+        promoted, or None if the addon is not currently promoted.
+        """
+        promoted_group = self.promoted_group()
+        if promoted_group != NOT_PROMOTED:
+            application = self.promotedaddon.application
+            if not application:
+                return [app.short for app in APP_USAGE]
+            return [application.short]
+        return None
+
+    @cached_property
+    def promoted(self):
+        promoted_group = self.promoted_group()
+        if promoted_group != NOT_PROMOTED:
+            return {
+                'category': promoted_group.api_name,
+                'applications': self.promoted_applications(),
+            }
+        return None
 
     @cached_property
     def tags_partitioned_by_developer(self):

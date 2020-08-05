@@ -268,6 +268,13 @@ class AddonIndexer(BaseSearchIndexer):
                             },
                         },
                     },
+                    'promoted': {
+                        'type': 'object',
+                        'properties': {
+                            'category': {'type': 'text'},
+                            'applications': {'type': 'keyword'}
+                        }
+                    },
                     'ratings': {
                         'type': 'object',
                         'properties': {
@@ -384,7 +391,7 @@ class AddonIndexer(BaseSearchIndexer):
                  'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type',
                  'is_disabled', 'is_experimental', 'is_recommended',
                  'last_updated',
-                 'modified', 'requires_payment', 'slug',
+                 'modified', 'promoted', 'requires_payment', 'slug',
                  'status', 'type', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 

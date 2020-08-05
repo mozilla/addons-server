@@ -346,6 +346,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'last_updated',
             'name',
             'previews',
+            'promoted',
             'ratings',
             'ratings_url',
             'requires_payment',
@@ -636,6 +637,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         obj.total_ratings = ratings.get('count')
         obj.text_ratings_count = ratings.get('text_count')
 
+        obj.promoted = data.get('promoted', None)
+
         return obj
 
     def get__score(self, obj):
@@ -654,7 +657,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
     class Meta(ESAddonSerializer.Meta):
-        fields = ('id', 'icon_url', 'is_recommended', 'name', 'type', 'url')
+        fields = ('id', 'icon_url', 'is_recommended',
+                  'name', 'promoted', 'type', 'url')
         model = Addon
 
     def get_url(self, obj):
