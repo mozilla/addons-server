@@ -30,8 +30,8 @@ API_THROTTLING = True
 DOMAIN = env('DOMAIN', default='addons.allizom.org')
 SERVER_EMAIL = 'zstage@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
-INTERNAL_SITE_URL = env(
-    'INTERNAL_SITE_URL', default='https://addons.allizom.org')
+INTERNAL_SITE_URL = env('INTERNAL_SITE_URL',
+                        default='https://addons.allizom.org')
 EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL',
                         default='https://addons.allizom.org')
 SERVICES_URL = env('SERVICES_URL',
