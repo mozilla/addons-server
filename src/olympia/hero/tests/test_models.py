@@ -1,25 +1,19 @@
 from django.core.exceptions import ValidationError
 
 from olympia.amo.tests import addon_factory, TestCase
-from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.constants.promoted import RECOMMENDED
-from olympia.hero.models import (
-    PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule)
+from olympia.hero.models import PrimaryHero, SecondaryHero, SecondaryHeroModule
 from olympia.promoted.models import PromotedAddon, PromotedApproval
 
 
 class TestPrimaryHero(TestCase):
-    def setUp(self):
-        uploaded_photo = get_uploaded_file('transparent.png')
-        self.phi = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
-
     def test_image_url(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
-            select_image=self.phi)
+            image='foo.png')
         assert ph.image_url == (
-            'http://testserver/user-media/hero-featured-image/transparent.jpg')
-        ph.update(select_image=None)
+            'http://testserver/static/img/hero/featured/foo.png')
+        ph.update(image='')
         assert ph.image_url is None
 
     def test_gradiant(self):
@@ -32,7 +26,7 @@ class TestPrimaryHero(TestCase):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(), group_id=RECOMMENDED.id),
-            gradient_color='#C60184', select_image=self.phi)
+            gradient_color='#C60184', image='foo.png')
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
         ph.enabled = True
@@ -50,7 +44,7 @@ class TestPrimaryHero(TestCase):
     def test_clean_external_requires_homepage(self):
         ph = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
-            is_external=True, gradient_color='#C60184', select_image=self.phi)
+            is_external=True, gradient_color='#C60184', image='foo.png')
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
         ph.enabled = True
@@ -76,22 +70,22 @@ class TestPrimaryHero(TestCase):
         with self.assertRaises(ValidationError) as ve:
             ph.clean()
         assert 'gradient_color' in ve.exception.error_dict
-        assert 'select_image' not in ve.exception.error_dict
+        assert 'image' not in ve.exception.error_dict
 
-        ph.update(select_image=self.phi)
+        ph.update(image='foo.png')
         with self.assertRaises(ValidationError) as ve:
             ph.clean()
         assert 'gradient_color' in ve.exception.error_dict
-        assert 'select_image' not in ve.exception.error_dict
+        assert 'image' not in ve.exception.error_dict
 
-        ph.update(select_image=None, gradient_color='#123456')
+        ph.update(image='', gradient_color='#123456')
         ph.clean()  # it raises if there's an error
 
     def test_clean_only_enabled(self):
         hero = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(
                 addon=addon_factory(), group_id=RECOMMENDED.id),
-            gradient_color='#C60184', select_image=self.phi)
+            gradient_color='#C60184', image='foo.png')
         PromotedApproval.objects.create(
             version=hero.promoted_addon.addon.current_version,
             group_id=RECOMMENDED.id)
