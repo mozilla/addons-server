@@ -1,8 +1,6 @@
 import hashlib
 import functools
 import itertools
-import re
-import uuid
 from contextlib import contextmanager
 
 from django.core.cache.backends.base import DEFAULT_TIMEOUT, BaseCache
