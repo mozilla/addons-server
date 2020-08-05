@@ -9,7 +9,8 @@ import olympia.core
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
-    Addon, AppSupport, DeniedGuid, Preview, attach_tags, attach_translations)
+    Addon, AddonGUID, AppSupport, DeniedGuid, Preview, attach_tags,
+    attach_translations)
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import LocalFileStorage, extract_colors_from_image
@@ -299,3 +300,13 @@ def update_addon_weekly_downloads(data):
             continue
 
         addon.update(weekly_downloads=int(float(count)))
+
+
+@task
+@use_primary_db
+def backfill_hashed_guids(ids):
+    log.info('[%s] Backfilling hashed GUIDs.', len(ids))
+
+    addon_guids = AddonGUID.objects.filter(id__in=ids)
+    for addon_guid in addon_guids:
+        addon_guid.save()  # `.save()` will compute the hashed GUID.

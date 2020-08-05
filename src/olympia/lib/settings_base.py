@@ -1180,6 +1180,7 @@ CELERY_TASK_ROUTES = {
     # Adhoc
     # A queue to be used for one-off tasks that could be resource intensive.
     'olympia.files.tasks.extract_optional_permissions': {'queue': 'adhoc'},
+    'olympia.addons.tasks.backfill_hashed_guids': {'queue': 'adhoc'},
 
     # Crons
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
