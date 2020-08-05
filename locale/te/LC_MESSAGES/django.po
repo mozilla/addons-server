@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 21:09+0000\n"
+"PO-Revision-Date: 2020-08-05 21:13+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2924,7 +2924,7 @@ msgid "Approved and recommended"
 msgstr "ఆమోదించబడినవి, సిఫార్సుచేయబడ్డవి"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "దయచేసి ఒక వెర్షనును గానీ లేక కావాల్సిన మెటాడేటాను కానీ చేర్చి మీ పొడగింతను పూర్తిచేయండి."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
@@ -2966,7 +2966,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr ""
 
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "వరుసలు ఖచ్చితమైన క్రమంలో సమీక్షించబడవు"
 
 msgid "Queue Position:"
 msgstr "వరుస స్థానం:"
@@ -2976,7 +2976,7 @@ msgid "%(position)s of %(total)s"
 msgstr "%(total)s యొక్క %(position)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "స్వీయ పంపిణీ కోసం సంతకం చేయబడింది. తాజాకరణలను మీరే చూసుకుంటారు."
 
 msgid "Latest Version:"
 msgstr "సరికొత్త వెర్షను:"
