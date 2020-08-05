@@ -76,12 +76,13 @@ ES_DEFAULT_NUM_REPLICAS = 0
 SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
 DOMAIN = SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 SERVICES_URL = SITE_URL
+INTERNAL_SITE_URL = 'http://nginx'
 EXTERNAL_SITE_URL = SITE_URL
 
 CODE_MANAGER_URL = (
     os.environ.get('CODE_MANAGER_URL') or 'http://localhost:3000')
 
-ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
+ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN, 'nginx']
 
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
 TASK_USER_ID = 10968

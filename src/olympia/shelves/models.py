@@ -2,8 +2,8 @@ from django.db import models
 
 from olympia.amo.models import ModelBase
 
-SHELF_TYPES = (
-    'category', 'collection', 'extension', 'recommended', 'search', 'theme')
+SHELF_TYPES = ('categories', 'collections', 'extension',
+               'recommendations', 'search', 'theme')
 
 SHELF_TYPE_CHOICES = tuple((ty, ty) for ty in SHELF_TYPES)
 
@@ -13,8 +13,8 @@ class Shelf(ModelBase):
     shelf_type = models.CharField(
         max_length=200, choices=SHELF_TYPE_CHOICES, verbose_name='type')
     criteria = models.CharField(
-        max_length=200, blank=True,
-        help_text="e.g., search/?recommended=true&sort=random&type=extension")
+        max_length=200,
+        help_text="e.g., ?recommended=true&sort=random&type=extension")
     footer_text = models.CharField(
         max_length=200, blank=True,
         help_text="e.g., See more recommended extensions")

@@ -20,6 +20,8 @@ CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
+INTERNAL_SITE_URL = env('INTERNAL_SITE_URL',
+                        default='https://addons.mozilla.org')
 EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL',
                         default='https://addons.mozilla.org')
 SERVICES_URL = env('SERVICES_URL',
