@@ -30,6 +30,8 @@ API_THROTTLING = True
 DOMAIN = env('DOMAIN', default='addons.allizom.org')
 SERVER_EMAIL = 'zstage@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
+INTERNAL_SITE_URL = env(
+    'INTERNAL_SITE_URL', default='https://addons.allizom.org')
 EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL',
                         default='https://addons.allizom.org')
 SERVICES_URL = env('SERVICES_URL',
@@ -120,6 +122,3 @@ EXTENSION_WORKSHOP_URL = env(
 REMOTE_SETTINGS_API_URL = 'https://settings.stage.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://settings-writer.stage.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
-
-INTERNAL_SITE_URL = env(
-    'INTERNAL_SITE_URL', default='https://addons.allizom.org')

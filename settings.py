@@ -82,7 +82,7 @@ EXTERNAL_SITE_URL = SITE_URL
 CODE_MANAGER_URL = (
     os.environ.get('CODE_MANAGER_URL') or 'http://localhost:3000')
 
-ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN] + [EXTERNAL_SITE_URL]
+ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN, 'nginx']
 
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
 TASK_USER_ID = 10968

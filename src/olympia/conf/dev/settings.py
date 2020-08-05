@@ -32,6 +32,8 @@ API_THROTTLING = False
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
+INTERNAL_SITE_URL = env(
+    'INTERNAL_SITE_URL', default='https://addons-dev.allizom.org')
 EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL',
                         default='https://addons-dev.allizom.org')
 SERVICES_URL = env('SERVICES_URL',
@@ -116,6 +118,3 @@ FXA_SQS_AWS_QUEUE_URL = (
 VAMO_URL = 'https://versioncheck-dev.allizom.org'
 
 REMOTE_SETTINGS_IS_TEST_SERVER = True
-
-INTERNAL_SITE_URL = env(
-    'INTERNAL_SITE_URL', default='https://addons-dev.allizom.org')

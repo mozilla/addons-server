@@ -20,6 +20,8 @@ CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
+INTERNAL_SITE_URL = env(
+    'INTERNAL_SITE_URL', default='https://addons.mozilla.org')
 EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL',
                         default='https://addons.mozilla.org')
 SERVICES_URL = env('SERVICES_URL',
@@ -103,6 +105,3 @@ REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
 
 # See: https://bugzilla.mozilla.org/show_bug.cgi?id=1633746
 BIGQUERY_AMO_DATASET = 'amo_prod'
-
-INTERNAL_SITE_URL = env(
-    'INTERNAL_SITE_URL', default='https://addons.mozilla.org')

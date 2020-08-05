@@ -31,7 +31,6 @@ ALLOWED_HOSTS = [
     '.mozilla.com',
     '.mozilla.net',
     '.mozaws.net',
-    'nginx'
 ]
 
 
