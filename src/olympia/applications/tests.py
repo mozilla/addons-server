@@ -42,6 +42,9 @@ class TestAppVersionsAPI(TestCase):
 
     def test_appversions_api_no_permission(self):
         self.user.groups.all().delete()
+        response = self.client.put(self.url)
+        assert response.status_code == 403
+        assert not AppVersion.objects.exists()
 
     def test_appversions_api_wrong_verb(self):
         response = self.client.post(self.url)
