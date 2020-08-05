@@ -9,9 +9,9 @@ ipython==7.17.0 \
 watchdog[watchmedo]==0.10.3 \
     --hash=sha256:4214e1379d128b0588021880ccaf40317ee156d4603ac388b9adcf29165e0c04
 # Dependencies for IPython
-parso==0.7.1 \
-    --hash=sha256:97218d9159b2520ff45eb78028ba8b50d2bc61dcc062a9682666f2dc4bd331ea \
-    --hash=sha256:caba44724b994a8a5e086460bb212abc5a8bc46951bf4a9a1210745953622eb9
+parso==0.8.0 \
+    --hash=sha256:dc6c57ae210fc89b1de8fb0e7dc273fd6e40ebbe23c79b6e3c2b7dcbeb38c513 \
+    --hash=sha256:2b6db14759c528d857eeb9eac559c2166b2554548af39f5198bdfb976f72aa64
 jedi==0.17.2 \
     --hash=sha256:98cc583fa0f2f8304968199b01b6b4b94f469a1f4a74c1560506ca2a211378b5 \
     --hash=sha256:86ed7d9b750603e4ba582ea8edc678657fb4007894a12bcf6f4bb97892f31d20
