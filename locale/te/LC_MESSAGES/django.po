@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 08:25+0000\n"
+"PO-Revision-Date: 2020-08-05 21:09+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -214,7 +214,7 @@ msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "మేము వెబ్‌సైట్ నిర్వహణ చేసేటప్పుడు కొన్ని సౌలభ్యాలు తాత్కాలికంగా నిలిపివేయబడతాయి. మేము త్వరలోనే పూర్తి సామర్థ్యానికి వస్తాము."
 
 msgid "Must contain at least one printable character."
 msgstr "కనీసం ఒక ముద్రించదగిన అక్షరాన్ని కలిగి ఉండాలి."
@@ -1585,7 +1585,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "నా పొడిగింతల కోసం ఇటీవలి మార్పులు"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "సాంప్రదాయ పొడగింతలకు ఇకపై Firefoxలో తోడ్పాటు లేదు."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
@@ -1598,7 +1598,7 @@ msgstr "ఈ స్లగ్ ఇప్పటికే ఉపయోగంలో �
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr ""
+msgstr "స్లగ్ \"%(slug)s\"లా ఉండకూడదు. దయచేసి మరొకదాన్ని ఎంచుకోండి."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1952,7 +1952,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "ఈ ఒప్పందాన్నీ, నియమాలును, విధానాలను నేను చదివాను, వాటికి అంగీకరిస్తున్నాను"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "వాడుకరులకు పొడగింత ఎవరి నుండి వచ్చిందో తెలియడానికి మీ ఖాతాకు చూపించే పేరు అమర్చుకోవాలి. దయచేసి ఒక పేరును కింద ఇవ్వండి."
 
 msgid "Accept"
 msgstr "అంగీకరించు"
@@ -2069,7 +2069,7 @@ msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_ur
 msgstr ""
 
 msgid "View and update application compatibility ranges"
-msgstr ""
+msgstr "అనువర్తన అనుగుణ్యత శ్రేణులను చూడండి, తాజాకరించండి"
 
 msgid "Compatibility"
 msgstr "అనుకూలత"
@@ -2490,7 +2490,7 @@ msgid "Delete this add-on."
 msgstr "ఈ పొడగింతని తొలగించండి."
 
 msgid "Edit details on this add-on's product page"
-msgstr ""
+msgstr "ఈ పొడగింత ఉత్పత్తి పేజీలో వివరాలను సవరించండి"
 
 msgid "Upload a new version of this add-on"
 msgstr "ఈ పొడగింతకి కొత్త వెర్షనును ఎక్కించండి"
@@ -2511,7 +2511,7 @@ msgid "View Recent Changes"
 msgstr "ఇటీవలి నవీకరణలను దర్శించు"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "ప్రచురణ కోసం సమర్పించబడే ముందు అవసరమైన కొంత సమాచారం ఈ పొడగింతకు లేదు."
 
 msgid "This add-on doesn't have any versions."
 msgstr "ఈ పొడగింతకి ఏ వెర్షన్లేమీ లేవు."
@@ -2683,7 +2683,7 @@ msgstr ""
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr ""
+msgstr "దయచేసి <a %(a_attrs)s>మూల కోడు సమర్పణ విధానాన్ని</a> సమీక్షించండి."
 
 msgid "Do you use any of the following?"
 msgstr "వీటిలో మీరు దేనినైనా వాడుతారా?"
@@ -2701,7 +2701,7 @@ msgid "Any other tool that takes code or files, applies processing, and generate
 msgstr ""
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "మీరు మూల కోడును సమర్పించాల్సిన అవసరం లేదు, తదుపరి అంచె కోసం మీరు తయారుగా ఉన్నారు."
 
 msgid "Your Submission Requires Source Code."
 msgstr "మీ సమర్పణకు మూల కోడ్ అవసరం."
@@ -2825,10 +2825,10 @@ msgstr "API ఆధారాలు"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "వివరమైన సూచనల కోసం, <a href=\"%(docs_url)s\"> API పత్రావళి</a>ని సంప్రదించండి."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "మీ API కీలను రహస్యంగా ఉంచుకోండి, <strong>వాటిని ఎప్పుడూ ఎవరితోనూ పంచుకోవద్దు</ strong>, మొజిల్లా కంట్రిబ్యూటర్లతో కూడా."
 
 msgid "JWT issuer"
 msgstr "JWT జారీదారు"
@@ -2847,7 +2847,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr ""
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "మీ ఈమెయిలు చిరునామాకు నిర్ధారణ లంకె పంపబడుతుంది. నిర్ధారణ తరువాత ఈ పేజీలో మీ API కీలు కనబడతాయి."
 
 msgid "You don't have any API credentials."
 msgstr "మీకు API క్రెడెన్షియల్లు లేవు."
