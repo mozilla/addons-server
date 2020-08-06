@@ -3,7 +3,6 @@ import os
 import pytest
 
 from django.conf import settings
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.tasks import (recreate_theme_previews,

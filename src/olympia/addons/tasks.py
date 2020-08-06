@@ -2,8 +2,6 @@ import hashlib
 
 from django.db import transaction
 
-import waffle
-
 from elasticsearch_dsl import Search
 
 import olympia.core
