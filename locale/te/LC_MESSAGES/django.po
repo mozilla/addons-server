@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-06 17:18+0000\n"
+"PO-Revision-Date: 2020-08-06 17:27+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -5303,7 +5303,7 @@ msgstr "ఒకే పొడగింత యొక్క అదే వెర్�
 
 #, python-format
 msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr ""
+msgstr "చెల్లని ఫ్లాగు [%s] - తప్పనిసరిగా [%s] లో ఒకటిగా ఉండాలి"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
