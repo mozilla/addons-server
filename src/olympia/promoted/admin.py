@@ -49,7 +49,8 @@ class PromotedApprovalInline(admin.TabularInline):
 
     def get_queryset(self, request):
         # TODO: implement pagination like FileInline does
-
+        if not self.instance:
+            return self.model.objects.none()
         qs = super().get_queryset(request)
         qs = (
             qs.filter(version__addon__promotedaddon=self.instance)
