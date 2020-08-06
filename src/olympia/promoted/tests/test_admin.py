@@ -318,6 +318,37 @@ class TestPromotedAddonAdmin(TestCase):
         assert item.group == RECOMMENDED
         assert item.application is None
         assert PromotedApproval.objects.count() == 0  # we didn't create any
+        assert not addon.promoted_group()
+
+    def test_can_add_when_existing_approval(self):
+        addon = addon_factory(name='unattached')
+        add_url = reverse('admin:promoted_promotedaddon_add')
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.login(email=user.email)
+        # create an approval that doesn't have a matching PromotedAddon yet
+        PromotedApproval.objects.create(
+            version=addon.current_version,
+            group_id=LINE.id)
+        response = self.client.get(add_url, follow=True)
+        assert response.status_code == 200
+        # this *shouldn't* be in the response - the add page doesn't know what
+        # addon will be attached to the PromotedAddon beforehand.
+        assert b'unattached' not in response.content
+        assert PromotedAddon.objects.count() == 0
+        response = self.client.post(
+            add_url,
+            dict(self._get_approval_form(None, []),
+                 **self._get_heroform(''), **{
+                'addon': str(addon.id),
+                'group_id': str(LINE.id),
+            }),
+            follow=True)
+        assert response.status_code == 200
+        assert 'errors' not in response.context_data
+        assert PromotedApproval.objects.count() == 1  # still one
+        assert addon.promoted_group() == LINE  # now approved
 
     def test_cannot_add_without_discovery_edit_permission(self):
         addon = addon_factory()
