@@ -284,15 +284,20 @@ class TestAvgDailyUserCountTestCase(TestCase):
         dictionary_count = 5567
         addon_without_count = addon_factory(type=amo.ADDON_DICT,
                                             average_daily_users=2)
+        deleted_addon = addon_factory(average_daily_users=0)
+        deleted_addon_count = 23456
+        deleted_addon.delete()
         assert addon.average_daily_users == 0
         assert langpack.average_daily_users == 0
         assert dictionary.average_daily_users == 0
         assert addon_without_count.average_daily_users == 2
+        assert deleted_addon.average_daily_users == 0
 
         get_mock.return_value = [
             (addon.guid, count),
             (dictionary.guid, dictionary_count),
             (langpack.guid, langpack_count),
+            (deleted_addon.guid, deleted_addon_count),
         ]
 
         cron.update_addon_average_daily_users()
@@ -300,11 +305,13 @@ class TestAvgDailyUserCountTestCase(TestCase):
         langpack.refresh_from_db()
         dictionary.refresh_from_db()
         addon_without_count.refresh_from_db()
+        deleted_addon.refresh_from_db()
 
         get_mock.assert_called
         assert addon.average_daily_users == count
         assert langpack.average_daily_users == langpack_count
         assert dictionary.average_daily_users == dictionary_count
+        assert deleted_addon.average_daily_users == deleted_addon_count
         # The value is 0 because the add-on does not exist in BigQuery.
         assert addon_without_count.average_daily_users == 0
 
@@ -329,10 +336,16 @@ class TestAvgDailyUserCountTestCase(TestCase):
         addon_factory(guid=None, type=amo.ADDON_LPAPP)
         # This one should be ignored as well.
         addon_factory(guid='', type=amo.ADDON_LPAPP)
+        # Deleted add-ons should still have their usage updated.
+        deleted_addon = addon_factory(average_daily_users=0)
+        deleted_addon_count = 23456
+        deleted_addon.delete()
+
         get_mock.return_value = [
             (addon.guid, count),
             (langpack.guid, langpack_count),
             (dictionary.guid, dictionary_count),
+            (deleted_addon.guid, deleted_addon_count),
         ]
 
         chunk_size = 123
@@ -345,6 +358,7 @@ class TestAvgDailyUserCountTestCase(TestCase):
                 (addon.guid, count),
                 (langpack.guid, langpack_count),
                 (dictionary.guid, dictionary_count),
+                (deleted_addon.guid, deleted_addon_count),
             ],
             chunk_size
         )
