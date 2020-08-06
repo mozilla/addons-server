@@ -8076,6 +8076,20 @@ class TestMadQueue(QueueTest):
             needs_human_review_by_mad=True
         )
 
+        # This add-on should not be listed, because the latest version is not
+        # flagged.
+        listed_addon_previous = addon_factory(created=self.days_ago(15))
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=listed_addon_previous,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=True
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=listed_addon_previous,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=False
+        )
+
         unflagged_addon = addon_factory()
         version_factory(addon=unflagged_addon)
 
@@ -8098,14 +8112,15 @@ class TestMadQueue(QueueTest):
         self.expected_addons = [listed_addon, unlisted_addon]
 
     def test_results(self):
-        response = self.client.get(self.url)
+        with self.assertNumQueries(30):
+            response = self.client.get(self.url)
         assert response.status_code == 200
 
         # listed
         expected = []
         addon = self.expected_addons[0]
         expected.append((
-            'Listed versions (2)',
+            'Listed version',
             reverse('reviewers.review', args=[addon.slug])
         ))
         # unlisted
