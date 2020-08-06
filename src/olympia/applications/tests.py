@@ -5,7 +5,8 @@ from unittest import mock
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import url
-from olympia.amo.tests import APITestClient, reverse_ns, TestCase, user_factory
+from olympia.amo.tests import reverse_ns, TestCase
+from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
 
 
@@ -29,33 +30,39 @@ class TestViews(TestCase):
         assert self.client.get(url('apps.appversions.rss')).status_code == 200
 
 
-class TestAppVersionsAPI(TestCase):
-    client_class = APITestClient
-
+class TestAppVersionsAPI(APIKeyAuthTestMixin, TestCase):
     def setUp(self):
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.0'})
-        self.user = user_factory()
+        self.create_api_user()
         self.grant_permission(self.user, 'AppVersions:Create')
-        self.client.login_api(self.user)
+
+    def test_not_authenticated(self):
+        # Don't use self.put() here, it automatically adds authentication.
+        response = self.client.put(self.url)
+        assert response.status_code == 401
+        assert not AppVersion.objects.exists()
 
     def test_appversions_api_no_permission(self):
         self.user.groups.all().delete()
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 403
         assert not AppVersion.objects.exists()
 
     def test_appversions_api_wrong_verb(self):
-        response = self.client.post(self.url)
+        # We could need other verbs in the future, but those are not
+        # implemented for the moment.
+        response = self.post(self.url)
         assert response.status_code == 405
 
-        # We could need GET/DELETE in the future, but those are not implemented
-        # for the moment.
-        response = self.client.get(self.url)
+        response = self.get(self.url)
         assert response.status_code == 405
 
-        response = self.client.delete(self.url)
+        response = self.head(self.url)
+        assert response.status_code == 405
+
+        response = self.delete(self.url)
         assert response.status_code == 405
 
         assert not AppVersion.objects.exists()
@@ -64,7 +71,7 @@ class TestAppVersionsAPI(TestCase):
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': 'blah'})
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 400
         assert not AppVersion.objects.exists()
 
@@ -72,12 +79,12 @@ class TestAppVersionsAPI(TestCase):
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'unknown', 'version': 'blah'})
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 400
         assert not AppVersion.objects.exists()
 
     def test_release(self):
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 201
         assert AppVersion.objects.count() == 2
         assert AppVersion.objects.filter(
@@ -89,7 +96,7 @@ class TestAppVersionsAPI(TestCase):
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'android', 'version': '84.0'})
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 201
         assert AppVersion.objects.count() == 2
         assert AppVersion.objects.filter(
@@ -101,7 +108,7 @@ class TestAppVersionsAPI(TestCase):
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.0a1'})
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 201
         assert AppVersion.objects.count() == 3
         assert AppVersion.objects.filter(
@@ -116,7 +123,7 @@ class TestAppVersionsAPI(TestCase):
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.0a1'})
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 201
         assert AppVersion.objects.count() == 3
         assert AppVersion.objects.filter(
@@ -131,7 +138,7 @@ class TestAppVersionsAPI(TestCase):
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.0a1'})
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 201
         assert AppVersion.objects.count() == 3
         assert AppVersion.objects.filter(
@@ -146,7 +153,7 @@ class TestAppVersionsAPI(TestCase):
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.0a1'})
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 201
         assert AppVersion.objects.count() == 3
         assert AppVersion.objects.filter(
@@ -159,7 +166,7 @@ class TestAppVersionsAPI(TestCase):
     def test_everything_already_exists(self):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.*')
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 202
         assert AppVersion.objects.count() == 2
         assert AppVersion.objects.filter(
@@ -171,7 +178,7 @@ class TestAppVersionsAPI(TestCase):
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.1a2'})
-        response = self.client.put(self.url)
+        response = self.put(self.url)
         assert response.status_code == 201
         assert AppVersion.objects.count() == 3
         assert AppVersion.objects.filter(

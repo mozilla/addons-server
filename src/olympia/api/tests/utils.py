@@ -28,12 +28,25 @@ class APIKeyAuthTestMixin(TestCase, JWTAuthKeyTester):
                                        self.api_key.secret)
         return 'JWT {}'.format(token)
 
+    def head(self, url, **client_kwargs):
+        return self.client.head(url, HTTP_AUTHORIZATION=self.authorization(),
+                                **client_kwargs)
+
+    def delete(self, url, **client_kwargs):
+        return self.client.delete(url, HTTP_AUTHORIZATION=self.authorization(),
+                                  **client_kwargs)
+
     def get(self, url, **client_kwargs):
         return self.client.get(url, HTTP_AUTHORIZATION=self.authorization(),
                                **client_kwargs)
 
-    def post(self, url, data, **client_kwargs):
+    def post(self, url, data=None, **client_kwargs):
         return self.client.post(
+            url, data, HTTP_AUTHORIZATION=self.authorization(),
+            **client_kwargs)
+
+    def put(self, url, data=None, **client_kwargs):
+        return self.client.put(
             url, data, HTTP_AUTHORIZATION=self.authorization(),
             **client_kwargs)
 

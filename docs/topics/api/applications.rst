@@ -7,8 +7,6 @@ Applications
     These APIs are not frozen and can change at any time without warning.
     See :ref:`the API versions available<api-versions-list>` for alternatives
     if you need stability.
-    The only authentication method available at
-    the moment is :ref:`the internal one<api-auth-internal>`.
 
 
 ---------------------
@@ -18,8 +16,10 @@ Applications Versions
 .. _applications-version:
 
 This internal endpoint allows you to create applications versions to be
-referenced in add-ons manifests. The currently available applications versions
-are listed on a dedicated page:
+referenced in add-ons manifests. It requires :ref:`authentication<api-auth>`
+and a special permission.
+
+The currently available applications versions are listed on a dedicated page:
 https://addons.mozilla.org/en-US/firefox/pages/appversions/
 
 When a valid request is made to this endpoint, AMO will create the requested
@@ -52,3 +52,5 @@ Examples:
       :statuscode 201: one or more application versions were created.
       :statuscode 202: the request was valid but no new versions were created.
       :statuscode 400: the application or version parameters were invalid.
+      :statuscode 401: authentication failed.
+      :statuscode 403: insufficient permissions to perform this action.

@@ -8,6 +8,9 @@ from rest_framework.views import APIView
 from rest_framework.status import HTTP_201_CREATED, HTTP_202_ACCEPTED
 
 from olympia import amo
+from olympia.api.authentication import (
+    JWTKeyAuthentication,
+)
 from olympia.amo.feeds import BaseFeed
 from olympia.amo.templatetags.jinja_helpers import absolutify, url
 from olympia.amo.utils import render
@@ -70,6 +73,7 @@ class AppversionsFeed(BaseFeed):
 
 
 class AppVersionView(APIView):
+    authentication_classes = [JWTKeyAuthentication]
     permission_classes = [GroupPermission(amo.permissions.APPVERSIONS_CREATE)]
 
     def put(self, request, *args, **kwargs):
