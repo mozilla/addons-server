@@ -5,7 +5,7 @@ from unittest import mock
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import url
-from olympia.amo.tests import APITestClient, reverse_ns, TestCase, user_factory
+from olympia.amo.tests import reverse_ns, TestCase
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
 
