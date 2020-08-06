@@ -19,13 +19,13 @@
     "jszip": "3.5.0",
     "less": "3.12.2",
     "source-map": "0.7.3",
-    "terser": "4.8.0",
     "timeago": "1.6.7",
     "underscore": "1.10.2"
   },
   "devDependencies": {
     "jest": "^26.1.0",
     "jest-date-mock": "^1.0.8",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "terser": "^5.0.0"
   }
 }
