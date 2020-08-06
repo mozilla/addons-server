@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-06 00:00+0000\n"
-"Last-Translator: Giorgos S. <giorgos@skafidas.online>\n"
+"PO-Revision-Date: 2020-01-17 18:29+0000\n"
+"Last-Translator: Spyros <spytzo@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -4409,7 +4409,7 @@ msgstr "Αναζήτηση εικόνων {start_sub_heading}με το {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Κάντε αντίστροφη αναζήτηση εικόνων αξιοποιώντας τη δύναμη πολλαπλών παρόχων αναζήτησης."
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4453,7 +4453,7 @@ msgstr "Διακοπή ιχνηλατών αναζήτησης {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Αποτρέψτε τις μηχανές αναζήτησης από το να γνωρίζουν σε ποια αποτελέσματα αναζήτησης κάνατε κλικ."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
