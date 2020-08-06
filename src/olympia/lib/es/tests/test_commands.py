@@ -37,11 +37,6 @@ class TestIndexCommand(ESTestCase):
 
         self.addons = []
         self.expected = self.addons[:]
-        # Monkeypatch Celerys ".get()" inside async task error
-        # until https://github.com/celery/celery/issues/4661 (which isn't just
-        # about retries but a general regression that manifests only in
-        # eager-mode) fixed.
-        self.patch('celery.app.task.denied_join_result')
 
     # Since this test plays with transactions, but we don't have (and don't
     # really want to have) a ESTransactionTestCase class, use the fixture setup
@@ -121,20 +116,22 @@ class TestIndexCommand(ESTestCase):
             connection._commit()
             connection.clean_savepoints()
 
-        # We should still be able to search in the foreground while the reindex
-        # is being done in the background. We should also be able to index new
-        # documents, and they should not be lost.
-        old_addons_count = len(self.expected)
-        while t.is_alive() and len(self.expected) < old_addons_count + 3:
-            self.expected.append(addon_factory())
-            connection._commit()
-            connection.clean_savepoints()
-            self.refresh()
-            self.check_results(self.expected)
+        if not wipe:
+            # We should still be able to search in the foreground while the
+            # reindex is being done in the background. We should also be able
+            # to index new documents, and they should not be lost.
+            old_addons_count = len(self.expected)
+            while t.is_alive() and len(self.expected) < old_addons_count + 3:
+                self.expected.append(addon_factory())
+                connection._commit()
+                connection.clean_savepoints()
+                self.refresh()
+                self.check_results(self.expected)
 
-        if len(self.expected) == old_addons_count:
-            raise AssertionError('Could not index objects in foreground while '
-                                 'reindexing in the background.')
+            if len(self.expected) == old_addons_count:
+                raise AssertionError(
+                    'Could not index objects in foreground while reindexing '
+                    'in the background.')
 
         t.join()  # Wait for the thread to finish.
         t.stdout.seek(0)
