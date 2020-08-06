@@ -401,6 +401,7 @@ class AddonAutoCompleteSearchView(AddonSearchView):
             'is_recommended',
             'modified',  # Needed for icon_url.
             'name_translations',  # Needed for... name.
+            'promoted',  # Needed for promted badging.
             'default_locale',  # Needed for translations to work.
             'slug',  # Needed for url.
             'type',  # Needed to attach the Persona for icon_url (sadly).
@@ -616,12 +617,12 @@ class LanguageToolsView(ListAPIView):
             qs.prefetch_related(Prefetch('versions',
                                          to_attr='compatible_versions',
                                          queryset=versions_qs))
-              .filter(versions__apps__application=application,
-                      versions__apps__min__version_int__lte=appversions['min'],
-                      versions__apps__max__version_int__gte=appversions['max'],
-                      versions__channel=amo.RELEASE_CHANNEL_LISTED,
-                      versions__files__status=amo.STATUS_APPROVED)
-              .distinct()
+            .filter(versions__apps__application=application,
+                    versions__apps__min__version_int__lte=appversions['min'],
+                    versions__apps__max__version_int__gte=appversions['max'],
+                    versions__channel=amo.RELEASE_CHANNEL_LISTED,
+                    versions__files__status=amo.STATUS_APPROVED)
+            .distinct()
         )
 
     @method_decorator(cache_page(60 * 60 * 24))

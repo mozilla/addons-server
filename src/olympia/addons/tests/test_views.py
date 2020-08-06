@@ -110,6 +110,7 @@ class TestFindReplacement(TestCase):
 class AddonAndVersionViewSetDetailMixin(object):
     """Tests that play with addon state and permissions. Shared between addon
     and version viewset detail tests since both need to react the same way."""
+
     def _test_url(self):
         raise NotImplementedError
 
@@ -1893,7 +1894,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         includes = set((
             'default_locale', 'icon_type', 'id', 'is_recommended', 'modified',
-            'name_translations', 'slug', 'type'))
+            'name_translations', 'promoted', 'slug', 'type'))
 
         assert set(qset.to_dict()['_source']['includes']) == includes
 
