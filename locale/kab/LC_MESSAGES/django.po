@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 18:07+0000\n"
-"Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
+"PO-Revision-Date: 2020-08-06 09:11+0000\n"
+"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -921,21 +921,17 @@ msgstr "Awennez n tɣimit (tɣimiyin) n useqdac {user}."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Aseqdac {user} iga talast i tnerfadit \"{0}\""
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "agbur n {addon} {version} yettwagi."
+msgstr "Yettwagi ugbur n {addon} {version} yettusɣiwsen."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Agbur yettwagi"
+msgstr "Yettwagi ugbur yettusɣiwsen"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} yettwagi."
+msgstr "Yettwagi {addon} {version} yettusɣiwsen."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Tagara n usuter n telɣut"
+msgstr "Tettusɣiwes tririt"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -6475,9 +6471,8 @@ msgstr "s uɣbalu"
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "Igburen"
+msgstr "s ugburen"
 
 msgid "by Campaign"
 msgstr ""
@@ -6584,9 +6579,8 @@ msgstr "Aseqdec n usnas s wazemz"
 msgid "Download campaigns by Date"
 msgstr "Iɣbula n usider s wazemz"
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Iɣbula n usider s wazemz"
+msgstr "Sider iɣbula s wazemz"
 
 msgid "User countries by Date"
 msgstr "Timura n useqdac s wazemz"
@@ -6614,9 +6608,8 @@ msgstr "Isidar s wazemz"
 msgid "Platform usage by Date"
 msgstr "Aseqdec n twennadin s wazemz"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> Isidar"
+msgstr "<b>{0}</b> Isidar n dduṛt"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Isidar"
