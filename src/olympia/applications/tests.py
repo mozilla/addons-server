@@ -5,7 +5,7 @@ from unittest import mock
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import url
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import APITestClient, reverse_ns, TestCase, user_factory
 from olympia.applications.models import AppVersion
 
 
@@ -27,6 +27,159 @@ class TestViews(TestCase):
 
     def test_appversions_feed(self):
         assert self.client.get(url('apps.appversions.rss')).status_code == 200
+
+
+class TestAppVersionsAPI(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.url = reverse_ns(
+            'appversions',
+            kwargs={'application': 'firefox', 'version': '42.0'})
+        self.user = user_factory()
+        self.grant_permission(self.user, 'AppVersions:Create')
+        self.client.login_api(self.user)
+
+    def test_appversions_api_no_permission(self):
+        self.user.groups.all().delete()
+        response = self.client.put(self.url)
+        assert response.status_code == 403
+        assert not AppVersion.objects.exists()
+
+    def test_appversions_api_wrong_verb(self):
+        response = self.client.post(self.url)
+        assert response.status_code == 405
+
+        # We could need GET/DELETE in the future, but those are not implemented
+        # for the moment.
+        response = self.client.get(self.url)
+        assert response.status_code == 405
+
+        response = self.client.delete(self.url)
+        assert response.status_code == 405
+
+        assert not AppVersion.objects.exists()
+
+    def test_invalid_version_argument(self):
+        self.url = reverse_ns(
+            'appversions',
+            kwargs={'application': 'firefox', 'version': 'blah'})
+        response = self.client.put(self.url)
+        assert response.status_code == 400
+        assert not AppVersion.objects.exists()
+
+    def test_invalid_application_argument(self):
+        self.url = reverse_ns(
+            'appversions',
+            kwargs={'application': 'unknown', 'version': 'blah'})
+        response = self.client.put(self.url)
+        assert response.status_code == 400
+        assert not AppVersion.objects.exists()
+
+    def test_release(self):
+        response = self.client.put(self.url)
+        assert response.status_code == 201
+        assert AppVersion.objects.count() == 2
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.*').exists()
+
+    def test_release_android(self):
+        self.url = reverse_ns(
+            'appversions',
+            kwargs={'application': 'android', 'version': '84.0'})
+        response = self.client.put(self.url)
+        assert response.status_code == 201
+        assert AppVersion.objects.count() == 2
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='84.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='84.*').exists()
+
+    def test_alpha(self):
+        self.url = reverse_ns(
+            'appversions',
+            kwargs={'application': 'firefox', 'version': '42.0a1'})
+        response = self.client.put(self.url)
+        assert response.status_code == 201
+        assert AppVersion.objects.count() == 3
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0a1').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.*').exists()
+
+    def test_alpha_already_exists(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0a1')
+        self.url = reverse_ns(
+            'appversions',
+            kwargs={'application': 'firefox', 'version': '42.0a1'})
+        response = self.client.put(self.url)
+        assert response.status_code == 201
+        assert AppVersion.objects.count() == 3
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0a1').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.*').exists()
+
+    def test_alpha_release_already_exists(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
+        self.url = reverse_ns(
+            'appversions',
+            kwargs={'application': 'firefox', 'version': '42.0a1'})
+        response = self.client.put(self.url)
+        assert response.status_code == 201
+        assert AppVersion.objects.count() == 3
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0a1').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.*').exists()
+
+    def test_alpha_star_already_exists(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.*')
+        self.url = reverse_ns(
+            'appversions',
+            kwargs={'application': 'firefox', 'version': '42.0a1'})
+        response = self.client.put(self.url)
+        assert response.status_code == 201
+        assert AppVersion.objects.count() == 3
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0a1').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.*').exists()
+
+    def test_everything_already_exists(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.*')
+        response = self.client.put(self.url)
+        assert response.status_code == 202
+        assert AppVersion.objects.count() == 2
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.0').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.*').exists()
+
+    def test_alpha_and_star_when_minor_is_not_0(self):
+        self.url = reverse_ns(
+            'appversions',
+            kwargs={'application': 'firefox', 'version': '42.1a2'})
+        response = self.client.put(self.url)
+        assert response.status_code == 201
+        assert AppVersion.objects.count() == 3
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.1').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.1a2').exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='42.*').exists()
 
 
 class TestCommands(TestCase):

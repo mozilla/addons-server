@@ -372,6 +372,7 @@ v4 API changelog
 * 2020-02-20: added ``addon_install_source_url`` to abuse report endpoint
 * 2020-03-19: added /blocklist/block endpoint to expose add-on blocks https://github.com/mozilla/addons-server/issues/13706.
 * 2020-03-26: added ``addon_name`` to blocklist/block api https://github.com/mozilla/addons-server/issues/13757
+* 2020-08-13: added ``applications`` internal API to create new application versions https://github.com/mozilla/addons-server/issues/14649
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
