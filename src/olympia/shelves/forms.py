@@ -22,12 +22,16 @@ class ShelfForm(forms.ModelForm):
         if data['shelf_type'] in ('extension', 'recommended', 'search',
                                   'theme'):
             api = drf_reverse('v4:addon-search')
+            url = baseUrl + api + criteria
         elif data['shelf_type'] == 'categories':
             api = drf_reverse('v4:category-list')
+            url = baseUrl + api + criteria
         elif data['shelf_type'] == 'collections':
-            api = drf_reverse('v4:collection-addon-list')
-
-        url = baseUrl + api + criteria
+            api = drf_reverse('v4:collection-addon-list', kwargs={
+                'user_pk': settings.TASK_USER_ID,
+                'collection_slug': criteria
+            })
+            url = baseUrl + api
 
         try:
             response = requests.get(url)
