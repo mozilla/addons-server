@@ -84,9 +84,6 @@ def update_appsupport(ids, **kw):
 def update_addon_average_daily_users(data, **kw):
     log.info("[%s] Updating add-ons ADU totals." % (len(data)))
 
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
     for addon_guid, count in data:
         try:
             addon = Addon.objects.get(guid=addon_guid)
@@ -103,9 +100,6 @@ def update_addon_average_daily_users(data, **kw):
 @task
 def update_addon_total_downloads(data, **kw):
     log.info('[%s] Updating add-ons download+average totals.' % (len(data)))
-
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
 
     for pk, sum_download_counts in data:
         try:

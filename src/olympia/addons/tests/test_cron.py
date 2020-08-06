@@ -269,8 +269,6 @@ class TestAvgDailyUserCountTestCase(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.create_switch('local-statistics-processing')
-
     @mock.patch(
         'olympia.addons.cron.get_addons_and_average_daily_users_from_bigquery'
     )
@@ -489,7 +487,6 @@ class TestUpdateAddonWeeklyDownloads(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.create_switch('local-statistics-processing')
         self.create_switch('use-bigquery-for-download-stats-cron')
 
     @mock.patch('olympia.addons.cron.create_chunked_tasks_signatures')

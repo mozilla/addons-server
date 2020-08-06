@@ -35,9 +35,6 @@ task_log = olympia.core.logger.getLogger('z.task')
 
 def update_addon_average_daily_users(chunk_size=250):
     """Update add-ons ADU totals."""
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
     counts = dict(
         # In order to reset the `average_daily_users` values of add-ons that
         # don't exist in BigQuery, we prepare a set of `(guid, 0)` for most
@@ -67,9 +64,6 @@ def update_addon_average_daily_users(chunk_size=250):
 
 def update_addon_total_downloads():
     """Update add-on total and average downloads."""
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
     if waffle.switch_is_active('use-bigquery-for-download-stats-cron'):
         log.info('Not running `update_addon_total_downloads()` because waffle '
                  'switch is active.')
@@ -228,9 +222,6 @@ def update_addon_weekly_downloads(chunk_size=250):
     """
     Update 7-day add-on download counts.
     """
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
     if waffle.switch_is_active('use-bigquery-for-download-stats-cron'):
         counts = dict(
             # In order to reset the `weekly_downloads` values of add-ons that

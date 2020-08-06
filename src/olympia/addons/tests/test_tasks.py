@@ -86,7 +86,6 @@ def test_create_missing_theme_previews(parse_addon_mock):
 
 
 @pytest.mark.django_db
-@override_switch('local-statistics-processing', active=True)
 def test_update_addon_average_daily_users():
     addon = addon_factory(average_daily_users=0)
     count = 123
@@ -133,7 +132,6 @@ def test_update_addon_hotness():
     assert addon3.hotness == 123
 
 
-@override_switch('local-statistics-processing', active=True)
 def test_update_addon_weekly_downloads():
     addon = addon_factory(weekly_downloads=0)
     count = 123
@@ -146,7 +144,6 @@ def test_update_addon_weekly_downloads():
     assert addon.weekly_downloads == count
 
 
-@override_switch('local-statistics-processing', active=True)
 def test_update_addon_weekly_downloads_skips_non_existent_addons():
     addon = addon_factory(weekly_downloads=0)
     count = 123
