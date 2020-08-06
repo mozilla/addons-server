@@ -54,11 +54,14 @@ def get_id(addon):
     return force_text(hashlib.sha256(guid).hexdigest())
 
 
-def use_recommendation_signer(file_obj):
+def use_promoted_signer(file_obj, promo_group):
+    if not waffle.switch_is_active('autograph_promoted_signer'):
+        return (
+            file_obj.version.channel == amo.RELEASE_CHANNEL_LISTED and
+            promo_group == RECOMMENDED)
     return (
         file_obj.version.channel == amo.RELEASE_CHANNEL_LISTED and
-        file_obj.version.addon.promoted_group(
-            group=RECOMMENDED, currently_approved=False))
+        promo_group.autograph_signing_state)
 
 
 def call_signing(file_obj):
@@ -95,11 +98,12 @@ def call_signing(file_obj):
     hawk_auth = HawkAuth(id=conf['user_id'], key=conf['key'])
 
     # We are using a separate signer that adds the mozilla-recommendation.json
-    # file. There is currently only `recommended` as a type but more may be
-    # added later, e.g partner.
-    if use_recommendation_signer(file_obj):
+    # file.
+    promo_group = file_obj.addon.promoted_group(currently_approved=False)
+    if use_promoted_signer(file_obj, promo_group):
         signing_data['keyid'] = conf['recommendation_signer']
-        signing_data['options']['recommendations'] = ['recommended']
+        signing_data['options']['recommendations'] = [
+            promo_group.autograph_signing_state]
         hawk_auth = HawkAuth(
             id=conf['recommendation_signer_user_id'],
             key=conf['recommendation_signer_key'])

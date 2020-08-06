@@ -13,6 +13,7 @@ _PromotedSuperClass = namedtuple(
         'pre_review',
         'admin_review',
         'badged',
+        'autograph_signing_state',
     ],
     defaults=(
         # "Since fields with a default value must come after any fields without
@@ -22,6 +23,7 @@ _PromotedSuperClass = namedtuple(
         False,  # pre_review
         False,  # admin_review
         False,  # badged
+        None,  # autograph_signing_state
     )
 )
 
@@ -45,6 +47,7 @@ RECOMMENDED = PromotedClass(
     warning=False,
     pre_review=True,
     badged=True,
+    autograph_signing_state='recommended',
 )
 
 VERIFIED_ONE = PromotedClass(
@@ -55,6 +58,7 @@ VERIFIED_ONE = PromotedClass(
     pre_review=True,
     admin_review=True,
     badged=True,
+    autograph_signing_state='sponsored',
 )
 
 VERIFIED_TWO = PromotedClass(
@@ -63,6 +67,7 @@ VERIFIED_TWO = PromotedClass(
     warning=False,
     pre_review=True,
     badged=True,
+    autograph_signing_state='verified',
 )
 
 LINE = PromotedClass(
@@ -72,6 +77,7 @@ LINE = PromotedClass(
     pre_review=True,
     admin_review=True,
     badged=True,
+    autograph_signing_state='line',
 )
 
 SPOTLIGHT = PromotedClass(

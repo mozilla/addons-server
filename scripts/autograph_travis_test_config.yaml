@@ -131,6 +131,9 @@ signers:
         path: "mozilla-recommendation.json"
         states:
           recommended: true
+          sponsored: true
+          verified: true
+          line: true
         relative_start: 0h
         duration: 26298h
       # RSA key gen is slow and CPU intensive, so we can optionally
