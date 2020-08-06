@@ -3,9 +3,13 @@
 {% set title = _('Download sources by Date') %}
 
 {% block stats_note_link %}
-{% if not bigquery_download_stats %}
-  <a href="#" id="stats-note-link">{{ _('About tracking external sources...') }}</a>
-{% endif %}
+  {% if bigquery_download_stats %}
+  <a href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/manage/monitoring-extension-usage-statistics/">
+  {% else %}
+  <a href="#" id="stats-note-link">
+  {% endif %}
+    {{ _('About tracking external sources...') }}
+  </a>
 {% endblock %}
 
 {% block stats_note %}

@@ -1307,13 +1307,20 @@ class TestStatsWithBigQuery(TestCase):
         assert b'by Content' in response.content
         assert b'by Campaign' in response.content
 
+    def test_download_stats(self):
+        url = reverse('stats.downloads', args=[self.addon.slug])
+
+        response = self.client.get(url)
+
+        assert b'How are downloads counted' not in response.content
+
     def test_download_stats_by_source(self):
         url = reverse('stats.sources', args=[self.addon.slug])
 
         response = self.client.get(url)
 
         assert b'Download sources by Date' in response.content
-        assert b'About tracking external sources' not in response.content
+        assert b'About tracking external sources' in response.content
 
     def test_download_stats_by_medium(self):
         url = reverse('stats.mediums', args=[self.addon.slug])
@@ -1321,6 +1328,7 @@ class TestStatsWithBigQuery(TestCase):
         response = self.client.get(url)
 
         assert b'Download mediums by Date' in response.content
+        assert b'About tracking external sources' in response.content
 
     def test_download_stats_by_content(self):
         url = reverse('stats.contents', args=[self.addon.slug])
@@ -1328,6 +1336,7 @@ class TestStatsWithBigQuery(TestCase):
         response = self.client.get(url)
 
         assert b'Download contents by Date' in response.content
+        assert b'About tracking external sources' in response.content
 
     def test_download_stats_by_campaign(self):
         url = reverse('stats.campaigns', args=[self.addon.slug])
@@ -1335,6 +1344,7 @@ class TestStatsWithBigQuery(TestCase):
         response = self.client.get(url)
 
         assert b'Download campaigns by Date' in response.content
+        assert b'About tracking external sources' in response.content
 
     @override_switch('use-fenix-build-ids', active=True)
     def test_fenix_build_ids(self):

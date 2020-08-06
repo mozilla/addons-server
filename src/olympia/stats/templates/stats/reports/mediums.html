@@ -1,3 +1,11 @@
 {% extends 'stats/report.html' %}
 
 {% set title = _('Download mediums by Date') %}
+
+{% block stats_note_link %}
+{% if bigquery_download_stats %}
+  <a href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/manage/monitoring-extension-usage-statistics/">
+    {{ _('About tracking external sources...') }}
+  </a>
+{% endif %}
+{% endblock %}

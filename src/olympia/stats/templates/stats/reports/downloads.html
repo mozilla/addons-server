@@ -3,10 +3,13 @@
 {% set title = _('Downloaded by Date') %}
 
 {% block stats_note_link %}
+{% if not bigquery_download_stats %}
 <a href="#" id="stats-note-link">{{ _('How are downloads counted?') }}</a>
+{% endif %}
 {% endblock %}
 
 {% block stats_note %}
+{% if not bigquery_download_stats %}
   {% trans %}
     <h2>How are downloads counted?</h2>
     <p>
@@ -15,4 +18,5 @@
       referring the download.
     </p>
   {% endtrans %}
+{% endif %}
 {% endblock %}
