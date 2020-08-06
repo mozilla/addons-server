@@ -142,6 +142,7 @@ class TestAppVersionsAPI(TestCase):
             application=amo.FIREFOX.id, version='42.*').exists()
 
     def test_alpha_star_already_exists(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.*')
         self.url = reverse_ns(
             'appversions',
             kwargs={'application': 'firefox', 'version': '42.0a1'})
