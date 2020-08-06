@@ -24,7 +24,8 @@ from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
-from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED
+from olympia.constants.promoted import (
+    LINE, NOT_PROMOTED, RECOMMENDED, SPOTLIGHT, STRATEGIC)
 from olympia.constants.scanners import CUSTOMS, WAT, YARA, MAD
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
@@ -600,15 +601,15 @@ class TestVersion(TestCase):
         new_version.delete()
         assert sync_object_to_basket_mock.delay.call_count == 0
 
-    def test_can_be_disabled_and_deleted(self):
+    def test_promoted_can_be_disabled_and_deleted(self):
         addon = Addon.objects.get(id=3615)
-        # A non-recommended addon can have it's versions disabled.
+        # A non-promoted addon can have it's versions disabled.
         assert addon.current_version.can_be_disabled_and_deleted()
 
-        self.make_addon_recommended(addon, approve_version=True)
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         addon = addon.reload()
-        assert addon.is_recommended
-        # But a recommended one can't be disabled
+        assert addon.promoted_group() == RECOMMENDED
+        # But a promoted one, that's in a prereview group, can't be disabled
         assert not addon.current_version.can_be_disabled_and_deleted()
 
         previous_version = addon.current_version
@@ -619,12 +620,12 @@ class TestVersion(TestCase):
             group_id=RECOMMENDED.id).exists()
         assert previous_version.promoted_approvals.filter(
             group_id=RECOMMENDED.id).exists()
-        # unless the previous version is also recommendation approved
+        # unless the previous version is also approved for the same group
         assert addon.current_version.can_be_disabled_and_deleted()
         assert previous_version.can_be_disabled_and_deleted()
 
-        # double-check by removing the recommendation approved from previous
-        previous_version.promoted_approvals.update(group_id=NOT_PROMOTED.id)
+        # double-check by changing the approval of previous version
+        previous_version.promoted_approvals.update(group_id=LINE.id)
         assert not addon.current_version.can_be_disabled_and_deleted()
         previous_version.promoted_approvals.update(group_id=RECOMMENDED.id)
 
@@ -652,14 +653,35 @@ class TestVersion(TestCase):
         assert version_b.can_be_disabled_and_deleted()
         assert version_c.can_be_disabled_and_deleted()
         assert version_d.can_be_disabled_and_deleted()
-        assert addon.is_recommended
+        assert addon.promoted_group() == RECOMMENDED
         # now un-approve version_b
         version_b.promoted_approvals.update(group_id=NOT_PROMOTED.id)
         assert version_a.can_be_disabled_and_deleted()
         assert version_b.can_be_disabled_and_deleted()
         assert version_c.can_be_disabled_and_deleted()
         assert not version_d.can_be_disabled_and_deleted()
-        assert addon.is_recommended
+        assert addon.promoted_group() == RECOMMENDED
+
+    def test_unbadged_non_prereview_promoted_can_be_disabled_and_deleted(self):
+        addon = Addon.objects.get(id=3615)
+        self.make_addon_promoted(addon, LINE, approve_version=True)
+        assert addon.promoted_group() == LINE
+        # it's the only version of a group that requires pre-review and is
+        # badged, so can't be deleted.
+        assert not addon.current_version.can_be_disabled_and_deleted()
+
+        # STRATEGIC isn't pre-reviewd or badged, so it's okay though
+        addon.promotedaddon.update(group_id=STRATEGIC.id)
+        addon.current_version.promoted_approvals.update(group_id=STRATEGIC.id)
+        del addon.current_version.approved_for_groups
+        assert addon.promoted_group() == STRATEGIC
+        assert addon.current_version.can_be_disabled_and_deleted()
+
+        # SPOTLIGHT is pre-reviewed but not badged, so it's okay too
+        addon.promotedaddon.update(group_id=SPOTLIGHT.id)
+        addon.current_version.promoted_approvals.update(group_id=SPOTLIGHT.id)
+        assert addon.promoted_group() == SPOTLIGHT
+        assert addon.current_version.can_be_disabled_and_deleted()
 
     def test_can_be_disabled_and_deleted_querycount(self):
         addon = Addon.objects.get(id=3615)

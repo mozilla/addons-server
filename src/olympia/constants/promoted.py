@@ -5,18 +5,23 @@ from django.utils.translation import ugettext_lazy as _
 
 _PromotedSuperClass = namedtuple(
     '_PromotedSuperClass', [
+        # Be careful when adding to this list to adjust defaults too.
         'id',
         'name',
         'search_ranking_bump',
         'warning',
         'pre_review',
-        'admin_review'
+        'admin_review',
+        'badged',
     ],
     defaults=(
+        # "Since fields with a default value must come after any fields without
+        # a default, the defaults are applied to the rightmost parameters"
         0,  # search_ranking_bump
         True,  # warning
         False,  # pre_review
         False,  # admin_review
+        False,  # badged
     )
 )
 
@@ -39,6 +44,7 @@ RECOMMENDED = PromotedClass(
     search_ranking_bump=1000,  # TODO: confirm this bump
     warning=False,
     pre_review=True,
+    badged=True,
 )
 
 VERIFIED_ONE = PromotedClass(
@@ -48,6 +54,7 @@ VERIFIED_ONE = PromotedClass(
     warning=False,
     pre_review=True,
     admin_review=True,
+    badged=True,
 )
 
 VERIFIED_TWO = PromotedClass(
@@ -55,6 +62,7 @@ VERIFIED_TWO = PromotedClass(
     name=_('Verified - Tier 2'),
     warning=False,
     pre_review=True,
+    badged=True,
 )
 
 LINE = PromotedClass(
@@ -63,6 +71,7 @@ LINE = PromotedClass(
     warning=False,
     pre_review=True,
     admin_review=True,
+    badged=True,
 )
 
 SPOTLIGHT = PromotedClass(
