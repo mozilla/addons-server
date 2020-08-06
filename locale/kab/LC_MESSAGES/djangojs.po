@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-05 18:22+0000\n"
-"Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
+"PO-Revision-Date: 2020-08-06 08:58+0000\n"
+"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -495,14 +495,12 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Iɣbula n usader seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Isidar, {0} n wussan ineggura"
+msgstr "Sider ilemmasen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Isidar seg {0} ɣer {1}"
+msgstr "Sider ilemmasen seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
