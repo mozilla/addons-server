@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-06 11:38+0000\n"
+"PO-Revision-Date: 2020-08-06 11:48+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -5629,7 +5629,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Are setat(ă) dezactivarea aprobării automate/semnal de întârziere"
 
 msgid "Is in a promoted addon group that requires pre-review"
-msgstr ""
+msgstr "Este într-un grup de suplimente promovate care necesită recenzare prealabilă"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Întârziere din cauză că este prima versiune listată"
@@ -6438,9 +6438,8 @@ msgstr "există reguli corelate"
 msgid "result state"
 msgstr "stare rezultată"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "tot în afară de această regulă"
+msgstr "toate, în afară de rezultatele numai pentru această regulă"
 
 msgid "presence of a version"
 msgstr "prezența unei versiuni"
@@ -6566,14 +6565,13 @@ msgid "by Source"
 msgstr "după sursă"
 
 msgid "by Medium"
-msgstr ""
+msgstr "după mediu"
 
-#, fuzzy
 msgid "by Content"
-msgstr "Conținuturi"
+msgstr "după conținut"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "după campanie"
 
 msgid "Daily Users"
 msgstr "Utilizatori zilnici"
@@ -6687,28 +6685,26 @@ msgid "Downloaded by Date"
 msgstr "Descărcări după dată"
 
 msgid "How are downloads counted?"
-msgstr "Cum sun contorizate descărcările?"
+msgstr "Cum sunt contorizate descărcările?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
-"<h2>Cum se numără descărcările?</h2> <p> Numărătoarea descărcărilor este actualizată în fiecare seară și include numai descărcările suplimentului inițial, nu și cele ale actualizărilor. Descărcările"
-" pot fi defalcate după sursa specifică aferentă descărcării. </p>"
+"<h2>Cum se numără descărcările?</h2> <p> Numărul descărcărilor este actualizat în fiecare seară și include numai descărcările suplimentului inițial, nu și cele ale actualizărilor. Descărcările pot "
+"fi defalcate după sursa specifică aferentă descărcării. </p>"
 
 msgid "User languages by Date"
 msgstr "Limbile utilizatorilor în funcție de dată"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Descărcări în funcție de dată"
+msgstr "Medii de descărcare după dată"
 
 msgid "Platform usage by Date"
 msgstr "Utilizarea de platforme în funcție de dată"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> (de) descărcări"
+msgstr "<b>{0}</b> (de) descărcări săptămânale"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> (de) descărcări"
@@ -6738,7 +6734,7 @@ msgid "See more platforms&hellip;"
 msgstr "Vezi mai multe platforme&hellip;"
 
 msgid "Download sources by Date"
-msgstr "Surse de descărcare în funcție de dată"
+msgstr "Surse de descărcare după dată"
 
 msgid "About tracking external sources..."
 msgstr "Despre urmărirea surselor externe..."
