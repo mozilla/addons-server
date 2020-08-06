@@ -8098,7 +8098,9 @@ class TestMadQueue(QueueTest):
         self.expected_addons = [listed_addon, unlisted_addon]
 
     def test_results(self):
-        response = self.client.get(self.url)
+        with self.assertNumQueries(30):
+            response = self.client.get(self.url)
+
         assert response.status_code == 200
 
         # listed
