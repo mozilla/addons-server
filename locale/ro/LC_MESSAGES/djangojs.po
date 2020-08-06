@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-06 11:34+0000\n"
+"PO-Revision-Date: 2020-08-06 11:35+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -508,11 +508,11 @@ msgstr "Sursele de descărcare din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Mediums, last {0} days"
-msgstr "Descărcări de medii, ultimele {0} zile"
+msgstr "Medii de descărcare, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Mediums from {0} to {1}"
-msgstr "Descărcări de medii de la {0} până la {1}"
+msgstr "Medii de descărcare de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
@@ -523,14 +523,12 @@ msgid "Download Contents from {0} to {1}"
 msgstr "Conținutul descărcărilor de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Descărcări, ultimele {0} zile"
+msgstr "Campanii de descărcare, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Descărcări de la {0} până la {1}"
+msgstr "Campanii de descărcare de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
