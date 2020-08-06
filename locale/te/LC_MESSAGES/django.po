@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 21:32+0000\n"
+"PO-Revision-Date: 2020-08-06 17:13+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2695,7 +2695,7 @@ msgid "Tools that combine multiple files into a single file, such as <span class
 msgstr ""
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "HTML, CSS రెండింటికీ వెబ్ టెంప్లేట్ ఇంజిన్లు"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
 msgstr ""
