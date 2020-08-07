@@ -1674,39 +1674,6 @@ class TestAddonModels(TestCase):
         assert addon.promoted_group() == NOT_PROMOTED
         assert addon.promoted_group(currently_approved=False)
 
-    def test_promoted_applications(self):
-        addon = addon_factory()
-        # default case - no group so no applications.
-        assert addon.promoted_applications() is None
-
-        # It's promoted but nothing has been approved.
-        promoted = PromotedAddon.objects.create(
-            addon=addon, group_id=SPOTLIGHT.id)
-        assert addon.promoted_applications() is None
-
-        # The latest version is approved.
-        PromotedApproval.objects.create(
-            version=addon.current_version, group_id=SPOTLIGHT.id)
-        del addon.current_version.approved_for_groups
-        assert addon.promoted_applications(
-        ) == [app.short for app in APP_USAGE]
-
-        # If the group changes the approval for the current version isn't
-        # valid.
-        promoted.update(group_id=VERIFIED_ONE.id)
-        assert addon.promoted_applications() is None
-
-        # Add an approval for the new group.
-        PromotedApproval.objects.create(
-            version=addon.current_version, group_id=VERIFIED_ONE.id)
-        del addon.current_version.approved_for_groups
-        assert addon.promoted_applications(
-        ) == [app.short for app in APP_USAGE]
-
-        # Specify one application for the group.
-        promoted.update(application_id=amo.ANDROID.id)
-        assert addon.promoted_applications() == [amo.ANDROID.short]
-
     def test_promoted(self):
         addon = addon_factory()
         # default case - no group so no applications.
@@ -1722,14 +1689,29 @@ class TestAddonModels(TestCase):
             version=addon.current_version, group_id=SPOTLIGHT.id)
         del addon.promoted
         assert addon.promoted == {
-            'category': SPOTLIGHT.api_name, 'applications': [
+            'category': SPOTLIGHT.api_name, 'apps': [
+                app.short for app in APP_USAGE]}
+
+        # If the group changes the approval for the current version isn't
+        # valid.
+        promoted.update(group_id=VERIFIED_ONE.id)
+        del addon.promoted
+        assert addon.promoted is None
+
+        # Add an approval for the new group.
+        PromotedApproval.objects.create(
+            version=addon.current_version, group_id=VERIFIED_ONE.id)
+        del addon.current_version.approved_for_groups
+        del addon.promoted
+        assert addon.promoted == {
+            'category': VERIFIED_ONE.api_name, 'apps': [
                 app.short for app in APP_USAGE]}
 
         # Specify one application for the group.
         promoted.update(application_id=amo.ANDROID.id)
         del addon.promoted
         assert addon.promoted == {
-            'category': SPOTLIGHT.api_name, 'applications': [amo.ANDROID.short]
+            'category': VERIFIED_ONE.api_name, 'apps': [amo.ANDROID.short]
         }
 
     @patch('olympia.amo.tasks.sync_object_to_basket')

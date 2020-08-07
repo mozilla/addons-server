@@ -176,8 +176,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int previews[].thumbnail_size[]: width, height dimensions of of the preview image thumbnail.
     :>json string previews[].thumbnail_url: The URL (including a cachebusting query string) to the preview image thumbnail.
     :>json object|null promoted: Object holding promotion information about the add-on. Null if the add-on is not currently promoted.
-    :>json string promoted.category: The name of the promoted category for the add-on.
-    :>json array promoted.applications[]: Array of the application names for which the add-on is promoted.
+    :>json string promoted.category: The name of the :ref:`promoted category <addon-detail-promoted-category>` for the add-on.
+    :>json array promoted.apps[]: Array of the :ref:`applications <addon-detail-application>` for which the add-on is promoted.
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
     :>json object ratings: Object holding ratings summary information about the add-on.
     :>json int ratings.count: The total number of user ratings for the add-on.
@@ -267,6 +267,20 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
        statictheme  Theme (Static Theme)
     ==============  ==========================================================
 
+.. _addon-detail-promoted-category:
+
+    Possible values for the ``promoted.category`` field:
+
+    ==============  ==========================================================
+             Value  Description
+    ==============  ==========================================================
+              line  Line category
+       recommended  Recommended category
+         sponsored  Sponsored category
+         spotlight  Spotlight category
+         strategic  Strategic category
+          verified  Verified category
+    ==============  ==========================================================
 
 -----------------------------
 Add-on and Version Submission

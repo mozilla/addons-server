@@ -1324,25 +1324,16 @@ class Addon(OnChangeMixin, ModelBase):
             not currently_approved or promoted.is_addon_currently_promoted)
         return promoted.group if is_promoted else NOT_PROMOTED
 
-    def promoted_applications(self):
-        """Returns a list of applications for which the addon is currently
-        promoted, or None if the addon is not currently promoted.
-        """
-        promoted_group = self.promoted_group()
-        if promoted_group != NOT_PROMOTED:
-            application = self.promotedaddon.application
-            if not application:
-                return [app.short for app in APP_USAGE]
-            return [application.short]
-        return None
-
     @cached_property
     def promoted(self):
         promoted_group = self.promoted_group()
-        if promoted_group != NOT_PROMOTED:
+        if promoted_group:
             return {
                 'category': promoted_group.api_name,
-                'applications': self.promoted_applications(),
+                'apps':
+                [self.promotedaddon.application.short] if
+                self.promotedaddon.application else [
+                    app.short for app in APP_USAGE],
             }
         return None
 

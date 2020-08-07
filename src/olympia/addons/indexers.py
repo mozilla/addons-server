@@ -271,8 +271,8 @@ class AddonIndexer(BaseSearchIndexer):
                     'promoted': {
                         'type': 'object',
                         'properties': {
-                            'category': {'type': 'text'},
-                            'applications': {'type': 'keyword'}
+                            'category': {'type': 'keyword'},
+                            'applications': {'type': 'byte'}
                         }
                     },
                     'ratings': {
