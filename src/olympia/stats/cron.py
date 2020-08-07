@@ -2,8 +2,6 @@ import datetime
 
 from django.core.management import call_command
 
-import waffle
-
 import olympia.core.logger
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 
@@ -14,9 +12,6 @@ log = olympia.core.logger.getLogger('z.cron')
 
 
 def index_latest_stats(index=None):
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
     def fmt(d):
         return d.strftime('%Y-%m-%d')
 
