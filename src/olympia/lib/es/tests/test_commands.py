@@ -130,7 +130,9 @@ class TestIndexCommand(ESTestCase):
                 self.expected.append(addon_factory())
                 connection._commit()
                 connection.clean_savepoints()
-                self.refresh()
+                # We don't know where the search will happen, the reindexing
+                # could be over by now. So force a refresh on *all* indices.
+                self.refresh(None)
                 self.check_results(self.expected)
 
             if len(self.expected) == old_addons_count:

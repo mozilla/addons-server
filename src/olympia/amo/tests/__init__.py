@@ -942,7 +942,7 @@ class ESTestCase(TestCase):
 
     @classmethod
     def refresh(cls, index='default'):
-        cls.es.indices.refresh(settings.ES_INDEXES[index])
+        cls.es.indices.refresh(settings.ES_INDEXES.get(index, index))
 
     @classmethod
     def reindex(cls, model, index='default'):
