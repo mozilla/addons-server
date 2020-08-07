@@ -8135,6 +8135,18 @@ class TestMadQueue(QueueTest):
         assert len(links) == len(expected)
         check_links(expected, links, verify=False)
 
+        # Make sure the query count is stable
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=addon_factory()),
+            needs_human_review_by_mad=True
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=addon_factory()),
+            needs_human_review_by_mad=True
+        )
+        with self.assertNumQueries(30):
+            response = self.client.get(self.url)
+
     def test_only_viewable_with_specific_permission(self):
         # Post-review reviewer does not have access.
         self.user.groupuser_set.all().delete()  # Remove all permissions
