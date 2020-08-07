@@ -506,29 +506,24 @@ msgid "Download Mediums, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Download da {0} a {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Sorgenti download, ultimi {0} giorni"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Download da {0} a {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Download, ultimi {0} giorni"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Download da {0} a {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"

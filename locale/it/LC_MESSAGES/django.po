@@ -1417,9 +1417,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Promuovi"
+msgstr ""
 
 msgid "Recommended"
 msgstr "Consigliato"
@@ -5668,7 +5667,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "È stato contrassegnato per la disattivazione o il rinvio dell’approvazione automatica"
 
 msgid "Is in a promoted addon group that requires pre-review"
-msgstr "È in un gruppo di componenti aggiuntivi sponsorizzati che richiede una revisione preliminare"
+msgstr ""
 
 msgid "Delayed because it's the first listed version"
 msgstr "Posticipato perché è la prima versione elencata"
@@ -5940,7 +5939,7 @@ msgid "Visible"
 msgstr "Visibile"
 
 msgid "Weekly Downloads"
-msgstr "Download"
+msgstr "Download settimanali"
 
 msgid "Average Daily Users"
 msgstr "Media utenti per giorno"
@@ -6591,9 +6590,8 @@ msgstr "per fonte"
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "Contenuto"
+msgstr ""
 
 msgid "by Campaign"
 msgstr ""
@@ -6696,13 +6694,11 @@ msgstr "Questo pannello è <b>privato</b>."
 msgid "Application usage by Date"
 msgstr "Utilizzo applicazione per data"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Fonti download per data"
+msgstr ""
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Fonti download per data"
+msgstr ""
 
 msgid "User countries by Date"
 msgstr "Nazioni degli utenti per data"
@@ -6723,16 +6719,14 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Lingua dell’utente per data"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Download per data"
+msgstr ""
 
 msgid "Platform usage by Date"
 msgstr "utilizzo sulle diverse piattaforme per data"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> download"
+msgstr ""
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> download"
