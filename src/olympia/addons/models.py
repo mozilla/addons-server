@@ -329,13 +329,16 @@ class AddonManager(ManagerBase):
             # to have a version since they got the needs_human_review_by_mad
             # flag, so returning incomplete ones is acceptable.
             .filter(
-                status__in=[
+                Q(status__in=[
                     amo.STATUS_APPROVED, amo.STATUS_NOMINATED, amo.STATUS_NULL
-                ],
-                versions__files__status__in=[
+                ]),
+                Q(versions__files__status__in=[
                     amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
-                ],
-                versions__reviewerflags__needs_human_review_by_mad=True
+                ]),
+                (Q(versions__reviewerflags__needs_human_review_by_mad=True,
+                    versions__channel=amo.RELEASE_CHANNEL_UNLISTED) |
+                    Q(_current_version__reviewerflags__needs_human_review_by_mad=(  # noqa
+                        True)))
             )
             .order_by('created')
             # There could be several versions matching for a single add-on so

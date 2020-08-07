@@ -8076,6 +8076,20 @@ class TestMadQueue(QueueTest):
             needs_human_review_by_mad=True
         )
 
+        # This add-on should not be listed, because the latest version is not
+        # flagged.
+        listed_addon_previous = addon_factory(created=self.days_ago(15))
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=listed_addon_previous,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=True
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=listed_addon_previous,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=False
+        )
+
         unflagged_addon = addon_factory()
         version_factory(addon=unflagged_addon)
 
@@ -8095,17 +8109,55 @@ class TestMadQueue(QueueTest):
             needs_admin_code_review=True,
         )
 
+        # Mixed listed and unlisted versions. Should not show up in queue.
+        mixed_addon = addon_factory()
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon,
+                                    channel=amo.RELEASE_CHANNEL_UNLISTED,
+                                    created=self.days_ago(5)),
+            needs_human_review_by_mad=False
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon,
+                                    channel=amo.RELEASE_CHANNEL_LISTED,
+                                    created=self.days_ago(3)),
+            needs_human_review_by_mad=True
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon,
+                                    channel=amo.RELEASE_CHANNEL_LISTED,
+                                    created=self.days_ago(1)),
+            needs_human_review_by_mad=False
+        )
+
         self.expected_addons = [listed_addon, unlisted_addon]
 
     def test_results(self):
-        response = self.client.get(self.url)
+        with self.assertNumQueries(30):
+            # 30 queries is a lot. Some of them are unfortunately scaling with
+            # the number of add-ons in the queue.
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 11 for various queue counts, including current one
+            #      (unfortunately duplicated because it appears in two
+            #       completely different places)
+            # - 3 for the addons in the queue and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 2 for my add-ons / my collection in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            # - 2 queries for first add-on to get listed/unlisted count of
+            #     versions with needs human review flag
+            # - 2 queries for second add-on to get listed/unlisted count of
+            #     versions with needs human review flag
+            response = self.client.get(self.url)
         assert response.status_code == 200
 
         # listed
         expected = []
         addon = self.expected_addons[0]
         expected.append((
-            'Listed versions (2)',
+            'Listed version',
             reverse('reviewers.review', args=[addon.slug])
         ))
         # unlisted
@@ -8119,6 +8171,18 @@ class TestMadQueue(QueueTest):
         links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
         assert len(links) == len(expected)
         check_links(expected, links, verify=False)
+
+        # Make sure the query count is stable
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=addon_factory()),
+            needs_human_review_by_mad=True
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=addon_factory()),
+            needs_human_review_by_mad=True
+        )
+        with self.assertNumQueries(30):
+            response = self.client.get(self.url)
 
     def test_only_viewable_with_specific_permission(self):
         # Post-review reviewer does not have access.

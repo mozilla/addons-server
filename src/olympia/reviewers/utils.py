@@ -279,7 +279,7 @@ class ScannersReviewTable(AutoApprovedTable):
 
 
 class MadReviewTable(ScannersReviewTable):
-    listed_text = _('Listed versions ({0})')
+    listed_text = _('Listed version')
     unlisted_text = _('Unlisted versions ({0})')
     filters = {'reviewerflags__needs_human_review_by_mad': True}
 
