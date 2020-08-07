@@ -11,7 +11,7 @@ from olympia.shelves.models import Shelf
 class ShelfForm(forms.ModelForm):
     class Meta:
         model = Shelf
-        fields = ('title', 'shelf_type', 'criteria',
+        fields = ('title', 'endpoint', 'criteria',
                   'footer_text', 'footer_pathname',)
 
     def clean(self):
@@ -19,14 +19,10 @@ class ShelfForm(forms.ModelForm):
         criteria = data['criteria']
         baseUrl = settings.INTERNAL_SITE_URL
 
-        if data['shelf_type'] in ('extension', 'recommended', 'search',
-                                  'theme'):
+        if data['endpoint'] == 'search':
             api = drf_reverse('v4:addon-search')
             url = baseUrl + api + criteria
-        elif data['shelf_type'] == 'categories':
-            api = drf_reverse('v4:category-list')
-            url = baseUrl + api + criteria
-        elif data['shelf_type'] == 'collections':
+        elif data['endpoint'] == 'collections':
             api = drf_reverse('v4:collection-addon-list', kwargs={
                 'user_pk': settings.TASK_USER_ID,
                 'collection_slug': criteria
@@ -40,16 +36,9 @@ class ShelfForm(forms.ModelForm):
             if response.status_code != 200:
                 raise forms.ValidationError(
                     'Check criteria - %s' % response.json()[0])
+            if response.json().get('count', 0) == 0:
+                raise forms.ValidationError(
+                    'Check criteria parameters - e.g., "type"')
 
-            results = response.json()
-            # Value of results is either dict or list depending on the endpoint
-            if 'count' in results:
-                if results.get('count', 0) == 0:
-                    raise forms.ValidationError(
-                        'Check criteria parameters - e.g., "type"')
-            else:
-                if len(results) == 0:
-                    raise forms.ValidationError(
-                        'Check criteria - No data found')
         except requests.exceptions.ConnectionError:
             raise forms.ValidationError('Connection Error')

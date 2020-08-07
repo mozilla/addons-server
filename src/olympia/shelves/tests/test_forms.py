@@ -12,7 +12,6 @@ from ..forms import ShelfForm
 class TestShelfForm(TestCase):
     def setUp(self):
         self.criteria_sea = '?recommended=true&sort=random&type=extension'
-        self.criteria_cat = '?slug=alerts-updates'
         self.criteria_col = 'password-managers'
         self.criteria_col_404 = 'passwordmanagers'
         self.criteria_404 = 'sort=users&type=statictheme'
@@ -26,12 +25,6 @@ class TestShelfForm(TestCase):
             self.criteria_sea,
             status=200,
             json={'count': 103})
-        responses.add(
-            responses.GET,
-            baseUrl + drf_reverse('v4:category-list') +
-            self.criteria_cat,
-            status=200,
-            json=[{'id': 1}, {'id': 2}])
         responses.add(
             responses.GET,
             baseUrl + drf_reverse('v4:collection-addon-list', kwargs={
@@ -68,24 +61,16 @@ class TestShelfForm(TestCase):
     def test_clean_search(self):
         form = ShelfForm({
             'title': 'Recommended extensions',
-            'shelf_type': 'extension',
+            'endpoint': 'search',
             'criteria': self.criteria_sea})
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == (
             '?recommended=true&sort=random&type=extension')
 
-    def test_clean_categories(self):
-        form = ShelfForm({
-            'title': 'Alerts & Updates (Categories)',
-            'shelf_type': 'categories',
-            'criteria': self.criteria_cat})
-        assert form.is_valid(), form.errors
-        assert form.cleaned_data['criteria'] == '?slug=alerts-updates'
-
     def test_clean_collections(self):
         form = ShelfForm({
             'title': 'Password managers (Collections)',
-            'shelf_type': 'collections',
+            'endpoint': 'collections',
             'criteria': self.criteria_col})
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == 'password-managers'
@@ -93,7 +78,7 @@ class TestShelfForm(TestCase):
     def test_clean_search_returns_404(self):
         data = {
             'title': 'Popular themes',
-            'shelf_type': 'theme',
+            'endpoint': 'search',
             'criteria': self.criteria_404}
         form = ShelfForm(data)
         assert not form.is_valid()
@@ -105,7 +90,7 @@ class TestShelfForm(TestCase):
     def test_clean_col_returns_404(self):
         data = {
             'title': 'Password manager (Collections)',
-            'shelf_type': 'collections',
+            'endpoint': 'collections',
             'criteria': self.criteria_col_404}
         form = ShelfForm(data)
         assert not form.is_valid()
@@ -117,7 +102,7 @@ class TestShelfForm(TestCase):
     def test_clean_returns_not_200(self):
         data = {
             'title': 'Popular themes',
-            'shelf_type': 'theme',
+            'endpoint': 'search',
             'criteria': self.criteria_not_200}
         form = ShelfForm(data)
         assert not form.is_valid()
@@ -129,7 +114,7 @@ class TestShelfForm(TestCase):
     def test_clean_returns_empty(self):
         data = {
             'title': 'Popular themes',
-            'shelf_type': 'theme',
+            'endpoint': 'search',
             'criteria': self.criteria_empty}
         form = ShelfForm(data)
         assert not form.is_valid()

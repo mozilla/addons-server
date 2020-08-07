@@ -893,8 +893,6 @@ class TestShelfAdmin(TestCase):
         self.list_url = reverse(
             'admin:discovery_shelfmodule_changelist')
         self.detail_url_name = 'admin:discovery_shelfmodule_change'
-        self.success_message = (
-            '&quot;Recommended extensions&quot; was changed successfully.')
 
         criteria_sea = '?recommended=true&sort=random&type=extension'
         responses.add(
@@ -931,7 +929,7 @@ class TestShelfAdmin(TestCase):
     def test_can_edit_with_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Popular extensions',
-            shelf_type='extension',
+            endpoint='search',
             criteria='?sort=users&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
@@ -948,7 +946,7 @@ class TestShelfAdmin(TestCase):
         with mock.patch('olympia.shelves.forms.ShelfForm.clean') as mock_clean:
             mock_clean.return_value = {
                 'title': 'Recommended extensions',
-                'shelf_type': 'extension',
+                'endpoint': 'search',
                 'criteria': (
                     '?recommended=true&sort=random&type=extension'),
                 'footer_text': 'See more',
@@ -963,14 +961,14 @@ class TestShelfAdmin(TestCase):
             item.reload()
             assert Shelf.objects.count() == 1
             assert item.title == 'Recommended extensions'
-            assert item.shelf_type == 'extension'
+            assert item.endpoint == 'search'
             assert item.criteria == (
                 '?recommended=true&sort=random&type=extension')
 
     def test_can_delete_with_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Recommended extensions',
-            shelf_type='extension',
+            endpoint='search',
             criteria='?recommended=true&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
@@ -1004,7 +1002,7 @@ class TestShelfAdmin(TestCase):
         with mock.patch('olympia.shelves.forms.ShelfForm.clean') as mock_clean:
             mock_clean.return_value = {
                 'title': 'Recommended extensions',
-                'shelf_type': 'extension',
+                'endpoint': 'search',
                 'criteria':
                     ('?recommended=true&sort=random&type=extension'),
                 'footer_text': 'See more',
@@ -1020,7 +1018,7 @@ class TestShelfAdmin(TestCase):
             assert Shelf.objects.count() == 1
             item = Shelf.objects.get()
             assert item.title == 'Recommended extensions'
-            assert item.shelf_type == 'extension'
+            assert item.endpoint == 'search'
             assert item.criteria == (
                 '?recommended=true&sort=random&type=extension')
 
@@ -1035,7 +1033,7 @@ class TestShelfAdmin(TestCase):
             add_url,
             {
                 'title': 'Recommended extensions',
-                'shelf_type': 'extension',
+                'endpoint': 'search',
                 'criteria':
                 '?recommended=true&sort=random&type=extension',
                 'footer_text': 'See more',
@@ -1048,7 +1046,7 @@ class TestShelfAdmin(TestCase):
     def test_can_not_edit_without_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Recommended extensions',
-            shelf_type='extension',
+            endpoint='search',
             criteria='?recommended=true&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
@@ -1064,7 +1062,7 @@ class TestShelfAdmin(TestCase):
             detail_url,
             {
                 'title': 'Popular extensions',
-                'shelf_type': 'extension',
+                'endpoint': 'search',
                 'criteria':
                 '?recommended=true&sort=users&type=extension',
                 'footer_text': 'See more',
@@ -1078,7 +1076,7 @@ class TestShelfAdmin(TestCase):
     def test_can_not_delete_without_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Recommended extensions',
-            shelf_type='extension',
+            endpoint='search',
             criteria='?recommended=true&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
