@@ -245,7 +245,6 @@ class ScannersReviewTable(AutoApprovedTable):
     listed_text = _('Listed versions needing human review ({0})')
     unlisted_text = _('Unlisted versions needing human review ({0})')
     filters = {'needs_human_review': True}
-    single_listed_version = False
 
     def render_addon_name(self, record):
         rval = [jinja2.escape(record.name)]
@@ -256,24 +255,12 @@ class ScannersReviewTable(AutoApprovedTable):
         ).count()
         if listed_versions:
             url = reverse('reviewers.review', args=[record.slug])
-            # The MAD queue filters on the current_version of listed add-ons,
-            # so there can only be 0 or 1 listed versions per add-on in the
-            # queue. However, the filter above does not filter on that, so
-            # we just hide the count for listed entries.
-            if self.single_listed_version:
-                rval.append(
-                    '<a href="%s">%s</a>' % (
-                        url,
-                        self.listed_text.format(listed_versions)
-                    )
+            rval.append(
+                '<a href="%s">%s</a>' % (
+                    url,
+                    self.listed_text.format(listed_versions)
                 )
-            else:
-                rval.append(
-                    '<a href="%s">%s</a>' % (
-                        url,
-                        self.listed_text.format(listed_versions)
-                    )
-                )
+            )
 
         unlisted_versions = record.versions.filter(
             channel=amo.RELEASE_CHANNEL_UNLISTED,
@@ -295,7 +282,6 @@ class MadReviewTable(ScannersReviewTable):
     listed_text = _('Listed version')
     unlisted_text = _('Unlisted versions ({0})')
     filters = {'reviewerflags__needs_human_review_by_mad': True}
-    single_listed_version = True
 
 
 class ReviewHelper(object):
