@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-04 19:10+0000\n"
+"PO-Revision-Date: 2020-08-07 13:21+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6411,9 +6411,8 @@ msgstr "eksistenca wotpowědowacych prawidłow"
 msgid "result state"
 msgstr "Wuslědkowy staw"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "wšě nimo tutoho prawidła"
+msgstr "wšě nimo wuslědkow, kotrež tutomu prawidłu wotpowěduja"
 
 msgid "presence of a version"
 msgstr "eksistenca wersije"
@@ -6645,13 +6644,11 @@ msgstr "Kontrolna deska je <b>priwatna</b>."
 msgid "Application usage by Date"
 msgstr "Wužiwanje nałoženja po datumje"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Sćehnjenske žórła po datumje"
+msgstr "Sćehnjenske kampanje po datumje"
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Sćehnjenske žórła po datumje"
+msgstr "Sćehnjenski wobsah po datumje"
 
 msgid "User countries by Date"
 msgstr "Wužiwarske kraje po datumje"
@@ -6672,16 +6669,14 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Wužiwarske rěče po datumje"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Sćehnjene po datumje"
+msgstr "Sćehnjenske medije po datumje"
 
 msgid "Platform usage by Date"
 msgstr "Wužiwanje platformy po datumje"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> sćehnjenjow"
+msgstr "Tydźenske sćehnjenja: <b>{0}</b>"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> sćehnjenjow"
