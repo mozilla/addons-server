@@ -8109,23 +8109,23 @@ class TestMadQueue(QueueTest):
             needs_admin_code_review=True,
         )
 
-        # # Mixed listed and unlisted versions. Should not show up in queue.
-        # mixed_addon = addon_factory()
-        # VersionReviewerFlags.objects.create(
-        #     version=version_factory(addon=mixed_addon,
-        #                             channel=amo.RELEASE_CHANNEL_UNLISTED),
-        #     needs_human_review_by_mad=False
-        # )
-        # VersionReviewerFlags.objects.create(
-        #     version=version_factory(addon=mixed_addon,
-        #                             channel=amo.RELEASE_CHANNEL_LISTED),
-        #     needs_human_review_by_mad=True
-        # )
-        # VersionReviewerFlags.objects.create(
-        #     version=version_factory(addon=mixed_addon,
-        #                             channel=amo.RELEASE_CHANNEL_LISTED),
-        #     needs_human_review_by_mad=False
-        # )
+        # Mixed listed and unlisted versions. Should not show up in queue.
+        mixed_addon = addon_factory()
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon,
+                                    channel=amo.RELEASE_CHANNEL_UNLISTED),
+            needs_human_review_by_mad=False
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=True
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=False
+        )
 
         self.expected_addons = [listed_addon, unlisted_addon]
 
