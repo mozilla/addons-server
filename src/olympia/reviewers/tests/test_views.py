@@ -8113,17 +8113,20 @@ class TestMadQueue(QueueTest):
         mixed_addon = addon_factory()
         VersionReviewerFlags.objects.create(
             version=version_factory(addon=mixed_addon,
-                                    channel=amo.RELEASE_CHANNEL_UNLISTED),
+                                    channel=amo.RELEASE_CHANNEL_UNLISTED,
+                                    created=self.days_ago(5)),
             needs_human_review_by_mad=False
         )
         VersionReviewerFlags.objects.create(
             version=version_factory(addon=mixed_addon,
-                                    channel=amo.RELEASE_CHANNEL_LISTED),
+                                    channel=amo.RELEASE_CHANNEL_LISTED,
+                                    created=self.days_ago(3)),
             needs_human_review_by_mad=True
         )
         VersionReviewerFlags.objects.create(
             version=version_factory(addon=mixed_addon,
-                                    channel=amo.RELEASE_CHANNEL_LISTED),
+                                    channel=amo.RELEASE_CHANNEL_LISTED,
+                                    created=self.days_ago(1)),
             needs_human_review_by_mad=False
         )
 
