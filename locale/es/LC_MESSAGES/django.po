@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-07 18:36+0000\n"
+"PO-Revision-Date: 2020-07-25 23:23+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -6291,7 +6291,7 @@ msgid "Block add-on"
 msgstr "Volver al complemento"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Actualizar bloqueadores de complementos"
 
 #, fuzzy
 msgid "Disable Listed Auto-Approval"
@@ -6321,7 +6321,7 @@ msgid "Clear information request"
 msgstr "Limpiar solicitud de información"
 
 msgid "Clear pending rejections"
-msgstr ""
+msgstr "Borrar rechazos pendientes"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Limpiar la etiqueta de revisión de código de administrador"
@@ -6478,7 +6478,7 @@ msgid "Weight:"
 msgstr "Tamaño:"
 
 msgid "Flagged by scanners"
-msgstr ""
+msgstr "Marcado por escáneres"
 
 #, fuzzy
 msgid "Flagged for human review"
@@ -6580,7 +6580,7 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "La definición no es válida: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr ""
@@ -6592,7 +6592,7 @@ msgid "Abort"
 msgstr ""
 
 msgid "Run"
-msgstr ""
+msgstr "Ejecutar"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
