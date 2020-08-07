@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-07 18:34+0000\n"
+"PO-Revision-Date: 2020-08-07 18:36+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -525,7 +525,7 @@ msgid "This block was imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Cualquier cambio realizado NO se actualizará en la lista de bloqueo heredada: debe realizar un cambio manual a través de Kinto Admin WebUI."
 
 #, fuzzy, python-format
 msgid "Delete Multiple %(name)s"
@@ -537,7 +537,7 @@ msgstr "Inicio"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "Los GUID de complemento %(count)s ya están bloqueados para %(v_min)s%(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
@@ -585,7 +585,7 @@ msgid "users"
 msgstr "Usuarios"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Editar bloque"
 
 #, fuzzy
 msgid "versions"
@@ -1010,7 +1010,7 @@ msgid "Unlisted"
 msgstr "No listado"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1640,7 +1640,7 @@ msgid "New"
 msgstr "Recientes"
 
 msgid "Running"
-msgstr ""
+msgstr "Ejecutando"
 
 msgid "Aborted"
 msgstr ""
@@ -3247,7 +3247,7 @@ msgid "For end users"
 msgstr ""
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 #, fuzzy
@@ -3296,7 +3296,7 @@ msgid "\"Get The Add-on\" button"
 msgstr "Botón \"Obtener complemento\""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Programa de extensiones recomendadas"
 
 msgid "Contribute"
 msgstr "Colabora"
@@ -5111,7 +5111,7 @@ msgstr "Actualizaciones instantáneas del clima en todo el mundo."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Borrar cookies, historial de búsqueda y los archivos en caché con un solo click."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5125,12 +5125,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organice fácilmente toneladas de pestañas abiertas."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Crear y personalizar grupos de pestañas."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5145,7 +5145,7 @@ msgstr "Borra automáticamente las cookies después de cerrar una pestaña."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Bloquear todos los anuncios: videos, ventanas emergentes, banners y más."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5171,7 +5171,7 @@ msgstr "Firefox ya no admite las extensiones antiguas."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Agregan funciones a Firefox para que la navegación sea más rápida, segura o simplemente divertida."
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
