@@ -25,8 +25,8 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
+from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.lib.crypto import signing, tasks
-from olympia.promoted.models import PromotedAddon
 from olympia.versions.compare import version_int
 
 
@@ -339,13 +339,13 @@ class TestSigning(TestCase):
             'Digest-Algorithms: SHA1 SHA256\n'
         )
 
-    def test_call_signing_recommended(self):
+    @override_switch('autograph_promoted_signer', active=False)
+    def test_call_signing_promoted_recommended_only(self):
         # This is the usual process for recommended add-ons, they're
         # in "pending recommendation" and only *after* we approve and sign
         # them they will become "recommended". If their promoted group changes
-        # flag is turned off we won't sign further versions as recommended.
-        self.make_addon_recommended(
-            self.file_.version.addon)
+        # we won't sign further versions as recommended.
+        self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
 
         assert signing.sign_file(self.file_)
 
@@ -366,11 +366,53 @@ class TestSigning(TestCase):
         assert recommendation_data['addon_id'] == 'xxxxx'
         assert recommendation_data['states'] == ['recommended']
 
-    def test_call_signing_recommendable_unlisted(self):
-        # Unlisted versions, even when the add-on is in the recommended
-        # promoted group, should never be signed as recommended.
-        self.make_addon_recommended(
-            self.file_.version.addon)
+    @override_switch('autograph_promoted_signer', active=False)
+    def test_call_signing_promoted_non_recommended_ignored(self):
+        # LINE would be signed as promoted if waffle was on
+        self.make_addon_promoted(self.file_.version.addon, LINE)
+
+        assert signing.sign_file(self.file_)
+
+        signature_info, manifest = _get_signature_details(
+            self.file_.current_file_path)
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+        assert manifest.count('Name: ') == 4
+
+        assert 'Name: mozilla-recommendation.json' not in manifest
+
+    @override_switch('autograph_promoted_signer', active=True)
+    def test_call_signing_promoted(self):
+        # This is the usual process for promoted add-ons, they're
+        # in "pending" and only *after* we approve and sign them they will
+        # become "promoted" for that group. If their promoted group changes
+        # we won't sign further versions as promoted.
+        self.make_addon_promoted(self.file_.version.addon, LINE)
+
+        assert signing.sign_file(self.file_)
+
+        signature_info, manifest = _get_signature_details(
+            self.file_.current_file_path)
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+        assert manifest.count('Name: ') == 5
+
+        assert 'Name: mozilla-recommendation.json' in manifest
+        assert 'Name: manifest.json' in manifest
+        assert 'Name: META-INF/cose.manifest' in manifest
+        assert 'Name: META-INF/cose.sig' in manifest
+
+        recommendation_data = _get_recommendation_data(
+            self.file_.current_file_path)
+        assert recommendation_data['addon_id'] == 'xxxxx'
+        assert recommendation_data['states'] == ['line']
+
+    def test_call_signing_promoted_unlisted(self):
+        # Unlisted versions, even when the add-on is in promoted group, should
+        # never be signed as promoted.
+        self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         assert signing.sign_file(self.file_)
@@ -384,8 +426,9 @@ class TestSigning(TestCase):
 
         assert 'Name: mozilla-recommendation.json' not in manifest
 
-    def test_call_signing_not_recommendable(self):
-        PromotedAddon.objects.create(addon=self.file_.version.addon)
+    def test_call_signing_promoted_no_special_autograph_group(self):
+        # SPOTLIGHT addons aren't signed differently.
+        self.make_addon_promoted(self.file_.version.addon, SPOTLIGHT)
 
         assert signing.sign_file(self.file_)
 
