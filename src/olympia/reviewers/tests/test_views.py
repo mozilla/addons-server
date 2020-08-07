@@ -8134,6 +8134,22 @@ class TestMadQueue(QueueTest):
 
     def test_results(self):
         with self.assertNumQueries(30):
+            # 30 queries is a lot. Some of them are unfortunately scaling with
+            # the number of add-ons in the queue.
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 11 for various queue counts, including current one
+            #      (unfortunately duplicated because it appears in two
+            #       completely different places)
+            # - 3 for the addons in the queue and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 2 for my add-ons / my collection in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            # - 2 queries for first add-on to get listed/unlisted count of
+            #     versions with needs human review flag
+            # - 2 queries for second add-on to get listed/unlisted count of
+            #     versions with needs human review flag
             response = self.client.get(self.url)
         assert response.status_code == 200
 
