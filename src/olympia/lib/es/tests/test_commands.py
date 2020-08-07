@@ -37,6 +37,11 @@ class TestIndexCommand(ESTestCase):
 
         self.addons = []
         self.expected = self.addons[:]
+        # Monkeypatch Celerys ".get()" inside async task error
+        # until https://github.com/celery/celery/issues/4661 (which isn't just
+        # about retries but a general regression that manifests only in
+        # eager-mode) fixed.
+        self.patch('celery.app.task.denied_join_result')
 
     # Since this test plays with transactions, but we don't have (and don't
     # really want to have) a ESTransactionTestCase class, use the fixture setup
