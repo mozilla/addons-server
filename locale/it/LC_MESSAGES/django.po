@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-04 16:15+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2020-08-07 16:28+0000\n"
+"Last-Translator: Giorgio Romano <ascotwork@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -5668,7 +5668,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "È stato contrassegnato per la disattivazione o il rinvio dell’approvazione automatica"
 
 msgid "Is in a promoted addon group that requires pre-review"
-msgstr ""
+msgstr "È in un gruppo di componenti aggiuntivi sponsorizzati che richiede una revisione preliminare"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Posticipato perché è la prima versione elencata"
@@ -5939,7 +5939,6 @@ msgstr "Visibilità"
 msgid "Visible"
 msgstr "Visibile"
 
-#, fuzzy
 msgid "Weekly Downloads"
 msgstr "Download"
 
@@ -6331,9 +6330,8 @@ msgstr "Confronta"
 msgid "Permissions:"
 msgstr "Permessi:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Permessi:"
+msgstr "Permessi facoltativi:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6464,9 +6462,8 @@ msgstr "presenza di regole corrispondenti"
 msgid "result state"
 msgstr "stato del risultato"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "tutte le regole eccetto questa"
+msgstr ""
 
 msgid "presence of a version"
 msgstr "presenza di una versione"

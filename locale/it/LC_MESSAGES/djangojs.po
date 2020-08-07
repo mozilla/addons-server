@@ -502,9 +502,8 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Sorgenti download da {0} a {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Download, ultimi {0} giorni"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #, fuzzy
