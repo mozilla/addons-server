@@ -1,11 +1,9 @@
 from django import http
 from django.apps import apps
-from django.conf import settings
 from django.contrib import admin
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.shortcuts import get_object_or_404, redirect
-from django.views import debug
 from django.views.decorators.cache import never_cache
 
 import olympia.core.logger
@@ -13,14 +11,12 @@ import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.decorators import addon_view_factory
-from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon
-from olympia.amo import messages, search
+from olympia.amo import messages
 from olympia.amo.decorators import (
     json_view, permission_required, post_required)
 from olympia.amo.utils import HttpResponseXSendFile, render
 from olympia.files.models import File, FileUpload
-from olympia.stats.indexers import DownloadCountIndexer
 from olympia.versions.models import Version
 
 from .decorators import admin_required
@@ -28,22 +24,6 @@ from .forms import AddonStatusForm, FileFormSet
 
 
 log = olympia.core.logger.getLogger('z.zadmin')
-
-
-@admin_required
-def show_settings(request):
-    settings_dict = debug.get_safe_settings()
-    return render(request, 'zadmin/settings.html',
-                  {'settings_dict': settings_dict, 'title': 'Settings!'})
-
-
-@admin_required
-def env(request):
-    env = {}
-    for k in request.META.keys():
-        env[k] = debug.cleanse_setting(k, request.META[k])
-    return render(request, 'zadmin/settings.html',
-                  {'settings_dict': env, 'title': 'Env!'})
 
 
 @admin.site.admin_view
@@ -57,24 +37,6 @@ def fix_disabled_file(request):
             return redirect('zadmin.fix-disabled')
     return render(request, 'zadmin/fix-disabled.html',
                   {'file': file_, 'file_id': request.POST.get('file', '')})
-
-
-@admin_required
-def elastic(request):
-    es = search.get_es()
-
-    ctx = {
-        'nodes': es.nodes.stats(),
-        'health': es.cluster.health(),
-        'state': es.cluster.state(),
-        'mappings': (
-            (settings.ES_INDEXES['default'],
-                AddonIndexer.get_mapping()),
-            (settings.ES_INDEXES['stats_download_counts'],
-                DownloadCountIndexer.get_mapping()),
-        ),
-    }
-    return render(request, 'zadmin/elastic.html', ctx)
 
 
 @permission_required(amo.permissions.ANY_ADMIN)

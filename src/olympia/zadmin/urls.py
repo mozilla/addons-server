@@ -35,14 +35,11 @@ urlpatterns = [
         views.addon_manage, name='zadmin.addon_manage'),
     url(r'^addon/recalc-hash/(?P<file_id>\d+)/', views.recalc_hash,
         name='zadmin.recalc_hash'),
-    url(r'^env$', views.env, name='zadmin.env'),
-    url(r'^settings', views.show_settings, name='zadmin.settings'),
     url(r'^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),
 
     url(r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
         views.download_file_upload, name='zadmin.download_file_upload'),
 
-    url(r'^elastic$', views.elastic, name='zadmin.elastic'),
     url(r'^addon-search$', views.addon_search, name='zadmin.addon-search'),
 
     # The Django admin.

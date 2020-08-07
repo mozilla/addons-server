@@ -333,20 +333,6 @@ class TestRecalculateHash(TestCase):
         assert r.status_code == 405  # GET out of here
 
 
-class TestElastic(amo.tests.ESTestCase):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        super(TestElastic, self).setUp()
-        self.url = reverse('zadmin.elastic')
-        self.client.login(email='admin@mozilla.com')
-
-    def test_login(self):
-        self.client.logout()
-        self.assertLoginRedirects(
-            self.client.get(self.url), to='/en-US/admin/elastic')
-
-
 class TestFileDownload(TestCase):
     fixtures = ['base/users']
 
@@ -385,8 +371,6 @@ class TestPerms(TestCase):
         # Admin should see views with Django's perm decorator and our own.
         assert self.client.login(email='admin@mozilla.com')
         self.assert_status('zadmin.index', 200)
-        self.assert_status('zadmin.env', 200)
-        self.assert_status('zadmin.settings', 200)
         self.assert_status(
             'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
@@ -398,8 +382,6 @@ class TestPerms(TestCase):
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 200)
-        self.assert_status('zadmin.env', 200)
-        self.assert_status('zadmin.settings', 200)
         self.assert_status(
             'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
@@ -408,8 +390,6 @@ class TestPerms(TestCase):
         # Unprivileged user.
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 403)
-        self.assert_status('zadmin.env', 403)
-        self.assert_status('zadmin.settings', 403)
         self.assert_status(
             'zadmin.download_file_upload', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
