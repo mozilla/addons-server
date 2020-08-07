@@ -10,17 +10,14 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.amo import messages
 from olympia.amo.decorators import (
     json_view, permission_required, post_required)
 from olympia.amo.utils import HttpResponseXSendFile, render
 from olympia.files.models import File, FileUpload
-from olympia.versions.models import Version
 
 from .decorators import admin_required
-from .forms import AddonStatusForm, FileFormSet
 
 
 log = olympia.core.logger.getLogger('z.zadmin')
@@ -93,45 +90,6 @@ def general_search(request, app_id, model_id):
     lookup = getattr(obj, 'search_fields_response', None)
     return [{'value': o.pk, 'label': getattr(o, lookup) if lookup else str(o)}
             for o in qs[:limit]]
-
-
-@admin_required
-@addon_view_factory(qs=Addon.objects.all)
-def addon_manage(request, addon):
-    form = AddonStatusForm(request.POST or None, instance=addon)
-    pager = amo.utils.paginate(
-        request, Version.unfiltered.filter(addon=addon), 30)
-    # A list coercion so this doesn't result in a subquery with a LIMIT which
-    # MySQL doesn't support (at this time).
-    versions = list(pager.object_list)
-    files = File.objects.filter(version__in=versions).select_related('version')
-    formset = FileFormSet(request.POST or None, queryset=files)
-
-    if form.is_valid() and formset.is_valid():
-        if 'status' in form.changed_data:
-            ActivityLog.create(amo.LOG.CHANGE_STATUS, addon,
-                               form.cleaned_data['status'])
-            log.info('Addon "%s" status changed to: %s' % (
-                addon.slug, form.cleaned_data['status']))
-            form.save()
-
-        for form in formset:
-            if 'status' in form.changed_data:
-                log.info('Addon "%s" file (ID:%d) status changed to: %s' % (
-                    addon.slug, form.instance.id, form.cleaned_data['status']))
-                form.save()
-        return redirect('zadmin.addon_manage', addon.slug)
-
-    # Build a map from file.id to form in formset for precise form display
-    form_map = dict((form.instance.id, form) for form in formset.forms)
-    # A version to file map to avoid an extra query in the template
-    file_map = {}
-    for file in files:
-        file_map.setdefault(file.version_id, []).append(file)
-
-    return render(request, 'zadmin/addon_manage.html', {
-        'addon': addon, 'pager': pager, 'versions': versions, 'form': form,
-        'formset': formset, 'form_map': form_map, 'file_map': file_map})
 
 
 @admin_required
