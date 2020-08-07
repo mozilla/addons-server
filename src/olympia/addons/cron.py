@@ -42,7 +42,7 @@ def update_addon_average_daily_users(chunk_size=250):
         # In order to reset the `average_daily_users` values of add-ons that
         # don't exist in BigQuery, we prepare a set of `(guid, 0)` for most
         # add-ons.
-        Addon.objects
+        Addon.unfiltered
         .filter(type__in=amo.ADDON_TYPES_WITH_STATS)
         .exclude(guid__isnull=True)
         .exclude(guid__exact='')

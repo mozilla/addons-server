@@ -89,7 +89,7 @@ def update_addon_average_daily_users(data, **kw):
 
     for addon_guid, count in data:
         try:
-            addon = Addon.objects.get(guid=addon_guid)
+            addon = Addon.unfiltered.get(guid=addon_guid)
         except Addon.DoesNotExist:
             # The processing input comes from metrics which might be out of
             # date in regards to currently existing add-ons

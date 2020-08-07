@@ -100,6 +100,21 @@ def test_update_addon_average_daily_users():
 
 
 @pytest.mark.django_db
+@override_switch('local-statistics-processing', active=True)
+def test_update_deleted_addon_average_daily_users():
+    addon = addon_factory(average_daily_users=0)
+    addon.delete()
+    count = 123
+    data = [(addon.guid, count)]
+    assert addon.average_daily_users == 0
+
+    update_addon_average_daily_users(data)
+    addon.refresh_from_db()
+
+    assert addon.average_daily_users == count
+
+
+@pytest.mark.django_db
 def test_update_addon_hotness():
     addon1 = addon_factory(hotness=0, status=amo.STATUS_APPROVED)
     addon2 = addon_factory(hotness=123,
