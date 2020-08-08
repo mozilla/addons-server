@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-08 11:30+0000\n"
+"PO-Revision-Date: 2020-08-08 11:42+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -1358,9 +1358,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Promoter"
+msgstr "Ikke promotert"
 
 msgid "Recommended"
 msgstr "Anbefalt"
@@ -6520,9 +6519,8 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr ""
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Nedlastingsbehandling"
+msgstr "Last ned kampanjer etter dato"
 
 msgid "Download contents by Date"
 msgstr ""

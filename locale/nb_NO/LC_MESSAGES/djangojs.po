@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-08 11:31+0000\n"
+"PO-Revision-Date: 2020-08-08 11:41+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -506,22 +506,20 @@ msgid "Download Mediums from {0} to {1}"
 msgstr "Nedlastinger fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Nedlastingskilder, siste {0} dager"
+msgstr "Last ned innhold, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Nedlastinger fra {0} til {1}"
+msgstr "Last ned innhold fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
-msgstr "Nedlastingskampanjer, siste {0} dager"
+msgstr "Last ned kampanjer, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Nedlastingskampanjer fra {0} til {1}"
+msgstr "Last ned kampanjer fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
