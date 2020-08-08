@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-07-25 23:23+0000\n"
+"PO-Revision-Date: 2020-08-08 21:02+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -137,9 +137,8 @@ msgstr "Herramientas de revisión"
 msgid "Reviewer Tools (unlisted)"
 msgstr "Herramientas de revisión"
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "Herramientas de revisión"
+msgstr "Enlaces del revisor"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Complemento no disponible en AMO -"
@@ -309,11 +308,13 @@ msgstr ""
 msgid "Oops"
 msgstr "Vaya"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>¡Ups!  Hubo un error.</h1> <p>Lo solucionaremos lo antes posible.</p> <p> Prueba a actualizar la página o volver a la <a href=\"%(home)s\">página de inicio de Complementos</a>. </p>"
+msgstr ""
+"<h1>¡Ups! Hubo un error.</h1> <p>Lo solucionaremos lo antes posible.</p> <p> Prueba a actualizar la página o volver a la <a href=\"%(home)s\">página de inicio de Complementos</a>. También puedes "
+"ayudarnos a arreglar el error <a href=\"https://github.com/mozilla/addons/issues/new\">reportando el problema</a> con los detalles de cómo llegaste a esta página. </p>"
 
 msgid "No results found"
 msgstr "No se ha encontrado ningún resultado"
@@ -587,9 +588,8 @@ msgstr "Usuarios"
 msgid "Edit Block"
 msgstr "Editar bloque"
 
-#, fuzzy
 msgid "versions"
-msgstr "Versiones"
+msgstr "versiones"
 
 msgid "Included in legacy blocklist."
 msgstr ""
