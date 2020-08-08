@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 22:39+0000\n"
+"PO-Revision-Date: 2020-08-08 11:30+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -5768,9 +5768,8 @@ msgstr "Synlighet"
 msgid "Visible"
 msgstr "Synlig"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Nedlastinger"
+msgstr "Ukentlige nedlastinger"
 
 msgid "Average Daily Users"
 msgstr "Gjennomsnittelig daglige brukere"
@@ -6156,9 +6155,8 @@ msgstr "Sammenlign"
 msgid "Permissions:"
 msgstr "Tillatelser:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Tillatelser:"
+msgstr "Valgfrie tillatelser:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6418,9 +6416,8 @@ msgstr ""
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "Innhold"
+msgstr "etter innhold"
 
 msgid "by Campaign"
 msgstr ""
@@ -6553,9 +6550,8 @@ msgstr ""
 msgid "Platform usage by Date"
 msgstr ""
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<strong>{0}</strong> ukentlig nedlasting"
+msgstr "<b>{0}</b> ukentlige nedlastinger"
 
 msgid "<b>{0}</b> Downloads"
 msgstr ""
