@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-07 09:22+0000\n"
+"PO-Revision-Date: 2020-08-09 12:01+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -1382,9 +1382,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Продвижение"
+msgstr "Не продвигается"
 
 msgid "Recommended"
 msgstr "Рекомендуемые"
@@ -5870,9 +5869,8 @@ msgstr "Видимость"
 msgid "Visible"
 msgstr "Видимое"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Загрузки"
+msgstr "Еженедельные загрузки"
 
 msgid "Average Daily Users"
 msgstr "Среднее число активных ежедневных пользователей"
@@ -6665,9 +6663,8 @@ msgstr "Загружено по дате"
 msgid "Platform usage by Date"
 msgstr "Использование платформ по дате"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> загрузок"
+msgstr "<b>{0}</b> загрузок за неделю"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> загрузок"
