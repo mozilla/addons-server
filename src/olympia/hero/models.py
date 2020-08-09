@@ -23,11 +23,8 @@ GRADIENT_COLORS = {
     '#722291': 'color-purple-70',
     '#592ACB': 'color-violet-70',
 }
-FEATURED_IMAGE_PATH = os.path.join(
-    settings.ROOT, 'static', 'img', 'hero', 'featured')
 MODULE_ICON_PATH = os.path.join(
     settings.ROOT, 'static', 'img', 'hero', 'icons')
-FEATURED_IMAGE_URL = f'{settings.STATIC_URL}img/hero/featured/'
 MODULE_ICON_URL = f'{settings.STATIC_URL}img/hero/icons/'
 HERO_PREVIEW_URL = f'{settings.MEDIA_URL}hero-featured-image/thumbs/'
 
