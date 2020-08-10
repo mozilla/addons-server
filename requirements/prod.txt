@@ -142,9 +142,9 @@ bleach==3.1.5 \
     --hash=sha256:3c4c520fdb9db59ef139915a5db79f8b51bc2a7257ea0389f30c846883430a4b
 # REMEMBER: leave a few lines between boto3 and botocore requirements to avoid an
 # annoying merge conflict every day when pyup generates prs for both.
-boto3==1.14.36 \
-    --hash=sha256:84fec841e07c854177ed264283cf52e3e4ac06c37d4e2b371369a93881f869b7 \
-    --hash=sha256:ad9156f1c76ece440a4fc60116b13bd627aa8ae5ed7b7d0b0380e3021bf54bda
+boto3==1.14.38 \
+    --hash=sha256:d33af62c691c0078326970ec4f09bef4b8822bdfa7eca3a6c26b6b4c016c32d7 \
+    --hash=sha256:3aad418cb5a20f522f3d0267caefb5582324f5af60fe093ace12e69847cf72cd
 # see last comment - celery is in between boto3 and botocore on purpose.
 celery==4.4.7 \
     --hash=sha256:a92e1d56e650781fb747032a3997d16236d037c8199eacd5217d1a72893bca45 \
