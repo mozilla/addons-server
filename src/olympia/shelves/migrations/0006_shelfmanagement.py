@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('enabled', models.BooleanField(default=False)),
-                ('position', models.PositiveIntegerField(blank=True, null=True)),
+                ('position', models.PositiveIntegerField(default=0)),
                 ('shelf', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='shelves.Shelf')),
             ],
             options={

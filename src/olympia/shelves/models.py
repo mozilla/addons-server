@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.db import models
 
 from olympia.amo.models import ModelBase
@@ -32,15 +31,10 @@ class Shelf(ModelBase):
 class ShelfManagement(ModelBase):
     shelf = models.OneToOneField(Shelf, on_delete=models.CASCADE)
     enabled = models.BooleanField(default=False)
-    position = models.PositiveIntegerField(blank=True, null=True)
+    position = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return str(self.shelf)
-
-    def clean(self):
-        if self.enabled and self.position is None:
-            raise ValidationError(
-                'Position field is required to enable shelf.')
 
     class Meta:
         verbose_name_plural = 'homepage shelves'

@@ -1189,6 +1189,7 @@ class TestHomepageShelvesAdmin(TestCase):
             add_url,
             {
                 'shelf': self.shelf.pk,
+                'position': 0,
             },
             follow=True)
         assert response.status_code == 200
@@ -1230,7 +1231,7 @@ class TestHomepageShelvesAdmin(TestCase):
         assert response.status_code == 403
         hpshelf.reload()
         assert ShelfManagement.objects.count() == 1
-        assert hpshelf.position is None
+        assert hpshelf.position == 0
 
     def test_can_not_delete_without_discovery_edit_permission(self):
         hpshelf = ShelfManagement.objects.create(shelf=self.shelf)
