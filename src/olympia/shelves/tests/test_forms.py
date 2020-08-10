@@ -12,8 +12,8 @@ from ..forms import ShelfForm
 class TestShelfForm(TestCase):
     def setUp(self):
         self.criteria_sea = '?recommended=true&sort=random&type=extension'
-        self.criteria_cat = '?slug=alerts-updates'
-        self.criteria_rec = '?recommended=true'
+        self.criteria_col = 'password-managers'
+        self.criteria_col_404 = 'passwordmanagers'
         self.criteria_404 = 'sort=users&type=statictheme'
         self.criteria_not_200 = '?sort=user&type=statictheme'
         self.criteria_empty = '?sort=users&type=theme'
@@ -27,20 +27,22 @@ class TestShelfForm(TestCase):
             json={'count': 103})
         responses.add(
             responses.GET,
-            baseUrl + drf_reverse('v4:category-list') +
-            self.criteria_cat,
+            baseUrl + drf_reverse('v4:collection-addon-list', kwargs={
+                                  'user_pk': settings.TASK_USER_ID,
+                                  'collection_slug': self.criteria_col}),
             status=200,
-            json=[{'id': 1}, {'id': 2}])
-        responses.add(
-            responses.GET,
-            baseUrl + drf_reverse('v4:addon-recommendations') +
-            self.criteria_rec,
-            status=200,
-            json={'count': 4})
+            json={'count': 1})
         responses.add(
             responses.GET,
             baseUrl + drf_reverse('v4:addon-search') +
             self.criteria_404,
+            status=404,
+            json={"detail": "Not found."}),
+        responses.add(
+            responses.GET,
+            baseUrl + drf_reverse('v4:collection-addon-list', kwargs={
+                                  'user_pk': settings.TASK_USER_ID,
+                                  'collection_slug': self.criteria_col_404}),
             status=404,
             json={"detail": "Not found."}),
         responses.add(
@@ -59,35 +61,39 @@ class TestShelfForm(TestCase):
     def test_clean_search(self):
         form = ShelfForm({
             'title': 'Recommended extensions',
-            'shelf_type': 'extension',
+            'endpoint': 'search',
             'criteria': self.criteria_sea})
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == (
             '?recommended=true&sort=random&type=extension')
 
-    def test_clean_categories(self):
+    def test_clean_collections(self):
         form = ShelfForm({
-            'title': 'Alerts & Updates (Categories)',
-            'shelf_type': 'categories',
-            'criteria': self.criteria_cat})
+            'title': 'Password managers (Collections)',
+            'endpoint': 'collections',
+            'criteria': self.criteria_col})
         assert form.is_valid(), form.errors
-        assert form.cleaned_data['criteria'] == '?slug=alerts-updates'
+        assert form.cleaned_data['criteria'] == 'password-managers'
 
-    def test_clean_recommendations(self):
-        form = ShelfForm({
-            'title': 'Recommended Add-ons',
-            'shelf_type': 'recommendations',
-            'criteria': self.criteria_rec})
-        assert form.is_valid(), form.errors
-        assert form.cleaned_data['criteria'] == '?recommended=true'
-
-    def test_clean_returns_404(self):
+    def test_clean_search_returns_404(self):
         data = {
             'title': 'Popular themes',
-            'shelf_type': 'theme',
+            'endpoint': 'search',
             'criteria': self.criteria_404}
         form = ShelfForm(data)
-        form.is_valid()
+        assert not form.is_valid()
+        with self.assertRaises(ValidationError) as exc:
+            form.clean()
+        assert exc.exception.message == (
+            u'Check criteria - No data found')
+
+    def test_clean_col_returns_404(self):
+        data = {
+            'title': 'Password manager (Collections)',
+            'endpoint': 'collections',
+            'criteria': self.criteria_col_404}
+        form = ShelfForm(data)
+        assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
         assert exc.exception.message == (
@@ -96,10 +102,10 @@ class TestShelfForm(TestCase):
     def test_clean_returns_not_200(self):
         data = {
             'title': 'Popular themes',
-            'shelf_type': 'theme',
+            'endpoint': 'search',
             'criteria': self.criteria_not_200}
         form = ShelfForm(data)
-        form.is_valid()
+        assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
         assert exc.exception.message == (
@@ -108,10 +114,10 @@ class TestShelfForm(TestCase):
     def test_clean_returns_empty(self):
         data = {
             'title': 'Popular themes',
-            'shelf_type': 'theme',
+            'endpoint': 'search',
             'criteria': self.criteria_empty}
         form = ShelfForm(data)
-        form.is_valid()
+        assert not form.is_valid()
         with self.assertRaises(ValidationError) as exc:
             form.clean()
         assert exc.exception.message == (
