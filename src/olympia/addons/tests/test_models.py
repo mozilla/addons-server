@@ -1676,7 +1676,7 @@ class TestAddonModels(TestCase):
 
     def test_promoted(self):
         addon = addon_factory()
-        # default case - no group so no applications.
+        # default case - no group so return None.
         assert addon.promoted is None
 
         # It's promoted but nothing has been approved.
@@ -1688,9 +1688,7 @@ class TestAddonModels(TestCase):
         PromotedApproval.objects.create(
             version=addon.current_version, group_id=SPOTLIGHT.id)
         del addon.promoted
-        assert addon.promoted == {
-            'category': SPOTLIGHT.api_name, 'apps': [
-                app.short for app in APP_USAGE]}
+        assert addon.promoted == promoted
 
         # If the group changes the approval for the current version isn't
         # valid.
@@ -1703,16 +1701,28 @@ class TestAddonModels(TestCase):
             version=addon.current_version, group_id=VERIFIED_ONE.id)
         del addon.current_version.approved_for_groups
         del addon.promoted
-        assert addon.promoted == {
-            'category': VERIFIED_ONE.api_name, 'apps': [
-                app.short for app in APP_USAGE]}
+        assert addon.promoted == promoted
 
-        # Specify one application for the group.
-        promoted.update(application_id=amo.ANDROID.id)
+    def test_promoted_theme(self):
+        addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        # default case - no group so return None.
+        assert addon.promoted is None
+
+        featured_collection, _ = Collection.objects.get_or_create(
+            id=settings.COLLECTION_FEATURED_THEMES_ID)
+        featured_collection.add_addon(addon)
         del addon.promoted
-        assert addon.promoted == {
-            'category': VERIFIED_ONE.api_name, 'apps': [amo.ANDROID.short]
-        }
+        # it's in the collection, so is now promoted.
+        promoted = addon.promoted
+        assert promoted
+        assert promoted.addon == addon
+        assert promoted.group_id == RECOMMENDED.id
+        assert promoted.application_id is None
+
+        featured_collection.remove_addon(addon)
+        del addon.promoted
+        # but not when it's removed.
+        assert addon.promoted is None
 
     @patch('olympia.amo.tasks.sync_object_to_basket')
     def test_addon_field_changes_not_synced_to_basket(

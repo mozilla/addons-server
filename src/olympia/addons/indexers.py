@@ -271,8 +271,8 @@ class AddonIndexer(BaseSearchIndexer):
                     'promoted': {
                         'type': 'object',
                         'properties': {
-                            'category': {'type': 'keyword'},
-                            'applications': {'type': 'byte'}
+                            'group_id': {'type': 'byte'},
+                            'application_id': {'type': 'byte'}
                         }
                     },
                     'ratings': {
@@ -430,6 +430,12 @@ class AddonIndexer(BaseSearchIndexer):
         data['previews'] = [{'id': preview.id, 'modified': preview.modified,
                              'sizes': preview.sizes}
                             for preview in obj.current_previews]
+
+        data['promoted'] = {
+            'application_id': obj.promoted.application_id,
+            'group_id': obj.promoted.group_id,
+        } if obj.promoted else None
+
         data['ratings'] = {
             'average': obj.average_rating,
             'count': obj.total_ratings,

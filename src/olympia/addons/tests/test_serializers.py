@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.conf import settings
 from django.test.utils import override_settings
 from django.utils.translation import override
 
@@ -21,8 +22,10 @@ from olympia.amo.tests import (
     ESTestCase, TestCase, addon_factory, collection_factory, file_factory,
     user_factory, version_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
+from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import WebextPermission
 from olympia.versions.models import (
     ApplicationsVersions, AppVersion, License, VersionPreview)
@@ -284,7 +287,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
         assert result['weekly_downloads'] == self.addon.weekly_downloads
-        assert result['promoted'] == self.addon.promoted
+        assert result['promoted'] is None
 
         return result
 
@@ -470,6 +473,31 @@ class AddonSerializerOutputTestMixin(object):
         assert self.addon.is_recommended
         result = self.serialize()
         assert result['is_recommended'] is True
+
+    def test_promoted(self):
+        # With a promoted extension.
+        self.addon = addon_factory(recommended=True)
+
+        result = self.serialize()
+        promoted = result['promoted']
+        assert promoted['category'] == RECOMMENDED.api_name
+        assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
+
+        # With a specific application.
+        self.addon.promotedaddon.update(application_id=amo.FIREFOX.id)
+        result = self.serialize()
+        assert result['promoted']['apps'] == [amo.FIREFOX.short]
+
+        # With a recommended theme.
+        self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        featured_collection, _ = Collection.objects.get_or_create(
+            id=settings.COLLECTION_FEATURED_THEMES_ID)
+        featured_collection.add_addon(self.addon)
+
+        result = self.serialize()
+        promoted = result['promoted']
+        assert promoted['category'] == RECOMMENDED.api_name
+        assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
     def test_translations(self):
         translated_descriptions = {

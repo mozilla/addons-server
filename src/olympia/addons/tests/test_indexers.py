@@ -2,14 +2,18 @@
 from itertools import chain
 from unittest import mock
 
+from django.conf import settings
+
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, Preview, attach_tags, attach_translations)
 from olympia.amo.models import SearchMixin
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase, file_factory
+from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
+from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.files.models import WebextPermission
 from olympia.versions.compare import version_int
@@ -26,7 +30,7 @@ class TestAddonIndexer(TestCase):
         'average_daily_users', 'bayesian_rating', 'contributions', 'created',
         'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type', 'id',
         'is_disabled', 'is_experimental', 'is_recommended', 'last_updated',
-        'modified', 'promoted', 'requires_payment', 'slug', 'status', 'type',
+        'modified', 'requires_payment', 'slug', 'status', 'type',
         'weekly_downloads',
     ]
 
@@ -51,7 +55,8 @@ class TestAddonIndexer(TestCase):
         complex_fields = [
             'app', 'boost', 'category', 'colors', 'current_version',
             'description', 'has_eula', 'has_privacy_policy', 'listed_authors',
-            'name', 'platforms', 'previews', 'ratings', 'summary', 'tags',
+            'name', 'platforms', 'previews', 'promoted', 'ratings', 'summary',
+            'tags',
         ]
 
         # Fields that need to be present in the mapping, but might be skipped
@@ -63,7 +68,7 @@ class TestAddonIndexer(TestCase):
         _indexed_translated_fields = ('name', 'description', 'summary')
         analyzer_fields = list(chain.from_iterable(
             [['%s_l10n_%s' % (field, lang) for lang, analyzer
-             in SEARCH_LANGUAGE_TO_ANALYZER.items()]
+              in SEARCH_LANGUAGE_TO_ANALYZER.items()]
              for field in _indexed_translated_fields]))
 
         # It'd be annoying to hardcode `analyzer_fields`, so we generate it,
@@ -445,6 +450,33 @@ class TestAddonIndexer(TestCase):
         assert extracted['id'] == self.addon.pk
         assert extracted['previews'] == []
         assert extracted['colors'] is None
+
+    def test_extract_promoted(self):
+        # Non-promoted returns None.
+        extracted = self._extract()
+        assert not extracted['promoted']
+
+        # Promoted extension.
+        self.addon = addon_factory(recommended=True)
+        extracted = self._extract()
+        assert extracted['promoted']
+        assert extracted['promoted']['application_id'] is None
+        assert extracted['promoted']['group_id'] == RECOMMENDED.id
+
+        # Specific application.
+        self.addon.promotedaddon.update(application_id=amo.FIREFOX.id)
+        extracted = self._extract()
+        assert extracted['promoted']['application_id'] is amo.FIREFOX.id
+
+        # Promoted theme.
+        self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        featured_collection, _ = Collection.objects.get_or_create(
+            id=settings.COLLECTION_FEATURED_THEMES_ID)
+        featured_collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['promoted']
+        assert extracted['promoted']['application_id'] is None
+        assert extracted['promoted']['group_id'] == RECOMMENDED.id
 
     @mock.patch('olympia.addons.indexers.create_chunked_tasks_signatures')
     def test_reindex_tasks_group(self, create_chunked_tasks_signatures_mock):
