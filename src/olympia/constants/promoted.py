@@ -56,7 +56,6 @@ VERIFIED_ONE = PromotedClass(
     search_ranking_bump=500,  # TODO: confirm this bump
     warning=False,
     pre_review=True,
-    admin_review=True,
     badged=True,
     autograph_signing_state='sponsored',
 )

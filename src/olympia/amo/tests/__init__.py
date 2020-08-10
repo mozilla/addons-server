@@ -593,8 +593,10 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             addon, RECOMMENDED, approve_version=approve_version)
 
     def make_addon_promoted(self, addon, group, approve_version=False):
-        PromotedAddon.objects.update_or_create(
+        _, created = PromotedAddon.objects.update_or_create(
             addon=addon, defaults={'group_id': group.id})
+        if not created:
+            addon.promotedaddon.reload()
         if approve_version:
             PromotedApproval.objects.create(
                 version=addon.current_version, group_id=group.id)
