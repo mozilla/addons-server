@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-10 17:46+0000\n"
+"PO-Revision-Date: 2020-08-11 10:49+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -923,21 +923,17 @@ msgstr "Økt(er) tilbakestilt for brukar {user}."
 msgid "User {user} throttled for scope \"{0}\""
 msgstr "Brukar {user} avgrensa frå å nå «{0}»"
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "{addon} {version} innhald avvist."
+msgstr "{addon} {version} avslag på innhald planlagt."
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Innhald avvist"
+msgstr "Avslag på innhald planlagt"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} avvist."
+msgstr "{addon} {version} avslag planlagt."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Frist for ventande avslag"
+msgstr "Avslag planlagt"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1363,9 +1359,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Promoter"
+msgstr "Ikkje promotert"
 
 msgid "Recommended"
 msgstr "Tilrådde"
