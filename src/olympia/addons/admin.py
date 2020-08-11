@@ -135,7 +135,7 @@ class AddonAdmin(admin.ModelAdmin):
     list_filter = ('type', 'status')
     search_fields = ('id', '^guid', '^slug')
     inlines = (AddonUserInline, FileInline)
-    readonly_fields = ('id', 'created', 'status_with_admin_manage_link',
+    readonly_fields = ('id', 'created',
                        'average_rating', 'bayesian_rating', 'guid',
                        'total_ratings_link', 'text_ratings_count',
                        'weekly_downloads', 'average_daily_users')
@@ -144,7 +144,7 @@ class AddonAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('id', 'created', 'name', 'slug', 'guid',
                        'default_locale', 'type',
-                       'status', 'status_with_admin_manage_link'),
+                       'status'),
         }),
         ('Details', {
             'fields': ('summary', 'description', 'homepage', 'eula',
@@ -201,16 +201,6 @@ class AddonAdmin(admin.ModelAdmin):
         return format_html('&nbsp;|&nbsp;'.join(links))
 
     reviewer_links.short_description = _(u'Reviewer links')
-
-    def status_with_admin_manage_link(self, obj):
-        # We don't want admins to be able to change the status without logging
-        # that it happened. So, for now, instead of letting them change the
-        # status in the django admin, display it as readonly and link to the
-        # zadmin manage page, which does implement the logging part (and more).
-        # https://github.com/mozilla/addons-server/issues/7268
-        link = reverse('zadmin.addon_manage', args=(obj.slug,))
-        return format_html(u'<a href="{}">{}</a>',
-                           link, obj.get_status_display())
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         lookup_field = Addon.get_lookup_field(object_id)

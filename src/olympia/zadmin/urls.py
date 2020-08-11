@@ -5,7 +5,6 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 
 from olympia.accounts.utils import redirect_for_login
-from olympia.addons.urls import ADDON_ID
 
 from . import views
 
@@ -31,8 +30,6 @@ urlpatterns = [
     # AMO stuff.
     url(r'^$', views.index, name='zadmin.index'),
     url(r'^models$', lambda r: redirect('admin:index'), name='zadmin.home'),
-    url(r'^addon/manage/%s/$' % ADDON_ID,
-        views.addon_manage, name='zadmin.addon_manage'),
     url(r'^addon/recalc-hash/(?P<file_id>\d+)/', views.recalc_hash,
         name='zadmin.recalc_hash'),
     url(r'^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),

@@ -15,7 +15,7 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase, user_factory, version_factory
+from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
@@ -222,79 +222,6 @@ class TestAddonAdmin(TestCase):
         assert rows.length == 1
         assert rows.find('a').attr('href') == (
             '/en-US/admin/models/addons/addon/3615/change/')
-
-
-class TestAddonManagement(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        super(TestAddonManagement, self).setUp()
-        self.addon = Addon.objects.get(pk=3615)
-        self.url = reverse('zadmin.addon_manage', args=[self.addon.slug])
-        self.client.login(email='admin@mozilla.com')
-
-    def test_can_manage_unlisted_addons(self):
-        """Unlisted addons can be managed too."""
-        self.make_addon_unlisted(self.addon)
-        assert self.client.get(self.url).status_code == 200
-
-    def test_addon_mixed_channels(self):
-        first_version = self.addon.current_version
-        second_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-
-        first_expected_review_link = reverse(
-            'reviewers.review', args=(self.addon.slug,))
-        elms = doc('a[href="%s"]' % first_expected_review_link)
-        assert len(elms) == 1
-        assert elms[0].attrib['title'] == str(first_version.pk)
-        assert elms[0].text == first_version.version
-
-        second_expected_review_link = reverse(
-            'reviewers.review', args=('unlisted', self.addon.slug,))
-        elms = doc('a[href="%s"]' % second_expected_review_link)
-        assert len(elms) == 1
-        assert elms[0].attrib['title'] == str(second_version.pk)
-        assert elms[0].text == second_version.version
-
-    def _form_data(self, data=None):
-        initial_data = {
-            'status': '4',
-            'form-0-status': '4',
-            'form-0-id': '67442',
-            'form-TOTAL_FORMS': '1',
-            'form-INITIAL_FORMS': '1',
-        }
-        if data:
-            initial_data.update(data)
-        return initial_data
-
-    def test_addon_status_change(self):
-        data = self._form_data({'status': '3'})
-        r = self.client.post(self.url, data, follow=True)
-        assert r.status_code == 200
-        addon = Addon.objects.get(pk=3615)
-        assert addon.status == 3
-
-    def test_addon_file_status_change(self):
-        data = self._form_data({'form-0-status': '1'})
-        r = self.client.post(self.url, data, follow=True)
-        assert r.status_code == 200
-        file = File.objects.get(pk=67442)
-        assert file.status == 1
-
-    def test_addon_deleted_file_status_change(self):
-        file = File.objects.get(pk=67442)
-        file.version.update(deleted=True)
-        data = self._form_data({'form-0-status': '1'})
-        r = self.client.post(self.url, data, follow=True)
-        # Form errors are silently suppressed.
-        assert r.status_code == 200
-        # But no change.
-        assert file.status == 4
 
 
 class TestRecalculateHash(TestCase):
