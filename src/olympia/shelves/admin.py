@@ -1,7 +1,6 @@
 from django.contrib import admin
-from django.db.models import F
 
-from .forms import ShelfForm
+from olympia.shelves.forms import ShelfForm
 
 
 class ShelfAdmin(admin.ModelAdmin):
@@ -15,4 +14,4 @@ class ShelfManagementAdmin(admin.ModelAdmin):
     list_display_links = ('shelf',)
     list_editable = ('position', 'enabled')
     actions = ['delete_selected']
-    ordering = [F('position').asc(nulls_last=True)]
+    ordering = ('position',)
