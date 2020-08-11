@@ -34,6 +34,7 @@ from olympia.versions.models import (
 class AddonSerializerOutputTestMixin(object):
     """Mixin containing tests to execute on both the regular and the ES Addon
     serializer."""
+
     def setUp(self):
         super(AddonSerializerOutputTestMixin, self).setUp()
         self.request = APIRequestFactory().get('/')
@@ -489,7 +490,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['promoted']['apps'] == [amo.FIREFOX.short]
 
         # With a recommended theme.
-        self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.addon.promotedaddon.delete()
+        self.addon.update(type=amo.ADDON_STATICTHEME)
         featured_collection, _ = Collection.objects.get_or_create(
             id=settings.COLLECTION_FEATURED_THEMES_ID)
         featured_collection.add_addon(self.addon)
@@ -1271,7 +1273,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert result['is_recommended'] == self.addon.is_recommended is False
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
-        assert result['promoted'] == self.addon.promoted
+        assert result['promoted'] == self.addon.promoted is None
 
     def test_translations(self):
         translated_name = {

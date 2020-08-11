@@ -23,7 +23,6 @@ from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission
-from olympia.constants.applications import APP_USAGE
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
     NOT_PROMOTED, RECOMMENDED, SPOTLIGHT, VERIFIED_ONE)
@@ -1718,6 +1717,8 @@ class TestAddonModels(TestCase):
         assert promoted.addon == addon
         assert promoted.group_id == RECOMMENDED.id
         assert promoted.application_id is None
+        # This PromotedAddon instance is not a saved one.
+        assert promoted.id is None
 
         featured_collection.remove_addon(addon)
         del addon.promoted
