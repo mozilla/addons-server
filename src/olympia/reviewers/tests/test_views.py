@@ -8228,7 +8228,7 @@ class TestMadQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout('Flagged for Human Review', tab_position=2,
-                                total_addons=2, total_queues=3, per_page=1)
+                                total_addons=3, total_queues=3, per_page=1)
 
     def test_queue_layout_admin(self):
         # Admins should see the extra add-on that needs admin content review.
