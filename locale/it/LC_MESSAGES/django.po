@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-08 15:22+0000\n"
+"PO-Revision-Date: 2020-08-08 15:24+0000\n"
 "Last-Translator: Francesco Lodolo <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -1418,7 +1418,7 @@ msgid "Android"
 msgstr "Android"
 
 msgid "Not Promoted"
-msgstr ""
+msgstr "Non consigliato"
 
 msgid "Recommended"
 msgstr "Consigliato"
@@ -6462,7 +6462,7 @@ msgid "result state"
 msgstr "stato del risultato"
 
 msgid "all but results matching only this rule"
-msgstr ""
+msgstr "tutti i risultati eccetto quelli che corrispondono a questa regola"
 
 msgid "presence of a version"
 msgstr "presenza di una versione"
@@ -6588,13 +6588,13 @@ msgid "by Source"
 msgstr "per fonte"
 
 msgid "by Medium"
-msgstr ""
+msgstr "per mezzo"
 
 msgid "by Content"
-msgstr ""
+msgstr "per contenuto"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "per campagna"
 
 msgid "Daily Users"
 msgstr "Utenti per giorno"
@@ -6695,10 +6695,10 @@ msgid "Application usage by Date"
 msgstr "Utilizzo applicazione per data"
 
 msgid "Download campaigns by Date"
-msgstr ""
+msgstr "Campagne dei download per data"
 
 msgid "Download contents by Date"
-msgstr ""
+msgstr "Contenuti dei download per data"
 
 msgid "User countries by Date"
 msgstr "Nazioni degli utenti per data"
@@ -6720,13 +6720,13 @@ msgid "User languages by Date"
 msgstr "Lingua dell’utente per data"
 
 msgid "Download mediums by Date"
-msgstr ""
+msgstr "Mezzi dei download per data"
 
 msgid "Platform usage by Date"
 msgstr "utilizzo sulle diverse piattaforme per data"
 
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr ""
+msgstr "<b>{0}</b> download settimanali"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> download"

@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-06-11 13:14+0000\n"
-"Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2020-08-08 15:19+0000\n"
+"Last-Translator: Francesco Lodolo <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -503,27 +503,27 @@ msgstr "Sorgenti download da {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Mediums, last {0} days"
-msgstr ""
+msgstr "Mezzi dei download, ultimi {0} giorni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Mediums from {0} to {1}"
-msgstr ""
+msgstr "Mezzi dei download da {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
-msgstr ""
+msgstr "Contenuti dei download, ultimi {0} giorni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Contents from {0} to {1}"
-msgstr ""
+msgstr "Contenuti dei download da {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
-msgstr ""
+msgstr "Campagne dei download, ultimi {0} giorni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Campaigns from {0} to {1}"
-msgstr ""
+msgstr "Campagne dei download da {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
