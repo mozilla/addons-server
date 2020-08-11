@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-11 10:49+0000\n"
+"PO-Revision-Date: 2020-08-11 12:20+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5063,9 +5063,8 @@ msgid "Media enhancers for Firefox"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Explore extensions"
-msgstr "Utvidingar"
+msgstr "Utforsk utvidingar"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
@@ -5530,9 +5529,8 @@ msgstr "Slett vurderinga"
 msgid "Needs Admin Content Review"
 msgstr "Treng administrativ innhaldsvurdering"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Treng administrativ kodevurdering"
+msgstr "Treng administrativ vurdering av statisk tema"
 
 msgid "Requires Restart"
 msgstr "Krev omstart"
@@ -5831,9 +5829,8 @@ msgstr "Synlegheit"
 msgid "Visible"
 msgstr "Synleg"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Nedlastingar"
+msgstr "Nedlastingar per veke"
 
 msgid "Average Daily Users"
 msgstr "Daglege brukarar i gjennomsnitt"
@@ -6494,9 +6491,8 @@ msgstr "etter kjelde"
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "Innhald"
+msgstr "etter innhald"
 
 msgid "by Campaign"
 msgstr ""
@@ -6632,9 +6628,8 @@ msgstr "Nedlasta etter dato"
 msgid "Platform usage by Date"
 msgstr "Plattformbruk etter dato"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> Nedlastingar"
+msgstr "<b>{0}</b> nedlastingar per veke"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Nedlastingar"
