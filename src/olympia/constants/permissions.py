@@ -160,6 +160,9 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'discovery.add_shelfmodule': DISCOVERY_EDIT,
     'discovery.change_shelfmodule': DISCOVERY_EDIT,
     'discovery.delete_shelfmodule': DISCOVERY_EDIT,
+    'discovery.add_promotedaddon': DISCOVERY_EDIT,
+    'discovery.change_promotedaddon': DISCOVERY_EDIT,
+    'discovery.delete_promotedaddon': DISCOVERY_EDIT,
 
     'files.change_file': ADMIN_ADVANCED,
 
@@ -174,9 +177,6 @@ DJANGO_PERMISSIONS_MAPPING.update({
     'hero.change_secondaryheromodule': DISCOVERY_EDIT,
     'hero.delete_secondaryheromodule': DISCOVERY_EDIT,
 
-    'promoted.add_promotedaddon': DISCOVERY_EDIT,
-    'promoted.change_promotedaddon': DISCOVERY_EDIT,
-    'promoted.delete_promotedaddon': DISCOVERY_EDIT,
     'promoted.view_promotedapproval': DISCOVERY_EDIT,
     'promoted.delete_promotedapproval': DISCOVERY_EDIT,
 

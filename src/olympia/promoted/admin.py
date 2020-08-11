@@ -3,12 +3,11 @@ from django.db.models import Prefetch
 from django.forms.models import modelformset_factory
 
 from olympia.addons.models import Addon
-from olympia.discovery.admin import SlugOrPkChoiceField
 from olympia.hero.admin import PrimaryHeroInline
 from olympia.versions.models import Version
 
 from .forms import AdminBasePromotedApprovalFormSet
-from .models import PromotedAddon, PromotedApproval
+from .models import PromotedApproval
 
 
 class PromotedApprovalInlineChecks(admin.checks.InlineModelAdminChecks):
@@ -58,7 +57,6 @@ class PromotedApprovalInline(admin.TabularInline):
         return qs
 
 
-@admin.register(PromotedAddon)
 class PromotedAddonAdmin(admin.ModelAdmin):
     list_display = (
         'addon__name', 'group_id', 'application_id', 'is_approved',
@@ -107,6 +105,8 @@ class PromotedAddonAdmin(admin.ModelAdmin):
     primary_hero_shelf.boolean = True
 
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
+        from olympia.discovery.admin import SlugOrPkChoiceField
+
         if db_field.name == 'addon':
             kwargs['widget'] = admin.widgets.ForeignKeyRawIdWidget(
                 db_field.remote_field, self.admin_site,
