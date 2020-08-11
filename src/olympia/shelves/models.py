@@ -26,3 +26,15 @@ class Shelf(ModelBase):
 
     def __str__(self):
         return self.title
+
+
+class ShelfManagement(ModelBase):
+    shelf = models.OneToOneField(Shelf, on_delete=models.CASCADE)
+    enabled = models.BooleanField(default=False)
+    position = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return str(self.shelf)
+
+    class Meta:
+        verbose_name_plural = 'homepage shelves'

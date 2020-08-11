@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 
 from olympia.amo.tests import TestCase
-from ..forms import ShelfForm
+from olympia.shelves.forms import ShelfForm
 
 
 class TestShelfForm(TestCase):
@@ -85,7 +85,7 @@ class TestShelfForm(TestCase):
         with self.assertRaises(ValidationError) as exc:
             form.clean()
         assert exc.exception.message == (
-            u'Check criteria - No data found')
+            'Check criteria - No data found')
 
     def test_clean_col_returns_404(self):
         data = {
@@ -97,7 +97,7 @@ class TestShelfForm(TestCase):
         with self.assertRaises(ValidationError) as exc:
             form.clean()
         assert exc.exception.message == (
-            u'Check criteria - No data found')
+            'Check criteria - No data found')
 
     def test_clean_returns_not_200(self):
         data = {
@@ -109,7 +109,7 @@ class TestShelfForm(TestCase):
         with self.assertRaises(ValidationError) as exc:
             form.clean()
         assert exc.exception.message == (
-            u'Check criteria - Invalid \"sort\" parameter.')
+            'Check criteria - Invalid \"sort\" parameter.')
 
     def test_clean_returns_empty(self):
         data = {
@@ -121,4 +121,4 @@ class TestShelfForm(TestCase):
         with self.assertRaises(ValidationError) as exc:
             form.clean()
         assert exc.exception.message == (
-            u'Check criteria parameters - e.g., "type"')
+            'Check criteria parameters - e.g., "type"')
