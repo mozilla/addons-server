@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-11 13:32+0000\n"
+"PO-Revision-Date: 2020-08-11 13:40+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1366,10 +1366,10 @@ msgid "Recommended"
 msgstr "Tilrådde"
 
 msgid "Verified - Tier 1"
-msgstr ""
+msgstr "Stadfest - nivå 1"
 
 msgid "Verified - Tier 2"
-msgstr ""
+msgstr "Stadfest - nivå 2"
 
 msgid "Line"
 msgstr "Linje"
@@ -1785,7 +1785,7 @@ msgid "The developer API key of a coauthor was found in the submitted file. To p
 msgstr "Utviklar-API-nøkkelen til ein medopphavsmann vart funnen i den innsende fila. For å beskytte tillegget ditt vil nøkkelen bli kalla tilbake."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozilla tryggingsmelding: AMO API-innloggingsopplysningane dine har blitt kalla tilbake"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -6595,9 +6595,8 @@ msgstr "Dette dashbordet er for tida <b>privat</b>."
 msgid "Application usage by Date"
 msgstr "Programbruk etter dato"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Last ned kjeldekode etter dato"
+msgstr "Last ned kampanjar etter dato"
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6620,9 +6619,8 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Brukarspråk etter dato"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Nedlasta etter dato"
+msgstr "Last ned medium etter dato"
 
 msgid "Platform usage by Date"
 msgstr "Plattformbruk etter dato"
