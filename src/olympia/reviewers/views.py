@@ -671,8 +671,7 @@ def review(request, addon, channel=None):
         channel == amo.RELEASE_CHANNEL_LISTED and
         addon.current_version and addon.current_version.was_auto_approved)
     is_static_theme = addon.type == amo.ADDON_STATICTHEME
-    is_recommendable = addon.promoted_group(
-        group=RECOMMENDED, currently_approved=False)
+    promoted_group = addon.promoted_group(currently_approved=False)
 
     # Are we looking at an unlisted review page, or (weirdly) the listed
     # review page of an unlisted-only add-on?
@@ -751,7 +750,7 @@ def review(request, addon, channel=None):
 
         if content_review:
             queue_type = 'content_review'
-        elif is_recommendable:
+        elif promoted_group == RECOMMENDED:
             queue_type = 'recommended'
         elif was_auto_approved:
             queue_type = 'auto_approved'
@@ -905,7 +904,7 @@ def review(request, addon, channel=None):
         form=form,
         has_versions_pending_rejection=has_versions_pending_rejection,
         is_admin=is_admin,
-        is_recommendable=is_recommendable,
+        promoted_group=promoted_group,
         name_translations=name_translations,
         now=datetime.now(),
         num_pages=num_pages,

@@ -20,7 +20,8 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
-from olympia.constants.promoted import LINE, RECOMMENDED, STRATEGIC
+from olympia.constants.promoted import (
+    LINE, RECOMMENDED, SPOTLIGHT, STRATEGIC, VERIFIED_ONE)
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (
     _get_recommendation_data, _get_signature_details)
@@ -451,6 +452,48 @@ class TestReviewHelper(TestReviewHelperBase):
             file_status=amo.STATUS_APPROVED,
             content_review=True).keys()) == expected
 
+    def test_actions_promoted_admin_review_needs_admin_permission(self):
+        # Having Addons:PostReview or Addons:Review or Addons:RecommendedReview
+        # is not enough to review promoted addons that are in a group that is
+        # admin_review=True.
+        self.make_addon_promoted(self.addon, LINE)
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        expected = ['super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED).keys()) == expected
+
+        self.grant_permission(self.request.user, 'Addons:Review')
+        expected = ['super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # only for groups that are admin_review though
+        self.make_addon_promoted(self.addon, VERIFIED_ONE)
+        expected = ['public', 'reject', 'reject_multiple_versions',
+                    'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # change it back to an admin_review group
+        self.make_addon_promoted(self.addon, SPOTLIGHT)
+
+        self.grant_permission(self.request.user, 'Addons:RecommendedReview')
+        expected = ['super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # you need admin review permission
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        expected = ['public', 'reject', 'reject_multiple_versions',
+                    'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
     def test_actions_unlisted(self):
         # Just regular review permissions don't let you do much on an unlisted
         # review page.
@@ -468,6 +511,12 @@ class TestReviewHelper(TestReviewHelperBase):
             'public', 'reject_multiple_versions',
             'block_multiple_versions', 'confirm_multiple_versions',
             'reply', 'super', 'comment']
+        assert list(self.get_review_actions(
+            addon_status=amo.STATUS_NULL,
+            file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
+
+        # unlisted shouldn't be affected by promoted group status either
+        self.make_addon_promoted(self.addon, LINE)
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_NULL,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected

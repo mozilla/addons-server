@@ -339,8 +339,7 @@ class ReviewHelper(object):
         version_is_unlisted = (
             self.version and
             self.version.channel == amo.RELEASE_CHANNEL_UNLISTED)
-        is_recommendable = self.addon.promoted_group(
-            group=RECOMMENDED, currently_approved=False)
+        promoted_group = self.addon.promoted_group(currently_approved=False)
 
         # Default permissions / admin needed values if it's just a regular
         # code review, nothing fancy.
@@ -352,16 +351,18 @@ class ReviewHelper(object):
         is_admin_needed_post_review = is_admin_needed
 
         # More complex/specific cases.
-        if is_recommendable:
+        if promoted_group == RECOMMENDED:
             permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
             permission_post_review = permission
-        elif self.content_review:
-            is_admin_needed = self.addon.needs_admin_content_review
-            permission = amo.permissions.ADDONS_CONTENT_REVIEW
         elif version_is_unlisted:
             is_admin_needed = self.addon.needs_admin_code_review
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED
             permission_post_review = permission
+        elif promoted_group.admin_review:
+            is_admin_needed = is_admin_needed_post_review = True
+        elif self.content_review:
+            is_admin_needed = self.addon.needs_admin_content_review
+            permission = amo.permissions.ADDONS_CONTENT_REVIEW
         elif self.addon.type == amo.ADDON_STATICTHEME:
             is_admin_needed = self.addon.needs_admin_theme_review
             permission = amo.permissions.STATIC_THEMES_REVIEW
@@ -384,7 +385,7 @@ class ReviewHelper(object):
         # Is the current user a reviewer for this kind of add-on ?
         is_reviewer = acl.is_reviewer(request, self.addon)
 
-        # Is the current user an appropriate reviewer, noy only for this kind
+        # Is the current user an appropriate reviewer, not only for this kind
         # of add-on, but also for the state the add-on is in ? (Allows more
         # impactful actions).
         is_appropriate_reviewer = acl.action_allowed_user(
@@ -419,7 +420,7 @@ class ReviewHelper(object):
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
         elif (self.content_review or
-                is_recommendable or
+                promoted_group.pre_review or
                 self.addon.type == amo.ADDON_STATICTHEME):
             can_reject_multiple = (
                 addon_is_valid_and_version_is_listed and
@@ -547,7 +548,8 @@ class ReviewHelper(object):
             'minimal': True,
             'available': (
                 self.version is not None and
-                is_reviewer
+                is_reviewer and
+                (not promoted_group.admin_review or is_appropriate_reviewer)
             )
         }
         actions['super'] = {
