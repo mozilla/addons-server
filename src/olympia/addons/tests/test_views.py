@@ -1893,7 +1893,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         includes = set((
             'default_locale', 'icon_type', 'id', 'is_recommended', 'modified',
-            'name_translations', 'slug', 'type'))
+            'name_translations', 'promoted', 'slug', 'type'))
 
         assert set(qset.to_dict()['_source']['includes']) == includes
 

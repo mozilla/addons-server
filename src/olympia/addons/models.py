@@ -1284,16 +1284,18 @@ class Addon(OnChangeMixin, ModelBase):
         return (
             self.current_version and self.current_version.is_restart_required)
 
-    @cached_property
-    def is_recommended(self):
+    def _is_recommended_theme(self):
         from olympia.bandwagon.models import CollectionAddon
 
-        recommended = bool(self.promoted_group(group=RECOMMENDED))
-        if not recommended and self.type == amo.ADDON_STATICTHEME:
-            recommended = CollectionAddon.objects.filter(
-                collection_id=settings.COLLECTION_FEATURED_THEMES_ID,
-                addon=self).exists()
-        return recommended
+        return (self.type == amo.ADDON_STATICTHEME and
+                CollectionAddon.objects.filter(
+                    collection_id=settings.COLLECTION_FEATURED_THEMES_ID,
+                    addon=self).exists())
+
+    @cached_property
+    def is_recommended(self):
+        return (bool(self.promoted_group(group=RECOMMENDED)) or
+                self._is_recommended_theme())
 
     def promoted_group(self, *, group=None, application=None,
                        currently_approved=True):
@@ -1325,6 +1327,19 @@ class Addon(OnChangeMixin, ModelBase):
         is_promoted = group_match and app_match and (
             not currently_approved or promoted.is_addon_currently_promoted)
         return promoted.group if is_promoted else NOT_PROMOTED
+
+    @cached_property
+    def promoted(self):
+        promoted_group = self.promoted_group()
+        if promoted_group:
+            return self.promotedaddon
+        else:
+            from olympia.promoted.models import PromotedAddon
+
+            if self._is_recommended_theme():
+                return PromotedAddon(addon=self, application_id=None,
+                                     group_id=RECOMMENDED.id)
+        return None
 
     @cached_property
     def tags_partitioned_by_developer(self):

@@ -8,6 +8,7 @@ _PromotedSuperClass = namedtuple(
         # Be careful when adding to this list to adjust defaults too.
         'id',
         'name',
+        'api_name',
         'search_ranking_bump',
         'warning',
         'pre_review',
@@ -38,11 +39,13 @@ class PromotedClass(_PromotedSuperClass):
 NOT_PROMOTED = PromotedClass(
     id=0,
     name=_('Not Promoted'),
+    api_name='not_promoted',
 )
 
 RECOMMENDED = PromotedClass(
     id=1,
     name=_('Recommended'),
+    api_name='recommended',
     search_ranking_bump=1000,  # TODO: confirm this bump
     warning=False,
     pre_review=True,
@@ -53,6 +56,7 @@ RECOMMENDED = PromotedClass(
 VERIFIED_ONE = PromotedClass(
     id=2,
     name=_('Verified - Tier 1'),
+    api_name='sponsored',
     search_ranking_bump=500,  # TODO: confirm this bump
     warning=False,
     pre_review=True,
@@ -63,6 +67,7 @@ VERIFIED_ONE = PromotedClass(
 VERIFIED_TWO = PromotedClass(
     id=3,
     name=_('Verified - Tier 2'),
+    api_name='verified',
     warning=False,
     pre_review=True,
     badged=True,
@@ -72,6 +77,7 @@ VERIFIED_TWO = PromotedClass(
 LINE = PromotedClass(
     id=4,
     name=_('Line'),
+    api_name='line',
     warning=False,
     pre_review=True,
     admin_review=True,
@@ -82,6 +88,7 @@ LINE = PromotedClass(
 SPOTLIGHT = PromotedClass(
     id=5,
     name=_('Spotlight'),
+    api_name='spotlight',
     warning=False,
     pre_review=True,
     admin_review=True,
@@ -90,6 +97,7 @@ SPOTLIGHT = PromotedClass(
 STRATEGIC = PromotedClass(
     id=6,
     name=_('Strategic'),
+    api_name='strategic',
     admin_review=True,
 )
 

@@ -107,7 +107,7 @@ for autocomplete though, there are a couple key differences:
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
-    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``is_recommended``, ``name``, ``type`` and ``url`` fields are supported though.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``is_recommended``, ``name``, ``promoted``, ``type`` and ``url`` fields are supported though.
 
 
 ------
@@ -175,6 +175,9 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string previews[].image_url: The URL (including a cachebusting query string) to the preview image.
     :>json int previews[].thumbnail_size[]: width, height dimensions of of the preview image thumbnail.
     :>json string previews[].thumbnail_url: The URL (including a cachebusting query string) to the preview image thumbnail.
+    :>json object|null promoted: Object holding promotion information about the add-on. Null if the add-on is not currently promoted.
+    :>json string promoted.category: The name of the :ref:`promoted category <addon-detail-promoted-category>` for the add-on.
+    :>json array promoted.apps[]: Array of the :ref:`applications <addon-detail-application>` for which the add-on is promoted.
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
     :>json object ratings: Object holding ratings summary information about the add-on.
     :>json int ratings.count: The total number of user ratings for the add-on.
@@ -264,6 +267,20 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
        statictheme  Theme (Static Theme)
     ==============  ==========================================================
 
+.. _addon-detail-promoted-category:
+
+    Possible values for the ``promoted.category`` field:
+
+    ==============  ==========================================================
+             Value  Description
+    ==============  ==========================================================
+              line  Line category
+       recommended  Recommended category
+         sponsored  Sponsored category
+         spotlight  Spotlight category
+         strategic  Strategic category
+          verified  Verified category
+    ==============  ==========================================================
 
 -----------------------------
 Add-on and Version Submission

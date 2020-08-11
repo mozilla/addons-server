@@ -21,7 +21,9 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.constants.promoted import PROMOTED_GROUPS
 from olympia.files.models import File
+from olympia.promoted.models import PromotedAddon
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
@@ -290,6 +292,25 @@ class AddonDeveloperSerializer(BaseUserSerializer):
         read_only_fields = fields
 
 
+class PromotedAddonSerializer(serializers.ModelSerializer):
+    GROUP_CHOICES = [(group.id, group.api_name) for group in PROMOTED_GROUPS]
+    apps = serializers.SerializerMethodField()
+    category = ReverseChoiceField(
+        choices=GROUP_CHOICES, source='group_id')
+
+    class Meta:
+        model = PromotedAddon
+        fields = (
+            'apps',
+            'category',
+        )
+
+    def get_apps(self, obj):
+        application = amo.APP_IDS.get(obj.application_id)
+        return [application.short] if application else (
+            [app.short for app in amo.APP_USAGE])
+
+
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
@@ -307,6 +328,7 @@ class AddonSerializer(serializers.ModelSerializer):
     is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField()
     previews = PreviewSerializer(many=True, source='current_previews')
+    promoted = PromotedAddonSerializer()
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
@@ -346,6 +368,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'last_updated',
             'name',
             'previews',
+            'promoted',
             'ratings',
             'ratings_url',
             'requires_payment',
@@ -631,6 +654,11 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             for preview_data in data.get('previews', [])
         ]
 
+        promoted = data.get('promoted', None)
+        obj.promoted = PromotedAddon(
+            addon=obj, application_id=promoted['application_id'],
+            group_id=promoted['group_id']) if promoted else None
+
         ratings = data.get('ratings', {})
         obj.average_rating = ratings.get('average')
         obj.total_ratings = ratings.get('count')
@@ -654,7 +682,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
     class Meta(ESAddonSerializer.Meta):
-        fields = ('id', 'icon_url', 'is_recommended', 'name', 'type', 'url')
+        fields = ('id', 'icon_url', 'is_recommended',
+                  'name', 'promoted', 'type', 'url')
         model = Addon
 
     def get_url(self, obj):
