@@ -39,9 +39,9 @@ ptyprocess==0.6.0 \
 pickleshare==0.7.5 \
     --hash=sha256:9649af414d74d4df115d5d718f82acb59c9d418196b7b4290ed47a12ce62df56 \
     --hash=sha256:87683d47965c1da65cdacaf31c8441d12b8044cdec9aca500cd78fc2c683afca
-prompt_toolkit==3.0.5 \
-    --hash=sha256:563d1a4140b63ff9dd587bda9557cffb2fe73650205ab6f4383092fb882e7dc8 \
-    --hash=sha256:df7e9e63aea609b1da3a65641ceaf5bc7d05e0a04de5bd45d05dbeffbabf9e04
+prompt_toolkit==3.0.6 \
+    --hash=sha256:683397077a64cd1f750b71c05afcfc6612a7300cb6932666531e5a54f38ea564 \
+    --hash=sha256:7630ab85a23302839a0f26b31cc24f518e6155dea1ed395ea61b42c45941b6a6
 wcwidth==0.2.5 \
     --hash=sha256:beb4802a9cebb9144e99086eff703a642a13d6a0052920003a230f3294bbe784 \
     --hash=sha256:c4d647b99872929fdb7bdcaa4fbe7f01413ed3d98077df798530e5b04f116c83
