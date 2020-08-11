@@ -1,6 +1,10 @@
+from rest_framework.reverse import reverse as drf_reverse
+
+from django.conf import settings
+
 from olympia.amo.tests import TestCase
-from olympia.shelves.models import Shelf, ShelfManagement
-from olympia.shelves.serializers import ShelfSerializer, HomepageSerializer
+from olympia.shelves.models import Shelf
+from olympia.shelves.serializers import ShelfSerializer
 
 
 class TestShelvesSerializer(TestCase):
@@ -8,28 +12,16 @@ class TestShelvesSerializer(TestCase):
         self.shelf = Shelf.objects.create(
             title='Populâr themes',
             endpoint='search',
-            criteria='?sort=users&type=statictheme')
-        self.hpshelf = ShelfManagement.objects.create(
-            position=0,
-            shelf=self.shelf,
-            enabled=False)
+            criteria='?sort=users&type=statictheme',
+            footer_text='See more populâr themes')
 
     def test_shelf_serializer(self):
         serializer = ShelfSerializer(instance=self.shelf)
         assert serializer.data == {
-            'id': self.shelf.id,
             'title': 'Populâr themes',
-            'endpoint': 'search',
-            'criteria': '?sort=users&type=statictheme',
-            'footer_text': '',
+            'url': (settings.INTERNAL_SITE_URL +
+                    drf_reverse('v4:addon-search') +
+                    self.shelf.criteria),
+            'footer_text': 'See more populâr themes',
             'footer_pathname': '',
-        }
-
-    def test_homepage_serializer(self):
-        serializer = HomepageSerializer(instance=self.hpshelf)
-        serialized_shelf = ShelfSerializer(self.shelf).data
-        assert serializer.data == {
-            'shelf': serialized_shelf,
-            'position': 0,
-            'enabled': False
         }

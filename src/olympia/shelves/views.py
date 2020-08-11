@@ -1,13 +1,12 @@
-from rest_framework import permissions, viewsets
+from rest_framework import viewsets
 
-from olympia.shelves.models import ShelfManagement
-from olympia.shelves.serializers import HomepageSerializer
+from olympia.shelves.models import Shelf
+from olympia.shelves.serializers import ShelfSerializer
 
 
 class ShelfViewSet(viewsets.ModelViewSet):
-    queryset = ShelfManagement.objects.all()
-    permission_classes = [
-        permissions.AllowAny
-    ]
+    queryset = Shelf.objects.filter(
+        shelfmanagement__enabled=True).order_by('shelfmanagement__position')
+    permission_classes = []
 
-    serializer_class = HomepageSerializer
+    serializer_class = ShelfSerializer
