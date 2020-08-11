@@ -6,10 +6,12 @@ from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.db.models import Prefetch
 
+from olympia import promoted
 from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.admin import SecondaryHeroAdmin, PrimaryHeroImageAdmin
 from olympia.hero.models import SecondaryHero, PrimaryHeroImage
+from olympia.promoted.admin import PromotedAddonAdmin
 from olympia.shelves.admin import ShelfAdmin, ShelfManagementAdmin
 from olympia.shelves.models import Shelf, ShelfManagement
 
@@ -139,6 +141,14 @@ class HomepageShelves(ShelfManagement):
         verbose_name_plural = 'homepage shelves'
 
 
+class PromotedAddon(promoted.models.PromotedAddon):
+    """Just a proxy class to have all the hero related objects in one
+    place under Discovery in django admin."""
+
+    class Meta:
+        proxy = True
+
+
 class PrimaryHeroImageUpload(PrimaryHeroImage):
     """Just a proxy class to have all the hero related objects in one
     place under Discovery in django admin."""
@@ -165,6 +175,7 @@ class ShelfModule(Shelf):
 
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
 admin.site.register(HomepageShelves, ShelfManagementAdmin)
+admin.site.register(PromotedAddon, PromotedAddonAdmin)
 admin.site.register(PrimaryHeroImageUpload, PrimaryHeroImageAdmin)
 admin.site.register(SecondaryHeroShelf, SecondaryHeroAdmin)
 admin.site.register(ShelfModule, ShelfAdmin)

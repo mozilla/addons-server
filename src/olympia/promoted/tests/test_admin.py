@@ -11,8 +11,8 @@ from olympia.promoted.models import PromotedAddon, PromotedApproval
 class TestPromotedAddonAdmin(TestCase):
     def setUp(self):
         self.list_url = reverse(
-            'admin:promoted_promotedaddon_changelist')
-        self.detail_url_name = 'admin:promoted_promotedaddon_change'
+            'admin:discovery_promotedaddon_changelist')
+        self.detail_url_name = 'admin:discovery_promotedaddon_change'
 
     def _get_approval_form(self, item, approvals):
         count = str(len(approvals))
@@ -59,7 +59,7 @@ class TestPromotedAddonAdmin(TestCase):
         # Use django's reverse, since that's what the admin will use. Using our
         # own would fail the assertion because of the locale that gets added.
         self.list_url = django_reverse(
-            'admin:promoted_promotedaddon_changelist')
+            'admin:discovery_promotedaddon_changelist')
         assert self.list_url in response.content.decode('utf-8')
 
     def test_can_list_with_discovery_edit_permission(self):
@@ -248,7 +248,7 @@ class TestPromotedAddonAdmin(TestCase):
         item = PromotedAddon.objects.create(addon=addon)
         PromotedApproval.objects.create(version=addon.current_version)
         delete_url = reverse(
-            'admin:promoted_promotedaddon_delete', args=(item.pk,)
+            'admin:discovery_promotedaddon_delete', args=(item.pk,)
         )
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -274,7 +274,7 @@ class TestPromotedAddonAdmin(TestCase):
         item = PromotedAddon.objects.create(addon=addon)
         PromotedApproval.objects.create(version=addon.current_version)
         delete_url = reverse(
-            'admin:promoted_promotedaddon_delete', args=(item.pk,)
+            'admin:discovery_promotedaddon_delete', args=(item.pk,)
         )
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
@@ -294,7 +294,7 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_can_add_with_discovery_edit_permission(self):
         addon = addon_factory()
-        add_url = reverse('admin:promoted_promotedaddon_add')
+        add_url = reverse('admin:discovery_promotedaddon_add')
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
@@ -322,7 +322,7 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_can_add_when_existing_approval(self):
         addon = addon_factory(name='unattached')
-        add_url = reverse('admin:promoted_promotedaddon_add')
+        add_url = reverse('admin:discovery_promotedaddon_add')
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Discovery:Edit')
@@ -352,7 +352,7 @@ class TestPromotedAddonAdmin(TestCase):
 
     def test_cannot_add_without_discovery_edit_permission(self):
         addon = addon_factory()
-        add_url = reverse('admin:promoted_promotedaddon_add')
+        add_url = reverse('admin:discovery_promotedaddon_add')
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.client.login(email=user.email)
@@ -450,7 +450,7 @@ class TestPromotedAddonAdmin(TestCase):
         PromotedApproval.objects.create(version=addon.current_version)
         shelf = PrimaryHero.objects.create(promoted_addon=item)
         delete_url = reverse(
-            'admin:promoted_promotedaddon_delete', args=(item.pk,)
+            'admin:discovery_promotedaddon_delete', args=(item.pk,)
         )
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
