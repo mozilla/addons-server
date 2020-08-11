@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-08 21:02+0000\n"
+"PO-Revision-Date: 2020-08-11 19:01+0000\n"
 "Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -490,7 +490,7 @@ msgstr "Estado de cierre de sesión"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s está en un envío pendiente"
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
@@ -498,7 +498,7 @@ msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Bloque con GUID %(guid)s no encontrado"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
@@ -1672,7 +1672,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Ahora, los complementos de Thunderbird y SeaMonkey te aparecerán en addons.thunderbird.net. Puedes utilizar la misma cuenta para actualizarlos en el nuebo sitio web."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Los complementos de Open Search {blog_link_open}ya no son compatibles con AMO {blog_link_close}. Puedes {doc_link_open}crear una extensión de búsqueda en su lugar {doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Este slug se utiliza. Por favor, elige otro."
@@ -3237,7 +3237,7 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
@@ -4257,9 +4257,8 @@ msgstr "Personaliza tu YouTube {start_sub_heading}con {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Reproduce vídeos en una ventana flotante, ve anuncios únicamente en los canales suscritos, haz capturas de pantalla de vídeo y mucho más."
+msgstr "Personaliza YouTube a tu gusto. Reproduzca videos en una ventana emergente, sólo vea anuncios dentro de canales suscritos, tome videos de capturas de pantalla y mucho más."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4283,9 +4282,8 @@ msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Trabaja de forma más rápida {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Use mouse gestures to get to things done quicker."
-msgstr "Sácale partido a los distintos gestos de ratón para hacerlo todo de forma más rápida."
+msgstr "Use los gestos del mouse para hacer las cosas más rápido."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4448,9 +4446,8 @@ msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Evita los redireccionamientos y rastreadores {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr "Elimina el redireccionamiento de páginas y los parámetros de seguimiento URL."
+msgstr "Elimina las páginas de redireccionamiento y los parámetros de seguimiento de URL de los enlaces web. Funciona de forma automática."
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4465,9 +4462,8 @@ msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_head
 msgstr "Descarga vídeos de YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Descarga contenido de vídeo y/o audio."
+msgstr "Descarga videos y/o audio de YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4518,9 +4514,8 @@ msgstr "Disfruta de música de diferentes partes del mundo {start_sub_heading}co
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Accede a más de 30.000 estaciones de radio de todo el mundo."
+msgstr "Disfrute de la música de más de 30.000 estaciones de radio de todo el mundo."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4545,9 +4540,8 @@ msgstr "Navega de forma segura {start_sub_heading}con {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr "Navega por la versión segura de un sitio web si está disponible."
+msgstr "Navega automáticamente a la versión segura de un sitio web si está disponible."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
