@@ -8235,4 +8235,4 @@ class TestMadQueue(QueueTest):
         self.grant_permission(self.user, 'Reviews:Admin')
 
         self._test_queue_layout('Flagged for Human Review', tab_position=2,
-                                total_addons=3, total_queues=4, per_page=1)
+                                total_addons=4, total_queues=4, per_page=1)
