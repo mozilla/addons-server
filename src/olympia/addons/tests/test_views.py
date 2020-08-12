@@ -26,6 +26,7 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.promoted import RECOMMENDED
 from olympia.discovery.models import DiscoveryItem
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
@@ -1778,8 +1779,8 @@ class TestAddonSearchView(ESTestCase):
         assert ids == [addon1.id, addon2.id, addon3.id, addon4.id, addon5.id]
 
         # Now made some of the add-ons recommended
-        self.make_addon_recommended(addon2, approve_version=True)
-        self.make_addon_recommended(addon4, approve_version=True)
+        self.make_addon_promoted(addon2, RECOMMENDED, approve_version=True)
+        self.make_addon_promoted(addon4, RECOMMENDED, approve_version=True)
         self.refresh()
 
         data = self.perform_search(self.url)  # No query.

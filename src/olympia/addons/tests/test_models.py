@@ -1555,7 +1555,7 @@ class TestAddonModels(TestCase):
         # default case - no discovery item so not recommended
         assert not addon.is_recommended
 
-        self.make_addon_recommended(addon, approve_version=True)
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         del addon.is_recommended
         # It's a recommended group promoted addon;
         # and the latest version is approved too.
@@ -1588,7 +1588,7 @@ class TestAddonModels(TestCase):
         # default case - no discovery item so not recommended
         assert not addon.is_recommended
 
-        self.make_addon_recommended(addon, approve_version=True)
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         del addon.is_recommended
         # It's a recommended group promoted addon;
         # and the latest version is approved too.

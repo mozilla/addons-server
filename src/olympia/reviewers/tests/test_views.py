@@ -1768,7 +1768,7 @@ class TestRecommendedQueue(QueueTest):
         self.expected_addons = self.get_expected_addons_by_names(
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'])
         for addon in self.expected_addons:
-            self.make_addon_recommended(addon)
+            self.make_addon_promoted(addon, RECOMMENDED)
         self.url = reverse('reviewers.queue_recommended')
 
     def test_results(self):
@@ -3124,7 +3124,7 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_need_recommended_reviewer_for_recommendable_addon(self):
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4500,7 +4500,7 @@ class TestReview(ReviewBase):
     def test_approve_recommended_addon(self, mock_sign_file):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
         response = self.client.post(self.url, {
             'action': 'public',

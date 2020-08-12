@@ -251,7 +251,7 @@ class TestRecommendedQueue(TestQueue):
         addon = create_search_ext(
             name, version, amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
             channel=self.channel, **kw)
-        self.make_addon_recommended(addon)
+        self.make_addon_promoted(addon, RECOMMENDED)
         return addon
 
     def test_new_submissions_and_updates_present(self):

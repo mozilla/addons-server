@@ -686,7 +686,7 @@ class TestVersion(TestCase):
     def test_can_be_disabled_and_deleted_querycount(self):
         addon = Addon.objects.get(id=3615)
         version_factory(addon=addon)
-        self.make_addon_recommended(addon, approve_version=True)
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         addon.reload()
         with self.assertNumQueries(3):
             # 1. check the addon's promoted group
