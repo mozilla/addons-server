@@ -575,9 +575,9 @@ function initVersions() {
       );
       $('.version_id', this).val(version.id);
       $('.current-version-warning', this).toggle(is_current);
-      // If the version is recommended and current, show the warning and
+      // If the version is promoted and current, show the warning and
       // hide the whole form.
-      $('.recommended-version-warning', this).toggle(!can_be_disabled);
+      $('.promoted-version-warning', this).toggle(!can_be_disabled);
       $('form', this).toggle(can_be_disabled);
       return true;
     },
