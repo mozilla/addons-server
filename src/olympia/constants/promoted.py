@@ -55,7 +55,7 @@ RECOMMENDED = PromotedClass(
 
 VERIFIED_ONE = PromotedClass(
     id=2,
-    name=_('Verified - Tier 1'),
+    name=_('Sponsored'),
     api_name='sponsored',
     search_ranking_bump=500,  # TODO: confirm this bump
     warning=False,
@@ -66,7 +66,7 @@ VERIFIED_ONE = PromotedClass(
 
 VERIFIED_TWO = PromotedClass(
     id=3,
-    name=_('Verified - Tier 2'),
+    name=_('Verified'),
     api_name='verified',
     warning=False,
     pre_review=True,
@@ -76,7 +76,7 @@ VERIFIED_TWO = PromotedClass(
 
 LINE = PromotedClass(
     id=4,
-    name=_('Line'),
+    name=_('By Firefox'),
     api_name='line',
     warning=False,
     pre_review=True,
