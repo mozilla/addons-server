@@ -14,13 +14,16 @@ class ShelfSerializer(serializers.ModelSerializer):
         fields = ['title', 'url', 'footer_text', 'footer_pathname']
 
     def get_url(self, obj):
-        baseUrl = settings.INTERNAL_SITE_URL
         if obj.endpoint == 'search':
-            api = drf_reverse('v4:addon-search')
-            url = baseUrl + api + obj.criteria
+            api = drf_reverse(
+                'addon-search',
+                request=self.context.get('request'))
+            url = api + obj.criteria
         elif obj.endpoint == 'collections':
-            api = drf_reverse('v4:collection-addon-list', kwargs={
-                'user_pk': settings.TASK_USER_ID,
-                'collection_slug': obj.criteria})
-            url = baseUrl + api
+            url = drf_reverse(
+                'collection-addon-list',
+                request=self.context.get('request'),
+                kwargs={
+                    'user_pk': settings.TASK_USER_ID,
+                    'collection_slug': obj.criteria})
         return url
