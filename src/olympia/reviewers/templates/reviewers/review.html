@@ -83,11 +83,12 @@
     </div>
   </div>
 
-  {% if promoted_group == amo.promoted.RECOMMENDED %}
+  {% if promoted_group %}
     {# Technically could be just pending approval, but that doesn't matter for this message. #}
-    <p class="is_recommendable">
-      {{ _('This is a recommended extension.') }}
-      {% if not action_allowed(amo.permissions.ADDONS_RECOMMENDED_REVIEW) %}
+    <p class="is_promoted">
+      {{ _('This is a %s add-on.' % promoted_group.name) }}
+      {% if (promoted_group == amo.promoted.RECOMMENDED and not action_allowed(amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
+            (promoted_group.admin_review and not action_allowed(amo.permissions.REVIEWS_ADMIN)) %}
         {{ _("You don't have permission to review it.") }}
       {% endif %}
     </p>
