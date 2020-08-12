@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-06 17:27+0000\n"
+"PO-Revision-Date: 2020-08-12 12:03+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2276,16 +2276,16 @@ msgid "Check this box if this add-on's core features require some form of paymen
 msgstr ""
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "ఈ పొడగింతకు చెల్లింపు, స్వేచ్ఛాయుతంకాని సేవలు లేక సాఫ్ట్‌వేరు, లేదా అదనపు హార్డ్‌వేరు తప్పనిసరిగా కావాలి."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "ఈ పొడగింతకు అదనపు చెల్లింపులు, చెల్లించిన సేవలు లేక సాఫ్ట్‌వేరు, లేదా అదనపు హార్డ్‌వేరు అవసరం లేదు."
 
 msgid "Categories"
 msgstr "వర్గాలు"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "వాడుకరులు పొడగింతలను చూడటానికి వర్గాలు అనేవి ప్రధాన మార్గం. ఎక్కువ ప్రాచుర్యానికి మీ పొడగింత చేసే పనికి తగ్గ వర్గాలను ఎంచుకోండి."
 
 msgid "Email"
 msgstr "ఇమెయిల్"
@@ -2398,7 +2398,7 @@ msgid "Add a Screenshot..."
 msgstr "తెరపట్టుని జోడించండి..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG, JPG లకు తోడ్పాటు ఉంది, PNG సిఫార్సు చేయబడింది. తెరపట్టుల కోసం గరిష్ఠ, సిఫార్సు చేయబడిన పరిమాణం 2400x1800 పిక్సెళ్ళు."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "కనిష్ఠ పరిమాణం 1000x750, 4:3 నిష్పత్తి అవసరం."
@@ -2481,7 +2481,7 @@ msgid "Actions"
 msgstr "చర్యలు"
 
 msgid "Resume the submission process for this add-on"
-msgstr ""
+msgstr "ఈ పొడగింత సమర్పణ ప్రక్రియను కొనసాగించండి"
 
 msgid "Resume"
 msgstr "తిరిగికొనసాగించు"
