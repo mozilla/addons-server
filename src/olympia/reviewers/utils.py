@@ -244,14 +244,14 @@ class ContentReviewTable(AutoApprovedTable):
 class ScannersReviewTable(AutoApprovedTable):
     listed_text = _('Listed versions needing human review ({0})')
     unlisted_text = _('Unlisted versions needing human review ({0})')
-    filters = {'needs_human_review': True}
+    filter_listed = filter_unlisted = {'needs_human_review': True}
 
     def render_addon_name(self, record):
         rval = [jinja2.escape(record.name)]
 
         listed_versions = record.versions.filter(
             channel=amo.RELEASE_CHANNEL_LISTED,
-            **self.filters,
+            **self.filter_listed,
         ).count()
         if listed_versions:
             url = reverse('reviewers.review', args=[record.slug])
@@ -264,7 +264,7 @@ class ScannersReviewTable(AutoApprovedTable):
 
         unlisted_versions = record.versions.filter(
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            **self.filters,
+            **self.filter_unlisted,
         ).count()
         if unlisted_versions:
             url = reverse('reviewers.review', args=['unlisted', record.slug])
@@ -281,7 +281,9 @@ class ScannersReviewTable(AutoApprovedTable):
 class MadReviewTable(ScannersReviewTable):
     listed_text = _('Listed version')
     unlisted_text = _('Unlisted versions ({0})')
-    filters = {'reviewerflags__needs_human_review_by_mad': True}
+    filter_listed = {'addon___current_version__reviewerflags__needs_human_review_by_mad': (  # noqa
+        True)}
+    filter_unlisted = {'reviewerflags__needs_human_review_by_mad': True}
 
 
 class ReviewHelper(object):

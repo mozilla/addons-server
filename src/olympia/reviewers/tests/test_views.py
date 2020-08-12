@@ -8110,30 +8110,59 @@ class TestMadQueue(QueueTest):
         )
 
         # Mixed listed and unlisted versions. Should not show up in queue.
-        mixed_addon = addon_factory()
+        mixed_addon = addon_factory(created=self.days_ago(5))
         VersionReviewerFlags.objects.create(
             version=version_factory(addon=mixed_addon,
-                                    channel=amo.RELEASE_CHANNEL_UNLISTED,
-                                    created=self.days_ago(5)),
+                                    channel=amo.RELEASE_CHANNEL_UNLISTED),
             needs_human_review_by_mad=False
         )
         VersionReviewerFlags.objects.create(
             version=version_factory(addon=mixed_addon,
-                                    channel=amo.RELEASE_CHANNEL_LISTED,
-                                    created=self.days_ago(3)),
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
             needs_human_review_by_mad=True
         )
         VersionReviewerFlags.objects.create(
             version=version_factory(addon=mixed_addon,
-                                    channel=amo.RELEASE_CHANNEL_LISTED,
-                                    created=self.days_ago(1)),
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
             needs_human_review_by_mad=False
         )
 
-        self.expected_addons = [listed_addon, unlisted_addon]
+        # Mixed listed and unlisted versions. Only the unlisted should show up.
+        mixed_addon2 = addon_factory(created=self.days_ago(4))
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon2,
+                                    channel=amo.RELEASE_CHANNEL_UNLISTED),
+            needs_human_review_by_mad=True
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon2,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=True
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon2,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=False
+        )
+
+        # Mixed listed and unlisted versions. Both channels should show up.
+        mixed_addon_both = addon_factory(created=self.days_ago(2))
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon_both,
+                                    channel=amo.RELEASE_CHANNEL_UNLISTED),
+            needs_human_review_by_mad=True
+        )
+        VersionReviewerFlags.objects.create(
+            version=version_factory(addon=mixed_addon_both,
+                                    channel=amo.RELEASE_CHANNEL_LISTED),
+            needs_human_review_by_mad=True
+        )
+
+        self.expected_addons = [listed_addon, unlisted_addon, mixed_addon2,
+                                mixed_addon_both]
 
     def test_results(self):
-        with self.assertNumQueries(30):
+        with self.assertNumQueries(34):
             # 30 queries is a lot. Some of them are unfortunately scaling with
             # the number of add-ons in the queue.
             # - 2 for savepoints because we're in tests
@@ -8149,6 +8178,10 @@ class TestMadQueue(QueueTest):
             # - 2 queries for first add-on to get listed/unlisted count of
             #     versions with needs human review flag
             # - 2 queries for second add-on to get listed/unlisted count of
+            #     versions with needs human review flag
+            # - 2 queries for third add-on to get listed/unlisted count of
+            #     versions with needs human review flag
+            # - 2 queries for fourth add-on to get listed/unlisted count of
             #     versions with needs human review flag
             response = self.client.get(self.url)
         assert response.status_code == 200
@@ -8166,23 +8199,27 @@ class TestMadQueue(QueueTest):
             'Unlisted versions (2)',
             reverse('reviewers.review', args=['unlisted', addon.slug])
         ))
+        # mixed, only unlisted flagged
+        addon = self.expected_addons[2]
+        expected.append((
+            'Unlisted versions (1)',
+            reverse('reviewers.review', args=['unlisted', addon.slug])
+        ))
+        # mixed, both channels flagged
+        addon = self.expected_addons[3]
+        expected.append((
+            'Listed version',
+            reverse('reviewers.review', args=[addon.slug])
+        ))
+        expected.append((
+            'Unlisted versions (1)',
+            reverse('reviewers.review', args=['unlisted', addon.slug])
+        ))
 
         doc = pq(response.content)
         links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
         assert len(links) == len(expected)
         check_links(expected, links, verify=False)
-
-        # Make sure the query count is stable
-        VersionReviewerFlags.objects.create(
-            version=version_factory(addon=addon_factory()),
-            needs_human_review_by_mad=True
-        )
-        VersionReviewerFlags.objects.create(
-            version=version_factory(addon=addon_factory()),
-            needs_human_review_by_mad=True
-        )
-        with self.assertNumQueries(30):
-            response = self.client.get(self.url)
 
     def test_only_viewable_with_specific_permission(self):
         # Post-review reviewer does not have access.
@@ -8199,11 +8236,11 @@ class TestMadQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout('Flagged for Human Review', tab_position=2,
-                                total_addons=2, total_queues=3, per_page=1)
+                                total_addons=4, total_queues=3, per_page=1)
 
     def test_queue_layout_admin(self):
         # Admins should see the extra add-on that needs admin content review.
         self.grant_permission(self.user, 'Reviews:Admin')
 
         self._test_queue_layout('Flagged for Human Review', tab_position=2,
-                                total_addons=3, total_queues=4, per_page=1)
+                                total_addons=5, total_queues=4, per_page=1)
