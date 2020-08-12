@@ -6,7 +6,6 @@ import django_tables2 as tables
 import olympia.core.logger
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
-from django.db.models import Q
 from django.template import loader
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _, ungettext
@@ -245,14 +244,14 @@ class ContentReviewTable(AutoApprovedTable):
 class ScannersReviewTable(AutoApprovedTable):
     listed_text = _('Listed versions needing human review ({0})')
     unlisted_text = _('Unlisted versions needing human review ({0})')
-    filter_listed = filter_unlisted = Q(needs_human_review=True)
+    filter_listed = filter_unlisted = {'needs_human_review': True}
 
     def render_addon_name(self, record):
         rval = [jinja2.escape(record.name)]
 
         listed_versions = record.versions.filter(
-            Q(channel=amo.RELEASE_CHANNEL_LISTED),
-            self.filter_listed,
+            channel=amo.RELEASE_CHANNEL_LISTED,
+            **self.filter_listed,
         ).count()
         if listed_versions:
             url = reverse('reviewers.review', args=[record.slug])
@@ -264,8 +263,8 @@ class ScannersReviewTable(AutoApprovedTable):
             )
 
         unlisted_versions = record.versions.filter(
-            Q(channel=amo.RELEASE_CHANNEL_UNLISTED),
-            self.filter_unlisted,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            **self.filter_unlisted,
         ).count()
         if unlisted_versions:
             url = reverse('reviewers.review', args=['unlisted', record.slug])
@@ -282,9 +281,9 @@ class ScannersReviewTable(AutoApprovedTable):
 class MadReviewTable(ScannersReviewTable):
     listed_text = _('Listed version')
     unlisted_text = _('Unlisted versions ({0})')
-    filter_listed = Q(addon___current_version__reviewerflags__needs_human_review_by_mad=(  # noqa
-        True))
-    filter_unlisted = Q(reviewerflags__needs_human_review_by_mad=True)
+    filter_listed = {'addon___current_version__reviewerflags__needs_human_review_by_mad': (  # noqa
+        True)}
+    filter_unlisted = {'reviewerflags__needs_human_review_by_mad': True}
 
 
 class ReviewHelper(object):
