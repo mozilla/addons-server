@@ -26,7 +26,7 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.promoted import RECOMMENDED
+from olympia.constants.promoted import LINE, RECOMMENDED
 from olympia.discovery.models import DiscoveryItem
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
@@ -1232,6 +1232,61 @@ class TestAddonSearchView(ESTestCase):
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'recommended': 'true'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
+
+    def test_filter_by_promoted(self):
+        av_min, _ = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='59.0.0')
+        av_max, _ = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='60.0.0')
+
+        addon = addon_factory(name='Recomménded Addôn')
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.ANDROID.id, version=addon.current_version,
+            min=av_min, max=av_max)
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
+
+        addon2 = addon_factory(name='Fírefox Addôn')
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.ANDROID.id, version=addon2.current_version,
+            min=av_min, max=av_max)
+        self.make_addon_promoted(addon2, RECOMMENDED, approve_version=True)
+        addon2.promotedaddon.update(application_id=amo.FIREFOX.id)
+
+        addon3 = addon_factory(slug='other-addon', name=u'Other Addôn')
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.ANDROID.id, version=addon3.current_version,
+            min=av_min, max=av_max)
+        self.reindex(Addon)
+
+        data = self.perform_search(
+            self.url, {'promoted': 'recommended'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert {res['id'] for res in data['results']} == {addon.pk, addon2.pk}
+
+        # And with app filtering too
+        data = self.perform_search(
+            self.url, {'promoted': 'recommended', 'app': 'firefox'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert {res['id'] for res in data['results']} == {addon.pk, addon2.pk}
+
+        # That will filter out for a different app
+        data = self.perform_search(
+            self.url, {'promoted': 'recommended', 'app': 'android'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
+        # addon2 was for Firefox only
+
+        # test with other other promotions
+        self.make_addon_promoted(addon, LINE, approve_version=True)
+        self.reindex(Addon)
+        data = self.perform_search(
+            self.url, {'promoted': 'line', 'app': 'firefox'})
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk

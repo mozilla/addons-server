@@ -13,6 +13,7 @@ from rest_framework import serializers
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
+from olympia.constants.promoted import RECOMMENDED, VERIFIED_TWO
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
@@ -906,6 +907,24 @@ class TestSearchParameterFilter(FilterTestsBase):
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'recommended': 'false'})
         assert context.exception.detail == ['Invalid "recommended" parameter.']
+
+    def test_search_by_promoted(self):
+        qs = self._filter(data={'promoted': 'recommended'})
+        filter_ = qs['query']['bool']['filter']
+        assert {'term': {'promoted.group_id': RECOMMENDED.id}} in filter_
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'promoted': 'foo'})
+        assert context.exception.detail == ['Invalid "promoted" parameter.']
+
+        qs = self._filter(data={'promoted': 'verified', 'app': 'firefox'})
+        filter_ = qs['query']['bool']['filter']
+        assert {'term': {'promoted.group_id': VERIFIED_TWO.id}} in filter_
+        app_filter = filter_[-1]['bool']['should']
+        assert {'term': {'promoted.application_id': amo.FIREFOX.id}} in (
+            app_filter)
+        assert {'bool': {'must_not': [
+            {'exists': {'field': 'promoted.application_id'}}]}} in app_filter
 
     def test_search_by_color(self):
         qs = self._filter(data={'color': 'ff0000'})
