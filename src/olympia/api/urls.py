@@ -32,6 +32,7 @@ v4_api_urls = [
     url(r'^', include('olympia.signing.urls')),
     url(r'^', include(amo_api_patterns)),
     url(r'^scanner/', include('olympia.scanners.api_urls')),
+    url(r'^shelves/', include('olympia.shelves.urls')),
 ]
 
 urlpatterns = [
