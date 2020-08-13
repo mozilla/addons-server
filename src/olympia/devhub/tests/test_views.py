@@ -532,7 +532,7 @@ class TestHome(TestCase):
             '.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
 
     def test_my_addons_recommended(self):
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         latest_version = self.addon.find_latest_version(
             amo.RELEASE_CHANNEL_LISTED)
         latest_file = latest_version.files.all()[0]
@@ -542,7 +542,7 @@ class TestHome(TestCase):
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                 'Awaiting Review'),
             (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
-                'Approved and recommended'),
+                'Approved and Recommended'),
             (amo.STATUS_DISABLED, amo.STATUS_APPROVED,
                 'Disabled by Mozilla')]
 

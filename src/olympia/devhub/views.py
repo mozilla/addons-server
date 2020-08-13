@@ -1079,12 +1079,14 @@ def version_delete(request, addon_id, addon):
     version = get_object_or_404(addon.versions.all(), pk=version_id)
     if not version.can_be_disabled_and_deleted():
         # Developers shouldn't be able to delete/disable the current version
-        # of an approved add-on.
+        # of a promoted approved add-on.
+        group = addon.promoted_group()
         msg = ugettext(
-            'The latest approved version of this Recommended extension cannot '
+            'The latest approved version of this %s addon cannot '
             'be deleted or disabled because the previous version was not '
-            'approved for recommendation. '
-            'Please contact AMO Admins if you need help with this.')
+            'approved for %s promotion. '
+            'Please contact AMO Admins if you need help with this.') % (
+                group.name, group.name)
         messages.error(request, msg)
     elif 'disable_version' in request.POST:
         messages.success(

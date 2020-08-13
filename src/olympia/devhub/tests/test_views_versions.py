@@ -164,7 +164,7 @@ class TestVersion(TestCase):
     def test_cant_disable_or_delete_current_version_recommended(self):
         # If the add-on is recommended you can't disable or delete the current
         # version.
-        self.make_addon_recommended(self.addon, approve_version=True)
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         assert self.version == self.addon.current_version
         self.client.post(self.delete_url, self.delete_data)
         assert Version.objects.filter(pk=81551).exists()
@@ -186,7 +186,7 @@ class TestVersion(TestCase):
     def test_can_disable_or_delete_current_ver_if_previous_recommended(self):
         # If the add-on is recommended you *can* disable or delete the current
         # version if the previous version is approved for recommendation too.
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         previous_version = self.version
         PromotedApproval.objects.create(
             version=previous_version, group_id=RECOMMENDED.id)
@@ -221,7 +221,7 @@ class TestVersion(TestCase):
     def test_can_still_disable_or_delete_old_version_recommended(self):
         # If the add-on is recommended, you can still disable or delete older
         # versions than the current one.
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         PromotedApproval.objects.create(
             version=self.version, group_id=RECOMMENDED.id)
         version_factory(addon=self.addon, recommendation_approved=True)
@@ -248,7 +248,7 @@ class TestVersion(TestCase):
     def test_can_still_disable_or_delete_current_version_unapproved(self):
         # If the add-on is in recommended group but hasn't got approval yet,
         # then deleting the current version is fine.
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         assert self.version == self.addon.current_version
 
         self.delete_data['disable_version'] = ''
