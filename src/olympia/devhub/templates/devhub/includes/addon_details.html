@@ -6,8 +6,9 @@
     {% set status_text = _('Invisible') %}
     {% set tooltip_text = status_tips['invisible'] %}
   {% else %}
-    {% if addon.is_recommended and addon.status == amo.STATUS_APPROVED %}
-      {% set status_text = _("Approved and recommended") %}
+    {% set promoted_group = addon.promoted_group() %}
+    {% if addon.status == amo.STATUS_APPROVED and promoted_group.badged %}
+      {% set status_text = _('Approved and %s' % promoted_group.name) %}
     {% else %}
       {% set status_text = addon.get_status_display() %}
     {% endif %}

@@ -542,7 +542,7 @@ class TestHome(TestCase):
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                 'Awaiting Review'),
             (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
-                'Approved and recommended'),
+                'Approved and Recommended'),
             (amo.STATUS_DISABLED, amo.STATUS_APPROVED,
                 'Disabled by Mozilla')]
 
