@@ -3123,7 +3123,7 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         assert self.client.head(self.url).status_code == 200
 
-    def test_need_recommended_reviewer_for_recommendable_addon(self):
+    def test_need_correct_reviewer_for_promoted_addon(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.client.get(self.url)
@@ -3135,9 +3135,9 @@ class TestReview(ReviewBase):
         assert choices == expected_choices
 
         doc = pq(response.content)
-        assert doc('.is_recommendable')
-        assert doc('.is_recommendable').text() == (
-            'This is a recommended extension. '
+        assert doc('.is_promoted')
+        assert doc('.is_promoted').text() == (
+            'This is a Recommended add-on. '
             'You don\'t have permission to review it.'
         )
 
@@ -3154,9 +3154,45 @@ class TestReview(ReviewBase):
         assert choices == expected_choices
 
         doc = pq(response.content)
-        assert doc('.is_recommendable')
-        assert doc('.is_recommendable').text() == (
-            'This is a recommended extension.'
+        assert doc('.is_promoted')
+        assert doc('.is_promoted').text() == (
+            'This is a Recommended add-on.'
+        )
+
+        # Change to a different class of promoted addon
+        self.make_addon_promoted(self.addon, SPOTLIGHT)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        choices = list(
+            dict(response.context['form'].fields['action'].choices).keys()
+        )
+        expected_choices = ['super', 'comment']
+        assert choices == expected_choices
+
+        doc = pq(response.content)
+        assert doc('.is_promoted')
+        assert doc('.is_promoted').text() == (
+            'This is a Spotlight add-on. '
+            'You don\'t have permission to review it.'
+        )
+
+        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        choices = list(
+            dict(response.context['form'].fields['action'].choices).keys()
+        )
+        expected_choices = [
+            'public', 'reject', 'reject_multiple_versions', 'reply', 'super',
+            'comment'
+        ]
+        assert choices == expected_choices
+
+        doc = pq(response.content)
+        assert doc('.is_promoted')
+        assert doc('.is_promoted').text() == (
+            'This is a Spotlight add-on.'
         )
 
     def test_not_recommendable(self):
@@ -3164,7 +3200,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('h2.addon').text() == 'Review Public 0.1 (Listed)'
-        assert not doc('.is_recommendable')
+        assert not doc('.is_promoted')
 
     def test_not_flags(self):
         self.addon.current_version.files.update(is_restart_required=False)
