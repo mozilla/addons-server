@@ -588,10 +588,6 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
                 manager='unfiltered_for_relations').all():
             version.update(channel=channel)
 
-    def make_addon_recommended(self, addon, approve_version=False):
-        self.make_addon_promoted(
-            addon, RECOMMENDED, approve_version=approve_version)
-
     def make_addon_promoted(self, addon, group, approve_version=False):
         _, created = PromotedAddon.objects.update_or_create(
             addon=addon, defaults={'group_id': group.id})

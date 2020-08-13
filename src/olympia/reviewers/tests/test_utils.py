@@ -350,7 +350,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # Now make add a recommended promoted addon. The user should lose all
         # approve/reject actions.
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         expected = ['reply', 'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
@@ -410,7 +410,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_recommended(self):
         # Having Addons:PostReview or Addons:Review is not enough to review
         # recommended extensions.
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         self.grant_permission(self.request.user, 'Addons:PostReview')
         expected = ['reply', 'super', 'comment']
         assert list(self.get_review_actions(
@@ -434,7 +434,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_recommended_content_review(self):
         # Having Addons:ContentReview is not enough to content review
         # recommended extensions.
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         self.grant_permission(self.request.user, 'Addons:ContentReview')
         expected = ['reply', 'super', 'comment']
         assert list(self.get_review_actions(
@@ -1975,7 +1975,7 @@ class TestReviewHelper(TestReviewHelperBase):
             reverse('devhub.addons.versions', args=[self.addon.id]))
 
     def test_nominated_to_approved_recommended(self):
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         assert not self.addon.is_recommended
         self.test_nomination_to_public()
         del self.addon.is_recommended
@@ -1992,7 +1992,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.promoted_group() == LINE
 
     def test_approved_update_recommended(self):
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         assert not self.addon.is_recommended
         self.test_public_addon_with_version_awaiting_review_to_public()
         del self.addon.is_recommended
@@ -2171,7 +2171,7 @@ class TestReviewHelperSigning(TestReviewHelperBase):
     def test_nominated_to_public_recommended(self):
         self.setup_data(amo.STATUS_NOMINATED)
 
-        self.make_addon_recommended(self.addon)
+        self.make_addon_promoted(self.addon, RECOMMENDED)
         assert not self.addon.is_recommended
 
         self.helper.handler.approve_latest_version()
