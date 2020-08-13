@@ -6,7 +6,7 @@ from olympia.shelves.models import Shelf, ShelfManagement
 
 class TestShelfViewSet(TestCase):
     def setUp(self):
-        self.url = reverse_ns('shelves-list', api_version='v4')
+        self.url = reverse_ns('shelves-list')
 
     def test_basic(self):
         response = self.client.get(self.url)
