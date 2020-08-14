@@ -538,7 +538,7 @@ class ActivityLog(ModelBase):
                     validation = 'ignored'
 
                 file_ = self.f(u'<a href="{0}">{1}</a> (validation {2})',
-                               reverse('files.list', args=[arg.pk]),
+                               arg.get_url_path(arg.pk),
                                arg.filename,
                                validation)
                 arguments.remove(arg)
