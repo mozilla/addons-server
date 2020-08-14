@@ -9,7 +9,6 @@ from datetime import datetime
 from django.apps import apps
 from django.conf import settings
 from django.db import models
-from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
@@ -538,7 +537,7 @@ class ActivityLog(ModelBase):
                     validation = 'ignored'
 
                 file_ = self.f(u'<a href="{0}">{1}</a> (validation {2})',
-                               reverse('files.list', args=[arg.pk]),
+                               arg.get_url_path(src=None),
                                arg.filename,
                                validation)
                 arguments.remove(arg)
