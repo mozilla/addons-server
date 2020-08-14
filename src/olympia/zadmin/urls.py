@@ -11,10 +11,6 @@ urlpatterns = [
     url(r'^models$', lambda r: redirect('admin:index'), name='zadmin.home'),
     url(r'^addon/recalc-hash/(?P<file_id>\d+)/', views.recalc_hash,
         name='zadmin.recalc_hash'),
-    url(r'^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),
-
-    url(r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
-        views.download_file_upload, name='zadmin.download_file_upload'),
 
     # The Django admin.
     url(r'^models/',
