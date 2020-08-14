@@ -9,7 +9,6 @@ from datetime import datetime
 from django.apps import apps
 from django.conf import settings
 from django.db import models
-from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
