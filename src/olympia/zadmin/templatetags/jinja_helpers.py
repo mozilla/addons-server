@@ -8,8 +8,6 @@ from olympia.zadmin.models import get_config as zadmin_get_config
 def admin_site_links():
     return {
         'addons': [
-            ('Search for add-ons by name or id',
-             reverse('zadmin.addon-search')),
             ('Fake mail', reverse('admin:amo_fakeemail_changelist')),
             ('Replacement Addons', reverse(
                 'admin:addons_replacementaddon_changelist')),

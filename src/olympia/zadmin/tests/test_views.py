@@ -1,36 +1,19 @@
 # -*- coding: utf-8 -*-
 import json
-import os
-
-
-from django.conf import settings
 
 from unittest import mock
 
 from pyquery import PyQuery as pq
 
-import olympia
-
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import urlparams
 from olympia.files.models import File, FileUpload
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
-
-
-SHORT_LIVED_CACHE_PARAMS = settings.CACHES.copy()
-SHORT_LIVED_CACHE_PARAMS['default']['TIMEOUT'] = 2
-
-
-ZADMIN_TEST_FILES = os.path.join(
-    os.path.dirname(olympia.__file__),
-    'zadmin', 'tests', 'resources')
 
 
 class TestHomeAndIndex(TestCase):
@@ -141,89 +124,6 @@ class TestHomeAndIndex(TestCase):
         self.assert3xx(response, '/', status_code=302)
 
 
-class TestLookup(TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestLookup, self).setUp()
-        assert self.client.login(email='admin@mozilla.com')
-        self.user = UserProfile.objects.get(pk=999)
-        self.url = reverse('zadmin.search', args=['users', 'userprofile'])
-
-    def test_logged_out(self):
-        self.client.logout()
-        assert self.client.get('%s?q=admin' % self.url).status_code == 403
-
-    def check_results(self, q, expected):
-        res = self.client.get(urlparams(self.url, q=q))
-        assert res.status_code == 200
-        content = json.loads(res.content)
-        assert len(content) == len(expected)
-        ids = [int(c['value']) for c in content]
-        emails = [u'%s' % c['label'] for c in content]
-        for d in expected:
-            id = d['value']
-            email = u'%s' % d['label']
-            assert id in ids, (
-                'Expected user ID "%s" not found' % id)
-            assert email in emails, (
-                'Expected username "%s" not found' % email)
-
-    def test_lookup_wrong_model(self):
-        self.url = reverse('zadmin.search', args=['doesnt', 'exist'])
-        res = self.client.get(urlparams(self.url, q=''))
-        assert res.status_code == 404
-
-    def test_lookup_empty(self):
-        users = UserProfile.objects.values('id', 'email')
-        self.check_results('', [dict(
-            value=u['id'], label=u['email']) for u in users])
-
-    def test_lookup_by_id(self):
-        self.check_results(self.user.id, [dict(value=self.user.id,
-                                               label=self.user.email)])
-
-    def test_lookup_by_email(self):
-        self.check_results(self.user.email, [dict(value=self.user.id,
-                                                  label=self.user.email)])
-
-    def test_lookup_by_username(self):
-        self.check_results(self.user.username, [dict(value=self.user.id,
-                                                     label=self.user.email)])
-
-
-class TestAddonSearch(amo.tests.ESTestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestAddonSearch, self).setUp()
-        self.reindex(Addon)
-        assert self.client.login(email='admin@mozilla.com')
-        self.url = reverse('zadmin.addon-search')
-
-    def test_lookup_addon(self):
-        res = self.client.get(urlparams(self.url, q='delicious'))
-        # There's only one result, so it should just forward us to that page.
-        assert res.status_code == 302
-
-
-class TestAddonAdmin(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestAddonAdmin, self).setUp()
-        assert self.client.login(email='admin@mozilla.com')
-        self.url = reverse('admin:addons_addon_changelist')
-
-    def test_basic(self):
-        res = self.client.get(self.url)
-        doc = pq(res.content)
-        rows = doc('#result_list tbody tr')
-        assert rows.length == 1
-        assert rows.find('a').attr('href') == (
-            '/en-US/admin/models/addons/addon/3615/change/')
-
-
 class TestRecalculateHash(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
@@ -300,7 +200,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status(
             'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
-        self.assert_status('zadmin.addon-search', 200)
 
     def test_staff_user(self):
         # Staff users have some privileges.
@@ -311,7 +210,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status(
             'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
-        self.assert_status('zadmin.addon-search', 200)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
@@ -319,7 +217,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 403)
         self.assert_status(
             'zadmin.download_file_upload', 403, uuid=self.FILE_ID)
-        self.assert_status('zadmin.addon-search', 403)
         # Anonymous users should also get a 403.
         self.client.logout()
         self.assertLoginRedirects(
