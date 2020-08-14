@@ -9,9 +9,8 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, user_factory
-from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
-from olympia.files.models import File, FileUpload
+from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
