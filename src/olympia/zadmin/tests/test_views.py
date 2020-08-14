@@ -9,9 +9,8 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, user_factory
-from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
-from olympia.files.models import File, FileUpload
+from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -160,30 +159,6 @@ class TestRecalculateHash(TestCase):
         assert r.status_code == 405  # GET out of here
 
 
-class TestFileDownload(TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestFileDownload, self).setUp()
-
-        assert self.client.login(email='admin@mozilla.com')
-
-        self.file = open(get_image_path('animated.png'), 'rb')
-        resp = self.client.post(reverse('devhub.upload'),
-                                {'upload': self.file})
-        assert resp.status_code == 302
-
-        self.upload = FileUpload.objects.get()
-        self.url = reverse(
-            'zadmin.download_file_upload', args=[self.upload.uuid.hex])
-
-    def test_download(self):
-        """Test that downloading file_upload objects works."""
-        resp = self.client.get(self.url)
-        assert resp.status_code == 200
-        assert resp.content == self.file.read()
-
-
 class TestPerms(TestCase):
     fixtures = ['base/users']
 
@@ -198,8 +173,6 @@ class TestPerms(TestCase):
         # Admin should see views with Django's perm decorator and our own.
         assert self.client.login(email='admin@mozilla.com')
         self.assert_status('zadmin.index', 200)
-        self.assert_status(
-            'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
 
     def test_staff_user(self):
         # Staff users have some privileges.
@@ -208,15 +181,11 @@ class TestPerms(TestCase):
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 200)
-        self.assert_status(
-            'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 403)
-        self.assert_status(
-            'zadmin.download_file_upload', 403, uuid=self.FILE_ID)
         # Anonymous users should also get a 403.
         self.client.logout()
         self.assertLoginRedirects(
