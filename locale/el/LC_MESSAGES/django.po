@@ -6701,9 +6701,8 @@ msgstr "Χρήση εφαρμογής κατά ημερομηνία"
 msgid "Download campaigns by Date"
 msgstr "Λήψη πηγαίου κώδικα κατά ημερομηνία"
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Λήψη πηγαίου κώδικα κατά ημερομηνία"
+msgstr "Λήψη περιεχομένων κατά ημερομηνία"
 
 msgid "User countries by Date"
 msgstr "Χώρες χρηστών κατά ημερομηνία"

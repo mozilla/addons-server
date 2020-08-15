@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-06-14 21:27+0000\n"
+"PO-Revision-Date: 2020-08-15 12:12+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -248,7 +248,7 @@ msgid "Add-ons Created"
 msgstr "Δημιουργηθέντα Πρόσθετα"
 
 msgid "Add-ons Downloaded"
-msgstr "Ληφθέντα Πρόσθετα"
+msgstr "Ληφθέντα πρόσθετα"
 
 msgid "Add-ons Updated"
 msgstr "Ενημερωμένα πρόσθετα"
@@ -491,41 +491,35 @@ msgstr "Κατάσταση προσθέτου από {0} ως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Λήψη κώδικα, τελευταίες {0} ημέρες"
+msgstr "Πηγές λήψεων, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "Λήψη κώδικα από {0} ως {1}"
+msgstr "Πηγές λήψεων από {0} έως {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Λήψεις, τελευταίες {0} ημέρες"
+msgstr "Μέσα λήψεων, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Λήψεις από {0} ως {1}"
+msgstr "Μέσα λήψεων από {0} έως {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Λήψη κώδικα, τελευταίες {0} ημέρες"
+msgstr "Περιεχόμενα λήψης, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Λήψεις από {0} ως {1}"
+msgstr "Περιεχόμενα λήψης από {0} έως {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Λήψεις, τελευταίες {0} ημέρες"
+msgstr "Καμπάνιες λήψεων, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Λήψεις από {0} ως {1}"
+msgstr "Λήψη καμπανιών από {0} έως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
