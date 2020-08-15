@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-15 12:13+0000\n"
+"PO-Revision-Date: 2020-08-15 12:50+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -223,10 +223,10 @@ msgid "Downloads"
 msgstr "Λήψεις"
 
 msgid "Daily Users"
-msgstr "Καθημερινοί χρήστες"
+msgstr "Ημερήσιοι χρήστες"
 
 msgid "Amount, in USD"
-msgstr "Σύνολο, σε USD"
+msgstr "Ποσό, σε USD"
 
 msgid "Number of Contributions"
 msgstr "Αριθμός συνεισφορών"
@@ -236,16 +236,16 @@ msgstr "Περισσότερες πληροφορίες..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr "Λεπτομέρειες του {0}"
+msgstr "Λεπτομέρειες για {0}"
 
 msgid "Collections Created"
-msgstr "Συλλογές που δημιουργήθηκαν"
+msgstr "Δημιουργίες συλλογών"
 
 msgid "Add-ons in Use"
 msgstr "Πρόσθετα σε χρήση"
 
 msgid "Add-ons Created"
-msgstr "Δημιουργηθέντα Πρόσθετα"
+msgstr "Δημιουργίες προσθέτων"
 
 msgid "Add-ons Downloaded"
 msgstr "Ληφθέντα πρόσθετα"
@@ -257,10 +257,10 @@ msgid "Reviews Written"
 msgstr "Γραπτές κριτικές"
 
 msgid "User Signups"
-msgstr "Εγγραφές χρήστη"
+msgstr "Εγγραφές χρηστών"
 
 msgid "Subscribers"
-msgstr "Εγγεγραμμένοι"
+msgstr "Συνδρομητές"
 
 msgid "Ratings"
 msgstr "Αξιολογήσεις"
