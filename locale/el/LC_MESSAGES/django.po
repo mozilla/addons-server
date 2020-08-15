@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-15 11:37+0000\n"
+"PO-Revision-Date: 2020-08-15 12:03+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5108,9 +5108,8 @@ msgid "Save an entire web page—including images and styling—as a single HTML
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Αυτόματη διαγραφή cookies αφού κλείσετε μια καρτέλα."
+msgstr "Αυτόματη αντικατάσταση υποτιμητικών λέξεων στο διαδίκτυο."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -5935,9 +5934,8 @@ msgstr "Ορατότητα"
 msgid "Visible"
 msgstr "Ορατό"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Λήψεις"
+msgstr "Εβδομαδιαίες λήψεις"
 
 msgid "Average Daily Users"
 msgstr "Μέσος όρος καθημερινών χρηστών"
@@ -6175,9 +6173,8 @@ msgstr "Αυτή είναι μια προτεινόμενη επέκταση."
 msgid "You don't have permission to review it."
 msgstr "Δεν έχετε άδεια για κριτική."
 
-#, fuzzy
 msgid "Please select one or more versions in the list below."
-msgstr "Παρακαλούμε επιλέξτε μία ή περισσότερες εκδόσεις στην παραπάνω λίστα."
+msgstr "Παρακαλούμε επιλέξτε μία ή περισσότερες εκδόσεις στην παρακάτω λίστα."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
@@ -6332,9 +6329,8 @@ msgstr "Σύγκριση"
 msgid "Permissions:"
 msgstr "Δικαιώματα:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Δικαιώματα:"
+msgstr "Προαιρετικά δικαιώματα:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6412,9 +6408,8 @@ msgstr "Βάρος:"
 msgid "Flagged by scanners"
 msgstr ""
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Επισήμανση για ανθρώπινη αξιολόγηση"
+msgstr "Επισημάνθηκε για ανθρώπινη αξιολόγηση"
 
 msgid "Download"
 msgstr "Λήψη"
@@ -6458,11 +6453,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Αίτημα πληροφοριών που έχει λήξει ({0})"
 msgstr[1] "Αιτήματα πληροφοριών που έχουν λήξει ({0})"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Άλλη εκκρεμούσα κριτική ({0})"
-msgstr[1] "Άλλη εκκρεμούσα κριτική ({0})"
+msgstr[0] "Εκκρεμούσα απόρριψη ({0})"
+msgstr[1] "Εκκρεμούσα απόρριψη ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6599,9 +6593,8 @@ msgstr "κατά πηγή"
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "Περιεχόμενα"
+msgstr "κατά περιεχόμενο"
 
 msgid "by Campaign"
 msgstr ""
@@ -6738,9 +6731,8 @@ msgstr "Λήψεις κατά ημερομηνία"
 msgid "Platform usage by Date"
 msgstr "Χρήση πλατφόρμας κατά ημερομηνία"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> λήψεις"
+msgstr "<b>{0}</b> εβδομαδιαίες λήψεις"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> λήψεις"
