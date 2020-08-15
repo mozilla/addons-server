@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-15 12:12+0000\n"
+"PO-Revision-Date: 2020-08-15 12:13+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -519,7 +519,7 @@ msgstr "Καμπάνιες λήψεων, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Λήψη καμπανιών από {0} έως {1}"
+msgstr "Καμπάνιες λήψεων από {0} έως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -671,7 +671,7 @@ msgid "Install for {0} anyway"
 msgstr "Εγκατάσταση σε {0} οπωσδήποτε"
 
 msgid "Download for {0} anyway"
-msgstr "Λήψη για {0} οπωσδήποτε"
+msgstr "Λήψη για {0} ούτως ή άλλως"
 
 msgid "Not available for your platform"
 msgstr "Δεν διατίθεται για το λειτουργικό σας"

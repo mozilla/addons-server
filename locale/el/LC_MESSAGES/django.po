@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-15 12:03+0000\n"
+"PO-Revision-Date: 2020-08-15 12:15+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5286,7 +5286,7 @@ msgid "Back to add-on"
 msgstr "Πίσω στο πρόσθετο"
 
 msgid "Download {0}"
-msgstr "Λήψη {0}"
+msgstr "Λήψη του {0}"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -6702,7 +6702,7 @@ msgid "Download campaigns by Date"
 msgstr "Λήψη πηγαίου κώδικα κατά ημερομηνία"
 
 msgid "Download contents by Date"
-msgstr "Λήψη περιεχομένων κατά ημερομηνία"
+msgstr "Περιεχόμενα λήψης κατά ημερομηνία"
 
 msgid "User countries by Date"
 msgstr "Χώρες χρηστών κατά ημερομηνία"
@@ -6761,7 +6761,7 @@ msgid "See more platforms&hellip;"
 msgstr "Προβολή περισσότερων πλατφορμών&hellip;"
 
 msgid "Download sources by Date"
-msgstr "Λήψη πηγαίου κώδικα κατά ημερομηνία"
+msgstr "Πηγές λήψεων κατά ημερομηνία"
 
 msgid "About tracking external sources..."
 msgstr "Σχετικά με την καταγραφή εξωτερικών πηγών..."
