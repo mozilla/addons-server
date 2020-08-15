@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-15 13:11+0000\n"
+"PO-Revision-Date: 2020-08-15 13:17+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -56,14 +56,14 @@ msgstr[1] "Αποτυχία επαλήθευσης προσθέτου με {0} �
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;και {0} περισσότερο"
-msgstr[1] "&hellip;και {0} περισσότερα"
+msgstr[0] "&hellip;και {0} ακόμα"
+msgstr[1] "&hellip;και {0} ακόμα"
 
 msgid "See full validation report"
 msgstr "Δείτε την αναλυτική αναφορά επικύρωσης"
 
 msgid "Validating {0}"
-msgstr "Γίνεται επικύρωση {0}"
+msgstr "Επικύρωση του {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Το πρόσθετό σας ξεπερνά το μέγιστο μέγεθος των {0}."
@@ -156,16 +156,16 @@ msgid "Your input is required"
 msgstr "Απαιτείται η εισαγωγή"
 
 msgid "Marked for deletion"
-msgstr "Σημειώθηκε για διαγραφή"
+msgstr "Επισημάνθηκε για διαγραφή"
 
 msgid "Updating results&hellip;"
-msgstr "Ανανέωση αποτελεσμάτων&hellip;"
+msgstr "Ενημέρωση αποτελεσμάτων&hellip;"
 
 msgid "Category"
 msgstr "Κατηγορία"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr "Αναζήτηση θέματος για <b>{0}</b>"
+msgstr "Αναζήτηση θεμάτων για <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
 msgstr "Αναζήτηση εφαρμογών για <b>{0}</b>"
@@ -668,13 +668,13 @@ msgstr "Προσθήκη στο {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr "Εγκατάσταση σε {0} οπωσδήποτε"
+msgstr "Εγκατάσταση για {0} ούτως ή άλλως"
 
 msgid "Download for {0} anyway"
 msgstr "Λήψη για {0} ούτως ή άλλως"
 
 msgid "Not available for your platform"
-msgstr "Δεν διατίθεται για το λειτουργικό σας"
+msgstr "Δεν διατίθεται για την πλατφόρμα σας"
 
 msgid "This add-on is not compatible with your version of {0}."
 msgstr "Αυτό το πρόσθετο δεν είναι συμβατό με την έκδοση του {0} σας."
