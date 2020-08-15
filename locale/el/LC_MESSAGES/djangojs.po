@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-15 12:50+0000\n"
+"PO-Revision-Date: 2020-08-15 13:02+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -275,7 +275,7 @@ msgid "Unknown"
 msgstr "Άγνωστο"
 
 msgid "Add-ons Manager"
-msgstr "Διαχειριστής προσθέτων"
+msgstr "Διαχείριση προσθέτων"
 
 msgid "Add-ons Manager Promo"
 msgstr "Προωθητική ενέργεια διαχείρισης προσθέτων"
@@ -656,8 +656,8 @@ msgstr[1] "Ορισμός του max version για τα πρόσθετα {0} σ
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Στείλτε e-mail στον δημιουργό του {2} πρόσθετου το οποίου η επαλήθευση απέτυχε."
-msgstr[1] "Στείλτε e-mail στους δημιουργούς των {2} πρόσθετων των οποίων η επαλήθευση απέτυχε."
+msgstr[0] "Αποστολή email στο δημιουργό του προσθέτου {2}, του οποίου η επαλήθευση απέτυχε."
+msgstr[1] "Αποστολή email στους δημιουργούς των προσθέτων {2}, των οποίων η επαλήθευση απέτυχε."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
