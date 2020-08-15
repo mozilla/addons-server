@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-01-17 18:29+0000\n"
-"Last-Translator: Spyros <spytzo@gmail.com>\n"
+"PO-Revision-Date: 2020-08-15 11:37+0000\n"
+"Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -5908,7 +5908,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Πολιτική απορρήτου"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Αναφορές κατάχρησης – {addon} – Πρόσθετα για Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Αναφορές κατάχρησης για το {addon} και τους προγραμματιστές του ({num})"
@@ -6096,7 +6096,7 @@ msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Αξιολόγηση περιεχομένου – Πρόσθετα για Firefox"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Αυτόματα εγκεκριμένα πρόσθετα – Πρόσθετα Firefox"
@@ -6508,7 +6508,7 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Ο ορισμός δεν είναι έγκυρος: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr ""
