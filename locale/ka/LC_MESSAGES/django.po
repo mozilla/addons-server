@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 13:03+0000\n"
+"PO-Revision-Date: 2020-08-16 22:52+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6497,13 +6497,13 @@ msgid "by Source"
 msgstr "წყარო"
 
 msgid "by Medium"
-msgstr "უზრუნველყოფს Medium"
+msgstr "Medium-ით"
 
 msgid "by Content"
 msgstr "შიგთავსის მიხედვით"
 
 msgid "by Campaign"
-msgstr "უზრუნველყოფს კამპანია"
+msgstr "Campaign-ით"
 
 msgid "Daily Users"
 msgstr "დღიური მომხმარებლები"
@@ -6604,7 +6604,7 @@ msgid "Application usage by Date"
 msgstr "პროგრამის გამოყენება თარიღის მიხედვით"
 
 msgid "Download campaigns by Date"
-msgstr "ჩამოტვირთვები კამპანიების, თარიღის მიხედვით"
+msgstr "ჩამოტვირთვები Campaign, თარიღის მიხედვით"
 
 msgid "Download contents by Date"
 msgstr "ჩამოტვირთვები შიგთავსის, თარიღის მიხედვით"
@@ -6629,7 +6629,7 @@ msgid "User languages by Date"
 msgstr "მომხმარებლის ენები თარიღის მიხედვით"
 
 msgid "Download mediums by Date"
-msgstr "ჩამოტვირთვები მედიაფაილების, თარიღის მიხედვით"
+msgstr "ჩამოტვირთვები Medium, თარიღის მიხედვით"
 
 msgid "Platform usage by Date"
 msgstr "სისტემების გამოყენება თარიღის მიხედვით"
