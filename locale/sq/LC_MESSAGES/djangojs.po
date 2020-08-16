@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-06-13 17:50+0000\n"
+"PO-Revision-Date: 2020-08-16 09:49+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
 "Language: sq\n"
@@ -499,34 +499,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Burime Shkarkimi nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Shkarkime, {0} ditët e fundit"
+msgstr "Media Shkarkimesh, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Shkarkime nga {0} te {1}"
+msgstr "Media Shkarkimesh nga {0} më {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Burime Shkarkimesh, {0} ditët e fundit"
+msgstr "Lëndë Shkarkimesh, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Shkarkime nga {0} te {1}"
+msgstr "Lëndë Shkarkimesh nga {0} më {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Shkarkime, {0} ditët e fundit"
+msgstr "Fushata Shkarkimesh, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Shkarkime nga {0} te {1}"
+msgstr "Fushata Shkarkimesh nga {0} më {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
