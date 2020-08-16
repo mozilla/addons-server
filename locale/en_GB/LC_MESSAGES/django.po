@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-16 19:12+0000\n"
+"PO-Revision-Date: 2020-08-16 20:40+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -1355,9 +1355,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Promote"
+msgstr "Not Promoted"
 
 msgid "Recommended"
 msgstr "Recommended"
@@ -5834,9 +5833,8 @@ msgstr "Visibility"
 msgid "Visible"
 msgstr "Visible"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Downloads"
+msgstr "Weekly Downloads"
 
 msgid "Average Daily Users"
 msgstr "Average Daily Users"
@@ -6222,9 +6220,8 @@ msgstr "Compare"
 msgid "Permissions:"
 msgstr "Permissions:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Permissions:"
+msgstr "Optional permissions:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6355,9 +6352,8 @@ msgstr "presence of matched rules"
 msgid "result state"
 msgstr "result state"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "all but this rule"
+msgstr "all but results matching only this rule"
 
 msgid "presence of a version"
 msgstr "presence of a version"
@@ -6485,9 +6481,8 @@ msgstr "by Source"
 msgid "by Medium"
 msgstr "by Medium"
 
-#, fuzzy
 msgid "by Content"
-msgstr "Contents"
+msgstr "by Content"
 
 msgid "by Campaign"
 msgstr "by Campaign"
@@ -6590,13 +6585,11 @@ msgstr "This dashboard is <b>private</b>."
 msgid "Application usage by Date"
 msgstr "Application usage by Date"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Download sources by Date"
+msgstr "Download campaigns by Date"
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Download sources by Date"
+msgstr "Download contents by Date"
 
 msgid "User countries by Date"
 msgstr "User countries by Date"
@@ -6617,16 +6610,14 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "User languages by Date"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Downloaded by Date"
+msgstr "Download mediums by Date"
 
 msgid "Platform usage by Date"
 msgstr "Platform usage by Date"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> Downloads"
+msgstr "<b>{0}</b> Weekly Downloads"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Downloads"
