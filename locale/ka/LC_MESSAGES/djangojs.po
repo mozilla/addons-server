@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-16 22:51+0000\n"
+"PO-Revision-Date: 2020-08-16 22:56+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -499,11 +499,11 @@ msgstr "ჩამოტვირთვის წყაროები {0}-და
 
 #. L10n: {0} is an integer.
 msgid "Download Mediums, last {0} days"
-msgstr "ჩამოტვირთვები Medium, ბოლო {0} დღეში"
+msgstr "ჩამოტვირთვების Medium, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Mediums from {0} to {1}"
-msgstr "ჩამოტვირთვები Medium, {0}-დან {1}-მდე"
+msgstr "ჩამოტვირთვების Medium, {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
@@ -515,11 +515,11 @@ msgstr "ჩამოტვირთვები შიგთავსის, {0}
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
-msgstr "ჩამოტვირთვები Campaign, ბოლო {0} დღეში"
+msgstr "ჩამოტვირთვების Campaign, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Campaigns from {0} to {1}"
-msgstr "ჩამოტვირთვები Campaign, {0}-დან {1}-მდე"
+msgstr "ჩამოტვირთვების Campaign, {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
