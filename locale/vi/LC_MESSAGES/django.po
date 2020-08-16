@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-10 19:47+0000\n"
+"PO-Revision-Date: 2020-08-16 10:44+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -6156,9 +6156,8 @@ msgstr "Bỏ thông báo này"
 msgid "Files in this version:"
 msgstr ""
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Khám phá tất cả tiện ích"
+msgstr "Duyệt qua tất cả các tập tin trong phiên bản này"
 
 msgid "Contents"
 msgstr ""
@@ -6172,9 +6171,8 @@ msgstr ""
 msgid "Permissions:"
 msgstr "Quyền hạn:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Quyền hạn:"
+msgstr "Quyền hạn tùy chọn:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6435,9 +6433,8 @@ msgstr "theo Nguồn"
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "Phê duyệt nội dung"
+msgstr "theo Nội dung"
 
 msgid "by Campaign"
 msgstr ""
