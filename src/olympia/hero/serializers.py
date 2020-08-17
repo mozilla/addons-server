@@ -2,7 +2,6 @@ from django.utils.translation import ugettext
 
 from rest_framework import serializers
 
-from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -40,10 +39,7 @@ class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
         elif obj.description:
             return ugettext(obj.description)
         else:
-            addon = obj.promoted_addon.addon
-            return (str(addon.summary)
-                    if addon.summary and addon.type == amo.ADDON_EXTENSION
-                    else '')
+            return str(obj.promoted_addon.addon.summary or '')
 
 
 class CTAMixin():

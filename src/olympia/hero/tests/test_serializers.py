@@ -30,6 +30,25 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             'addon': DiscoveryAddonSerializer(instance=addon).data,
         }
 
+    def test_description(self):
+        addon = addon_factory(
+            type=amo.ADDON_STATICTHEME, summary=None)
+        hero = PrimaryHero.objects.create(
+            promoted_addon=PromotedAddon.objects.create(addon=addon),
+            description='hero description',)
+        data = PrimaryHeroShelfSerializer(instance=hero).data
+        assert data['description'] == 'hero description'
+
+        hero.update(description='')
+        data = PrimaryHeroShelfSerializer(instance=hero).data
+        assert data['description'] == ''
+
+        # falls back to the addon summary if one is available
+        addon.summary = 'addon summary'
+        addon.save()
+        data = PrimaryHeroShelfSerializer(instance=hero).data
+        assert data['description'] == 'addon summary'
+
     def test_external_addon(self):
         addon = addon_factory(
             summary='Summary', homepage='https://foo.baa', version_kw={
