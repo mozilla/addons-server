@@ -79,7 +79,7 @@ def global_settings(request):
                                 'href': reverse('reviewers.dashboard')})
         if acl.action_allowed(request, amo.permissions.ANY_ADMIN):
             tools_links.append({'text': ugettext('Admin Tools'),
-                                'href': reverse('zadmin.index')})
+                                'href': reverse('zadmin.home')})
 
         context['user'] = request.user
     else:

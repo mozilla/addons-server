@@ -7,7 +7,6 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File
@@ -23,19 +22,7 @@ class TestHomeAndIndex(TestCase):
         self.client.login(email='admin@mozilla.com')
 
     def test_get_home(self):
-        url = reverse('zadmin.home')
-        response = self.client.get(url, follow=True)
-        assert response.status_code == 200
-        assert response.context['user'].username == 'admin'
-        assert response.context['user'].email == 'admin@mozilla.com'
-
-    def test_get_index(self):
-        # Add fake log that would be shown in the index page.
-        user = UserProfile.objects.get(email='admin@mozilla.com')
-        ActivityLog.create(
-            amo.LOG.GROUP_USER_ADDED, user.groups.latest('pk'), user,
-            user=user)
-        url = reverse('zadmin.index')
+        url = reverse('admin:index')
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
         assert response.context['user'].username == 'admin'
@@ -164,29 +151,32 @@ class TestPerms(TestCase):
 
     FILE_ID = '1234567890abcdef1234567890abcdef'
 
-    def assert_status(self, view, status, **kw):
+    def assert_status(self, view, status, follow=False, **kw):
         """Check that requesting the named view returns the expected status."""
 
-        assert self.client.get(reverse(view, kwargs=kw)).status_code == status
+        assert self.client.get(
+            reverse(view, kwargs=kw), follow=follow).status_code == status
 
     def test_admin_user(self):
         # Admin should see views with Django's perm decorator and our own.
         assert self.client.login(email='admin@mozilla.com')
-        self.assert_status('zadmin.index', 200)
+        self.assert_status('admin:index', 200, follow=True)
 
     def test_staff_user(self):
         # Staff users have some privileges.
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        group = Group.objects.create(name='Staff', rules='Admin:Tools')
+        group = Group.objects.create(name='Staff', rules='Admin:%')
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(email='regular@mozilla.com')
-        self.assert_status('zadmin.index', 200)
+        self.assert_status('admin:index', 200, follow=True)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
         assert self.client.login(email='regular@mozilla.com')
-        self.assert_status('zadmin.index', 403)
-        # Anonymous users should also get a 403.
+        self.assert_status('zadmin.home', 403, follow=True)
+        self.assert_status('admin:index', 403, follow=True)
+        # Anonymous users should get a login redirect.
         self.client.logout()
-        self.assertLoginRedirects(
-            self.client.get(reverse('zadmin.index')), to='/en-US/admin/')
+        self.assert3xx(
+            self.client.get(reverse('admin:index')),
+            '/admin/models/login/?next=/en-US/admin/models/')

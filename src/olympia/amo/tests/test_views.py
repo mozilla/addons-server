@@ -240,7 +240,7 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
-            ('Admin Tools', reverse('zadmin.index')),
+            ('Admin Tools', reverse('zadmin.home')),
         ]
         check_links(
             expected, pq(response.content)('#aux-nav .tools a'), verify=False)
@@ -266,7 +266,7 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
-            ('Admin Tools', reverse('zadmin.index')),
+            ('Admin Tools', reverse('zadmin.home')),
         ]
         check_links(
             expected, pq(response.content)('#aux-nav .tools a'), verify=False)
