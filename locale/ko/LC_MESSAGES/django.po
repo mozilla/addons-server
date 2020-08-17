@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-17 08:56+0000\n"
+"PO-Revision-Date: 2020-08-17 10:28+0000\n"
 "Last-Translator: Channy Yun <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -5363,7 +5363,7 @@ msgid "Use profanity, sexual language or language that can be construed as hatef
 msgstr "신성 모독, 외설적이거나 혐오감을 줄 수 있는 단어를 적지 마세요."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "HTML, 링크, 소스 코드 또는 코드 스니펫을 포함합니다. 리뷰는 텍스트로만 제공됩니다."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "부가 기능 제작자를 깎아내리거나 개인적인 모욕을 주려는 의도로 날조된 글을 올리지 마세요."
