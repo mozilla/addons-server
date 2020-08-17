@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 14:15+0000\n"
+"PO-Revision-Date: 2020-08-17 10:30+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6593,14 +6593,13 @@ msgid "by Source"
 msgstr "por Origem"
 
 msgid "by Medium"
-msgstr ""
+msgstr "por mídia"
 
-#, fuzzy
 msgid "by Content"
-msgstr "Conteúdos"
+msgstr "por conteúdo"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "por campanha"
 
 msgid "Daily Users"
 msgstr "Usuários diários"
@@ -6702,13 +6701,11 @@ msgstr "Este painel é <b>privativo</b>."
 msgid "Application usage by Date"
 msgstr "Aplicações por Data"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Origem dos downloads por Data"
+msgstr "Downloads oriundos de campanhas, por data"
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Origem dos downloads por Data"
+msgstr "Downloads oriundos de conteúdo, por data"
 
 msgid "User countries by Date"
 msgstr "Países de usuários por data"
@@ -6729,9 +6726,8 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Idiomas por Data"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Downloads por Data"
+msgstr "Downloads oriundos de mídia, por data"
 
 msgid "Platform usage by Date"
 msgstr "Plataformas por Data"
