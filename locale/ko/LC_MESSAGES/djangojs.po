@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-16 09:46+0000\n"
+"PO-Revision-Date: 2020-08-17 08:45+0000\n"
 "Last-Translator: Channy Yun <channy@mozilla.or.kr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -186,7 +186,7 @@ msgstr[0] "부가 기능 {0}개"
 
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "컬렉션 {0}개"
+msgstr[0] "모음집 {0}개"
 
 #, fuzzy
 msgid "{0} review"
@@ -226,7 +226,7 @@ msgid "Details for {0}"
 msgstr "{0}에 대한 상세 정보"
 
 msgid "Collections Created"
-msgstr "제작된 컬렉션"
+msgstr "제작된 모음집"
 
 msgid "Add-ons in Use"
 msgstr "사용 중인 부가 기능"
@@ -328,7 +328,7 @@ msgid "Category Pages"
 msgstr "분류 페이지"
 
 msgid "Collections"
-msgstr "컬렉션"
+msgstr "모음집"
 
 msgid "Category Landing Featured Carousel"
 msgstr "분류별 추천 부가 기능"
@@ -582,11 +582,11 @@ msgstr "{0}부터 {1}까지 가입한 사용자"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr "최근 {0}일간 제작된 컬렉션"
+msgstr "최근 {0}일간 제작된 모음집"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr "{0}부터 {1}까지 제작된 컬렉션"
+msgstr "{0}부터 {1}까지 제작된 모음집"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
