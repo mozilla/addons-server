@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-03 06:11+0000\n"
+"PO-Revision-Date: 2020-08-05 07:55+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -6257,7 +6257,7 @@ msgid "Permissions:"
 msgstr "Toestemmingen:"
 
 msgid "Optional permissions:"
-msgstr ""
+msgstr "Optionele toestemmingen:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6273,7 +6273,7 @@ msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versies door scanners op andere pagina’s gemarkeerd."
 
 msgid "{num} versions flagged for human review on other pages."
-msgstr ""
+msgstr "{num} versies op andere pagina’s gemarkeerd voor persoonlijke beoordeling."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versies wachten op andere pagina’s op afwijzing."
