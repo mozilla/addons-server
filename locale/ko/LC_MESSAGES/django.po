@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-17 10:28+0000\n"
+"PO-Revision-Date: 2020-08-17 13:53+0000\n"
 "Last-Translator: Channy Yun <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -2945,10 +2945,10 @@ msgid "You don't have any API credentials."
 msgstr "API 자격 증명이 없습니다."
 
 msgid "Revoke"
-msgstr "취소"
+msgstr "폐기"
 
 msgid "Revoke and regenerate credentials"
-msgstr "취소하고 자격 증명 다시 생성"
+msgstr "폐기하고 자격 증명 다시 생성"
 
 #, fuzzy
 msgid "Confirm and generate new credentials"
