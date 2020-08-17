@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 07:55+0000\n"
+"PO-Revision-Date: 2020-08-06 08:56+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -6389,7 +6389,7 @@ msgid "result state"
 msgstr "resulterende status"
 
 msgid "all but results matching only this rule"
-msgstr ""
+msgstr "alles behalve resultaten die alleen met deze regel overeenkomen"
 
 msgid "presence of a version"
 msgstr "aanwezigheid van een versie"
@@ -6515,13 +6515,13 @@ msgid "by Source"
 msgstr "op bron"
 
 msgid "by Medium"
-msgstr ""
+msgstr "op medium"
 
 msgid "by Content"
-msgstr ""
+msgstr "op inhoud"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "op campagne"
 
 msgid "Daily Users"
 msgstr "Dagelijkse gebruikers"
@@ -6624,10 +6624,10 @@ msgid "Application usage by Date"
 msgstr "Toepassingsgebruik op datum"
 
 msgid "Download campaigns by Date"
-msgstr ""
+msgstr "Downloadcampagnes op datum"
 
 msgid "Download contents by Date"
-msgstr ""
+msgstr "Downloadinhoud op datum"
 
 msgid "User countries by Date"
 msgstr "Gebruikerslanden op datum"
@@ -6649,13 +6649,13 @@ msgid "User languages by Date"
 msgstr "Gebruikerstalen op datum"
 
 msgid "Download mediums by Date"
-msgstr ""
+msgstr "Downloadmedia op datum"
 
 msgid "Platform usage by Date"
 msgstr "Platformgebruik op datum"
 
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr ""
+msgstr "<b>{0}</b> wekelijkse downloads"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> downloads"
