@@ -38,3 +38,7 @@ class ShelfManagement(ModelBase):
 
     class Meta:
         verbose_name_plural = 'homepage shelves'
+        constraints = [
+            models.UniqueConstraint(fields=('enabled', 'position'),
+                                    name='position_id')
+        ]
