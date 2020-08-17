@@ -8,6 +8,7 @@ from django.db.utils import IntegrityError
 from django.http import (
     Http404, HttpResponseForbidden, HttpResponseNotAllowed,
     HttpResponseRedirect)
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.encoding import force_text
 from django.utils.html import format_html, format_html_join
@@ -19,7 +20,6 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog, UserLog
 from olympia.addons.models import Addon
 from olympia.amo.admin import CommaSearchInAdminMixin
-from olympia.amo.utils import render
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
@@ -314,7 +314,16 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         return related_content_link(obj, UserRestrictionHistory, 'user')
 
 
-class DeniedModelAdmin(admin.ModelAdmin):
+@admin.register(DeniedName)
+class DeniedNameAdmin(admin.ModelAdmin):
+    list_display = search_fields = ('name',)
+    view_on_site = False
+    model = DeniedName
+    model_add_form = forms.DeniedNameAddForm
+
+    class Media:
+        js = ('js/i18n/en-US.js',)
+
     def add_view(self, request, form_url='', extra_context=None):
         """Override the default admin add view for bulk add."""
         form = self.model_add_form()
@@ -324,14 +333,14 @@ class DeniedModelAdmin(admin.ModelAdmin):
                 inserted = 0
                 duplicates = 0
 
-                for x in form.cleaned_data[self.add_form_field].splitlines():
+                for x in form.cleaned_data['names'].splitlines():
                     # check with the cache
-                    if self.deny_list_model.blocked(x):
+                    if self.model.blocked(x):
                         duplicates += 1
                         continue
                     try:
-                        self.deny_list_model.objects.create(
-                            **{self.model_field: x.lower()})
+                        self.model.objects.create(
+                            **{'name': x.lower()})
                         inserted += 1
                     except IntegrityError:
                         # although unlikely, someone else could have added
@@ -344,17 +353,21 @@ class DeniedModelAdmin(admin.ModelAdmin):
                     msg += ' %s duplicates were ignored.' % (duplicates)
                 messages.success(request, msg)
                 form = self.model_add_form()
-        return render(request, self.template_path, {'form': form})
-
-
-@admin.register(DeniedName)
-class DeniedNameAdmin(DeniedModelAdmin):
-    list_display = search_fields = ('name',)
-    deny_list_model = DeniedName
-    model_field = 'name'
-    model_add_form = forms.DeniedNameAddForm
-    add_form_field = 'names'
-    template_path = 'users/admin/denied_name/add.html'
+        context = {
+            'form': form,
+            'add': True,
+            'change': False,
+            'has_view_permission': self.has_view_permission(request, None),
+            'has_add_permission': self.has_add_permission(request),
+            'app_label': 'DeniedName',
+            'opts': self.model._meta,
+            'title': 'Add DeniedName',
+            'save_as': False,
+        }
+        return TemplateResponse(
+            request,
+            'admin/users/denied_name/add_form.html',
+            context)
 
 
 @admin.register(IPNetworkUserRestriction)
