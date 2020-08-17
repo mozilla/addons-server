@@ -1,11 +1,9 @@
 import responses
 
-from rest_framework.reverse import reverse as drf_reverse
-
 from django.conf import settings
 from django.core.exceptions import ValidationError
 
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, reverse_ns
 from olympia.shelves.forms import ShelfForm
 
 
@@ -17,44 +15,40 @@ class TestShelfForm(TestCase):
         self.criteria_404 = 'sort=users&type=statictheme'
         self.criteria_not_200 = '?sort=user&type=statictheme'
         self.criteria_empty = '?sort=users&type=theme'
-        baseUrl = settings.INTERNAL_SITE_URL
 
         responses.add(
             responses.GET,
-            baseUrl + drf_reverse('v4:addon-search') +
-            self.criteria_sea,
+            reverse_ns('addon-search', api_version='v4') + self.criteria_sea,
             status=200,
             json={'count': 103})
         responses.add(
             responses.GET,
-            baseUrl + drf_reverse('v4:collection-addon-list', kwargs={
-                                  'user_pk': settings.TASK_USER_ID,
-                                  'collection_slug': self.criteria_col}),
+            reverse_ns('collection-addon-list', api_version='v4', kwargs={
+                'user_pk': settings.TASK_USER_ID,
+                'collection_slug': self.criteria_col}),
             status=200,
             json={'count': 1})
         responses.add(
             responses.GET,
-            baseUrl + drf_reverse('v4:addon-search') +
-            self.criteria_404,
+            reverse_ns('addon-search', api_version='v4') + self.criteria_404,
             status=404,
             json={"detail": "Not found."}),
         responses.add(
             responses.GET,
-            baseUrl + drf_reverse('v4:collection-addon-list', kwargs={
-                                  'user_pk': settings.TASK_USER_ID,
-                                  'collection_slug': self.criteria_col_404}),
+            reverse_ns('collection-addon-list', api_version='v4', kwargs={
+                'user_pk': settings.TASK_USER_ID,
+                'collection_slug': self.criteria_col_404}),
             status=404,
             json={"detail": "Not found."}),
         responses.add(
             responses.GET,
-            baseUrl + drf_reverse('v4:addon-search') +
+            reverse_ns('addon-search', api_version='v4') +
             self.criteria_not_200,
             status=400,
             json=['Invalid \"sort\" parameter.'])
         responses.add(
             responses.GET,
-            baseUrl + drf_reverse('v4:addon-search') +
-            self.criteria_empty,
+            reverse_ns('addon-search', api_version='v4') + self.criteria_empty,
             status=200,
             json={'count': 0})
 
@@ -74,6 +68,14 @@ class TestShelfForm(TestCase):
             'criteria': self.criteria_col})
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == 'password-managers'
+
+    def test_clean_form_is_missing_required_field(self):
+        form = ShelfForm({
+            'title': 'Recommended extensions',
+            'endpoint': '',
+            'criteria': self.criteria_sea})
+        assert not form.is_valid()
+        assert form.errors == {'endpoint': ['This field is required.']}
 
     def test_clean_search_returns_404(self):
         data = {
