@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-17 20:23+0000\n"
+"PO-Revision-Date: 2020-08-17 20:31+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -344,6 +344,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Upiši<strong>sve dolje navedene riječi</strong>, <strong>odvojene razmakom, ako je potrebno</strong>. </p> <p> Ako je to teško čitati, <a href=\"#\" id=\"recaptcha_different\">pokušaj koristiti "
+"drugačije riječi</a> ili <a href=\"#\" id=\"recaptcha_audio\">pokušaj drugu vrstu izazova</a>. </p>"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
