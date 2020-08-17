@@ -16,18 +16,22 @@ class ShelfForm(forms.ModelForm):
 
     def clean(self):
         data = self.cleaned_data
-        criteria = data['criteria']
+
+        criteria = data.get('criteria')
+        endpoint = data.get('endpoint')
         baseUrl = settings.INTERNAL_SITE_URL
 
-        if data['endpoint'] == 'search':
+        if endpoint == 'search':
             api = drf_reverse('v4:addon-search')
             url = baseUrl + api + criteria
-        elif data['endpoint'] == 'collections':
+        elif endpoint == 'collections':
             api = drf_reverse('v4:collection-addon-list', kwargs={
                 'user_pk': settings.TASK_USER_ID,
                 'collection_slug': criteria
             })
             url = baseUrl + api
+        else:
+            return
 
         try:
             response = requests.get(url)
