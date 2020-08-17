@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-17 15:48+0000\n"
+"PO-Revision-Date: 2020-08-17 18:05+0000\n"
 "Last-Translator: Channy Yun <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -559,7 +559,7 @@ msgstr "보내기"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s 추가 기능 GUID"
 
 msgid "users"
 msgstr "사용자"
