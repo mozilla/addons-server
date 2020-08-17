@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-17 20:31+0000\n"
+"PO-Revision-Date: 2020-08-17 20:37+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -453,6 +453,8 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
+"Ako tvoj podržani program ne zahtijeva datoteku manifesta, svejedno %(amo_manifests_mdn_link_open)sovdje%(amo_manifests_mdn_link_close)s moraš uključiti jednu datoteku s određenim traženim "
+"svojstvima."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Jedna druga zbirka već koristi ovaj prilagođeni URL."
@@ -481,7 +483,7 @@ msgstr ""
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Blokada za GUID %(guid)s je samo-za-čitanje – mora se urediti putem stare zbirke popisa blokada"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
