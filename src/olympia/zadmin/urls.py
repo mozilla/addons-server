@@ -7,7 +7,7 @@ from . import views
 
 urlpatterns = [
     # AMO stuff.
-    url(r'^$', lambda r: redirect('admin:index'), name='zadmin.home'),
+    url(r'^$', lambda r: redirect('admin:index')),
     url(r'^addon/recalc-hash/(?P<file_id>\d+)/', views.recalc_hash,
         name='zadmin.recalc_hash'),
 

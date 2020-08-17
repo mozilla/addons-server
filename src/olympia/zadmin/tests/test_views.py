@@ -165,7 +165,7 @@ class TestPerms(TestCase):
     def test_staff_user(self):
         # Staff users have some privileges.
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        group = Group.objects.create(name='Staff', rules='Admin:%')
+        group = Group.objects.create(name='Staff', rules='Admin:*')
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('admin:index', 200, follow=True)
@@ -173,7 +173,6 @@ class TestPerms(TestCase):
     def test_unprivileged_user(self):
         # Unprivileged user.
         assert self.client.login(email='regular@mozilla.com')
-        self.assert_status('zadmin.home', 403, follow=True)
         self.assert_status('admin:index', 403, follow=True)
         # Anonymous users should get a login redirect.
         self.client.logout()
