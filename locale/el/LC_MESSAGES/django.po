@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-18 13:38+0000\n"
+"PO-Revision-Date: 2020-08-18 14:58+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1432,7 +1432,7 @@ msgid "Line"
 msgstr "Γραμμή"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Ανάδειξη"
 
 msgid "Strategic"
 msgstr ""
@@ -6389,7 +6389,7 @@ msgid "The developer has provided source code."
 msgstr "Ο προγραμματιστής παρέχει τον πηγαίο κώδικα."
 
 msgid "Scanners score:"
-msgstr ""
+msgstr "Βαθμολογία σαρωτών:"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
@@ -6583,13 +6583,13 @@ msgid "by Source"
 msgstr "κατά πηγή"
 
 msgid "by Medium"
-msgstr ""
+msgstr "κατά μέσο"
 
 msgid "by Content"
 msgstr "κατά περιεχόμενο"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "κατά καμπάνια"
 
 msgid "Daily Users"
 msgstr "Καθημερινοί χρήστες"
