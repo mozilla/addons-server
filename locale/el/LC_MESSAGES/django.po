@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-15 13:02+0000\n"
+"PO-Revision-Date: 2020-08-18 12:48+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1420,21 +1420,20 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Προώθηση"
+msgstr "Δεν προωθείται"
 
 msgid "Recommended"
 msgstr "Προτείνεται"
 
 msgid "Verified - Tier 1"
-msgstr ""
+msgstr "Επαλήθευση - Επίπεδο 1"
 
 msgid "Verified - Tier 2"
-msgstr ""
+msgstr "Επαλήθευση - Επίπεδο 2"
 
 msgid "Line"
-msgstr ""
+msgstr "Γραμμή"
 
 msgid "Spotlight"
 msgstr ""
