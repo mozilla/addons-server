@@ -14,6 +14,7 @@ from waffle import switch_is_active
 from olympia import amo
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.promoted import ENABLED_PROMOTED_GROUPS_BY_ID
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.compare import version_int
 
@@ -333,6 +334,32 @@ class AddonRecommendedQueryParam(AddonQueryParam):
     reverse_dict = {'true': True}
     valid_values = [True]
     es_field = 'is_recommended'
+
+
+class AddonPromotedQueryParam(AddonQueryParam):
+    query_param = 'promoted'
+    reverse_dict = {
+        group.api_name: id_
+        for (id_, group) in ENABLED_PROMOTED_GROUPS_BY_ID.items()}
+    valid_values = ENABLED_PROMOTED_GROUPS_BY_ID.keys()
+
+    def get_app(self):
+        return (
+            AddonAppQueryParam(self.request).get_value()
+            if AddonAppQueryParam.query_param in self.request.GET
+            else None)
+
+    def get_es_query(self):
+        query = [Q(
+            self.operator,
+            **{'promoted.group_id': self.get_value()})]
+
+        if app := self.get_app():
+            query.append(
+                Q(self.operator, **{'promoted.application_id': app}) |
+                ~Q('exists', field='promoted.application_id'))
+
+        return query
 
 
 class AddonColorQueryParam(AddonQueryParam):
@@ -781,6 +808,7 @@ class SearchParameterFilter(BaseFilterBackend):
         AddonFeaturedQueryParam,
         AddonGuidQueryParam,
         AddonPlatformQueryParam,
+        AddonPromotedQueryParam,
         AddonRecommendedQueryParam,
         AddonTagQueryParam,
         AddonTypeQueryParam,

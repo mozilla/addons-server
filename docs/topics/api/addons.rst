@@ -33,6 +33,7 @@ This endpoint allows you to search through public add-ons.
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
+    :query string promoted: Filter to add-ons in a specific :ref:`promoted category <addon-detail-promoted-category>`.  Can be combined with `app`.
     :query boolean recommended: Filter to only add-ons recommended by Mozilla.  Only ``recommended=true`` is supported.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.  Multiple types can be specified, separated by comma(s), in which case add-ons that are any of the matching types are returned.
@@ -274,7 +275,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-              line  Line category
+              line  "By Firefox" category
        recommended  Recommended category
          sponsored  Sponsored category
          spotlight  Spotlight category

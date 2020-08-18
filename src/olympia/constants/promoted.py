@@ -114,3 +114,4 @@ PROMOTED_GROUPS = [
 PRE_REVIEW_GROUPS = [group for group in PROMOTED_GROUPS if group.pre_review]
 
 PROMOTED_GROUPS_BY_ID = {p.id: p for p in PROMOTED_GROUPS}
+ENABLED_PROMOTED_GROUPS_BY_ID = {p.id: p for p in PROMOTED_GROUPS if p}
