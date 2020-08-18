@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-18 15:23+0000\n"
+"PO-Revision-Date: 2020-08-18 15:24+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4419,7 +4419,7 @@ msgstr "Κατάργηση μορφοποίησης {start_sub_heading}με το
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Αφαιρέστε την περιττή μορφοποίηση και αντιγράψτε μόνο το απλό κείμενο."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -4794,7 +4794,7 @@ msgstr "Κλείσιμο ενοχλητικών επικαλύψεων {start_su
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Κλείστε τα ενοχλητικά αναδυόμενα παράθυρα με ένα κλικ."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4858,7 +4858,7 @@ msgstr "Κυριαρχήστε τον ήχο {start_sub_heading}με το {addon
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Προσαρμόστε τις ρυθμίσεις ήχου του προγράμματος περιήγησής σας με εξαιρετική ευκρίνεια."
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5115,7 +5115,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Παράλειψη των χορηγούμενων μερών των βίντεο στο YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
