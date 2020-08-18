@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-18 10:41+0000\n"
+"PO-Revision-Date: 2020-08-18 10:52+0000\n"
 "Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5764,9 +5764,8 @@ msgstr "Snifel izen n wass"
 msgid "Expired Information Requests ({0})"
 msgstr "Isutar n telɣut yemmuten ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Izegrar-nniḍen deg umecwaṛ n ucegger ({0})"
+msgstr "Izegrar deg uraǧu n tugin ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Taḍra-d tuccda tarussint"
@@ -5987,9 +5986,8 @@ msgstr "Isutar n telɣut yemmuten – Izegrar i Firefox"
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr "Izegrar ur nelli ara deg tebdart – Izegrar i Firefox"
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Allus n usenqed"
+msgstr "Deg uraǧu n tugin – Izegrar i Firefox"
 
 msgid "Advanced Search"
 msgstr "Anadi leqqayen"
@@ -6109,13 +6107,11 @@ msgstr "Kkes aqbal awurman i d-yettwabedren"
 msgid "Enable Listed Auto-Approval"
 msgstr "Rmed aqbal awurman i d-yettwabedren"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Kkes aqbal awurman i d-yettwabedren"
+msgstr "Sens aqbal awurman i d-yettwabedren almi d aqbal s ufus i d-itteddun"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Rmed aqbal awurman i d-yettwabedren"
+msgstr "Rmed aqbal awurman i d-yettwabedren send aqbal s ufus i d-itteddun"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Aqbal awurman yensa akka tura arma d {date}"
@@ -6280,13 +6276,11 @@ msgstr ""
 msgid "Weight:"
 msgstr "Taẓayt:"
 
-#, fuzzy
 msgid "Flagged by scanners"
-msgstr "Yettwabder-d deg yisniram iwurmanen"
+msgstr "Yettwacreḍ s yisniram"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Annay i usenqed n umdan"
+msgstr "Yettwacreḍ i  usenqed n umdan"
 
 msgid "Download"
 msgstr "Sider"
@@ -6327,11 +6321,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Asuter n telɣut yemmut {0}"
 msgstr[1] "Asuter n telɣut yemmut {0}"
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Izegrar-nniḍen deg umecwaṛ n ucegger ({0})"
-msgstr[1] "Izegrar-nniḍen deg umecwaṛ n ucegger ({0})"
+msgstr[0] "Deg uraǧu n tugin ({0})"
+msgstr[1] "Deg uraǧu n tugin ({0})"
 
 msgid "presence of matched rules"
 msgstr "Tiltin n yilugan inmeɣriyen"
@@ -6339,9 +6332,8 @@ msgstr "Tiltin n yilugan inmeɣriyen"
 msgid "result state"
 msgstr "Addad n ugmuḍ"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "Kullec ɣef ulugen-a"
+msgstr "Kullec anagar igmaḍ yemsaḍan d ulugen-a kan"
 
 msgid "presence of a version"
 msgstr "Yella lqem"
