@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-06 09:11+0000\n"
-"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
+"PO-Revision-Date: 2020-08-18 10:41+0000\n"
+"Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -5488,9 +5488,8 @@ msgstr "Inagrawen n wammud:"
 msgid "Applications:"
 msgstr "Isnasen:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Ilaq uneflay ad d-yerr tiririt ddaw n…"
+msgstr "Tigin n umenḍar, ilaq uneflay ad d-yerr tiririt ddaw n…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr ""
@@ -5609,9 +5608,8 @@ msgstr "Taẓayt"
 msgid "Information Request Deadline"
 msgstr "Tagara n usuter n telɣut"
 
-#, fuzzy
 msgid "Pending Rejection Deadline"
-msgstr "Tagara n usuter n telɣut"
+msgstr "Deg uraǧu n tenzagt n tugin."
 
 msgid "Last Updated"
 msgstr "Aleqqem aneggaru"
@@ -6575,9 +6573,8 @@ msgstr "Tafelwit-agi n usenqded d <b>tusligt</b>."
 msgid "Application usage by Date"
 msgstr "Aseqdec n usnas s wazemz"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Iɣbula n usider s wazemz"
+msgstr "Sader timesbaniyin s uzemz"
 
 msgid "Download contents by Date"
 msgstr "Sider iɣbula s wazemz"
@@ -6601,9 +6598,8 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Tutlayin n useqdac s wazemz"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Isidar s wazemz"
+msgstr "Allalen n usader s uzemz"
 
 msgid "Platform usage by Date"
 msgstr "Aseqdec n twennadin s wazemz"
