@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-06 08:56+0000\n"
+"PO-Revision-Date: 2020-08-17 05:59+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -938,16 +938,16 @@ msgid "User {user} throttled for scope \"{0}\""
 msgstr "Gebruiker {user} beperkt voor bereik ‘{0}’"
 
 msgid "{addon} {version} content reject scheduled."
-msgstr ""
+msgstr "Afwijzen inhoud van {addon} {version} ingepland."
 
 msgid "Content reject scheduled"
-msgstr ""
+msgstr "Afwijzen inhoud ingepland"
 
 msgid "{addon} {version} reject scheduled."
-msgstr ""
+msgstr "Afwijzing {addon} {version} ingepland."
 
 msgid "Rejection scheduled"
-msgstr ""
+msgstr "Afwijzing ingepland"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -5599,7 +5599,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Heeft markering ‘automatische goedkeuring uitgeschakeld/uitgesteld’"
 
 msgid "Is in a promoted addon group that requires pre-review"
-msgstr ""
+msgstr "Bevindt zich in een groep van gepromote add-ons die vooraf moet worden beoordeeld"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Vertraagd omdat het de eerste versie in de lijst is"
@@ -6164,10 +6164,10 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Automatische goedkeuring van vermeldingen inschakelen"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr ""
+msgstr "Automatische goedkeuring van vermeldingen uitschakelen tot volgende handmatige goedkeuring"
 
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr ""
+msgstr "Automatische goedkeuring van vermeldingen inschakelen voor volgende handmatige goedkeuring"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Automatische goedkeuring is momenteel tot {date} uitgeschakeld"
