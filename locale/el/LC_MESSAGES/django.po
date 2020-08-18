@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-18 14:58+0000\n"
+"PO-Revision-Date: 2020-08-18 15:15+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4490,7 +4490,7 @@ msgstr "Διαγραφή δεδομένων {start_sub_heading}με το {addon_
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Καθαρίστε την προσωρινή μνήμη του προγράμματος περιήγησής σας με ένα κλικ ή πατώντας ένα κουμπί."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5066,20 +5066,20 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Ταχύτερη επιλογή, ταξινόμηση και εκτέλεση λήψεων."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "Λάβετε ενημερώσεις καιρού απευθείας στο πρόγραμμα περιήγησής σας."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Διαγράψτε τα cookies, το ιστορικό περιήγησης και τα προσωρινά αρχεία με ένα μόνο κλικ."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Αφαίρεση στοιχείων καταγραφής από διαδικτυακούς συνδέσμους."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
@@ -5088,12 +5088,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Οργανώστε εύκολα πολλές ανοιχτές καρτέλες."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Δημιουργήστε και προσαρμόστε ομάδες καρτελών."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5208,7 +5208,7 @@ msgid "OpenSearch: XML Parse Error."
 msgstr "OpenSearch: Σφάλμα ανάλυσης XML."
 
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Αδυναμία ανάλυσης μεταφορτωμένου αρχείου."
 
 msgid "Unsupported archive type."
 msgstr "Μη υποστηριζόμενος τύπος αρχείου."
@@ -5660,7 +5660,7 @@ msgid "Risk breakdown not available."
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Δεν μπορείτε να υποβάλετε σχόλιο αν έχει οριστεί το `canned_response`."
 
 msgid "You can't submit an empty comment."
 msgstr "Δεν μπορείτε να υποβάλετε κενό σχόλιο."
@@ -6478,26 +6478,26 @@ msgid "file signature"
 msgstr "υπογραφή αρχείου"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Αυτό είναι το ακριβές όνομα του κανόνα που χρησιμοποιείται από ένα σαρωτή."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Οι κανόνες Yara πρέπει να έχουν ορισμό"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Το όνομα του κανόνα στον ορισμό πρέπει να ταιριάζει με το όνομα του κανόνα σαρωτή"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Επιτρέπεται μόνο ένας κανόνας Yara στον ορισμό"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
 msgstr "Ο ορισμός δεν είναι έγκυρος: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Προέκυψε σφάλμα κατά τη σύνταξη του ορισμού"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
@@ -7053,6 +7053,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Γεια σας %(author_name)s,\n"
+"\n"
+"Έχετε προσκληθεί να γίνετε δημιουργός του %(addon_name)s στο %(domain)s. Αν αποδεχτείτε την πρόσκληση, θα μπορείτε να επεξεργαστείτε το πρόσθετο και το όνομά σας ενδέχεται να εμφανιστεί στη λίστα δημιουργών στην ιστοσελίδα.\n"
+"\n"
+"Κάντε κλικ στον παρακάτω σύνδεσμο για να απαντήσετε αν θέλετε να προστεθείτε ως δημιουργός για το %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Αν δεν αναμένατε αυτή την πρόσκληση, παρακαλούμε στείλτε email στο amo-admins@mozilla.com.\n"
+"\n"
+"Με εκτίμηση,\n"
+"Η ομάδα προσθέτων της Mozilla"
 
 #, python-format
 msgid ""
@@ -7086,6 +7098,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Γεια σας,\n"
+"\n"
+"Λαμβάνετε αυτό το μήνυμα επειδή ο λογαριασμός χρήστη %(name)s στο %(site_url)s έχει διαγραφεί.\n"
+"\n"
+"Αν δεν το κάνατε εσείς αυτό ή πιστεύετε ότι ένα μη εξουσιοδοτημένο άτομο έχει πρόσβαση στο λογαριασμό σας, παρακαλούμε απαντήστε σε αυτό email. Διαφορετικά, δεν απαιτείται καμία περαιτέρω ενέργεια.\n"
+"\n"
+"Με εκτίμηση,\n"
+"\n"
+"Η ομάδα προσθέτων του Firefox"
 
 msgctxt "user_list_others"
 msgid "others"
