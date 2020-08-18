@@ -14,7 +14,7 @@ from waffle import switch_is_active
 from olympia import amo
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import ENABLED_PROMOTED_GROUPS_BY_ID
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.compare import version_int
 
@@ -339,8 +339,9 @@ class AddonRecommendedQueryParam(AddonQueryParam):
 class AddonPromotedQueryParam(AddonQueryParam):
     query_param = 'promoted'
     reverse_dict = {
-        group.api_name: id_ for (id_, group) in PROMOTED_GROUPS_BY_ID.items()}
-    valid_values = PROMOTED_GROUPS_BY_ID.keys()
+        group.api_name: id_
+        for (id_, group) in ENABLED_PROMOTED_GROUPS_BY_ID.items()}
+    valid_values = ENABLED_PROMOTED_GROUPS_BY_ID.keys()
 
     def get_app(self):
         return (

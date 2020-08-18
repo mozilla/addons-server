@@ -26,7 +26,8 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.promoted import LINE, RECOMMENDED
+from olympia.constants.promoted import (
+    LINE, SPOTLIGHT, STRATEGIC, RECOMMENDED, VERIFIED_ONE, VERIFIED_TWO)
 from olympia.discovery.models import DiscoveryItem
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
@@ -1283,13 +1284,14 @@ class TestAddonSearchView(ESTestCase):
         # addon2 was for Firefox only
 
         # test with other other promotions
-        self.make_addon_promoted(addon, LINE, approve_version=True)
-        self.reindex(Addon)
-        data = self.perform_search(
-            self.url, {'promoted': 'line', 'app': 'firefox'})
-        assert data['count'] == 1
-        assert len(data['results']) == 1
-        assert data['results'][0]['id'] == addon.pk
+        for promo in (VERIFIED_ONE, VERIFIED_TWO, LINE, SPOTLIGHT, STRATEGIC):
+            self.make_addon_promoted(addon, promo, approve_version=True)
+            self.reindex(Addon)
+            data = self.perform_search(
+                self.url, {'promoted': promo.api_name, 'app': 'firefox'})
+            assert data['count'] == 1
+            assert len(data['results']) == 1
+            assert data['results'][0]['id'] == addon.pk
 
     def test_filter_by_platform(self):
         # First add-on is available for all platforms.
