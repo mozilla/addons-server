@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-19 21:21+0000\n"
+"PO-Revision-Date: 2020-08-19 23:12+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3744,9 +3744,8 @@ msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_headi
 msgstr "Απολαύστε οπτικούς σελιδοδείκτες {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Πρόσβαση αγαπημένων ιστοσελίδων από μια διάταξη πλακιδίων."
+msgstr "Απολαύστε οπτικούς σελιδοδείκτες. Προσπελάστε αγαπημένες ιστοσελίδες από μια διάταξη πλακιδίων."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4113,9 +4112,8 @@ msgstr "Δυναμική πλοήγηση {start_sub_heading}με το {addon_na
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για κλείσιμο καρτελών, επιστροφή, ανανέωση και πολλά άλλα."
+msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για κλείσιμο καρτελών, πλοήγηση σε σελίδες και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4368,9 +4366,8 @@ msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_
 msgstr "Δημιουργία λίστας φραγής ιστοσελίδων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Περιορίστε την πρόσβαση του Firefox στις ιστοσελίδες που ορίζετε."
+msgstr "Περιορίστε την πρόσβαση του Firefox στις ιστοσελίδες που ορίζετε. Ένα εξαιρετικό εργαλείο για διαδικτυακή αυτοπειθαρχία."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6689,9 +6686,8 @@ msgstr "Αυτός ο πίνακας είναι <b>ιδιωτικός</b>."
 msgid "Application usage by Date"
 msgstr "Χρήση εφαρμογής κατά ημερομηνία"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Λήψη πηγαίου κώδικα κατά ημερομηνία"
+msgstr "Καμπάνιες λήψεων κατά ημερομηνία"
 
 msgid "Download contents by Date"
 msgstr "Περιεχόμενα λήψης κατά ημερομηνία"
@@ -6715,9 +6711,8 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Γλώσσες χρηστών κατά ημερομηνία"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Λήψεις κατά ημερομηνία"
+msgstr "Μέσα λήψεων κατά ημερομηνία"
 
 msgid "Platform usage by Date"
 msgstr "Χρήση πλατφόρμας κατά ημερομηνία"
