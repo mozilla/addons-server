@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-19 01:56+0000\n"
+"PO-Revision-Date: 2020-08-19 02:12+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2243,7 +2243,7 @@ msgid "Add-on URL"
 msgstr "పొడిగింత URL"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "మీ పొడగింతకు ఒక చిన్న, ప్రత్యేక URL స్లగ్‌ను ఎంచుకోండి."
 
 msgid "View Listing"
 msgstr "జాబితాను చూడండి"
@@ -3614,7 +3614,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Firefox స్థితిపట్టీలో ప్రస్తుత ప్రపంచ సమయాలను చూపించు."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5018,14 +5018,14 @@ msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "ఆర్కైవ్‌లో చెల్లని ఫైలు పేరు: {0}"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "ఆర్కైవ్‌లో పరిమాణపు పరిమితిని మించిన ఫైలు: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "కంప్రెస్ చేయని పరిమాణం చాలా పెద్దగా ఉంది"
 
 msgid "Invalid archive."
 msgstr "చెల్లని ఆర్కైవ్."
@@ -5038,16 +5038,16 @@ msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match th
 msgstr ""
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "నకిలీ పొడగింత ID కనుగొనబడింది."
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "వెర్షన్ అంకెలు 32 కంటే తక్కువ అక్షరాలను కలిగి ఉండాలి."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "వెర్షన్ అంకెలలో అక్షరాలు, అంకెలు, ఈ విరామచిహ్నలు మాత్రమే ఉండాలి: + *.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "WebExtension అలంకారాలకు గరిష్ఠ పరిమాణం {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "మీరు ఈ పొడిగింతపు రకాన్ని సమర్పించలేరు"
@@ -5057,7 +5057,7 @@ msgid "You cannot submit an add-on using an ID ending with %s"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "మొజిల్లా సంతకం చేసిన పొడగింతను మీరు సమర్పించలేరు"
 
 msgid "You cannot submit a language pack"
 msgstr ""
@@ -5086,7 +5086,7 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s
 msgstr ""
 
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "ఫైల్ పోల్చరి :: సమీక్షకుల పనిముట్లు"
 
 msgid "File Viewer :: Reviewer tools"
 msgstr "ఫైల్ వ్యూయర్ :: సమీక్షకుల పనిముట్లు"
@@ -5269,7 +5269,7 @@ msgid "IP Address"
 msgstr "ఐపీ చిరునామా"
 
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "స్పామ్ లేదా సమీక్ష-కాని విషయం"
 
 msgid "Inappropriate language/dialog"
 msgstr "అనుచిత భాష/సంభాషణ"
