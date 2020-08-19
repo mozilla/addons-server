@@ -588,14 +588,15 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
                 manager='unfiltered_for_relations').all():
             version.update(channel=channel)
 
-    def make_addon_promoted(self, addon, group, approve_version=False):
+    @classmethod
+    def make_addon_promoted(cls, addon, group, approve_version=False):
+        if approve_version:
+            PromotedApproval.objects.create(
+                version=addon.current_version, group_id=group.id)
         _, created = PromotedAddon.objects.update_or_create(
             addon=addon, defaults={'group_id': group.id})
         if not created:
             addon.promotedaddon.reload()
-        if approve_version:
-            PromotedApproval.objects.create(
-                version=addon.current_version, group_id=group.id)
 
     def _add_fake_throttling_action(
             self, view_class, verb='post', url=None, user=None,

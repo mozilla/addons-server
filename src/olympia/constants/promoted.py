@@ -19,7 +19,7 @@ _PromotedSuperClass = namedtuple(
     defaults=(
         # "Since fields with a default value must come after any fields without
         # a default, the defaults are applied to the rightmost parameters"
-        0,  # search_ranking_bump
+        0.0,  # search_ranking_bump
         True,  # warning
         False,  # pre_review
         False,  # admin_review
@@ -46,7 +46,7 @@ RECOMMENDED = PromotedClass(
     id=1,
     name=_('Recommended'),
     api_name='recommended',
-    search_ranking_bump=1000,  # TODO: confirm this bump
+    search_ranking_bump=5.0,
     warning=False,
     pre_review=True,
     badged=True,
@@ -57,7 +57,7 @@ VERIFIED_ONE = PromotedClass(
     id=2,
     name=_('Sponsored'),
     api_name='sponsored',
-    search_ranking_bump=500,  # TODO: confirm this bump
+    search_ranking_bump=3.0,
     warning=False,
     pre_review=True,
     badged=True,

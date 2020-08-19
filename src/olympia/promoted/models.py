@@ -77,7 +77,7 @@ def update_es_for_promoted(sender, instance, **kw):
     from olympia.addons.models import update_search_index
     from olympia.amo.tasks import sync_object_to_basket
 
-    # Update ES because Addon.is_recommended depends on it.
+    # Update ES because Addon.promoted and depends on it.
     update_search_index(sender=sender, instance=instance.addon, **kw)
 
     # Sync the related add-on to basket when promoted groups is changed
