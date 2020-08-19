@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-18 15:24+0000\n"
+"PO-Revision-Date: 2020-08-19 21:21+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -92,13 +92,13 @@ msgid "You are already logged in."
 msgstr "Έχετε συνδεθεί ήδη."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Αδυναμία λήψης της απόπειρας σύνδεσής σας. Παρακαλώ δοκιμάστε ξανά."
+msgstr "Δεν ήταν δυνατή η ανάλυση της απόπειρας σύνδεσής σας. Παρακαλούμε δοκιμάστε ξανά."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Δεν ήταν δυνατή η εύρεση του Λογαριασμού Firefox σας. Παρακαλώ δοκιμάστε ξανά."
+msgstr "Δεν ήταν δυνατή η εύρεση του λογαριασμού Firefox σας. Παρακαλούμε δοκιμάστε ξανά."
 
 msgid "You could not be logged in. Please try again."
-msgstr "Δεν ήταν δυνατή η σύνδεσή σας. Παρακαλώ δοκιμάστε ξανά."
+msgstr "Δεν ήταν δυνατή η σύνδεσή σας. Παρακαλούμε δοκιμάστε ξανά."
 
 msgid "Need help?"
 msgstr "Χρειάζεστε βοήθεια;"
@@ -1672,11 +1672,11 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "Τα πρόσθετα Open Search {blog_link_open}δεν υποστηρίζονται πλέον στο AMO{blog_link_close}. Μπορείτε να δημιουργήσετε μια {doc_link_open}επέκταση αναζήτησης{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
-msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλώ διαλέξτε κάποιο άλλο."
+msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλούμε διαλέξτε κάποιο άλλο."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Το slug δεν μπορεί να είναι \"%(slug)s\". Παρακαλώ επιλέξτε κάποιο άλλο."
+msgstr "Το slug δεν μπορεί να είναι \"%(slug)s\". Παρακαλούμε διαλέξτε κάποιο άλλο."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
