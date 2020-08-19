@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-15 07:16+0000\n"
+"PO-Revision-Date: 2020-08-19 01:56+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3580,7 +3580,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "వార్తా కథనాలు, కథలు, బ్లాగు టపాలు, మరిన్నిటినో మీ కిండిల్‌కి పంపుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5108,7 +5108,7 @@ msgid "Go"
 msgstr "వెళ్ళు"
 
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "పొడగింత దస్త్రం ప్రాసెస్ అవుతోంది, దయచేసి వేచివుండండి."
 
 msgid "Fetching validation results..."
 msgstr "తనిఖీ ఫలితాలను పొందుతోంది..."
@@ -5156,7 +5156,7 @@ msgid "No files in the uploaded file."
 msgstr "ఎక్కించిన ఫైలులో ఫైళ్ళు ఏమీ లేవు."
 
 msgid "Fetching file."
-msgstr ""
+msgstr "దస్త్రాన్ని తెస్తోంది."
 
 msgid "Review Guidelines"
 msgstr "మార్గదర్శకాలను సమీక్షించండి"
