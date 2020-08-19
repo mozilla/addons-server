@@ -536,15 +536,14 @@ class TestDashboard(TestCase):
     def test_admin_all_permissions(self):
         # Create a lot of add-ons to test the queue counts.
         # Recommended extensions
-        addon_factory(
-            recommended=True,
+        nominated = addon_factory(
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.make_addon_promoted(nominated, RECOMMENDED, approve_version=True)
+        pending = addon_factory()
+        self.make_addon_promoted(pending, RECOMMENDED)
         version_factory(
-            addon=addon_factory(
-                recommended=True,
-                version_kw={'recommendation_approved': False}),
-            recommendation_approved=True,
+            addon=pending,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         # Nominated and pending themes, not being counted
         # as per https://github.com/mozilla/addons-server/issues/11796

@@ -457,7 +457,8 @@ class TestAddonIndexer(TestCase):
         assert not extracted['promoted']
 
         # Promoted extension.
-        self.addon = addon_factory(recommended=True)
+        self.addon = addon_factory()
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         extracted = self._extract()
         assert extracted['promoted']
         assert extracted['promoted']['application_id'] is None

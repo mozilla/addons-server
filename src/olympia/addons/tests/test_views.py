@@ -1215,7 +1215,8 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_featured_no_app_no_lang(self):
         addon = addon_factory(
-            slug='my-addon', name=u'Featured Addôn', recommended=True)
+            slug='my-addon', name=u'Featured Addôn')
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         addon_factory(slug='other-addon', name=u'Other Addôn')
         assert addon.is_recommended
         self.reindex(Addon)
@@ -1227,7 +1228,8 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_recommended(self):
         addon = addon_factory(
-            slug='my-addon', name=u'Recomménded Addôn', recommended=True)
+            slug='my-addon', name=u'Recomménded Addôn')
+        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         addon_factory(slug='other-addon', name=u'Other Addôn')
         assert addon.is_recommended
         self.reindex(Addon)
@@ -2025,8 +2027,10 @@ class TestAddonFeaturedView(ESTestCase):
         self.refresh()
 
     def test_basic(self):
-        addon1 = addon_factory(recommended=True)
-        addon2 = addon_factory(recommended=True)
+        addon1 = addon_factory()
+        self.make_addon_promoted(addon1, RECOMMENDED, approve_version=True)
+        addon2 = addon_factory()
+        self.make_addon_promoted(addon2, RECOMMENDED, approve_version=True)
         assert addon1.is_recommended
         assert addon2.is_recommended
         addon_factory()  # not recommended so shouldn't show up
@@ -2043,7 +2047,8 @@ class TestAddonFeaturedView(ESTestCase):
 
     def test_page_size(self):
         for _ in range(0, 15):
-            addon_factory(recommended=True)
+            self.make_addon_promoted(
+                addon_factory(), RECOMMENDED, approve_version=True)
 
         self.refresh()
 

@@ -6,6 +6,7 @@ from django.utils.encoding import force_text
 
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, reverse_ns
+from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
 
@@ -408,14 +409,14 @@ class TestRankingScenarios(ESTestCase):
                 'an unofficial client for the excellent Pocket service. '
                 'Hope you\'ll enjoy it!'),
             weekly_downloads=1123)
-        amo.tests.addon_factory(
+        tabby = amo.tests.addon_factory(
             average_daily_users=4089,
             description=None,
             name='Tabby Cat',
             slug=u'tabby-cat-friend',
             summary='A new friend in every new tab.',
-            weekly_downloads=350,
-            recommended=True)
+            weekly_downloads=350)
+        cls.make_addon_promoted(tabby, RECOMMENDED, approve_version=True)
         amo.tests.addon_factory(
             average_daily_users=5819,
             description=None,

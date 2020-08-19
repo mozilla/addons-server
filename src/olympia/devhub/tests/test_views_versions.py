@@ -190,8 +190,9 @@ class TestVersion(TestCase):
         previous_version = self.version
         PromotedApproval.objects.create(
             version=previous_version, group_id=RECOMMENDED.id)
-        self.version = version_factory(
-            addon=self.addon, recommendation_approved=True)
+        self.version = version_factory(addon=self.addon)
+        PromotedApproval.objects.create(
+            version=self.version, group_id=RECOMMENDED.id)
         self.addon.reload()
         assert self.version == self.addon.current_version
         assert previous_version != self.version
@@ -224,7 +225,8 @@ class TestVersion(TestCase):
         self.make_addon_promoted(self.addon, RECOMMENDED)
         PromotedApproval.objects.create(
             version=self.version, group_id=RECOMMENDED.id)
-        version_factory(addon=self.addon, recommendation_approved=True)
+        PromotedApproval.objects.create(
+            version=version_factory(addon=self.addon), group_id=RECOMMENDED.id)
         self.addon.reload()
         assert self.version != self.addon.current_version
 

@@ -455,7 +455,8 @@ class AddonSerializerOutputTestMixin(object):
 
     def test_is_featured(self):
         # As we've dropped featuring, we're faking it with recommended status
-        self.addon = addon_factory(recommended=True)
+        self.addon = addon_factory()
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         result = self.serialize()
 
         assert 'is_featured' not in result
@@ -470,14 +471,16 @@ class AddonSerializerOutputTestMixin(object):
             assert result['is_featured'] is False
 
     def test_is_recommended(self):
-        self.addon = addon_factory(recommended=True)
+        self.addon = addon_factory()
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         assert self.addon.is_recommended
         result = self.serialize()
         assert result['is_recommended'] is True
 
     def test_promoted(self):
         # With a promoted extension.
-        self.addon = addon_factory(recommended=True)
+        self.addon = addon_factory()
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
 
         result = self.serialize()
         promoted = result['promoted']

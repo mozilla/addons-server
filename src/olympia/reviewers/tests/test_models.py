@@ -239,12 +239,11 @@ class TestRecommendedQueue(TestQueue):
                   file_status=amo.STATUS_AWAITING_REVIEW):
         addon = addon_factory(
             name=name, status=addon_status,
-            recommended=True,
             version_kw={
                 'version': version,
-                'channel': self.channel,
-                'recommendation_approved': False},
+                'channel': self.channel},
             file_kw={'status': file_status})
+        self.make_addon_promoted(addon, RECOMMENDED)
         return addon
 
     def new_search_ext(self, name, version, **kw):

@@ -13,9 +13,11 @@ from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.amo.utils import days_ago
+from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
+from olympia.promoted.models import PromotedApproval
 from olympia.reviewers.management.commands import (
     auto_approve, auto_reject, notify_about_auto_approve_delay
 )
@@ -121,7 +123,6 @@ class AutoApproveTestsMixin(object):
         recommendable_addon_nominated = addon_factory(
             name='Recommendable Addon',
             status=amo.STATUS_NOMINATED,
-            recommended=True,
             version_kw={
                 'nomination': self.days_ago(6),
                 'created': self.days_ago(6),
@@ -130,20 +131,21 @@ class AutoApproveTestsMixin(object):
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True},
         )
+        self.make_addon_promoted(
+            recommendable_addon_nominated, RECOMMENDED, approve_version=True)
 
-        recommended_addon = addon_factory(
-            name='Recommended Addon',
-            recommended=True,
-            version_kw={'recommendation_approved': False})
+        recommended_addon = addon_factory(name='Recommended Addon')
+        self.make_addon_promoted(recommended_addon, RECOMMENDED)
         recommended_addon_version = version_factory(
             addon=recommended_addon,
-            recommendation_approved=True,
             nomination=self.days_ago(7),
             created=self.days_ago(7),
             file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
                 'is_webextension': True
             })
+        PromotedApproval.objects.create(
+            version=recommended_addon_version, group_id=RECOMMENDED.id)
 
         # Add-on with 3 versions:
         # - one webext, listed, public.
