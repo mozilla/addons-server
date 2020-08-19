@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-19 23:12+0000\n"
+"PO-Revision-Date: 2020-08-19 23:23+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -370,7 +370,7 @@ msgstr "Προβολή <b>%(begin)s</b>&ndash;<b>%(end)s</b> από <b>%(count)s
 # Firefox,
 # Sunbird
 msgid "Add-ons for {0}"
-msgstr "Πρόσθετα {0}"
+msgstr "Πρόσθετα για το {0}"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -4662,9 +4662,8 @@ msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Αναζήτηση Firefox {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Εύκολη πρόσβαση σε ανοικτές καρτέλες, σελιδοδείκτες και ιστορικό."
+msgstr "Αναζήτηση στο Firefox με εύκολη πρόσβαση στις ανοικτές καρτέλες, τους σελιδοδείκτες και το ιστορικό σας."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -5760,9 +5759,8 @@ msgstr ""
 msgid "Confirm Multiple Versions"
 msgstr "Επιβεβαίωση πολλαπλών εκδόσεων"
 
-#, fuzzy
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Αυτό καταγράφει την έγκριση σας για το περιεχόμενο της πιο πρόσφατης δημόσιας έκδοσης, χωρίς να ειδοποιείται ο προγραμματιστής."
+msgstr "Αυτό θα επιβεβαιώσει την έγκριση των επιλεγμένων εκδόσεων χωρίς να ειδοποιηθεί ο προγραμματιστής."
 
 msgid "Reviewer reply"
 msgstr "Απάντηση κριτή"
@@ -5896,7 +5894,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Πολιτική απορρήτου"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr "Αναφορές κατάχρησης – {addon} – Πρόσθετα για Firefox"
+msgstr "Αναφορές κατάχρησης – {addon} – Πρόσθετα Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Αναφορές κατάχρησης για το {addon} και τους προγραμματιστές του ({num})"
@@ -5969,7 +5967,7 @@ msgid "Add-on name translations"
 msgstr "Μεταφράσεις ονόματος προσθέτου"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "Εργαλεία κριτικού – Πρόσθετα για Firefox"
+msgstr "Εργαλεία κριτικού – Πρόσθετα Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Επιστροφή στον πίνακα εργαλείων κριτή"
@@ -5987,7 +5985,7 @@ msgid "Score"
 msgstr "Βαθμολογία"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Αρχείο καταγραφής εποπτείας κριτικής – Πρόσθετα Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6028,7 +6026,7 @@ msgid "Undelete"
 msgstr "Αναίρεση διαγραφής"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Απόδοση κριτικού – Πρόσθετα για Firefox"
+msgstr "Επιδόσεις κριτικού – Πρόσθετα Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Επιδόσεις κριτή προσθέτων"
@@ -6080,26 +6078,25 @@ msgid "All-Time"
 msgstr "Από την αρχή"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "– Εργαλεία κριτικού – Πρόσθετα Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr "Αξιολόγηση περιεχομένου – Πρόσθετα για Firefox"
+msgstr "Αξιολόγηση περιεχομένου – Πρόσθετα Firefox"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Αυτόματα εγκεκριμένα πρόσθετα – Πρόσθετα Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Εποπτεία κριτικής – Πρόσθετα Firefox"
 
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Αιτήματα πληροφοριών που έχουν λήξει – Πρόσθετα για το Firefox"
+msgstr "Αιτήματα πληροφοριών που έχουν λήξει – Πρόσθετα Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Μη καταχωρημένα πρόσθετα – Πρόσθετα Firefox"
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "{addon} – Πρόσθετα για το Firefox"
+msgstr "Εκκρεμεί απόρριψη – Πρόσθετα Firefox"
 
 msgid "Advanced Search"
 msgstr "Προχωρημένη αναζήτηση"
@@ -6137,7 +6134,7 @@ msgid "Reviewer's Guide"
 msgstr "Οδηγός αξιολογητή"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – Πρόσθετα για το Firefox"
+msgstr "{addon} – Πρόσθετα Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6268,7 +6265,7 @@ msgid "Resolution"
 msgstr "Ανάλυση"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Αρχείο καταγραφής κριτικών προσθέτου – Πρόσθετα Firefox"
 
 msgid "Reviewer"
 msgstr "Κριτής"
@@ -6338,7 +6335,7 @@ msgid "{num} versions flagged for human review on other pages."
 msgstr ""
 
 msgid "{num} versions pending rejection on other pages."
-msgstr ""
+msgstr "{num} εκδόσεις με εκκρεμούσα απόρριψη σε άλλες σελίδες."
 
 msgid "Recent Points"
 msgstr "Πρόσφατοι πόντοι"
@@ -6620,13 +6617,13 @@ msgstr "Εξαγωγή"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} :: Ταμπλό στατιστικών :: Πρόσθετα για τον {1}"
+msgstr "{0} :: Πίνακας στατιστικών :: Πρόσθετα {1}"
 
 msgid "{0} :: Statistics Dashboard"
 msgstr "{0} :: Πίνακας στατιστικών"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "Πίνακας στατιστικών :: Πρόσθετα για {0}"
+msgstr "Πίνακας στατιστικών :: Πρόσθετα {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
