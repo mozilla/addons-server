@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-06 11:48+0000\n"
+"PO-Revision-Date: 2020-08-20 15:13+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -3289,7 +3289,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr "Recenzorii voluntari ajută la păstrarea suplimentelor sigure și fiabile la utilizare. Aceștia se bucură și de beneficii grozave!"
 
 msgid "Join us!"
-msgstr "Alătură-te!"
+msgstr "Hai cu noi!"
 
 msgid "Write Some Code"
 msgstr "Scrie câteva linii de cod"
