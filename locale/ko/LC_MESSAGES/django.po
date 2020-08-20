@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-20 17:43+0000\n"
+"PO-Revision-Date: 2020-08-20 17:44+0000\n"
 "Last-Translator: Channy Yun <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -5077,7 +5077,7 @@ msgstr "확장 기능 이상의 개인 정보 보호 제품"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
-msgstr ""
+msgstr "미디어 기능 향상"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
