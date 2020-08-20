@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-18 16:16+0000\n"
+"PO-Revision-Date: 2020-08-20 17:43+0000\n"
 "Last-Translator: Channy Yun <channy@mozilla.or.kr>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -5057,11 +5057,11 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr ""
+msgstr "확장 기능은 Firefox만을 위한 앱입니다."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Firefox에 다양한 기능을 추가하여 더 빠르고, 안전하고, 재미있게 만듭니다."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
@@ -5069,11 +5069,11 @@ msgstr "모든 확장기능 보기"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
-msgstr ""
+msgstr "탭 관리 도구"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy beyond browser extensions"
-msgstr ""
+msgstr "확장 기능 이상의 개인 정보 보호 제품"
 
 #. editorial content for the secondary hero shelves.
 msgid "Media enhancers for Firefox"
