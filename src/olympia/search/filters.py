@@ -757,14 +757,19 @@ class SearchQueryFilter(BaseFilterBackend):
             }),
 
         ]
-        ranking_bump_groups = (
-            promo for promo in PROMOTED_GROUPS if promo.search_ranking_bump)
-        for promo in ranking_bump_groups:
+        ranking_bump_groups = amo.utils.sorted_groupby(
+            PROMOTED_GROUPS,
+            lambda g: g.search_ranking_bump,
+            reverse=True)
+        for bump, promo_ids in ranking_bump_groups:
+            if not bump:
+                continue
             functions.append(
                 query.SF({
-                    'weight': promo.search_ranking_bump,
+                    'weight': bump,
                     'filter': (
-                        Q('term', **{'promoted.group_id': promo.id})
+                        Q('terms', **{
+                            'promoted.group_id': [p.id for p in promo_ids]})
                     )
                 })
             )

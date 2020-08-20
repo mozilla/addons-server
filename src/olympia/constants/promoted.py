@@ -68,6 +68,7 @@ VERIFIED_TWO = PromotedClass(
     id=3,
     name=_('Verified'),
     api_name='verified',
+    search_ranking_bump=3.0,
     warning=False,
     pre_review=True,
     badged=True,

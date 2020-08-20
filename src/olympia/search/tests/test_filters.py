@@ -14,7 +14,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
-    ENABLED_PROMOTED_GROUPS_BY_ID, RECOMMENDED, VERIFIED_ONE)
+    ENABLED_PROMOTED_GROUPS_BY_ID, RECOMMENDED, VERIFIED_ONE, VERIFIED_TWO)
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
@@ -189,11 +189,12 @@ class TestQueryFilter(FilterTestsBase):
         }
         assert functions[2] == {
             'filter': {
-                'term': {'promoted.group_id': RECOMMENDED.id}},
+                'terms': {'promoted.group_id': [RECOMMENDED.id]}},
             'weight': 5.0}
         assert functions[3] == {
             'filter': {
-                'term': {'promoted.group_id': VERIFIED_ONE.id}},
+                'terms': {'promoted.group_id': [
+                    VERIFIED_ONE.id, VERIFIED_TWO.id]}},
             'weight': 3.0}
         return qs
 
