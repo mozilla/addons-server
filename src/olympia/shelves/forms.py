@@ -4,6 +4,7 @@ from rest_framework.reverse import reverse as drf_reverse
 
 from django import forms
 from django.conf import settings
+from django.urls import NoReverseMatch
 
 from olympia.shelves.models import Shelf
 
@@ -16,22 +17,30 @@ class ShelfForm(forms.ModelForm):
 
     def clean(self):
         data = self.cleaned_data
-
-        criteria = data.get('criteria')
-        endpoint = data.get('endpoint')
         baseUrl = settings.INTERNAL_SITE_URL
 
-        if endpoint == 'search':
-            api = drf_reverse('v4:addon-search')
-            url = baseUrl + api + criteria
-        elif endpoint == 'collections':
-            api = drf_reverse('v4:collection-addon-list', kwargs={
-                'user_pk': settings.TASK_USER_ID,
-                'collection_slug': criteria
-            })
-            url = baseUrl + api
-        else:
+        endpoint = data.get('endpoint')
+        criteria = data.get('criteria')
+
+        if criteria is None:
             return
+
+        try:
+            if endpoint == 'search':
+                api = drf_reverse('v4:addon-search')
+                url = baseUrl + api + criteria
+            elif endpoint == 'collections':
+                api = drf_reverse('v4:collection-addon-list', kwargs={
+                    'user_pk': settings.TASK_USER_ID,
+                    'collection_slug': criteria
+                })
+                url = baseUrl + api
+            else:
+                return
+
+        except NoReverseMatch:
+            raise forms.ValidationError(
+                'No data found - check criteria parameters.')
 
         try:
             response = requests.get(url)

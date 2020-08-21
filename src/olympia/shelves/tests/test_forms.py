@@ -69,13 +69,40 @@ class TestShelfForm(TestCase):
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == 'password-managers'
 
-    def test_clean_form_is_missing_required_field(self):
+    def test_clean_form_is_missing_title_field(self):
+        form = ShelfForm({
+            'title': '',
+            'endpoint': 'search',
+            'criteria': self.criteria_sea})
+        assert not form.is_valid()
+        assert form.errors == {'title': ['This field is required.']}
+
+    def test_clean_form_is_missing_endpoint_field(self):
         form = ShelfForm({
             'title': 'Recommended extensions',
             'endpoint': '',
             'criteria': self.criteria_sea})
         assert not form.is_valid()
         assert form.errors == {'endpoint': ['This field is required.']}
+
+    def test_clean_form_is_missing_criteria_field(self):
+        form = ShelfForm({
+            'title': 'Recommended extensions',
+            'endpoint': 'search',
+            'criteria': ''})
+        assert not form.is_valid()
+        assert form.errors == {'criteria': ['This field is required.']}
+
+    def test_clean_form_throws_error_for_NoReverseMatch(self):
+        form = ShelfForm({
+            'title': 'New collection',
+            'endpoint': 'collections',
+            'criteria': '/'})
+        assert not form.is_valid()
+        with self.assertRaises(ValidationError) as exc:
+            form.clean()
+        assert exc.exception.message == (
+            'No data found - check criteria parameters.')
 
     def test_clean_search_returns_404(self):
         data = {
