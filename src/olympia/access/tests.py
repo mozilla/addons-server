@@ -229,19 +229,6 @@ class TestCheckReviewer(TestCase):
         assert check_static_theme_reviewer(request)
         assert is_user_any_kind_of_reviewer(request.user)
 
-    def test_perm_post_review(self):
-        self.grant_permission(self.user, 'Addons:PostReview')
-        request = req_factory_factory('noop', user=self.user)
-        assert is_user_any_kind_of_reviewer(request.user)
-
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert not is_reviewer(request, self.statictheme)
-
-        assert check_addons_reviewer(request)
-        assert is_reviewer(request, self.addon)
-        assert is_reviewer(request, self.addon, allow_content_reviewers=False)
-
     def test_perm_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         request = req_factory_factory('noop', user=self.user)

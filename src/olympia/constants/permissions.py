@@ -33,8 +33,6 @@ ACCOUNTS_SUPER_CREATE = AclPermission('Accounts', 'SuperCreate')
 ADDONS_REVIEW = AclPermission('Addons', 'Review')
 # Can review an unlisted add-on.
 ADDONS_REVIEW_UNLISTED = AclPermission('Addons', 'ReviewUnlisted')
-# Can access add-ons post-review information.
-ADDONS_POST_REVIEW = AclPermission('Addons', 'PostReview')
 # Can submit a content review for a listed add-on.
 ADDONS_CONTENT_REVIEW = AclPermission('Addons', 'ContentReview')
 # Can edit the message of the day in the reviewer tools.

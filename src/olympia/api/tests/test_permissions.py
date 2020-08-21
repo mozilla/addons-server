@@ -259,34 +259,9 @@ class TestAllowReviewer(TestCase):
             assert not self.permission.has_object_permission(
                 request, myview, obj)
 
-    def test_legacy_reviewer(self):
+    def test_addon_reviewer(self):
         user = user_factory()
         self.grant_permission(user, 'Addons:Review')
-        obj = Mock(spec=[])
-        obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda include_deleted=False: True
-
-        for method in self.safe_methods + self.unsafe_methods:
-            request = getattr(self.request_factory, method)('/')
-            request.user = user
-            assert self.permission.has_permission(request, myview)
-            assert self.permission.has_object_permission(
-                request, myview, obj)
-
-        # Does not have access to static themes.
-        obj.type = amo.ADDON_STATICTHEME
-        for method in self.safe_methods + self.unsafe_methods:
-            request = getattr(self.request_factory, method)('/')
-            request.user = user
-            # When not checking the object, we have permission because we're
-            # authenticated.
-            assert self.permission.has_permission(request, myview)
-            assert not self.permission.has_object_permission(
-                request, myview, obj)
-
-    def test_post_reviewer(self):
-        user = user_factory()
-        self.grant_permission(user, 'Addons:PostReview')
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
         obj.has_listed_versions = lambda include_deleted=False: True
@@ -411,14 +386,6 @@ class TestAllowAnyKindOfReviewer(TestCase):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         obj = Mock(spec=[])
         obj.has_unlisted_versions = lambda include_deleted=False: True
-
-        assert self.permission.has_permission(self.request, myview)
-        assert self.permission.has_object_permission(self.request, myview, obj)
-
-    def test_post_reviewer(self):
-        self.request.user = user_factory()
-        self.grant_permission(self.request.user, 'Addons:PostReview')
-        obj = Mock(spec=[])
 
         assert self.permission.has_permission(self.request, myview)
         assert self.permission.has_object_permission(self.request, myview, obj)

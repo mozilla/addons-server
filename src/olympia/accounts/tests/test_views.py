@@ -1339,7 +1339,7 @@ class TestAccountViewSetUpdate(TestCase):
         # For reviewer_name, validation rules are the same as display_name,
         # except that it's only for reviewers and blank names are allowed.
         # (validation is only applied if there is a non-blank value).
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         response = self.patch(
             data={'reviewer_name': 'a'})
