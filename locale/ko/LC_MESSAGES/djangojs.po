@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-22 04:56+0000\n"
+"PO-Revision-Date: 2020-08-22 04:57+0000\n"
 "Last-Translator: Channy Yun <channy@mozilla.or.kr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -435,9 +435,8 @@ msgid "Countries, last {0} days"
 msgstr "국가, 마지막 {0}일"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "{0}부터 {1} 까지 기부금"
+msgstr "국가 {0}부터 {1}까지"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
