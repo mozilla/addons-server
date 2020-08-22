@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-22 07:44+0000\n"
+"PO-Revision-Date: 2020-08-22 08:02+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -557,7 +557,7 @@ msgstr "Menyetujui Pengajuan"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Tambahkan %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
 msgstr ""
@@ -946,9 +946,8 @@ msgstr "Penolakan konten dijadwalkan"
 msgid "{addon} {version} reject scheduled."
 msgstr "{addon} {version} ditolak."
 
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Tenggat Permintaan Informasi"
+msgstr "Penolakan dijadwalkan"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1386,9 +1385,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Promosi"
+msgstr "Tidak Dipromosikan"
 
 msgid "Recommended"
 msgstr "Disarankan"
@@ -1620,7 +1618,7 @@ msgid "Completed"
 msgstr "Tidak lengkap"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Terjadwal"
 
 msgid "Core"
 msgstr "Inti"
@@ -4216,7 +4214,6 @@ msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gayakan Wikipedia {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
 msgstr "Terapkan tampilan yang segar dan modern untuk Wikipedia."
 
