@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-23 20:08+0000\n"
+"PO-Revision-Date: 2020-08-23 20:13+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -5579,7 +5579,7 @@ msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr "Задержка отклонения, требующая от разработчика исправления менее чем за…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Отклоните немедленно. Используйте только в случае серьезных проблем с безопасностью."
 
 msgid "days"
 msgstr "дней"
@@ -5633,13 +5633,13 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Имеет установленный флаг отключения/задержки автоодобрения"
 
 msgid "Is in a promoted addon group that requires pre-review"
-msgstr ""
+msgstr "Находится в продвигаемой группе дополнений, требующей предварительной проверки"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Отложено, так как это первая опубликованная версия"
 
 msgid "Version string and guid match a blocklist Block"
-msgstr ""
+msgstr "Строка версии и guid соответствуют списку блокировки Block"
 
 msgid "Risk breakdown not available."
 msgstr "Распределение рисков недоступно."
@@ -5651,7 +5651,7 @@ msgid "You can't submit an empty comment."
 msgstr "Вы не можете отправить пустой комментарий."
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "Вы не можете отправить номер строки, не связав его с именем файла."
 
 msgid "Type"
 msgstr "Тип"
@@ -5744,7 +5744,7 @@ msgid "Block Multiple Versions"
 msgstr "Блокировать несколько версий"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Это автоматически отключит выбранные утвержденные версии и откроет страницу администратора создания блока."
 
 msgid "Confirm Multiple Versions"
 msgstr "Утвердить несколько версий"
@@ -5790,9 +5790,9 @@ msgstr "Сканеры безопасности"
 
 msgid "Flagged By Scanners ({0})"
 msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Отмечено сканером ({0})"
+msgstr[1] "Отмечено сканерами ({0})"
+msgstr[2] "Отмечено сканерами ({0})"
 
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
@@ -5879,7 +5879,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} - Политика конфиденциальности"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr " Отчеты о нарушениях — {addon} — Дополнения для Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Отчёты о злоупотреблениях для {addon} и его разработчиков ({num})"
@@ -5970,7 +5970,7 @@ msgid "Score"
 msgstr "Счёт"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Журнал модерации рецензента — Дополнения для Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -6011,7 +6011,7 @@ msgid "Undelete"
 msgstr "Восстановить"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
+msgstr "Эффективность рецензента — Дополнения для Firefox"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Производительность Редактора дополнений"
@@ -6192,7 +6192,7 @@ msgid "Block add-on"
 msgstr "Заблокировать дополнение"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Обновить блок дополнений"
 
 msgid "Disable Listed Auto-Approval"
 msgstr "Отключить автоодобрение опубликованных"
@@ -6216,7 +6216,7 @@ msgid "Clear information request"
 msgstr "Отменить запрос информации"
 
 msgid "Clear pending rejections"
-msgstr ""
+msgstr "Удалить ожидающие отклонения"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Снять флаг проверки проверка кода админом"
@@ -6243,7 +6243,7 @@ msgid "Resolution"
 msgstr "Разрешение"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Журнал проверки дополнений — Дополнения для Firefox"
 
 msgid "Reviewer"
 msgstr "Редактор"
@@ -6285,7 +6285,7 @@ msgid "Contents"
 msgstr "Содержимое"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "Сравните эту версию с последней рассмотренной версией"
 
 msgid "Compare"
 msgstr "Сравнить"
@@ -6293,9 +6293,8 @@ msgstr "Сравнить"
 msgid "Permissions:"
 msgstr "Разрешения:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Разрешения:"
+msgstr "Опциональные разрешения:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6308,13 +6307,13 @@ msgid "Newer"
 msgstr "Новее"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} версий, отмеченных сканерами на других страницах."
 
 msgid "{num} versions flagged for human review on other pages."
-msgstr ""
+msgstr "{num} версий, отмеченных для проверки людьми на других страницах."
 
 msgid "{num} versions pending rejection on other pages."
-msgstr ""
+msgstr "{num} версий, ожидающих отклонения на других страницах."
 
 msgid "Recent Points"
 msgstr "Недавние очки"
@@ -6362,16 +6361,16 @@ msgid "The developer has provided source code."
 msgstr "Разработчик предоставил исходный код."
 
 msgid "Scanners score:"
-msgstr ""
+msgstr "Оценка сканеров:"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "Оценка сканеров отражает вероятность того, что эта версия является вредоносной, на основе результатов сканирования."
 
 msgid "Weight:"
 msgstr "Вес:"
 
 msgid "Flagged by scanners"
-msgstr ""
+msgstr "Отмечено сканерами"
 
 msgid "Flagged for human review"
 msgstr "Отмечено для проверки человеком"
@@ -6426,14 +6425,13 @@ msgstr[1] "Ожидающие отклонения ({0})"
 msgstr[2] "Ожидающие отклонения ({0})"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "наличие совпадающих правил"
 
 msgid "result state"
 msgstr "результат состояния"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "все кроме этого правила"
+msgstr "все, кроме результатов, соответствующих только этому правилу"
 
 msgid "presence of a version"
 msgstr "наличие версии"
@@ -6454,29 +6452,29 @@ msgid "file signature"
 msgstr "подпись файла"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Это точное название правила, используемого сканером."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Если этот флажок снят, результаты сканирования не будут связаны с этим правилом, и действие не будет выполнено."
 
 msgid "Yara rules should have a definition"
 msgstr "Правила Yara должны иметь определение"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Имя правила в определении должно совпадать с именем правила сканера"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "В определении допускается только одно правило Yara"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Определение недействительно: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Произошла ошибка при компиляции определения"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Запустите это правило для надстроек, которые также были принудительно отключены."
 
 msgid "Abort"
 msgstr "Прервать"
@@ -6485,7 +6483,7 @@ msgid "Run"
 msgstr "Запустить"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
-msgstr ""
+msgstr "Полезно, когда результат сканирования положительный, но дополнение не является вредоносным"
 
 msgid "Revert report"
 msgstr "Отменить отчёт"
