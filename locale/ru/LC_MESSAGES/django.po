@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-09 12:01+0000\n"
+"PO-Revision-Date: 2020-08-23 20:08+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -477,7 +477,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Это дополнение уже используется другой подборкой"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Состояние выхода"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -485,7 +485,7 @@ msgstr "GUID %(guid)s находится в ожидании Представл�
 
 #, python-format
 msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
+msgstr "Блок для GUID %(guid)s доступен только для чтения — его необходимо редактировать с помощью устаревшей коллекции списков блокировки"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -496,7 +496,7 @@ msgid "Addon with GUID %(guid)s does not exist"
 msgstr "Дополнение с GUID %(guid)s не существует"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Блоки, подлежащие обновлению, отличаются, поскольку изменилась минимальная или максимальная версия."
 
 msgid "Invalid version"
 msgstr "Неверная версия"
@@ -511,10 +511,10 @@ msgid "Review Unlisted"
 msgstr "Отзыв удалён"
 
 msgid "This block was imported from a regex based legacy Block."
-msgstr ""
+msgstr "Этот блок был импортирован из устаревшего блока на основе регулярных выражений."
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "Любые сделанные изменения НЕ будут обновлены в устаревшем списке блокировки — вы должны внести изменения вручную через kinto admin webui."
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -920,10 +920,10 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID {addon} удалён из DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Действие блокировки {1} для {0} подписано."
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Действие блокировки подписано"
 
 msgid "User {user} session(s) reset."
 msgstr "Сброс сессии пользователя {user}."
@@ -1389,19 +1389,19 @@ msgid "Recommended"
 msgstr "Рекомендуемые"
 
 msgid "Verified - Tier 1"
-msgstr ""
+msgstr "Подтверждено — Уровень 1"
 
 msgid "Verified - Tier 2"
-msgstr ""
+msgstr "Подтверждено — Уровень 2"
 
 msgid "Line"
 msgstr "Строка"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Прожектор"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Стратегический"
 
 msgid "Add-on"
 msgstr "Дополнение"
@@ -1633,7 +1633,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Дополнения для Thunderbird и SeaMonkey теперь размещены на сайте addons.thunderbird.net. Для обновления своих дополнений на новом сайте вы можете использовать эту же учетную запись."
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Дополнения Open Search {blog_link_open}больше не поддерживаются в AMO{blog_link_close}. Вы можете создать {doc_link_open}вместо этого поисковое расширение{doc_link_close}."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Это окончание уже используется. Пожалуйста, выберите другое."
@@ -1763,7 +1763,7 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "За последнее время вы совершили слишком много загрузок. Пожалуйста, попробуйте ещё раз через некоторое время."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "Версия {version} соответствует {block_link} для этого дополнения. Вы можете связаться с {amo_admins} для получения дополнительной информации."
 
 msgid "a blocklist entry"
 msgstr "элемент чёрного списка"
@@ -2529,7 +2529,7 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Ваше дополнение сейчас «Невидимое»."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "В этом состоянии единственный доступный метод распространения — «Самостоятельно»."
 
 msgid "General Tests"
 msgstr "Общие тесты"
@@ -2989,6 +2989,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Привет,\n"
+"\n"
+"Вы получили это сообщение, потому что запросили новые ключи API разработчика для\n"
+"%(domain)s. Чтобы завершить этот процесс, нажмите на ссылку ниже:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Если вы этого не запрашивали, сообщите об этом на адрес amo-admins@mozilla.com.\n"
+"\n"
+"С уважением,\n"
+"\n"
+"Команда разработчиков дополнений Mozilla"
 
 #, python-format
 msgid ""
@@ -3001,6 +3013,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"В вашу учётную запись был добавлен следующий ключ API:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Если вы считаете, что этот ключ был создан по ошибке, вы можете удалить ключ и\n"
+"отключить доступ в следующем месте:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3013,6 +3033,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"Следующий ключ API был отозван из вашей учетной записи:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Если вы считаете, что этот ключ был отозван по ошибке, вы можете создать новый.\n"
+"по следующему адресу:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3026,6 +3054,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Уважаемый разработчик дополнений,\n"
+"\n"
+"Мы заметили, что ваши секретные учетные данные AMO API были включены в дополнение, отправленное на addons.mozilla.org. Чтобы защитить вашу учетную запись и дополнения, мы отозвали утёкшие учётные данные.\n"
+"Вы можете сгенерировать новые учётные данные API на %(api_keys_url)s\n"
+"\n"
+"Убедитесь, что вы никогда никому не сообщали свои учётные данные. Никогда не включайте их в общедоступное хранилище, дополнение или любое другое общедоступное место. Мы рекомендуем вам просмотреть свои репозитории кода и расширения, чтобы удалить любые ссылки на ваши учётные данные AMO.\n"
+"\n"
+"Спасибо,\n"
+"Команда дополнений Mozilla"
 
 msgid "Invisible"
 msgstr "Невидимое"
@@ -3278,7 +3315,7 @@ msgid "Get involved"
 msgstr "Примите участие"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Соединитесь с тысячами разработчиков и узнайте, как вы можете внести свой вклад в экосистему расширений."
 
 msgid "Learn more about the developer community"
 msgstr "Узнайте больше о сообществе разработчиков"
@@ -5021,7 +5058,7 @@ msgstr "Удаляйте элементы отслеживания из ссыл
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Получите автоматически заполняемые папки закладок RSS-канала."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5044,7 +5081,7 @@ msgstr "Автоматически заменяйте оскорбительны
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Блокируйте всю рекламу: видео, всплывающие окна, баннеры и многое другое."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5053,15 +5090,15 @@ msgstr "Смотрите потоковые видео с друзьями и с
 
 #. editorial content for the discovery pane.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Пропускайте спонсируемые части видео на YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Пусть вам зачитывают веб-страницы вслух. Поддерживается более 40 языков."
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Дважды щёлкните по любому слову, чтобы сразу увидеть его определение."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
