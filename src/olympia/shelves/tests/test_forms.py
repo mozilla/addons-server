@@ -93,6 +93,28 @@ class TestShelfForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {'criteria': ['This field is required.']}
 
+    def test_clean_search_criteria_does_not_start_with_qmark(self):
+        form = ShelfForm({
+            'title': 'Recommended extensions',
+            'endpoint': 'search',
+            'criteria': '..?recommended-true'})
+        assert not form.is_valid()
+        with self.assertRaises(ValidationError) as exc:
+            form.clean()
+        assert exc.exception.message == (
+            'Check criteria field.')
+
+    def test_clean_search_criteria_has_multiple_qmark(self):
+        form = ShelfForm({
+            'title': 'Recommended extensions',
+            'endpoint': 'search',
+            'criteria': '??recommended-true'})
+        assert not form.is_valid()
+        with self.assertRaises(ValidationError) as exc:
+            form.clean()
+        assert exc.exception.message == (
+            'Check criteria field.')
+
     def test_clean_form_throws_error_for_NoReverseMatch(self):
         form = ShelfForm({
             'title': 'New collection',
@@ -103,18 +125,6 @@ class TestShelfForm(TestCase):
             form.clean()
         assert exc.exception.message == (
             'No data found - check criteria parameters.')
-
-    def test_clean_search_returns_404(self):
-        data = {
-            'title': 'Popular themes',
-            'endpoint': 'search',
-            'criteria': self.criteria_404}
-        form = ShelfForm(data)
-        assert not form.is_valid()
-        with self.assertRaises(ValidationError) as exc:
-            form.clean()
-        assert exc.exception.message == (
-            'Check criteria - No data found')
 
     def test_clean_col_returns_404(self):
         data = {
