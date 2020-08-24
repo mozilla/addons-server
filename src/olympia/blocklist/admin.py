@@ -1,3 +1,4 @@
+from django import http
 from django.contrib import admin, auth, contenttypes, messages
 from django.core.exceptions import PermissionDenied
 from django.forms.fields import ChoiceField
@@ -696,7 +697,17 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
     def changeform_view(self, request, obj_id=None, form_url='',
                         extra_context=None):
         extra_context = extra_context or {}
-        obj = self.get_object(request, obj_id) if obj_id else None
+        if obj_id:
+            obj = (
+                self.get_object(request, obj_id) or
+                # if we can't find the obj_id maybe it's a guid instead
+                self.get_object(request, obj_id, 'guid'))
+            if obj and str(obj_id) != str(obj.id):
+                # we found it from the guid if the obj_id != obj.id so redirect
+                url = request.path.replace(obj_id, str(obj.id), 1)
+                return http.HttpResponsePermanentRedirect(url)
+        else:
+            obj = None
         if obj and request.method == 'POST':
             if not self.has_change_permission(request, obj):
                 raise PermissionDenied
