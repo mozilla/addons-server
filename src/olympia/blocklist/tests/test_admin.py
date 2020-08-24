@@ -225,6 +225,22 @@ class TestBlockAdmin(TestCase):
             f'The versions 0 to {version.version} could not be pre-selected '
             'because this addon is part of a pending submission']
 
+    def test_guid_redirects(self):
+        block = Block.objects.create(
+            guid='foo@baa', updated_by=user_factory())
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.login(email=user.email)
+
+        response = self.client.post(
+            reverse('admin:blocklist_block_change', args=(block.guid,)),
+            follow=True)
+        self.assertRedirects(
+            response,
+            reverse('admin:blocklist_block_change', args=(block.pk,)),
+            status_code=301)
+
 
 class TestBlocklistSubmissionAdmin(TestCase):
     def setUp(self):
