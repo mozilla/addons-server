@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-05 18:14+0000\n"
+"PO-Revision-Date: 2020-08-24 12:31+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1386,9 +1386,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Tanıtım"
+msgstr "Tanıtılmadı"
 
 msgid "Recommended"
 msgstr "Önerilen"
@@ -5836,9 +5835,8 @@ msgid "Visible"
 msgstr "Görünür"
 
 # 100%
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "İndirme"
+msgstr "Haftalık indirme"
 
 msgid "Average Daily Users"
 msgstr "Ortalama Günlük Kullanıcı"
@@ -5888,9 +5886,8 @@ msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
 # {0} is the application name.  Example:  Firefox
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "{0} Eklentileri ana sayfasına dön"
+msgstr ""
 
 msgid "Reviewer Leaderboard"
 msgstr ""
@@ -6002,23 +5999,20 @@ msgstr ""
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Engellenen Eklentiler"
+msgstr ""
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Daha fazla bilgi istendi"
+msgstr ""
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Daha fazla bilgi istendi"
+msgstr ""
 
 msgid "Advanced Search"
 msgstr "Gelişmiş arama"
@@ -6150,9 +6144,8 @@ msgstr "Listelenmiş otomatik onaylamayı etkinleştir"
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Otomatik onay doğrulandı"
+msgstr ""
 
 msgid "Clear information request"
 msgstr "Bilgi isteğini temizle"
@@ -6160,17 +6153,14 @@ msgstr "Bilgi isteğini temizle"
 msgid "Clear pending rejections"
 msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Code Review Flag"
-msgstr "Eklenti İnceleme Süreci"
+msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Eklenti İnceleme Süreci"
+msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Eklenti İnceleme Süreci"
+msgstr ""
 
 msgid "(admin)"
 msgstr "(yönetici)"
@@ -6242,9 +6232,8 @@ msgstr "Karşılaştır"
 msgid "Permissions:"
 msgstr "İzinler:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "İzinler:"
+msgstr "İsteğe bağlı izinler:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6371,11 +6360,10 @@ msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Daha Fazla Bilgi İstendi: {0}"
 msgstr[1] ""
 
-#, fuzzy
 msgid "Pending Rejection ({0})"
 msgid_plural "Pending Rejection ({0})"
-msgstr[0] "İnceleme:"
-msgstr[1] "İnceleme:"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "presence of matched rules"
 msgstr "eşleşen kuralların varlığı"
@@ -6383,9 +6371,8 @@ msgstr "eşleşen kuralların varlığı"
 msgid "result state"
 msgstr "sonuç durumu"
 
-#, fuzzy
 msgid "all but results matching only this rule"
-msgstr "bu kural hariç hepsi"
+msgstr "yalnızca bu kuralla eşleşen sonuçlar hariç tümü"
 
 msgid "presence of a version"
 msgstr "bir sürümün varlığı"
@@ -6466,9 +6453,8 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr "Maksimum sorgu uzunluğu aşıldı."
 
-#, fuzzy
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Eklenti kimliği bulunamadı."
+msgstr "\"{}\" kimliğine sahip eklenti bulunamadı."
 
 msgid "You do not own this addon."
 msgstr "Bu eklenti size ait değil."
@@ -6493,9 +6479,8 @@ msgstr ""
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "URL'de geçersiz GUID"
+msgstr "URL'de veya pakette geçersiz eklenti kimliği"
 
 msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
 msgstr ""
@@ -6516,9 +6501,8 @@ msgstr "Kaynağa göre"
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "İçindekiler"
+msgstr ""
 
 msgid "by Campaign"
 msgstr ""
@@ -6658,9 +6642,8 @@ msgstr "Tarihe göre indirmeler"
 msgid "Platform usage by Date"
 msgstr "Tarihe göre platform kullanımı"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> indirme"
+msgstr "Haftalık <b>{0}</b> indirme"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> indirme"
