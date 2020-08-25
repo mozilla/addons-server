@@ -131,7 +131,7 @@ signers:
         path: "mozilla-recommendation.json"
         states:
           recommended: true
-          sponsored: true
+          recommended-android: true
           verified: true
           line: true
         relative_start: 0h

@@ -339,14 +339,7 @@ class TestSigning(TestCase):
             'Digest-Algorithms: SHA1 SHA256\n'
         )
 
-    @override_switch('autograph_promoted_signer', active=False)
-    def test_call_signing_promoted_recommended_only(self):
-        # This is the usual process for recommended add-ons, they're
-        # in "pending recommendation" and only *after* we approve and sign
-        # them they will become "recommended". If their promoted group changes
-        # we won't sign further versions as recommended.
-        self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
-
+    def _check_signed_correctly(self, states):
         assert signing.sign_file(self.file_)
 
         signature_info, manifest = _get_signature_details(
@@ -364,7 +357,19 @@ class TestSigning(TestCase):
         recommendation_data = _get_recommendation_data(
             self.file_.current_file_path)
         assert recommendation_data['addon_id'] == 'xxxxx'
-        assert recommendation_data['states'] == ['recommended']
+        assert sorted(recommendation_data['states']) == states
+
+    @override_switch('autograph_promoted_signer', active=False)
+    def test_call_signing_promoted_recommended_only(self):
+        # This is the usual process for recommended add-ons, they're
+        # in "pending recommendation" and only *after* we approve and sign
+        # them they will become "recommended". If their promoted group changes
+        # we won't sign further versions as recommended.
+        self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
+
+        # it's promoted for all applications, but no android because we're not
+        # using the newer promoted signer
+        self._check_signed_correctly(states=['recommended'])
 
     @override_switch('autograph_promoted_signer', active=False)
     def test_call_signing_promoted_non_recommended_ignored(self):
@@ -390,24 +395,26 @@ class TestSigning(TestCase):
         # we won't sign further versions as promoted.
         self.make_addon_promoted(self.file_.version.addon, LINE)
 
-        assert signing.sign_file(self.file_)
+        # it's promoted for all applications, but it's the same state for both
+        # desktop and android so don't include twice.
+        self._check_signed_correctly(states=['line'])
 
-        signature_info, manifest = _get_signature_details(
-            self.file_.current_file_path)
+    @override_switch('autograph_promoted_signer', active=True)
+    def test_call_signing_promoted_recommended(self):
+        self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
 
-        subject_info = signature_info.signer_certificate['subject']
-        assert subject_info['common_name'] == 'xxxxx'
-        assert manifest.count('Name: ') == 5
+        # Recommended has different states for desktop and android
+        self._check_signed_correctly(
+            states=['recommended', 'recommended-android'])
 
-        assert 'Name: mozilla-recommendation.json' in manifest
-        assert 'Name: manifest.json' in manifest
-        assert 'Name: META-INF/cose.manifest' in manifest
-        assert 'Name: META-INF/cose.sig' in manifest
+    @override_switch('autograph_promoted_signer', active=True)
+    def test_call_signing_promoted_recommended_android_only(self):
+        self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
+        self.file_.version.addon.promotedaddon.update(
+            application_id=amo.ANDROID.id)
 
-        recommendation_data = _get_recommendation_data(
-            self.file_.current_file_path)
-        assert recommendation_data['addon_id'] == 'xxxxx'
-        assert recommendation_data['states'] == ['line']
+        # Recommended has different states for desktop and android
+        self._check_signed_correctly(states=['recommended-android'])
 
     def test_call_signing_promoted_unlisted(self):
         # Unlisted versions, even when the add-on is in promoted group, should

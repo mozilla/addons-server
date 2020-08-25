@@ -61,7 +61,7 @@ def use_promoted_signer(file_obj, promo_group):
             promo_group == RECOMMENDED)
     return (
         file_obj.version.channel == amo.RELEASE_CHANNEL_LISTED and
-        promo_group.autograph_signing_state)
+        promo_group.autograph_signing_states)
 
 
 def call_signing(file_obj):
@@ -101,9 +101,15 @@ def call_signing(file_obj):
     # file.
     promo_group = file_obj.addon.promoted_group(currently_approved=False)
     if use_promoted_signer(file_obj, promo_group):
+        if waffle.switch_is_active('autograph_promoted_signer'):
+            signing_states = {
+                promo_group.autograph_signing_states.get(app.short)
+                for app in file_obj.addon.promotedaddon.applications}
+        else:
+            signing_states = ('recommended',)
+
         signing_data['keyid'] = conf['recommendation_signer']
-        signing_data['options']['recommendations'] = [
-            promo_group.autograph_signing_state]
+        signing_data['options']['recommendations'] = list(signing_states)
         hawk_auth = HawkAuth(
             id=conf['recommendation_signer_user_id'],
             key=conf['recommendation_signer_key'])

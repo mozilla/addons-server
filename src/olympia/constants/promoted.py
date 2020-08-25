@@ -2,6 +2,8 @@ from collections import namedtuple
 
 from django.utils.translation import ugettext_lazy as _
 
+from olympia.constants import applications
+
 
 _PromotedSuperClass = namedtuple(
     '_PromotedSuperClass', [
@@ -14,7 +16,7 @@ _PromotedSuperClass = namedtuple(
         'pre_review',
         'admin_review',
         'badged',
-        'autograph_signing_state',
+        'autograph_signing_states',
     ],
     defaults=(
         # "Since fields with a default value must come after any fields without
@@ -24,7 +26,7 @@ _PromotedSuperClass = namedtuple(
         False,  # pre_review
         False,  # admin_review
         False,  # badged
-        None,  # autograph_signing_state
+        {},  # autograph_signing_states - should be a dict of App.short: state
     )
 )
 
@@ -50,7 +52,9 @@ RECOMMENDED = PromotedClass(
     warning=False,
     pre_review=True,
     badged=True,
-    autograph_signing_state='recommended',
+    autograph_signing_states={
+        applications.FIREFOX.short: 'recommended',
+        applications.ANDROID.short: 'recommended-android'},
 )
 
 VERIFIED_ONE = PromotedClass(
@@ -61,7 +65,9 @@ VERIFIED_ONE = PromotedClass(
     warning=False,
     pre_review=True,
     badged=True,
-    autograph_signing_state='sponsored',
+    autograph_signing_states={
+        applications.FIREFOX.short: 'verified',
+        applications.ANDROID.short: 'verified'},
 )
 
 VERIFIED_TWO = PromotedClass(
@@ -71,7 +77,9 @@ VERIFIED_TWO = PromotedClass(
     warning=False,
     pre_review=True,
     badged=True,
-    autograph_signing_state='verified',
+    autograph_signing_states={
+        applications.FIREFOX.short: 'verified',
+        applications.ANDROID.short: 'verified'},
 )
 
 LINE = PromotedClass(
@@ -82,7 +90,9 @@ LINE = PromotedClass(
     pre_review=True,
     admin_review=True,
     badged=True,
-    autograph_signing_state='line',
+    autograph_signing_states={
+        applications.FIREFOX.short: 'line',
+        applications.ANDROID.short: 'line'},
 )
 
 SPOTLIGHT = PromotedClass(

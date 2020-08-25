@@ -1321,9 +1321,7 @@ class Addon(OnChangeMixin, ModelBase):
         except PromotedAddon.DoesNotExist:
             return NOT_PROMOTED
         group_match = not group or promoted.group == group
-        app_match = (
-            not application or not promoted.application or
-            promoted.application == application)
+        app_match = not application or application in promoted.applications
         is_promoted = group_match and app_match and (
             not currently_approved or promoted.is_addon_currently_promoted)
         return promoted.group if is_promoted else NOT_PROMOTED

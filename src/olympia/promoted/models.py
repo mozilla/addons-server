@@ -3,7 +3,7 @@ from django.dispatch import receiver
 
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
-from olympia.constants.applications import APP_IDS, APPS_CHOICES
+from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
 from olympia.constants.promoted import (
     NOT_PROMOTED, PRE_REVIEW_GROUPS, PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID)
 from olympia.versions.models import Version
@@ -36,8 +36,9 @@ class PromotedAddon(ModelBase):
         return PROMOTED_GROUPS_BY_ID.get(self.group_id, NOT_PROMOTED)
 
     @property
-    def application(self):
-        return APP_IDS.get(self.application_id)
+    def applications(self):
+        application = APP_IDS.get(self.application_id)
+        return [application] if application else [app for app in APP_USAGE]
 
     @property
     def is_addon_currently_promoted(self):

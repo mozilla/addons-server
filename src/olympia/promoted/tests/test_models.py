@@ -9,10 +9,12 @@ class TestPromotedAddon(TestCase):
         promoted_addon = PromotedAddon.objects.create(
             addon=addon_factory(), group_id=promoted.VERIFIED_ONE.id)
         assert promoted_addon.group == promoted.VERIFIED_ONE
-        assert promoted_addon.application is None
+        assert promoted_addon.application_id is None
+        assert promoted_addon.applications == [
+            applications.FIREFOX, applications.ANDROID]
 
         promoted_addon.update(application_id=applications.FIREFOX.id)
-        assert promoted_addon.application == applications.FIREFOX
+        assert promoted_addon.applications == [applications.FIREFOX]
 
     def test_is_addon_currently_promoted(self):
         addon = addon_factory()
