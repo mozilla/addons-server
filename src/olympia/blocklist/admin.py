@@ -544,10 +544,12 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
     def blocks(self, obj):
         # Annoyingly, we don't have the full context, but we stashed blocks
         # earlier in render_change_form().
+        complete = obj.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
         return render_to_string(
             'admin/blocklist/includes/enhanced_blocks.html',
             {
-                'blocks': obj._blocks
+                'blocks': obj._blocks,
+                'submission_complete': complete,
             },
         )
 

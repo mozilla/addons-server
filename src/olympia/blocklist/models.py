@@ -41,6 +41,7 @@ class Block(ModelBase):
         max_length=255, null=False, default='', db_index=True,
         db_column='kinto_id')
     submission = models.ManyToManyField('BlocklistSubmission')
+    average_daily_users = models.IntegerField(null=True)
 
     ACTIVITY_IDS = (
         amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
@@ -81,9 +82,8 @@ class Block(ModelBase):
         return self.get_addons_for_guids_qs((self.guid,)).first()
 
     @property
-    def average_daily_users(self):
-        addon = self.addon
-        return addon.average_daily_users if addon else 0
+    def current_adu(self):
+        return self.addon.average_daily_users if self.addon else 0
 
     @cached_property
     def addon_versions(self):
@@ -224,7 +224,7 @@ class BlocklistSubmission(ModelBase):
     FakeBlock = namedtuple(
         'FakeBlock', (
             'id', 'guid', 'min_version', 'max_version',
-            'is_imported_from_legacy_regex', 'average_daily_users'))
+            'is_imported_from_legacy_regex', 'current_adu'))
 
     action = models.SmallIntegerField(
         choices=ACTIONS.items(), default=ACTION_ADDCHANGE)
@@ -300,7 +300,7 @@ class BlocklistSubmission(ModelBase):
                     min_version=None,
                     max_version=None,
                     is_imported_from_legacy_regex=None,
-                    average_daily_users=None,
+                    current_adu=None,
                 )
                 for block in blocks]
         return blocks
@@ -353,7 +353,7 @@ class BlocklistSubmission(ModelBase):
             return {
                 'id': block.id,
                 'guid': block.guid,
-                'average_daily_users': block.average_daily_users,
+                'average_daily_users': block.current_adu,
             }
 
         processed = self.process_input_guids(
@@ -391,7 +391,7 @@ class BlocklistSubmission(ModelBase):
                 min_version=block.min_version,
                 max_version=block.max_version,
                 is_imported_from_legacy_regex=block.legacy_id.startswith('*'),
-                average_daily_users=adu_lookup.get(block.guid, -1),
+                current_adu=adu_lookup.get(block.guid, -1),
             )
             for block in block_qs}
 
@@ -407,7 +407,7 @@ class BlocklistSubmission(ModelBase):
                 min_version=Block.MIN,
                 max_version=Block.MAX,
                 is_imported_from_legacy_regex=False,
-                average_daily_users=adu_lookup.get(addon.guid, -1),
+                current_adu=adu_lookup.get(addon.guid, -1),
             )
             blocks[addon.guid] = block
         return list(blocks.values())
@@ -424,7 +424,7 @@ class BlocklistSubmission(ModelBase):
         If `load_full_objects=False` is passed the Block instances are fake
         (namedtuples) with only minimal data available in the "Block" objects:
         Block.guid,
-        Block.average_daily_users,
+        Block.current_adu,
         Block.min_version,
         Block.max_version,
         Block.is_imported_from_legacy_regex
@@ -451,7 +451,7 @@ class BlocklistSubmission(ModelBase):
                 if block not in blocks]
 
         blocks.sort(
-            key=lambda block: block.average_daily_users, reverse=True)
+            key=lambda block: block.current_adu, reverse=True)
         invalid_guids = list(
             all_guids - set(existing_guids) - {block.guid for block in blocks})
 
