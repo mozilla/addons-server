@@ -109,7 +109,7 @@ DRF_API_REGEX = r'^/?api/(?:auth|v3|v4|v5)/'
 
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
 # Exclude the `accounts/session` endpoint, see:
 # https://github.com/mozilla/addons-server/issues/11100
 CORS_URLS_REGEX = r'{}(?!accounts/session/)'.format(DRF_API_REGEX)
