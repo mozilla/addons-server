@@ -8,9 +8,15 @@
             {% if block_obj.addon %}
               <span class="addon-name">{{ block_obj.addon.name }}</span>
             {% endif %}
-            {% if block_obj.average_daily_users is not None %}
-              ({{ block_obj.average_daily_users }} {% trans 'users' %}).
+
+            {% if submission_complete|default_if_none:False %}
+              {% if block_obj.average_daily_users_snapshot is not None %}
+                ({{ block_obj.average_daily_users_snapshot }} users).
+              {% endif %}
+            {% elif block_obj.current_adu is not None %}
+              ({{ block_obj.current_adu }} users).
             {% endif %}
+
             {{ block_obj.review_listed_link }}
             {{ block_obj.review_unlisted_link }}
             {% if block_obj.id %}

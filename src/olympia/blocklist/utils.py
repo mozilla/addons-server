@@ -208,6 +208,7 @@ def save_guids_to_blocks(guids, submission, *, fields_to_set):
             setattr(block, field, val)
         if change:
             setattr(block, 'modified', modified_datetime)
+        block.average_daily_users_snapshot = block.current_adu
         block.save()
         if submission.id:
             block.submission.add(submission)

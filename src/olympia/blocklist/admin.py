@@ -545,10 +545,12 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
     def blocks(self, obj):
         # Annoyingly, we don't have the full context, but we stashed blocks
         # earlier in render_change_form().
+        complete = obj.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
         return render_to_string(
             'admin/blocklist/includes/enhanced_blocks.html',
             {
-                'blocks': obj._blocks
+                'blocks': obj._blocks,
+                'submission_complete': complete,
             },
         )
 
@@ -607,7 +609,7 @@ class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
         return obj.addon.modified
 
     def users(self, obj):
-        return obj.average_daily_users
+        return obj.average_daily_users_snapshot
 
     def block_history(self, obj):
         logs = ActivityLog.objects.for_guidblock(obj.guid).filter(
