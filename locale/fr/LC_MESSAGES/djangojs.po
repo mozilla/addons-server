@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-26 08:25+0000\n"
+"PO-Revision-Date: 2020-08-26 08:27+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -511,19 +511,19 @@ msgstr "Supports de téléchargement du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
-msgstr ""
+msgstr "Contenus de téléchargement, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Contents from {0} to {1}"
-msgstr ""
+msgstr "Contenus de téléchargement du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
-msgstr ""
+msgstr "Campagnes de téléchargement, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Campaigns from {0} to {1}"
-msgstr ""
+msgstr "Campagnes de téléchargement du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"

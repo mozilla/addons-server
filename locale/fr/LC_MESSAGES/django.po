@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-07-13 07:04+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2020-08-26 08:57+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -943,16 +943,16 @@ msgid "User {user} throttled for scope \"{0}\""
 msgstr "Utilisateur {user} limité pour le scope « {0} »"
 
 msgid "{addon} {version} content reject scheduled."
-msgstr ""
+msgstr "Rejet de contenu programmé pour {addon} {version}."
 
 msgid "Content reject scheduled"
-msgstr ""
+msgstr "Rejet de contenu programmé"
 
 msgid "{addon} {version} reject scheduled."
-msgstr ""
+msgstr "Rejet programmé pour {addon} {version}"
 
 msgid "Rejection scheduled"
-msgstr ""
+msgstr "Rejet programmé"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1004,7 +1004,7 @@ msgid "Developer"
 msgstr "Développeur"
 
 msgid "(Deleted)"
-msgstr ""
+msgstr "(Supprimé)"
 
 msgid "Extension"
 msgstr "Extension"
@@ -1415,25 +1415,25 @@ msgid "Android"
 msgstr "Android"
 
 msgid "Not Promoted"
-msgstr ""
+msgstr "Non promu"
 
 msgid "Recommended"
-msgstr ""
+msgstr "Recommandé"
 
 msgid "Verified - Tier 1"
-msgstr ""
+msgstr "Vérifié - Niveau 1"
 
 msgid "Verified - Tier 2"
-msgstr ""
+msgstr "Vérifié - Niveau 2"
 
 msgid "Line"
-msgstr ""
+msgstr "Ligne"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "À la une"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Stratégique"
 
 msgid "Add-on"
 msgstr "Module"
@@ -5119,7 +5119,7 @@ msgstr "Demandez la lecture de pages web à haute voix. Plus de 40 langues prise
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Double-cliquez sur n’importe quel mot pour voir instantanément sa définition."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5596,10 +5596,10 @@ msgid "Applications:"
 msgstr "Applications :"
 
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr ""
+msgstr "Retarder le rejet, demandant au développeur de corriger en moins de…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Rejeter immédiatement. À n’utiliser qu’en cas de graves problèmes de sécurité."
 
 msgid "days"
 msgstr "jours"
@@ -5653,7 +5653,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Le marqueur d’approbation automatique est désactivé/retardé"
 
 msgid "Is in a promoted addon group that requires pre-review"
-msgstr ""
+msgstr "Fait partie d’un groupe de modules complémentaires promus qui nécessite un examen préalable"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Retardé parce que c’est la première version listée"
@@ -5921,7 +5921,7 @@ msgid "Visible"
 msgstr "Visible"
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Téléchargements hebdomadaires"
 
 msgid "Average Daily Users"
 msgstr "Moyenne des utilisateurs quotidiens"
@@ -6217,10 +6217,10 @@ msgid "Enable Listed Auto-Approval"
 msgstr "Activer l’approbation automatique de module publié"
 
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr ""
+msgstr "Désactiver l’approbation automatique répertoriée jusqu’à la prochaine approbation manuelle"
 
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr ""
+msgstr "Activer l’approbation automatique répertoriée avant la prochaine approbation manuelle"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "L’approbation automatique est actuellement désactivée jusqu’au {date}"
@@ -6310,7 +6310,7 @@ msgid "Permissions:"
 msgstr "Permissions :"
 
 msgid "Optional permissions:"
-msgstr ""
+msgstr "Autorisations facultatives :"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6326,7 +6326,7 @@ msgid "{num} versions flagged by scanners on other pages."
 msgstr "{num} versions signalées par des scanners sur d’autres pages."
 
 msgid "{num} versions flagged for human review on other pages."
-msgstr ""
+msgstr "{num} versions signalées pour un examen manuel sur d’autres pages."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} versions sont en attente de rejet sur d’autres pages."
@@ -6377,19 +6377,19 @@ msgid "The developer has provided source code."
 msgstr "Le développeur a fourni le code source."
 
 msgid "Scanners score:"
-msgstr ""
+msgstr "Score des scanners :"
 
 msgid "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "Le score des scanners représente la probabilité que cette version soit malveillante, sur la base des résultats des scanners."
 
 msgid "Weight:"
 msgstr "Poids :"
 
 msgid "Flagged by scanners"
-msgstr ""
+msgstr "Signalé par des scanners"
 
 msgid "Flagged for human review"
-msgstr ""
+msgstr "Marqué pour examen manuel"
 
 msgid "Download"
 msgstr "Téléchargement"
@@ -6442,7 +6442,7 @@ msgid "result state"
 msgstr "état du résultat"
 
 msgid "all but results matching only this rule"
-msgstr ""
+msgstr "tous sauf les résultats correspondant uniquement à cette règle"
 
 msgid "presence of a version"
 msgstr "Présence d’une version"
@@ -6568,13 +6568,13 @@ msgid "by Source"
 msgstr "par source"
 
 msgid "by Medium"
-msgstr ""
+msgstr "par support"
 
 msgid "by Content"
-msgstr ""
+msgstr "par contenu"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "par campagne"
 
 msgid "Daily Users"
 msgstr "Utilisateurs quotidiens"
@@ -6677,10 +6677,10 @@ msgid "Application usage by Date"
 msgstr "Utilisation de l’application par date"
 
 msgid "Download campaigns by Date"
-msgstr ""
+msgstr "Campagnes de téléchargement par date"
 
 msgid "Download contents by Date"
-msgstr ""
+msgstr "Contenus de téléchargement par date"
 
 msgid "User countries by Date"
 msgstr "Pays des utilisateurs par date"
@@ -6702,13 +6702,13 @@ msgid "User languages by Date"
 msgstr "Langues utilisateurs par date"
 
 msgid "Download mediums by Date"
-msgstr ""
+msgstr "Supports de téléchargement par date"
 
 msgid "Platform usage by Date"
 msgstr "Utilisation de la plateforme par date"
 
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr ""
+msgstr "<b>{0}</b> téléchargements hebdomadaires"
 
 msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> téléchargements"
