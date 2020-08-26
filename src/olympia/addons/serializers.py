@@ -306,9 +306,7 @@ class PromotedAddonSerializer(serializers.ModelSerializer):
         )
 
     def get_apps(self, obj):
-        application = amo.APP_IDS.get(obj.application_id)
-        return [application.short] if application else (
-            [app.short for app in amo.APP_USAGE])
+        return [app.short for app in obj.applications]
 
 
 class AddonSerializer(serializers.ModelSerializer):

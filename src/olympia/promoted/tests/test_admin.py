@@ -316,7 +316,8 @@ class TestPromotedAddonAdmin(TestCase):
         item = PromotedAddon.objects.get()
         assert item.addon == addon
         assert item.group == RECOMMENDED
-        assert item.application is None
+        assert item.application_id is None
+        assert item.applications == [amo.FIREFOX, amo.ANDROID]
         assert PromotedApproval.objects.count() == 0  # we didn't create any
         assert not addon.promoted_group()
 
