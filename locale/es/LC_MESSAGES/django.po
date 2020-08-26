@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-07-10 10:25+0000\n"
-"Last-Translator: Javier García <subset3001@gmail.com>\n"
+"PO-Revision-Date: 2020-07-28 14:50+0000\n"
+"Last-Translator: Paulina Rodriguez <pauli.rodriguez.c@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -1019,9 +1019,8 @@ msgstr "Propietario"
 msgid "Developer"
 msgstr "Desarrollador"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Eliminado"
+msgstr "(Eliminado)"
 
 msgid "Extension"
 msgstr "Extensión"
@@ -5168,9 +5167,8 @@ msgid "They add features to Firefox to make browsing faster, safer, or just plai
 msgstr "Agregan funciones a Firefox para que la navegación sea más rápida, segura o simplemente divertida."
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "See all extensions"
-msgstr "Explorar todas las extensiones"
+msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Tab organizers and tools"
