@@ -41,7 +41,7 @@ class Block(ModelBase):
         max_length=255, null=False, default='', db_index=True,
         db_column='kinto_id')
     submission = models.ManyToManyField('BlocklistSubmission')
-    average_daily_users = models.IntegerField(null=True)
+    average_daily_users_snapshot = models.IntegerField(null=True)
 
     ACTIVITY_IDS = (
         amo.LOG.BLOCKLIST_BLOCK_ADDED.id,

@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='block',
-            name='average_daily_users',
+            name='average_daily_users_snapshot',
             field=models.IntegerField(null=True),
         ),
     ]

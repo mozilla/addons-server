@@ -10,11 +10,11 @@
             {% endif %}
 
             {% if submission_complete|default_if_none:False %}
-              {% if block_obj.average_daily_users is not None %}
-                {% blocktrans with users=block_obj.average_daily_users %}({{ users }} users).{% endblocktrans %}
+              {% if block_obj.average_daily_users_snapshot is not None %}
+                ({{ block_obj.average_daily_users_snapshot }} users).
               {% endif %}
             {% elif block_obj.current_adu is not None %}
-              {% blocktrans with users=block_obj.current_adu %}({{ users }} users).{% endblocktrans %}
+              ({{ block_obj.current_adu }} users).
             {% endif %}
 
             {{ block_obj.review_listed_link }}

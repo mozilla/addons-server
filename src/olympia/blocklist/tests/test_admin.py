@@ -418,7 +418,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             min_version='0',
             max_version='*',
-            average_daily_users=346733434,  # addon will have a different adu
+            # addon will have a different adu
+            average_daily_users_snapshot=346733434,
             updated_by=user_factory())
         partial_addon = addon_factory(
             guid='partial@existing', name='Partial Danger',
@@ -427,7 +428,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=partial_addon,
             min_version='1',
             max_version='99',
-            average_daily_users=146722437,  # should be updated to addon's adu
+            # should be updated to addon's adu
+            average_daily_users_snapshot=146722437,
             updated_by=user_factory())
         response = self.client.post(
             self.submission_url,
@@ -481,7 +483,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         new_block = all_blocks[2]
         assert new_block.addon == new_addon
-        assert new_block.average_daily_users == new_block.current_adu
+        assert new_block.average_daily_users_snapshot == new_block.current_adu
         add_log = ActivityLog.objects.for_addons(new_addon).last()
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert add_log.arguments == [new_addon, new_addon.guid, new_block]
@@ -509,7 +511,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert existing_and_partial.reason == 'some reason'
         assert existing_and_partial.url == 'dfd'
         assert existing_and_partial.in_legacy_blocklist is False
-        assert existing_and_partial.average_daily_users == (
+        assert existing_and_partial.average_daily_users_snapshot == (
             existing_and_partial.current_adu)
         edit_log = ActivityLog.objects.for_addons(partial_addon).last()
         assert edit_log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
@@ -536,7 +538,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # confirm properties *were not* updated.
         assert existing_and_full.reason != 'some reason'
         assert existing_and_full.url != 'dfd'
-        assert not existing_and_full.average_daily_users == (
+        assert not existing_and_full.average_daily_users_snapshot == (
             existing_and_full.current_adu)
         assert not ActivityLog.objects.for_addons(
             existing_and_full.addon).exists()
@@ -1427,7 +1429,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block = Block.objects.get()
         assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
         # update addon adu to something different
-        assert block.average_daily_users == addon.average_daily_users
+        assert block.average_daily_users_snapshot == addon.average_daily_users
         addon.update(average_daily_users=1234)
 
         user = user_factory()
@@ -1448,7 +1450,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert guid_link.attrib['href'] == reverse(
             'admin:blocklist_block_change', args=(block.pk,))
         assert not doc('submit-row input')
-        assert str(block.average_daily_users) in (
+        assert str(block.average_daily_users_snapshot) in (
             response.content.decode('utf-8'))
 
     def test_list_filters(self):
@@ -1517,7 +1519,7 @@ class TestBlockAdminEdit(TestCase):
         self.addon = addon_factory(guid='guid@', name='Danger Danger')
         self.block = Block.objects.create(
             guid=self.addon.guid, updated_by=user_factory(),
-            average_daily_users=12345678)
+            average_daily_users_snapshot=12345678)
         self.change_url = reverse(
             'admin:blocklist_block_change', args=(self.block.pk,))
         self.submission_url = reverse(
