@@ -27,8 +27,11 @@ class ShelfForm(forms.ModelForm):
 
         try:
             if endpoint == 'search':
-                api = drf_reverse('v4:addon-search')
-                url = baseUrl + api + criteria
+                if not criteria.startswith('?') or criteria.count('?') > 1:
+                    raise forms.ValidationError('Check criteria field.')
+                else:
+                    api = drf_reverse('v4:addon-search')
+                    url = baseUrl + api + criteria
             elif endpoint == 'collections':
                 api = drf_reverse('v4:collection-addon-list', kwargs={
                     'user_pk': settings.TASK_USER_ID,
