@@ -216,7 +216,8 @@ class TestVersion(TestCase):
 
         self.addon.reload()
         assert self.addon.current_version == previous_version
-        assert self.addon.is_recommended  # It's still recommended
+        # It's still recommended.
+        assert self.addon.promoted_group() == RECOMMENDED
 
     def test_can_still_disable_or_delete_old_version_recommended(self):
         # If the add-on is recommended, you can still disable or delete older

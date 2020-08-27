@@ -393,7 +393,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             # - 1 for previews
             # - 1 for license
             # - 1 for translations of the license
-            # - 1 for discovery item (is_recommended)
+            # - 1 for promoted addon
             # - 1 for tags
             self._test_url(lang='en-US')
 
@@ -1217,7 +1217,7 @@ class TestAddonSearchView(ESTestCase):
         addon = addon_factory(
             slug='my-addon', name=u'Featured Addôn', recommended=True)
         addon_factory(slug='other-addon', name=u'Other Addôn')
-        assert addon.is_recommended
+        assert addon.promoted_group() == RECOMMENDED
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'featured': 'true'})
@@ -1229,7 +1229,7 @@ class TestAddonSearchView(ESTestCase):
         addon = addon_factory(
             slug='my-addon', name=u'Recomménded Addôn', recommended=True)
         addon_factory(slug='other-addon', name=u'Other Addôn')
-        assert addon.is_recommended
+        assert addon.promoted_group() == RECOMMENDED
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'recommended': 'true'})
@@ -2027,8 +2027,8 @@ class TestAddonFeaturedView(ESTestCase):
     def test_basic(self):
         addon1 = addon_factory(recommended=True)
         addon2 = addon_factory(recommended=True)
-        assert addon1.is_recommended
-        assert addon2.is_recommended
+        assert addon1.promoted_group() == RECOMMENDED
+        assert addon2.promoted_group() == RECOMMENDED
         addon_factory()  # not recommended so shouldn't show up
         self.refresh()
 

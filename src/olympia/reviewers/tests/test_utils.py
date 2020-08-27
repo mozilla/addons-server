@@ -1976,12 +1976,11 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_nominated_to_approved_recommended(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)
-        assert not self.addon.is_recommended
+        assert not self.addon.promoted_group()
         self.test_nomination_to_public()
-        del self.addon.is_recommended
         assert self.addon.current_version.promoted_approvals.filter(
             group_id=RECOMMENDED.id).exists()
-        assert self.addon.is_recommended
+        assert self.addon.promoted_group() == RECOMMENDED
 
     def test_nominated_to_approved_other_promoted(self):
         self.make_addon_promoted(self.addon, LINE)
@@ -1993,12 +1992,11 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_approved_update_recommended(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)
-        assert not self.addon.is_recommended
+        assert not self.addon.promoted_group()
         self.test_public_addon_with_version_awaiting_review_to_public()
-        del self.addon.is_recommended
         assert self.addon.current_version.promoted_approvals.filter(
             group_id=RECOMMENDED.id).exists()
-        assert self.addon.is_recommended is True
+        assert self.addon.promoted_group() == RECOMMENDED
 
     def test_approved_update_other_promoted(self):
         self.make_addon_promoted(self.addon, LINE)
@@ -2010,14 +2008,13 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_autoapprove_fails_for_promoted(self):
         self.make_addon_promoted(self.addon, RECOMMENDED)
-        assert not self.addon.is_recommended
+        assert not self.addon.promoted_group()
         self.request.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
 
         with self.assertRaises(AssertionError):
             self.test_nomination_to_public()
         assert not PromotedApproval.objects.filter(
             version=self.addon.current_version).exists()
-        assert not self.addon.is_recommended
         assert not self.addon.promoted_group()
 
         # change to other type of promoted; same should happen
@@ -2172,7 +2169,7 @@ class TestReviewHelperSigning(TestReviewHelperBase):
         self.setup_data(amo.STATUS_NOMINATED)
 
         self.make_addon_promoted(self.addon, RECOMMENDED)
-        assert not self.addon.is_recommended
+        assert not self.addon.promoted_group()
 
         self.helper.handler.approve_latest_version()
 
@@ -2180,10 +2177,9 @@ class TestReviewHelperSigning(TestReviewHelperBase):
         assert self.addon.versions.all()[0].files.all()[0].status == (
             amo.STATUS_APPROVED)
 
-        del self.addon.is_recommended
         assert self.addon.current_version.promoted_approvals.filter(
             group_id=RECOMMENDED.id).exists()
-        assert self.addon.is_recommended
+        assert self.addon.promoted_group() == RECOMMENDED
 
         signature_info, manifest = _get_signature_details(self.file.file_path)
 
