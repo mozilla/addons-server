@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-27 20:54+0000\n"
+"PO-Revision-Date: 2020-08-27 21:01+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -323,10 +323,10 @@ msgid "Maintenance in progress"
 msgstr "Mantenentia in progresso"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "Iste functionalitate es temporarimente disactivate durante que nos exeque le mantenentia del sito web. Per favor usa le button Receder tu navigator e prova ancora un poco plus tarde."
+msgstr "Iste function es temporarimente disactivate pro mantenentia del sito web. Per favor usa le button Retro tu navigator e reveni un poco plus tarde."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Alcun functionalitates sur iste pagina es temporarimente disactivate durante que nos exeque le mantenentia del sito web. Per favor prova de novo un poco plus tarde."
+msgstr "Alcun functiones sur iste pagina es temporarimente disactivate pro mantenentia del sito web. Per favor reveni un poco plus tarde."
 
 msgid "Are you human?"
 msgstr "Es tu human?"
@@ -3341,8 +3341,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Informationes sur cambiamentos in iste version, nove functionalitates, defectos cognoscite, e altere informationes utile concernente iste edition/version. Iste informationes es etiam monstrate in le"
-" Gestor de additivos durante le actualisation."
+"Informationes sur cambiamentos in iste version, nove functiones, defectos cognoscite, e altere informationes utile concernente iste edition/version. Iste informationes es etiam monstrate in le "
+"Gestor de additivos durante le actualisation."
 
 msgid "Approval Status"
 msgstr "Stato del approbation"
@@ -3650,7 +3650,7 @@ msgstr "Meliora videos {start_sub_heading}con {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Gaude de un serie de nove functionalitates de YouTube, como: modo cinema, blocage de publicitate, controlo del auto-reproduction, e multo plus."
+msgstr "Gaude de un serie de nove functiones pro YouTube, como: modo cinema, blocage de publicitate, controlo del auto-reproduction, e multo plus."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6897,7 +6897,7 @@ msgid "an add-on developer replies to my review"
 msgstr "le disveloppator de un additivo responde a mi recension"
 
 msgid "new add-ons or Firefox features are available"
-msgstr "nove additivos o functionalitates de Firefox es disponibile"
+msgstr "nove additivos o functiones de Firefox es disponibile"
 
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "le compatibilitate de mi additivo es promovite con successo"
