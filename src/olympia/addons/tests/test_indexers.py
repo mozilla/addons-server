@@ -29,7 +29,7 @@ class TestAddonIndexer(TestCase):
     simple_fields = [
         'average_daily_users', 'bayesian_rating', 'contributions', 'created',
         'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type', 'id',
-        'is_disabled', 'is_experimental', 'is_recommended', 'last_updated',
+        'is_disabled', 'is_experimental', 'last_updated',
         'modified', 'requires_payment', 'slug', 'status', 'type',
         'weekly_downloads',
     ]
@@ -54,7 +54,8 @@ class TestAddonIndexer(TestCase):
         # to store in ES differs from the one in the db.
         complex_fields = [
             'app', 'boost', 'category', 'colors', 'current_version',
-            'description', 'has_eula', 'has_privacy_policy', 'listed_authors',
+            'description', 'has_eula', 'has_privacy_policy', 'is_recommended',
+            'listed_authors',
             'name', 'platforms', 'previews', 'promoted', 'ratings', 'summary',
             'tags',
         ]
@@ -455,6 +456,7 @@ class TestAddonIndexer(TestCase):
         # Non-promoted returns None.
         extracted = self._extract()
         assert not extracted['promoted']
+        assert extracted['is_recommended'] is False
 
         # Promoted extension.
         self.addon = addon_factory(recommended=True)
@@ -462,11 +464,13 @@ class TestAddonIndexer(TestCase):
         assert extracted['promoted']
         assert extracted['promoted']['application_id'] is None
         assert extracted['promoted']['group_id'] == RECOMMENDED.id
+        assert extracted['is_recommended'] is True
 
         # Specific application.
         self.addon.promotedaddon.update(application_id=amo.FIREFOX.id)
         extracted = self._extract()
         assert extracted['promoted']['application_id'] is amo.FIREFOX.id
+        assert extracted['is_recommended'] is True
 
         # Promoted theme.
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
@@ -477,6 +481,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['promoted']
         assert extracted['promoted']['application_id'] is None
         assert extracted['promoted']['group_id'] == RECOMMENDED.id
+        assert extracted['is_recommended'] is True
 
     @mock.patch('olympia.addons.indexers.create_chunked_tasks_signatures')
     def test_reindex_tasks_group(self, create_chunked_tasks_signatures_mock):

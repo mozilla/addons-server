@@ -1292,21 +1292,12 @@ class Addon(OnChangeMixin, ModelBase):
                     collection_id=settings.COLLECTION_FEATURED_THEMES_ID,
                     addon=self).exists())
 
-    @cached_property
-    def is_recommended(self):
-        return (bool(self.promoted_group(group=RECOMMENDED)) or
-                self._is_recommended_theme())
-
-    def promoted_group(self, *, group=None, application=None,
-                       currently_approved=True):
-        """Is the addon currently promoted for the specified group and
-        application?
+    def promoted_group(self, *, application=None, currently_approved=True):
+        """Is the addon currently promoted for the specified application?
 
         Returns the group constant, or NOT_PROMOTED (which is falsey)
         otherwise.
 
-        `group` is the PromotedClass constant; if group=None (default) then all
-        promotion groups are considered;
         `application` is the App class; if application=None (default) then all
         applications are considered;
         `currently_approved=True` means only returns True if
@@ -1320,9 +1311,8 @@ class Addon(OnChangeMixin, ModelBase):
             promoted = self.promotedaddon
         except PromotedAddon.DoesNotExist:
             return NOT_PROMOTED
-        group_match = not group or promoted.group == group
         app_match = not application or application in promoted.applications
-        is_promoted = group_match and app_match and (
+        is_promoted = app_match and (
             not currently_approved or promoted.is_addon_currently_promoted)
         return promoted.group if is_promoted else NOT_PROMOTED
 

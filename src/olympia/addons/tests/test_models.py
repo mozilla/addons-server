@@ -1550,67 +1550,6 @@ class TestAddonModels(TestCase):
         assert addons[1].current_previews == []
         assert addons[2].current_previews == [pc]
 
-    def test_is_recommended(self):
-        addon = addon_factory()
-        # default case - no discovery item so not recommended
-        assert not addon.is_recommended
-
-        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
-        del addon.is_recommended
-        # It's a recommended group promoted addon;
-        # and the latest version is approved too.
-        assert addon.is_recommended
-
-        addon.promotedaddon.update(group_id=VERIFIED_ONE.id)
-        del addon.is_recommended
-        # we revoked the status, so now the addon shouldn't be recommended
-        assert not addon.is_recommended
-
-        addon.current_version.promoted_approvals.all()[0].update(
-            group_id=SPOTLIGHT.id)
-        del addon.current_version.approved_for_groups
-        addon.promotedaddon.update(group_id=RECOMMENDED.id)
-        del addon.is_recommended
-        # similarly if the current_version wasn't reviewed for recommended
-        assert not addon.is_recommended
-
-        addon.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
-        addon.update_version()
-        assert not addon.current_version
-        del addon.is_recommended
-        # check it doesn't error if there's no current_version
-        assert not addon.is_recommended
-
-    def test_theme_is_recommended(self):
-        # themes can be also recommended by being in featured themes collection
-        addon = addon_factory(type=amo.ADDON_STATICTHEME)
-        # check the default addon functionality first:
-        # default case - no discovery item so not recommended
-        assert not addon.is_recommended
-
-        self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
-        del addon.is_recommended
-        # It's a recommended group promoted addon;
-        # and the latest version is approved too.
-        assert addon.is_recommended
-
-        addon.promotedaddon.update(group_id=VERIFIED_ONE.id)
-        del addon.is_recommended
-        # we revoked the status, so now the addon shouldn't be recommended
-        assert not addon.is_recommended
-
-        featured_collection, _ = Collection.objects.get_or_create(
-            id=settings.COLLECTION_FEATURED_THEMES_ID)
-        featured_collection.add_addon(addon)
-        del addon.is_recommended
-        # it's in the collection, so is now recommended
-        assert addon.is_recommended
-
-        featured_collection.remove_addon(addon)
-        del addon.is_recommended
-        # but not when it's removed.
-        assert not addon.is_recommended
-
     def test_promoted_group(self):
         addon = addon_factory()
         # default case - no group so not recommended
@@ -1624,36 +1563,26 @@ class TestAddonModels(TestCase):
             addon=addon, group_id=SPOTLIGHT.id)
         assert addon.promoted_group(currently_approved=False)
         assert addon.promoted_group() == NOT_PROMOTED
-        assert addon.promoted_group(currently_approved=False, group=SPOTLIGHT)
-        assert not addon.promoted_group(group=SPOTLIGHT)
-        assert addon.promoted_group(group=SPOTLIGHT) == NOT_PROMOTED
+        assert not addon.promoted_group()
 
         # The latest version is approved for the same group.
         PromotedApproval.objects.create(
             version=addon.current_version, group_id=SPOTLIGHT.id)
         del addon.current_version.approved_for_groups
         assert addon.promoted_group()
-        assert addon.promoted_group(group=SPOTLIGHT)
-        # not for other groups though
-        assert not addon.promoted_group(group=VERIFIED_ONE)
-        assert addon.promoted_group(group=VERIFIED_ONE) == NOT_PROMOTED
+        assert addon.promoted_group() == SPOTLIGHT
 
         # if the group has changes the approval for the current version isn't
         # valid
         promoted.update(group_id=VERIFIED_ONE.id)
         assert not addon.promoted_group()
         assert addon.promoted_group(currently_approved=False)
-        assert not addon.promoted_group(group=SPOTLIGHT)
-        assert not addon.promoted_group(group=VERIFIED_ONE)
-        assert addon.promoted_group(
-            currently_approved=False, group=VERIFIED_ONE)
-        assert not addon.promoted_group(
-            currently_approved=False, group=SPOTLIGHT)
+        assert addon.promoted_group(currently_approved=False) == VERIFIED_ONE
 
         PromotedApproval.objects.create(
             version=addon.current_version, group_id=VERIFIED_ONE.id)
         del addon.current_version.approved_for_groups
-        assert addon.promoted_group(group=VERIFIED_ONE)
+        assert addon.promoted_group() == VERIFIED_ONE
 
         # Application specific group membership should work too
         # if no app is specifed in the PromotedAddon everything should match

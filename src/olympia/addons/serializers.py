@@ -21,7 +21,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import PROMOTED_GROUPS
+from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
 from olympia.files.models import File
 from olympia.promoted.models import PromotedAddon
 from olympia.search.filters import AddonAppVersionQueryParam
@@ -324,6 +324,7 @@ class AddonSerializer(serializers.ModelSerializer):
     icons = serializers.SerializerMethodField()
     is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
+    is_recommended = serializers.SerializerMethodField()
     name = TranslationSerializerField()
     previews = PreviewSerializer(many=True, source='current_previews')
     promoted = PromotedAddonSerializer()
@@ -421,7 +422,16 @@ class AddonSerializer(serializers.ModelSerializer):
     def get_is_featured(self, obj):
         # featured is gone, but we need to keep the API backwards compatible so
         # fake it with recommended status instead.
-        return obj.is_recommended
+        return self.get_is_recommended(obj)
+
+    def get_is_recommended(self, obj):
+        # Promoted has subsumed recommended but we still return it in the API.
+        # But if we had it in the ES index use that instead while we're still
+        # using the ES index is_recommended value for ?sort=recommended.
+        return getattr(
+            obj,
+            '_is_recommended',
+            bool(obj.promoted and obj.promoted.group == RECOMMENDED))
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
@@ -605,7 +615,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 'icon_hash',
                 'icon_type',
                 'is_experimental',
-                'is_recommended',
                 'last_updated',
                 'modified',
                 'requires_payment',
@@ -643,6 +652,11 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 is_public=data_author.get('is_public', False))
             for data_author in data_authors
         ]
+
+        if 'is_recommended' in data:
+            # if we have this property in the index, store it so we can expose
+            # it in get_is_recommended.
+            obj._is_recommended = data['is_recommended']
 
         is_static_theme = data.get('type') == amo.ADDON_STATICTHEME
         preview_model_class = VersionPreview if is_static_theme else Preview

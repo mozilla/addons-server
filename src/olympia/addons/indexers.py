@@ -1,6 +1,7 @@
 import copy
 
 from django.conf import settings
+from olympia.constants.promoted import RECOMMENDED
 
 import olympia.core.logger
 from olympia import amo
@@ -389,7 +390,7 @@ class AddonIndexer(BaseSearchIndexer):
         attrs = ('id', 'average_daily_users', 'bayesian_rating',
                  'contributions', 'created',
                  'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type',
-                 'is_disabled', 'is_experimental', 'is_recommended',
+                 'is_disabled', 'is_experimental',
                  'last_updated',
                  'modified', 'requires_payment', 'slug',
                  'status', 'type', 'weekly_downloads')
@@ -426,6 +427,9 @@ class AddonIndexer(BaseSearchIndexer):
 
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)
+
+        data['is_recommended'] = bool(
+            obj.promoted and obj.promoted.group == RECOMMENDED)
 
         data['previews'] = [{'id': preview.id, 'modified': preview.modified,
                              'sizes': preview.sizes}
