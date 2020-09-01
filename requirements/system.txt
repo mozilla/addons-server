@@ -1,6 +1,6 @@
 ## Requirements needed to be installed *before* any other requirements.
 ## This makes sure we have the latest version of pip, setuptools and relevant
-## OpenSSL packages to ensure our actual downloads are as safe as possible.
+## system packages first.
 
 # appdirs is required by setuptools
 appdirs==1.4.4 \
@@ -43,7 +43,7 @@ cffi==1.14.2 \
     --hash=sha256:15419020b0e812b40d96ec9d369b2bc8109cc3295eac6e013d3261343580cc7e \
     --hash=sha256:12a453e03124069b6896107ee133ae3ab04c624bb10683e1ed1c1663df17c13c \
     --hash=sha256:ae8f34d50af2c2154035984b8b5fc5d9ed63f32fe615646ab435b05b132ca91b
-# cryptography is required by pyOpenSSL
+# cryptography is required by m2secret-py3, PyFxA
 cryptography==3.1 \
     --hash=sha256:969ae512a250f869c1738ca63be843488ff5cc031987d302c1f59c7dbe1b225f \
     --hash=sha256:b45ab1c6ece7c471f01c56f5d19818ca797c34541f0b2351635a5c9fe09ac2e0 \
@@ -75,10 +75,6 @@ idna==2.10 \
 ipaddress==1.0.23 \
     --hash=sha256:6e0f4a39e66cb5bb9a137b00276a2eff74f93b71dcbdad6f10ff7df9d3557fcc \
     --hash=sha256:b7f8e0369580bb4a24d5ba1d7cc29660a4a6987763faf1d8a8046830e020e7e2
-ndg-httpsclient==0.5.1 \
-    --hash=sha256:d2c7225f6a1c6cf698af4ebc962da70178a99bcde24ee6d1961c4f3338130d57 \
-    --hash=sha256:dd174c11d971b6244a891f7be2b32ca9853d3797a72edb34fa5d7b07d8fff7d4 \
-    --hash=sha256:d72faed0376ab039736c2ba12e30695e2788c4aa569c9c3e3d72131de2592210
 # packaging is required by setuptools
 packaging==20.4 \
     --hash=sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181 \
@@ -86,27 +82,10 @@ packaging==20.4 \
 pip==20.2.2 \
     --hash=sha256:5244e51494f5d1dfbb89da492d4250cb07f9246644736d10ed6c45deb1a48500 \
     --hash=sha256:58a3b0b55ee2278104165c7ee7bc8e2db6f635067f3c66cf637113ec5aa71584
-pyOpenSSL==19.1.0 \
-    --hash=sha256:621880965a720b8ece2f1b2f54ea2071966ab00e2970ad2ce11d596102063504 \
-    --hash=sha256:9a24494b2602aaf402be5c9e30a0b82d4a5c67528fe8fb475e3f3bc00dd69507
 # pycparser is required by cffi
 pycparser==2.20 \
     --hash=sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0 \
     --hash=sha256:7582ad22678f0fcd81102833f60ef8d0e57288b6b5fb00323d101be910e35705
-pyasn1==0.4.8 \
-    --hash=sha256:014c0e9976956a08139dc0712ae195324a75e142284d5f87f1a87ee1b068a359 \
-    --hash=sha256:03840c999ba71680a131cfaee6fab142e1ed9bbd9c693e285cc6aca0d555e576 \
-    --hash=sha256:0458773cfe65b153891ac249bcf1b5f8f320b7c2ce462151f8fa74de8934becf \
-    --hash=sha256:08c3c53b75eaa48d71cf8c710312316392ed40899cb34710d092e96745a358b7 \
-    --hash=sha256:39c7e2ec30515947ff4e87fb6f456dfc6e84857d34be479c9d4a4ba4bf46aa5d \
-    --hash=sha256:5c9414dcfede6e441f7e8f81b43b34e834731003427e5b09e4e00e3172a10f00 \
-    --hash=sha256:6e7545f1a61025a4e58bb336952c5061697da694db1cae97b116e9c46abcf7c8 \
-    --hash=sha256:78fa6da68ed2727915c4767bb386ab32cdba863caa7dbe473eaae45f9959da86 \
-    --hash=sha256:7ab8a544af125fb704feadb008c99a88805126fb525280b2270bb25cc1d78a12 \
-    --hash=sha256:99fcc3c8d804d1bc6d9a099921e39d827026409a58f2a720dcdb89374ea0c776 \
-    --hash=sha256:aef77c9fb94a3ac588e87841208bdec464471d9871bd5050a287cc9a475cd0ba \
-    --hash=sha256:e89bf84b5437b532b0803ba5c9a5e054d21fec423a89952a74f87fa2c9b7bce2 \
-    --hash=sha256:fec3e9d8e36808a28efb59b489e4528c10ad0f480e57dcc32b4de5c9d8c9fdf3
 # pyparsing is required by packaging
 pyparsing==2.4.7 \
     --hash=sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1 \
@@ -115,7 +94,7 @@ pyparsing==2.4.7 \
 setuptools==49.6.0 \
     --hash=sha256:4dd5bb0a0a0cff77b46ca5dd3a84857ee48c83e8223886b556613c724994073f \
     --hash=sha256:46bd862894ed22c2edff033c758c2dc026324788d758e96788e8f7c11f4e9707
-# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, websocket-client
+# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt-toolkit, sphinxcontrib-httpdomain, websocket-client
 six==1.15.0 \
     --hash=sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced \
     --hash=sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259

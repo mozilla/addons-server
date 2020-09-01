@@ -20,14 +20,7 @@ class CoreConfig(AppConfig):
         if not settings.DEBUG:
             warnings.simplefilter('ignore')
 
-        self.enable_urllib_certificate_checking()
-
         self.enable_post_request_task()
-
-    def enable_urllib_certificate_checking(self):
-        # From requests's packages/urllib3/contrib/pyopenssl.py
-        import urllib3.contrib.pyopenssl
-        urllib3.contrib.pyopenssl.inject_into_urllib3()
 
     def enable_post_request_task(self):
         """Import post_request_task so that it can listen to `request_started`
