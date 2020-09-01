@@ -496,37 +496,48 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
 
 
 def fetch_queue_counts(admin_reviewer):
-    def construct_query_from_sql_model(sqlmodel):
+    def construct_count_queryset_from_sql_model(sqlmodel):
+        # FIXME: ideally here we'd prevent sqlmodel.objects from including
+        # all the columns in the query for the count like it's done below with
+        # actual querysets...
         qs = sqlmodel.objects
 
         if not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
         return qs.count
 
+    def construct_count_queryset_from_queryset(qs):
+        # Our querysets can have distinct, which causes django to run the full
+        # select in a subquery and then count() on it. That's tracked in
+        # https://code.djangoproject.com/ticket/30685
+        # We can't easily fix the fact that there is a subquery, but we can
+        # avoid selecting all fields and ordering needlessly.
+        return qs.values('pk').order_by().count
+
     counts = {
-        'extension': construct_query_from_sql_model(
+        'extension': construct_count_queryset_from_sql_model(
             ViewExtensionQueue),
-        'theme_pending': construct_query_from_sql_model(
+        'theme_pending': construct_count_queryset_from_sql_model(
             ViewThemePendingQueue),
-        'theme_nominated': construct_query_from_sql_model(
+        'theme_nominated': construct_count_queryset_from_sql_model(
             ViewThemeFullReviewQueue),
-        'recommended': construct_query_from_sql_model(
+        'recommended': construct_count_queryset_from_sql_model(
             ViewRecommendedQueue),
-        'moderated': Rating.objects.all().to_moderate().count,
-        'auto_approved': (
+        'moderated': construct_count_queryset_from_queryset(
+            Rating.objects.all().to_moderate()),
+        'auto_approved': construct_count_queryset_from_queryset(
             Addon.objects.get_auto_approved_queue(
-                admin_reviewer=admin_reviewer).count),
-        'content_review': (
+                admin_reviewer=admin_reviewer)),
+        'content_review': construct_count_queryset_from_queryset(
             Addon.objects.get_content_review_queue(
-                admin_reviewer=admin_reviewer).count),
-        'mad': (Addon.objects.get_mad_queue(
-                admin_reviewer=admin_reviewer).count),
-        'scanners': (
-            Addon.objects.get_scanners_queue(
-                admin_reviewer=admin_reviewer).count),
-        'pending_rejection': (
+                admin_reviewer=admin_reviewer)),
+        'mad': construct_count_queryset_from_queryset(
+            Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer)),
+        'scanners': construct_count_queryset_from_queryset(
+            Addon.objects.get_scanners_queue(admin_reviewer=admin_reviewer)),
+        'pending_rejection': construct_count_queryset_from_queryset(
             Addon.objects.get_pending_rejection_queue(
-                admin_reviewer=admin_reviewer).count),
+                admin_reviewer=admin_reviewer)),
     }
     return {queue: count() for (queue, count) in counts.items()}
 

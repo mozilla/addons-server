@@ -1900,7 +1900,7 @@ class AddonApprovalsCounter(ModelBase):
         Addon, primary_key=True, on_delete=models.CASCADE)
     counter = models.PositiveIntegerField(default=0)
     last_human_review = models.DateTimeField(null=True)
-    last_content_review = models.DateTimeField(null=True)
+    last_content_review = models.DateTimeField(null=True, db_index=True)
 
     def __str__(self):
         return u'%s: %d' % (str(self.pk), self.counter) if self.pk else u''

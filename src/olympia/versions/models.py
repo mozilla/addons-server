@@ -792,8 +792,10 @@ class VersionReviewerFlags(ModelBase):
         Version, primary_key=True, on_delete=models.CASCADE,
         related_name='reviewerflags',
     )
-    needs_human_review_by_mad = models.BooleanField(default=False)
-    pending_rejection = models.DateTimeField(default=None, null=True)
+    needs_human_review_by_mad = models.BooleanField(
+        default=False, db_index=True)
+    pending_rejection = models.DateTimeField(
+        default=None, null=True, db_index=True)
 
 
 def generate_static_theme_preview(theme_data, version_pk):
