@@ -355,6 +355,10 @@ class AddonPromotedQueryParam(AddonQueryParam):
             **{'promoted.group_id': self.get_value()})]
 
         if app := self.get_app():
+            # If a specific application isn't set then application_id is None,
+            # but ES doesn't store None values - it just doesn't store the
+            # field for that record - so we have to use NOT 'exists' to check
+            # for None.
             query.append(
                 Q(self.operator, **{'promoted.application_id': app}) |
                 ~Q('exists', field='promoted.application_id'))
