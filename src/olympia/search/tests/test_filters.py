@@ -14,7 +14,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
-    ENABLED_PROMOTED_GROUPS_BY_ID, RECOMMENDED, VERIFIED_ONE, VERIFIED_TWO)
+    ENABLED_PROMOTED_GROUPS_BY_ID, RECOMMENDED)
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
@@ -168,7 +168,7 @@ class TestQueryFilter(FilterTestsBase):
         }
 
         functions = qs['query']['function_score']['functions']
-        assert len(functions) == 4
+        assert len(functions) == 3
         assert functions[0] == {
             'field_value_factor': {
                 'field': 'average_daily_users', 'modifier': 'log2p'
@@ -191,11 +191,6 @@ class TestQueryFilter(FilterTestsBase):
             'filter': {
                 'terms': {'promoted.group_id': [RECOMMENDED.id]}},
             'weight': 5.0}
-        assert functions[3] == {
-            'filter': {
-                'terms': {'promoted.group_id': [
-                    VERIFIED_ONE.id, VERIFIED_TWO.id]}},
-            'weight': 3.0}
         return qs
 
     def test_no_rescore_if_not_sorting_by_relevance(self):
