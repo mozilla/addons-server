@@ -493,7 +493,7 @@ class TestReviewLog(ReviewerTest):
             assert not doc('tbody tr :not(.hide)')
 
         self.make_approvals()
-        for perm in ['Review', 'ContentReview', 'PostReview']:
+        for perm in ['Review', 'ContentReview']:
             GroupUser.objects.filter(user=self.user).delete()
             self.grant_permission(self.user, 'Addons:%s' % perm)
             # Should have 2 showing.
@@ -502,7 +502,7 @@ class TestReviewLog(ReviewerTest):
         # Should have none showing if the addons are static themes.
         for addon in Addon.objects.all():
             addon.update(type=amo.ADDON_STATICTHEME)
-        for perm in ['Review', 'ContentReview', 'PostReview']:
+        for perm in ['Review', 'ContentReview']:
             GroupUser.objects.filter(user=self.user).delete()
             self.grant_permission(self.user, 'Addons:%s' % perm)
             check_none_showing()
@@ -720,7 +720,7 @@ class TestDashboard(TestCase):
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
 
-    def test_legacy_reviewer(self):
+    def test_regular_reviewer(self):
         # Create some add-ons to test the queue counts.
         addon_factory(
             status=amo.STATUS_NOMINATED,
@@ -748,30 +748,8 @@ class TestDashboard(TestCase):
             status=amo.STATUS_NOMINATED,
             type=amo.ADDON_STATICTHEME,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-
-        # Grant user the permission to see only the legacy add-ons section.
-        self.grant_permission(self.user, 'Addons:Review')
-
-        # Test.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 2
-        expected_links = [
-            reverse('reviewers.queue_extension'),
-            reverse('reviewers.performance'),
-            reverse('reviewers.reviewlog'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_scanners'),
-            reverse('reviewers.queue_mad'),
-        ]
-        links = [link.attrib['href'] for link in doc('.dashboard a')]
-        assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'Other Pending Review (3)'
-
-    def test_post_reviewer(self):
-        # Create an add-on to test the queue count. It's under admin content
-        # review but that does not have an impact.
+        # Create an add-on to test the post-review queue count.
+        # It's under admin content review but that does not have an impact.
         addon = addon_factory(
             file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
@@ -788,15 +766,22 @@ class TestDashboard(TestCase):
             verdict=amo.AUTO_APPROVED)
         AddonReviewerFlags.objects.create(
             addon=under_code_review, needs_admin_code_review=True)
-        # Grant user the permission to see only the Auto Approved section.
-        self.grant_permission(self.user, 'Addons:PostReview')
+
+        # Grant user the permission to see only the legacy/post add-ons section
+        self.grant_permission(self.user, 'Addons:Review')
 
         # Test.
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 1
+        assert len(doc('.dashboard h3')) == 3
         expected_links = [
+            reverse('reviewers.queue_extension'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
+            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.performance'),
             reverse('reviewers.reviewlog'),
@@ -804,7 +789,8 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'Auto Approved Add-ons (1)'
+        assert doc('.dashboard a')[0].text == 'Other Pending Review (3)'
+        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (1)'
 
     def test_content_reviewer(self):
         # Create an add-on to test the queue count. It's under admin code
@@ -937,49 +923,6 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[0].text == 'New (1)'
         assert doc('.dashboard a')[1].text == 'Updates (2)'
 
-    def test_post_reviewer_and_content_reviewer(self):
-        # Create add-ons to test the queue count. The first add-on has its
-        # content approved, so the post review queue should contain 2 add-ons,
-        # and the content review queue only 1.
-        addon = addon_factory(
-            file_kw={'is_webextension': True})
-        AutoApprovalSummary.objects.create(
-            version=addon.current_version, verdict=amo.AUTO_APPROVED)
-        AddonApprovalsCounter.approve_content_for_addon(addon=addon)
-
-        addon = addon_factory(
-            file_kw={'is_webextension': True})
-        AddonApprovalsCounter.reset_for_addon(addon=addon)
-        AutoApprovalSummary.objects.create(
-            version=addon.current_version, verdict=amo.AUTO_APPROVED)
-
-        # Grant user the permission to see both the Content Review and the
-        # Auto Approved Add-ons sections.
-        self.grant_permission(self.user, 'Addons:ContentReview')
-        self.grant_permission(self.user, 'Addons:PostReview')
-
-        # Test.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 2  # 2 sections are shown.
-        expected_links = [
-            reverse('reviewers.queue_auto_approved'),
-            reverse('reviewers.performance'),
-            reverse('reviewers.reviewlog'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_content_review'),
-            reverse('reviewers.performance'),
-        ]
-        links = [link.attrib['href'] for link in doc('.dashboard a')]
-        assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'Auto Approved Add-ons (2)'
-        assert 'target' not in doc('.dashboard a')[0].attrib
-        assert doc('.dashboard a')[3].text == 'Review Guide'
-        assert doc('.dashboard a')[3].attrib['target'] == '_blank'
-        assert doc('.dashboard a')[3].attrib['rel'] == 'noopener noreferrer'
-        assert doc('.dashboard a')[4].text == 'Content Review (1)'
-
     def test_legacy_reviewer_and_ratings_moderator(self):
         # Grant user the permission to see both the legacy add-ons and the
         # ratings moderation sections.
@@ -990,7 +933,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 3
+        assert len(doc('.dashboard h3')) == 4
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.performance'),
@@ -998,6 +941,10 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_scanners'),
             reverse('reviewers.queue_mad'),
+            reverse('reviewers.queue_auto_approved'),
+            reverse('reviewers.performance'),
+            reverse('reviewers.reviewlog'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
@@ -1006,11 +953,12 @@ class TestDashboard(TestCase):
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Other Pending Review (0)'
         assert 'target' not in doc('.dashboard a')[0].attrib
-        assert doc('.dashboard a')[6].text == 'Ratings Awaiting Moderation (0)'
+        assert doc('.dashboard a')[10].text == (
+            'Ratings Awaiting Moderation (0)')
         assert 'target' not in doc('.dashboard a')[5].attrib
-        assert doc('.dashboard a')[8].text == 'Moderation Guide'
-        assert doc('.dashboard a')[8].attrib['target'] == '_blank'
-        assert doc('.dashboard a')[8].attrib['rel'] == 'noopener noreferrer'
+        assert doc('.dashboard a')[12].text == 'Moderation Guide'
+        assert doc('.dashboard a')[12].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[12].attrib['rel'] == 'noopener noreferrer'
 
     def test_view_mobile_site_link_hidden(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -1342,6 +1290,7 @@ class TestQueueBasics(QueueTest):
             reverse('reviewers.queue_extension'),
             reverse('reviewers.queue_scanners'),
             reverse('reviewers.queue_mad'),
+            reverse('reviewers.queue_auto_approved'),
         ]
         assert links == expected
 
@@ -1350,15 +1299,13 @@ class TestQueueBasics(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
-        expected.append(reverse('reviewers.queue_moderated'))
-        assert links == expected
-
-        self.grant_permission(self.user, 'Addons:PostReview')
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
-        expected.append(reverse('reviewers.queue_auto_approved'))
+        expected = [
+            reverse('reviewers.queue_extension'),
+            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_mad'),
+            reverse('reviewers.queue_moderated'),
+            reverse('reviewers.queue_auto_approved'),
+        ]
         assert links == expected
 
         self.grant_permission(self.user, 'Addons:ContentReview')
@@ -1529,7 +1476,7 @@ class TestExtensionQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout('🛠️ Other Pending Review',
-                                tab_position=0, total_addons=4, total_queues=3)
+                                tab_position=0, total_addons=4, total_queues=4)
 
     def test_webextensions_filtered_out_because_of_post_review(self):
         self.addons['Nominated Two'].find_latest_version(
@@ -1814,7 +1761,7 @@ class TestRecommendedQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout(
-            'Recommended', tab_position=0, total_addons=4, total_queues=4)
+            'Recommended', tab_position=0, total_addons=4, total_queues=5)
 
     def test_nothing_recommended_filtered_out(self):
         version = self.addons['Nominated One'].find_latest_version(
@@ -2082,7 +2029,7 @@ class TestAutoApprovedQueue(QueueTest):
     def login_with_permission(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.user.groupuser_set.all().delete()  # Remove all permissions
-        self.grant_permission(user, 'Addons:PostReview')
+        self.grant_permission(user, 'Addons:Review')
         self.client.login(email=user.email)
 
     def get_addon_latest_version(self, addon):
@@ -2153,7 +2100,9 @@ class TestAutoApprovedQueue(QueueTest):
         self.expected_addons = [addon4, addon2, addon3, addon1]
 
     def test_only_viewable_with_specific_permission(self):
-        # Regular addon reviewer does not have access.
+        # content reviewer does not have access.
+        self.user.groupuser_set.all().delete()  # Remove all permissions
+        self.grant_permission(self.user, 'Addons:ContentReview')
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -2219,7 +2168,7 @@ class TestAutoApprovedQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Auto Approved', tab_position=0, total_addons=4, total_queues=1,
+            'Auto Approved', tab_position=3, total_addons=4, total_queues=4,
             per_page=1)
 
     def test_pending_rejection_filtered_out(self):
@@ -2496,9 +2445,9 @@ class TestScannersReviewQueue(QueueTest):
         check_links(expected, links, verify=False)
 
     def test_only_viewable_with_specific_permission(self):
-        # Post-review reviewer does not have access.
+        # content reviewer does not have access.
         self.user.groupuser_set.all().delete()  # Remove all permissions
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:ContentReview')
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -2513,7 +2462,7 @@ class TestScannersReviewQueue(QueueTest):
 
         self._test_queue_layout(
             'Flagged By Scanners',
-            tab_position=1, total_addons=3, total_queues=3, per_page=1)
+            tab_position=1, total_addons=3, total_queues=4, per_page=1)
 
     def test_queue_layout_admin(self):
         # Admins should see the extra add-on that needs admin content review.
@@ -3450,7 +3399,7 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED,
             weight=284, weight_info={'fôo': 200, 'bär': 84})
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
         url = reverse('reviewers.review', args=[self.addon.slug])
         response = self.client.get(url)
         assert response.status_code == 200
@@ -3460,7 +3409,7 @@ class TestReview(ReviewBase):
         assert risk.attr['title'] == 'bär: 84\nfôo: 200'
 
     def test_scanners_score(self):
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
         url = reverse('reviewers.review', args=[self.addon.slug])
         # Without a score.
         response = self.client.get(url)
@@ -4628,37 +4577,6 @@ class TestReview(ReviewBase):
         assert a_log.details['comments'] == ''
         self.assert3xx(response, reverse('reviewers.queue_content_review'))
 
-    def test_confirm_auto_approval_no_permission(self):
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
-        self.login_as_reviewer()  # Legacy reviewer, not post-review.
-        response = self.client.post(
-            self.url, {'action': 'confirm_auto_approved'})
-        assert response.status_code == 200
-        assert not response.context['form'].is_valid()
-        assert response.context['form'].errors['action']
-        # Nothing happened: the user did not have the permission to do that.
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
-
-    def test_attempt_to_use_content_review_permission_for_post_review_actions(
-            self):
-        # Try to use confirm_auto_approved outside of content review, while
-        # only having Addons:Review and Addons:ContentReview permission
-        # (no Addons:PostReview).
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
-        self.login_as_reviewer()
-        response = self.client.post(
-            self.url, {'action': 'confirm_auto_approved'})
-        assert response.status_code == 200
-        assert not response.context['form'].is_valid()
-        assert response.context['form'].errors['action']
-        # Nothing happened: the user did not have the permission to do that.
-        assert ActivityLog.objects.filter(
-            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
-
     def test_approve_content_content_review(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.url = reverse(
@@ -4724,7 +4642,7 @@ class TestReview(ReviewBase):
     def test_cant_postreview_if_admin_content_review_flag_is_set(self):
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_content_review=True)
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
         for action in ['approve_content', 'reject_multiple_versions']:
             response = self.client.post(self.url, self.get_dict(action=action))
             assert response.status_code == 200  # Form error.
@@ -4819,7 +4737,7 @@ class TestReview(ReviewBase):
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
         response = self.client.post(self.url, {
             'action': 'confirm_auto_approved',
             'comments': 'ignore me this action does not support comments'
@@ -4842,7 +4760,7 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
 
         response = self.client.post(self.url, {
             'action': 'reject_multiple_versions',
@@ -4865,7 +4783,7 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
 
         response = self.client.post(self.url, {
             'action': 'reject_multiple_versions',
@@ -4892,7 +4810,7 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
 
         response = self.client.post(self.url, {
             'action': 'reject_multiple_versions',
@@ -5033,7 +4951,7 @@ class TestReview(ReviewBase):
         self.file.update(is_webextension=True)
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED)
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5047,7 +4965,7 @@ class TestReview(ReviewBase):
         assert not doc('.last-approval-date')
 
     def test_no_auto_approval_summaries_since_everything_is_public(self):
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5205,7 +5123,7 @@ class TestReview(ReviewBase):
     def test_data_value_attributes(self):
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5335,7 +5253,7 @@ class TestReview(ReviewBase):
             verdict=amo.AUTO_APPROVED, version=self.version)
         version_factory(
             addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
         response = self.client.get(self.url)
         assert response.status_code == 200
         expected_actions = [
@@ -5726,7 +5644,7 @@ class TestReviewPending(ReviewBase):
             verdict=amo.NOT_AUTO_APPROVED,
             is_locked=True,
         )
-        self.grant_permission(self.reviewer, 'Addons:PostReview')
+        self.grant_permission(self.reviewer, 'Addons:Review')
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5968,11 +5886,11 @@ class TestLeaderboard(ReviewerTest):
 
     def test_leaderboard_ranks(self):
         other_reviewer = UserProfile.objects.create(
-            username='post_reviewer',
+            username='other_reviewer',
             display_name='',  # No display_name, will fall back on name.
-            email='post_reviewer@mozilla.com')
+            email='other_reviewer@mozilla.com')
         self.grant_permission(
-            other_reviewer, 'Addons:PostReview',
+            other_reviewer, 'Addons:Review',
             name='Reviewers: Add-ons'  # The name of the group matters here.
         )
 
@@ -6145,7 +6063,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 403
 
     def test_subscribe_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         self.subscribe_url = reverse_ns(
             'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
@@ -6155,7 +6073,7 @@ class TestAddonReviewerViewSet(TestCase):
     def test_subscribe_already_subscribed(self):
         ReviewerSubscription.objects.create(
             user=self.user, addon=self.addon)
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         self.subscribe_url = reverse_ns(
             'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
@@ -6164,7 +6082,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert ReviewerSubscription.objects.count() == 1
 
     def test_subscribe(self):
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         self.subscribe_url = reverse_ns(
             'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
@@ -6182,7 +6100,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 403
 
     def test_unsubscribe_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         self.unsubscribe_url = reverse_ns(
             'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk + 42})
@@ -6190,7 +6108,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 404
 
     def test_unsubscribe_not_subscribed(self):
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         self.subscribe_url = reverse_ns(
             'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
@@ -6201,7 +6119,7 @@ class TestAddonReviewerViewSet(TestCase):
     def test_unsubscribe(self):
         ReviewerSubscription.objects.create(
             user=self.user, addon=self.addon)
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         self.subscribe_url = reverse_ns(
             'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
@@ -6218,7 +6136,7 @@ class TestAddonReviewerViewSet(TestCase):
             user=self.user, addon=another_addon)
         ReviewerSubscription.objects.create(
             user=another_user, addon=self.addon)
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
         self.subscribe_url = reverse_ns(
             'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk})
@@ -8033,12 +7951,6 @@ class TestCannedResponseViewSet(TestCase):
         self.client.login_api(user)
         self._test_url()
 
-    def test_post_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:PostReview')
-        self.client.login_api(user)
-        self._test_url()
-
 
 class TestThemeBackgroundImages(ReviewBase):
 
@@ -8258,9 +8170,9 @@ class TestMadQueue(QueueTest):
         check_links(expected, links, verify=False)
 
     def test_only_viewable_with_specific_permission(self):
-        # Post-review reviewer does not have access.
+        # Content reviewer does not have access.
         self.user.groupuser_set.all().delete()  # Remove all permissions
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:ContentReview')
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -8272,11 +8184,11 @@ class TestMadQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout('Flagged for Human Review', tab_position=2,
-                                total_addons=4, total_queues=3, per_page=1)
+                                total_addons=4, total_queues=4, per_page=1)
 
     def test_queue_layout_admin(self):
         # Admins should see the extra add-on that needs admin content review.
         self.grant_permission(self.user, 'Reviews:Admin')
 
         self._test_queue_layout('Flagged for Human Review', tab_position=2,
-                                total_addons=5, total_queues=4, per_page=1)
+                                total_addons=5, total_queues=5, per_page=1)

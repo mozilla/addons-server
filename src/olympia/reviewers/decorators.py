@@ -58,7 +58,6 @@ def any_reviewer_required(f):
     - Addons:Review
     - Addons:ReviewUnlisted
     - Addons:ContentReview
-    - Addons:PostReview
     - Addons:ThemeReview
     - Addons:RecommendedReview
     """

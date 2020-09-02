@@ -346,7 +346,7 @@ class ReviewHelper(object):
         # Default permissions / admin needed values if it's just a regular
         # code review, nothing fancy.
         permission = amo.permissions.ADDONS_REVIEW
-        permission_post_review = amo.permissions.ADDONS_POST_REVIEW
+        permission_post_review = amo.permissions.ADDONS_REVIEW
         is_admin_needed = (
             self.addon.needs_admin_content_review or
             self.addon.needs_admin_code_review)

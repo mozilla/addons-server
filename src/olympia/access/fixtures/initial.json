@@ -40,16 +40,6 @@
     }
   },
   {
-    "pk": 7,
-    "model": "access.group",
-    "fields": {
-        "name": "Reviewers: Add-ons",
-        "rules": "Addons:PostReview",
-        "created": "2017-10-26 15:00:00",
-        "modified": "2017-10-26 15:00:00"
-    }
-  },
-  {
     "pk": 8,
     "model": "access.group",
     "fields": {

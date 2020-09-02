@@ -134,8 +134,7 @@ class AllowReviewer(BasePermission):
     The definition of an add-on reviewer depends on the object:
     - For static themes, it's someone with 'Addons:ThemeReview'
     - For the rest of the add-ons, is someone who has either
-      'Addons:Review', 'Addons:PostReview' or 'Addons:ContentReview'
-      permission.
+      'Addons:Review' or 'Addons:ContentReview' permission.
     """
     def has_permission(self, request, view):
         return request.user.is_authenticated
@@ -184,7 +183,6 @@ class AllowAnyKindOfReviewer(BasePermission):
     - Addons:Review
     - Addons:ReviewUnlisted
     - Addons:ContentReview
-    - Addons:PostReview
 
     Uses acl.is_user_any_kind_of_reviewer() behind the scenes.
     See also any_reviewer_required() decorator.

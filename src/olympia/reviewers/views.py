@@ -191,8 +191,7 @@ def dashboard(request):
                 queue_counts['mad']),
             reverse('reviewers.queue_mad'),
         )]
-    if view_all or acl.action_allowed(
-            request, amo.permissions.ADDONS_POST_REVIEW):
+
         sections[ugettext('Auto-Approved Add-ons')] = [(
             ugettext('Auto Approved Add-ons ({0})').format(
                 queue_counts['auto_approved']),
@@ -608,7 +607,7 @@ def queue_content_review(request):
                   qs=qs, SearchForm=None)
 
 
-@permission_or_tools_view_required(amo.permissions.ADDONS_POST_REVIEW)
+@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_auto_approved(request):
     admin_reviewer = is_admin_reviewer(request)
     qs = Addon.objects.get_auto_approved_queue(

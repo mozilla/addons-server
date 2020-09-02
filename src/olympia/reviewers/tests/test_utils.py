@@ -284,7 +284,7 @@ class TestReviewHelper(TestReviewHelperBase):
             self.helper.process()
 
     def test_process_action_good(self):
-        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Addons:Review')
         self.helper = self.get_helper()
         self.helper.set_data({'action': 'reply', 'comments': 'foo'})
         self.helper.process()
@@ -332,8 +332,8 @@ class TestReviewHelper(TestReviewHelperBase):
                 addon_status=amo.STATUS_APPROVED,
                 file_status=file_status).keys()) == expected
 
-    def test_actions_public_post_reviewer(self):
-        self.grant_permission(self.request.user, 'Addons:PostReview')
+    def test_actions_public_post_review(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
         expected = ['reject_multiple_versions', 'reply', 'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
@@ -377,10 +377,10 @@ class TestReviewHelper(TestReviewHelperBase):
             content_review=True).keys()) == expected
 
     def test_actions_public_static_theme(self):
-        # Having Addons:PostReview and dealing with a public add-on would
+        # Having Addons:Review and dealing with a public add-on would
         # normally be enough to give you access to reject multiple versions
         # action, but it should not be available if you're not theme reviewer.
-        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(type=amo.ADDON_STATICTHEME)
         expected = []
         assert list(self.get_review_actions(
@@ -408,16 +408,15 @@ class TestReviewHelper(TestReviewHelperBase):
             file_status=amo.STATUS_APPROVED).keys()) == expected
 
     def test_actions_recommended(self):
-        # Having Addons:PostReview or Addons:Review is not enough to review
+        # Having Addons:Review is not enough to review
         # recommended extensions.
         self.make_addon_promoted(self.addon, RECOMMENDED)
-        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Addons:Review')
         expected = ['reply', 'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED).keys()) == expected
 
-        self.grant_permission(self.request.user, 'Addons:Review')
         expected = ['reply', 'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_NOMINATED,
@@ -453,18 +452,15 @@ class TestReviewHelper(TestReviewHelperBase):
             content_review=True).keys()) == expected
 
     def test_actions_promoted_admin_review_needs_admin_permission(self):
-        # Having Addons:PostReview or Addons:Review or Addons:RecommendedReview
+        # Having Addons:Review or Addons:RecommendedReview
         # is not enough to review promoted addons that are in a group that is
         # admin_review=True.
         self.make_addon_promoted(self.addon, LINE)
-        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Addons:Review')
         expected = ['super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_APPROVED).keys()) == expected
-
-        self.grant_permission(self.request.user, 'Addons:Review')
-        expected = ['super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
@@ -499,7 +495,6 @@ class TestReviewHelper(TestReviewHelperBase):
         # review page.
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.grant_permission(self.request.user, 'Addons:Review')
-        self.grant_permission(self.request.user, 'Addons:PostReview')
         expected = ['reply', 'super', 'comment']
         assert list(self.get_review_actions(
             addon_status=amo.STATUS_NULL,
@@ -550,7 +545,6 @@ class TestReviewHelper(TestReviewHelperBase):
         # An addon having its latest version pending rejection won't be
         # reviewable by regular reviewers...
         self.grant_permission(self.request.user, 'Addons:Review')
-        self.grant_permission(self.request.user, 'Addons:PostReview')
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         VersionReviewerFlags.objects.create(
@@ -576,7 +570,6 @@ class TestReviewHelper(TestReviewHelperBase):
         # Admins can still do everything when there is a version pending
         # rejection.
         self.grant_permission(self.request.user, 'Addons:Review')
-        self.grant_permission(self.request.user, 'Addons:PostReview')
         self.grant_permission(self.request.user, 'Reviews:Admin')
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
@@ -1124,7 +1117,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not self.version.needs_human_review
 
     def test_public_addon_confirm_auto_approval(self):
-        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Addons:Review')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         summary = AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED, weight=151)
@@ -1155,7 +1148,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
-        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Addons:Review')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.current_version = self.version
         summary = AutoApprovalSummary.objects.create(
@@ -1189,7 +1182,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_public_with_disabled_version_addon_confirm_auto_approval(self):
-        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Addons:Review')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.current_version = self.version
         summary = AutoApprovalSummary.objects.create(
@@ -1223,7 +1216,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_addon_with_versions_pending_rejection_confirm_auto_approval(self):
-        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Addons:Review')
         self.grant_permission(self.request.user, 'Reviews:Admin')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.version = version_factory(

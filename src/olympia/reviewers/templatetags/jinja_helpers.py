@@ -113,7 +113,7 @@ def queue_tabnav(context):
                   .format(counts['moderated']))),
             )
 
-        if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
+        if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
             tabnav.append(
                 ('auto_approved', 'queue_auto_approved',
                  (ungettext('Auto Approved ({0})',

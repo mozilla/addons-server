@@ -153,6 +153,7 @@ class TestReviewForm(TestCase):
         assert not form.errors
 
     def test_versions_queryset(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
         # Add a bunch of extra data that shouldn't be picked up.
         addon_factory()
         file_factory(version=self.addon.current_version)
@@ -165,18 +166,11 @@ class TestReviewForm(TestCase):
         form = self.get_form()
         assert not form.is_bound
         assert form.fields['versions'].required is False
-        assert list(form.fields['versions'].queryset) == []
-
-        # With post-review permission, the reject_multiple_versions action will
-        # be available, resetting the queryset of allowed choices.
-        self.grant_permission(self.request.user, 'Addons:PostReview')
-        form = self.get_form()
-        assert not form.is_bound
-        assert form.fields['versions'].required is False
         assert list(form.fields['versions'].queryset) == [
             self.addon.current_version]
 
     def test_versions_queryset_contains_pending_files_for_listed(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
         addon_factory()  # Extra add-on, shouldn't be included.
         version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
                         file_kw={'status': amo.STATUS_AWAITING_REVIEW})
@@ -184,14 +178,6 @@ class TestReviewForm(TestCase):
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
                 version=version, verdict=amo.AUTO_APPROVED)
-        form = self.get_form()
-        assert not form.is_bound
-        assert form.fields['versions'].required is False
-        assert list(form.fields['versions'].queryset) == []
-
-        # With post-review permission, the reject_multiple_versions action will
-        # be available, resetting the queryset of allowed choices.
-        self.grant_permission(self.request.user, 'Addons:PostReview')
         form = self.get_form()
         assert not form.is_bound
         assert form.fields['versions'].required is False
@@ -279,7 +265,7 @@ class TestReviewForm(TestCase):
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
                 version=version, verdict=amo.AUTO_APPROVED)
-        self.grant_permission(self.request.user, 'Addons:PostReview')
+        self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form(data={
             'action': 'reject_multiple_versions', 'comments': 'lol'})
         form.helper.actions['reject_multiple_versions']['versions'] = True

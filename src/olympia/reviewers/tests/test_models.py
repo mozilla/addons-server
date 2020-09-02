@@ -383,10 +383,8 @@ class TestReviewerSubscription(TestCase):
             name='Reviewers: Legacy', rules='Addons:Review')
         GroupUser.objects.create(
             group=self.reviewer_group, user=self.user_one)
-        self.post_reviewer_group = Group.objects.create(
-            name='Reviewers: Add-ons', rules='Addons:PostReview')
         GroupUser.objects.create(
-            group=self.post_reviewer_group, user=self.user_two)
+            group=self.reviewer_group, user=self.user_two)
         ReviewerSubscription.objects.create(
             addon=self.addon, user=self.user_one)
         ReviewerSubscription.objects.create(

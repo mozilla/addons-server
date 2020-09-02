@@ -151,7 +151,7 @@ class TestPublicUserProfileSerializer(TestCase):
         assert data['has_anonymous_display_name'] is False
 
     def test_is_reviewer(self):
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:Review')
         # private data should still be absent, this is a public serializer
         self.test_basic()
 
@@ -208,7 +208,7 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
         assert data['read_dev_agreement'] == data['last_login']
 
     def test_is_reviewer(self):
-        self.grant_permission(self.user, 'Addons:PostReview')
+        self.grant_permission(self.user, 'Addons:Review')
         data = self.serialize()
         for prop, val in self.user_kwargs.items():
             assert data[prop] == str(val), prop
