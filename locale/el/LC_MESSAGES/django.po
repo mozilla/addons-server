@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-19 23:29+0000\n"
+"PO-Revision-Date: 2020-09-04 13:01+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3816,9 +3816,8 @@ msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}
 msgstr "Λάβετε ακαδημαϊκές γνώσεις {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Απολαύστε ελεύθερη πρόσβαση σε 10+ εκατομμύρια ερευνητικές εργασίες."
+msgstr "Αποκτήστε ακαδημαϊκές γνώσεις με δωρεάν πρόσβαση σε 10+ εκατομμύρια ερευνητικές εργασίες."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5032,9 +5031,8 @@ msgid "Track products and get notified when prices drop on items you're interest
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Turn the web dark {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Στιγμιότυπα στο διαδίκτυο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Σκοτεινό θέμα στο διαδίκτυο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5583,9 +5581,8 @@ msgstr "Λειτουργικά συστήματα:"
 msgid "Applications:"
 msgstr "Εφαρμογές:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Απαίτηση για απάντηση από τον προγραμματιστή σε λιγότερο από…"
+msgstr "Καθυστέρηση απόρριψης, απαιτείται διόρθωση προγραμματιστή σε λιγότερο από…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr ""
@@ -5710,9 +5707,8 @@ msgstr "Εκκρεμούσα προθεσμία απόρριψης"
 msgid "Last Updated"
 msgstr "Τελευταία ενημέρωση"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Άλλη εκκρεμούσα κριτική ({0})"
+msgstr "Καταχωρημένες εκδόσεις με ανάγκη για ανθρώπινη αξιολόγηση ({0})"
 
 #, fuzzy
 msgid "Unlisted versions needing human review ({0})"
@@ -6973,11 +6969,8 @@ msgstr ""
 "Πριν ξεκινήσετε, παρακαλώ διαβάστε και αποδεχτείτε τη συμφωνία διανομής προσθέτων του Firefox, καθώς και στις πολιτικές και τους κανόνες αξιολόγησης. Η συμφωνία διανομής προσθέτων του Firefox θα σάς"
 " παραπέμψει στη σημείωση απορρήτου μας, που εξηγεί πώς χειριζόμαστε τις πληροφορίες σας."
 
-#, fuzzy
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Πριν ξεκινήσετε, παρακαλώ διαβάστε και αποδεχτείτε τη συμφωνία διανομής προσθέτων του Firefox, καθώς και στις πολιτικές και τους κανόνες αξιολόγησης. Η συμφωνία διανομής προσθέτων του Firefox θα σάς"
-" παραπέμψει στη σημείωση απορρήτου μας, που εξηγεί πώς χειριζόμαστε τις πληροφορίες σας."
+msgstr "Παρακαλούμε διαβάστε και αποδεχτείτε τη συμφωνία διανομής προσθέτων του Firefox, καθώς και τις πολιτικές και τους κανόνες αξιολόγησης, εδώ: {url}"
 
 msgid "User Restriction History"
 msgstr "Ιστορικό περιορισμού χρηστών"
