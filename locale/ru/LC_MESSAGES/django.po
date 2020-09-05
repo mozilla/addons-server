@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-23 20:16+0000\n"
+"PO-Revision-Date: 2020-09-05 16:23+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -3601,7 +3601,7 @@ msgstr "Выделите любой текст, щелкните правой к
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ищите изображения {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
+msgstr "Найдите изображения {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4569,7 +4569,7 @@ msgstr "Удобный доступ к Википедии {start_sub_heading}с 
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Легко ищите информацию в Википедии, просто выделив текст на любой веб-странице и щёлкнув правой кнопкой мыши."
+msgstr "Легко находите информацию в Википедии, просто выделив текст на любой веб-странице и щёлкнув правой кнопкой мыши."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
