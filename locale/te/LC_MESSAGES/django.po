@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-19 02:37+0000\n"
+"PO-Revision-Date: 2020-09-05 17:48+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1443,7 +1443,7 @@ msgid "Preliminary Complete Theme Review"
 msgstr "ప్రాథమిక పూర్తి అలంకారం సమీక్ష"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "పూర్తి అలంకారపు సమీక్ష తాజాకరించబడింది"
 
 msgid "Moderated Add-on Review"
 msgstr "మోడరేట్ చేసిన పొడిగింత సమీక్ష"
@@ -1461,10 +1461,10 @@ msgid "Add-on Review (High Risk)"
 msgstr "పొడిగింత సమీక్ష (అధిక ప్రమాదం)"
 
 msgid "Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "పొడగింత సమీక్ష (మధ్యస్థ ప్రమాదం)"
 
 msgid "Add-on Review (Low Risk)"
-msgstr ""
+msgstr "పొడగింత సమీక్ష (తక్కువ ప్రమాదం)"
 
 msgid "Level 1"
 msgstr "స్థాయి 1"
@@ -2859,7 +2859,7 @@ msgid "Revoke and regenerate credentials"
 msgstr ""
 
 msgid "Confirm and generate new credentials"
-msgstr ""
+msgstr "నిర్ధారించి, కొత్త క్రెడెన్షియ్లను రూపొందించండి"
 
 msgid "Generate new credentials"
 msgstr ""
@@ -3354,7 +3354,7 @@ msgid ""
 msgstr ""
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "ఈ వెర్షనును తొలగిస్తే ఇవి శాశ్వతంగా తొలగించబడతాయి:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr ""
@@ -3584,7 +3584,7 @@ msgstr "వార్తా కథనాలు, కథలు, బ్లాగు 
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}తో {end_sub_heading} మీ ట్యాబులను రంగులతో గుర్తించుకునేలా చేసుకోండి"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
