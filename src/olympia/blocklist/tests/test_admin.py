@@ -294,23 +294,23 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert Block.objects.count() == 1
         block = Block.objects.first()
         assert block.addon == addon
-        log = ActivityLog.objects.for_addons(addon).last()
+        log = ActivityLog.objects.for_addons(addon).first()
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert log.arguments == [addon, addon.guid, block]
         assert log.details['min_version'] == '0'
         assert log.details['max_version'] == addon.current_version.version
         assert log.details['reason'] == 'some reason'
         block_log = ActivityLog.objects.for_block(block).filter(
-            action=log.action).last()
+            action=log.action).first()
         assert block_log == log
         block_log_by_guid = ActivityLog.objects.for_guidblock('guid@').filter(
-            action=log.action).last()
+            action=log.action).first()
         assert block_log_by_guid == log
 
-        assert log == ActivityLog.objects.for_versions(first_version).last()
-        assert log == ActivityLog.objects.for_versions(second_version).last()
+        assert log == ActivityLog.objects.for_versions(first_version).first()
+        assert log == ActivityLog.objects.for_versions(second_version).first()
         assert log == ActivityLog.objects.for_versions(
-            deleted_addon_version).last()
+            deleted_addon_version).first()
         assert not ActivityLog.objects.for_versions(pending_version).exists()
         assert [msg.message for msg in response.context['messages']] == [
             'The blocklist submission "No Sign-off: guid@; dfd; some reason" '
@@ -324,6 +324,15 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert f'Block added by {user.name}:\n        guid@' in content
         assert f'versions 0 - {addon.current_version.version}' in content
         assert 'Included in legacy blocklist' not in content
+
+        addon.reload()
+        first_version.reload()
+        pending_version.reload()
+        assert addon.status != amo.STATUS_DISABLED  # not 0 - * so no change
+        assert first_version.files.all()[0].status == amo.STATUS_DISABLED
+        assert second_version.files.all()[0].status == amo.STATUS_DISABLED
+        assert pending_version.files.all()[0].status == (
+            amo.STATUS_AWAITING_REVIEW)  # no change because not in Block
 
     @override_switch('blocklist_legacy_submit', active=False)
     def test_legacy_id_property_readonly(self):
@@ -500,7 +509,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         new_block = all_blocks[2]
         assert new_block.addon == new_addon
         assert new_block.average_daily_users_snapshot == new_block.current_adu
-        add_log = ActivityLog.objects.for_addons(new_addon).last()
+        logs = list(ActivityLog.objects.for_addons(new_addon))
+        add_log = logs[-2]
+        disable_log = logs[-1]
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert add_log.arguments == [new_addon, new_addon.guid, new_block]
         assert add_log.details['min_version'] == '0'
@@ -515,9 +526,13 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block_log = ActivityLog.objects.for_block(new_block).filter(
             action=add_log.action).last()
         assert block_log == add_log
-        vlog = ActivityLog.objects.for_versions(
+        assert add_log == ActivityLog.objects.for_versions(
+            new_addon.current_version).first()
+        assert disable_log.action == amo.LOG.REJECT_VERSION.id
+        assert disable_log.arguments == [new_addon, new_addon.current_version]
+        assert disable_log.user == new_block.updated_by
+        assert disable_log == ActivityLog.objects.for_versions(
             new_addon.current_version).last()
-        assert vlog == add_log
 
         existing_and_partial = existing_and_partial.reload()
         assert all_blocks[1] == existing_and_partial
@@ -529,7 +544,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert existing_and_partial.in_legacy_blocklist is False
         assert existing_and_partial.average_daily_users_snapshot == (
             existing_and_partial.current_adu)
-        edit_log = ActivityLog.objects.for_addons(partial_addon).last()
+        logs = list(ActivityLog.objects.for_addons(partial_addon))
+        edit_log = logs[-2]
+        disable_log = logs[-1]
         assert edit_log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
         assert edit_log.arguments == [
             partial_addon, partial_addon.guid, existing_and_partial]
@@ -543,11 +560,16 @@ class TestBlocklistSubmissionAdmin(TestCase):
             assert edit_log.details['signoff_state'] == 'No Sign-off'
             assert 'signoff_by' not in edit_log.details
         block_log = ActivityLog.objects.for_block(existing_and_partial).filter(
-            action=edit_log.action).last()
+            action=edit_log.action).first()
         assert block_log == edit_log
-        vlog = ActivityLog.objects.for_versions(
+        assert edit_log == ActivityLog.objects.for_versions(
+            partial_addon.current_version).first()
+        assert disable_log.action == amo.LOG.REJECT_VERSION.id
+        assert disable_log.arguments == [
+            partial_addon, partial_addon.current_version]
+        assert disable_log.user == existing_and_partial.updated_by
+        assert disable_log == ActivityLog.objects.for_versions(
             partial_addon.current_version).last()
-        assert vlog == edit_log
 
         existing_and_full = existing_and_full.reload()
         assert all_blocks[0] == existing_and_full
@@ -576,6 +598,18 @@ class TestBlocklistSubmissionAdmin(TestCase):
         ]
         assert set(submission.block_set.all()) == {
             new_block, existing_and_partial}
+
+        new_addon_version = new_addon.current_version
+        new_addon.reload()
+        new_addon_version.reload()
+        assert new_addon.status == amo.STATUS_DISABLED
+        assert new_addon_version.files.all()[0].status == amo.STATUS_DISABLED
+        partial_addon_version = partial_addon.current_version
+        partial_addon.reload()
+        partial_addon_version.reload()
+        assert partial_addon.status == amo.STATUS_DISABLED
+        assert partial_addon_version.files.all()[0].status == (
+            amo.STATUS_DISABLED)
 
     def test_submit_no_dual_signoff(self):
         addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
@@ -694,7 +728,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         new_block = all_blocks[2]
         assert new_block.addon == new_addon
-        log = ActivityLog.objects.for_addons(new_addon).get()
+        log = ActivityLog.objects.for_addons(new_addon).first()
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert log.arguments == [new_addon, new_addon.guid, new_block]
         assert log.details['min_version'] == '1'
@@ -704,7 +738,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             action=log.action).last()
         assert block_log == log
         vlog = ActivityLog.objects.for_versions(
-            new_addon.current_version).last()
+            new_addon.current_version).first()
         assert vlog == log
 
         existing_zero_to_max = existing_zero_to_max.reload()
@@ -715,7 +749,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert existing_zero_to_max.reason == 'some reason'
         assert existing_zero_to_max.url == 'dfd'
         assert existing_zero_to_max.in_legacy_blocklist is False
-        log = ActivityLog.objects.for_addons(existing_zero_to_max.addon).get()
+        log = ActivityLog.objects.for_addons(
+            existing_zero_to_max.addon).first()
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
         assert log.arguments == [
             existing_zero_to_max.addon, existing_zero_to_max.guid,
@@ -727,7 +762,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             action=log.action).last()
         assert block_log == log
         vlog = ActivityLog.objects.for_versions(
-            existing_zero_to_max.addon.current_version).last()
+            existing_zero_to_max.addon.current_version).first()
         assert vlog == log
 
         existing_one_to_ten = existing_one_to_ten.reload()
@@ -758,6 +793,16 @@ class TestBlocklistSubmissionAdmin(TestCase):
         ]
         assert set(submission.block_set.all()) == {
             new_block, existing_zero_to_max}
+
+        # check versions were disabled (and addons not, because not 0 -*)
+        new_addon_version = new_addon.current_version
+        new_addon.reload()
+        zero_to_max_version = existing_zero_to_max.addon.current_version
+        existing_zero_to_max.addon.reload()
+        assert new_addon.status != amo.STATUS_DISABLED
+        assert existing_zero_to_max.addon.status != amo.STATUS_DISABLED
+        assert new_addon_version.files.all()[0].status == amo.STATUS_DISABLED
+        assert zero_to_max_version.files.all()[0].status == amo.STATUS_DISABLED
 
     @mock.patch('olympia.blocklist.admin.GUID_FULL_LOAD_LIMIT', 1)
     def test_add_multiple_bulk_so_fake_block_objects(self):
@@ -1183,6 +1228,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
     @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
     def test_signoff_approve(self, legacy_publish_blocks_mock):
         addon = addon_factory(guid='guid@', name='Danger Danger')
+        version = addon.current_version
         mbs = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@',
             updated_by=user_factory(),
@@ -1225,6 +1271,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         assert new_block.addon == addon
         logs = ActivityLog.objects.for_addons(addon)
+        disable_log = logs[2]
         add_log = logs[1]
         signoff_log = logs[0]
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
@@ -1234,15 +1281,22 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert add_log.details['reason'] == ''
         assert add_log.details['signoff_state'] == 'Approved'
         assert add_log.details['signoff_by'] == user.id
+        assert add_log.user == mbs.updated_by
         block_log = ActivityLog.objects.for_block(new_block).filter(
             action=add_log.action).last()
         assert block_log == add_log
-        vlog = ActivityLog.objects.for_versions(addon.current_version).last()
-        assert vlog == add_log
+        assert add_log == ActivityLog.objects.for_versions(
+            addon.current_version).first()
 
         assert signoff_log.action == amo.LOG.BLOCKLIST_SIGNOFF.id
         assert signoff_log.arguments == [addon, addon.guid, 'add', new_block]
         assert signoff_log.user == user
+
+        assert disable_log.action == amo.LOG.REJECT_VERSION.id
+        assert disable_log.arguments == [addon, version]
+        assert disable_log.user == mbs.updated_by
+        assert disable_log == ActivityLog.objects.for_versions(
+            addon.current_version).last()
 
         # blocks would have been submitted to remote settings legacy collection
         legacy_publish_blocks_mock.assert_called()
@@ -1269,10 +1323,17 @@ class TestBlocklistSubmissionAdmin(TestCase):
             response.content)
         assert b'not a Block!' not in response.content
 
+        # we disabled versions and the addon (because 0 - *)
+        addon.reload()
+        version.reload()
+        assert addon.status == amo.STATUS_DISABLED
+        assert version.files.all()[0].status == amo.STATUS_DISABLED
+
     @override_switch('blocklist_legacy_submit', active=True)
     @mock.patch('olympia.blocklist.models.legacy_publish_blocks')
     def test_signoff_reject(self, legacy_publish_blocks_mock):
         addon = addon_factory(guid='guid@', name='Danger Danger')
+        version = addon.current_version
         mbs = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@',
             updated_by=user_factory())
@@ -1330,6 +1391,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
             b'&quot; - Sign-off Rejection' in
             response.content)
         assert b'not a Block!' not in response.content
+
+        # statuses didn't change
+        addon.reload()
+        version.reload()
+        assert addon.status != amo.STATUS_DISABLED
+        assert version.files.all()[0].status != amo.STATUS_DISABLED
 
     def test_cannot_approve_with_only_block_create_permission(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')
@@ -1577,7 +1644,9 @@ class TestBlockAdminEdit(TestCase):
     def _test_post_edit_logging(self, user):
         assert Block.objects.count() == 1  # check we didn't create another
         assert Block.objects.first().addon == self.addon  # wasn't changed
-        log = ActivityLog.objects.for_addons(self.addon).last()
+        logs = list(ActivityLog.objects.for_addons(self.addon))
+        log = logs[-2]
+        reject_log = logs[-1]
         assert log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
         assert log.arguments == [self.addon, self.addon.guid, self.block]
         assert log.details['min_version'] == '0'
@@ -1590,8 +1659,9 @@ class TestBlockAdminEdit(TestCase):
             action=log.action).last()
         assert block_log_by_guid == log
         vlog = ActivityLog.objects.for_versions(
-            self.addon.current_version).last()
+            self.addon.current_version).first()
         assert vlog == log
+        assert reject_log.action == amo.LOG.REJECT_VERSION.id
 
         # Check the block history contains the edit just made.
         response = self.client.get(self.change_url, follow=True)

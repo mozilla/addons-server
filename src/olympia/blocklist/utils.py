@@ -193,12 +193,55 @@ def split_regex_to_list(guid_re):
     return GUID_SPLIT.split(trimmed)
 
 
+def disable_addon_for_block(block, timestamp):
+    """Disable appropriate addon versions that are affected by the Block, and
+    the addon too if 0 - *."""
+    from .models import Block
+
+    for version in block.addon_versions:
+        if not block.is_version_blocked(version.version):
+            continue
+        if version.addon != block.addon:
+            # We don't need to reject versions from older deleted instances
+            continue
+        # Clear needs_human_review on rejected versions, we consider that
+        # the admin looked at them before blocking.
+        if version.needs_human_review:
+            version.update(needs_human_review=False)
+        if version.needs_human_review_by_mad:
+            version.reviewerflags.update(needs_human_review_by_mad=False)
+
+        files = version.files.exclude(status=amo.STATUS_DISABLED)
+        if not files:
+            continue
+        for file_ in files:
+            file_.datestatuschanged = timestamp
+            file_.reviewed = timestamp
+            file_.hide_disabled_file()
+            file_.status = amo.STATUS_DISABLED
+            file_.save()
+        log_create(
+            amo.LOG.REJECT_VERSION,
+            version.addon,
+            version,
+            user=block.updated_by,
+            created=timestamp,
+            details={
+                'files': [f.id for f in files],
+                'version': version.version,
+            })
+
+    if block.min_version == Block.MIN and block.max_version == Block.MAX:
+        block.addon.update(status=amo.STATUS_DISABLED)
+
+
 def save_guids_to_blocks(guids, submission, *, fields_to_set):
     from .models import Block
 
+    timestamp = datetime.datetime.now()
+
     common_args = {
         field: getattr(submission, field) for field in fields_to_set}
-    modified_datetime = datetime.datetime.now()
 
     blocks = Block.get_blocks_from_guids(guids)
     Block.preload_addon_versions(blocks)
@@ -207,7 +250,7 @@ def save_guids_to_blocks(guids, submission, *, fields_to_set):
         for field, val in common_args.items():
             setattr(block, field, val)
         if change:
-            setattr(block, 'modified', modified_datetime)
+            setattr(block, 'modified', timestamp)
         block.average_daily_users_snapshot = block.current_adu
         block.save()
         if submission.id:
@@ -216,4 +259,6 @@ def save_guids_to_blocks(guids, submission, *, fields_to_set):
             block,
             change=change,
             submission_obj=submission if submission.id else None)
+        disable_addon_for_block(block, timestamp)
+
     return blocks

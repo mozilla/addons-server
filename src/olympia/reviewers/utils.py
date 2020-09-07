@@ -1147,33 +1147,14 @@ class ReviewUnlisted(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
     def block_multiple_versions(self):
-        # self.version and self.files won't point to the versions we want to
-        # modify in this action, so set them to None before finding the right
-        # versions.
-        self.version = None
-        self.files = None
-        action_id = amo.LOG.REJECT_VERSION
-        timestamp = datetime.now()
         min_version = ('0', 0)
         max_version = ('*', 0)
         for version in self.data['versions']:
-            files = version.files.all()
-            self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
-            self.log_action(action_id, version=version, files=files,
-                            timestamp=timestamp)
-            if self.human_review:
-                # Clear needs_human_review on rejected versions, we consider
-                # that the reviewer looked at them before disabling.
-                self.clear_specific_needs_human_review_flags(version)
             version_int = addon_version_int(version.version)
             if not min_version[1] or version_int < min_version[1]:
                 min_version = (version, version_int)
             if not max_version[1] or version_int > max_version[1]:
                 max_version = (version, version_int)
-        log.info(
-            'Making %s versions %s disabled' % (
-                self.addon,
-                ', '.join(str(v.pk) for v in self.data['versions'])))
 
         params = f'?min={min_version[0].pk}&max={max_version[0].pk}'
         self.redirect_url = (
