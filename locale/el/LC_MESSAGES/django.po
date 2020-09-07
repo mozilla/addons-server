@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-07 21:53+0000\n"
+"PO-Revision-Date: 2020-09-07 22:03+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1435,7 +1435,7 @@ msgid "Spotlight"
 msgstr "Ανάδειξη"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Στρατηγική"
 
 msgid "Add-on"
 msgstr "Πρόσθετο"
@@ -1832,7 +1832,7 @@ msgstr ""
 " επίσης δυνατή.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr "Μόνοι σας. <span class=\"helptext\">Η υποβολή σας θα υπογραφεί άμεσα για αυτοδιανομή. Οι ενημερώσεις θα διαχειρίζονται από εσάς μέσω updateURL ή ενημερώσεων εξωτερικής εφαρμογής.</span>"
+msgstr "Μόνοι σας. <span class=\"helptext\">Η υποβολή σας θα υπογραφεί άμεσα για αυτοδιανομή. Οι ενημερώσεις θα διαχειρίζονται από εσάς μέσω updateURL ή εξωτερικών ενημερώσεων εφαρμογής.</span>"
 
 msgid "Display Name"
 msgstr "Προβαλλόμενο όνομα"
@@ -2806,7 +2806,7 @@ msgid "Do you use any of the following?"
 msgstr "Χρησιμοποιείτε κάτι από τα εξής;"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Παραγωγοί ή ελαχιστοποιητές κώδικα"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
 msgstr "Εργαλεία που συνδυάζουν πολλαπλά αρχεία σε ένα αρχείο, όπως το <span class=\"tech-emphasis\">webpack</span>"
@@ -6473,7 +6473,7 @@ msgid "An error occurred when compiling the definition"
 msgstr "Προέκυψε σφάλμα κατά τη σύνταξη του ορισμού"
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Εκτέλεση κανόνα σε πρόσθετα που έχουν απενεργοποιηθεί εξαναγκαστικά."
 
 msgid "Abort"
 msgstr "Ακύρωση"
@@ -6535,7 +6535,7 @@ msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr "Μόνο τα WebExtensions επιτρέπεται να παραλείπουν το ID προσθέτου"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Παρακαλούμε καθορίστε το ID προσθέτου σας στο μανιφέστο αν είναι μεγαλύτερο από 64 χαρακτήρες."
 
 msgid "Invalid Add-on ID in URL or package"
 msgstr "Μη έγκυρο ID προσθέτου στο URL ή στο πακέτο"
@@ -6929,7 +6929,7 @@ msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Εισάγετε ένα έγκυρο εύρος δικτύου IPv6 ή IPv6 CIDR, π.χ. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Έχουν υποβληθεί πολλαπλά πρόσθετα που παραβιάζουν τις πολιτικές μας από την τοποθεσία σας. Η διεύθυνση IP έχει αποκλειστεί."
 
 msgid "Email Pattern"
 msgstr "Μοτίβο email"
