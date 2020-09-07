@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-24 12:31+0000\n"
+"PO-Revision-Date: 2020-09-07 11:48+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3032,9 +3032,8 @@ msgid "Last Updated:"
 msgstr "Son güncellenme:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Kod incelemesinden geçerek bu sitede listelenmiştir. Otomatik güncellemeler bu site tarafından ele alınmaktadır."
+msgstr "Kod incelemesinden geçtikten sonra bu sitede listelenir. Otomatik güncellemeler bu site tarafından ele alınır"
 
 msgid "Status:"
 msgstr "Durum:"
@@ -3042,9 +3041,8 @@ msgstr "Durum:"
 msgid "Listed Version:"
 msgstr "Listelenen sürüm:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "Bu, birisi eklentinizin addons.mozilla.org'daki Yükle düğmesini tıklarsa yüklenecek olan sürümüdür."
+msgstr "Bu, birisi eklentinizin addons.mozilla.org'daki Yükle düğmesini tıklarsa yüklenecek olan sürümüdür"
 
 msgid "Next Listed Version:"
 msgstr ""
@@ -5727,13 +5725,11 @@ msgstr[1] ""
 msgid "Auto-Approved Add-ons"
 msgstr ""
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Yeni Eklentiler ({0})"
+msgstr "Otomatik onaylanmış eklentiler ({0})"
 
-#, fuzzy
 msgid "Add-on Review Log"
-msgstr "Eklenti İnceleme Süreci"
+msgstr "Eklenti İnceleme Kaydı"
 
 msgid "Review Guide"
 msgstr "İnceleme Yönergesi"
@@ -5808,9 +5804,8 @@ msgstr "{addon} – Gizlilik İlkeleri"
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr " {addon} suistimal raporları ({num})"
+msgstr "{addon} ve geliştiricileri için suistimal raporları ({num})"
 
 msgid "Abuse Reports"
 msgstr "Suistimal Raporları"
@@ -6117,9 +6112,8 @@ msgstr "Eklentiyi zorla devre dışı bırak"
 msgid "Force-enable add-on"
 msgstr "Eklentiyi zorla etkinleştir"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Tüm gönderileri göster"
+msgstr ""
 
 msgid "Block add-on"
 msgstr "Eklentiyi engelle"
@@ -6133,13 +6127,11 @@ msgstr "Listelenmiş otomatik onaylamayı devre dışı bırak"
 msgid "Enable Listed Auto-Approval"
 msgstr "Listelenmiş otomatik onaylamayı etkinleştir"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Listelenmiş otomatik onaylamayı devre dışı bırak"
+msgstr ""
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Listelenmiş otomatik onaylamayı etkinleştir"
+msgstr ""
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
@@ -6277,9 +6269,9 @@ msgstr "<span>{0}</span> puanınız var."
 msgid "Theme"
 msgstr "Tema"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "yazan: %(user)s tarih: %(date)s"
+msgstr "%(user)s, %(date)s [%(ip_address)s]"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
@@ -6488,9 +6480,8 @@ msgstr ""
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
 
-#, fuzzy
 msgid "No uploaded file for that addon and version."
-msgstr "{addon} {version} için yorum yapın."
+msgstr "Bu eklenti ve sürüm için yüklenmiş dosya yok."
 
 msgid "Overview"
 msgstr "Genel Bakış"
@@ -6610,13 +6601,11 @@ msgstr ""
 msgid "Application usage by Date"
 msgstr "Tarihe göre uygulama kullanımı"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Tarihe göre indirme kaynakları"
+msgstr ""
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Tarihe göre indirme kaynakları"
+msgstr ""
 
 msgid "User countries by Date"
 msgstr "Tarihe göre kullanıcı ülkeleri"
@@ -6635,9 +6624,8 @@ msgstr ""
 msgid "User languages by Date"
 msgstr "Tarihe göre kullanıcı dilleri"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Tarihe göre indirmeler"
+msgstr ""
 
 msgid "Platform usage by Date"
 msgstr "Tarihe göre platform kullanımı"
