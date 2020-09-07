@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:27+0000\n"
-"PO-Revision-Date: 2020-08-19 21:16+0000\n"
+"PO-Revision-Date: 2020-09-07 22:22+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -112,8 +112,8 @@ msgstr "Συμπεριλάβετε λεπτομερή σημειώματα τη�
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Εάν το πρόσθετό σας απαιτεί λογαριασμό σε ιστοσελίδα με σκοπό να δοκιμαστεί πλήρως, συμπεριλάβετε ένα όνομα χρήστη και κωδικό για δοκιμή στα Σημειώματα του Ελεγκτή (αυτό μπορεί να γίνει στο επόμενο "
-"βήμα). "
+"Αν το πρόσθετό σας απαιτεί λογαριασμό σε ιστοσελίδα με σκοπό να δοκιμαστεί πλήρως, παραθέστε ένα όνομα χρήστη και κωδικό πρόσβασης για δοκιμή, στις σημειώσεις ελεγκτή (αυτό μπορεί να γίνει στο "
+"επόμενο βήμα)."
 
 msgid "Add-on submission checklist"
 msgstr "Λίστα καταχωρήσεων προσθέτων"
@@ -746,7 +746,7 @@ msgid "Version Notes"
 msgstr "Σημειώσεις έκδοσης"
 
 msgid "Notes for Reviewers"
-msgstr "Σημειώσεις για αξιολογητές"
+msgstr "Σημειώσεις για ελεγκτές"
 
 msgid "No version notes found"
 msgstr "Δεν βρέθηκαν σημειώσεις έκδοσης"
@@ -788,7 +788,7 @@ msgid "Theme"
 msgstr "Θέμα"
 
 msgid "Reviewer"
-msgstr "Κριτής"
+msgstr "Ελεγκτής"
 
 msgid "Status"
 msgstr "Κατάσταση"
