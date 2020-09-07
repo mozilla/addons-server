@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-07 22:34+0000\n"
+"PO-Revision-Date: 2020-09-07 22:43+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2350,7 +2350,7 @@ msgid "View Product Page"
 msgstr "Προβολή σελίδας προϊόντος"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Αυτή η περίληψη θα πρέπει να εξηγεί σαφώς τι κάνει το πρόσθετό σας. Θα εμφανίζεται σε λίστες και αναζητήσεις και θα χρησιμοποιηθεί από τους αξιολογητές για δοκιμή του προσθέτου σας."
+msgstr "Αυτή η περίληψη θα πρέπει να εξηγεί σαφώς τι κάνει το πρόσθετό σας. Θα εμφανίζεται σε λίστες και αναζητήσεις και θα χρησιμοποιηθεί από τους ελεγκτές για τη δοκιμή του προσθέτου σας."
 
 msgid "Description"
 msgstr "Περιγραφή"
@@ -2441,8 +2441,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Ο λευκός πίνακας παρέχει πληροφορίες σχετικά με το πρόσθετό σας, για οποιαδήποτε έκδοση, στους αξιολογητές. Χρησιμοποιήστε τον για να παρέχετε τρόπους δοκιμής του προσθέτου, καθώς και τυχόν "
-"επιπρόσθετες πληροφορίες που ενδέχεται να φανούν χρήσιμες. Αυτός ο λευκός πίνακας μπορεί να επεξεργαστεί και από τους αξιολογητές."
+"Ο λευκοπίνακας παρέχει πληροφορίες σχετικά με το πρόσθετό σας στους ελεγκτές, για κάθε έκδοση. Με αυτόν, μπορείτε να προσφέρετε τρόπους δοκιμής του προσθέτου, καθώς και τυχόν επιπρόσθετες "
+"πληροφορίες που ενδέχεται να φανούν χρήσιμες. Αυτός ο λευκοπίνακας μπορεί να επεξεργαστεί και από τους ελεγκτές."
 
 msgid "Add-on Media for {0}"
 msgstr "Αρχεία πολυμέσων για το {0}"
@@ -2700,10 +2700,10 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "Αν το πρόσθετό σας μεταδίδει δεδομένα από τον υπολογιστή του χρήστη, απαιτείται μια πολιτική απορρήτου, η οποία εξηγεί ποια δεδομένα αποστέλλονται και πώς χρησιμοποιούνται."
 
 msgid "Notes to Reviewer:"
-msgstr "Σημειώσεις προς τον κριτή:"
+msgstr "Σημειώσεις προς ελεγκτή:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "Υπάρχει κάτι που πρέπει να λάβουν υπόψη οι αξιολογητές μας κατά την αξιολόγηση του προσθέτου;"
+msgstr "Υπάρχει κάτι που θα πρέπει να λάβουν υπόψη οι ελεγκτές μας κατά την αξιολόγηση του προσθέτου;"
 
 msgid "Remember"
 msgstr "Απομνημόνευση"
@@ -2717,7 +2717,7 @@ msgstr ""
 "βάσει των %(policy_requirements_open)sαπαιτήσεων της πολιτικής%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Αυτές οι σημειώσεις είναι ορατές μόνος σε εσάς και τους αξιολογητές μας."
+msgstr "Αυτές οι σημειώσεις είναι ορατές μόνο σε εσάς και τους ελεγκτές μας."
 
 msgid "Submit Version"
 msgstr "Υποβολή έκδοσης"
@@ -3419,10 +3419,10 @@ msgid "Approval Status"
 msgstr "Κατάσταση έγκρισης"
 
 msgid "Notes for Reviewers"
-msgstr "Σημειώσεις για αξιολογητές"
+msgstr "Σημειώσεις για ελεγκτές"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "Προαιρετικά, εισάγετε οποιαδήποτε πληροφορία που μπορεί να είναι χρήσιμη για τον αξιολογητή αυτού του προσθέτου, όπως πληροφορίες δοκιμαστικού λογαριασμού."
+msgstr "Προαιρετικά, εισάγετε κάθε πληροφορία που μπορεί να φανεί χρήσιμη για τον ελεγκτή αυτού του προσθέτου, όπως στοιχεία δοκιμαστικού λογαριασμού."
 
 msgid "Source code"
 msgstr "Πηγαίος κώδικας"
@@ -5272,10 +5272,10 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s
 msgstr "Έκδοση: %(version)s &bull; Μέγεθος: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Τύπος MIME: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
-msgstr "Σύγκριση αρχείων :: Εργαλεία κριτή"
+msgstr "Σύγκριση αρχείων :: Εργαλεία ελεγκτή"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr "Προβολή αρχείων :: Εργαλεία κριτή"
+msgstr "Προβολή αρχείων :: Εργαλεία ελεγκτή"
 
 msgid "Validation failed:"
 msgstr "Αποτυχία επαλήθευσης:"
@@ -5540,7 +5540,7 @@ msgstr "έως"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
-msgstr "πρόσθετο, αξιολογητής ή σχόλιο"
+msgstr "πρόσθετο, ελεγκτής ή σχόλιο"
 
 msgid "Search by add-on name / author email"
 msgstr "Αναζήτηση με βάση το όνομα του πρόσθετου/ email δημιουργού"
@@ -5627,7 +5627,7 @@ msgid "Auto-approval delayed indefinitely"
 msgstr "Έγινε επ' αόριστον καθυστέρηση της αυτόματης έγκρισης"
 
 msgid "Is locked by a reviewer"
-msgstr "Κλειδωμένο από αξιολογητή"
+msgstr "Κλειδωμένο από ελεγκτή"
 
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
@@ -5750,7 +5750,7 @@ msgid "This will confirm approval of the selected versions without notifying the
 msgstr "Αυτό θα επιβεβαιώσει την έγκριση των επιλεγμένων εκδόσεων χωρίς να ειδοποιηθεί ο προγραμματιστής."
 
 msgid "Reviewer reply"
-msgstr "Απάντηση κριτή"
+msgstr "Απάντηση ελεγκτή"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
@@ -5759,7 +5759,7 @@ msgid "Request super-review"
 msgstr "Αίτηση για αξιολόγηση συντάκτη"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Αν έχετε ανησυχίες για αυτό το πρόσθετο που πρέπει να εξεταστούν από έναν αξιολογητή, εισάγετε τα σχόλιά σας στην παρακάτω περιοχή. Δεν θα σταλούν στον προγραμματιστή."
+msgstr "Αν έχετε ανησυχίες για αυτό το πρόσθετο που πρέπει να εξεταστούν από έναν ελεγκτή, εισάγετε τα σχόλιά σας στην παρακάτω περιοχή. Δεν θα σταλούν στον προγραμματιστή."
 
 msgid "Comment"
 msgstr "Σχόλιο"
@@ -5952,10 +5952,10 @@ msgid "Add-on name translations"
 msgstr "Μεταφράσεις ονόματος προσθέτου"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "Εργαλεία κριτικού – Πρόσθετα Firefox"
+msgstr " – Εργαλεία ελεγκτή – Πρόσθετα Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Επιστροφή στον πίνακα εργαλείων κριτή"
+msgstr "Επιστροφή στον πίνακα εργαλείων ελεγκτή"
 
 msgid "Reviewer Leaderboard"
 msgstr "Πίνακας ελεγκτών"
@@ -5970,7 +5970,7 @@ msgid "Score"
 msgstr "Βαθμολογία"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr "Αρχείο καταγραφής εποπτείας κριτικής – Πρόσθετα Firefox"
+msgstr "Αρχείο καταγραφής εποπτείας ελεγκτή – Πρόσθετα Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
