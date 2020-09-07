@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-07 22:03+0000\n"
+"PO-Revision-Date: 2020-09-07 22:13+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1832,7 +1832,7 @@ msgstr ""
 " επίσης δυνατή.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr "Μόνοι σας. <span class=\"helptext\">Η υποβολή σας θα υπογραφεί άμεσα για αυτοδιανομή. Οι ενημερώσεις θα διαχειρίζονται από εσάς μέσω updateURL ή εξωτερικών ενημερώσεων εφαρμογής.</span>"
+msgstr "Προσωπικά. <span class=\"helptext\">Η υποβολή σας θα υπογραφεί άμεσα για αυτοδιανομή. Οι ενημερώσεις θα διαχειρίζονται από εσάς μέσω updateURL ή εξωτερικών ενημερώσεων εφαρμογής.</span>"
 
 msgid "Display Name"
 msgstr "Προβαλλόμενο όνομα"
@@ -2545,7 +2545,7 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Το πρόσθετό σας έχει οριστεί σε \"Αόρατο\"."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "Σε αυτή την κατάσταση, το \"Προσωπικά\" είναι η μόνη διαθέσιμη μέθοδος διανομής."
 
 msgid "General Tests"
 msgstr "Γενικές δοκιμές"
@@ -2738,7 +2738,7 @@ msgid "These notes will appear on the detail page."
 msgstr "Αυτές οι σημειώσεις θα εμφανίζονται στη σελίδα λεπτομερειών."
 
 msgid "How to Distribute this Version"
-msgstr "Πώς να διανείμετε αυτή την έκδοση"
+msgstr "Τρόπος διανομής έκδοσης"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr "Περισσότερες πληροφορίες σχετικά με τη διανομή και υπογραφή προσθέτων"
@@ -5417,7 +5417,7 @@ msgid "Make false statements, disparage add-on authors or personally insult them
 msgstr "Κάνετε ψευδείς δηλώσεις, να μην υπονομεύετε ή προσβάλλετε προσωπικά τους δημιουργούς."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Συμπεριλαμβάνετε προσωπικά ή μη email, αριθμούς τηλεφώνου ή άλλες προσωπικές λεπτομέρειες."
+msgstr "Παραθέστε προσωπικό ή μη email, αριθμό τηλεφώνου ή άλλες προσωπικές λεπτομέρειες."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
 msgstr "Δημοσιεύετε κριτικές για ένα πρόσθετο που αναπτύσσετε ή εκπροσωπείτε εσείς ή ο οργανισμός σας."
