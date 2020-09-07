@@ -2,13 +2,6 @@
 Applications
 ============
 
-.. note::
-
-    These APIs are not frozen and can change at any time without warning.
-    See :ref:`the API versions available<api-versions-list>` for alternatives
-    if you need stability.
-
-
 ---------------------
 Applications Versions
 ---------------------
