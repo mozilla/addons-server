@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-07 14:03+0000\n"
+"PO-Revision-Date: 2020-09-07 14:29+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3214,9 +3214,8 @@ msgstr ""
 "Εάν το πρόσθετό σας αποστέλλει δεδομένα από τον υπολογιστή του χρήστη, απαιτείται η ύπαρξη πολιτικής απορρήτου που να εξηγεί ποια δεδομένα αποστέλλονται και πώς χρησιμοποιούνται. Είναι υποχρεωτική "
 "μόνο για τα δημόσια πρόσθετα."
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Αν το πρόσθετό σας περιέχει δυαδικό ή δύσκολο στην κατανόηση (obfuscated) κώδικα από άλλες γνωστές βιβλιοθήκες, ανεβάστε τις πηγές του προς αξιολόγηση."
+msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Παρακαλούμε συμπεριλάβετε οδηγίες για τον τρόπο δημιουργίας του τελικού αρχείου πρόσθετου, είτε σε αρχείο οδηγιών είτε σε μια σημείωση προς τους ελεγκτές αυτής της έκδοσης."
@@ -3428,9 +3427,8 @@ msgstr "Προαιρετικά, εισάγετε οποιαδήποτε πληρ
 msgid "Source code"
 msgstr "Πηγαίος κώδικας"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Αν το πρόσθετο περιέχει δυαδικό ή δύσκολο στην κατανόηση (obfuscated) κώδικα, κάντε την πηγή διαθέσιμη εδώ για τους αξιολογητές."
+msgstr ""
 
 msgid "File {file_id} ({platform})"
 msgstr "Αρχείο {file_id} ({platform})"
@@ -3991,9 +3989,8 @@ msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_hea
 msgstr "Αλλαγή διακομιστή μεσολάβησης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Περιήγηση στο διαδίκτυο με αυτοκαθορισμένες ρυθμίσεις διακομιστή μεσολάβησης."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4009,9 +4006,8 @@ msgstr "Ασφαλής περιήγηση {start_sub_heading}με το {addon_na
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Προσθέστε κρυπτογραφημένη ασφάλεια σε κάθε ιστοσελίδα που υποστηρίζει HTTPS."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4168,9 +4164,8 @@ msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub
 msgstr "Μάθετε που πηγαίνετε στο διαδίκτυο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Μάθετε σε ποιες χώρες εντοπίζονται οι ιστοσελίδες που επισκέπτεστε. Γίνετε ένας πληροφορημένος ταξιδιώτης του διαδικτύου."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4625,9 +4620,8 @@ msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_he
 msgstr "Απολαύστε μια παράξενη εκπαίδευση {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Φορτώστε ένα τυχαίο άρθρο της Wikipedia κάθε φορά που ανοίγετε μια νέα καρτέλα."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5710,9 +5704,8 @@ msgstr "Τελευταία ενημέρωση"
 msgid "Listed versions needing human review ({0})"
 msgstr "Καταχωρημένες εκδόσεις με ανάγκη για ανθρώπινη αξιολόγηση ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Άλλη εκκρεμούσα κριτική ({0})"
+msgstr ""
 
 msgid "Listed versions ({0})"
 msgstr "Καταχωρημένες εκδόσεις ({0})"
@@ -5797,11 +5790,10 @@ msgid_plural "Flagged By Scanners ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Αξιολόγηση βαθμολογίας ({0})"
-msgstr[1] "Αξιολογήσεις βαθμολογίας ({0})"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Αυτόματα εγκεκριμένα πρόσθετα"
@@ -5865,9 +5857,8 @@ msgstr "Ενημέρωση του μηνύματος της ημέρας"
 msgid "Expired Information Requests ({0})"
 msgstr "Ληγμένα αιτήματα πληροφοριών ({0})"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Άλλη εκκρεμούσα κριτική ({0})"
+msgstr ""
 
 msgid "An unknown error occurred"
 msgstr "Προέκυψε άγνωστο σφάλμα"
@@ -6195,9 +6186,8 @@ msgstr "Εξαναγκασμός απενεργοποίησης προσθέτο
 msgid "Force-enable add-on"
 msgstr "Εξαναγκαστική ενεργοποίηση προσθέτου"
 
-#, fuzzy
 msgid "View Blocklist Submission"
-msgstr "Προβολή όλων των υποβολών"
+msgstr "Προβολή υποβολής λίστας αποκλεισμού"
 
 msgid "Block add-on"
 msgstr "Αποκλεισμός προσθέτου"
@@ -6205,28 +6195,23 @@ msgstr "Αποκλεισμός προσθέτου"
 msgid "Update add-on block"
 msgstr "Ενημέρωση μπλοκ προσθέτου"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval"
-msgstr "Απενεργοποίηση αυτόματης έγκρισης"
+msgstr "Απενεργοποίηση αυτόματης έγκρισης καταχωρήσεων"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval"
-msgstr "Ενεργοποίηση αυτόματης έγκρισης"
+msgstr "Ενεργοποίηση αυτόματης έγκρισης καταχωρήσεων"
 
-#, fuzzy
 msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Απενεργοποίηση αυτόματης έγκρισης"
+msgstr "Απενεργοποίηση αυτόματης έγκρισης καταχωρήσεων μέχρι την επόμενη χειροκίνητη έγκριση"
 
-#, fuzzy
 msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Ενεργοποίηση αυτόματης έγκρισης"
+msgstr "Ενεργοποίηση αυτόματης έγκρισης καταχωρήσεων πριν την επόμενη χειροκίνητη έγκριση"
 
 msgid "Auto-Approval currently disabled until {date}"
 msgstr "Η αυτόματη έγκριση είναι ανενεργή έως τις {date}"
 
-#, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
-msgstr "Ενεργοποίηση αυτόματης έγκρισης"
+msgstr ""
 
 msgid "Clear information request"
 msgstr "Εκκαθάριση αιτήματος πληροφοριών"
