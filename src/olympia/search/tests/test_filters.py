@@ -13,7 +13,8 @@ from rest_framework import serializers
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import ENABLED_PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import (
+    ENABLED_PROMOTED_GROUPS_BY_ID, RECOMMENDED)
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
@@ -188,7 +189,7 @@ class TestQueryFilter(FilterTestsBase):
         }
         assert functions[2] == {
             'filter': {
-                'term': {'is_recommended': True}},
+                'terms': {'promoted.group_id': [RECOMMENDED.id]}},
             'weight': 5.0}
         return qs
 

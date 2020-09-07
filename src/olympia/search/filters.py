@@ -14,7 +14,8 @@ from waffle import switch_is_active
 from olympia import amo
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.promoted import ENABLED_PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import (
+    ENABLED_PROMOTED_GROUPS_BY_ID, PROMOTED_GROUPS)
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.compare import version_int
 
@@ -743,7 +744,7 @@ class SearchQueryFilter(BaseFilterBackend):
 
         # We alter scoring depending on add-on popularity and whether the
         # add-on is reviewed & public & non-experimental, and whether or not
-        # it's recommended.
+        # it's in a promoted group with a search boost.
         functions = [
             query.SF(
                 'field_value_factor',
@@ -758,13 +759,24 @@ class SearchQueryFilter(BaseFilterBackend):
                     Q('term', is_disabled=False)
                 )
             }),
-            query.SF({
-                'weight': 5.0,
-                'filter': (
-                    Q('term', is_recommended=True)
-                )
-            }),
+
         ]
+        ranking_bump_groups = amo.utils.sorted_groupby(
+            PROMOTED_GROUPS,
+            lambda g: g.search_ranking_bump,
+            reverse=True)
+        for bump, promo_ids in ranking_bump_groups:
+            if not bump:
+                continue
+            functions.append(
+                query.SF({
+                    'weight': bump,
+                    'filter': (
+                        Q('terms', **{
+                            'promoted.group_id': [p.id for p in promo_ids]})
+                    )
+                })
+            )
 
         # Assemble everything together
         qs = qs.query(
