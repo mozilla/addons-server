@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-07 22:23+0000\n"
+"PO-Revision-Date: 2020-09-07 22:34+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -129,7 +129,7 @@ msgid "Reviewer Tools (unlisted)"
 msgstr "Εργαλεία ελεγκτή (μη καταχωρημένα)"
 
 msgid "Reviewer links"
-msgstr "Σύνδεσμοι αξιολογητή"
+msgstr "Σύνδεσμοι ελεγκτή"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Το πρόσθετο δεν είναι στο AMO -"
@@ -190,7 +190,7 @@ msgid "Manage API Keys"
 msgstr "Διαχείριση κλειδιών API"
 
 msgid "Reviewer Tools"
-msgstr "Εργαλεία κριτή"
+msgstr "Εργαλεία ελεγκτή"
 
 msgid "Admin Tools"
 msgstr "Εργαλεία διαχειριστή"
@@ -675,8 +675,8 @@ msgstr "Ζητήθηκε αξιολόγηση συντάκτη για το {addo
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"Το πρόσθετο έχει επισημανθεί για αξιολόγηση διαχειριστή.  Βρίσκεται ακόμη στη σειρά αξιολόγησής μας, αλλά θα πρέπει να ελεγχθεί από έναν από τους διαχειριστές αξιολογητές. Η αξιολόγηση ίσως "
-"χρειαστεί περισσότερο χρόνο από το συνηθισμένο."
+"Το πρόσθετο έχει επισημανθεί για έλεγχο από διαχειριστή. Βρίσκεται ακόμη στη σειρά ελέγχων μας, αλλά θα πρέπει να αξιολογηθεί από κάποιο διαχειριστή ελεγκτή. Ο έλεγχος ίσως χρειαστεί περισσότερο "
+"χρόνο από το συνηθισμένο."
 
 msgid "Comment on {addon} {version}."
 msgstr "Σχόλιο για το πρόσθετο {addon} {version}."
@@ -822,10 +822,10 @@ msgid "Developer Reply"
 msgstr "Απάντηση δημιουργού"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Απάντηση κριτή στο {addon} {version}."
+msgstr "Απάντηση ελεγκτή στο {addon} {version}."
 
 msgid "Reviewer Reply"
-msgstr "Απάντηση κριτή"
+msgstr "Απάντηση ελεγκτή"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr "Οι σημειώσεις έγκρισης άλλαξαν για το {addon} {version}."
@@ -1468,7 +1468,7 @@ msgid "Excellent (3)"
 msgstr "Άριστο (3)"
 
 msgid "Manual Reviewer Points"
-msgstr "Πόντοι χειροκίνητης αξιολόγησης"
+msgstr "Σημεία χειροκίνητου ελέγχου"
 
 msgid "New Legacy Add-on Review"
 msgstr "Αξιολόγηση νέου προσθέτου παλαιού τύπου"
@@ -5958,7 +5958,7 @@ msgid "Return to the Reviewer Tools dashboard"
 msgstr "Επιστροφή στον πίνακα εργαλείων κριτή"
 
 msgid "Reviewer Leaderboard"
-msgstr "Πίνακας κριτών"
+msgstr "Πίνακας ελεγκτών"
 
 msgid "No review points awarded yet."
 msgstr "Δεν έχουν απονεμηθεί ακόμη πόντοι αξιολόγησης."
@@ -6011,10 +6011,10 @@ msgid "Undelete"
 msgstr "Αναίρεση διαγραφής"
 
 msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Επιδόσεις κριτικού – Πρόσθετα Firefox"
+msgstr "Επιδόσεις ελεγκτή – Πρόσθετα Firefox"
 
 msgid "Add-on Reviewer Performance"
-msgstr "Επιδόσεις κριτή προσθέτων"
+msgstr "Επιδόσεις ελεγκτή προσθέτων"
 
 msgid "View statistics for user"
 msgstr "Προβολή στατιστικών χρήστη"
@@ -6063,7 +6063,7 @@ msgid "All-Time"
 msgstr "Από την αρχή"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr "– Εργαλεία κριτικού – Πρόσθετα Firefox"
+msgstr " – Εργαλεία ελεγκτή – Πρόσθετα Firefox"
 
 msgid "Content Review – Add-ons for Firefox"
 msgstr "Αξιολόγηση περιεχομένου – Πρόσθετα Firefox"
@@ -6116,7 +6116,7 @@ msgid "Add-on Policy"
 msgstr "Πολιτική πρόσθετου"
 
 msgid "Reviewer's Guide"
-msgstr "Οδηγός αξιολογητή"
+msgstr "Οδηγός ελεγκτή"
 
 msgid "{addon} – Add-ons for Firefox"
 msgstr "{addon} – Πρόσθετα Firefox"
@@ -6247,7 +6247,7 @@ msgid "Add-on Review Log – Add-ons for Firefox"
 msgstr "Αρχείο καταγραφής κριτικών προσθέτου – Πρόσθετα Firefox"
 
 msgid "Reviewer"
-msgstr "Κριτής"
+msgstr "Ελεγκτής"
 
 msgid "Add-on has been deleted."
 msgstr "Διαγράφηκε το πρόσθετο."
@@ -6323,10 +6323,10 @@ msgid "No points awarded yet."
 msgstr "Δεν έχουν απονεμηθεί ακόμη πόντοι."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr "Κορυφαίοι αξιολογητές (τελευταίες 7 ημέρες)"
+msgstr "Κορυφαίοι ελεγκτές (τελ. 7 ημέρες)"
 
 msgid "No top reviewers yet."
-msgstr "Κανένας κορυφαίος αξιολογητής ακόμα."
+msgstr "Κανένας κορυφαίος ελεγκτής ακόμα."
 
 msgid "All Time"
 msgstr "Από την αρχή"
@@ -6979,7 +6979,7 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr "η συμβατότητα του προσθέτου μου δεν μπορεί να αναβαθμιστεί"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr "το πρόσθετό μου αξιολογείται από έναν κριτή"
+msgstr "το πρόσθετό μου αξιολογείται από ελεγκτή"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Η Mozilla πρέπει να επικοινωνήσει μαζί μου σχετικά με το μεμονωμένο μου πρόσθετο"
