@@ -293,7 +293,7 @@ msgid "Add-ons Manager Featured"
 msgstr "Promovate în managerul de suplimente"
 
 msgid "Add-ons Manager Learn More"
-msgstr "Află mai multe în managerul de suplimente"
+msgstr ""
 
 msgid "Search Suggestions"
 msgstr "Sugestii de căutare"
