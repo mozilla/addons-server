@@ -26,4 +26,7 @@ class ShelfSerializer(serializers.ModelSerializer):
                 kwargs={
                     'user_pk': settings.TASK_USER_ID,
                     'collection_slug': obj.criteria})
+        else:
+            url = None
+
         return url
