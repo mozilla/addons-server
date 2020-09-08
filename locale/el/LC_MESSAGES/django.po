@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-08 00:22+0000\n"
+"PO-Revision-Date: 2020-09-08 00:33+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4230,7 +4230,7 @@ msgstr "Λιγότερο άγχος {start_sub_heading}με το {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Κάνετε τις εργασίες σας με μια χρήσιμη λίστα εργασιών που συγχρονίζεται με άλλες συσκευές."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4972,7 +4972,7 @@ msgstr "Ευχάριστες σελίδες {start_sub_heading}με το {addon_
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Προσαρμογή φωτεινών και σκούρων αποχρώσεων για πιο ευχάριστες οπτικά ιστοσελίδες."
 
 #. editorial content for the discovery pane.
 msgid "Block distracting websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4989,7 +4989,7 @@ msgstr "Αναβίωση νεκρών σελίδων {start_sub_heading}με τ�
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
+msgstr "Εύρεση αρχειοθετημένων, ανενεργών ή εξαφανισμένων ιστοσελίδων."
 
 #. editorial content for the discovery pane.
 msgid "Change the way Firefox looks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5048,7 +5048,7 @@ msgstr "Βίντεο βοήθειας για Android {start_sub_heading}με τ�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Ορισμένες ιστοσελίδες δυσκολεύονται στην αναπαραγωγή βίντεο στο Firefox για Android. Αυτή η επέκταση διορθώνει το σφάλμα."
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
@@ -5084,7 +5084,7 @@ msgstr "Δημιουργήστε και προσαρμόστε ομάδες κα
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "Αποθήκευση ολόκληρης ιστοσελίδας — μαζί με τις εικόνες και το στυλ της — σε αρχείο HTML."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
@@ -5200,7 +5200,7 @@ msgid "Unsupported archive type."
 msgstr "Μη υποστηριζόμενος τύπος αρχείου."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Μη έγκυρο όνομα αρχείου στην αρχειοθήκη. Παρακαλούμε βεβαιωθείτε ότι όλα τα ονόματα αρχείων είναι κωδικοποιημένα σε utf-8 ή latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -5434,6 +5434,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Παρακαλούμε αναφέρετε ή επισημάνετε οποιαδήποτε αμφισβητήσιμη κριτική, κάνοντας κλικ στο \"Αναφορά κριτικής\" και θα υποβληθεί στην ιστοσελίδα για έλεγχο. Η ομάδα μας θα χρησιμοποιήσει τους κανόνες "
+"αξιολόγησης για να αποφανθεί αν θα διαγραφεί η κριτική."
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Είμαι δημιουργός προσθέτων, μπορώ να απαντήσω στις κριτικές;"
@@ -5449,6 +5451,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
+"Γενικά, όχι. Αλλά αν η κριτική δεν συμμορφώνεται με τους κανόνες αξιολόγησης που περιγράφονται παραπάνω, μπορείτε να κάνετε κλικ στο \"Αναφορά κριτικής\" για να ελεγχθεί. Αν μια κριτική περιείχε "
+"παράπονο που δεν είναι πλέον έγκυρο, λόγω μιας νέας έκδοσης του προσθέτου σας, ενδέχεται να την διαγράψουμε."
 
 msgid "User"
 msgstr "Χρήστης"
