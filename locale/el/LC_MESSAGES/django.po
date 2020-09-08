@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-07 23:35+0000\n"
+"PO-Revision-Date: 2020-09-08 00:09+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4802,7 +4802,7 @@ msgstr "Απλά σύρετε κείμενο, εικόνες ή συνδέσμο
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Αξιοποιήστε τη δυνατότητα λήψης βίντεο και/ή ήχου σε διάφορες μορφές."
 
 #. editorial content for the discovery pane.
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5208,7 +5208,7 @@ msgstr "Άκυρο όνομα αρχείου στο αρχείο: {0}"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Το αρχείο υπερβαίνει το όριο μεγέθους στην αρχειοθήκη: {0}"
 
 msgid "Uncompressed size is too large"
 msgstr "Το μέγεθος χωρίς συμπίεση είναι πολύ μεγάλο"
@@ -5221,7 +5221,7 @@ msgstr "Αδυναμία εύρεσης ID προσθέτου."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Το ID προσθέτου σας στο manifest.json ή το install.rdf (%s) δεν συμφωνεί με το ID του προσθέτου σας στο AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr "Βρέθηκε διπλό ID προσθέτου."
