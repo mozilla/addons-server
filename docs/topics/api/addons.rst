@@ -108,7 +108,7 @@ for autocomplete though, there are a couple key differences:
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
-    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``is_recommended``, ``name``, ``promoted``, ``type`` and ``url`` fields are supported though.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``name``, ``promoted``, ``type`` and ``url`` fields are supported though.
 
 
 ------
@@ -165,7 +165,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object icons: An object holding the URLs to an add-ons icon including a cachebusting query string as values and their size as properties. Currently exposes 32, 64, 128 pixels wide icons.
     :>json boolean is_disabled: Whether the add-on is disabled or not.
     :>json boolean is_experimental: Whether the add-on has been marked by the developer as experimental or not.
-    :>json boolean is_recommended: The add-on is recommended by Mozilla.
     :>json string|object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
     :>json object|null latest_unlisted_version: Object holding the latest unlisted :ref:`version <version-detail-object>` of the add-on. This field is only present if the user has unlisted reviewer permissions, or is listed as a developer of the add-on.
