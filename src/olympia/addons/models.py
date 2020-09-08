@@ -353,7 +353,9 @@ class AddonManager(ManagerBase):
         return self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
             show_pending_rejection=True,
-        ).filter(**filter_kwargs).order_by('created')
+        ).filter(**filter_kwargs).order_by(
+            '_current_version__reviewerflags__pending_rejection'
+        )
 
 
 class Addon(OnChangeMixin, ModelBase):

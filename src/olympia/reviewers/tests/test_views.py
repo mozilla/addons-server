@@ -2482,16 +2482,18 @@ class TestPendingRejectionReviewQueue(QueueTest):
         self.url = reverse('reviewers.queue_pending_rejection')
 
     def generate_files(self):
-        addon1 = addon_factory(created=self.days_ago(5))
+        addon1 = addon_factory(created=self.days_ago(4))
         VersionReviewerFlags.objects.create(
-            version=addon1.versions.get(), pending_rejection=datetime.now())
+            version=addon1.versions.get(),
+            pending_rejection=datetime.now() + timedelta(days=1))
 
         addon2 = addon_factory(
-            created=self.days_ago(4),
+            created=self.days_ago(5),
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         VersionReviewerFlags.objects.create(
-            version=addon2.versions.get(), pending_rejection=datetime.now())
+            version=addon2.versions.get(),
+            pending_rejection=datetime.now() + timedelta(days=2))
 
         # Extra add-ons without pending rejection on their current version,
         # they shouldn't appear.
@@ -2504,6 +2506,8 @@ class TestPendingRejectionReviewQueue(QueueTest):
             version=addon.current_version, pending_rejection=datetime.now())
         version_factory(addon=addon, version='0.2')
 
+        # Addon 2 has an older creation date, but what matters for the ordering
+        # is the pending rejection deadline.
         self.expected_addons = [addon1, addon2]
 
     def test_results(self):
