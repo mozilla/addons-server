@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-08 00:33+0000\n"
+"PO-Revision-Date: 2020-09-08 00:39+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4247,7 +4247,7 @@ msgstr "Κάντε το YouTube δικό σας {start_sub_heading}με το {ad
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Φέρετε το YouTube στα μέτρα σας. Αναπαραγωγή βίντεο σε αποσπώμενο παράθυρο, προβολή διαφημίσεων μόνο σε κανάλια που έχετε κάνει εγγραφή, λήψη στιγμιότυπων βίντεο και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4255,7 +4255,7 @@ msgstr "Εξερεύνηση της κυκλοφορίας των ιστοσελ
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Λήψη λεπτομερών πληροφοριών κίνησης και χρηστών για κάθε ιστοσελίδα."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4311,7 +4311,7 @@ msgstr "Περιορισμός spam {start_sub_heading}με το {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Νικήστε την ανεπιθύμητη αλληλογραφία. Χρησιμοποιήστε έξυπνες προσωρινές διευθύνσεις email για να παραμείνετε ανώνυμοι και να αποφύγετε την ανεπιθύμητη αλληλογραφία."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4836,7 +4836,7 @@ msgstr "Παρακολούθηση ιστορικού τιμών Amazon {start_s
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Παρακολούθηση ιστορικού τιμών στο Amazon. Κάντε έξυπνες αποφάσεις αγορών με ειδοποιήσεις για αλλαγές τιμών σε προϊόντα Amazon που σας ενδιαφέρουν."
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4862,7 +4862,7 @@ msgstr "Καλύψτε τα ίχνη σας {start_sub_heading}με το {addon_
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Αναζήτηση με ενισχυμένη φραγή καταγραφής, έξυπνη κρυπτογράφηση και άλλα οφέλη απορρήτου."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4981,7 +4981,7 @@ msgstr "Φραγή ενοχλητικών ιστοσελίδων {start_sub_head
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Φραγή ενοχλητικών ιστοσελίδων. Απλά καταγράψτε τις σελίδες που θέλετε να αποκλειστούν από την επέκταση. Άμεση πειθαρχία!"
 
 #. editorial content for the discovery pane.
 msgid "Revive dead pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5105,7 +5105,7 @@ msgstr "Παράλειψη των χορηγούμενων μερών των β�
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Ανάγνωση ιστοσελίδων από τη συσκευή σας. Υποστήριξη για 40+ γλώσσες."
 
 #. editorial content for the discovery pane.
 msgid "Double-click any word to instantly see its definition."
