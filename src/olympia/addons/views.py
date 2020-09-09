@@ -495,7 +495,7 @@ class LanguageToolsView(ListAPIView):
         - app (mandatory)
         - type (optional)
         - appversion (optional, makes type mandatory)
-        - author (optional)
+        - authors (optional)
 
         Can raise ParseError() in case a mandatory parameter is missing or a
         parameter is invalid.
@@ -529,7 +529,7 @@ class LanguageToolsView(ListAPIView):
         if AddonTypeQueryParam.query_param in self.request.GET or appversions:
             try:
                 addon_types = tuple(
-                    AddonTypeQueryParam(self.request).get_value())
+                    AddonTypeQueryParam(self.request).get_values())
             except ValueError:
                 raise exceptions.ParseError(
                     'Invalid or missing type parameter while appversion '
@@ -540,15 +540,15 @@ class LanguageToolsView(ListAPIView):
         # author is optional. It's a string representing the username(s) we're
         # filtering on.
         if AddonAuthorQueryParam.query_param in self.request.GET:
-            author = AddonAuthorQueryParam(self.request).get_value()
+            authors = AddonAuthorQueryParam(self.request).get_values()
         else:
-            author = None
+            authors = None
 
         return {
             'application': application,
             'types': addon_types,
             'appversions': appversions,
-            'author': author,
+            'authors': authors,
         }
 
     def get_queryset(self):
@@ -565,9 +565,9 @@ class LanguageToolsView(ListAPIView):
             # so it's ignored here.
             qs = self.get_queryset_base(params['application'], params['types'])
 
-        if params['author']:
+        if params['authors']:
             qs = qs.filter(
-                addonuser__user__username__in=params['author'],
+                addonuser__user__username__in=params['authors'],
                 addonuser__listed=True).distinct()
         return qs
 
