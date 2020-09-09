@@ -22,6 +22,7 @@ from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview)
+from olympia.addons.tasks import backfill_hashed_guids
 
 
 def id_function(fixture_value):
@@ -614,3 +615,22 @@ class TestFixLangpacksWithMaxVersionStar(TestCase):
         for version in Version.objects.all():
             for app in version.compatible_apps:
                 assert version.compatible_apps[app].max.version == '77.*'
+
+
+class TestBackfillHashedGUIDs(TestCase):
+    @mock.patch(
+        'olympia.addons.management.commands.backfill_hashed_guids.create_chunked_tasks_signatures'  # noqa
+    )
+    def test_call_create_chunked_tasks_signatures(self, create_tasks_mock):
+        # Calling `addon_factory()` will create an `AddonGUID` instance.
+        addon = addon_factory()
+        # We want an instance without a hashed GUID...
+        addon.addonguid.update(hashed_guid=None)
+        # ...and another instance with one.
+        addon_factory()
+
+        call_command('backfill_hashed_guids')
+
+        create_tasks_mock.assert_called_with(
+            backfill_hashed_guids, ids=[addon.addonguid.id], chunk_size=100
+        )

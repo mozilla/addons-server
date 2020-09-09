@@ -2886,3 +2886,17 @@ class TestGetMadQueue(TestCase):
         assert flagged_addon in addons
         assert other_addon not in addons
         assert addon_pending_rejection not in addons
+
+
+class TestAddonGUID(TestCase):
+    def test_creates_hashed_guid_on_save(self):
+        guid = '@exquisite-sandwich-1'
+        expected_hashed_guid = (
+            '983e300fe553f61e87adbf2f55be537fe79b0a0da324847ca2712274e2f352d9'
+        )
+
+        # This will create the AddonGUID instance.
+        addon = addon_factory(guid=guid)
+
+        addon_guid = AddonGUID.objects.get(addon=addon)
+        assert addon_guid.hashed_guid == expected_hashed_guid

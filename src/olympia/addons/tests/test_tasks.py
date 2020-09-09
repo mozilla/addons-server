@@ -7,7 +7,8 @@ from django.conf import settings
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.addons.tasks import (recreate_theme_previews,
+from olympia.addons.tasks import (backfill_hashed_guids,
+                                  recreate_theme_previews,
                                   update_addon_average_daily_users,
                                   update_addon_hotness,
                                   update_addon_weekly_downloads)
@@ -171,3 +172,13 @@ def test_update_addon_weekly_downloads_skips_non_existent_addons():
     addon.refresh_from_db()
 
     assert addon.weekly_downloads == count
+
+
+def test_backfill_hashed_guids():
+    addon = addon_factory()
+    addon.addonguid.update(hashed_guid='not-really-a-hash')
+
+    backfill_hashed_guids([addon.addonguid.id])
+    addon.addonguid.refresh_from_db()
+
+    assert len(addon.addonguid.hashed_guid) == 64
