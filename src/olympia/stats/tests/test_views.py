@@ -1291,6 +1291,7 @@ class TestStatsWithBigQuery(TestCase):
 
         response = self.client.get(url)
 
+        assert b'Weekly Downloads' in response.content
         assert b'by Source' in response.content
         assert b'by Medium' not in response.content
         assert b'by Content' not in response.content
