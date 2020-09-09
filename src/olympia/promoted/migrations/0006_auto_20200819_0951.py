@@ -3,6 +3,7 @@
 from django.db import migrations
 
 from olympia import amo
+from olympia.addons.tasks import index_addons
 from olympia.constants.promoted import RECOMMENDED
 
 
@@ -14,6 +15,7 @@ def make_recommended_firefox_only(apps, schema_editor):
     for promo in qs:
         promo.application_id = amo.FIREFOX.id
         promo.save()
+    index_addons.delay([promoted.addon_id for promoted in qs])
 
 
 class Migration(migrations.Migration):
