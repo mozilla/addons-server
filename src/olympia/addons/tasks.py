@@ -96,26 +96,6 @@ def update_addon_average_daily_users(data, **kw):
 
 
 @task
-def update_addon_total_downloads(data, **kw):
-    log.info('[%s] Updating add-ons download+average totals.' % (len(data)))
-
-    for pk, sum_download_counts in data:
-        try:
-            addon = Addon.objects.get(pk=pk)
-            # Don't trigger a save unless we have to (the counts may not have
-            # changed)
-            if (sum_download_counts and
-                    addon.total_downloads != sum_download_counts):
-                addon.update(total_downloads=sum_download_counts)
-        except Addon.DoesNotExist:
-            # We exclude deleted add-ons in the cron, but an add-on could have
-            # been deleted by the time the task is processed.
-            msg = ("Got new download totals (total=%s) but the add-on"
-                   "doesn't exist (%s)" % (sum_download_counts, pk))
-            log.info(msg)
-
-
-@task
 def delete_preview_files(id, **kw):
     Preview.delete_preview_files(sender=None, instance=Preview(id=id))
 

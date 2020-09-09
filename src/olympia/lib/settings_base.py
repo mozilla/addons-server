@@ -1183,7 +1183,6 @@ CELERY_TASK_ROUTES = {
 
     # Crons
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
-    'olympia.addons.tasks.update_addon_total_downloads': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_weekly_downloads': {'queue': 'cron'},
     'olympia.addons.tasks.update_appsupport': {'queue': 'cron'},
@@ -1841,7 +1840,6 @@ ALLOWED_FXA_CONFIGS = ['default']
 # syntax is: job_and_method_name: full.package.path
 CRON_JOBS = {
     'update_addon_average_daily_users': 'olympia.addons.cron',
-    'update_addon_total_downloads': 'olympia.addons.cron',
     'update_addon_weekly_downloads': 'olympia.addons.cron',
     'addon_last_updated': 'olympia.addons.cron',
     'update_addon_appsupport': 'olympia.addons.cron',

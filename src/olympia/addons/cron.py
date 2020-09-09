@@ -5,7 +5,7 @@ from datetime import date
 import waffle
 
 from django.db import connection
-from django.db.models import F, Q, Sum, Value, IntegerField
+from django.db.models import F, Q, Value, IntegerField
 from celery import group
 
 import olympia.core.logger
@@ -15,7 +15,6 @@ from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_hotness as _update_addon_hotness,
-    update_addon_total_downloads as _update_addon_total_downloads,
     update_addon_weekly_downloads as _update_addon_weekly_downloads,
     update_appsupport)
 from olympia.amo.celery import create_chunked_tasks_signatures
@@ -60,24 +59,6 @@ def update_addon_average_daily_users(chunk_size=250):
     create_chunked_tasks_signatures(
         _update_addon_average_daily_users, counts, chunk_size
     ).apply_async()
-
-
-def update_addon_total_downloads():
-    """Update add-on total and average downloads."""
-    if waffle.switch_is_active('use-bigquery-for-download-stats-cron'):
-        log.info('Not running `update_addon_total_downloads()` because waffle '
-                 'switch is active.')
-        return
-
-    qs = (
-        Addon.objects
-             .annotate(sum_download_count=Sum('downloadcount__count'))
-             .values_list('id', 'sum_download_count')
-             .order_by('id')
-    )
-    ts = [_update_addon_total_downloads.subtask(args=[chunk])
-          for chunk in chunked(qs, 250)]
-    group(ts).apply_async()
 
 
 def _change_last_updated(next):
