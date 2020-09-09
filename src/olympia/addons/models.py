@@ -397,6 +397,8 @@ class Addon(OnChangeMixin, ModelBase):
         default=0, db_column='textreviewscount')
     weekly_downloads = models.PositiveIntegerField(
         default=0, db_column='weeklydownloads')
+    total_downloads = models.PositiveIntegerField(
+        default=0, null=True, db_column='totaldownloads')
     hotness = models.FloatField(default=0)
 
     average_daily_users = models.PositiveIntegerField(default=0)
