@@ -632,5 +632,5 @@ class TestBackfillHashedGUIDs(TestCase):
         call_command('backfill_hashed_guids')
 
         create_tasks_mock.assert_called_with(
-            backfill_hashed_guids, ids=[addon.addonguid.id], chunk_size=100
+            backfill_hashed_guids, items=[addon.addonguid.id], chunk_size=100
         )
