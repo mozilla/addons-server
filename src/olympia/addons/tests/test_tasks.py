@@ -152,7 +152,23 @@ def test_update_addon_hotness():
 def test_update_addon_weekly_downloads():
     addon = addon_factory(weekly_downloads=0)
     count = 123
-    data = [(addon.guid, count)]
+    data = [(addon.addonguid.hashed_guid, count)]
+    assert addon.weekly_downloads == 0
+
+    update_addon_weekly_downloads(data)
+    addon.refresh_from_db()
+
+    assert addon.weekly_downloads == count
+
+
+def test_update_addon_weekly_downloads_ignores_deleted_addons():
+    guid = 'some@guid'
+    deleted_addon = addon_factory(guid=guid)
+    deleted_addon.delete()
+    deleted_addon.update(guid=None)
+    addon = addon_factory(guid=guid, weekly_downloads=0)
+    count = 123
+    data = [(addon.addonguid.hashed_guid, count)]
     assert addon.weekly_downloads == 0
 
     update_addon_weekly_downloads(data)
@@ -164,8 +180,8 @@ def test_update_addon_weekly_downloads():
 def test_update_addon_weekly_downloads_skips_non_existent_addons():
     addon = addon_factory(weekly_downloads=0)
     count = 123
-    invalid_addon_guid = 'does.not@exist'
-    data = [(invalid_addon_guid, 0), (addon.guid, count)]
+    invalid_hashed_guid = 'does.not@exist'
+    data = [(invalid_hashed_guid, 0), (addon.addonguid.hashed_guid, count)]
     assert addon.weekly_downloads == 0
 
     update_addon_weekly_downloads(data)

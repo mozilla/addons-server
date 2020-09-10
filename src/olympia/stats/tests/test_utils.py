@@ -532,7 +532,7 @@ class TestGetDownloadSeries(BigQueryTestMixin, TestCase):
         expected_query = f"""
 SELECT submission_date, total_downloads
 FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
-WHERE addon_id = @addon_id
+WHERE hashed_addon_id = @hashed_addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
 LIMIT 365"""
@@ -548,8 +548,8 @@ LIMIT 365"""
         assert parameters == [
             {
                 'parameterType': {'type': 'STRING'},
-                'parameterValue': {'value': self.addon.guid},
-                'name': 'addon_id',
+                'parameterValue': {'value': self.addon.addonguid.hashed_guid},
+                'name': 'hashed_addon_id',
             },
             {
                 'parameterType': {'type': 'DATE'},
@@ -578,7 +578,7 @@ LIMIT 365"""
             expected_query = f"""
 SELECT submission_date, total_downloads, {column}
 FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
-WHERE addon_id = @addon_id
+WHERE hashed_addon_id = @hashed_addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
 LIMIT 365"""
@@ -620,10 +620,10 @@ class TestGetAddonsAndWeeklyDownloadsFromBigQuery(
         client = self.create_mock_client()
         bigquery_client_mock.from_service_account_json.return_value = client
         expected_query = f"""
-SELECT addon_id, SUM(total_downloads) AS count
+SELECT hashed_addon_id, SUM(total_downloads) AS count
 FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
 WHERE submission_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)
-GROUP BY addon_id"""
+GROUP BY hashed_addon_id"""
 
         get_addons_and_weekly_downloads_from_bigquery()
 
@@ -632,8 +632,8 @@ GROUP BY addon_id"""
     @mock.patch('google.cloud.bigquery.Client')
     def test_returned_results(self, bigquery_client_mock):
         results = [
-            self.create_bigquery_row({'addon_id': 1, 'count': 123}),
-            self.create_bigquery_row({'addon_id': 2, 'count': 456}),
+            self.create_bigquery_row({'hashed_addon_id': 1, 'count': 123}),
+            self.create_bigquery_row({'hashed_addon_id': 2, 'count': 456}),
         ]
         client = self.create_mock_client(results=results)
         bigquery_client_mock.from_service_account_json.return_value = client
@@ -644,9 +644,9 @@ GROUP BY addon_id"""
     @mock.patch('google.cloud.bigquery.Client')
     def test_skips_null_values(self, bigquery_client_mock):
         results = [
-            self.create_bigquery_row({'addon_id': 1, 'count': 123}),
-            self.create_bigquery_row({'addon_id': 2, 'count': None}),
-            self.create_bigquery_row({'addon_id': None, 'count': 456}),
+            self.create_bigquery_row({'hashed_addon_id': 1, 'count': 123}),
+            self.create_bigquery_row({'hashed_addon_id': 2, 'count': None}),
+            self.create_bigquery_row({'hashed_addon_id': None, 'count': 456}),
         ]
         client = self.create_mock_client(results=results)
         bigquery_client_mock.from_service_account_json.return_value = client

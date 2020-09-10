@@ -470,9 +470,9 @@ class TestUpdateAddonWeeklyDownloads(TestCase):
         # This one should be ignored as well.
         addon_factory(guid='', type=amo.ADDON_LPAPP)
         get_mock.return_value = [
-            (addon.guid, count),
-            (langpack.guid, langpack_count),
-            (dictionary.guid, dictionary_count),
+            (addon.addonguid.hashed_guid, count),
+            (langpack.addonguid.hashed_guid, langpack_count),
+            (dictionary.addonguid.hashed_guid, dictionary_count),
         ]
 
         chunk_size = 123
@@ -481,10 +481,10 @@ class TestUpdateAddonWeeklyDownloads(TestCase):
         create_chunked_mock.assert_called_with(
             update_addon_weekly_downloads,
             [
-                (addon_without_count.guid, 0),
-                (addon.guid, count),
-                (langpack.guid, langpack_count),
-                (dictionary.guid, dictionary_count),
+                (addon_without_count.addonguid.hashed_guid, 0),
+                (addon.addonguid.hashed_guid, count),
+                (langpack.addonguid.hashed_guid, langpack_count),
+                (dictionary.addonguid.hashed_guid, dictionary_count),
             ],
             chunk_size
         )
@@ -495,7 +495,7 @@ class TestUpdateAddonWeeklyDownloads(TestCase):
     def test_update_weekly_downloads(self, get_mock):
         addon = addon_factory(weekly_downloads=0)
         count = 56789
-        get_mock.return_value = [(addon.guid, count)]
+        get_mock.return_value = [(addon.addonguid.hashed_guid, count)]
 
         cron.update_addon_weekly_downloads()
         addon.refresh_from_db()

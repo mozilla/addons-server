@@ -206,15 +206,15 @@ def update_addon_weekly_downloads(chunk_size=250):
     if waffle.switch_is_active('use-bigquery-for-download-stats-cron'):
         counts = dict(
             # In order to reset the `weekly_downloads` values of add-ons that
-            # don't exist in BigQuery, we prepare a set of `(guid, 0)` for most
-            # add-ons.
+            # don't exist in BigQuery, we prepare a set of `(hashed_guid, 0)`
+            # for most add-ons.
             Addon.objects
             .filter(type__in=amo.ADDON_TYPES_WITH_STATS)
             .exclude(guid__isnull=True)
             .exclude(guid__exact='')
             .exclude(weekly_downloads=0)
             .annotate(count=Value(0, IntegerField()))
-            .values_list('guid', 'count')
+            .values_list('addonguid__hashed_guid', 'count')
         )
         # Update the `counts` with values from BigQuery.
         counts.update(get_addons_and_weekly_downloads_from_bigquery())
