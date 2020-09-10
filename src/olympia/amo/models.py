@@ -377,8 +377,6 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
         base_manager_name = 'objects'
 
     def get_absolute_url(self, *args, **kwargs):
-        from olympia.amo.views import frontend_view  # circular import
-
         relative_url = self.get_url_path(*args, **kwargs)
         try:
             func = resolve(relative_url).func
