@@ -51,7 +51,7 @@ class FileSerializer(serializers.ModelSerializer):
                   'optional_permissions')
 
     def get_url(self, obj):
-        return obj.get_absolute_url(src='')
+        return obj.get_absolute_url()
 
 
 class PreviewSerializer(serializers.ModelSerializer):

@@ -176,12 +176,10 @@ class TestModelBase(TestCase):
             reverse('downloads.file', args=[file.id]), file.filename)
         with override_settings(EXTERNAL_SITE_URL=settings.SITE_URL):
             # The normal case
-            assert file.get_absolute_url(src='foo') == (
-                settings.SITE_URL + relative + '?src=foo')
+            assert file.get_absolute_url() == settings.SITE_URL + relative
         with override_settings(EXTERNAL_SITE_URL='https://example.com'):
             # downloads.file is a django served view so the same.
-            assert file.get_absolute_url(src='foo') == (
-                settings.SITE_URL + relative + '?src=foo')
+            assert file.get_absolute_url() == settings.SITE_URL + relative
 
     def test_get_admin_url_path(self):
         addon = Addon.objects.get(pk=3615)

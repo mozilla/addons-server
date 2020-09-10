@@ -76,8 +76,12 @@ class TestFindReplacement(TestCase):
         self.url = reverse('addons.find_replacement') + '?guid=xxx'
         response = self.client.get(self.url)
         self.assert3xx(
-            response,
-            DEFAULT_FIND_REPLACEMENT_PATH + '?src=%s' % FIND_REPLACEMENT_SRC)
+            response, (
+                DEFAULT_FIND_REPLACEMENT_PATH +
+                '?utm_source=addons.mozilla.org'
+                '&utm_medium=referral&utm_content=%s' % FIND_REPLACEMENT_SRC
+            )
+        )
 
     def test_match(self):
         addon_factory(slug='replacey')
@@ -85,7 +89,11 @@ class TestFindReplacement(TestCase):
         self.url = reverse('addons.find_replacement') + '?guid=xxx'
         response = self.client.get(self.url)
         self.assert3xx(
-            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
+            response, (
+                '/addon/replacey/?utm_source=addons.mozilla.org' +
+                '&utm_medium=referral&utm_content=%s' % FIND_REPLACEMENT_SRC
+            )
+        )
 
     def test_match_no_leading_slash(self):
         addon_factory(slug='replacey')
@@ -93,7 +101,11 @@ class TestFindReplacement(TestCase):
         self.url = reverse('addons.find_replacement') + '?guid=xxx'
         response = self.client.get(self.url)
         self.assert3xx(
-            response, '/addon/replacey/?src=%s' % FIND_REPLACEMENT_SRC)
+            response, (
+                '/addon/replacey/?utm_source=addons.mozilla.org' +
+                '&utm_medium=referral&utm_content=%s' % FIND_REPLACEMENT_SRC
+            )
+        )
 
     def test_no_guid_param_is_404(self):
         self.url = reverse('addons.find_replacement')

@@ -76,13 +76,10 @@ def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     add_prefix = kwargs.pop('add_prefix', True)
     host = kwargs.pop('host', '')
-    src = kwargs.pop('src', '')
     url = '%s%s' % (host, urlresolvers.reverse(viewname,
                                                args=args,
                                                kwargs=kwargs,
                                                add_prefix=add_prefix))
-    if src:
-        url = urlparams(url, src=src)
     return url
 
 

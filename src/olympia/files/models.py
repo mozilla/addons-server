@@ -28,7 +28,7 @@ from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
-    urlparams, user_media_path, user_media_url)
+    user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.files.utils import get_sha256, write_crx_as_xpi
@@ -129,18 +129,18 @@ class File(OnChangeMixin, ModelBase):
         return posixpath.join(
             *map(force_bytes, [host, self.version.addon.id, self.filename]))
 
-    def get_url_path(self, src, attachment=False):
+    def get_url_path(self, attachment=False):
         return self._make_download_url(
-            'downloads.file', src, attachment=attachment)
+            'downloads.file', attachment=attachment)
 
-    def _make_download_url(self, view_name, src, attachment=False):
+    def _make_download_url(self, view_name, attachment=False):
         kwargs = {
             'file_id': self.pk
         }
         if attachment:
             kwargs['type'] = 'attachment'
         url = os.path.join(reverse(view_name, kwargs=kwargs), self.filename)
-        return urlparams(url, src=src)
+        return url
 
     @classmethod
     def from_upload(cls, upload, version, platform, parsed_data=None):
