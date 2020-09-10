@@ -26,6 +26,7 @@ from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ReviewerSubscription,
     ViewUnlistedAllList, get_flags, get_flags_for_row)
 from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
 from olympia.versions.compare import addon_version_int
 from olympia.versions.models import VersionReviewerFlags
 
@@ -593,15 +594,15 @@ class ReviewHelper(object):
 class ReviewBase(object):
 
     def __init__(self, request, addon, version, review_type,
-                 content_review=False):
+                 content_review=False, user=None):
         self.request = request
         if request:
-            self.user = self.request.user
+            self.user = user or self.request.user
             self.human_review = True
         else:
             # Use the addons team go-to user "Mozilla" for the automatic
             # validations.
-            self.user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+            self.user = user or get_task_user()
             self.human_review = False
         self.addon = addon
         self.version = version
@@ -669,7 +670,7 @@ class ReviewBase(object):
 
     def log_action(self, action, version=None, files=None,
                    timestamp=None):
-        details = {'comments': self.data['comments'],
+        details = {'comments': self.data.get('comments', ''),
                    'reviewtype': self.review_type.split('_')[1]}
         if files is None and self.files:
             files = self.files
