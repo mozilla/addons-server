@@ -70,7 +70,7 @@ class AddonQueryParam(object):
 
 class AddonQueryMultiParam(object):
     """Helper to build a ES query from a request.GET param that's
-    comma seperated."""
+    comma separated."""
     operator = 'terms'  # ES filter to use when filtering.
     query_param = None
     reverse_dict = None  # if None then string is returned as is

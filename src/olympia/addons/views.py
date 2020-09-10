@@ -495,7 +495,7 @@ class LanguageToolsView(ListAPIView):
         - app (mandatory)
         - type (optional)
         - appversion (optional, makes type mandatory)
-        - authors (optional)
+        - author (optional)
 
         Can raise ParseError() in case a mandatory parameter is missing or a
         parameter is invalid.
