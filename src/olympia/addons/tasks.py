@@ -291,11 +291,11 @@ def update_addon_weekly_downloads(data):
 
     for hashed_guid, count in data:
         try:
-            addon = AddonGUID.objects.get(hashed_guid=hashed_guid).addon
-        except AddonGUID.DoesNotExist:
+            addon = Addon.objects.get(addonguid__hashed_guid=hashed_guid)
+        except Addon.DoesNotExist:
             # The processing input comes from metrics which might be out of
             # date in regards to currently existing add-ons.
-            log.info('Got a weekly_downloads update (%s) but the add-on GUID '
+            log.info('Got a weekly_downloads update (%s) but the add-on '
                      'doesn\'t exist (hashed_guid=%s).', count, hashed_guid)
             continue
 
