@@ -324,7 +324,6 @@ class AddonSerializer(serializers.ModelSerializer):
     icons = serializers.SerializerMethodField()
     is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
-    is_recommended = serializers.SerializerMethodField()
     name = TranslationSerializerField()
     previews = PreviewSerializer(many=True, source='current_previews')
     promoted = PromotedAddonSerializer()
@@ -362,7 +361,6 @@ class AddonSerializer(serializers.ModelSerializer):
             'is_disabled',
             'is_experimental',
             'is_featured',
-            'is_recommended',
             'is_source_public',
             'last_updated',
             'name',
@@ -421,17 +419,8 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def get_is_featured(self, obj):
         # featured is gone, but we need to keep the API backwards compatible so
-        # fake it with recommended status instead.
-        return self.get_is_recommended(obj)
-
-    def get_is_recommended(self, obj):
-        # Promoted has subsumed recommended but we still return it in the API.
-        # But if we had it in the ES index use that instead while we're still
-        # using the ES index is_recommended value for ?sort=recommended.
-        return getattr(
-            obj,
-            '_is_recommended',
-            bool(obj.promoted and obj.promoted.group == RECOMMENDED))
+        # fake it with promoted status instead.
+        return bool(obj.promoted and obj.promoted.group == RECOMMENDED)
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
@@ -653,11 +642,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             for data_author in data_authors
         ]
 
-        if 'is_recommended' in data:
-            # if we have this property in the index, store it so we can expose
-            # it in get_is_recommended.
-            obj._is_recommended = data['is_recommended']
-
         is_static_theme = data.get('type') == amo.ADDON_STATICTHEME
         preview_model_class = VersionPreview if is_static_theme else Preview
         obj.current_previews = [
@@ -694,8 +678,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
     class Meta(ESAddonSerializer.Meta):
-        fields = ('id', 'icon_url', 'is_recommended',
-                  'name', 'promoted', 'type', 'url')
+        fields = ('id', 'icon_url', 'name', 'promoted', 'type', 'url')
         model = Addon
 
     def get_url(self, obj):
@@ -775,9 +758,10 @@ class AddonBasketSyncSerializer(AddonSerializerWithUnlistedData):
     # We want to send all authors to basket, not just listed ones, and have
     # the full basket-specific serialization.
     authors = UserProfileBasketSyncSerializer(many=True)
-    name = serializers.SerializerMethodField()
-    latest_unlisted_version = VersionBasketSerializer()
     current_version = VersionBasketSerializer()
+    is_recommended = serializers.SerializerMethodField()
+    latest_unlisted_version = VersionBasketSerializer()
+    name = serializers.SerializerMethodField()
 
     class Meta:
         model = Addon
@@ -792,6 +776,10 @@ class AddonBasketSyncSerializer(AddonSerializerWithUnlistedData):
         # Basket doesn't want translations, we run the serialization task under
         # the add-on default locale so we can just return the name as string.
         return str(obj.name)
+
+    def get_is_recommended(self, obj):
+        # Borrow the logic from is_featured so we don't have to define it twice
+        return self.get_is_featured(obj)
 
 
 class ReplacementAddonSerializer(serializers.ModelSerializer):

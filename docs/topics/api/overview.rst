@@ -374,6 +374,7 @@ v4 API changelog
 * 2020-03-26: added ``addon_name`` to blocklist/block api https://github.com/mozilla/addons-server/issues/13757
 * 2020-08-13: added ``applications`` internal API to create new application versions https://github.com/mozilla/addons-server/issues/14649
 * 2020-09-03: added ``promoted`` filter to addons search api https://github.com/mozilla/addons-server/issues/15272.
+* 2020-09-17: dropped ``is_recommended`` from addons api - use ``promoted`` propety instead.  https://github.com/mozilla/addons-server/issues/15271
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

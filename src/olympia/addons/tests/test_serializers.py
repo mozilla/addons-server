@@ -235,7 +235,6 @@ class AddonSerializerOutputTestMixin(object):
         }
         assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_experimental'] == self.addon.is_experimental is False
-        assert result['is_recommended'] is False
         assert result['last_updated'] == (
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
         assert result['name'] == {'en-US': self.addon.name}
@@ -468,12 +467,6 @@ class AddonSerializerOutputTestMixin(object):
             self.addon.current_version.promoted_approvals.all().delete()
             result = self.serialize()
             assert result['is_featured'] is False
-
-    def test_is_recommended(self):
-        self.addon = addon_factory(recommended=True)
-        assert self.addon.promoted_group() == RECOMMENDED
-        result = self.serialize()
-        assert result['is_recommended'] is True
 
     def test_promoted(self):
         # With a promoted extension.
@@ -1264,13 +1257,11 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         result = self.serialize()
         assert (
             set(result.keys()) ==
-            {'id', 'name', 'icon_url', 'is_recommended', 'type', 'url',
-             'promoted'}
+            {'id', 'name', 'icon_url', 'type', 'url', 'promoted'}
         )
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': str(self.addon.name)}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
-        assert result['is_recommended'] is False
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
         assert result['promoted'] == self.addon.promoted is None
