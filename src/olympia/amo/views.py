@@ -146,6 +146,12 @@ def frontend_view(*args, **kwargs):
     return _frontend_view(*args, **kwargs)
 
 
+# Special attribute that our <ModelBase>.get_absolute_url() looks for to
+# determine whether it's a frontend view (that requires a different host prefix
+# on admin instances) or not.
+frontend_view.is_frontend_view = True
+
+
 class SiteStatusView(APIView):
     authentication_classes = []
     permission_classes = []

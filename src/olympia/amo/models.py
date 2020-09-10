@@ -381,7 +381,8 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
 
         relative_url = self.get_url_path(*args, **kwargs)
         try:
-            is_frontend = resolve(relative_url).func == frontend_view
+            func = resolve(relative_url).func
+            is_frontend = getattr(func, 'is_frontend_view', False)
         except Resolver404:
             is_frontend = False
         site = settings.EXTERNAL_SITE_URL if is_frontend else settings.SITE_URL
