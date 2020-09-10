@@ -13,6 +13,6 @@ class Command(BaseCommand):
             'id', flat=True
         )
         chunked_tasks = create_chunked_tasks_signatures(
-            backfill_hashed_guids, ids=list(ids), chunk_size=100
+            backfill_hashed_guids, items=list(ids), chunk_size=100
         )
         chunked_tasks.apply_async()
