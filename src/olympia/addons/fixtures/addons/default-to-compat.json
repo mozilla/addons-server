@@ -115,7 +115,6 @@
         "fields": {
             "eula": null,
             "last_updated": "2011-12-05 14:46:43",
-            "total_downloads": 0,
             "developer_comments": null,
             "_current_version": 1268884,
             "guid": "default-to-compat@mozilla",
