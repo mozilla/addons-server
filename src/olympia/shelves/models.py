@@ -13,7 +13,7 @@ class Shelf(ModelBase):
         max_length=200, choices=ENDPOINT_CHOICES, db_column='shelf_type')
     criteria = models.CharField(
         max_length=200,
-        help_text='e.g., ?recommended=true&sort=random&type=extension')
+        help_text='e.g., ?promoted=recommended&sort=random&type=extension')
     footer_text = models.CharField(
         max_length=200, blank=True,
         help_text='e.g., See more recommended extensions')

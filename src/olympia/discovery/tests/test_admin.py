@@ -894,7 +894,7 @@ class TestShelfAdmin(TestCase):
             'admin:discovery_shelfmodule_changelist')
         self.detail_url_name = 'admin:discovery_shelfmodule_change'
 
-        criteria_sea = '?recommended=true&sort=random&type=extension'
+        criteria_sea = '?promoted=recommended&sort=random&type=extension'
         responses.add(
             responses.GET,
             reverse_ns('addon-search') + criteria_sea,
@@ -948,7 +948,7 @@ class TestShelfAdmin(TestCase):
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
                 'criteria': (
-                    '?recommended=true&sort=random&type=extension'),
+                    '?promoted=recommended&sort=random&type=extension'),
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname'
             }
@@ -963,13 +963,13 @@ class TestShelfAdmin(TestCase):
             assert item.title == 'Recommended extensions'
             assert item.endpoint == 'search'
             assert item.criteria == (
-                '?recommended=true&sort=random&type=extension')
+                '?promoted=recommended&sort=random&type=extension')
 
     def test_can_delete_with_discovery_edit_permission(self):
         item = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
-            criteria='?recommended=true&sort=random&type=extension',
+            criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         delete_url = reverse(
@@ -1004,7 +1004,7 @@ class TestShelfAdmin(TestCase):
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
                 'criteria':
-                    ('?recommended=true&sort=random&type=extension'),
+                    ('?promoted=recommended&sort=random&type=extension'),
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname',
             }
@@ -1020,7 +1020,7 @@ class TestShelfAdmin(TestCase):
             assert item.title == 'Recommended extensions'
             assert item.endpoint == 'search'
             assert item.criteria == (
-                '?recommended=true&sort=random&type=extension')
+                '?promoted=recommended&sort=random&type=extension')
 
     def test_can_not_add_without_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_shelfmodule_add')
@@ -1035,7 +1035,7 @@ class TestShelfAdmin(TestCase):
                 'title': 'Recommended extensions',
                 'endpoint': 'search',
                 'criteria':
-                '?recommended=true&sort=random&type=extension',
+                '?promoted=recommended&sort=random&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname'
             },
@@ -1047,7 +1047,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
-            criteria='?recommended=true&sort=random&type=extension',
+            criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         detail_url = reverse(
@@ -1064,7 +1064,7 @@ class TestShelfAdmin(TestCase):
                 'title': 'Popular extensions',
                 'endpoint': 'search',
                 'criteria':
-                '?recommended=true&sort=users&type=extension',
+                '?promoted=recommended&sort=users&type=extension',
                 'footer_text': 'See more',
                 'footer_pathname': '/this/is/the/pathname'
             }, follow=True)
@@ -1077,7 +1077,7 @@ class TestShelfAdmin(TestCase):
         item = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
-            criteria='?recommended=true&sort=random&type=extension',
+            criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more',
             footer_pathname='/this/is/the/pathname')
         delete_url = reverse(

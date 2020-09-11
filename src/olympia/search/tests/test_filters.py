@@ -510,12 +510,6 @@ class TestSortingFilter(FilterTestsBase):
                 data={'q': 'something', 'promoted': 'line', 'sort': 'random'})
         assert context.exception.detail == [expected]
 
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(
-                data={'q': 'something', 'recommended': 'true',
-                      'sort': 'random'})
-        assert context.exception.detail == [expected]
-
     @freeze_time('2020-02-26')
     def test_sort_random_featured(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
@@ -536,17 +530,6 @@ class TestSortingFilter(FilterTestsBase):
         assert qs['sort'] == ['_score']
         assert qs['query']['function_score']['functions'] == [
             {'random_score': {'seed': 737482}}
-        ]
-
-    @freeze_time('2020-02-28')
-    def test_sort_random_recommended(self):
-        qs = self._filter(data={'recommended': 'true', 'sort': 'random'})
-        # Note: this test does not call AddonRecommendedQueryParam so it won't
-        # apply the recommended filtering. That's tested below in
-        # TestCombinedFilter.test_filter_recommended_sort_random
-        assert qs['sort'] == ['_score']
-        assert qs['query']['function_score']['functions'] == [
-            {'random_score': {'seed': 737483}}
         ]
 
     def test_sort_recommended_only(self):
@@ -916,16 +899,6 @@ class TestSearchParameterFilter(FilterTestsBase):
             self._filter(data={'featured': 'false'})
         assert context.exception.detail == ['Invalid "featured" parameter.']
 
-    def test_search_by_recommended(self):
-        qs = self._filter(data={'recommended': 'true'})
-        assert 'must' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'term': {'is_recommended': True}} in filter_
-
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'recommended': 'false'})
-        assert context.exception.detail == ['Invalid "recommended" parameter.']
-
     def test_search_by_promoted(self):
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'promoted': 'foo'})
@@ -1099,24 +1072,6 @@ class TestCombinedFilter(FilterTestsBase):
     @freeze_time('2020-02-26')
     def test_filter_promoted_sort_random(self):
         qs = self._filter(data={'promoted': 'verified', 'sort': 'random'})
-        bool_ = qs['query']['bool']
-
-        assert 'must_not' not in bool_
-
-        filter_ = bool_['filter']
-        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in filter_
-        assert {'exists': {'field': 'current_version'}} in filter_
-        assert {'term': {'is_disabled': False}} in filter_
-
-        assert qs['sort'] == ['_score']
-
-        assert bool_['must'][0]['function_score']['functions'] == [
-            {'random_score': {'seed': 737481}}
-        ]
-
-    @freeze_time('2020-02-26')
-    def test_filter_recommended_sort_random(self):
-        qs = self._filter(data={'recommended': 'true', 'sort': 'random'})
         bool_ = qs['query']['bool']
 
         assert 'must_not' not in bool_
