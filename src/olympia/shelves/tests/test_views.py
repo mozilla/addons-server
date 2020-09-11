@@ -22,7 +22,7 @@ class TestShelfViewSet(TestCase):
         shelf_a = Shelf.objects.create(
             title='Recommended extensions',
             endpoint='search',
-            criteria='?recommended=true&sort=random&type=extension',
+            criteria='?promoted=recommended&sort=random&type=extension',
             footer_text='See more recommended extensions')
         shelf_b = Shelf.objects.create(
             title='Enhanced privacy extensions',

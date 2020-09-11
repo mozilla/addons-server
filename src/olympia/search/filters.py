@@ -348,13 +348,6 @@ class AddonFeaturedQueryParam(AddonQueryParam):
     es_field = 'is_recommended'
 
 
-class AddonRecommendedQueryParam(AddonQueryParam):
-    query_param = 'recommended'
-    reverse_dict = {'true': True}
-    valid_values = [True]
-    es_field = 'is_recommended'
-
-
 class AddonPromotedQueryParam(AddonQueryMultiParam):
     query_param = 'promoted'
     reverse_dict = {
@@ -843,7 +836,6 @@ class SearchParameterFilter(BaseFilterBackend):
         AddonGuidQueryParam,
         AddonPlatformQueryParam,
         AddonPromotedQueryParam,
-        AddonRecommendedQueryParam,
         AddonTagQueryParam,
         AddonTypeQueryParam,
         AddonColorQueryParam,
@@ -915,9 +907,8 @@ class SortingFilter(BaseFilterBackend):
                 raise serializers.ValidationError(
                     'The "random" "sort" parameter can not be combined.')
 
-            # Second, for perf reasons it's only available when the 'featured',
-            # 'promoted'
-            # or 'recommended' param is present (to limit the number of
+            # Second, for perf reasons it's only available when the 'featured'
+            # or 'promoted' param is present (to limit the number of
             # documents we'll have to apply the random score to) and a search
             # query is absent (to prevent clashing with the score functions
             # coming from a search query).
@@ -925,8 +916,7 @@ class SortingFilter(BaseFilterBackend):
 
                 is_random_sort_available = (
                     (AddonFeaturedQueryParam.query_param in request.GET or
-                     AddonPromotedQueryParam.query_param in request.GET or
-                     AddonRecommendedQueryParam.query_param in request.GET) and
+                     AddonPromotedQueryParam.query_param in request.GET) and
                     not search_query_param
                 )
                 if is_random_sort_available:

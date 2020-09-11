@@ -9,7 +9,7 @@ from olympia.shelves.forms import ShelfForm
 
 class TestShelfForm(TestCase):
     def setUp(self):
-        self.criteria_sea = '?recommended=true&sort=random&type=extension'
+        self.criteria_sea = '?promoted=recommended&sort=random&type=extension'
         self.criteria_col = 'password-managers'
         self.criteria_col_404 = 'passwordmanagers'
         self.criteria_404 = 'sort=users&type=statictheme'
@@ -59,7 +59,7 @@ class TestShelfForm(TestCase):
             'criteria': self.criteria_sea})
         assert form.is_valid(), form.errors
         assert form.cleaned_data['criteria'] == (
-            '?recommended=true&sort=random&type=extension')
+            '?promoted=recommended&sort=random&type=extension')
 
     def test_clean_collections(self):
         form = ShelfForm({

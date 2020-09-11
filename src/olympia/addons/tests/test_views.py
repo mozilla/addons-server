@@ -1225,18 +1225,6 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
-    def test_filter_by_recommended(self):
-        addon = addon_factory(
-            slug='my-addon', name=u'Recomménded Addôn', recommended=True)
-        addon_factory(slug='other-addon', name=u'Other Addôn')
-        assert addon.promoted_group() == RECOMMENDED
-        self.reindex(Addon)
-
-        data = self.perform_search(self.url, {'recommended': 'true'})
-        assert data['count'] == 1
-        assert len(data['results']) == 1
-        assert data['results'][0]['id'] == addon.pk
-
     def test_filter_by_promoted(self):
         av_min, _ = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version='59.0.0')

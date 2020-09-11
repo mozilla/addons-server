@@ -34,7 +34,6 @@ This endpoint allows you to search through public add-ons.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
     :query string promoted: Filter to add-ons in a specific :ref:`promoted category <addon-detail-promoted-category>`.  Can be combined with `app`.   Multiple promoted categories can be specified, separated by comma(s), in which case any add-ons in any of the promotions will be returned.
-    :query boolean recommended: Filter to only add-ons recommended by Mozilla.  Only ``recommended=true`` is supported.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.  Multiple types can be specified, separated by comma(s), in which case add-ons that are any of the matching types are returned.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
@@ -56,8 +55,9 @@ This endpoint allows you to search through public add-ons.
             random  Random ordering. Only available when no search query is
                     passed and when filtering to only return promoted add-ons.
             rating  Bayesian rating, descending.
-       recommended  Recommended add-ons above non-recommend add-ons. Only
-                    available combined with another sort - ignored on its own.
+       recommended  Promoted addons in the recommended category above
+                    non-recommend add-ons. Only available combined with another
+                    sort - ignored on its own.
                     Also ignored if combined with relevance as it already takes
                     into account recommended status.
          relevance  Search query relevance, descending.  Ignored without a
