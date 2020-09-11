@@ -14,7 +14,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
-    ENABLED_PROMOTED_GROUPS_BY_ID, RECOMMENDED)
+    VALID_PROMOTED_GROUPS_BY_ID, RECOMMENDED, LINE, SPOTLIGHT)
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
@@ -838,7 +838,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert len(filter_) == 1
         should = filter_[0]['bool']['should']
-        assert {'terms': {'listed_authors.id': ['123', '456']}} in should
+        assert {'terms': {'listed_authors.id': [123, 456]}} in should
         assert {'terms': {'listed_authors.username': []}} in should
 
         qs = self._filter(data={'author': '123,bar'})
@@ -847,7 +847,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert len(filter_) == 1
         should = filter_[0]['bool']['should']
-        assert {'terms': {'listed_authors.id': ['123']}} in should
+        assert {'terms': {'listed_authors.id': [123]}} in should
         assert {'terms': {'listed_authors.username': ['bar']}} in should
 
     def test_exclude_addons(self):
@@ -861,7 +861,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert len(filter_) == 1
         assert 'must' not in filter_[0]['bool']
         must_not = filter_[0]['bool']['must_not']
-        assert must_not == [{'terms': {'slug': [u'fooBar']}}]
+        assert must_not == [{'terms': {'slug': ['fooBar']}}]
 
         qs = self._filter(data={'exclude_addons': 1})
         assert 'must' not in qs['query']['bool']
@@ -870,7 +870,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert len(filter_) == 1
         assert 'must' not in filter_[0]['bool']
         must_not = filter_[0]['bool']['must_not']
-        assert must_not == [{'ids': {'values': [u'1']}}]
+        assert must_not == [{'ids': {'values': [1]}}]
 
         qs = self._filter(data={'exclude_addons': 'fooBar,1'})
         assert 'must' not in qs['query']['bool']
@@ -885,9 +885,9 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert 'must' not in filter_[0]['bool']
         assert 'must' not in filter_[1]['bool']
         must_not = filter_[0]['bool']['must_not']
-        assert {'ids': {'values': [u'1']}} in must_not
+        assert {'ids': {'values': [1]}} in must_not
         must_not = filter_[1]['bool']['must_not']
-        assert {'terms': {'slug': [u'fooBar']}} in must_not
+        assert {'terms': {'slug': ['fooBar']}} in must_not
 
     def test_search_by_featured_no_app_no_locale(self):
         qs = self._filter(data={'featured': 'true'})
@@ -914,20 +914,29 @@ class TestSearchParameterFilter(FilterTestsBase):
             self._filter(data={'promoted': 'foo'})
         assert context.exception.detail == ['Invalid "promoted" parameter.']
 
-        for promo in ENABLED_PROMOTED_GROUPS_BY_ID.values():
+        for promo in VALID_PROMOTED_GROUPS_BY_ID.values():
             qs = self._filter(data={'promoted': promo.api_name})
             filter_ = qs['query']['bool']['filter']
-            assert [{'term': {'promoted.group_id': promo.id}}] == filter_
+            assert [{'terms': {'promoted.group_id': [promo.id]}}] == filter_
 
             qs = self._filter(
                 data={'promoted': promo.api_name, 'app': 'firefox'})
             filter_ = qs['query']['bool']['filter']
-            assert {'term': {'promoted.group_id': promo.id}} in filter_
+            assert {'terms': {'promoted.group_id': [promo.id]}} in filter_
             app_filter = filter_[-1]['bool']['should']
             assert {'term': {'promoted.application_id': amo.FIREFOX.id}} in (
                 app_filter)
             assert {'bool': {'must_not': [{'exists': {
                 'field': 'promoted.application_id'}}]}} in app_filter
+
+        # test multiple param values
+        qs = self._filter(
+            data={'promoted': f'recommended,line,{SPOTLIGHT.id}'})
+        filter_ = qs['query']['bool']['filter']
+        assert [
+            {'terms': {'promoted.group_id': [
+                RECOMMENDED.id, LINE.id, SPOTLIGHT.id]}}
+        ] == filter_
 
     def test_search_by_color(self):
         qs = self._filter(data={'color': 'ff0000'})

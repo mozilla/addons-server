@@ -15,7 +15,7 @@ from olympia import amo
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import (
-    ENABLED_PROMOTED_GROUPS_BY_ID, PROMOTED_GROUPS)
+    VALID_PROMOTED_GROUPS_BY_ID, PROMOTED_GROUPS)
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.compare import version_int
 
@@ -68,6 +68,47 @@ class AddonQueryParam(object):
         return [Q(self.operator, **{self.es_field: self.get_value()})]
 
 
+class AddonQueryMultiParam(object):
+    """Helper to build a ES query from a request.GET param that's
+    comma separated."""
+    operator = 'terms'  # ES filter to use when filtering.
+    query_param = None
+    reverse_dict = None  # if None then string is returned as is
+    valid_values = None  # if None then all values are valid
+    es_field = None
+
+    def __init__(self, request):
+        self.request = request
+
+    def process_value(self, value):
+        try:
+            # Try the int first.
+            value = int(value)
+        except ValueError:
+            # Fall back on the string
+            value = self.lookup_string_value(value)
+        if self.is_valid(value):
+            return value
+        raise ValueError(
+            ugettext('Invalid "%s" parameter.' % self.query_param)
+        )
+
+    def get_values(self):
+        values = str(self.request.GET.get(self.query_param, '')).split(',')
+        return [self.process_value(value) for value in values]
+
+    def is_valid(self, value):
+        return value in self.valid_values if self.valid_values else True
+
+    def lookup_string_value(self, value):
+        return (
+            self.reverse_dict.get(value.lower()) if self.reverse_dict else
+            value)
+
+    def get_es_query(self):
+        return [Q(self.operator, **{self.es_field: self.get_values()})]
+
+
 class AddonAppQueryParam(AddonQueryParam):
     query_param = 'app'
     reverse_dict = amo.APPS
@@ -113,7 +154,7 @@ class AddonAppVersionQueryParam(AddonQueryParam):
         ]
 
 
-class AddonAuthorQueryParam(AddonQueryParam):
+class AddonAuthorQueryParam(AddonQueryMultiParam):
     # Note: this returns add-ons that have at least one matching author
     # when several are provided (separated by a comma).
     # It works differently from the tag filter below that needs all tags
@@ -121,14 +162,11 @@ class AddonAuthorQueryParam(AddonQueryParam):
     query_param = 'author'
     es_field_prefix = 'listed_authors.'
 
-    def get_value(self):
-        return self.request.GET.get(self.query_param, '').split(',')
-
     def get_es_query(self):
         filters = []
-        values = self.get_value()
-        ids = [value for value in values if value.isdigit()]
-        usernames = [value for value in values if not value.isdigit()]
+        values = self.get_values()
+        ids = [value for value in values if isinstance(value, int)]
+        usernames = [value for value in values if isinstance(value, str)]
         if ids or usernames:
             filters.append(
                 Q('terms', **{self.es_field_prefix + 'id': ids}) |
@@ -136,14 +174,14 @@ class AddonAuthorQueryParam(AddonQueryParam):
         return filters
 
 
-class AddonGuidQueryParam(AddonQueryParam):
+class AddonGuidQueryParam(AddonQueryMultiParam):
     # Note: this returns add-ons that match a guid when several are provided
     # (separated by a comma).
     operator = 'terms'
     query_param = 'guid'
     es_field = 'guid'
 
-    def get_value(self):
+    def get_values(self):
         value = self.request.GET.get(self.query_param, '')
 
         # Hack for Firefox 'return to AMO' feature (which, sadly, does not use
@@ -185,8 +223,12 @@ class AddonGuidQueryParam(AddonQueryParam):
                         'Invalid Return To AMO guid (not a curated add-on)'
                     )
                 )
+            return [value] if value else []
+        else:
+            return super().get_values()
 
-        return value.split(',') if value else []
+    def is_valid(self, value):
+        return isinstance(value, str)
 
 
 class AddonPlatformQueryParam(AddonQueryParam):
@@ -210,27 +252,11 @@ class AddonPlatformQueryParam(AddonQueryParam):
         return self.get_value_from_object_from_reverse_dict()
 
 
-class AddonTypeQueryParam(AddonQueryParam):
+class AddonTypeQueryParam(AddonQueryMultiParam):
     query_param = 'type'
     reverse_dict = amo.ADDON_SEARCH_SLUGS
     valid_values = amo.ADDON_SEARCH_TYPES
     es_field = 'type'
-    operator = 'terms'
-
-    def get_value(self):
-        value = super(AddonTypeQueryParam, self).get_value()
-        # if API gets an int rather than string get_value won't return a list.
-        return [value] if isinstance(value, int) else value
-
-    def get_value_from_reverse_dict(self):
-        values = self.request.GET.get(self.query_param, '').split(',')
-        return [self.reverse_dict.get(value.lower()) for value in values]
-
-    def is_valid(self, value):
-        if isinstance(value, int):
-            return value in self.valid_values
-        else:
-            return all([_value in self.valid_values for _value in value])
 
 
 class AddonCategoryQueryParam(AddonQueryParam):
@@ -247,7 +273,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
         # and make sure to use get_value_from_object_from_reverse_dict().
         try:
             app = AddonAppQueryParam(self.request).get_value()
-            types = AddonTypeQueryParam(self.request).get_value()
+            types = AddonTypeQueryParam(self.request).get_values()
             self.reverse_dict = [CATEGORIES[app][type_] for type_ in types]
         except KeyError:
             raise ValueError(ugettext(
@@ -286,36 +312,28 @@ class AddonCategoryQueryParam(AddonQueryParam):
             return all([_value in self.valid_values for _value in value])
 
 
-class AddonTagQueryParam(AddonQueryParam):
-    # query_param is needed for SearchParameterFilter below, so we need it
-    # even with the custom get_value() implementation.
+class AddonTagQueryParam(AddonQueryMultiParam):
     query_param = 'tag'
 
     # These tags are tags that used to exist but don't any more, filtering
     # on them would find nothing, so they are ignored.
     ignored = ('jetpack', 'firefox57')
 
-    def get_value(self):
-        return self.request.GET.get(self.query_param, '').split(',')
-
     def get_es_query(self):
         # Just using 'terms' would not work, as it would return any tag match
         # in the list, but we want to exactly match all of them.
-        return [Q('term', tags=tag) for tag in self.get_value()
+        return [Q('term', tags=tag) for tag in self.get_values()
                 if tag not in self.ignored]
 
 
-class AddonExcludeAddonsQueryParam(AddonQueryParam):
+class AddonExcludeAddonsQueryParam(AddonQueryMultiParam):
     query_param = 'exclude_addons'
-
-    def get_value(self):
-        return self.request.GET.get(self.query_param, '').split(',')
 
     def get_es_query(self):
         filters = []
-        values = self.get_value()
-        ids = [value for value in values if value.isdigit()]
-        slugs = [value for value in values if not value.isdigit()]
+        values = self.get_values()
+        ids = [value for value in values if isinstance(value, int)]
+        slugs = [value for value in values if isinstance(value, str)]
         if ids:
             filters.append(~Q('ids', values=ids))
         if slugs:
@@ -337,12 +355,12 @@ class AddonRecommendedQueryParam(AddonQueryParam):
     es_field = 'is_recommended'
 
 
-class AddonPromotedQueryParam(AddonQueryParam):
+class AddonPromotedQueryParam(AddonQueryMultiParam):
     query_param = 'promoted'
     reverse_dict = {
         group.api_name: id_
-        for (id_, group) in ENABLED_PROMOTED_GROUPS_BY_ID.items()}
-    valid_values = ENABLED_PROMOTED_GROUPS_BY_ID.keys()
+        for (id_, group) in VALID_PROMOTED_GROUPS_BY_ID.items()}
+    valid_values = VALID_PROMOTED_GROUPS_BY_ID.keys()
 
     def get_app(self):
         return (
@@ -353,7 +371,7 @@ class AddonPromotedQueryParam(AddonQueryParam):
     def get_es_query(self):
         query = [Q(
             self.operator,
-            **{'promoted.group_id': self.get_value()})]
+            **{'promoted.group_id': self.get_values()})]
 
         if app := self.get_app():
             # If a specific application isn't set then application_id is None,
@@ -361,7 +379,7 @@ class AddonPromotedQueryParam(AddonQueryParam):
             # field for that record - so we have to use NOT 'exists' to check
             # for None.
             query.append(
-                Q(self.operator, **{'promoted.application_id': app}) |
+                Q('term', **{'promoted.application_id': app}) |
                 ~Q('exists', field='promoted.application_id'))
 
         return query
