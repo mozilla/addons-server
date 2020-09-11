@@ -228,6 +228,7 @@ def download_breakdown_series(
             end_date=end_date,
             source=source,
         )
+        series = rename_unknown_values(series)
     else:
         # Legacy stats only have download stats "by source".
         if source != 'sources':
@@ -246,6 +247,17 @@ def download_breakdown_series(
                           ['date', 'count'] + list(fields))
     elif format == 'json':
         return render_json(request, addon, series)
+
+
+def rename_unknown_values(series):
+    """Rename 'Unknown' values to '(none)' for download stats."""
+    for row in series:
+        if 'data' in row:
+            row['data'] = dict(
+                ('(none)', count) if key == 'Unknown' else (key, count)
+                for key, count in row['data'].items()
+            )
+        yield row
 
 
 @addon_view_stats

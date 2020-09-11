@@ -1121,6 +1121,27 @@ class TestCsvAndJsonViews(ESStatsTestCase):
             2009-06-01,1000,550,0,450""",
         )
 
+    def test_unknown_download_values_are_renamed(self):
+        self.get_download_series_mock.return_value = [
+            {
+                'date': date(2009, 6, 2),
+                'end': date(2009, 6, 2),
+                'count': 1500,
+                'data': {'campaign-1': 550, 'Unknown': 950},
+            },
+        ]
+
+        response = self.get_view_response(
+            'stats.campaigns_series', group='day', format='csv'
+        )
+
+        assert response.status_code == 200
+        self.csv_eq(
+            response,
+            """date,count,campaign-1,(none)
+            2009-06-02,1500,550,950""",
+        )
+
     @override_flag('bigquery-download-stats', active=False)
     def test_no_download_by_content_if_not_bigquery(self):
         response = self.get_view_response(
