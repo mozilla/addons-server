@@ -56,8 +56,8 @@ This endpoint allows you to search through public add-ons.
                     passed and when filtering to only return promoted add-ons.
             rating  Bayesian rating, descending.
        recommended  Promoted addons in the recommended category above
-                    non-recommend add-ons. Only available combined with another
-                    sort - ignored on its own.
+                    non-recommended add-ons. Only available combined with
+                    another sort - ignored on its own.
                     Also ignored if combined with relevance as it already takes
                     into account recommended status.
          relevance  Search query relevance, descending.  Ignored without a
