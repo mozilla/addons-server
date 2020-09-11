@@ -492,7 +492,8 @@ class TestSortingFilter(FilterTestsBase):
 
     def test_sort_random_restrictions(self):
         expected = ('The "sort" parameter "random" can only be specified when '
-                    'the "featured" or "recommended" parameter is also '
+                    'the "featured", "promoted", or "recommended" parameter '
+                    'is also '
                     'present, and the "q" parameter absent.')
 
         with self.assertRaises(serializers.ValidationError) as context:
@@ -502,6 +503,11 @@ class TestSortingFilter(FilterTestsBase):
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(
                 data={'q': 'something', 'featured': 'true', 'sort': 'random'})
+        assert context.exception.detail == [expected]
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(
+                data={'q': 'something', 'promoted': 'line', 'sort': 'random'})
         assert context.exception.detail == [expected]
 
         with self.assertRaises(serializers.ValidationError) as context:
@@ -523,13 +529,24 @@ class TestSortingFilter(FilterTestsBase):
 
     @freeze_time('2020-02-27')
     def test_sort_random(self):
+        qs = self._filter(data={'promoted': 'recommended', 'sort': 'random'})
+        # Note: this test does not call AddonPromotedQueryParam so it won't
+        # apply the recommended filtering. That's tested below in
+        # TestCombinedFilter.test_filter_promoted_sort_random
+        assert qs['sort'] == ['_score']
+        assert qs['query']['function_score']['functions'] == [
+            {'random_score': {'seed': 737482}}
+        ]
+
+    @freeze_time('2020-02-28')
+    def test_sort_random_recommended(self):
         qs = self._filter(data={'recommended': 'true', 'sort': 'random'})
         # Note: this test does not call AddonRecommendedQueryParam so it won't
         # apply the recommended filtering. That's tested below in
         # TestCombinedFilter.test_filter_recommended_sort_random
         assert qs['sort'] == ['_score']
         assert qs['query']['function_score']['functions'] == [
-            {'random_score': {'seed': 737482}}
+            {'random_score': {'seed': 737483}}
         ]
 
     def test_sort_recommended_only(self):
@@ -1064,6 +1081,24 @@ class TestCombinedFilter(FilterTestsBase):
     @freeze_time('2020-02-26')
     def test_filter_featured_sort_random(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+        bool_ = qs['query']['bool']
+
+        assert 'must_not' not in bool_
+
+        filter_ = bool_['filter']
+        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in filter_
+        assert {'exists': {'field': 'current_version'}} in filter_
+        assert {'term': {'is_disabled': False}} in filter_
+
+        assert qs['sort'] == ['_score']
+
+        assert bool_['must'][0]['function_score']['functions'] == [
+            {'random_score': {'seed': 737481}}
+        ]
+
+    @freeze_time('2020-02-26')
+    def test_filter_promoted_sort_random(self):
+        qs = self._filter(data={'promoted': 'verified', 'sort': 'random'})
         bool_ = qs['query']['bool']
 
         assert 'must_not' not in bool_

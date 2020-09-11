@@ -915,7 +915,8 @@ class SortingFilter(BaseFilterBackend):
                 raise serializers.ValidationError(
                     'The "random" "sort" parameter can not be combined.')
 
-            # Second, for perf reasons it's only available when the 'featured'
+            # Second, for perf reasons it's only available when the 'featured',
+            # 'promoted'
             # or 'recommended' param is present (to limit the number of
             # documents we'll have to apply the random score to) and a search
             # query is absent (to prevent clashing with the score functions
@@ -924,6 +925,7 @@ class SortingFilter(BaseFilterBackend):
 
                 is_random_sort_available = (
                     (AddonFeaturedQueryParam.query_param in request.GET or
+                     AddonPromotedQueryParam.query_param in request.GET or
                      AddonRecommendedQueryParam.query_param in request.GET) and
                     not search_query_param
                 )
@@ -940,7 +942,8 @@ class SortingFilter(BaseFilterBackend):
                 else:
                     raise serializers.ValidationError(
                         'The "sort" parameter "random" can only be specified '
-                        'when the "featured" or "recommended" parameter is '
+                        'when the "featured", "promoted", or "recommended" '
+                        'parameter is '
                         'also present, and the "q" parameter absent.')
 
             # Sorting by relevance only makes sense with a query string
