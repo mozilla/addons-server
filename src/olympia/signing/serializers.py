@@ -7,7 +7,7 @@ from rest_framework import serializers
 from rest_framework.reverse import reverse as drf_reverse
 
 from olympia import amo
-from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.files.models import FileUpload
 
 
@@ -62,7 +62,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
             'signing.file', request=self._context.get('request'),
             kwargs={'file_id': file_.id})
         url = os.path.join(url, file_.filename)
-        return absolutify(urlparams(url, src='api'))
+        return absolutify(url)
 
     def get_files(self, instance):
         if self.version is not None:

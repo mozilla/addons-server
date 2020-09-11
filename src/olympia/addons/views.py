@@ -139,8 +139,9 @@ def find_replacement_addon(request):
         if replacement.has_external_url():
             # It's an external URL:
             return redirect(get_outgoing_url(path))
-    replace_url = '%s%s?src=%s' % (
-        ('/' if not path.startswith('/') else ''), path, FIND_REPLACEMENT_SRC)
+    replace_url = (
+        '%s%s?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=%s'
+    ) % (('/' if not path.startswith('/') else ''), path, FIND_REPLACEMENT_SRC)
     return redirect(replace_url, permanent=False)
 
 

@@ -147,11 +147,6 @@ def test_url(mock_reverse):
                                     add_prefix=True)
 
 
-def test_url_src():
-    fragment = render('{{ url("addons.detail", "a3615", src="xxx") }}')
-    assert fragment.endswith('?src=xxx')
-
-
 def test_drf_url():
     fragment = '{{ drf_url("addon-detail", pk="a3615") }}'
     rf = RequestFactory()

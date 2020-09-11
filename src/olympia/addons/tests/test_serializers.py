@@ -92,7 +92,7 @@ class AddonSerializerOutputTestMixin(object):
             amo.PLATFORM_CHOICES_API[file_.platform])
         assert result_file['size'] == file_.size
         assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
-        assert result_file['url'] == file_.get_absolute_url(src='')
+        assert result_file['url'] == file_.get_absolute_url()
         assert result_file['permissions'] == file_.permissions
         assert (
             result_file['optional_permissions'] ==
@@ -949,7 +949,7 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][0]['platform'] == 'windows'
         assert result['files'][0]['size'] == first_file.size
         assert result['files'][0]['status'] == 'public'
-        assert result['files'][0]['url'] == first_file.get_absolute_url(src='')
+        assert result['files'][0]['url'] == first_file.get_absolute_url()
 
         assert result['files'][1]['id'] == second_file.pk
         assert result['files'][1]['created'] == (
@@ -962,8 +962,7 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][1]['platform'] == 'mac'
         assert result['files'][1]['size'] == second_file.size
         assert result['files'][1]['status'] == 'public'
-        assert result['files'][1]['url'] == second_file.get_absolute_url(
-            src='')
+        assert result['files'][1]['url'] == second_file.get_absolute_url()
 
         assert result['channel'] == 'listed'
         assert result['edit_url'] == absolutify(addon.get_dev_url(

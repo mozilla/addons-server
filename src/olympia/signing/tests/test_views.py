@@ -1228,7 +1228,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         file_ = qs.get()
         assert response.data['files'][0]['download_url'] == absolutify(
             reverse_ns('signing.file', kwargs={'file_id': file_.id}) +
-            '/{fname}?src=api'.format(fname=file_.filename))
+            '/{fname}'.format(fname=file_.filename))
 
     def test_file_hash(self):
         version_string = '3.0'
