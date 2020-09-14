@@ -932,8 +932,7 @@ class SortingFilter(BaseFilterBackend):
                 else:
                     raise serializers.ValidationError(
                         'The "sort" parameter "random" can only be specified '
-                        'when the "featured", "promoted", or "recommended" '
-                        'parameter is '
+                        'when the "featured" or "promoted" parameter is '
                         'also present, and the "q" parameter absent.')
 
             # Sorting by relevance only makes sense with a query string
