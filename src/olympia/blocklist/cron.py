@@ -1,5 +1,3 @@
-import time
-
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
@@ -13,7 +11,8 @@ from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
 from .models import Block
-from .tasks import upload_filter
+from .tasks import cleanup_old_files, upload_filter
+from .utils import datetime_to_ts
 
 
 log = olympia.core.logger.getLogger('z.cron')
@@ -21,7 +20,7 @@ log = olympia.core.logger.getLogger('z.cron')
 
 def get_blocklist_last_modified_time():
     latest_block = Block.objects.order_by('-modified').first()
-    return int(latest_block.modified.timestamp() * 1000) if latest_block else 0
+    return datetime_to_ts(latest_block.modified) if latest_block else 0
 
 
 def upload_mlbf_to_remote_settings(*, bypass_switch=False, force_base=False):
@@ -53,7 +52,7 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     # An add-on version/file from after this time can't be reliably asserted -
     # there may be false positives or false negatives.
     # https://github.com/mozilla/addons-server/issues/13695
-    generation_time = int(time.time() * 1000)
+    generation_time = datetime_to_ts()
     mlbf = MLBF(generation_time)
     previous_filter = MLBF(last_generation_time)
 
@@ -104,6 +103,8 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
         generation_time,
         is_base=make_base_filter,
         upload_stash=not make_base_filter)
+    if base_filter_id:
+        cleanup_old_files.delay(base_filter_id=base_filter_id)
 
 
 def auto_import_blocklist():
