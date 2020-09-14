@@ -21,7 +21,7 @@
         </ul>
       </li>
     {% endfor %}
-    {% if blocklistsubmission %}
+    {% if blocklistsubmission|default_if_none:False %}
       <li>
         {% url 'admin:blocklist_blocklistsubmission_change' blocklistsubmission.id as change_url%}
         {{ blocklistsubmission.modified|date:"Y-m-d" }}.

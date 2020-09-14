@@ -26,6 +26,7 @@ from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, ReviewerSubscription,
     ViewUnlistedAllList, get_flags, get_flags_for_row)
 from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
 from olympia.versions.compare import addon_version_int
 from olympia.versions.models import VersionReviewerFlags
 
@@ -593,15 +594,15 @@ class ReviewHelper(object):
 class ReviewBase(object):
 
     def __init__(self, request, addon, version, review_type,
-                 content_review=False):
+                 content_review=False, user=None):
         self.request = request
         if request:
-            self.user = self.request.user
+            self.user = user or self.request.user
             self.human_review = True
         else:
             # Use the addons team go-to user "Mozilla" for the automatic
             # validations.
-            self.user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+            self.user = user or get_task_user()
             self.human_review = False
         self.addon = addon
         self.version = version
@@ -669,7 +670,7 @@ class ReviewBase(object):
 
     def log_action(self, action, version=None, files=None,
                    timestamp=None):
-        details = {'comments': self.data['comments'],
+        details = {'comments': self.data.get('comments', ''),
                    'reviewtype': self.review_type.split('_')[1]}
         if files is None and self.files:
             files = self.files
@@ -980,7 +981,9 @@ class ReviewBase(object):
                 content_review=self.content_review)
 
     def reject_multiple_versions(self):
-        """Reject a list of versions."""
+        """Reject a list of versions.
+        Note: this is used in blocklist.utils.disable_addon_for_block for both
+        listed and unlisted versions (human_review=False)."""
         # self.version and self.files won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
@@ -1147,33 +1150,14 @@ class ReviewUnlisted(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
     def block_multiple_versions(self):
-        # self.version and self.files won't point to the versions we want to
-        # modify in this action, so set them to None before finding the right
-        # versions.
-        self.version = None
-        self.files = None
-        action_id = amo.LOG.REJECT_VERSION
-        timestamp = datetime.now()
         min_version = ('0', 0)
         max_version = ('*', 0)
         for version in self.data['versions']:
-            files = version.files.all()
-            self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
-            self.log_action(action_id, version=version, files=files,
-                            timestamp=timestamp)
-            if self.human_review:
-                # Clear needs_human_review on rejected versions, we consider
-                # that the reviewer looked at them before disabling.
-                self.clear_specific_needs_human_review_flags(version)
             version_int = addon_version_int(version.version)
             if not min_version[1] or version_int < min_version[1]:
                 min_version = (version, version_int)
             if not max_version[1] or version_int > max_version[1]:
                 max_version = (version, version_int)
-        log.info(
-            'Making %s versions %s disabled' % (
-                self.addon,
-                ', '.join(str(v.pk) for v in self.data['versions'])))
 
         params = f'?min={min_version[0].pk}&max={max_version[0].pk}'
         self.redirect_url = (

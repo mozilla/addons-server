@@ -193,6 +193,34 @@ def split_regex_to_list(guid_re):
     return GUID_SPLIT.split(trimmed)
 
 
+def disable_addon_for_block(block):
+    """Disable appropriate addon versions that are affected by the Block, and
+    the addon too if 0 - *."""
+    from .models import Block
+    from olympia.reviewers.utils import ReviewBase
+
+    review = ReviewBase(
+        request=None,
+        addon=block.addon,
+        version=None,
+        review_type='pending',
+        user=block.updated_by)
+    review.set_data({'versions': [
+        ver for ver in block.addon_versions
+        # We don't need to reject versions from older deleted instances
+        if ver.addon == block.addon and block.is_version_blocked(ver.version)]
+    })
+    review.reject_multiple_versions()
+
+    for version in review.data['versions']:
+        # Clear needs_human_review on rejected versions, we consider that
+        # the admin looked at them before blocking.
+        review.clear_specific_needs_human_review_flags(version)
+
+    if block.min_version == Block.MIN and block.max_version == Block.MAX:
+        block.addon.update(status=amo.STATUS_DISABLED)
+
+
 def save_guids_to_blocks(guids, submission, *, fields_to_set):
     from .models import Block
 
@@ -216,4 +244,6 @@ def save_guids_to_blocks(guids, submission, *, fields_to_set):
             block,
             change=change,
             submission_obj=submission if submission.id else None)
+        disable_addon_for_block(block)
+
     return blocks

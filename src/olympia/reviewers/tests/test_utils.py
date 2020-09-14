@@ -2029,7 +2029,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def _test_block_multiple_unlisted_versions(self, redirect_url):
         old_version = self.version
-        self.version = version_factory(addon=self.addon, version='3.0')
+        self.version = version_factory(
+            addon=self.addon, version='3.0', needs_human_review=True)
         # An extra file should not change anything.
         file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
         self.setup_data(
@@ -2050,25 +2051,16 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.addon.reload()
         self.file.reload()
+        # Nothing has changed as we change the statuses as part of the Block
         assert self.addon.status == amo.STATUS_NULL
-        assert self.addon.current_version is None
-        assert list(self.addon.versions.all()) == [self.version, old_version]
-        assert self.file.status == amo.STATUS_DISABLED
-        # We rejected all versions so there aren't any left that need human
-        # review.
-        assert not self.addon.versions.filter(needs_human_review=True).exists()
-        assert not VersionReviewerFlags.objects.filter(
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.addon.versions.filter(needs_human_review=True).exists()
+        assert VersionReviewerFlags.objects.filter(
             version__addon=self.addon, needs_human_review_by_mad=True).exists()
 
-        # No mails
+        # No mails or logging either
         assert len(mail.outbox) == 0
-
-        # Normal logs though
-        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
-        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
-        logs = (ActivityLog.objects.for_addons(self.addon)
-                                   .filter(action=amo.LOG.REJECT_VERSION.id))
-        assert logs[0].created == logs[1].created
+        assert not ActivityLog.objects.for_addons(self.addon).exists()
 
         # We should have set redirect_url to point to the Block admin page
         if '%s' in redirect_url:

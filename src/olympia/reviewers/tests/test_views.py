@@ -4859,12 +4859,6 @@ class TestReview(ReviewBase):
                 'versions': [old_version.pk, self.version.pk],
             }, follow=True)
 
-        for version in [old_version, self.version]:
-            version.reload()
-            assert not version.needs_human_review
-            file_ = version.files.all().get()
-            assert file_.status == amo.STATUS_DISABLED
-
         new_block_url = (
             reverse('admin:blocklist_blocklistsubmission_add') +
             '?guids=%s&min_version=%s&max_version=%s' % (
