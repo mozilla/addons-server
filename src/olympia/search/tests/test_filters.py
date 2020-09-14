@@ -492,8 +492,7 @@ class TestSortingFilter(FilterTestsBase):
 
     def test_sort_random_restrictions(self):
         expected = ('The "sort" parameter "random" can only be specified when '
-                    'the "featured", "promoted", or "recommended" parameter '
-                    'is also '
+                    'the "featured" or "promoted" parameter is also '
                     'present, and the "q" parameter absent.')
 
         with self.assertRaises(serializers.ValidationError) as context:
