@@ -197,9 +197,9 @@ def disable_addon_for_block(block):
     """Disable appropriate addon versions that are affected by the Block, and
     the addon too if 0 - *."""
     from .models import Block
-    from olympia.reviewers.utils import ReviewFiles
+    from olympia.reviewers.utils import ReviewBase
 
-    review = ReviewFiles(
+    review = ReviewBase(
         request=None,
         addon=block.addon,
         version=None,

@@ -981,7 +981,9 @@ class ReviewBase(object):
                 content_review=self.content_review)
 
     def reject_multiple_versions(self):
-        """Reject a list of versions."""
+        """Reject a list of versions.
+        Note: this is used in blocklist.utils.disable_addon_for_block for both
+        listed and unlisted versions (human_review=False)."""
         # self.version and self.files won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
