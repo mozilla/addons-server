@@ -322,6 +322,16 @@ class TestActivityLog(TestCase):
                     'Delicious Bookmarks</a> status changed to Some String.')
         assert str(log) == expected
 
+    def test_str_activity_file(self):
+        addon = Addon.objects.get()
+        log = ActivityLog.create(
+            amo.LOG.UNLISTED_SIGNED, addon.current_version.current_file)
+        assert str(log) == (
+            '<a href="/firefox/downloads/file/67442/'
+            'delicious_bookmarks-2.1.072-fx.xpi">'
+            'delicious_bookmarks-2.1.072-fx.xpi</a>'
+            ' (validation ignored) was signed.')
+
 
 class TestActivityLogCount(TestCase):
     fixtures = ['base/addon_3615']
