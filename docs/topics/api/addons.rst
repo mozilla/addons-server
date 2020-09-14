@@ -277,6 +277,10 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
          spotlight  Spotlight category
          strategic  Strategic category
           verified  Verified category
+            badged  A meta category that's available for the ``promoted``
+                    search filter that is all the categories we expect an API
+                    client to expose as "reviewed" by Mozilla.
+                    Currently equal to ``line&recommended&sponsored&verified``.
     ==============  ==========================================================
 
 -----------------------------

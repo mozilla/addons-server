@@ -15,7 +15,7 @@ from olympia import amo
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import (
-    VALID_PROMOTED_GROUPS_BY_ID, PROMOTED_GROUPS)
+    PROMOTED_API_NAME_TO_IDS, PROMOTED_GROUPS)
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.compare import version_int
 
@@ -350,10 +350,13 @@ class AddonFeaturedQueryParam(AddonQueryParam):
 
 class AddonPromotedQueryParam(AddonQueryMultiParam):
     query_param = 'promoted'
-    reverse_dict = {
-        group.api_name: id_
-        for (id_, group) in VALID_PROMOTED_GROUPS_BY_ID.items()}
-    valid_values = VALID_PROMOTED_GROUPS_BY_ID.keys()
+    reverse_dict = PROMOTED_API_NAME_TO_IDS
+    valid_values = PROMOTED_API_NAME_TO_IDS.values()
+
+    def get_values(self):
+        values = super().get_values()
+        # The values are lists of ids so flatten into a single list
+        return list({y for x in values for y in x})
 
     def get_app(self):
         return (
