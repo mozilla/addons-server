@@ -14,7 +14,8 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
-    VALID_PROMOTED_GROUPS_BY_ID, RECOMMENDED, LINE, SPOTLIGHT)
+    PROMOTED_API_NAME_TO_IDS, RECOMMENDED, LINE, STRATEGIC, VERIFIED_ONE,
+    VERIFIED_TWO)
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
@@ -904,15 +905,15 @@ class TestSearchParameterFilter(FilterTestsBase):
             self._filter(data={'promoted': 'foo'})
         assert context.exception.detail == ['Invalid "promoted" parameter.']
 
-        for promo in VALID_PROMOTED_GROUPS_BY_ID.values():
-            qs = self._filter(data={'promoted': promo.api_name})
+        for api_name, ids in PROMOTED_API_NAME_TO_IDS.items():
+            qs = self._filter(data={'promoted': api_name})
             filter_ = qs['query']['bool']['filter']
-            assert [{'terms': {'promoted.group_id': [promo.id]}}] == filter_
+            assert [{'terms': {'promoted.group_id': ids}}] == filter_
 
             qs = self._filter(
-                data={'promoted': promo.api_name, 'app': 'firefox'})
+                data={'promoted': api_name, 'app': 'firefox'})
             filter_ = qs['query']['bool']['filter']
-            assert {'terms': {'promoted.group_id': [promo.id]}} in filter_
+            assert {'terms': {'promoted.group_id': ids}} in filter_
             app_filter = filter_[-1]['bool']['should']
             assert {'term': {'promoted.application_id': amo.FIREFOX.id}} in (
                 app_filter)
@@ -921,11 +922,22 @@ class TestSearchParameterFilter(FilterTestsBase):
 
         # test multiple param values
         qs = self._filter(
-            data={'promoted': f'recommended,line,{SPOTLIGHT.id}'})
+            data={'promoted': 'recommended,line'})
         filter_ = qs['query']['bool']['filter']
         assert [
             {'terms': {'promoted.group_id': [
-                RECOMMENDED.id, LINE.id, SPOTLIGHT.id]}}
+                RECOMMENDED.id, LINE.id]}}
+        ] == filter_
+
+        # test combining multiple values with the meta "badged" group
+        qs = self._filter(
+            data={'promoted': 'badged,recommended,strategic'})
+        filter_ = qs['query']['bool']['filter']
+        assert [
+            {'terms': {'promoted.group_id': [
+                # recommended shouldn't be there twice
+                RECOMMENDED.id, VERIFIED_ONE.id, VERIFIED_TWO.id, LINE.id,
+                STRATEGIC.id]}}
         ] == filter_
 
     def test_search_by_color(self):
