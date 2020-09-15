@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-05 17:48+0000\n"
+"PO-Revision-Date: 2020-09-15 13:19+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1353,13 +1353,13 @@ msgid "Verified - Tier 2"
 msgstr ""
 
 msgid "Line"
-msgstr ""
+msgstr "పంక్తి"
 
 msgid "Spotlight"
 msgstr ""
 
 msgid "Strategic"
-msgstr ""
+msgstr "వ్యూహాత్మకం"
 
 msgid "Add-on"
 msgstr "పొడగింత"
@@ -3072,16 +3072,16 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "ట్విట్టర్"
 
 msgid "For developers"
 msgstr "డెవలపర్ల కొరకు"
 
 msgid "For end users"
-msgstr ""
+msgstr "అంతిమ వాడుకరుల కోసం"
 
 msgid "Matrix"
-msgstr ""
+msgstr "మాట్రిక్స్"
 
 msgid "Add-on Developers Mailing List"
 msgstr ""
@@ -3103,7 +3103,7 @@ msgid "Sign Up"
 msgstr "నమోదవ్వండి"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "కృతజ్ఞతలు!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
