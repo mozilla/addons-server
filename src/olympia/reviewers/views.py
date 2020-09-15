@@ -914,6 +914,9 @@ def review(request, addon, channel=None):
         form=form,
         has_versions_pending_rejection=has_versions_pending_rejection,
         is_admin=is_admin,
+        latest_version_is_unreviewed_and_not_pending_rejection=(
+            version and version.channel == amo.RELEASE_CHANNEL_LISTED and
+            version.is_unreviewed and not version.pending_rejection),
         promoted_group=promoted_group,
         name_translations=name_translations,
         now=datetime.now(),
