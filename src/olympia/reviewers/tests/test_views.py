@@ -3481,6 +3481,31 @@ class TestReview(ReviewBase):
             '· Scheduled for rejection in 1\xa0hour'
         )
 
+    def test_item_history_pending_rejection_but_latest_is_unreviewed(self):
+        # Adding a non-pending rejection as the latest version shouldn't change
+        # anything if it's public.
+        VersionReviewerFlags.objects.create(
+            version=self.version,
+            pending_rejection=datetime.now() + timedelta(hours=1, minutes=1))
+        self.addon.current_version.update(created=self.days_ago(366))
+        latest_version = version_factory(addon=self.addon)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('#versions-history .review-files')
+        assert doc('.pending-rejection').text() == (
+            '· Scheduled for rejection in 1\xa0hour'
+        )
+        # If the latest version is not pending rejection and unreviewed, we
+        # won't automatically reject versions pending rejection even if the
+        # deadline has passed - so the message changes.
+        latest_version.current_file.update(status=amo.STATUS_AWAITING_REVIEW)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('#versions-history .review-files')
+        assert doc('.pending-rejection').text() == (
+            '· Pending Rejection on review of new version'
+        )
+
     def test_item_history_pending_rejection_other_pages(self):
         self.addon.current_version.update(created=self.days_ago(366))
         for i in range(0, 10):
