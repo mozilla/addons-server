@@ -5,9 +5,8 @@ from rest_framework.routers import SimpleRouter
 from olympia.shelves import views
 
 router = SimpleRouter()
-router.register('info', views.ShelfViewSet, basename='shelves-info')
+router.register('', views.ShelfViewSet, basename='shelves')
 
 urlpatterns = [
     url(r'', include(router.urls)),
-    url(r'', views.HomepageView.as_view(), name='shelves'),
 ]

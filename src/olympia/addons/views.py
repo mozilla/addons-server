@@ -382,6 +382,13 @@ class AddonSearchView(ListAPIView):
         view = super(AddonSearchView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
 
+    @property
+    def data(self):
+        self.initial(self.request)
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return serializer.data
+
 
 class AddonAutoCompleteSearchView(AddonSearchView):
     pagination_class = None

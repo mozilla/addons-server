@@ -43,8 +43,12 @@ class TestShelvesSerializer(TestCase):
         assert data == {
             'title': 'Populâr themes',
             'url': search_url,
+            'endpoint': self.search_shelf.endpoint,
+            'criteria': self.search_shelf.criteria,
             'footer_text': 'See more populâr themes',
-            'footer_pathname': ''}
+            'footer_pathname': '',
+            'addons': None
+        }
 
     def test_shelf_serializer_collections(self):
         data = self.serialize(instance=self.collections_shelf)
@@ -54,5 +58,9 @@ class TestShelvesSerializer(TestCase):
         assert data == {
             'title': 'Enhanced privacy extensions',
             'url': collections_url,
+            'endpoint': self.collections_shelf.endpoint,
+            'criteria': self.collections_shelf.criteria,
             'footer_text': 'See more enhanced privacy extensions',
-            'footer_pathname': ''}
+            'footer_pathname': '',
+            'addons': None
+        }
