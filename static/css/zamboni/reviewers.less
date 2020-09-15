@@ -39,6 +39,12 @@
 .ed-sprite-expired-info { background-position: 0 -272px; }
 .ed-sprite-auto-approval-delayed-temporarily { background-position: 0 -288px; }
 .ed-sprite-auto-approval-delayed-indefinitely { background-position: 0 -304px; }
+.ed-sprite-promoted-recommended { background-position: 0 -320px; }
+.ed-sprite-promoted-sponsored { background-position: 0 -320px; }
+.ed-sprite-promoted-verified { background-position: 0 -320px; }
+.ed-sprite-promoted-line { background-position: 0 -320px; }
+.ed-sprite-promoted-strategic { background-position: 0 -320px; }
+.ed-sprite-promoted-spotlight { background-position: 0 -320px; }
 
 .platform-icon {
     background: url(../../img/developers/platforms.png?8) no-repeat top left;
@@ -261,10 +267,8 @@ ul.tabnav li a {
     padding: 5px 10px;
     border: 1px solid transparent;
     border-bottom: none;
-    -moz-border-radius-topleft:5px;
-    -moz-border-radius-topright:5px;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 ul.tabnav li.selected a {
     background-color: #ffffff;
@@ -415,11 +419,12 @@ table.data-grid tr.comments td {
     height: 20px;
     box-shadow: 0px 2px rgba(0, 0, 0, 0.1) inset;
     float: left;
-    -moz-transition: 0.3s background-color;
+    transition: 0.3s background-color;
+
 }
 
 .waiting_old:hover, .waiting_med:hover, .waiting_new:hover {
-    -moz-transition: 0.1s background-color;
+    transition: 0.1s background-color;
 }
 
 .waiting_old {
@@ -1106,7 +1111,7 @@ p.is_promoted {
 }
 
 #reviewers-score-bar p.total {
-    margin-botton: 10px;
+    margin-bottom: 10px;
 }
 
 #reviewers-score-bar ul li {
