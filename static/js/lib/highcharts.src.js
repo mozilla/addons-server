@@ -8269,7 +8269,7 @@
         offAxis =
           (horiz ? axisTop + this.height : axisLeft) +
           (horiz ? 1 : -1) * // horizontal axis reverses the margin
-          (opposite ? -1 : 1) * // so does opposite axes
+            (opposite ? -1 : 1) * // so does opposite axes
             this.axisTitleMargin +
           (this.side === 2 ? fontSize : 0);
 
