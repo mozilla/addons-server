@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-15 13:19+0000\n"
+"PO-Revision-Date: 2020-09-15 13:30+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -5248,7 +5248,7 @@ msgid ""
 msgstr ""
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "నేను పొడగింత రచయితను, సమీక్షలకు నేను స్పందించగలనా?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
@@ -5439,7 +5439,7 @@ msgid "Auto-approval delayed indefinitely"
 msgstr ""
 
 msgid "Is locked by a reviewer"
-msgstr ""
+msgstr "ఒక సమీక్షకుడు తాళం వేసారు"
 
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
@@ -5679,7 +5679,7 @@ msgid "Review lock limit reached"
 msgstr ""
 
 msgid "{addon} – EULA"
-msgstr ""
+msgstr "{addon} – EULA"
 
 msgid "{addon} – Privacy Policy"
 msgstr "{addon} – గోప్యతా విధానం"
@@ -6067,10 +6067,10 @@ msgid "No reviews found for this period."
 msgstr "ఈ కాలానికి సమీక్షలేమీ కనబడలేదు."
 
 msgid "Origin:"
-msgstr ""
+msgstr "మూలం:"
 
 msgid "Method:"
-msgstr ""
+msgstr "పద్ధతి:"
 
 msgid "Source:"
 msgstr "మూలం:"
@@ -6269,7 +6269,7 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "నిర్వచనం చెల్లదు: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr ""
@@ -6281,7 +6281,7 @@ msgid "Abort"
 msgstr ""
 
 msgid "Run"
-msgstr ""
+msgstr "నడుపు"
 
 msgid "Useful when the scanner result is a true positive but the add-on is not malicious"
 msgstr ""
