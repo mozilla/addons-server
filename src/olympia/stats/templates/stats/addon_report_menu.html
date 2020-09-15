@@ -3,6 +3,7 @@
     <li data-report="overview" data-layout="overview">
       <a href="{{ url('stats.overview', addon.slug) }}">{{ _('Overview') }}</a>
     </li>
+    {% if addon.has_listed_versions(include_deleted=True) %}
     <li data-report="downloads">
       <a href="{{ url('stats.downloads', addon.slug) }}">{{ _('Downloads') }}</a>
     </li>
@@ -22,6 +23,7 @@
         </li>
       {% endif %}
     </ul>
+    {% endif %}
     <li data-report="usage">
       <a href="{{ url('stats.usage', addon.slug) }}">{{ _('Daily Users') }}</a>
     </li>
