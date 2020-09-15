@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import re
 
 from django.conf import settings
@@ -186,6 +186,12 @@ REGEX_REMOVAL_REGEX = re.compile(r"^\^\(\(?|\\|\)\)?\$$")
 GUID_SPLIT = re.compile(r"\)\|\(")
 
 
+def datetime_to_ts(dt=None):
+    """Returns the timestamp used for MLBF identifiers.
+    Calculated as number of milliseconds from the unix epoc."""
+    return int((dt or datetime.now()).timestamp() * 1000)
+
+
 def split_regex_to_list(guid_re):
     if not IS_MULTIPLE_IDS.match(guid_re) or REGEX_ESCAPE_SEQS.match(guid_re):
         return
@@ -226,7 +232,7 @@ def save_guids_to_blocks(guids, submission, *, fields_to_set):
 
     common_args = {
         field: getattr(submission, field) for field in fields_to_set}
-    modified_datetime = datetime.datetime.now()
+    modified_datetime = datetime.now()
 
     blocks = Block.get_blocks_from_guids(guids)
     Block.preload_addon_versions(blocks)

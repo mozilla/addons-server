@@ -1,10 +1,11 @@
+import os
 import re
-import time
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
+from django.utils.encoding import force_text
 
 from django_statsd.clients import statsd
 from multidb import get_replica
@@ -14,6 +15,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.storage_utils import rm_stored_dir
 from olympia.constants.blocklist import (
     MLBF_TIME_CONFIG_KEY,
     MLBF_BASE_ID_CONFIG_KEY,
@@ -26,7 +28,10 @@ from olympia.zadmin.models import set_config
 from .mlbf import MLBF
 from .models import Block, BlocklistSubmission, LegacyImport
 from .utils import (
-    block_activity_log_delete, block_activity_log_save, split_regex_to_list)
+    block_activity_log_delete,
+    block_activity_log_save,
+    datetime_to_ts,
+    split_regex_to_list)
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -92,7 +97,7 @@ def import_block_from_blocklist(record):
         'updated_by': get_task_user(),
     }
     modified_date = datetime.fromtimestamp(
-        record.get('last_modified', time.time() * 1000) / 1000)
+        record.get('last_modified', datetime_to_ts()) / 1000)
 
     if guid.startswith('/'):
         # need to escape the {} brackets or mysql chokes.
@@ -238,3 +243,33 @@ def upload_filter(generation_time, is_base=True, upload_stash=False):
     set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
     if is_base:
         set_config(MLBF_BASE_ID_CONFIG_KEY, generation_time, json_value=True)
+
+
+@task
+def cleanup_old_files(*, base_filter_id):
+    log.info('Starting clean up of old MLBF folders...')
+    six_months_ago = datetime_to_ts(
+        datetime.now() - timedelta(weeks=26))
+    base_filter_ts = int(base_filter_id)
+    for dir in storage.listdir(settings.MLBF_STORAGE_PATH)[0]:
+        dir = force_text(dir)
+        # skip non-numeric folder names
+        if not dir.isdigit():
+            log.info('Skipping %s because not a timestamp', dir)
+            continue
+        dir_ts = int(dir)
+        dir_as_date = datetime.fromtimestamp(dir_ts / 1000)
+        # delete if >6 months old and <base_filter_id
+        if dir_ts > six_months_ago:
+            log.info(
+                'Skipping %s because < 6 months old (%s)', dir, dir_as_date)
+        elif dir_ts > base_filter_ts:
+            log.info(
+                'Skipping %s because more recent (%s) than base mlbf (%s)',
+                dir, dir_as_date, datetime.fromtimestamp(base_filter_ts / 1000)
+            )
+        else:
+            log.info(
+                'Deleting %s because > 6 months old (%s)', dir, dir_as_date)
+            rm_stored_dir(
+                os.path.join(settings.MLBF_STORAGE_PATH, dir), storage)

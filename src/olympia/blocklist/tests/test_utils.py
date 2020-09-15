@@ -1,3 +1,4 @@
+from datetime import datetime
 from unittest import mock
 
 import pytest
@@ -5,7 +6,8 @@ import pytest
 from olympia.amo.tests import user_factory
 from olympia.blocklist.models import Block
 from olympia.blocklist.utils import (
-    legacy_delete_blocks, legacy_publish_blocks, split_regex_to_list)
+    datetime_to_ts, legacy_delete_blocks, legacy_publish_blocks,
+    split_regex_to_list)
 from olympia.lib.remote_settings import RemoteSettings
 
 
@@ -94,3 +96,8 @@ def test_split_regex_to_list():
 
     real_regex_brackets = '^(pink@.*\\.info)$'
     assert split_regex_to_list(real_regex_brackets) is None
+
+
+def test_datetime_to_ts():
+    now = datetime.now()
+    assert datetime_to_ts(now) == int(now.timestamp() * 1000)

@@ -46,15 +46,20 @@ class TestUploadToRemoteSettings(TestCase):
             RemoteSettings, 'publish_attachment')
         record_patcher = mock.patch.object(
             RemoteSettings, 'publish_record')
-        statsd_incr_patcher = mock.patch('olympia.blocklist.cron.statsd.incr')
+        statsd_incr_patcher = mock.patch(
+            'olympia.blocklist.cron.statsd.incr')
+        cleanup_files_patcher = mock.patch(
+            'olympia.blocklist.cron.cleanup_old_files.delay')
         self.addCleanup(delete_patcher.stop)
         self.addCleanup(attach_patcher.stop)
         self.addCleanup(record_patcher.stop)
         self.addCleanup(statsd_incr_patcher.stop)
+        self.addCleanup(cleanup_files_patcher.stop)
         self.delete_mock = delete_patcher.start()
         self.publish_attachment_mock = attach_patcher.start()
         self.publish_record_mock = record_patcher.start()
         self.statsd_incr_mock = statsd_incr_patcher.start()
+        self.cleanup_files_mock = cleanup_files_patcher.start()
 
     def test_no_previous_mlbf(self):
         upload_mlbf_to_remote_settings()
@@ -92,6 +97,7 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call('blocklist.tasks.upload_filter.upload_mlbf.base'),
             mock.call(f'{STATSD_PREFIX}success'),
         ])
+        self.cleanup_files_mock.assert_not_called()
 
     def test_stash_because_previous_mlbf(self):
         set_config(MLBF_TIME_CONFIG_KEY, 123456, json_value=True)
@@ -137,6 +143,7 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call('blocklist.tasks.upload_filter.upload_mlbf.full'),
             mock.call(f'{STATSD_PREFIX}success'),
         ])
+        self.cleanup_files_mock.assert_called_with(base_filter_id=123456)
 
     def test_stash_because_many_mlbf(self):
         set_config(MLBF_TIME_CONFIG_KEY, 123456, json_value=True)
@@ -186,6 +193,7 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call('blocklist.tasks.upload_filter.upload_mlbf.full'),
             mock.call(f'{STATSD_PREFIX}success'),
         ])
+        self.cleanup_files_mock.assert_called_with(base_filter_id=987654)
 
     @mock.patch.object(MLBF, 'should_reset_base_filter')
     def test_reset_base_because_over_reset_threshold(self, should_reset_mock):
@@ -301,6 +309,7 @@ class TestUploadToRemoteSettings(TestCase):
         # And the Block was modified just that before so would be included
         self.block.update(modified=(frozen_time() - timedelta(seconds=2)))
         set_config(MLBF_TIME_CONFIG_KEY, last_time, json_value=True)
+        set_config(MLBF_BASE_ID_CONFIG_KEY, last_time, json_value=True)
         prev_blocked_path = os.path.join(
             settings.MLBF_STORAGE_PATH, str(last_time), 'blocked.json')
         with storage.open(prev_blocked_path, 'w') as blocked_file:
@@ -310,6 +319,7 @@ class TestUploadToRemoteSettings(TestCase):
         # So no need for a new bloomfilter
         self.publish_attachment_mock.assert_not_called()
         self.publish_record_mock.assert_not_called()
+        self.cleanup_files_mock.assert_not_called()
 
         # But if we add a new Block a new filter is needed
         Block.objects.create(
@@ -341,6 +351,7 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call('blocklist.tasks.upload_filter.upload_mlbf.full'),
             mock.call(f'{STATSD_PREFIX}success'),
         ])
+        self.cleanup_files_mock.assert_called_with(base_filter_id=last_time)
 
     @mock.patch('olympia.blocklist.cron._upload_mlbf_to_remote_settings')
     def test_no_statsd_ping_when_switch_off(self, inner_mock):
