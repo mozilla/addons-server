@@ -1329,6 +1329,18 @@ class TestStatsWithBigQuery(TestCase):
         assert b'by Content' in response.content
         assert b'by Campaign' in response.content
 
+    def test_no_download_stats_for_purely_unlisted_addons(self):
+        self.make_addon_unlisted(self.addon)
+        assert not self.addon.has_listed_versions()
+
+        url = reverse('stats.overview', args=[self.addon.slug])
+        response = self.client.get(url)
+
+        assert b'by Source' not in response.content
+        assert b'by Medium' not in response.content
+        assert b'by Content' not in response.content
+        assert b'by Campaign' not in response.content
+
     def test_download_stats(self):
         url = reverse('stats.downloads', args=[self.addon.slug])
 
