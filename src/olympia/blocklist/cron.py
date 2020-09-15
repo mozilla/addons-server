@@ -53,8 +53,8 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
     # there may be false positives or false negatives.
     # https://github.com/mozilla/addons-server/issues/13695
     generation_time = datetime_to_ts()
-    mlbf = MLBF(generation_time)
-    previous_filter = MLBF(last_generation_time)
+    mlbf = MLBF.generate_from_db(generation_time)
+    previous_filter = MLBF.load_from_storage(last_generation_time)
 
     changes_count = mlbf.blocks_changed_since_previous(previous_filter)
     statsd.incr(
@@ -70,39 +70,40 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
             'skipping MLBF generation')
         return
 
-    mlbf.generate_and_write_mlbf()
     statsd.incr(
         'blocklist.cron.upload_mlbf_to_remote_settings.blocked_count',
-        len(mlbf.fetch_blocked_json()))
+        len(mlbf.blocked_items))
     statsd.incr(
         'blocklist.cron.upload_mlbf_to_remote_settings.not_blocked_count',
-        len(mlbf.fetch_not_blocked_json()))
+        len(mlbf.not_blocked_items))
 
     base_filter_id = get_config(MLBF_BASE_ID_CONFIG_KEY, 0, json_value=True)
     # optimize for when the base_filter was the previous generation so
     # we don't have to load the blocked JSON file twice.
     base_filter = (
-        MLBF(base_filter_id)
+        MLBF.load_from_storage(base_filter_id)
         if last_generation_time != base_filter_id else
         previous_filter)
 
     make_base_filter = (
         force_base or
-        not base_filter or
+        not base_filter_id or
         mlbf.should_reset_base_filter(base_filter))
 
     if last_generation_time and not make_base_filter:
         try:
-            mlbf.write_stash(previous_filter)
+            mlbf.generate_and_write_stash(previous_filter)
         except FileNotFoundError:
             log.info('No previous blocked.json so we can\'t create a stash.')
             # fallback to creating a new base if stash fails
             make_base_filter = True
+    if make_base_filter:
+        mlbf.generate_and_write_filter()
 
     upload_filter.delay(
         generation_time,
-        is_base=make_base_filter,
-        upload_stash=not make_base_filter)
+        is_base=make_base_filter)
+
     if base_filter_id:
         cleanup_old_files.delay(base_filter_id=base_filter_id)
 

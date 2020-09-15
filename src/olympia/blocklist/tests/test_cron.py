@@ -112,11 +112,7 @@ class TestUploadToRemoteSettings(TestCase):
         generation_time = int(
             datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
 
-        self.publish_attachment_mock.assert_called_with(
-            {'key_format': MLBF.KEY_FORMAT,
-             'generation_time': generation_time,
-             'attachment_type': 'bloomfilter-full'},
-            ('filter.bin', mock.ANY, 'application/octet-stream'))
+        self.publish_attachment_mock.assert_not_called()
         self.publish_record_mock.assert_called_with({
             'key_format': MLBF.KEY_FORMAT,
             'stash_time': generation_time,
@@ -139,8 +135,6 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call(f'{STATSD_PREFIX}blocked_count', 1),
             mock.call(f'{STATSD_PREFIX}not_blocked_count', 3),
             mock.call('blocklist.tasks.upload_filter.upload_stash'),
-            mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
-            mock.call('blocklist.tasks.upload_filter.upload_mlbf.full'),
             mock.call(f'{STATSD_PREFIX}success'),
         ])
         self.cleanup_files_mock.assert_called_with(base_filter_id=123456)
@@ -162,11 +156,7 @@ class TestUploadToRemoteSettings(TestCase):
         generation_time = int(
             datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
 
-        self.publish_attachment_mock.assert_called_with(
-            {'key_format': MLBF.KEY_FORMAT,
-             'generation_time': generation_time,
-             'attachment_type': 'bloomfilter-full'},
-            ('filter.bin', mock.ANY, 'application/octet-stream'))
+        self.publish_attachment_mock.assert_not_called()
         self.publish_record_mock.assert_called_with({
             'key_format': MLBF.KEY_FORMAT,
             'stash_time': generation_time,
@@ -189,8 +179,6 @@ class TestUploadToRemoteSettings(TestCase):
             mock.call(f'{STATSD_PREFIX}blocked_count', 1),
             mock.call(f'{STATSD_PREFIX}not_blocked_count', 3),
             mock.call('blocklist.tasks.upload_filter.upload_stash'),
-            mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
-            mock.call('blocklist.tasks.upload_filter.upload_mlbf.full'),
             mock.call(f'{STATSD_PREFIX}success'),
         ])
         self.cleanup_files_mock.assert_called_with(base_filter_id=987654)
@@ -327,7 +315,9 @@ class TestUploadToRemoteSettings(TestCase):
                 file_kw={'is_signed': True, 'is_webextension': True}),
             updated_by=user_factory())
         upload_mlbf_to_remote_settings()
-        self.publish_attachment_mock.assert_called_once()
+        self.publish_attachment_mock.assert_not_called()
+        self.publish_record_mock.assert_called_once()
+        self.cleanup_files_mock.assert_called_once()
         assert (
             get_config(MLBF_TIME_CONFIG_KEY, json_value=True) ==
             int(datetime.datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000))
@@ -340,15 +330,15 @@ class TestUploadToRemoteSettings(TestCase):
         self.block.delete()
         assert last_modified == get_blocklist_last_modified_time()
         upload_mlbf_to_remote_settings()
-        assert self.publish_attachment_mock.call_count == 2  # called again
+        self.publish_attachment_mock.assert_not_called()
+        self.publish_record_mock.call_count == 2
+        self.cleanup_files_mock.call_count == 2
 
         self.statsd_incr_mock.assert_has_calls([
             mock.call(f'{STATSD_PREFIX}blocked_changed', 1),
             mock.call(f'{STATSD_PREFIX}blocked_count', 1),
             mock.call(f'{STATSD_PREFIX}not_blocked_count', 4),
             mock.call('blocklist.tasks.upload_filter.upload_stash'),
-            mock.call('blocklist.tasks.upload_filter.upload_mlbf'),
-            mock.call('blocklist.tasks.upload_filter.upload_mlbf.full'),
             mock.call(f'{STATSD_PREFIX}success'),
         ])
         self.cleanup_files_mock.assert_called_with(base_filter_id=last_time)
