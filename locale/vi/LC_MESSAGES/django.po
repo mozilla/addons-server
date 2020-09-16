@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-08-16 10:44+0000\n"
+"PO-Revision-Date: 2020-09-16 03:32+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -557,7 +557,7 @@ msgstr "Gửi"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s tiện ích GUIDs"
 
 msgid "users"
 msgstr "người dùng"
@@ -909,7 +909,7 @@ msgid "Block deleted"
 msgstr "Tiện ích đã được xóa."
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "Đã thêm GUID cho {addon} đến DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID cho {addon} đã bị xóa khỏi DeniedGuid."
@@ -1049,7 +1049,7 @@ msgid "Plugins"
 msgstr "Phần bổ trợ"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "LWTs không còn hỗ trợ"
 
 msgid "Themes (Static)"
 msgstr "Các chủ đề (Tĩnh)"
@@ -1390,13 +1390,13 @@ msgid "Recommended"
 msgstr "Được đề xuất"
 
 msgid "Verified - Tier 1"
-msgstr ""
+msgstr "Đã xác minh - Cấp 1"
 
 msgid "Verified - Tier 2"
-msgstr ""
+msgstr "Đã xác minh - Cấp 2"
 
 msgid "Line"
-msgstr ""
+msgstr "Dòng"
 
 msgid "Spotlight"
 msgstr ""
