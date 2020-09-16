@@ -22,7 +22,6 @@ from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview)
-from olympia.addons.tasks import backfill_hashed_guids
 
 
 def id_function(fixture_value):
