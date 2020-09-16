@@ -775,7 +775,8 @@ class Version(OnChangeMixin, ModelBase):
             ).get().score
         except ScannerResult.DoesNotExist:
             score = None
-        return '{:0.0f}%'.format(score * 100) if score else 'n/a'
+        return ('{:0.0f}%'.format(score * 100) if score and score >= 0 else
+                'n/a')
 
     @cached_property
     def approved_for_groups(self):
