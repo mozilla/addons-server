@@ -2177,7 +2177,7 @@ class AddonGUID(ModelBase):
     guid = models.CharField(max_length=255, null=False, db_index=True)
     addon = models.OneToOneField(
         Addon, null=False, on_delete=models.CASCADE, unique=True)
-    hashed_guid = models.CharField(max_length=64, null=True)
+    hashed_guid = models.CharField(max_length=64, null=False)
 
     class Meta:
         db_table = 'addons_reusedguid'
