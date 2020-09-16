@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-16 03:32+0000\n"
+"PO-Revision-Date: 2020-09-16 03:39+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1605,19 +1605,19 @@ msgid "New"
 msgstr "Mới"
 
 msgid "Running"
-msgstr ""
+msgstr "Đang chạy"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Đã hủy"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Đang hủy"
 
 msgid "Completed"
 msgstr "Hoàn tất"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Đã lên lịch"
 
 msgid "Core"
 msgstr ""
@@ -1862,25 +1862,25 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Lời mời được chấp nhận."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Lời mời bị từ chối."
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Một tác giả đã được thêm vào tiện ích của bạn"
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "Lời mời tác giả cho {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Một email xác nhận đã được gửi đến {email}"
 
 msgid "An author role has been changed on your add-on"
-msgstr ""
+msgstr "Vai trò tác giả đã được thay đổi trên tiện ích của bạn"
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Một tác giả đã bị xóa khỏi tiện ích của bạn"
 
 msgid "Changes successfully saved."
 msgstr "Thay đổi đã được lưu thành công."
@@ -1895,16 +1895,16 @@ msgid "Icons cannot be animated."
 msgstr "Biểu tượng không được chuyển động."
 
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Hình ảnh phải rộng ít nhất {0} pixel và cao {1} pixel."
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Kích thước hình ảnh phải theo tỷ lệ 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr ""
+msgstr "Biểu tượng phải rộng và cao ít nhất {0} pixel."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Biểu tượng phải là hình vuông (cùng chiều rộng và chiều cao)."
 
 msgid "There was an error uploading your preview."
 msgstr "Có lỗi khi đang tải lên ảnh xem trước của bạn."
@@ -1913,6 +1913,8 @@ msgid ""
 "The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
 "with this."
 msgstr ""
+"Không thể xóa hoặc tắt phiên bản được phê duyệt mới nhất của tiện ích được đề xuất này vì phiên bản trước đó không được phê duyệt để đề xuất. Vui lòng liên hệ với quản trị viên AMO nếu bạn cần trợ "
+"giúp về việc này."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1927,52 +1929,52 @@ msgid "Version %s re-enabled."
 msgstr "Phiên bản %s đã bật lại."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Quá trình tải lên này không được xác thực và có thể thiếu kết quả xác thực hoàn chỉnh. Hãy cẩn thận khi xem xét nó."
 
 msgid "Header area background"
-msgstr ""
+msgstr "Nền khu vực tiêu đề"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr ""
+msgstr "Màu của nền vùng tiêu đề, được hiển thị trong phần của tiêu đề không bị khuất hoặc có thể nhìn thấy qua hình ảnh tiêu đề. Trường kê khai:  frame."
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Biểu tượng và văn bản vùng tiêu đề"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr ""
+msgstr "Màu của văn bản và biểu tượng trong vùng tiêu đề, ngoại trừ thẻ đang hoạt động. Trường kê khai:  tab_background_text."
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Nền khu vực thanh công cụ"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "Màu nền cho thanh điều hướng, thanh dấu trang và thẻ đã chọn.  Trường kê khai:  toolbar."
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Biểu tượng và văn bản khu vực thanh công cụ"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr ""
+msgstr "Màu của văn bản và biểu tượng trong thanh công cụ và thẻ đang hoạt động. Trường kê khai:  bookmark_text."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Nền khu vực trường thanh công cụ"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "Màu nền cho các trường trong thanh công cụ, chẳng hạn như thanh URL. Trường kê khai:  toolbar_field."
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Văn bản khu vực trường thanh công cụ"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Màu của văn bản trong các trường trên thanh công cụ, chẳng hạn như thanh URL. Trường kê khai:  toolbar_field_text."
 
 msgid "Review requested."
 msgstr "Yêu cầu đánh giá."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Bạn phải cung cấp thêm chi tiết để tiếp tục."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Thông tin đăng nhập cũ của bạn đã bị thu hồi và không còn hợp lệ."
 
 msgid "New API key created"
 msgstr "Khóa API mới được tạo"
@@ -2170,7 +2172,7 @@ msgstr "Hoạt động cũ hơn cho Tiện ích của Tôi"
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> chủ đề"
 
 msgid "Edit Product Page"
 msgstr "Chỉnh sửa trang sản phẩm"
@@ -2188,16 +2190,16 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Xem trước vẫn đang được tạo - quay lại sau hoặc làm mới trang."
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Bạn đã được mời trở thành tác giả của {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Chấp nhận lời mời sẽ cung cấp cho bạn quyền truy cập để chỉnh sửa tiện ích và có thể hiển thị tên bạn trong danh sách tác giả trên trang web."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Nhấp vào nút Chấp nhận bên dưới để xác nhận bạn muốn được thêm làm tác giả cho {addon_name}."
 
 msgid "Decline"
-msgstr ""
+msgstr "Từ chối"
 
 msgid "Manage Authors & License"
 msgstr "Quản lí Tác giả & Giấy phép"
@@ -2209,10 +2211,10 @@ msgid "About author roles"
 msgstr "Giới thiệu vai trò tác giả"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Tác giả đang chờ xác nhận"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Tác giả đã được thêm vào tiện ích này nhưng chưa được xác nhận."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
