@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-16 03:54+0000\n"
+"PO-Revision-Date: 2020-09-16 04:04+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1811,7 +1811,7 @@ msgid "The developer API key of a coauthor was found in the submitted file. To p
 msgstr ""
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Thông báo bảo mật của Mozilla: Thông tin đăng nhập API trên AMO của bạn đã bị thu hồi"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -2883,33 +2883,35 @@ msgid "Back"
 msgstr "Quay lại"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "Thông tin đăng nhập API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Để biết hướng dẫn chi tiết, hãy tham khảo <a href=\"%(docs_url)s\">tài liệu API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
 msgstr "Giữ bí mật các khóa API của bạn và <strong>không bao giờ chia sẻ chúng với bất kỳ ai</strong>, kể cả những người đóng góp Mozilla."
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "Người cấp JWT"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT bí mật"
 
 #, python-format
 msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Để thực hiện các yêu cầu API, hãy gửi <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> làm tiêu đề ủy quyền. Bạn sẽ cần tạo JWT cho mọi yêu cầu như được giải thích trong <a href=\"%(docs_url)s\">tài"
+" liệu API</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Vui lòng nhấp vào nút xác nhận bên dưới để tạo thông tin đăng nhập API cho người dùng <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Một liên kết xác nhận sẽ được gửi đến địa chỉ email của bạn. Sau khi xác nhận, bạn sẽ tìm thấy các khóa API của mình trên trang này."
 
 msgid "You don't have any API credentials."
 msgstr "Bạn không có bất kỳ xác thực API nào."
@@ -2924,7 +2926,7 @@ msgid "Confirm and generate new credentials"
 msgstr "Xác nhận và tạo chứng chỉ đăng nhập mới"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Tạo khóa mới"
 
 #, python-format
 msgid ""
@@ -2978,6 +2980,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Kính gửi nhà phát triển tiện ích,\n"
+"\n"
+"Chúng tôi nhận thấy rằng thông tin đăng nhập API trên AMO bí mật của bạn đã được đưa vào một tiện ích được gửi tới addons.mozilla.org. Để bảo vệ tài khoản và (các) tiện ích của bạn, chúng tôi đã thu hồi thông tin đăng nhập bị rò rỉ.\n"
+"Bạn có thể tạo thông tin đăng nhập API mới tại %(api_keys_url)s\n"
+"\n"
+"Hãy đảm bảo rằng bạn không bao giờ chia sẻ thông tin đăng nhập của mình với bất kỳ ai. Không bao giờ đưa chúng vào kho lưu trữ công cộng, tiện ích hoặc bất kỳ nơi công cộng nào khác. Chúng tôi khuyến khích bạn xem lại kho mã và tiện ích mở rộng của mình để xóa mọi tham chiếu đến thông tin đăng nhập AMO của bạn.\n"
+"\n"
+"Cảm ơn bạn,\n"
+"Nhóm tiện ích mở rộng Mozilla"
 
 msgid "Invisible"
 msgstr "Ẩn"
@@ -3133,30 +3144,29 @@ msgid "Visit the Extension Workshop"
 msgstr "Đi đến Extension Workshop"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Kết nối với chúng tôi"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "Dành cho nhà phát triển"
 
 msgid "For end users"
-msgstr ""
+msgstr "Dành cho người dùng cuối"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developers Mailing List"
-msgstr "Trung tâm nhà phát triển tiện ích"
+msgstr "Danh sách gửi thư cho nhà phát triển tiện ích"
 
 msgid "Extensions Developers Newsletter"
 msgstr "Bản tin tiện ích dành cho nhà phát triển"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Luôn cập nhật tin tức và sự kiện dành cho các nhà phát triển tiện ích mở rộng Firefox."
 
 msgid "Email Address"
 msgstr "Địa chỉ email"
@@ -3224,13 +3234,13 @@ msgid "See how"
 msgstr "Tìm hiểu cách làm"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Tham gia"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Kết nối với hàng nghìn nhà phát triển và khám phá thêm các cách bạn có thể đóng góp cho hệ sinh thái mở rộng."
 
 msgid "Learn more about the developer community"
-msgstr ""
+msgstr "Tìm hiểu thêm về cộng đồng nhà phát triển"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -3281,13 +3291,13 @@ msgid "Learn how to make an extension"
 msgstr "Tìm hiểu cách tạo tiện ích mở rộng"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Sẵn sàng để gửi hoặc quản lý tiện ích mở rộng của bạn?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Đăng nhập vào trung tâm nhà phát triển để gửi hoặc quản lý các tiện ích và chủ đề."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Đăng ký tài khoản nhà phát triển hoặc đăng nhập vào Trung tâm nhà phát triển"
 
 msgid "Manage Version {0}"
 msgstr "Quản lí Phiên bản {0}"
