@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-08-04 16:26+0000\n"
-"PO-Revision-Date: 2020-09-16 04:12+0000\n"
+"PO-Revision-Date: 2020-09-16 04:16+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -735,10 +735,10 @@ msgid "Application max version for {version} updated."
 msgstr "Đã cập nhật phiên bản tối đa cho {version}."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Các tác giả đã gửi email về khả năng tương thích của {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Đã gửi email cho tác giả về khả năng tương thích của tiện ích."
 
 msgid "Password changed."
 msgstr "Đã thay đổi mất khẩu."
@@ -2707,6 +2707,7 @@ msgstr ""
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
+"Bạn đã hoàn tất! Phiên bản này đã được gửi để xem xét. Bạn sẽ được thông báo khi quá trình xem xét hoàn tất, hoặc nếu người đánh giá của chúng tôi có bất kỳ câu hỏi nào về phiên bản đã gửi của bạn."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
@@ -3157,7 +3158,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr ""
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Đọc thêm về chính sách xem xét mã nguồn."
 
 msgid "Build best-in-class extensions and themes"
 msgstr "Xây dựng các chủ đề và tiện ích mở rộng tốt nhất trong các lớp"
@@ -3611,7 +3612,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Nhìn thấy một bức tranh thú vị trên web và muốn tìm hiểu thêm về nó? Hãy thử công cụ tìm kiếm hình ảnh này."
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5289,12 +5290,14 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
+"Các bài đánh giá tiện ích là cách để bạn chia sẻ ý kiến ​​về các tiện ích mà bạn đã cài đặt và sử dụng. Nhóm kiểm duyệt đánh giá của chúng tôi có quyền từ chối hoặc xóa bất kỳ đánh giá nào không "
+"tuân thủ các nguyên tắc này."
 
 msgid "Do:"
 msgstr ""
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Viết như bạn đang kể cho bạn bè về trải nghiệm của bạn với tiện ích."
 
 msgid "Keep reviews concise and easy to understand."
 msgstr ""
@@ -5330,6 +5333,8 @@ msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
+"Đăng các sự cố kỹ thuật, yêu cầu hỗ trợ hoặc đề xuất tính năng. Sử dụng các tùy chọn hỗ trợ có sẵn cho từng tiện ích bổ sung, nếu có. Bạn có thể tìm thấy chúng bên cạnh phần Giới thiệu về tiện ích "
+"này."
 
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr ""
@@ -6100,7 +6105,7 @@ msgid "More Actions"
 msgstr "Hành động thêm"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Thông báo cho tôi về các phiên bản mới được liệt kê"
 
 #, fuzzy
 msgid "Allow resubmission"
@@ -6904,7 +6909,7 @@ msgid "someone writes a review of my add-on"
 msgstr ""
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "luôn cập nhật các tin tức và sự kiện liên quan đến các nhà phát triển bổ trợ (bao gồm cả bản tin về about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr ""
@@ -6913,7 +6918,7 @@ msgid "my add-on is reviewed by a reviewer"
 msgstr ""
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla cần liên hệ với tôi về tiện ích cá nhân của tôi"
 
 msgid "User Notifications"
 msgstr "Thông báo cho Người dùng"
