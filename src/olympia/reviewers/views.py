@@ -484,14 +484,11 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     page = paginate(request, table.rows, per_page=per_page, count=qs.count())
     table.set_page(page)
 
-    queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
-
     return render(request, 'reviewers/queue.html',
                   context(table=table, page=page, tab=tab,
                           search_form=search_form,
                           point_types=amo.REVIEWED_AMO,
-                          unlisted=unlisted,
-                          queue_counts=queue_counts))
+                          unlisted=unlisted))
 
 
 def fetch_queue_counts(admin_reviewer):
