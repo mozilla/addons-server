@@ -586,15 +586,11 @@ def queue_moderated(request):
                     for e in reviews_formset.errors))
         return redirect(reverse('reviewers.queue_moderated'))
 
-    admin_reviewer = is_admin_reviewer(request)
-    queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
-
     return render(request, 'reviewers/queue.html',
                   context(reviews_formset=reviews_formset,
                           tab='moderated', page=page, flags=flags,
                           search_form=None,
-                          point_types=amo.REVIEWED_AMO,
-                          queue_counts=queue_counts))
+                          point_types=amo.REVIEWED_AMO))
 
 
 @any_reviewer_required
