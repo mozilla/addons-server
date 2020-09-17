@@ -2,7 +2,7 @@ import datetime
 
 from django.conf import settings
 from django.utils.encoding import force_text
-from django.utils.translation import ugettext, ungettext
+from django.utils.translation import ugettext
 
 import jinja2
 
@@ -58,7 +58,6 @@ def queue_tabnav(context):
 
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
-    counts = context['queue_counts']
     request = context['request']
     listed = not context.get('unlisted')
 
@@ -67,77 +66,47 @@ def queue_tabnav(context):
         if acl.action_allowed(
                 request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
             tabnav.append(
-                ('recommended', 'queue_recommended',
-                 ugettext('Recommended ({0})').format(counts['recommended'])),
+                ('recommended', 'queue_recommended', ugettext('Recommended'))
             )
         if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
-            new_text = ugettext('Other Pending Review ({0})')
-            tabnav.extend((
+            tabnav.append(
                 ('extension', 'queue_extension',
-                 '🛠️ ' + new_text.format(counts['extension'])),
-            ))
-            tabnav.append((
-                'scanners',
-                'queue_scanners',
-                (ungettext(
-                    'Flagged By Scanners ({0})',
-                    'Flagged By Scanners ({0})',
-                    counts['scanners']
-                ) .format(counts['scanners'])),
-            ))
-            tabnav.append((
-                'mad',
-                'queue_mad',
-                (ungettext(
-                    'Flagged for Human Review ({0})',
-                    'Flagged for Human Review ({0})',
-                    counts['mad']
-                ).format(counts['mad'])),
-            ))
+                 '🛠️ ' + ugettext('Other Pending Review'))
+            )
+            tabnav.append(
+                ('scanners', 'queue_scanners', ugettext('Flagged By Scanners'))
+            )
+            tabnav.append(
+                ('mad', 'queue_mad', ugettext('Flagged for Human Review'))
+            )
         if acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
-            new_text = ugettext('New ({0})')
-            update_text = ungettext(
-                'Update ({0})', 'Updates ({0})', counts['theme_pending'])
             tabnav.extend((
                 ('theme_nominated', 'queue_theme_nominated',
-                 '🎨 ' + new_text.format(counts['theme_nominated'])),
+                 '🎨 ' + ugettext('New')),
                 ('theme_pending', 'queue_theme_pending',
-                 '🎨 ' + update_text.format(counts['theme_pending'])),
+                 '🎨 ' + ugettext('Updates')),
             ))
         if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
             tabnav.append(
-                ('moderated', 'queue_moderated',
-                 (ungettext('Rating Review ({0})',
-                            'Rating Reviews ({0})',
-                            counts['moderated'])
-                  .format(counts['moderated']))),
+                ('moderated', 'queue_moderated', ugettext('Rating Reviews'))
             )
 
         if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
             tabnav.append(
                 ('auto_approved', 'queue_auto_approved',
-                 (ungettext('Auto Approved ({0})',
-                            'Auto Approved ({0})',
-                            counts['auto_approved'])
-                  .format(counts['auto_approved']))),
+                    ugettext('Auto Approved'))
             )
 
         if acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
             tabnav.append(
                 ('content_review', 'queue_content_review',
-                 (ungettext('Content Review ({0})',
-                            'Content Review ({0})',
-                            counts['content_review'])
-                  .format(counts['content_review']))),
+                    ugettext('Content Review'))
             )
 
         if acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
             tabnav.append(
                 ('pending_rejection', 'queue_pending_rejection',
-                 (ungettext('Pending Rejection ({0})',
-                            'Pending Rejection ({0})',
-                            counts['pending_rejection'])
-                  .format(counts['pending_rejection']))),
+                    ugettext('Pending Rejection'))
             )
     else:
         tabnav = [

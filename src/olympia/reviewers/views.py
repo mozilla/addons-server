@@ -484,14 +484,11 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     page = paginate(request, table.rows, per_page=per_page, count=qs.count())
     table.set_page(page)
 
-    queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
-
     return render(request, 'reviewers/queue.html',
                   context(table=table, page=page, tab=tab,
                           search_form=search_form,
                           point_types=amo.REVIEWED_AMO,
-                          unlisted=unlisted,
-                          queue_counts=queue_counts))
+                          unlisted=unlisted))
 
 
 def fetch_queue_counts(admin_reviewer):
@@ -589,15 +586,11 @@ def queue_moderated(request):
                     for e in reviews_formset.errors))
         return redirect(reverse('reviewers.queue_moderated'))
 
-    admin_reviewer = is_admin_reviewer(request)
-    queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
-
     return render(request, 'reviewers/queue.html',
                   context(reviews_formset=reviews_formset,
                           tab='moderated', page=page, flags=flags,
                           search_form=None,
-                          point_types=amo.REVIEWED_AMO,
-                          queue_counts=queue_counts))
+                          point_types=amo.REVIEWED_AMO))
 
 
 @any_reviewer_required

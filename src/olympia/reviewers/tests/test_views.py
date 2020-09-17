@@ -1100,7 +1100,7 @@ class QueueTest(ReviewerTest):
         link = links.eq(tab_position)
 
         assert links.length == total_queues
-        assert link.text() == '%s (%s)' % (name, total_addons)
+        assert link.text() == '%s' % name
         assert link.attr('href') == self.url
         if per_page:
             assert doc('.data-grid-top .num-results').text() == (
@@ -2115,13 +2115,10 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(26):
-            # 26 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(16):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 11 for various queue counts, including current one
-            #      (unfortunately duplicated because it appears in two
-            #       completely different places)
+            # - 1 for the current queue count for pagination purposes
             # - 3 for the addons in the queues and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
@@ -2308,13 +2305,10 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(26):
-            # 26 queries is a lot, but it used to be much much worse.
+        with self.assertNumQueries(16):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 11 for various queue counts, including current one
-            #      (unfortunately duplicated because it appears in two
-            #       completely different places)
+            # - 1 for the current queue count for pagination purposes
             # - 3 for the addons in the queues and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
@@ -8133,14 +8127,12 @@ class TestMadQueue(QueueTest):
                                 mixed_addon_both]
 
     def test_results(self):
-        with self.assertNumQueries(34):
-            # 30 queries is a lot. Some of them are unfortunately scaling with
-            # the number of add-ons in the queue.
+        with self.assertNumQueries(24):
+            # That's a lot of queries. Some of them are unfortunately scaling
+            # with the number of add-ons in the queue.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
-            # - 11 for various queue counts, including current one
-            #      (unfortunately duplicated because it appears in two
-            #       completely different places)
+            # - 1 for the current queue count for pagination purposes
             # - 3 for the addons in the queue and their files (regardless of
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
