@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 13:48+0000\n"
+"PO-Revision-Date: 2020-09-17 13:59+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4981,7 +4981,7 @@ msgstr "某些网站无法在 Android 上正常播放视频，此扩展可修正
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "移除 Google 搜索结果 URL 中又臭又长的跟踪参数。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -6785,7 +6785,7 @@ msgid ""
 msgstr ""
 "您好，\n"
 "\n"
-"会收到这封邮件是因为您在 %(site_url)s 的账户 %(name)s 已被删除。若您最新删除了 Firefox 账户，则此操作可能会自动完成。 \n"
+"会收到这封邮件是因为您在 %(site_url)s 的账户 %(name)s 已被删除。若您最新删除了 Firefox 账户，此账户也会自动删除。 \n"
 "\n"
 "若您并未这样做，或认为是有未经授权的人操作您的账户，请回复此邮件；否则，无需采取更多行动。\n"
 "\n"
