@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 14:51+0000\n"
+"PO-Revision-Date: 2020-09-17 15:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1371,13 +1371,11 @@ msgstr "Doporučeny"
 msgid "Sponsored"
 msgstr "Sponsorowany"
 
-#, fuzzy
 msgid "Verified"
-msgstr "Přepruwowany - runina 1"
+msgstr "Přepruwowany"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "Přez Firefox"
 
 msgid "Spotlight"
 msgstr "Spotlight"
@@ -2607,13 +2605,11 @@ msgstr "Nowu wersiju zapodać"
 msgid "Cancel and Disable Version"
 msgstr "Přetorhnyć a wersiju znjemóžnić"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Chceće woprawdźe tutu wersiju zhašeć?"
+msgstr "Chceće woprawdźe tutu wersiju přetorhnyć a znjemóžnić?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Přetorhnyć"
+msgstr "Haj, přetorhnyć"
 
 msgid "No, don't cancel"
 msgstr "Ně, njepřetorhnyć"
@@ -5081,9 +5077,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Klikńće dwójce na někajke słowo, zo byšće hnydom jeho definiciju widźał."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Někotre sydła maja ćežkosće, wideja na Firefox za Android wothrawać. Tute rozšěrjenje porjedźenje k dispoziciji staja."
+msgstr "Někotre sydła maja ćežkosće, wideja na Android wothrawać. Tu je rozrisanje."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5580,9 +5575,8 @@ msgstr "Nalistowane wersije, kotrež sej čłowjeske přepruwowanje wužaduja ({
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Njenalistowane wersije, kotrež sej čłowjeske přepruwowanje wužaduja ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Nalistowane wersije"
+msgstr "Nalistowana wersija"
 
 msgid "Unlisted versions ({0})"
 msgstr "Njenalistowane wersije ({0})"
@@ -5659,11 +5653,9 @@ msgstr "Nawod za přepruwowanje přidatkow"
 msgid "Security Scanners"
 msgstr "Wěstotne skenery"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
 msgstr "Přez skenery markěrowany ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgstr "Za čłowjeske přepruwowanje markěrowany ({0})"
 
@@ -5682,7 +5674,6 @@ msgstr "Přewodnik za pohódnoćenja"
 msgid "Content Review"
 msgstr "Přepruwowanje wobsaha"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgstr "Přepruwowanje wobsaha ({0})"
 
@@ -6208,9 +6199,8 @@ msgstr "Wersija %(version)s &middot; %(created)s <span class=\"light\">&middot;%
 msgid "(Confirmed)"
 msgstr "(Wobkrućeny)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Termin za wustejace wotpokazanje"
+msgstr "Wustejace wotpokazanje při přepruwowanju noweje wersije"
 
 msgid "Compatibility:"
 msgstr "Kompatibelnosć:"
@@ -6258,33 +6248,26 @@ msgstr "Wotpokazane abo njepřepruwowane"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Druhe wustejace přepruwowanje ({0})"
+msgstr "Druhe wustejace přepruwowanje"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Přez skenery markěrowany"
+msgstr "Přez skenery markěrowane"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Za čłowjeske přepruwowanje markěrowany"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Aktualizować"
+msgstr "Aktualizacije"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Čaka na přepruwowanje"
+msgstr "Přepruwowanja pohódnoćenjow"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Awtomatisce schwaleny přidatk ({0})"
+msgstr "Awtomatisce schwaleny"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Wustejace wotpokazanje ({0})"
+msgstr "Wustejace wotpokazanje"
 
 msgid "presence of matched rules"
 msgstr "eksistenca wotpowědowacych prawidłow"
