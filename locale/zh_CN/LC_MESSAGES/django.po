@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 13:19+0000\n"
+"PO-Revision-Date: 2020-09-17 13:29+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1872,9 +1872,9 @@ msgstr "图标必须为正方形（宽度和高度相同）。"
 msgid "There was an error uploading your preview."
 msgstr "上传预览图的过程中发生错误。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr "因为先前的版本未批准成为推荐扩展，无法删除或禁用此推荐扩展最新批准的版本。若您需要协助，请联系 AMO 管理员。"
+msgstr "因为先前的版本 %s 未批准成为推广扩展，无法删除或禁用此推广扩展最新批准的版本 %s。若您需要协助，请联系 AMO 管理员。"
 
 #, python-format
 msgid "Version %s disabled."
@@ -5534,7 +5534,6 @@ msgstr "安全性扫描器"
 msgid "Flagged By Scanners ({0})"
 msgstr "由扫描器标记（{0}）"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgstr "标为需要人工审查（{0}）"
 
@@ -6127,17 +6126,15 @@ msgstr "被驳回或未审核"
 msgid "[status:%s]"
 msgstr "[状态：%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "其他待审核（{0}）"
+msgstr "其他待审核"
 
 msgid "Flagged By Scanners"
 msgstr "由扫描器标记"
 
 msgid "Flagged for Human Review"
-msgstr "已标为需要人工审查"
+msgstr "标为需要人工审查"
 
-#, fuzzy
 msgid "Updates"
 msgstr "更新"
 
@@ -6148,9 +6145,8 @@ msgstr "等待审核"
 msgid "Auto Approved"
 msgstr "自动批准"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "待驳回项目（{0}）"
+msgstr "待驳回"
 
 msgid "presence of matched rules"
 msgstr "存在命中规则"
