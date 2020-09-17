@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 13:15+0000\n"
+"PO-Revision-Date: 2020-09-17 13:59+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -6237,21 +6237,17 @@ msgstr "Afgewezen of niet beoordeeld"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Overige wachtend op beoordeling ({0})"
+msgstr "Overige wachtend op beoordeling"
 
-#, fuzzy
 msgid "Flagged By Scanners"
 msgstr "Door scanners gemarkeerd"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Gemarkeerd voor persoonlijke beoordeling"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Bijwerken"
+msgstr "Updates"
 
 #, fuzzy
 msgid "Rating Reviews"
