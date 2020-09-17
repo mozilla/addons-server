@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 18:14+0000\n"
+"PO-Revision-Date: 2020-09-17 18:15+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6238,17 +6238,14 @@ msgstr "[статус:%s]"
 msgid "Other Pending Review"
 msgstr "Інші, що очікують розгляду"
 
-#, fuzzy
 msgid "Flagged By Scanners"
 msgstr "Позначено сканерами"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Позначено для перевірки людиною"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Оновити"
+msgstr "Оновлення"
 
 #, fuzzy
 msgid "Rating Reviews"
