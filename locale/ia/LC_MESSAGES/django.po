@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 14:20+0000\n"
+"PO-Revision-Date: 2020-09-17 14:33+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5615,11 +5615,8 @@ msgstr "Scanditores de securitate"
 msgid "Flagged By Scanners ({0})"
 msgstr "Signalate per scanditores ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgstr ""
-"SigSignalate pro revision human ({0})\n"
-"nalar pro revision human"
+msgstr "Signalate per revision human ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Additivos approbate automaticamente"
@@ -5636,7 +5633,6 @@ msgstr "Guida al revision"
 msgid "Content Review"
 msgstr "Revision de contento"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgstr "Revision de contento ({0})"
 
@@ -6161,9 +6157,8 @@ msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; 
 msgid "(Confirmed)"
 msgstr "(Confirmate)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Data expiration del rejection pendente"
+msgstr "Rejection pendente sur le revision del nove version"
 
 msgid "Compatibility:"
 msgstr "Compatibilitate:"
@@ -6211,33 +6206,26 @@ msgstr "Rejectate o non revidite"
 msgid "[status:%s]"
 msgstr "[stato:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Alteres que attende revision ({0})"
+msgstr "Altere revision pendente"
 
-#, fuzzy
 msgid "Flagged By Scanners"
 msgstr "Signalate per scanditores"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Signalate per revision human"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Actualisar"
+msgstr "Actualisationes"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Attendente revision"
+msgstr "Revisiones de valutation"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Auto approbate ({0})"
+msgstr "Approbate automaticamente"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Attendente rejection ({0})"
+msgstr "Attendente rejection"
 
 msgid "presence of matched rules"
 msgstr "presentia de regulas concordate"
