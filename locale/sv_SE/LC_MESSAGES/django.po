@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 16:34+0000\n"
+"PO-Revision-Date: 2020-09-17 16:41+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1889,11 +1889,11 @@ msgstr "Ikonen måste vara kvadratisk (samma bredd och höjd)."
 msgid "There was an error uploading your preview."
 msgstr "Ett fel uppstod med uppladdning av förhandsvisning."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Den senaste godkända versionen av detta rekommenderade tillägg kan inte tas bort eller inaktiveras eftersom den tidigare versionen inte godkändes för rekommendation. Kontakta AMO Admins om du "
-"behöver hjälp med detta."
+"Den senaste godkända versionen av detta %s-tillägg kan inte raderas eller inaktiveras eftersom den tidigare versionen inte godkändes för %s-kampanj. Kontakta AMO admins om du behöver hjälp med "
+"detta."
 
 #, python-format
 msgid "Version %s disabled."
@@ -5062,7 +5062,7 @@ msgstr "Vissa webbplatser har svårt att spela upp videor på Android. Här är 
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Tar bort de långa och fula spårningsparametrarna från webbadressen i Googles sökresultat."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -6879,7 +6879,7 @@ msgstr ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -6893,7 +6893,7 @@ msgid ""
 msgstr ""
 "Hej,\n"
 "\n"
-"Du får det här meddelandet eftersom ditt användarkonto %(name)s på %(site_url)s har tagits bort.\n"
+"Du får det här meddelandet eftersom ditt användarkonto %(name)s på %(site_url)s har tagits bort. Detta kan ha gjorts automatiskt om du nyligen raderade ditt Firefox-konto.\n"
 "\n"
 "Om du inte gjorde det eller tror att en obehörig person har åtkomst till ditt konto, svara på det här e-postmeddelandet. Annars finns det inga ytterligare åtgärder att vidta.\n"
 "\n"
