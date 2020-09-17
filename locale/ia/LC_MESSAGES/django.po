@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 14:08+0000\n"
+"PO-Revision-Date: 2020-09-17 14:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2590,13 +2590,11 @@ msgstr "Inviar un nove version"
 msgid "Cancel and Disable Version"
 msgstr "Cancellar e disactivar le version"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Desira tu vermente deler iste version?"
+msgstr "Desira tu vermente cancellar e disactivar le version?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Cancellar"
+msgstr "Si, cancellar"
 
 msgid "No, don't cancel"
 msgstr "No, non cancellar"
