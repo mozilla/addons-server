@@ -166,7 +166,7 @@ set and you can check the results with the ``passed_review`` property.
                 "automated_signing": true,
                 "files": [
                     {
-                        "download_url": "https://addons.mozilla.org/api/v4/downloads/file/100/example-id.0-fx+an.xpi?src=api",
+                        "download_url": "https://addons.mozilla.org/api/v4/downloads/file/100/example-id.0-fx+an.xpi",
                         "hash": "sha256:1bb945266bf370170a656350d9b640cbcaf70e671cf753c410e604219cdd9267",
                         "signed": true
                     }
@@ -226,7 +226,7 @@ This endpoint returns the actual file data for download.
 
     .. sourcecode:: bash
 
-        curl "https://addons.mozilla.org/api/v4/file/123/some-addon.xpi?src=api"
+        curl "https://addons.mozilla.org/api/v4/file/123/some-addon.xpi"
             -g -H "Authorization: JWT <jwt-token>"
 
     :param file_id: the primary key of the add-on file.

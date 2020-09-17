@@ -41,7 +41,6 @@ using the API.
    categories
    collections
    discovery
-   download_sources
    reviews
    reviewers
    signing
