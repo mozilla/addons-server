@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 18:09+0000\n"
+"PO-Revision-Date: 2020-09-17 18:14+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5641,13 +5641,11 @@ msgstr "Настанови з перевірки додатків"
 msgid "Security Scanners"
 msgstr "Сканери безпеки"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
 msgstr "Позначено сканерами ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgstr "Позначено для перевірки людиною ({0})"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Автоматично схвалені додатки"
@@ -5664,9 +5662,8 @@ msgstr "Настанови з відгуків"
 msgid "Content Review"
 msgstr "Перевірка вмісту"
 
-#, fuzzy
 msgid "Content Review ({0})"
-msgstr "Перевірка вмісту ({0})"
+msgstr ""
 
 msgid "New ({0})"
 msgstr "Нові ({0})"
@@ -6189,9 +6186,8 @@ msgstr "Версія %(version)s &middot; %(created)s <span class=\"light\">&mid
 msgid "(Confirmed)"
 msgstr "(Підтверджено)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Кінцевий термін очікування на відхилення"
+msgstr "Кінцевий термін відхилення нової версії"
 
 msgid "Compatibility:"
 msgstr "Сумісність:"
@@ -6239,9 +6235,8 @@ msgstr "Відхилено чи не розглянуто"
 msgid "[status:%s]"
 msgstr "[статус:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Інші очікувані перевірки ({0})"
+msgstr "Інші, що очікують розгляду"
 
 #, fuzzy
 msgid "Flagged By Scanners"
