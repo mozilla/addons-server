@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -546,9 +546,6 @@ msgstr ""
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
-
-msgid "users"
 msgstr ""
 
 msgid "Edit Block"
@@ -1369,14 +1366,15 @@ msgstr "এখনও রেট করা হয় নি"
 msgid "Recommended"
 msgstr "মন্তব্য করা হয়েছে"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "ফায়ারফক্স"
 
 msgid "Spotlight"
 msgstr ""
@@ -1895,9 +1893,8 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "আপনার প্রিভিউ আপলোডে কোন ত্রুটি ছিলো।"
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2560,6 +2557,19 @@ msgstr[1] ""
 msgid "Submit a New Version"
 msgstr "নতুন সংস্করণ জমা দিন"
 
+msgid "Cancel and Disable Version"
+msgstr ""
+
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr ""
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "বাতিল"
+
+msgid "No, don't cancel"
+msgstr ""
+
 msgid "Name and Summary:"
 msgstr ""
 
@@ -2633,9 +2643,6 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 msgid "Submit Version"
-msgstr ""
-
-msgid "Cancel and Disable Version"
 msgstr ""
 
 msgid "Describe Version"
@@ -2951,9 +2958,6 @@ msgstr ""
 msgid "Invisible"
 msgstr "অদৃশ্য"
 
-msgid "Approved and recommended"
-msgstr ""
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
@@ -3038,12 +3042,6 @@ msgstr "ডেভেলপারদের খবর"
 
 msgid "View the blog &#9658;"
 msgstr "ব্লগ দেখুন &#9658;"
-
-msgid "Pending information request:"
-msgstr ""
-
-msgid "This request for information has been resolved"
-msgstr ""
 
 msgid "License"
 msgstr "লাইসেন্স"
@@ -3404,6 +3402,12 @@ msgid "Delete Version"
 msgstr "সংস্করণ মুছে ফেলুন"
 
 msgid "Disable Version"
+msgstr ""
+
+#, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
 msgstr ""
 
 msgid "Hide Add-on"
@@ -4891,6 +4895,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -4899,7 +4904,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -4953,15 +4957,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4995,33 +5010,6 @@ msgstr "এক্সটেনশন এক্সপ্লোর করুন"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "আরও জানুন"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr ""
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
-msgstr ""
-
-msgid "Cannot diff a version against itself"
-msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5109,92 +5097,6 @@ msgstr "অপ্রত্যাশিত ত্রুটি।"
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
-
-msgid "Back to review"
-msgstr "পর্যালোচনায় ফিরে যান"
-
-msgid "Back to add-on"
-msgstr "অ্যাড-অনে ফিরে যান"
-
-msgid "Download {0}"
-msgstr "{0} ডাউনলোড করুন"
-
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
-
-msgid "File Compare :: Reviewer tools"
-msgstr ""
-
-msgid "File Viewer :: Reviewer tools"
-msgstr ""
-
-msgid "Validation failed:"
-msgstr "যাচাই করণে ব্যর্থ:"
-
-msgid "File content not supported for syntax highlighting"
-msgstr ""
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
-
-msgid "close"
-msgstr "বন্ধ"
-
-msgid "Go"
-msgstr "চলুন"
-
-msgid "Add-on file being processed, please wait."
-msgstr ""
-
-msgid "Fetching validation results..."
-msgstr ""
-
-msgid "Files:"
-msgstr "ফাইলগুলো:"
-
-msgid "Deleted files:"
-msgstr "মুছে ফেলা ফাইল:"
-
-msgid "Hide known files"
-msgstr "পরিচিত ফাইল লুকান"
-
-msgid "Tab stops:"
-msgstr "ট্যাব স্টপ:"
-
-msgid "Up file"
-msgstr "ফাইল আপ"
-
-msgid "Down file"
-msgstr "ডাউন ফাইল"
-
-msgid "Previous diff"
-msgstr "পূর্ববর্তী ভিন্নতা"
-
-msgid "Previous note"
-msgstr "পূর্ববর্তী নোট"
-
-msgid "Next diff"
-msgstr "পরের ভিন্নতা"
-
-msgid "Next note"
-msgstr "পরবর্তী নোট"
-
-msgid "Expand all"
-msgstr "সব প্রসারিত"
-
-msgid "Hide or unhide tree"
-msgstr ""
-
-msgid "Wrap or unwrap text"
-msgstr ""
-
-msgid "No files in the uploaded file."
-msgstr "আপলোডকৃত ফাইলে কোন ফাইল নেই।"
-
-msgid "Fetching file."
-msgstr "ফাইল আনা হচ্ছে।"
 
 msgid "Review Guidelines"
 msgstr "পর্যালোচনা নির্দেশিকা"
@@ -5458,12 +5360,6 @@ msgstr ""
 msgid "Requires Restart"
 msgstr "পুনরায় চালু করা প্রয়োজন"
 
-msgid "More Information Requested"
-msgstr ""
-
-msgid "Expired Information Request"
-msgstr ""
-
 msgid "Sources provided"
 msgstr ""
 
@@ -5544,9 +5440,6 @@ msgstr "শেষ পর্যালোচনা"
 msgid "Weight"
 msgstr "ওজন"
 
-msgid "Information Request Deadline"
-msgstr ""
-
 msgid "Pending Rejection Deadline"
 msgstr ""
 
@@ -5560,7 +5453,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr ""
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "সংস্করণ সম্পাদনা করুন {0}"
 
 #, fuzzy
@@ -5642,14 +5535,10 @@ msgid "Security Scanners"
 msgstr "সুরক্ষাজনিত পরীক্ষাসমূহ"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr ""
@@ -5667,9 +5556,7 @@ msgid "Content Review"
 msgstr ""
 
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 msgid "New ({0})"
 msgstr ""
@@ -5702,9 +5589,6 @@ msgid "Announcement"
 msgstr "ঘোষণা"
 
 msgid "Update message of the day"
-msgstr ""
-
-msgid "Expired Information Requests ({0})"
 msgstr ""
 
 msgid "Add-ons Pending Rejection ({0})"
@@ -5918,6 +5802,9 @@ msgstr "সব-সময়"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr "পর্যালোচনায় ফিরে যান"
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -5925,9 +5812,6 @@ msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr ""
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
-
-msgid "Expired Information Requests – Add-ons for Firefox"
 msgstr ""
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
@@ -5991,9 +5875,6 @@ msgstr ""
 msgid "Previously deleted entries"
 msgstr ""
 
-msgid "This is a recommended extension."
-msgstr ""
-
 msgid "You don't have permission to review it."
 msgstr ""
 
@@ -6005,6 +5886,9 @@ msgstr ""
 
 msgid "Insert canned response..."
 msgstr ""
+
+msgid "Files:"
+msgstr "ফাইলগুলো:"
 
 msgid "Tested on:"
 msgstr "পরীক্ষা করা হয়েছে:"
@@ -6066,9 +5950,6 @@ msgid "Auto-Approval currently disabled until {date}"
 msgstr ""
 
 msgid "Clear Auto-Approval Extra Delay"
-msgstr ""
-
-msgid "Clear information request"
 msgstr ""
 
 msgid "Clear pending rejections"
@@ -6207,6 +6088,9 @@ msgstr ""
 msgid "(Confirmed)"
 msgstr ""
 
+msgid "Pending Rejection on review of new version"
+msgstr ""
+
 msgid "Compatibility:"
 msgstr ""
 
@@ -6253,30 +6137,31 @@ msgstr ""
 msgid "[status:%s]"
 msgstr "[অবস্থা:%s]"
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "হালনাগাদ ({0})"
-msgstr[1] "হালনাগাদকৃত {0}"
+#, fuzzy
+msgid "Other Pending Review"
+msgstr "পর্যালোচনার জন্য অপেক্ষা করছে"
 
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Flagged By Scanners"
+msgstr "সুরক্ষাজনিত পরীক্ষাসমূহ"
 
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgid "Flagged for Human Review"
+msgstr ""
 
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Updates"
+msgstr "হালনাগাদ"
 
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "পর্যালোচনার জন্য অপেক্ষা করছে"
+
+#, fuzzy
+msgid "Auto Approved"
+msgstr "অনুমোদিত"
+
+msgid "Pending Rejection"
+msgstr ""
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6442,6 +6327,9 @@ msgstr "প্ল্যাটফর্ম দ্বারা"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "বন্ধ"
+
 msgid "Custom Date Range"
 msgstr ""
 
@@ -6507,9 +6395,6 @@ msgstr "365 দিন"
 msgid "Custom..."
 msgstr "স্বনির্ধারিত..."
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
-
 msgid "Loading the latest data&hellip;"
 msgstr ""
 
@@ -6525,6 +6410,9 @@ msgstr ""
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "ব্যবস্থাপনা ডাউনলোড করুন"
+
+msgid "About tracking external sources..."
+msgstr ""
 
 msgid "Download contents by Date"
 msgstr ""
@@ -6556,9 +6444,6 @@ msgstr ""
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<strong>{0}</strong> সাপ্তাহিক ডাউনলোড"
 
-msgid "<b>{0}</b> Downloads"
-msgstr ""
-
 msgid "Loading..."
 msgstr "লোডিং..."
 
@@ -6584,9 +6469,6 @@ msgid "See more platforms&hellip;"
 msgstr "আরো প্ল্যাটফর্ম দেখুন &hellip;"
 
 msgid "Download sources by Date"
-msgstr ""
-
-msgid "About tracking external sources..."
 msgstr ""
 
 #, python-format
@@ -6676,6 +6558,9 @@ msgstr ""
 
 msgid "Other languages"
 msgstr "অন্যান্য ভাষা"
+
+msgid "Go"
+msgstr "চলুন"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে যান"
@@ -6891,7 +6776,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -6905,7 +6790,4 @@ msgid "others"
 msgstr "অন্যান্য"
 
 msgid "{app} {min} and later"
-msgstr ""
-
-msgid "Deleted versions can`t be changed."
 msgstr ""

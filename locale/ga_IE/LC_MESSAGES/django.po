@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -576,10 +576,6 @@ msgstr "Seol Leagan Nua"
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
-
-#, fuzzy
-msgid "users"
-msgstr "Ainm an Úsáideora"
 
 msgid "Edit Block"
 msgstr ""
@@ -1450,14 +1446,15 @@ msgstr "Gan rátáil fós"
 msgid "Recommended"
 msgstr "Nóta"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -2018,9 +2015,8 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "Tharla earráid agus do réamhamharc á uaslódáil."
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2732,6 +2728,21 @@ msgid "Submit a New Version"
 msgstr "Seol Leagan Nua"
 
 #, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "Cuir an Scrúdú Ar Ceal"
+
+#, fuzzy
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr "An bhfuil tú cinnte gur mhaith leat an scrúdú a chur ar ceal?"
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "Cealaigh"
+
+msgid "No, don't cancel"
+msgstr ""
+
+#, fuzzy
 msgid "Name and Summary:"
 msgstr "Achoimre:"
 
@@ -2810,10 +2821,6 @@ msgstr ""
 #, fuzzy
 msgid "Submit Version"
 msgstr "Seol Leagan Nua"
-
-#, fuzzy
-msgid "Cancel and Disable Version"
-msgstr "Cuir an Scrúdú Ar Ceal"
 
 #, fuzzy
 msgid "Describe Version"
@@ -3148,10 +3155,6 @@ msgstr ""
 msgid "Invisible"
 msgstr "Dofheicthe"
 
-#, fuzzy
-msgid "Approved and recommended"
-msgstr "Léirmheasanna ceadaithe"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
@@ -3241,12 +3244,6 @@ msgstr "Nuacht Forbartha"
 
 msgid "View the blog &#9658;"
 msgstr "Léig an blag &#9658;"
-
-msgid "Pending information request:"
-msgstr ""
-
-msgid "This request for information has been resolved"
-msgstr ""
 
 msgid "License"
 msgstr "Ceadúnas"
@@ -3632,6 +3629,12 @@ msgid "Delete Version"
 msgstr "Scrios Leagan"
 
 msgid "Disable Version"
+msgstr ""
+
+#, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
 msgstr ""
 
 msgid "Hide Add-on"
@@ -5127,6 +5130,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -5135,7 +5139,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -5189,15 +5192,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5233,33 +5247,6 @@ msgstr "Eisínteachtaí"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Tuilleadh Eolais"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Tharla earráid agus comhad %s á rochtain."
-
-msgid "That file no longer exists."
-msgstr "Níl an comhad sin ann a thuilleadh."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
-msgstr "Is comhadlann é an comhad seo."
-
-msgid "Cannot diff a version against itself"
-msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5347,93 +5334,6 @@ msgstr ""
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
-
-msgid "Back to review"
-msgstr "Fill ar an léirmheas"
-
-msgid "Back to add-on"
-msgstr "Fill ar an mbreiseán"
-
-msgid "Download {0}"
-msgstr "Íoslódáil {0}"
-
-#, fuzzy, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "Leagan: %(version)s &bull; Méid: %(size)s &bull; Hais MD5: %(md5)s &bull; Cineál MIME: %(mimetype)s"
-
-msgid "File Compare :: Reviewer tools"
-msgstr ""
-
-msgid "File Viewer :: Reviewer tools"
-msgstr ""
-
-msgid "Validation failed:"
-msgstr "Theip ar bhailíochtú:"
-
-msgid "File content not supported for syntax highlighting"
-msgstr ""
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
-
-# This refers to closing a small pop-up window
-msgid "close"
-msgstr "dún"
-
-msgid "Go"
-msgstr "Ar Aghaidh"
-
-msgid "Add-on file being processed, please wait."
-msgstr ""
-
-msgid "Fetching validation results..."
-msgstr ""
-
-msgid "Files:"
-msgstr "Comhaid:"
-
-msgid "Deleted files:"
-msgstr "Comhaid scriosta:"
-
-msgid "Hide known files"
-msgstr ""
-
-msgid "Tab stops:"
-msgstr ""
-
-msgid "Up file"
-msgstr ""
-
-msgid "Down file"
-msgstr ""
-
-msgid "Previous diff"
-msgstr ""
-
-msgid "Previous note"
-msgstr ""
-
-msgid "Next diff"
-msgstr ""
-
-msgid "Next note"
-msgstr "An chéad nóta eile"
-
-msgid "Expand all"
-msgstr "Leathnaigh uile"
-
-msgid "Hide or unhide tree"
-msgstr "Folaigh nó taispeáin an crann"
-
-msgid "Wrap or unwrap text"
-msgstr ""
-
-msgid "No files in the uploaded file."
-msgstr ""
-
-msgid "Fetching file."
-msgstr "Comhad á fháil."
 
 msgid "Review Guidelines"
 msgstr "Treoirlínte do Léirmheasanna"
@@ -5709,13 +5609,6 @@ msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
 msgid "Requires Restart"
 msgstr "Atosú de dhíth"
 
-msgid "More Information Requested"
-msgstr ""
-
-#, fuzzy
-msgid "Expired Information Request"
-msgstr "Cuir an tEolas in Eagar"
-
 msgid "Sources provided"
 msgstr ""
 
@@ -5804,9 +5697,6 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
-msgid "Information Request Deadline"
-msgstr ""
-
 msgid "Pending Rejection Deadline"
 msgstr ""
 
@@ -5823,7 +5713,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "Ag feitheamh le Réamhscrúdú"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "Féach leaganacha eile"
 
 #, fuzzy
@@ -5917,21 +5807,11 @@ msgid "Security Scanners"
 msgstr "Tástálacha Slándála"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Ag feitheamh le Réamhscrúdú"
-msgstr[1] "Ag feitheamh le Réamhscrúdú"
-msgstr[2] "Ag feitheamh le Réamhscrúdú"
-msgstr[3] "Ag feitheamh le Réamhscrúdú"
-msgstr[4] "Ag feitheamh le Réamhscrúdú"
+msgstr "Ag feitheamh le Réamhscrúdú"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5955,12 +5835,7 @@ msgid "Content Review"
 msgstr "Gan Léirmheas"
 
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -6001,10 +5876,6 @@ msgstr "Fógra"
 
 msgid "Update message of the day"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests ({0})"
-msgstr "Cuir an tEolas in Eagar"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6227,6 +6098,9 @@ msgstr "Go Brách"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr "Fill ar an léirmheas"
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6236,10 +6110,6 @@ msgstr "Breiseáin Android"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Cuir an tEolas in Eagar"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6306,9 +6176,6 @@ msgstr "Stair an Bhreiseáin"
 msgid "Previously deleted entries"
 msgstr ""
 
-msgid "This is a recommended extension."
-msgstr ""
-
 msgid "You don't have permission to review it."
 msgstr ""
 
@@ -6320,6 +6187,9 @@ msgstr ""
 
 msgid "Insert canned response..."
 msgstr ""
+
+msgid "Files:"
+msgstr "Comhaid:"
 
 msgid "Tested on:"
 msgstr ""
@@ -6392,10 +6262,6 @@ msgstr ""
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Stádas Ceadaithe"
-
-#, fuzzy
-msgid "Clear information request"
-msgstr "Eolas le haghaidh Forbróirí"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6537,6 +6403,10 @@ msgstr ""
 msgid "(Confirmed)"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "Cuir an tEolas in Eagar"
+
 msgid "Compatibility:"
 msgstr "Comhoiriúnacht:"
 
@@ -6586,51 +6456,34 @@ msgid "[status:%s]"
 msgstr "Stádas:"
 
 #, fuzzy
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Nuashonraithe {0}"
-msgstr[1] "Nuashonraithe {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgid "Other Pending Review"
+msgstr "Ag feitheamh le Réamhscrúdú"
 
 #, fuzzy
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Ag feitheamh le Réamhscrúdú"
-msgstr[1] "Ag feitheamh le Réamhscrúdú"
-msgstr[2] "Ag feitheamh le Réamhscrúdú"
-msgstr[3] "Ag feitheamh le Réamhscrúdú"
-msgstr[4] "Ag feitheamh le Réamhscrúdú"
+msgid "Flagged By Scanners"
+msgstr "Tástálacha Slándála"
+
+#, fuzzy
+msgid "Flagged for Human Review"
+msgstr "Ag feitheamh le Réamhscrúdú"
+
+#, fuzzy
+msgid "Updates"
+msgstr "Nuashonraigh"
+
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "Ag feitheamh le Réamhscrúdú"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "Breiseáin le haghaidh {0}"
-msgstr[1] "Breiseáin le haghaidh {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgid "Auto Approved"
+msgstr "Breiseáin le haghaidh {0}"
 
 #, fuzzy
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Ag Iarraidh Tuilleadh Eolais: {0}"
-msgstr[1] "Ag Iarraidh Tuilleadh Eolais: {0}"
-msgstr[2] "Ag Iarraidh Tuilleadh Eolais: {0}"
-msgstr[3] "Ag Iarraidh Tuilleadh Eolais: {0}"
-msgstr[4] "Ag Iarraidh Tuilleadh Eolais: {0}"
-
-#, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Ag feitheamh le Réamhscrúdú"
-msgstr[1] "Ag feitheamh le Réamhscrúdú"
-msgstr[2] "Ag feitheamh le Réamhscrúdú"
-msgstr[3] "Ag feitheamh le Réamhscrúdú"
-msgstr[4] "Ag feitheamh le Réamhscrúdú"
+msgid "Pending Rejection"
+msgstr "Ag feitheamh le Réamhscrúdú"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6800,6 +6653,10 @@ msgstr "de réir Ardáin"
 msgid "by Country"
 msgstr ""
 
+# This refers to closing a small pop-up window
+msgid "close"
+msgstr "dún"
+
 msgid "Custom Date Range"
 msgstr "Raon Saincheaptha Dátaí"
 
@@ -6866,9 +6723,6 @@ msgstr "365 lá"
 msgid "Custom..."
 msgstr "Saincheap..."
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
-
 msgid "Loading the latest data&hellip;"
 msgstr "Sonraí is déanaí á lódáil&hellip;"
 
@@ -6885,6 +6739,9 @@ msgstr "Úsáid an fheidhmchláir de réir Dáta"
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "Foinsí Íoslódála de réir Dáta"
+
+msgid "About tracking external sources..."
+msgstr ""
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6919,9 +6776,6 @@ msgstr ""
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<strong>{0}</strong> íoslódáil sa tseachtain"
 
-msgid "<b>{0}</b> Downloads"
-msgstr ""
-
 msgid "Loading..."
 msgstr "Á Lódáil..."
 
@@ -6948,9 +6802,6 @@ msgstr ""
 
 msgid "Download sources by Date"
 msgstr "Foinsí Íoslódála de réir Dáta"
-
-msgid "About tracking external sources..."
-msgstr ""
 
 #, python-format
 msgid ""
@@ -7047,6 +6898,9 @@ msgstr ""
 
 msgid "Other languages"
 msgstr "Teangacha eile"
+
+msgid "Go"
+msgstr "Ar Aghaidh"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
@@ -7269,7 +7123,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7284,6 +7138,3 @@ msgstr "eile"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} agus níos déanaí"
-
-msgid "Deleted versions can`t be changed."
-msgstr "Ní féidir leaganacha scriosta a athrú."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2020-06-09 09:15+0000\n"
 "Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -560,10 +560,6 @@ msgstr "Potrdi različico"
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
-
-#, fuzzy
-msgid "users"
-msgstr "Uporabniki"
 
 msgid "Edit Block"
 msgstr ""
@@ -1397,14 +1393,15 @@ msgstr "Promoviraj"
 msgid "Recommended"
 msgstr "Priporočeno ({0})"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -1937,10 +1934,8 @@ msgstr "Ikona mora biti kvadratna (enake širine in višine)."
 msgid "There was an error uploading your preview."
 msgstr "Med nalaganjem predogleda je prišlo do napake."
 
-#, fuzzy
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, fuzzy, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Najnovejše odobrene različice priporočene razširitve ni mogoče izbrisati ali onemogočiti. Če potrebujete pomoč pri tem, se obrnite na administratorje AMO."
 
 #, python-format
@@ -2635,6 +2630,20 @@ msgstr[3] "<strong>{0}</strong> aktivnih uporabnikov"
 msgid "Submit a New Version"
 msgstr "Pošlji novo različico"
 
+msgid "Cancel and Disable Version"
+msgstr "Prekliči in onemogoči različico"
+
+#, fuzzy
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr "Ali ste prepričani, da želite izbrisati to različico?"
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "Prekliči"
+
+msgid "No, don't cancel"
+msgstr ""
+
 msgid "Name and Summary:"
 msgstr "Ime in povzetek:"
 
@@ -2714,9 +2723,6 @@ msgstr "Te opombe lahko vidite samo vi in naši pregledovalci."
 
 msgid "Submit Version"
 msgstr "Potrdi različico"
-
-msgid "Cancel and Disable Version"
-msgstr "Prekliči in onemogoči različico"
 
 msgid "Describe Version"
 msgstr "Opišite različico"
@@ -3042,9 +3048,6 @@ msgstr ""
 msgid "Invisible"
 msgstr "Neviden"
 
-msgid "Approved and recommended"
-msgstr "Odobreno in priporočeno"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Dokončajte objavo dodatka, tako da dodate različico ali manjkajoče metapodatke."
 
@@ -3132,12 +3135,6 @@ msgstr "Novice za razvijalce"
 
 msgid "View the blog &#9658;"
 msgstr "Glejte blog &#9658;"
-
-msgid "Pending information request:"
-msgstr "Čakajoča zahteva za informacije:"
-
-msgid "This request for information has been resolved"
-msgstr "Ta zahteva za informacije je bila razrešena"
 
 msgid "License"
 msgstr "Licenca"
@@ -3509,6 +3506,12 @@ msgstr "Izbriši različico"
 
 msgid "Disable Version"
 msgstr "Onemogoči različico"
+
+#, fuzzy, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
+msgstr "Najnovejše odobrene različice priporočene razširitve ni mogoče izbrisati ali onemogočiti. Če potrebujete pomoč pri tem, se obrnite na administratorje AMO."
 
 msgid "Hide Add-on"
 msgstr "Skrij dodatek"
@@ -5008,6 +5011,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Izboljšano iskanje v Androidu {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr "Pridobite naprednejšo stran za iskanje v Firefoxu za Android."
 
@@ -5016,7 +5020,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Pomoč z videoposnetki na Androidu {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v Firefoxu za Android. Ta razširitev odpravlja težave."
 
@@ -5071,15 +5074,27 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr "Glejte pretočne medije s prijatelji in družino kjerkoli."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Preskočite sponzorirane dele videoposnetkov YouTube."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v Firefoxu za Android. Ta razširitev odpravlja težave."
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5113,33 +5128,6 @@ msgstr "Raziščite razširitve"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Več o tem"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "Ogldovalnik datotek je zaklenjen, morda je v teku razširjanje za %s. Poskusite znova čez približno 5 minut."
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Pri delu z datoteko %s je prišlo do napake."
-
-msgid "That file no longer exists."
-msgstr "Ta datoteka ne obstaja več."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Velikost datoteke presega mejo {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Težave pri dekodiranju {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Te datoteke na spletu ni mogoče prikazati. Prenesite si datoteko, če si jo hočete ogledati."
-
-msgid "This file is a directory."
-msgstr "Ta datoteka je imenik."
-
-msgid "Cannot diff a version against itself"
-msgstr "Ne morete razlikovati različice od same sebe"
 
 msgid "Could not parse the manifest file."
 msgstr "Datoteke manifesta ni bilo mogoče razčleniti."
@@ -5227,96 +5215,6 @@ msgstr "Nepričakovana napaka."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Vrsta (%s) se ne sklada z vrsto vašega dodatka na AMO (%s)"
-
-msgid "Back to review"
-msgstr "Nazaj na pregled"
-
-# 80%
-# 100%
-msgid "Back to add-on"
-msgstr "Nazaj na dodatek"
-
-# 75%
-# 100%
-msgid "Download {0}"
-msgstr "Prenesi {0}"
-
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "Različica: %(version)s &bull; Velikost: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Vrsta mime: %(mimetype)s"
-
-msgid "File Compare :: Reviewer tools"
-msgstr "Primerjava datotek :: Orodja za pregledovalce"
-
-msgid "File Viewer :: Reviewer tools"
-msgstr "Prikazovalnik datotek :: Orodja za pregledovalce"
-
-msgid "Validation failed:"
-msgstr "Preverjanje veljavnosti ni uspelo:"
-
-msgid "File content not supported for syntax highlighting"
-msgstr "Vsebina datoteke ne podpira barvanja sintakse"
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr "Iznos je morda pokvarjen, bodite previdni in takoj %(link_start)sprijavite težavo%(link_end)s!"
-
-msgid "close"
-msgstr "zapri"
-
-msgid "Go"
-msgstr "Pojdi"
-
-msgid "Add-on file being processed, please wait."
-msgstr "Datoteka dodatka se obdeluje, prosim počakajte."
-
-msgid "Fetching validation results..."
-msgstr "Dostava rezultatov preverjanja ..."
-
-msgid "Files:"
-msgstr "Datoteke:"
-
-msgid "Deleted files:"
-msgstr "Izbrisane datoteke:"
-
-msgid "Hide known files"
-msgstr "Skrij poznane datoteke"
-
-msgid "Tab stops:"
-msgstr "Tabulatorji:"
-
-msgid "Up file"
-msgstr "Gor datoteka"
-
-msgid "Down file"
-msgstr "Dol datoteka"
-
-msgid "Previous diff"
-msgstr "Prejšnji diff"
-
-msgid "Previous note"
-msgstr "Prejšnja opomba"
-
-msgid "Next diff"
-msgstr "Naslednji diff"
-
-msgid "Next note"
-msgstr "Naslednja opomba"
-
-msgid "Expand all"
-msgstr "Razširi vse"
-
-msgid "Hide or unhide tree"
-msgstr "Skrij/razkrij drevo"
-
-msgid "Wrap or unwrap text"
-msgstr "Ovij/razvij besedilo"
-
-msgid "No files in the uploaded file."
-msgstr "Ni datotek v naloženi datoteki."
-
-msgid "Fetching file."
-msgstr "Pridobivam datoteko."
 
 msgid "Review Guidelines"
 msgstr "Smernice za ocene"
@@ -5595,12 +5493,6 @@ msgstr "Potrebuje skrbnikov pregled statične teme"
 msgid "Requires Restart"
 msgstr "Zahteva ponovni zagon"
 
-msgid "More Information Requested"
-msgstr "Potrebnih je več informacij"
-
-msgid "Expired Information Request"
-msgstr "Pretekla zahteva za informacije"
-
 msgid "Sources provided"
 msgstr "Dobavljeni viri"
 
@@ -5687,9 +5579,6 @@ msgstr "Zadnji pregled"
 msgid "Weight"
 msgstr "Teža"
 
-msgid "Information Request Deadline"
-msgstr "Rok zahteve za informacije"
-
 #, fuzzy
 msgid "Pending Rejection Deadline"
 msgstr "Rok zahteve za informacije"
@@ -5704,8 +5593,9 @@ msgstr "Različice na seznamu, ki potrebujejo človeški pregled ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Drugi čakajoči na pregled ({0})"
 
-msgid "Listed versions ({0})"
-msgstr "Navedene različice ({0})"
+#, fuzzy
+msgid "Listed version"
+msgstr "Navedene različice"
 
 msgid "Unlisted versions ({0})"
 msgstr "Nenavedene različice ({0})"
@@ -5784,19 +5674,11 @@ msgid "Security Scanners"
 msgstr "Preizkusi varnosti"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Pregled ocene ({0})"
-msgstr[1] "Pregleda ocen ({0})"
-msgstr[2] "Pregledi ocen ({0})"
-msgstr[3] "Pregledi ocen ({0})"
+msgstr "Pregled ocene ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Samodejno odobreni dodatki"
@@ -5813,12 +5695,9 @@ msgstr "Vodnik za preglede"
 msgid "Content Review"
 msgstr "Pregled vsebine"
 
+#, fuzzy
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Pregled vsebine ({0})"
-msgstr[1] "Pregleda vsebine ({0})"
-msgstr[2] "Pregledi vsebine ({0})"
-msgstr[3] "Pregledi vsebine ({0})"
+msgstr "Pregled vsebine ({0})"
 
 msgid "New ({0})"
 msgstr "Novo ({0})"
@@ -5854,9 +5733,6 @@ msgstr "Objava"
 
 msgid "Update message of the day"
 msgstr "Posodobi sporočilo dneva"
-
-msgid "Expired Information Requests ({0})"
-msgstr "Pretekle zahteve za informacije ({0})"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6072,6 +5948,9 @@ msgstr "Ves čas"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr "Nazaj na pregled"
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6080,10 +5959,6 @@ msgstr "Samodejno odobreni dodatki – Dodatki za Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Pretekla zahteva za informacije"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6147,9 +6022,6 @@ msgstr "Zgodovina dodatka"
 msgid "Previously deleted entries"
 msgstr "Predhodno izbrisani vnosi"
 
-msgid "This is a recommended extension."
-msgstr "To je priporočena razširitev."
-
 msgid "You don't have permission to review it."
 msgstr "Nimate dovoljenja za pregled."
 
@@ -6162,6 +6034,9 @@ msgstr "Ta obrazec lahko še vedno uporabite, vendar le v primeru, če veste, da
 
 msgid "Insert canned response..."
 msgstr "Vstavi pripravljen odgovor ..."
+
+msgid "Files:"
+msgstr "Datoteke:"
 
 msgid "Tested on:"
 msgstr "Preizkušeno na:"
@@ -6233,9 +6108,6 @@ msgstr "Nastavljena zastavica „samodejna odobritev onemogočena“"
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Omogoči samodejno odobritev"
-
-msgid "Clear information request"
-msgstr "Počisti zahtevo za informacije"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6374,6 +6246,10 @@ msgstr "Različica %(version)s &middot; %(created)s <span class=\"light\">&middo
 msgid "(Confirmed)"
 msgstr "(Potrjeno)"
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "Rok zahteve za informacije"
+
 msgid "Compatibility:"
 msgstr "Združljivost:"
 
@@ -6421,41 +6297,33 @@ msgstr "Zavrnjeno ali nepregledano"
 msgid "[status:%s]"
 msgstr "[stanje: %s]"
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "{0} posodobitev"
-msgstr[1] "{0} posodobitvi"
-msgstr[2] "{0} posodobitve"
-msgstr[3] "{0} posodobitev"
-
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Pregled ocene ({0})"
-msgstr[1] "Pregleda ocen ({0})"
-msgstr[2] "Pregledi ocen ({0})"
-msgstr[3] "Pregledi ocen ({0})"
-
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "Samodejno odobren ({0})"
-msgstr[1] "Samodejno odobrena ({0})"
-msgstr[2] "Samodejno odobreni ({0})"
-msgstr[3] "Samodejno odobreni ({0})"
-
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Pretekla zahteva za informacije ({0})"
-msgstr[1] "Pretekli zahtevi za informacije ({0})"
-msgstr[2] "Pretekle zahteve za informacije ({0})"
-msgstr[3] "Pretekle zahteve za informacije ({0})"
+#, fuzzy
+msgid "Other Pending Review"
+msgstr "Drugi čakajoči na pregled ({0})"
 
 #, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Drugi čakajoči na pregled ({0})"
-msgstr[1] "Drugi čakajoči na pregled ({0})"
-msgstr[2] "Drugi čakajoči na pregled ({0})"
-msgstr[3] "Drugi čakajoči na pregled ({0})"
+msgid "Flagged By Scanners"
+msgstr "Preizkusi varnosti"
+
+#, fuzzy
+msgid "Flagged for Human Review"
+msgstr "Označi za človeški pregled"
+
+#, fuzzy
+msgid "Updates"
+msgstr "Obnovi"
+
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "Čaka na pregled"
+
+#, fuzzy
+msgid "Auto Approved"
+msgstr "Samodejno odobren ({0})"
+
+#, fuzzy
+msgid "Pending Rejection"
+msgstr "Drugi čakajoči na pregled ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6627,6 +6495,9 @@ msgstr "po platformi"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "zapri"
+
 msgid "Custom Date Range"
 msgstr "Obdobje datumov po želji"
 
@@ -6704,9 +6575,6 @@ msgstr "365 dni"
 msgid "Custom..."
 msgstr "Po meri ..."
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr "Obdelava statističnih podatkov je trenutno onemogočena, zato nedavni podatki niso na voljo. Statistika se še vedno zbira, ta stran pa bo kmalu posodobljena z manjkajočimi podatki."
-
 msgid "Loading the latest data&hellip;"
 msgstr "Nalaganje najnovejših podatkov&hellip;"
 
@@ -6723,6 +6591,9 @@ msgstr "Uporaba aplikacije po datumu"
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "Viri prenosa po datumu"
+
+msgid "About tracking external sources..."
+msgstr "O zasledovanju zunanjih virov ..."
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6759,9 +6630,6 @@ msgstr "Uporaba platforme po datumu"
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> prenosov"
 
-msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> prenosov"
-
 msgid "Loading..."
 msgstr "Nalaganje..."
 
@@ -6788,9 +6656,6 @@ msgstr "Druge platforme&hellip;"
 
 msgid "Download sources by Date"
 msgstr "Viri prenosa po datumu"
-
-msgid "About tracking external sources..."
-msgstr "O zasledovanju zunanjih virov ..."
 
 #, python-format
 msgid ""
@@ -6888,6 +6753,9 @@ msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Drugi jeziki"
+
+msgid "Go"
+msgstr "Pojdi"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
@@ -7108,7 +6976,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7123,6 +6991,3 @@ msgstr "drugi"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} in novejšimi"
-
-msgid "Deleted versions can`t be changed."
-msgstr "Izbrisanih različic ni mogoče spreminjati."

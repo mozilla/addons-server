@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2019-03-21 16:17+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -559,9 +559,6 @@ msgstr "Cyflwyno'r Fersiwn"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
-
-msgid "users"
 msgstr ""
 
 msgid "Edit Block"
@@ -1380,14 +1377,15 @@ msgstr "Heb ei raddio eto"
 msgid "Recommended"
 msgstr ""
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -1928,9 +1926,8 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr ""
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2624,6 +2621,18 @@ msgstr[5] ""
 msgid "Submit a New Version"
 msgstr "Cyflwyno Fersiwn Newydd"
 
+msgid "Cancel and Disable Version"
+msgstr "Diddymu ac Analluogi'r Fersiwn"
+
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr ""
+
+msgid "Yes, Cancel"
+msgstr ""
+
+msgid "No, don't cancel"
+msgstr ""
+
 msgid "Name and Summary:"
 msgstr ""
 
@@ -2698,9 +2707,6 @@ msgstr ""
 
 msgid "Submit Version"
 msgstr "Cyflwyno'r Fersiwn"
-
-msgid "Cancel and Disable Version"
-msgstr "Diddymu ac Analluogi'r Fersiwn"
 
 msgid "Describe Version"
 msgstr "Disgrifio'r Fersiwn"
@@ -3017,9 +3023,6 @@ msgstr ""
 msgid "Invisible"
 msgstr ""
 
-msgid "Approved and recommended"
-msgstr ""
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
@@ -3103,12 +3106,6 @@ msgid "Developer News"
 msgstr ""
 
 msgid "View the blog &#9658;"
-msgstr ""
-
-msgid "Pending information request:"
-msgstr ""
-
-msgid "This request for information has been resolved"
 msgstr ""
 
 msgid "License"
@@ -3480,6 +3477,12 @@ msgid "Delete Version"
 msgstr ""
 
 msgid "Disable Version"
+msgstr ""
+
+#, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
 msgstr ""
 
 msgid "Hide Add-on"
@@ -4977,6 +4980,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -4985,7 +4989,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -5039,15 +5042,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5085,33 +5099,6 @@ msgstr "Estyniadau"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Dysgu Rhagor"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr ""
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
-msgstr ""
-
-msgid "Cannot diff a version against itself"
-msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5198,92 +5185,6 @@ msgstr ""
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
-
-msgid "Back to review"
-msgstr ""
-
-msgid "Back to add-on"
-msgstr "Nôl i'r ychwanegyn"
-
-msgid "Download {0}"
-msgstr ""
-
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
-
-msgid "File Compare :: Reviewer tools"
-msgstr ""
-
-msgid "File Viewer :: Reviewer tools"
-msgstr ""
-
-msgid "Validation failed:"
-msgstr ""
-
-msgid "File content not supported for syntax highlighting"
-msgstr ""
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
-
-msgid "close"
-msgstr ""
-
-msgid "Go"
-msgstr ""
-
-msgid "Add-on file being processed, please wait."
-msgstr ""
-
-msgid "Fetching validation results..."
-msgstr ""
-
-msgid "Files:"
-msgstr ""
-
-msgid "Deleted files:"
-msgstr ""
-
-msgid "Hide known files"
-msgstr ""
-
-msgid "Tab stops:"
-msgstr ""
-
-msgid "Up file"
-msgstr ""
-
-msgid "Down file"
-msgstr ""
-
-msgid "Previous diff"
-msgstr ""
-
-msgid "Previous note"
-msgstr ""
-
-msgid "Next diff"
-msgstr ""
-
-msgid "Next note"
-msgstr ""
-
-msgid "Expand all"
-msgstr ""
-
-msgid "Hide or unhide tree"
-msgstr ""
-
-msgid "Wrap or unwrap text"
-msgstr ""
-
-msgid "No files in the uploaded file."
-msgstr ""
-
-msgid "Fetching file."
 msgstr ""
 
 msgid "Review Guidelines"
@@ -5552,12 +5453,6 @@ msgstr "Mae Angen Adolygiad o'r Thema Gweinyddol"
 msgid "Requires Restart"
 msgstr ""
 
-msgid "More Information Requested"
-msgstr ""
-
-msgid "Expired Information Request"
-msgstr "Cais am Wybodaeth sydd Wedi Dod i Ben"
-
 msgid "Sources provided"
 msgstr ""
 
@@ -5649,9 +5544,6 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
-msgid "Information Request Deadline"
-msgstr ""
-
 msgid "Pending Rejection Deadline"
 msgstr ""
 
@@ -5668,7 +5560,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "Review"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "Fersiynau ar y rhestr"
 
 #, fuzzy
@@ -5752,23 +5644,11 @@ msgid "Security Scanners"
 msgstr ""
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Review"
-msgstr[1] "Review"
-msgstr[2] "Review"
-msgstr[3] "Review"
-msgstr[4] ""
-msgstr[5] ""
+msgstr "Review"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Ychwanegiadau wedi'u Cymeradwyo'n Awtomatig"
@@ -5789,13 +5669,7 @@ msgid "Content Review"
 msgstr "Adolygiad Cynnwys"
 
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -5832,9 +5706,6 @@ msgstr ""
 
 msgid "Update message of the day"
 msgstr ""
-
-msgid "Expired Information Requests ({0})"
-msgstr "Ceisiadau Gwybodaeth wedi Dod i Ben ({0})"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6047,6 +5918,9 @@ msgstr ""
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr ""
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6056,10 +5930,6 @@ msgstr "Ychwanegiadau wedi'u Cymeradwyo'n Awtomatig"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Cais am Wybodaeth sydd Wedi Dod i Ben"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6123,9 +5993,6 @@ msgstr ""
 msgid "Previously deleted entries"
 msgstr ""
 
-msgid "This is a recommended extension."
-msgstr ""
-
 msgid "You don't have permission to review it."
 msgstr ""
 
@@ -6136,6 +6003,9 @@ msgid "You can still submit this form, however only do so if you know it won't c
 msgstr ""
 
 msgid "Insert canned response..."
+msgstr ""
+
+msgid "Files:"
 msgstr ""
 
 msgid "Tested on:"
@@ -6205,9 +6075,6 @@ msgstr ""
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Galluogi Auto-Cymeradwyo"
-
-msgid "Clear information request"
-msgstr "Clirio cais am wybodaeth"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6345,6 +6212,10 @@ msgstr ""
 msgid "(Confirmed)"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "Cais am Wybodaeth sydd Wedi Dod i Ben"
+
 msgid "Compatibility:"
 msgstr ""
 
@@ -6392,57 +6263,35 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "({0}) Diweddariad"
-msgstr[1] "({0}) Diweddariad"
-msgstr[2] "({0}) Diweddariad"
-msgstr[3] "({0}) Diweddariad"
-msgstr[4] "({0}) Diweddariad"
-msgstr[5] "({0}) Diweddariad"
+#, fuzzy
+msgid "Other Pending Review"
+msgstr "Review"
+
+msgid "Flagged By Scanners"
+msgstr ""
 
 #, fuzzy
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Review"
-msgstr[1] "Review"
-msgstr[2] "Review"
-msgstr[3] "Review"
-msgstr[4] ""
-msgstr[5] ""
+msgid "Flagged for Human Review"
+msgstr "Review"
+
+#, fuzzy
+msgid "Updates"
+msgstr "Diweddarwyd"
+
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "Review"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "({0}) Ychwanegyn Wedi'u Hawto-dderbyn"
-msgstr[1] "({0}) Ychwanegyn Wedi'u Hawto-dderbyn"
-msgstr[2] "({0}) Ychwanegyn Wedi'u Hawto-dderbyn"
-msgstr[3] "({0}) Ychwanegyn Wedi'u Hawto-dderbyn"
-msgstr[4] ""
-msgstr[5] ""
+msgid "Auto Approved"
+msgstr "({0}) Ychwanegyn Wedi'u Hawto-dderbyn"
 
 #, fuzzy
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Developer Information"
-msgstr[1] "Developer Information"
-msgstr[2] "Developer Information"
-msgstr[3] "Developer Information"
-msgstr[4] ""
-msgstr[5] ""
-
-#, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Review"
-msgstr[1] "Review"
-msgstr[2] "Review"
-msgstr[3] "Review"
-msgstr[4] "Review"
-msgstr[5] "Review"
+msgid "Pending Rejection"
+msgstr "Review"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6606,6 +6455,9 @@ msgstr ""
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr ""
+
 msgid "Custom Date Range"
 msgstr ""
 
@@ -6671,9 +6523,6 @@ msgstr ""
 msgid "Custom..."
 msgstr ""
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
-
 msgid "Loading the latest data&hellip;"
 msgstr ""
 
@@ -6689,6 +6538,9 @@ msgstr ""
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "Rheoli Llwytho"
+
+msgid "About tracking external sources..."
+msgstr ""
 
 msgid "Download contents by Date"
 msgstr ""
@@ -6719,9 +6571,6 @@ msgstr ""
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr ""
 
-msgid "<b>{0}</b> Downloads"
-msgstr ""
-
 msgid "Loading..."
 msgstr ""
 
@@ -6747,9 +6596,6 @@ msgid "See more platforms&hellip;"
 msgstr ""
 
 msgid "Download sources by Date"
-msgstr ""
-
-msgid "About tracking external sources..."
 msgstr ""
 
 #, python-format
@@ -6838,6 +6684,9 @@ msgid "Beta, Nightly, Developer Edition"
 msgstr ""
 
 msgid "Other languages"
+msgstr ""
+
+msgid "Go"
 msgstr ""
 
 # {0} is the application name.  Example:  Firefox
@@ -7054,7 +6903,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7068,7 +6917,4 @@ msgid "others"
 msgstr ""
 
 msgid "{app} {min} and later"
-msgstr ""
-
-msgid "Deleted versions can`t be changed."
 msgstr ""

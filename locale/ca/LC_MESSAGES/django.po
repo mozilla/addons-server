@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2020-06-20 18:46+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -591,10 +591,6 @@ msgstr "Envia un complement nou"
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
-
-#, fuzzy
-msgid "users"
-msgstr "Nom d'usuari"
 
 msgid "Edit Block"
 msgstr ""
@@ -1459,14 +1455,15 @@ msgstr "Encara no s'ha valorat"
 msgid "Recommended"
 msgstr "Comentari"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -2016,9 +2013,8 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "S'ha produït un error quan es pujava la previsualització."
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2723,6 +2719,21 @@ msgid "Submit a New Version"
 msgstr "Envia un complement nou"
 
 #, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "Cancel·lació de la petició de revisió"
+
+#, fuzzy
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr "Voleu cancel·lar la vostra petició de revisió?"
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "Cancel·la"
+
+msgid "No, don't cancel"
+msgstr ""
+
+#, fuzzy
 msgid "Name and Summary:"
 msgstr "Resum"
 
@@ -2807,10 +2818,6 @@ msgstr ""
 #, fuzzy
 msgid "Submit Version"
 msgstr "Envia un complement nou"
-
-#, fuzzy
-msgid "Cancel and Disable Version"
-msgstr "Cancel·lació de la petició de revisió"
 
 #, fuzzy
 msgid "Describe Version"
@@ -3148,10 +3155,6 @@ msgstr ""
 msgid "Invisible"
 msgstr ""
 
-#, fuzzy
-msgid "Approved and recommended"
-msgstr "Comentaris aprovats"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
@@ -3245,14 +3248,6 @@ msgstr ""
 
 msgid "View the blog &#9658;"
 msgstr ""
-
-#, fuzzy
-msgid "Pending information request:"
-msgstr "S'ha sol·licitat més informació"
-
-#, fuzzy
-msgid "This request for information has been resolved"
-msgstr "Encara no s'ha fet cap revisió d'aquesta versió."
 
 msgid "License"
 msgstr "Llicència"
@@ -3642,6 +3637,12 @@ msgid "Delete Version"
 msgstr "Suprimeix la versió"
 
 msgid "Disable Version"
+msgstr ""
+
+#, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
 msgstr ""
 
 msgid "Hide Add-on"
@@ -5131,6 +5132,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -5139,7 +5141,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -5193,15 +5194,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5238,33 +5250,6 @@ msgstr "Extensions"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Més informació"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "S'ha produït un error en accedir al fitxer %s."
-
-msgid "That file no longer exists."
-msgstr "El fitxer ja no existeix."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr ""
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Aquest fitxer no es pot veure en línia. Baixeu-lo per veure'n el contingut."
-
-msgid "This file is a directory."
-msgstr ""
-
-msgid "Cannot diff a version against itself"
-msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5352,104 +5337,6 @@ msgstr ""
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
-
-msgid "Back to review"
-msgstr "Torna a la revisió"
-
-# 80%
-# 100%
-#, fuzzy
-msgid "Back to add-on"
-msgstr "Torna als complements"
-
-# This is the text that appears on buttons to download add-ons.
-# %$1s is an optional string that only appears if the add-on is only available for
-# a certain platform.  Examples:  (Windows)  or  (Linux)
-# Note that the parentheses are included in the string. :(
-# 75%
-# 100%
-#, fuzzy
-msgid "Download {0}"
-msgstr "Baixa'l ara"
-
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
-
-#, fuzzy
-msgid "File Compare :: Reviewer tools"
-msgstr "Visualitzador de fitxers :: Eines d'edició"
-
-#, fuzzy
-msgid "File Viewer :: Reviewer tools"
-msgstr "Visualitzador de fitxers :: Eines d'edició"
-
-msgid "Validation failed:"
-msgstr ""
-
-msgid "File content not supported for syntax highlighting"
-msgstr ""
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
-
-msgid "close"
-msgstr "tanca"
-
-msgid "Go"
-msgstr "D'acord"
-
-msgid "Add-on file being processed, please wait."
-msgstr "S'està processant el fitxer del complement. Espereu-vos."
-
-msgid "Fetching validation results..."
-msgstr ""
-
-msgid "Files:"
-msgstr "Fitxers:"
-
-msgid "Deleted files:"
-msgstr "Fitxers eliminats:"
-
-msgid "Hide known files"
-msgstr ""
-
-msgid "Tab stops:"
-msgstr ""
-
-msgid "Up file"
-msgstr ""
-
-msgid "Down file"
-msgstr ""
-
-msgid "Previous diff"
-msgstr ""
-
-msgid "Previous note"
-msgstr ""
-
-msgid "Next diff"
-msgstr ""
-
-msgid "Next note"
-msgstr ""
-
-msgid "Expand all"
-msgstr "Mostra-ho tot"
-
-msgid "Hide or unhide tree"
-msgstr "Mostra o amaga l'arbre"
-
-msgid "Wrap or unwrap text"
-msgstr "Mostra o amaga el text"
-
-msgid "No files in the uploaded file."
-msgstr "No s'ha trobat cap fitxer per pujar"
-
-msgid "Fetching file."
-msgstr "S'està analitzant el fitxer."
 
 msgid "Review Guidelines"
 msgstr "Guia per a la revisió"
@@ -5722,13 +5609,6 @@ msgstr "Revisió d'admin"
 msgid "Requires Restart"
 msgstr "Camps obligatoris"
 
-msgid "More Information Requested"
-msgstr ""
-
-#, fuzzy
-msgid "Expired Information Request"
-msgstr "S'ha sol·licitat més informació"
-
 msgid "Sources provided"
 msgstr ""
 
@@ -5809,10 +5689,6 @@ msgid "Weight"
 msgstr ""
 
 #, fuzzy
-msgid "Information Request Deadline"
-msgstr "S'ha sol·licitat més informació"
-
-#, fuzzy
 msgid "Pending Rejection Deadline"
 msgstr "S'ha sol·licitat més informació"
 
@@ -5829,7 +5705,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "Revisió moderada ({0})"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "Altres versions"
 
 #, fuzzy
@@ -5927,15 +5803,11 @@ msgid "Security Scanners"
 msgstr "Proves de seguretat"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Revisió moderada ({0})"
-msgstr[1] "Revisions moderades ({0})"
+msgstr "Revisió moderada ({0})"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5960,9 +5832,7 @@ msgstr "No s'ha revisat"
 
 #, fuzzy
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Revisió moderada ({0})"
-msgstr[1] "Revisions moderades ({0})"
+msgstr "Revisió moderada ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -6006,10 +5876,6 @@ msgstr "Anunci"
 
 msgid "Update message of the day"
 msgstr "Actualitza el missatge del dia"
-
-#, fuzzy
-msgid "Expired Information Requests ({0})"
-msgstr "S'ha sol·licitat més informació"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6235,6 +6101,9 @@ msgstr ""
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr "Torna a la revisió"
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6244,10 +6113,6 @@ msgstr "Més complements"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "S'ha sol·licitat més informació"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6313,9 +6178,6 @@ msgstr "Historial del complement"
 msgid "Previously deleted entries"
 msgstr ""
 
-msgid "This is a recommended extension."
-msgstr ""
-
 msgid "You don't have permission to review it."
 msgstr ""
 
@@ -6327,6 +6189,9 @@ msgstr ""
 
 msgid "Insert canned response..."
 msgstr "Insereix una resposta predefinida..."
+
+msgid "Files:"
+msgstr "Fitxers:"
 
 msgid "Tested on:"
 msgstr "Provat a:"
@@ -6400,10 +6265,6 @@ msgstr ""
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Estat de l'aprovació"
-
-#, fuzzy
-msgid "Clear information request"
-msgstr "S'ha sol·licitat més informació"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6546,6 +6407,10 @@ msgstr ""
 msgid "(Confirmed)"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "S'ha sol·licitat més informació"
+
 msgid "Compatibility:"
 msgstr "Compatibilitat:"
 
@@ -6595,36 +6460,34 @@ msgid "[status:%s]"
 msgstr "Estat:"
 
 #, fuzzy
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Actualitzat {0}"
-msgstr[1] "Actualitzat {0}"
+msgid "Other Pending Review"
+msgstr "Revisió moderada ({0})"
 
 #, fuzzy
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Revisió moderada ({0})"
-msgstr[1] "Revisions moderades ({0})"
+msgid "Flagged By Scanners"
+msgstr "Proves de seguretat"
+
+#, fuzzy
+msgid "Flagged for Human Review"
+msgstr "Revisió moderada ({0})"
+
+#, fuzzy
+msgid "Updates"
+msgstr "Actualitza"
+
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "Revisió moderada ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "Complements del {0} "
-msgstr[1] "Complements del {0} "
+msgid "Auto Approved"
+msgstr "Complements del {0} "
 
 #, fuzzy
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "S'ha sol·licitat més informació"
-msgstr[1] "S'ha sol·licitat més informació"
-
-#, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Revisió moderada ({0})"
-msgstr[1] "Revisió moderada ({0})"
+msgid "Pending Rejection"
+msgstr "Revisió moderada ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6792,6 +6655,9 @@ msgstr "per plataforma"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "tanca"
+
 msgid "Custom Date Range"
 msgstr ""
 
@@ -6857,9 +6723,6 @@ msgstr "365 dies"
 msgid "Custom..."
 msgstr ""
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
-
 msgid "Loading the latest data&hellip;"
 msgstr "S'està carregant les últimes dades&hellip;"
 
@@ -6875,6 +6738,9 @@ msgstr "Ús de l'aplicació per data"
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "Llocs de baixada per data"
+
+msgid "About tracking external sources..."
+msgstr ""
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6909,9 +6775,6 @@ msgstr ""
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<strong>{0}</strong> baixada per setmana"
 
-msgid "<b>{0}</b> Downloads"
-msgstr ""
-
 msgid "Loading..."
 msgstr ""
 
@@ -6938,9 +6801,6 @@ msgstr ""
 
 msgid "Download sources by Date"
 msgstr "Llocs de baixada per data"
-
-msgid "About tracking external sources..."
-msgstr ""
 
 #, python-format
 msgid ""
@@ -7038,6 +6898,9 @@ msgstr ""
 
 msgid "Other languages"
 msgstr "Altres idiomes"
+
+msgid "Go"
+msgstr "D'acord"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
@@ -7259,7 +7122,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7273,7 +7136,4 @@ msgid "others"
 msgstr "altres"
 
 msgid "{app} {min} and later"
-msgstr ""
-
-msgid "Deleted versions can`t be changed."
 msgstr ""

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2020-06-11 03:01+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -569,10 +569,6 @@ msgstr "Titaq Ruwäch"
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
-
-#, fuzzy
-msgid "users"
-msgstr "Rub'i' okisanel"
 
 msgid "Edit Block"
 msgstr ""
@@ -1411,14 +1407,15 @@ msgstr "To'ïk"
 msgid "Recommended"
 msgstr "Xtz'ijöx"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -1948,9 +1945,8 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "Xk'ulwachitäj jun sachoj toq nijotob'äx ri nab'ey rutzub'al."
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2639,6 +2635,20 @@ msgstr[1] "<strong>{0}</strong> ketzij okisanela'"
 msgid "Submit a New Version"
 msgstr "Titaq jun K'ak'a' Ruwäch"
 
+msgid "Cancel and Disable Version"
+msgstr "Tiq'at chuqa' Tichup Ruwäch"
+
+#, fuzzy
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr "¿At jikïl chi nawajo' nayüj el re ruwäch re'?"
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "Tiq'at"
+
+msgid "No, don't cancel"
+msgstr ""
+
 msgid "Name and Summary:"
 msgstr "B'i'aj chuqa' B'anikil:"
 
@@ -2714,9 +2724,6 @@ msgstr "Re taq ch'utitzijol re' xa xe rat chuqa' ri qanik'onela' xketikïr xketz
 
 msgid "Submit Version"
 msgstr "Titaq Ruwäch"
-
-msgid "Cancel and Disable Version"
-msgstr "Tiq'at chuqa' Tichup Ruwäch"
 
 msgid "Describe Version"
 msgstr "Titz'ijöx rij Ruwäch"
@@ -3037,10 +3044,6 @@ msgstr ""
 msgid "Invisible"
 msgstr "Metz'etel"
 
-#, fuzzy
-msgid "Approved and recommended"
-msgstr "Ütz taq ejqalem"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Tatz'aqatisaj ri atz'aqat, rik'in natz'aqatisaj jun ruwäch o ri taq ichintzij nrajo' na."
 
@@ -3125,12 +3128,6 @@ msgstr "Kitzijol B'anonela'"
 
 msgid "View the blog &#9658;"
 msgstr "Titz'et ri ichinya'l"
-
-msgid "Pending information request:"
-msgstr "Oyob'en retamab'al ri xk'utüx:"
-
-msgid "This request for information has been resolved"
-msgstr "Xsol re ruk'utuxik etamab'äl re'"
 
 msgid "License"
 msgstr "Ya'oj q'ij"
@@ -3504,6 +3501,12 @@ msgstr "Tiyuj Ruwäch"
 
 msgid "Disable Version"
 msgstr "Tichup Ruwäch"
+
+#, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
+msgstr ""
 
 msgid "Hide Add-on"
 msgstr "Tewäx Tz'aqat"
@@ -5070,6 +5073,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Ke'aq'ata' ri ojqanela' pa taq kanob'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -5079,7 +5083,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ke'awila' taq silowäch {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -5134,15 +5137,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5178,33 +5192,6 @@ msgstr "Taq k'amal"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Tetamäx Ch'aqa' Chik"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "Q'atäl ri tz'etonel yakb'äl, rik'in jub'a' nelesäx %s. Tatojtob'ej chik pa 5 ch'utiramaj."
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "K'o jun k'ayewal richin nok pa ri yakb'äl %s."
-
-msgid "That file no longer exists."
-msgstr "Man k'o ta chik re yakb'äl re'."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Ri runimilem yakb'äl niq'ax chi re ri {0}."
-
-msgid "Problems decoding {0}."
-msgstr "K'o k'ayewal toq nelesäx runa'oj {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Man tikirel ta nitz'et re yakb'äl re' pa k'amab'ey. Taqasaj richin natz'ët rupam ri yakb'äl."
-
-msgid "This file is a directory."
-msgstr "Re yakb'äl re' jun cholb'äl."
-
-msgid "Cannot diff a version against itself"
-msgstr "Man tikirel ta nijunamäx ruwäch rik'in rija'"
 
 msgid "Could not parse the manifest file."
 msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
@@ -5295,92 +5282,6 @@ msgstr "Man oyob'en ta re sachoj."
 #, fuzzy, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> pa ri ayakb'al install.rdf (%s) man nuk'äm ta ri' rik'in ri rucha'onem atz'aqat pa AMO (%s)"
-
-msgid "Back to review"
-msgstr "Titzolin pa runik'oxik"
-
-msgid "Back to add-on"
-msgstr "Titzolin pa Tz'aqat"
-
-msgid "Download {0}"
-msgstr "Qasanïk {0}"
-
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "Ruwäch: %(version)s &bull; Nimilem: %(size)s &bull; SHA256 hash: %(sha256)s  &bull; Ruwäch MIME: %(mimetype)s"
-
-msgid "File Compare :: Reviewer tools"
-msgstr "Junamanel Yakb'äl :: Taq rusamajib'al nik'onel"
-
-msgid "File Viewer :: Reviewer tools"
-msgstr "Tz'etonel Yakb'äl :: Taq rusamajib'al nik'onel"
-
-msgid "Validation failed:"
-msgstr "Xsach ri jikib'anïk:"
-
-msgid "File content not supported for syntax highlighting"
-msgstr "Man nik'am ta ri rupam yakb'äl richin niya' retal cholb'ab'"
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr "¡Rik'in jub'a' xk'apïx ri niq'i': tachajij awi' chuqa' %(link_start)stataqa' jun rutzijol%(link_end)s chanin!"
-
-msgid "close"
-msgstr "titz'apïx"
-
-msgid "Go"
-msgstr "Jo'"
-
-msgid "Add-on file being processed, please wait."
-msgstr "Xsamajïx ri tz'aqat yakb'äl, tawoyob'ej."
-
-msgid "Fetching validation results..."
-msgstr "Kikolik ri xq'i' richin jikib'anïk..."
-
-msgid "Files:"
-msgstr "Taq yakb'äl:"
-
-msgid "Deleted files:"
-msgstr "Keyuj taq yakb'äl:"
-
-msgid "Hide known files"
-msgstr "Ke'ewäx taq yakb'äl etaman kiwa"
-
-msgid "Tab stops:"
-msgstr "Rukojol ruchi':"
-
-msgid "Up file"
-msgstr "Tijotob'äx yakb'äl"
-
-msgid "Down file"
-msgstr "Tiqasäx yakb'äl"
-
-msgid "Previous diff"
-msgstr "Ruwa diff"
-
-msgid "Previous note"
-msgstr "Jun kan ch'utitzijol"
-
-msgid "Next diff"
-msgstr "Jun chik diff"
-
-msgid "Next note"
-msgstr "Jun chik ch'utitzijol"
-
-msgid "Expand all"
-msgstr "Tirik' ronojel"
-
-msgid "Hide or unhide tree"
-msgstr "Tewäx o tik'ut ruche'el"
-
-msgid "Wrap or unwrap text"
-msgstr "Man tiqupïx o tiqupïx tz'ib'anïk"
-
-msgid "No files in the uploaded file."
-msgstr "Majun yakb'äl pa ri yakb'äl xjotob'äx."
-
-msgid "Fetching file."
-msgstr "Nika'am yakb'äl."
 
 msgid "Review Guidelines"
 msgstr "Kib'eyal Yesamajïx taq Nik'oxïk"
@@ -5659,12 +5560,6 @@ msgstr "K'atzinel Ninik'öx ri Mesilon Wachinel Ruma ri Nuk'samajel"
 msgid "Requires Restart"
 msgstr "Nrajo' chi Nitikirisäx chik"
 
-msgid "More Information Requested"
-msgstr "Xk'utüx Ch'aqa' chik Etamab'äl"
-
-msgid "Expired Information Request"
-msgstr "Xk'is Ruq'ijul ri Etamab'äl Xk'utüx"
-
 msgid "Sources provided"
 msgstr "Ya'on taq xe'el"
 
@@ -5747,9 +5642,6 @@ msgstr "Ruk'isib'äl nik'oxïk"
 msgid "Weight"
 msgstr "Ralal"
 
-msgid "Information Request Deadline"
-msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
-
 #, fuzzy
 msgid "Pending Rejection Deadline"
 msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
@@ -5767,7 +5659,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "Runik'oxik Rajil ({0})"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "Cholajin ruwäch"
 
 #, fuzzy
@@ -5854,15 +5746,11 @@ msgid "Security Scanners"
 msgstr "Jikomal Tojtob'enïk"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Runik'oxik Rajil ({0})"
-msgstr[1] "Kinik'oxik Kajil ({0})"
+msgstr "Runik'oxik Rajil ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Ruyon Ütz Etz'eton taq Tz'aqat"
@@ -5879,10 +5767,9 @@ msgstr "Ruk'amöl Nik'oxïk"
 msgid "Content Review"
 msgstr "Runik'oxik Rupam"
 
+#, fuzzy
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Runik'oxik Rupam ({0})"
-msgstr[1] "Runik'oxik Rupam ({0})"
+msgstr "Runik'oxik Rupam ({0})"
 
 msgid "New ({0})"
 msgstr "K'ak'a' ({0})"
@@ -5916,9 +5803,6 @@ msgstr "Eltzijol"
 
 msgid "Update message of the day"
 msgstr "Tik'ex ri tzijol wakami"
-
-msgid "Expired Information Requests ({0})"
-msgstr "Xk'is Ruq'ijul ri Etamab'äl Xek'utüx ({0})"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6134,6 +6018,9 @@ msgstr "Ronojel-Q'ij"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr "Titzolin pa runik'oxik"
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6143,10 +6030,6 @@ msgstr "Ruyon Ütz Etz'eton taq Tz'aqat"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Xk'is Ruq'ijul ri Etamab'äl Xk'utüx"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6211,9 +6094,6 @@ msgstr "Runatab'al Tz'aqat"
 msgid "Previously deleted entries"
 msgstr "Jun kan ch'utitzijol"
 
-msgid "This is a recommended extension."
-msgstr ""
-
 #, fuzzy
 msgid "You don't have permission to review it."
 msgstr "Man k'o ta API awujil."
@@ -6227,6 +6107,9 @@ msgstr "K'a yatikïr natäq re nojwuj re', ütz we awetaman chi majun k'ayewal."
 
 msgid "Insert canned response..."
 msgstr "Tinim jun k'o wi chi tzolin tzij..."
+
+msgid "Files:"
+msgstr "Taq yakb'äl:"
 
 msgid "Tested on:"
 msgstr "Tojtob'en pa:"
@@ -6297,9 +6180,6 @@ msgstr "Achupun retal ruyon-ütz-nitz'et."
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Titzij Ruyon-Ütz-Nitz'et"
-
-msgid "Clear information request"
-msgstr "Tijosq'ïx ruk'utuxik etamab'äl"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6438,6 +6318,10 @@ msgstr "Ruwäch %(version)s &middot; %(created)s <span class=\"light\">&middot;%
 msgid "(Confirmed)"
 msgstr "(Xjikib'äx)"
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
+
 msgid "Compatibility:"
 msgstr "K'amonïk:"
 
@@ -6485,31 +6369,33 @@ msgstr "Exutun o Man Enik'on ta"
 msgid "[status:%s]"
 msgstr "[rub'anikil:%s]"
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Ruk'exoj ({0})"
-msgstr[1] "Kik'exoj ({0})"
-
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Runik'oxik Rajil ({0})"
-msgstr[1] "Kinik'oxik Kajil ({0})"
-
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "Ruyon Ütz Nitz'et ({0})"
-msgstr[1] "Ruyonil Ütz Yetz'et ({0})"
-
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Xk'is Ruq'ijul Ruk'utuxik Etamab'äl ({0})"
-msgstr[1] "Xk'is Ruq'ijul ri Etamab'äl Xek'utüx ({0})"
+#, fuzzy
+msgid "Other Pending Review"
+msgstr "Runik'oxik Rajil ({0})"
 
 #, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Runik'oxik Rajil ({0})"
-msgstr[1] "Runik'oxik Rajil ({0})"
+msgid "Flagged By Scanners"
+msgstr "Jikomal Tojtob'enïk"
+
+#, fuzzy
+msgid "Flagged for Human Review"
+msgstr "Runik'oxik Rajil ({0})"
+
+#, fuzzy
+msgid "Updates"
+msgstr "Tik'ex"
+
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "Noyob'ëx Nik'oxïk"
+
+#, fuzzy
+msgid "Auto Approved"
+msgstr "Ruyon Ütz Nitz'et ({0})"
+
+#, fuzzy
+msgid "Pending Rejection"
+msgstr "Runik'oxik Rajil ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6684,6 +6570,9 @@ msgstr "chi Nuk'uche'el"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "titz'apïx"
+
 msgid "Custom Date Range"
 msgstr "Kajlab'al Ichinan Q'ijul"
 
@@ -6749,9 +6638,6 @@ msgstr "365 taq q'ij"
 msgid "Custom..."
 msgstr "Ichinan..."
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr "Wakami chupül ri rub'eyal molob'a', ruma ri' toq ri k'ak'a' taq tzij man e wachel ta. K'a yeqamöl taq molob'a' chuqa' xtuk'ëx ri' ri ruxaq rik'in ri taq tzij k'a nrajo' na."
-
 msgid "Loading the latest data&hellip;"
 msgstr "Yesamajib'ëx ri ruk'isib'äl taq tzij&hellip;"
 
@@ -6768,6 +6654,9 @@ msgstr "Rokisaxik chokoy chi Q'ijul"
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "Kixe'el qasanïk chi Q'ijul"
+
+msgid "About tracking external sources..."
+msgstr "Chi rij rojqaxik ch rij kixe'el..."
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6804,9 +6693,6 @@ msgstr "Rokisaxik nuk'uch'el chi Q'ijul"
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> Taq Qasanïk"
 
-msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> Taq Qasanïk"
-
 msgid "Loading..."
 msgstr "Nisamajib'ëx..."
 
@@ -6833,9 +6719,6 @@ msgstr "Ketz'et ch'aqa' chik taq nuk'uche'el&hellip;"
 
 msgid "Download sources by Date"
 msgstr "Kixe'el qasanïk chi Q'ijul"
-
-msgid "About tracking external sources..."
-msgstr "Chi rij rojqaxik ch rij kixe'el..."
 
 #, python-format
 msgid ""
@@ -6928,6 +6811,9 @@ msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Ch'aqa' chik taq ch'ab'äl"
+
+msgid "Go"
+msgstr "Jo'"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Titzolin pa ri ruxaq {0} Tz'aqat"
@@ -7150,7 +7036,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7165,6 +7051,3 @@ msgstr "juley chik"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} chuqa' ri nipe"
-
-msgid "Deleted versions can`t be changed."
-msgstr "Man tikirel ta yejal ri taq ruwäch eyujun el."

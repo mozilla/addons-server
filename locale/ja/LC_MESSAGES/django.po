@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2020-06-29 07:43+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -564,10 +564,6 @@ msgstr "登録"
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
-
-#, fuzzy
-msgid "users"
-msgstr "ユーザー"
 
 msgid "Edit Block"
 msgstr ""
@@ -1392,14 +1388,15 @@ msgstr "宣伝"
 msgid "Recommended"
 msgstr "おすすめ ({0})"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -1920,10 +1917,8 @@ msgstr "アイコンは正方形 (縦横が同じサイズ) でなければな�
 msgid "There was an error uploading your preview."
 msgstr "プレビューのアップロード中に問題が発生しました。"
 
-#, fuzzy
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, fuzzy, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "おすすめの拡張機能の最新の承認済みバージョンを削除または無効化することはできません。助けが必要な場合は AMO の管理者に問い合わせてください。"
 
 #, python-format
@@ -2602,6 +2597,20 @@ msgstr[0] "アクティブユーザー <strong>{0}</strong> 名"
 msgid "Submit a New Version"
 msgstr "新しいバージョンを登録"
 
+msgid "Cancel and Disable Version"
+msgstr "キャンセルしてバージョンを無効化"
+
+#, fuzzy
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr "本当にこのバージョンを削除しますか？"
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "キャンセル"
+
+msgid "No, don't cancel"
+msgstr ""
+
 msgid "Name and Summary:"
 msgstr "名前と概要:"
 
@@ -2679,9 +2688,6 @@ msgstr "このメモはあなたと審査担当者のみが参照できます。
 
 msgid "Submit Version"
 msgstr "バージョンを登録"
-
-msgid "Cancel and Disable Version"
-msgstr "キャンセルしてバージョンを無効化"
 
 msgid "Describe Version"
 msgstr "バージョンの説明を記入"
@@ -3003,10 +3009,6 @@ msgstr ""
 msgid "Invisible"
 msgstr "非表示"
 
-#, fuzzy
-msgid "Approved and recommended"
-msgstr "承認されたレビュー"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "バージョンあるいは漏れているメタデータを追加してアドオンを完成させてください。"
 
@@ -3091,12 +3093,6 @@ msgstr "開発者向けニュース"
 
 msgid "View the blog &#9658;"
 msgstr "ブログを見る &#9658;"
-
-msgid "Pending information request:"
-msgstr "詳細情報請求済み"
-
-msgid "This request for information has been resolved"
-msgstr "この情報請求は解決しました"
 
 msgid "License"
 msgstr "ライセンス"
@@ -3471,6 +3467,12 @@ msgstr "バージョンを削除"
 
 msgid "Disable Version"
 msgstr "バージョンを無効化"
+
+#, fuzzy, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
+msgstr "おすすめの拡張機能の最新の承認済みバージョンを削除または無効化することはできません。助けが必要な場合は AMO の管理者に問い合わせてください。"
 
 msgid "Hide Add-on"
 msgstr "アドオンを非公開にする"
@@ -5015,6 +5017,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Android 検索を向上"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -5023,7 +5026,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Android 動画のヘルプ"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -5078,15 +5080,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5121,33 +5134,6 @@ msgstr "拡張機能を探す"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "詳細"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "ファイルビューアーはロックされており、%sの抽出が行われている可能性があります。約 5 分後に再度試してください。"
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "ファイル「%s」を開けませんでした。"
-
-msgid "That file no longer exists."
-msgstr "このファイルは存在しません。"
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "ファイルサイズが {0}の上限を超えています。"
-
-msgid "Problems decoding {0}."
-msgstr "{0}をデコードできませんでした。"
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "このファイルはオンラインで表示できません。内容を表示するにはファイルをダウンロードしてください。"
-
-msgid "This file is a directory."
-msgstr "このファイルはディレクトです。"
-
-msgid "Cannot diff a version against itself"
-msgstr "同じバージョンの差分を取ることはできません"
 
 msgid "Could not parse the manifest file."
 msgstr "マニフェストファイルを解析できませんでした。"
@@ -5236,92 +5222,6 @@ msgstr "予期しないエラーが発生しました。"
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "type (%s) が AMO 上のあなたのアドオンの type (%s) と一致しません"
-
-msgid "Back to review"
-msgstr "レビューのページへ戻る"
-
-msgid "Back to add-on"
-msgstr "アドオンのページへ戻る"
-
-msgid "Download {0}"
-msgstr "{0}をダウンロード"
-
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "バージョン: %(version)s &bull; サイズ: %(size)s &bull; SHA256 ハッシュ: %(sha256)s &bull; MIME タイプ: %(mimetype)s"
-
-msgid "File Compare :: Reviewer tools"
-msgstr "ファイル比較 :: 審査担当者用ツール"
-
-msgid "File Viewer :: Reviewer tools"
-msgstr "ファイルビューア :: 審査担当者用ツール"
-
-msgid "Validation failed:"
-msgstr "検証失敗:"
-
-msgid "File content not supported for syntax highlighting"
-msgstr "ファイルの内容が構文の強調表示に対応していません"
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr "出力が壊れる可能性がありますので気をつけて、至急%(link_start)s問題を報告%(link_end)sしてください。"
-
-msgid "close"
-msgstr "閉じる"
-
-msgid "Go"
-msgstr "移動"
-
-msgid "Add-on file being processed, please wait."
-msgstr "アドオンのファイルを処理しています。しばらくお待ちください。"
-
-msgid "Fetching validation results..."
-msgstr "検証結果を取得しています..."
-
-msgid "Files:"
-msgstr "ファイル:"
-
-msgid "Deleted files:"
-msgstr "削除されたファイル:"
-
-msgid "Hide known files"
-msgstr "既知のファイルを隠す"
-
-msgid "Tab stops:"
-msgstr "タブストップ:"
-
-msgid "Up file"
-msgstr "ファイルを上へ移動"
-
-msgid "Down file"
-msgstr "ファイルを下へ移動"
-
-msgid "Previous diff"
-msgstr "前の差分"
-
-msgid "Previous note"
-msgstr "前のメモ"
-
-msgid "Next diff"
-msgstr "次の差分"
-
-msgid "Next note"
-msgstr "次のメモ"
-
-msgid "Expand all"
-msgstr "すべて展開"
-
-msgid "Hide or unhide tree"
-msgstr "ツリーを広げる・折りたたむ"
-
-msgid "Wrap or unwrap text"
-msgstr "テキストを広げる・折りたたむ"
-
-msgid "No files in the uploaded file."
-msgstr "アップロードされたファイルにはファイルが含まれていません。"
-
-msgid "Fetching file."
-msgstr "ファイルを取得しています。"
 
 msgid "Review Guidelines"
 msgstr "レビューガイドライン"
@@ -5592,12 +5492,6 @@ msgstr "管理者静的テーマ審査が必要"
 msgid "Requires Restart"
 msgstr "要再起動"
 
-msgid "More Information Requested"
-msgstr "詳しい情報が求められています"
-
-msgid "Expired Information Request"
-msgstr "期限切れとなった情報請求"
-
 msgid "Sources provided"
 msgstr "ソース提供あり"
 
@@ -5676,9 +5570,6 @@ msgstr "最後のレビュー"
 msgid "Weight"
 msgstr "重み"
 
-msgid "Information Request Deadline"
-msgstr "情報請求期限"
-
 #, fuzzy
 msgid "Pending Rejection Deadline"
 msgstr "情報請求期限"
@@ -5695,7 +5586,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "その他の保留中のレビュー ({0})"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "公開バージョン"
 
 #, fuzzy
@@ -5780,13 +5671,11 @@ msgid "Security Scanners"
 msgstr "セキュリティテスト"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "レーティング審査 ({0})"
+msgstr "レーティング審査 ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自動承認されたアドオン"
@@ -5803,9 +5692,9 @@ msgstr "審査ガイド"
 msgid "Content Review"
 msgstr "コンテンツ審査"
 
+#, fuzzy
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "コンテンツ審査 ({0})"
+msgstr "コンテンツ審査 ({0})"
 
 msgid "New ({0})"
 msgstr "新規 ({0})"
@@ -5839,9 +5728,6 @@ msgstr "お知らせ"
 
 msgid "Update message of the day"
 msgstr "今日のメッセージを更新"
-
-msgid "Expired Information Requests ({0})"
-msgstr "期限切れとなった情報請求 ({0})"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6056,6 +5942,9 @@ msgstr "全期間"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr "レビューのページへ戻る"
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6065,10 +5954,6 @@ msgstr "自動承認されたアドオン"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "期限切れとなった情報請求"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6132,9 +6017,6 @@ msgstr "アドオンの履歴"
 msgid "Previously deleted entries"
 msgstr "以前に削除されたエントリー"
 
-msgid "This is a recommended extension."
-msgstr ""
-
 #, fuzzy
 msgid "You don't have permission to review it."
 msgstr "あなたは API 認証情報を持っていません。"
@@ -6148,6 +6030,9 @@ msgstr "このフォームを送信することはできますが、競合しな
 
 msgid "Insert canned response..."
 msgstr "定型文の返信を挿入..."
+
+msgid "Files:"
+msgstr "ファイル:"
 
 msgid "Tested on:"
 msgstr "テスト環境:"
@@ -6218,9 +6103,6 @@ msgstr "自動承認無効フラグが設定されています"
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "自動承認を有効化"
-
-msgid "Clear information request"
-msgstr "情報請求をクリア"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6358,6 +6240,10 @@ msgstr "バージョン %(version)s &middot; %(created)s <span class=\"light\">&
 msgid "(Confirmed)"
 msgstr "(確認済み)"
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "情報請求期限"
+
 msgid "Compatibility:"
 msgstr "互換性:"
 
@@ -6405,26 +6291,33 @@ msgstr "却下もしくは未審査"
 msgid "[status:%s]"
 msgstr "[状態:%s]"
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "更新 {0}"
-
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "レーティング審査 ({0})"
-
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "自動承認済み ({0})"
-
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "期限切れとなった情報請求 ({0})"
+#, fuzzy
+msgid "Other Pending Review"
+msgstr "その他の保留中のレビュー ({0})"
 
 #, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "その他の保留中のレビュー ({0})"
+msgid "Flagged By Scanners"
+msgstr "セキュリティテスト"
+
+#, fuzzy
+msgid "Flagged for Human Review"
+msgstr "レーティング審査 ({0})"
+
+#, fuzzy
+msgid "Updates"
+msgstr "更新"
+
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "審査待ち"
+
+#, fuzzy
+msgid "Auto Approved"
+msgstr "自動承認済み ({0})"
+
+#, fuzzy
+msgid "Pending Rejection"
+msgstr "その他の保留中のレビュー ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6599,6 +6492,9 @@ msgstr "OS 別"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "閉じる"
+
 msgid "Custom Date Range"
 msgstr "期間の指定"
 
@@ -6664,9 +6560,6 @@ msgstr "365 日"
 msgid "Custom..."
 msgstr "期間を指定..."
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr "統計情報の処理が現在停止しているため、最近のデータは利用できません。この間も統計情報は収集されており、このページが更新され次第データが表示されます。"
-
 msgid "Loading the latest data&hellip;"
 msgstr "最新データを読み込み中&hellip;"
 
@@ -6683,6 +6576,9 @@ msgstr "日別アプリケーション使用回数"
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "日別ダウンロード参照元数"
+
+msgid "About tracking external sources..."
+msgstr "外部参照元のトラッキングについて..."
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6718,9 +6614,6 @@ msgstr "日別プラットフォーム使用回数"
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "ダウンロード数 <b>{0}</b>"
 
-msgid "<b>{0}</b> Downloads"
-msgstr "ダウンロード数 <b>{0}</b>"
-
 msgid "Loading..."
 msgstr "読み込み中..."
 
@@ -6747,9 +6640,6 @@ msgstr "他のプラットフォームを表示&hellip;"
 
 msgid "Download sources by Date"
 msgstr "日別ダウンロード参照元数"
-
-msgid "About tracking external sources..."
-msgstr "外部参照元のトラッキングについて..."
 
 #, python-format
 msgid ""
@@ -6848,6 +6738,9 @@ msgstr "Beta、Nightly、Developer Edition"
 
 msgid "Other languages"
 msgstr "他の言語"
+
+msgid "Go"
+msgstr "移動"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
@@ -7068,7 +6961,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7083,6 +6976,3 @@ msgstr "その他"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} 以降"
-
-msgid "Deleted versions can`t be changed."
-msgstr "削除したバージョンは変更できません。"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2020-07-14 15:38+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -561,9 +561,6 @@ msgstr "Odeslat"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
-
-msgid "users"
 msgstr ""
 
 msgid "Edit Block"
@@ -1386,14 +1383,15 @@ msgstr "Propagovat"
 msgid "Recommended"
 msgstr "Doporučeno ({0})"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -1919,9 +1917,8 @@ msgstr "Ikona musí být čtvercová (stejná šířka a výška)."
 msgid "There was an error uploading your preview."
 msgstr "Při nahrávání obrázku se vyskytla chyba."
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, fuzzy, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 "Nejnovější schválenou verzi doporučeného rozšíření nelze odstranit ani zakázat, protože předchozí verze nebyla pro doporučení schválena. Kontaktujte prosím administrátory AMO, pokud s tímto "
 "potřebujete pomoci."
@@ -2616,6 +2613,20 @@ msgstr[2] "<strong>{0}</strong> aktivních uživatelů"
 msgid "Submit a New Version"
 msgstr "Odeslat novou verzi"
 
+msgid "Cancel and Disable Version"
+msgstr "Zrušit a zakázat verzi"
+
+#, fuzzy
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr "Opravdu chcete smazat tuto verzi?"
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "Zrušit"
+
+msgid "No, don't cancel"
+msgstr ""
+
 msgid "Name and Summary:"
 msgstr "Název a souhrn:"
 
@@ -2695,9 +2706,6 @@ msgstr "Tyto poznámky budou viditelné pouze vám a našim redaktorům."
 
 msgid "Submit Version"
 msgstr "Odeslat verzi"
-
-msgid "Cancel and Disable Version"
-msgstr "Zrušit a zakázat verzi"
 
 msgid "Describe Version"
 msgstr "Popište verzi"
@@ -3021,9 +3029,6 @@ msgstr ""
 msgid "Invisible"
 msgstr "Neviditelné"
 
-msgid "Approved and recommended"
-msgstr "Schválené a doporučené"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Doplňte prosím k vašemu doplňku verzi či chybějící metadata."
 
@@ -3108,12 +3113,6 @@ msgstr "Novinky pro vývojáře"
 
 msgid "View the blog &#9658;"
 msgstr "Přejít na blog &#9658;"
-
-msgid "Pending information request:"
-msgstr "Vyžádáno více informací:"
-
-msgid "This request for information has been resolved"
-msgstr "Požadavek na doplnění informací byl splněn"
 
 msgid "License"
 msgstr "Licence"
@@ -3493,6 +3492,14 @@ msgstr "Smazat verzi"
 
 msgid "Disable Version"
 msgstr "Zakázat verzi"
+
+#, fuzzy, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
+msgstr ""
+"Nejnovější schválenou verzi doporučeného rozšíření nelze odstranit ani zakázat, protože předchozí verze nebyla pro doporučení schválena. Kontaktujte prosím administrátory AMO, pokud s tímto "
+"potřebujete pomoci."
 
 msgid "Hide Add-on"
 msgstr "Skrýt doplněk"
@@ -4987,6 +4994,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Vylepšené vyhledávání na Androidu {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr "Získejte pokročilejší stránku vyhledávání ve Firefoxu pro Android."
 
@@ -4995,7 +5003,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bezproblémové přehrávání videi na Androidu {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr "Některé stránky mají potíže s přehráváním videí ve Firefoxu pro Android. Toto rozšíření poskytuje opravu."
 
@@ -5052,15 +5059,27 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr "Sledujte streamovaná média s přáteli a rodinou kdekoli."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Přeskočte sponzorované části videí na YouTube."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr "Nechte si webové stránky předčítat. Podporováno více než 40 jazyků."
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr "Některé stránky mají potíže s přehráváním videí ve Firefoxu pro Android. Toto rozšíření poskytuje opravu."
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5095,33 +5114,6 @@ msgstr "Podívejte se na další rozšíření"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Dozvědět se více"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "Prohlížeč souborů je uzamčen, což může být způsobeno probíhající extrakcí %s. Zkuste to prosím znovu za přibližně 5 minut."
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Při přístupu k souboru %s došlo k chybě."
-
-msgid "That file no longer exists."
-msgstr "Tento soubor již neexistuje."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Velikost souboru je větší než limit {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Problémy s dekódováním {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Tento soubor není zobrazitelný online. Pro jeho zobrazení si jej stáhněte."
-
-msgid "This file is a directory."
-msgstr "Tento soubor je adresář."
-
-msgid "Cannot diff a version against itself"
-msgstr "Nelze porovnat verzi proti sama sobě"
 
 msgid "Could not parse the manifest file."
 msgstr "Nepodařilo se zpracovat manifest soubor."
@@ -5210,92 +5202,6 @@ msgstr "Neočekávaná chyba."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Typ (%s) neodpovídá typu doplňku zde na AMO (%s)"
-
-msgid "Back to review"
-msgstr "Zpět na recenzi"
-
-msgid "Back to add-on"
-msgstr "Zpět na doplněk"
-
-msgid "Download {0}"
-msgstr "Stáhnout {0}"
-
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "Verze: %(version)s &bull; Velikost: %(size)s &bull; SHA256 hash: %(sha256)s &bull; MIME typ: %(mimetype)s"
-
-msgid "File Compare :: Reviewer tools"
-msgstr "Porovnání souborů :: Nástroje redaktora"
-
-msgid "File Viewer :: Reviewer tools"
-msgstr "Prohlížeč souborů :: Nástroje redaktora"
-
-msgid "Validation failed:"
-msgstr "Kontrola selhala:"
-
-msgid "File content not supported for syntax highlighting"
-msgstr "Obsah souboru není zvýrazňovačem syntaxe podporován"
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr "Výstup může být rozbitý, buďte prosím opatrní a případné problémy %(link_start)shlaste%(link_end)s co nejdříve!"
-
-msgid "close"
-msgstr "zavřít"
-
-msgid "Go"
-msgstr "Přejít"
-
-msgid "Add-on file being processed, please wait."
-msgstr "Soubor s doplňkem je zpracováván. Čekejte prosím."
-
-msgid "Fetching validation results..."
-msgstr "Probíhá získávání výsledků kontroly..."
-
-msgid "Files:"
-msgstr "Soubory:"
-
-msgid "Deleted files:"
-msgstr "Smazané soubory:"
-
-msgid "Hide known files"
-msgstr "Skrýt známé soubory"
-
-msgid "Tab stops:"
-msgstr "Tabulátory:"
-
-msgid "Up file"
-msgstr "Soubor výše"
-
-msgid "Down file"
-msgstr "Soubor níže"
-
-msgid "Previous diff"
-msgstr "Předchozí rozdíl"
-
-msgid "Previous note"
-msgstr "Předchozí poznámka"
-
-msgid "Next diff"
-msgstr "Další rozdíl"
-
-msgid "Next note"
-msgstr "Další poznámka"
-
-msgid "Expand all"
-msgstr "Rozbalit vše"
-
-msgid "Hide or unhide tree"
-msgstr "Skrýt či zobrazit nabídku"
-
-msgid "Wrap or unwrap text"
-msgstr "Zalomit nebo nezalomit text"
-
-msgid "No files in the uploaded file."
-msgstr "V nahraném souboru se nenachází žádné soubory."
-
-msgid "Fetching file."
-msgstr "Probíhá stahování souboru."
 
 msgid "Review Guidelines"
 msgstr "Příručka recenzenta"
@@ -5570,12 +5476,6 @@ msgstr "Čeká na kontrolu statického vzhledu administrátorem"
 msgid "Requires Restart"
 msgstr "Vyžaduje restart"
 
-msgid "More Information Requested"
-msgstr "Vyžadováno více informací"
-
-msgid "Expired Information Request"
-msgstr "Požadavek po lhůtě na doplnění informací"
-
 msgid "Sources provided"
 msgstr "Poskytnuty zdrojové kódy"
 
@@ -5660,9 +5560,6 @@ msgstr "Poslední kontrola"
 msgid "Weight"
 msgstr "Váha"
 
-msgid "Information Request Deadline"
-msgstr "Lhůta pro doplnění informací"
-
 #, fuzzy
 msgid "Pending Rejection Deadline"
 msgstr "Lhůta pro doplnění informací"
@@ -5679,7 +5576,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "Další nevyřízená recenze ({0})"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "Zveřejněné verze"
 
 #, fuzzy
@@ -5764,17 +5661,11 @@ msgid "Security Scanners"
 msgstr "Bezpečnostní testy"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Jedna kontrola hodnocení"
-msgstr[1] "{0} kontroly hodnocení"
-msgstr[2] "{0} kontrol hodnocení"
+msgstr "Jedna kontrola hodnocení"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automaticky schválené doplňky"
@@ -5791,11 +5682,9 @@ msgstr "Příručka recenzenta"
 msgid "Content Review"
 msgstr "Kontrola obsahu"
 
+#, fuzzy
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Jedna kontrola obsahu"
-msgstr[1] "{0} kontroly obsahu"
-msgstr[2] "{0} kontrol obsahu"
+msgstr "Jedna kontrola obsahu"
 
 msgid "New ({0})"
 msgstr "Nové ({0})"
@@ -5829,9 +5718,6 @@ msgstr "Oznámení"
 
 msgid "Update message of the day"
 msgstr "Aktualizace zprávy dne"
-
-msgid "Expired Information Requests ({0})"
-msgstr "Požadavky po lhůtě na doplnění informací ({0})"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6048,6 +5934,9 @@ msgstr "Po celou dobu"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr "Zpět na recenzi"
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6057,10 +5946,6 @@ msgstr "Automaticky schválené doplňky"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Požadavek po lhůtě na doplnění informací"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6124,9 +6009,6 @@ msgstr "Historie doplňku"
 msgid "Previously deleted entries"
 msgstr "Dříve smazané položky"
 
-msgid "This is a recommended extension."
-msgstr "Toto je doporučené rozšíření."
-
 #, fuzzy
 msgid "You don't have permission to review it."
 msgstr "Nemáte žádné přihlašovací údaje k API."
@@ -6140,6 +6022,9 @@ msgstr "Stále můžete tento formulář odeslat, ale udělejte to pouze tehdy, 
 
 msgid "Insert canned response..."
 msgstr "Vložení předpřipravené odpovědi..."
+
+msgid "Files:"
+msgstr "Soubory:"
 
 msgid "Tested on:"
 msgstr "Testováno na:"
@@ -6210,9 +6095,6 @@ msgstr "Má nastaven příznak „Automatické schvalování zakázáno“"
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Zapnout automatické schvalování"
-
-msgid "Clear information request"
-msgstr "Vymazat požadavky na doplnění informací"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6350,6 +6232,10 @@ msgstr "Verze %(version)s &middot; %(created)s <span class=\"light\">&middot; %(
 msgid "(Confirmed)"
 msgstr "(Potvrzeno)"
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "Lhůta pro doplnění informací"
+
 msgid "Compatibility:"
 msgstr "Kompatibilita:"
 
@@ -6397,36 +6283,33 @@ msgstr "Zamítnuté nebo nezkontrolované"
 msgid "[status:%s]"
 msgstr "[stav:%s]"
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Aktualizace ({0})"
-msgstr[1] "Aktualizace ({0})"
-msgstr[2] "Aktualizace ({0})"
-
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Jedna kontrola hodnocení"
-msgstr[1] "{0} kontroly hodnocení"
-msgstr[2] "{0} kontrol hodnocení"
-
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "Jeden automaticky schválený doplněk"
-msgstr[1] "{0} automaticky schválené doplňky"
-msgstr[2] "{0} automaticky schválených doplňků"
-
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Jeden požadavek po lhůtě na doplnění informací"
-msgstr[1] "{0} požadavky po lhůtě na doplnění informací"
-msgstr[2] "Požadavky po lhůtě na doplnění informací ({0})"
+#, fuzzy
+msgid "Other Pending Review"
+msgstr "Další nevyřízená recenze ({0})"
 
 #, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Další nevyřízená recenze ({0})"
-msgstr[1] "Další nevyřízená recenze ({0})"
-msgstr[2] "Další nevyřízená recenze ({0})"
+msgid "Flagged By Scanners"
+msgstr "Bezpečnostní testy"
+
+#, fuzzy
+msgid "Flagged for Human Review"
+msgstr "Označit pro kontrolu člověkem"
+
+#, fuzzy
+msgid "Updates"
+msgstr "Aktualizovat"
+
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "Čeká na kontrolu"
+
+#, fuzzy
+msgid "Auto Approved"
+msgstr "Jeden automaticky schválený doplněk"
+
+#, fuzzy
+msgid "Pending Rejection"
+msgstr "Další nevyřízená recenze ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6601,6 +6484,9 @@ msgstr "dle platformy"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "zavřít"
+
 msgid "Custom Date Range"
 msgstr "Vlastní rozsah dat"
 
@@ -6666,9 +6552,6 @@ msgstr "365 dní"
 msgid "Custom..."
 msgstr "Vlastní..."
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr "Zpracování statistik je momentálně zakázáno a aktuální data nejsou dostupná. Statistiky jsou ale nadále sbírány a tato stránka bude brzy o chybějící data doplněna."
-
 msgid "Loading the latest data&hellip;"
 msgstr "Načítají se poslední data&hellip;"
 
@@ -6685,6 +6568,9 @@ msgstr "Podíl aplikace dle data"
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "Zdroje stažení dle data"
+
+msgid "About tracking external sources..."
+msgstr "O sledování externích zdrojů..."
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6721,9 +6607,6 @@ msgstr "Používanost platforem dle data"
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> stažení"
 
-msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> stažení"
-
 msgid "Loading..."
 msgstr "Probíhá načítání..."
 
@@ -6750,9 +6633,6 @@ msgstr "Zobrazit více platforem&hellip;"
 
 msgid "Download sources by Date"
 msgstr "Zdroje stažení dle data"
-
-msgid "About tracking external sources..."
-msgstr "O sledování externích zdrojů..."
 
 #, python-format
 msgid ""
@@ -6850,6 +6730,9 @@ msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Ostatní jazyky"
+
+msgid "Go"
+msgstr "Přejít"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
@@ -7075,7 +6958,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7090,6 +6973,3 @@ msgstr "ostatní"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} a novější"
-
-msgid "Deleted versions can`t be changed."
-msgstr "Smazané verze nelze měnit."

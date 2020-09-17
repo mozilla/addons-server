@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:27+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2020-09-12 09:09+0000\n"
 "Last-Translator: Enderman123 <xuyaoshi72@qq.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
