@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 13:29+0000\n"
+"PO-Revision-Date: 2020-09-17 13:41+0000\n"
 "Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1360,9 +1360,8 @@ msgstr ""
 msgid "Verified"
 msgstr "已验证"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "由 Firefox 推出"
 
 msgid "Spotlight"
 msgstr "新鲜快报"
@@ -1874,7 +1873,7 @@ msgstr "上传预览图的过程中发生错误。"
 
 #, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr "因为先前的版本 %s 未批准成为推广扩展，无法删除或禁用此推广扩展最新批准的版本 %s。若您需要协助，请联系 AMO 管理员。"
+msgstr "此 %s 附加组件先前的版本未批准成为 %s 推广项目，无法删除或禁用此推广附加组件最新批准的版本。若您需要协助，请联系 AMO 管理员。"
 
 #, python-format
 msgid "Version %s disabled."
@@ -3409,11 +3408,11 @@ msgstr "删除版本"
 msgid "Disable Version"
 msgstr "停用版本"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
-msgstr "因为先前的版本未批准成为推荐扩展，无法删除或禁用此推荐扩展最新批准的版本。若您需要协助，请联系 AMO 管理员。"
+msgstr "此 %(promoted_group_name)s 附加组件先前的版本未批准成为 %(promoted_group_name)s 推广项目，无法删除或禁用此推广附加组件最新批准的版本。若您需要协助，请联系 AMO 管理员。"
 
 msgid "Hide Add-on"
 msgstr "隐藏附加组件"
@@ -4977,9 +4976,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "双击任何单词，立刻看到解释和定义。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "某些网站无法在 Android 版 Firefox 上正常播放视频，此扩展提供了修复。"
+msgstr "某些网站无法在 Android 上正常播放视频，此扩展可修正此问题。"
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -6076,9 +6074,8 @@ msgstr "版本 %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgid "(Confirmed)"
 msgstr "(已确认)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "待驳回期限"
+msgstr "待审核新版本时被驳回"
 
 msgid "Compatibility:"
 msgstr "兼容性："
