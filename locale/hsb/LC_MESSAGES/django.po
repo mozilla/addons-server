@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 15:03+0000\n"
+"PO-Revision-Date: 2020-09-17 19:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1902,11 +1902,11 @@ msgstr "Symbol dyrbi kwadratiski być (jenaka šěrokosć a wysokosć)."
 msgid "There was an error uploading your preview."
 msgstr "Při nahrawanju wašeho přehlada je zmylk wustupił."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Najnowša schwalena wersija tutoho doporučeneho rozšěrjenja njeda so zhašeć abo znjemóžnić, dokelž předchadna wersija neje so za doporučenje schwaliła. Prošu stajće so z administratorami AMO do "
-"zwiska, jeli pomoc wo tym trjebaće."
+"Najnowša schwalena wersija tutoho rozšěrjenja %s njeda so zhašeć abo znjemóžnić, dokelž předchadna wersija njeje so za doporučenje %s schwaliła. Prošu stajće so z administratorami AMO do zwiska, "
+"jeli pomoc wo tym trjebaće."
 
 #, python-format
 msgid "Version %s disabled."
@@ -3498,13 +3498,13 @@ msgstr "Wersiju zhašeć"
 msgid "Disable Version"
 msgstr "Wersiju znjemóžnić"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Najnowša schwalena wersija tutoho doporučeneho rozšěrjenja njeda so zhašeć abo znjemóžnić, dokelž předchadna wersija neje so za doporučenje schwaliła. Prošu stajće so z administratorami AMO do "
-"zwiska, jeli pomoc wo tym trjebaće."
+"Najnowša schwalena wersija tutoho %(promoted_group_name)s rozšěrjenja njeda so zhašeć abo znjemóžnić, dokelž předchadna wersija njeje so za doporučenje %(promoted_group_name)s schwaliła. Prošu "
+"stajće so z administratorami AMO do zwiska, jeli pomoc wo tym trjebaće."
 
 msgid "Hide Add-on"
 msgstr "Přidatk schować"
@@ -6908,7 +6908,7 @@ msgstr ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -6922,7 +6922,7 @@ msgid ""
 msgstr ""
 "Witajće,\n"
 "\n"
-"dóstawaće tutu powěsć, dokelž waše wužiwarske konto %(name)s na %(site_url)s je so zhašało.\n"
+"dóstawaće tutu powěsć, dokelž waše wužiwarske konto %(name)s na %(site_url)s je so zhašało. To móhło so awtomatisce stać, jeli sće swoje konto Fiefox njedawno zhašał.\n"
 "\n"
 "Jeli njejsće to činił abo mysliće sej, zo njeawtorizowana wosoba na waše konto přistup měješe, wotmołwće prošu na tutu mejlku. Hewak njetrjebaće ničo činić.\n"
 "\n"
