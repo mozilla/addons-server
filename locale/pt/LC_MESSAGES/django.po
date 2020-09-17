@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -577,10 +577,6 @@ msgstr "Submeter um novo extra"
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
-
-#, fuzzy
-msgid "users"
-msgstr "Nome de utilizador"
 
 msgid "Edit Block"
 msgstr ""
@@ -1460,14 +1456,15 @@ msgstr "Ainda não foi avaliado"
 msgid "Recommended"
 msgstr "comentado"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -2017,9 +2014,8 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "Ocorreu um erro ao carregar a sua pré-visualização."
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2743,6 +2739,21 @@ msgid "Submit a New Version"
 msgstr "Submeter um novo extra"
 
 #, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "Versão para impressão"
+
+#, fuzzy
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr "Tem a certeza que deseja eliminar esta versão?"
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "Cancelar"
+
+msgid "No, don't cancel"
+msgstr ""
+
+#, fuzzy
 msgid "Name and Summary:"
 msgstr "Resumo"
 
@@ -2832,10 +2843,6 @@ msgstr "Este endereço só será visível se for um programador."
 #, fuzzy
 msgid "Submit Version"
 msgstr "Submeter um novo extra"
-
-#, fuzzy
-msgid "Cancel and Disable Version"
-msgstr "Versão para impressão"
 
 #, fuzzy
 msgid "Describe Version"
@@ -3183,10 +3190,6 @@ msgstr ""
 msgid "Invisible"
 msgstr ""
 
-#, fuzzy
-msgid "Approved and recommended"
-msgstr "Revisões aprovadas"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
@@ -3282,14 +3285,6 @@ msgstr "Notícias do programador"
 
 msgid "View the blog &#9658;"
 msgstr "Ver o blogue &#9658;"
-
-#, fuzzy
-msgid "Pending information request:"
-msgstr "Solicitada mais informação"
-
-#, fuzzy
-msgid "This request for information has been resolved"
-msgstr "Esta versão ainda não foi revista."
 
 msgid "License"
 msgstr "Licença"
@@ -3687,6 +3682,12 @@ msgstr "Eliminar versão"
 
 msgid "Disable Version"
 msgstr "Desativar versão"
+
+#, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
+msgstr ""
 
 msgid "Hide Add-on"
 msgstr "Ocultar extra"
@@ -5175,6 +5176,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -5183,7 +5185,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -5237,15 +5238,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5281,33 +5293,6 @@ msgstr "Extensões"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Saiba mais"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Ocorreu um erro ao aceder ao ficheiro %s."
-
-msgid "That file no longer exists."
-msgstr "Esse ficheiro já não existe."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "O tamanho do ficheiro está acima do limite de {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Problemas ao descodificar {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Não é possível ver este ficheiro online. Por favor, transfira o ficheiro para ver os conteúdos."
-
-msgid "This file is a directory."
-msgstr "Este ficheiro é um diretório."
-
-msgid "Cannot diff a version against itself"
-msgstr "Não é possível comparar uma versão consigo própria"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5396,95 +5381,6 @@ msgstr ""
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
-
-msgid "Back to review"
-msgstr "Voltar à revisão"
-
-#, fuzzy
-msgid "Back to add-on"
-msgstr "Voltar ao extra"
-
-msgid "Download {0}"
-msgstr "Descarregar {0}"
-
-#, fuzzy, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "Versão: %(version)s &bull; Tamanho: %(size)s &bull; hash MD5: %(md5)s &bull; Tipo de mime: %(mimetype)s"
-
-#, fuzzy
-msgid "File Compare :: Reviewer tools"
-msgstr "Comparar ficheiro :: Ferramentas do editor"
-
-#, fuzzy
-msgid "File Viewer :: Reviewer tools"
-msgstr "Visualizador de ficheiro :: Ferramentas do editor"
-
-msgid "Validation failed:"
-msgstr "A validação falhou:"
-
-msgid "File content not supported for syntax highlighting"
-msgstr ""
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
-
-msgid "close"
-msgstr "fechar"
-
-msgid "Go"
-msgstr "Ir"
-
-msgid "Add-on file being processed, please wait."
-msgstr "O ficheiro do extra está a ser processado, por favor aguarde."
-
-msgid "Fetching validation results..."
-msgstr "A obter resultados da validação..."
-
-msgid "Files:"
-msgstr "Ficheiros:"
-
-msgid "Deleted files:"
-msgstr "Ficheiros eliminados:"
-
-msgid "Hide known files"
-msgstr "Ocultar ficheiros conhecidos"
-
-msgid "Tab stops:"
-msgstr "Paragens de tabulações:"
-
-msgid "Up file"
-msgstr "Ficheiro acima"
-
-msgid "Down file"
-msgstr "Ficheiro abaixo"
-
-msgid "Previous diff"
-msgstr "Diferença anterior"
-
-msgid "Previous note"
-msgstr "Nota anterior"
-
-msgid "Next diff"
-msgstr "Próxima diferença"
-
-msgid "Next note"
-msgstr "Próxima nota"
-
-msgid "Expand all"
-msgstr "Expandir tudo"
-
-msgid "Hide or unhide tree"
-msgstr "Mostrar ou ocultar árvore"
-
-msgid "Wrap or unwrap text"
-msgstr "Moldar ou não moldar texto"
-
-msgid "No files in the uploaded file."
-msgstr "Não há ficheiros no ficheiro enviado."
-
-msgid "Fetching file."
-msgstr "A obter o ficheiro."
 
 msgid "Review Guidelines"
 msgstr "Orientações para comentários"
@@ -5772,13 +5668,6 @@ msgstr "Revisão administrativa"
 msgid "Requires Restart"
 msgstr "Campos necessários"
 
-msgid "More Information Requested"
-msgstr "Solicitada mais informação"
-
-#, fuzzy
-msgid "Expired Information Request"
-msgstr "Solicitada mais informação"
-
 msgid "Sources provided"
 msgstr "Fontes fornecidas"
 
@@ -5860,10 +5749,6 @@ msgid "Weight"
 msgstr ""
 
 #, fuzzy
-msgid "Information Request Deadline"
-msgstr "Solicitada mais informação"
-
-#, fuzzy
 msgid "Pending Rejection Deadline"
 msgstr "Solicitada mais informação"
 
@@ -5880,7 +5765,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "Revisão moderada ({0})"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "Ver outras versões"
 
 #, fuzzy
@@ -5981,15 +5866,11 @@ msgid "Security Scanners"
 msgstr "Testes de segurança"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Revisão moderada ({0})"
-msgstr[1] "Revisões moderadas ({0})"
+msgstr "Revisão moderada ({0})"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6012,9 +5893,7 @@ msgstr "Submeter revisão"
 
 #, fuzzy
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Revisão moderada ({0})"
-msgstr[1] "Revisões moderadas ({0})"
+msgstr "Revisão moderada ({0})"
 
 #, fuzzy
 msgid "New ({0})"
@@ -6054,10 +5933,6 @@ msgstr "Anúncio"
 
 msgid "Update message of the day"
 msgstr "Atualizar mensagem do dia"
-
-#, fuzzy
-msgid "Expired Information Requests ({0})"
-msgstr "Solicitada mais informação"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6285,6 +6160,9 @@ msgstr "Desde sempre"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr "Voltar à revisão"
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6294,10 +6172,6 @@ msgstr "Extras para o Android"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Solicitada mais informação"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6364,9 +6238,6 @@ msgstr "Histórico do extra"
 msgid "Previously deleted entries"
 msgstr "Nota anterior"
 
-msgid "This is a recommended extension."
-msgstr ""
-
 #, fuzzy
 msgid "You don't have permission to review it."
 msgstr "Ainda não tem quaisquer credenciais de API."
@@ -6379,6 +6250,9 @@ msgstr "Pode, ainda assim submeter este formulário, no entanto faça-o apenas s
 
 msgid "Insert canned response..."
 msgstr "Inserir resposta modelo..."
+
+msgid "Files:"
+msgstr "Ficheiros:"
 
 msgid "Tested on:"
 msgstr "Testado em:"
@@ -6452,10 +6326,6 @@ msgstr ""
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Estado da aprovação"
-
-#, fuzzy
-msgid "Clear information request"
-msgstr "Solicitada mais informação"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6598,6 +6468,10 @@ msgstr "Versão %(version)s &middot; %(created)s <span class=\"light\">&middot; 
 msgid "(Confirmed)"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "Solicitada mais informação"
+
 msgid "Compatibility:"
 msgstr "Compatibilidade:"
 
@@ -6647,34 +6521,32 @@ msgid "[status:%s]"
 msgstr "Estado:"
 
 #, fuzzy
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Atualizado {0}"
-msgstr[1] "Atualizado {0}"
+msgid "Other Pending Review"
+msgstr "Revisão moderada ({0})"
 
 #, fuzzy
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Revisão moderada ({0})"
-msgstr[1] "Revisões moderadas ({0})"
+msgid "Flagged By Scanners"
+msgstr "Testes de segurança"
 
 #, fuzzy
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "Não listar extra"
-msgstr[1] "Não listar extra"
+msgid "Flagged for Human Review"
+msgstr "Revisão moderada ({0})"
 
 #, fuzzy
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Solicitadas mais informações: {0}"
-msgstr[1] "Solicitadas mais informações: {0}"
+msgid "Updates"
+msgstr "Atualizar"
 
 #, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Revisão moderada ({0})"
-msgstr[1] "Revisão moderada ({0})"
+msgid "Rating Reviews"
+msgstr "A aguardar pela revisão"
+
+#, fuzzy
+msgid "Auto Approved"
+msgstr "Não listar extra"
+
+#, fuzzy
+msgid "Pending Rejection"
+msgstr "Revisão moderada ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6844,6 +6716,9 @@ msgstr "por Plataforma"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "fechar"
+
 msgid "Custom Date Range"
 msgstr "Intervalo de data personalizado"
 
@@ -6909,9 +6784,6 @@ msgstr "365 dias"
 msgid "Custom..."
 msgstr "Personalizar..."
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
-
 msgid "Loading the latest data&hellip;"
 msgstr "A carregar os últimos dados&hellip;"
 
@@ -6928,6 +6800,9 @@ msgstr "Utilização da aplicação por data"
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "Transferência de fontes por data"
+
+msgid "About tracking external sources..."
+msgstr "Sobre a monitorização de fontes externas..."
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6964,9 +6839,6 @@ msgstr "Utilização da plataforma por data"
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> transferência(s)"
 
-msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> transferência(s)"
-
 msgid "Loading..."
 msgstr "A carregar..."
 
@@ -6993,9 +6865,6 @@ msgstr "Ver mais plataformas&hellip;"
 
 msgid "Download sources by Date"
 msgstr "Transferência de fontes por data"
-
-msgid "About tracking external sources..."
-msgstr "Sobre a monitorização de fontes externas..."
 
 #, python-format
 msgid ""
@@ -7100,6 +6969,9 @@ msgstr ""
 
 msgid "Other languages"
 msgstr "Outros idiomas"
+
+msgid "Go"
+msgstr "Ir"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Voltar à página inicial dos extras de {0}"
@@ -7324,7 +7196,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7339,6 +7211,3 @@ msgstr "outros"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} e superiores"
-
-msgid "Deleted versions can`t be changed."
-msgstr ""

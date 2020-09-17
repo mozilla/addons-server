@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -577,10 +577,6 @@ msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
-
-#, fuzzy
-msgid "users"
-msgstr "ਉਪਭੋਗੀ ਨਾਂ"
 
 msgid "Edit Block"
 msgstr ""
@@ -1460,14 +1456,15 @@ msgstr "ਅਜੇ ਤੱਕ ਰੇਟ ਨਹੀਂ ਕੀਤਾ"
 msgid "Recommended"
 msgstr "ਟਿੱਪਣੀ ਕੀਤੀ"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ"
 
 msgid "Spotlight"
 msgstr ""
@@ -2017,9 +2014,8 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "ਤੁਹਾਡੀ ਝਲਕ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਵਿੱਚ ਖਾਮੀ ਆਈ।"
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2728,6 +2724,21 @@ msgid "Submit a New Version"
 msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 
 #, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "ਛਪਣਯੋਗ ਵਰਜਨ"
+
+#, fuzzy
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr "ਕੀ ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਨੂੰ ਹਟਾਉਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "ਰੱਦ"
+
+msgid "No, don't cancel"
+msgstr ""
+
+#, fuzzy
 msgid "Name and Summary:"
 msgstr "ਸੰਖੇਪ"
 
@@ -2815,10 +2826,6 @@ msgstr "ਇਹ URL ਕੇਵਲ ਤਾਂ ਹੀ ਦਿੱਸੇਗੀ ਜੇਕ
 #, fuzzy
 msgid "Submit Version"
 msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
-
-#, fuzzy
-msgid "Cancel and Disable Version"
-msgstr "ਛਪਣਯੋਗ ਵਰਜਨ"
 
 #, fuzzy
 msgid "Describe Version"
@@ -3163,10 +3170,6 @@ msgstr ""
 msgid "Invisible"
 msgstr ""
 
-#, fuzzy
-msgid "Approved and recommended"
-msgstr "ਮਨਜ਼ੂਰ ਸਮੀਖਿਆਵਾਂ"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
@@ -3260,14 +3263,6 @@ msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
 
 msgid "View the blog &#9658;"
 msgstr "ਬਲੌਗ ਵੇਖੋ &#9658;"
-
-#, fuzzy
-msgid "Pending information request:"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
-
-#, fuzzy
-msgid "This request for information has been resolved"
-msgstr "ਇਸ ਵਰਜਨ ਦੀ ਸਮੀਖਿਆ ਨਹੀਂ ਕੀਤੀ ਗਈ।"
 
 msgid "License"
 msgstr "ਲਾਇਸੰਸ"
@@ -3660,6 +3655,12 @@ msgstr "ਵਰਜਨ ਹਟਾਓ"
 
 msgid "Disable Version"
 msgstr "ਵਰਜਨ ਅਯੋਗ ਕਰੋ"
+
+#, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
+msgstr ""
 
 msgid "Hide Add-on"
 msgstr "ਐਡ-ਆਨ ਲੁਕਾਓ"
@@ -5148,6 +5149,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -5156,7 +5158,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -5210,15 +5211,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5254,33 +5266,6 @@ msgstr "ਇਕਸਟੈਨਸ਼ਨ"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "ਹੋਰ ਜਾਣੋ"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖਾਮੀ ਆਈ।"
-
-msgid "That file no longer exists."
-msgstr "ਇਹ ਫ਼ਾਈਲ ਹੁਣ ਮੌਜੂਦ ਨਹੀਂ।"
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "ਫ਼ਾਈਲ ਅਕਾਰ {0} ਦੀ ਹੱਦ ਤੋਂ ਵੱਧ ਹੈ।"
-
-msgid "Problems decoding {0}."
-msgstr "ਡਿਕੋਡ ਪਰੇਸ਼ਾਨੀਆਂ {0}।"
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "ਇਹ ਫ਼ਾਈਲ ਆਨਲਾਈਨ ਵੇਖਣਯੋਗ ਨਹੀਂ ਹੈ। ਸਮੱਗਰੀ ਵੇਖਣ ਲਈ ਕਿਰਪਾ ਕਰਕੇ ਫ਼ਾਈਲ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
-
-msgid "This file is a directory."
-msgstr "ਇਹ ਫ਼ਾਈਲ ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਹੈ।"
-
-msgid "Cannot diff a version against itself"
-msgstr "ਵਰਜਨ ਦਾ ਖੁਦ ਤੋਂ ਫ਼ਰਕ ਨਹੀਂ ਕਰ ਸਕਦਾ"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5369,95 +5354,6 @@ msgstr ""
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
-
-msgid "Back to review"
-msgstr "ਸਮੀਖਿਆ ਤੇ ਵਾਪਸ"
-
-#, fuzzy
-msgid "Back to add-on"
-msgstr "ਐਡਆਨ ਤੇ ਵਾਪਸ"
-
-msgid "Download {0}"
-msgstr "ਡਾਊਨਲੋਡ {0}"
-
-#, fuzzy, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "ਵਰਜਨ: %(version)s &bull; ਅਕਾਰ: %(size)s &bull; MD5 ਹੈਸ਼: %(md5)s &bull; ਮਾਈਮ ਕਿਸਮ: %(mimetype)s"
-
-#, fuzzy
-msgid "File Compare :: Reviewer tools"
-msgstr "ਫ਼ਾਈਲ ਤੁਲਨਾ :: ਸੰਪਾਦਕ ਟੂਲ"
-
-#, fuzzy
-msgid "File Viewer :: Reviewer tools"
-msgstr "ਫ਼ਾਈਲ ਦਰਸ਼ਕ :: ਸੰਪਾਦਕ ਟੂਲ"
-
-msgid "Validation failed:"
-msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ:"
-
-msgid "File content not supported for syntax highlighting"
-msgstr ""
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
-
-msgid "close"
-msgstr "ਬੰਦ"
-
-msgid "Go"
-msgstr "ਜਾਓ"
-
-msgid "Add-on file being processed, please wait."
-msgstr "ਐਡ-ਆਨ ਫ਼ਾਈਲ ਤੇ ਕਾਰਵਾਈ ਹੋ ਰਹੀ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ।"
-
-msgid "Fetching validation results..."
-msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜੇ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ..."
-
-msgid "Files:"
-msgstr "ਫ਼ਾਈਲਾਂ:"
-
-msgid "Deleted files:"
-msgstr "ਹਟਾਈਆਂ ਫ਼ਾਈਲਾਂ:"
-
-msgid "Hide known files"
-msgstr "ਜਾਣੂ ਫ਼ਾਈਲਾਂ ਲੁਕਾਓ"
-
-msgid "Tab stops:"
-msgstr "ਟੈਬ ਰੁਕੀ:"
-
-msgid "Up file"
-msgstr "ਅੱਪ ਫ਼ਾਈਲ"
-
-msgid "Down file"
-msgstr "ਡਾਊਨ ਫ਼ਾਈਲ"
-
-msgid "Previous diff"
-msgstr "ਪਿਛਲੀ ਤੁਲਨਾ"
-
-msgid "Previous note"
-msgstr "ਪਿਛਲਾ ਨੋਟ"
-
-msgid "Next diff"
-msgstr "ਅਗਲੀ ਤੁਲਨਾ"
-
-msgid "Next note"
-msgstr "ਅਗਲਾ ਨੋਟ"
-
-msgid "Expand all"
-msgstr "ਸਾਰਾ ਫ਼ੈਲਾਓ"
-
-msgid "Hide or unhide tree"
-msgstr "ਰੁੱਖ ਨੂੰ ਲੁਕਾਓ ਜਾਂ ਵਿਖਾਓ "
-
-msgid "Wrap or unwrap text"
-msgstr "ਸਮੇਟਿਆ ਜਾਂ ਖੁੱਲਿਆ ਟੈਕਸਟ"
-
-msgid "No files in the uploaded file."
-msgstr "ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਵਿੱਚ ਕੋਈ ਫ਼ਾਈਲਾਂ ਨਹੀਂ।"
-
-msgid "Fetching file."
-msgstr "ਫ਼ਾਈਲ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ।"
 
 msgid "Review Guidelines"
 msgstr "ਹਿਦਾਇਤਾਂ ਦੀ ਸਮੀਖਿਆ"
@@ -5742,13 +5638,6 @@ msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
 msgid "Requires Restart"
 msgstr "ਲੁੜੀਂਦੀਆਂ ਥਾਵਾਂ"
 
-msgid "More Information Requested"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
-
-#, fuzzy
-msgid "Expired Information Request"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
-
 msgid "Sources provided"
 msgstr "ਸੋਰਸ ਮੁਹੱਇਆ ਕਰਵਾਏ"
 
@@ -5830,10 +5719,6 @@ msgid "Weight"
 msgstr ""
 
 #, fuzzy
-msgid "Information Request Deadline"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
-
-#, fuzzy
 msgid "Pending Rejection Deadline"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
@@ -5850,7 +5735,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "ਦੁਜੇ ਵਰਜਨ ਵੇਖੋ"
 
 #, fuzzy
@@ -5947,15 +5832,11 @@ msgid "Security Scanners"
 msgstr "ਸੁਰੱਖਿਆ ਪਰਖ"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
-msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
+msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5978,9 +5859,7 @@ msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
 
 #, fuzzy
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
-msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
+msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 
 #, fuzzy
 msgid "New ({0})"
@@ -6020,10 +5899,6 @@ msgstr "ਐਲਾਨ"
 
 msgid "Update message of the day"
 msgstr "ਅੱਜ ਦਾ ਸੁਨੇਹਾ ਅੱਪਡੇਟ ਕਰੋ"
-
-#, fuzzy
-msgid "Expired Information Requests ({0})"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6251,6 +6126,9 @@ msgstr "ਹਰ-ਵੇਲੇ"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr "ਸਮੀਖਿਆ ਤੇ ਵਾਪਸ"
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6260,10 +6138,6 @@ msgstr "ਐਨਡਰੋਇਡ ਐਡ-ਆਨ"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6330,9 +6204,6 @@ msgstr "ਐਡ-ਆਨ ਇਤਿਹਾਸ"
 msgid "Previously deleted entries"
 msgstr "ਪਿਛਲਾ ਨੋਟ"
 
-msgid "This is a recommended extension."
-msgstr ""
-
 #, fuzzy
 msgid "You don't have permission to review it."
 msgstr "ਮੇਰੇ ਕੋਲ ਖਾਤਾ ਨਹੀਂ ਹੈ।"
@@ -6345,6 +6216,9 @@ msgstr "ਹਾਲੇ ਵੀ ਤੁਸੀਂ ਫ਼ਾਰਮ ਨੂੰ ਦਾਖਲ 
 
 msgid "Insert canned response..."
 msgstr "ਡਿੱਬਾਬੰਦ ਜਵਾਬ ਪਾਓ..."
+
+msgid "Files:"
+msgstr "ਫ਼ਾਈਲਾਂ:"
 
 msgid "Tested on:"
 msgstr "ਤੇ ਟੈਸਟ ਕੀਤਾ:"
@@ -6418,10 +6292,6 @@ msgstr ""
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "ਮਨਜ਼ੂਰੀ ਦਰਜਾ"
-
-#, fuzzy
-msgid "Clear information request"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6564,6 +6434,10 @@ msgstr "ਵਰਜਨ %(version)s &middot; %(created)s <span class=\"light\">&mid
 msgid "(Confirmed)"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
+
 msgid "Compatibility:"
 msgstr "ਅਨੁਕੂਲਤਾ:"
 
@@ -6613,34 +6487,32 @@ msgid "[status:%s]"
 msgstr "ਦਰਜਾ:"
 
 #, fuzzy
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
-msgstr[1] "ਅੱਪਡੇਟ ਹੋਇਆ {0}"
+msgid "Other Pending Review"
+msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 
 #, fuzzy
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
-msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
+msgid "Flagged By Scanners"
+msgstr "ਸੁਰੱਖਿਆ ਪਰਖ"
 
 #, fuzzy
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
-msgstr[1] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+msgid "Flagged for Human Review"
+msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 
 #, fuzzy
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਕਰੋ: {0}"
-msgstr[1] "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਕਰੋ: {0}"
+msgid "Updates"
+msgstr "ਅੱਪਡੇਟ"
 
 #, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
-msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
+msgid "Rating Reviews"
+msgstr "ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
+
+#, fuzzy
+msgid "Auto Approved"
+msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
+
+#, fuzzy
+msgid "Pending Rejection"
+msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6809,6 +6681,9 @@ msgstr "ਪਲੇਟਫ਼ਾਰਮ ਦੁਆਰਾ"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "ਬੰਦ"
+
 msgid "Custom Date Range"
 msgstr "ਪਸੰਦੀਦਾ ਮਿਤੀ ਸੀਮਾ"
 
@@ -6874,9 +6749,6 @@ msgstr "365 ਦਿਨਾਂ"
 msgid "Custom..."
 msgstr "ਪਸੰਦੀਦਾ..."
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
-
 msgid "Loading the latest data&hellip;"
 msgstr "ਤਾਜ਼ਾ ਡਾਟਾ ਲੋਡ ਕਰ ਰਿਹਾ&hellip;"
 
@@ -6893,6 +6765,9 @@ msgstr "ਐਪਲੀਕੇਸ਼ਨਾਂ ਦੀ ਵਰਤੋਂ ਮਿਤੀ �
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "ਡਾਊਨਲੋਡ ਸੋਰਸ ਮਿਤੀ ਅਨੁਸਾਰ"
+
+msgid "About tracking external sources..."
+msgstr "ਬਾਹਰੀ ਸੋਰਸਾਂ ਦੀ ਨਿਗਰਾਨੀ ਬਾਰੇ..."
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6927,9 +6802,6 @@ msgstr "ਪਲੇਟਫ਼ਾਰਮ ਵਰਤੋਂ ਮਿਤੀ ਅਨੁਸਾਰ
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> ਡਾਊਨਲੋਡ"
 
-msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> ਡਾਊਨਲੋਡ"
-
 msgid "Loading..."
 msgstr "ਲੋਡ ਕਰ ਰਿਹਾ..."
 
@@ -6956,9 +6828,6 @@ msgstr "ਹੋਰ ਪਲੇਟਫ਼ਾਰਮ ਵੇਖੋ&hellip;"
 
 msgid "Download sources by Date"
 msgstr "ਡਾਊਨਲੋਡ ਸੋਰਸ ਮਿਤੀ ਅਨੁਸਾਰ"
-
-msgid "About tracking external sources..."
-msgstr "ਬਾਹਰੀ ਸੋਰਸਾਂ ਦੀ ਨਿਗਰਾਨੀ ਬਾਰੇ..."
 
 #, python-format
 msgid ""
@@ -7061,6 +6930,9 @@ msgstr ""
 
 msgid "Other languages"
 msgstr "ਹੋਰ ਭਾਸ਼ਾਵਾਂ"
+
+msgid "Go"
+msgstr "ਜਾਓ"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
@@ -7284,7 +7156,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7299,6 +7171,3 @@ msgstr "ਹੋਰ"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} and ਬਾਅਦ"
-
-msgid "Deleted versions can`t be changed."
-msgstr ""

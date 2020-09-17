@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2020-07-16 13:36+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -563,10 +563,6 @@ msgstr "Изпращане"
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
-
-#, fuzzy
-msgid "users"
-msgstr "Потребители"
 
 msgid "Edit Block"
 msgstr ""
@@ -1408,14 +1404,15 @@ msgstr "Насърчаване"
 msgid "Recommended"
 msgstr "Коментирано"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -1960,9 +1957,8 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "Стана грешка при качването на рецензията ви."
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2662,6 +2658,19 @@ msgstr[1] "<strong>{0}</strong> активни потребителя"
 msgid "Submit a New Version"
 msgstr "Качване на ново издание"
 
+msgid "Cancel and Disable Version"
+msgstr "Отказ и изключване на изданието"
+
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr ""
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "Отказ"
+
+msgid "No, don't cancel"
+msgstr ""
+
 #, fuzzy
 msgid "Name and Summary:"
 msgstr "Обобщение:"
@@ -2737,9 +2746,6 @@ msgstr ""
 
 msgid "Submit Version"
 msgstr "Изпращане"
-
-msgid "Cancel and Disable Version"
-msgstr "Отказ и изключване на изданието"
 
 msgid "Describe Version"
 msgstr "Опишете изданието"
@@ -3069,10 +3075,6 @@ msgstr ""
 msgid "Invisible"
 msgstr "Скрита"
 
-#, fuzzy
-msgid "Approved and recommended"
-msgstr "Одобрени рецензии"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
@@ -3161,13 +3163,6 @@ msgstr "Новини за разработчици"
 
 msgid "View the blog &#9658;"
 msgstr ""
-
-#, fuzzy
-msgid "Pending information request:"
-msgstr "Поискана е повече информация"
-
-msgid "This request for information has been resolved"
-msgstr "Това издание още няма рецензия."
 
 msgid "License"
 msgstr "Лиценз"
@@ -3538,6 +3533,12 @@ msgstr "Изтриване на версията"
 
 msgid "Disable Version"
 msgstr "Изключване на изданието"
+
+#, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
+msgstr ""
 
 msgid "Hide Add-on"
 msgstr "Скриване на добавката"
@@ -5026,6 +5027,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -5034,7 +5036,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -5088,15 +5089,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5133,33 +5145,6 @@ msgstr "Разширения"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Научете повече"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr "Файлът вече не съществува."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Размерът на файла е по-голям от {0}."
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
-msgstr "Този файл е папка."
-
-msgid "Cannot diff a version against itself"
-msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5248,92 +5233,6 @@ msgstr "Неочаквана грешка."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
-
-msgid "Back to review"
-msgstr ""
-
-msgid "Back to add-on"
-msgstr ""
-
-msgid "Download {0}"
-msgstr "Изтегляне {0}"
-
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
-
-msgid "File Compare :: Reviewer tools"
-msgstr ""
-
-msgid "File Viewer :: Reviewer tools"
-msgstr ""
-
-msgid "Validation failed:"
-msgstr ""
-
-msgid "File content not supported for syntax highlighting"
-msgstr ""
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
-
-msgid "close"
-msgstr "затваряне"
-
-msgid "Go"
-msgstr "Давай"
-
-msgid "Add-on file being processed, please wait."
-msgstr ""
-
-msgid "Fetching validation results..."
-msgstr ""
-
-msgid "Files:"
-msgstr "Файлове:"
-
-msgid "Deleted files:"
-msgstr "Изтрити файлове:"
-
-msgid "Hide known files"
-msgstr "Скриване на известните файлове"
-
-msgid "Tab stops:"
-msgstr "Табулатори:"
-
-msgid "Up file"
-msgstr ""
-
-msgid "Down file"
-msgstr ""
-
-msgid "Previous diff"
-msgstr "Предишен diff"
-
-msgid "Previous note"
-msgstr "Предишна бележка"
-
-msgid "Next diff"
-msgstr "Следващ diff"
-
-msgid "Next note"
-msgstr "Следваща бележка"
-
-msgid "Expand all"
-msgstr ""
-
-msgid "Hide or unhide tree"
-msgstr ""
-
-msgid "Wrap or unwrap text"
-msgstr ""
-
-msgid "No files in the uploaded file."
-msgstr "Няма файлове в качения файл."
-
-msgid "Fetching file."
-msgstr "Зареждане на файл."
 
 msgid "Review Guidelines"
 msgstr "Насоки за писане на отзиви"
@@ -5604,13 +5503,6 @@ msgstr "Административна рецензия"
 msgid "Requires Restart"
 msgstr "Изисква рестартиране"
 
-msgid "More Information Requested"
-msgstr ""
-
-#, fuzzy
-msgid "Expired Information Request"
-msgstr "Поискана е повече информация"
-
 msgid "Sources provided"
 msgstr ""
 
@@ -5694,10 +5586,6 @@ msgid "Weight"
 msgstr ""
 
 #, fuzzy
-msgid "Information Request Deadline"
-msgstr "Поискана е повече информация"
-
-#, fuzzy
 msgid "Pending Rejection Deadline"
 msgstr "Поискана е повече информация"
 
@@ -5714,7 +5602,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "Модерирана рецензия ({0})"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "Публикувани версии"
 
 #, fuzzy
@@ -5802,15 +5690,11 @@ msgid "Security Scanners"
 msgstr "Проверка на сигурността"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Модерирана рецензия ({0})"
-msgstr[1] "Модерирани рецензии ({0})"
+msgstr "Модерирана рецензия ({0})"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5836,9 +5720,7 @@ msgstr "Изпращане на рецензия"
 
 #, fuzzy
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Модерирана рецензия ({0})"
-msgstr[1] "Модерирани рецензии ({0})"
+msgstr "Модерирана рецензия ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -5878,10 +5760,6 @@ msgstr "Обявление"
 
 msgid "Update message of the day"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests ({0})"
-msgstr "Поискана е повече информация"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6099,6 +5977,9 @@ msgstr "Всички времена"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr ""
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6108,10 +5989,6 @@ msgstr "Добавки за Andorid"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Поискана е повече информация"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6177,9 +6054,6 @@ msgstr ""
 msgid "Previously deleted entries"
 msgstr "Предишна бележка"
 
-msgid "This is a recommended extension."
-msgstr ""
-
 #, fuzzy
 msgid "You don't have permission to review it."
 msgstr "Нямате удостоверителни данни за ППИ."
@@ -6192,6 +6066,9 @@ msgstr ""
 
 msgid "Insert canned response..."
 msgstr "Въведете готов отговор…"
+
+msgid "Files:"
+msgstr "Файлове:"
 
 msgid "Tested on:"
 msgstr ""
@@ -6257,10 +6134,6 @@ msgstr ""
 
 msgid "Clear Auto-Approval Extra Delay"
 msgstr ""
-
-#, fuzzy
-msgid "Clear information request"
-msgstr "Поискана е повече информация"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6402,6 +6275,10 @@ msgstr ""
 msgid "(Confirmed)"
 msgstr "(Потвърдено)"
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "Поискана е повече информация"
+
 msgid "Compatibility:"
 msgstr "Съвместимост:"
 
@@ -6449,37 +6326,36 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Обновена ({0})"
-msgstr[1] "Обновени ({0})"
+#, fuzzy
+msgid "Other Pending Review"
+msgstr "Модерирана рецензия ({0})"
 
 #, fuzzy
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Модерирана рецензия ({0})"
-msgstr[1] "Модерирани рецензии ({0})"
+msgid "Flagged By Scanners"
+msgstr "Проверка на сигурността"
+
+#, fuzzy
+msgid "Flagged for Human Review"
+msgstr "Модерирана рецензия ({0})"
+
+#, fuzzy
+msgid "Updates"
+msgstr "Обновяване"
+
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "Очаква рецензия"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "Нова добавка ({0})"
-msgstr[1] "Нова добавка ({0})"
+msgid "Auto Approved"
+msgstr "Нова добавка ({0})"
 
 #, fuzzy
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Поискана е повече информация"
-msgstr[1] "Поискана е повече информация"
-
-#, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Модерирана рецензия ({0})"
-msgstr[1] "Модерирана рецензия ({0})"
+msgid "Pending Rejection"
+msgstr "Модерирана рецензия ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6650,6 +6526,9 @@ msgstr "по платформа"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "затваряне"
+
 msgid "Custom Date Range"
 msgstr ""
 
@@ -6715,9 +6594,6 @@ msgstr "365 дена"
 msgid "Custom..."
 msgstr "Избиране…"
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
-
 msgid "Loading the latest data&hellip;"
 msgstr ""
 
@@ -6734,6 +6610,9 @@ msgstr "Версии на приложението по дата"
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "Управление на изтегляния"
+
+msgid "About tracking external sources..."
+msgstr ""
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6768,9 +6647,6 @@ msgstr "Платформи по дата"
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> Изтегляния"
 
-msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> Изтегляния"
-
 msgid "Loading..."
 msgstr "Зареждане..."
 
@@ -6796,9 +6672,6 @@ msgid "See more platforms&hellip;"
 msgstr "Повече платформи&hellip;"
 
 msgid "Download sources by Date"
-msgstr ""
-
-msgid "About tracking external sources..."
 msgstr ""
 
 #, python-format
@@ -6892,6 +6765,9 @@ msgstr ""
 
 msgid "Other languages"
 msgstr "Други езици"
+
+msgid "Go"
+msgstr "Давай"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
@@ -7111,7 +6987,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7126,6 +7002,3 @@ msgstr "други"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} и по-нова"
-
-msgid "Deleted versions can`t be changed."
-msgstr "Изтритите версии не могат да бъдат променяни."

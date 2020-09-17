@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2020-07-07 16:50+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -553,9 +553,6 @@ msgstr "أرسِل"
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
-
-msgid "users"
-msgstr "من المستخدمين"
 
 msgid "Edit Block"
 msgstr "حرّر الكتلة"
@@ -1383,14 +1380,15 @@ msgstr "بلا تقييم حتى الآن"
 msgid "Recommended"
 msgstr "المُقترح ({0})"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "فَيَرفُكس"
 
 msgid "Spotlight"
 msgstr ""
@@ -1950,9 +1948,8 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "هناك خطأ في رفع المعاينة."
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2653,6 +2650,21 @@ msgstr[5] "<strong>{0}</strong> مستخدم نشط"
 msgid "Submit a New Version"
 msgstr "تقديم إضافة جديدة"
 
+#, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "ألغِ التثبيت"
+
+#, fuzzy
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr "أمتأكّد تمام التأكّد بحذف هذه الإصدارة؟"
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "ألغِ"
+
+msgid "No, don't cancel"
+msgstr ""
+
 msgid "Name and Summary:"
 msgstr ""
 
@@ -2732,10 +2744,6 @@ msgstr ""
 #, fuzzy
 msgid "Submit Version"
 msgstr "تقديم إضافة جديدة"
-
-#, fuzzy
-msgid "Cancel and Disable Version"
-msgstr "ألغِ التثبيت"
 
 #, fuzzy
 msgid "Describe Version"
@@ -3073,9 +3081,6 @@ msgstr ""
 msgid "Invisible"
 msgstr ""
 
-msgid "Approved and recommended"
-msgstr "المُعتمدة والمُقترحة"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
@@ -3164,13 +3169,6 @@ msgstr "أخبار المطور"
 
 msgid "View the blog &#9658;"
 msgstr "شاهد المدوّنة ◄"
-
-msgid "Pending information request:"
-msgstr ""
-
-#, fuzzy
-msgid "This request for information has been resolved"
-msgstr "هذه الإصدارة لم يُعلّق عليها."
 
 msgid "License"
 msgstr "الرخصة"
@@ -3562,6 +3560,12 @@ msgstr "احذف الإصدارة"
 
 msgid "Disable Version"
 msgstr "عطّل الإصدارة"
+
+#, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
+msgstr ""
 
 msgid "Hide Add-on"
 msgstr "أخفِ الإضافة"
@@ -5058,6 +5062,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -5066,7 +5071,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -5120,15 +5124,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5163,33 +5178,6 @@ msgstr "استكشف الامتدادات"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "اعرف المزيد"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr ""
-
-msgid "That file no longer exists."
-msgstr "هذا الملف لم يعد موجودا بعد."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "حجم الملف يتعدى الحد بـ {0}."
-
-msgid "Problems decoding {0}."
-msgstr ""
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
-
-msgid "This file is a directory."
-msgstr ""
-
-msgid "Cannot diff a version against itself"
-msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5276,96 +5264,6 @@ msgstr ""
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
-
-msgid "Back to review"
-msgstr ""
-
-#, fuzzy
-msgid "Back to add-on"
-msgstr "عودة إلى الإضافات"
-
-msgid "Download {0}"
-msgstr "نزّل {0}"
-
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
-
-msgid "File Compare :: Reviewer tools"
-msgstr ""
-
-msgid "File Viewer :: Reviewer tools"
-msgstr ""
-
-msgid "Validation failed:"
-msgstr "فشل التثبّت:"
-
-msgid "File content not supported for syntax highlighting"
-msgstr ""
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
-
-msgid "close"
-msgstr "أغلق"
-
-msgid "Go"
-msgstr "إذهب"
-
-msgid "Add-on file being processed, please wait."
-msgstr ""
-
-msgid "Fetching validation results..."
-msgstr "يجلب نتائج التثبّت…"
-
-msgid "Files:"
-msgstr "الملفات:"
-
-msgid "Deleted files:"
-msgstr "الملفات المحذوفة:"
-
-msgid "Hide known files"
-msgstr ""
-
-msgid "Tab stops:"
-msgstr ""
-
-msgid "Up file"
-msgstr ""
-
-msgid "Down file"
-msgstr ""
-
-msgid "Previous diff"
-msgstr ""
-
-msgid "Previous note"
-msgstr ""
-
-msgid "Next diff"
-msgstr ""
-
-msgid "Next note"
-msgstr ""
-
-# There is a list of directories and files on the page.  Clicking this will show the
-# contents of all the directories (normally you would click on each one to see the
-# contents)
-msgid "Expand all"
-msgstr "وسّع الكل"
-
-msgid "Hide or unhide tree"
-msgstr ""
-
-msgid "Wrap or unwrap text"
-msgstr ""
-
-msgid "No files in the uploaded file."
-msgstr ""
-
-msgid "Fetching file."
 msgstr ""
 
 msgid "Review Guidelines"
@@ -5642,13 +5540,6 @@ msgstr "أضِف تعليقًا"
 msgid "Requires Restart"
 msgstr "يتطلب إعادة التشغيل"
 
-msgid "More Information Requested"
-msgstr "طُلبت معلومات أكثر"
-
-#, fuzzy
-msgid "Expired Information Request"
-msgstr "معلومات أساسية"
-
 msgid "Sources provided"
 msgstr ""
 
@@ -5742,9 +5633,6 @@ msgstr "آخر مراجعة"
 msgid "Weight"
 msgstr "الوزن"
 
-msgid "Information Request Deadline"
-msgstr ""
-
 msgid "Pending Rejection Deadline"
 msgstr ""
 
@@ -5761,7 +5649,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "التعليق على {0}"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "عرض الإصدارات الأخرى"
 
 #, fuzzy
@@ -5855,23 +5743,11 @@ msgid "Security Scanners"
 msgstr "فحوص الأمان"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "التعليق على {0}"
-msgstr[1] "التعليق على {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr "التعليق على {0}"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5896,13 +5772,7 @@ msgstr "غير مراجعة"
 
 #, fuzzy
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "التعليق على {0}"
-msgstr[1] "التعليق على {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr "التعليق على {0}"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -5942,10 +5812,6 @@ msgstr ""
 
 msgid "Update message of the day"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests ({0})"
-msgstr "معلومات أساسية"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6169,6 +6035,9 @@ msgstr "كل الأوقات"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr ""
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6178,10 +6047,6 @@ msgstr "إضافات أندرويد"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "معلومات أساسية"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6248,9 +6113,6 @@ msgstr "تاريخ الإضافة"
 msgid "Previously deleted entries"
 msgstr ""
 
-msgid "This is a recommended extension."
-msgstr "هذا امتداد مُقترح."
-
 msgid "You don't have permission to review it."
 msgstr ""
 
@@ -6262,6 +6124,9 @@ msgstr ""
 
 msgid "Insert canned response..."
 msgstr ""
+
+msgid "Files:"
+msgstr "الملفات:"
 
 msgid "Tested on:"
 msgstr "أختُبرت في:"
@@ -6333,10 +6198,6 @@ msgstr ""
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "المحدّثة مؤخرًا"
-
-#, fuzzy
-msgid "Clear information request"
-msgstr "معلومات المطور"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6479,6 +6340,10 @@ msgstr "الإصدارة %(version)s &middot; %(created)s <span class=\"light\">
 msgid "(Confirmed)"
 msgstr ""
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "معلومات أساسية"
+
 msgid "Compatibility:"
 msgstr "التوافقية:"
 
@@ -6527,56 +6392,35 @@ msgstr ""
 msgid "[status:%s]"
 msgstr "الحالة:"
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "التحديثات ({0})"
-msgstr[1] "التحديث ({0})"
-msgstr[2] "التحديثان ({0})"
-msgstr[3] "التحديثات ({0})"
-msgstr[4] "التحديثات ({0})"
-msgstr[5] "التحديثات ({0})"
+#, fuzzy
+msgid "Other Pending Review"
+msgstr "التعليق على {0}"
 
 #, fuzzy
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "التعليق على {0}"
-msgstr[1] "التعليق على {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgid "Flagged By Scanners"
+msgstr "فحوص الأمان"
+
+#, fuzzy
+msgid "Flagged for Human Review"
+msgstr "التعليق على {0}"
+
+#, fuzzy
+msgid "Updates"
+msgstr "حدّث"
+
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "ينتظر المراجعة"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 #, fuzzy
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "إضافات {0}"
-msgstr[1] "إضافات {0}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgid "Auto Approved"
+msgstr "إضافات {0}"
 
 #, fuzzy
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "معلومات أساسية"
-msgstr[1] "معلومات أساسية"
-msgstr[2] "معلومات أساسية"
-msgstr[3] "معلومات أساسية"
-msgstr[4] "معلومات أساسية"
-msgstr[5] "معلومات أساسية"
-
-#, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "التعليق على {0}"
-msgstr[1] "التعليق على {0}"
-msgstr[2] "التعليق على {0}"
-msgstr[3] "التعليق على {0}"
-msgstr[4] "التعليق على {0}"
-msgstr[5] "التعليق على {0}"
+msgid "Pending Rejection"
+msgstr "التعليق على {0}"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6744,6 +6588,9 @@ msgstr "حسب منصة التشغيل"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "أغلق"
+
 msgid "Custom Date Range"
 msgstr "نطاق زمني مخصص"
 
@@ -6809,9 +6656,6 @@ msgstr "365 يوم"
 msgid "Custom..."
 msgstr "مخصص..."
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
-
 msgid "Loading the latest data&hellip;"
 msgstr "يجري تحميل البيانات الأخيرة&hellip;"
 
@@ -6828,6 +6672,9 @@ msgstr "استخدام التطبيق حسب التاريخ"
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "مصادر التنزيل حسب التاريخ"
+
+msgid "About tracking external sources..."
+msgstr "عن تتبع المصادر الخارجية..."
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6862,9 +6709,6 @@ msgstr "استخدام المنصة حسب التاريخ"
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> من التنزيلات"
 
-msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> من التنزيلات"
-
 msgid "Loading..."
 msgstr "يجري التحميل..."
 
@@ -6891,9 +6735,6 @@ msgstr "عرض مزيد من المنصات&hellip;"
 
 msgid "Download sources by Date"
 msgstr "مصادر التنزيل حسب التاريخ"
-
-msgid "About tracking external sources..."
-msgstr "عن تتبع المصادر الخارجية..."
 
 #, python-format
 msgid ""
@@ -6986,6 +6827,9 @@ msgstr "النسخة التجريبية والنسخة الليلية ونسخة
 
 msgid "Other languages"
 msgstr "لغات أخرى"
+
+msgid "Go"
+msgstr "إذهب"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
@@ -7205,7 +7049,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7220,6 +7064,3 @@ msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} وما بعدها"
-
-msgid "Deleted versions can`t be changed."
-msgstr ""

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-08-04 16:26+0000\n"
+"POT-Creation-Date: 2020-09-17 12:59+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -584,10 +584,6 @@ msgstr "Prześlij wersję"
 #, python-format
 msgid "%(count)s Add-on GUIDs"
 msgstr ""
-
-#, fuzzy
-msgid "users"
-msgstr "Nazwa użytkownika"
 
 msgid "Edit Block"
 msgstr ""
@@ -1415,14 +1411,15 @@ msgstr "Promuj"
 msgid "Recommended"
 msgstr "Skomentowano"
 
-msgid "Verified - Tier 1"
+msgid "Sponsored"
 msgstr ""
 
-msgid "Verified - Tier 2"
+msgid "Verified"
 msgstr ""
 
-msgid "Line"
-msgstr ""
+#, fuzzy
+msgid "By Firefox"
+msgstr "Firefox"
 
 msgid "Spotlight"
 msgstr ""
@@ -1972,9 +1969,8 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr "Wystąpił błąd podczas przesyłania obrazu."
 
-msgid ""
-"The latest approved version of this Recommended extension cannot be deleted or disabled because the previous version was not approved for recommendation. Please contact AMO Admins if you need help "
-"with this."
+#, python-format
+msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2682,6 +2678,20 @@ msgstr[2] "<strong>{0}</strong> aktywnych użytkowników"
 msgid "Submit a New Version"
 msgstr "Prześlij nową wersję"
 
+msgid "Cancel and Disable Version"
+msgstr "Anuluj i wyłącz wersję"
+
+#, fuzzy
+msgid "Are you sure you wish to cancel and disable version?"
+msgstr "Czy na pewno chcesz usunąć tę wersję?"
+
+#, fuzzy
+msgid "Yes, Cancel"
+msgstr "Anuluj"
+
+msgid "No, don't cancel"
+msgstr ""
+
 #, fuzzy
 msgid "Name and Summary:"
 msgstr "Podsumowanie:"
@@ -2760,9 +2770,6 @@ msgstr "Te uwagi będą widoczne tylko dla Ciebie i recenzentów."
 
 msgid "Submit Version"
 msgstr "Prześlij wersję"
-
-msgid "Cancel and Disable Version"
-msgstr "Anuluj i wyłącz wersję"
 
 msgid "Describe Version"
 msgstr "Opisz wersję"
@@ -3087,10 +3094,6 @@ msgstr ""
 msgid "Invisible"
 msgstr "Niewidoczny"
 
-#, fuzzy
-msgid "Approved and recommended"
-msgstr "Opinie zaakceptowane"
-
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Uzupełnij dodatek, dodając wersję lub brakujące metadane."
 
@@ -3180,12 +3183,6 @@ msgstr "Aktualności"
 
 msgid "View the blog &#9658;"
 msgstr "Zobacz blog &#9658;"
-
-msgid "Pending information request:"
-msgstr "Oczekująca prośba o informacje:"
-
-msgid "This request for information has been resolved"
-msgstr "Nie udzielono odpowiedzi na tę prośbę o informacje"
 
 msgid "License"
 msgstr "Licencja"
@@ -3569,6 +3566,12 @@ msgstr "Usuń wersję"
 
 msgid "Disable Version"
 msgstr "Wyłącz wersję"
+
+#, python-format
+msgid ""
+"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"AMO Admins if you need help with this."
+msgstr ""
 
 msgid "Hide Add-on"
 msgstr "Ukryj dodatek"
@@ -5140,6 +5143,7 @@ msgid "Android search enhancement {start_sub_heading}with {addon_name}{end_sub_h
 msgstr "Zatrzymaj usługi śledzące wyszukiwanie {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr ""
 
@@ -5149,7 +5153,6 @@ msgid "Android video help {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Znajduj filmy {start_sub_heading}przy użyciu dodatku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 msgstr ""
 
@@ -5204,15 +5207,26 @@ msgid "Watch streaming media with friends and family anywhere."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Have web pages read aloud to you. 40+ languages supported."
 msgstr ""
 
 #. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Some websites have difficulty playing videos on Android. Here's a fix."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Removes those long and ugly tracking parameters from Google search result URL's."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5249,33 +5263,6 @@ msgstr "Rozszerzenia"
 #. editorial content for the secondary hero shelves.
 msgid "Learn More"
 msgstr "Dowiedz się więcej"
-
-#, python-format
-msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr "Przeglądarka plików jest zablokowana, może trwać wyodrębnianie pliku %s. Spróbuj ponownie za około 5 minut."
-
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Wystąpił błąd w dostępie do pliku %s."
-
-msgid "That file no longer exists."
-msgstr "Ten plik już nie istnieje."
-
-#. L10n: {0} is the file size limit of the file viewer.
-msgid "File size is over the limit of {0}."
-msgstr "Rozmiar pliku przekracza limit {0}."
-
-msgid "Problems decoding {0}."
-msgstr "Problemy z dekodowaniem {0}."
-
-msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr "Zawartości tego pliku nie można zobaczyć w trybie online. Pobierz plik, by zobaczyć jego zawartość."
-
-msgid "This file is a directory."
-msgstr "Ten plik jest katalogiem."
-
-msgid "Cannot diff a version against itself"
-msgstr "Nie można porównać wersji samej z sobą"
 
 msgid "Could not parse the manifest file."
 msgstr "Nie można przetworzyć pliku manifestu."
@@ -5366,92 +5353,6 @@ msgstr "Nieoczekiwany błąd."
 #, fuzzy, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> w pliku install.rdf (%s) nie pasuje do typu dodatku na AMO (%s)"
-
-msgid "Back to review"
-msgstr "Wróć do recenzji"
-
-msgid "Back to add-on"
-msgstr "Wróć do dodatku"
-
-msgid "Download {0}"
-msgstr "Pobierz {0}"
-
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "Wersja: %(version)s &bull; rozmiar: %(size)s &bull; suma kontrolna SHA256: %(sha256)s &bull; typ MIME: %(mimetype)s"
-
-msgid "File Compare :: Reviewer tools"
-msgstr "Porównanie pliku :: Strefa recenzenta"
-
-msgid "File Viewer :: Reviewer tools"
-msgstr "Przeglądarka plików :: Strefa recenzenta"
-
-msgid "Validation failed:"
-msgstr "Weryfikacja się nie powiodła:"
-
-msgid "File content not supported for syntax highlighting"
-msgstr "Zawartość pliku nie jest obsługiwana na potrzeby wyróżniania składni"
-
-#, python-format
-msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr "Dane wyjściowe mogą być uszkodzone. Zachowaj ostrożność i natychmiast %(link_start)szgłoś problem%(link_end)s!"
-
-msgid "close"
-msgstr "zamknij"
-
-msgid "Go"
-msgstr "Przejdź"
-
-msgid "Add-on file being processed, please wait."
-msgstr "Plik dodatku jest przetwarzany. Proszę czekać."
-
-msgid "Fetching validation results..."
-msgstr "Pobieranie wyników weryfikacji…"
-
-msgid "Files:"
-msgstr "Pliki:"
-
-msgid "Deleted files:"
-msgstr "Usunięte pliki:"
-
-msgid "Hide known files"
-msgstr "Ukryj znane pliki"
-
-msgid "Tab stops:"
-msgstr "Tabulator:"
-
-msgid "Up file"
-msgstr "Plik w górę"
-
-msgid "Down file"
-msgstr "Plik w dół"
-
-msgid "Previous diff"
-msgstr "Poprzednia różnica"
-
-msgid "Previous note"
-msgstr "Poprzednia informacja"
-
-msgid "Next diff"
-msgstr "Następna różnica"
-
-msgid "Next note"
-msgstr "Następna informacja"
-
-msgid "Expand all"
-msgstr "Rozwiń wszystko"
-
-msgid "Hide or unhide tree"
-msgstr "Ukryj lub wyświetl drzewo"
-
-msgid "Wrap or unwrap text"
-msgstr "Włącz/wyłącz zawijanie tekstu"
-
-msgid "No files in the uploaded file."
-msgstr "Brak plików w przesyłanym pliku."
-
-msgid "Fetching file."
-msgstr "Pobieranie pliku."
 
 msgid "Review Guidelines"
 msgstr "Wytyczne dla autorów opinii"
@@ -5729,12 +5630,6 @@ msgstr "Wymaga sprawdzenia motywu statycznego przez administratora"
 msgid "Requires Restart"
 msgstr "Wymagane ponowne uruchomienie"
 
-msgid "More Information Requested"
-msgstr "Poproszono o więcej informacji"
-
-msgid "Expired Information Request"
-msgstr "Wygasła prośba o informacje"
-
 msgid "Sources provided"
 msgstr "Dostarczono źródła"
 
@@ -5820,9 +5715,6 @@ msgstr "Ostatnia opinia"
 msgid "Weight"
 msgstr "Waga"
 
-msgid "Information Request Deadline"
-msgstr "Termin prośby o informacje"
-
 #, fuzzy
 msgid "Pending Rejection Deadline"
 msgstr "Termin prośby o informacje"
@@ -5840,7 +5732,7 @@ msgid "Unlisted versions needing human review ({0})"
 msgstr "Ocena opinii ({0})"
 
 #, fuzzy
-msgid "Listed versions ({0})"
+msgid "Listed version"
 msgstr "Najnowsze wersje"
 
 #, fuzzy
@@ -5927,17 +5819,11 @@ msgid "Security Scanners"
 msgstr "Testy bezpieczeństwa"
 
 msgid "Flagged By Scanners ({0})"
-msgid_plural "Flagged By Scanners ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgid_plural "Flagged for Human Review ({0})"
-msgstr[0] "Ocena opinii ({0})"
-msgstr[1] "Oceny opinii ({0})"
-msgstr[2] "Oceny opinii ({0})"
+msgstr "Ocena opinii ({0})"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatycznie zatwierdzone dodatki"
@@ -5954,11 +5840,9 @@ msgstr "Przewodnik recenzenta"
 msgid "Content Review"
 msgstr "Sprawdzenie zawartości"
 
+#, fuzzy
 msgid "Content Review ({0})"
-msgid_plural "Content Review ({0})"
-msgstr[0] "Sprawdzenie zawartości ({0})"
-msgstr[1] "Sprawdzenie zawartości ({0})"
-msgstr[2] "Sprawdzenie zawartości ({0})"
+msgstr "Sprawdzenie zawartości ({0})"
 
 msgid "New ({0})"
 msgstr "Nowe ({0})"
@@ -5992,9 +5876,6 @@ msgstr "Komunikaty"
 
 msgid "Update message of the day"
 msgstr "Aktualizuj wiadomość dnia"
-
-msgid "Expired Information Requests ({0})"
-msgstr "Wygasłe prośby o informacje ({0})"
 
 #, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
@@ -6210,6 +6091,9 @@ msgstr "Wszystkie"
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
+msgid "Back to review"
+msgstr "Wróć do recenzji"
+
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
 
@@ -6219,10 +6103,6 @@ msgstr "Automatycznie zatwierdzone dodatki"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
-
-#, fuzzy
-msgid "Expired Information Requests – Add-ons for Firefox"
-msgstr "Wygasła prośba o informacje"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
 msgstr ""
@@ -6287,9 +6167,6 @@ msgstr "Historia dodatku"
 msgid "Previously deleted entries"
 msgstr "Poprzednia informacja"
 
-msgid "This is a recommended extension."
-msgstr ""
-
 #, fuzzy
 msgid "You don't have permission to review it."
 msgstr "Nie masz poświadczeń API."
@@ -6303,6 +6180,9 @@ msgstr "Nadal możesz wysłać ten formularz pod warunkiem, że nie będzie on s
 
 msgid "Insert canned response..."
 msgstr "Gotowe odpowiedzi"
+
+msgid "Files:"
+msgstr "Pliki:"
 
 msgid "Tested on:"
 msgstr "Testowany na:"
@@ -6373,9 +6253,6 @@ msgstr "Ma ustawioną flagę wyłączonego automatycznego zatwierdzania."
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Włącz automatyczne zatwierdzanie"
-
-msgid "Clear information request"
-msgstr "Usuń prośbę o informacje"
 
 msgid "Clear pending rejections"
 msgstr ""
@@ -6514,6 +6391,10 @@ msgstr "Wersja %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgid "(Confirmed)"
 msgstr "(potwierdzono)"
 
+#, fuzzy
+msgid "Pending Rejection on review of new version"
+msgstr "Termin prośby o informacje"
+
 msgid "Compatibility:"
 msgstr "Kompatybilność:"
 
@@ -6561,36 +6442,33 @@ msgstr "Odrzucone lub niesprawdzone"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-msgid "Update ({0})"
-msgid_plural "Updates ({0})"
-msgstr[0] "Aktualizacja ({0})"
-msgstr[1] "Aktualizacje ({0})"
-msgstr[2] "Aktualizacje ({0})"
-
-msgid "Rating Review ({0})"
-msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Ocena opinii ({0})"
-msgstr[1] "Oceny opinii ({0})"
-msgstr[2] "Oceny opinii ({0})"
-
-msgid "Auto Approved ({0})"
-msgid_plural "Auto Approved ({0})"
-msgstr[0] "Automatycznie zatwierdzone ({0})"
-msgstr[1] "Automatycznie zatwierdzone ({0})"
-msgstr[2] "Automatycznie zatwierdzone ({0})"
-
-msgid "Expired Info Request ({0})"
-msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Wygasła prośba o informacje ({0})"
-msgstr[1] "Wygasłe prośby o informacje ({0})"
-msgstr[2] "Wygasłe prośby o informacje ({0})"
+#, fuzzy
+msgid "Other Pending Review"
+msgstr "Ocena opinii ({0})"
 
 #, fuzzy
-msgid "Pending Rejection ({0})"
-msgid_plural "Pending Rejection ({0})"
-msgstr[0] "Ocena opinii ({0})"
-msgstr[1] "Ocena opinii ({0})"
-msgstr[2] "Ocena opinii ({0})"
+msgid "Flagged By Scanners"
+msgstr "Testy bezpieczeństwa"
+
+#, fuzzy
+msgid "Flagged for Human Review"
+msgstr "Ocena opinii ({0})"
+
+#, fuzzy
+msgid "Updates"
+msgstr "Aktualizuj"
+
+#, fuzzy
+msgid "Rating Reviews"
+msgstr "Oczekujące sprawdzenie"
+
+#, fuzzy
+msgid "Auto Approved"
+msgstr "Automatycznie zatwierdzone ({0})"
+
+#, fuzzy
+msgid "Pending Rejection"
+msgstr "Ocena opinii ({0})"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -6765,6 +6643,9 @@ msgstr "wg platformy"
 msgid "by Country"
 msgstr ""
 
+msgid "close"
+msgstr "zamknij"
+
 msgid "Custom Date Range"
 msgstr "Określ przedział czasowy"
 
@@ -6831,10 +6712,6 @@ msgstr "365 dni"
 msgid "Custom..."
 msgstr "Inny przedział…"
 
-msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
-"Przetwarzanie statystyk jest obecnie wyłączone, dlatego ostatnie dane są niedostępne. Statystyki są nadal gromadzone, a ta strona zostanie wkrótce zaktualizowana przy użyciu brakujących danych."
-
 msgid "Loading the latest data&hellip;"
 msgstr "Wczytywanie najnowszych danych&hellip;"
 
@@ -6851,6 +6728,9 @@ msgstr "Użycie programu wg daty"
 #, fuzzy
 msgid "Download campaigns by Date"
 msgstr "Źródła pobierania wg daty"
+
+msgid "About tracking external sources..."
+msgstr "O śledzeniu zewnętrznych źródeł…"
 
 #, fuzzy
 msgid "Download contents by Date"
@@ -6887,9 +6767,6 @@ msgstr "Użycie platformy wg daty"
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> pobrań"
 
-msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> pobrań"
-
 msgid "Loading..."
 msgstr "Wczytywanie…"
 
@@ -6916,9 +6793,6 @@ msgstr "Więcej platform&hellip;"
 
 msgid "Download sources by Date"
 msgstr "Źródła pobierania wg daty"
-
-msgid "About tracking external sources..."
-msgstr "O śledzeniu zewnętrznych źródeł…"
 
 #, python-format
 msgid ""
@@ -7016,6 +6890,9 @@ msgstr "Beta, Nightly, wersja dla programistów"
 
 msgid "Other languages"
 msgstr "Inne języki"
+
+msgid "Go"
+msgstr "Przejdź"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
@@ -7240,7 +7117,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted.\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -7255,6 +7132,3 @@ msgstr "inni"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} i późniejsze"
-
-msgid "Deleted versions can`t be changed."
-msgstr "Usuniętych wersji nie można zmieniać."
