@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 14:11+0000\n"
+"PO-Revision-Date: 2020-09-17 14:20+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3474,13 +3474,13 @@ msgstr "Deler le version"
 msgid "Disable Version"
 msgstr "Disactivar le version"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Le ultime version approbate de iste extension recommendate non pote esser delite o disactivate perque le previe version non ha essite approbate pro recommendation. Contacta le administratores de AMO"
-" si te require adjuta pro isto."
+"Le ultime version approbate de iste additivo de %(promoted_group_name)s non pote esser delite o disactivate perque le previe version non era approbate pro le promotion de %(promoted_group_name)s. "
+"Contacta le administratores de AMO si te besonia adjuta pro isto."
 
 msgid "Hide Add-on"
 msgstr "Celar le additivo"
@@ -5046,7 +5046,6 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Duple-clicca ulle parola pro vider al instante su definition."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Alcun sitos ha difficultate a reproducer videos sur Firefox pro Android. Iste extension forni un remedio."
 
@@ -5535,9 +5534,8 @@ msgstr "Versiones listate que require revision manual ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Versiones non listate que require revision manual ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Versiones in le lista de presentation"
+msgstr "Version in le lista de presentation"
 
 msgid "Unlisted versions ({0})"
 msgstr "Versiones non publicate ({0})"
@@ -5614,7 +5612,6 @@ msgstr "Guida al revision del additivos"
 msgid "Security Scanners"
 msgstr "Scanditores de securitate"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
 msgstr "Signalate per scanditores ({0})"
 
