@@ -23,7 +23,8 @@ from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
-from olympia.constants.promoted import RECOMMENDED, PRE_REVIEW_GROUPS
+from olympia.constants.promoted import (
+    NOT_PROMOTED, PROMOTED_GROUPS_BY_ID, RECOMMENDED, PRE_REVIEW_GROUPS)
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
 from olympia.reviewers.sql_model import RawSQLModel
@@ -105,8 +106,12 @@ def get_flags(addon, version):
 def get_flags_for_row(record):
     """Like get_flags(), but for the queue pages, using fields directly
     returned by the queues SQL query."""
-    return [(cls, title) for (prop, cls, title) in VIEW_QUEUE_FLAGS
-            if getattr(record, prop)]
+    flags = [(cls, title) for (prop, cls, title) in VIEW_QUEUE_FLAGS
+             if getattr(record, prop)]
+    # add in the promoted group flag and return
+    if promoted := record.promoted:
+        flags.append((f'promoted-{promoted.api_name}', promoted.name))
+    return flags
 
 
 class ViewQueue(RawSQLModel):
@@ -115,15 +120,16 @@ class ViewQueue(RawSQLModel):
     addon_slug = models.CharField(max_length=30)
     addon_status = models.IntegerField()
     addon_type_id = models.IntegerField()
+    auto_approval_delayed_temporarily = models.NullBooleanField()
+    auto_approval_delayed_indefinitely = models.NullBooleanField()
+    is_restart_required = models.BooleanField()
+    is_webextension = models.BooleanField()
+    latest_version = models.CharField(max_length=255)
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
     needs_admin_theme_review = models.NullBooleanField()
-    is_restart_required = models.BooleanField()
+    promoted_group_id = models.IntegerField()
     source = models.CharField(max_length=100)
-    is_webextension = models.BooleanField()
-    latest_version = models.CharField(max_length=255)
-    auto_approval_delayed_temporarily = models.NullBooleanField()
-    auto_approval_delayed_indefinitely = models.NullBooleanField()
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
@@ -138,13 +144,6 @@ class ViewQueue(RawSQLModel):
                 ('addon_status', 'addons.status'),
                 ('addon_type_id', 'addons.addontype_id'),
                 ('addon_slug', 'addons.slug'),
-                ('needs_admin_code_review',
-                    'addons_addonreviewerflags.needs_admin_code_review'),
-                ('needs_admin_content_review',
-                    'addons_addonreviewerflags.needs_admin_content_review'),
-                ('needs_admin_theme_review',
-                    'addons_addonreviewerflags.needs_admin_theme_review'),
-                ('latest_version', 'versions.version'),
                 ('auto_approval_delayed_temporarily', (
                     'TIMEDIFF(addons_addonreviewerflags.'
                     'auto_approval_delayed_until, NOW()) > 0 AND '
@@ -156,8 +155,16 @@ class ViewQueue(RawSQLModel):
                     'EXTRACT(YEAR FROM addons_addonreviewerflags.'
                     'auto_approval_delayed_until) = 9999')),
                 ('is_restart_required', 'MAX(files.is_restart_required)'),
-                ('source', 'versions.source'),
                 ('is_webextension', 'MAX(files.is_webextension)'),
+                ('latest_version', 'versions.version'),
+                ('needs_admin_code_review',
+                    'addons_addonreviewerflags.needs_admin_code_review'),
+                ('needs_admin_content_review',
+                    'addons_addonreviewerflags.needs_admin_content_review'),
+                ('needs_admin_theme_review',
+                    'addons_addonreviewerflags.needs_admin_theme_review'),
+                ('promoted_group_id', 'promoted.group_id'),
+                ('source', 'versions.source'),
                 ('waiting_time_days',
                     'TIMESTAMPDIFF(DAY, MAX(versions.nomination), NOW())'),
                 ('waiting_time_hours',
@@ -196,6 +203,10 @@ class ViewQueue(RawSQLModel):
     @property
     def sources_provided(self):
         return bool(self.source)
+
+    @property
+    def promoted(self):
+        return PROMOTED_GROUPS_BY_ID.get(self.promoted_group_id, NOT_PROMOTED)
 
     @property
     def flags(self):

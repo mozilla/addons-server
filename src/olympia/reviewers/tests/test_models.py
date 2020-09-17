@@ -15,7 +15,7 @@ from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
 from olympia.blocklist.models import Block
 from olympia.constants.promoted import (
-    LINE, NOT_PROMOTED, RECOMMENDED, STRATEGIC)
+    LINE, NOT_PROMOTED, RECOMMENDED, STRATEGIC, VERIFIED_ONE)
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
@@ -167,6 +167,17 @@ class TestExtensionQueueWithAwaitingReview(TestQueue):
 
         queue = self.Queue.objects.get()
         assert queue.flags == [('is_restart_required', 'Requires Restart')]
+
+    def test_flags_promoted(self):
+        addon = self.new_addon()
+        assert self.Queue.objects.get().flags == []
+
+        self.make_addon_promoted(addon, VERIFIED_ONE)
+        assert self.Queue.objects.get().flags == [
+            ('promoted-sponsored', 'Sponsored')]
+
+        self.make_addon_promoted(addon, NOT_PROMOTED)
+        assert self.Queue.objects.get().flags == []
 
     def test_flags_sources_provided(self):
         self.new_addon().find_latest_version(self.channel).update(

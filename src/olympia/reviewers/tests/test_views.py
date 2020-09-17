@@ -1281,6 +1281,22 @@ class TestQueueBasics(QueueTest):
         assert rows.find('td').eq(1).text() == 'Restartless 0.1'
         assert rows.find('.ed-sprite-is_restart_required').length == 0
 
+    def test_flags_promoted(self):
+        addon = addon_factory(name='Firefox Fún')
+        version_factory(
+            addon=addon,
+            version='1.1',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.make_addon_promoted(addon, LINE)
+
+        r = self.client.get(reverse('reviewers.queue_extension'))
+
+        rows = pq(r.content)('#addon-queue tr.addon-row')
+        assert rows.length == 1
+        assert rows.attr('data-addon') == str(addon.id)
+        assert rows.find('td').eq(1).text() == 'Firefox Fún 1.1'
+        assert rows.find('.ed-sprite-promoted-line').length == 1
+
     def test_tabnav_permissions(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
