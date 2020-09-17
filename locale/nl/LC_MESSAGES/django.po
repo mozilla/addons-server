@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 13:19+0000\n"
+"PO-Revision-Date: 2020-09-17 13:15+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2601,13 +2601,11 @@ msgstr "Een nieuwe versie indienen"
 msgid "Cancel and Disable Version"
 msgstr "Annuleren en versie uitschakelen"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Weet u zeker dat u deze versie wilt verwijderen?"
+msgstr ""
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Annuleren"
+msgstr ""
 
 msgid "No, don't cancel"
 msgstr "Nee, niet annuleren"
@@ -3504,13 +3502,11 @@ msgstr "Versie verwijderen"
 msgid "Disable Version"
 msgstr "Versie uitschakelen"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"De nieuwste goedgekeurde versie van deze Aanbevolen extensie kan niet worden verwijderd of uitgeschakeld, omdat de vorige versie niet is goedgekeurd voor aanbeveling. Neem contact op met AMO-"
-"beheerders als u hier hulp bij nodig hebt."
 
 msgid "Hide Add-on"
 msgstr "Add-on verbergen"
@@ -5077,9 +5073,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Dubbelklik een willekeurig woord om direct de definitie ervan te zien."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Sommige websites hebben moeite met het afspelen van video’s op Firefox voor Android. Deze extensie biedt een oplossing."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5568,9 +5563,8 @@ msgstr "Vermelde versies die handmatig moeten worden beoordeeld ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Niet-vermelde versies die handmatig moeten worden beoordeeld ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Vermelde versies"
+msgstr ""
 
 msgid "Unlisted versions ({0})"
 msgstr "Niet-vermelde versies ({0})"
@@ -5647,11 +5641,9 @@ msgstr "Add-on-beoordelingsgids"
 msgid "Security Scanners"
 msgstr "Beveiligingsscanners"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
-msgstr "Gemarkeerd door scanner ({0})"
+msgstr ""
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgstr "Gemarkeerd voor persoonlijke beoordeling ({0})"
 
@@ -5670,9 +5662,8 @@ msgstr "Gids voor beoordelaars"
 msgid "Content Review"
 msgstr "Inhoudsbeoordeling"
 
-#, fuzzy
 msgid "Content Review ({0})"
-msgstr "Inhoudsbeoordeling ({0})"
+msgstr ""
 
 msgid "New ({0})"
 msgstr "Nieuw ({0})"
@@ -6197,9 +6188,8 @@ msgstr "Versie %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgid "(Confirmed)"
 msgstr "(Bevestigd)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Deadline voor wachtrij voor afwijzing"
+msgstr ""
 
 msgid "Compatibility:"
 msgstr "Compatibiliteit:"
