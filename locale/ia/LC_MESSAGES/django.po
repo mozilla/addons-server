@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 14:33+0000\n"
+"PO-Revision-Date: 2020-09-17 14:39+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1901,11 +1901,11 @@ msgstr "Le icone debe esser quadrate (altitude equal al latitude)."
 msgid "There was an error uploading your preview."
 msgstr "Error durante le incargamento de tu vista preliminar."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Le ultime version approbate de iste extension recommendate non pote esser delite o disactivate perque le previe version non ha essite approbate pro recommendation. Contacta le administratores de AMO"
-" si te require adjuta pro isto."
+"Le ultime version approbate de iste additivo de %s non pote esser delite o disactivate perque le previe version non era approbate pro le promotion de %s. Contacta le administratores de AMO si te "
+"besonia adjuta pro isto."
 
 #, python-format
 msgid "Version %s disabled."
@@ -6865,7 +6865,7 @@ msgstr ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -6879,7 +6879,7 @@ msgid ""
 msgstr ""
 "Hallo,\n"
 "\n"
-"Tu recipe iste message perque tu conto de usator %(name)s sur %(site_url)s ha essite delite.\n"
+"Tu recipe iste message perque tu conto de usator %(name)s sur %(site_url)s ha essite delite. Isto poterea haber essite facite automaticamente si tu ha recentemente delite tu conto Firefox.\n"
 "\n"
 "Si tu non ha facite isto o crede que un persona non autorisate ha accedite tu conto, per favor replica a iste email. Alteremente, il ha nulle altere action a prender.\n"
 "\n"
