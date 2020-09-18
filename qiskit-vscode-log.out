@@ -1,0 +1,31 @@
+verbose - Object: Activating qiskit-vscode extension...
+verbose - Object: ✨ Activating qiskit-vscode extension... ✨
+verbose - Object: Checking for Python dependencies...
+verbose - Object: Package: python Version: 3.8.3
+verbose - Object: Package: pip Version: 20.1.1
+verbose - Object: Check for required python packages...
+debug - PackageManager: Checking package qiskit 0.6.0 installation
+debug - PackageManager: Checking package qiskit-aqua 0.4.0 installation
+debug - PackageManager: Checking package qiskit-chemistry 0.4.2 installation
+debug - PackageManager: Checking package IBMQuantumExperience 2.0.4 installation
+verbose - unknown: Qiskit VSCode Extension dependencies found! 👌 python v 3.8.3
+👌 pip v 20.1.1
+
+verbose - Object: qiskit-vscode extension successfully loaded!
+verbose - Object: 🚀 qiskit-vscode extension loaded! 🚀
+verbose - PackageManager: Starting installation process for IBMQuantumExperience ...
+verbose - PackageManager: Starting installation process for qiskit-aqua ...
+verbose - PackageManager: Starting installation process for qiskit ...
+verbose - PackageManager: Starting installation process for qiskit-chemistry ...
+verbose - PackageManager: Clicked on another element! Cancelling install
+info - PackageManager: Package [object Object] do not updated. The user rejected the update
+info - Object: Go to install qiskit-chemistry
+verbose - PackageManager: Clicked on another element! Cancelling install
+info - PackageManager: Package [object Object] do not updated. The user rejected the update
+info - Object: Go to install qiskit
+verbose - PackageManager: Clicked on another element! Cancelling install
+info - PackageManager: Package [object Object] do not updated. The user rejected the update
+info - Object: Go to install qiskit-aqua
+verbose - PackageManager: Clicked on another element! Cancelling install
+info - PackageManager: Package [object Object] do not updated. The user rejected the update
+info - Object: Go to install IBMQuantumExperience
