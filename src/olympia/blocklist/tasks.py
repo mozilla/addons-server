@@ -40,7 +40,6 @@ bracket_open_regex = re.compile(r'(?<!\\){')
 bracket_close_regex = re.compile(r'(?<!\\)}')
 
 BLOCKLIST_RECORD_MLBF_BASE = 'bloomfilter-base'
-BLOCKLIST_RECORD_MLBF_UPDATE = 'bloomfilter-full'
 
 
 @task
@@ -204,17 +203,28 @@ def delete_imported_block_from_blocklist(legacy_id):
 
 
 @task
-def upload_filter(generation_time, is_base=True, upload_stash=False):
+def upload_filter(generation_time, is_base=True):
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = RemoteSettings(
         bucket, REMOTE_SETTINGS_COLLECTION_MLBF, sign_off_needed=False)
-    mlbf = MLBF(generation_time)
+    mlbf = MLBF.load_from_storage(generation_time)
     if is_base:
         # clear the collection for the base - we want to be the only filter
         server.delete_all_records()
         statsd.incr('blocklist.tasks.upload_filter.reset_collection')
-    # Deal with possible stashes first
-    if upload_stash:
+        # Then the bloomfilter
+        data = {
+            'key_format': MLBF.KEY_FORMAT,
+            'generation_time': generation_time,
+            'attachment_type': BLOCKLIST_RECORD_MLBF_BASE,
+        }
+        with storage.open(mlbf.filter_path, 'rb') as filter_file:
+            attachment = (
+                'filter.bin', filter_file, 'application/octet-stream')
+            server.publish_attachment(data, attachment)
+            statsd.incr('blocklist.tasks.upload_filter.upload_mlbf')
+        statsd.incr('blocklist.tasks.upload_filter.upload_mlbf.base')
+    else:
         # If we have a stash, write that
         stash_data = {
             'key_format': MLBF.KEY_FORMAT,
@@ -224,21 +234,6 @@ def upload_filter(generation_time, is_base=True, upload_stash=False):
         server.publish_record(stash_data)
         statsd.incr('blocklist.tasks.upload_filter.upload_stash')
 
-    # Then the bloomfilter
-    data = {
-        'key_format': MLBF.KEY_FORMAT,
-        'generation_time': generation_time,
-        'attachment_type':
-            BLOCKLIST_RECORD_MLBF_BASE if is_base else
-            BLOCKLIST_RECORD_MLBF_UPDATE,
-    }
-    with storage.open(mlbf.filter_path, 'rb') as filter_file:
-        attachment = ('filter.bin', filter_file, 'application/octet-stream')
-        server.publish_attachment(data, attachment)
-        statsd.incr('blocklist.tasks.upload_filter.upload_mlbf')
-    statsd.incr(
-        'blocklist.tasks.upload_filter.upload_mlbf.'
-        f'{"base" if is_base else "full"}')
     server.complete_session()
     set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
     if is_base:
