@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-18 14:43+0000\n"
+"PO-Revision-Date: 2020-09-18 14:46+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6261,17 +6261,14 @@ msgstr "Za cłowjeske pśěglědanje markěrowany"
 msgid "Updates"
 msgstr "Aktualizacije"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Caka na pśeglědanje"
+msgstr "Pśeglědowanje pógódnośenjow"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Awtomatiski pśizwólony dodank ({0})"
+msgstr "Awtomatiski pśizwólony"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Felujuce wótpokazanje ({0})"
+msgstr "Felujuce wótpokazanje"
 
 msgid "presence of matched rules"
 msgstr "eksistenca wótpowědujucych pšawidłow"
@@ -6912,7 +6909,7 @@ msgstr ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -6926,7 +6923,7 @@ msgid ""
 msgstr ""
 "Witajśo,\n"
 "\n"
-"dostawaśo toś tu powěsć, dokulaž wašo wužywaŕske konto %(name)s na %(site_url)s jo se wulašowało.\n"
+"dostawaśo toś tu powěsć, dokulaž wašo wužywaŕske konto %(name)s na %(site_url)s jo se wulašowało. To mógło so awtomatiski staś, jolic sćo swójo konto Firefox njedawno wulašował.\n"
 "\n"
 "Jolic njejsćo to cynił abo mysliśo se, až njeawtorizěrowana wósoba jo pśistup na wašo konto měła, wótegrońśo pšosym na toś tu mejlku. Howac njetrjebaśo nico cyniś.\n"
 "\n"
