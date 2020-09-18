@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 18:18+0000\n"
+"PO-Revision-Date: 2020-09-18 14:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1373,13 +1373,11 @@ msgstr "Dopórucony"
 msgid "Sponsored"
 msgstr "Sponsorowany"
 
-#, fuzzy
 msgid "Verified"
-msgstr "Pśeglědany - rownina 1"
+msgstr "Pśeglědany"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "Pśez Firefox"
 
 msgid "Spotlight"
 msgstr "Spotlight"
@@ -1906,11 +1904,11 @@ msgstr "Symbol musy kwadratiski byś (jadnaka šyrokosć a wusokosć)."
 msgid "There was an error uploading your preview."
 msgstr "Pśi nagrawanju wašogo pśeglěda jo zmólka nastała."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Nejnowša pśizwólona wersija dopóruconego rozšyrjenja njedajo se wulašowaś abo znjemóžniś, dokulaž pjerwjejšna wersija njejo se pśizwóliła za dopórucenje. Pšosym stajśo se z administratorami AMO do "
-"zwiska, jolic pomoc wó tom trjebaśo."
+"Nejnowša pśizwólona wersija dodanka %s njedajo se wulašowaś abo znjemóžniś, dokulaž pjerwjejšna wersija njejo se pśizwóliła za dopórucenje %s. Pšosym stajśo se z administratorami AMO do zwiska, "
+"jolic pomoc wó tom trjebaśo."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2609,13 +2607,11 @@ msgstr "Nowu wersiju zapódaś"
 msgid "Cancel and Disable Version"
 msgstr "Pśetergnuś a wersiju znjemóžniś"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Cośo napšawdu toś tu wersiju lašowaś?"
+msgstr "Cośo napšawdu toś tu wersiju pśetergnuś a znjemóžniś?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Pśetergnuś"
+msgstr "Jo, pśetergnuś"
 
 msgid "No, don't cancel"
 msgstr "Ně, njepśetergnuś"
@@ -3504,13 +3500,13 @@ msgstr "Wersiju lašowaś"
 msgid "Disable Version"
 msgstr "Wersiju znjemóžniś"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Nejnowša pśizwólona wersija dopóruconego rozšyrjenja njedajo se wulašowaś abo znjemóžniś, dokulaž pjerwjejšna wersija njejo se pśizwóliła za dopórucenje. Pšosym stajśo se z administratorami AMO do "
-"zwiska, jolic pomoc wó tom trjebaśo."
+"Nejnowša pśizwólona wersija dodanka %(promoted_group_name)ss njedajo se wulašowaś abo znjemóžniś, dokulaž pjerwjejšna wersija njejo se pśizwóliła za dopórucenje %(promoted_group_name)s. Pšosym "
+"stajśo se z administratorami AMO do zwiska, jolic pomoc wó tom trjebaśo."
 
 msgid "Hide Add-on"
 msgstr "Dodank schowaś"
@@ -5083,9 +5079,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Klikniśo dwójcy na někake słowo, aby ned jogo definiciju wiźeł."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Někotare sedła maju śěžkosći, wideo na Firefox za Android wótgrawaś. Toś to rozšyrjenje pórěźenje k dispoziciji staja."
+msgstr "Někotare sedła maju śěžkosći, wideo na Android wótgrawaś. How jo rozwězanje."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5581,9 +5576,8 @@ msgstr "Nalicone wersije, kótarež se cłowjeske pśeglědanje pominaju ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Njenalicone wersije, kótarež se cłowjeske pśeglědanje pominaju ({0})"
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Nalicone wersije"
+msgstr "Nalicona wersija"
 
 msgid "Unlisted versions ({0})"
 msgstr "Njenalicone wersije ({0})"
@@ -5660,11 +5654,9 @@ msgstr "Rozpokazanje za pśeglědowanje dodankow"
 msgid "Security Scanners"
 msgstr "Wěstotne skannery"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
 msgstr "Pśez scannery markěrowany ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
 msgstr "Za cłowjeske pśěglědanje markěrowany ({0})"
 
@@ -5683,7 +5675,6 @@ msgstr "Pśirucka za pógódnośenja"
 msgid "Content Review"
 msgstr "Pśeglědanje wopśimjeśa"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgstr "Pśeglědanje wopśimjeśa ({0})"
 
@@ -6209,9 +6200,8 @@ msgstr "Wersija %(version)s &middot; %(created)s <span class=\"light\">&middot;%
 msgid "(Confirmed)"
 msgstr "(Wobkšuśony)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Termin za felujuce wótpokazanje"
+msgstr "Felujuce wótpokazanje pśi pśeglědowanju noweje wersije"
 
 msgid "Compatibility:"
 msgstr "Kompatibelnosć:"
@@ -6259,21 +6249,17 @@ msgstr "Wótpokazane abo njepśeglědane"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Druge njedocynjone pśeglědanje ({0})"
+msgstr "Druge felujuce pśeglědanje"
 
-#, fuzzy
 msgid "Flagged By Scanners"
 msgstr "Pśez scannery markěrowane"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Za cłowjeske pśěglědanje markěrowany"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Aktualizěrowaś"
+msgstr "Aktualizacije"
 
 #, fuzzy
 msgid "Rating Reviews"
