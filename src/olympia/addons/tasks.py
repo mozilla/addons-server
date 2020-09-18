@@ -270,6 +270,13 @@ def update_addon_hotness(averages):
 
     for addon in addons:
         average = averages.get(addon.guid)
+
+        # See: https://github.com/mozilla/addons-server/issues/15525
+        if not average:
+            log.error('Averages not found for addon with id=%s and GUID=%s.',
+                      addon.id, addon.guid)
+            continue
+
         this = average['avg_this_week']
         three = average['avg_three_weeks_before']
 
