@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-17 17:24+0000\n"
+"PO-Revision-Date: 2020-09-18 07:49+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1922,11 +1922,11 @@ msgstr "Az ikonnak négyzetesnek kell lennie (azonos szélességű és magasság
 msgid "There was an error uploading your preview."
 msgstr "Hiba történt az előnézet feltöltésekor."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Ezen ajánlott kiegészítő legutóbbi jóváhagyott értékelt nem lehet törölni vagy letiltani, mert az előző verzió nem lett ajánlottként elfogadva. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha "
-"segítségre van szüksége."
+"A(z) %s kiegészítő legutóbbi jóváhagyott verzióját nem lehet törölni vagy letiltani, mert az előző verzió nem lett promotáltként elfogadva a(z) %s csoportban. Lépjen kapcsolatba az AMO "
+"adminisztrátorokkal, ha segítségre van szüksége."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2618,13 +2618,11 @@ msgstr "Új verzió beküldése"
 msgid "Cancel and Disable Version"
 msgstr "Megszakítás és a verzió letiltása"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Biztos, hogy törölni szeretné ezt az verziót?"
+msgstr "Biztos, hogy törölni megszakítja, és letiltja ezt a verziót?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Mégsem"
+msgstr "Igen, megszakítás"
 
 msgid "No, don't cancel"
 msgstr "Nem, ne mondja le"
@@ -3523,13 +3521,13 @@ msgstr "Verzió törlése"
 msgid "Disable Version"
 msgstr "Verzió letiltása"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Ezen ajánlott kiegészítő legutóbbi jóváhagyott értékelt nem lehet törölni vagy letiltani, mert az előző verzió nem lett ajánlottként elfogadva. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha "
-"segítségre van szüksége."
+"Ezen %(promoted_group_name)s kiegészítő legutóbbi jóváhagyott verzióját nem lehet törölni vagy letiltani, mert az előző verzió nem lett promotáltként elfogadva a(z) %(promoted_group_name)s "
+"csoportban. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha segítségre van szüksége."
 
 msgid "Hide Add-on"
 msgstr "Kiegészítő elrejtése"
@@ -5093,9 +5091,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Kattintson duplán bármelyik szóra, hogy azonnal megnézze annak meghatározását."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Néhány weboldalon nehezen játszhatóak le a videók az androidos Firefoxban. Ez a kiegészítő javítást nyújt."
+msgstr "Egyes webhelyek nehezen tudnak videókat lejátszani Androidon. Itt egy javítás."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5682,7 +5679,6 @@ msgstr "Értékelési útmutató"
 msgid "Content Review"
 msgstr "Tartalom értékelése"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgstr "Tartalom értékelés ({0})"
 
@@ -6215,9 +6211,8 @@ msgstr "%(version)s verzió &middot; %(created)s <span class=\"light\">&middot; 
 msgid "(Confirmed)"
 msgstr "(Megerősített)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Függőben lévő elutasítás határideje"
+msgstr "Új verzió függőben lévő elutasítása"
 
 msgid "Compatibility:"
 msgstr "Kompatibilitás:"
@@ -6277,9 +6272,8 @@ msgstr "Emberi felülvizsgálatra jelölt"
 msgid "Updates"
 msgstr "Frissítések"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Értékelésre vár"
+msgstr "Értékelési vélemények"
 
 msgid "Auto Approved"
 msgstr "Automatikusan jóváhagyott"
@@ -6926,7 +6920,7 @@ msgstr ""
 "\n"
 "%(author_name)s (%(author_url)s)"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -6940,7 +6934,7 @@ msgid ""
 msgstr ""
 "Üdv,\n"
 "\n"
-"Azért kapja ezt az üzenetet, mert a(z) %(name)s nevű %(site_url)s-fiókját törölték.\n"
+"Azért kapja ezt az üzenetet, mert a(z) %(name)s nevű %(site_url)s-fiókját törölték. Ez történhetett automatikusan is, ha nemrég törölte a Firefox-fiókját.\n"
 "\n"
 "Ha ezt nem Ön tette, vagy úgy gondolja, hogy jogosulatlan személy fért hozzá a fiókjához, akkor válaszoljon erre az e-mailre. Ellenkező esetben nincs további teendője.\n"
 "\n"
