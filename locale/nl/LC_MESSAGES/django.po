@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-04-29 12:56+0000\n"
+"PO-Revision-Date: 2020-09-18 08:52+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -6253,17 +6253,14 @@ msgstr "Gemarkeerd voor persoonlijke beoordeling"
 msgid "Updates"
 msgstr "Updates"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Wacht op beoordeling"
+msgstr ""
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Automatisch goedgekeurd ({0})"
+msgstr "Automatisch goedgekeurd"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Wachtend op afwijzing ({0})"
+msgstr "Wachtend op afwijzing"
 
 msgid "presence of matched rules"
 msgstr "aanwezigheid van overeenkomende regels"
@@ -6906,7 +6903,7 @@ msgstr ""
 "\n"
 "%(author_name)s (%(author_url)s)"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Hello,\n"
 "\n"
@@ -6920,7 +6917,7 @@ msgid ""
 msgstr ""
 "Hallo,\n"
 "\n"
-"U ontvangt dit bericht omdat uw gebruikersaccount %(name)s van %(site_url)s is verwijderd.\n"
+"U ontvangt dit bericht omdat uw gebruikersaccount %(name)s van %(site_url)s is verwijderd. Dit kan automatisch zijn gebeurd als u onlangs uw Firefox-account hebt verwijderd.\n"
 "\n"
 "Als u dit niet hebt gedaan of als u denkt dat iemand zonder toestemming toegang heeft gehad tot uw account, beantwoord dan dit bericht. In andere gevallen hoeft u niets te doen.\n"
 "\n"
