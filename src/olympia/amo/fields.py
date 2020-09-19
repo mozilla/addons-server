@@ -27,6 +27,7 @@ class PositiveAutoField(models.AutoField):
     def rel_db_type(self, connection):
         return models.PositiveIntegerField().db_type(connection=connection)
 
+
 class HttpHttpsOnlyURLField(fields.URLField):
 
     def __init__(self, *args, **kwargs):
