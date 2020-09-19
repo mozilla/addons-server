@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-19 19:04+0000\n"
+"PO-Revision-Date: 2020-09-19 19:17+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1397,13 +1397,11 @@ msgstr "Recomendado"
 msgid "Sponsored"
 msgstr "Patrocinado"
 
-#, fuzzy
 msgid "Verified"
-msgstr "Verificado - Nível 1"
+msgstr "Verificado"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "Por Firefox"
 
 msgid "Spotlight"
 msgstr "Em foco"
