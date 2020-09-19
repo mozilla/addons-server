@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-18 20:02+0000\n"
+"PO-Revision-Date: 2020-09-19 19:04+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2648,9 +2648,8 @@ msgstr "Cancelar e desativar a versão"
 msgid "Are you sure you wish to cancel and disable version?"
 msgstr "Tem certeza de que deseja excluir essa versão?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Cancelar"
+msgstr "Sim, cancelar"
 
 msgid "No, don't cancel"
 msgstr "Não, não cancelar"
@@ -6333,22 +6332,19 @@ msgstr "Sinalizado por verificadores"
 msgid "Flagged for Human Review"
 msgstr "Sinalizado por revisão humana"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Atualizar"
+msgstr "Atualizações"
 
 #, fuzzy
 msgid "Rating Reviews"
 msgstr "Aguardando análise"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Aprovado automaticamente ({0})"
+msgstr "Aprovado automaticamente"
 
 # %1 is the review count
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Rejeição pendente ({0})"
+msgstr "Rejeição pendente"
 
 msgid "presence of matched rules"
 msgstr "presença de regras que correspondem"
