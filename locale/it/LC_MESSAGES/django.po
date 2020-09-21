@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-18 19:28+0000\n"
+"PO-Revision-Date: 2020-09-19 10:45+0000\n"
 "Last-Translator: Winfox <openlib@email.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2656,9 +2656,8 @@ msgstr "Disattiva questa versione e annulla la richiesta di revisione"
 msgid "Are you sure you wish to cancel and disable version?"
 msgstr ""
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Annulla"
+msgstr ""
 
 msgid "No, don't cancel"
 msgstr ""
@@ -5140,11 +5139,11 @@ msgstr "Visualizza in un attimo la definizione di qualsiasi parola con un doppio
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr ""
+msgstr "Questa estensione risolve i problemi riscontrati con alcuni siti nel riprodurre i video su Firefox per Android."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Rimuove i parametri di tracciamento dagli URL nei risultati di ricerca di Google."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -5713,13 +5712,11 @@ msgstr "Guida sulla revisione dei componenti aggiuntivi"
 msgid "Security Scanners"
 msgstr "Scanner di sicurezza"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
 msgstr "Contrassegnato da scanner ({0})"
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgstr "Contrassegnata per revisione umana ({0})"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Componenti aggiuntivi approvati automaticamente"
@@ -5736,7 +5733,6 @@ msgstr "Guida per revisori"
 msgid "Content Review"
 msgstr "Revisione contenuti"
 
-#, fuzzy
 msgid "Content Review ({0})"
 msgstr "Revisione contenuti ({0})"
 
@@ -6265,9 +6261,8 @@ msgstr "Versione %(version)s &middot; %(created)s <span class=\"light\">&middot;
 msgid "(Confirmed)"
 msgstr "(Confermato)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Scadenza per il rifiuto in sospeso"
+msgstr ""
 
 msgid "Compatibility:"
 msgstr "Compatibilità:"
@@ -6315,33 +6310,26 @@ msgstr "Rifiutato o non revisionato"
 msgid "[status:%s]"
 msgstr "[Stato:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Altre revisioni in attesa ({0})"
+msgstr ""
 
-#, fuzzy
 msgid "Flagged By Scanners"
 msgstr "Contrassegnato da scanner"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Contrassegnato per la revisione manuale"
 
-#, fuzzy
 msgid "Updates"
-msgstr "Aggiorna"
+msgstr "Aggiornamenti"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "In attesa di revisione"
+msgstr ""
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Componente aggiuntivo approvato automaticamente ({0})"
+msgstr "Componente aggiuntivo approvato automaticamente"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "In attesa di rifiuto ({0})"
+msgstr ""
 
 msgid "presence of matched rules"
 msgstr "presenza di regole corrispondenti"
