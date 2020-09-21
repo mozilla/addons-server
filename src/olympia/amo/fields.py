@@ -28,22 +28,13 @@ class PositiveAutoField(models.AutoField):
         return models.PositiveIntegerField().db_type(connection=connection)
 
 
-class URLValidatorBackport(URLValidator):
-    def __call__(self, value):
-        # stupid backport of https://github.com/django/django/commit/a9e188
-        try:
-            return super(URLValidatorBackport, self).__call__(value)
-        except ValueError:
-            raise exceptions.ValidationError(self.message, code=self.code)
-
-
 class HttpHttpsOnlyURLField(fields.URLField):
 
     def __init__(self, *args, **kwargs):
         super(HttpHttpsOnlyURLField, self).__init__(*args, **kwargs)
 
         self.validators = [
-            URLValidatorBackport(schemes=('http', 'https')),
+            URLValidator(schemes=('http', 'https')),
             # Reject AMO URLs, see:
             # https://github.com/mozilla/addons-server/issues/9012
             RegexValidator(
