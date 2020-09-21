@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-21 02:34+0000\n"
+"PO-Revision-Date: 2020-09-21 02:43+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -490,7 +490,7 @@ msgid "Invalid version"
 msgstr "不正なバージョン"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "最小バージョンを最大バージョンより大きくすることはできません"
 
 #, fuzzy
 msgid "Review Listed"
@@ -501,10 +501,10 @@ msgid "Review Unlisted"
 msgstr "審査担当者へのメモ"
 
 msgid "This block was imported from a regex based legacy Block."
-msgstr ""
+msgstr "このブロックは、正規表現ベースの従来のブロックからインポートされました。"
 
 msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
+msgstr "加えられた変更は、従来のブロックリストでは更新されません。kinto 管理 webui から手動で変更してください。"
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -515,20 +515,20 @@ msgstr "ホーム"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "%(count)s 件のアドオン GUID は %(v_min)s から %(v_max)s まで既にブロックされています"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "%(count)s 件の アドオン GUID が見つかりませんでした"
 
 msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr ""
+msgstr "次のブロックは、正規表現ベースの従来のブロックからインポートされました。"
 
 msgid "Save"
 msgstr "保存"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "保存してさらに追加"
 
 msgid "Delete"
 msgstr "削除"
@@ -544,27 +544,27 @@ msgstr "登録を承認"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "%(name)s を追加"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "アドオン GUID (1 行に 1 件)"
 
 msgid "Submit"
 msgstr "登録"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs"
-msgstr ""
+msgstr "%(count)s 件のアドオン GUID"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "ブロックを編集"
 
 #, fuzzy
 msgid "versions"
 msgstr "バージョン"
 
 msgid "Included in legacy blocklist."
-msgstr ""
+msgstr "従来のブロックリストに含まれています。"
 
 msgid "{addon} was created."
 msgstr "{addon} が作成されました。"
@@ -884,16 +884,16 @@ msgid "User {user} api key reset."
 msgstr "ユーザー {user} の API キーをリセットしました。"
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "ブロックリストに追加した {0} 件をブロックします。"
 
 msgid "Block added"
-msgstr ""
+msgstr "ブロックを追加しました"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "ブロックリストで編集した {0} 件をブロックします。"
 
 msgid "Block edited"
-msgstr ""
+msgstr "ブロックを編集しました"
 
 #, fuzzy
 msgid "Block for {0} deleted from Blocklist."
@@ -904,7 +904,7 @@ msgid "Block deleted"
 msgstr "アドオンは削除されました。"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "{addon} の GUID を DeniedGuid に追加しました。"
 
 #, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
