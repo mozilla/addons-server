@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2019-11-05 14:03+0000\n"
+"PO-Revision-Date: 2020-09-21 18:53+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -444,14 +444,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Programmer fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
 msgstr "Bidrag, de seneste {0} dage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Bidrag fra {0} til {1}"
+msgstr "Lande fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
