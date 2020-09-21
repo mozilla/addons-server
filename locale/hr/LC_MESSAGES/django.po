@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-20 19:57+0000\n"
+"PO-Revision-Date: 2020-09-21 14:03+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1914,10 +1914,10 @@ msgstr "Ikona mora biti kvadratična (iste širine i visine)."
 msgid "There was an error uploading your preview."
 msgstr "Dogodila se greška prilikom prijenosa tvog pregleda."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Najnoviju odobrenu verziju preporučenog proširenja nije moguće izbrisati ili deaktivirati, jer prethodna verzija nije bila odobrena za preporuku. Ako trebaš pomoć, obrati se AMO administratorima."
+"Najnoviju odobrenu verziju ovog %s proširenja nije moguće izbrisati ili deaktivirati, jer prethodna verzija nije bila odobrena za %s preporuku. Ako trebaš pomoć, obrati se AMO administratorima."
 
 #, python-format
 msgid "Version %s disabled."
@@ -3451,12 +3451,13 @@ msgstr "Izbriši verziju"
 msgid "Disable Version"
 msgstr "Deaktiviraj verziju"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Najnoviju odobrenu verziju preporučenog proširenja nije moguće izbrisati ili deaktivirati, jer prethodna verzija nije bila odobrena za preporuku. Ako trebaš pomoć, obrati se AMO administratorima."
+"Najnoviju odobrenu verziju ovog %(promoted_group_name)s proširenja nije moguće izbrisati ili deaktivirati, jer prethodna verzija nije bila odobrena za %(promoted_group_name)s preporuku. Ako trebaš "
+"pomoć, obrati se AMO administratorima."
 
 msgid "Hide Add-on"
 msgstr "Sakrij dodatak"
@@ -5022,9 +5023,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Neke web stranice imaju poteškoće s reprodukcijom videozapisa na Firefoxu za Android. Ovo proširenje to ispravlja."
+msgstr "Neke web stranice imaju poteškoće s reprodukcijom videozapisa na Androidu. Ovo ispravlja te poteškoće."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -6136,9 +6136,8 @@ msgstr "Verzija %(version)s &middot; %(created)s <span class=\"light\">&middot; 
 msgid "(Confirmed)"
 msgstr "(Potvrđeno)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Rok za odbijanje na čekanju"
+msgstr "Odbijanje na čekanju za pregled nove verzije"
 
 # 92%
 msgid "Compatibility:"
@@ -6187,13 +6186,11 @@ msgstr "Odbijeno ili nepregledano"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Ostala recenzija na čekanju ({0})"
+msgstr "Ostali pregled na čekanju"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Skeneri sigurnosti"
+msgstr "Označeni od skenera"
 
 msgid "Flagged for Human Review"
 msgstr "Označeno za ljudski pregled"
@@ -6207,9 +6204,8 @@ msgstr "Ocjenjivanje recenzija"
 msgid "Auto Approved"
 msgstr "Automatski odobreno"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Odbijanje na čekanju ({0})"
+msgstr "Odbijanje na čekanju"
 
 msgid "presence of matched rules"
 msgstr ""
