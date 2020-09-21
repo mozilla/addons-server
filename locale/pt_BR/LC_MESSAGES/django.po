@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-19 19:17+0000\n"
+"PO-Revision-Date: 2020-09-21 01:52+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1925,11 +1925,11 @@ msgstr "O ícone deve ser quadrado (mesma largura e altura)."
 msgid "There was an error uploading your preview."
 msgstr "Ocorreu um erro ao enviar sua imagem."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"A versão aprovada mais recente desta extensão recomendada não pode ser excluída nem desativada porque a versão anterior não foi aprovada para recomendação. Entre em contato com os administradores da"
-" AMO se precisar de ajuda com isso."
+"A última versão aprovada desta extensão %s não pode ser excluída nem desativada porque a versão anterior não foi aprovada para promoção %s. Entre em contato com os administradores da AMO se precisar"
+" de ajuda com isso."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2642,9 +2642,8 @@ msgstr "Submeter uma nova versão"
 msgid "Cancel and Disable Version"
 msgstr "Cancelar e desativar a versão"
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Tem certeza de que deseja excluir essa versão?"
+msgstr "Tem certeza que quer cancelar e desativar a versão?"
 
 msgid "Yes, Cancel"
 msgstr "Sim, cancelar"
@@ -3555,13 +3554,13 @@ msgstr "Excluir versão"
 msgid "Disable Version"
 msgstr "Desativar a versão"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"A versão aprovada mais recente desta extensão recomendada não pode ser excluída nem desativada porque a versão anterior não foi aprovada para recomendação. Entre em contato com os administradores da"
-" AMO se precisar de ajuda com isso."
+"A última versão aprovada desta extensão de %(promoted_group_name)s não pode ser excluída nem desativada porque a versão anterior não foi aprovada para promoção de %(promoted_group_name)s. Entre em "
+"contato com os administradores da AMO se precisar de ajuda com isso."
 
 msgid "Hide Add-on"
 msgstr "Ocultar extensão"
@@ -5704,9 +5703,8 @@ msgstr "Guia de revisão de extensão"
 msgid "Security Scanners"
 msgstr "Verificadores de segurança"
 
-#, fuzzy
 msgid "Flagged By Scanners ({0})"
-msgstr "Sinalizado por verificadores ({0})"
+msgstr ""
 
 #, fuzzy
 msgid "Flagged for Human Review ({0})"
@@ -6318,15 +6316,12 @@ msgid "[status:%s]"
 msgstr "[status: %s]"
 
 # %1 is the review count
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Outras revisões pendentes ({0})"
+msgstr "Outra revisão pendente"
 
-#, fuzzy
 msgid "Flagged By Scanners"
 msgstr "Sinalizado por verificadores"
 
-#, fuzzy
 msgid "Flagged for Human Review"
 msgstr "Sinalizado por revisão humana"
 
