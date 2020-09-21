@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-21 01:52+0000\n"
+"PO-Revision-Date: 2020-09-21 01:55+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5128,9 +5128,8 @@ msgid "Double-click any word to instantly see its definition."
 msgstr "Dê um duplo-clique em qualquer palavra para ver imediatamente a definição."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Esta extensão repara a dificuldade que alguns sites têm em reproduzir vídeos no Firefox para Android."
+msgstr "Alguns sites têm dificuldade para reproduzir vídeos no Android. Aqui está uma correção."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long and ugly tracking parameters from Google search result URL's."
@@ -5622,7 +5621,6 @@ msgstr "Versões listadas que precisam de revisão humana ({0})"
 msgid "Unlisted versions needing human review ({0})"
 msgstr "Versões não listadas que precisam de revisão humana ({0})"
 
-#, fuzzy
 msgid "Listed version"
 msgstr "Versão listada"
 
@@ -5706,9 +5704,8 @@ msgstr "Verificadores de segurança"
 msgid "Flagged By Scanners ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Flagged for Human Review ({0})"
-msgstr "Sinalizado para revisão humana ({0})"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Extensões aprovadas automaticamente"
@@ -5726,9 +5723,8 @@ msgid "Content Review"
 msgstr "Avaliar conteúdo"
 
 # %1 is the review count
-#, fuzzy
 msgid "Content Review ({0})"
-msgstr "Análise de conteúdo ({0})"
+msgstr "Revisão de conteúdo ({0})"
 
 msgid "New ({0})"
 msgstr "Novo ({0})"
@@ -6265,9 +6261,8 @@ msgstr "Versão %(version)s &middot; %(created)s <span class=\"light\">&middot; 
 msgid "(Confirmed)"
 msgstr "(Confirmado)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Prazo de rejeição pendente"
+msgstr "Rejeição pendente na revisão da nova versão"
 
 msgid "Compatibility:"
 msgstr "Compatibilidade:"
