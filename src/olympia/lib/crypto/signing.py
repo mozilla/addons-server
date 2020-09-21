@@ -19,7 +19,6 @@ from asn1crypto import cms
 import olympia.core.logger
 
 from olympia import amo
-from olympia.constants.promoted import RECOMMENDED
 
 
 log = olympia.core.logger.getLogger('z.crypto')
@@ -55,10 +54,6 @@ def get_id(addon):
 
 
 def use_promoted_signer(file_obj, promo_group):
-    if not waffle.switch_is_active('autograph_promoted_signer'):
-        return (
-            file_obj.version.channel == amo.RELEASE_CHANNEL_LISTED and
-            promo_group == RECOMMENDED)
     return (
         file_obj.version.channel == amo.RELEASE_CHANNEL_LISTED and
         promo_group.autograph_signing_states)
@@ -101,12 +96,9 @@ def call_signing(file_obj):
     # file.
     promo_group = file_obj.addon.promoted_group(currently_approved=False)
     if use_promoted_signer(file_obj, promo_group):
-        if waffle.switch_is_active('autograph_promoted_signer'):
-            signing_states = {
-                promo_group.autograph_signing_states.get(app.short)
-                for app in file_obj.addon.promotedaddon.applications}
-        else:
-            signing_states = ('recommended',)
+        signing_states = {
+            promo_group.autograph_signing_states.get(app.short)
+            for app in file_obj.addon.promotedaddon.applications}
 
         signing_data['keyid'] = conf['recommendation_signer']
         signing_data['options']['recommendations'] = list(signing_states)
