@@ -6,20 +6,20 @@
     <div class="submit-row">
         <div class="align-left">
             {% comment %}
-              Add custom <button>s for the actions we want on the change form.
+              Add custom buttons for the actions we want on the change form.
               They have to be *after* the other submit buttons, otherwise they
               could become the default submit button of the page
-             {% endcomment %}
-             {% if has_users_edit_permission %}
-                 <input formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
-                        type="submit" value="{% trans 'Ban' %}" />
-                 <input formaction="{% url 'admin:users_userprofile_reset_api_key' original.pk|admin_urlquote %}"
-                        type="submit" value="{% trans 'Reset API Key' %}" />
-                 <input formaction="{% url 'admin:users_userprofile_reset_session' original.pk|admin_urlquote %}"
-                        type="submit" value="{% trans 'Reset session(s)' %}" />
-             {% endif %}
-             <input formaction="{% url 'admin:users_userprofile_delete_picture' original.pk|admin_urlquote %}"
-                    type="submit" value="{% trans 'Delete picture' %}" />
+            {% endcomment %}
+            {% if has_users_edit_permission %}
+                <input formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
+                       type="submit" value="{% trans 'Ban' %}" />
+                <input formaction="{% url 'admin:users_userprofile_reset_api_key' original.pk|admin_urlquote %}"
+                       type="submit" value="{% trans 'Reset API Key' %}" />
+                <input formaction="{% url 'admin:users_userprofile_reset_session' original.pk|admin_urlquote %}"
+                       type="submit" value="{% trans 'Reset session(s)' %}" />
+            {% endif %}
+            <input formaction="{% url 'admin:users_userprofile_delete_picture' original.pk|admin_urlquote %}"
+                   type="submit" value="{% trans 'Delete picture' %}" />
         </div>
     </div>
 {% endblock %}

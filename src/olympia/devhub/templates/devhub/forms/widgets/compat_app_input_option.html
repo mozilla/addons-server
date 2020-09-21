@@ -1,1 +1,10 @@
-{% if wrap_label or widget.wrap_label %}<label class="app {{ widget.compat_app_short }}" {% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %}>{% endif %}{% include "django/forms/widgets/input.html" %}{% if wrap_label or widget.wrap_label %} {{ widget.label }}</label>{% endif %}
+{% spaceless %}
+{% if wrap_label or widget.wrap_label %}
+  {% with attr_id=widget.attrs.id|stringformat:'for="%s",' %}
+    <label class="app {{ widget.compat_app_short }}" {{ widget.attrs.id|yesno:attr_id }}>
+        {% include "django/forms/widgets/input.html" %}{{ widget.label }}</label>
+  {% endwith %}
+{% else %}
+    {% include "django/forms/widgets/input.html" %}
+{% endif %}
+{% endspaceless %}

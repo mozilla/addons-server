@@ -66,12 +66,13 @@
 {% endif %}
 
 <p>
-  {% if addon.type == amo.ADDON_STATICTHEME %}
-    <a class="button" href="{{ url('devhub.themes') }}">
-  {% else %}
-    <a class="button" href="{{ url('devhub.addons') }}">
-  {% endif %}
-    {{ _("Go to My Submissions") }}</a>
+  {% with link_text=_("Go to My Submissions") %}
+    {% if addon.type == amo.ADDON_STATICTHEME %}
+      <a class="button" href="{{ url('devhub.themes') }}">{{ link_text }}</a>
+    {% else %}
+      <a class="button" href="{{ url('devhub.addons') }}">{{ link_text }}</a>
+    {% endif %}
+  {% endwith %}
 </p>
 
 {% endblock %}
