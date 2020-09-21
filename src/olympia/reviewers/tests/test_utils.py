@@ -2180,7 +2180,8 @@ class TestReviewHelperSigning(TestReviewHelperBase):
 
         recommendation_data = _get_recommendation_data(self.file.file_path)
         assert recommendation_data['addon_id'] == 'test@local'
-        assert recommendation_data['states'] == ['recommended']
+        assert sorted(recommendation_data['states']) == [
+            'recommended', 'recommended-android']
 
 
 def test_send_email_autoescape():

@@ -359,35 +359,6 @@ class TestSigning(TestCase):
         assert recommendation_data['addon_id'] == 'xxxxx'
         assert sorted(recommendation_data['states']) == states
 
-    @override_switch('autograph_promoted_signer', active=False)
-    def test_call_signing_promoted_recommended_only(self):
-        # This is the usual process for recommended add-ons, they're
-        # in "pending recommendation" and only *after* we approve and sign
-        # them they will become "recommended". If their promoted group changes
-        # we won't sign further versions as recommended.
-        self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
-
-        # it's promoted for all applications, but no android because we're not
-        # using the newer promoted signer
-        self._check_signed_correctly(states=['recommended'])
-
-    @override_switch('autograph_promoted_signer', active=False)
-    def test_call_signing_promoted_non_recommended_ignored(self):
-        # LINE would be signed as promoted if waffle was on
-        self.make_addon_promoted(self.file_.version.addon, LINE)
-
-        assert signing.sign_file(self.file_)
-
-        signature_info, manifest = _get_signature_details(
-            self.file_.current_file_path)
-
-        subject_info = signature_info.signer_certificate['subject']
-        assert subject_info['common_name'] == 'xxxxx'
-        assert manifest.count('Name: ') == 4
-
-        assert 'Name: mozilla-recommendation.json' not in manifest
-
-    @override_switch('autograph_promoted_signer', active=True)
     def test_call_signing_promoted(self):
         # This is the usual process for promoted add-ons, they're
         # in "pending" and only *after* we approve and sign them they will
@@ -399,7 +370,6 @@ class TestSigning(TestCase):
         # desktop and android so don't include twice.
         self._check_signed_correctly(states=['line'])
 
-    @override_switch('autograph_promoted_signer', active=True)
     def test_call_signing_promoted_recommended(self):
         self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
 
@@ -407,7 +377,6 @@ class TestSigning(TestCase):
         self._check_signed_correctly(
             states=['recommended', 'recommended-android'])
 
-    @override_switch('autograph_promoted_signer', active=True)
     def test_call_signing_promoted_recommended_android_only(self):
         self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
         self.file_.version.addon.promotedaddon.update(
