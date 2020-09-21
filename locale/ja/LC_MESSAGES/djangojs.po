@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-02-20 16:53+0000\n"
-"Last-Translator: siam <iwata@mxq.mesh.ne.jp>\n"
+"PO-Revision-Date: 2020-06-22 21:19+0000\n"
+"Last-Translator: rrock9312 <rrock9312@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -116,9 +116,7 @@ msgstr "登録を完了する前に以下の点について確認してくださ
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロー"
-"ドフォームを使い、審査が即座に却下されないようにしてください。"
+msgstr "コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロードフォームを使い、審査が即座に却下されないようにしてください。"
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
@@ -435,11 +433,11 @@ msgstr "{0} から {1} までのアプリケーション"
 
 #. L10n: {0} is an integer.
 msgid "Countries, last {0} days"
-msgstr ""
+msgstr "最近 {0} 日間の国"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Countries from {0} to {1}"
-msgstr ""
+msgstr "{0} から {1} までの国"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
