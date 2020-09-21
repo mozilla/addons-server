@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2020-09-17 12:59+0000\n"
-"PO-Revision-Date: 2020-09-21 02:43+0000\n"
+"PO-Revision-Date: 2020-09-21 02:50+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -911,10 +911,10 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "{addon} が {collection} から削除されました。"
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "{0} 回のログオフ操作 {1} 件をブロックします。"
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "ログオフ操作をブロック"
 
 #, fuzzy
 msgid "User {user} session(s) reset."
@@ -980,7 +980,7 @@ msgid "Unlisted"
 msgstr "リスト掲載中止"
 
 msgid "API"
-msgstr ""
+msgstr "API"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1016,7 +1016,7 @@ msgid "Plugin"
 msgstr "プラグイン"
 
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "非推奨の LWT"
 
 msgid "Theme (Static)"
 msgstr "テーマ (静的)"
@@ -1047,7 +1047,7 @@ msgid "Plugins"
 msgstr "プラグイン"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "非推奨の LWT"
 
 msgid "Themes (Static)"
 msgstr "テーマ (静的)"
@@ -1383,14 +1383,14 @@ msgid "Sponsored"
 msgstr ""
 
 msgid "Verified"
-msgstr ""
+msgstr "認証済み"
 
 #, fuzzy
 msgid "By Firefox"
 msgstr "Firefox"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "スポットライト"
 
 msgid "Strategic"
 msgstr ""
@@ -1584,33 +1584,33 @@ msgid "Delay auto-approval indefinitely"
 msgstr ""
 
 msgid "True positive"
-msgstr ""
+msgstr "真陽性"
 
 msgid "False positive"
-msgstr ""
+msgstr "偽陽性"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "結果不確定"
 
 #, fuzzy
 msgid "New"
 msgstr "次へ"
 
 msgid "Running"
-msgstr ""
+msgstr "実行中"
 
 msgid "Aborted"
-msgstr ""
+msgstr "中止しました"
 
 msgid "Aborting"
-msgstr ""
+msgstr "中止しています"
 
 #, fuzzy
 msgid "Completed"
 msgstr "未完成"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "スケジュール済み"
 
 msgid "Core"
 msgstr "コア"
@@ -1629,7 +1629,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Thunderbird と SeaMonkey のアドオンは現在、addons.thunderbird.net に掲載され、維持されています。新しいサイトでアドオンを更新するには、同じアカウントを使えます。"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open Searchアドオンは、{blog_link_open}AMO でのサポートを終了しました{blog_link_close}。代わりに、{doc_link_open}検索の拡張機能{doc_link_close} を作成できます。"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "このスラグは既に使われています。別のスラグを付けてください。"
@@ -3115,7 +3115,7 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "開発者向け"
@@ -3124,7 +3124,7 @@ msgid "For end users"
 msgstr "利用者向け"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 # The title for a user if they are a developer
 msgid "Add-on Developers Mailing List"
