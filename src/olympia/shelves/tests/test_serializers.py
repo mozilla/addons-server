@@ -1,8 +1,12 @@
+from urllib import parse
+
 from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 
+from olympia.addons.views import AddonSearchView
 from olympia.amo.tests import TestCase, reverse_ns
 from olympia.shelves.models import Shelf
 from olympia.shelves.serializers import ShelfSerializer
@@ -29,12 +33,16 @@ class TestShelvesSerializer(TestCase):
             api_settings.DEFAULT_VERSIONING_CLASS()
         )
         self.request.version = api_version
+        self.request.user = AnonymousUser()
 
     def get_serializer(self, instance, **extra_context):
         extra_context['request'] = self.request
         return ShelfSerializer(instance=instance, context=extra_context)
 
     def serialize(self, instance, **extra_context):
+        if instance.endpoint == 'search':
+            self.request.query_params = dict(parse.parse_qsl(
+                self.search_shelf.criteria))
         return self.get_serializer(instance, **extra_context).data
 
     def test_shelf_serializer_search(self):
@@ -47,7 +55,7 @@ class TestShelvesSerializer(TestCase):
             'criteria': self.search_shelf.criteria,
             'footer_text': 'See more populâr themes',
             'footer_pathname': '',
-            'addons': None
+            'addons': AddonSearchView(request=self.request).data
         }
 
     def test_shelf_serializer_collections(self):
